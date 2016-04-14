@@ -1,8 +1,4 @@
-﻿Imports DevExpress.XtraReports.UI
-Imports DevExpress.XtraReports.UI.PivotGrid
-Imports DevExpress.XtraPivotGrid
-
-Public Class ReportBOM
+﻿Public Class ReportBOM
     Public Shared id_bom As String = "-1"
     Public Shared product_name As String = "-1"
     Public Shared bom_name As String = "-1"
@@ -51,7 +47,7 @@ Public Class ReportBOM
         GridView1.BestFitColumns()
     End Sub
 
-    Private Sub DetBomMat_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles DetBomMat.BeforePrint
+    Private Sub DetBomMat_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles DetBOMMat.BeforePrint
         view_bom_mat()
     End Sub
 
