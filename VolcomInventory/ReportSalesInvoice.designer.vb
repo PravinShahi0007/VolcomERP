@@ -104,6 +104,9 @@ Partial Public Class ReportSalesInvoice
         Me.LabelVatHeader = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelVAT = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel23 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LDelOrderMid = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LDelOrder = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LDelOrderLeft = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCSalesInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -317,7 +320,7 @@ Partial Public Class ReportSalesInvoice
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPanel1, Me.LPODate, Me.XrLabel6, Me.zxc, Me.LTitle, Me.LabelNumber, Me.XrLabel12, Me.XrLabel1})
-        Me.TopMargin.HeightF = 92.66667!
+        Me.TopMargin.HeightF = 92.66669!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -327,7 +330,7 @@ Partial Public Class ReportSalesInvoice
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel4, Me.XrLabel8, Me.LNPWP, Me.LabelPeriod, Me.XrLabel7, Me.XrLabel5, Me.LabelDueDate, Me.XrLabel3, Me.XrLabel2, Me.XrLabel30, Me.LabelType, Me.XrLabel20, Me.XrLabel19, Me.LabelStoreAddress, Me.XrLabel21, Me.XrLabel13, Me.LabelStore, Me.XrLabel15})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LDelOrderMid, Me.LDelOrder, Me.LDelOrderLeft, Me.XrLabel4, Me.XrLabel8, Me.LNPWP, Me.LabelPeriod, Me.XrLabel7, Me.XrLabel5, Me.LabelDueDate, Me.XrLabel3, Me.XrLabel2, Me.XrLabel30, Me.LabelType, Me.XrLabel20, Me.XrLabel19, Me.LabelStoreAddress, Me.XrLabel21, Me.XrLabel13, Me.LabelStore, Me.XrLabel15})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 25.08334!)
         Me.XrPanel1.Name = "XrPanel1"
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(773.0!, 67.58334!)
@@ -405,10 +408,10 @@ Partial Public Class ReportSalesInvoice
         '
         Me.XrLabel5.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 7.0!)
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(470.8333!, 29.16686!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(457.2916!, 29.16685!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(75.20822!, 13.58331!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(88.74997!, 13.58331!)
         Me.XrLabel5.StylePriority.UseBorders = False
         Me.XrLabel5.StylePriority.UseFont = False
         Me.XrLabel5.StylePriority.UseTextAlignment = False
@@ -446,10 +449,10 @@ Partial Public Class ReportSalesInvoice
         '
         Me.XrLabel2.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 7.0!)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(470.8333!, 15.58355!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(457.2916!, 15.58356!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(75.20825!, 13.58331!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(88.75003!, 13.58331!)
         Me.XrLabel2.StylePriority.UseBorders = False
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.StylePriority.UseTextAlignment = False
@@ -487,10 +490,10 @@ Partial Public Class ReportSalesInvoice
         '
         Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel20.Font = New System.Drawing.Font("Times New Roman", 7.0!)
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(470.8334!, 2.000237!)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(457.2917!, 2.000233!)
         Me.XrLabel20.Name = "XrLabel20"
         Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel20.SizeF = New System.Drawing.SizeF(75.20825!, 13.58331!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(88.75003!, 13.58331!)
         Me.XrLabel20.StylePriority.UseBorders = False
         Me.XrLabel20.StylePriority.UseFont = False
         Me.XrLabel20.StylePriority.UseTextAlignment = False
@@ -1234,6 +1237,47 @@ Partial Public Class ReportSalesInvoice
         Me.XrLabel23.Text = ":"
         Me.XrLabel23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
+        'LDelOrderMid
+        '
+        Me.LDelOrderMid.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LDelOrderMid.Font = New System.Drawing.Font("Times New Roman", 7.0!)
+        Me.LDelOrderMid.LocationFloat = New DevExpress.Utils.PointFloat(546.0415!, 42.75018!)
+        Me.LDelOrderMid.Name = "LDelOrderMid"
+        Me.LDelOrderMid.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LDelOrderMid.SizeF = New System.Drawing.SizeF(11.45831!, 13.58335!)
+        Me.LDelOrderMid.StylePriority.UseBorders = False
+        Me.LDelOrderMid.StylePriority.UseFont = False
+        Me.LDelOrderMid.StylePriority.UseTextAlignment = False
+        Me.LDelOrderMid.Text = ":"
+        Me.LDelOrderMid.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LDelOrder
+        '
+        Me.LDelOrder.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LDelOrder.Font = New System.Drawing.Font("Times New Roman", 7.0!)
+        Me.LDelOrder.LocationFloat = New DevExpress.Utils.PointFloat(557.4998!, 42.75022!)
+        Me.LDelOrder.Name = "LDelOrder"
+        Me.LDelOrder.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LDelOrder.SizeF = New System.Drawing.SizeF(205.5002!, 13.58338!)
+        Me.LDelOrder.StylePriority.UseBorders = False
+        Me.LDelOrder.StylePriority.UseFont = False
+        Me.LDelOrder.StylePriority.UseTextAlignment = False
+        Me.LDelOrder.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'LDelOrderLeft
+        '
+        Me.LDelOrderLeft.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LDelOrderLeft.Font = New System.Drawing.Font("Times New Roman", 7.0!)
+        Me.LDelOrderLeft.LocationFloat = New DevExpress.Utils.PointFloat(457.2916!, 42.75022!)
+        Me.LDelOrderLeft.Name = "LDelOrderLeft"
+        Me.LDelOrderLeft.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LDelOrderLeft.SizeF = New System.Drawing.SizeF(88.74991!, 13.58331!)
+        Me.LDelOrderLeft.StylePriority.UseBorders = False
+        Me.LDelOrderLeft.StylePriority.UseFont = False
+        Me.LDelOrderLeft.StylePriority.UseTextAlignment = False
+        Me.LDelOrderLeft.Text = "Delivery Order"
+        Me.LDelOrderLeft.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
         'ReportSalesInvoice
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
@@ -1332,4 +1376,7 @@ Partial Public Class ReportSalesInvoice
     Friend WithEvents CLabelNetto As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents CLabelDiscount As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents CLabelGross As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LDelOrderMid As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LDelOrder As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LDelOrderLeft As DevExpress.XtraReports.UI.XRLabel
 End Class

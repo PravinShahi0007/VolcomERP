@@ -697,18 +697,18 @@
     Sub check_do()
         id_do = "-1"
         TEDO.Text = ""
-        If LETypeSO.EditValue.ToString = "1" Then
-            LDO.Visible = False
-            TEDO.Visible = False
-            BDO.Visible = False
-            '
-            PanelControlNav.Visible = True
-        Else
+        If LETypeSO.EditValue.ToString = "2" Then
             LDO.Visible = True
             TEDO.Visible = True
             BDO.Visible = True
             '
             PanelControlNav.Visible = False
+        Else
+            LDO.Visible = False
+            TEDO.Visible = False
+            BDO.Visible = False
+            '
+            PanelControlNav.Visible = True
         End If
     End Sub
 

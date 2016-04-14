@@ -434,8 +434,7 @@
                 FormSalesPOSDet.TxtCodeCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
                 FormSalesPOSDet.MEAdrressCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "3")
                 FormSalesPOSDet.TENPWP.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "5")
-                FormSalesPOSDet.LETypeSO.EditValue = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "8")
-
+                FormSalesPOSDet.LETypeSO.ItemIndex = FormSalesPOSDet.LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "8"))
                 FormSalesPOSDet.viewDetail()
                 FormSalesPOSDet.viewStockStore()
                 FormSalesPOSDet.check_but()
