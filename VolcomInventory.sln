@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "VolcomInventory", "VolcomInventory\VolcomInventory.vbproj", "{8E7D55BA-6352-4E69-AC5F-C1E47409E6B4}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupVolcomERP", "SetupVolcomERP\SetupVolcomERP.vdproj", "{E2F636E6-BD32-47FC-A58F-01E2405F22BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E7D55BA-6352-4E69-AC5F-C1E47409E6B4}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{8E7D55BA-6352-4E69-AC5F-C1E47409E6B4}.Debug|Any CPU.Build.0 = Debug|x86
+		{8E7D55BA-6352-4E69-AC5F-C1E47409E6B4}.Debug|x86.ActiveCfg = Debug|x86
+		{8E7D55BA-6352-4E69-AC5F-C1E47409E6B4}.Debug|x86.Build.0 = Debug|x86
+		{8E7D55BA-6352-4E69-AC5F-C1E47409E6B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E7D55BA-6352-4E69-AC5F-C1E47409E6B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E7D55BA-6352-4E69-AC5F-C1E47409E6B4}.Release|x86.ActiveCfg = Debug|x86
+		{8E7D55BA-6352-4E69-AC5F-C1E47409E6B4}.Release|x86.Build.0 = Debug|x86
+		{E2F636E6-BD32-47FC-A58F-01E2405F22BA}.Debug|Any CPU.ActiveCfg = Release
+		{E2F636E6-BD32-47FC-A58F-01E2405F22BA}.Debug|x86.ActiveCfg = Debug
+		{E2F636E6-BD32-47FC-A58F-01E2405F22BA}.Release|Any CPU.ActiveCfg = Release
+		{E2F636E6-BD32-47FC-A58F-01E2405F22BA}.Release|Any CPU.Build.0 = Release
+		{E2F636E6-BD32-47FC-A58F-01E2405F22BA}.Release|x86.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

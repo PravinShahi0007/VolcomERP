@@ -1,0 +1,53 @@
+Info Apps :
+- Stok QC -> Rec + (-out+in), dgn catatan status rec harus complete id_report_status = 6
+
+Stock :
+qty_all_product : seluruh total stok yg free utk diorder
+qty_normal :
+stok yg free + stok yg reserved (asset).
+qty_reserved :
+stok dipesan 
+
+Data dummy
+product 9,10,18 ALL
+
+SOH -> report_status = complete
+view_return_in_sales (USED)
+
+Opname hanya yg free
+
+37 Rec WH
+43 Del Order
+46 Return
+49 Return QC
+53 Opname STore
+56 Opname WH
+57 TRF
+
+https://www.devexpress.com/Support/Center/Question/Details/AK17175
+
+id 4 & 8 samain costnya
+
+- report FG smentara blm digrup per id_code karena kebetulan code detail hanya 1
+
+- kalo beda harga cost dibedain code
+
+- kalo mau ubah cost harus master ulang trus adj in
+
+Credit note
+- untuk penghapusan/cancel harus dilakukan segera stelah 
+
+Report Sales
+- hanya yg statusnya completed, namun stock tetap brlaku dmana invoice!=5, missing!=5, credit note = '6'
+
+PD
+- hanya uttuk dasar pembuatan production order turun
+- kalau sempet buatin line list
+
+
+
+
+
+
+
+

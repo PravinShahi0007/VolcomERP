@@ -1,0 +1,28 @@
+-------------------------------
+JOB LIST & OUTSTANDING REVISION
+------------------------------
+GENERAL
+- CANCEL STATUS harus dicek dimana syarat harus terpenuhi :
+"Tidak ada proses berkaitan yang sudah dibuat atau semua proses yang berkaitan yang sudah terlanjur dibuat harus di-CANCEL terlebih dahulu. "
+
+LOG
+- Buatin log di database sendiri. Ada mekanisme backup log. di pisah jadi tabel sendiri dan dipisah tiap taun 
+ 
+
+GAK JELAS
+- Jual Write Off
+SELECT * FROM tb_report_mark a WHERE a.report_mark_type=9 AND a.id_report=544 and a.`level`=1
+
+------------------HIGH PRIORITY-------------------------
+Edit :
+Detail, spec master design
+
+
+confirm Pak Surya -> Approval PD
+
+
+
+
+
+
+
