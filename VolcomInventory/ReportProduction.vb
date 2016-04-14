@@ -1,8 +1,4 @@
-﻿Imports System.Drawing
-Imports System.Drawing.Printing
-Imports DevExpress.XtraReports.UI
-
-Public Class ReportProduction
+﻿Public Class ReportProduction
     Public Shared id_prod_order As String = "-1"
     Public Shared sign_col As String = "-1"
     Public Shared id_cur As String = "-1"

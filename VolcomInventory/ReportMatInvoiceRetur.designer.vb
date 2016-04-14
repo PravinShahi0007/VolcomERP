@@ -19,91 +19,91 @@ Partial Public Class ReportMatInvoiceRetur
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Detail = New DevExpress.XtraReports.UI.DetailBand
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer
-        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl
-        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdPRDetSample = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColQtyRec = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.COlUOM = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdMatDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnQtyRet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand
-        Me.LTitle = New DevExpress.XtraReports.UI.XRLabel
-        Me.LReturNumber = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel
-        Me.zxc = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LDate = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel
-        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LInvoice = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LPDONumber = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel25 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel23 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LDesign = New DevExpress.XtraReports.UI.XRLabel
-        Me.LPLNumber = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LFromNPWP = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel48 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel47 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LToNPWP = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel30 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LDueDate = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LToAddress = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel21 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LToName = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LFromName = New DevExpress.XtraReports.UI.XRLabel
-        Me.LFromAddress = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel
-        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand
-        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo
-        Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand
-        Me.XrLabel22 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LCurGross = New DevExpress.XtraReports.UI.XRLabel
-        Me.LCurVat = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable
-        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow
-        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell
-        Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel36 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LTot = New DevExpress.XtraReports.UI.XRLabel
-        Me.LCurTot = New DevExpress.XtraReports.UI.XRLabel
-        Me.LNote = New DevExpress.XtraReports.UI.XRLabel
-        Me.LSay = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel29 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LGrossTot = New DevExpress.XtraReports.UI.XRLabel
-        Me.LNotex = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel32 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel34 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LVat = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel31 = New DevExpress.XtraReports.UI.XRLabel
-        Me.LVatTot = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel28 = New DevExpress.XtraReports.UI.XRLabel
+        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
+        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
+        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdPRDetSample = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.COlUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdMatDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyRet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LReturNumber = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.zxc = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LDate = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LInvoice = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LPDONumber = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel26 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel25 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel23 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LDesign = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LPLNumber = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LFromNPWP = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel48 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel47 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LToNPWP = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel30 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LDueDate = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel20 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LToAddress = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel21 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel13 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LToName = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LFromName = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LFromAddress = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
+        Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
+        Me.XrLabel22 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LCurGross = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LCurVat = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel36 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LTot = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LCurTot = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LNote = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LSay = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel29 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LGrossTot = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LNotex = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel32 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel34 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LVat = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel31 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LVatTot = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel28 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,9 +121,9 @@ Partial Public Class ReportMatInvoiceRetur
         '
         'WinControlContainer1
         '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(650.0!, 142.7083!)
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(789.9999!, 142.7083!)
         Me.WinControlContainer1.WinControl = Me.GCListPurchase
         '
         'GCListPurchase
@@ -132,7 +132,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.GCListPurchase.MainView = Me.GVListPurchase
         Me.GCListPurchase.Name = "GCListPurchase"
         Me.GCListPurchase.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCListPurchase.Size = New System.Drawing.Size(624, 137)
+        Me.GCListPurchase.Size = New System.Drawing.Size(758, 137)
         Me.GCListPurchase.TabIndex = 1
         Me.GCListPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPurchase, Me.GridView1})
         '
@@ -148,7 +148,6 @@ Partial Public Class ReportMatInvoiceRetur
         Me.GVListPurchase.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVListPurchase.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVListPurchase.OptionsPrint.PrintFooter = False
-        Me.GVListPurchase.OptionsPrint.UsePrintStyles = True
         Me.GVListPurchase.OptionsView.ShowFooter = True
         Me.GVListPurchase.OptionsView.ShowGroupPanel = False
         '
@@ -292,7 +291,7 @@ Partial Public Class ReportMatInvoiceRetur
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "n2"
         Me.RepositoryItemSpinEdit1.Mask.UseMaskAsDisplayFormat = True
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {999999999, 0, 0, 131072})
@@ -306,7 +305,7 @@ Partial Public Class ReportMatInvoiceRetur
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LTitle, Me.LReturNumber, Me.XrLabel12, Me.XrLabel6, Me.zxc, Me.XrLabel1, Me.LDate, Me.XrPanel1})
-        Me.TopMargin.HeightF = 144.1667!
+        Me.TopMargin.HeightF = 167.0834!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -314,10 +313,10 @@ Partial Public Class ReportMatInvoiceRetur
         'LTitle
         '
         Me.LTitle.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(199.9992!, 0.0!)
+        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(199.9992!, 22.91668!)
         Me.LTitle.Name = "LTitle"
         Me.LTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LTitle.SizeF = New System.Drawing.SizeF(248.9586!, 25.08334!)
+        Me.LTitle.SizeF = New System.Drawing.SizeF(354.5836!, 25.08334!)
         Me.LTitle.StylePriority.UseFont = False
         Me.LTitle.StylePriority.UseTextAlignment = False
         Me.LTitle.Text = "NOTA RETUR"
@@ -327,7 +326,7 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.LReturNumber.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LReturNumber.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LReturNumber.LocationFloat = New DevExpress.Utils.PointFloat(88.45837!, 0.0!)
+        Me.LReturNumber.LocationFloat = New DevExpress.Utils.PointFloat(88.45837!, 22.91668!)
         Me.LReturNumber.Name = "LReturNumber"
         Me.LReturNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LReturNumber.SizeF = New System.Drawing.SizeF(111.5409!, 25.08334!)
@@ -340,7 +339,7 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.XrLabel12.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel12.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(77.00002!, 0.0!)
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(77.00002!, 22.91668!)
         Me.XrLabel12.Name = "XrLabel12"
         Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel12.SizeF = New System.Drawing.SizeF(11.45835!, 25.08334!)
@@ -353,7 +352,7 @@ Partial Public Class ReportMatInvoiceRetur
         'XrLabel6
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(549.1658!, 0.0!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(654.7908!, 22.91668!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(11.45844!, 25.08334!)
@@ -365,7 +364,7 @@ Partial Public Class ReportMatInvoiceRetur
         'zxc
         '
         Me.zxc.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.zxc.LocationFloat = New DevExpress.Utils.PointFloat(448.9578!, 0.0!)
+        Me.zxc.LocationFloat = New DevExpress.Utils.PointFloat(554.5828!, 22.91668!)
         Me.zxc.Name = "zxc"
         Me.zxc.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.zxc.SizeF = New System.Drawing.SizeF(100.2081!, 25.08334!)
@@ -377,7 +376,7 @@ Partial Public Class ReportMatInvoiceRetur
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 22.91668!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(77.00014!, 25.08334!)
@@ -389,10 +388,10 @@ Partial Public Class ReportMatInvoiceRetur
         'LDate
         '
         Me.LDate.Font = New System.Drawing.Font("Times New Roman", 10.0!)
-        Me.LDate.LocationFloat = New DevExpress.Utils.PointFloat(560.6249!, 0.0!)
+        Me.LDate.LocationFloat = New DevExpress.Utils.PointFloat(666.2499!, 22.91668!)
         Me.LDate.Name = "LDate"
         Me.LDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LDate.SizeF = New System.Drawing.SizeF(89.37506!, 25.08334!)
+        Me.LDate.SizeF = New System.Drawing.SizeF(123.7501!, 25.08334!)
         Me.LDate.StylePriority.UseFont = False
         Me.LDate.StylePriority.UseTextAlignment = False
         Me.LDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
@@ -400,12 +399,12 @@ Partial Public Class ReportMatInvoiceRetur
         'XrPanel1
         '
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-                    Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
+            Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
         Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel10, Me.LInvoice, Me.XrLabel7, Me.LPDONumber, Me.XrLabel26, Me.XrLabel25, Me.XrLabel24, Me.XrLabel23, Me.LDesign, Me.LPLNumber, Me.XrLabel17, Me.XrLabel16, Me.LFromNPWP, Me.XrLabel5, Me.XrLabel2, Me.XrLabel48, Me.XrLabel47, Me.LToNPWP, Me.XrLabel30, Me.LDueDate, Me.XrLabel20, Me.XrLabel19, Me.LToAddress, Me.XrLabel21, Me.XrLabel13, Me.LToName, Me.XrLabel15, Me.XrLabel11, Me.XrLabel9, Me.LFromName, Me.LFromAddress, Me.XrLabel4, Me.XrLabel3})
-        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 25.08334!)
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 48.00002!)
         Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(649.9999!, 119.0834!)
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(790.0!, 119.0834!)
         Me.XrPanel1.StylePriority.UseBorders = False
         '
         'XrLabel10
@@ -422,10 +421,10 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.LInvoice.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LInvoice.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.LInvoice.LocationFloat = New DevExpress.Utils.PointFloat(88.45838!, 2.000062!)
+        Me.LInvoice.LocationFloat = New DevExpress.Utils.PointFloat(88.45838!, 2.000061!)
         Me.LInvoice.Name = "LInvoice"
         Me.LInvoice.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LInvoice.SizeF = New System.Drawing.SizeF(237.5002!, 13.58334!)
+        Me.LInvoice.SizeF = New System.Drawing.SizeF(299.0418!, 13.58334!)
         Me.LInvoice.StylePriority.UseBorders = False
         Me.LInvoice.StylePriority.UseFont = False
         Me.LInvoice.StylePriority.UseTextAlignment = False
@@ -450,7 +449,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.LPDONumber.LocationFloat = New DevExpress.Utils.PointFloat(88.45809!, 83.33337!)
         Me.LPDONumber.Name = "LPDONumber"
         Me.LPDONumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LPDONumber.SizeF = New System.Drawing.SizeF(237.5006!, 13.58334!)
+        Me.LPDONumber.SizeF = New System.Drawing.SizeF(299.0422!, 13.58333!)
         Me.LPDONumber.StylePriority.UseBorders = False
         Me.LPDONumber.StylePriority.UseFont = False
         Me.LPDONumber.StylePriority.UseTextAlignment = False
@@ -481,7 +480,7 @@ Partial Public Class ReportMatInvoiceRetur
         'XrLabel24
         '
         Me.XrLabel24.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(352.0835!, 83.33338!)
+        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(452.0836!, 83.33338!)
         Me.XrLabel24.Name = "XrLabel24"
         Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel24.SizeF = New System.Drawing.SizeF(69.99969!, 13.58337!)
@@ -491,7 +490,7 @@ Partial Public Class ReportMatInvoiceRetur
         'XrLabel23
         '
         Me.XrLabel23.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(422.0832!, 83.33335!)
+        Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(522.0833!, 83.33335!)
         Me.XrLabel23.Name = "XrLabel23"
         Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel23.SizeF = New System.Drawing.SizeF(11.45837!, 13.58337!)
@@ -504,10 +503,10 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.LDesign.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LDesign.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.LDesign.LocationFloat = New DevExpress.Utils.PointFloat(433.5416!, 83.33347!)
+        Me.LDesign.LocationFloat = New DevExpress.Utils.PointFloat(533.5416!, 83.33347!)
         Me.LDesign.Name = "LDesign"
         Me.LDesign.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LDesign.SizeF = New System.Drawing.SizeF(206.5421!, 13.58334!)
+        Me.LDesign.SizeF = New System.Drawing.SizeF(246.4584!, 13.58334!)
         Me.LDesign.StylePriority.UseBorders = False
         Me.LDesign.StylePriority.UseFont = False
         Me.LDesign.StylePriority.UseTextAlignment = False
@@ -517,10 +516,10 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.LPLNumber.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LPLNumber.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.LPLNumber.LocationFloat = New DevExpress.Utils.PointFloat(88.4585!, 69.74999!)
+        Me.LPLNumber.LocationFloat = New DevExpress.Utils.PointFloat(88.4585!, 69.74998!)
         Me.LPLNumber.Name = "LPLNumber"
         Me.LPLNumber.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LPLNumber.SizeF = New System.Drawing.SizeF(237.5002!, 13.58334!)
+        Me.LPLNumber.SizeF = New System.Drawing.SizeF(299.0418!, 13.58334!)
         Me.LPLNumber.StylePriority.UseBorders = False
         Me.LPLNumber.StylePriority.UseFont = False
         Me.LPLNumber.StylePriority.UseTextAlignment = False
@@ -555,7 +554,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.LFromNPWP.LocationFloat = New DevExpress.Utils.PointFloat(88.458!, 56.16658!)
         Me.LFromNPWP.Name = "LFromNPWP"
         Me.LFromNPWP.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LFromNPWP.SizeF = New System.Drawing.SizeF(237.5005!, 13.58335!)
+        Me.LFromNPWP.SizeF = New System.Drawing.SizeF(299.0421!, 13.58335!)
         Me.LFromNPWP.StylePriority.UseBorders = False
         Me.LFromNPWP.StylePriority.UseFont = False
         Me.LFromNPWP.StylePriority.UseTextAlignment = False
@@ -586,7 +585,7 @@ Partial Public Class ReportMatInvoiceRetur
         'XrLabel48
         '
         Me.XrLabel48.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel48.LocationFloat = New DevExpress.Utils.PointFloat(352.0001!, 56.16669!)
+        Me.XrLabel48.LocationFloat = New DevExpress.Utils.PointFloat(452.0002!, 56.16669!)
         Me.XrLabel48.Name = "XrLabel48"
         Me.XrLabel48.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel48.SizeF = New System.Drawing.SizeF(69.99957!, 13.58337!)
@@ -596,7 +595,7 @@ Partial Public Class ReportMatInvoiceRetur
         'XrLabel47
         '
         Me.XrLabel47.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel47.LocationFloat = New DevExpress.Utils.PointFloat(421.9996!, 56.16674!)
+        Me.XrLabel47.LocationFloat = New DevExpress.Utils.PointFloat(521.9996!, 56.16674!)
         Me.XrLabel47.Name = "XrLabel47"
         Me.XrLabel47.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel47.SizeF = New System.Drawing.SizeF(11.45837!, 13.58337!)
@@ -609,10 +608,10 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.LToNPWP.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LToNPWP.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.LToNPWP.LocationFloat = New DevExpress.Utils.PointFloat(433.4579!, 56.16669!)
+        Me.LToNPWP.LocationFloat = New DevExpress.Utils.PointFloat(533.4579!, 56.16668!)
         Me.LToNPWP.Name = "LToNPWP"
         Me.LToNPWP.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LToNPWP.SizeF = New System.Drawing.SizeF(206.5419!, 13.58335!)
+        Me.LToNPWP.SizeF = New System.Drawing.SizeF(246.4581!, 13.58335!)
         Me.LToNPWP.StylePriority.UseBorders = False
         Me.LToNPWP.StylePriority.UseFont = False
         Me.LToNPWP.StylePriority.UseTextAlignment = False
@@ -621,7 +620,7 @@ Partial Public Class ReportMatInvoiceRetur
         'XrLabel30
         '
         Me.XrLabel30.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(421.9996!, 1.999998!)
+        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(521.9996!, 1.999998!)
         Me.XrLabel30.Name = "XrLabel30"
         Me.XrLabel30.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel30.SizeF = New System.Drawing.SizeF(11.45833!, 13.58335!)
@@ -634,10 +633,10 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.LDueDate.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LDueDate.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.LDueDate.LocationFloat = New DevExpress.Utils.PointFloat(433.4579!, 1.999998!)
+        Me.LDueDate.LocationFloat = New DevExpress.Utils.PointFloat(533.4579!, 1.999996!)
         Me.LDueDate.Name = "LDueDate"
         Me.LDueDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LDueDate.SizeF = New System.Drawing.SizeF(206.5419!, 13.58335!)
+        Me.LDueDate.SizeF = New System.Drawing.SizeF(246.4581!, 13.58335!)
         Me.LDueDate.StylePriority.UseBorders = False
         Me.LDueDate.StylePriority.UseFont = False
         Me.LDueDate.StylePriority.UseTextAlignment = False
@@ -646,7 +645,7 @@ Partial Public Class ReportMatInvoiceRetur
         'XrLabel20
         '
         Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(352.0001!, 2.000029!)
+        Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(452.0002!, 2.000029!)
         Me.XrLabel20.Name = "XrLabel20"
         Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel20.SizeF = New System.Drawing.SizeF(69.99957!, 13.58335!)
@@ -658,7 +657,7 @@ Partial Public Class ReportMatInvoiceRetur
         'XrLabel19
         '
         Me.XrLabel19.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(352.0001!, 29.16662!)
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(452.0002!, 29.16662!)
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel19.SizeF = New System.Drawing.SizeF(69.99957!, 13.58335!)
@@ -668,16 +667,16 @@ Partial Public Class ReportMatInvoiceRetur
         'LToAddress
         '
         Me.LToAddress.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LToAddress.LocationFloat = New DevExpress.Utils.PointFloat(433.4579!, 29.16668!)
+        Me.LToAddress.LocationFloat = New DevExpress.Utils.PointFloat(533.4579!, 29.16668!)
         Me.LToAddress.Name = "LToAddress"
         Me.LToAddress.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LToAddress.SizeF = New System.Drawing.SizeF(206.5421!, 27.00001!)
+        Me.LToAddress.SizeF = New System.Drawing.SizeF(246.4584!, 27.00001!)
         Me.LToAddress.StylePriority.UseBorders = False
         '
         'XrLabel21
         '
         Me.XrLabel21.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(352.0!, 15.58326!)
+        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(452.0001!, 15.58326!)
         Me.XrLabel21.Name = "XrLabel21"
         Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel21.SizeF = New System.Drawing.SizeF(69.99969!, 13.58337!)
@@ -687,7 +686,7 @@ Partial Public Class ReportMatInvoiceRetur
         'XrLabel13
         '
         Me.XrLabel13.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(421.9996!, 15.58326!)
+        Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(521.9996!, 15.58326!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel13.SizeF = New System.Drawing.SizeF(11.45837!, 13.58337!)
@@ -698,17 +697,17 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.LToName.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LToName.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
-        Me.LToName.LocationFloat = New DevExpress.Utils.PointFloat(433.4579!, 15.58329!)
+        Me.LToName.LocationFloat = New DevExpress.Utils.PointFloat(533.4579!, 15.58329!)
         Me.LToName.Name = "LToName"
         Me.LToName.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LToName.SizeF = New System.Drawing.SizeF(206.5419!, 13.58338!)
+        Me.LToName.SizeF = New System.Drawing.SizeF(246.4581!, 13.58338!)
         Me.LToName.StylePriority.UseBorders = False
         Me.LToName.StylePriority.UseFont = False
         '
         'XrLabel15
         '
         Me.XrLabel15.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(421.9996!, 29.16662!)
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(521.9996!, 29.16662!)
         Me.XrLabel15.Name = "XrLabel15"
         Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel15.SizeF = New System.Drawing.SizeF(11.45837!, 13.58335!)
@@ -742,17 +741,17 @@ Partial Public Class ReportMatInvoiceRetur
         Me.LFromName.LocationFloat = New DevExpress.Utils.PointFloat(88.45838!, 15.58326!)
         Me.LFromName.Name = "LFromName"
         Me.LFromName.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LFromName.SizeF = New System.Drawing.SizeF(237.5002!, 13.58335!)
+        Me.LFromName.SizeF = New System.Drawing.SizeF(299.0418!, 13.58335!)
         Me.LFromName.StylePriority.UseBorders = False
         Me.LFromName.StylePriority.UseFont = False
         '
         'LFromAddress
         '
         Me.LFromAddress.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.LFromAddress.LocationFloat = New DevExpress.Utils.PointFloat(88.458!, 29.16659!)
+        Me.LFromAddress.LocationFloat = New DevExpress.Utils.PointFloat(88.458!, 29.1666!)
         Me.LFromAddress.Name = "LFromAddress"
         Me.LFromAddress.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LFromAddress.SizeF = New System.Drawing.SizeF(237.5002!, 27.0!)
+        Me.LFromAddress.SizeF = New System.Drawing.SizeF(299.0418!, 27.0!)
         Me.LFromAddress.StylePriority.UseBorders = False
         '
         'XrLabel4
@@ -778,7 +777,7 @@ Partial Public Class ReportMatInvoiceRetur
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 19.20834!
+        Me.BottomMargin.HeightF = 18.71793!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -788,7 +787,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(500.0!, 0.4904111!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(640.0005!, 0!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
@@ -808,7 +807,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.XrLabel22.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel22.Borders = DevExpress.XtraPrinting.BorderSide.Right
         Me.XrLabel22.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(352.0836!, 39.99993!)
+        Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(492.084!, 39.99974!)
         Me.XrLabel22.Name = "XrLabel22"
         Me.XrLabel22.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel22.SizeF = New System.Drawing.SizeF(100.0!, 20.00002!)
@@ -823,7 +822,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.LCurGross.BorderColor = System.Drawing.Color.DimGray
         Me.LCurGross.Borders = DevExpress.XtraPrinting.BorderSide.Top
         Me.LCurGross.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LCurGross.LocationFloat = New DevExpress.Utils.PointFloat(452.0836!, 0.0!)
+        Me.LCurGross.LocationFloat = New DevExpress.Utils.PointFloat(592.084!, 0!)
         Me.LCurGross.Name = "LCurGross"
         Me.LCurGross.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LCurGross.SizeF = New System.Drawing.SizeF(47.91635!, 19.99998!)
@@ -838,7 +837,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.LCurVat.BorderColor = System.Drawing.Color.DimGray
         Me.LCurVat.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LCurVat.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LCurVat.LocationFloat = New DevExpress.Utils.PointFloat(452.0836!, 20.00001!)
+        Me.LCurVat.LocationFloat = New DevExpress.Utils.PointFloat(592.084!, 19.99982!)
         Me.LCurVat.Name = "LCurVat"
         Me.LCurVat.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LCurVat.SizeF = New System.Drawing.SizeF(47.91635!, 19.99998!)
@@ -853,7 +852,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.XrLabel8.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel8.Borders = DevExpress.XtraPrinting.BorderSide.Right
         Me.XrLabel8.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(452.0836!, 40.00018!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(592.084!, 39.99999!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(197.9164!, 20.00005!)
@@ -866,17 +865,17 @@ Partial Public Class ReportMatInvoiceRetur
         'XrTable1
         '
         Me.XrTable1.Font = New System.Drawing.Font("Consolas", 8.0!)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 79.99998!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 79.99998!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(649.9996!, 25.0!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(789.9999!, 25.0!)
         Me.XrTable1.StylePriority.UseFont = False
         '
         'XrTableRow1
         '
         Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1})
         Me.XrTableRow1.Name = "XrTableRow1"
-        Me.XrTableRow1.Weight = 1
+        Me.XrTableRow1.Weight = 1.0R
         '
         'XrTableCell1
         '
@@ -885,14 +884,14 @@ Partial Public Class ReportMatInvoiceRetur
         Me.XrTableCell1.StylePriority.UseFont = False
         Me.XrTableCell1.Text = "Here Table Mark Goes, Please Ignore This"
         Me.XrTableCell1.Visible = False
-        Me.XrTableCell1.Weight = 2.9999998640548888
+        Me.XrTableCell1.Weight = 2.99999986405489R
         '
         'XrLabel41
         '
         Me.XrLabel41.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel41.Borders = CType((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel41.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel41.Name = "XrLabel41"
         Me.XrLabel41.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel41.SizeF = New System.Drawing.SizeF(46.87503!, 39.99999!)
@@ -905,9 +904,9 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.XrLabel36.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel36.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
-                    Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel36.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(352.0836!, 59.99994!)
+        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(492.084!, 59.99975!)
         Me.XrLabel36.Name = "XrLabel36"
         Me.XrLabel36.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel36.SizeF = New System.Drawing.SizeF(100.0!, 20.00002!)
@@ -922,9 +921,9 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.LTot.BorderColor = System.Drawing.Color.DimGray
         Me.LTot.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
-                    Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LTot.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTot.LocationFloat = New DevExpress.Utils.PointFloat(500.0!, 59.99997!)
+        Me.LTot.LocationFloat = New DevExpress.Utils.PointFloat(640.0005!, 59.99978!)
         Me.LTot.Name = "LTot"
         Me.LTot.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LTot.SizeF = New System.Drawing.SizeF(149.9999!, 19.99998!)
@@ -939,7 +938,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.LCurTot.BorderColor = System.Drawing.Color.DimGray
         Me.LCurTot.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LCurTot.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LCurTot.LocationFloat = New DevExpress.Utils.PointFloat(452.0836!, 60.00023!)
+        Me.LCurTot.LocationFloat = New DevExpress.Utils.PointFloat(592.084!, 60.00004!)
         Me.LCurTot.Name = "LCurTot"
         Me.LCurTot.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LCurTot.SizeF = New System.Drawing.SizeF(47.91635!, 19.99998!)
@@ -953,12 +952,12 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.LNote.BorderColor = System.Drawing.Color.DimGray
         Me.LNote.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right) _
-                    Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LNote.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LNote.LocationFloat = New DevExpress.Utils.PointFloat(57.20844!, 40.00015!)
         Me.LNote.Name = "LNote"
         Me.LNote.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LNote.SizeF = New System.Drawing.SizeF(294.875!, 40.00003!)
+        Me.LNote.SizeF = New System.Drawing.SizeF(434.8756!, 40.00004!)
         Me.LNote.StylePriority.UseBorderColor = False
         Me.LNote.StylePriority.UseBorders = False
         Me.LNote.StylePriority.UseFont = False
@@ -968,10 +967,10 @@ Partial Public Class ReportMatInvoiceRetur
         Me.LSay.BorderColor = System.Drawing.Color.DimGray
         Me.LSay.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.LSay.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LSay.LocationFloat = New DevExpress.Utils.PointFloat(57.20843!, 0.0!)
+        Me.LSay.LocationFloat = New DevExpress.Utils.PointFloat(57.20843!, 0!)
         Me.LSay.Name = "LSay"
         Me.LSay.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LSay.SizeF = New System.Drawing.SizeF(294.875!, 40.0!)
+        Me.LSay.SizeF = New System.Drawing.SizeF(434.8755!, 40.0!)
         Me.LSay.StylePriority.UseBorderColor = False
         Me.LSay.StylePriority.UseBorders = False
         Me.LSay.StylePriority.UseFont = False
@@ -995,7 +994,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.LGrossTot.BorderColor = System.Drawing.Color.DimGray
         Me.LGrossTot.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.LGrossTot.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LGrossTot.LocationFloat = New DevExpress.Utils.PointFloat(500.0!, 0.0!)
+        Me.LGrossTot.LocationFloat = New DevExpress.Utils.PointFloat(640.0005!, 0!)
         Me.LGrossTot.Name = "LGrossTot"
         Me.LGrossTot.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LGrossTot.SizeF = New System.Drawing.SizeF(149.9999!, 20.00001!)
@@ -1009,9 +1008,9 @@ Partial Public Class ReportMatInvoiceRetur
         '
         Me.LNotex.BorderColor = System.Drawing.Color.DimGray
         Me.LNotex.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-                    Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LNotex.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LNotex.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 39.99999!)
+        Me.LNotex.LocationFloat = New DevExpress.Utils.PointFloat(0!, 39.99999!)
         Me.LNotex.Name = "LNotex"
         Me.LNotex.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LNotex.SizeF = New System.Drawing.SizeF(46.87503!, 40.00001!)
@@ -1025,7 +1024,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.XrLabel32.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel32.Borders = DevExpress.XtraPrinting.BorderSide.Right
         Me.XrLabel32.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(427.0832!, 20.00014!)
+        Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(567.0837!, 19.99995!)
         Me.XrLabel32.Name = "XrLabel32"
         Me.XrLabel32.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel32.SizeF = New System.Drawing.SizeF(25.00024!, 20.00002!)
@@ -1041,7 +1040,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.XrLabel34.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel34.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel34.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(352.0835!, 20.00001!)
+        Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(492.084!, 19.99982!)
         Me.XrLabel34.Name = "XrLabel34"
         Me.XrLabel34.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel34.SizeF = New System.Drawing.SizeF(35.41669!, 20.00014!)
@@ -1057,7 +1056,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.LVat.BorderColor = System.Drawing.Color.DimGray
         Me.LVat.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LVat.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LVat.LocationFloat = New DevExpress.Utils.PointFloat(387.5001!, 20.00001!)
+        Me.LVat.LocationFloat = New DevExpress.Utils.PointFloat(527.5005!, 19.99982!)
         Me.LVat.Name = "LVat"
         Me.LVat.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LVat.SizeF = New System.Drawing.SizeF(39.58307!, 20.00014!)
@@ -1073,7 +1072,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.XrLabel31.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel31.Borders = DevExpress.XtraPrinting.BorderSide.Top
         Me.XrLabel31.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(46.87503!, 0.0!)
+        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(46.87503!, 0!)
         Me.XrLabel31.Name = "XrLabel31"
         Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel31.SizeF = New System.Drawing.SizeF(10.3334!, 39.99999!)
@@ -1087,7 +1086,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.LVatTot.BorderColor = System.Drawing.Color.DimGray
         Me.LVatTot.Borders = DevExpress.XtraPrinting.BorderSide.Right
         Me.LVatTot.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LVatTot.LocationFloat = New DevExpress.Utils.PointFloat(500.0!, 20.00014!)
+        Me.LVatTot.LocationFloat = New DevExpress.Utils.PointFloat(640.0005!, 19.99995!)
         Me.LVatTot.Name = "LVatTot"
         Me.LVatTot.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LVatTot.SizeF = New System.Drawing.SizeF(149.9995!, 20.00004!)
@@ -1102,7 +1101,7 @@ Partial Public Class ReportMatInvoiceRetur
         Me.XrLabel28.BorderColor = System.Drawing.Color.DimGray
         Me.XrLabel28.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel28.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(352.0834!, 0.0!)
+        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(492.0839!, 0!)
         Me.XrLabel28.Name = "XrLabel28"
         Me.XrLabel28.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel28.SizeF = New System.Drawing.SizeF(100.0!, 20.0!)
@@ -1116,10 +1115,10 @@ Partial Public Class ReportMatInvoiceRetur
         'ReportMatInvoiceRetur
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 144, 19)
-        Me.PageHeight = 500
+        Me.Margins = New System.Drawing.Printing.Margins(11, 49, 167, 19)
+        Me.PageHeight = 550
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
-        Me.Version = "11.1"
+        Me.Version = "15.1"
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
