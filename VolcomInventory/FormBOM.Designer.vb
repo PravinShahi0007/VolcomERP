@@ -138,6 +138,8 @@ Partial Class FormBOM
         Me.GridColumn43 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUnitCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -184,6 +186,9 @@ Partial Class FormBOM
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCur = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.SplitContainerControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1162,7 +1167,7 @@ Partial Class FormBOM
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 0
-        Me.GridColumn14.Width = 152
+        Me.GridColumn14.Width = 128
         '
         'GridColumn18
         '
@@ -1170,12 +1175,12 @@ Partial Class FormBOM
         Me.GridColumn18.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.GridColumn18.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn18.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.GridColumn18.Caption = "Name"
+        Me.GridColumn18.Caption = "Description"
         Me.GridColumn18.FieldName = "name"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
         Me.GridColumn18.VisibleIndex = 1
-        Me.GridColumn18.Width = 295
+        Me.GridColumn18.Width = 199
         '
         'GridColumn22
         '
@@ -1188,7 +1193,7 @@ Partial Class FormBOM
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
         Me.GridColumn22.VisibleIndex = 3
-        Me.GridColumn22.Width = 57
+        Me.GridColumn22.Width = 52
         '
         'GridColumn23
         '
@@ -1203,7 +1208,7 @@ Partial Class FormBOM
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
         Me.GridColumn23.VisibleIndex = 4
-        Me.GridColumn23.Width = 77
+        Me.GridColumn23.Width = 69
         '
         'GridColumn24
         '
@@ -1218,8 +1223,8 @@ Partial Class FormBOM
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "price", "Total")})
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 5
-        Me.GridColumn24.Width = 160
+        Me.GridColumn24.VisibleIndex = 6
+        Me.GridColumn24.Width = 146
         '
         'ColTotal
         '
@@ -1235,7 +1240,7 @@ Partial Class FormBOM
         Me.ColTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.ColTotal.Visible = True
         Me.ColTotal.VisibleIndex = 7
-        Me.ColTotal.Width = 178
+        Me.ColTotal.Width = 171
         '
         'Cat
         '
@@ -1276,8 +1281,8 @@ Partial Class FormBOM
         Me.GridColumnUOM.FieldName = "uom"
         Me.GridColumnUOM.Name = "GridColumnUOM"
         Me.GridColumnUOM.Visible = True
-        Me.GridColumnUOM.VisibleIndex = 6
-        Me.GridColumnUOM.Width = 69
+        Me.GridColumnUOM.VisibleIndex = 5
+        Me.GridColumnUOM.Width = 63
         '
         'GridColumn26
         '
@@ -1290,7 +1295,7 @@ Partial Class FormBOM
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 2
-        Me.GridColumn26.Width = 78
+        Me.GridColumn26.Width = 71
         '
         'GridColumnIsCop
         '
@@ -1340,7 +1345,7 @@ Partial Class FormBOM
         Me.SplitContainerControl5.Panel2.Controls.Add(Me.GroupControl5)
         Me.SplitContainerControl5.Panel2.Text = "Panel2"
         Me.SplitContainerControl5.Size = New System.Drawing.Size(905, 283)
-        Me.SplitContainerControl5.SplitterPosition = 455
+        Me.SplitContainerControl5.SplitterPosition = 616
         Me.SplitContainerControl5.TabIndex = 5
         Me.SplitContainerControl5.Text = "SplitContainerControl5"
         '
@@ -1350,13 +1355,13 @@ Partial Class FormBOM
         Me.GCPerDesign.Location = New System.Drawing.Point(0, 37)
         Me.GCPerDesign.MainView = Me.GVPerDesign
         Me.GCPerDesign.Name = "GCPerDesign"
-        Me.GCPerDesign.Size = New System.Drawing.Size(455, 246)
+        Me.GCPerDesign.Size = New System.Drawing.Size(616, 246)
         Me.GCPerDesign.TabIndex = 4
         Me.GCPerDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPerDesign, Me.GridView4})
         '
         'GVPerDesign
         '
-        Me.GVPerDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45})
+        Me.GVPerDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumnUnitCost, Me.GridColumn52})
         Me.GVPerDesign.GridControl = Me.GCPerDesign
         Me.GVPerDesign.GroupCount = 1
         Me.GVPerDesign.Name = "GVPerDesign"
@@ -1459,6 +1464,34 @@ Partial Class FormBOM
         Me.GridColumn45.VisibleIndex = 0
         Me.GridColumn45.Width = 160
         '
+        'GridColumnUnitCost
+        '
+        Me.GridColumnUnitCost.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnUnitCost.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnUnitCost.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnUnitCost.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnUnitCost.Caption = "ECOP BOM"
+        Me.GridColumnUnitCost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnUnitCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnUnitCost.FieldName = "prod_order_cop_bom"
+        Me.GridColumnUnitCost.Name = "GridColumnUnitCost"
+        Me.GridColumnUnitCost.Visible = True
+        Me.GridColumnUnitCost.VisibleIndex = 4
+        '
+        'GridColumn52
+        '
+        Me.GridColumn52.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn52.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn52.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn52.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn52.Caption = "COP Final"
+        Me.GridColumn52.DisplayFormat.FormatString = "N2"
+        Me.GridColumn52.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn52.FieldName = "design_cop"
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.Visible = True
+        Me.GridColumn52.VisibleIndex = 5
+        '
         'GridView4
         '
         Me.GridView4.GridControl = Me.GCPerDesign
@@ -1474,7 +1507,7 @@ Partial Class FormBOM
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(455, 37)
+        Me.PanelControl3.Size = New System.Drawing.Size(616, 37)
         Me.PanelControl3.TabIndex = 5
         '
         'BtnView
@@ -1482,7 +1515,7 @@ Partial Class FormBOM
         Me.BtnView.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnView.ImageIndex = 15
         Me.BtnView.ImageList = Me.LargeImageCollection
-        Me.BtnView.Location = New System.Drawing.Point(289, 0)
+        Me.BtnView.Location = New System.Drawing.Point(450, 0)
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(83, 37)
         Me.BtnView.TabIndex = 98
@@ -1493,7 +1526,7 @@ Partial Class FormBOM
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.ImageIndex = 15
         Me.BPrint.ImageList = Me.LargeImageCollection
-        Me.BPrint.Location = New System.Drawing.Point(372, 0)
+        Me.BPrint.Location = New System.Drawing.Point(533, 0)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(83, 37)
         Me.BPrint.TabIndex = 99
@@ -1509,7 +1542,7 @@ Partial Class FormBOM
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(186, 20)
+        Me.SLESeason.Size = New System.Drawing.Size(393, 20)
         Me.SLESeason.TabIndex = 97
         '
         'SearchLookUpEdit1View
@@ -1557,7 +1590,7 @@ Partial Class FormBOM
         Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl5.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(445, 283)
+        Me.GroupControl5.Size = New System.Drawing.Size(284, 283)
         Me.GroupControl5.TabIndex = 2
         Me.GroupControl5.Text = "BOM"
         '
@@ -1568,7 +1601,7 @@ Partial Class FormBOM
         Me.GCBOMPerDesign.MainView = Me.GVBOMPerDesign
         Me.GCBOMPerDesign.Name = "GCBOMPerDesign"
         Me.GCBOMPerDesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
-        Me.GCBOMPerDesign.Size = New System.Drawing.Size(441, 229)
+        Me.GCBOMPerDesign.Size = New System.Drawing.Size(280, 229)
         Me.GCBOMPerDesign.TabIndex = 1
         Me.GCBOMPerDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBOMPerDesign})
         '
@@ -1686,7 +1719,7 @@ Partial Class FormBOM
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(2, 20)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(441, 32)
+        Me.PanelControl2.Size = New System.Drawing.Size(280, 32)
         Me.PanelControl2.TabIndex = 2
         '
         'BImportExcel
@@ -1705,7 +1738,7 @@ Partial Class FormBOM
         Me.BDefaultBOM.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDefaultBOM.ImageIndex = 2
         Me.BDefaultBOM.ImageList = Me.LargeImageCollection
-        Me.BDefaultBOM.Location = New System.Drawing.Point(319, 0)
+        Me.BDefaultBOM.Location = New System.Drawing.Point(158, 0)
         Me.BDefaultBOM.Name = "BDefaultBOM"
         Me.BDefaultBOM.Size = New System.Drawing.Size(122, 32)
         Me.BDefaultBOM.TabIndex = 0
@@ -1770,7 +1803,7 @@ Partial Class FormBOM
         Me.GVCompPerDesign.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.0!)
         Me.GVCompPerDesign.AppearancePrint.Row.Options.UseFont = True
         Me.GVCompPerDesign.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003
-        Me.GVCompPerDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnColor, Me.ColCode, Me.ColName, Me.GridColumn46, Me.ColQty, Me.ColPrice, Me.GridColumn47, Me.GridColumn49, Me.GridColumn50, Me.GridColumnisCOST, Me.GridColumnQtyOrder, Me.GridColumnCostPerPcs})
+        Me.GVCompPerDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnColor, Me.ColCode, Me.ColName, Me.GridColumn46, Me.ColQty, Me.GridColumn54, Me.GridColumnCur, Me.GridColumn53, Me.ColPrice, Me.GridColumn47, Me.GridColumn49, Me.GridColumn50, Me.GridColumnisCOST, Me.GridColumnQtyOrder, Me.GridColumnCostPerPcs})
         Me.GVCompPerDesign.GridControl = Me.GCCompPerDesign
         Me.GVCompPerDesign.GroupCount = 1
         Me.GVCompPerDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn47, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "price", Me.ColPrice, "Sub Total{0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cost_per_pcs", Me.GridColumnCostPerPcs, "{0:N2}")})
@@ -1844,7 +1877,7 @@ Partial Class FormBOM
         Me.ColQty.FieldName = "qty_uom"
         Me.ColQty.Name = "ColQty"
         Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 4
+        Me.ColQty.VisibleIndex = 8
         Me.ColQty.Width = 68
         '
         'ColPrice
@@ -1853,14 +1886,14 @@ Partial Class FormBOM
         Me.ColPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColPrice.Caption = "Price"
+        Me.ColPrice.Caption = "Price After Kurs"
         Me.ColPrice.DisplayFormat.FormatString = "N2"
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "price"
         Me.ColPrice.Name = "ColPrice"
         Me.ColPrice.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "price", "Total")})
         Me.ColPrice.Visible = True
-        Me.ColPrice.VisibleIndex = 5
+        Me.ColPrice.VisibleIndex = 7
         Me.ColPrice.Width = 99
         '
         'GridColumn47
@@ -1878,7 +1911,7 @@ Partial Class FormBOM
         Me.GridColumn47.UnboundExpression = "Iif([is_cost] = 1, [qty_uom] * [price], 2)"
         Me.GridColumn47.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn47.Visible = True
-        Me.GridColumn47.VisibleIndex = 6
+        Me.GridColumn47.VisibleIndex = 9
         Me.GridColumn47.Width = 112
         '
         'GridColumn49
@@ -1953,6 +1986,46 @@ Partial Class FormBOM
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Width = 113
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn53.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn53.Caption = "Price"
+        Me.GridColumn53.DisplayFormat.FormatString = "N2"
+        Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn53.FieldName = "vend_price"
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.Visible = True
+        Me.GridColumn53.VisibleIndex = 5
+        '
+        'GridColumn54
+        '
+        Me.GridColumn54.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn54.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn54.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn54.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn54.Caption = "Kurs"
+        Me.GridColumn54.DisplayFormat.FormatString = "N2"
+        Me.GridColumn54.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn54.FieldName = "kurs"
+        Me.GridColumn54.Name = "GridColumn54"
+        Me.GridColumn54.Visible = True
+        Me.GridColumn54.VisibleIndex = 6
+        '
+        'GridColumnCur
+        '
+        Me.GridColumnCur.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCur.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCur.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCur.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCur.Caption = "Currency"
+        Me.GridColumnCur.FieldName = "currency"
+        Me.GridColumnCur.Name = "GridColumnCur"
+        Me.GridColumnCur.Visible = True
+        Me.GridColumnCur.VisibleIndex = 4
         '
         'FormBOM
         '
@@ -2199,4 +2272,9 @@ Partial Class FormBOM
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnUnitCost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCur As DevExpress.XtraGrid.Columns.GridColumn
 End Class

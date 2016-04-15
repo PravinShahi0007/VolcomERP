@@ -32,21 +32,22 @@ Partial Class FormPopUpProdOVH
         Me.GridColumnPriceOri = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsMainVendor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RCIMainVendor = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEditOVH = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BShowBOM = New DevExpress.XtraEditors.SimpleButton()
         Me.CEBOM = New DevExpress.XtraEditors.CheckEdit()
         Me.BCancelOvh = New DevExpress.XtraEditors.SimpleButton()
         Me.BSaveOvh = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnIsMainVendor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RCIMainVendor = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCOVH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOVH, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RCIMainVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEditOVH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
         CType(Me.CEBOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RCIMainVendor, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCOVH
@@ -62,7 +63,7 @@ Partial Class FormPopUpProdOVH
         '
         'GVOVH
         '
-        Me.GVOVH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_ovh, Me.code, Me.ColCompany, Me.overhead, Me.GridColumnOVHName, Me.ColUnitPrice, Me.GridColumnUom, Me.GridColumnIdCompContact, Me.GridColumnPriceOri, Me.GridColumnCurrency, Me.GridColumnIdCurrency, Me.GridColumnIsMainVendor})
+        Me.GVOVH.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_ovh, Me.code, Me.ColCompany, Me.overhead, Me.GridColumnOVHName, Me.ColUnitPrice, Me.GridColumnUom, Me.GridColumnIdCompContact, Me.GridColumnPriceOri, Me.GridColumnCurrency, Me.GridColumnIdCurrency, Me.GridColumnIsMainVendor, Me.GridColumnKurs})
         Me.GVOVH.GridControl = Me.GCOVH
         Me.GVOVH.Name = "GVOVH"
         Me.GVOVH.OptionsBehavior.Editable = False
@@ -176,6 +177,24 @@ Partial Class FormPopUpProdOVH
         Me.GridColumnIdCurrency.FieldName = "id_currency"
         Me.GridColumnIdCurrency.Name = "GridColumnIdCurrency"
         '
+        'GridColumnIsMainVendor
+        '
+        Me.GridColumnIsMainVendor.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnIsMainVendor.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnIsMainVendor.Caption = "Main Vendor"
+        Me.GridColumnIsMainVendor.ColumnEdit = Me.RCIMainVendor
+        Me.GridColumnIsMainVendor.FieldName = "is_ovh_main"
+        Me.GridColumnIsMainVendor.Name = "GridColumnIsMainVendor"
+        Me.GridColumnIsMainVendor.Visible = True
+        Me.GridColumnIsMainVendor.VisibleIndex = 7
+        '
+        'RCIMainVendor
+        '
+        Me.RCIMainVendor.AutoHeight = False
+        Me.RCIMainVendor.Name = "RCIMainVendor"
+        Me.RCIMainVendor.ValueChecked = CType(1, Byte)
+        Me.RCIMainVendor.ValueUnchecked = CType(2, Byte)
+        '
         'RepositoryItemCheckEditOVH
         '
         Me.RepositoryItemCheckEditOVH.AutoHeight = False
@@ -233,23 +252,17 @@ Partial Class FormPopUpProdOVH
         Me.BSaveOvh.TabIndex = 1
         Me.BSaveOvh.Text = "Choose"
         '
-        'GridColumnIsMainVendor
+        'GridColumnKurs
         '
-        Me.GridColumnIsMainVendor.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnIsMainVendor.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnIsMainVendor.Caption = "Main Vendor"
-        Me.GridColumnIsMainVendor.ColumnEdit = Me.RCIMainVendor
-        Me.GridColumnIsMainVendor.FieldName = "is_ovh_main"
-        Me.GridColumnIsMainVendor.Name = "GridColumnIsMainVendor"
-        Me.GridColumnIsMainVendor.Visible = True
-        Me.GridColumnIsMainVendor.VisibleIndex = 7
-        '
-        'RCIMainVendor
-        '
-        Me.RCIMainVendor.AutoHeight = False
-        Me.RCIMainVendor.Name = "RCIMainVendor"
-        Me.RCIMainVendor.ValueChecked = CType(1, Byte)
-        Me.RCIMainVendor.ValueUnchecked = CType(2, Byte)
+        Me.GridColumnKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.Caption = "Kurs"
+        Me.GridColumnKurs.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnKurs.FieldName = "kurs"
+        Me.GridColumnKurs.Name = "GridColumnKurs"
         '
         'FormPopUpProdOVH
         '
@@ -267,11 +280,11 @@ Partial Class FormPopUpProdOVH
         Me.Text = "Pick Overhead"
         CType(Me.GCOVH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVOVH, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RCIMainVendor, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEditOVH, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         CType(Me.CEBOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RCIMainVendor, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -296,4 +309,5 @@ Partial Class FormPopUpProdOVH
     Friend WithEvents GridColumnOVHName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIsMainVendor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RCIMainVendor As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumnKurs As DevExpress.XtraGrid.Columns.GridColumn
 End Class

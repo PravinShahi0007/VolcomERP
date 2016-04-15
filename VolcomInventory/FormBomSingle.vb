@@ -64,8 +64,8 @@
                 GroupComponent.Enabled = False
             End If
         ElseIf id_pop_up = "1" Then 'form per design
-            LabelProductCode.Text = FormBOM.GVPerDesign.GetFocusedRowCellDisplayText("design_name").ToString & ""
-            LTitleProduct.Text = "Design :"
+            LabelProductCode.Text = ""
+            LTitleProduct.Text = "Design : " + FormBOM.GVPerDesign.GetFocusedRowCellDisplayText("design_name").ToString
             If Not id_bom_approve = "-1" Then
                 'edit
                 Dim query As String = ""

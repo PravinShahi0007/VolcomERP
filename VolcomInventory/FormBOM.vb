@@ -197,7 +197,7 @@
                 GVBOM.FocusedRowHandle = find_row(GVBOM, "id_bom", id_bom)
                 infoCustom("BOM updated.")
             Catch ex As Exception
-                DevExpress.XtraEditors.XtraMessageBox.Show("Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                stopCustom(ex.ToString)
             End Try
             Cursor = Cursors.Default
         End If
@@ -331,7 +331,7 @@
                 GVBOMPerDesign.FocusedRowHandle = find_row(GVBOMPerDesign, "id_bom_approve", id_bom_approve)
                 infoCustom("BOM updated.")
             Catch ex As Exception
-                DevExpress.XtraEditors.XtraMessageBox.Show("Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                stopCustom(ex.ToString)
             End Try
             Cursor = Cursors.Default
         End If
@@ -366,9 +366,16 @@
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         'perDesign
         view_design()
+        GVPerDesign.BestFitColumns()
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         print(GCPerDesign, "List Design " + SLESeason.Text)
+    End Sub
+
+    Private Sub GVPerDesign_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVPerDesign.ColumnFilterChanged
+        If Not GVPerDesign.FocusedRowHandle < 0 Then
+            show_bom_per_design(GVPerDesign.GetFocusedRowCellValue("id_design").ToString)
+        End If
     End Sub
 End Class

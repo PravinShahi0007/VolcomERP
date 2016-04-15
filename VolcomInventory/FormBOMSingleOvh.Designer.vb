@@ -44,15 +44,15 @@ Partial Class FormBOMSingleOvh
         Me.TEPriceTot = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TEUOM = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TEQty = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
         Me.TEVendCur = New DevExpress.XtraEditors.TextEdit()
-        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TEVendPrice = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControlUpdateName = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -60,6 +60,7 @@ Partial Class FormBOMSingleOvh
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnIDCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,11 +78,11 @@ Partial Class FormBOMSingleOvh
         CType(Me.CEOVHMain.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPriceTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendCur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -97,7 +98,7 @@ Partial Class FormBOMSingleOvh
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl1)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(824, 469)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(824, 496)
         Me.SplitContainerControl1.SplitterPosition = 296
         Me.SplitContainerControl1.TabIndex = 28
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -187,7 +188,7 @@ Partial Class FormBOMSingleOvh
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(824, 168)
+        Me.GroupControl1.Size = New System.Drawing.Size(824, 195)
         Me.GroupControl1.TabIndex = 15
         Me.GroupControl1.Text = "Price"
         '
@@ -197,13 +198,13 @@ Partial Class FormBOMSingleOvh
         Me.GCOVHPrice.Location = New System.Drawing.Point(2, 20)
         Me.GCOVHPrice.MainView = Me.GVOVHPrice
         Me.GCOVHPrice.Name = "GCOVHPrice"
-        Me.GCOVHPrice.Size = New System.Drawing.Size(820, 146)
+        Me.GCOVHPrice.Size = New System.Drawing.Size(820, 173)
         Me.GCOVHPrice.TabIndex = 3
         Me.GCOVHPrice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOVHPrice, Me.GridView1})
         '
         'GVOVHPrice
         '
-        Me.GVOVHPrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColMatPirce, Me.ColPriceName, Me.ColCompany, Me.ColPrice, Me.ColDate, Me.ColCurrenct})
+        Me.GVOVHPrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColMatPirce, Me.ColPriceName, Me.ColCompany, Me.ColPrice, Me.ColDate, Me.ColCurrenct, Me.GridColumnIDCurrency})
         Me.GVOVHPrice.GridControl = Me.GCOVHPrice
         Me.GVOVHPrice.Name = "GVOVHPrice"
         Me.GVOVHPrice.OptionsBehavior.Editable = False
@@ -282,21 +283,23 @@ Partial Class FormBOMSingleOvh
         Me.GroupControl2.Controls.Add(Me.TEPriceTot)
         Me.GroupControl2.Controls.Add(Me.LabelControl7)
         Me.GroupControl2.Controls.Add(Me.TEPrice)
+        Me.GroupControl2.Controls.Add(Me.TEKurs)
         Me.GroupControl2.Controls.Add(Me.LabelControl2)
         Me.GroupControl2.Controls.Add(Me.TEUOM)
+        Me.GroupControl2.Controls.Add(Me.LabelControl3)
         Me.GroupControl2.Controls.Add(Me.TEQty)
         Me.GroupControl2.Controls.Add(Me.LabelControl1)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 469)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 496)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(824, 62)
+        Me.GroupControl2.Size = New System.Drawing.Size(824, 63)
         Me.GroupControl2.TabIndex = 27
         Me.GroupControl2.Text = "Detail"
         '
         'CEOVHMain
         '
         Me.CEOVHMain.EditValue = True
-        Me.CEOVHMain.Location = New System.Drawing.Point(684, 23)
+        Me.CEOVHMain.Location = New System.Drawing.Point(691, 23)
         Me.CEOVHMain.Name = "CEOVHMain"
         Me.CEOVHMain.Properties.Caption = "Set as main Vendor"
         Me.CEOVHMain.Size = New System.Drawing.Size(128, 19)
@@ -305,7 +308,7 @@ Partial Class FormBOMSingleOvh
         'TEPriceTot
         '
         Me.TEPriceTot.Enabled = False
-        Me.TEPriceTot.Location = New System.Drawing.Point(480, 22)
+        Me.TEPriceTot.Location = New System.Drawing.Point(534, 23)
         Me.TEPriceTot.Name = "TEPriceTot"
         Me.TEPriceTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPriceTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -313,12 +316,12 @@ Partial Class FormBOMSingleOvh
         Me.TEPriceTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPriceTot.Properties.Mask.SaveLiteral = False
         Me.TEPriceTot.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEPriceTot.Size = New System.Drawing.Size(198, 20)
+        Me.TEPriceTot.Size = New System.Drawing.Size(142, 20)
         Me.TEPriceTot.TabIndex = 6
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(480, 6)
+        Me.LabelControl7.Location = New System.Drawing.Point(534, 7)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(50, 13)
         Me.LabelControl7.TabIndex = 116
@@ -326,7 +329,7 @@ Partial Class FormBOMSingleOvh
         '
         'TEPrice
         '
-        Me.TEPrice.Location = New System.Drawing.Point(37, 22)
+        Me.TEPrice.Location = New System.Drawing.Point(158, 22)
         Me.TEPrice.Name = "TEPrice"
         Me.TEPrice.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -334,12 +337,25 @@ Partial Class FormBOMSingleOvh
         Me.TEPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPrice.Properties.Mask.SaveLiteral = False
         Me.TEPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEPrice.Size = New System.Drawing.Size(205, 20)
+        Me.TEPrice.Size = New System.Drawing.Size(159, 20)
         Me.TEPrice.TabIndex = 3
+        '
+        'TEKurs
+        '
+        Me.TEKurs.Location = New System.Drawing.Point(23, 22)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.Mask.EditMask = "N2"
+        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKurs.Properties.Mask.SaveLiteral = False
+        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKurs.Size = New System.Drawing.Size(129, 20)
+        Me.TEKurs.TabIndex = 2
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(37, 6)
+        Me.LabelControl2.Location = New System.Drawing.Point(158, 7)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl2.TabIndex = 114
@@ -348,16 +364,24 @@ Partial Class FormBOMSingleOvh
         'TEUOM
         '
         Me.TEUOM.Enabled = False
-        Me.TEUOM.Location = New System.Drawing.Point(379, 22)
+        Me.TEUOM.Location = New System.Drawing.Point(444, 22)
         Me.TEUOM.Name = "TEUOM"
         Me.TEUOM.Properties.Appearance.Options.UseTextOptions = True
         Me.TEUOM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEUOM.Size = New System.Drawing.Size(84, 20)
         Me.TEUOM.TabIndex = 5
         '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(23, 7)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl3.TabIndex = 88
+        Me.LabelControl3.Text = "Kurs"
+        '
         'TEQty
         '
-        Me.TEQty.Location = New System.Drawing.Point(258, 22)
+        Me.TEQty.Location = New System.Drawing.Point(323, 22)
         Me.TEQty.Name = "TEQty"
         Me.TEQty.Properties.Appearance.Options.UseTextOptions = True
         Me.TEQty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -371,7 +395,7 @@ Partial Class FormBOMSingleOvh
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(258, 5)
+        Me.LabelControl1.Location = New System.Drawing.Point(323, 5)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl1.TabIndex = 84
@@ -413,29 +437,6 @@ Partial Class FormBOMSingleOvh
         Me.TEVendCur.TabIndex = 89
         Me.TEVendCur.Visible = False
         '
-        'TEKurs
-        '
-        Me.TEKurs.Location = New System.Drawing.Point(511, 12)
-        Me.TEKurs.Name = "TEKurs"
-        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEKurs.Properties.Mask.EditMask = "N2"
-        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEKurs.Properties.Mask.SaveLiteral = False
-        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEKurs.Size = New System.Drawing.Size(167, 20)
-        Me.TEKurs.TabIndex = 2
-        Me.TEKurs.Visible = False
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(511, -4)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl3.TabIndex = 88
-        Me.LabelControl3.Text = "Kurs"
-        Me.LabelControl3.Visible = False
-        '
         'TEVendPrice
         '
         Me.TEVendPrice.Enabled = False
@@ -467,15 +468,13 @@ Partial Class FormBOMSingleOvh
         Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Controls.Add(Me.BCancel)
         Me.PanelControl2.Controls.Add(Me.BSave)
-        Me.PanelControl2.Controls.Add(Me.TEKurs)
         Me.PanelControl2.Controls.Add(Me.TEVendCur)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
-        Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.LECurrency)
         Me.PanelControl2.Controls.Add(Me.TEVendPrice)
         Me.PanelControl2.Controls.Add(Me.LabelControlUpdateName)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 531)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 559)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(824, 38)
         Me.PanelControl2.TabIndex = 26
@@ -517,11 +516,20 @@ Partial Class FormBOMSingleOvh
         Me.BSave.TabIndex = 1
         Me.BSave.Text = " Save"
         '
+        'GridColumnIDCurrency
+        '
+        Me.GridColumnIDCurrency.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnIDCurrency.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnIDCurrency.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnIDCurrency.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnIDCurrency.Caption = "ID Currency"
+        Me.GridColumnIDCurrency.Name = "GridColumnIDCurrency"
+        '
         'FormBOMSingleOvh
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(824, 569)
+        Me.ClientSize = New System.Drawing.Size(824, 597)
         Me.Controls.Add(Me.SplitContainerControl1)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.PanelControl2)
@@ -550,11 +558,11 @@ Partial Class FormBOMSingleOvh
         CType(Me.CEOVHMain.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPriceTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVendCur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVendPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -603,4 +611,5 @@ Partial Class FormBOMSingleOvh
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CEOVHMain As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnIDCurrency As DevExpress.XtraGrid.Columns.GridColumn
 End Class
