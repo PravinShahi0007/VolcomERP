@@ -88,13 +88,14 @@ Partial Class FormBOMDesignSingle
         Me.LabelPrintedName = New DevExpress.XtraEditors.LabelControl()
         Me.LSampleTitle = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BDuplicate = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.Bprint = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelProductCode = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        Me.BDuplicate = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnVendPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -625,7 +626,7 @@ Partial Class FormBOMDesignSingle
         '
         'GVBomDetOvh
         '
-        Me.GVBomDetOvh.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn11, Me.GridColumnCat, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn10, Me.GridColumnOVHCenter})
+        Me.GVBomDetOvh.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn11, Me.GridColumnCat, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumnVendPrice, Me.GridColumn20, Me.GridColumn21, Me.GridColumn10, Me.GridColumnOVHCenter})
         Me.GVBomDetOvh.CustomizationFormBounds = New System.Drawing.Rectangle(885, 289, 216, 178)
         Me.GVBomDetOvh.GridControl = Me.GCBomDetOvh
         Me.GVBomDetOvh.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn21, "{0:N2}")})
@@ -703,10 +704,10 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn20.Caption = "Unit Price"
         Me.GridColumn20.DisplayFormat.FormatString = "N2"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "price"
+        Me.GridColumn20.FieldName = "unit_price"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 6
+        Me.GridColumn20.VisibleIndex = 7
         Me.GridColumn20.Width = 105
         '
         'GridColumn21
@@ -722,7 +723,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 7
+        Me.GridColumn21.VisibleIndex = 8
         Me.GridColumn21.Width = 123
         '
         'GridColumn10
@@ -750,6 +751,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnOVHCenter.Name = "GridColumnOVHCenter"
         Me.GridColumnOVHCenter.Visible = True
         Me.GridColumnOVHCenter.VisibleIndex = 0
+        Me.GridColumnOVHCenter.Width = 62
         '
         'RCOVHMain
         '
@@ -869,6 +871,24 @@ Partial Class FormBOMDesignSingle
         Me.PanelControl2.Size = New System.Drawing.Size(1000, 33)
         Me.PanelControl2.TabIndex = 25
         '
+        'BDuplicate
+        '
+        Me.BDuplicate.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDuplicate.Location = New System.Drawing.Point(635, 0)
+        Me.BDuplicate.Name = "BDuplicate"
+        Me.BDuplicate.Size = New System.Drawing.Size(75, 33)
+        Me.BDuplicate.TabIndex = 19
+        Me.BDuplicate.Text = "Duplicate"
+        '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BMark.Location = New System.Drawing.Point(710, 0)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(75, 33)
+        Me.BMark.TabIndex = 18
+        Me.BMark.Text = "Mark"
+        '
         'Bprint
         '
         Me.Bprint.Dock = System.Windows.Forms.DockStyle.Right
@@ -915,23 +935,19 @@ Partial Class FormBOMDesignSingle
         Me.BSave.TabIndex = 10
         Me.BSave.Text = "Save"
         '
-        'BMark
+        'GridColumnVendPrice
         '
-        Me.BMark.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BMark.Location = New System.Drawing.Point(710, 0)
-        Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 33)
-        Me.BMark.TabIndex = 18
-        Me.BMark.Text = "Mark"
-        '
-        'BDuplicate
-        '
-        Me.BDuplicate.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDuplicate.Location = New System.Drawing.Point(635, 0)
-        Me.BDuplicate.Name = "BDuplicate"
-        Me.BDuplicate.Size = New System.Drawing.Size(75, 33)
-        Me.BDuplicate.TabIndex = 19
-        Me.BDuplicate.Text = "Duplicate"
+        Me.GridColumnVendPrice.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnVendPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnVendPrice.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnVendPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnVendPrice.Caption = "Vendor Price"
+        Me.GridColumnVendPrice.DisplayFormat.FormatString = "N2"
+        Me.GridColumnVendPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnVendPrice.FieldName = "price"
+        Me.GridColumnVendPrice.Name = "GridColumnVendPrice"
+        Me.GridColumnVendPrice.Visible = True
+        Me.GridColumnVendPrice.VisibleIndex = 6
         '
         'FormBOMDesignSingle
         '
@@ -1063,4 +1079,5 @@ Partial Class FormBOMDesignSingle
     Friend WithEvents RCOVHMain As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BDuplicate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnVendPrice As DevExpress.XtraGrid.Columns.GridColumn
 End Class

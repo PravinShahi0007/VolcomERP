@@ -43,6 +43,7 @@
         FormProductionWO.TECompName.Text = get_company_x(get_id_company(GVOVH.GetFocusedRowCellValue("id_comp_contact").ToString), "1")
         FormProductionWO.MECompAddress.Text = get_company_x(get_id_company(GVOVH.GetFocusedRowCellValue("id_comp_contact").ToString), "3")
         FormProductionWO.TECompAttn.Text = get_company_contact_x(GVOVH.GetFocusedRowCellValue("id_comp_contact").ToString, "1")
+        FormProductionWO.TEKurs.EditValue = GVOVH.GetFocusedRowCellValue("kurs")
         FormProductionWO.LECurrency.EditValue = Nothing
         FormProductionWO.LECurrency.ItemIndex = FormProductionWO.LECurrency.Properties.GetDataSourceRowIndex("id_currency", GVOVH.GetFocusedRowCellValue("id_currency").ToString)
 
@@ -63,7 +64,7 @@
             Catch ex As Exception
             End Try
         Next
-
+        FormProductionWO.GCListPurchase.Refresh()
         FormProductionWO.calculate()
         Close()
     End Sub

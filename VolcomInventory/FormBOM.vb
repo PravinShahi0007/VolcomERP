@@ -366,9 +366,16 @@
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         'perDesign
         view_design()
+        GVPerDesign.BestFitColumns()
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         print(GCPerDesign, "List Design " + SLESeason.Text)
+    End Sub
+
+    Private Sub GVPerDesign_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVPerDesign.ColumnFilterChanged
+        If Not GVPerDesign.FocusedRowHandle < 0 Then
+            show_bom_per_design(GVPerDesign.GetFocusedRowCellValue("id_design").ToString)
+        End If
     End Sub
 End Class

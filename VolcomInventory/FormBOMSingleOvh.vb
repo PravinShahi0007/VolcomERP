@@ -7,6 +7,7 @@
 
     Private Sub FormBOMSingleOvh_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         TEQty.EditValue = 0.0
+        TEKurs.EditValue = 0.0
         CEOVHMain.Checked = False
         view_currency(LECurrency)
         '
@@ -72,7 +73,7 @@
 
                 GVOVHPrice.FocusedRowHandle = find_row(GVOVHPrice, "id_ovh_price", data.Rows(0)("id_ovh_price").ToString)
                 '
-                TEKurs.EditValue = FormBOMSingle.TEKurs.EditValue
+                TEKurs.EditValue = data.Rows(0)("kurs")
                 TEPrice.EditValue = data.Rows(0)("bom_price")
                 TEQty.EditValue = data.Rows(0)("component_qty")
                 '
@@ -83,6 +84,8 @@
                 Else
                     CEOVHMain.Checked = False
                 End If
+            Else
+                TEKurs.EditValue = FormBOMSingle.TEKurs.EditValue
             End If
         End If
     End Sub

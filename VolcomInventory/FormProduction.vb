@@ -15,7 +15,6 @@
         viewSeason()
         viewVendor()
 
-        'view_production_order()
         viewProdDemand()
         checkFormAccess(Name)
     End Sub
@@ -152,7 +151,7 @@
         '    If System.IO.File.Exists(product_image_path & data.Rows(i)("id_design").ToString & ".jpg".ToLower) Then
         '        fileName = product_image_path & data.Rows(i)("id_design").ToString & ".jpg".ToLower
         '    Else
-        '        fileName = product_image_path & "default" & ".jpg".ToLower
+        '        fileName = product_image_path & "Default" & ".jpg".ToLower
         '    End If
 
         '    img = Image.FromFile(fileName)
