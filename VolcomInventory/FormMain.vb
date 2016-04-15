@@ -723,15 +723,15 @@ Public Class FormMain
         ElseIf formName = "FormBOM" Then
             'BOM
             If FormBOM.XTCBOMSelection.SelectedTabPageIndex = 0 Then
-                Try
-                    FormBOMDesignSingle.id_pop_up = "-1"
+                'Try
+                FormBOMDesignSingle.id_pop_up = "-1"
                     FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
                     FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
                     'FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
                     FormBOMDesignSingle.ShowDialog()
-                Catch ex As Exception
-                    stopCustom("Please try again later.")
-                End Try
+                'Catch ex As Exception
+                'stopCustom("Please try again later.")
+                'End Try
             ElseIf FormBOM.XTCBOMSelection.SelectedTabPageIndex = 1 Then
                 FormBOMSingle.id_bom = "-1"
                 FormBOMSingle.id_product = FormBOM.GVProduct.GetFocusedRowCellDisplayText("id_product").ToString

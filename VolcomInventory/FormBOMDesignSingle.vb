@@ -200,12 +200,13 @@
                 'detail mat
                 For i As Integer = 0 To GVBomDetMat.RowCount - 1
                     'MsgBox(decimalSQL((GVBomDetMat.GetRowCellValue(i, "qty") / TEQtyPD.EditValue).ToString))
-                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_mat_det_price,bom_price,component_qty,is_cost)"
+                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_mat_det_price,bom_price,kurs,component_qty,is_cost)"
                     query += " SELECT "
                     query += " id_bom"
                     query += " ,'1' AS id_component_category"
                     query += " ,'" & GVBomDetMat.GetRowCellValue(i, "id_component_price").ToString & "' AS id_mat_det_price"
                     query += " ,'" & decimalSQL(GVBomDetMat.GetRowCellValue(i, "price").ToString) & "' AS bom_price"
+                    query += " ,'" & decimalSQL(GVBomDetMat.GetRowCellValue(i, "kurs").ToString) & "' AS kurs"
                     query += " ,'" & decimalSQL((GVBomDetMat.GetRowCellValue(i, "qty") / TEQtyPD.EditValue).ToString) & "' AS component_qty"
                     query += " ,'" & GVBomDetMat.GetRowCellValue(i, "is_cost").ToString & "' AS is_cost"
                     query += " FROM tb_bom bom"
@@ -216,12 +217,13 @@
                 'detail ovh
                 For i As Integer = 0 To GVBomDetOvh.RowCount - 1
                     'MsgBox(decimalSQL((GVBomDetOvh.GetRowCellValue(i, "qty") / TEQtyPD.EditValue).ToString))
-                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_ovh_price,bom_price,component_qty,is_ovh_main)"
+                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_ovh_price,bom_price,kurs,component_qty,is_ovh_main)"
                     query += " SELECT "
                     query += " id_bom"
                     query += " ,'2' AS id_component_category"
                     query += " ,'" & GVBomDetOvh.GetRowCellValue(i, "id_component_price").ToString & "' AS id_ovh_price"
                     query += " ,'" & decimalSQL(GVBomDetOvh.GetRowCellValue(i, "price").ToString) & "' AS bom_price"
+                    query += " ,'" & decimalSQL(GVBomDetOvh.GetRowCellValue(i, "kurs").ToString) & "' AS kurs"
                     query += " ,'" & decimalSQL((GVBomDetOvh.GetRowCellValue(i, "qty") / TEQtyPD.EditValue).ToString) & "' AS component_qty"
                     query += " ,'" & GVBomDetOvh.GetRowCellValue(i, "is_ovh_main").ToString & "' AS is_ovh_main"
                     query += " FROM tb_bom bom"
@@ -257,12 +259,13 @@
                 execute_non_query(query, True, "", "", "", "")
                 'detail mat
                 For i As Integer = 0 To GVBomDetMat.RowCount - 1
-                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_mat_det_price,bom_price,component_qty,is_cost)"
+                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_mat_det_price,bom_price,kurs,component_qty,is_cost)"
                     query += " SELECT "
                     query += " id_bom"
                     query += " ,'1' AS id_component_category"
                     query += " ,'" & GVBomDetMat.GetRowCellValue(i, "id_component_price").ToString & "' AS id_mat_det_price"
                     query += " ,'" & decimalSQL(GVBomDetMat.GetRowCellValue(i, "price").ToString) & "' AS bom_price"
+                    query += " ,'" & decimalSQL(GVBomDetMat.GetRowCellValue(i, "kurs").ToString) & "' AS kurs"
                     query += " ,'" & decimalSQL((GVBomDetMat.GetRowCellValue(i, "qty") / TEQtyPD.EditValue).ToString) & "' AS component_qty"
                     query += " ,'" & GVBomDetMat.GetRowCellValue(i, "is_cost").ToString & "' AS is_cost"
                     query += " FROM tb_bom bom"
@@ -272,12 +275,13 @@
                 Next
                 'detail ovh
                 For i As Integer = 0 To GVBomDetOvh.RowCount - 1
-                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_ovh_price,bom_price,component_qty,is_ovh_main)"
+                    query = "INSERT INTO tb_bom_det(id_bom,id_component_category,id_ovh_price,bom_price,kurs,component_qty,is_ovh_main)"
                     query += " SELECT "
                     query += " id_bom"
                     query += " ,'2' AS id_component_category"
                     query += " ,'" & GVBomDetOvh.GetRowCellValue(i, "id_component_price").ToString & "' AS id_ovh_price"
                     query += " ,'" & decimalSQL(GVBomDetOvh.GetRowCellValue(i, "price").ToString) & "' AS bom_price"
+                    query += " ,'" & decimalSQL(GVBomDetOvh.GetRowCellValue(i, "kurs").ToString) & "' AS kurs"
                     query += " ,'" & decimalSQL((GVBomDetOvh.GetRowCellValue(i, "qty") / TEQtyPD.EditValue).ToString) & "' AS component_qty"
                     query += " ,'" & GVBomDetOvh.GetRowCellValue(i, "is_ovh_main").ToString & "' AS is_ovh_main"
                     query += " FROM tb_bom bom"

@@ -44,15 +44,15 @@ Partial Class FormBOMSingleOvh
         Me.TEPriceTot = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TEUOM = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TEQty = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
         Me.TEVendCur = New DevExpress.XtraEditors.TextEdit()
-        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TEVendPrice = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControlUpdateName = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -60,6 +60,7 @@ Partial Class FormBOMSingleOvh
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnIDCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,11 +78,11 @@ Partial Class FormBOMSingleOvh
         CType(Me.CEOVHMain.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPriceTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendCur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -203,7 +204,7 @@ Partial Class FormBOMSingleOvh
         '
         'GVOVHPrice
         '
-        Me.GVOVHPrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColMatPirce, Me.ColPriceName, Me.ColCompany, Me.ColPrice, Me.ColDate, Me.ColCurrenct})
+        Me.GVOVHPrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColMatPirce, Me.ColPriceName, Me.ColCompany, Me.ColPrice, Me.ColDate, Me.ColCurrenct, Me.GridColumnIDCurrency})
         Me.GVOVHPrice.GridControl = Me.GCOVHPrice
         Me.GVOVHPrice.Name = "GVOVHPrice"
         Me.GVOVHPrice.OptionsBehavior.Editable = False
@@ -339,6 +340,19 @@ Partial Class FormBOMSingleOvh
         Me.TEPrice.Size = New System.Drawing.Size(159, 20)
         Me.TEPrice.TabIndex = 3
         '
+        'TEKurs
+        '
+        Me.TEKurs.Location = New System.Drawing.Point(23, 22)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEKurs.Properties.Mask.EditMask = "N2"
+        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKurs.Properties.Mask.SaveLiteral = False
+        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKurs.Size = New System.Drawing.Size(129, 20)
+        Me.TEKurs.TabIndex = 2
+        '
         'LabelControl2
         '
         Me.LabelControl2.Location = New System.Drawing.Point(158, 7)
@@ -356,6 +370,14 @@ Partial Class FormBOMSingleOvh
         Me.TEUOM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEUOM.Size = New System.Drawing.Size(84, 20)
         Me.TEUOM.TabIndex = 5
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(23, 7)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl3.TabIndex = 88
+        Me.LabelControl3.Text = "Kurs"
         '
         'TEQty
         '
@@ -414,27 +436,6 @@ Partial Class FormBOMSingleOvh
         Me.TEVendCur.Size = New System.Drawing.Size(84, 20)
         Me.TEVendCur.TabIndex = 89
         Me.TEVendCur.Visible = False
-        '
-        'TEKurs
-        '
-        Me.TEKurs.Location = New System.Drawing.Point(23, 22)
-        Me.TEKurs.Name = "TEKurs"
-        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEKurs.Properties.Mask.EditMask = "N2"
-        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEKurs.Properties.Mask.SaveLiteral = False
-        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEKurs.Size = New System.Drawing.Size(129, 20)
-        Me.TEKurs.TabIndex = 2
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Location = New System.Drawing.Point(23, 7)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
-        Me.LabelControl3.TabIndex = 88
-        Me.LabelControl3.Text = "Kurs"
         '
         'TEVendPrice
         '
@@ -515,6 +516,15 @@ Partial Class FormBOMSingleOvh
         Me.BSave.TabIndex = 1
         Me.BSave.Text = " Save"
         '
+        'GridColumnIDCurrency
+        '
+        Me.GridColumnIDCurrency.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnIDCurrency.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnIDCurrency.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnIDCurrency.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnIDCurrency.Caption = "ID Currency"
+        Me.GridColumnIDCurrency.Name = "GridColumnIDCurrency"
+        '
         'FormBOMSingleOvh
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -548,11 +558,11 @@ Partial Class FormBOMSingleOvh
         CType(Me.CEOVHMain.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPriceTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVendCur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVendPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -601,4 +611,5 @@ Partial Class FormBOMSingleOvh
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CEOVHMain As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnIDCurrency As DevExpress.XtraGrid.Columns.GridColumn
 End Class

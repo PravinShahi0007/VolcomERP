@@ -73,6 +73,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVendPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -95,7 +96,9 @@ Partial Class FormBOMDesignSingle
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnVendPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnKursMat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnKursOVH = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -385,7 +388,7 @@ Partial Class FormBOMDesignSingle
         '
         'GVBomDetMat
         '
-        Me.GVBomDetMat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn12, Me.GridColumn6, Me.GridColumn3, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumnCOP, Me.GridColumnTotalCost})
+        Me.GVBomDetMat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn12, Me.GridColumn6, Me.GridColumn3, Me.GridColumn2, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumnCOP, Me.GridColumnTotalCost, Me.GridColumnKursMat})
         Me.GVBomDetMat.CustomizationFormBounds = New System.Drawing.Rectangle(885, 289, 216, 178)
         Me.GVBomDetMat.GridControl = Me.GCBomDetMat
         Me.GVBomDetMat.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn7, "{0:N2}")})
@@ -626,7 +629,7 @@ Partial Class FormBOMDesignSingle
         '
         'GVBomDetOvh
         '
-        Me.GVBomDetOvh.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn11, Me.GridColumnCat, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumnVendPrice, Me.GridColumn20, Me.GridColumn21, Me.GridColumn10, Me.GridColumnOVHCenter})
+        Me.GVBomDetOvh.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn11, Me.GridColumnCat, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn13, Me.GridColumnVendPrice, Me.GridColumnKursOVH, Me.GridColumn20, Me.GridColumn21, Me.GridColumn10, Me.GridColumnOVHCenter})
         Me.GVBomDetOvh.CustomizationFormBounds = New System.Drawing.Rectangle(885, 289, 216, 178)
         Me.GVBomDetOvh.GridControl = Me.GCBomDetOvh
         Me.GVBomDetOvh.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn21, "{0:N2}")})
@@ -695,19 +698,33 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn19.VisibleIndex = 4
         Me.GridColumn19.Width = 46
         '
+        'GridColumnVendPrice
+        '
+        Me.GridColumnVendPrice.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnVendPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnVendPrice.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnVendPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnVendPrice.Caption = "Price"
+        Me.GridColumnVendPrice.DisplayFormat.FormatString = "N2"
+        Me.GridColumnVendPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnVendPrice.FieldName = "price"
+        Me.GridColumnVendPrice.Name = "GridColumnVendPrice"
+        Me.GridColumnVendPrice.Visible = True
+        Me.GridColumnVendPrice.VisibleIndex = 7
+        '
         'GridColumn20
         '
         Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn20.Caption = "Unit Price"
+        Me.GridColumn20.Caption = "Price After Kurs"
         Me.GridColumn20.DisplayFormat.FormatString = "N2"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "unit_price"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 7
+        Me.GridColumn20.VisibleIndex = 9
         Me.GridColumn20.Width = 105
         '
         'GridColumn21
@@ -723,7 +740,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 8
+        Me.GridColumn21.VisibleIndex = 10
         Me.GridColumn21.Width = 123
         '
         'GridColumn10
@@ -935,19 +952,43 @@ Partial Class FormBOMDesignSingle
         Me.BSave.TabIndex = 10
         Me.BSave.Text = "Save"
         '
-        'GridColumnVendPrice
+        'GridColumnKursMat
         '
-        Me.GridColumnVendPrice.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnVendPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnVendPrice.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnVendPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnVendPrice.Caption = "Vendor Price"
-        Me.GridColumnVendPrice.DisplayFormat.FormatString = "N2"
-        Me.GridColumnVendPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnVendPrice.FieldName = "price"
-        Me.GridColumnVendPrice.Name = "GridColumnVendPrice"
-        Me.GridColumnVendPrice.Visible = True
-        Me.GridColumnVendPrice.VisibleIndex = 6
+        Me.GridColumnKursMat.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKursMat.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursMat.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKursMat.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursMat.Caption = "Kurs"
+        Me.GridColumnKursMat.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKursMat.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnKursMat.FieldName = "kurs"
+        Me.GridColumnKursMat.Name = "GridColumnKursMat"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.Caption = "Currency"
+        Me.GridColumn13.FieldName = "currency"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 6
+        '
+        'GridColumnKursOVH
+        '
+        Me.GridColumnKursOVH.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKursOVH.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursOVH.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKursOVH.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursOVH.Caption = "Kurs"
+        Me.GridColumnKursOVH.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKursOVH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnKursOVH.FieldName = "kurs"
+        Me.GridColumnKursOVH.Name = "GridColumnKursOVH"
+        Me.GridColumnKursOVH.Visible = True
+        Me.GridColumnKursOVH.VisibleIndex = 8
         '
         'FormBOMDesignSingle
         '
@@ -1080,4 +1121,7 @@ Partial Class FormBOMDesignSingle
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BDuplicate As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnVendPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnKursMat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnKursOVH As DevExpress.XtraGrid.Columns.GridColumn
 End Class

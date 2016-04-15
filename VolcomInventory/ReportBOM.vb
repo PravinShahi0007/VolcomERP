@@ -41,7 +41,6 @@
             L2QtyOrder.Visible = True
             LQtyOrder.Visible = True
             LQtyOrder.Text = qty_order
-
         End If
         GridView1.ActiveFilterString = "[is_cost]=1"
         GridView1.BestFitColumns()

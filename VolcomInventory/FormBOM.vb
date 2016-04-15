@@ -197,7 +197,7 @@
                 GVBOM.FocusedRowHandle = find_row(GVBOM, "id_bom", id_bom)
                 infoCustom("BOM updated.")
             Catch ex As Exception
-                DevExpress.XtraEditors.XtraMessageBox.Show("Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                stopCustom(ex.ToString)
             End Try
             Cursor = Cursors.Default
         End If
@@ -331,7 +331,7 @@
                 GVBOMPerDesign.FocusedRowHandle = find_row(GVBOMPerDesign, "id_bom_approve", id_bom_approve)
                 infoCustom("BOM updated.")
             Catch ex As Exception
-                DevExpress.XtraEditors.XtraMessageBox.Show("Please try again later.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                stopCustom(ex.ToString)
             End Try
             Cursor = Cursors.Default
         End If

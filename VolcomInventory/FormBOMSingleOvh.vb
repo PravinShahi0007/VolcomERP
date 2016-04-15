@@ -38,7 +38,7 @@
 
                 GVOVHPrice.FocusedRowHandle = find_row(GVOVHPrice, "id_ovh_price", data.Rows(0)("id_ovh_price").ToString)
                 '
-                TEKurs.EditValue = FormBOMSingle.TEKurs.EditValue
+                TEKurs.EditValue = data.Rows(0)("kurs")
                 TEPrice.EditValue = data.Rows(0)("bom_price")
                 TEQty.EditValue = data.Rows(0)("component_qty")
                 '
@@ -49,18 +49,23 @@
                 Else
                     CEOVHMain.Checked = False
                 End If
+            Else
+                TEKurs.EditValue = FormBOMSingle.TEKurs.EditValue
             End If
         ElseIf id_pop_up = "1" Then
             If Not id_ovh = "-1" Then
                 GVOVH.FocusedRowHandle = find_row(GVOVH, "id_ovh", FormBOMDesignSingle.GVBomDetOvh.GetFocusedRowCellValue("id_component").ToString)
                 load_ovh_price()
                 TEQty.EditValue = FormBOMDesignSingle.GVBomDetOvh.GetFocusedRowCellValue("qty")
+                TEKurs.EditValue = FormBOMDesignSingle.GVBomDetOvh.GetFocusedRowCellValue("kurs")
 
                 If FormBOMDesignSingle.GVBomDetOvh.GetFocusedRowCellValue("is_ovh_main").ToString = "1" Then
                     CEOVHMain.Checked = True
                 Else
                     CEOVHMain.Checked = False
                 End If
+            Else
+                TEKurs.EditValue = FormBOMDesignSingle.TEKurs.EditValue
             End If
         ElseIf id_pop_up = "2" Then 'per Design
             If Not id_bom_det = "-1" Then
@@ -108,7 +113,7 @@
         End Try
     End Sub
     Sub view_ovh_price(ByVal id_ovhx As String)
-        Dim query As String = "SELECT tb_lookup_currency.currency,tb_m_ovh_price.id_ovh_price,tb_m_ovh_price.ovh_price_name,tb_m_ovh_price.ovh_price,tb_m_ovh_price.ovh_price_date,tb_m_comp.comp_name FROM tb_m_ovh_price,tb_m_comp,tb_m_comp_contact,tb_lookup_currency WHERE tb_m_ovh_price.id_currency=tb_lookup_currency.id_currency AND tb_m_ovh_price.id_comp_contact=tb_m_comp_contact.id_comp_contact AND tb_m_comp_contact.id_comp=tb_m_comp.id_comp AND tb_m_ovh_price.id_ovh='" & id_ovhx & "' ORDER BY tb_m_ovh_price.id_ovh_price DESC"
+        Dim query As String = "SELECT tb_lookup_currency.currency,tb_m_ovh_price.id_ovh_price,tb_m_ovh_price.ovh_price_name,tb_m_ovh_price.ovh_price,tb_m_ovh_price.ovh_price_date,tb_m_comp.comp_name,tb_m_ovh_price.id_currency FROM tb_m_ovh_price,tb_m_comp,tb_m_comp_contact,tb_lookup_currency WHERE tb_m_ovh_price.id_currency=tb_lookup_currency.id_currency AND tb_m_ovh_price.id_comp_contact=tb_m_comp_contact.id_comp_contact AND tb_m_comp_contact.id_comp=tb_m_comp.id_comp AND tb_m_ovh_price.id_ovh='" & id_ovhx & "' ORDER BY tb_m_ovh_price.id_ovh_price DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOVHPrice.DataSource = data
 
@@ -304,17 +309,28 @@
                                 FormBOMDesignSingle.GVBomDetOvh.SetRowCellValue(0, "is_ovh_main", 2)
                             Next
                         End If
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component", GVOVH.GetFocusedRowCellDisplayText("id_ovh").ToString)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component_price", GVOVHPrice.GetFocusedRowCellDisplayText("id_ovh_price").ToString)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("code", GVOVH.GetFocusedRowCellDisplayText("overhead_code").ToString)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("name", GVOVH.GetFocusedRowCellDisplayText("overhead").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component", GVOVH.GetFocusedRowCellValue("id_ovh").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component_price", GVOVHPrice.GetFocusedRowCellValue("id_ovh_price").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("code", GVOVH.GetFocusedRowCellValue("overhead_code").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("name", GVOVH.GetFocusedRowCellValue("overhead").ToString)
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("size", "-")
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("color", "-")
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("qty", TEQty.EditValue)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("uom", GVOVH.GetFocusedRowCellDisplayText("uom").ToString)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("ovh_cat", GVOVH.GetFocusedRowCellDisplayText("ovh_cat").ToString)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", GVOVHPrice.GetFocusedRowCellDisplayText("ovh_price"))
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", GVOVHPrice.GetFocusedRowCellDisplayText("ovh_price") * TEQty.EditValue)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("kurs", TEKurs.EditValue)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("currency", GVOVHPrice.GetFocusedRowCellValue("currency").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("uom", GVOVH.GetFocusedRowCellValue("uom").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("ovh_cat", GVOVH.GetFocusedRowCellValue("ovh_cat").ToString)
+
+                        If GVOVHPrice.GetFocusedRowCellValue("id_currency").ToString = "1" Then
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", GVOVHPrice.GetFocusedRowCellValue("ovh_price") * TEQty.EditValue)
+                        Else
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", TEKurs.EditValue * GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", GVOVHPrice.GetFocusedRowCellValue("ovh_price") * TEQty.EditValue * TEKurs.EditValue)
+                        End If
+
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("is_ovh_main", is_ovh_main)
                         FormBOMDesignSingle.GCBomDetOvh.RefreshDataSource()
                         FormBOMDesignSingle.GVBomDetOvh.RefreshData()
@@ -341,24 +357,32 @@
                             Next
                         End If
                         FormBOMDesignSingle.GVBomDetOvh.AddNewRow()
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component", GVOVH.GetFocusedRowCellDisplayText("id_ovh").ToString)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component_price", GVOVHPrice.GetFocusedRowCellDisplayText("id_ovh_price").ToString)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("code", GVOVH.GetFocusedRowCellDisplayText("overhead_code").ToString)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("name", GVOVH.GetFocusedRowCellDisplayText("overhead").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component", GVOVH.GetFocusedRowCellValue("id_ovh").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("id_component_price", GVOVHPrice.GetFocusedRowCellValue("id_ovh_price").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("code", GVOVH.GetFocusedRowCellValue("overhead_code").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("name", GVOVH.GetFocusedRowCellValue("overhead").ToString)
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("size", "-")
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("color", "-")
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("qty", TEQty.EditValue)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("uom", GVOVH.GetFocusedRowCellDisplayText("uom").ToString)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("ovh_cat", GVOVH.GetFocusedRowCellDisplayText("ovh_cat").ToString)
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", GVOVHPrice.GetFocusedRowCellDisplayText("ovh_price"))
-                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", GVOVHPrice.GetFocusedRowCellDisplayText("ovh_price") * TEQty.EditValue)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("kurs", TEKurs.EditValue)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("currency", GVOVHPrice.GetFocusedRowCellValue("currency").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("uom", GVOVH.GetFocusedRowCellValue("uom").ToString)
+                        FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("ovh_cat", GVOVH.GetFocusedRowCellValue("ovh_cat").ToString)
+                        If GVOVHPrice.GetFocusedRowCellValue("id_currency").ToString = "1" Then
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", GVOVHPrice.GetFocusedRowCellValue("ovh_price") * TEQty.EditValue)
+                        Else
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", TEKurs.EditValue * GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", GVOVHPrice.GetFocusedRowCellValue("ovh_price") * TEQty.EditValue * TEKurs.EditValue)
+                        End If
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("is_ovh_main", is_ovh_main)
                         FormBOMDesignSingle.GVBomDetOvh.CloseEditor()
                         FormBOMDesignSingle.GCBomDetOvh.RefreshDataSource()
                         FormBOMDesignSingle.GVBomDetOvh.RefreshData()
                         FormBOMDesignSingle.show_but_ovh()
                         FormBOMDesignSingle.calculate_unit_price()
-
                         Close()
                     End If
                 End If

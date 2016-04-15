@@ -7,6 +7,7 @@
 
     Private Sub FormBOMSingleMat_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         TEQty.EditValue = 0.0
+        TEKurs.EditValue = 0.0
 
         view_currency(LECurrency)
         'LECurrency.EditValue = Nothing
@@ -27,6 +28,7 @@
 
 
         view_mat()
+
         If id_pop_up = "-1" Then
             If id_bom_det <> "-1" Then
                 '
@@ -34,35 +36,44 @@
                 id_mat_det = get_id_mat_det(id_bom_det)
                 GVMat.FocusedRowHandle = find_row(GVMat, "id_mat_det", id_mat_det)
                 TEQty.EditValue = FormBOMSingle.GVBomDetMat.GetFocusedRowCellValue("qty")
+                TEKurs.EditValue = FormBOMSingle.GVBomDetMat.GetFocusedRowCellValue("kurs")
                 If FormBOMSingle.GVBomDetMat.GetFocusedRowCellValue("is_cost").ToString = "1" Then
                     CECOP.Checked = True
                 Else
                     CECOP.Checked = False
                 End If
                 '
+            Else
+                TEKurs.EditValue = FormBOMSingle.TEKurs.EditValue
             End If
         ElseIf id_pop_up = "1" Then 'per PD
             If id_mat_det <> "-1" Then
                 '
                 GVMat.FocusedRowHandle = find_row(GVMat, "id_mat_det", id_mat_det)
                 TEQty.EditValue = FormBOMDesignSingle.GVBomDetMat.GetFocusedRowCellValue("qty")
+                TEKurs.EditValue = FormBOMDesignSingle.GVBomDetMat.GetFocusedRowCellValue("kurs")
                 If FormBOMDesignSingle.GVBomDetMat.GetFocusedRowCellValue("is_cost").ToString = "1" Then
                     CECOP.Checked = True
                 Else
                     CECOP.Checked = False
                 End If
                 '
+            Else
+                TEKurs.EditValue = FormBOMDesignSingle.TEKurs.EditValue
             End If
         ElseIf id_pop_up = "2" Then 'per Design
             If id_bom_det <> "-1" Then
                 id_mat_det = get_id_mat_det(id_bom_det)
                 GVMat.FocusedRowHandle = find_row(GVMat, "id_mat_det", id_mat_det)
                 TEQty.EditValue = FormBOMSingle.GVBomDetMat.GetFocusedRowCellValue("qty")
+                TEKurs.EditValue = FormBOMSingle.GVBomDetMat.GetFocusedRowCellValue("kurs")
                 If FormBOMSingle.GVBomDetMat.GetFocusedRowCellValue("is_cost").ToString = "1" Then
                     CECOP.Checked = True
                 Else
                     CECOP.Checked = False
                 End If
+            Else
+                TEKurs.EditValue = FormBOMSingle.TEKurs.EditValue
             End If
         End If
         load_mat_price()
@@ -184,7 +195,7 @@
     End Sub
 
     Private Sub TEKurs_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TEKurs.EditValueChanged
-        calculate
+        calculate()
     End Sub
 
     Private Sub TEQty_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TEQty.EditValueChanged
@@ -257,7 +268,7 @@
                     If Not jml < 1 Then
                         errorDuplicate(" Material.")
                     Else
-                        query = String.Format("UPDATE tb_bom_det SET id_mat_det_price='{0}',kurs='{1}',bom_price='{2}',component_qty='{3}',is_cost='{5}' WHERE id_bom_det='{4}'", id_component_price, decimalSQL(kurs.ToString), decimalSQL(bom_price.ToString), decimalSQL(component_qty.ToString), id_bom_det, is_cop)
+                        query = String.Format("UPDATE tb_bom_det SET id_mat_det_price='{0}',kurs='{1}',bom_price='{2}',component_qty='{3}',is_cost='{5}',kurs='{6}' WHERE id_bom_det='{4}'", id_component_price, decimalSQL(kurs.ToString), decimalSQL(bom_price.ToString), decimalSQL(component_qty.ToString), id_bom_det, is_cop, decimalSQL(kurs.ToString))
                         execute_non_query(query, True, "", "", "", "")
                         'update who
                         query = String.Format("UPDATE tb_bom SET id_user_last_update='{0}',bom_date_updated=NOW() WHERE id_bom='{1}'", id_user, id_bom)
@@ -273,7 +284,7 @@
                     If Not jml < 1 Then
                         errorDuplicate(" Material.")
                     Else
-                        query = String.Format("INSERT INTO tb_bom_det(id_bom,id_mat_det_price,kurs,bom_price,component_qty,id_component_category,is_cost) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", id_bom, id_component_price, decimalSQL(kurs.ToString), decimalSQL(bom_price.ToString), decimalSQL(component_qty.ToString), id_component_category, is_cop)
+                        query = String.Format("INSERT INTO tb_bom_det(id_bom,id_mat_det_price,kurs,bom_price,component_qty,id_component_category,is_cost,kurs) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}')", id_bom, id_component_price, decimalSQL(kurs.ToString), decimalSQL(bom_price.ToString), decimalSQL(component_qty.ToString), id_component_category, is_cop, decimalSQL(kurs.ToString))
                         execute_non_query(query, True, "", "", "", "")
                         'update who
                         query = String.Format("UPDATE tb_bom SET id_user_last_update='{0}',bom_date_updated=NOW() WHERE id_bom='{1}'", id_user, id_bom)
@@ -307,6 +318,7 @@
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("size", GVMat.GetFocusedRowCellDisplayText("size").ToString)
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("color", GVMat.GetFocusedRowCellDisplayText("color").ToString)
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("qty", TEQty.EditValue)
+                        FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("kurs", TEKurs.EditValue)
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("uom", GVMat.GetFocusedRowCellDisplayText("uom").ToString)
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("price", GVMatPrice.GetFocusedRowCellDisplayText("mat_det_price"))
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("total", GVMatPrice.GetFocusedRowCellDisplayText("mat_det_price") * TEQty.EditValue)
@@ -337,6 +349,7 @@
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("size", GVMat.GetFocusedRowCellDisplayText("size").ToString)
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("color", GVMat.GetFocusedRowCellDisplayText("color").ToString)
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("qty", TEQty.EditValue)
+                        FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("kurs", TEKurs.EditValue)
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("uom", GVMat.GetFocusedRowCellDisplayText("uom").ToString)
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("price", GVMatPrice.GetFocusedRowCellDisplayText("mat_det_price"))
                         FormBOMDesignSingle.GVBomDetMat.SetFocusedRowCellValue("is_cost", is_cop)
