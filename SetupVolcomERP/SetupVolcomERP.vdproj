@@ -57,6 +57,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0D978B008DEF49348B5303429F42F782"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0E71CBE68FF546F62CCD0DF43F6B7827"
         "OwnerKey" = "8:_BF85C55A534D60EE74E3F198C8461317"
         "MsmSig" = "8:_UNDEFINED"
@@ -93,6 +99,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1431AB7A6BA54BD0999813C3AD84EAFC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2E5F9DEDE90DACB0A1864EAEA7605A73"
         "OwnerKey" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
         "MsmSig" = "8:_UNDEFINED"
@@ -125,6 +137,18 @@
         {
         "MsmKey" = "8:_3173AD6DD761D3FCCF1D6862ED4E3E61"
         "OwnerKey" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_377C329452B845B88198A2EF0FDAF2A3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_45754E0273A9442DA762F411B19CBF64"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -178,12 +202,6 @@
         "Entry"
         {
         "MsmKey" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5650713AA60F473DBC36D3CBAC1BC213"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -273,12 +291,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6237D3FEBB7741F09E22FAA91B191D1A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_626E1FA3F82F1727B06F27190F67FB42"
         "OwnerKey" = "8:_BF85C55A534D60EE74E3F198C8461317"
         "MsmSig" = "8:_UNDEFINED"
@@ -339,6 +351,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6F7DA7A5C8F34D6BBB3EE5ACAE436D6B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7155E5A82F28556C0FB4D279CE9CCFC3"
         "OwnerKey" = "8:_72373CA5F9CE827750697D4DFA40019C"
         "MsmSig" = "8:_UNDEFINED"
@@ -369,8 +387,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_8EBCB87A1D3E43F69806B6F9242FDC12"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_82590ABAC4FA7254BDB3B52824DB0EDD"
+        "OwnerKey" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -651,8 +669,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BF3049C1E45860BB89D11C4405C57DFC"
-        "OwnerKey" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
+        "MsmKey" = "8:_BE79C3680ACF45019AE649845C8C1851"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -707,12 +725,6 @@
         {
         "MsmKey" = "8:_D342BDC43375E2D4174C8126E81524A7"
         "OwnerKey" = "8:_4A80AEE6CCC2CAFFA7D34209D28DD8E1"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D46AB46C12D64552B1C7F7D0281DC885"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1017,12 +1029,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E25E02B370204FB28AFF38FB411F13AC"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E333027DD8AC4B13E50F85440FD07C6C"
         "OwnerKey" = "8:_572798EB6EE24E6B0B72F183349F8978"
         "MsmSig" = "8:_UNDEFINED"
@@ -1067,12 +1073,6 @@
         {
         "MsmKey" = "8:_EF55F3660F7EA44DAF465047B5E9C0C7"
         "OwnerKey" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F1C50F70E93C4DCD90A54CC4246DB5FB"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1138,7 +1138,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BF3049C1E45860BB89D11C4405C57DFC"
+        "OwnerKey" = "8:_82590ABAC4FA7254BDB3B52824DB0EDD"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1478,6 +1478,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D978B008DEF49348B5303429F42F782"
+            {
+            "SourcePath" = "8:..\\installer_package\\pic_default.jpg"
+            "TargetName" = "8:pic_default.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0E71CBE68FF546F62CCD0DF43F6B7827"
             {
             "AssemblyRegister" = "3:1"
@@ -1507,6 +1527,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1431AB7A6BA54BD0999813C3AD84EAFC"
+            {
+            "SourcePath" = "8:..\\installer_package\\uninstall_command.bat"
+            "TargetName" = "8:uninstall_command.bat"
+            "Tag" = "8:"
+            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2E5F9DEDE90DACB0A1864EAEA7605A73"
@@ -1602,6 +1642,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_377C329452B845B88198A2EF0FDAF2A3"
+            {
+            "SourcePath" = "8:..\\installer_package\\notify.wav"
+            "TargetName" = "8:notify.wav"
+            "Tag" = "8:"
+            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_45754E0273A9442DA762F411B19CBF64"
+            {
+            "SourcePath" = "8:..\\installer_package\\uninstall.ico"
+            "TargetName" = "8:uninstall.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4A80AEE6CCC2CAFFA7D34209D28DD8E1"
             {
             "AssemblyRegister" = "3:1"
@@ -1664,26 +1744,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5650713AA60F473DBC36D3CBAC1BC213"
-            {
-            "SourcePath" = "8:D:\\Shared\\installer_package\\uninstall.vbs"
-            "TargetName" = "8:uninstall.vbs"
-            "Tag" = "8:"
-            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_572798EB6EE24E6B0B72F183349F8978"
             {
             "AssemblyRegister" = "3:1"
@@ -1713,26 +1773,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6237D3FEBB7741F09E22FAA91B191D1A"
-            {
-            "SourcePath" = "8:D:\\Shared\\installer_package\\pic_default.jpg"
-            "TargetName" = "8:pic_default.jpg"
-            "Tag" = "8:"
-            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_626E1FA3F82F1727B06F27190F67FB42"
@@ -1797,6 +1837,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F7DA7A5C8F34D6BBB3EE5ACAE436D6B"
+            {
+            "SourcePath" = "8:..\\installer_package\\uninstall.vbs"
+            "TargetName" = "8:uninstall.vbs"
+            "Tag" = "8:"
+            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7155E5A82F28556C0FB4D279CE9CCFC3"
             {
             "AssemblyRegister" = "3:1"
@@ -1859,10 +1919,21 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8EBCB87A1D3E43F69806B6F9242FDC12"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_82590ABAC4FA7254BDB3B52824DB0EDD"
             {
-            "SourcePath" = "8:D:\\Shared\\installer_package\\uninstall_command.bat"
-            "TargetName" = "8:uninstall_command.bat"
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.8.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_82590ABAC4FA7254BDB3B52824DB0EDD"
+                    {
+                    "Name" = "8:MySql.Data.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:MySql.Data.dll"
+            "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
             "Condition" = "8:"
@@ -1876,7 +1947,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_909DF71C1E88952D75AAC463CEAF20E2"
@@ -2065,21 +2136,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BF3049C1E45860BB89D11C4405C57DFC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE79C3680ACF45019AE649845C8C1851"
             {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:MySql.Data, Version=6.4.3.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_BF3049C1E45860BB89D11C4405C57DFC"
-                    {
-                    "Name" = "8:MySql.Data.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:MySql.Data.dll"
-            "TargetName" = "8:"
+            "SourcePath" = "8:..\\installer_package\\erp_volcom_high.ico"
+            "TargetName" = "8:erp_volcom_high.ico"
             "Tag" = "8:"
             "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
             "Condition" = "8:"
@@ -2093,7 +2153,7 @@
             "PackageAs" = "3:1"
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BF85C55A534D60EE74E3F198C8461317"
@@ -2156,26 +2216,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D46AB46C12D64552B1C7F7D0281DC885"
-            {
-            "SourcePath" = "8:D:\\Shared\\installer_package\\notify.wav"
-            "TargetName" = "8:notify.wav"
-            "Tag" = "8:"
-            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D6E86A80E6EAAB8DB70245CD7065425E"
@@ -2302,26 +2342,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E25E02B370204FB28AFF38FB411F13AC"
-            {
-            "SourcePath" = "8:D:\\Shared\\installer_package\\uninstall.ico"
-            "TargetName" = "8:uninstall.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E333027DD8AC4B13E50F85440FD07C6C"
             {
             "AssemblyRegister" = "3:1"
@@ -2413,26 +2433,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F1C50F70E93C4DCD90A54CC4246DB5FB"
-            {
-            "SourcePath" = "8:D:\\Shared\\installer_package\\erp_volcom_high.ico"
-            "TargetName" = "8:erp_volcom_high.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F44D745529CEF4969E73FFC258A2C2DD"
@@ -2685,7 +2685,21 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_43D7F012980242C9A1B1E3221B8928DD"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_43CD213AFA284F0FB7C44532AB8EBF10"
+            {
+            "Name" = "8:uninstall"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_6F7DA7A5C8F34D6BBB3EE5ACAE436D6B"
+            "Folder" = "8:_6474D528AD0347CF9835F970D77BCF29"
+            "WorkingFolder" = "8:_F16FA54EC747462EA86465608EF63805"
+            "Icon" = "8:_45754E0273A9442DA762F411B19CBF64"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_83D3ED63AE9F46F3B128702425909812"
             {
             "Name" = "8:Volcom ERP"
             "Arguments" = "8:"
@@ -2696,21 +2710,7 @@
             "Target" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
             "Folder" = "8:_6474D528AD0347CF9835F970D77BCF29"
             "WorkingFolder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Icon" = "8:_F1C50F70E93C4DCD90A54CC4246DB5FB"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_6B87D0C46EF74CE394A82CAD3109FD91"
-            {
-            "Name" = "8:uninstall"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_5650713AA60F473DBC36D3CBAC1BC213"
-            "Folder" = "8:_6474D528AD0347CF9835F970D77BCF29"
-            "WorkingFolder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Icon" = "8:_E25E02B370204FB28AFF38FB411F13AC"
+            "Icon" = "8:_BE79C3680ACF45019AE649845C8C1851"
             "Feature" = "8:"
             }
         }
