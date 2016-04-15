@@ -25,6 +25,7 @@
     '17 = Sample Returm To
     '18 = Generate Material Purchasing Ship To (From PD)
     '19 = From PL Sample Del
+    'test conflict
 
     Private Sub FormPopUpContact_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
         Dispose()
@@ -433,8 +434,7 @@
                 FormSalesPOSDet.TxtCodeCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
                 FormSalesPOSDet.MEAdrressCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "3")
                 FormSalesPOSDet.TENPWP.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "5")
-                FormSalesPOSDet.LETypeSO.EditValue = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "8")
-
+                FormSalesPOSDet.LETypeSO.ItemIndex = FormSalesPOSDet.LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "8"))
                 FormSalesPOSDet.viewDetail()
                 FormSalesPOSDet.viewStockStore()
                 FormSalesPOSDet.check_but()

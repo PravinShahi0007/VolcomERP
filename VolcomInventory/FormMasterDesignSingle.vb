@@ -252,6 +252,7 @@
     End Function
 
     Private Sub FormMasterDesignSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        TEName.Focus()
         actionLoad()
     End Sub
 
@@ -361,6 +362,7 @@
                 TxtFabrication.Text = data.Rows(0)("design_fabrication").ToString
                 LEPlanStatus.EditValue = data.Rows(0)("id_lookup_status_order")
                 SLEDesign.EditValue = data.Rows(0)("id_design_ref")
+                MEDetail.Text = data.Rows(0)("design_detail").ToString
                 If dupe = "-1" Then
                     SLEActive.EditValue = data.Rows(0)("id_active")
                 Else
@@ -708,7 +710,7 @@
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         ValidateChildren()
-        Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active As String
+        Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active, design_detail As String
         namex = addSlashes(TEName.Text)
         display_name = TEDisplayName.Text
         code = TECode.Text
@@ -720,6 +722,7 @@
         id_delivery_act = myCoalesce(SLEDel.EditValue.ToString, "0")
         id_active = SLEActive.EditValue.ToString
         design_eos = "-1"
+        design_detail = addSlashes(MEDetail.Text.ToString)
         Try
             design_eos = DateTime.Parse(DEEOS.EditValue.ToString).ToString("yyyy-MM-dd")
         Catch ex As Exception
@@ -776,7 +779,7 @@
                         'jika duplikat
                         id_design_ref = id_design
 
-                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code,id_uom,id_season,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order) "
+                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code,id_uom,id_season,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail) "
                         query += "VALUES('" + namex + "','" + display_name + "','" + code + "','" + id_uom + "','" + id_season + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                         If design_eos = "-1" Then
                             query += "NULL, "
@@ -799,7 +802,7 @@
                         Else
                             query += "'" + id_design_ref + "', "
                         End If
-                        query += "'" + id_lookup_status_order + "' "
+                        query += "'" + id_lookup_status_order + "', '" + design_detail + "' "
                         query += ");SELECT LAST_INSERT_ID(); "
                         id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 
@@ -868,7 +871,7 @@
                             query += "id_design_ref='" + id_design_ref + "', "
                         End If
                         query += "id_active='" + id_active + "', "
-                        query += "id_lookup_status_order='" + id_lookup_status_order + "' "
+                        query += "id_lookup_status_order='" + id_lookup_status_order + "', design_detail='" + design_detail + "' "
                         query += "WHERE id_design='{5}' "
                         query = String.Format(query, namex, display_name, code, id_uom, id_season, id_design, id_design_type, design_ret_code)
                         execute_non_query(query, True, "", "", "", "")
@@ -916,7 +919,7 @@
             Else
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
-                    query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code,id_uom,id_season,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order) "
+                    query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code,id_uom,id_season,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail) "
                     query += "VALUES('" + namex + "','" + display_name + "','" + code + "','" + id_uom + "','" + id_season + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                     If design_eos = "-1" Then
                         query += "NULL, "
@@ -939,7 +942,7 @@
                     Else
                         query += "'" + id_design_ref + "', "
                     End If
-                    query += "'" + id_lookup_status_order + "' "
+                    query += "'" + id_lookup_status_order + "', '" + design_detail + "' "
                     query += ");SELECT LAST_INSERT_ID(); "
                     id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 

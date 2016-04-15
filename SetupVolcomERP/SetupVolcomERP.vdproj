@@ -45,12 +45,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_03339E47AA484831B17C98E2F8857FA8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_061C098F97FC81C5A26F732C86AF8206"
         "OwnerKey" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
         "MsmSig" = "8:_UNDEFINED"
@@ -59,6 +53,12 @@
         {
         "MsmKey" = "8:_061C098F97FC81C5A26F732C86AF8206"
         "OwnerKey" = "8:_3173AD6DD761D3FCCF1D6862ED4E3E61"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0D978B008DEF49348B5303429F42F782"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -99,6 +99,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1431AB7A6BA54BD0999813C3AD84EAFC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2E5F9DEDE90DACB0A1864EAEA7605A73"
         "OwnerKey" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
         "MsmSig" = "8:_UNDEFINED"
@@ -135,7 +141,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_465F2C3CB4E840E98F11521BB987626B"
+        "MsmKey" = "8:_377C329452B845B88198A2EF0FDAF2A3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_45754E0273A9442DA762F411B19CBF64"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -335,6 +347,12 @@
         {
         "MsmKey" = "8:_66CAD76D7D11AA46B88FA868A9354B53"
         "OwnerKey" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6F7DA7A5C8F34D6BBB3EE5ACAE436D6B"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -603,12 +621,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A9A37ECAB55E47D386078DA100B9E16C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_AAC6A979A8DA01648B90099019DC11BD"
         "OwnerKey" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
         "MsmSig" = "8:_UNDEFINED"
@@ -657,7 +669,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B95C83A8C0364D109A3AD222B738F0E9"
+        "MsmKey" = "8:_BE79C3680ACF45019AE649845C8C1851"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -897,12 +909,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E14677ACB49249CBAB0A0945AAA49B6A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E210A4BC2F4731ABE5585B9D636C969A"
         "OwnerKey" = "8:_D6E86A80E6EAAB8DB70245CD7065425E"
         "MsmSig" = "8:_UNDEFINED"
@@ -1121,12 +1127,6 @@
         {
         "MsmKey" = "8:_F596E113FA835D7D321E1B39601B25FB"
         "OwnerKey" = "8:_72373CA5F9CE827750697D4DFA40019C"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_F695D933DB034769A2DD83F7B16E2B3E"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1447,26 +1447,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_03339E47AA484831B17C98E2F8857FA8"
-            {
-            "SourcePath" = "8:D:\\Volcom\\DevDocumentation\\apps\\installer_package\\pic_default.jpg"
-            "TargetName" = "8:pic_default.jpg"
-            "Tag" = "8:"
-            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_061C098F97FC81C5A26F732C86AF8206"
             {
             "AssemblyRegister" = "3:1"
@@ -1498,6 +1478,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D978B008DEF49348B5303429F42F782"
+            {
+            "SourcePath" = "8:..\\installer_package\\pic_default.jpg"
+            "TargetName" = "8:pic_default.jpg"
+            "Tag" = "8:"
+            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0E71CBE68FF546F62CCD0DF43F6B7827"
             {
             "AssemblyRegister" = "3:1"
@@ -1527,6 +1527,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1431AB7A6BA54BD0999813C3AD84EAFC"
+            {
+            "SourcePath" = "8:..\\installer_package\\uninstall_command.bat"
+            "TargetName" = "8:uninstall_command.bat"
+            "Tag" = "8:"
+            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2E5F9DEDE90DACB0A1864EAEA7605A73"
@@ -1622,10 +1642,30 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_465F2C3CB4E840E98F11521BB987626B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_377C329452B845B88198A2EF0FDAF2A3"
             {
-            "SourcePath" = "8:D:\\Volcom\\DevDocumentation\\apps\\installer_package\\erp_volcom_high.ico"
-            "TargetName" = "8:erp_volcom_high.ico"
+            "SourcePath" = "8:..\\installer_package\\notify.wav"
+            "TargetName" = "8:notify.wav"
+            "Tag" = "8:"
+            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_45754E0273A9442DA762F411B19CBF64"
+            {
+            "SourcePath" = "8:..\\installer_package\\uninstall.ico"
+            "TargetName" = "8:uninstall.ico"
             "Tag" = "8:"
             "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
             "Condition" = "8:"
@@ -1795,6 +1835,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F7DA7A5C8F34D6BBB3EE5ACAE436D6B"
+            {
+            "SourcePath" = "8:..\\installer_package\\uninstall.vbs"
+            "TargetName" = "8:uninstall.vbs"
+            "Tag" = "8:"
+            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_7155E5A82F28556C0FB4D279CE9CCFC3"
@@ -2014,26 +2074,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A9A37ECAB55E47D386078DA100B9E16C"
-            {
-            "SourcePath" = "8:D:\\Volcom\\DevDocumentation\\apps\\installer_package\\notify.wav"
-            "TargetName" = "8:notify.wav"
-            "Tag" = "8:"
-            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AAC6A979A8DA01648B90099019DC11BD"
             {
             "AssemblyRegister" = "3:1"
@@ -2096,10 +2136,10 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B95C83A8C0364D109A3AD222B738F0E9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BE79C3680ACF45019AE649845C8C1851"
             {
-            "SourcePath" = "8:D:\\Volcom\\DevDocumentation\\apps\\installer_package\\uninstall.vbs"
-            "TargetName" = "8:uninstall.vbs"
+            "SourcePath" = "8:..\\installer_package\\erp_volcom_high.ico"
+            "TargetName" = "8:erp_volcom_high.ico"
             "Tag" = "8:"
             "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
             "Condition" = "8:"
@@ -2269,26 +2309,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E14677ACB49249CBAB0A0945AAA49B6A"
-            {
-            "SourcePath" = "8:D:\\Volcom\\DevDocumentation\\apps\\installer_package\\uninstall_command.bat"
-            "TargetName" = "8:uninstall_command.bat"
-            "Tag" = "8:"
-            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E210A4BC2F4731ABE5585B9D636C969A"
@@ -2475,26 +2495,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F695D933DB034769A2DD83F7B16E2B3E"
-            {
-            "SourcePath" = "8:D:\\Volcom\\DevDocumentation\\apps\\installer_package\\uninstall.ico"
-            "TargetName" = "8:uninstall.ico"
-            "Tag" = "8:"
-            "Folder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -2685,7 +2685,21 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_74739060AA1E44CCA299CC00C0ECDFC8"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_43CD213AFA284F0FB7C44532AB8EBF10"
+            {
+            "Name" = "8:uninstall"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_6F7DA7A5C8F34D6BBB3EE5ACAE436D6B"
+            "Folder" = "8:_6474D528AD0347CF9835F970D77BCF29"
+            "WorkingFolder" = "8:_F16FA54EC747462EA86465608EF63805"
+            "Icon" = "8:_45754E0273A9442DA762F411B19CBF64"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_83D3ED63AE9F46F3B128702425909812"
             {
             "Name" = "8:Volcom ERP"
             "Arguments" = "8:"
@@ -2696,21 +2710,7 @@
             "Target" = "8:_52A36FD2270A4A45947D0E923EB3DB1B"
             "Folder" = "8:_6474D528AD0347CF9835F970D77BCF29"
             "WorkingFolder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Icon" = "8:_465F2C3CB4E840E98F11521BB987626B"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_C1F42819B573498EBD4D1AB582C5A720"
-            {
-            "Name" = "8:uninstall.vbs"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:0"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_B95C83A8C0364D109A3AD222B738F0E9"
-            "Folder" = "8:_6474D528AD0347CF9835F970D77BCF29"
-            "WorkingFolder" = "8:_F16FA54EC747462EA86465608EF63805"
-            "Icon" = "8:_F695D933DB034769A2DD83F7B16E2B3E"
+            "Icon" = "8:_BE79C3680ACF45019AE649845C8C1851"
             "Feature" = "8:"
             }
         }

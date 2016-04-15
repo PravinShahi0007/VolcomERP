@@ -56,6 +56,7 @@ Partial Public Class ReportBOM
         Me.GridColumnisCOST = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCostPerPcs = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XrControlStyle1 = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.XrControlStyle2 = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.XrControlStyle3 = New DevExpress.XtraReports.UI.XRControlStyle()
@@ -63,7 +64,9 @@ Partial Public Class ReportBOM
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnKurs = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVendPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCBomMat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -367,7 +370,7 @@ Partial Public Class ReportBOM
         Me.GridView1.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.0!)
         Me.GridView1.AppearancePrint.Row.Options.UseFont = True
         Me.GridView1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColPrice, Me.ColTotal, Me.Cat, Me.ColIDCat, Me.GridColumnisCOST, Me.GridColumnQtyOrder, Me.GridColumnCostPerPcs, Me.GridColumnColor})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColCode, Me.ColName, Me.ColSize, Me.ColQty, Me.ColPrice, Me.ColTotal, Me.Cat, Me.ColIDCat, Me.GridColumnisCOST, Me.GridColumnCurrency, Me.GridColumnVendPrice, Me.GridColumnKurs, Me.GridColumnQtyOrder, Me.GridColumnCostPerPcs, Me.GridColumnColor})
         Me.GridView1.GridControl = Me.GCBomMat
         Me.GridView1.GroupCount = 1
         Me.GridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.ColTotal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "price", Me.ColPrice, "Sub Total{0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cost_per_pcs", Me.GridColumnCostPerPcs, "{0:N2}")})
@@ -483,6 +486,8 @@ Partial Public Class ReportBOM
         'GridColumnisCOST
         '
         Me.GridColumnisCOST.Caption = "IS COST"
+        Me.GridColumnisCOST.DisplayFormat.FormatString = "N2"
+        Me.GridColumnisCOST.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnisCOST.FieldName = "is_cost"
         Me.GridColumnisCOST.Name = "GridColumnisCOST"
         '
@@ -513,6 +518,18 @@ Partial Public Class ReportBOM
         Me.GridColumnCostPerPcs.Visible = True
         Me.GridColumnCostPerPcs.VisibleIndex = 7
         Me.GridColumnCostPerPcs.Width = 91
+        '
+        'GridColumnColor
+        '
+        Me.GridColumnColor.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnColor.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnColor.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnColor.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnColor.Caption = "Color"
+        Me.GridColumnColor.FieldName = "color"
+        Me.GridColumnColor.Name = "GridColumnColor"
+        Me.GridColumnColor.Visible = True
+        Me.GridColumnColor.VisibleIndex = 2
         '
         'XrControlStyle1
         '
@@ -559,17 +576,43 @@ Partial Public Class ReportBOM
         Me.XrTableCell1.Visible = False
         Me.XrTableCell1.Weight = 2.99999986405489R
         '
-        'GridColumnColor
+        'GridColumnKurs
         '
-        Me.GridColumnColor.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnColor.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnColor.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnColor.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnColor.Caption = "Color"
-        Me.GridColumnColor.FieldName = "color"
-        Me.GridColumnColor.Name = "GridColumnColor"
-        Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 2
+        Me.GridColumnKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.Caption = "Kurs"
+        Me.GridColumnKurs.FieldName = "kurs"
+        Me.GridColumnKurs.Name = "GridColumnKurs"
+        Me.GridColumnKurs.Visible = True
+        Me.GridColumnKurs.VisibleIndex = 8
+        '
+        'GridColumnVendPrice
+        '
+        Me.GridColumnVendPrice.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnVendPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnVendPrice.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnVendPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnVendPrice.Caption = "Vendor Price"
+        Me.GridColumnVendPrice.DisplayFormat.FormatString = "N2"
+        Me.GridColumnVendPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnVendPrice.FieldName = "price"
+        Me.GridColumnVendPrice.Name = "GridColumnVendPrice"
+        Me.GridColumnVendPrice.Visible = True
+        Me.GridColumnVendPrice.VisibleIndex = 10
+        '
+        'GridColumnCurrency
+        '
+        Me.GridColumnCurrency.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCurrency.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurrency.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCurrency.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCurrency.Caption = "Currency"
+        Me.GridColumnCurrency.FieldName = "currency"
+        Me.GridColumnCurrency.Name = "GridColumnCurrency"
+        Me.GridColumnCurrency.Visible = True
+        Me.GridColumnCurrency.VisibleIndex = 9
         '
         'ReportBOM
         '
@@ -631,4 +674,7 @@ Partial Public Class ReportBOM
     Friend WithEvents L2Vendor As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents L1Vendor As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents GridColumnColor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVendPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnKurs As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCurrency As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -330,7 +330,9 @@ Partial Class FormBOMSingleMat
         Me.GroupControl2.Controls.Add(Me.TEPriceTot)
         Me.GroupControl2.Controls.Add(Me.LabelControl7)
         Me.GroupControl2.Controls.Add(Me.TEPrice)
+        Me.GroupControl2.Controls.Add(Me.TEKurs)
         Me.GroupControl2.Controls.Add(Me.LabelControl2)
+        Me.GroupControl2.Controls.Add(Me.LabelControl3)
         Me.GroupControl2.Controls.Add(Me.TEUOM)
         Me.GroupControl2.Controls.Add(Me.TEQty)
         Me.GroupControl2.Controls.Add(Me.LabelControl1)
@@ -344,7 +346,7 @@ Partial Class FormBOMSingleMat
         'CECOP
         '
         Me.CECOP.EditValue = True
-        Me.CECOP.Location = New System.Drawing.Point(684, 25)
+        Me.CECOP.Location = New System.Drawing.Point(706, 26)
         Me.CECOP.Name = "CECOP"
         Me.CECOP.Properties.Caption = "Include in Cost"
         Me.CECOP.Size = New System.Drawing.Size(106, 19)
@@ -353,7 +355,7 @@ Partial Class FormBOMSingleMat
         'TEPriceTot
         '
         Me.TEPriceTot.Enabled = False
-        Me.TEPriceTot.Location = New System.Drawing.Point(482, 25)
+        Me.TEPriceTot.Location = New System.Drawing.Point(546, 26)
         Me.TEPriceTot.Name = "TEPriceTot"
         Me.TEPriceTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPriceTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -361,12 +363,12 @@ Partial Class FormBOMSingleMat
         Me.TEPriceTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPriceTot.Properties.Mask.SaveLiteral = False
         Me.TEPriceTot.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEPriceTot.Size = New System.Drawing.Size(175, 20)
+        Me.TEPriceTot.Size = New System.Drawing.Size(154, 20)
         Me.TEPriceTot.TabIndex = 6
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(482, 9)
+        Me.LabelControl7.Location = New System.Drawing.Point(546, 9)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(50, 13)
         Me.LabelControl7.TabIndex = 116
@@ -374,7 +376,7 @@ Partial Class FormBOMSingleMat
         '
         'TEPrice
         '
-        Me.TEPrice.Location = New System.Drawing.Point(35, 25)
+        Me.TEPrice.Location = New System.Drawing.Point(178, 25)
         Me.TEPrice.Name = "TEPrice"
         Me.TEPrice.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -382,12 +384,12 @@ Partial Class FormBOMSingleMat
         Me.TEPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPrice.Properties.Mask.SaveLiteral = False
         Me.TEPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEPrice.Size = New System.Drawing.Size(159, 20)
+        Me.TEPrice.Size = New System.Drawing.Size(160, 20)
         Me.TEPrice.TabIndex = 3
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(35, 9)
+        Me.LabelControl2.Location = New System.Drawing.Point(178, 9)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl2.TabIndex = 114
@@ -396,7 +398,7 @@ Partial Class FormBOMSingleMat
         'TEUOM
         '
         Me.TEUOM.Enabled = False
-        Me.TEUOM.Location = New System.Drawing.Point(364, 25)
+        Me.TEUOM.Location = New System.Drawing.Point(456, 26)
         Me.TEUOM.Name = "TEUOM"
         Me.TEUOM.Properties.Appearance.Options.UseTextOptions = True
         Me.TEUOM.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -405,7 +407,7 @@ Partial Class FormBOMSingleMat
         '
         'TEQty
         '
-        Me.TEQty.Location = New System.Drawing.Point(217, 25)
+        Me.TEQty.Location = New System.Drawing.Point(344, 26)
         Me.TEQty.Name = "TEQty"
         Me.TEQty.Properties.Appearance.Options.UseTextOptions = True
         Me.TEQty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -414,12 +416,12 @@ Partial Class FormBOMSingleMat
         Me.TEQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEQty.Properties.Mask.SaveLiteral = False
         Me.TEQty.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEQty.Size = New System.Drawing.Size(141, 20)
+        Me.TEQty.Size = New System.Drawing.Size(106, 20)
         Me.TEQty.TabIndex = 4
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(217, 9)
+        Me.LabelControl1.Location = New System.Drawing.Point(344, 9)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl1.TabIndex = 84
@@ -463,7 +465,7 @@ Partial Class FormBOMSingleMat
         '
         'TEKurs
         '
-        Me.TEKurs.Location = New System.Drawing.Point(511, 12)
+        Me.TEKurs.Location = New System.Drawing.Point(32, 25)
         Me.TEKurs.Name = "TEKurs"
         Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
         Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -471,18 +473,16 @@ Partial Class FormBOMSingleMat
         Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEKurs.Properties.Mask.SaveLiteral = False
         Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEKurs.Size = New System.Drawing.Size(167, 20)
+        Me.TEKurs.Size = New System.Drawing.Size(140, 20)
         Me.TEKurs.TabIndex = 2
-        Me.TEKurs.Visible = False
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(511, -2)
+        Me.LabelControl3.Location = New System.Drawing.Point(32, 9)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl3.TabIndex = 88
         Me.LabelControl3.Text = "Kurs"
-        Me.LabelControl3.Visible = False
         '
         'TEVendPrice
         '
@@ -515,10 +515,8 @@ Partial Class FormBOMSingleMat
         Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Controls.Add(Me.BCancel)
         Me.PanelControl2.Controls.Add(Me.BSave)
-        Me.PanelControl2.Controls.Add(Me.TEKurs)
         Me.PanelControl2.Controls.Add(Me.TEVendCur)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
-        Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.TEVendPrice)
         Me.PanelControl2.Controls.Add(Me.LECurrency)
         Me.PanelControl2.Controls.Add(Me.LabelControlUpdateName)

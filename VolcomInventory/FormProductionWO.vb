@@ -407,6 +407,8 @@
     End Sub
 
     Sub calculate()
+        GVListPurchase.RefreshData()
+
         Dim total, sub_tot, gross_tot, vat As Decimal
 
         Try

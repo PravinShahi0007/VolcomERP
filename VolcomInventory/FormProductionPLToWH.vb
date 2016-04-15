@@ -193,7 +193,7 @@
         data.Columns.Add("images", GetType(Image))
 
         GCProd.DataSource = data
-        GVProd.ActiveFilterString = "[pl_created]=0 "
+        'GVProd.ActiveFilterString = "[pl_created]=0 "
         If GVProd.RowCount > 0 Then
             'show all
             view_list_purchase(GVProd.GetFocusedRowCellValue("id_prod_order").ToString)

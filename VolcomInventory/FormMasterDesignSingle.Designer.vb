@@ -57,6 +57,8 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PanC2 = New DevExpress.XtraEditors.PanelControl()
+        Me.MEDetail = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEActive = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView9 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -179,6 +181,7 @@ Partial Class FormMasterDesignSingle
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanC2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanC2.SuspendLayout()
+        CType(Me.MEDetail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERetDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -262,7 +265,7 @@ Partial Class FormMasterDesignSingle
         Me.GCCode.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GCCode.Name = "GCCode"
         Me.GCCode.Size = New System.Drawing.Size(461, 310)
-        Me.GCCode.TabIndex = 21
+        Me.GCCode.TabIndex = 16
         Me.GCCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCode})
         '
         'GVCode
@@ -458,7 +461,7 @@ Partial Class FormMasterDesignSingle
         Me.BSave.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(66, 30)
-        Me.BSave.TabIndex = 23
+        Me.BSave.TabIndex = 19
         Me.BSave.Text = "Save"
         '
         'DEInStoreDet
@@ -513,7 +516,7 @@ Partial Class FormMasterDesignSingle
         Me.BGenerate.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BGenerate.Name = "BGenerate"
         Me.BGenerate.Size = New System.Drawing.Size(96, 20)
-        Me.BGenerate.TabIndex = 22
+        Me.BGenerate.TabIndex = 17
         Me.BGenerate.Text = "Generate Code"
         '
         'LabelControl6
@@ -547,7 +550,7 @@ Partial Class FormMasterDesignSingle
         Me.BRefreshCode.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BRefreshCode.Name = "BRefreshCode"
         Me.BRefreshCode.Size = New System.Drawing.Size(42, 20)
-        Me.BRefreshCode.TabIndex = 19
+        Me.BRefreshCode.TabIndex = 14
         Me.BRefreshCode.Text = "Reset"
         '
         'BeditCode
@@ -556,7 +559,7 @@ Partial Class FormMasterDesignSingle
         Me.BeditCode.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BeditCode.Name = "BeditCode"
         Me.BeditCode.Size = New System.Drawing.Size(35, 20)
-        Me.BeditCode.TabIndex = 18
+        Me.BeditCode.TabIndex = 13
         Me.BeditCode.Text = "Code"
         '
         'LETemplate
@@ -571,6 +574,7 @@ Partial Class FormMasterDesignSingle
         Me.LETemplate.Properties.View = Me.GridView2
         Me.LETemplate.Size = New System.Drawing.Size(282, 20)
         Me.LETemplate.TabIndex = 2
+        Me.LETemplate.TabStop = False
         '
         'GridView2
         '
@@ -608,6 +612,8 @@ Partial Class FormMasterDesignSingle
         Me.PanC2.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.PanC2.Appearance.Options.UseBackColor = True
         Me.PanC2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanC2.Controls.Add(Me.MEDetail)
+        Me.PanC2.Controls.Add(Me.LabelControl11)
         Me.PanC2.Controls.Add(Me.SLEActive)
         Me.PanC2.Controls.Add(Me.LabelControl12)
         Me.PanC2.Controls.Add(Me.DERetDate)
@@ -647,10 +653,26 @@ Partial Class FormMasterDesignSingle
         Me.PanC2.Size = New System.Drawing.Size(402, 566)
         Me.PanC2.TabIndex = 90
         '
+        'MEDetail
+        '
+        Me.MEDetail.Location = New System.Drawing.Point(10, 429)
+        Me.MEDetail.Name = "MEDetail"
+        Me.MEDetail.Size = New System.Drawing.Size(373, 52)
+        Me.MEDetail.TabIndex = 11
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(10, 412)
+        Me.LabelControl11.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(83, 13)
+        Me.LabelControl11.TabIndex = 128
+        Me.LabelControl11.Text = "Detail Description"
+        '
         'SLEActive
         '
         Me.SLEActive.Enabled = False
-        Me.SLEActive.Location = New System.Drawing.Point(11, 451)
+        Me.SLEActive.Location = New System.Drawing.Point(10, 500)
         Me.SLEActive.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.SLEActive.Name = "SLEActive"
         Me.SLEActive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -658,8 +680,8 @@ Partial Class FormMasterDesignSingle
         Me.SLEActive.Properties.ShowClearButton = False
         Me.SLEActive.Properties.ShowFooter = False
         Me.SLEActive.Properties.View = Me.GridView9
-        Me.SLEActive.Size = New System.Drawing.Size(371, 20)
-        Me.SLEActive.TabIndex = 127
+        Me.SLEActive.Size = New System.Drawing.Size(373, 20)
+        Me.SLEActive.TabIndex = 12
         '
         'GridView9
         '
@@ -686,7 +708,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(11, 435)
+        Me.LabelControl12.Location = New System.Drawing.Point(10, 484)
         Me.LabelControl12.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(64, 13)
@@ -697,7 +719,7 @@ Partial Class FormMasterDesignSingle
         '
         Me.DERetDate.EditValue = Nothing
         Me.DERetDate.Enabled = False
-        Me.DERetDate.Location = New System.Drawing.Point(141, 244)
+        Me.DERetDate.Location = New System.Drawing.Point(140, 222)
         Me.DERetDate.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.DERetDate.Name = "DERetDate"
         Me.DERetDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -706,22 +728,23 @@ Partial Class FormMasterDesignSingle
         Me.DERetDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DERetDate.Size = New System.Drawing.Size(241, 20)
         Me.DERetDate.TabIndex = 9
+        Me.DERetDate.TabStop = False
         '
         'BtnAddSeaason
         '
         Me.BtnAddSeaason.Image = CType(resources.GetObject("BtnAddSeaason.Image"), System.Drawing.Image)
         Me.BtnAddSeaason.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BtnAddSeaason.Location = New System.Drawing.Point(212, 155)
+        Me.BtnAddSeaason.Location = New System.Drawing.Point(212, 140)
         Me.BtnAddSeaason.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BtnAddSeaason.Name = "BtnAddSeaason"
         Me.BtnAddSeaason.Size = New System.Drawing.Size(32, 18)
-        Me.BtnAddSeaason.TabIndex = 5
+        Me.BtnAddSeaason.TabIndex = 6
         Me.BtnAddSeaason.ToolTip = "Add Season"
         '
         'SLEDesign
         '
         Me.SLEDesign.EditValue = ""
-        Me.SLEDesign.Location = New System.Drawing.Point(10, 65)
+        Me.SLEDesign.Location = New System.Drawing.Point(10, 60)
         Me.SLEDesign.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.SLEDesign.Name = "SLEDesign"
         Me.SLEDesign.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -768,15 +791,15 @@ Partial Class FormMasterDesignSingle
         'TxtFabrication
         '
         Me.TxtFabrication.Enabled = False
-        Me.TxtFabrication.Location = New System.Drawing.Point(11, 412)
+        Me.TxtFabrication.Location = New System.Drawing.Point(10, 387)
         Me.TxtFabrication.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TxtFabrication.Name = "TxtFabrication"
         Me.TxtFabrication.Size = New System.Drawing.Size(371, 20)
-        Me.TxtFabrication.TabIndex = 16
+        Me.TxtFabrication.TabIndex = 10
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(10, 46)
+        Me.LabelControl5.Location = New System.Drawing.Point(10, 44)
         Me.LabelControl5.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(85, 13)
@@ -787,7 +810,7 @@ Partial Class FormMasterDesignSingle
         '
         Me.TxtDelDate.EditValue = Nothing
         Me.TxtDelDate.Enabled = False
-        Me.TxtDelDate.Location = New System.Drawing.Point(10, 200)
+        Me.TxtDelDate.Location = New System.Drawing.Point(10, 180)
         Me.TxtDelDate.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TxtDelDate.Name = "TxtDelDate"
         Me.TxtDelDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -796,12 +819,13 @@ Partial Class FormMasterDesignSingle
         Me.TxtDelDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TxtDelDate.Size = New System.Drawing.Size(371, 20)
         Me.TxtDelDate.TabIndex = 7
+        Me.TxtDelDate.TabStop = False
         '
         'DEWHDate
         '
         Me.DEWHDate.EditValue = Nothing
         Me.DEWHDate.Enabled = False
-        Me.DEWHDate.Location = New System.Drawing.Point(10, 331)
+        Me.DEWHDate.Location = New System.Drawing.Point(10, 305)
         Me.DEWHDate.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.DEWHDate.Name = "DEWHDate"
         Me.DEWHDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -809,11 +833,12 @@ Partial Class FormMasterDesignSingle
         Me.DEWHDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEWHDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEWHDate.Size = New System.Drawing.Size(182, 20)
-        Me.DEWHDate.TabIndex = 11
+        Me.DEWHDate.TabIndex = 10
+        Me.DEWHDate.TabStop = False
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(10, 312)
+        Me.LabelControl3.Location = New System.Drawing.Point(10, 288)
         Me.LabelControl3.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(87, 13)
@@ -822,7 +847,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(353, 289)
+        Me.LabelControl8.Location = New System.Drawing.Point(353, 265)
         Me.LabelControl8.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(30, 13)
@@ -831,20 +856,20 @@ Partial Class FormMasterDesignSingle
         '
         'PictureEdit1
         '
-        Me.PictureEdit1.Location = New System.Drawing.Point(269, 11)
+        Me.PictureEdit1.Location = New System.Drawing.Point(280, 11)
         Me.PictureEdit1.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.PictureEdit1.Name = "PictureEdit1"
         Me.PictureEdit1.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.Image
         Me.PictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.PictureEdit1.Size = New System.Drawing.Size(114, 153)
+        Me.PictureEdit1.Size = New System.Drawing.Size(103, 127)
         Me.PictureEdit1.TabIndex = 13
         '
         'BViewImage
         '
-        Me.BViewImage.Location = New System.Drawing.Point(269, 165)
+        Me.BViewImage.Location = New System.Drawing.Point(280, 140)
         Me.BViewImage.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BViewImage.Name = "BViewImage"
-        Me.BViewImage.Size = New System.Drawing.Size(114, 24)
+        Me.BViewImage.Size = New System.Drawing.Size(103, 24)
         Me.BViewImage.TabIndex = 14
         Me.BViewImage.Text = "View Image"
         Me.BViewImage.Visible = False
@@ -852,7 +877,7 @@ Partial Class FormMasterDesignSingle
         'DEEOS
         '
         Me.DEEOS.EditValue = Nothing
-        Me.DEEOS.Location = New System.Drawing.Point(196, 331)
+        Me.DEEOS.Location = New System.Drawing.Point(196, 305)
         Me.DEEOS.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.DEEOS.Name = "DEEOS"
         Me.DEEOS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -860,11 +885,11 @@ Partial Class FormMasterDesignSingle
         Me.DEEOS.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEEOS.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEEOS.Size = New System.Drawing.Size(187, 20)
-        Me.DEEOS.TabIndex = 13
+        Me.DEEOS.TabIndex = 8
         '
         'LabelFromSample
         '
-        Me.LabelFromSample.Location = New System.Drawing.Point(11, 358)
+        Me.LabelFromSample.Location = New System.Drawing.Point(10, 331)
         Me.LabelFromSample.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelFromSample.Name = "LabelFromSample"
         Me.LabelFromSample.Size = New System.Drawing.Size(61, 13)
@@ -873,7 +898,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelRetDate
         '
-        Me.LabelRetDate.Location = New System.Drawing.Point(140, 226)
+        Me.LabelRetDate.Location = New System.Drawing.Point(141, 206)
         Me.LabelRetDate.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelRetDate.Name = "LabelRetDate"
         Me.LabelRetDate.Size = New System.Drawing.Size(82, 13)
@@ -891,7 +916,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelRetCode
         '
-        Me.LabelRetCode.Location = New System.Drawing.Point(10, 226)
+        Me.LabelRetCode.Location = New System.Drawing.Point(10, 206)
         Me.LabelRetCode.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelRetCode.Name = "LabelRetCode"
         Me.LabelRetCode.Size = New System.Drawing.Size(61, 13)
@@ -901,7 +926,7 @@ Partial Class FormMasterDesignSingle
         'LESampleOrign
         '
         Me.LESampleOrign.Enabled = False
-        Me.LESampleOrign.Location = New System.Drawing.Point(11, 375)
+        Me.LESampleOrign.Location = New System.Drawing.Point(10, 346)
         Me.LESampleOrign.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LESampleOrign.Name = "LESampleOrign"
         Me.LESampleOrign.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -909,7 +934,7 @@ Partial Class FormMasterDesignSingle
         Me.LESampleOrign.Properties.ShowFooter = False
         Me.LESampleOrign.Properties.View = Me.SearchLookUpEdit1View
         Me.LESampleOrign.Size = New System.Drawing.Size(371, 20)
-        Me.LESampleOrign.TabIndex = 15
+        Me.LESampleOrign.TabIndex = 9
         '
         'SearchLookUpEdit1View
         '
@@ -976,7 +1001,7 @@ Partial Class FormMasterDesignSingle
         '
         'LERetCode
         '
-        Me.LERetCode.Location = New System.Drawing.Point(10, 244)
+        Me.LERetCode.Location = New System.Drawing.Point(10, 222)
         Me.LERetCode.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LERetCode.Name = "LERetCode"
         Me.LERetCode.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
@@ -985,7 +1010,7 @@ Partial Class FormMasterDesignSingle
         Me.LERetCode.Properties.NullText = ""
         Me.LERetCode.Properties.ShowFooter = False
         Me.LERetCode.Size = New System.Drawing.Size(126, 20)
-        Me.LERetCode.TabIndex = 9
+        Me.LERetCode.TabIndex = 7
         '
         'LabelControlUpdateName
         '
@@ -998,7 +1023,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelUOM
         '
-        Me.LabelUOM.Location = New System.Drawing.Point(10, 90)
+        Me.LabelUOM.Location = New System.Drawing.Point(10, 85)
         Me.LabelUOM.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelUOM.Name = "LabelUOM"
         Me.LabelUOM.Size = New System.Drawing.Size(23, 13)
@@ -1007,7 +1032,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelFabrication
         '
-        Me.LabelFabrication.Location = New System.Drawing.Point(11, 398)
+        Me.LabelFabrication.Location = New System.Drawing.Point(10, 371)
         Me.LabelFabrication.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelFabrication.Name = "LabelFabrication"
         Me.LabelFabrication.Size = New System.Drawing.Size(53, 13)
@@ -1016,7 +1041,7 @@ Partial Class FormMasterDesignSingle
         '
         'LEUOM
         '
-        Me.LEUOM.Location = New System.Drawing.Point(10, 110)
+        Me.LEUOM.Location = New System.Drawing.Point(10, 100)
         Me.LEUOM.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LEUOM.Name = "LEUOM"
         Me.LEUOM.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
@@ -1029,7 +1054,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelDelDate
         '
-        Me.LabelDelDate.Location = New System.Drawing.Point(10, 181)
+        Me.LabelDelDate.Location = New System.Drawing.Point(10, 165)
         Me.LabelDelDate.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelDelDate.Name = "LabelDelDate"
         Me.LabelDelDate.Size = New System.Drawing.Size(88, 13)
@@ -1038,7 +1063,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelDel
         '
-        Me.LabelDel.Location = New System.Drawing.Point(141, 137)
+        Me.LabelDel.Location = New System.Drawing.Point(141, 125)
         Me.LabelDel.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelDel.Name = "LabelDel"
         Me.LabelDel.Size = New System.Drawing.Size(15, 13)
@@ -1047,7 +1072,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelEOS
         '
-        Me.LabelEOS.Location = New System.Drawing.Point(196, 312)
+        Me.LabelEOS.Location = New System.Drawing.Point(196, 288)
         Me.LabelEOS.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelEOS.Name = "LabelEOS"
         Me.LabelEOS.Size = New System.Drawing.Size(20, 13)
@@ -1056,7 +1081,7 @@ Partial Class FormMasterDesignSingle
         '
         'LESeason
         '
-        Me.LESeason.Location = New System.Drawing.Point(10, 155)
+        Me.LESeason.Location = New System.Drawing.Point(10, 139)
         Me.LESeason.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LESeason.Name = "LESeason"
         Me.LESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1091,7 +1116,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelLifetime
         '
-        Me.LabelLifetime.Location = New System.Drawing.Point(10, 270)
+        Me.LabelLifetime.Location = New System.Drawing.Point(10, 246)
         Me.LabelLifetime.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelLifetime.Name = "LabelLifetime"
         Me.LabelLifetime.Size = New System.Drawing.Size(37, 13)
@@ -1100,7 +1125,7 @@ Partial Class FormMasterDesignSingle
         '
         'SLEDel
         '
-        Me.SLEDel.Location = New System.Drawing.Point(141, 155)
+        Me.SLEDel.Location = New System.Drawing.Point(141, 139)
         Me.SLEDel.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.SLEDel.Name = "SLEDel"
         Me.SLEDel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1109,7 +1134,7 @@ Partial Class FormMasterDesignSingle
         Me.SLEDel.Properties.ShowFooter = False
         Me.SLEDel.Properties.View = Me.GridView1
         Me.SLEDel.Size = New System.Drawing.Size(67, 20)
-        Me.SLEDel.TabIndex = 6
+        Me.SLEDel.TabIndex = 5
         '
         'GridView1
         '
@@ -1145,7 +1170,7 @@ Partial Class FormMasterDesignSingle
         '
         'LabelSeason
         '
-        Me.LabelSeason.Location = New System.Drawing.Point(10, 137)
+        Me.LabelSeason.Location = New System.Drawing.Point(10, 125)
         Me.LabelSeason.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelSeason.Name = "LabelSeason"
         Me.LabelSeason.Size = New System.Drawing.Size(35, 13)
@@ -1155,7 +1180,7 @@ Partial Class FormMasterDesignSingle
         'TELifetime
         '
         Me.TELifetime.Enabled = False
-        Me.TELifetime.Location = New System.Drawing.Point(10, 286)
+        Me.TELifetime.Location = New System.Drawing.Point(10, 262)
         Me.TELifetime.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TELifetime.Name = "TELifetime"
         Me.TELifetime.Properties.Appearance.Options.UseTextOptions = True
@@ -1165,6 +1190,7 @@ Partial Class FormMasterDesignSingle
         Me.TELifetime.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TELifetime.Size = New System.Drawing.Size(338, 20)
         Me.TELifetime.TabIndex = 10
+        Me.TELifetime.TabStop = False
         '
         'TEDisplayName
         '
@@ -1176,7 +1202,7 @@ Partial Class FormMasterDesignSingle
         Me.TEDisplayName.Name = "TEDisplayName"
         Me.TEDisplayName.Properties.MaxLength = 25
         Me.TEDisplayName.Size = New System.Drawing.Size(462, 20)
-        Me.TEDisplayName.TabIndex = 20
+        Me.TEDisplayName.TabIndex = 18
         Me.TEDisplayName.TabStop = False
         '
         'LabelControl1
@@ -1255,7 +1281,7 @@ Partial Class FormMasterDesignSingle
         Me.BtnGetLastCount.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BtnGetLastCount.Name = "BtnGetLastCount"
         Me.BtnGetLastCount.Size = New System.Drawing.Size(461, 20)
-        Me.BtnGetLastCount.TabIndex = 20
+        Me.BtnGetLastCount.TabIndex = 15
         Me.BtnGetLastCount.Text = "Get Last Counting"
         '
         'PanelControlBot
@@ -1696,6 +1722,7 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanC2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanC2.ResumeLayout(False)
         Me.PanC2.PerformLayout()
+        CType(Me.MEDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERetDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1890,4 +1917,6 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MEDetail As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
 End Class
