@@ -373,10 +373,10 @@ Partial Class FormProductionPLToWH
         'GridColumnDesign
         '
         Me.GridColumnDesign.Caption = "Design"
-        Me.GridColumnDesign.FieldName = "design_name"
+        Me.GridColumnDesign.FieldName = "design_display_name"
         Me.GridColumnDesign.Name = "GridColumnDesign"
         Me.GridColumnDesign.Visible = True
-        Me.GridColumnDesign.VisibleIndex = 1
+        Me.GridColumnDesign.VisibleIndex = 2
         Me.GridColumnDesign.Width = 148
         '
         'GridColumnCode
@@ -385,7 +385,7 @@ Partial Class FormProductionPLToWH
         Me.GridColumnCode.FieldName = "design_code"
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 2
+        Me.GridColumnCode.VisibleIndex = 1
         Me.GridColumnCode.Width = 96
         '
         'GridColumnIdPO
@@ -503,8 +503,6 @@ Partial Class FormProductionPLToWH
         Me.ColPrice.FieldName = "estimate_cost"
         Me.ColPrice.Name = "ColPrice"
         Me.ColPrice.OptionsColumn.AllowEdit = False
-        Me.ColPrice.Visible = True
-        Me.ColPrice.VisibleIndex = 7
         Me.ColPrice.Width = 100
         '
         'ColQty
@@ -549,8 +547,6 @@ Partial Class FormProductionPLToWH
         Me.ColSubtotal.Name = "ColSubtotal"
         Me.ColSubtotal.OptionsColumn.AllowEdit = False
         Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:N2}")})
-        Me.ColSubtotal.Visible = True
-        Me.ColSubtotal.VisibleIndex = 8
         Me.ColSubtotal.Width = 88
         '
         'ColNote
