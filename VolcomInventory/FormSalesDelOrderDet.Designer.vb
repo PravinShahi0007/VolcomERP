@@ -94,6 +94,7 @@ Partial Class FormSalesDelOrderDet
         Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPlSalesOrderDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.XTCDONew = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutboundScanNew = New DevExpress.XtraTab.XtraTabPage()
@@ -120,7 +121,6 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTest = New DevExpress.XtraGrid.GridControl()
         Me.GVTest = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1001,6 +1001,15 @@ Partial Class FormSalesDelOrderDet
         Me.GridColumnIdPlSalesOrderDel.Name = "GridColumnIdPlSalesOrderDel"
         Me.GridColumnIdPlSalesOrderDel.OptionsColumn.ShowInCustomizationForm = False
         '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Diff"
+        Me.GridColumnStatus.FieldName = "status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 8
+        '
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
@@ -1215,7 +1224,7 @@ Partial Class FormSalesDelOrderDet
         'XTPOutboundScan
         '
         Me.XTPOutboundScan.Name = "XTPOutboundScan"
-        Me.XTPOutboundScan.Size = New System.Drawing.Size(948, 372)
+        Me.XTPOutboundScan.Size = New System.Drawing.Size(948, 365)
         Me.XTPOutboundScan.Text = "Outbound Scan"
         '
         'XtraTabPage1
@@ -1223,7 +1232,7 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1.Controls.Add(Me.GCTest)
         Me.XtraTabPage1.Name = "XtraTabPage1"
         Me.XtraTabPage1.PageVisible = False
-        Me.XtraTabPage1.Size = New System.Drawing.Size(948, 372)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(948, 365)
         Me.XtraTabPage1.Text = "XtraTabPage1"
         '
         'GCTest
@@ -1232,7 +1241,7 @@ Partial Class FormSalesDelOrderDet
         Me.GCTest.Location = New System.Drawing.Point(0, 0)
         Me.GCTest.MainView = Me.GVTest
         Me.GCTest.Name = "GCTest"
-        Me.GCTest.Size = New System.Drawing.Size(948, 372)
+        Me.GCTest.Size = New System.Drawing.Size(948, 365)
         Me.GCTest.TabIndex = 0
         Me.GCTest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTest})
         '
@@ -1240,15 +1249,6 @@ Partial Class FormSalesDelOrderDet
         '
         Me.GVTest.GridControl = Me.GCTest
         Me.GVTest.Name = "GVTest"
-        '
-        'GridColumnStatus
-        '
-        Me.GridColumnStatus.Caption = "Status"
-        Me.GridColumnStatus.FieldName = "status"
-        Me.GridColumnStatus.Name = "GridColumnStatus"
-        Me.GridColumnStatus.OptionsColumn.AllowEdit = False
-        Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 8
         '
         'FormSalesDelOrderDet
         '

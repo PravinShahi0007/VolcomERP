@@ -128,6 +128,7 @@
         TxtNameCompFrom.Text = data.Rows(0)("warehouse").ToString
         TxtDrawerCode.Text = data.Rows(0)("wh_drawer_code").ToString
         TxtDrawer.Text = data.Rows(0)("wh_drawer").ToString
+        id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
 
         'tipe & status SO
         LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
@@ -501,13 +502,21 @@
                 cond_check_data = False
             Else
                 If qty_cek > data_filter_cek(0)("sales_order_det_qty_limit") Then
-                    GVItemList.SetRowCellValue(i, "status", "Qty can't exceed " + data_filter_cek(0)("sales_order_det_qty_limit").ToString + ";")
+                    Dim diff As Integer = 0
+                    diff = qty_cek - data_filter_cek(0)("sales_order_det_qty_limit")
+                    GVItemList.SetRowCellValue(i, "status", "+" + diff.ToString)
                     cond_check_data = False
+                ElseIf qty_cek < data_filter_cek(0)("sales_order_det_qty_limit") Then
+                    Dim diff As Integer = 0
+                    diff = qty_cek - data_filter_cek(0)("sales_order_det_qty_limit")
+                    GVItemList.SetRowCellValue(i, "status", diff.ToString)
                 Else
-                    GVItemList.SetRowCellValue(i, "status", "-")
+                    GVItemList.SetRowCellValue(i, "status", "0")
                 End If
             End If
         Next
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMiddle) Then
             errorInput()
@@ -1124,5 +1133,28 @@
         ReportSalesDelOrderDet.id_pre = "-1"
         getReport()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVItemList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVItemList.RowCellStyle
+        If e.RowHandle >= 0 Then
+            If (e.Column.FieldName = "status") Then
+                Dim val As Integer = 0
+                Try
+                    val = CType(sender.GetRowCellValue(e.RowHandle, sender.Columns("status")), Integer)
+                Catch ex As Exception
+
+                End Try
+                If val > 0 Then
+                    e.Appearance.BackColor = Color.Salmon
+                    e.Appearance.BackColor2 = Color.Salmon
+                ElseIf val < 0 Then
+                    e.Appearance.BackColor = Color.Yellow
+                    e.Appearance.BackColor2 = Color.Yellow
+                Else
+                    e.Appearance.BackColor = Color.Green
+                    e.Appearance.BackColor2 = Color.Green
+                End If
+            End If
+        End If
     End Sub
 End Class
