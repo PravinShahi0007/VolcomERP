@@ -21,6 +21,19 @@
             If data.Rows(0)("id_cop_status").ToString = "2" Then
                 BUpdateCOP.Visible = False
                 TEKursMan.Properties.ReadOnly = True
+                '
+                TEUnitPrice.Properties.ReadOnly = True
+                TEUnitCostBOM.Properties.ReadOnly = True
+                TEUnitCostPD.Properties.ReadOnly = True
+                '
+                TEUnitPrice.EditValue = True
+                TEUnitCostBOM.EditValue = True
+                TEUnitCostPD.EditValue = True
+            Else
+                TEUnitPrice.Properties.ReadOnly = False
+                TEUnitCostBOM.Properties.ReadOnly = False
+                TEUnitCostPD.Properties.ReadOnly = False
+                '
             End If
             '
             query = "SELECT prod.id_design,bom.id_currency,bom.kurs,bom.is_default,bom.id_bom FROM tb_bom bom"
@@ -34,7 +47,6 @@
                 TEKursBom.EditValue = 1
             End If
 
-            '
             query = "SELECT pd_desg.rate_current FROM tb_prod_demand_design pd_desg INNER JOIN tb_prod_demand pd ON pd.id_prod_demand=pd_desg.id_prod_demand WHERE pd.is_pd='1' AND pd.id_report_status='6' AND pd_desg.id_design='" + id_design + "' ORDER BY pd_desg.id_prod_demand_design DESC LIMIT 1"
             data = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
