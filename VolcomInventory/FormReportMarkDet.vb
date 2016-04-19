@@ -88,7 +88,4 @@
         Dispose()
     End Sub
 
-    Private Sub BCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCancel.Click
-        Close()
-    End Sub
 End Class

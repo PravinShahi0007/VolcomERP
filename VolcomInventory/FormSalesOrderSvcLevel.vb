@@ -71,7 +71,7 @@
 
         Dim cond_status As String = ""
         If SLEStatusRec.EditValue.ToString = "0" Then
-            cond_status = "AND (a0.id_report_status=3 OR a0.id_report_status=5 OR a0.id_report_status=6) "
+            cond_status = "AND (a0.id_report_status=1 OR a0.id_report_status=3 OR a0.id_report_status=5 OR a0.id_report_status=6) "
         Else
             cond_status = "AND a0.id_report_status='" + SLEStatusRec.EditValue.ToString + "' "
         End If
@@ -99,7 +99,7 @@
 
         Dim cond_status As String = ""
         If SLEStatusDO.EditValue.ToString = "0" Then
-            cond_status = "AND (a.id_report_status=3 OR a.id_report_status=5 OR a.id_report_status=6) "
+            cond_status = "AND (a.id_report_status=1 OR a.id_report_status=3 OR a.id_report_status=5 OR a.id_report_status=6) "
         Else
             cond_status = "AND a.id_report_status='" + SLEStatusDO.EditValue.ToString + "' "
         End If
@@ -127,7 +127,7 @@
 
         Dim cond_status As String = ""
         If SLEStatusReturn.EditValue.ToString = "0" Then
-            cond_status = "AND (a.id_report_status=3 OR a.id_report_status=5 OR a.id_report_status=6) "
+            cond_status = "AND (a.id_report_status=1 OR a.id_report_status=3 OR a.id_report_status=5 OR a.id_report_status=6) "
         Else
             cond_status = "AND a.id_report_status='" + SLEStatusReturn.EditValue.ToString + "' "
         End If
@@ -155,7 +155,7 @@
 
         Dim cond_status As String = ""
         If SLEStatusReturnQC.EditValue.ToString = "0" Then
-            cond_status = "AND (a.id_report_status=3 OR a.id_report_status=5 OR a.id_report_status=6) "
+            cond_status = "AND (a.id_report_status=1 OR a.id_report_status=3 OR a.id_report_status=5 OR a.id_report_status=6) "
         Else
             cond_status = "AND a.id_report_status='" + SLEStatusReturnQC.EditValue.ToString + "' "
         End If
@@ -183,7 +183,7 @@
 
         Dim cond_status As String = ""
         If SLEStatusTrf.EditValue.ToString = "0" Then
-            cond_status = "AND (trf.id_report_status=3 OR trf.id_report_status=5 OR trf.id_report_status=6) "
+            cond_status = "AND (trf.id_report_status=1 OR trf.id_report_status=3 OR trf.id_report_status=5 OR trf.id_report_status=6) "
         Else
             cond_status = "AND trf.id_report_status=" + SLEStatusTrf.EditValue.ToString + " "
         End If
@@ -210,6 +210,23 @@
     Private Sub FormSalesOrderSvcLevel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewPackingStatus()
         viewReportStatus()
+
+        'date now
+        Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
+        DEFrom.EditValue = data_dt.Rows(0)("dt")
+        DEUntil.EditValue = data_dt.Rows(0)("dt")
+        DEFromRet.EditValue = data_dt.Rows(0)("dt")
+        DEUntilRet.EditValue = data_dt.Rows(0)("dt")
+        DEFromRec.EditValue = data_dt.Rows(0)("dt")
+        DEUntilRec.EditValue = data_dt.Rows(0)("dt")
+        DEFromDO.EditValue = data_dt.Rows(0)("dt")
+        DEUntilDO.EditValue = data_dt.Rows(0)("dt")
+        DEFromReturn.EditValue = data_dt.Rows(0)("dt")
+        DEUntilReturn.EditValue = data_dt.Rows(0)("dt")
+        DEFromReturnQC.EditValue = data_dt.Rows(0)("dt")
+        DEUntilReturnQC.EditValue = data_dt.Rows(0)("dt")
+        DEFromTrf.EditValue = data_dt.Rows(0)("dt")
+        DEUntilTrf.EditValue = data_dt.Rows(0)("dt")
     End Sub
 
     Sub viewPackingStatus()
@@ -221,7 +238,7 @@
 
     Sub viewReportStatus()
         Dim query As String = "SELECT ('0') AS id_report_status, ('All Status') AS report_status UNION ALL "
-        query += "SELECT id_report_status, report_status FROM tb_lookup_report_status WHERE id_report_status=3 OR id_report_status=5 OR id_report_status=6 ORDER BY id_report_status ASC "
+        query += "SELECT id_report_status, report_status FROM tb_lookup_report_status WHERE id_report_status=1 OR id_report_status=3 OR id_report_status=5 OR id_report_status=6 ORDER BY id_report_status ASC "
         viewSearchLookupQuery(SLEStatusRec, query, "id_report_status", "report_status", "id_report_status")
         viewSearchLookupQuery(SLEStatusDO, query, "id_report_status", "report_status", "id_report_status")
         viewSearchLookupQuery(SLEStatusReturn, query, "id_report_status", "report_status", "id_report_status")

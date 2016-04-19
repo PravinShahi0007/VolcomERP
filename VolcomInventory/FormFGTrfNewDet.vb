@@ -516,24 +516,29 @@
 
     End Sub
 
-    Sub startScan()
-        If GVItemList.RowCount > 0 Then
-            is_scan = True
-            BPickDrawer.Enabled = False
-            MENote.Enabled = False
-            BtnSave.Enabled = False
-            BScan.Enabled = False
-            BStop.Enabled = True
-            BDelete.Enabled = False
-            BtnCancel.Enabled = False
-            GVItemList.OptionsBehavior.Editable = False
-            ControlBox = False
-            TxtNumber.Enabled = False
-            newRowsBc()
-            'allowDelete()
-        Else
-            errorCustom("Item list can't blank")
+    Sub disableControl()
+        is_scan = True
+        BPickDrawer.Enabled = False
+        MENote.Enabled = False
+        BtnSave.Enabled = False
+        BScan.Enabled = False
+        BStop.Enabled = True
+        BDelete.Enabled = False
+        BtnCancel.Enabled = False
+        GVItemList.OptionsBehavior.Editable = False
+        ControlBox = False
+        TxtNumber.Enabled = False
+        If action = "upd" Then
+            BMark.Enabled = False
+            BtnAttachment.Enabled = False
+            DDBPrint.Enabled = False
         End If
+    End Sub
+
+    Sub startScan()
+        disableControl()
+        newRowsBc()
+        'allowDelete()
     End Sub
 
     Private Sub BStop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BStop.Click
@@ -552,6 +557,10 @@
         GCItemList.RefreshDataSource()
         GVItemList.RefreshData()
 
+        enableControl()
+    End Sub
+
+    Sub enableControl()
         is_scan = False
         BPickDrawer.Enabled = True
         MENote.Enabled = True
@@ -563,52 +572,63 @@
         GVItemList.OptionsBehavior.Editable = True
         ControlBox = True
         TxtNumber.Enabled = True
+        TxtDeleteScan.Visible = False
+        LabelDelScan.Visible = False
+        If action = "upd" Then
+            BMark.Enabled = True
+            BtnAttachment.Enabled = True
+            DDBPrint.Enabled = True
+        End If
     End Sub
 
     Private Sub BDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BDelete.Click
-        Dim id_fg_trf_det_counting As String = "-1"
-        Try
-            id_fg_trf_det_counting = GVBarcode.GetFocusedRowCellValue("id_fg_trf_det_counting").ToString
-        Catch ex As Exception
-        End Try
+        disableControl()
+        LabelDelScan.Visible = True
+        TxtDeleteScan.Visible = True
+        TxtDeleteScan.Focus()
+        'Dim id_fg_trf_det_counting As String = "-1"
+        'Try
+        '    id_fg_trf_det_counting = GVBarcode.GetFocusedRowCellValue("id_fg_trf_det_counting").ToString
+        'Catch ex As Exception
+        'End Try
 
-        If action = "ins" Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
-                Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
-                Dim id_pl_prod_order_rec_det_unique As String = GVBarcode.GetFocusedRowCellValue("id_pl_prod_order_rec_det_unique").ToString
-                Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
+        'If action = "ins" Then
+        '    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        '    If confirm = Windows.Forms.DialogResult.Yes Then
+        '        Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
+        '        Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
+        '        Dim id_pl_prod_order_rec_det_unique As String = GVBarcode.GetFocusedRowCellValue("id_pl_prod_order_rec_det_unique").ToString
+        '        Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
 
-                deleteRowsBc()
-                If id_product <> "" Or id_product <> Nothing Then
-                    GVBarcode.ApplyFindFilter("")
-                    countQty(id_product)
-                End If
+        '        deleteRowsBc()
+        '        If id_product <> "" Or id_product <> Nothing Then
+        '            GVBarcode.ApplyFindFilter("")
+        '            countQty(id_product)
+        '        End If
 
-                allowDelete()
-            End If
-        ElseIf action = "upd" Then
-            If id_fg_trf_det_counting = "0" Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
-                    Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
-                    Dim id_pl_prod_order_rec_det_unique As String = GVBarcode.GetFocusedRowCellValue("id_pl_prod_order_rec_det_unique").ToString
-                    Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
+        '        allowDelete()
+        '    End If
+        'ElseIf action = "upd" Then
+        '    If id_fg_trf_det_counting = "0" Then
+        '        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        '        If confirm = Windows.Forms.DialogResult.Yes Then
+        '            Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
+        '            Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
+        '            Dim id_pl_prod_order_rec_det_unique As String = GVBarcode.GetFocusedRowCellValue("id_pl_prod_order_rec_det_unique").ToString
+        '            Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
 
-                    deleteRowsBc()
-                    If id_product <> "" Or id_product <> Nothing Then
-                        GVBarcode.ApplyFindFilter("")
-                        countQty(id_product)
-                    End If
+        '            deleteRowsBc()
+        '            If id_product <> "" Or id_product <> Nothing Then
+        '                GVBarcode.ApplyFindFilter("")
+        '                countQty(id_product)
+        '            End If
 
-                    allowDelete()
-                End If
-            Else
-                errorCustom("This data already locked and can't delete.")
-            End If
-        End If
+        '            allowDelete()
+        '        End If
+        '    Else
+        '        errorCustom("This data already locked and can't delete.")
+        '    End If
+        'End If
     End Sub
 
     Private Sub GVBarcode_CustomColumnDisplayText_1(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVBarcode.CustomColumnDisplayText
@@ -936,10 +956,16 @@
                 cond_check_data = False
             Else
                 If qty_cek > data_filter_cek(0)("sales_order_det_qty_limit") Then
-                    GVItemList.SetRowCellValue(i, "status", "Qty can't exceed " + data_filter_cek(0)("sales_order_det_qty_limit").ToString + ";")
+                    Dim diff As Integer = 0
+                    diff = qty_cek - data_filter_cek(0)("sales_order_det_qty_limit")
+                    GVItemList.SetRowCellValue(i, "status", "+" + diff.ToString)
                     cond_check_data = False
+                ElseIf qty_cek < data_filter_cek(0)("sales_order_det_qty_limit") Then
+                    Dim diff As Integer = 0
+                    diff = qty_cek - data_filter_cek(0)("sales_order_det_qty_limit")
+                    GVItemList.SetRowCellValue(i, "status", diff.ToString)
                 Else
-                    GVItemList.SetRowCellValue(i, "status", "-")
+                    GVItemList.SetRowCellValue(i, "status", "0")
                 End If
             End If
         Next
@@ -1254,5 +1280,93 @@
         ReportFGTrf.id_pre = "-1"
         getReport()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TxtDeleteScan_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDeleteScan.KeyDown
+        If e.KeyCode = Keys.Enter And TxtDeleteScan.Text.Length > 0 Then
+            Cursor = Cursors.WaitCursor
+            GVBarcode.ActiveFilterString = "[code]='" + TxtDeleteScan.Text + "'"
+            If GVBarcode.RowCount <= 0 Then
+                stopCustom("Code not found.")
+                GVBarcode.ActiveFilterString = ""
+                TxtDeleteScan.Text = ""
+                TxtDeleteScan.Focus()
+            Else
+                Dim id_fg_trf_det_counting As String = "-1"
+                Try
+                    id_fg_trf_det_counting = GVBarcode.GetFocusedRowCellValue("id_fg_trf_det_counting").ToString
+                Catch ex As Exception
+                End Try
+
+                If action = "ins" Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
+                        Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
+                        Dim id_pl_prod_order_rec_det_unique As String = GVBarcode.GetFocusedRowCellValue("id_pl_prod_order_rec_det_unique").ToString
+                        Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
+
+                        deleteRowsBc()
+                        If id_product <> "" Or id_product <> Nothing Then
+                            GVBarcode.ActiveFilterString = ""
+                            countQty(id_product)
+                        End If
+
+                        allowDelete()
+                    Else
+                        GVBarcode.ActiveFilterString = ""
+                    End If
+                    TxtDeleteScan.Text = ""
+                    TxtDeleteScan.Focus()
+                ElseIf action = "upd" Then
+                    If id_fg_trf_det_counting = "0" Then
+                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
+                            Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
+                            Dim id_pl_prod_order_rec_det_unique As String = GVBarcode.GetFocusedRowCellValue("id_pl_prod_order_rec_det_unique").ToString
+                            Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
+
+                            deleteRowsBc()
+                            If id_product <> "" Or id_product <> Nothing Then
+                                GVBarcode.ActiveFilterString = ""
+                                countQty(id_product)
+                            End If
+
+                            allowDelete()
+                        End If
+                    Else
+                        errorCustom("This data already locked and can't delete.")
+                        GVBarcode.ActiveFilterString = ""
+                    End If
+                    TxtDeleteScan.Text = ""
+                    TxtDeleteScan.Focus()
+                End If
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub GVItemList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVItemList.RowCellStyle
+        If e.RowHandle >= 0 Then
+            If (e.Column.FieldName = "status") Then
+                Dim val As Integer = 0
+                Try
+                    val = CType(sender.GetRowCellValue(e.RowHandle, sender.Columns("status")), Integer)
+                Catch ex As Exception
+
+                End Try
+                If val > 0 Then
+                    e.Appearance.BackColor = Color.Salmon
+                    e.Appearance.BackColor2 = Color.Salmon
+                ElseIf val < 0 Then
+                    e.Appearance.BackColor = Color.Yellow
+                    e.Appearance.BackColor2 = Color.Yellow
+                Else
+                    e.Appearance.BackColor = Color.Green
+                    e.Appearance.BackColor2 = Color.Green
+                End If
+            End If
+        End If
     End Sub
 End Class

@@ -20,14 +20,13 @@ Partial Class FormReportMarkDet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormReportMarkDet))
-        Me.BRefuse = New DevExpress.XtraEditors.SimpleButton
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BAccept = New DevExpress.XtraEditors.SimpleButton
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.MEComment = New DevExpress.XtraEditors.MemoEdit
-        Me.TEEmployee = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.PictureSeason = New DevExpress.XtraEditors.PictureEdit
+        Me.BRefuse = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEComment = New DevExpress.XtraEditors.MemoEdit()
+        Me.TEEmployee = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.PictureSeason = New DevExpress.XtraEditors.PictureEdit()
         CType(Me.MEComment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -35,27 +34,37 @@ Partial Class FormReportMarkDet
         '
         'BRefuse
         '
-        Me.BRefuse.Location = New System.Drawing.Point(251, 153)
+        Me.BRefuse.Appearance.BackColor = System.Drawing.Color.Red
+        Me.BRefuse.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BRefuse.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BRefuse.Appearance.Options.UseBackColor = True
+        Me.BRefuse.Appearance.Options.UseFont = True
+        Me.BRefuse.Appearance.Options.UseForeColor = True
+        Me.BRefuse.Location = New System.Drawing.Point(159, 153)
+        Me.BRefuse.LookAndFeel.SkinMaskColor = System.Drawing.Color.DarkRed
+        Me.BRefuse.LookAndFeel.SkinMaskColor2 = System.Drawing.Color.Black
+        Me.BRefuse.LookAndFeel.SkinName = "Metropolis"
+        Me.BRefuse.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BRefuse.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BRefuse.Name = "BRefuse"
-        Me.BRefuse.Size = New System.Drawing.Size(86, 20)
+        Me.BRefuse.Size = New System.Drawing.Size(128, 34)
         Me.BRefuse.TabIndex = 138
         Me.BRefuse.Text = "Refuse"
         '
-        'BCancel
-        '
-        Me.BCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BCancel.Location = New System.Drawing.Point(159, 153)
-        Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(86, 20)
-        Me.BCancel.TabIndex = 137
-        Me.BCancel.Text = "Cancel"
-        Me.BCancel.Visible = False
-        '
         'BAccept
         '
-        Me.BAccept.Location = New System.Drawing.Point(344, 153)
+        Me.BAccept.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BAccept.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.BAccept.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BAccept.Appearance.Options.UseBackColor = True
+        Me.BAccept.Appearance.Options.UseFont = True
+        Me.BAccept.Appearance.Options.UseForeColor = True
+        Me.BAccept.Location = New System.Drawing.Point(293, 153)
+        Me.BAccept.LookAndFeel.SkinName = "Metropolis"
+        Me.BAccept.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BAccept.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BAccept.Name = "BAccept"
-        Me.BAccept.Size = New System.Drawing.Size(86, 20)
+        Me.BAccept.Size = New System.Drawing.Size(137, 34)
         Me.BAccept.TabIndex = 136
         Me.BAccept.Text = "Accept"
         '
@@ -82,7 +91,7 @@ Partial Class FormReportMarkDet
         Me.TEEmployee.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.TEEmployee.Properties.Appearance.Options.UseFont = True
         Me.TEEmployee.Properties.ReadOnly = True
-        Me.TEEmployee.Size = New System.Drawing.Size(271, 23)
+        Me.TEEmployee.Size = New System.Drawing.Size(271, 22)
         Me.TEEmployee.TabIndex = 133
         '
         'LabelControl4
@@ -110,9 +119,8 @@ Partial Class FormReportMarkDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(448, 183)
+        Me.ClientSize = New System.Drawing.Size(448, 199)
         Me.Controls.Add(Me.BRefuse)
-        Me.Controls.Add(Me.BCancel)
         Me.Controls.Add(Me.BAccept)
         Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.MEComment)
@@ -120,6 +128,8 @@ Partial Class FormReportMarkDet
         Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.PictureSeason)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.LookAndFeel.SkinName = "Metropolis"
+        Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormReportMarkDet"
@@ -134,7 +144,6 @@ Partial Class FormReportMarkDet
 
     End Sub
     Friend WithEvents BRefuse As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAccept As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MEComment As DevExpress.XtraEditors.MemoEdit

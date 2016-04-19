@@ -336,6 +336,7 @@
                         FormBOMDesignSingle.GVBomDetOvh.RefreshData()
                         FormBOMDesignSingle.show_but_ovh()
                         FormBOMDesignSingle.calculate_unit_price()
+                        FormBOMDesignSingle.GVBomDetOvh.BestFitColumns()
                         Close()
                     End If
                 Else
@@ -383,6 +384,7 @@
                         FormBOMDesignSingle.GVBomDetOvh.RefreshData()
                         FormBOMDesignSingle.show_but_ovh()
                         FormBOMDesignSingle.calculate_unit_price()
+                        FormBOMDesignSingle.GVBomDetOvh.BestFitColumns()
                         Close()
                     End If
                 End If
