@@ -37,6 +37,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -77,7 +78,6 @@ Partial Class FormSalesDelOrder
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
-        Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -264,6 +264,18 @@ Partial Class FormSalesDelOrder
         Me.GridColumnUpdBy.Visible = True
         Me.GridColumnUpdBy.VisibleIndex = 8
         '
+        'GridColumnTotal
+        '
+        Me.GridColumnTotal.Caption = "Total"
+        Me.GridColumnTotal.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotal.FieldName = "total"
+        Me.GridColumnTotal.Name = "GridColumnTotal"
+        Me.GridColumnTotal.OptionsColumn.AllowEdit = False
+        Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
+        Me.GridColumnTotal.Visible = True
+        Me.GridColumnTotal.VisibleIndex = 5
+        '
         'GridView3
         '
         Me.GridView3.GridControl = Me.GCSalesDelOrder
@@ -366,6 +378,7 @@ Partial Class FormSalesDelOrder
         '
         'GCSalesOrder
         '
+        Me.GCSalesOrder.ContextMenuStrip = Me.ViewMenu
         Me.GCSalesOrder.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSalesOrder.Location = New System.Drawing.Point(0, 0)
         Me.GCSalesOrder.MainView = Me.GVSalesOrder
@@ -615,18 +628,6 @@ Partial Class FormSalesDelOrder
         '
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
-        '
-        'GridColumnTotal
-        '
-        Me.GridColumnTotal.Caption = "Total"
-        Me.GridColumnTotal.DisplayFormat.FormatString = "N0"
-        Me.GridColumnTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotal.FieldName = "total"
-        Me.GridColumnTotal.Name = "GridColumnTotal"
-        Me.GridColumnTotal.OptionsColumn.AllowEdit = False
-        Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
-        Me.GridColumnTotal.Visible = True
-        Me.GridColumnTotal.VisibleIndex = 5
         '
         'FormSalesDelOrder
         '

@@ -193,8 +193,16 @@
 
     Private Sub SMPrint_Click(sender As Object, e As EventArgs) Handles SMPrint.Click
         Cursor = Cursors.WaitCursor
-        FormSalesDelOrderDet.id_pre = "2"
-        FormMain.but_edit()
+        If XTCDO.SelectedTabPageIndex = 0 Then
+            FormSalesDelOrderDet.id_pre = "2"
+            FormMain.but_edit()
+        Else
+            If GVSalesOrder.FocusedRowHandle >= 0 And GVSalesOrder.RowCount > 0 Then
+                FormViewSalesOrder.id_sales_order = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                FormViewSalesOrder.is_print = "1"
+                FormViewSalesOrder.ShowDialog()
+            End If
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -238,7 +246,9 @@
     Private Sub XTCDO_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCDO.SelectedPageChanged
         check_menu()
         If XTCDO.SelectedTabPageIndex = 0 Then
+            SMPrePrint.Visible = True
         ElseIf XTCDO.SelectedTabPageIndex = 1 Then
+            SMPrePrint.Visible = False
             GVSalesOrder.ShowFindPanel()
             GVSalesOrder.ShowFindPanel()
         ElseIf XTCDO.SelectedTabPageIndex = 2 Then

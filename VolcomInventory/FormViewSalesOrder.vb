@@ -9,13 +9,19 @@
     Public id_comp_contact_par As String = "-1"
     Public id_comp_par As String = "-1"
     Dim id_comp_cat_wh As String = "-1"
+    Public is_print As String = "-1"
 
     Private Sub FormViewSalesOrder_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Cursor = Cursors.WaitCursor
         viewReportStatus()
         viewSoType()
         viewSoStatus()
         viewSeason()
         actionLoad()
+        If is_print = "1" Then
+            printSO()
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Sub actionLoad()
@@ -64,6 +70,42 @@
         viewDetail()
         check_but()
         allow_status()
+    End Sub
+
+    Sub printSO()
+        Cursor = Cursors.WaitCursor
+        GVItemList.BestFitColumns()
+        ReportSalesOrder.dt = GCItemList.DataSource
+        ReportSalesOrder.id_sales_order = id_sales_order
+        Dim Report As New ReportSalesOrder()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVSalesOrder.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVSalesOrder)
+
+        'Parse val
+        Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+        Report.LabelWarehouse.Text = TxtWHCodeTo.Text + "-" + TxtWHNameTo.Text
+        Report.LabelCategory.Text = LEStatusSO.Text
+        Report.LabelReff.Text = TxtReff.Text
+        Report.LRecDate.Text = DEForm.Text
+        Report.LRecNumber.Text = TxtSalesOrderNumber.Text
+        Report.LabelNote.Text = MENote.Text
+        Report.LabelType.Text = LETypeSO.Text
+
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewSeason()

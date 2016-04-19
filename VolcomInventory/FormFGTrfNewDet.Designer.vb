@@ -77,6 +77,7 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnQtyWH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyLimit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEanCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -107,7 +108,8 @@ Partial Class FormFGTrfNewDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,6 +155,7 @@ Partial Class FormFGTrfNewDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
+        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPForm
@@ -778,6 +781,15 @@ Partial Class FormFGTrfNewDet
         Me.GridColumnRemark.VisibleIndex = 6
         Me.GridColumnRemark.Width = 93
         '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.OptionsColumn.AllowEdit = False
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 7
+        '
         'GridColumnEanCode
         '
         Me.GridColumnEanCode.Caption = "EAN Code"
@@ -1027,6 +1039,8 @@ Partial Class FormFGTrfNewDet
         'PanelNavBarcode
         '
         Me.PanelNavBarcode.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelNavBarcode.Controls.Add(Me.TxtDeleteScan)
+        Me.PanelNavBarcode.Controls.Add(Me.LabelDelScan)
         Me.PanelNavBarcode.Controls.Add(Me.BDelete)
         Me.PanelNavBarcode.Controls.Add(Me.BStop)
         Me.PanelNavBarcode.Controls.Add(Me.BScan)
@@ -1072,14 +1086,23 @@ Partial Class FormFGTrfNewDet
         Me.BScan.TabIndex = 7
         Me.BScan.Text = "Start Scan"
         '
-        'GridColumnStatus
+        'TxtDeleteScan
         '
-        Me.GridColumnStatus.Caption = "Status"
-        Me.GridColumnStatus.FieldName = "status"
-        Me.GridColumnStatus.Name = "GridColumnStatus"
-        Me.GridColumnStatus.OptionsColumn.AllowEdit = False
-        Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 7
+        Me.TxtDeleteScan.Location = New System.Drawing.Point(68, 7)
+        Me.TxtDeleteScan.MenuManager = Me.BMDD
+        Me.TxtDeleteScan.Name = "TxtDeleteScan"
+        Me.TxtDeleteScan.Size = New System.Drawing.Size(248, 20)
+        Me.TxtDeleteScan.TabIndex = 21
+        Me.TxtDeleteScan.Visible = False
+        '
+        'LabelDelScan
+        '
+        Me.LabelDelScan.Location = New System.Drawing.Point(7, 10)
+        Me.LabelDelScan.Name = "LabelDelScan"
+        Me.LabelDelScan.Size = New System.Drawing.Size(56, 13)
+        Me.LabelDelScan.TabIndex = 20
+        Me.LabelDelScan.Text = "Delete scan"
+        Me.LabelDelScan.Visible = False
         '
         'FormFGTrfNewDet
         '
@@ -1146,6 +1169,8 @@ Partial Class FormFGTrfNewDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
+        Me.PanelNavBarcode.PerformLayout()
+        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1237,4 +1262,6 @@ Partial Class FormFGTrfNewDet
     Friend WithEvents BMDD As DevExpress.XtraBars.BarManager
     Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtDeleteScan As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
 End Class

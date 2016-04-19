@@ -330,6 +330,7 @@ Partial Class FormFGTrfNew
         '
         'GCSalesOrder
         '
+        Me.GCSalesOrder.ContextMenuStrip = Me.ViewMenu
         Me.GCSalesOrder.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCSalesOrder.Location = New System.Drawing.Point(0, 0)
         Me.GCSalesOrder.MainView = Me.GVSalesOrder
