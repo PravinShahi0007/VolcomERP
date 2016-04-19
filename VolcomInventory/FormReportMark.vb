@@ -1,10 +1,12 @@
 ﻿Public Class FormReportMark
     Public not_allow_complete As String = "-1"
+    Public not_allow_cancelled As String = "-1"
     Public report_mark_type As String = "-1"
     Public id_report As String = "-1"
     Public id_report_status_report As String = "-1"
     Public form_origin As String
     Public is_view As String = "-1"
+    Public is_disabled_set_stt = "-1"
 
     Public report_number As String = ""
 
@@ -40,12 +42,19 @@
             Else
                 GroupControl2.Visible = True
             End If
+            If is_disabled_set_stt = "1" Then
+                LEReportStatus.Enabled = False
+                BSetStatus.Enabled = False
+            End If
         End If
     End Sub
     Private Sub view_report_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_report_status,report_status FROM tb_lookup_report_status WHERE id_report_status!='7' "
         If not_allow_complete = "1" Then
             query += "AND id_report_status!='6' "
+        End If
+        If not_allow_cancelled = "1" Then
+            query += "AND id_report_status!='5' "
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -311,7 +320,9 @@
             '
             BReset.Visible = False
         Else
-            LEReportStatus.Enabled = True
+            If is_disabled_set_stt = "-1" Then
+                LEReportStatus.Enabled = True
+            End If
             BSetStatus.Visible = True
             BLeadTime.Visible = True
             BClearLeadTime.Visible = True
