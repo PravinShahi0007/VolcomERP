@@ -1,6 +1,12 @@
 ﻿Public Class FormWHSvcLevel
     Private Sub FormWHSvcLevel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
+        DEFrom.EditValue = data_dt.Rows(0)("dt")
+        DEUntil.EditValue = data_dt.Rows(0)("dt")
+        DEFromCode.EditValue = data_dt.Rows(0)("dt")
+        DEUntilCode.EditValue = data_dt.Rows(0)("dt")
+        DEFromAcc.EditValue = data_dt.Rows(0)("dt")
+        DEUntilAcc.EditValue = data_dt.Rows(0)("dt")
     End Sub
 
     Sub viewSvcBySO()

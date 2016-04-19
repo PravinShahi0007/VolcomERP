@@ -778,7 +778,13 @@
         SLELocator.Enabled = False
         SLERack.Enabled = False
         SLEDrawer.Enabled = False
+        If action = "upd" Then
+            DDBPrint.Enabled = False
+            BMark.Enabled = False
+            BtnAttachment.Enabled = False
+        End If
         newRowsBc()
+        GCBarcode.Focus()
         'allowDelete()
     End Sub
 
@@ -810,6 +816,11 @@
         SLELocator.Enabled = True
         SLERack.Enabled = True
         SLEDrawer.Enabled = True
+        If action = "upd" Then
+            DDBPrint.Enabled = True
+            BMark.Enabled = True
+            BtnAttachment.Enabled = True
+        End If
         GCRetDetail.RefreshDataSource()
         GVRetDetail.RefreshData()
     End Sub
