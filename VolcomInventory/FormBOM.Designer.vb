@@ -176,6 +176,9 @@ Partial Class FormBOM
         Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCur = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -186,9 +189,6 @@ Partial Class FormBOM
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCur = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.SplitContainerControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1389,8 +1389,8 @@ Partial Class FormBOM
         Me.GridColumn37.FieldName = "design_name"
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 2
-        Me.GridColumn37.Width = 247
+        Me.GridColumn37.VisibleIndex = 3
+        Me.GridColumn37.Width = 176
         '
         'GridColumn38
         '
@@ -1411,8 +1411,8 @@ Partial Class FormBOM
         Me.GridColumn40.FieldName = "design_code"
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 1
-        Me.GridColumn40.Width = 230
+        Me.GridColumn40.VisibleIndex = 2
+        Me.GridColumn40.Width = 164
         '
         'GridColumn41
         '
@@ -1437,8 +1437,8 @@ Partial Class FormBOM
         Me.GridColumn43.FieldName = "color"
         Me.GridColumn43.Name = "GridColumn43"
         Me.GridColumn43.Visible = True
-        Me.GridColumn43.VisibleIndex = 3
-        Me.GridColumn43.Width = 167
+        Me.GridColumn43.VisibleIndex = 4
+        Me.GridColumn43.Width = 118
         '
         'GridColumn44
         '
@@ -1449,7 +1449,9 @@ Partial Class FormBOM
         Me.GridColumn44.Caption = "Source"
         Me.GridColumn44.FieldName = "product_source"
         Me.GridColumn44.Name = "GridColumn44"
-        Me.GridColumn44.Width = 69
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 0
+        Me.GridColumn44.Width = 56
         '
         'GridColumn45
         '
@@ -1461,8 +1463,8 @@ Partial Class FormBOM
         Me.GridColumn45.FieldName = "product_class"
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True
-        Me.GridColumn45.VisibleIndex = 0
-        Me.GridColumn45.Width = 160
+        Me.GridColumn45.VisibleIndex = 1
+        Me.GridColumn45.Width = 113
         '
         'GridColumnUnitCost
         '
@@ -1476,7 +1478,8 @@ Partial Class FormBOM
         Me.GridColumnUnitCost.FieldName = "prod_order_cop_bom"
         Me.GridColumnUnitCost.Name = "GridColumnUnitCost"
         Me.GridColumnUnitCost.Visible = True
-        Me.GridColumnUnitCost.VisibleIndex = 4
+        Me.GridColumnUnitCost.VisibleIndex = 5
+        Me.GridColumnUnitCost.Width = 53
         '
         'GridColumn52
         '
@@ -1490,7 +1493,8 @@ Partial Class FormBOM
         Me.GridColumn52.FieldName = "design_cop"
         Me.GridColumn52.Name = "GridColumn52"
         Me.GridColumn52.Visible = True
-        Me.GridColumn52.VisibleIndex = 5
+        Me.GridColumn52.VisibleIndex = 6
+        Me.GridColumn52.Width = 60
         '
         'GridView4
         '
@@ -1880,6 +1884,46 @@ Partial Class FormBOM
         Me.ColQty.VisibleIndex = 8
         Me.ColQty.Width = 68
         '
+        'GridColumn54
+        '
+        Me.GridColumn54.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn54.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn54.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn54.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn54.Caption = "Kurs"
+        Me.GridColumn54.DisplayFormat.FormatString = "N2"
+        Me.GridColumn54.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn54.FieldName = "kurs"
+        Me.GridColumn54.Name = "GridColumn54"
+        Me.GridColumn54.Visible = True
+        Me.GridColumn54.VisibleIndex = 6
+        '
+        'GridColumnCur
+        '
+        Me.GridColumnCur.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCur.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCur.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCur.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCur.Caption = "Currency"
+        Me.GridColumnCur.FieldName = "currency"
+        Me.GridColumnCur.Name = "GridColumnCur"
+        Me.GridColumnCur.Visible = True
+        Me.GridColumnCur.VisibleIndex = 4
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn53.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn53.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn53.Caption = "Price"
+        Me.GridColumn53.DisplayFormat.FormatString = "N2"
+        Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn53.FieldName = "vend_price"
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.Visible = True
+        Me.GridColumn53.VisibleIndex = 5
+        '
         'ColPrice
         '
         Me.ColPrice.AppearanceCell.Options.UseTextOptions = True
@@ -1986,46 +2030,6 @@ Partial Class FormBOM
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Width = 113
-        '
-        'GridColumn53
-        '
-        Me.GridColumn53.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn53.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn53.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn53.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn53.Caption = "Price"
-        Me.GridColumn53.DisplayFormat.FormatString = "N2"
-        Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn53.FieldName = "vend_price"
-        Me.GridColumn53.Name = "GridColumn53"
-        Me.GridColumn53.Visible = True
-        Me.GridColumn53.VisibleIndex = 5
-        '
-        'GridColumn54
-        '
-        Me.GridColumn54.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn54.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn54.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn54.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn54.Caption = "Kurs"
-        Me.GridColumn54.DisplayFormat.FormatString = "N2"
-        Me.GridColumn54.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn54.FieldName = "kurs"
-        Me.GridColumn54.Name = "GridColumn54"
-        Me.GridColumn54.Visible = True
-        Me.GridColumn54.VisibleIndex = 6
-        '
-        'GridColumnCur
-        '
-        Me.GridColumnCur.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnCur.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnCur.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnCur.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnCur.Caption = "Currency"
-        Me.GridColumnCur.FieldName = "currency"
-        Me.GridColumnCur.Name = "GridColumnCur"
-        Me.GridColumnCur.Visible = True
-        Me.GridColumnCur.VisibleIndex = 4
         '
         'FormBOM
         '
