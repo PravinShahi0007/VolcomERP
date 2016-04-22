@@ -61,6 +61,9 @@ Partial Public Class ReportProductionPLToWH
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelNote = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel17 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel19 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelVendor = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCRetDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRetDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -254,7 +257,7 @@ Partial Public Class ReportProductionPLToWH
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelDesign, Me.XrLabel14, Me.XrLabel9, Me.LabelSource, Me.XrLabel20, Me.XrLabel18, Me.LabelAddress, Me.XrLabel16, Me.XrLabel15, Me.LabelTo, Me.XrLabel13, Me.XrLabel12, Me.LabelRR, Me.XrLabel10, Me.XrLabel3, Me.XrLabel4, Me.XrLabel2, Me.LabelFrom})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelVendor, Me.XrLabel19, Me.XrLabel17, Me.LabelDesign, Me.XrLabel14, Me.XrLabel9, Me.LabelSource, Me.XrLabel20, Me.XrLabel18, Me.LabelAddress, Me.XrLabel16, Me.XrLabel15, Me.LabelTo, Me.XrLabel13, Me.XrLabel12, Me.LabelRR, Me.XrLabel10, Me.XrLabel3, Me.XrLabel4, Me.XrLabel2, Me.LabelFrom})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 48.87635!)
         Me.XrPanel1.Name = "XrPanel1"
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(785.0!, 116.1236!)
@@ -265,7 +268,7 @@ Partial Public Class ReportProductionPLToWH
         '
         Me.LabelDesign.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.LabelDesign.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDesign.LocationFloat = New DevExpress.Utils.PointFloat(84.81907!, 34.89687!)
+        Me.LabelDesign.LocationFloat = New DevExpress.Utils.PointFloat(84.81906!, 48.48022!)
         Me.LabelDesign.Name = "LabelDesign"
         Me.LabelDesign.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.LabelDesign.SizeF = New System.Drawing.SizeF(236.4583!, 13.58335!)
@@ -275,7 +278,7 @@ Partial Public Class ReportProductionPLToWH
         'XrLabel14
         '
         Me.XrLabel14.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(73.36073!, 34.89688!)
+        Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(73.36073!, 48.48022!)
         Me.XrLabel14.Name = "XrLabel14"
         Me.XrLabel14.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(11.45831!, 13.58334!)
@@ -286,7 +289,7 @@ Partial Public Class ReportProductionPLToWH
         '
         Me.XrLabel9.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(8.637778!, 34.89687!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(8.637746!, 48.48021!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel9.SizeF = New System.Drawing.SizeF(64.72298!, 13.58335!)
@@ -560,6 +563,39 @@ Partial Public Class ReportProductionPLToWH
         Me.LabelNote.StylePriority.UseBorders = False
         Me.LabelNote.StylePriority.UseFont = False
         '
+        'XrLabel17
+        '
+        Me.XrLabel17.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel17.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(8.637746!, 34.89688!)
+        Me.XrLabel17.Name = "XrLabel17"
+        Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel17.SizeF = New System.Drawing.SizeF(64.72298!, 13.58335!)
+        Me.XrLabel17.StylePriority.UseBorders = False
+        Me.XrLabel17.StylePriority.UseFont = False
+        Me.XrLabel17.Text = "Vendor"
+        '
+        'XrLabel19
+        '
+        Me.XrLabel19.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(73.36073!, 34.89688!)
+        Me.XrLabel19.Name = "XrLabel19"
+        Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel19.SizeF = New System.Drawing.SizeF(11.45831!, 13.58334!)
+        Me.XrLabel19.StylePriority.UseBorders = False
+        Me.XrLabel19.Text = ":"
+        '
+        'LabelVendor
+        '
+        Me.LabelVendor.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelVendor.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelVendor.LocationFloat = New DevExpress.Utils.PointFloat(84.81906!, 34.89688!)
+        Me.LabelVendor.Name = "LabelVendor"
+        Me.LabelVendor.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelVendor.SizeF = New System.Drawing.SizeF(236.4583!, 13.58335!)
+        Me.LabelVendor.StylePriority.UseBorders = False
+        Me.LabelVendor.StylePriority.UseFont = False
+        '
         'ReportProductionPLToWH
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
@@ -616,4 +652,7 @@ Partial Public Class ReportProductionPLToWH
     Friend WithEvents LabelDesign As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelVendor As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel19 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel17 As DevExpress.XtraReports.UI.XRLabel
 End Class
