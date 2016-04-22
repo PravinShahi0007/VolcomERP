@@ -306,7 +306,7 @@ Partial Public Class ReportProductionWO
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel12, Me.XrLabel6, Me.XrLabel1, Me.LWONumber, Me.LPODate, Me.LTitle, Me.zxc, Me.XrPanel1})
-        Me.TopMargin.HeightF = 158.25!
+        Me.TopMargin.HeightF = 158.2499!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -983,7 +983,7 @@ Partial Public Class ReportProductionWO
         'BottomMargin
         '
         Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 18.71793!
+        Me.BottomMargin.HeightF = 19.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -1413,8 +1413,9 @@ Partial Public Class ReportProductionWO
         'ReportProductionWO
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(11, 50, 158, 19)
+        Me.Margins = New System.Drawing.Printing.Margins(10, 49, 158, 19)
         Me.PageHeight = 550
+        Me.PageWidth = 849
         Me.PaperKind = System.Drawing.Printing.PaperKind.Custom
         Me.Version = "15.1"
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
