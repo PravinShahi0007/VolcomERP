@@ -139,6 +139,7 @@
                 TEDesign.Text = data.Rows(0)("design_name").ToString
                 id_season = data.Rows(0)("id_season").ToString
                 PEView.Enabled = True
+                mainVendor()
             Catch ex As Exception
                 errorConnection()
             End Try
@@ -158,6 +159,19 @@
             allow_status()
         End If
     End Sub
+
+    Sub mainVendor()
+        'main vendor
+        Dim data_vend As DataTable = getMainVendor(id_prod_order)
+        Try
+            TxtVendorCode.Text = data_vend.Rows(0)("comp_number").ToString
+            TxtVendor.Text = data_vend.Rows(0)("comp_name").ToString
+        Catch ex As Exception
+            TxtVendorCode.Text = ""
+            TxtVendor.Text = ""
+        End Try
+    End Sub
+
     Sub allow_status()
         If check_edit_report_status(id_report_status, "33", id_pl_prod_order) Then
             BtnBrowseContactFrom.Enabled = True
@@ -245,6 +259,7 @@
         id_design = data.Rows(0)("id_design").ToString
         pre_viewImages("2", PEView, data.Rows(0)("id_design").ToString, False)
         PEView.Enabled = True
+        mainVendor()
     End Sub
 
     'View Data
@@ -689,7 +704,8 @@
         Report.LabelNo.Text = TxtRetOutNumber.Text
         Report.LabelSource.Text = LEPLCategory.Text
         Report.LabelDesign.Text = TEDesign.Text
-
+        Report.LabelNote.Text = MENote.Text
+        Report.LabelVendor.Text = TxtVendorCode.Text + " - " + TxtVendor.Text
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

@@ -105,6 +105,9 @@ Partial Class FormProductionPLToWHDet
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
         Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtVendorCode = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtVendor = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -150,6 +153,8 @@ Partial Class FormProductionPLToWHDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -161,12 +166,15 @@ Partial Class FormProductionPLToWHDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(926, 124)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(926, 147)
         Me.GroupGeneralHeader.TabIndex = 182
         '
         'PanelControlTopMain
         '
         Me.PanelControlTopMain.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopMain.Controls.Add(Me.TxtVendorCode)
+        Me.PanelControlTopMain.Controls.Add(Me.TxtVendor)
+        Me.PanelControlTopMain.Controls.Add(Me.LabelControl12)
         Me.PanelControlTopMain.Controls.Add(Me.BtnViewLineList)
         Me.PanelControlTopMain.Controls.Add(Me.LEPDAlloc)
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl9)
@@ -189,7 +197,7 @@ Partial Class FormProductionPLToWHDet
         Me.PanelControlTopMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopMain.Location = New System.Drawing.Point(130, 2)
         Me.PanelControlTopMain.Name = "PanelControlTopMain"
-        Me.PanelControlTopMain.Size = New System.Drawing.Size(518, 120)
+        Me.PanelControlTopMain.Size = New System.Drawing.Size(518, 143)
         Me.PanelControlTopMain.TabIndex = 10007
         '
         'BtnViewLineList
@@ -254,7 +262,7 @@ Partial Class FormProductionPLToWHDet
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(10, 87)
+        Me.LabelControl6.Location = New System.Drawing.Point(10, 113)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(32, 13)
         Me.LabelControl6.TabIndex = 10003
@@ -278,7 +286,7 @@ Partial Class FormProductionPLToWHDet
         Me.TEDesign.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEDesign.EditValue = ""
-        Me.TEDesign.Location = New System.Drawing.Point(82, 84)
+        Me.TEDesign.Location = New System.Drawing.Point(82, 110)
         Me.TEDesign.Name = "TEDesign"
         Me.TEDesign.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEDesign.Properties.Appearance.Options.UseFont = True
@@ -432,7 +440,7 @@ Partial Class FormProductionPLToWHDet
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(648, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(276, 120)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(276, 143)
         Me.PanelControlTopRight.TabIndex = 10006
         '
         'LEPLCategory
@@ -506,7 +514,7 @@ Partial Class FormProductionPLToWHDet
         Me.PEView.Properties.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.PEView.Properties.ShowMenu = False
         Me.PEView.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.PEView.Size = New System.Drawing.Size(109, 120)
+        Me.PEView.Size = New System.Drawing.Size(109, 143)
         Me.PEView.TabIndex = 10001
         '
         'PanelControl3
@@ -686,13 +694,13 @@ Partial Class FormProductionPLToWHDet
         '
         Me.SCCReturn.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SCCReturn.Horizontal = False
-        Me.SCCReturn.Location = New System.Drawing.Point(0, 124)
+        Me.SCCReturn.Location = New System.Drawing.Point(0, 147)
         Me.SCCReturn.Name = "SCCReturn"
         Me.SCCReturn.Panel1.Controls.Add(Me.GroupControlRet)
         Me.SCCReturn.Panel1.Text = "Panel1"
         Me.SCCReturn.Panel2.Controls.Add(Me.GroupControlListBarcode)
         Me.SCCReturn.Panel2.Text = "Panel2"
-        Me.SCCReturn.Size = New System.Drawing.Size(926, 392)
+        Me.SCCReturn.Size = New System.Drawing.Size(926, 369)
         Me.SCCReturn.SplitterPosition = 171
         Me.SCCReturn.TabIndex = 185
         Me.SCCReturn.Text = "SplitContainerControl1"
@@ -715,12 +723,12 @@ Partial Class FormProductionPLToWHDet
         'GCRetDetail
         '
         Me.GCRetDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRetDetail.Location = New System.Drawing.Point(21, 38)
+        Me.GCRetDetail.Location = New System.Drawing.Point(21, 32)
         Me.GCRetDetail.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCRetDetail.MainView = Me.GVRetDetail
         Me.GCRetDetail.Name = "GCRetDetail"
         Me.GCRetDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCRetDetail.Size = New System.Drawing.Size(903, 131)
+        Me.GCRetDetail.Size = New System.Drawing.Size(903, 137)
         Me.GCRetDetail.TabIndex = 1
         Me.GCRetDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetDetail})
         '
@@ -896,7 +904,7 @@ Partial Class FormProductionPLToWHDet
         Me.PanelControl1.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(903, 36)
+        Me.PanelControl1.Size = New System.Drawing.Size(903, 30)
         Me.PanelControl1.TabIndex = 0
         Me.PanelControl1.Visible = False
         '
@@ -907,7 +915,7 @@ Partial Class FormProductionPLToWHDet
         Me.BtnDel.ImageList = Me.LargeImageCollection
         Me.BtnDel.Location = New System.Drawing.Point(630, 0)
         Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(91, 36)
+        Me.BtnDel.Size = New System.Drawing.Size(91, 30)
         Me.BtnDel.TabIndex = 7
         Me.BtnDel.Text = "Delete"
         '
@@ -917,7 +925,7 @@ Partial Class FormProductionPLToWHDet
         Me.SimpleButton1.ImageIndex = 1
         Me.SimpleButton1.Location = New System.Drawing.Point(0, 0)
         Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(91, 36)
+        Me.SimpleButton1.Size = New System.Drawing.Size(91, 30)
         Me.SimpleButton1.TabIndex = 7
         Me.SimpleButton1.Text = "Coba"
         Me.SimpleButton1.Visible = False
@@ -929,7 +937,7 @@ Partial Class FormProductionPLToWHDet
         Me.BtnEdit.ImageList = Me.LargeImageCollection
         Me.BtnEdit.Location = New System.Drawing.Point(721, 0)
         Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(91, 36)
+        Me.BtnEdit.Size = New System.Drawing.Size(91, 30)
         Me.BtnEdit.TabIndex = 6
         Me.BtnEdit.Text = "Edit"
         Me.BtnEdit.Visible = False
@@ -941,7 +949,7 @@ Partial Class FormProductionPLToWHDet
         Me.BtnAdd.ImageList = Me.LargeImageCollection
         Me.BtnAdd.Location = New System.Drawing.Point(812, 0)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(91, 36)
+        Me.BtnAdd.Size = New System.Drawing.Size(91, 30)
         Me.BtnAdd.TabIndex = 5
         Me.BtnAdd.Text = "Add"
         '
@@ -954,18 +962,18 @@ Partial Class FormProductionPLToWHDet
         Me.GroupControlListBarcode.Enabled = False
         Me.GroupControlListBarcode.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListBarcode.Name = "GroupControlListBarcode"
-        Me.GroupControlListBarcode.Size = New System.Drawing.Size(926, 215)
+        Me.GroupControlListBarcode.Size = New System.Drawing.Size(926, 192)
         Me.GroupControlListBarcode.TabIndex = 1
         Me.GroupControlListBarcode.Text = "Counting Product"
         '
         'GCBarcode
         '
         Me.GCBarcode.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBarcode.Location = New System.Drawing.Point(21, 41)
+        Me.GCBarcode.Location = New System.Drawing.Point(21, 35)
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(903, 172)
+        Me.GCBarcode.Size = New System.Drawing.Size(903, 155)
         Me.GCBarcode.TabIndex = 4
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -1061,7 +1069,7 @@ Partial Class FormProductionPLToWHDet
         Me.PanelNavBarcode.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.PanelNavBarcode.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelNavBarcode.Name = "PanelNavBarcode"
-        Me.PanelNavBarcode.Size = New System.Drawing.Size(903, 39)
+        Me.PanelNavBarcode.Size = New System.Drawing.Size(903, 33)
         Me.PanelNavBarcode.TabIndex = 0
         '
         'BDelete
@@ -1071,7 +1079,7 @@ Partial Class FormProductionPLToWHDet
         Me.BDelete.ImageList = Me.LargeImageCollection
         Me.BDelete.Location = New System.Drawing.Point(627, 0)
         Me.BDelete.Name = "BDelete"
-        Me.BDelete.Size = New System.Drawing.Size(94, 39)
+        Me.BDelete.Size = New System.Drawing.Size(94, 33)
         Me.BDelete.TabIndex = 8
         Me.BDelete.Text = "Delete Scan"
         '
@@ -1083,7 +1091,7 @@ Partial Class FormProductionPLToWHDet
         Me.BStop.ImageList = Me.LargeImageCollection
         Me.BStop.Location = New System.Drawing.Point(721, 0)
         Me.BStop.Name = "BStop"
-        Me.BStop.Size = New System.Drawing.Size(91, 39)
+        Me.BStop.Size = New System.Drawing.Size(91, 33)
         Me.BStop.TabIndex = 7
         Me.BStop.Text = "Stop Scan"
         '
@@ -1094,13 +1102,48 @@ Partial Class FormProductionPLToWHDet
         Me.BScan.ImageList = Me.LargeImageCollection
         Me.BScan.Location = New System.Drawing.Point(812, 0)
         Me.BScan.Name = "BScan"
-        Me.BScan.Size = New System.Drawing.Size(91, 39)
+        Me.BScan.Size = New System.Drawing.Size(91, 33)
         Me.BScan.TabIndex = 6
         Me.BScan.Text = "Start Scan"
         '
         'EPRet
         '
         Me.EPRet.ContainerControl = Me
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(10, 87)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl12.TabIndex = 10015
+        Me.LabelControl12.Text = "Vendor"
+        '
+        'TxtVendorCode
+        '
+        Me.TxtVendorCode.EditValue = ""
+        Me.TxtVendorCode.Location = New System.Drawing.Point(82, 84)
+        Me.TxtVendorCode.Name = "TxtVendorCode"
+        Me.TxtVendorCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtVendorCode.Properties.Appearance.Options.UseFont = True
+        Me.TxtVendorCode.Properties.EditValueChangedDelay = 1
+        Me.TxtVendorCode.Properties.ReadOnly = True
+        Me.TxtVendorCode.Size = New System.Drawing.Size(82, 20)
+        Me.TxtVendorCode.TabIndex = 10017
+        Me.TxtVendorCode.TabStop = False
+        '
+        'TxtVendor
+        '
+        Me.TxtVendor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtVendor.EditValue = ""
+        Me.TxtVendor.Location = New System.Drawing.Point(172, 84)
+        Me.TxtVendor.Name = "TxtVendor"
+        Me.TxtVendor.Properties.EditValueChangedDelay = 1
+        Me.TxtVendor.Properties.ReadOnly = True
+        Me.TxtVendor.Size = New System.Drawing.Size(304, 20)
+        Me.TxtVendor.TabIndex = 10016
+        Me.TxtVendor.TabStop = False
         '
         'FormProductionPLToWHDet
         '
@@ -1165,6 +1208,8 @@ Partial Class FormProductionPLToWHDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1252,4 +1297,7 @@ Partial Class FormProductionPLToWHDet
     Friend WithEvents LEPDAlloc As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents BtnViewLineList As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnQtyAllow As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtVendorCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtVendor As DevExpress.XtraEditors.TextEdit
 End Class
