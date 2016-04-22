@@ -296,8 +296,9 @@
                 id_prod_order_det_list.Add(data.Rows(i)("id_prod_order_det").ToString)
                 id_pl_prod_order_det_list.Add(data.Rows(i)("id_pl_prod_order_det").ToString)
                 Dim id_prod_order_det As String = data.Rows(i)("id_prod_order_det").ToString
-                Dim queryx As String = "SELECT a.id_product, a.range_awal, a.range_akhir, a.digit_code, b.product_full_code "
+                Dim queryx As String = "SELECT a.id_product, a.range_awal, a.range_akhir, a.digit_code, b.product_full_code, dsg.is_old_design "
                 queryx += "FROM tb_m_product_range a INNER JOIN tb_m_product b ON a.id_product = b.id_product  "
+                queryx += "INNER JOIN tb_m_design dsg ON dsg.id_design = b.id_design "
                 queryx += "WHERE a.id_prod_order_det = '" + id_prod_order_det + "' "
                 Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
                 For k As Integer = 0 To (datax.Rows.Count - 1)
@@ -307,6 +308,7 @@
                     Dim range_akhir As Integer = Integer.Parse(datax.Rows(k)("range_akhir").ToString)
                     Dim digit_code As Integer = Integer.Parse(datax.Rows(k)("digit_code").ToString)
                     Dim product_code As String = datax.Rows(k)("product_full_code").ToString
+                    Dim is_old_design As String = datax.Rows(k)("is_old_design").ToString
                     For j As Integer = range_awal To range_akhir
                         Dim R As DataRow = dt.NewRow
                         R("id_product") = id_product
@@ -314,6 +316,7 @@
                         R("product_code") = product_code
                         R("product_counting_code") = combine_header_number("", j, digit_code)
                         R("product_full_code") = combine_header_number(product_code, j, digit_code)
+                        R("is_old_design") = is_old_design
                         dt.Rows.Add(R)
                     Next
                 Next
@@ -842,7 +845,6 @@
             is_old = dt_filter(0)("is_old_design").ToString
             code_found = True
         End If
-
 
         If is_old = "1" Then
             GVBarcode.SetFocusedRowCellValue("id_pl_prod_order_det_unique", "0")

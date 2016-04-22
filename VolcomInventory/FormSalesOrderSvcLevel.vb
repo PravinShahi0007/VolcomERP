@@ -335,17 +335,25 @@
         If XTCSvcLevel.SelectedTabPageIndex = 0 Then 'prepare
             Dim id_prepare As String = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
             Dim id_cur_stt As String = GVSalesOrder.GetFocusedRowCellValue("id_prepare_status").ToString
-            FormSalesOrderPacking.id_trans = id_prepare
-            FormSalesOrderPacking.id_cur_status = id_cur_stt
-            FormSalesOrderPacking.id_pop_up = "1"
-            FormSalesOrderPacking.ShowDialog()
+            If id_cur_stt = "1" Then
+                FormSalesOrderPacking.id_trans = id_prepare
+                FormSalesOrderPacking.id_cur_status = id_cur_stt
+                FormSalesOrderPacking.id_pop_up = "1"
+                FormSalesOrderPacking.ShowDialog()
+            Else
+                stopCustom("Data already locked.")
+            End If
         ElseIf XTCSvcLevel.SelectedTabPageIndex = 1 Then 'return
             Dim id_prepare As String = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
             Dim id_cur_stt As String = GVSalesReturnOrder.GetFocusedRowCellValue("id_prepare_status").ToString
-            FormSalesOrderPacking.id_trans = id_prepare
-            FormSalesOrderPacking.id_cur_status = id_cur_stt
-            FormSalesOrderPacking.id_pop_up = "2"
-            FormSalesOrderPacking.ShowDialog()
+            If id_cur_stt = "1" Then
+                FormSalesOrderPacking.id_trans = id_prepare
+                FormSalesOrderPacking.id_cur_status = id_cur_stt
+                FormSalesOrderPacking.id_pop_up = "2"
+                FormSalesOrderPacking.ShowDialog()
+            Else
+                stopCustom("Data already locked.")
+            End If
         End If
     End Sub
 
