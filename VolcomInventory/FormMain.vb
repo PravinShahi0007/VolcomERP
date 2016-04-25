@@ -106,8 +106,8 @@ Public Class FormMain
 
     '-----------------------Notification
     Private Sub TimerNotif_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerNotif.Tick
-        Try
-            Dim query_notif As String = "CALL view_notif_list('" + id_user + "', 'AND notif_det.is_read=2') "
+        ' Try
+        Dim query_notif As String = "CALL view_notif_list('" + id_user + "', 'AND notif_det.is_read=2') "
             Dim data_notif As DataTable = execute_query(query_notif, -1, True, "", "", "", "")
             checkTotalNotif(data_notif.Rows.Count)
             For i As Integer = 0 To data_notif.Rows.Count - 1
@@ -117,9 +117,9 @@ Public Class FormMain
                     showNotify(data_notif(i)("notif_title").ToString, data_notif(i)("notif_content").ToString, data_notif.Rows(i)("id_type").ToString)
                 End If
             Next
-        Catch ex As Exception
-            errorConnection()
-        End Try
+        '  Catch ex As Exception
+        'errorConnection()
+        'End Try
     End Sub
 
     Sub checkNumberNotif()

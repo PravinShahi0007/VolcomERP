@@ -88,6 +88,7 @@ Partial Class FormSalesOrderGen
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCNewPrepare = New DevExpress.XtraGrid.GridControl()
         Me.GVNewPrepare = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
+        Me.BtnImportNew = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -606,6 +607,7 @@ Partial Class FormSalesOrderGen
         '
         Me.PanelNavBarcode.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelNavBarcode.Controls.Add(Me.BtnImport)
+        Me.PanelNavBarcode.Controls.Add(Me.BtnImportNew)
         Me.PanelNavBarcode.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelNavBarcode.Location = New System.Drawing.Point(0, 0)
         Me.PanelNavBarcode.LookAndFeel.SkinName = "Office 2010 Blue"
@@ -619,11 +621,11 @@ Partial Class FormSalesOrderGen
         Me.BtnImport.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImport.ImageIndex = 3
         Me.BtnImport.ImageList = Me.LargeImageCollection
-        Me.BtnImport.Location = New System.Drawing.Point(720, 0)
+        Me.BtnImport.Location = New System.Drawing.Point(601, 0)
         Me.BtnImport.Name = "BtnImport"
-        Me.BtnImport.Size = New System.Drawing.Size(111, 33)
+        Me.BtnImport.Size = New System.Drawing.Size(124, 33)
         Me.BtnImport.TabIndex = 6
-        Me.BtnImport.Text = "Import Excel"
+        Me.BtnImport.Text = "Import Excel Old"
         '
         'XTPSummary
         '
@@ -788,6 +790,17 @@ Partial Class FormSalesOrderGen
         Me.GVNewPrepare.OptionsView.ShowFooter = True
         Me.GVNewPrepare.OptionsView.ShowGroupPanel = False
         '
+        'BtnImportNew
+        '
+        Me.BtnImportNew.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnImportNew.ImageIndex = 3
+        Me.BtnImportNew.ImageList = Me.LargeImageCollection
+        Me.BtnImportNew.Location = New System.Drawing.Point(725, 0)
+        Me.BtnImportNew.Name = "BtnImportNew"
+        Me.BtnImportNew.Size = New System.Drawing.Size(106, 33)
+        Me.BtnImportNew.TabIndex = 7
+        Me.BtnImportNew.Text = "Import Excel"
+        '
         'FormSalesOrderGen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -917,4 +930,5 @@ Partial Class FormSalesOrderGen
     Friend WithEvents XTPOrder As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCNewPrepare As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVNewPrepare As DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView
+    Friend WithEvents BtnImportNew As DevExpress.XtraEditors.SimpleButton
 End Class
