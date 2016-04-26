@@ -1237,32 +1237,41 @@ Public Class FormImportExcel
             connection.Open()
 
             Dim command As MySqlCommand = connection.CreateCommand()
-            Dim qry As String = "CREATE TEMPORARY TABLE IF NOT EXISTS tb_so_temp AS ( SELECT * FROM ("
+            Dim qry As String = "DROP TABLE IF EXISTS tb_so_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_so_temp AS ( SELECT * FROM ("
             For d As Integer = 0 To data_temp.Rows.Count - 1
                 If d > 0 Then
                     qry += "UNION ALL "
                 End If
                 qry += "SELECT '" + id_sales_order_gen + "' AS `id`, '" + data_temp.Rows(d)("wh").ToString + "' AS `wh`, '" + data_temp.Rows(d)("store").ToString + "' AS `store`, '" + data_temp.Rows(d)("code").ToString + "' AS `code`, '" + data_temp.Rows(d)("sizetype").ToString + "' AS `sizetype`,  '" + data_temp.Rows(d)("s1").ToString + "' AS `1`, '" + data_temp.Rows(d)("s2").ToString + "' AS `2`, '" + data_temp.Rows(d)("s3").ToString + "' AS `3`, '" + data_temp.Rows(d)("s4").ToString + "' AS `4`, '" + data_temp.Rows(d)("s5").ToString + "' AS `5`, '" + data_temp.Rows(d)("s6").ToString + "' AS `6`, '" + data_temp.Rows(d)("s7").ToString + "' AS `7`, '" + data_temp.Rows(d)("s8").ToString + "' AS `8`, '" + data_temp.Rows(d)("s9").ToString + "' AS `9`, '" + data_temp.Rows(d)("s0").ToString + "' AS `0` "
             Next
-            qry += ") a ) "
+            qry += ") a ); ALTER TABLE tb_so_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
 
-            'Dim data As New DataTable
-            'Dim adapter As New MySqlDataAdapter("CALL view_sales_order_temp(17)", connection)
-            'adapter.SelectCommand.CommandTimeout = 300
-            'adapter.Fill(data)
-            'adapter.Dispose()
-            'data.Dispose()
-            'GCData.DataSource = data
+            Dim data As New DataTable
+            Dim adapter As New MySqlDataAdapter("CALL view_sales_order_temp(" + id_sales_order_gen + ")", connection)
+            adapter.SelectCommand.CommandTimeout = 300
+            adapter.Fill(data)
+            adapter.Dispose()
+            data.Dispose()
+            GCData.DataSource = data
 
             connection.Close()
             connection.Dispose()
-            Dim query As String = "CALL view_sales_order_temp(17)"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            GCData.DataSource = data
 
+            GVData.Columns("id").Visible = False
+            GVData.Columns("id_product").Visible = False
+            GVData.Columns("id_comp_contact_from").Visible = False
+            GVData.Columns("id_comp_contact_to").Visible = False
+            GVData.Columns("Class").Visible = False
+            GVData.Columns("Code").VisibleIndex = 0
+            GVData.Columns("Style").VisibleIndex = 1
+            GVData.Columns("Size").VisibleIndex = 2
+            GVData.Columns("From").VisibleIndex = 3
+            GVData.Columns("To").VisibleIndex = 4
+            GVData.Columns("Qty").VisibleIndex = 5
+            GVData.Columns("Status").VisibleIndex = 6
         End If
         data_temp.Dispose()
         oledbconn.Close()
