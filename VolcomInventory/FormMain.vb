@@ -106,8 +106,8 @@ Public Class FormMain
 
     '-----------------------Notification
     Private Sub TimerNotif_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TimerNotif.Tick
-        Try
-            Dim query_notif As String = "CALL view_notif_list('" + id_user + "', 'AND notif_det.is_read=2') "
+        ' Try
+        Dim query_notif As String = "CALL view_notif_list('" + id_user + "', 'AND notif_det.is_read=2') "
             Dim data_notif As DataTable = execute_query(query_notif, -1, True, "", "", "", "")
             checkTotalNotif(data_notif.Rows.Count)
             For i As Integer = 0 To data_notif.Rows.Count - 1
@@ -117,9 +117,9 @@ Public Class FormMain
                     showNotify(data_notif(i)("notif_title").ToString, data_notif(i)("notif_content").ToString, data_notif.Rows(i)("id_type").ToString)
                 End If
             Next
-        Catch ex As Exception
-            errorConnection()
-        End Try
+        '  Catch ex As Exception
+        'errorConnection()
+        'End Try
     End Sub
 
     Sub checkNumberNotif()
@@ -1083,10 +1083,15 @@ Public Class FormMain
                 FormProductionPLToWHDet.id_pl_prod_order = "0"
                 FormProductionPLToWHDet.ShowDialog()
             Else
-                FormProductionPLToWHDet.action = "ins"
-                FormProductionPLToWHDet.id_pl_prod_order = "0"
-                FormProductionPLToWHDet.id_prod_order = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
-                FormProductionPLToWHDet.ShowDialog()
+                Dim cost As Decimal = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("design_cop")
+                If cost > 0 Then
+                    FormProductionPLToWHDet.action = "ins"
+                    FormProductionPLToWHDet.id_pl_prod_order = "0"
+                    FormProductionPLToWHDet.id_prod_order = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                    FormProductionPLToWHDet.ShowDialog()
+                Else
+                    stopCustom("Packing list can't continue process, because there is no cost for this style.")
+                End If
             End If
         ElseIf formName = "FormMatInvoice" Then
             If FormMatInvoice.XTCTabGeneral.SelectedTabPageIndex = 0 Then 'invoice
@@ -3873,28 +3878,28 @@ Public Class FormMain
                     stopCustom("This data already marked")
                 End If
             ElseIf FormSalesOrder.XTCSOGeneral.SelectedTabPageIndex = 1 Then
-                If check_edit_report_status(FormSalesOrder.GVGen.GetFocusedRowCellValue("id_report_status"), "88", FormSalesOrder.GVGen.GetFocusedRowCellValue("id_sales_order_gen")) Then
-                    confirm = XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                    If confirm = Windows.Forms.DialogResult.Yes Then
-                        Try
-                            Dim id_sales_order_gen As String = FormSalesOrder.GVGen.GetFocusedRowCellValue("id_sales_order_gen")
+                If Not FormSalesOrder.GVGen.GetFocusedRowCellValue("is_submit").ToString = "1" Then
+                    If check_edit_report_status(FormSalesOrder.GVGen.GetFocusedRowCellValue("id_report_status"), "88", FormSalesOrder.GVGen.GetFocusedRowCellValue("id_sales_order_gen")) Then
+                        confirm = XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            Try
+                                Dim id_sales_order_gen As String = FormSalesOrder.GVGen.GetFocusedRowCellValue("id_sales_order_gen")
 
-                            'cancel reserve
-                            Dim cancel As New ClassSalesOrder()
-                            cancel.cancelReservedStockGen(id_sales_order_gen)
+                                query = String.Format("DELETE FROM tb_sales_order_gen WHERE id_sales_order_gen ='{0}'", id_sales_order_gen)
+                                execute_non_query(query, True, "", "", "", "")
 
-                            query = String.Format("DELETE FROM tb_sales_order_gen WHERE id_sales_order_gen ='{0}'", id_sales_order_gen)
-                            execute_non_query(query, True, "", "", "", "")
-
-                            'del mark
-                            delete_all_mark_related("88", id_sales_order_gen)
-                            FormSalesOrder.viewSalesOrderGen()
-                        Catch ex As Exception
-                            errorDelete()
-                        End Try
+                                'del mark
+                                delete_all_mark_related("88", id_sales_order_gen)
+                                FormSalesOrder.viewSalesOrderGen()
+                            Catch ex As Exception
+                                errorDelete()
+                            End Try
+                        End If
+                    Else
+                        stopCustom("This data already marked")
                     End If
                 Else
-                    stopCustom("This data already marked")
+                    stopCustom("This data already submitted")
                 End If
             End If
         ElseIf formName = "FormSalesDelOrder" Then

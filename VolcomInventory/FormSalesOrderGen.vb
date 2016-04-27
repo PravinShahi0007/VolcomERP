@@ -398,4 +398,11 @@
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
+
+    Private Sub BtnImportNew_Click(sender As Object, e As EventArgs) Handles BtnImportNew.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "23"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

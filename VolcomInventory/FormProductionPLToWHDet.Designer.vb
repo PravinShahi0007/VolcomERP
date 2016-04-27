@@ -23,6 +23,9 @@ Partial Class FormProductionPLToWHDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionPLToWHDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopMain = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtVendorCode = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtVendor = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnViewLineList = New DevExpress.XtraEditors.SimpleButton()
         Me.LEPDAlloc = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
@@ -105,13 +108,12 @@ Partial Class FormProductionPLToWHDet
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
         Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtVendorCode = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtVendor = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMain.SuspendLayout()
+        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPDAlloc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEAdrressCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,8 +155,6 @@ Partial Class FormProductionPLToWHDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -191,7 +191,6 @@ Partial Class FormProductionPLToWHDet
         Me.PanelControlTopMain.Controls.Add(Me.TxtNameCompTo)
         Me.PanelControlTopMain.Controls.Add(Me.TxtOrderNumber)
         Me.PanelControlTopMain.Controls.Add(Me.BtnBrowseContactFrom)
-        Me.PanelControlTopMain.Controls.Add(Me.BtnBrowsePO)
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl3)
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl4)
         Me.PanelControlTopMain.Dock = System.Windows.Forms.DockStyle.Fill
@@ -199,6 +198,41 @@ Partial Class FormProductionPLToWHDet
         Me.PanelControlTopMain.Name = "PanelControlTopMain"
         Me.PanelControlTopMain.Size = New System.Drawing.Size(518, 143)
         Me.PanelControlTopMain.TabIndex = 10007
+        '
+        'TxtVendorCode
+        '
+        Me.TxtVendorCode.EditValue = ""
+        Me.TxtVendorCode.Location = New System.Drawing.Point(82, 84)
+        Me.TxtVendorCode.Name = "TxtVendorCode"
+        Me.TxtVendorCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtVendorCode.Properties.Appearance.Options.UseFont = True
+        Me.TxtVendorCode.Properties.EditValueChangedDelay = 1
+        Me.TxtVendorCode.Properties.ReadOnly = True
+        Me.TxtVendorCode.Size = New System.Drawing.Size(82, 20)
+        Me.TxtVendorCode.TabIndex = 10017
+        Me.TxtVendorCode.TabStop = False
+        '
+        'TxtVendor
+        '
+        Me.TxtVendor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtVendor.EditValue = ""
+        Me.TxtVendor.Location = New System.Drawing.Point(172, 84)
+        Me.TxtVendor.Name = "TxtVendor"
+        Me.TxtVendor.Properties.EditValueChangedDelay = 1
+        Me.TxtVendor.Properties.ReadOnly = True
+        Me.TxtVendor.Size = New System.Drawing.Size(304, 20)
+        Me.TxtVendor.TabIndex = 10016
+        Me.TxtVendor.TabStop = False
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(10, 87)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl12.TabIndex = 10015
+        Me.LabelControl12.Text = "Vendor"
         '
         'BtnViewLineList
         '
@@ -384,7 +418,7 @@ Partial Class FormProductionPLToWHDet
         Me.TxtOrderNumber.Name = "TxtOrderNumber"
         Me.TxtOrderNumber.Properties.EditValueChangedDelay = 1
         Me.TxtOrderNumber.Properties.ReadOnly = True
-        Me.TxtOrderNumber.Size = New System.Drawing.Size(336, 20)
+        Me.TxtOrderNumber.Size = New System.Drawing.Size(365, 20)
         Me.TxtOrderNumber.TabIndex = 9999
         Me.TxtOrderNumber.TabStop = False
         '
@@ -404,11 +438,12 @@ Partial Class FormProductionPLToWHDet
         Me.BtnBrowsePO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowsePO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowsePO.Appearance.Options.UseFont = True
-        Me.BtnBrowsePO.Location = New System.Drawing.Point(424, 59)
+        Me.BtnBrowsePO.Location = New System.Drawing.Point(6, 84)
         Me.BtnBrowsePO.Name = "BtnBrowsePO"
         Me.BtnBrowsePO.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowsePO.TabIndex = 2
         Me.BtnBrowsePO.Text = "..."
+        Me.BtnBrowsePO.Visible = False
         '
         'LabelControl3
         '
@@ -437,6 +472,7 @@ Partial Class FormProductionPLToWHDet
         Me.PanelControlTopRight.Controls.Add(Me.TxtRetOutNumber)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Controls.Add(Me.DERet)
+        Me.PanelControlTopRight.Controls.Add(Me.BtnBrowsePO)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(648, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
@@ -1110,41 +1146,6 @@ Partial Class FormProductionPLToWHDet
         '
         Me.EPRet.ContainerControl = Me
         '
-        'LabelControl12
-        '
-        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl12.Location = New System.Drawing.Point(10, 87)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl12.TabIndex = 10015
-        Me.LabelControl12.Text = "Vendor"
-        '
-        'TxtVendorCode
-        '
-        Me.TxtVendorCode.EditValue = ""
-        Me.TxtVendorCode.Location = New System.Drawing.Point(82, 84)
-        Me.TxtVendorCode.Name = "TxtVendorCode"
-        Me.TxtVendorCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtVendorCode.Properties.Appearance.Options.UseFont = True
-        Me.TxtVendorCode.Properties.EditValueChangedDelay = 1
-        Me.TxtVendorCode.Properties.ReadOnly = True
-        Me.TxtVendorCode.Size = New System.Drawing.Size(82, 20)
-        Me.TxtVendorCode.TabIndex = 10017
-        Me.TxtVendorCode.TabStop = False
-        '
-        'TxtVendor
-        '
-        Me.TxtVendor.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtVendor.EditValue = ""
-        Me.TxtVendor.Location = New System.Drawing.Point(172, 84)
-        Me.TxtVendor.Name = "TxtVendor"
-        Me.TxtVendor.Properties.EditValueChangedDelay = 1
-        Me.TxtVendor.Properties.ReadOnly = True
-        Me.TxtVendor.Size = New System.Drawing.Size(304, 20)
-        Me.TxtVendor.TabIndex = 10016
-        Me.TxtVendor.TabStop = False
-        '
         'FormProductionPLToWHDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1165,6 +1166,8 @@ Partial Class FormProductionPLToWHDet
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMain.ResumeLayout(False)
         Me.PanelControlTopMain.PerformLayout()
+        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPDAlloc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MEAdrressCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1208,8 +1211,6 @@ Partial Class FormProductionPLToWHDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
