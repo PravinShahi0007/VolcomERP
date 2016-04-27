@@ -2331,6 +2331,47 @@ Public Class FormImportExcel
                         makeSafeGV(GVData)
                     End If
                 End If
+            ElseIf id_pop_up = "23" Then
+                'generate SO new
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+                    If GVData.RowCount > 0 Then
+                        Cursor = Cursors.WaitCursor
+                        'del
+                        Dim query_del As String = "DELETE FROM tb_sales_order_gen_det WHERE id_sales_order_gen='" + FormSalesOrderGen.id_sales_order_gen + "' "
+                        execute_non_query(query_del, True, "", "", "", "")
+
+                        'ins
+                        Dim l_i As Integer = 0
+                        Dim query_ins As String = "INSERT INTO tb_sales_order_gen_det(id_sales_order_gen, id_product, id_comp_contact_from, id_comp_contact_to, sales_order_gen_det_qty) VALUES "
+                        For l As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_sales_order_gen As String = FormSalesOrderGen.id_sales_order_gen
+                            Dim id_product As String = GVData.GetRowCellValue(l, "id_product").ToString
+                            Dim id_comp_contact_from As String = GVData.GetRowCellValue(l, "id_comp_contact_from").ToString
+                            Dim id_comp_contact_to As String = GVData.GetRowCellValue(l, "id_comp_contact_to").ToString
+                            Dim sales_order_gen_det_qty As String = decimalSQL(GVData.GetRowCellValue(l, "Qty").ToString)
+
+                            If l_i > 0 Then
+                                query_ins += ", "
+                            End If
+                            query_ins += "('" + id_sales_order_gen + "', '" + id_product + "', '" + id_comp_contact_from + "', '" + id_comp_contact_to + "', '" + sales_order_gen_det_qty + "') "
+                            l_i += 1
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        If l_i > 0 Then
+                            execute_non_query(query_ins, True, "", "", "", "")
+                        End If
+                        FormSalesOrderGen.viewDetail()
+                        Close()
+                        Cursor = Cursors.Default
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                End If
             End If
         End If
         Cursor = Cursors.Default

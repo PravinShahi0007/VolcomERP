@@ -72,6 +72,7 @@ Partial Class FormSalesOrderGen
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnImportNew = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -88,7 +89,7 @@ Partial Class FormSalesOrderGen
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCNewPrepare = New DevExpress.XtraGrid.GridControl()
         Me.GVNewPrepare = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
-        Me.BtnImportNew = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnSizeSum = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -626,6 +627,18 @@ Partial Class FormSalesOrderGen
         Me.BtnImport.Size = New System.Drawing.Size(124, 33)
         Me.BtnImport.TabIndex = 6
         Me.BtnImport.Text = "Import Excel Old"
+        Me.BtnImport.Visible = False
+        '
+        'BtnImportNew
+        '
+        Me.BtnImportNew.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnImportNew.ImageIndex = 3
+        Me.BtnImportNew.ImageList = Me.LargeImageCollection
+        Me.BtnImportNew.Location = New System.Drawing.Point(725, 0)
+        Me.BtnImportNew.Name = "BtnImportNew"
+        Me.BtnImportNew.Size = New System.Drawing.Size(106, 33)
+        Me.BtnImportNew.TabIndex = 7
+        Me.BtnImportNew.Text = "Import Excel"
         '
         'XTPSummary
         '
@@ -648,11 +661,10 @@ Partial Class FormSalesOrderGen
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumnStyleSum, Me.GridColumnQtySum, Me.GridColumnNoteSum, Me.GridColumnIdProductSum, Me.GridColumnFromSum, Me.GridColumnQtyAllow, Me.GridColumnPrice})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumnStyleSum, Me.GridColumnQtySum, Me.GridColumnNoteSum, Me.GridColumnIdProductSum, Me.GridColumnFromSum, Me.GridColumnQtyAllow, Me.GridColumnPrice, Me.GridColumnSizeSum})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_gen_det_qty", Nothing, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_allow", Me.GridColumnQtyAllow, "{0:n0}")})
         Me.GVSummary.Name = "GVSummary"
-        Me.GVSummary.OptionsBehavior.Editable = False
         Me.GVSummary.OptionsView.ShowFooter = True
         Me.GVSummary.OptionsView.ShowGroupPanel = False
         '
@@ -661,6 +673,7 @@ Partial Class FormSalesOrderGen
         Me.GridColumnNoSum.Caption = "No"
         Me.GridColumnNoSum.FieldName = "no"
         Me.GridColumnNoSum.Name = "GridColumnNoSum"
+        Me.GridColumnNoSum.OptionsColumn.AllowEdit = False
         Me.GridColumnNoSum.Visible = True
         Me.GridColumnNoSum.VisibleIndex = 0
         Me.GridColumnNoSum.Width = 29
@@ -670,6 +683,7 @@ Partial Class FormSalesOrderGen
         Me.GridColumnCodeSum.Caption = "Code"
         Me.GridColumnCodeSum.FieldName = "code"
         Me.GridColumnCodeSum.Name = "GridColumnCodeSum"
+        Me.GridColumnCodeSum.OptionsColumn.ReadOnly = True
         Me.GridColumnCodeSum.Visible = True
         Me.GridColumnCodeSum.VisibleIndex = 1
         Me.GridColumnCodeSum.Width = 96
@@ -679,6 +693,7 @@ Partial Class FormSalesOrderGen
         Me.GridColumnStyleSum.Caption = "Style"
         Me.GridColumnStyleSum.FieldName = "name"
         Me.GridColumnStyleSum.Name = "GridColumnStyleSum"
+        Me.GridColumnStyleSum.OptionsColumn.AllowEdit = False
         Me.GridColumnStyleSum.Visible = True
         Me.GridColumnStyleSum.VisibleIndex = 2
         Me.GridColumnStyleSum.Width = 141
@@ -694,9 +709,10 @@ Partial Class FormSalesOrderGen
         Me.GridColumnQtySum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQtySum.FieldName = "sales_order_gen_det_qty"
         Me.GridColumnQtySum.Name = "GridColumnQtySum"
+        Me.GridColumnQtySum.OptionsColumn.AllowEdit = False
         Me.GridColumnQtySum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_gen_det_qty", "{0:n0}")})
         Me.GridColumnQtySum.Visible = True
-        Me.GridColumnQtySum.VisibleIndex = 5
+        Me.GridColumnQtySum.VisibleIndex = 6
         Me.GridColumnQtySum.Width = 38
         '
         'GridColumnNoteSum
@@ -704,8 +720,9 @@ Partial Class FormSalesOrderGen
         Me.GridColumnNoteSum.Caption = "Note"
         Me.GridColumnNoteSum.FieldName = "note"
         Me.GridColumnNoteSum.Name = "GridColumnNoteSum"
+        Me.GridColumnNoteSum.OptionsColumn.AllowEdit = False
         Me.GridColumnNoteSum.Visible = True
-        Me.GridColumnNoteSum.VisibleIndex = 7
+        Me.GridColumnNoteSum.VisibleIndex = 8
         Me.GridColumnNoteSum.Width = 128
         '
         'GridColumnIdProductSum
@@ -723,7 +740,7 @@ Partial Class FormSalesOrderGen
         Me.GridColumnFromSum.Name = "GridColumnFromSum"
         Me.GridColumnFromSum.OptionsColumn.AllowEdit = False
         Me.GridColumnFromSum.Visible = True
-        Me.GridColumnFromSum.VisibleIndex = 4
+        Me.GridColumnFromSum.VisibleIndex = 5
         Me.GridColumnFromSum.Width = 90
         '
         'GridColumnQtyAllow
@@ -740,7 +757,7 @@ Partial Class FormSalesOrderGen
         Me.GridColumnQtyAllow.OptionsColumn.AllowEdit = False
         Me.GridColumnQtyAllow.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_allow", "{0:n0}")})
         Me.GridColumnQtyAllow.Visible = True
-        Me.GridColumnQtyAllow.VisibleIndex = 6
+        Me.GridColumnQtyAllow.VisibleIndex = 7
         Me.GridColumnQtyAllow.Width = 106
         '
         'GridColumnPrice
@@ -753,7 +770,7 @@ Partial Class FormSalesOrderGen
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.AllowEdit = False
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 3
+        Me.GridColumnPrice.VisibleIndex = 4
         Me.GridColumnPrice.Width = 112
         '
         'PBC
@@ -790,16 +807,14 @@ Partial Class FormSalesOrderGen
         Me.GVNewPrepare.OptionsView.ShowFooter = True
         Me.GVNewPrepare.OptionsView.ShowGroupPanel = False
         '
-        'BtnImportNew
+        'GridColumnSizeSum
         '
-        Me.BtnImportNew.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnImportNew.ImageIndex = 3
-        Me.BtnImportNew.ImageList = Me.LargeImageCollection
-        Me.BtnImportNew.Location = New System.Drawing.Point(725, 0)
-        Me.BtnImportNew.Name = "BtnImportNew"
-        Me.BtnImportNew.Size = New System.Drawing.Size(106, 33)
-        Me.BtnImportNew.TabIndex = 7
-        Me.BtnImportNew.Text = "Import Excel"
+        Me.GridColumnSizeSum.Caption = "Size"
+        Me.GridColumnSizeSum.FieldName = "size"
+        Me.GridColumnSizeSum.Name = "GridColumnSizeSum"
+        Me.GridColumnSizeSum.OptionsColumn.AllowEdit = False
+        Me.GridColumnSizeSum.Visible = True
+        Me.GridColumnSizeSum.VisibleIndex = 3
         '
         'FormSalesOrderGen
         '
@@ -931,4 +946,5 @@ Partial Class FormSalesOrderGen
     Friend WithEvents GCNewPrepare As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVNewPrepare As DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView
     Friend WithEvents BtnImportNew As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnSizeSum As DevExpress.XtraGrid.Columns.GridColumn
 End Class

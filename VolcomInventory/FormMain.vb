@@ -3873,28 +3873,28 @@ Public Class FormMain
                     stopCustom("This data already marked")
                 End If
             ElseIf FormSalesOrder.XTCSOGeneral.SelectedTabPageIndex = 1 Then
-                If check_edit_report_status(FormSalesOrder.GVGen.GetFocusedRowCellValue("id_report_status"), "88", FormSalesOrder.GVGen.GetFocusedRowCellValue("id_sales_order_gen")) Then
-                    confirm = XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                    If confirm = Windows.Forms.DialogResult.Yes Then
-                        Try
-                            Dim id_sales_order_gen As String = FormSalesOrder.GVGen.GetFocusedRowCellValue("id_sales_order_gen")
+                If Not FormSalesOrder.GVGen.GetFocusedRowCellValue("is_submit").ToString = "1" Then
+                    If check_edit_report_status(FormSalesOrder.GVGen.GetFocusedRowCellValue("id_report_status"), "88", FormSalesOrder.GVGen.GetFocusedRowCellValue("id_sales_order_gen")) Then
+                        confirm = XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            Try
+                                Dim id_sales_order_gen As String = FormSalesOrder.GVGen.GetFocusedRowCellValue("id_sales_order_gen")
 
-                            'cancel reserve
-                            Dim cancel As New ClassSalesOrder()
-                            cancel.cancelReservedStockGen(id_sales_order_gen)
+                                query = String.Format("DELETE FROM tb_sales_order_gen WHERE id_sales_order_gen ='{0}'", id_sales_order_gen)
+                                execute_non_query(query, True, "", "", "", "")
 
-                            query = String.Format("DELETE FROM tb_sales_order_gen WHERE id_sales_order_gen ='{0}'", id_sales_order_gen)
-                            execute_non_query(query, True, "", "", "", "")
-
-                            'del mark
-                            delete_all_mark_related("88", id_sales_order_gen)
-                            FormSalesOrder.viewSalesOrderGen()
-                        Catch ex As Exception
-                            errorDelete()
-                        End Try
+                                'del mark
+                                delete_all_mark_related("88", id_sales_order_gen)
+                                FormSalesOrder.viewSalesOrderGen()
+                            Catch ex As Exception
+                                errorDelete()
+                            End Try
+                        End If
+                    Else
+                        stopCustom("This data already marked")
                     End If
                 Else
-                    stopCustom("This data already marked")
+                    stopCustom("This data already submitted")
                 End If
             End If
         ElseIf formName = "FormSalesDelOrder" Then
