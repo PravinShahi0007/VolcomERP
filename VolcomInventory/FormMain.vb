@@ -1083,10 +1083,15 @@ Public Class FormMain
                 FormProductionPLToWHDet.id_pl_prod_order = "0"
                 FormProductionPLToWHDet.ShowDialog()
             Else
-                FormProductionPLToWHDet.action = "ins"
-                FormProductionPLToWHDet.id_pl_prod_order = "0"
-                FormProductionPLToWHDet.id_prod_order = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
-                FormProductionPLToWHDet.ShowDialog()
+                Dim cost As Decimal = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("design_cop")
+                If cost > 0 Then
+                    FormProductionPLToWHDet.action = "ins"
+                    FormProductionPLToWHDet.id_pl_prod_order = "0"
+                    FormProductionPLToWHDet.id_prod_order = FormProductionPLToWH.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                    FormProductionPLToWHDet.ShowDialog()
+                Else
+                    stopCustom("Packing list can't continue process, because there is no cost for this style.")
+                End If
             End If
         ElseIf formName = "FormMatInvoice" Then
             If FormMatInvoice.XTCTabGeneral.SelectedTabPageIndex = 0 Then 'invoice
