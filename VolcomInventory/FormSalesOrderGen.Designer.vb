@@ -85,11 +85,11 @@ Partial Class FormSalesOrderGen
         Me.GridColumnFromSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyAllow = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSizeSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PBC = New DevExpress.XtraEditors.ProgressBarControl()
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCNewPrepare = New DevExpress.XtraGrid.GridControl()
         Me.GVNewPrepare = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
-        Me.GridColumnSizeSum = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -622,12 +622,11 @@ Partial Class FormSalesOrderGen
         Me.BtnImport.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImport.ImageIndex = 3
         Me.BtnImport.ImageList = Me.LargeImageCollection
-        Me.BtnImport.Location = New System.Drawing.Point(601, 0)
+        Me.BtnImport.Location = New System.Drawing.Point(571, 0)
         Me.BtnImport.Name = "BtnImport"
-        Me.BtnImport.Size = New System.Drawing.Size(124, 33)
+        Me.BtnImport.Size = New System.Drawing.Size(154, 33)
         Me.BtnImport.TabIndex = 6
-        Me.BtnImport.Text = "Import Excel Old"
-        Me.BtnImport.Visible = False
+        Me.BtnImport.Text = "Import Excel Per Size"
         '
         'BtnImportNew
         '
@@ -773,6 +772,15 @@ Partial Class FormSalesOrderGen
         Me.GridColumnPrice.VisibleIndex = 4
         Me.GridColumnPrice.Width = 112
         '
+        'GridColumnSizeSum
+        '
+        Me.GridColumnSizeSum.Caption = "Size"
+        Me.GridColumnSizeSum.FieldName = "size"
+        Me.GridColumnSizeSum.Name = "GridColumnSizeSum"
+        Me.GridColumnSizeSum.OptionsColumn.AllowEdit = False
+        Me.GridColumnSizeSum.Visible = True
+        Me.GridColumnSizeSum.VisibleIndex = 3
+        '
         'PBC
         '
         Me.PBC.Dock = System.Windows.Forms.DockStyle.Top
@@ -806,15 +814,6 @@ Partial Class FormSalesOrderGen
         Me.GVNewPrepare.OptionsView.ColumnAutoWidth = True
         Me.GVNewPrepare.OptionsView.ShowFooter = True
         Me.GVNewPrepare.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnSizeSum
-        '
-        Me.GridColumnSizeSum.Caption = "Size"
-        Me.GridColumnSizeSum.FieldName = "size"
-        Me.GridColumnSizeSum.Name = "GridColumnSizeSum"
-        Me.GridColumnSizeSum.OptionsColumn.AllowEdit = False
-        Me.GridColumnSizeSum.Visible = True
-        Me.GridColumnSizeSum.VisibleIndex = 3
         '
         'FormSalesOrderGen
         '
