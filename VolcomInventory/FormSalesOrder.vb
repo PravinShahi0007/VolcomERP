@@ -187,4 +187,10 @@
     Private Sub XTCSOGeneral_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCSOGeneral.SelectedPageChanged
         check_menu()
     End Sub
+
+    Private Sub GVGen_DoubleClick(sender As Object, e As EventArgs) Handles GVGen.DoubleClick
+        If GVGen.FocusedRowHandle >= 0 And GVGen.RowCount > 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
 End Class

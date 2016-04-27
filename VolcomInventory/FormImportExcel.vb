@@ -1,4 +1,6 @@
 ﻿Imports System.Data.OleDb
+Imports MySql.Data.MySqlClient
+
 Public Class FormImportExcel
     Private dataset_field As DataSet
     Public id_pop_up As String = "-1"
@@ -86,6 +88,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select code, wh, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code,wh", oledbconn)
         ElseIf id_pop_up = "21" Then
             MyCommand = New OleDbDataAdapter("select code, wh, store, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code,wh,store", oledbconn)
+        ElseIf id_pop_up = "23" Then
+            MyCommand = New OleDbDataAdapter("select store, code, name, sizetype, s1, s2, s3, s4, s5, s6, s7, s8, s9, s0 from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -1225,6 +1229,50 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom("Incorrect format on table.")
             End Try
+        ElseIf id_pop_up = "23" Then
+            'SO Generate New
+            Dim id_sales_order_gen As String = FormSalesOrderGen.id_sales_order_gen
+            Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+            Dim connection As New MySqlConnection(connection_string)
+            connection.Open()
+
+            Dim command As MySqlCommand = connection.CreateCommand()
+            Dim qry As String = "DROP TABLE IF EXISTS tb_so_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_so_temp AS ( SELECT * FROM ("
+            For d As Integer = 0 To data_temp.Rows.Count - 1
+                If d > 0 Then
+                    qry += "UNION ALL "
+                End If
+                qry += "SELECT '" + id_sales_order_gen + "' AS `id`, '" + data_temp.Rows(d)("store").ToString + "' AS `store`, '" + data_temp.Rows(d)("code").ToString + "' AS `code`, '" + data_temp.Rows(d)("sizetype").ToString + "' AS `sizetype`,  '" + data_temp.Rows(d)("s1").ToString + "' AS `1`, '" + data_temp.Rows(d)("s2").ToString + "' AS `2`, '" + data_temp.Rows(d)("s3").ToString + "' AS `3`, '" + data_temp.Rows(d)("s4").ToString + "' AS `4`, '" + data_temp.Rows(d)("s5").ToString + "' AS `5`, '" + data_temp.Rows(d)("s6").ToString + "' AS `6`, '" + data_temp.Rows(d)("s7").ToString + "' AS `7`, '" + data_temp.Rows(d)("s8").ToString + "' AS `8`, '" + data_temp.Rows(d)("s9").ToString + "' AS `9`, '" + data_temp.Rows(d)("s0").ToString + "' AS `0` "
+            Next
+            qry += ") a ); ALTER TABLE tb_so_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+            command.CommandText = qry
+            command.ExecuteNonQuery()
+            command.Dispose()
+            Console.WriteLine(qry)
+
+            Dim data As New DataTable
+            Dim adapter As New MySqlDataAdapter("CALL view_sales_order_temp(" + id_sales_order_gen + ")", connection)
+            adapter.SelectCommand.CommandTimeout = 300
+            adapter.Fill(data)
+            adapter.Dispose()
+            data.Dispose()
+            GCData.DataSource = data
+
+            connection.Close()
+            connection.Dispose()
+
+            GVData.Columns("id").Visible = False
+            GVData.Columns("id_product").Visible = False
+            GVData.Columns("id_comp_contact_from").Visible = False
+            GVData.Columns("id_comp_contact_to").Visible = False
+            GVData.Columns("Class").Visible = False
+            GVData.Columns("Code").VisibleIndex = 0
+            GVData.Columns("Style").VisibleIndex = 1
+            GVData.Columns("Size").VisibleIndex = 2
+            GVData.Columns("From").VisibleIndex = 3
+            GVData.Columns("To").VisibleIndex = 4
+            GVData.Columns("Qty").VisibleIndex = 5
+            GVData.Columns("Status").VisibleIndex = 6
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2276,6 +2324,47 @@ Public Class FormImportExcel
                             PBC.Update()
                         Next
                         FormSampleReturnPLDet.BtnSave.Focus()
+                        Close()
+                        Cursor = Cursors.Default
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                End If
+            ElseIf id_pop_up = "23" Then
+                'generate SO new
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+                    If GVData.RowCount > 0 Then
+                        Cursor = Cursors.WaitCursor
+                        'del
+                        Dim query_del As String = "DELETE FROM tb_sales_order_gen_det WHERE id_sales_order_gen='" + FormSalesOrderGen.id_sales_order_gen + "' "
+                        execute_non_query(query_del, True, "", "", "", "")
+
+                        'ins
+                        Dim l_i As Integer = 0
+                        Dim query_ins As String = "INSERT INTO tb_sales_order_gen_det(id_sales_order_gen, id_product, id_comp_contact_from, id_comp_contact_to, sales_order_gen_det_qty) VALUES "
+                        For l As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_sales_order_gen As String = FormSalesOrderGen.id_sales_order_gen
+                            Dim id_product As String = GVData.GetRowCellValue(l, "id_product").ToString
+                            Dim id_comp_contact_from As String = GVData.GetRowCellValue(l, "id_comp_contact_from").ToString
+                            Dim id_comp_contact_to As String = GVData.GetRowCellValue(l, "id_comp_contact_to").ToString
+                            Dim sales_order_gen_det_qty As String = decimalSQL(GVData.GetRowCellValue(l, "Qty").ToString)
+
+                            If l_i > 0 Then
+                                query_ins += ", "
+                            End If
+                            query_ins += "('" + id_sales_order_gen + "', '" + id_product + "', '" + id_comp_contact_from + "', '" + id_comp_contact_to + "', '" + sales_order_gen_det_qty + "') "
+                            l_i += 1
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        If l_i > 0 Then
+                            execute_non_query(query_ins, True, "", "", "", "")
+                        End If
+                        FormSalesOrderGen.viewDetail()
                         Close()
                         Cursor = Cursors.Default
                     Else
