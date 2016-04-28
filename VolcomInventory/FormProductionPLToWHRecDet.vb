@@ -166,7 +166,10 @@
 
     'View Storage
     Sub viewComp()
-        Dim query As String = "SELECT a.id_comp, CONCAT(a.comp_number, '-', a.comp_name) AS comp_name, b.comp_cat_name, a.address_primary FROM tb_m_comp a "
+        Dim query As String = "SELECT ('0') AS `id_comp`, '[Select Account]' AS `comp_name`, '-' AS `comp_cat_name`, '-' AS `address_primary` "
+        query += "UNION ALL "
+        query += "(SELECT a.id_comp, CONCAT(a.comp_number, '-', a.comp_name) AS comp_name, b.comp_cat_name, a.address_primary "
+        query += "FROM tb_m_comp a "
         query += "INNER JOIN tb_m_comp_cat b ON a.id_comp_cat = b.id_comp_cat "
         query += "INNER JOIN tb_m_wh_locator c ON a.id_comp = c.id_comp "
         query += "INNER JOIN tb_m_wh_rack d ON c.id_wh_locator = d.id_wh_locator "
@@ -175,7 +178,7 @@
         query += "WHERE a.id_departement = '" + id_departement_user + "' "
         query += "AND a.id_comp_cat = opt.id_comp_cat_wh "
         query += "GROUP BY a.id_comp "
-        query += "ORDER BY a.id_wh_type ASC"
+        query += "ORDER BY a.id_wh_type ASC)"
         viewSearchLookupQuery(SLEStorage, query, "id_comp", "comp_name", "id_comp")
     End Sub
 
@@ -432,6 +435,8 @@
         ElseIf Not cond_check Then
             errorCustom("- Product : '" + sample_check + "' cannot exceed " + allow_sum.ToString("F2") + ", please check in Info Qty !" + System.Environment.NewLine + "- Use 'receiving QC module' for new item product. ")
             infoQty()
+        ElseIf SLEStorage.EditValue.ToString = "0" Then
+            stopCustom("Please choose storage account.")
         Else
             Dim query As String
             Dim pl_prod_order_rec_number As String = ""
