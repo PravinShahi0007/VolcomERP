@@ -98,10 +98,8 @@
                         Else
                             string_filter += " OR [mat_purc_number]='" & po_number & "'"
                         End If
-                        query = String.Format("INSERT INTO tb_mat_purc(id_delivery,mat_purc_number,id_comp_contact_to,id_comp_contact_ship_to,id_po_type,id_payment,mat_purc_date,mat_purc_lead_time,mat_purc_top,id_currency,mat_purc_note,mat_purc_vat,mat_purc_kurs) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',DATE(NOW()),'{6}','{7}','{8}','{9}','{10}','{11}')", id_delivery, po_number, id_comp_to, id_comp_ship_to, "1", "1", "0", "0", "1", notex, "0", "1")
-                        execute_non_query(query, True, "", "", "", "")
+                        query = String.Format("INSERT INTO tb_mat_purc(id_delivery,mat_purc_number,id_comp_contact_to,id_comp_contact_ship_to,id_po_type,id_payment,mat_purc_date,mat_purc_lead_time,mat_purc_top,id_currency,mat_purc_note,mat_purc_vat,mat_purc_kurs) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',DATE(NOW()),'{6}','{7}','{8}','{9}','{10}','{11}');SELECT LAST_INSERT_ID(); ", id_delivery, po_number, id_comp_to, id_comp_ship_to, "1", "1", "0", "0", "1", notex, "0", "1")
 
-                        query = "SELECT LAST_INSERT_ID()"
                         id_purc_new = execute_query(query, 0, True, "", "", "", "")
                         '
                         insert_who_prepared("13", id_purc_new, id_user)

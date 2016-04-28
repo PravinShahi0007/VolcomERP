@@ -594,6 +594,7 @@
             query += " WHERE sales_pos_number = '" + report_number + "' AND id_memo_type='1'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+            'auto posting COA
             id_cc = data.Rows(0)("id_comp").ToString
             report_number = data.Rows(0)("sales_pos_number").ToString
             id_ref = data.Rows(0)("id_sales_pos").ToString

@@ -340,13 +340,10 @@
             Else
                 Try
                     'insert rec
-                    query = String.Format("INSERT INTO tb_mat_wo_rec(id_mat_wo,mat_wo_rec_number,delivery_order_number,delivery_order_date,mat_wo_rec_date,mat_wo_rec_note,id_report_status,id_comp_contact_to,id_wh_drawer) VALUES('{0}','{1}','{2}','{3}',DATE(NOW()),'{4}','{5}','{6}','{7}')", id_order, rec_number, do_number, do_date, rec_note, rec_stats, id_comp_to, id_wh_drawer)
-                    execute_non_query(query, True, "", "", "", "")
-                    increase_inc_mat("4")
-                    '
-                    query = "SELECT LAST_INSERT_ID()"
+                    query = String.Format("INSERT INTO tb_mat_wo_rec(id_mat_wo,mat_wo_rec_number,delivery_order_number,delivery_order_date,mat_wo_rec_date,mat_wo_rec_note,id_report_status,id_comp_contact_to,id_wh_drawer) VALUES('{0}','{1}','{2}','{3}',DATE(NOW()),'{4}','{5}','{6}','{7}');SELECT LAST_INSERT_ID(); ", id_order, rec_number, do_number, do_date, rec_note, rec_stats, id_comp_to, id_wh_drawer)
                     id_rec_new = execute_query(query, 0, True, "", "", "", "")
-                    '
+                    increase_inc_mat("4")
+
                     'rec detail
                     For i As Integer = 0 To GVListPurchase.RowCount - 1
                         Try

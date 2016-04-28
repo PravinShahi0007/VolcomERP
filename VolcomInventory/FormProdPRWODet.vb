@@ -387,14 +387,11 @@
                 Try
                     'insert pr
                     If id_rec = "-1" Then
-                        query = String.Format("INSERT INTO tb_pr_prod_order(id_prod_order_wo, pr_prod_order_number, pr_prod_order_date, pr_prod_order_note, id_report_status, pr_prod_order_vat, pr_prod_order_dp, pr_prod_order_total, id_currency,id_comp_contact_to,pr_prod_order_pib,pr_prod_order_aju) VALUES('{0}','{1}',DATE(NOW()),'{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')", id_prod_order_wo, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, LECurrency.EditValue, id_comp_contact_pay_to, pib, aju)
+                        query = String.Format("INSERT INTO tb_pr_prod_order(id_prod_order_wo, pr_prod_order_number, pr_prod_order_date, pr_prod_order_note, id_report_status, pr_prod_order_vat, pr_prod_order_dp, pr_prod_order_total, id_currency,id_comp_contact_to,pr_prod_order_pib,pr_prod_order_aju) VALUES('{0}','{1}',DATE(NOW()),'{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}');SELECT LAST_INSERT_ID(); ", id_prod_order_wo, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, LECurrency.EditValue, id_comp_contact_pay_to, pib, aju)
                     Else
-                        query = String.Format("INSERT INTO tb_pr_prod_order(id_prod_order_wo, id_prod_order_rec, pr_prod_order_number, pr_prod_order_date, pr_prod_order_note, id_report_status, pr_prod_order_vat, pr_prod_order_dp, pr_prod_order_total, id_currency,id_comp_contact_to,pr_prod_order_pib,pr_prod_order_aju) VALUES('{0}','{1}','{2}',DATE(NOW()),'{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')", id_prod_order_wo, id_rec, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, LECurrency.EditValue, id_comp_contact_pay_to, pib, aju)
+                        query = String.Format("INSERT INTO tb_pr_prod_order(id_prod_order_wo, id_prod_order_rec, pr_prod_order_number, pr_prod_order_date, pr_prod_order_note, id_report_status, pr_prod_order_vat, pr_prod_order_dp, pr_prod_order_total, id_currency,id_comp_contact_to,pr_prod_order_pib,pr_prod_order_aju) VALUES('{0}','{1}','{2}',DATE(NOW()),'{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}');SELECT LAST_INSERT_ID(); ", id_prod_order_wo, id_rec, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, LECurrency.EditValue, id_comp_contact_pay_to, pib, aju)
                     End If
 
-                    execute_non_query(query, True, "", "", "", "")
-                    '
-                    query = "SELECT LAST_INSERT_ID()"
                     id_pr_new = execute_query(query, 0, True, "", "", "", "")
                     'insert who prepared
                     insert_who_prepared("50", id_pr_new, id_user)

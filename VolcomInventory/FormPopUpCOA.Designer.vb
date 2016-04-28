@@ -19,61 +19,61 @@ Partial Class FormPopUpCOA
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPopUpCOA))
-        Me.TreeList1 = New DevExpress.XtraTreeList.TreeList
-        Me.id_acc = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.id_acc_parent = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.ColAccName = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.ColAccDesc = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.id_is_det = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.ButtonEdit2 = New DevExpress.XtraEditors.ButtonEdit
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.ButtonEdit1 = New DevExpress.XtraEditors.ButtonEdit
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton
+        Me.TreeList1 = New DevExpress.XtraTreeList.TreeList()
+        Me.id_acc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.id_acc_parent = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.ColAccName = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.ColAccDesc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.id_is_det = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.ButtonEdit2 = New DevExpress.XtraEditors.ButtonEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.ButtonEdit1 = New DevExpress.XtraEditors.ButtonEdit()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPTableView = New DevExpress.XtraTab.XtraTabPage
-        Me.GCAcc = New DevExpress.XtraGrid.GridControl
-        Me.GVAcc = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.id_company = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.company = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.address_primary = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.is_active = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.is_active_company = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl
-        Me.BCancelTable = New DevExpress.XtraEditors.SimpleButton
-        Me.BPickTable = New DevExpress.XtraEditors.SimpleButton
-        Me.XTPAccount = New DevExpress.XtraTab.XtraTabPage
-        Me.XTPOpenTrans = New DevExpress.XtraTab.XtraTabPage
-        Me.GCJournalDet = New DevExpress.XtraGrid.GridControl
-        Me.GVJournalDet = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-        Me.GridColumnIdJurnal = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnJurnalNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnJournalDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnEntry = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl
-        Me.BCancelOT = New DevExpress.XtraEditors.SimpleButton
-        Me.BPickOT = New DevExpress.XtraEditors.SimpleButton
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPTableView = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCAcc = New DevExpress.XtraGrid.GridControl()
+        Me.GVAcc = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.id_company = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.company = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.address_primary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.is_active = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.is_active_company = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancelTable = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPickTable = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPAccount = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPOpenTrans = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCJournalDet = New DevExpress.XtraGrid.GridControl()
+        Me.GVJournalDet = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnIdJurnal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnJurnalNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnJournalDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEntry = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancelOT = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPickOT = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.TreeList1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -111,10 +111,12 @@ Partial Class FormPopUpCOA
         Me.TreeList1.OptionsBehavior.AutoPopulateColumns = False
         Me.TreeList1.OptionsBehavior.Editable = False
         Me.TreeList1.OptionsBehavior.EnableFiltering = True
+        Me.TreeList1.OptionsFind.AllowFindPanel = True
+        Me.TreeList1.OptionsFind.AlwaysVisible = True
         Me.TreeList1.OptionsView.EnableAppearanceEvenRow = True
         Me.TreeList1.ParentFieldName = "id_acc_parent"
         Me.TreeList1.RootValue = "0"
-        Me.TreeList1.Size = New System.Drawing.Size(809, 277)
+        Me.TreeList1.Size = New System.Drawing.Size(809, 275)
         Me.TreeList1.TabIndex = 7
         '
         'id_acc
@@ -184,8 +186,8 @@ Partial Class FormPopUpCOA
         Me.ButtonEdit2.Name = "ButtonEdit2"
         Me.ButtonEdit2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.ButtonEdit2.Properties.Appearance.Options.UseFont = True
-        Me.ButtonEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
-        Me.ButtonEdit2.Size = New System.Drawing.Size(693, 23)
+        Me.ButtonEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.ButtonEdit2.Size = New System.Drawing.Size(693, 22)
         Me.ButtonEdit2.TabIndex = 2
         '
         'LabelControl1
@@ -203,8 +205,8 @@ Partial Class FormPopUpCOA
         Me.ButtonEdit1.Name = "ButtonEdit1"
         Me.ButtonEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.ButtonEdit1.Properties.Appearance.Options.UseFont = True
-        Me.ButtonEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
-        Me.ButtonEdit1.Size = New System.Drawing.Size(693, 23)
+        Me.ButtonEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.ButtonEdit1.Size = New System.Drawing.Size(693, 22)
         Me.ButtonEdit1.TabIndex = 0
         '
         'PanelControl2
@@ -212,7 +214,7 @@ Partial Class FormPopUpCOA
         Me.PanelControl2.Controls.Add(Me.BCancel)
         Me.PanelControl2.Controls.Add(Me.BSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 346)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 344)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(809, 33)
         Me.PanelControl2.TabIndex = 8
@@ -272,7 +274,7 @@ Partial Class FormPopUpCOA
         Me.XTPTableView.Controls.Add(Me.GCAcc)
         Me.XTPTableView.Controls.Add(Me.PanelControl4)
         Me.XTPTableView.Name = "XTPTableView"
-        Me.XTPTableView.Size = New System.Drawing.Size(809, 379)
+        Me.XTPTableView.Size = New System.Drawing.Size(809, 377)
         Me.XTPTableView.Text = "Account (Table View)"
         '
         'GCAcc
@@ -282,7 +284,7 @@ Partial Class FormPopUpCOA
         Me.GCAcc.MainView = Me.GVAcc
         Me.GCAcc.Name = "GCAcc"
         Me.GCAcc.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.is_active_company, Me.RepositoryItemCheckEdit1})
-        Me.GCAcc.Size = New System.Drawing.Size(809, 346)
+        Me.GCAcc.Size = New System.Drawing.Size(809, 344)
         Me.GCAcc.TabIndex = 5
         Me.GCAcc.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAcc})
         '
@@ -371,7 +373,7 @@ Partial Class FormPopUpCOA
         Me.PanelControl4.Controls.Add(Me.BCancelTable)
         Me.PanelControl4.Controls.Add(Me.BPickTable)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 346)
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 344)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(809, 33)
         Me.PanelControl4.TabIndex = 9
@@ -405,7 +407,7 @@ Partial Class FormPopUpCOA
         Me.XTPAccount.Controls.Add(Me.PanelControl2)
         Me.XTPAccount.Controls.Add(Me.PanelControl1)
         Me.XTPAccount.Name = "XTPAccount"
-        Me.XTPAccount.Size = New System.Drawing.Size(809, 379)
+        Me.XTPAccount.Size = New System.Drawing.Size(809, 377)
         Me.XTPAccount.Text = "Account (Tree View)"
         '
         'XTPOpenTrans
@@ -414,7 +416,7 @@ Partial Class FormPopUpCOA
         Me.XTPOpenTrans.Controls.Add(Me.PanelControl3)
         Me.XTPOpenTrans.Name = "XTPOpenTrans"
         Me.XTPOpenTrans.PageVisible = False
-        Me.XTPOpenTrans.Size = New System.Drawing.Size(809, 379)
+        Me.XTPOpenTrans.Size = New System.Drawing.Size(809, 377)
         Me.XTPOpenTrans.Text = "Open Transaction"
         '
         'GCJournalDet
@@ -424,7 +426,7 @@ Partial Class FormPopUpCOA
         Me.GCJournalDet.MainView = Me.GVJournalDet
         Me.GCJournalDet.Name = "GCJournalDet"
         Me.GCJournalDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
-        Me.GCJournalDet.Size = New System.Drawing.Size(809, 346)
+        Me.GCJournalDet.Size = New System.Drawing.Size(809, 344)
         Me.GCJournalDet.TabIndex = 14
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
         '
@@ -573,7 +575,7 @@ Partial Class FormPopUpCOA
         Me.PanelControl3.Controls.Add(Me.BCancelOT)
         Me.PanelControl3.Controls.Add(Me.BPickOT)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 346)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 344)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(809, 33)
         Me.PanelControl3.TabIndex = 15

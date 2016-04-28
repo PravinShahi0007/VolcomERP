@@ -2960,10 +2960,8 @@ Module Common
         Dim query As String = String.Format("SELECT COUNT(id_acc) FROM tb_a_acc WHERE acc_name='{0}' AND id_acc_parent='{1}'", acc_name, id_acc_parent)
         Dim jml As Integer = execute_query(query, 0, True, "", "", "", "")
         If jml < 1 Then 'create acc
-            query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det) VALUES('{0}','{1}','{2}',(SELECT a.id_acc_cat FROM tb_a_acc a WHERE a.id_acc='{2}'),'2')", acc_name, acc_description, id_acc_parent)
-            execute_non_query(query, True, "", "", "", "")
+            query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det) VALUES('{0}','{1}','{2}',(SELECT a.id_acc_cat FROM tb_a_acc a WHERE a.id_acc='{2}'),'2');SELECT LAST_INSERT_ID(); ", acc_name, acc_description, id_acc_parent)
 
-            query = "SELECT LAST_INSERT_ID()"
             id_acc_x = execute_query(query, 0, True, "", "", "", "")
 
             Return id_acc_x

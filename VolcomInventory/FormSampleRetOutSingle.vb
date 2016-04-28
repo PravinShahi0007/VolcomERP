@@ -153,13 +153,10 @@
                 Try
                     'Main tbale
                     query = "INSERT INTO tb_sample_purc_ret_out(id_sample_purc, sample_purc_ret_out_number, id_comp_contact_to, id_comp_contact_from, sample_purc_ret_out_date, sample_purc_ret_out_due_date, sample_purc_ret_out_note, id_report_status) "
-                    query += "VALUES('" + id_sample_purc + "', '" + sample_purc_ret_out_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', '" + sample_purc_ret_out_date + "', '" + sample_purc_ret_out_due_date + "', '" + sample_purc_ret_out_note + "', '" + id_report_status + "') "
-                    execute_non_query(query, True, "", "", "", "")
-                    increase_inc("6")
-
-                    'Get Id 
-                    query = "SELECT LAST_INSERT_ID() "
+                    query += "VALUES('" + id_sample_purc + "', '" + sample_purc_ret_out_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', '" + sample_purc_ret_out_date + "', '" + sample_purc_ret_out_due_date + "', '" + sample_purc_ret_out_note + "', '" + id_report_status + "');SELECT LAST_INSERT_ID(); "
                     id_sample_purc_ret_out = execute_query(query, 0, True, "", "", "", "")
+
+                    increase_inc("6")
 
                     'insert who prepared
                     insert_who_prepared("5", id_sample_purc_ret_out, id_user)

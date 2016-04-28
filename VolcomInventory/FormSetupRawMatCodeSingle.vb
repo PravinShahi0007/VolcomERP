@@ -159,9 +159,8 @@
                 End If
 
                 If action = "ins" Then
-                    query = String.Format("INSERT INTO tb_m_raw_mat_code(raw_mat_code_name, is_default, is_active) VALUES('{0}', '{1}', '{2}')", raw_mat_code_name, is_default, is_active)
-                    execute_non_query(query, True, "", "", "", "")
-                    query = "SELECT LAST_INSERT_ID()"
+                    query = String.Format("INSERT INTO tb_m_raw_mat_code(raw_mat_code_name, is_default, is_active) VALUES('{0}', '{1}', '{2}');SELECT LAST_INSERT_ID(); ", raw_mat_code_name, is_default, is_active)
+
                     id_raw_mat_code = execute_query(query, 0, True, "", "", "", "")
                     For i = 0 To (LBCCriteriaSelected.Items.Count - 1)
                         query = "SELECT id_code_lookup FROM tb_m_raw_mat_code_lookup WHERE code_lookup='" + LBCCriteriaSelected.GetItemValue(i).ToString + "'"

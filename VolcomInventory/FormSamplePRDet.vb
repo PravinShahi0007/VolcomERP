@@ -366,10 +366,8 @@
             Else
                 Try
                     'insert pr
-                    query = String.Format("INSERT INTO tb_pr_sample_purc(id_sample_purc,id_sample_purc_rec,pr_sample_purc_number,pr_sample_purc_date,pr_sample_purc_note,id_report_status,pr_sample_purc_vat,pr_sample_purc_dp,pr_sample_purc_total,id_comp_contact_to) VALUES('{0}','{1}','{2}',DATE(NOW()),'{3}','{4}','{5}','{6}','{7}','{8}')", id_purc, id_rec, pr_number, pr_note, pr_stats, decimalSQL(pr_vat.ToString), decimalSQL(pr_dp.ToString), decimalSQL(pr_tot.ToString), id_comp_contact_pay_to)
-                    execute_non_query(query, True, "", "", "", "")
-                    '
-                    query = "SELECT LAST_INSERT_ID()"
+                    query = String.Format("INSERT INTO tb_pr_sample_purc(id_sample_purc,id_sample_purc_rec,pr_sample_purc_number,pr_sample_purc_date,pr_sample_purc_note,id_report_status,pr_sample_purc_vat,pr_sample_purc_dp,pr_sample_purc_total,id_comp_contact_to) VALUES('{0}','{1}','{2}',DATE(NOW()),'{3}','{4}','{5}','{6}','{7}','{8}');SELECT LAST_INSERT_ID();", id_purc, id_rec, pr_number, pr_note, pr_stats, decimalSQL(pr_vat.ToString), decimalSQL(pr_dp.ToString), decimalSQL(pr_tot.ToString), id_comp_contact_pay_to)
+
                     id_pr_new = execute_query(query, 0, True, "", "", "", "")
                     'insert who prepared
                     insert_who_prepared("4", id_pr_new, id_user)
