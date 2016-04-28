@@ -40,10 +40,8 @@
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         If id_mat_so_det = "-1" Then 'new
-            Dim query As String = "INSERT INTO tb_mat_so_det(id_mat_so,id_mat_det,mat_so_det_qty,mat_so_det_note,mat_so_det_date,id_pl_category) VALUES('" & id_mat_so & "','" & id_mat_det & "','" & decimalSQL(SPQtyPL.EditValue.ToString) & "','" & addSlashes(TENote.Text) & "',NOW(),'" & LEPLCategory.EditValue.ToString & "')"
-            execute_non_query(query, True, "", "", "", "")
+            Dim query As String = "INSERT INTO tb_mat_so_det(id_mat_so,id_mat_det,mat_so_det_qty,mat_so_det_note,mat_so_det_date,id_pl_category) VALUES('" & id_mat_so & "','" & id_mat_det & "','" & decimalSQL(SPQtyPL.EditValue.ToString) & "','" & addSlashes(TENote.Text) & "',NOW(),'" & LEPLCategory.EditValue.ToString & "');SELECT LAST_INSERT_ID(); "
 
-            query = "SELECT LAST_INSERT_ID() "
             id_mat_so_det = execute_query(query, 0, True, "", "", "", "")
 
             query = "UPDATE tb_mat_so SET mat_so_last_update=NOW() WHERE id_mat_so='" & id_mat_so & "'"

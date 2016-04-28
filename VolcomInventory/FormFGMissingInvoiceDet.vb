@@ -289,11 +289,8 @@
                     Try
                         'Main tbale
                         Dim query As String = "INSERT INTO tb_fg_missing_invoice(id_store_contact_to, fg_missing_invoice_number, fg_missing_invoice_date, fg_missing_invoice_due_date, fg_missing_invoice_start_period, fg_missing_invoice_end_period, fg_missing_invoice_discount, fg_missing_invoice_vat, fg_missing_invoice_total, fg_missing_invoice_note, id_report_status) "
-                        query += "VALUES('" + id_store_contact_to + "', '" + fg_missing_invoice_number + "', NOW(), '" + fg_missing_invoice_due_date + "', '" + fg_missing_invoice_start_period + "', '" + fg_missing_invoice_end_period + "',  '" + fg_missing_invoice_discount + "', '" + fg_missing_invoice_vat + "', '" + fg_missing_invoice_total + "', '" + fg_missing_invoice_note + "', '" + id_report_status + "') "
-                        execute_non_query(query, True, "", "", "", "")
+                        query += "VALUES('" + id_store_contact_to + "', '" + fg_missing_invoice_number + "', NOW(), '" + fg_missing_invoice_due_date + "', '" + fg_missing_invoice_start_period + "', '" + fg_missing_invoice_end_period + "',  '" + fg_missing_invoice_discount + "', '" + fg_missing_invoice_vat + "', '" + fg_missing_invoice_total + "', '" + fg_missing_invoice_note + "', '" + id_report_status + "');SELECT LAST_INSERT_ID(); "
 
-                        'Get Id 
-                        query = "SELECT LAST_INSERT_ID() "
                         id_fg_missing_invoice = execute_query(query, 0, True, "", "", "", "")
 
                         increase_inc_sales("11")

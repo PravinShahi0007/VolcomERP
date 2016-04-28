@@ -139,13 +139,10 @@
             If id_comp_contact = "-1" Then
                 stopCustom("Please choose stock opname source.")
             Else
-                Dim query As String = "INSERT INTO tb_mat_so(mat_so_number,mat_so_date_created,mat_so_last_update,id_comp_contact) VALUES('" & addSlashes(TESoNumber.Text) & "',NOW(),NOW(),'" & id_comp_contact & "')"
-                execute_non_query(query, True, "", "", "", "")
+                Dim query As String = "INSERT INTO tb_mat_so(mat_so_number,mat_so_date_created,mat_so_last_update,id_comp_contact) VALUES('" & addSlashes(TESoNumber.Text) & "',NOW(),NOW(),'" & id_comp_contact & "');SELECT LAST_INSERT_ID(); "
+                id_mat_so = execute_query(query, 0, True, "", "", "", "")
 
                 infoCustom("Stock Opname prepared.")
-
-                query = "SELECT LAST_INSERT_ID() "
-                id_mat_so = execute_query(query, 0, True, "", "", "", "")
 
                 increase_inc_mat("15")
 

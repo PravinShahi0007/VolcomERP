@@ -104,9 +104,8 @@
         Else
             If id_trans = "-1" Then
                 'new
-                Dim query As String = String.Format("INSERT INTO tb_a_acc_trans(acc_trans_number,date_created,id_user,acc_trans_note) VALUES('{0}',NOW(),'{1}','{2}')", TENumber.Text, id_user, MENote.Text)
-                execute_non_query(query, True, "", "", "", "")
-                query = "SELECT LAST_INSERT_ID()"
+                Dim query As String = String.Format("INSERT INTO tb_a_acc_trans(acc_trans_number,date_created,id_user,acc_trans_note) VALUES('{0}',NOW(),'{1}','{2}');SELECT LAST_INSERT_ID(); ", TENumber.Text, id_user, MENote.Text)
+
                 id_trans = execute_query(query, 0, True, "", "", "", "")
 
                 increase_inc_acc("1")

@@ -268,9 +268,8 @@
 
             If action = "ins" Then
                 Try
-                    query = String.Format("INSERT INTO tb_m_raw_mat_detail(id_raw_mat, id_raw_mat_code, id_season, raw_mat_code, id_item_color, id_item_lot, id_item_size, id_method, is_active, raw_mat_detail) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}')", id_raw_mat, id_raw_mat_code, id_season, raw_mat_code, id_item_color, id_item_lot, id_item_size, id_method, is_active, raw_mat_detail)
-                    execute_non_query(query, True, "", "", "", "")
-                    query = "SELECT LAST_INSERT_ID()"
+                    query = String.Format("INSERT INTO tb_m_raw_mat_detail(id_raw_mat, id_raw_mat_code, id_season, raw_mat_code, id_item_color, id_item_lot, id_item_size, id_method, is_active, raw_mat_detail) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');SELECT LAST_INSERT_ID(); ", id_raw_mat, id_raw_mat_code, id_season, raw_mat_code, id_item_color, id_item_lot, id_item_size, id_method, is_active, raw_mat_detail)
+
                     id_raw_mat_detail = execute_query(query, 0, True, "", "", "", "")
                     query = String.Format("INSERT INTO tb_m_raw_mat_supplier(id_raw_mat_detail, id_company, unit_price, is_default) VALUES ('{0}', '{1}', '{2}', '1')", id_raw_mat_detail, id_company, unit_price)
                     execute_non_query(query, True, "", "", "", "")
