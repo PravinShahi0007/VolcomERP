@@ -96,12 +96,9 @@
                 Try
                     'insert master mat
                     query = "INSERT INTO tb_m_mat(mat_name, mat_display_name, id_uom, mat_code, id_mat_cat) "
-                    query += "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}') "
+                    query += "VALUES ('{0}', '{1}', '{2}', '{3}', '{4}');SELECT LAST_INSERT_ID(); "
                     query = String.Format(query, mat_name, mat_display_name, id_uom, mat_code, id_mat_cat)
-                    execute_non_query(query, True, "", "", "", "")
 
-                    'insert code
-                    query = "SELECT LAST_INSERT_ID()"
                     id_mat = execute_query(query, 0, True, "", "", "", "")
                     query = String.Format("DELETE FROM tb_m_mat_code WHERE id_mat='" & id_mat & "'")
                     execute_non_query(query, True, "", "", "", "")

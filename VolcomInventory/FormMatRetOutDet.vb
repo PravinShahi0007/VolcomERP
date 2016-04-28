@@ -159,14 +159,10 @@
                 Try
                     'Main tbale
                     query = "INSERT INTO tb_mat_purc_ret_out(id_mat_purc, mat_purc_ret_out_number, id_comp_contact_to, id_comp_contact_from, mat_purc_ret_out_date, mat_purc_ret_out_due_date, mat_purc_ret_out_note, id_report_status) "
-                    query += "VALUES('" + id_mat_purc + "', '" + mat_purc_ret_out_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', NOW(), '" + mat_purc_ret_out_due_date + "', '" + mat_purc_ret_out_note + "', '" + id_report_status + "') "
-                    execute_non_query(query, True, "", "", "", "")
-                    increase_inc_mat("5")
-
-                    'Get Id 
-                    query = "SELECT LAST_INSERT_ID() "
+                    query += "VALUES('" + id_mat_purc + "', '" + mat_purc_ret_out_number + "', '" + id_comp_contact_to + "', '" + id_comp_contact_from + "', NOW(), '" + mat_purc_ret_out_due_date + "', '" + mat_purc_ret_out_note + "', '" + id_report_status + "');SELECT LAST_INSERT_ID(); "
                     id_mat_purc_ret_out = execute_query(query, 0, True, "", "", "", "")
 
+                    increase_inc_mat("5")
                     'insert who prepared
                     insert_who_prepared("18", id_mat_purc_ret_out, id_user)
 

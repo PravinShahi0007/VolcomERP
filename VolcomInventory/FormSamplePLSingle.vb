@@ -319,12 +319,8 @@
                 'Try
                 'Main table
                 query = "INSERT INTO tb_pl_sample_purc(id_sample_purc, pl_sample_purc_number, id_pl_category, id_comp_contact_from, id_comp_contact_to, pl_sample_purc_date, pl_sample_purc_note, id_report_status) "
-                query += "VALUES('" + id_sample_purc + "', '" + pl_sample_purc_number + "', '" + id_pl_category + "', '" + id_comp_contact_from + "', '" + id_comp_contact_to + "', '" + pl_sample_purc_date + "', '" + pl_sample_purc_note + "', '" + id_report_status + "')"
-                execute_non_query(query, True, "", "", "", "")
+                query += "VALUES('" + id_sample_purc + "', '" + pl_sample_purc_number + "', '" + id_pl_category + "', '" + id_comp_contact_from + "', '" + id_comp_contact_to + "', '" + pl_sample_purc_date + "', '" + pl_sample_purc_note + "', '" + id_report_status + "');SELECT LAST_INSERT_ID(); "
 
-
-                'get id main
-                query = "SELECT LAST_INSERT_ID()"
                 id_pl_sample_purc = execute_query(query, 0, True, "", "", "", "")
                 increase_inc("3")
 

@@ -300,11 +300,8 @@
                     Try
                         'Main tbale
                         Dim query As String = "INSERT INTO tb_sales_invoice(id_store_contact_to, sales_invoice_number, sales_invoice_date, sales_invoice_due_date, sales_invoice_start_period, sales_invoice_end_period, sales_invoice_discount, sales_invoice_vat, sales_invoice_total, sales_invoice_note, id_so_type, id_report_status) "
-                        query += "VALUES('" + id_store_contact_to + "', '" + sales_invoice_number + "', NOW(), '" + sales_invoice_due_date + "', '" + sales_invoice_start_period + "', '" + sales_invoice_end_period + "',  '" + sales_invoice_discount + "', '" + sales_invoice_vat + "', '" + sales_invoice_total + "', '" + sales_invoice_note + "', '" + id_so_type + "', '" + id_report_status + "') "
-                        execute_non_query(query, True, "", "", "", "")
+                        query += "VALUES('" + id_store_contact_to + "', '" + sales_invoice_number + "', NOW(), '" + sales_invoice_due_date + "', '" + sales_invoice_start_period + "', '" + sales_invoice_end_period + "',  '" + sales_invoice_discount + "', '" + sales_invoice_vat + "', '" + sales_invoice_total + "', '" + sales_invoice_note + "', '" + id_so_type + "', '" + id_report_status + "');SELECT LAST_INSERT_ID();  "
 
-                        'Get Id 
-                        query = "SELECT LAST_INSERT_ID() "
                         id_sales_invoice = execute_query(query, 0, True, "", "", "", "")
 
                         increase_inc_sales("8")

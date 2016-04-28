@@ -410,10 +410,8 @@
             Else
                 Try
                     'insert pr
-                    query = String.Format("INSERT INTO tb_pr_mat_wo(id_mat_wo, id_mat_wo_rec, pr_mat_wo_number, pr_mat_wo_date, pr_mat_wo_note, id_report_status, pr_mat_wo_vat, pr_mat_wo_dp, pr_mat_wo_total,id_comp_contact_to,pr_mat_wo_bill,pr_mat_wo_tax_inv) VALUES('{0}','{1}','{2}',DATE(NOW()),'{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')", id_purc, id_rec, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, id_comp_contact_pay_to, pr_bill, pr_tax_inv)
-                    execute_non_query(query, True, "", "", "", "")
-                    '
-                    query = "SELECT LAST_INSERT_ID()"
+                    query = String.Format("INSERT INTO tb_pr_mat_wo(id_mat_wo, id_mat_wo_rec, pr_mat_wo_number, pr_mat_wo_date, pr_mat_wo_note, id_report_status, pr_mat_wo_vat, pr_mat_wo_dp, pr_mat_wo_total,id_comp_contact_to,pr_mat_wo_bill,pr_mat_wo_tax_inv) VALUES('{0}','{1}','{2}',DATE(NOW()),'{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}');SELECT LAST_INSERT_ID(); ", id_purc, id_rec, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, id_comp_contact_pay_to, pr_bill, pr_tax_inv)
+
                     id_pr_new = execute_query(query, 0, True, "", "", "", "")
                     'insert who prepared
                     insert_who_prepared("25", id_pr_new, id_user)

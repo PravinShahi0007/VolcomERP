@@ -37,10 +37,8 @@
         Dim percent As Decimal = SEProgress.EditValue
         If id_wo_prog = "-1" Then
             'new
-            Dim query As String = "INSERT INTO tb_prod_order_wo_prog(id_prod_order_wo,prod_order_wo_prog_note,prod_order_wo_prog_date,prod_order_wo_prog_percent) VALUES('{0}','{1}',NOW(),'{2}')"
+            Dim query As String = "INSERT INTO tb_prod_order_wo_prog(id_prod_order_wo,prod_order_wo_prog_note,prod_order_wo_prog_date,prod_order_wo_prog_percent) VALUES('{0}','{1}',NOW(),'{2}');SELECT LAST_INSERT_ID(); "
             query = String.Format(query, id_wo, note, decimalSQL(percent.ToString))
-            execute_non_query(query, True, "", "", "", "")
-            query = "SELECT LAST_INSERT_ID()"
             Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
             Close()
             FormProductionDet.view_wo()

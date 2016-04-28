@@ -19,34 +19,34 @@ Partial Class FormAccounting
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
-        Me.XTCGeneral = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPAccount = New DevExpress.XtraTab.XtraTabPage
-        Me.GCAcc = New DevExpress.XtraGrid.GridControl
-        Me.GVAcc = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.id_company = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.company = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.address_primary = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.is_active = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.is_active_company = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.XTPTreeList = New DevExpress.XtraTab.XtraTabPage
-        Me.TreeList1 = New DevExpress.XtraTreeList.TreeList
-        Me.id_acc = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.id_acc_parent = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.ColAccName = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.ColAccDesc = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.ColDebit = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.ColCredit = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.ColIdAllChild = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.TreeListColumn1 = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.TreeListColumn2 = New DevExpress.XtraTreeList.Columns.TreeListColumn
-        Me.TreeListColumn3 = New DevExpress.XtraTreeList.Columns.TreeListColumn
+        Me.components = New System.ComponentModel.Container()
+        Me.XTCGeneral = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPAccount = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCAcc = New DevExpress.XtraGrid.GridControl()
+        Me.GVAcc = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.id_company = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.company = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.address_primary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.is_active = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.is_active_company = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.XTPTreeList = New DevExpress.XtraTab.XtraTabPage()
+        Me.TreeList1 = New DevExpress.XtraTreeList.TreeList()
+        Me.id_acc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.id_acc_parent = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.ColAccName = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.ColAccDesc = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.ColDebit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.ColCredit = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.ColIdAllChild = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TreeListColumn1 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TreeListColumn2 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
+        Me.TreeListColumn3 = New DevExpress.XtraTreeList.Columns.TreeListColumn()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem
+        Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCGeneral.SuspendLayout()
         Me.XTPAccount.SuspendLayout()
@@ -75,7 +75,7 @@ Partial Class FormAccounting
         '
         Me.XTPAccount.Controls.Add(Me.GCAcc)
         Me.XTPAccount.Name = "XTPAccount"
-        Me.XTPAccount.Size = New System.Drawing.Size(710, 360)
+        Me.XTPAccount.Size = New System.Drawing.Size(708, 360)
         Me.XTPAccount.Text = "Chart Of Account"
         '
         'GCAcc
@@ -85,7 +85,7 @@ Partial Class FormAccounting
         Me.GCAcc.MainView = Me.GVAcc
         Me.GCAcc.Name = "GCAcc"
         Me.GCAcc.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.is_active_company, Me.RepositoryItemCheckEdit1})
-        Me.GCAcc.Size = New System.Drawing.Size(710, 360)
+        Me.GCAcc.Size = New System.Drawing.Size(708, 360)
         Me.GCAcc.TabIndex = 4
         Me.GCAcc.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAcc})
         '
@@ -175,7 +175,7 @@ Partial Class FormAccounting
         '
         Me.XTPTreeList.Controls.Add(Me.TreeList1)
         Me.XTPTreeList.Name = "XTPTreeList"
-        Me.XTPTreeList.Size = New System.Drawing.Size(710, 360)
+        Me.XTPTreeList.Size = New System.Drawing.Size(708, 360)
         Me.XTPTreeList.Text = "View Ledger"
         '
         'TreeList1
@@ -187,10 +187,12 @@ Partial Class FormAccounting
         Me.TreeList1.Name = "TreeList1"
         Me.TreeList1.OptionsBehavior.AutoPopulateColumns = False
         Me.TreeList1.OptionsBehavior.Editable = False
+        Me.TreeList1.OptionsFind.AllowFindPanel = True
+        Me.TreeList1.OptionsFind.AlwaysVisible = True
         Me.TreeList1.OptionsView.EnableAppearanceEvenRow = True
         Me.TreeList1.ParentFieldName = "id_acc_parent"
         Me.TreeList1.RootValue = "0"
-        Me.TreeList1.Size = New System.Drawing.Size(710, 360)
+        Me.TreeList1.Size = New System.Drawing.Size(708, 360)
         Me.TreeList1.TabIndex = 0
         '
         'id_acc

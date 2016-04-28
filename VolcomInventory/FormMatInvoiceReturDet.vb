@@ -192,10 +192,8 @@
                 errorInput()
             Else
                 Try
-                    query = String.Format("INSERT INTO tb_inv_pl_mrs_ret(id_inv_pl_mrs,inv_pl_mrs_ret_number,id_comp_contact_from,inv_pl_mrs_ret_date,inv_pl_mrs_ret_vat,inv_pl_mrs_ret_top,inv_pl_mrs_ret_note,id_currency) VALUES('{0}','{1}','{2}',NOW(),'{3}','{4}','{5}','{6}')", id_invoice, TEReturNumber.Text, id_comp_to, decimalSQL(TEVat.EditValue.ToString), TETOP.EditValue.ToString, MENote.Text, LECurrency.EditValue.ToString)
-                    execute_non_query(query, True, "", "", "", "")
-                    '
-                    query = "SELECT LAST_INSERT_ID()"
+                    query = String.Format("INSERT INTO tb_inv_pl_mrs_ret(id_inv_pl_mrs,inv_pl_mrs_ret_number,id_comp_contact_from,inv_pl_mrs_ret_date,inv_pl_mrs_ret_vat,inv_pl_mrs_ret_top,inv_pl_mrs_ret_note,id_currency) VALUES('{0}','{1}','{2}',NOW(),'{3}','{4}','{5}','{6}');SELECT LAST_INSERT_ID(); ", id_invoice, TEReturNumber.Text, id_comp_to, decimalSQL(TEVat.EditValue.ToString), TETOP.EditValue.ToString, MENote.Text, LECurrency.EditValue.ToString)
+
                     id_retur = execute_query(query, 0, True, "", "", "", "")
                     'insert who prepared
                     insert_who_prepared("35", id_retur, id_user)

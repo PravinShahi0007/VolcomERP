@@ -81,10 +81,8 @@
         Else
             If id_trans_adj = "-1" Then
                 'new
-                Dim query As String = String.Format("INSERT INTO tb_a_acc_trans_adj(id_acc_trans,acc_trans_adj_number,date_created,id_user,acc_trans_adj_note) VALUES('{3}','{0}',NOW(),'{1}','{2}')", TENumber.Text, id_user, MENote.Text, id_trans)
-                execute_non_query(query, True, "", "", "", "")
+                Dim query As String = String.Format("INSERT INTO tb_a_acc_trans_adj(id_acc_trans,acc_trans_adj_number,date_created,id_user,acc_trans_adj_note) VALUES('{3}','{0}',NOW(),'{1}','{2}');SELECT LAST_INSERT_ID(); ", TENumber.Text, id_user, MENote.Text, id_trans)
 
-                query = "SELECT LAST_INSERT_ID()"
                 id_trans_adj = execute_query(query, 0, True, "", "", "", "")
 
                 'entry detail
