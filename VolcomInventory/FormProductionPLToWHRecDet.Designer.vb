@@ -477,7 +477,6 @@ Partial Class FormProductionPLToWHRecDet
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl3)
         Me.PanelControlTopMain.Controls.Add(Me.BtnInfoSrs)
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl4)
-        Me.PanelControlTopMain.Controls.Add(Me.BtnBrowsePO)
         Me.PanelControlTopMain.Controls.Add(Me.TxtOrderNumber)
         Me.PanelControlTopMain.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopMain.Location = New System.Drawing.Point(124, 2)
@@ -702,11 +701,12 @@ Partial Class FormProductionPLToWHRecDet
         Me.BtnBrowsePO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowsePO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowsePO.Appearance.Options.UseFont = True
-        Me.BtnBrowsePO.Location = New System.Drawing.Point(326, 7)
+        Me.BtnBrowsePO.Location = New System.Drawing.Point(7, 109)
         Me.BtnBrowsePO.Name = "BtnBrowsePO"
         Me.BtnBrowsePO.Size = New System.Drawing.Size(23, 20)
         Me.BtnBrowsePO.TabIndex = 0
         Me.BtnBrowsePO.Text = "..."
+        Me.BtnBrowsePO.Visible = False
         '
         'TxtOrderNumber
         '
@@ -717,7 +717,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.TxtOrderNumber.Name = "TxtOrderNumber"
         Me.TxtOrderNumber.Properties.EditValueChangedDelay = 1
         Me.TxtOrderNumber.Properties.ReadOnly = True
-        Me.TxtOrderNumber.Size = New System.Drawing.Size(240, 20)
+        Me.TxtOrderNumber.Size = New System.Drawing.Size(269, 20)
         Me.TxtOrderNumber.TabIndex = 9999
         Me.TxtOrderNumber.TabStop = False
         '
@@ -732,6 +732,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.PanelControlTopRight2.Controls.Add(Me.SLELocator)
         Me.PanelControlTopRight2.Controls.Add(Me.LabelControlLocator)
         Me.PanelControlTopRight2.Controls.Add(Me.LabelControl2)
+        Me.PanelControlTopRight2.Controls.Add(Me.BtnBrowsePO)
         Me.PanelControlTopRight2.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight2.Location = New System.Drawing.Point(518, 2)
         Me.PanelControlTopRight2.Name = "PanelControlTopRight2"
