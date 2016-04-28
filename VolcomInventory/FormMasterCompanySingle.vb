@@ -135,7 +135,7 @@
             LEWHType.ItemIndex = LEWHType.Properties.GetDataSourceRowIndex("id_wh_type", data.Rows(0)("id_wh_type"))
 
             'update 11 Agustus 2015
-            LEWHType.ItemIndex = LEWHType.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type"))
+            LESOType.ItemIndex = LESOType.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type"))
 
             'update 20 Agustus 2015
             view_mapping()
