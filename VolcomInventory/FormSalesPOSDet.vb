@@ -12,7 +12,9 @@
     Public id_wh_locator As String = "-1"
     Public id_wh_rack As String = "-1"
     Public id_wh_drawer As String = "-1"
-
+    '
+    Public id_del_ins As String = "-1"
+    '
     'updqated 13 januari 2015
     Public dt_stock_store As New DataTable
     Dim last_end_period_select As String = "9999-12-01"
@@ -104,7 +106,6 @@
             If Not data.Rows(0)("id_pl_sales_order_del").ToString = "" Then
                 TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
             End If
-
         End If
     End Sub
 
