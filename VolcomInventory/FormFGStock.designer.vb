@@ -244,11 +244,14 @@ Partial Class FormFGStock
         '
         'BGVFGStock
         '
+        Me.BGVFGStock.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.BGVFGStock.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BGVFGStock.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn2})
         Me.BGVFGStock.GridControl = Me.GCFGStock
         Me.BGVFGStock.Name = "BGVFGStock"
         Me.BGVFGStock.OptionsBehavior.ReadOnly = True
         Me.BGVFGStock.OptionsView.ColumnAutoWidth = False
+        Me.BGVFGStock.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.BGVFGStock.OptionsView.ShowFooter = True
         Me.BGVFGStock.OptionsView.ShowGroupPanel = False
         '
@@ -332,32 +335,24 @@ Partial Class FormFGStock
         Me.GridColumn3.Caption = "Color"
         Me.GridColumn3.FieldName = "color"
         Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
         '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Division"
         Me.GridColumn4.FieldName = "product_division"
         Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
         '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Source"
         Me.GridColumn5.FieldName = "product_source"
         Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
         '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Branding"
         Me.GridColumn6.FieldName = "product_branding"
         Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
         '
         'LabelControl8
         '
@@ -894,6 +889,7 @@ Partial Class FormFGStock
         Me.XTPFGStockStore.Controls.Add(Me.GroupControlStockStore)
         Me.XTPFGStockStore.Controls.Add(Me.GroupControl1)
         Me.XTPFGStockStore.Name = "XTPFGStockStore"
+        Me.XTPFGStockStore.PageVisible = False
         Me.XTPFGStockStore.Size = New System.Drawing.Size(1164, 470)
         Me.XTPFGStockStore.Text = "Store Stock"
         '
