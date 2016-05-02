@@ -65,6 +65,13 @@ Partial Class FormFGTrfNew
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControlNavPrepare = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditRefresh = New DevExpress.XtraEditors.CheckEdit()
+        Me.XTPSORef = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCNewPrepare = New DevExpress.XtraGrid.GridControl()
+        Me.GVNewPrepare = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
+        Me.PanelControlNavNewProd = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtNoParam = New DevExpress.XtraEditors.ButtonEdit()
+        Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFGTrf, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +94,12 @@ Partial Class FormFGTrfNew
         CType(Me.PanelControlNavPrepare, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavPrepare.SuspendLayout()
         CType(Me.CheckEditRefresh.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPSORef.SuspendLayout()
+        CType(Me.GCNewPrepare, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVNewPrepare, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlNavNewProd, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlNavNewProd.SuspendLayout()
+        CType(Me.TxtNoParam.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RepositoryItemProgressBar1
@@ -223,7 +236,7 @@ Partial Class FormFGTrfNew
         Me.XTCTrf.SelectedTabPage = Me.XTPTrans
         Me.XTCTrf.Size = New System.Drawing.Size(674, 385)
         Me.XTCTrf.TabIndex = 2
-        Me.XTCTrf.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPTrans, Me.XTPSOList})
+        Me.XTCTrf.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPTrans, Me.XTPSOList, Me.XTPSORef})
         '
         'XTPTrans
         '
@@ -489,6 +502,67 @@ Partial Class FormFGTrfNew
         Me.CheckEditRefresh.Size = New System.Drawing.Size(128, 19)
         Me.CheckEditRefresh.TabIndex = 0
         '
+        'XTPSORef
+        '
+        Me.XTPSORef.Controls.Add(Me.GCNewPrepare)
+        Me.XTPSORef.Controls.Add(Me.PanelControlNavNewProd)
+        Me.XTPSORef.Name = "XTPSORef"
+        Me.XTPSORef.Size = New System.Drawing.Size(668, 357)
+        Me.XTPSORef.Text = "Prepare Order Reference"
+        '
+        'GCNewPrepare
+        '
+        Me.GCNewPrepare.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCNewPrepare.Location = New System.Drawing.Point(0, 38)
+        Me.GCNewPrepare.MainView = Me.GVNewPrepare
+        Me.GCNewPrepare.Name = "GCNewPrepare"
+        Me.GCNewPrepare.Size = New System.Drawing.Size(668, 319)
+        Me.GCNewPrepare.TabIndex = 7
+        Me.GCNewPrepare.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVNewPrepare})
+        '
+        'GVNewPrepare
+        '
+        Me.GVNewPrepare.GridControl = Me.GCNewPrepare
+        Me.GVNewPrepare.Name = "GVNewPrepare"
+        Me.GVNewPrepare.OptionsView.ColumnAutoWidth = True
+        Me.GVNewPrepare.OptionsView.ShowFooter = True
+        Me.GVNewPrepare.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControlNavNewProd
+        '
+        Me.PanelControlNavNewProd.Controls.Add(Me.TxtNoParam)
+        Me.PanelControlNavNewProd.Controls.Add(Me.BtnViewNewPrepare)
+        Me.PanelControlNavNewProd.Controls.Add(Me.LabelControl1)
+        Me.PanelControlNavNewProd.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlNavNewProd.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlNavNewProd.Name = "PanelControlNavNewProd"
+        Me.PanelControlNavNewProd.Size = New System.Drawing.Size(668, 38)
+        Me.PanelControlNavNewProd.TabIndex = 6
+        '
+        'TxtNoParam
+        '
+        Me.TxtNoParam.Location = New System.Drawing.Point(38, 9)
+        Me.TxtNoParam.Name = "TxtNoParam"
+        Me.TxtNoParam.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.TxtNoParam.Size = New System.Drawing.Size(230, 20)
+        Me.TxtNoParam.TabIndex = 3
+        '
+        'BtnViewNewPrepare
+        '
+        Me.BtnViewNewPrepare.Location = New System.Drawing.Point(274, 9)
+        Me.BtnViewNewPrepare.Name = "BtnViewNewPrepare"
+        Me.BtnViewNewPrepare.Size = New System.Drawing.Size(75, 20)
+        Me.BtnViewNewPrepare.TabIndex = 2
+        Me.BtnViewNewPrepare.Text = "View"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Ref."
+        '
         'TimerMonitor
         '
         Me.TimerMonitor.Enabled = True
@@ -525,6 +599,13 @@ Partial Class FormFGTrfNew
         CType(Me.PanelControlNavPrepare, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNavPrepare.ResumeLayout(False)
         CType(Me.CheckEditRefresh.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPSORef.ResumeLayout(False)
+        CType(Me.GCNewPrepare, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVNewPrepare, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlNavNewProd, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlNavNewProd.ResumeLayout(False)
+        Me.PanelControlNavNewProd.PerformLayout()
+        CType(Me.TxtNoParam.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -574,4 +655,11 @@ Partial Class FormFGTrfNew
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents RepositoryItemProgressBar1 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
+    Friend WithEvents XTPSORef As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControlNavNewProd As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TxtNoParam As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents BtnViewNewPrepare As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCNewPrepare As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVNewPrepare As DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView
 End Class

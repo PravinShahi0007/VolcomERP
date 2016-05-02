@@ -217,7 +217,7 @@
             errorCustom("Data not found !")
         Else
             If id_sales_order_gen = "-1" Then
-                Dim query As String = "SELECT id_sales_order_gen FROM tb_sales_order_gen WHERE sales_order_gen_reff='" + val + "' LIMIT 1 "
+                Dim query As String = "SELECT id_sales_order_gen FROM tb_sales_order_gen WHERE sales_order_gen_reff='" + val + "' AND id_so_status<>5 LIMIT 1 "
                 id_sales_order_gen = "-1"
                 Try
                     id_sales_order_gen = execute_query(query, 0, True, "", "", "", "")
