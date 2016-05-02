@@ -19,6 +19,11 @@
         query += "GROUP BY so.id_sales_order_gen "
         query += ") del ON del.id_sales_order_gen = gen.id_sales_order_gen "
         query += "WHERE gen.id_report_status = 6 "
+        If id_pop_up = "1" Then
+            query += "AND gen.id_so_status<>5 "
+        ElseIf id_pop_up = "2" Then
+            query += "AND gen.id_so_status=5 "
+        End If
         query += "ORDER BY gen.sales_order_gen_date DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCList.DataSource = data
@@ -54,6 +59,11 @@
             FormSalesDelOrder.TxtNoParam.Text = no
             FormSalesDelOrder.id_sales_order_gen = id_sales_order_gen
             FormSalesDelOrder.viewrRef()
+            Close()
+        ElseIf id_pop_up = "2" Then
+            FormFGTrfNew.TxtNoParam.Text = no
+            FormFGTrfNew.id_sales_order_gen = id_sales_order_gen
+            FormFGTrfNew.viewRef()
             Close()
         End If
     End Sub

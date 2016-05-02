@@ -2,6 +2,7 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Public id_sales_order_gen As String = "-1"
 
     Private Sub FormFGTrfNew_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
@@ -82,40 +83,43 @@
                 bdel_active = "0"
                 noManipulating()
             End If
+        ElseIf XTCTrf.SelectedTabPageIndex = 2 Then
+            bnew_active = "0"
+            bedit_active = "0"
+            bdel_active = "0"
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
         End If
     End Sub
 
     Sub noManipulating()
-        Try
-            If XTCTrf.SelectedTabPageIndex = 0 Then
-                Dim indeks As Integer = GVFGTrf.FocusedRowHandle
-                If indeks < 0 Then
-                    bnew_active = "1"
-                    bedit_active = "0"
-                    bdel_active = "0"
-                Else
-                    bnew_active = "1"
-                    bedit_active = "1"
-                    bdel_active = "1"
-                End If
-                checkFormAccess(Name)
-                button_main(bnew_active, bedit_active, bdel_active)
-            ElseIf XTCTrf.SelectedTabPageIndex = 1 Then
-                Dim indeks As Integer = GVSalesOrder.FocusedRowHandle
-                If indeks < 0 Then
-                    bnew_active = "0"
-                    bedit_active = "0"
-                    bdel_active = "0"
-                Else
-                    bnew_active = "1"
-                    bedit_active = "0"
-                    bdel_active = "0"
-                End If
-                checkFormAccess(Name)
-                button_main(bnew_active, bedit_active, bdel_active)
+        If XTCTrf.SelectedTabPageIndex = 0 Then
+            Dim indeks As Integer = GVFGTrf.FocusedRowHandle
+            If indeks < 0 Then
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+            Else
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
             End If
-        Catch ex As Exception
-        End Try
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
+        ElseIf XTCTrf.SelectedTabPageIndex = 1 Then
+            Dim indeks As Integer = GVSalesOrder.FocusedRowHandle
+            If indeks < 0 Then
+                bnew_active = "0"
+                bedit_active = "0"
+                bdel_active = "0"
+            Else
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+            End If
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
+        End If
     End Sub
 
     Private Sub GVFGTrf_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVFGTrf.FocusedRowChanged
@@ -196,6 +200,8 @@
             SMPrePrint.Visible = False
             GVSalesOrder.ShowFindPanel()
             GVSalesOrder.ShowFindPanel()
+        ElseIf XTCTrf.SelectedTabPageIndex = 2 Then
+            TxtNoParam.Focus()
         End If
     End Sub
 
@@ -209,5 +215,50 @@
 
     Private Sub GVSalesOrder_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVSalesOrder.FocusedRowChanged
         noManipulating()
+    End Sub
+
+    Private Sub TxtNoParam_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles TxtNoParam.ButtonClick
+        Cursor = Cursors.WaitCursor
+        FormSalesOrderRef.id_pop_up = "2"
+        FormSalesOrderRef.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewRef()
+        Cursor = Cursors.WaitCursor
+        Dim val As String = addSlashes(TxtNoParam.Text.ToString)
+        If val = "" Then
+            errorCustom("Data not found !")
+        Else
+            If id_sales_order_gen = "-1" Then
+                Dim query As String = "SELECT id_sales_order_gen FROM tb_sales_order_gen WHERE sales_order_gen_reff='" + val + "' AND id_so_status=5 LIMIT 1 "
+                id_sales_order_gen = "-1"
+                Try
+                    id_sales_order_gen = execute_query(query, 0, True, "", "", "", "")
+                Catch ex As Exception
+                End Try
+            End If
+
+            If id_sales_order_gen = "-1" Then
+                errorCustom("Data not found !")
+                GCNewPrepare.DataSource = Nothing
+            Else
+                Dim rf As New ClassSalesOrder()
+                rf.viewReff(id_sales_order_gen, "-1", GCNewPrepare, GVNewPrepare)
+                id_sales_order_gen = "-1"
+            End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewNewPrepare_Click(sender As Object, e As EventArgs) Handles BtnViewNewPrepare.Click
+        viewRef()
+    End Sub
+
+
+    Private Sub TxtNoParam_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtNoParam.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            viewRef()
+        End If
     End Sub
 End Class
