@@ -19,54 +19,54 @@ Partial Class FormAccountingJournalBill
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAccountingJournalBill))
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMBalance = New System.Windows.Forms.ToolStripMenuItem
+        Me.SMBalance = New System.Windows.Forms.ToolStripMenuItem()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
         Me.EPJournal = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GCJournalDet = New DevExpress.XtraGrid.GridControl
-        Me.GVJournalDet = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RSLEStatusOpen = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
-        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnReportMarkType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnReff = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdCompany = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.PCButton = New DevExpress.XtraEditors.PanelControl
-        Me.BDelMat = New DevExpress.XtraEditors.SimpleButton
-        Me.BAddMat = New DevExpress.XtraEditors.SimpleButton
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton
-        Me.Bprint = New DevExpress.XtraEditors.SimpleButton
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton
-        Me.PCGeneralheader = New DevExpress.XtraEditors.PanelControl
-        Me.TENumber = New DevExpress.XtraEditors.TextEdit
-        Me.Blink = New DevExpress.XtraEditors.SimpleButton
-        Me.TEReffNumber = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.LEBilling = New DevExpress.XtraEditors.LookUpEdit
-        Me.TEUserEntry = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.TEDate = New DevExpress.XtraEditors.TextEdit
-        Me.LTransNo = New DevExpress.XtraEditors.LabelControl
+        Me.GCJournalDet = New DevExpress.XtraGrid.GridControl()
+        Me.GVJournalDet = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RSLEStatusOpen = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReportMarkType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdCompany = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemComboBox1 = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.PCButton = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelMat = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.Bprint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCGeneralheader = New DevExpress.XtraEditors.PanelControl()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.Blink = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEReffNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEBilling = New DevExpress.XtraEditors.LookUpEdit()
+        Me.TEUserEntry = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LTransNo = New DevExpress.XtraEditors.LabelControl()
+        Me.TEDate = New DevExpress.XtraEditors.DateEdit()
         Me.BalanceMenu.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,6 +91,7 @@ Partial Class FormAccountingJournalBill
         CType(Me.TEReffNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUserEntry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -438,6 +439,7 @@ Partial Class FormAccountingJournalBill
         '
         'PCGeneralheader
         '
+        Me.PCGeneralheader.Controls.Add(Me.TEDate)
         Me.PCGeneralheader.Controls.Add(Me.TENumber)
         Me.PCGeneralheader.Controls.Add(Me.Blink)
         Me.PCGeneralheader.Controls.Add(Me.TEReffNumber)
@@ -446,7 +448,6 @@ Partial Class FormAccountingJournalBill
         Me.PCGeneralheader.Controls.Add(Me.TEUserEntry)
         Me.PCGeneralheader.Controls.Add(Me.LabelControl2)
         Me.PCGeneralheader.Controls.Add(Me.LabelControl1)
-        Me.PCGeneralheader.Controls.Add(Me.TEDate)
         Me.PCGeneralheader.Controls.Add(Me.LTransNo)
         Me.PCGeneralheader.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCGeneralheader.Location = New System.Drawing.Point(0, 0)
@@ -534,15 +535,6 @@ Partial Class FormAccountingJournalBill
         Me.LabelControl1.TabIndex = 2
         Me.LabelControl1.Text = "Number"
         '
-        'TEDate
-        '
-        Me.TEDate.Location = New System.Drawing.Point(642, 12)
-        Me.TEDate.Name = "TEDate"
-        Me.TEDate.Properties.ReadOnly = True
-        Me.TEDate.Size = New System.Drawing.Size(172, 20)
-        Me.TEDate.TabIndex = 0
-        Me.TEDate.TabStop = False
-        '
         'LTransNo
         '
         Me.LTransNo.Location = New System.Drawing.Point(572, 15)
@@ -550,6 +542,16 @@ Partial Class FormAccountingJournalBill
         Me.LTransNo.Size = New System.Drawing.Size(23, 13)
         Me.LTransNo.TabIndex = 0
         Me.LTransNo.Text = "Date"
+        '
+        'TEDate
+        '
+        Me.TEDate.EditValue = Nothing
+        Me.TEDate.Location = New System.Drawing.Point(642, 12)
+        Me.TEDate.Name = "TEDate"
+        Me.TEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEDate.Size = New System.Drawing.Size(172, 20)
+        Me.TEDate.TabIndex = 156
         '
         'FormAccountingJournalBill
         '
@@ -595,6 +597,7 @@ Partial Class FormAccountingJournalBill
         CType(Me.TEReffNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUserEntry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -637,7 +640,6 @@ Partial Class FormAccountingJournalBill
     Friend WithEvents TEUserEntry As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TEDate As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LTransNo As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEBilling As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents TEReffNumber As DevExpress.XtraEditors.TextEdit
@@ -645,4 +647,5 @@ Partial Class FormAccountingJournalBill
     Friend WithEvents Blink As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnIdCompany As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEDate As DevExpress.XtraEditors.DateEdit
 End Class

@@ -19,76 +19,104 @@ Partial Class FormSalesPOS
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode
-        Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDesignPriceRetail = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDesignPriceType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSalesPOSDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDesignPriceRetail = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GCSalesPOS = New DevExpress.XtraGrid.GridControl
-        Me.GVSalesPOS = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnStore = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSalesPOSDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSalesStore = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDiscount = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSalesTax = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnNetto = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSalesPosRev = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDueDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnAge = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GCFilter = New DevExpress.XtraEditors.GroupControl
-        Me.LEOptionView = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.BHide = New DevExpress.XtraEditors.SimpleButton
-        Me.BExpand = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnView = New DevExpress.XtraEditors.SimpleButton
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit
-        Me.DEFrom = New DevExpress.XtraEditors.DateEdit
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.SLEStore = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnStoreLabel = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.GCView = New DevExpress.XtraEditors.GroupControl
-        Me.XTCPOS = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPDailySales = New DevExpress.XtraTab.XtraTabPage
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit
-        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesignPriceRetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesignPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSalesPOSDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesignPriceRetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCSalesPOS = New DevExpress.XtraGrid.GridControl()
+        Me.GVSalesPOS = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnStore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSalesPOSDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSalesStore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDiscount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSalesTax = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNetto = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSalesPosRev = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAge = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.LEOptionView = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.BHide = New DevExpress.XtraEditors.SimpleButton()
+        Me.BExpand = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEStore = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnStoreLabel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GCView = New DevExpress.XtraEditors.GroupControl()
+        Me.XTCPOS = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPDailySales = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCInvoice = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPListInv = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPListWholesale = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCDelWholesale = New DevExpress.XtraGrid.GridControl()
+        Me.GVDelWholesale = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSalesDelOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.BViewWholesale = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntilWholesale = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromWholesale = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEStoreWholesale = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.LEOptionView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntil.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFrom.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,10 +125,27 @@ Partial Class FormSalesPOS
         CType(Me.XTCPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPOS.SuspendLayout()
         Me.XTPDailySales.SuspendLayout()
+        CType(Me.XTCInvoice, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCInvoice.SuspendLayout()
+        Me.XTPListInv.SuspendLayout()
+        Me.XTPListWholesale.SuspendLayout()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl1.SuspendLayout()
+        CType(Me.GCDelWholesale, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDelWholesale, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
+        CType(Me.DEUntilWholesale.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilWholesale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromWholesale.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromWholesale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEStoreWholesale.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -306,10 +351,10 @@ Partial Class FormSalesPOS
         GridLevelNode2.LevelTemplate = Me.GVSalesPOSDet
         GridLevelNode2.RelationName = "Detail Transaction"
         Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
-        Me.GCSalesPOS.Location = New System.Drawing.Point(22, 2)
+        Me.GCSalesPOS.Location = New System.Drawing.Point(20, 2)
         Me.GCSalesPOS.MainView = Me.GVSalesPOS
         Me.GCSalesPOS.Name = "GCSalesPOS"
-        Me.GCSalesPOS.Size = New System.Drawing.Size(1069, 479)
+        Me.GCSalesPOS.Size = New System.Drawing.Size(1065, 451)
         Me.GCSalesPOS.TabIndex = 0
         Me.GCSalesPOS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesPOS, Me.GVSalesPOSDet})
         '
@@ -491,7 +536,7 @@ Partial Class FormSalesPOS
         Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCFilter.Location = New System.Drawing.Point(0, 0)
         Me.GCFilter.Name = "GCFilter"
-        Me.GCFilter.Size = New System.Drawing.Size(1093, 50)
+        Me.GCFilter.Size = New System.Drawing.Size(1087, 50)
         Me.GCFilter.TabIndex = 1
         '
         'LEOptionView
@@ -547,9 +592,9 @@ Partial Class FormSalesPOS
         Me.DEUntil.Location = New System.Drawing.Point(440, 14)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
         Me.DEUntil.Size = New System.Drawing.Size(111, 20)
         Me.DEUntil.TabIndex = 8895
         '
@@ -559,9 +604,9 @@ Partial Class FormSalesPOS
         Me.DEFrom.Location = New System.Drawing.Point(286, 14)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFrom.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
         Me.DEFrom.Size = New System.Drawing.Size(121, 20)
         Me.DEFrom.TabIndex = 8894
         '
@@ -621,7 +666,7 @@ Partial Class FormSalesPOS
         Me.GCView.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCView.Location = New System.Drawing.Point(0, 50)
         Me.GCView.Name = "GCView"
-        Me.GCView.Size = New System.Drawing.Size(1093, 483)
+        Me.GCView.Size = New System.Drawing.Size(1087, 455)
         Me.GCView.TabIndex = 2
         '
         'XTCPOS
@@ -638,11 +683,264 @@ Partial Class FormSalesPOS
         '
         'XTPDailySales
         '
-        Me.XTPDailySales.Controls.Add(Me.GCView)
-        Me.XTPDailySales.Controls.Add(Me.GCFilter)
+        Me.XTPDailySales.Controls.Add(Me.XTCInvoice)
         Me.XTPDailySales.Name = "XTPDailySales"
         Me.XTPDailySales.Size = New System.Drawing.Size(1093, 533)
         Me.XTPDailySales.Text = "Daily Transaction"
+        '
+        'XTCInvoice
+        '
+        Me.XTCInvoice.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCInvoice.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCInvoice.Location = New System.Drawing.Point(0, 0)
+        Me.XTCInvoice.Name = "XTCInvoice"
+        Me.XTCInvoice.SelectedTabPage = Me.XTPListInv
+        Me.XTCInvoice.Size = New System.Drawing.Size(1093, 533)
+        Me.XTCInvoice.TabIndex = 3
+        Me.XTCInvoice.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListInv, Me.XTPListWholesale})
+        '
+        'XTPListInv
+        '
+        Me.XTPListInv.Controls.Add(Me.GCView)
+        Me.XTPListInv.Controls.Add(Me.GCFilter)
+        Me.XTPListInv.Name = "XTPListInv"
+        Me.XTPListInv.Size = New System.Drawing.Size(1087, 505)
+        Me.XTPListInv.Text = "List Invoice"
+        '
+        'XTPListWholesale
+        '
+        Me.XTPListWholesale.Controls.Add(Me.GroupControl1)
+        Me.XTPListWholesale.Controls.Add(Me.GroupControl2)
+        Me.XTPListWholesale.Name = "XTPListWholesale"
+        Me.XTPListWholesale.Size = New System.Drawing.Size(1087, 505)
+        Me.XTPListWholesale.Text = "Waiting List Wholesale"
+        '
+        'GroupControl1
+        '
+        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.GCDelWholesale)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 50)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(1087, 455)
+        Me.GroupControl1.TabIndex = 4
+        '
+        'GCDelWholesale
+        '
+        Me.GCDelWholesale.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDelWholesale.Location = New System.Drawing.Point(20, 2)
+        Me.GCDelWholesale.MainView = Me.GVDelWholesale
+        Me.GCDelWholesale.Name = "GCDelWholesale"
+        Me.GCDelWholesale.Size = New System.Drawing.Size(1065, 451)
+        Me.GCDelWholesale.TabIndex = 3
+        Me.GCDelWholesale.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDelWholesale, Me.GridView1})
+        '
+        'GVDelWholesale
+        '
+        Me.GVDelWholesale.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumnLastUpdate, Me.GridColumnUpdBy})
+        Me.GVDelWholesale.GridControl = Me.GCDelWholesale
+        Me.GVDelWholesale.Name = "GVDelWholesale"
+        Me.GVDelWholesale.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDelWholesale.OptionsBehavior.Editable = False
+        Me.GVDelWholesale.OptionsBehavior.ReadOnly = True
+        Me.GVDelWholesale.OptionsView.ShowGroupPanel = False
+        Me.GVDelWholesale.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdSalesDelOrder, DevExpress.Data.ColumnSortOrder.Descending)})
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Number"
+        Me.GridColumn4.FieldName = "pl_sales_order_del_number"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        Me.GridColumn4.Width = 83
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Store"
+        Me.GridColumn5.FieldName = "store_name_to"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 2
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Created Date"
+        Me.GridColumn6.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn6.FieldName = "pl_sales_order_del_date"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Note"
+        Me.GridColumn7.FieldName = "pl_sales_order_del_note"
+        Me.GridColumn7.Name = "GridColumn7"
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Status"
+        Me.GridColumn8.FieldName = "report_status"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 8
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Prepare Order"
+        Me.GridColumn9.FieldName = "sales_order_number"
+        Me.GridColumn9.FieldNameSortGroup = "id_pl_sales_order_del"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 3
+        '
+        'GridColumnIdSalesDelOrder
+        '
+        Me.GridColumnIdSalesDelOrder.Caption = "Id Sales Del Order"
+        Me.GridColumnIdSalesDelOrder.FieldName = "id_pl_sales_order_del"
+        Me.GridColumnIdSalesDelOrder.Name = "GridColumnIdSalesDelOrder"
+        Me.GridColumnIdSalesDelOrder.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnWHName
+        '
+        Me.GridColumnWHName.Caption = "Warehouse"
+        Me.GridColumnWHName.FieldName = "wh_name"
+        Me.GridColumnWHName.FieldNameSortGroup = "id_wh"
+        Me.GridColumnWHName.Name = "GridColumnWHName"
+        Me.GridColumnWHName.Visible = True
+        Me.GridColumnWHName.VisibleIndex = 1
+        '
+        'GridColumnCategory
+        '
+        Me.GridColumnCategory.Caption = "Category"
+        Me.GridColumnCategory.FieldName = "so_status"
+        Me.GridColumnCategory.FieldNameSortGroup = "id_so_status"
+        Me.GridColumnCategory.Name = "GridColumnCategory"
+        Me.GridColumnCategory.Visible = True
+        Me.GridColumnCategory.VisibleIndex = 4
+        '
+        'GridColumnLastUpdate
+        '
+        Me.GridColumnLastUpdate.Caption = "Last Updated"
+        Me.GridColumnLastUpdate.DisplayFormat.FormatString = "dd MMMM yyyy'/'hh:mm tt"
+        Me.GridColumnLastUpdate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnLastUpdate.FieldName = "last_update"
+        Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
+        Me.GridColumnLastUpdate.Visible = True
+        Me.GridColumnLastUpdate.VisibleIndex = 6
+        '
+        'GridColumnUpdBy
+        '
+        Me.GridColumnUpdBy.Caption = "Updated By"
+        Me.GridColumnUpdBy.FieldName = "last_user"
+        Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
+        Me.GridColumnUpdBy.Visible = True
+        Me.GridColumnUpdBy.VisibleIndex = 7
+        '
+        'GridView1
+        '
+        Me.GridView1.GridControl = Me.GCDelWholesale
+        Me.GridView1.Name = "GridView1"
+        '
+        'GroupControl2
+        '
+        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.BViewWholesale)
+        Me.GroupControl2.Controls.Add(Me.DEUntilWholesale)
+        Me.GroupControl2.Controls.Add(Me.DEFromWholesale)
+        Me.GroupControl2.Controls.Add(Me.LabelControl6)
+        Me.GroupControl2.Controls.Add(Me.LabelControl7)
+        Me.GroupControl2.Controls.Add(Me.SLEStoreWholesale)
+        Me.GroupControl2.Controls.Add(Me.LabelControl11)
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(1087, 50)
+        Me.GroupControl2.TabIndex = 3
+        '
+        'BViewWholesale
+        '
+        Me.BViewWholesale.Location = New System.Drawing.Point(557, 15)
+        Me.BViewWholesale.LookAndFeel.SkinName = "Blue"
+        Me.BViewWholesale.Name = "BViewWholesale"
+        Me.BViewWholesale.Size = New System.Drawing.Size(75, 20)
+        Me.BViewWholesale.TabIndex = 8896
+        Me.BViewWholesale.Text = "View"
+        '
+        'DEUntilWholesale
+        '
+        Me.DEUntilWholesale.EditValue = Nothing
+        Me.DEUntilWholesale.Location = New System.Drawing.Point(440, 14)
+        Me.DEUntilWholesale.Name = "DEUntilWholesale"
+        Me.DEUntilWholesale.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilWholesale.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilWholesale.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilWholesale.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilWholesale.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilWholesale.TabIndex = 8895
+        '
+        'DEFromWholesale
+        '
+        Me.DEFromWholesale.EditValue = Nothing
+        Me.DEFromWholesale.Location = New System.Drawing.Point(286, 14)
+        Me.DEFromWholesale.Name = "DEFromWholesale"
+        Me.DEFromWholesale.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromWholesale.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromWholesale.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromWholesale.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromWholesale.Size = New System.Drawing.Size(121, 20)
+        Me.DEFromWholesale.TabIndex = 8894
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(413, 17)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl6.TabIndex = 8893
+        Me.LabelControl6.Text = "Until"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(256, 17)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl7.TabIndex = 8892
+        Me.LabelControl7.Text = "From"
+        '
+        'SLEStoreWholesale
+        '
+        Me.SLEStoreWholesale.Location = New System.Drawing.Point(64, 14)
+        Me.SLEStoreWholesale.Name = "SLEStoreWholesale"
+        Me.SLEStoreWholesale.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEStoreWholesale.Properties.View = Me.GridView3
+        Me.SLEStoreWholesale.Size = New System.Drawing.Size(186, 20)
+        Me.SLEStoreWholesale.TabIndex = 1
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn37})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Store"
+        Me.GridColumn37.FieldName = "comp_name_label"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 0
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(32, 17)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(26, 13)
+        Me.LabelControl11.TabIndex = 0
+        Me.LabelControl11.Text = "Store"
         '
         'LookUpEdit1
         '
@@ -676,9 +974,9 @@ Partial Class FormSalesPOS
         Me.DateEdit1.Location = New System.Drawing.Point(215, 14)
         Me.DateEdit1.Name = "DateEdit1"
         Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
         Me.DateEdit1.Size = New System.Drawing.Size(111, 20)
         Me.DateEdit1.TabIndex = 8895
         '
@@ -688,9 +986,9 @@ Partial Class FormSalesPOS
         Me.DateEdit2.Location = New System.Drawing.Point(61, 14)
         Me.DateEdit2.Name = "DateEdit2"
         Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DateEdit2.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DateEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit2.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
         Me.DateEdit2.Size = New System.Drawing.Size(121, 20)
         Me.DateEdit2.TabIndex = 8894
         '
@@ -729,9 +1027,9 @@ Partial Class FormSalesPOS
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
         CType(Me.LEOptionView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntil.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFrom.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
@@ -740,10 +1038,28 @@ Partial Class FormSalesPOS
         CType(Me.XTCPOS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCPOS.ResumeLayout(False)
         Me.XTPDailySales.ResumeLayout(False)
+        CType(Me.XTCInvoice, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCInvoice.ResumeLayout(False)
+        Me.XTPListInv.ResumeLayout(False)
+        Me.XTPListWholesale.ResumeLayout(False)
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
+        CType(Me.GCDelWholesale, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDelWholesale, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
+        Me.GroupControl2.PerformLayout()
+        CType(Me.DEUntilWholesale.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilWholesale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromWholesale.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromWholesale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEStoreWholesale.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -808,4 +1124,32 @@ Partial Class FormSalesPOS
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnSalesTax As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSalesPosRev As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCInvoice As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPListInv As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPListWholesale As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents BViewWholesale As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEUntilWholesale As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEFromWholesale As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEStoreWholesale As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn37 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCDelWholesale As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVDelWholesale As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdSalesDelOrder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnWHName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCategory As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnLastUpdate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnUpdBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

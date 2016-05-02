@@ -439,9 +439,9 @@
             If err_txt = "1" Or Not formIsValidInGroup(EPSamplePR, GroupGeneralHeader) Or id_prod_order_wo = "-1" Then
                 errorInput()
             Else
-                Try
-                    'update pr
-                    query = String.Format("UPDATE tb_pr_prod_order SET pr_prod_order_number='{0}',pr_prod_order_note='{1}',id_report_status='{2}',pr_prod_order_vat='{4}',pr_prod_order_dp='{5}',pr_prod_order_total='{6}',id_comp_contact_to='{7}',pr_prod_order_pib='{8}',pr_prod_order_aju='{9}' WHERE id_pr_prod_order='{3}'", pr_number, pr_note, pr_stats, id_pr, pr_vat, pr_dp, pr_tot, id_comp_contact_pay_to, pib, aju)
+                'Try
+                'update pr
+                query = String.Format("UPDATE tb_pr_prod_order SET pr_prod_order_number='{0}',pr_prod_order_note='{1}',id_report_status='{2}',pr_prod_order_vat='{4}',pr_prod_order_dp='{5}',pr_prod_order_total='{6}',id_comp_contact_to='{7}',pr_prod_order_pib='{8}',pr_prod_order_aju='{9}' WHERE id_pr_prod_order='{3}'", pr_number, pr_note, pr_stats, id_pr, pr_vat, pr_dp, pr_tot, id_comp_contact_pay_to, pib, aju)
                     execute_non_query(query, True, "", "", "", "")
                     'pr detail
                     'delete first
@@ -519,9 +519,9 @@
                     FormProdPRWO.check_but()
                     FormProdPRWO.GVMatPR.FocusedRowHandle = find_row(FormProdPRWO.GVMatPR, "id_pr_prod_order", id_pr)
                     Close()
-                Catch ex As Exception
-                    errorConnection()
-                End Try
+                'Catch ex As Exception
+                'errorConnection()
+                'End Try
             End If
         End If
         FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 0

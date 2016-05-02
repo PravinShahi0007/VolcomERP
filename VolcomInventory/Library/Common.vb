@@ -3176,7 +3176,7 @@ Module Common
         FormMain.BEProgress.Refresh()
     End Sub
     Sub load_billing_type(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
-        Dim query As String = "SELECT id_bill_type,bill_type FROM tb_lookup_bill_type"
+        Dim query As String = "SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         lookup.Properties.DataSource = data

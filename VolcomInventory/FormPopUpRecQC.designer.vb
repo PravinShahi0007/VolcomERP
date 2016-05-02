@@ -19,41 +19,41 @@ Partial Class FormPopUpRecQC
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl
-        Me.GroupGeneral = New DevExpress.XtraEditors.GroupControl
-        Me.GCProdRec = New DevExpress.XtraGrid.GridControl
-        Me.GVProdRec = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdPRodOrderRecPurc = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSeason = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColRecNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColShipFrom = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColShipTo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPSONumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDONumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIDStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDelRec = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl
-        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdRecDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnEANCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColQtyRec = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupGeneral = New DevExpress.XtraEditors.GroupControl()
+        Me.GCProdRec = New DevExpress.XtraGrid.GridControl()
+        Me.GVProdRec = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdPRodOrderRecPurc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSeason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColRecNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColShipFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColShipTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPSONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIDStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDelRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
+        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdRecDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEANCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,7 +79,7 @@ Partial Class FormPopUpRecQC
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GCListPurchase)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(814, 415)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(814, 426)
         Me.SplitContainerControl1.SplitterPosition = 216
         Me.SplitContainerControl1.TabIndex = 34
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -98,10 +98,10 @@ Partial Class FormPopUpRecQC
         'GCProdRec
         '
         Me.GCProdRec.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProdRec.Location = New System.Drawing.Point(2, 22)
+        Me.GCProdRec.Location = New System.Drawing.Point(2, 20)
         Me.GCProdRec.MainView = Me.GVProdRec
         Me.GCProdRec.Name = "GCProdRec"
-        Me.GCProdRec.Size = New System.Drawing.Size(810, 192)
+        Me.GCProdRec.Size = New System.Drawing.Size(810, 194)
         Me.GCProdRec.TabIndex = 3
         Me.GCProdRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdRec, Me.GridView3})
         '
@@ -226,7 +226,7 @@ Partial Class FormPopUpRecQC
         Me.GCListPurchase.MainView = Me.GVListPurchase
         Me.GCListPurchase.Name = "GCListPurchase"
         Me.GCListPurchase.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit1})
-        Me.GCListPurchase.Size = New System.Drawing.Size(814, 194)
+        Me.GCListPurchase.Size = New System.Drawing.Size(814, 205)
         Me.GCListPurchase.TabIndex = 2
         Me.GCListPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPurchase})
         '
@@ -337,7 +337,7 @@ Partial Class FormPopUpRecQC
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit1.EditValueChangedDelay = 50
         Me.RepositoryItemSpinEdit1.IsFloatValue = False
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "f2"
@@ -366,25 +366,27 @@ Partial Class FormPopUpRecQC
         Me.PanelControl2.Controls.Add(Me.BtnCancel)
         Me.PanelControl2.Controls.Add(Me.BtnSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 415)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 426)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(814, 42)
+        Me.PanelControl2.Size = New System.Drawing.Size(814, 31)
         Me.PanelControl2.TabIndex = 33
         '
         'BtnCancel
         '
         Me.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnCancel.Location = New System.Drawing.Point(656, 9)
+        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancel.Location = New System.Drawing.Point(674, 0)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(70, 23)
+        Me.BtnCancel.Size = New System.Drawing.Size(70, 31)
         Me.BtnCancel.TabIndex = 4
         Me.BtnCancel.Text = "Cancel"
         '
         'BtnSave
         '
-        Me.BtnSave.Location = New System.Drawing.Point(732, 9)
+        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSave.Location = New System.Drawing.Point(744, 0)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(70, 23)
+        Me.BtnSave.Size = New System.Drawing.Size(70, 31)
         Me.BtnSave.TabIndex = 3
         Me.BtnSave.Text = "Choose"
         '

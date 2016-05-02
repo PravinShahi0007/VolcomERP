@@ -507,9 +507,9 @@ Partial Class FormProdPRWODet
         '
         'XTPListPurchase
         '
+        Me.XTPListPurchase.Controls.Add(Me.Bdel)
         Me.XTPListPurchase.Controls.Add(Me.BEdit)
         Me.XTPListPurchase.Controls.Add(Me.BAdd)
-        Me.XTPListPurchase.Controls.Add(Me.Bdel)
         Me.XTPListPurchase.Controls.Add(Me.GCListPurchase)
         Me.XTPListPurchase.Name = "XTPListPurchase"
         Me.XTPListPurchase.Size = New System.Drawing.Size(881, 242)
@@ -517,31 +517,34 @@ Partial Class FormProdPRWODet
         '
         'BEdit
         '
+        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BEdit.ImageIndex = 2
         Me.BEdit.ImageList = Me.LargeImageCollection
-        Me.BEdit.Location = New System.Drawing.Point(686, 7)
+        Me.BEdit.Location = New System.Drawing.Point(699, 0)
         Me.BEdit.Name = "BEdit"
-        Me.BEdit.Size = New System.Drawing.Size(91, 29)
+        Me.BEdit.Size = New System.Drawing.Size(91, 42)
         Me.BEdit.TabIndex = 22
         Me.BEdit.Text = "Edit"
         '
         'BAdd
         '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAdd.ImageIndex = 0
         Me.BAdd.ImageList = Me.LargeImageCollection
-        Me.BAdd.Location = New System.Drawing.Point(783, 7)
+        Me.BAdd.Location = New System.Drawing.Point(790, 0)
         Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(91, 29)
+        Me.BAdd.Size = New System.Drawing.Size(91, 42)
         Me.BAdd.TabIndex = 21
         Me.BAdd.Text = "Add"
         '
         'Bdel
         '
+        Me.Bdel.Dock = System.Windows.Forms.DockStyle.Right
         Me.Bdel.ImageIndex = 1
         Me.Bdel.ImageList = Me.LargeImageCollection
-        Me.Bdel.Location = New System.Drawing.Point(589, 7)
+        Me.Bdel.Location = New System.Drawing.Point(608, 0)
         Me.Bdel.Name = "Bdel"
-        Me.Bdel.Size = New System.Drawing.Size(91, 29)
+        Me.Bdel.Size = New System.Drawing.Size(91, 42)
         Me.Bdel.TabIndex = 20
         Me.Bdel.Text = "Delete"
         '

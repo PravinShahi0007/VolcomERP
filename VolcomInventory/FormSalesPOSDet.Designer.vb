@@ -32,6 +32,9 @@ Partial Class FormSalesPOSDet
         Me.BtnBrowseContactFrom = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopMiddle = New DevExpress.XtraEditors.PanelControl()
+        Me.BDO = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEDO = New DevExpress.XtraEditors.TextEdit()
+        Me.LDO = New DevExpress.XtraEditors.LabelControl()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
@@ -103,9 +106,6 @@ Partial Class FormSalesPOSDet
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.BDO = New DevExpress.XtraEditors.SimpleButton()
-        Me.TEDO = New DevExpress.XtraEditors.TextEdit()
-        Me.LDO = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,6 +116,7 @@ Partial Class FormSalesPOSDet
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMiddle.SuspendLayout()
+        CType(Me.TEDO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -155,7 +156,6 @@ Partial Class FormSalesPOSDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -300,6 +300,43 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopMiddle.Size = New System.Drawing.Size(289, 109)
         Me.PanelControlTopMiddle.TabIndex = 8934
         '
+        'BDO
+        '
+        Me.BDO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BDO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BDO.Appearance.Options.UseFont = True
+        Me.BDO.Location = New System.Drawing.Point(254, 82)
+        Me.BDO.Name = "BDO"
+        Me.BDO.Size = New System.Drawing.Size(23, 20)
+        Me.BDO.TabIndex = 8937
+        Me.BDO.TabStop = False
+        Me.BDO.Text = "..."
+        Me.BDO.Visible = False
+        '
+        'TEDO
+        '
+        Me.TEDO.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEDO.EditValue = ""
+        Me.TEDO.Location = New System.Drawing.Point(84, 82)
+        Me.TEDO.Name = "TEDO"
+        Me.TEDO.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEDO.Properties.Appearance.Options.UseFont = True
+        Me.TEDO.Properties.EditValueChangedDelay = 1
+        Me.TEDO.Size = New System.Drawing.Size(166, 20)
+        Me.TEDO.TabIndex = 6
+        Me.TEDO.Visible = False
+        '
+        'LDO
+        '
+        Me.LDO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LDO.Location = New System.Drawing.Point(8, 85)
+        Me.LDO.Name = "LDO"
+        Me.LDO.Size = New System.Drawing.Size(70, 13)
+        Me.LDO.TabIndex = 8936
+        Me.LDO.Text = "Delivery Order"
+        Me.LDO.Visible = False
+        '
         'DEDueDate
         '
         Me.DEDueDate.EditValue = Nothing
@@ -355,6 +392,7 @@ Partial Class FormSalesPOSDet
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Properties.Mask.EditMask = "dd-MM-yyyy"
         Me.DEStart.Size = New System.Drawing.Size(83, 20)
         Me.DEStart.TabIndex = 3
         '
@@ -1116,43 +1154,6 @@ Partial Class FormSalesPOSDet
         '
         Me.EPForm.ContainerControl = Me
         '
-        'BDO
-        '
-        Me.BDO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BDO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BDO.Appearance.Options.UseFont = True
-        Me.BDO.Location = New System.Drawing.Point(254, 82)
-        Me.BDO.Name = "BDO"
-        Me.BDO.Size = New System.Drawing.Size(23, 20)
-        Me.BDO.TabIndex = 8937
-        Me.BDO.TabStop = False
-        Me.BDO.Text = "..."
-        Me.BDO.Visible = False
-        '
-        'TEDO
-        '
-        Me.TEDO.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TEDO.EditValue = ""
-        Me.TEDO.Location = New System.Drawing.Point(84, 82)
-        Me.TEDO.Name = "TEDO"
-        Me.TEDO.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TEDO.Properties.Appearance.Options.UseFont = True
-        Me.TEDO.Properties.EditValueChangedDelay = 1
-        Me.TEDO.Size = New System.Drawing.Size(166, 20)
-        Me.TEDO.TabIndex = 6
-        Me.TEDO.Visible = False
-        '
-        'LDO
-        '
-        Me.LDO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LDO.Location = New System.Drawing.Point(8, 85)
-        Me.LDO.Name = "LDO"
-        Me.LDO.Size = New System.Drawing.Size(70, 13)
-        Me.LDO.TabIndex = 8936
-        Me.LDO.Text = "Delivery Order"
-        Me.LDO.Visible = False
-        '
         'FormSalesPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1178,6 +1179,7 @@ Partial Class FormSalesPOSDet
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMiddle.ResumeLayout(False)
         Me.PanelControlTopMiddle.PerformLayout()
+        CType(Me.TEDO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1221,7 +1223,6 @@ Partial Class FormSalesPOSDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

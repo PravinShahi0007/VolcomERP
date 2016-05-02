@@ -296,7 +296,7 @@
                     Dim query_loop As String = "SELECT id_product FROM tb_m_product WHERE id_design='" & FormBOM.GVPerDesign.GetFocusedRowCellValue("id_design").ToString & "'"
                     Dim data_loop As DataTable = execute_query(query_loop, -1, True, "", "", "", "")
                     For i As Integer = 0 To data_loop.Rows.Count - 1
-                        query = String.Format("INSERT INTO tb_bom(bom_name,id_product,id_term_production,bom_date_created,bom_unit_price,id_currency,kurs,id_bom_approve,bom_date_updated,id_user_last_update) VALUES('{0}','{1}','{2}',DATE(NOW()),'{3}','{4}','{5}','{6}',NOW()'{7}'); ", bom_name, data_loop.Rows(i)("id_product").ToString, id_term_production, unit_price, LECurrency.EditValue.ToString, kurs, id_bom_approve_new, id_user)
+                        query = String.Format("INSERT INTO tb_bom(bom_name,id_product,id_term_production,bom_date_created,bom_unit_price,id_currency,kurs,id_bom_approve,bom_date_updated,id_user_last_update) VALUES('{0}','{1}','{2}',DATE(NOW()),'{3}','{4}','{5}','{6}',NOW(),'{7}'); ", bom_name, data_loop.Rows(i)("id_product").ToString, id_term_production, unit_price, LECurrency.EditValue.ToString, kurs, id_bom_approve_new, id_user)
                         execute_non_query(query, True, "", "", "", "")
                     Next
                     '

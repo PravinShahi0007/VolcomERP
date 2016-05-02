@@ -9,15 +9,15 @@
 
     Private Sub FormAccountingJournalBill_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         load_billing_type(LEBilling)
-        '
+        ''
         view_status()
         BMark.Visible = False
         Bprint.Visible = False
         TEUserEntry.Text = get_user_identify(id_user, 1)
+
         TENumber.Text = header_number_acc("1")
-        Dim regDate As Date = Date.Now()
-        Dim strDate As String = regDate.ToString("yyyy\-MM\-dd")
-        TEDate.Text = view_date_from(strDate, 0)
+
+        TEDate.EditValue = Now()
 
         If id_trans = "-1" Then 'new
             load_number()
@@ -25,7 +25,7 @@
             '
             BMark.Visible = True
             Bprint.Visible = True
-            Dim query As String = "SELECT a.acc_trans_number,DATE_FORMAT(a.date_created,'%Y-%m-%d') as date_created,a.id_user,a.acc_trans_note,id_report_status,a.report_number,a.id_bill_type FROM tb_a_acc_trans a WHERE a.id_acc_trans='" & id_trans & "'"
+            Dim query As String = "SELECT a.acc_trans_number,date_created,a.id_user,a.acc_trans_note,id_report_status,a.report_number,a.id_bill_type FROM tb_a_acc_trans a WHERE a.id_acc_trans='" & id_trans & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             id_report_status_g = data.Rows(0)("id_report_status").ToString
@@ -33,8 +33,9 @@
 
             LEBilling.ItemIndex = LEBilling.Properties.GetDataSourceRowIndex("id_bill_type", data.Rows(0)("id_bill_type").ToString)
             TENumber.Text = data.Rows(0)("acc_trans_number").ToString
-            strDate = data.Rows(0)("date_created").ToString
-            TEDate.Text = view_date_from(strDate, 0)
+
+            TEDate.EditValue = data.Rows(0)("date_created")
+
             MENote.Text = data.Rows(0)("acc_trans_note").ToString
             TEReffNumber.Text = data.Rows(0)("report_number").ToString
             Blink.Enabled = False
