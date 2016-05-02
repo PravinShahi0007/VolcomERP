@@ -88,6 +88,7 @@ Partial Class FormFGWoff
         Me.Controls.Add(Me.GCFGWoff)
         Me.MinimizeBox = False
         Me.Name = "FormFGWoff"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Write Off Finished Goods"
         CType(Me.GCFGWoff, System.ComponentModel.ISupportInitialize).EndInit()

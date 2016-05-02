@@ -550,6 +550,7 @@ Partial Class FormSalesOrderSingleV2
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesOrderSingleV2"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Design List"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

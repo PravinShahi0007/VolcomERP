@@ -137,6 +137,7 @@ Partial Class FormMasterRateStore
         Me.Controls.Add(Me.GCStoreRate)
         Me.Controls.Add(Me.PanelControlRange)
         Me.Name = "FormMasterRateStore"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Master Rate Store"
         CType(Me.PanelControlRange, System.ComponentModel.ISupportInitialize).EndInit()

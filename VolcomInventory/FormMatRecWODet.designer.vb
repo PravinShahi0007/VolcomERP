@@ -1194,6 +1194,7 @@ Partial Class FormMatRecWODet
         Me.MinimizeBox = False
         Me.Name = "FormMatRecWODet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receiving Raw Material Work Order Detail"
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()

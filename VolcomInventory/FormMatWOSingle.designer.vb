@@ -1083,6 +1083,7 @@ Partial Class FormMatWOSingle
         Me.MinimizeBox = False
         Me.Name = "FormMatWOSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Raw Material"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

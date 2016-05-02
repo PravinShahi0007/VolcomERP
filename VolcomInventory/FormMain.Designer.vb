@@ -2305,6 +2305,7 @@ Partial Class FormMain
         Me.Opacity = 0R
         Me.Ribbon = Me.RibbonControl
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.StatusBar = Me.RibbonStatusBar
         Me.Text = "Volcom Enterprise Resource Planning"

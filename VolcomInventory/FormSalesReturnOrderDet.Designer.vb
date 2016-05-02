@@ -761,6 +761,7 @@ Partial Class FormSalesReturnOrderDet
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesReturnOrderDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Return Order"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

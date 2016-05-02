@@ -1303,6 +1303,7 @@ Partial Class FormViewMatWO
         Me.MinimizeBox = False
         Me.Name = "FormViewMatWO"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Raw material Work Order"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

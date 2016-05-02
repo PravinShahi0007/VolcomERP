@@ -333,6 +333,7 @@ Partial Class FormViewJournalAdj
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewJournalAdj"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Adjustment Journal"
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).EndInit()

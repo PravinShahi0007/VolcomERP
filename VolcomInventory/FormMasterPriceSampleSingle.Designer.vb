@@ -621,6 +621,7 @@ Partial Class FormMasterPriceSampleSingle
         Me.Controls.Add(Me.barDockControlTop)
         Me.MinimizeBox = False
         Me.Name = "FormMasterPriceSampleSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Import Sample Price From Excel"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

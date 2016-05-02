@@ -294,6 +294,7 @@ Partial Class FormSalesDelOrderPrintOpt
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesDelOrderPrintOpt"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Print Options"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()

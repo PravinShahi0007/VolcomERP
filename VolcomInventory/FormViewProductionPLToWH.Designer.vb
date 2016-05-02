@@ -859,6 +859,7 @@ Partial Class FormViewProductionPLToWH
         Me.Controls.Add(Me.GroupControl3)
         Me.MinimizeBox = False
         Me.Name = "FormViewProductionPLToWH"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Packing List Finished Goods To WH"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

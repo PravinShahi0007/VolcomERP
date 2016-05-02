@@ -1059,6 +1059,7 @@ Partial Class FormFGMissingWHDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGMissingWHDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Missing WH Inovice"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

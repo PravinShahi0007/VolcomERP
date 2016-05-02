@@ -295,6 +295,7 @@ Partial Class FormMatMRS
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatMRS"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Material Requisition"
         CType(Me.XTCMRS, System.ComponentModel.ISupportInitialize).EndInit()

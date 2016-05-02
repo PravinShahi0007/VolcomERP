@@ -370,6 +370,7 @@ Partial Class FormMasterProduct
         Me.MinimizeBox = False
         Me.Name = "FormMasterProduct"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Product"
         CType(Me.XTCProduct, System.ComponentModel.ISupportInitialize).EndInit()

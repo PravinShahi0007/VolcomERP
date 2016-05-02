@@ -90,6 +90,7 @@ Partial Class FormMasterCompGroupDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterCompGroupDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Group Company"
         CType(Me.TECompanyGroup.Properties, System.ComponentModel.ISupportInitialize).EndInit()

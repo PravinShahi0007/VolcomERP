@@ -99,6 +99,7 @@ Partial Class FormFGTrf
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGTrf"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Transfer"
         CType(Me.GCFGTrf, System.ComponentModel.ISupportInitialize).EndInit()

@@ -331,6 +331,7 @@ Partial Class FormFGDesignList
         Me.Controls.Add(Me.PanelControlNavLineList)
         Me.MaximizeBox = False
         Me.Name = "FormFGDesignList"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Design List"
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).EndInit()

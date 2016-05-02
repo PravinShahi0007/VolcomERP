@@ -1018,6 +1018,7 @@ Partial Class FormSalesPOS
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesPOS"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Invoice"
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).EndInit()

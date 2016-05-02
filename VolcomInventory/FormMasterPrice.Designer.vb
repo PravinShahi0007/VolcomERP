@@ -431,6 +431,7 @@ Partial Class FormMasterPrice
         Me.ClientSize = New System.Drawing.Size(705, 345)
         Me.Controls.Add(Me.XTCPrice)
         Me.Name = "FormMasterPrice"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Product Price"
         CType(Me.GCPrice, System.ComponentModel.ISupportInitialize).EndInit()

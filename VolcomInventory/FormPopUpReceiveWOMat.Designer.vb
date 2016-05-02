@@ -323,6 +323,7 @@ Partial Class FormPopUpReceiveWOMat
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpReceiveWOMat"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Receive WO Material"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

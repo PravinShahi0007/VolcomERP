@@ -448,6 +448,7 @@ Partial Class FormMatRet
         Me.MinimizeBox = False
         Me.Name = "FormMatRet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Return Raw Material"
         CType(Me.XTCReturnMat, System.ComponentModel.ISupportInitialize).EndInit()

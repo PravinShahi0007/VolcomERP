@@ -1188,6 +1188,7 @@ Partial Class FormProductionWO
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionWO"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Work Order"
         CType(Me.EPMatWO, System.ComponentModel.ISupportInitialize).EndInit()

@@ -294,6 +294,7 @@ Partial Class FormMasterRawMaterial
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterRawMaterial"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Raw Material"
         CType(Me.XTCMaterialType, System.ComponentModel.ISupportInitialize).EndInit()

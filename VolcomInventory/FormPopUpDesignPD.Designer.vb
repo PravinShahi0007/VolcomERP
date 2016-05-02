@@ -417,6 +417,7 @@ Partial Class FormPopUpDesignPD
         Me.Controls.Add(Me.PCClose)
         Me.MinimizeBox = False
         Me.Name = "FormPopUpDesignPD"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Design"
         CType(Me.PCClose, System.ComponentModel.ISupportInitialize).EndInit()

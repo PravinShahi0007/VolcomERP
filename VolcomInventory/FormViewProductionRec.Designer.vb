@@ -591,6 +591,7 @@ Partial Class FormViewProductionRec
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewProductionRec"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receiving Detail Fiinished Goods  in QC"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

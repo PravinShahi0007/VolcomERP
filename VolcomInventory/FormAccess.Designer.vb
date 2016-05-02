@@ -364,6 +364,7 @@ Partial Class FormAccess
         Me.MinimizeBox = False
         Me.Name = "FormAccess"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Access"
         CType(Me.PCBack, System.ComponentModel.ISupportInitialize).EndInit()

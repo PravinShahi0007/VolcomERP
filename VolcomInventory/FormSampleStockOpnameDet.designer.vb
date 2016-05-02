@@ -823,6 +823,7 @@ Partial Class FormSampleStockOpnameDet
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormSampleStockOpnameDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Stock Opname "
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

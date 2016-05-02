@@ -277,6 +277,7 @@ Partial Class FormSampleReqList
         Me.Controls.Add(Me.GCLL)
         Me.MinimizeBox = False
         Me.Name = "FormSampleReqList"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample"
         CType(Me.GCLL, System.ComponentModel.ISupportInitialize).EndInit()

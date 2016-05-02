@@ -82,6 +82,7 @@ Partial Class FormMasterRegionSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterRegionSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Region"
         CType(Me.TERegion.Properties, System.ComponentModel.ISupportInitialize).EndInit()

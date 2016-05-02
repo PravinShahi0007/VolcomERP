@@ -109,6 +109,7 @@ Partial Class FormDataReff
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormDataReff"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Choose Data Reference Type"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

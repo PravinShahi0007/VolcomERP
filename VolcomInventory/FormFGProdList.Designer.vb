@@ -248,6 +248,7 @@ Partial Class FormFGProdList
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGProdList"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Product List"
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).EndInit()

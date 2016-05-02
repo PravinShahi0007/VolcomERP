@@ -761,6 +761,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.LookAndFeel.SkinName = "Black"
         Me.MinimizeBox = False
         Me.Name = "FormSalesCreditNotePopInv"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Invoice List"
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).EndInit()

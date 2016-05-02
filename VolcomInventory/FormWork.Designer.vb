@@ -19521,6 +19521,7 @@ Partial Class FormWork
         Me.MinimizeBox = False
         Me.Name = "FormWork"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Work Place"
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).EndInit()

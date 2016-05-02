@@ -252,6 +252,7 @@ Partial Class FormFGMissingInvoiceSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGMissingInvoiceSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Missing Detail"
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()

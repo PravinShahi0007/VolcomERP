@@ -296,6 +296,7 @@ Partial Class FormMatAdj
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatAdj"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjustment Material"
         CType(Me.XTCAdj, System.ComponentModel.ISupportInitialize).EndInit()

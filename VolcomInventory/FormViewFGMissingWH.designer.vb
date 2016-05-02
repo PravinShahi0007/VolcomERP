@@ -962,6 +962,7 @@ Partial Class FormViewFGMissingWH
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewFGMissingWH"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Missing Invoice Finished Good Warehouse"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

@@ -752,6 +752,7 @@ Partial Class FormPopUpStorageSample
         Me.MinimizeBox = False
         Me.Name = "FormPopUpStorageSample"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Inventory Sample"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

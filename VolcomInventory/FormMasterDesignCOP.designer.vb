@@ -266,6 +266,7 @@ Partial Class FormMasterDesignCOP
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterDesignCOP"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Cost Of Production"
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()

@@ -152,6 +152,7 @@ Partial Class FormMasterCodeSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterCodeSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Master Code"
         CType(Me.CEIncludeCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()

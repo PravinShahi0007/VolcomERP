@@ -489,6 +489,7 @@ Partial Class FormSampleOrderSingle
         Me.Controls.Add(Me.PanelControlNav)
         Me.MinimizeBox = False
         Me.Name = "FormSampleOrderSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Item"
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()

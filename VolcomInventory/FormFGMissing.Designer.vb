@@ -880,6 +880,7 @@ Partial Class FormFGMissing
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGMissing"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Missing Finished Good"
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).EndInit()

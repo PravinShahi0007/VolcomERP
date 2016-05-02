@@ -935,6 +935,7 @@ Partial Class FormSalesInvoiceDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesInvoiceDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Invoice"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()

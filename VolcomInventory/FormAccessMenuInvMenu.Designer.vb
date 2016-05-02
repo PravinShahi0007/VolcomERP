@@ -149,6 +149,7 @@ Partial Class FormAccessMenuInvMenu
         Me.MinimizeBox = False
         Me.Name = "FormAccessMenuInvMenu"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Set Involved Form"
         CType(Me.SLEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()

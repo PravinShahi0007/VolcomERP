@@ -392,6 +392,7 @@ Partial Class FormAccoutningTrs
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
         Me.Name = "FormAccoutningTrs"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Transaction"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -1009,6 +1009,7 @@ Partial Class FormMatInvoiceReturDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatInvoiceReturDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Retur Invoice"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()

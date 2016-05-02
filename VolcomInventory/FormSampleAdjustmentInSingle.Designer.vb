@@ -646,6 +646,7 @@ Partial Class FormSampleAdjustmentInSingle
         Me.MinimizeBox = False
         Me.Name = "FormSampleAdjustmentInSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjusment In Sample"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

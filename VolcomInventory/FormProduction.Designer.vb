@@ -842,6 +842,7 @@ Partial Class FormProduction
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProduction"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Production Order"
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).EndInit()

@@ -327,6 +327,7 @@ Partial Class FormSampleDelRecInfo
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormSampleDelRecInfo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Packing List Info"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

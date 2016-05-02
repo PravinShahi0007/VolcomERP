@@ -110,6 +110,7 @@ Partial Class FormFGStockOpnameStore
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGStockOpnameStore"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Store Stock Opname"
         CType(Me.GCSOStore, System.ComponentModel.ISupportInitialize).EndInit()

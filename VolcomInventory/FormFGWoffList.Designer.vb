@@ -206,6 +206,7 @@ Partial Class FormFGWoffList
         Me.Controls.Add(Me.GroupControl4)
         Me.MinimizeBox = False
         Me.Name = "FormFGWoffList"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Write Off List"
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()

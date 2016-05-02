@@ -945,6 +945,7 @@ Partial Class FormViewSalesReturn
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormViewSalesReturn"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Return"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

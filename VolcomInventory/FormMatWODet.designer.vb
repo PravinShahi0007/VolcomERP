@@ -1476,6 +1476,7 @@ Partial Class FormMatWODet
         Me.MinimizeBox = False
         Me.Name = "FormMatWODet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Raw Material Work Order Detail"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

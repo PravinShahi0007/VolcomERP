@@ -1231,6 +1231,7 @@ Partial Class FormMatPLSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatPLSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Packing List Detail"
         CType(Me.ErrorProviderPL, System.ComponentModel.ISupportInitialize).EndInit()

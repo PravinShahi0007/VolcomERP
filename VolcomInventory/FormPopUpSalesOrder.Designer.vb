@@ -450,6 +450,7 @@ Partial Class FormPopUpSalesOrder
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpSalesOrder"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Sales Order"
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).EndInit()

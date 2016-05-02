@@ -301,6 +301,7 @@ Partial Class FormSetupRawMatCodeSingle
         Me.MinimizeBox = False
         Me.Name = "FormSetupRawMatCodeSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Setup Code Raw Material"
         CType(Me.GCtrlCodeTypeDetail, System.ComponentModel.ISupportInitialize).EndInit()

@@ -1024,6 +1024,7 @@ Partial Class FormSalesPromoDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesPromoDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Marketing"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

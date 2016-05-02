@@ -108,6 +108,7 @@ Partial Class FormSampleDel
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleDel"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Packing List Delivery Sample"
         CType(Me.GCSampleDel, System.ComponentModel.ISupportInitialize).EndInit()

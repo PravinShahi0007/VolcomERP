@@ -739,6 +739,7 @@ Partial Class FormPopUpBOM
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
         Me.Name = "FormPopUpBOM"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick BOM"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

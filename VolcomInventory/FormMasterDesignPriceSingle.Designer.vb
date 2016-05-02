@@ -244,6 +244,7 @@ Partial Class FormMasterDesignPriceSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterDesignPriceSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Design Price"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

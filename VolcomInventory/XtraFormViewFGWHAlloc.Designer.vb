@@ -27,6 +27,7 @@ Partial Class XtraFormViewFGWHAlloc
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 262)
         Me.Name = "XtraFormViewFGWHAlloc"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Inventory Allocation"
         Me.ResumeLayout(False)

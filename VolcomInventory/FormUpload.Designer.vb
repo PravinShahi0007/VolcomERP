@@ -28,6 +28,7 @@ Partial Class FormUpload
         Me.ClientSize = New System.Drawing.Size(718, 392)
         Me.MinimizeBox = False
         Me.Name = "FormUpload"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Upload"
         Me.ResumeLayout(False)

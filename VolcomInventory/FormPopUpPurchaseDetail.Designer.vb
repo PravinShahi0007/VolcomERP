@@ -233,6 +233,7 @@ Partial Class FormPopUpPurchaseDetail
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.Name = "FormPopUpPurchaseDetail"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Detail Purchase"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

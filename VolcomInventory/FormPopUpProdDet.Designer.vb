@@ -320,6 +320,7 @@ Partial Class FormPopUpProdDet
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
         Me.Name = "FormPopUpProdDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Item Production Order"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -164,6 +164,7 @@ Partial Class FormAccount
         Me.MinimizeBox = False
         Me.Name = "FormAccount"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Edit Account"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

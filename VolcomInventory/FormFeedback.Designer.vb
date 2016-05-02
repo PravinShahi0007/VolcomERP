@@ -158,6 +158,7 @@ Partial Class FormFeedback
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
         Me.Name = "FormFeedback"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Feedback"
         CType(Me.GCFeedback, System.ComponentModel.ISupportInitialize).EndInit()

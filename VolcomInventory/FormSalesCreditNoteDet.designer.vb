@@ -1156,6 +1156,7 @@ Partial Class FormSalesCreditNoteDet
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormSalesCreditNoteDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Credit Note"
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()

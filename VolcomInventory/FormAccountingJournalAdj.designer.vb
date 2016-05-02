@@ -141,6 +141,7 @@ Partial Class FormAccountingJournalAdj
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccountingJournalAdj"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Adjustment Journal"
         CType(Me.GCAccTrans, System.ComponentModel.ISupportInitialize).EndInit()

@@ -114,6 +114,7 @@ Partial Class FormFGDistSchemaSetupAllocDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGDistSchemaSetupAllocDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Allocation Setup"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

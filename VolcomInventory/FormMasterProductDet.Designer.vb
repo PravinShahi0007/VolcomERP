@@ -874,6 +874,7 @@ Partial Class FormMasterProductDet
         Me.MinimizeBox = False
         Me.Name = "FormMasterProductDet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Product"
         CType(Me.EPMasterProduct, System.ComponentModel.ISupportInitialize).EndInit()

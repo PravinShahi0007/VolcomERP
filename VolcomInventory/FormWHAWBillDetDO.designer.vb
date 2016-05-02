@@ -180,6 +180,7 @@ Partial Class FormWHAWBillDetDO
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormWHAWBillDetDO"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "List Delivery Order"
         CType(Me.GCDO, System.ComponentModel.ISupportInitialize).EndInit()

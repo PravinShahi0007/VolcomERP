@@ -278,6 +278,7 @@ Partial Class FormProductionRet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionRet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return Finished Goods to Vendor"
         CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).EndInit()

@@ -2643,6 +2643,7 @@ Partial Class FormFGProposePriceDet
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimizeBox = False
         Me.Name = "FormFGProposePriceDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Propose Price - Normal Price"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

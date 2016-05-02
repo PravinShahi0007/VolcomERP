@@ -181,6 +181,7 @@ Partial Class FormFGDistSchemaSetupCompDet
         Me.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.Name = "FormFGDistSchemaSetupCompDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Setup Company Allocation"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

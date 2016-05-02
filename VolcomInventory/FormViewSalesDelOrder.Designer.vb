@@ -914,6 +914,7 @@ Partial Class FormViewSalesDelOrder
         Me.Controls.Add(Me.GroupControl3)
         Me.MinimizeBox = False
         Me.Name = "FormViewSalesDelOrder"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Delivery Order"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

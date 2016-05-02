@@ -450,6 +450,7 @@ Partial Class FormPopUpWOProdMat
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpWOProdMat"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Work Order Production"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

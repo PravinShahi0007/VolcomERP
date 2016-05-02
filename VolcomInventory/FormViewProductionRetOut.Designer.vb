@@ -619,6 +619,7 @@ Partial Class FormViewProductionRetOut
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
         Me.Name = "FormViewProductionRetOut"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Return Out Detail"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

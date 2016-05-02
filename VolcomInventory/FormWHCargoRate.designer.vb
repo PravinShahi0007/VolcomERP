@@ -238,6 +238,7 @@ Partial Class FormWHCargoRate
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormWHCargoRate"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Cargo Rate"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

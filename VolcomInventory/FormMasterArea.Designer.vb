@@ -362,6 +362,7 @@ Partial Class FormMasterArea
         Me.MinimizeBox = False
         Me.Name = "FormMasterArea"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Area"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

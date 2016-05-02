@@ -320,6 +320,7 @@ Partial Class FormMasterCompanyContact
         Me.MinimizeBox = False
         Me.Name = "FormMasterCompanyContact"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Contact"
         CType(Me.EPContact, System.ComponentModel.ISupportInitialize).EndInit()

@@ -565,6 +565,7 @@ Partial Class FormMatRecPurc
         Me.MinimizeBox = False
         Me.Name = "FormMatRecPurc"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Receiving Raw Material Purchasing"
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).EndInit()

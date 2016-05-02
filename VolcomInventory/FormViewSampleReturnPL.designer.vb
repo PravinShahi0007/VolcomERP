@@ -584,6 +584,7 @@ Partial Class FormViewSampleReturnPL
         Me.Controls.Add(Me.PanelControl3)
         Me.MinimizeBox = False
         Me.Name = "FormViewSampleReturnPL"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

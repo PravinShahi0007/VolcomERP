@@ -359,6 +359,7 @@ Partial Class FormPopUpProduct
         Me.Controls.Add(Me.GCProdList)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormPopUpProduct"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pop Up Product"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

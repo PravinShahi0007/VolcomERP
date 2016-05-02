@@ -258,6 +258,7 @@ Partial Class FormNotification
         Me.Controls.Add(Me.GCNotif)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormNotification"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Notification"
         CType(Me.GVNotif, System.ComponentModel.ISupportInitialize).EndInit()

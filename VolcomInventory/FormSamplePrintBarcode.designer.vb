@@ -318,6 +318,7 @@ Partial Class FormSamplePrintBarcode
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSamplePrintBarcode"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Print Barcode"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

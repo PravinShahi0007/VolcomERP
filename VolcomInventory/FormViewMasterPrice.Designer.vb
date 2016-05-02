@@ -428,6 +428,7 @@ Partial Class FormViewMasterPrice
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.Controls.Add(Me.GroupControl3)
         Me.Name = "FormViewMasterPrice"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Product Price From Excel"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

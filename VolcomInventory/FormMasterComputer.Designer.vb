@@ -103,6 +103,7 @@ Partial Class FormMasterComputer
         Me.ClientSize = New System.Drawing.Size(668, 353)
         Me.Controls.Add(Me.GCComputer)
         Me.Name = "FormMasterComputer"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormMasterComputer"
         CType(Me.GCComputer, System.ComponentModel.ISupportInitialize).EndInit()

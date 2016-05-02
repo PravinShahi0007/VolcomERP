@@ -589,6 +589,7 @@ Partial Class FormSampleRetOutSingle
         Me.MinimizeBox = False
         Me.Name = "FormSampleRetOutSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return Out Supplier"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

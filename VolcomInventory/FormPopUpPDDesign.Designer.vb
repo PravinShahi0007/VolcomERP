@@ -238,6 +238,7 @@ Partial Class FormPopUpPDDesign
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpPDDesign"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Design"
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()

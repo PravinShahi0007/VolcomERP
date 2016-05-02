@@ -663,6 +663,7 @@ Partial Class FormSalesOrderList
         Me.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.Name = "FormSalesOrderList"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prepare Order List"
         CType(Me.XTCWHMonitor, System.ComponentModel.ISupportInitialize).EndInit()

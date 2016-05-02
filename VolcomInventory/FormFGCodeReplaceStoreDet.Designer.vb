@@ -529,6 +529,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormFGCodeReplaceStoreDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Code Replacement"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

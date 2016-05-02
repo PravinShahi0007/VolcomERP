@@ -169,6 +169,7 @@ Partial Class FormSOHPeriodeDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSOHPeriodeDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SOH Periode"
         CType(Me.DEStart.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()

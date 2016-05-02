@@ -57,6 +57,7 @@ Partial Class FormAccountingJournalBill
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PCGeneralheader = New DevExpress.XtraEditors.PanelControl()
+        Me.TEDate = New DevExpress.XtraEditors.DateEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.Blink = New DevExpress.XtraEditors.SimpleButton()
         Me.TEReffNumber = New DevExpress.XtraEditors.TextEdit()
@@ -66,7 +67,6 @@ Partial Class FormAccountingJournalBill
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LTransNo = New DevExpress.XtraEditors.LabelControl()
-        Me.TEDate = New DevExpress.XtraEditors.DateEdit()
         Me.BalanceMenu.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,12 +87,12 @@ Partial Class FormAccountingJournalBill
         Me.PanelControl2.SuspendLayout()
         CType(Me.PCGeneralheader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCGeneralheader.SuspendLayout()
+        CType(Me.TEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEReffNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUserEntry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BalanceMenu
@@ -455,6 +455,16 @@ Partial Class FormAccountingJournalBill
         Me.PCGeneralheader.Size = New System.Drawing.Size(826, 75)
         Me.PCGeneralheader.TabIndex = 13
         '
+        'TEDate
+        '
+        Me.TEDate.EditValue = Nothing
+        Me.TEDate.Location = New System.Drawing.Point(642, 12)
+        Me.TEDate.Name = "TEDate"
+        Me.TEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEDate.Size = New System.Drawing.Size(172, 20)
+        Me.TEDate.TabIndex = 156
+        '
         'TENumber
         '
         Me.TENumber.EditValue = ""
@@ -543,16 +553,6 @@ Partial Class FormAccountingJournalBill
         Me.LTransNo.TabIndex = 0
         Me.LTransNo.Text = "Date"
         '
-        'TEDate
-        '
-        Me.TEDate.EditValue = Nothing
-        Me.TEDate.Location = New System.Drawing.Point(642, 12)
-        Me.TEDate.Name = "TEDate"
-        Me.TEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TEDate.Size = New System.Drawing.Size(172, 20)
-        Me.TEDate.TabIndex = 156
-        '
         'FormAccountingJournalBill
         '
         Me.AcceptButton = Me.BSave
@@ -569,6 +569,8 @@ Partial Class FormAccountingJournalBill
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccountingJournalBill"
+        Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Entry Journal"
         Me.BalanceMenu.ResumeLayout(False)
@@ -593,12 +595,12 @@ Partial Class FormAccountingJournalBill
         CType(Me.PCGeneralheader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCGeneralheader.ResumeLayout(False)
         Me.PCGeneralheader.PerformLayout()
+        CType(Me.TEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEReffNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUserEntry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

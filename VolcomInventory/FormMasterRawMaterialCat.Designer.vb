@@ -74,6 +74,7 @@ Partial Class FormMasterRawMaterialCat
         Me.MinimizeBox = False
         Me.Name = "FormMasterRawMaterialCat"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Master Category"
         Me.TopMost = True

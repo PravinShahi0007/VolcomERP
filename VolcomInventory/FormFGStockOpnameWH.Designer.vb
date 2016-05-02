@@ -129,6 +129,7 @@ Partial Class FormFGStockOpnameWH
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGStockOpnameWH"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Warehouse Stock Opname"
         CType(Me.GCSOWH, System.ComponentModel.ISupportInitialize).EndInit()

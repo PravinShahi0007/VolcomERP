@@ -615,6 +615,7 @@ Partial Class FormSalesPromo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesPromo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Marketing Invoice"
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).EndInit()

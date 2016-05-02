@@ -520,6 +520,7 @@ Partial Class FormViewSampleAdjOut
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewSampleAdjOut"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjusment Out Sample"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

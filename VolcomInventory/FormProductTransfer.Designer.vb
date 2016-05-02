@@ -27,6 +27,7 @@ Partial Class FormProductTransfer
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 262)
         Me.Name = "FormProductTransfer"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormProductTransfer"
         Me.ResumeLayout(False)

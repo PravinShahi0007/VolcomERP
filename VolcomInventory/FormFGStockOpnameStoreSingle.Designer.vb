@@ -93,6 +93,7 @@ Partial Class FormFGStockOpnameStoreSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGStockOpnameStoreSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Product Condition"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

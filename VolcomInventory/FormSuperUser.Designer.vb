@@ -148,6 +148,7 @@ Partial Class FormSuperUser
         Me.Controls.Add(Me.BtnOther)
         Me.MaximizeBox = False
         Me.Name = "FormSuperUser"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormSuperUser"
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()

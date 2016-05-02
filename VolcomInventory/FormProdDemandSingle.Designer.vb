@@ -663,6 +663,7 @@ Partial Class FormProdDemandSingle
         Me.LookAndFeel.SkinName = "iMaginary"
         Me.MinimizeBox = False
         Me.Name = "FormProdDemandSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Production Demand"
         CType(Me.EPProdDemand, System.ComponentModel.ISupportInitialize).EndInit()

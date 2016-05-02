@@ -481,6 +481,7 @@ Partial Class FormSamplePurchase
         Me.MinimizeBox = False
         Me.Name = "FormSamplePurchase"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Purchase Order Sample"
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).EndInit()

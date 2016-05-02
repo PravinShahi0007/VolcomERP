@@ -1059,6 +1059,7 @@ Partial Class FormSampleStock
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleStock"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Stock"
         CType(Me.XTCWHMain, System.ComponentModel.ISupportInitialize).EndInit()

@@ -629,6 +629,7 @@ Partial Class FormPopUpWOMat
         Me.MinimizeBox = False
         Me.Name = "FormPopUpWOMat"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Raw Material Work Order"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

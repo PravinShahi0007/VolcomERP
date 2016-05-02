@@ -500,6 +500,7 @@ Partial Class FormProdDemandBreakSingle
         Me.MinimizeBox = False
         Me.Name = "FormProdDemandBreakSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Breakdown Size"
         CType(Me.GroupControlProduct, System.ComponentModel.ISupportInitialize).EndInit()

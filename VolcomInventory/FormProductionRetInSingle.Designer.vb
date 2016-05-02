@@ -923,6 +923,7 @@ Partial Class FormProductionRetInSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionRetInSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Return In"
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).EndInit()

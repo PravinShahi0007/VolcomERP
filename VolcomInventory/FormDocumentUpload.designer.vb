@@ -214,6 +214,7 @@ Partial Class FormDocumentUpload
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormDocumentUpload"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Document Upload"
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).EndInit()

@@ -914,6 +914,7 @@ Partial Class FormSamplePLSingle
         Me.MinimizeBox = False
         Me.Name = "FormSamplePLSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Packing List Sample"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

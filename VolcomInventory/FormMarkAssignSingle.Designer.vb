@@ -120,6 +120,7 @@ Partial Class FormMarkAssignSingle
         Me.MinimizeBox = False
         Me.Name = "FormMarkAssignSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Mark"
         CType(Me.PictureEditIcon.Properties, System.ComponentModel.ISupportInitialize).EndInit()

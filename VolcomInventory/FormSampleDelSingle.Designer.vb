@@ -288,6 +288,7 @@ Partial Class FormSampleDelSingle
         Me.Controls.Add(Me.PanelControlNav)
         Me.MinimizeBox = False
         Me.Name = "FormSampleDelSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Sample"
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()

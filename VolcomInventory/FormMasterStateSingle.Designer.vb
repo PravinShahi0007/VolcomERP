@@ -83,6 +83,7 @@ Partial Class FormMasterStateSingle
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "FormMasterStateSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "State"
         CType(Me.TEState.Properties, System.ComponentModel.ISupportInitialize).EndInit()

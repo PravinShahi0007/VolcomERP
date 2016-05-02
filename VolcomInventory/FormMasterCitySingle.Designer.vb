@@ -83,6 +83,7 @@ Partial Class FormMasterCitySingle
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "FormMasterCitySingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "City"
         CType(Me.TECity.Properties, System.ComponentModel.ISupportInitialize).EndInit()

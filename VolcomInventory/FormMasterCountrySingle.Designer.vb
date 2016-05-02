@@ -107,6 +107,7 @@ Partial Class FormMasterCountrySingle
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "FormMasterCountrySingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Country"
         CType(Me.TECountry.Properties, System.ComponentModel.ISupportInitialize).EndInit()

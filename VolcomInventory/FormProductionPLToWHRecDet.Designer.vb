@@ -1536,6 +1536,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionPLToWHRecDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receiving Finished Good In Warehouse"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()

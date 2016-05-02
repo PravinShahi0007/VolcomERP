@@ -193,6 +193,7 @@ Partial Class FormMasterWHRackSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterWHRackSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Rack"
         CType(Me.MEDesription.Properties, System.ComponentModel.ISupportInitialize).EndInit()

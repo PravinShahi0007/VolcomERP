@@ -672,6 +672,7 @@ Partial Class FormSampleOrderedDet
         Me.Controls.Add(Me.PanelControlLocal)
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.Name = "FormSampleOrderedDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Order"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

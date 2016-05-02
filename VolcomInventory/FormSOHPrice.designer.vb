@@ -113,6 +113,7 @@ Partial Class FormSOHPrice
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSOHPrice"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Price List"
         CType(Me.GCSOHPeriode, System.ComponentModel.ISupportInitialize).EndInit()

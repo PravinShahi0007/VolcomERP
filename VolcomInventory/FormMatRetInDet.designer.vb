@@ -954,6 +954,7 @@ Partial Class FormMatRetInDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatRetInDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Raw material Return In"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

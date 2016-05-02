@@ -552,6 +552,7 @@ Partial Class FormViewMatRetOut
         Me.MinimizeBox = False
         Me.Name = "FormViewMatRetOut"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Raw Material Return Out"
         CType(Me.GroupControlRet, System.ComponentModel.ISupportInitialize).EndInit()

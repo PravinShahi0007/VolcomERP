@@ -227,6 +227,7 @@ Partial Class FormSamplePLExport
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSamplePLExport"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Sample PL Detail List"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

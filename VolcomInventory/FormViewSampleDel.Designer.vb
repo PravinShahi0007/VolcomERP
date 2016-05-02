@@ -915,6 +915,7 @@ Partial Class FormViewSampleDel
         Me.Controls.Add(Me.BMark)
         Me.MinimizeBox = False
         Me.Name = "FormViewSampleDel"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Packing List Delivery Sample"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

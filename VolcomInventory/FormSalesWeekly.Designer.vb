@@ -974,6 +974,7 @@ Partial Class FormSalesWeekly
         Me.Controls.Add(Me.XTCPOS)
         Me.MinimizeBox = False
         Me.Name = "FormSalesWeekly"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Standard Report Sales"
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).EndInit()

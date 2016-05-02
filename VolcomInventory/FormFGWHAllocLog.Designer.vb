@@ -362,6 +362,7 @@ Partial Class FormFGWHAllocLog
         Me.Controls.Add(Me.GCFilter)
         Me.MinimizeBox = False
         Me.Name = "FormFGWHAllocLog"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Inventory Allocation Log"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()

@@ -114,6 +114,7 @@ Partial Class FormMasterOVH
         Me.MinimizeBox = False
         Me.Name = "FormMasterOVH"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Overhead"
         CType(Me.GCOVH, System.ComponentModel.ISupportInitialize).EndInit()

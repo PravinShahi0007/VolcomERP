@@ -564,6 +564,7 @@ Partial Class FormSampleRetInSingle
         Me.MinimizeBox = False
         Me.Name = "FormSampleRetInSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return In Supplier"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

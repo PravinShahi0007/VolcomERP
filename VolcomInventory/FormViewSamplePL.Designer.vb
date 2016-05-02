@@ -613,6 +613,7 @@ Partial Class FormViewSamplePL
         Me.MinimizeBox = False
         Me.Name = "FormViewSamplePL"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Packing List Sample"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()

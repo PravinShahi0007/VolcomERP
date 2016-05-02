@@ -696,6 +696,7 @@ Partial Class FormPopUpPLProdDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpPLProdDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Item Packing List"
         CType(Me.PCClose, System.ComponentModel.ISupportInitialize).EndInit()

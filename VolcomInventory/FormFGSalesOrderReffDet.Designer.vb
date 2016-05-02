@@ -941,6 +941,7 @@ Partial Class FormFGSalesOrderReffDet
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "FormFGSalesOrderReffDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prepare Order New Product"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

@@ -202,6 +202,7 @@ Partial Class FormMatWO
         Me.MinimizeBox = False
         Me.Name = "FormMatWO"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Raw Material Work Order"
         CType(Me.GCMatWO, System.ComponentModel.ISupportInitialize).EndInit()

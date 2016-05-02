@@ -373,6 +373,7 @@ Partial Class FormInfoPLSample
         Me.MinimizeBox = False
         Me.Name = "FormInfoPLSample"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Packing List "
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

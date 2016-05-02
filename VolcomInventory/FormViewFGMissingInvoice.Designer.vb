@@ -776,6 +776,7 @@ Partial Class FormViewFGMissingInvoice
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewFGMissingInvoice"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Missing Invoice"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

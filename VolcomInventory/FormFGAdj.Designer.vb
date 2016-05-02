@@ -294,6 +294,7 @@ Partial Class FormFGAdj
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGAdj"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjustment Finished Goods"
         CType(Me.XTCAdj, System.ComponentModel.ISupportInitialize).EndInit()

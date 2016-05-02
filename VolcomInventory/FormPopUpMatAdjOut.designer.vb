@@ -765,6 +765,7 @@ Partial Class FormPopUpMatAdjOut
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpMatAdjOut"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjustment Out Material"
         CType(Me.GroupControlInfo, System.ComponentModel.ISupportInitialize).EndInit()

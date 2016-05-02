@@ -239,6 +239,7 @@ Partial Class FormFGDSSONew
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGDSSONew"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Create Sales Order for New Product"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

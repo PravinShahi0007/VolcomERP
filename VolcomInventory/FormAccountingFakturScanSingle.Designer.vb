@@ -973,6 +973,7 @@ Partial Class FormAccountingFakturScanSingle
         Me.Controls.Add(Me.GroupControl1)
         Me.LookAndFeel.SkinName = "Metropolis"
         Me.Name = "FormAccountingFakturScanSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "E-Faktur Scan"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()

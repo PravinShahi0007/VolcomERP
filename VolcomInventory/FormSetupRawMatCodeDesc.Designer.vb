@@ -95,6 +95,7 @@ Partial Class FormSetupRawMatCodeDesc
         Me.MinimizeBox = False
         Me.Name = "FormSetupRawMatCodeDesc"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Edit Description"
         CType(Me.MEDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()

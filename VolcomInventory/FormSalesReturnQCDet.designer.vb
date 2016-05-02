@@ -1511,6 +1511,7 @@ Partial Class FormSalesReturnQCDet
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesReturnQCDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return Quality Control"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

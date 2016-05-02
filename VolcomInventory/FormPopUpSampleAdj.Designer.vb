@@ -840,6 +840,7 @@ Partial Class FormPopUpSampleAdj
         Me.MinimizeBox = False
         Me.Name = "FormPopUpSampleAdj"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pop Up Adjusment Sample"
         CType(Me.GroupControlInput, System.ComponentModel.ISupportInitialize).EndInit()

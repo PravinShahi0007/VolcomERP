@@ -316,6 +316,7 @@ Partial Class FormFGDistSchemeStoreDet
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormFGDistSchemeStoreDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Distribution Scheme - Select Account"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

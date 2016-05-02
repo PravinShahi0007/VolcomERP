@@ -822,6 +822,7 @@ Partial Class FormMatPR
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatPR"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Material Payment Requisition"
         CType(Me.XTCTabPR, System.ComponentModel.ISupportInitialize).EndInit()

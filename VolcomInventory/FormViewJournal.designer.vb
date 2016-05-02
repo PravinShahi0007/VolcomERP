@@ -328,6 +328,7 @@ Partial Class FormViewJournal
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewJournal"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Journal Detail"
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).EndInit()

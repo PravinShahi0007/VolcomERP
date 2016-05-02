@@ -343,6 +343,7 @@ Partial Class FormPopUpPL
         Me.MinimizeBox = False
         Me.Name = "FormPopUpPL"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Popup Packing List"
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).EndInit()

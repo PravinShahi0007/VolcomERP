@@ -192,6 +192,7 @@ Partial Class FormAccountingFYearDet
         Me.Controls.Add(Me.XtraTabControl1)
         Me.MinimizeBox = False
         Me.Name = "FormAccountingFYearDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Fiscal Year Detail"
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -81,6 +81,7 @@ Partial Class FormMasterCompanyCategory
         Me.MinimizeBox = False
         Me.Name = "FormMasterCompanyCategory"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Company Category"
         CType(Me.GCCompanyCategory, System.ComponentModel.ISupportInitialize).EndInit()

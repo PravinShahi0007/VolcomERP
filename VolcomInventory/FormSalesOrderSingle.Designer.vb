@@ -503,6 +503,7 @@ Partial Class FormSalesOrderSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesOrderSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Item Sales Order"
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
