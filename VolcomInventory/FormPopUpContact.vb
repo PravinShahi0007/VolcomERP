@@ -100,7 +100,7 @@
             query += "AND tb_m_comp.id_comp_cat = '" + id_cat + "' "
         End If
         If id_pop_up = "38" Then
-            query += "AND (tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') "
+            query += "AND (tb_m_comp.id_comp_cat = '2' OR tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') "
         End If
 
         If id_departement <> "-1" Then
