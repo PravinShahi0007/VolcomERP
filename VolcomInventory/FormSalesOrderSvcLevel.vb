@@ -1,7 +1,5 @@
 ﻿Public Class FormSalesOrderSvcLevel
     Sub viewSalesOrder()
-        'remove filter
-        GVSalesOrder.ActiveFilterString = ""
 
         'Prepare paramater
         Dim date_from_selected As String = "0000-01-01"
@@ -660,6 +658,7 @@
             FormSalesOrderPacking.id_pop_up = "4"
             FormSalesOrderPacking.ShowDialog()
         End If
+        GVSalesOrder.ActiveFilterString = ""
         Cursor = Cursors.Default
     End Sub
 End Class
