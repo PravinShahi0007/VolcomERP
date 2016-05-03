@@ -822,6 +822,7 @@ Partial Class FormPopUpPRComponentMatWO
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpPRComponentMatWO"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Payment Item"
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -349,6 +349,7 @@ Partial Class FormPopUpPurchase
         Me.MinimizeBox = False
         Me.Name = "FormPopUpPurchase"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Purchase"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

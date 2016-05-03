@@ -153,6 +153,7 @@ Partial Class FormViewProdDemand
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormViewProdDemand"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Production Demand"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

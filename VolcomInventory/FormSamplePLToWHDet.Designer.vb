@@ -886,6 +886,7 @@ Partial Class FormSamplePLToWHDet
         Me.Controls.Add(Me.barDockControlTop)
         Me.MinimizeBox = False
         Me.Name = "FormSamplePLToWHDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Packing List Sample"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()

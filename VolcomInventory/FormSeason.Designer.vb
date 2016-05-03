@@ -679,6 +679,7 @@ Partial Class FormSeason
         Me.MinimizeBox = False
         Me.Name = "FormSeason"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Season"
         CType(Me.XTCMainSeason, System.ComponentModel.ISupportInitialize).EndInit()

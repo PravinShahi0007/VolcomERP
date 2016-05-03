@@ -786,6 +786,7 @@ Partial Class FormViewMatRetInProd
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewMatRetInProd"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Return In Material Production"
         CType(Me.GroupControlRet, System.ComponentModel.ISupportInitialize).EndInit()

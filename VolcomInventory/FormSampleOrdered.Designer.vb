@@ -97,6 +97,7 @@ Partial Class FormSampleOrdered
         Me.Controls.Add(Me.GCSampleOrder)
         Me.MaximizeBox = False
         Me.Name = "FormSampleOrdered"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Order"
         CType(Me.GCSampleOrder, System.ComponentModel.ISupportInitialize).EndInit()

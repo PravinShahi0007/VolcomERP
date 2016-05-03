@@ -529,6 +529,7 @@ Partial Class FormViewFGAdjIn
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewFGAdjIn"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjustment Out Finished Goods"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

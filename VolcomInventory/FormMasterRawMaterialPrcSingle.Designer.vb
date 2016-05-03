@@ -301,6 +301,7 @@ Partial Class FormMasterRawMaterialPrcSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterRawMaterialPrcSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Price Raw Material"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

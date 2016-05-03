@@ -66,6 +66,7 @@ Partial Class FormMasterSampleNR
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterSampleNR"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Normal / Reject"
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()

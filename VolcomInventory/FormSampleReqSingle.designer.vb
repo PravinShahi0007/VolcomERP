@@ -850,6 +850,7 @@ Partial Class FormSampleReqSingle
         Me.MinimizeBox = False
         Me.Name = "FormSampleReqSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Borrow Requisition"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

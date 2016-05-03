@@ -225,6 +225,7 @@ Partial Class FormSampleStockOpnameSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleStockOpnameSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Stock Opname Single"
         CType(Me.GroupControlSample, System.ComponentModel.ISupportInitialize).EndInit()

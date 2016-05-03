@@ -641,6 +641,7 @@ Partial Class FormFGAdjInDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGAdjInDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjustment In Finished Goods"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

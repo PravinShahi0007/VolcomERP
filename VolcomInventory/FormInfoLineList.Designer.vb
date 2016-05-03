@@ -207,6 +207,7 @@ Partial Class FormInfoLineList
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormInfoLineList"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Product Line List"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

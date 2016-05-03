@@ -373,6 +373,7 @@ Partial Class FormPopUpPD
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpPD"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Production Demand"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

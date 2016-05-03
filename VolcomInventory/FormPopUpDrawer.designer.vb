@@ -292,6 +292,7 @@ Partial Class FormPopUpDrawer
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpDrawer"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Drawer"
         CType(Me.SLELocator.Properties, System.ComponentModel.ISupportInitialize).EndInit()

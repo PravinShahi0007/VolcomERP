@@ -386,6 +386,7 @@ Partial Class FormPopUpMaterial
         Me.Controls.Add(Me.XTCMaterialType)
         Me.MinimizeBox = False
         Me.Name = "FormPopUpMaterial"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Raw Material"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized

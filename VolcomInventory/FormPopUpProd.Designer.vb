@@ -477,6 +477,7 @@ Partial Class FormPopUpProd
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpProd"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Production"
         CType(Me.SCCProd, System.ComponentModel.ISupportInitialize).EndInit()

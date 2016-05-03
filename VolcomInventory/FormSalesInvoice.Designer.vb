@@ -106,6 +106,7 @@ Partial Class FormSalesInvoice
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesInvoice"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Invoice"
         CType(Me.GCSalesInvoice, System.ComponentModel.ISupportInitialize).EndInit()

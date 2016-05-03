@@ -704,6 +704,7 @@ Partial Class FormFGAdjInSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGAdjInSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjustment In"
         CType(Me.GroupControlInput, System.ComponentModel.ISupportInitialize).EndInit()

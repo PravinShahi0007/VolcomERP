@@ -977,6 +977,7 @@ Partial Class FormProductionStorageIn
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionStorageIn"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Stored In"
         CType(Me.PCClose, System.ComponentModel.ISupportInitialize).EndInit()

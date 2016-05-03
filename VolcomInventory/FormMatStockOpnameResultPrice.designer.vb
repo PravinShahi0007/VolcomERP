@@ -432,6 +432,7 @@ Partial Class FormMatStockOpnameResultPrice
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatStockOpnameResultPrice"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Stock Opname Price Detail"
         CType(Me.GVMatListPrice, System.ComponentModel.ISupportInitialize).EndInit()

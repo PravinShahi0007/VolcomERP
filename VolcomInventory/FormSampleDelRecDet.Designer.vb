@@ -1072,6 +1072,7 @@ Partial Class FormSampleDelRecDet
         Me.Controls.Add(Me.PanelControl3)
         Me.MinimizeBox = False
         Me.Name = "FormSampleDelRecDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receive Packing List Sample Delivery"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()

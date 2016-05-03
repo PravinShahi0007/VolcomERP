@@ -853,6 +853,7 @@ Partial Class FormViewProduction
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewProduction"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Production"
         CType(Me.GConListPurchase, System.ComponentModel.ISupportInitialize).EndInit()

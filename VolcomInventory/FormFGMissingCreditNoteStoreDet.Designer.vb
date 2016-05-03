@@ -1131,6 +1131,7 @@ Partial Class FormFGMissingCreditNoteStoreDet
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormFGMissingCreditNoteStoreDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Missing Credit Note"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

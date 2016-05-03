@@ -254,6 +254,7 @@ Partial Class FormFGDistSchemeStore
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormFGDistSchemeStore"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Distribution Scheme - Account List"
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).EndInit()

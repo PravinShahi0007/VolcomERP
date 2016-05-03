@@ -923,6 +923,7 @@ Partial Class FormViewFGMissing
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormViewFGMissing"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Missing Finished Goods"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

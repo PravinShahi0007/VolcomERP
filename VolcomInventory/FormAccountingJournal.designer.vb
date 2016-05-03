@@ -493,6 +493,7 @@ Partial Class FormAccountingJournal
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccountingJournal"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Journal Entry"
         CType(Me.GCAccTrans, System.ComponentModel.ISupportInitialize).EndInit()

@@ -417,6 +417,7 @@ Partial Class FormPopUpPurchaseMat
         Me.MinimizeBox = False
         Me.Name = "FormPopUpPurchaseMat"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = " "
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

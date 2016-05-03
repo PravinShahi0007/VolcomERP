@@ -541,6 +541,7 @@ Partial Class FormViewMatAdjOut
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewMatAdjOut"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjustment Out Material"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()

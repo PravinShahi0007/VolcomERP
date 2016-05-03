@@ -749,6 +749,7 @@ Partial Class FormSalesDelOrderSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesDelOrderSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Item Location"
         CType(Me.GroupControlNavStore, System.ComponentModel.ISupportInitialize).EndInit()

@@ -632,6 +632,7 @@ Partial Class FormSalesCreditNote
         Me.Controls.Add(Me.GCFilter)
         Me.MinimizeBox = False
         Me.Name = "FormSalesCreditNote"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Credit Note"
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).EndInit()

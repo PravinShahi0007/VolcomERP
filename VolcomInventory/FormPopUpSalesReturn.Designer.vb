@@ -412,6 +412,7 @@ Partial Class FormPopUpSalesReturn
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpSalesReturn"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return Sales"
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).EndInit()

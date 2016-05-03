@@ -390,6 +390,7 @@ Partial Class FormSalesReturnOrderSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesReturnOrderSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Item Sales Return Order"
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()

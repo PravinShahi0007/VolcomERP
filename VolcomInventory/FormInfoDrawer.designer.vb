@@ -214,6 +214,7 @@ Partial Class FormInfoDrawer
         Me.MinimizeBox = False
         Me.Name = "FormInfoDrawer"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Info Drawer"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

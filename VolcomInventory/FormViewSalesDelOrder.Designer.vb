@@ -92,6 +92,7 @@ Partial Class FormViewSalesDelOrder
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTest = New DevExpress.XtraGrid.GridControl()
         Me.GVTest = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnOrderRemain = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.XTCDO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -234,12 +235,14 @@ Partial Class FormViewSalesDelOrder
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQtyWH, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnEanCode, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdProduct, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQtyWH, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnEanCode, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdProduct, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnOrderRemain})
         Me.GVItemList.GridControl = Me.GCItemList
+        Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_remaining", Me.GridColumnOrderRemain, "{0:n0}")})
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
         'GridColumnNo
@@ -250,7 +253,7 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnNo.OptionsColumn.ReadOnly = True
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 47
+        Me.GridColumnNo.Width = 33
         '
         'GridColumnCode
         '
@@ -260,7 +263,7 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 79
+        Me.GridColumnCode.Width = 56
         '
         'GridColumnName
         '
@@ -271,7 +274,7 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 142
+        Me.GridColumnName.Width = 101
         '
         'GridColumnSize
         '
@@ -285,7 +288,7 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 61
+        Me.GridColumnSize.Width = 43
         '
         'GridColumnQtyWH
         '
@@ -309,16 +312,17 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnQty.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnQty.Caption = "Qty Del"
-        Me.GridColumnQty.DisplayFormat.FormatString = "F2"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "pl_sales_order_del_det_qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.OptionsColumn.AllowShowHide = False
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 4
-        Me.GridColumnQty.Width = 102
+        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.Width = 62
         '
         'GridColumnPrice
         '
@@ -331,8 +335,8 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnPrice.OptionsColumn.AllowShowHide = False
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 5
-        Me.GridColumnPrice.Width = 124
+        Me.GridColumnPrice.VisibleIndex = 6
+        Me.GridColumnPrice.Width = 76
         '
         'GridColumnAmount
         '
@@ -345,8 +349,8 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnAmount.OptionsColumn.AllowShowHide = False
         Me.GridColumnAmount.OptionsColumn.ReadOnly = True
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 6
-        Me.GridColumnAmount.Width = 141
+        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.Width = 87
         '
         'GridColumnRemark
         '
@@ -354,8 +358,8 @@ Partial Class FormViewSalesDelOrder
         Me.GridColumnRemark.FieldName = "pl_sales_order_del_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 7
-        Me.GridColumnRemark.Width = 263
+        Me.GridColumnRemark.VisibleIndex = 8
+        Me.GridColumnRemark.Width = 176
         '
         'GridColumnUOM
         '
@@ -905,6 +909,23 @@ Partial Class FormViewSalesDelOrder
         Me.GVTest.GridControl = Me.GCTest
         Me.GVTest.Name = "GVTest"
         '
+        'GridColumnOrderRemain
+        '
+        Me.GridColumnOrderRemain.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnOrderRemain.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnOrderRemain.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnOrderRemain.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnOrderRemain.Caption = "Order Remaining"
+        Me.GridColumnOrderRemain.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnOrderRemain.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnOrderRemain.FieldName = "total_remaining"
+        Me.GridColumnOrderRemain.Name = "GridColumnOrderRemain"
+        Me.GridColumnOrderRemain.OptionsColumn.AllowEdit = False
+        Me.GridColumnOrderRemain.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_remaining", "{0:n0}")})
+        Me.GridColumnOrderRemain.Visible = True
+        Me.GridColumnOrderRemain.VisibleIndex = 4
+        Me.GridColumnOrderRemain.Width = 106
+        '
         'FormViewSalesDelOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -914,6 +935,7 @@ Partial Class FormViewSalesDelOrder
         Me.Controls.Add(Me.GroupControl3)
         Me.MinimizeBox = False
         Me.Name = "FormViewSalesDelOrder"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Delivery Order"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1045,4 +1067,5 @@ Partial Class FormViewSalesDelOrder
     Friend WithEvents GridColumnIdProductScan As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemSpinEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents GridColumnOrderRemain As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -469,6 +469,7 @@ Partial Class FormFGMissingCreditNote
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGMissingCreditNote"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Missing Store Credit Note"
         CType(Me.XTCFGMissingCN, System.ComponentModel.ISupportInitialize).EndInit()

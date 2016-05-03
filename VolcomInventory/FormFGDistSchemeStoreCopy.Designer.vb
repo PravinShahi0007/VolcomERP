@@ -146,6 +146,7 @@ Partial Class FormFGDistSchemeStoreCopy
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.Name = "FormFGDistSchemeStoreCopy"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Distribution Scheme - Copy Account"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

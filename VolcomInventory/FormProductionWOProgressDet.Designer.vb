@@ -126,6 +126,7 @@ Partial Class FormProductionWOProgressDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionWOProgressDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Progress Update"
         CType(Me.SEProgress.Properties, System.ComponentModel.ISupportInitialize).EndInit()

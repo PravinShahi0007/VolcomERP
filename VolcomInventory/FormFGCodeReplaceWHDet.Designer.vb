@@ -494,6 +494,7 @@ Partial Class FormFGCodeReplaceWHDet
         Me.Controls.Add(Me.PanelControl3)
         Me.MinimizeBox = False
         Me.Name = "FormFGCodeReplaceWHDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Code Replacement (In WH)"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()

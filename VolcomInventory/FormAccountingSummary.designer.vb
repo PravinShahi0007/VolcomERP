@@ -217,6 +217,7 @@ Partial Class FormAccountingSummary
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccountingSummary"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Summary"
         CType(Me.TreeList1, System.ComponentModel.ISupportInitialize).EndInit()

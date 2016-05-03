@@ -340,6 +340,7 @@ Partial Class FormMasterRawMaterialSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterRawMaterialSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Material Type"
         CType(Me.PCSave, System.ComponentModel.ISupportInitialize).EndInit()

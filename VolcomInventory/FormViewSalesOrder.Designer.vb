@@ -712,6 +712,7 @@ Partial Class FormViewSalesOrder
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormViewSalesOrder"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prepare Order"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

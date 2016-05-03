@@ -740,6 +740,7 @@ Partial Class FormProductionMRS
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionMRS"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Material Requisition"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

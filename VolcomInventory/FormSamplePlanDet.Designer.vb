@@ -603,6 +603,7 @@ Partial Class FormSamplePlanDet
         Me.MinimizeBox = False
         Me.Name = "FormSamplePlanDet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Detail Sample Planning"
         CType(Me.EPSamplePurc, System.ComponentModel.ISupportInitialize).EndInit()

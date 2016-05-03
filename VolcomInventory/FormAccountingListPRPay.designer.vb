@@ -481,6 +481,7 @@ Partial Class FormAccountingListPRPay
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccountingListPRPay"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Payment"
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).EndInit()

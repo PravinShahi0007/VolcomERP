@@ -1527,6 +1527,7 @@ Partial Class FormSalesReturnDet
         Me.Controls.Add(Me.barDockControlTop)
         Me.MinimizeBox = False
         Me.Name = "FormSalesReturnDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Return"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

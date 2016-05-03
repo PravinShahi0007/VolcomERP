@@ -1283,6 +1283,7 @@ Partial Class FormFGStock
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGStock"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Stock"
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).EndInit()

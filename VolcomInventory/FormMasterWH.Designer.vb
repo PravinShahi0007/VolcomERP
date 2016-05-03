@@ -2405,6 +2405,7 @@ Partial Class FormMasterWH
         Me.MinimizeBox = False
         Me.Name = "FormMasterWH"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Warehouse & Locator"
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()

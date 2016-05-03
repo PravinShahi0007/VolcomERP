@@ -106,6 +106,7 @@ Partial Class FormDocumentUploadDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormDocumentUploadDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Upload File"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

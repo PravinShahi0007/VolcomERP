@@ -1162,6 +1162,7 @@ Partial Class FormSampleReceiveDet
         Me.MinimizeBox = False
         Me.Name = "FormSampleReceiveDet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Receive Detail"
         CType(Me.EPSampleRec, System.ComponentModel.ISupportInitialize).EndInit()

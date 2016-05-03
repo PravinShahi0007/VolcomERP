@@ -996,6 +996,7 @@ Partial Class FormViewSampleDelOrder
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormViewSampleDelOrder"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Delivery Order Sample"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

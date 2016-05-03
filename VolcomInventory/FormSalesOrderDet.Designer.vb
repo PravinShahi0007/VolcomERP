@@ -952,6 +952,7 @@ Partial Class FormSalesOrderDet
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormSalesOrderDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prepare Order"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

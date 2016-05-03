@@ -275,6 +275,7 @@ Partial Class FormFGDistSchemaSetup
         Me.ClientSize = New System.Drawing.Size(790, 435)
         Me.Controls.Add(Me.SplitContainerControl1)
         Me.Name = "FormFGDistSchemaSetup"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Distribution Schema Setup"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

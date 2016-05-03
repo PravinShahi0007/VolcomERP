@@ -282,6 +282,7 @@ Partial Class FormPopUpMatPrice
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpMatPrice"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Material Price"
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()

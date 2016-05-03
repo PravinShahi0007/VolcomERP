@@ -552,6 +552,7 @@ Partial Class FormProductionWOProgress
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionWOProgress"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Work Order Progress"
         CType(Me.GCNote, System.ComponentModel.ISupportInitialize).EndInit()

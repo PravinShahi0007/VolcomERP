@@ -139,6 +139,7 @@ Partial Class FormFGBorrowQCReq
         Me.ClientSize = New System.Drawing.Size(764, 386)
         Me.Controls.Add(Me.GCBorrowReq)
         Me.Name = "FormFGBorrowQCReq"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Borrow Request"
         CType(Me.GCBorrowReq, System.ComponentModel.ISupportInitialize).EndInit()

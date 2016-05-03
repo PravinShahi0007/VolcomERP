@@ -170,6 +170,7 @@ Partial Class FormPopUpProductUnique
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpProductUnique"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pop Up Unique Product"
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()

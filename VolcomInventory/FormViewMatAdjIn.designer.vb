@@ -542,6 +542,7 @@ Partial Class FormViewMatAdjIn
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewMatAdjIn"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjustment In Material"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

@@ -868,6 +868,7 @@ Partial Class FormViewSampleDelRec
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.Name = "FormViewSampleDelRec"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receive Packing List Sample Delivery"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

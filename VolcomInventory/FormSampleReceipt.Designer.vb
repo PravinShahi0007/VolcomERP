@@ -155,6 +155,7 @@ Partial Class FormSampleReceipt
         Me.MinimizeBox = False
         Me.Name = "FormSampleReceipt"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receipt Slip"
         CType(Me.GCReceipt, System.ComponentModel.ISupportInitialize).EndInit()

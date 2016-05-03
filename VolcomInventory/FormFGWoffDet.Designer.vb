@@ -1176,6 +1176,7 @@ Partial Class FormFGWoffDet
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormFGWoffDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Write Off Finished Goods"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

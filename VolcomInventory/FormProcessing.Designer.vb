@@ -100,6 +100,7 @@ Partial Class FormProcessing
         Me.Controls.Add(Me.LabelStatus)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "FormProcessing"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Please Wait"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

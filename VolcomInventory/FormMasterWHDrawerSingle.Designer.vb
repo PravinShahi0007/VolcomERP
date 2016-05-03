@@ -193,6 +193,7 @@ Partial Class FormMasterWHDrawerSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterWHDrawerSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Drawer WH"
         CType(Me.MEDesription.Properties, System.ComponentModel.ISupportInitialize).EndInit()

@@ -453,6 +453,7 @@ Partial Class FormPopUpWOProd
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpWOProd"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Work Order"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

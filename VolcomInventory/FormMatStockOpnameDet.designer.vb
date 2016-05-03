@@ -653,6 +653,7 @@ Partial Class FormMatStockOpnameDet
         Me.Controls.Add(Me.GroupControl1)
         Me.MinimizeBox = False
         Me.Name = "FormMatStockOpnameDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Detail Stock Opname"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()

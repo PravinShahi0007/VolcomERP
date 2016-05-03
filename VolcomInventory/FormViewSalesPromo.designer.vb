@@ -894,6 +894,7 @@ Partial Class FormViewSalesPromo
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewSalesPromo"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Invoice Promo"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

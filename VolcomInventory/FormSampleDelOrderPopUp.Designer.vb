@@ -441,6 +441,7 @@ Partial Class FormSampleDelOrderPopUp
         Me.Controls.Add(Me.GroupControlSave)
         Me.MinimizeBox = False
         Me.Name = "FormSampleDelOrderPopUp"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Sales Order Sample"
         CType(Me.SCCSOSample, System.ComponentModel.ISupportInitialize).EndInit()

@@ -97,6 +97,7 @@ Partial Class FormSampleTrf
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleTrf"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Transfer"
         CType(Me.GCSampleTrf, System.ComponentModel.ISupportInitialize).EndInit()

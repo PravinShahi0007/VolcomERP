@@ -296,6 +296,7 @@ Partial Class FormSamplePriceSingle
         Me.MinimizeBox = False
         Me.Name = "FormSamplePriceSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Price"
         CType(Me.EPSamplePrice, System.ComponentModel.ISupportInitialize).EndInit()

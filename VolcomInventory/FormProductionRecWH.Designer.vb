@@ -30,6 +30,7 @@ Partial Class FormProductionRecWH
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionRecWH"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormProductionRecWH"
         Me.ResumeLayout(False)

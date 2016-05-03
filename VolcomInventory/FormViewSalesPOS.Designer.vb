@@ -822,6 +822,7 @@ Partial Class FormViewSalesPOS
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewSalesPOS"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Virtual Point Of Sales"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

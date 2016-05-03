@@ -151,6 +151,7 @@ Partial Class FormFGLineListMoveSeason
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGLineListMoveSeason"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Move/Drop"
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).EndInit()

@@ -847,6 +847,7 @@ Partial Class FormViewSamplePR
         Me.MinimizeBox = False
         Me.Name = "FormViewSamplePR"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Payment Sample"
         CType(Me.GCMark, System.ComponentModel.ISupportInitialize).EndInit()

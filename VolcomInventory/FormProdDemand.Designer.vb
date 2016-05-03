@@ -295,6 +295,7 @@ Partial Class FormProdDemand
         Me.MinimizeBox = False
         Me.Name = "FormProdDemand"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Production Demand"
         CType(Me.GroupControlProdNumber, System.ComponentModel.ISupportInitialize).EndInit()

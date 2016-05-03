@@ -1339,6 +1339,7 @@ Partial Class FormMasterSampleDet
         Me.MinimizeBox = False
         Me.Name = "FormMasterSampleDet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Detail"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

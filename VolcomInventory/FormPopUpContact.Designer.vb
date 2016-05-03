@@ -417,6 +417,7 @@ Partial Class FormPopUpContact
         Me.MinimizeBox = False
         Me.Name = "FormPopUpContact"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Contact"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

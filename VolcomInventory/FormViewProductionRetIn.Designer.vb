@@ -564,6 +564,7 @@ Partial Class FormViewProductionRetIn
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewProductionRetIn"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Return In Detail"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

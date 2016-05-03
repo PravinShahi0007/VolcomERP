@@ -320,6 +320,7 @@ Partial Class FormProdDemandLineList
         Me.Controls.Add(Me.PanelControlNavLineListBottom)
         Me.Controls.Add(Me.PanelControlNavLineList)
         Me.Name = "FormProdDemandLineList"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Line List"
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).EndInit()

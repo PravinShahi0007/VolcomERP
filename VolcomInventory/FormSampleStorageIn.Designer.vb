@@ -902,6 +902,7 @@ Partial Class FormSampleStorageIn
         Me.MinimizeBox = False
         Me.Name = "FormSampleStorageIn"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Stored In"
         CType(Me.PCClose, System.ComponentModel.ISupportInitialize).EndInit()

@@ -840,6 +840,7 @@ Partial Class FormViewPRProdWO
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewPRProdWO"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Payment Request Production"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()

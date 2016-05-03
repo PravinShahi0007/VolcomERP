@@ -550,6 +550,7 @@ Partial Class FormInfoSRS
         Me.MinimizeBox = False
         Me.Name = "FormInfoSRS"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Info"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

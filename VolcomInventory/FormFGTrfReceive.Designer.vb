@@ -110,6 +110,7 @@ Partial Class FormFGTrfReceive
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGTrfReceive"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receive Transfer"
         CType(Me.GCFGTrf, System.ComponentModel.ISupportInitialize).EndInit()

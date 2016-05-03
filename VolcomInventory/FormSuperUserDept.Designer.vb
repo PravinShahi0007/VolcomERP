@@ -59,6 +59,7 @@ Partial Class FormSuperUserDept
         Me.Controls.Add(Me.SearchLookUpEdit1)
         Me.Controls.Add(Me.BtnOk)
         Me.Name = "FormSuperUserDept"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormSuperUserDept"
         CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()

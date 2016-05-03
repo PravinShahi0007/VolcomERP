@@ -143,6 +143,7 @@ Partial Class FormFGSalesOrderReff
         Me.ClientSize = New System.Drawing.Size(711, 415)
         Me.Controls.Add(Me.GCSOReff)
         Me.Name = "FormFGSalesOrderReff"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prepare Order New Product Order"
         CType(Me.GCSOReff, System.ComponentModel.ISupportInitialize).EndInit()

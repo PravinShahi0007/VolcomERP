@@ -294,6 +294,7 @@ Partial Class FormSampleAdjustment
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleAdjustment"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjustment Sample"
         CType(Me.XTCAdj, System.ComponentModel.ISupportInitialize).EndInit()

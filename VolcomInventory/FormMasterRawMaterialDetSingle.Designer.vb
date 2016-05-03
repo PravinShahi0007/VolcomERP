@@ -957,6 +957,7 @@ Partial Class FormMasterRawMaterialDetSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterRawMaterialDetSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Detail Material"
         CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()

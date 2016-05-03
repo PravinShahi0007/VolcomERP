@@ -945,6 +945,7 @@ Partial Class FormFGStockOpnameWHDet
         Me.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.Name = "FormFGStockOpnameWHDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Warehouse Stock Opname"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

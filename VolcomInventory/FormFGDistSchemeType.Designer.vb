@@ -180,6 +180,7 @@ Partial Class FormFGDistSchemeType
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGDistSchemeType"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Distribution Scheme Type"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -609,6 +609,7 @@ Partial Class FormSalesTargetDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesTargetDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales target "
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

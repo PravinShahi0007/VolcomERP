@@ -111,6 +111,7 @@ Partial Class FormSalesOrderRef
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormSalesOrderRef"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prepare Order Reference"
         CType(Me.GCList, System.ComponentModel.ISupportInitialize).EndInit()

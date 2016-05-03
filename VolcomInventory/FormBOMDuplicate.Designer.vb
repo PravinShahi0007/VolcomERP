@@ -232,6 +232,7 @@ Partial Class FormBOMDuplicate
         Me.MinimizeBox = False
         Me.Name = "FormBOMDuplicate"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Duplicate BOM"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()

@@ -1295,6 +1295,7 @@ Partial Class FormSampleDelOrderDet
         Me.Controls.Add(Me.PanelControl3)
         Me.MinimizeBox = False
         Me.Name = "FormSampleDelOrderDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Delivery Order Sample"
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()

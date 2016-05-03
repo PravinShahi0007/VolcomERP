@@ -990,6 +990,7 @@ Partial Class FormMatPRDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatPRDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Material PO Payment Requisition Detail"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

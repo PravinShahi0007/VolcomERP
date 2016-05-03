@@ -1269,6 +1269,7 @@ Partial Class FormMatRecPurcDet
         Me.MinimizeBox = False
         Me.Name = "FormMatRecPurcDet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receiving Raw material Purchasing Detail"
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()

@@ -193,6 +193,7 @@ Partial Class FormRangeSingle
         Me.MinimizeBox = False
         Me.Name = "FormRangeSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Range"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -538,6 +538,7 @@ Partial Class FormBOMSingleOvh
         Me.MinimizeBox = False
         Me.Name = "FormBOMSingleOvh"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Overhead"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

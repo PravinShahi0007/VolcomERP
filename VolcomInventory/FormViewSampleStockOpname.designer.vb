@@ -946,6 +946,7 @@ Partial Class FormViewSampleStockOpname
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormViewSampleStockOpname"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Sample Stock Opname"
         CType(Me.GroupControlItem, System.ComponentModel.ISupportInitialize).EndInit()

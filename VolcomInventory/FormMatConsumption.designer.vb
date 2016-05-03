@@ -449,6 +449,7 @@ Partial Class FormMatConsumption
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatConsumption"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Fabric Consumption"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -745,6 +745,7 @@ Partial Class FormSamplePR
         Me.MinimizeBox = False
         Me.Name = "FormSamplePR"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Sample Payment Requisition"
         CType(Me.XTCTabPR, System.ComponentModel.ISupportInitialize).EndInit()

@@ -987,6 +987,7 @@ Partial Class FormViewSamplePurchase
         Me.MinimizeBox = False
         Me.Name = "FormViewSamplePurchase"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Purchase Sample"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

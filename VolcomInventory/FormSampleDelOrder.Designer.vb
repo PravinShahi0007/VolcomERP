@@ -532,6 +532,7 @@ Partial Class FormSampleDelOrder
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleDelOrder"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Delivery Order Sample"
         CType(Me.XTCSampleDelOrder, System.ComponentModel.ISupportInitialize).EndInit()

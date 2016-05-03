@@ -91,6 +91,7 @@ Partial Class FormMasterDepartement
         Me.MinimizeBox = False
         Me.Name = "FormMasterDepartement"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Departement"
         CType(Me.GCDepartement, System.ComponentModel.ISupportInitialize).EndInit()

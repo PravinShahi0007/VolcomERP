@@ -217,6 +217,7 @@ Partial Class FormFGMissingInvoiceNew
         Me.Controls.Add(Me.PanelControl3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "FormFGMissingInvoiceNew"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Create New Missing Invoice"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()

@@ -130,6 +130,7 @@ Partial Class FormMasterDepartementSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterDepartementSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Departement"
         CType(Me.EPDepartement, System.ComponentModel.ISupportInitialize).EndInit()

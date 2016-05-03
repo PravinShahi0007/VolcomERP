@@ -145,6 +145,7 @@ Partial Class FormWHImportDO
         Me.Controls.Add(Me.GCImportDO)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormWHImportDO"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Import Delivery Order"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

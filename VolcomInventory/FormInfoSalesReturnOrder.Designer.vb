@@ -323,6 +323,7 @@ Partial Class FormInfoSalesReturnOrder
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormInfoSalesReturnOrder"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return Order"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

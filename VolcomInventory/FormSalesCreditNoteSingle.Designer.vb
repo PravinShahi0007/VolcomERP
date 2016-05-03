@@ -407,6 +407,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesCreditNoteSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Item List"
         CType(Me.PanelControlChoose, System.ComponentModel.ISupportInitialize).EndInit()

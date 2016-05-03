@@ -324,6 +324,7 @@ Partial Class FormPopUpJournal
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpJournal"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Entry"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

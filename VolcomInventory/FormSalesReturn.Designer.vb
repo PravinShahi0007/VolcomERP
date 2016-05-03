@@ -657,6 +657,7 @@ Partial Class FormSalesReturn
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesReturn"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return"
         CType(Me.XTCSalesReturn, System.ComponentModel.ISupportInitialize).EndInit()

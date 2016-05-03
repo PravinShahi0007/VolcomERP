@@ -1507,6 +1507,7 @@ Partial Class FormFGTrfDet
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormFGTrfDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Transfer"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

@@ -963,6 +963,7 @@ Partial Class FormMatStorageIn
         Me.MinimizeBox = False
         Me.Name = "FormMatStorageIn"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Raw Material Storage In"
         CType(Me.EPStoredMat, System.ComponentModel.ISupportInitialize).EndInit()

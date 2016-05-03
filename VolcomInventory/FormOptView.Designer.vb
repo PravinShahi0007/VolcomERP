@@ -365,6 +365,7 @@ Partial Class FormOptView
         Me.Controls.Add(Me.PCBottom)
         Me.MinimizeBox = False
         Me.Name = "FormOptView"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Options View"
         CType(Me.SCCOpt, System.ComponentModel.ISupportInitialize).EndInit()

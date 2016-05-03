@@ -109,6 +109,7 @@ Partial Class FormFGProposePrice
         Me.ClientSize = New System.Drawing.Size(769, 480)
         Me.Controls.Add(Me.GCFGPropose)
         Me.Name = "FormFGProposePrice"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Propose Price - Normal Price"
         CType(Me.GCFGPropose, System.ComponentModel.ISupportInitialize).EndInit()

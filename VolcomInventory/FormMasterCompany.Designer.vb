@@ -133,6 +133,7 @@ Partial Class FormMasterCompany
         Me.MinimizeBox = False
         Me.Name = "FormMasterCompany"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Company"
         CType(Me.GCCompany, System.ComponentModel.ISupportInitialize).EndInit()

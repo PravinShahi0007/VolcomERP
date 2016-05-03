@@ -652,6 +652,7 @@ Partial Class FormSamplePurchaseSingle
         Me.MinimizeBox = False
         Me.Name = "FormSamplePurchaseSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Sample"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

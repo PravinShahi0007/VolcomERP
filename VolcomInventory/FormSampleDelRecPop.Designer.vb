@@ -436,6 +436,7 @@ Partial Class FormSampleDelRecPop
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormSampleDelRecPop"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick PL Delivery"
         CType(Me.SCCPLDelivery, System.ComponentModel.ISupportInitialize).EndInit()

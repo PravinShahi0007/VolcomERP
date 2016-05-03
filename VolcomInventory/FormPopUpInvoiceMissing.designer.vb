@@ -146,6 +146,7 @@ Partial Class FormPopUpInvoiceMissing
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpInvoiceMissing"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Inovice Missing"
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()

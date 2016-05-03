@@ -233,6 +233,7 @@ Partial Class FormSalesReturnOrderSingleV2
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormSalesReturnOrderSingleV2"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Add Multiple Product in Store"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -575,6 +575,7 @@ Partial Class FormFGTrfNew
         Me.ClientSize = New System.Drawing.Size(674, 385)
         Me.Controls.Add(Me.XTCTrf)
         Me.Name = "FormFGTrfNew"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Good Transfer"
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()

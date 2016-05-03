@@ -141,6 +141,7 @@ Partial Class FormMasterItemColorSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterItemColorSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormMasterItemColorSingle"
         CType(Me.TxtCodeItemColor.Properties, System.ComponentModel.ISupportInitialize).EndInit()

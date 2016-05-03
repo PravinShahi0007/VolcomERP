@@ -1182,6 +1182,7 @@ Partial Class FormMatPurchaseDet
         Me.MinimizeBox = False
         Me.Name = "FormMatPurchaseDet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Raw Material Purchase Detail"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

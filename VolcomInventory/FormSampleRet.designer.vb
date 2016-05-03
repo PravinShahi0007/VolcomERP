@@ -261,6 +261,7 @@ Partial Class FormSampleRet
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.Name = "FormSampleRet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return Sample to Supplier"
         CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).EndInit()

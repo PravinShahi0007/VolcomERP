@@ -1219,6 +1219,7 @@ Partial Class FormSOHDet
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormSOHDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SOH Store"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized

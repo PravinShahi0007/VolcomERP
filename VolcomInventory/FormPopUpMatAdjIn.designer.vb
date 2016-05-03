@@ -826,6 +826,7 @@ Partial Class FormPopUpMatAdjIn
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpMatAdjIn"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Material"
         CType(Me.GroupControlInput, System.ComponentModel.ISupportInitialize).EndInit()

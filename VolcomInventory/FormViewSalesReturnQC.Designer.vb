@@ -1236,6 +1236,7 @@ Partial Class FormViewSalesReturnQC
         Me.Controls.Add(Me.GroupControl3)
         Me.MinimizeBox = False
         Me.Name = "FormViewSalesReturnQC"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return Quality Control"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

@@ -276,6 +276,7 @@ Partial Class FormFGCodeReplaceStoreSingle
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormFGCodeReplaceStoreSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Item"
         CType(Me.PanelControlChoose, System.ComponentModel.ISupportInitialize).EndInit()

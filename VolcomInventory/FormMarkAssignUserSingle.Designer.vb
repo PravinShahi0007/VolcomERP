@@ -217,6 +217,7 @@ Partial Class FormMarkAssignUserSingle
         Me.MinimizeBox = False
         Me.Name = "FormMarkAssignUserSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick User"
         CType(Me.GCUser, System.ComponentModel.ISupportInitialize).EndInit()

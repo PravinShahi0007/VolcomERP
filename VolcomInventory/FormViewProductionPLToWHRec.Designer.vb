@@ -1205,6 +1205,7 @@ Partial Class FormViewProductionPLToWHRec
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormViewProductionPLToWHRec"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

@@ -93,6 +93,7 @@ Partial Class FormMasterRawMaterialCatSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterRawMaterialCatSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Master Item Category"
         CType(Me.TextEditItemCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()

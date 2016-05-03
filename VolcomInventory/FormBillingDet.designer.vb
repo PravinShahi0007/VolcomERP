@@ -792,6 +792,7 @@ Partial Class FormBillingDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormBillingDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Billing Detail"
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).EndInit()

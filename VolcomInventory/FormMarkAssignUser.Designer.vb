@@ -198,6 +198,7 @@ Partial Class FormMarkAssignUser
         Me.MinimizeBox = False
         Me.Name = "FormMarkAssignUser"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Assign User"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

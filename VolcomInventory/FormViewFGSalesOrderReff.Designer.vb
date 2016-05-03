@@ -607,6 +607,7 @@ Partial Class FormViewFGSalesOrderReff
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl1)
         Me.Name = "FormViewFGSalesOrderReff"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prepare Order New Product"
         CType(Me.EPProdDemand, System.ComponentModel.ISupportInitialize).EndInit()

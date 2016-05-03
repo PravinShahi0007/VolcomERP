@@ -91,6 +91,7 @@ Partial Class FormMasterRateStoreDet
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormMasterRateStoreDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Rate Store"
         CType(Me.TxtRetCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()

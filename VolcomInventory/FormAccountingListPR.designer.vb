@@ -316,6 +316,7 @@ Partial Class FormAccountingListPR
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccountingListPR"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "List Payment Request"
         CType(Me.GCPaymentList, System.ComponentModel.ISupportInitialize).EndInit()

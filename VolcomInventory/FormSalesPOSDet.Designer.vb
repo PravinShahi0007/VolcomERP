@@ -1165,6 +1165,7 @@ Partial Class FormSalesPOSDet
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormSalesPOSDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Invoice"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

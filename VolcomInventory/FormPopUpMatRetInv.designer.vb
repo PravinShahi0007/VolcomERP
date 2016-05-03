@@ -379,6 +379,7 @@ Partial Class FormPopUpMatRetInv
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpMatRetInv"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Return"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

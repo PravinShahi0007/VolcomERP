@@ -677,6 +677,7 @@ Partial Class FormProductionRec
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionRec"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receiving QC"
         Me.XTPListPO.ResumeLayout(False)

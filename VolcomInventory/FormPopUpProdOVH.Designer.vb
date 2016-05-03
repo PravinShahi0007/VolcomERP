@@ -276,6 +276,7 @@ Partial Class FormPopUpProdOVH
         Me.MinimizeBox = False
         Me.Name = "FormPopUpProdOVH"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Overhead"
         CType(Me.GCOVH, System.ComponentModel.ISupportInitialize).EndInit()

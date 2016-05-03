@@ -576,6 +576,7 @@ Partial Class FormBOMSingleMat
         Me.MinimizeBox = False
         Me.Name = "FormBOMSingleMat"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Material"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

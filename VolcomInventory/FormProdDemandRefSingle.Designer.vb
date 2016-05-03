@@ -279,6 +279,7 @@ Partial Class FormProdDemandRefSingle
         Me.Controls.Add(Me.XTCLineList)
         Me.MinimizeBox = False
         Me.Name = "FormProdDemandRefSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Select Reference"
         CType(Me.XTCLineList, System.ComponentModel.ISupportInitialize).EndInit()

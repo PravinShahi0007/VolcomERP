@@ -327,6 +327,7 @@ Partial Class FormTemplateSize
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormTemplateSize"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Template Size"
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()

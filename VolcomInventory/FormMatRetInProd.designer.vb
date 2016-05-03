@@ -973,6 +973,7 @@ Partial Class FormMatRetInProd
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatRetInProd"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Material Return In Production"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
