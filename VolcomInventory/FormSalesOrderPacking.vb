@@ -4,9 +4,14 @@
     Public id_pop_up As String = "-1"
 
     Private Sub FormSalesOrderPacking_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim query As String = "SELECT * FROM tb_lookup_prepare_status a "
+        Dim query As String = "SELECT * FROM tb_lookup_prepare_status a WHERE a.id_prepare_status>0 "
+        If id_pop_up = "4" Then
+            query += "AND a.id_prepare_status=2 "
+        End If
         viewSearchLookupQuery(SLEPackingStatus, query, "id_prepare_status", "prepare_status", "id_prepare_status")
-        SLEPackingStatus.EditValue = id_cur_status
+        If id_pop_up <> "4" Then
+            SLEPackingStatus.EditValue = id_cur_status
+        End If
     End Sub
 
     Private Sub FormSalesOrderPacking_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
@@ -56,6 +61,36 @@
                 FormSalesOrderSvcLevel.viewReturnOrder()
                 FormViewSalesReturnOrder.actionLoad()
                 Close()
+                Cursor = Cursors.Default
+            ElseIf id_pop_up = "4" Then
+                Cursor = Cursors.WaitCursor
+                Dim qry As String = ""
+                Dim qry_stt As String = ""
+                For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVSalesOrder.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVSalesOrder))
+                    If i > 0 Then
+                        qry += "OR "
+                        qry_stt += "OR "
+                    End If
+                    qry += "stc.id_report='" + FormSalesOrderSvcLevel.GVSalesOrder.GetRowCellValue(i, "id_sales_order").ToString + "' "
+                    qry_stt += "id_sales_order='" + FormSalesOrderSvcLevel.GVSalesOrder.GetRowCellValue(i, "id_sales_order").ToString + "' "
+                Next
+                If qry <> "" Then
+                    'closed stock
+                    Dim query_close_stock As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) "
+                    query_close_stock += "SELECT stc.id_wh_drawer, '1', stc.id_product, stc.bom_unit_price, stc.report_mark_type, stc.id_report, "
+                    query_close_stock += "SUM(IF(stc.id_stock_status='2', (IF(stc.id_storage_category='1', CONCAT('-', stc.storage_product_qty), stc.storage_product_qty)),'0')) AS `qty`, "
+                    query_close_stock += "NOW(), '', '2' "
+                    query_close_stock += "FROM tb_storage_fg stc "
+                    query_close_stock += "WHERE stc.report_mark_type=39 AND (" + qry + ") "
+                    query_close_stock += "GROUP BY stc.id_product "
+                    query_close_stock += "HAVING qty>0 "
+                    execute_non_query(query_close_stock, True, "", "", "", "")
+
+                    Dim query_upd As String = "UPDATE tb_sales_order SET id_prepare_status='" + SLEPackingStatus.EditValue.ToString + "' WHERE (" + qry_stt + ") "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                    FormSalesOrderSvcLevel.viewSalesOrder()
+                    Close()
+                End If
                 Cursor = Cursors.Default
             End If
         End If

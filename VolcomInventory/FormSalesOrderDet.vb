@@ -512,9 +512,9 @@
             Dim id_so_type As String = LETypeSO.EditValue.ToString
             Dim query_cond As String = ""
             If id_so_type <> "0" Then
-                query_cond = "AND comp.id_so_type='" + id_so_type + "' AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) "
+                query_cond = "AND comp.id_so_type='" + id_so_type + "' AND (comp.id_comp_cat=2 OR comp.id_comp_cat=5 OR comp.id_comp_cat=6) "
             Else
-                query_cond = "AND (comp.id_so_type='" + id_so_type + "' OR ISNULL(comp.id_so_type)) AND (comp.id_comp_cat=5 OR comp.id_comp_cat=6) "
+                query_cond = "AND (comp.id_so_type='" + id_so_type + "' OR ISNULL(comp.id_so_type)) AND (comp.id_comp_cat=2 OR comp.id_comp_cat=5 OR comp.id_comp_cat=6) "
             End If
             Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, query_cond)
             If data.Rows.Count = 0 Then
