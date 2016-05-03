@@ -1181,10 +1181,6 @@ Partial Class FormMain
         'NBGProduction
         '
         Me.NBGProduction.Caption = "Production"
-<<<<<<< HEAD
-        Me.NBGProduction.Expanded = True
-=======
->>>>>>> origin/Development
         Me.NBGProduction.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
         Me.NBGProduction.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBom), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdDemand), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDesignList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGProdList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdRecWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdWOPR), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdWO)})
         Me.NBGProduction.LargeImage = CType(resources.GetObject("NBGProduction.LargeImage"), System.Drawing.Image)
@@ -1250,10 +1246,7 @@ Partial Class FormMain
         'NBGGeneral
         '
         Me.NBGGeneral.Caption = "General"
-<<<<<<< HEAD
-=======
         Me.NBGGeneral.Expanded = True
->>>>>>> origin/Development
         Me.NBGGeneral.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
         Me.NBGGeneral.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWork), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompany_category), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBCompany), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDepartement), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmployee), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccessUser), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBUser), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBMarkAssign), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPicLocation), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBHeadNumber), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBComputer), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBTestBC)})
         Me.NBGGeneral.LargeImage = CType(resources.GetObject("NBGGeneral.LargeImage"), System.Drawing.Image)
@@ -2018,7 +2011,6 @@ Partial Class FormMain
         'NBGAccounting
         '
         Me.NBGAccounting.Caption = "Accounting"
-        Me.NBGAccounting.Expanded = True
         Me.NBGAccounting.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
         Me.NBGAccounting.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccFY), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccJournal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBJournalAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanEFactur)})
         Me.NBGAccounting.LargeImage = CType(resources.GetObject("NBGAccounting.LargeImage"), System.Drawing.Image)
