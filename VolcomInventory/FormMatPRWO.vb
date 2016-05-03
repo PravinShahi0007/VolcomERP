@@ -21,8 +21,8 @@
     End Sub
 
     Sub view_mat_pr()
-        Dim query As String = "SELECT l.overhead, b.id_delivery, g.id_season,g0.delivery, z.id_report_status,h.report_status,z.pr_mat_wo_note,z.id_pr_mat_wo,z.pr_mat_wo_number,DATE_FORMAT(z.pr_mat_wo_date,'%d %M %Y') as pr_mat_wo_date,g.season,a.id_mat_wo_rec,a.mat_wo_rec_number,DATE_FORMAT(a.delivery_order_date,'%d %M %Y') AS delivery_order_date,a.delivery_order_number,b.mat_wo_number,DATE_FORMAT(a.mat_wo_rec_date,'%d %M %Y') AS mat_wo_rec_date, d.comp_name AS comp_to, "
-        query += "DATE_FORMAT(DATE_ADD(b.mat_wo_date,INTERVAL (b.mat_wo_top+b.mat_wo_lead_time) DAY),'%d %M %Y') AS mat_wo_top "
+        Dim query As String = "SELECT l.overhead, b.id_delivery, g.id_season,g0.delivery, z.id_report_status,h.report_status,z.pr_mat_wo_note,z.id_pr_mat_wo,z.pr_mat_wo_number,z.pr_mat_wo_date,g.season,a.id_mat_wo_rec,a.mat_wo_rec_number,a.delivery_order_date,a.delivery_order_number,b.mat_wo_number,a.mat_wo_rec_date, d.comp_name AS comp_to, "
+        query += "DATE_ADD(b.mat_wo_date,INTERVAL (b.mat_wo_top+b.mat_wo_lead_time) DAY) AS mat_wo_top "
         query += "FROM tb_pr_mat_wo z "
         query += "LEFT JOIN tb_mat_wo_rec a ON z.id_mat_wo_rec = a.id_mat_wo_rec "
         query += "INNER JOIN tb_mat_wo b ON z.id_mat_wo=b.id_mat_wo "
@@ -81,9 +81,9 @@
         query += "f.comp_name AS comp_name_ship_to, "
         query += "a.mat_wo_number,"
         query += "(SELECT COUNT(tb_pr_mat_wo.id_pr_mat_wo) FROM tb_pr_mat_wo WHERE tb_pr_mat_wo.id_mat_wo = a.id_mat_wo) AS qty_payment, "
-        query += "DATE_FORMAT(a.mat_wo_date,'%d %M %Y') AS mat_wo_date, "
-        query += "DATE_FORMAT(DATE_ADD(a.mat_wo_date,INTERVAL a.mat_wo_lead_time DAY),'%d %M %Y') AS mat_wo_lead_time, "
-        query += "DATE_FORMAT(DATE_ADD(a.mat_wo_date,INTERVAL (a.mat_wo_top+a.mat_wo_lead_time) DAY),'%d %M %Y') AS mat_wo_top "
+        query += "a.mat_wo_date, "
+        query += "DATE_ADD(a.mat_wo_date,INTERVAL a.mat_wo_lead_time DAY) AS mat_wo_lead_time, "
+        query += "DATE_ADD(a.mat_wo_date,INTERVAL (a.mat_wo_top+a.mat_wo_lead_time) DAY) AS mat_wo_top "
         query += "FROM tb_mat_wo a "
         query += "INNER JOIN tb_season_delivery b0 ON a.id_delivery = b0.id_delivery "
         query += "INNER JOIN tb_season b ON b0.id_season = b.id_season "

@@ -19,102 +19,102 @@ Partial Class FormMatPL
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.XTCPL = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPProduction = New DevExpress.XtraTab.XtraTabPage
-        Me.XTCTabProduction = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPListProdPL = New DevExpress.XtraTab.XtraTabPage
-        Me.GCProdPL = New DevExpress.XtraGrid.GridControl
-        Me.GVProdPL = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdPLSample = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdContactFrom = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdCompContactTo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPLIdWO = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPLNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPLPoNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPLDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPLStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPLDesign = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPLWONumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPLIdPO = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColMrsNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.XTPListProdMRS = New DevExpress.XtraTab.XtraTabPage
-        Me.GCMRS = New DevExpress.XtraGrid.GridControl
-        Me.GVMRS = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdMRS = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWO = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdCompReqFrom = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCompReqFrom = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdCompReqTo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCompReqTo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWONumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnMRSNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnMRSDesign = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
-        Me.XTPWOMat = New DevExpress.XtraTab.XtraTabPage
-        Me.XTCPLWO = New DevExpress.XtraTab.XtraTabControl
-        Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage
-        Me.GCPLWO = New DevExpress.XtraGrid.GridControl
-        Me.GVPLWO = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage
-        Me.GCMRSWO = New DevExpress.XtraGrid.GridControl
-        Me.GVMRSWO = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIdMRSTypeWO = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.XTPNormal = New DevExpress.XtraTab.XtraTabPage
-        Me.XTCPLOther = New DevExpress.XtraTab.XtraTabControl
-        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage
-        Me.GCPLOther = New DevExpress.XtraGrid.GridControl
-        Me.GVPLOther = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage
-        Me.GCMRSOther = New DevExpress.XtraGrid.GridControl
-        Me.GVMRSOther = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemProgressBar2 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
+        Me.XTCPL = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPProduction = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCTabProduction = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPListProdPL = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCProdPL = New DevExpress.XtraGrid.GridControl()
+        Me.GVProdPL = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdPLSample = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdContactFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdCompContactTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPLIdWO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPLNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPLPoNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPLDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPLStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPLDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPLWONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPLIdPO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColMrsNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPListProdMRS = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCMRS = New DevExpress.XtraGrid.GridControl()
+        Me.GVMRS = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdMRS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdCompReqFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompReqFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdCompReqTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompReqTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMRSNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMRSDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemProgressBar1 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.XTPWOMat = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCPLWO = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage3 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPLWO = New DevExpress.XtraGrid.GridControl()
+        Me.GVPLWO = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabPage4 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCMRSWO = New DevExpress.XtraGrid.GridControl()
+        Me.GVMRSWO = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdMRSTypeWO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPNormal = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTCPLOther = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPLOther = New DevExpress.XtraGrid.GridControl()
+        Me.GVPLOther = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCMRSOther = New DevExpress.XtraGrid.GridControl()
+        Me.GVMRSOther = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemProgressBar2 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         CType(Me.XTCPL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPL.SuspendLayout()
         Me.XTPProduction.SuspendLayout()
@@ -164,7 +164,7 @@ Partial Class FormMatPL
         '
         Me.XTPProduction.Controls.Add(Me.XTCTabProduction)
         Me.XTPProduction.Name = "XTPProduction"
-        Me.XTPProduction.Size = New System.Drawing.Size(729, 366)
+        Me.XTPProduction.Size = New System.Drawing.Size(727, 366)
         Me.XTPProduction.Text = "Production"
         '
         'XTCTabProduction
@@ -174,7 +174,7 @@ Partial Class FormMatPL
         Me.XTCTabProduction.Location = New System.Drawing.Point(0, 0)
         Me.XTCTabProduction.Name = "XTCTabProduction"
         Me.XTCTabProduction.SelectedTabPage = Me.XTPListProdPL
-        Me.XTCTabProduction.Size = New System.Drawing.Size(729, 366)
+        Me.XTCTabProduction.Size = New System.Drawing.Size(727, 366)
         Me.XTCTabProduction.TabIndex = 11
         Me.XTCTabProduction.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListProdPL, Me.XTPListProdMRS})
         '
@@ -182,7 +182,7 @@ Partial Class FormMatPL
         '
         Me.XTPListProdPL.Controls.Add(Me.GCProdPL)
         Me.XTPListProdPL.Name = "XTPListProdPL"
-        Me.XTPListProdPL.Size = New System.Drawing.Size(723, 340)
+        Me.XTPListProdPL.Size = New System.Drawing.Size(721, 338)
         Me.XTPListProdPL.Text = "All Packing List"
         '
         'GCProdPL
@@ -191,7 +191,7 @@ Partial Class FormMatPL
         Me.GCProdPL.Location = New System.Drawing.Point(0, 0)
         Me.GCProdPL.MainView = Me.GVProdPL
         Me.GCProdPL.Name = "GCProdPL"
-        Me.GCProdPL.Size = New System.Drawing.Size(723, 340)
+        Me.GCProdPL.Size = New System.Drawing.Size(721, 338)
         Me.GCProdPL.TabIndex = 1
         Me.GCProdPL.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdPL})
         '
@@ -267,6 +267,8 @@ Partial Class FormMatPL
         'GridColumnPLDate
         '
         Me.GridColumnPLDate.Caption = "Created Date"
+        Me.GridColumnPLDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnPLDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnPLDate.FieldName = "pl_mrs_date"
         Me.GridColumnPLDate.Name = "GridColumnPLDate"
         Me.GridColumnPLDate.Visible = True
@@ -320,7 +322,7 @@ Partial Class FormMatPL
         '
         Me.XTPListProdMRS.Controls.Add(Me.GCMRS)
         Me.XTPListProdMRS.Name = "XTPListProdMRS"
-        Me.XTPListProdMRS.Size = New System.Drawing.Size(723, 340)
+        Me.XTPListProdMRS.Size = New System.Drawing.Size(721, 338)
         Me.XTPListProdMRS.Text = "List Material Requisition"
         '
         'GCMRS
@@ -330,7 +332,7 @@ Partial Class FormMatPL
         Me.GCMRS.MainView = Me.GVMRS
         Me.GCMRS.Name = "GCMRS"
         Me.GCMRS.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
-        Me.GCMRS.Size = New System.Drawing.Size(723, 340)
+        Me.GCMRS.Size = New System.Drawing.Size(721, 338)
         Me.GCMRS.TabIndex = 9
         Me.GCMRS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMRS})
         '
@@ -388,6 +390,8 @@ Partial Class FormMatPL
         'GridColumnDate
         '
         Me.GridColumnDate.Caption = "Date"
+        Me.GridColumnDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnDate.FieldName = "prod_order_mrs_date"
         Me.GridColumnDate.Name = "GridColumnDate"
         Me.GridColumnDate.Visible = True
@@ -455,7 +459,7 @@ Partial Class FormMatPL
         '
         Me.XTPWOMat.Controls.Add(Me.XTCPLWO)
         Me.XTPWOMat.Name = "XTPWOMat"
-        Me.XTPWOMat.Size = New System.Drawing.Size(729, 366)
+        Me.XTPWOMat.Size = New System.Drawing.Size(727, 366)
         Me.XTPWOMat.Text = "Work Order Material"
         '
         'XTCPLWO
@@ -465,7 +469,7 @@ Partial Class FormMatPL
         Me.XTCPLWO.Location = New System.Drawing.Point(0, 0)
         Me.XTCPLWO.Name = "XTCPLWO"
         Me.XTCPLWO.SelectedTabPage = Me.XtraTabPage3
-        Me.XTCPLWO.Size = New System.Drawing.Size(729, 366)
+        Me.XTCPLWO.Size = New System.Drawing.Size(727, 366)
         Me.XTCPLWO.TabIndex = 13
         Me.XTCPLWO.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage3, Me.XtraTabPage4})
         '
@@ -473,7 +477,7 @@ Partial Class FormMatPL
         '
         Me.XtraTabPage3.Controls.Add(Me.GCPLWO)
         Me.XtraTabPage3.Name = "XtraTabPage3"
-        Me.XtraTabPage3.Size = New System.Drawing.Size(723, 340)
+        Me.XtraTabPage3.Size = New System.Drawing.Size(721, 338)
         Me.XtraTabPage3.Text = "All Packing List"
         '
         'GCPLWO
@@ -482,7 +486,7 @@ Partial Class FormMatPL
         Me.GCPLWO.Location = New System.Drawing.Point(0, 0)
         Me.GCPLWO.MainView = Me.GVPLWO
         Me.GCPLWO.Name = "GCPLWO"
-        Me.GCPLWO.Size = New System.Drawing.Size(723, 340)
+        Me.GCPLWO.Size = New System.Drawing.Size(721, 338)
         Me.GCPLWO.TabIndex = 2
         Me.GCPLWO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPLWO})
         '
@@ -550,6 +554,8 @@ Partial Class FormMatPL
         'GridColumn28
         '
         Me.GridColumn28.Caption = "Created Date"
+        Me.GridColumn28.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn28.FieldName = "pl_mrs_date"
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Visible = True
@@ -589,7 +595,7 @@ Partial Class FormMatPL
         '
         Me.XtraTabPage4.Controls.Add(Me.GCMRSWO)
         Me.XtraTabPage4.Name = "XtraTabPage4"
-        Me.XtraTabPage4.Size = New System.Drawing.Size(723, 340)
+        Me.XtraTabPage4.Size = New System.Drawing.Size(721, 338)
         Me.XtraTabPage4.Text = "List Material Work Order MRS"
         '
         'GCMRSWO
@@ -598,7 +604,7 @@ Partial Class FormMatPL
         Me.GCMRSWO.Location = New System.Drawing.Point(0, 0)
         Me.GCMRSWO.MainView = Me.GVMRSWO
         Me.GCMRSWO.Name = "GCMRSWO"
-        Me.GCMRSWO.Size = New System.Drawing.Size(723, 340)
+        Me.GCMRSWO.Size = New System.Drawing.Size(721, 338)
         Me.GCMRSWO.TabIndex = 12
         Me.GCMRSWO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMRSWO})
         '
@@ -650,6 +656,8 @@ Partial Class FormMatPL
         'GridColumn37
         '
         Me.GridColumn37.Caption = "Date"
+        Me.GridColumn37.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn37.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn37.FieldName = "prod_order_mrs_date"
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.Visible = True
@@ -690,7 +698,7 @@ Partial Class FormMatPL
         '
         Me.XTPNormal.Controls.Add(Me.XTCPLOther)
         Me.XTPNormal.Name = "XTPNormal"
-        Me.XTPNormal.Size = New System.Drawing.Size(729, 366)
+        Me.XTPNormal.Size = New System.Drawing.Size(727, 366)
         Me.XTPNormal.Text = "Other"
         '
         'XTCPLOther
@@ -700,7 +708,7 @@ Partial Class FormMatPL
         Me.XTCPLOther.Location = New System.Drawing.Point(0, 0)
         Me.XTCPLOther.Name = "XTCPLOther"
         Me.XTCPLOther.SelectedTabPage = Me.XtraTabPage1
-        Me.XTCPLOther.Size = New System.Drawing.Size(729, 366)
+        Me.XTCPLOther.Size = New System.Drawing.Size(727, 366)
         Me.XTCPLOther.TabIndex = 12
         Me.XTCPLOther.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2})
         '
@@ -708,7 +716,7 @@ Partial Class FormMatPL
         '
         Me.XtraTabPage1.Controls.Add(Me.GCPLOther)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(723, 340)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(721, 338)
         Me.XtraTabPage1.Text = "All Packing List"
         '
         'GCPLOther
@@ -717,7 +725,7 @@ Partial Class FormMatPL
         Me.GCPLOther.Location = New System.Drawing.Point(0, 0)
         Me.GCPLOther.MainView = Me.GVPLOther
         Me.GCPLOther.Name = "GCPLOther"
-        Me.GCPLOther.Size = New System.Drawing.Size(723, 340)
+        Me.GCPLOther.Size = New System.Drawing.Size(721, 338)
         Me.GCPLOther.TabIndex = 2
         Me.GCPLOther.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPLOther})
         '
@@ -785,6 +793,8 @@ Partial Class FormMatPL
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Created Date"
+        Me.GridColumn11.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn11.FieldName = "pl_mrs_date"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
@@ -816,7 +826,7 @@ Partial Class FormMatPL
         '
         Me.XtraTabPage2.Controls.Add(Me.GCMRSOther)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(723, 340)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(721, 338)
         Me.XtraTabPage2.Text = "List Material Requisition"
         '
         'GCMRSOther
@@ -826,7 +836,7 @@ Partial Class FormMatPL
         Me.GCMRSOther.MainView = Me.GVMRSOther
         Me.GCMRSOther.Name = "GCMRSOther"
         Me.GCMRSOther.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar2})
-        Me.GCMRSOther.Size = New System.Drawing.Size(723, 340)
+        Me.GCMRSOther.Size = New System.Drawing.Size(721, 338)
         Me.GCMRSOther.TabIndex = 10
         Me.GCMRSOther.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMRSOther})
         '
@@ -878,6 +888,8 @@ Partial Class FormMatPL
         'GridColumn19
         '
         Me.GridColumn19.Caption = "Date"
+        Me.GridColumn19.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn19.FieldName = "prod_order_mrs_date"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True

@@ -374,6 +374,8 @@ Partial Class FormMatPR
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Create Date"
+        Me.GridColumn4.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn4.FieldName = "mat_purc_date"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
@@ -383,6 +385,8 @@ Partial Class FormMatPR
         'ColRecDate
         '
         Me.ColRecDate.Caption = "Est. Receive Date"
+        Me.ColRecDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColRecDate.FieldName = "mat_purc_lead_time"
         Me.ColRecDate.Name = "ColRecDate"
         Me.ColRecDate.Visible = True
@@ -392,6 +396,8 @@ Partial Class FormMatPR
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Due Date"
+        Me.GridColumn5.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn5.FieldName = "mat_purc_top"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
@@ -687,6 +693,8 @@ Partial Class FormMatPR
         'ColSamplePurcRecDate
         '
         Me.ColSamplePurcRecDate.Caption = "Create Date"
+        Me.ColSamplePurcRecDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColSamplePurcRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColSamplePurcRecDate.FieldName = "mat_purc_rec_date"
         Me.ColSamplePurcRecDate.Name = "ColSamplePurcRecDate"
         Me.ColSamplePurcRecDate.Visible = True
@@ -696,6 +704,8 @@ Partial Class FormMatPR
         'GridColumn8
         '
         Me.GridColumn8.Caption = "Del. Order Date"
+        Me.GridColumn8.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn8.FieldName = "delivery_order_date"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True

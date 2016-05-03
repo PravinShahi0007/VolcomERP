@@ -1335,6 +1335,8 @@ Partial Class FormProductionDet
         'ColSamplePurcDate
         '
         Me.ColSamplePurcDate.Caption = "Create Date"
+        Me.ColSamplePurcDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColSamplePurcDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColSamplePurcDate.FieldName = "prod_order_wo_date"
         Me.ColSamplePurcDate.Name = "ColSamplePurcDate"
         Me.ColSamplePurcDate.Visible = True
@@ -1344,6 +1346,8 @@ Partial Class FormProductionDet
         'ColRecDate
         '
         Me.ColRecDate.Caption = "Est. Receive Date"
+        Me.ColRecDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColRecDate.FieldName = "prod_order_wo_lead_time"
         Me.ColRecDate.Name = "ColRecDate"
         Me.ColRecDate.Visible = True
@@ -1353,6 +1357,8 @@ Partial Class FormProductionDet
         'ColDueDate
         '
         Me.ColDueDate.Caption = "Due Date"
+        Me.ColDueDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColDueDate.FieldName = "prod_order_wo_top"
         Me.ColDueDate.Name = "ColDueDate"
         Me.ColDueDate.Width = 109
@@ -1579,6 +1585,8 @@ Partial Class FormProductionDet
         'GridColumnDate
         '
         Me.GridColumnDate.Caption = "Date"
+        Me.GridColumnDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnDate.FieldName = "prod_order_mrs_date"
         Me.GridColumnDate.Name = "GridColumnDate"
         Me.GridColumnDate.Visible = True
