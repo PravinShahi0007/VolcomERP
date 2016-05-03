@@ -709,6 +709,7 @@ Partial Class FormSampleReturnPickSingle
         Me.MinimizeBox = False
         Me.Name = "FormSampleReturnPickSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Sample"
         CType(Me.PanelControlImg, System.ComponentModel.ISupportInitialize).EndInit()

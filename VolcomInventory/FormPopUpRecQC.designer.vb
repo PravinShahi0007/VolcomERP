@@ -401,6 +401,7 @@ Partial Class FormPopUpRecQC
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpRecQC"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Receiving QC"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

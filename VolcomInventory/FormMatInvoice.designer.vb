@@ -663,6 +663,7 @@ Partial Class FormMatInvoice
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatInvoice"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Invoice Material"
         CType(Me.XTCTabGeneral, System.ComponentModel.ISupportInitialize).EndInit()

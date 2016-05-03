@@ -648,6 +648,7 @@ Partial Class FormProductionPLToWHRec
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionPLToWHRec"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receiving Packing List "
         CType(Me.XTCPL, System.ComponentModel.ISupportInitialize).EndInit()

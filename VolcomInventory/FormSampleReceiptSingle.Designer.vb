@@ -726,6 +726,7 @@ Partial Class FormSampleReceiptSingle
         Me.MinimizeBox = False
         Me.Name = "FormSampleReceiptSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receipt Sample"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

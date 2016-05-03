@@ -111,6 +111,7 @@ Partial Class FormProdDemandCostHist
         Me.ClientSize = New System.Drawing.Size(619, 401)
         Me.Controls.Add(Me.GCLogCost)
         Me.Name = "FormProdDemandCostHist"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Estimate Cost History"
         CType(Me.GCLogCost, System.ComponentModel.ISupportInitialize).EndInit()

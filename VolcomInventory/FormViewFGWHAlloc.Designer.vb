@@ -712,6 +712,7 @@ Partial Class FormViewFGWHAlloc
         Me.Controls.Add(Me.barDockControlTop)
         Me.MinimizeBox = False
         Me.Name = "FormViewFGWHAlloc"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Inventory Allocation"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

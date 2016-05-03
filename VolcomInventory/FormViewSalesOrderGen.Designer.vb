@@ -609,6 +609,7 @@ Partial Class FormViewSalesOrderGen
         Me.Controls.Add(Me.GroupControl3)
         Me.MinimizeBox = False
         Me.Name = "FormViewSalesOrderGen"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Generate Prepare Order"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

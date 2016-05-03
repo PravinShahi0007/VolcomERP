@@ -128,6 +128,7 @@ Partial Class FormInfoStockFG
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormInfoStockFG"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Stock"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

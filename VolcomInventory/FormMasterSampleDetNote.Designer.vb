@@ -144,6 +144,7 @@ Partial Class FormMasterSampleDetNote
         Me.MinimizeBox = False
         Me.Name = "FormMasterSampleDetNote"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Note"
         CType(Me.PicSample.Properties, System.ComponentModel.ISupportInitialize).EndInit()

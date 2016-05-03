@@ -109,6 +109,7 @@ Partial Class FormSampleReturnPL
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleReturnPL"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Return"
         CType(Me.GCSamplePL, System.ComponentModel.ISupportInitialize).EndInit()

@@ -555,6 +555,7 @@ Partial Class FormMatPurchase
         Me.MinimizeBox = False
         Me.Name = "FormMatPurchase"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Purchase Raw Material"
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()

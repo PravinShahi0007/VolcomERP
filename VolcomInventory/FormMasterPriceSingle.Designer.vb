@@ -593,6 +593,7 @@ Partial Class FormMasterPriceSingle
         Me.Controls.Add(Me.barDockControlTop)
         Me.MinimizeBox = False
         Me.Name = "FormMasterPriceSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Product Price From Excel"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

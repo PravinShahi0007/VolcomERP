@@ -265,6 +265,7 @@ Partial Class FormMasterUserSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterUserSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "User"
         CType(Me.EPUser, System.ComponentModel.ISupportInitialize).EndInit()

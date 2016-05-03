@@ -171,6 +171,7 @@ Partial Class FormMasterProductMulti
         Me.Controls.Add(Me.GCCodeDetail)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormMasterProductMulti"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Choose Size"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

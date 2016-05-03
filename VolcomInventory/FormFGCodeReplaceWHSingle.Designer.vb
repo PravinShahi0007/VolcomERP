@@ -249,6 +249,7 @@ Partial Class FormFGCodeReplaceWHSingle
         Me.Controls.Add(Me.PanelControlChoose)
         Me.MinimizeBox = False
         Me.Name = "FormFGCodeReplaceWHSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prick Item"
         CType(Me.PanelControlChoose, System.ComponentModel.ISupportInitialize).EndInit()

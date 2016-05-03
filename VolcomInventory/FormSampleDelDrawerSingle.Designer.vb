@@ -763,6 +763,7 @@ Partial Class FormSampleDelDrawerSingle
         Me.Controls.Add(Me.GroupControlNavStore)
         Me.MinimizeBox = False
         Me.Name = "FormSampleDelDrawerSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Drawer Detail"
         CType(Me.GroupControlNavStore, System.ComponentModel.ISupportInitialize).EndInit()

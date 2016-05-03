@@ -1028,6 +1028,7 @@ Partial Class FormViewProductionWO
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewProductionWO"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Production Work Order"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

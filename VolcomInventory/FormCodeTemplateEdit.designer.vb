@@ -330,6 +330,7 @@ Partial Class FormCodeTemplateEdit
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormCodeTemplateEdit"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Edit Code"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

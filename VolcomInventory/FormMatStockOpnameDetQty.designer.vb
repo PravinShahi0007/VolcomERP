@@ -387,6 +387,7 @@ Partial Class FormMatStockOpnameDetQty
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatStockOpnameDetQty"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Quantity Stock Opname"
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()

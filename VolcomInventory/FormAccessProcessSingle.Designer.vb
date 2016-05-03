@@ -207,6 +207,7 @@ Partial Class FormAccessProcessSingle
         Me.MinimizeBox = False
         Me.Name = "FormAccessProcessSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Process Form"
         CType(Me.PictureEditIcon.Properties, System.ComponentModel.ISupportInitialize).EndInit()

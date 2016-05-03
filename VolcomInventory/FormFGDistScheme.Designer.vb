@@ -585,6 +585,7 @@ Partial Class FormFGDistScheme
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "FormFGDistScheme"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Distribution Scheme"
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).EndInit()

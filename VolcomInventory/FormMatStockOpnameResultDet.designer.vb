@@ -847,6 +847,7 @@ Partial Class FormMatStockOpnameResultDet
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
         Me.Name = "FormMatStockOpnameResultDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Stock Opname Result"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

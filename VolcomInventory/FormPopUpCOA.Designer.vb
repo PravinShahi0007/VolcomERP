@@ -632,6 +632,7 @@ Partial Class FormPopUpCOA
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpCOA"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick COA"
         CType(Me.TreeList1, System.ComponentModel.ISupportInitialize).EndInit()

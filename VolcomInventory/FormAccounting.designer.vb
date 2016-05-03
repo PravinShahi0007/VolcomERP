@@ -316,6 +316,7 @@ Partial Class FormAccounting
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccounting"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Manage Account"
         CType(Me.XTCGeneral, System.ComponentModel.ISupportInitialize).EndInit()

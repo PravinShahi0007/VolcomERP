@@ -639,6 +639,7 @@ Partial Class FormFGAdjOutDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGAdjOutDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Adjustment Out"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

@@ -281,6 +281,7 @@ Partial Class FormPopUpMatRetProd
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpMatRetProd"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Material"
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).EndInit()

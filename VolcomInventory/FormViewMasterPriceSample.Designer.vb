@@ -423,6 +423,7 @@ Partial Class FormViewMasterPriceSample
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.Name = "FormViewMasterPriceSample"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Price From Excel"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

@@ -324,6 +324,7 @@ Partial Class FormPopUpReceive
         Me.MinimizeBox = False
         Me.Name = "FormPopUpReceive"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Receive"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

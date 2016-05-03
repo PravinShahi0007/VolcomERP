@@ -650,6 +650,7 @@ Partial Class FormInfoPLSampleDel
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.Name = "FormInfoPLSampleDel"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Info PL Sample Delivery"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

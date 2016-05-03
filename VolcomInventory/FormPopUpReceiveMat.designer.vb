@@ -328,6 +328,7 @@ Partial Class FormPopUpReceiveMat
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpReceiveMat"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Receive Material"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

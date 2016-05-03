@@ -887,6 +887,7 @@ Partial Class FormViewFGStockOpnameWH
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormViewFGStockOpnameWH"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Warehouse Stock Opname"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

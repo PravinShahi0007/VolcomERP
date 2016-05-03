@@ -631,6 +631,7 @@ Partial Class FormMatMRSDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatMRSDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Material Requisition Detail"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

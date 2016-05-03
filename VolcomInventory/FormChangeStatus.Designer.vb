@@ -102,6 +102,7 @@ Partial Class FormChangeStatus
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormChangeStatus"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Change Status"
         CType(Me.SLEStatusRec.Properties, System.ComponentModel.ISupportInitialize).EndInit()

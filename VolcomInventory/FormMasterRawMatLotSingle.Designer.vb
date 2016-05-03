@@ -574,6 +574,7 @@ Partial Class FormMasterRawMatLotSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterRawMatLotSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Row Material Detail"
         CType(Me.PictureRowMatDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()

@@ -115,6 +115,7 @@ Partial Class FormSalesReturnOrder
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesReturnOrder"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return Order"
         CType(Me.GCSalesReturnOrder, System.ComponentModel.ISupportInitialize).EndInit()

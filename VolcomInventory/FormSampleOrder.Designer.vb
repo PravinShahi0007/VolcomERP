@@ -326,6 +326,7 @@ Partial Class FormSampleOrder
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleOrder"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Order Sample"
         CType(Me.SCCSampleSO, System.ComponentModel.ISupportInitialize).EndInit()

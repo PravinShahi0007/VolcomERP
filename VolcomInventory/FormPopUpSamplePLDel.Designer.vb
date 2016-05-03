@@ -505,6 +505,7 @@ Partial Class FormPopUpSamplePLDel
         Me.MinimizeBox = False
         Me.Name = "FormPopUpSamplePLDel"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pop Up Packing List Delivery Sample "
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

@@ -205,6 +205,7 @@ Partial Class FormDeliverySingle
         Me.MinimizeBox = False
         Me.Name = "FormDeliverySingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Delivery"
         CType(Me.GCtrlDelivery, System.ComponentModel.ISupportInitialize).EndInit()

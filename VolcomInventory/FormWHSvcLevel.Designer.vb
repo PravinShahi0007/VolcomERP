@@ -895,6 +895,7 @@ Partial Class FormWHSvcLevel
         Me.ClientSize = New System.Drawing.Size(777, 364)
         Me.Controls.Add(Me.XTCSvcLelel)
         Me.Name = "FormWHSvcLevel"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Warehouse Service Level"
         CType(Me.XTCSvcLelel, System.ComponentModel.ISupportInitialize).EndInit()

@@ -161,6 +161,7 @@ Partial Class FormMasterComnputerDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterComnputerDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Computer Info"
         CType(Me.TxtPCName.Properties, System.ComponentModel.ISupportInitialize).EndInit()

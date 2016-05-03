@@ -507,6 +507,7 @@ Partial Class FormPopUpSalesDel
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpSalesDel"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Delivery"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

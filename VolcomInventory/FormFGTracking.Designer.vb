@@ -499,6 +499,7 @@ Partial Class FormFGTracking
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGTracking"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Product Tracking"
         CType(Me.GroupControlFilter, System.ComponentModel.ISupportInitialize).EndInit()

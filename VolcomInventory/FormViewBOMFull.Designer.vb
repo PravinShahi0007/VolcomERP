@@ -435,6 +435,7 @@ Partial Class FormViewBOMFull
         Me.MinimizeBox = False
         Me.Name = "FormViewBOMFull"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View BOM"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

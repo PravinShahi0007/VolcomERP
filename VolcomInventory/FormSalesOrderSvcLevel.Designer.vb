@@ -2428,6 +2428,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.ClientSize = New System.Drawing.Size(760, 416)
         Me.Controls.Add(Me.XTCSvcLevel)
         Me.Name = "FormSalesOrderSvcLevel"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finalize Status-Warehouse Dept"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()

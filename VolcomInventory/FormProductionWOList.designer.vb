@@ -468,6 +468,7 @@ Partial Class FormProductionWOList
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionWOList"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "List Work Order"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

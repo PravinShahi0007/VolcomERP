@@ -164,6 +164,7 @@ Partial Class FormDatabase
         Me.Controls.Add(Me.GroupControlConnection)
         Me.Name = "FormDatabase"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "FormDatabase"
         CType(Me.GroupControlDatabase, System.ComponentModel.ISupportInitialize).EndInit()

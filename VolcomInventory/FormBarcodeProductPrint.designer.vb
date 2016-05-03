@@ -515,6 +515,7 @@ Partial Class FormBarcodeProductPrint
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormBarcodeProductPrint"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Print Barcode Product"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

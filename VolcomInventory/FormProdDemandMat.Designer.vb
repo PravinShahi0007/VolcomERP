@@ -335,6 +335,7 @@ Partial Class FormProdDemandMat
         Me.MinimizeBox = False
         Me.Name = "FormProdDemandMat"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Generate Purchase Order Raw Material"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -134,6 +134,7 @@ Partial Class FormReportMarkDet
         Me.MinimizeBox = False
         Me.Name = "FormReportMarkDet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Mark Detail"
         CType(Me.MEComment.Properties, System.ComponentModel.ISupportInitialize).EndInit()

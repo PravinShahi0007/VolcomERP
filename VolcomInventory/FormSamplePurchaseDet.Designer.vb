@@ -1087,6 +1087,7 @@ Partial Class FormSamplePurchaseDet
         Me.MinimizeBox = False
         Me.Name = "FormSamplePurchaseDet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Purchase Detail"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

@@ -1002,6 +1002,7 @@ Partial Class FormBOMDesignSingle
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
         Me.Name = "FormBOMDesignSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Bill Of Material"
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).EndInit()

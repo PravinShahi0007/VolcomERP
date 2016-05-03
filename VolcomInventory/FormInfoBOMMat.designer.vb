@@ -205,6 +205,7 @@ Partial Class FormInfoBOMMat
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormInfoBOMMat"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Info BOM"
         CType(Me.GCBomDetMat, System.ComponentModel.ISupportInitialize).EndInit()

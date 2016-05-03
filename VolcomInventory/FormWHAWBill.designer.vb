@@ -1463,6 +1463,7 @@ Partial Class FormWHAWBill
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormWHAWBill"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Air Ways Bill"
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).EndInit()

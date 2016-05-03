@@ -1622,6 +1622,7 @@ Partial Class FormProductionCOP
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionCOP"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Cost Of Production"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()

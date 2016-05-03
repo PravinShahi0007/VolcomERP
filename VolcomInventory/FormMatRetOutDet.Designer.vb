@@ -677,6 +677,7 @@ Partial Class FormMatRetOutDet
         Me.MinimizeBox = False
         Me.Name = "FormMatRetOutDet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Raw Material Return Out Detail"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

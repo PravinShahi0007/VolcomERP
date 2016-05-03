@@ -915,6 +915,7 @@ Partial Class FormViewFGTrf
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormViewFGTrf"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Transfer"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

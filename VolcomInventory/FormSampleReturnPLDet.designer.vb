@@ -834,6 +834,7 @@ Partial Class FormSampleReturnPLDet
         Me.Controls.Add(Me.barDockControlTop)
         Me.MinimizeBox = False
         Me.Name = "FormSampleReturnPLDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

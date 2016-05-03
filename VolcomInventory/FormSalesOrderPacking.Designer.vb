@@ -104,6 +104,7 @@ Partial Class FormSalesOrderPacking
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesOrderPacking"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Update Packing Status"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

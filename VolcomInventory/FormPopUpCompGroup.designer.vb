@@ -167,6 +167,7 @@ Partial Class FormPopUpCompGroup
         Me.Controls.Add(Me.GCGroupComp)
         Me.MinimizeBox = False
         Me.Name = "FormPopUpCompGroup"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Group Company"
         CType(Me.GCGroupComp, System.ComponentModel.ISupportInitialize).EndInit()

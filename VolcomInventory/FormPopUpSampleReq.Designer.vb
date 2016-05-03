@@ -390,6 +390,7 @@ Partial Class FormPopUpSampleReq
         Me.MinimizeBox = False
         Me.Name = "FormPopUpSampleReq"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pop Up Sample Requisition"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

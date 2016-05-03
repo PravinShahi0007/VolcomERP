@@ -136,6 +136,7 @@ Partial Class FormProdDemandHist
         Me.Controls.Add(Me.GCProdDemand)
         Me.MinimizeBox = False
         Me.Name = "FormProdDemandHist"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "History PD"
         CType(Me.GCProdDemand, System.ComponentModel.ISupportInitialize).EndInit()

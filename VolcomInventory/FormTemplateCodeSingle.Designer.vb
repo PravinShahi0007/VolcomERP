@@ -102,6 +102,7 @@ Partial Class FormTemplateCodeSingle
         Me.MinimizeBox = False
         Me.Name = "FormTemplateCodeSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Template Code"
         CType(Me.EPTemplateCode, System.ComponentModel.ISupportInitialize).EndInit()

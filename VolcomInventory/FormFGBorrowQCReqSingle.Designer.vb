@@ -625,6 +625,7 @@ Partial Class FormFGBorrowQCReqSingle
         Me.Controls.Add(Me.PanelControl3)
         Me.MinimizeBox = False
         Me.Name = "FormFGBorrowQCReqSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Borrow Request"
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()

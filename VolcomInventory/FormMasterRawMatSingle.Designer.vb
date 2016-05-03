@@ -163,6 +163,7 @@ Partial Class FormMasterRawMatSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterRawMatSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Master Raw Material"
         CType(Me.TxtRawMaterial.Properties, System.ComponentModel.ISupportInitialize).EndInit()

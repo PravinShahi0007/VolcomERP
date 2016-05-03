@@ -138,6 +138,7 @@ Partial Class FormFGLineListType
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGLineListType"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Line List Type"
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).EndInit()

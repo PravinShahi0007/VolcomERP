@@ -246,6 +246,7 @@ Partial Class FormAccountingMappingList
         Me.Controls.Add(Me.PanelControl1)
         Me.MinimizeBox = False
         Me.Name = "FormAccountingMappingList"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Mapping Account"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized

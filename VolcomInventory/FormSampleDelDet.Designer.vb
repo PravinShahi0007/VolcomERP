@@ -1180,6 +1180,7 @@ Partial Class FormSampleDelDet
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormSampleDelDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Packing List Delivery"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

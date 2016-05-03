@@ -908,6 +908,7 @@ Partial Class FormSamplePRDet
         Me.MinimizeBox = False
         Me.Name = "FormSamplePRDet"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Payment Requisition Detail"
         CType(Me.EPSamplePR, System.ComponentModel.ISupportInitialize).EndInit()

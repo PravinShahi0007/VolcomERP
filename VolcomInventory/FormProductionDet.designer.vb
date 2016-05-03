@@ -1688,6 +1688,7 @@ Partial Class FormProductionDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Production Order Detail"
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).EndInit()

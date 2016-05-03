@@ -232,6 +232,7 @@ Partial Class FormPopUpFGSalesOrderReff
         Me.Controls.Add(Me.SCCSOA)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormPopUpFGSalesOrderReff"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pop Up Analysis of New Product"
         CType(Me.SCCSOA, System.ComponentModel.ISupportInitialize).EndInit()

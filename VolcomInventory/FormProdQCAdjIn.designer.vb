@@ -561,6 +561,7 @@ Partial Class FormProdQCAdjIn
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProdQCAdjIn"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "QC Adjustment In"
         CType(Me.EPAdj, System.ComponentModel.ISupportInitialize).EndInit()

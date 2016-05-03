@@ -338,6 +338,7 @@ Partial Class FormMasterPriceSample
         Me.Controls.Add(Me.XTCPrice)
         Me.MinimizeBox = False
         Me.Name = "FormMasterPriceSample"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Price"
         CType(Me.XTCPrice, System.ComponentModel.ISupportInitialize).EndInit()

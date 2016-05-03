@@ -1032,6 +1032,7 @@ Partial Class FormViewSalesCreditNote
         Me.Controls.Add(Me.GroupControl3)
         Me.MinimizeBox = False
         Me.Name = "FormViewSalesCreditNote"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Credit Note"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

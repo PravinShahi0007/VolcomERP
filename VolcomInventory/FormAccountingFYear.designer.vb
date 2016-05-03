@@ -111,6 +111,7 @@ Partial Class FormAccountingFYear
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccountingFYear"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Fiscal Year"
         CType(Me.GCAcc, System.ComponentModel.ISupportInitialize).EndInit()

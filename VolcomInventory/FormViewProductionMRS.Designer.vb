@@ -529,6 +529,7 @@ Partial Class FormViewProductionMRS
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewProductionMRS"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Material Requisition"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

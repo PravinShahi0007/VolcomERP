@@ -491,6 +491,7 @@ Partial Class FormViewMatMRS
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewMatMRS"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Material Requisition Slip"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

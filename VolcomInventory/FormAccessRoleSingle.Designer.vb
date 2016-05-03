@@ -114,6 +114,7 @@ Partial Class FormAccessRoleSingle
         Me.MinimizeBox = False
         Me.Name = "FormAccessRoleSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Role"
         CType(Me.PictureEditIcon.Properties, System.ComponentModel.ISupportInitialize).EndInit()

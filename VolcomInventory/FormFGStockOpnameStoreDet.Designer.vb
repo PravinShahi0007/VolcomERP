@@ -858,6 +858,7 @@ Partial Class FormFGStockOpnameStoreDet
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.MinimizeBox = False
         Me.Name = "FormFGStockOpnameStoreDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Stock Opname Store"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

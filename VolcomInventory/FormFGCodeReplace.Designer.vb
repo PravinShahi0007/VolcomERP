@@ -163,6 +163,7 @@ Partial Class FormFGCodeReplace
         Me.ClientSize = New System.Drawing.Size(707, 453)
         Me.Controls.Add(Me.XTCFGCodeReplace)
         Me.Name = "FormFGCodeReplace"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Code Replacement"
         CType(Me.XTCFGCodeReplace, System.ComponentModel.ISupportInitialize).EndInit()

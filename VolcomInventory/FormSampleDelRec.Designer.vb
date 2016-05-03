@@ -523,6 +523,7 @@ Partial Class FormSampleDelRec
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleDelRec"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receive PL Sample Delivery"
         CType(Me.XTCSampleDelRec, System.ComponentModel.ISupportInitialize).EndInit()

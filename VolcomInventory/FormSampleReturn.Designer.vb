@@ -612,6 +612,7 @@ Partial Class FormSampleReturn
         Me.MinimizeBox = False
         Me.Name = "FormSampleReturn"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Return Sample Borrow"
         CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).EndInit()

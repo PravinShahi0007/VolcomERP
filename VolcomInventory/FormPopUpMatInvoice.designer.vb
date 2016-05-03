@@ -407,6 +407,7 @@ Partial Class FormPopUpMatInvoice
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpMatInvoice"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Invoice"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

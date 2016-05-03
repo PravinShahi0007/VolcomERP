@@ -830,6 +830,7 @@ Partial Class FormSamplePLDel
         Me.MinimizeBox = False
         Me.Name = "FormSamplePLDel"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Packing List Sample Borrow"
         CType(Me.GCPL, System.ComponentModel.ISupportInitialize).EndInit()

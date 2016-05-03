@@ -150,6 +150,7 @@ Partial Class FormSalesTarget
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesTarget"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sales Target"
         CType(Me.XTCSalesTarget, System.ComponentModel.ISupportInitialize).EndInit()

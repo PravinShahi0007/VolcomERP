@@ -559,6 +559,7 @@ Partial Class FormMatRecWO
         Me.MinimizeBox = False
         Me.Name = "FormMatRecWO"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receiving Raw Material Work Order"
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).EndInit()

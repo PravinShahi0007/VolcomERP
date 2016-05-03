@@ -70,6 +70,7 @@ Partial Class FormOptViewSingle
         Me.Controls.Add(Me.TextEdit1)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormOptViewSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Add Template"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()

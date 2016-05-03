@@ -490,6 +490,7 @@ Partial Class FormSampleReceive
         Me.MinimizeBox = False
         Me.Name = "FormSampleReceive"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Receive Sample"
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).EndInit()

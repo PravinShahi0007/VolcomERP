@@ -110,6 +110,7 @@ Partial Class FormSampleStockOpname
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSampleStockOpname"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Stock Opname Sample"
         CType(Me.GCSOWH, System.ComponentModel.ISupportInitialize).EndInit()

@@ -89,6 +89,7 @@ Partial Class FormMasterEmployee
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterEmployee"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Employee"
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()

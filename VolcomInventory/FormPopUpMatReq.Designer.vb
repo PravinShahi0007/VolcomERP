@@ -368,6 +368,7 @@ Partial Class FormPopUpMatReq
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpMatReq"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Material Requisition"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

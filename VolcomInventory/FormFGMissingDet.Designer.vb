@@ -1072,6 +1072,7 @@ Partial Class FormFGMissingDet
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormFGMissingDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Missing In Store"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

@@ -428,6 +428,7 @@ Partial Class FormPopUpMatPL
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpMatPL"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Packing List"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

@@ -475,6 +475,7 @@ Partial Class FormSalesPromoSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesPromoSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Item"
         CType(Me.GroupControlProduct, System.ComponentModel.ISupportInitialize).EndInit()

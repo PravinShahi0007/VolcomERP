@@ -675,6 +675,7 @@ Partial Class FormPopUpAccountMap
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpAccountMap"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Mapping Transaction"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

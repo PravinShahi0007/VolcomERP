@@ -125,6 +125,7 @@ Partial Class FormAccessFrmSingle
         Me.MinimizeBox = False
         Me.Name = "FormAccessFrmSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Master Form"
         CType(Me.TxtFormName.Properties, System.ComponentModel.ISupportInitialize).EndInit()

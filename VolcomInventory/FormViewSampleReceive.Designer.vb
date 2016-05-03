@@ -525,6 +525,7 @@ Partial Class FormViewSampleReceive
         Me.MinimizeBox = False
         Me.Name = "FormViewSampleReceive"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Receive Sample"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -597,6 +597,7 @@ Partial Class FormMatPurchaseSingle
         Me.MinimizeBox = False
         Me.Name = "FormMatPurchaseSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Material"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -525,6 +525,7 @@ Partial Class FormMasterRawMatSupplierSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterRawMatSupplierSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "New Supplier Raw Material"
         CType(Me.PictureRowMatDetail.Properties, System.ComponentModel.ISupportInitialize).EndInit()

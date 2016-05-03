@@ -1156,6 +1156,7 @@ Partial Class FormWHAWBillDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormWHAWBillDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Airways Bill Detail"
         Me.Panel1.ResumeLayout(False)

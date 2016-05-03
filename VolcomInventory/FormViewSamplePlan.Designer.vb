@@ -485,6 +485,7 @@ Partial Class FormViewSamplePlan
         Me.MinimizeBox = False
         Me.Name = "FormViewSamplePlan"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Sample Planning"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

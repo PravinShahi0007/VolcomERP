@@ -85,6 +85,7 @@ Partial Class FormWorkPlace
         Me.MinimizeBox = False
         Me.Name = "FormWorkPlace"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Workplace"
         CType(Me.GCWorkplace, System.ComponentModel.ISupportInitialize).EndInit()

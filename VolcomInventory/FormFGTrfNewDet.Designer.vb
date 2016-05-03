@@ -1118,6 +1118,7 @@ Partial Class FormFGTrfNewDet
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "FormFGTrfNewDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Transfer"
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()

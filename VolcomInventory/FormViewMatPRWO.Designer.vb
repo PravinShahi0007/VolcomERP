@@ -909,6 +909,7 @@ Partial Class FormViewMatPRWO
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewMatPRWO"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Payment PO Material"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

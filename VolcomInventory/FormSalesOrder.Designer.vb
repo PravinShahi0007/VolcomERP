@@ -600,6 +600,7 @@ Partial Class FormSalesOrder
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesOrder"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prepare Order"
         CType(Me.XTCSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()

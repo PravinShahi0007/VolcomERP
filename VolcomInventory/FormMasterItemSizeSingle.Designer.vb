@@ -141,6 +141,7 @@ Partial Class FormMasterItemSizeSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterItemSizeSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Master Item Size"
         CType(Me.TxtCodeSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()

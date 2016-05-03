@@ -157,6 +157,7 @@ Partial Class FormSalesOrderCat
         Me.Controls.Add(Me.SplitContainerControl1)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormSalesOrderCat"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Prepare Order Category"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

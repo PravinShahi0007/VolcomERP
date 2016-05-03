@@ -830,6 +830,7 @@ Partial Class FormSalesOrderGen
         Me.Controls.Add(Me.barDockControlTop)
         Me.MinimizeBox = False
         Me.Name = "FormSalesOrderGen"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Generate Prepare Order"
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()

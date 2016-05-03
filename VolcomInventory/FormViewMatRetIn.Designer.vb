@@ -876,6 +876,7 @@ Partial Class FormViewMatRetIn
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewMatRetIn"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Raw Material Return In"
         CType(Me.GroupControlRet, System.ComponentModel.ISupportInitialize).EndInit()

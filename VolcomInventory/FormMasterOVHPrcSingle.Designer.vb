@@ -301,6 +301,7 @@ Partial Class FormMasterOVHPrcSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterOVHPrcSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Overhead Price"
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()

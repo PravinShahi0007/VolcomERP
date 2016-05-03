@@ -1760,6 +1760,7 @@ Partial Class FormMatStock
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatStock"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Stock Raw Material"
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).EndInit()

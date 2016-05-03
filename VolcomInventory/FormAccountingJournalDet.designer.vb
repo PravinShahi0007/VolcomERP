@@ -492,6 +492,7 @@ Partial Class FormAccountingJournalDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccountingJournalDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Entry Journal"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()

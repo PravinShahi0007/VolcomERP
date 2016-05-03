@@ -896,6 +896,7 @@ Partial Class FormProductionRecDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProductionRecDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receiving Detail Fiinished Goods  in QC"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

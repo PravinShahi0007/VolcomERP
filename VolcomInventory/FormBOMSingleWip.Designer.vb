@@ -509,6 +509,7 @@ Partial Class FormBOMSingleWip
         Me.MinimizeBox = False
         Me.Name = "FormBOMSingleWip"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick WIP"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()

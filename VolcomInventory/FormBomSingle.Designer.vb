@@ -1047,6 +1047,7 @@ Partial Class FormBOMSingle
         Me.MinimizeBox = False
         Me.Name = "FormBOMSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Bill Of Material"
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).EndInit()

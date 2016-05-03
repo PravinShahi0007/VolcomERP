@@ -910,6 +910,7 @@ Partial Class FormViewMatInvoiceRetur
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewMatInvoiceRetur"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Retur Invoice Material"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()

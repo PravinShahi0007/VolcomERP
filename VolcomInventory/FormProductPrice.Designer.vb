@@ -180,6 +180,7 @@ Partial Class FormProductPriceSingle
         Me.MinimizeBox = False
         Me.Name = "FormProductPriceSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Product Price"
         CType(Me.EPProductPrice, System.ComponentModel.ISupportInitialize).EndInit()

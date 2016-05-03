@@ -156,6 +156,7 @@ Partial Class FormMasterCodeDetSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterCodeDetSingle"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Code"
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).EndInit()

@@ -97,6 +97,7 @@ Partial Class FormFGMissingInvoice
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormFGMissingInvoice"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Missing Finished Goods Invoice"
         CType(Me.GCFGMissingInvoice, System.ComponentModel.ISupportInitialize).EndInit()

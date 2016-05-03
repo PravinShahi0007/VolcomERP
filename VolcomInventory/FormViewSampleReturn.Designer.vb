@@ -1017,6 +1017,7 @@ Partial Class FormViewSampleReturn
         Me.Controls.Add(Me.BMark)
         Me.MinimizeBox = False
         Me.Name = "FormViewSampleReturn"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Sample Return Borrow"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()

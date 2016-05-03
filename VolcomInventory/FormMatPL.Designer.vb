@@ -930,6 +930,7 @@ Partial Class FormMatPL
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatPL"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Packing List"
         CType(Me.XTCPL, System.ComponentModel.ISupportInitialize).EndInit()

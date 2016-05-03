@@ -110,6 +110,7 @@ Partial Class FormFGDistSchemeDet
         Me.Controls.Add(Me.SimpleButton1)
         Me.Controls.Add(Me.GCDistScheme)
         Me.Name = "FormFGDistSchemeDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Distribution Scheme"
         CType(Me.GCDistScheme, System.ComponentModel.ISupportInitialize).EndInit()

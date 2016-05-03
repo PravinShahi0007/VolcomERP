@@ -630,6 +630,7 @@ Partial Class FormFGLineList
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "FormFGLineList"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Line List"
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).EndInit()

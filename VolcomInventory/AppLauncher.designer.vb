@@ -134,6 +134,7 @@ Partial Class AppLauncher
         Me.LookAndFeel.SkinName = "Stardust"
         Me.LookAndFeel.UseDefaultLookAndFeel = False
         Me.Name = "AppLauncher"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Launcher"
         CType(Me.ProgressBarControl1.Properties, System.ComponentModel.ISupportInitialize).EndInit()

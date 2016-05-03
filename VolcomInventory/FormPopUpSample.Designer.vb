@@ -209,6 +209,7 @@ Partial Class FormPopUpSample
         Me.MinimizeBox = False
         Me.Name = "FormPopUpSample"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Sample"
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).EndInit()

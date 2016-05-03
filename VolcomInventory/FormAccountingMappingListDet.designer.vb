@@ -253,6 +253,7 @@ Partial Class FormAccountingMappingListDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccountingMappingListDet"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Detail Mapping"
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()

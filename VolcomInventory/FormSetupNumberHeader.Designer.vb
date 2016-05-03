@@ -1141,6 +1141,7 @@ Partial Class FormSetupNumberHeader
         Me.MinimizeBox = False
         Me.Name = "FormSetupNumberHeader"
         Me.ShowInTaskbar = False
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Header Number"
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()

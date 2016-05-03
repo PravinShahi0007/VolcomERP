@@ -904,6 +904,7 @@ Partial Class FormViewMatPLSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormViewMatPLSingle"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "View Packing List Material"
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).EndInit()
