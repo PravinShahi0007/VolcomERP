@@ -98,14 +98,14 @@
     Sub view_wo()
         Dim query = "SELECT po.prod_order_number,a.id_report_status,h.report_status,a.id_prod_order_wo,a.id_ovh_price,a.id_prod_order "
         query += ",(SELECT IFNULL(MAX(prod_order_wo_prog_percent),0) FROM tb_prod_order_wo_prog WHERE id_prod_order_wo = a.id_prod_order_wo) as progress,"
-        query += "g.payment, "
+        query += "g.payment,COUNT(pr.id_pr_prod_order) AS qty_pr, "
         query += "b.id_comp_contact,d.comp_name AS comp_name_to, "
         query += "f.comp_name AS comp_name_ship_to, "
         query += "a.prod_order_wo_number,a.id_ovh_price,j.overhead, "
-        query += "DATE_FORMAT(a.prod_order_wo_date,'%d %M %Y') AS prod_order_wo_date, "
-        query += "DATE_FORMAT(DATE_ADD(a.prod_order_wo_date,INTERVAL a.prod_order_wo_lead_time DAY),'%d %M %Y') AS prod_order_wo_lead_time, "
-        query += "DATE_FORMAT(DATE_ADD(a.prod_order_wo_date,INTERVAL (a.prod_order_wo_top+a.prod_order_wo_lead_time) DAY),'%d %M %Y') AS prod_order_wo_topx, "
-        query += "DATE_FORMAT(DATE_ADD(a.prod_order_wo_date,INTERVAL (a.prod_order_wo_top+a.prod_order_wo_lead_time) DAY),'%d/%m/%Y') AS prod_order_wo_top "
+        query += "a.prod_order_wo_date AS prod_order_wo_date, "
+        query += "DATE_ADD(a.prod_order_wo_date,INTERVAL a.prod_order_wo_lead_time DAY) AS prod_order_wo_lead_time, "
+        query += "DATE_ADD(a.prod_order_wo_date,INTERVAL (a.prod_order_wo_top+a.prod_order_wo_lead_time) DAY) AS prod_order_wo_topx, "
+        query += "DATE_ADD(a.prod_order_wo_date,INTERVAL (a.prod_order_wo_top+a.prod_order_wo_lead_time) DAY) AS prod_order_wo_top "
         query += "FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price "
         query += "INNER JOIN tb_prod_order po ON po.id_prod_order=a.id_prod_order "
         query += "INNER JOIN tb_m_comp_contact c ON b.id_comp_contact = c.id_comp_contact "
@@ -115,7 +115,10 @@
         query += "INNER JOIN tb_lookup_payment g ON a.id_payment = g.id_payment "
         query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
         query += "INNER JOIN tb_m_ovh j ON b.id_ovh = j.id_ovh "
-        query += "WHERE a.id_report_status='3' OR a.id_report_status='4' OR a.id_report_status='6'"
+        query += "INNER JOIN tb_pr_prod_order pr ON pr.id_prod_order_wo=a.id_prod_order_wo "
+        query += "WHERE a.id_report_status='3' OR a.id_report_status='4' OR a.id_report_status='6' "
+        query += "GROUP BY pr.id_prod_order_wo "
+
         GridColumnPONumber.Visible = True
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
