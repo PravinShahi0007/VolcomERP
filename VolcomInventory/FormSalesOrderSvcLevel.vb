@@ -1,5 +1,8 @@
 ﻿Public Class FormSalesOrderSvcLevel
     Sub viewSalesOrder()
+        'remove filter
+        GVSalesOrder.ActiveFilterString = ""
+
         'Prepare paramater
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
@@ -197,7 +200,9 @@
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         Cursor = Cursors.WaitCursor
+        GVSalesOrder.ActiveFilterString = ""
         viewSalesOrder()
+        noEdit(6)
         Cursor = Cursors.Default
     End Sub
 
@@ -336,10 +341,10 @@
             Dim id_prepare As String = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
             Dim id_cur_stt As String = GVSalesOrder.GetFocusedRowCellValue("id_prepare_status").ToString
             If id_cur_stt = "1" Then
-                FormSalesOrderPacking.id_trans = id_prepare
-                FormSalesOrderPacking.id_cur_status = id_cur_stt
-                FormSalesOrderPacking.id_pop_up = "1"
-                FormSalesOrderPacking.ShowDialog()
+                'FormSalesOrderPacking.id_trans = id_prepare
+                'FormSalesOrderPacking.id_cur_status = id_cur_stt
+                'FormSalesOrderPacking.id_pop_up = "1"
+                'FormSalesOrderPacking.ShowDialog()
             Else
                 stopCustom("Data already locked.")
             End If
@@ -450,6 +455,15 @@
                     GVFGTrf.Columns("is_select").OptionsColumn.AllowEdit = False
                 Else
                     GVFGTrf.Columns("is_select").OptionsColumn.AllowEdit = True
+                End If
+            End If
+        ElseIf type = "6" Then
+            If GVSalesOrder.FocusedRowHandle >= 0 Then
+                Dim alloc_cek As String = GVSalesOrder.GetFocusedRowCellValue("id_prepare_status").ToString
+                If alloc_cek = "2" Then
+                    GVSalesOrder.Columns("is_select").OptionsColumn.AllowEdit = False
+                Else
+                    GVSalesOrder.Columns("is_select").OptionsColumn.AllowEdit = True
                 End If
             End If
         End If
@@ -625,5 +639,27 @@
             FormViewFGTrf.ShowDialog()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub GVSalesOrder_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVSalesOrder.FocusedRowChanged
+        noEdit(6)
+    End Sub
+
+    Private Sub GVSalesOrder_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVSalesOrder.ColumnFilterChanged
+        noEdit(6)
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Cursor = Cursors.WaitCursor
+        GVSalesOrder.ActiveFilterString = ""
+        GVSalesOrder.ActiveFilterString = "[is_select]='Yes' "
+        If GVSalesOrder.RowCount = 0 Then
+            stopCustom("Please select order first.")
+            GVSalesOrder.ActiveFilterString = ""
+        Else
+            FormSalesOrderPacking.id_pop_up = "4"
+            FormSalesOrderPacking.ShowDialog()
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
