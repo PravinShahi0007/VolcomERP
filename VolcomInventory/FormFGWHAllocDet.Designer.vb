@@ -91,6 +91,7 @@ Partial Class FormFGWHAllocDet
         Me.GridColumnQtySum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNoteSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProductSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -156,6 +157,7 @@ Partial Class FormFGWHAllocDet
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
         Me.SLESeason.Size = New System.Drawing.Size(421, 20)
         Me.SLESeason.TabIndex = 8910
+        Me.SLESeason.Visible = False
         '
         'SearchLookUpEdit1View
         '
@@ -195,6 +197,7 @@ Partial Class FormFGWHAllocDet
         Me.LabelControl2.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl2.TabIndex = 8909
         Me.LabelControl2.Text = "Season"
+        Me.LabelControl2.Visible = False
         '
         'BtnBrowseFrom
         '
@@ -697,6 +700,7 @@ Partial Class FormFGWHAllocDet
         Me.PanelNavBarcode.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelNavBarcode.Controls.Add(Me.BtnDelete)
         Me.PanelNavBarcode.Controls.Add(Me.BtnImport)
+        Me.PanelNavBarcode.Controls.Add(Me.BtnImportExcelNew)
         Me.PanelNavBarcode.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelNavBarcode.Location = New System.Drawing.Point(0, 0)
         Me.PanelNavBarcode.LookAndFeel.SkinName = "Office 2010 Blue"
@@ -710,7 +714,7 @@ Partial Class FormFGWHAllocDet
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.ImageIndex = 1
         Me.BtnDelete.ImageList = Me.LargeImageCollection
-        Me.BtnDelete.Location = New System.Drawing.Point(626, 0)
+        Me.BtnDelete.Location = New System.Drawing.Point(487, 0)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(94, 33)
         Me.BtnDelete.TabIndex = 5
@@ -722,11 +726,11 @@ Partial Class FormFGWHAllocDet
         Me.BtnImport.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImport.ImageIndex = 3
         Me.BtnImport.ImageList = Me.LargeImageCollection
-        Me.BtnImport.Location = New System.Drawing.Point(720, 0)
+        Me.BtnImport.Location = New System.Drawing.Point(581, 0)
         Me.BtnImport.Name = "BtnImport"
-        Me.BtnImport.Size = New System.Drawing.Size(111, 33)
+        Me.BtnImport.Size = New System.Drawing.Size(144, 33)
         Me.BtnImport.TabIndex = 6
-        Me.BtnImport.Text = "Import Excel"
+        Me.BtnImport.Text = "Import Excel Per Size"
         '
         'XTPSummary
         '
@@ -810,6 +814,17 @@ Partial Class FormFGWHAllocDet
         Me.GridColumnIdProductSum.FieldName = "id_product"
         Me.GridColumnIdProductSum.Name = "GridColumnIdProductSum"
         Me.GridColumnIdProductSum.OptionsColumn.AllowEdit = False
+        '
+        'BtnImportExcelNew
+        '
+        Me.BtnImportExcelNew.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnImportExcelNew.ImageIndex = 3
+        Me.BtnImportExcelNew.ImageList = Me.LargeImageCollection
+        Me.BtnImportExcelNew.Location = New System.Drawing.Point(725, 0)
+        Me.BtnImportExcelNew.Name = "BtnImportExcelNew"
+        Me.BtnImportExcelNew.Size = New System.Drawing.Size(106, 33)
+        Me.BtnImportExcelNew.TabIndex = 7
+        Me.BtnImportExcelNew.Text = "Import Excel"
         '
         'FormFGWHAllocDet
         '
@@ -943,4 +958,5 @@ Partial Class FormFGWHAllocDet
     Friend WithEvents GridColumnQtySum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNoteSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdProductSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnImportExcelNew As DevExpress.XtraEditors.SimpleButton
 End Class
