@@ -88,7 +88,7 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select code, wh, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code,wh", oledbconn)
         ElseIf id_pop_up = "21" Then
             MyCommand = New OleDbDataAdapter("select code, wh, store, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code,wh,store", oledbconn)
-        ElseIf id_pop_up = "23" Then
+        ElseIf id_pop_up = "23" Or id_pop_up = "24" Then
             MyCommand = New OleDbDataAdapter("select VENDOR, KODE, NAMA, SIZETYP, `xxs/1`, `xs/2`, `s/3`, `m/4`, `ml/5`, `l/6`, `xl/7`, `xxl/8`, `all/9`, `~/0` from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
@@ -1044,7 +1044,7 @@ Public Class FormImportExcel
             End Try
         ElseIf id_pop_up = "20" Then
             Try
-                Dim query_product As String = "CALL view_product_per_season(" + FormFGWHAllocDet.SLESeason.EditValue.ToString + ")"
+                Dim query_product As String = "CALL view_product_per_season(0)"
                 Dim data_product As DataTable = execute_query(query_product, -1, True, "", "", "", "")
 
                 Dim query_comp As String = "SELECT id_comp, comp_number, comp_name,id_drawer_def FROM tb_m_comp WHERE id_comp_cat='" + get_setup_field("id_comp_cat_wh") + "' "
@@ -1273,6 +1273,49 @@ Public Class FormImportExcel
             GVData.Columns("To").VisibleIndex = 4
             GVData.Columns("Qty").VisibleIndex = 5
             GVData.Columns("Status").VisibleIndex = 6
+        ElseIf id_pop_up = "24" Then
+            'INVENTORY ALLOCATION
+            Dim id_fg_wh_alloc As String = FormFGWHAllocDet.id_fg_wh_alloc
+            Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+            Dim connection As New MySqlConnection(connection_string)
+            connection.Open()
+
+            Dim command As MySqlCommand = connection.CreateCommand()
+            Dim qry As String = "DROP TABLE IF EXISTS tb_fg_wh_alloc_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_fg_wh_alloc_temp AS ( SELECT * FROM ("
+            For d As Integer = 0 To data_temp.Rows.Count - 1
+                If d > 0 Then
+                    qry += "UNION ALL "
+                End If
+                qry += "SELECT '" + id_fg_wh_alloc + "' AS `id`, '" + data_temp.Rows(d)("VENDOR").ToString + "' AS `store`, '" + data_temp.Rows(d)("KODE").ToString + "' AS `code`, '" + data_temp.Rows(d)("SIZETYP").ToString + "' AS `sizetype`,  '" + data_temp.Rows(d)("xxs/1").ToString + "' AS `1`, '" + data_temp.Rows(d)("xs/2").ToString + "' AS `2`, '" + data_temp.Rows(d)("s/3").ToString + "' AS `3`, '" + data_temp.Rows(d)("m/4").ToString + "' AS `4`, '" + data_temp.Rows(d)("ml/5").ToString + "' AS `5`, '" + data_temp.Rows(d)("l/6").ToString + "' AS `6`, '" + data_temp.Rows(d)("xl/7").ToString + "' AS `7`, '" + data_temp.Rows(d)("xxl/8").ToString + "' AS `8`, '" + data_temp.Rows(d)("all/9").ToString + "' AS `9`, '" + data_temp.Rows(d)("~/0").ToString + "' AS `0` "
+            Next
+            qry += ") a ); ALTER TABLE tb_fg_wh_alloc_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+            command.CommandText = qry
+            command.ExecuteNonQuery()
+            command.Dispose()
+            'Console.WriteLine(qry)
+
+            Dim data As New DataTable
+            Dim adapter As New MySqlDataAdapter("CALL view_fg_wh_alloc_temp(" + id_fg_wh_alloc + ")", connection)
+            adapter.SelectCommand.CommandTimeout = 300
+            adapter.Fill(data)
+            adapter.Dispose()
+            data.Dispose()
+            GCData.DataSource = data
+
+            connection.Close()
+            connection.Dispose()
+
+            GVData.Columns("id").Visible = False
+            GVData.Columns("id_product").Visible = False
+            GVData.Columns("id_comp_contact_to").Visible = False
+            GVData.Columns("id_wh_drawer_to").Visible = False
+            GVData.Columns("Class").Visible = False
+            GVData.Columns("Code").VisibleIndex = 0
+            GVData.Columns("Style").VisibleIndex = 1
+            GVData.Columns("Size").VisibleIndex = 2
+            GVData.Columns("To").VisibleIndex = 3
+            GVData.Columns("Qty").VisibleIndex = 4
+            GVData.Columns("Status").VisibleIndex = 5
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2207,7 +2250,7 @@ Public Class FormImportExcel
                         makeSafeGV(GVData)
                     End If
                 End If
-            ElseIf id_pop_up = "20" Then
+            ElseIf id_pop_up = "20" Or id_pop_up = "24" Then
                 'inventory allocation
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then

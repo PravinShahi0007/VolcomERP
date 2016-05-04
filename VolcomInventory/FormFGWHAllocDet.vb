@@ -19,11 +19,11 @@
 
     'view season
     Sub viewSeason()
-        Dim query As String = "SELECT * FROM tb_season a "
-        query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
-        query += "WHERE b.is_md='1' "
-        query += "ORDER BY b.range DESC"
-        viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
+        ' Dim query As String = "SELECT * FROM tb_season a "
+        'query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
+        'query += "WHERE b.is_md='1' "
+        'query += "ORDER BY b.range DESC"
+        'viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
 
     Sub actionLoad()
@@ -48,7 +48,6 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             id_fg_wh_alloc = data.Rows(0)("id_fg_wh_alloc").ToString
             id_report_status = data.Rows(0)("id_report_status").ToString
-            SLESeason.EditValue = data.Rows(0)("id_season").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             TxtNumber.Text = data.Rows(0)("fg_wh_alloc_number").ToString
             DEForm.Text = view_date_from(data.Rows(0)("fg_wh_alloc_datex").ToString, 0)
@@ -167,8 +166,7 @@
                 TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
                 TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
                 viewDetail()
-                SLESeason.Focus()
-                SLESeason.ShowPopup()
+                BtnSave.Focus()
                 Cursor = Cursors.Default
             End If
         End If
@@ -188,12 +186,11 @@
             stopCustom("Drawer is not found, please check account from!")
         Else
             Dim fg_wh_alloc_note As String = MENote.Text.ToString
-            Dim id_season As String = SLESeason.EditValue.ToString
             If action = "ins" Then
                 Cursor = Cursors.WaitCursor
                 'query main
-                Dim query As String = "INSERT INTO tb_fg_wh_alloc(id_season, id_wh_drawer_from, fg_wh_alloc_number, fg_wh_alloc_note, fg_wh_alloc_date, id_report_status) "
-                query += "VALUES ('" + id_season + "', '" + id_wh_drawer_from + "', '" + header_number_sales("26") + "', '" + MENote.Text + "', NOW(), '1'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_fg_wh_alloc(id_wh_drawer_from, fg_wh_alloc_number, fg_wh_alloc_note, fg_wh_alloc_date, id_report_status) "
+                query += "VALUES ('" + id_wh_drawer_from + "', '" + header_number_sales("26") + "', '" + MENote.Text + "', NOW(), '1'); SELECT LAST_INSERT_ID(); "
                 id_fg_wh_alloc = execute_query(query, 0, True, "", "", "", "")
 
                 increase_inc_sales("26")
@@ -380,6 +377,13 @@
     Private Sub BtnPrePrinting_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnPrePrinting.ItemClick
         Cursor = Cursors.WaitCursor
         prePrinting()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnImportExcelNew_Click(sender As Object, e As EventArgs) Handles BtnImportExcelNew.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "24"
+        FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class
