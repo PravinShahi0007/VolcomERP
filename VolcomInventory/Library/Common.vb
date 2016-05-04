@@ -3206,7 +3206,7 @@ Module Common
         Return execute_query(query, 0, True, "", "", "", "")
     End Function
 
-    '----------------NOTIF
+    '----------------NOTIF------------
     Sub playNotify()
         My.Computer.Audio.Play(Application.StartupPath + "\notify.wav")
     End Sub
