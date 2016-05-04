@@ -105,11 +105,11 @@ Partial Class FormFGTrfNewDet
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -783,7 +783,7 @@ Partial Class FormFGTrfNewDet
         '
         'GridColumnStatus
         '
-        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.Caption = "Diff"
         Me.GridColumnStatus.FieldName = "status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.OptionsColumn.AllowEdit = False
@@ -1052,6 +1052,24 @@ Partial Class FormFGTrfNewDet
         Me.PanelNavBarcode.Size = New System.Drawing.Size(923, 33)
         Me.PanelNavBarcode.TabIndex = 1
         '
+        'TxtDeleteScan
+        '
+        Me.TxtDeleteScan.Location = New System.Drawing.Point(68, 7)
+        Me.TxtDeleteScan.MenuManager = Me.BMDD
+        Me.TxtDeleteScan.Name = "TxtDeleteScan"
+        Me.TxtDeleteScan.Size = New System.Drawing.Size(248, 20)
+        Me.TxtDeleteScan.TabIndex = 21
+        Me.TxtDeleteScan.Visible = False
+        '
+        'LabelDelScan
+        '
+        Me.LabelDelScan.Location = New System.Drawing.Point(7, 10)
+        Me.LabelDelScan.Name = "LabelDelScan"
+        Me.LabelDelScan.Size = New System.Drawing.Size(56, 13)
+        Me.LabelDelScan.TabIndex = 20
+        Me.LabelDelScan.Text = "Delete scan"
+        Me.LabelDelScan.Visible = False
+        '
         'BDelete
         '
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
@@ -1085,24 +1103,6 @@ Partial Class FormFGTrfNewDet
         Me.BScan.Size = New System.Drawing.Size(91, 33)
         Me.BScan.TabIndex = 7
         Me.BScan.Text = "Start Scan"
-        '
-        'TxtDeleteScan
-        '
-        Me.TxtDeleteScan.Location = New System.Drawing.Point(68, 7)
-        Me.TxtDeleteScan.MenuManager = Me.BMDD
-        Me.TxtDeleteScan.Name = "TxtDeleteScan"
-        Me.TxtDeleteScan.Size = New System.Drawing.Size(248, 20)
-        Me.TxtDeleteScan.TabIndex = 21
-        Me.TxtDeleteScan.Visible = False
-        '
-        'LabelDelScan
-        '
-        Me.LabelDelScan.Location = New System.Drawing.Point(7, 10)
-        Me.LabelDelScan.Name = "LabelDelScan"
-        Me.LabelDelScan.Size = New System.Drawing.Size(56, 13)
-        Me.LabelDelScan.TabIndex = 20
-        Me.LabelDelScan.Text = "Delete scan"
-        Me.LabelDelScan.Visible = False
         '
         'FormFGTrfNewDet
         '
