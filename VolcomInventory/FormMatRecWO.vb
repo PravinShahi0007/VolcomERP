@@ -11,7 +11,7 @@
     End Sub
 
     Sub view_mat_rec_purc()
-        Dim query = "SELECT a.id_report_status,h.report_status,g.season,a.id_mat_wo_rec,a.mat_wo_rec_number,DATE_FORMAT(a.delivery_order_date,'%d %M %Y') AS delivery_order_date,a.delivery_order_number,b.mat_wo_number,DATE_FORMAT(a.mat_wo_rec_date,'%d %M %Y') AS mat_wo_rec_date, f.comp_name AS comp_from,d.comp_name AS comp_to "
+        Dim query = "SELECT a.id_report_status,h.report_status,g.season,a.id_mat_wo_rec,a.mat_wo_rec_number,a.delivery_order_date,a.delivery_order_number,b.mat_wo_number,a.mat_wo_rec_date, f.comp_name AS comp_from,d.comp_name AS comp_to "
         query += "FROM tb_mat_wo_rec a INNER JOIN tb_mat_wo b ON a.id_mat_wo=b.id_mat_wo "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=a.id_comp_contact_to "
         query += "INNER JOIN tb_m_comp d ON d.id_comp=c.id_comp "
@@ -123,9 +123,9 @@
         query += "f.comp_name AS comp_name_ship_to, "
         query += "a.mat_wo_number,a.id_ovh,j.overhead, "
         query += "(SELECT COUNT(tb_mat_wo_rec.id_mat_wo_rec) FROM tb_mat_wo_rec WHERE tb_mat_wo_rec.id_mat_wo = a.id_mat_wo) AS qty_receive, "
-        query += "DATE_FORMAT(a.mat_wo_date,'%d %M %Y') AS mat_wo_date, "
-        query += "DATE_FORMAT(DATE_ADD(a.mat_wo_date,INTERVAL a.mat_wo_lead_time DAY),'%d %M %Y') AS mat_wo_lead_time, "
-        query += "DATE_FORMAT(DATE_ADD(a.mat_wo_date,INTERVAL (a.mat_wo_top+a.mat_wo_lead_time) DAY),'%d %M %Y') AS mat_wo_top "
+        query += "a.mat_wo_date, "
+        query += "DATE_ADD(a.mat_wo_date,INTERVAL a.mat_wo_lead_time DAY) AS mat_wo_lead_time, "
+        query += "DATE_ADD(a.mat_wo_date,INTERVAL (a.mat_wo_top+a.mat_wo_lead_time) DAY) AS mat_wo_top "
         query += "FROM tb_mat_wo a INNER JOIN tb_season_delivery i ON a.id_delivery = i.id_delivery "
         query += "INNER JOIN tb_season b ON i.id_season = b.id_season "
         query += "INNER JOIN tb_m_comp_contact c ON a.id_comp_contact_to = c.id_comp_contact "

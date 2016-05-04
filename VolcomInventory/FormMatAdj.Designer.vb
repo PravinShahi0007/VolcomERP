@@ -19,33 +19,33 @@ Partial Class FormMatAdj
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.XTCAdj = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPAdjIn = New DevExpress.XtraTab.XtraTabPage
-        Me.GCAdjIn = New DevExpress.XtraGrid.GridControl
-        Me.GVAdjIn = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdAdjInSample = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnNumberAdjInSampleNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnAdjInSampleDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCurrencyAdjInSample = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnReportStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.XTPAdjOut = New DevExpress.XtraTab.XtraTabPage
-        Me.GCAdjOut = New DevExpress.XtraGrid.GridControl
-        Me.GVAdjOut = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GCAdjSampleOut = New DevExpress.XtraGrid.GridControl
-        Me.GVAdjSampleOut = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn
+        Me.XTCAdj = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPAdjIn = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCAdjIn = New DevExpress.XtraGrid.GridControl()
+        Me.GVAdjIn = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdAdjInSample = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumberAdjInSampleNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAdjInSampleDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCurrencyAdjInSample = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPAdjOut = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCAdjOut = New DevExpress.XtraGrid.GridControl()
+        Me.GVAdjOut = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCAdjSampleOut = New DevExpress.XtraGrid.GridControl()
+        Me.GVAdjSampleOut = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCAdj, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCAdj.SuspendLayout()
         Me.XTPAdjIn.SuspendLayout()
@@ -74,7 +74,7 @@ Partial Class FormMatAdj
         '
         Me.XTPAdjIn.Controls.Add(Me.GCAdjIn)
         Me.XTPAdjIn.Name = "XTPAdjIn"
-        Me.XTPAdjIn.Size = New System.Drawing.Size(660, 445)
+        Me.XTPAdjIn.Size = New System.Drawing.Size(658, 445)
         Me.XTPAdjIn.Text = "Adjustment In"
         '
         'GCAdjIn
@@ -83,7 +83,7 @@ Partial Class FormMatAdj
         Me.GCAdjIn.Location = New System.Drawing.Point(0, 0)
         Me.GCAdjIn.MainView = Me.GVAdjIn
         Me.GCAdjIn.Name = "GCAdjIn"
-        Me.GCAdjIn.Size = New System.Drawing.Size(660, 445)
+        Me.GCAdjIn.Size = New System.Drawing.Size(658, 445)
         Me.GCAdjIn.TabIndex = 0
         Me.GCAdjIn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAdjIn})
         '
@@ -113,6 +113,8 @@ Partial Class FormMatAdj
         'GridColumnAdjInSampleDate
         '
         Me.GridColumnAdjInSampleDate.Caption = "Created Date"
+        Me.GridColumnAdjInSampleDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnAdjInSampleDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnAdjInSampleDate.FieldName = "adj_in_mat_datex"
         Me.GridColumnAdjInSampleDate.Name = "GridColumnAdjInSampleDate"
         Me.GridColumnAdjInSampleDate.Visible = True
@@ -149,7 +151,7 @@ Partial Class FormMatAdj
         Me.XTPAdjOut.Controls.Add(Me.GCAdjOut)
         Me.XTPAdjOut.Controls.Add(Me.GCAdjSampleOut)
         Me.XTPAdjOut.Name = "XTPAdjOut"
-        Me.XTPAdjOut.Size = New System.Drawing.Size(660, 445)
+        Me.XTPAdjOut.Size = New System.Drawing.Size(658, 445)
         Me.XTPAdjOut.Text = "Adjustment Out"
         '
         'GCAdjOut
@@ -158,7 +160,7 @@ Partial Class FormMatAdj
         Me.GCAdjOut.Location = New System.Drawing.Point(0, 0)
         Me.GCAdjOut.MainView = Me.GVAdjOut
         Me.GCAdjOut.Name = "GCAdjOut"
-        Me.GCAdjOut.Size = New System.Drawing.Size(660, 445)
+        Me.GCAdjOut.Size = New System.Drawing.Size(658, 445)
         Me.GCAdjOut.TabIndex = 2
         Me.GCAdjOut.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAdjOut})
         '
@@ -188,6 +190,8 @@ Partial Class FormMatAdj
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Created Date"
+        Me.GridColumn9.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn9.FieldName = "adj_out_mat_datex"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
@@ -225,7 +229,7 @@ Partial Class FormMatAdj
         Me.GCAdjSampleOut.Location = New System.Drawing.Point(0, 0)
         Me.GCAdjSampleOut.MainView = Me.GVAdjSampleOut
         Me.GCAdjSampleOut.Name = "GCAdjSampleOut"
-        Me.GCAdjSampleOut.Size = New System.Drawing.Size(660, 445)
+        Me.GCAdjSampleOut.Size = New System.Drawing.Size(658, 445)
         Me.GCAdjSampleOut.TabIndex = 1
         Me.GCAdjSampleOut.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAdjSampleOut})
         '

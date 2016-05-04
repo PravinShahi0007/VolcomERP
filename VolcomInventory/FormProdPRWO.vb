@@ -19,7 +19,7 @@
     End Sub
 
     Sub view_pr()
-        Dim query As String = "SELECT po.id_prod_order,po.prod_order_number,rec.id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,DATE_FORMAT(z.pr_prod_order_date,'%d %M %Y') as pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,DATE_FORMAT(rec.delivery_order_date,'%d %M %Y') AS delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,rec.prod_order_rec_date, d.comp_name AS comp_to, "
+        Dim query As String = "SELECT po.id_prod_order,po.prod_order_number,rec.id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,rec.delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,rec.prod_order_rec_date, d.comp_name AS comp_to, "
         query += "DATE_ADD(wo.prod_order_wo_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY) AS prod_order_wo_top "
         query += " ,wo.id_currency,wo.prod_order_wo_kurs "
         query += "FROM tb_pr_prod_order z "

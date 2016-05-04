@@ -136,6 +136,8 @@ Partial Class FormMatMRS
         'GridColumnDate
         '
         Me.GridColumnDate.Caption = "Date"
+        Me.GridColumnDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnDate.FieldName = "prod_order_mrs_date"
         Me.GridColumnDate.Name = "GridColumnDate"
         Me.GridColumnDate.Visible = True
@@ -249,6 +251,8 @@ Partial Class FormMatMRS
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Date"
+        Me.GridColumn6.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn6.FieldName = "prod_order_mrs_date"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
