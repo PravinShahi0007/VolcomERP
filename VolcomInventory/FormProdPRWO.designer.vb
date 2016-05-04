@@ -58,6 +58,7 @@ Partial Class FormProdPRWO
         Me.PGBProg = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumnIDCompTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCreatedPR = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
         Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -72,7 +73,6 @@ Partial Class FormProdPRWO
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCreatedPR = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabPR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabPR.SuspendLayout()
         Me.XTPListPR.SuspendLayout()
@@ -99,7 +99,7 @@ Partial Class FormProdPRWO
         Me.XTCTabPR.Location = New System.Drawing.Point(0, 0)
         Me.XTCTabPR.Name = "XTCTabPR"
         Me.XTCTabPR.SelectedTabPage = Me.XTPListPR
-        Me.XTCTabPR.Size = New System.Drawing.Size(797, 447)
+        Me.XTCTabPR.Size = New System.Drawing.Size(891, 325)
         Me.XTCTabPR.TabIndex = 6
         Me.XTCTabPR.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListPR, Me.XTPListPO})
         '
@@ -107,7 +107,7 @@ Partial Class FormProdPRWO
         '
         Me.XTPListPR.Controls.Add(Me.GCMatPR)
         Me.XTPListPR.Name = "XTPListPR"
-        Me.XTPListPR.Size = New System.Drawing.Size(791, 419)
+        Me.XTPListPR.Size = New System.Drawing.Size(885, 297)
         Me.XTPListPR.Text = "List Payment Requisition"
         '
         'GCMatPR
@@ -116,7 +116,7 @@ Partial Class FormProdPRWO
         Me.GCMatPR.Location = New System.Drawing.Point(0, 0)
         Me.GCMatPR.MainView = Me.GVMatPR
         Me.GCMatPR.Name = "GCMatPR"
-        Me.GCMatPR.Size = New System.Drawing.Size(791, 419)
+        Me.GCMatPR.Size = New System.Drawing.Size(885, 297)
         Me.GCMatPR.TabIndex = 2
         Me.GCMatPR.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMatPR})
         '
@@ -159,6 +159,8 @@ Partial Class FormProdPRWO
         'ColMatPurcDate
         '
         Me.ColMatPurcDate.Caption = "Create Date"
+        Me.ColMatPurcDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColMatPurcDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColMatPurcDate.FieldName = "pr_prod_order_date"
         Me.ColMatPurcDate.Name = "ColMatPurcDate"
         Me.ColMatPurcDate.Visible = True
@@ -168,6 +170,8 @@ Partial Class FormProdPRWO
         'ColDueDate
         '
         Me.ColDueDate.Caption = "Due Date"
+        Me.ColDueDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColDueDate.FieldName = "prod_order_wo_top"
         Me.ColDueDate.Name = "ColDueDate"
         Me.ColDueDate.Visible = True
@@ -217,6 +221,8 @@ Partial Class FormProdPRWO
         'GridColumnRecNumber
         '
         Me.GridColumnRecNumber.Caption = "Receive Number"
+        Me.GridColumnRecNumber.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnRecNumber.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnRecNumber.FieldName = "prod_order_rec_number"
         Me.GridColumnRecNumber.Name = "GridColumnRecNumber"
         Me.GridColumnRecNumber.Visible = True
@@ -440,6 +446,18 @@ Partial Class FormProdPRWO
         Me.GridColumnPONumber.VisibleIndex = 1
         Me.GridColumnPONumber.Width = 67
         '
+        'GridColumnCreatedPR
+        '
+        Me.GridColumnCreatedPR.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCreatedPR.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCreatedPR.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCreatedPR.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnCreatedPR.Caption = "Created PR"
+        Me.GridColumnCreatedPR.FieldName = "qty_pr"
+        Me.GridColumnCreatedPR.Name = "GridColumnCreatedPR"
+        Me.GridColumnCreatedPR.Visible = True
+        Me.GridColumnCreatedPR.VisibleIndex = 9
+        '
         'GroupControl2
         '
         Me.GroupControl2.Controls.Add(Me.GCListPurchase)
@@ -604,23 +622,11 @@ Partial Class FormProdPRWO
         Me.ColSize.VisibleIndex = 4
         Me.ColSize.Width = 56
         '
-        'GridColumnCreatedPR
-        '
-        Me.GridColumnCreatedPR.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnCreatedPR.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnCreatedPR.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnCreatedPR.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnCreatedPR.Caption = "Created PR"
-        Me.GridColumnCreatedPR.FieldName = "qty_pr"
-        Me.GridColumnCreatedPR.Name = "GridColumnCreatedPR"
-        Me.GridColumnCreatedPR.Visible = True
-        Me.GridColumnCreatedPR.VisibleIndex = 9
-        '
         'FormProdPRWO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(797, 447)
+        Me.ClientSize = New System.Drawing.Size(891, 325)
         Me.Controls.Add(Me.XTCTabPR)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False

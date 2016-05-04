@@ -73,7 +73,7 @@ Partial Class FormFGWHAlloc
         Me.GridColumnCreatedDate.FieldName = "fg_wh_alloc_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 3
+        Me.GridColumnCreatedDate.VisibleIndex = 2
         '
         'GridColumnNumber
         '
@@ -89,7 +89,7 @@ Partial Class FormFGWHAlloc
         Me.GridColumnNote.FieldName = "fg_wh_alloc_note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 4
+        Me.GridColumnNote.VisibleIndex = 3
         '
         'GridColumnStatus
         '
@@ -97,7 +97,7 @@ Partial Class FormFGWHAlloc
         Me.GridColumnStatus.FieldName = "report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 5
+        Me.GridColumnStatus.VisibleIndex = 4
         '
         'GridColumnPreparedBy
         '
@@ -111,7 +111,7 @@ Partial Class FormFGWHAlloc
         Me.GridColumnFrom.FieldName = "comp_from"
         Me.GridColumnFrom.Name = "GridColumnFrom"
         Me.GridColumnFrom.Visible = True
-        Me.GridColumnFrom.VisibleIndex = 2
+        Me.GridColumnFrom.VisibleIndex = 1
         '
         'GridColumnSeason
         '
@@ -119,8 +119,6 @@ Partial Class FormFGWHAlloc
         Me.GridColumnSeason.FieldName = "season"
         Me.GridColumnSeason.FieldNameSortGroup = "id_season"
         Me.GridColumnSeason.Name = "GridColumnSeason"
-        Me.GridColumnSeason.Visible = True
-        Me.GridColumnSeason.VisibleIndex = 1
         '
         'GridColumnIsSubmit
         '

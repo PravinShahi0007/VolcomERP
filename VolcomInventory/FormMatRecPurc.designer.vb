@@ -19,58 +19,58 @@ Partial Class FormMatRecPurc
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.XTCTabReceive = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPListReceive = New DevExpress.XtraTab.XtraTabPage
-        Me.GCMatRecPurc = New DevExpress.XtraGrid.GridControl
-        Me.GVMatRecPurc = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdMatRecPurc = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSeason = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColRecNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColShipFrom = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColShipTo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPSONumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDONumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIDStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDelivery = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDelivery = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.XTPListPO = New DevExpress.XtraTab.XtraTabPage
-        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl
-        Me.GCMatPurchase = New DevExpress.XtraGrid.GridControl
-        Me.GVMatPurchase = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdMatPurchase = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDelivery = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPONumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSamplePurcDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPayment = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIdDelivery = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIdSeason = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColQtyRec = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDateNow = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl
-        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl
-        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIdMatDetPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDiscount = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSubtotal = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn
+        Me.XTCTabReceive = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPListReceive = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCMatRecPurc = New DevExpress.XtraGrid.GridControl()
+        Me.GVMatRecPurc = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdMatRecPurc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSeason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColRecNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColShipFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColShipTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPSONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIDStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDelivery = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDelivery = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPListPO = New DevExpress.XtraTab.XtraTabPage()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCMatPurchase = New DevExpress.XtraGrid.GridControl()
+        Me.GVMatPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdMatPurchase = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDelivery = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSamplePurcDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPayment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdDelivery = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDateNow = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
+        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdMatDetPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDiscount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSubtotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabReceive.SuspendLayout()
         Me.XTPListReceive.SuspendLayout()
@@ -104,7 +104,7 @@ Partial Class FormMatRecPurc
         '
         Me.XTPListReceive.Controls.Add(Me.GCMatRecPurc)
         Me.XTPListReceive.Name = "XTPListReceive"
-        Me.XTPListReceive.Size = New System.Drawing.Size(878, 346)
+        Me.XTPListReceive.Size = New System.Drawing.Size(878, 344)
         Me.XTPListReceive.Text = "List Receive"
         '
         'GCMatRecPurc
@@ -113,7 +113,7 @@ Partial Class FormMatRecPurc
         Me.GCMatRecPurc.Location = New System.Drawing.Point(0, 0)
         Me.GCMatRecPurc.MainView = Me.GVMatRecPurc
         Me.GCMatRecPurc.Name = "GCMatRecPurc"
-        Me.GCMatRecPurc.Size = New System.Drawing.Size(878, 346)
+        Me.GCMatRecPurc.Size = New System.Drawing.Size(878, 344)
         Me.GCMatRecPurc.TabIndex = 2
         Me.GCMatRecPurc.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMatRecPurc})
         '
@@ -171,6 +171,8 @@ Partial Class FormMatRecPurc
         'ColRecDate
         '
         Me.ColRecDate.Caption = "Receive Date"
+        Me.ColRecDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColRecDate.FieldName = "mat_purc_rec_date"
         Me.ColRecDate.Name = "ColRecDate"
         Me.ColRecDate.Visible = True
@@ -180,6 +182,8 @@ Partial Class FormMatRecPurc
         'ColDueDate
         '
         Me.ColDueDate.Caption = "Delivery Order Date"
+        Me.ColDueDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColDueDate.FieldName = "delivery_order_date"
         Me.ColDueDate.Name = "ColDueDate"
         Me.ColDueDate.Visible = True
@@ -241,7 +245,7 @@ Partial Class FormMatRecPurc
         '
         Me.XTPListPO.Controls.Add(Me.SplitContainerControl1)
         Me.XTPListPO.Name = "XTPListPO"
-        Me.XTPListPO.Size = New System.Drawing.Size(878, 346)
+        Me.XTPListPO.Size = New System.Drawing.Size(878, 344)
         Me.XTPListPO.Text = "List Purchase Order"
         '
         'SplitContainerControl1
@@ -254,7 +258,7 @@ Partial Class FormMatRecPurc
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl2)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(878, 346)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(878, 344)
         Me.SplitContainerControl1.SplitterPosition = 244
         Me.SplitContainerControl1.TabIndex = 28
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -272,10 +276,10 @@ Partial Class FormMatRecPurc
         'GCMatPurchase
         '
         Me.GCMatPurchase.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCMatPurchase.Location = New System.Drawing.Point(2, 22)
+        Me.GCMatPurchase.Location = New System.Drawing.Point(2, 20)
         Me.GCMatPurchase.MainView = Me.GVMatPurchase
         Me.GCMatPurchase.Name = "GCMatPurchase"
-        Me.GCMatPurchase.Size = New System.Drawing.Size(874, 220)
+        Me.GCMatPurchase.Size = New System.Drawing.Size(874, 222)
         Me.GCMatPurchase.TabIndex = 5
         Me.GCMatPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMatPurchase})
         '
@@ -344,6 +348,8 @@ Partial Class FormMatRecPurc
         'ColSamplePurcDate
         '
         Me.ColSamplePurcDate.Caption = "Create Date"
+        Me.ColSamplePurcDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColSamplePurcDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColSamplePurcDate.FieldName = "mat_purc_date"
         Me.ColSamplePurcDate.Name = "ColSamplePurcDate"
         Me.ColSamplePurcDate.Visible = True
@@ -353,6 +359,8 @@ Partial Class FormMatRecPurc
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Est. Receive Date"
+        Me.GridColumn4.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn4.FieldName = "mat_purc_lead_time"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
@@ -362,6 +370,8 @@ Partial Class FormMatRecPurc
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Due Date"
+        Me.GridColumn5.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn5.FieldName = "mat_purc_top"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
@@ -421,14 +431,14 @@ Partial Class FormMatRecPurc
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(878, 97)
+        Me.GroupControl2.Size = New System.Drawing.Size(878, 95)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Detail"
         '
         'GCListPurchase
         '
         Me.GCListPurchase.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCListPurchase.Location = New System.Drawing.Point(2, 22)
+        Me.GCListPurchase.Location = New System.Drawing.Point(2, 20)
         Me.GCListPurchase.MainView = Me.GVListPurchase
         Me.GCListPurchase.Margin = New System.Windows.Forms.Padding(0)
         Me.GCListPurchase.Name = "GCListPurchase"
@@ -564,7 +574,6 @@ Partial Class FormMatRecPurc
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatRecPurc"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Receiving Raw Material Purchasing"

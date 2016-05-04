@@ -13,14 +13,12 @@
         End If
 
         Dim query As String = "SELECT allc.id_fg_wh_alloc, allc.fg_wh_alloc_number, "
-        query += "allc.id_season, ss.season, "
         query += "allc.fg_wh_alloc_date, DATE_FORMAT(allc.fg_wh_alloc_date,'%Y-%m-%d') AS fg_wh_alloc_datex, "
         query += "allc.fg_wh_alloc_note, allc.id_report_status, stt.report_status, "
         query += "comp.id_comp, loc.id_wh_locator, rck.id_wh_rack, drw.id_wh_drawer, "
         query += "comp.comp_number, comp.comp_name, CONCAT(comp.comp_number, ' - ', comp.comp_name) AS `comp_from`, "
         query += "getUserPrepared(allc.id_fg_wh_alloc, 87, 1) AS prepared_by, allc.is_submit "
         query += "FROM tb_fg_wh_alloc allc "
-        query += "INNER JOIN tb_season ss ON ss.id_season = allc.id_season "
         query += "INNER JOIN tb_lookup_report_status stt ON stt.id_report_status = allc.id_report_status "
         query += "INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = allc.id_wh_drawer_from "
         query += "INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack "

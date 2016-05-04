@@ -117,7 +117,7 @@
         query += "IFNULL(SUM(rec.prod_order_rec_det_qty),0) AS qty_rec, "
         query += "IFNULL(SUM(pod.prod_order_qty),0) As qty_order, "
         query += "comp.comp_name,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, "
-        query += "DATE_FORMAT(a.prod_order_date,'%d %M %Y') AS prod_order_date,a.id_report_status,c.report_status, "
+        query += "a.prod_order_date,a.id_report_status,c.report_status, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order "
