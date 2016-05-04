@@ -14,7 +14,7 @@
     Sub viewPL()
         Dim query As String = "SELECT a.id_pl_mrs ,m.design_name,k.prod_order_number,a.id_comp_contact_from , a.id_comp_contact_to, a.pl_mrs_note, a.pl_mrs_number, "
         query += "(d.comp_name) AS comp_name_from, (f.comp_name) AS comp_name_to, h.report_status, a.id_report_status,j.prod_order_wo_number,i.prod_order_mrs_number, "
-        query += "DATE_FORMAT(a.pl_mrs_date,'%d %M %Y') AS pl_mrs_date, a.id_report_status FROM tb_pl_mrs a "
+        query += "a.pl_mrs_date AS pl_mrs_date, a.id_report_status FROM tb_pl_mrs a "
         query += "INNER JOIN tb_m_comp_contact c ON a.id_comp_contact_from = c.id_comp_contact "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
         query += "INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_to = e.id_comp_contact "
@@ -48,8 +48,8 @@
     Sub viewInv()
         Dim query As String = "SELECT inv.id_inv_pl_mrs,inv.inv_pl_mrs_number,m.design_name,k.prod_order_number,j.prod_order_wo_number, inv.id_comp_contact_to, "
         query += " (f.comp_name) AS comp_name_to, h.report_status, inv.id_report_status,inv.id_prod_order_wo, "
-        query += "DATE_FORMAT(inv.inv_pl_mrs_date,'%d %M %Y') AS inv_pl_mrs_date,"
-        query += "DATE_FORMAT(DATE_ADD(inv.inv_pl_mrs_date,INTERVAL inv.inv_pl_mrs_top DAY),'%d %M %Y') AS inv_pl_mrs_top , inv.id_report_status "
+        query += "inv.inv_pl_mrs_date AS inv_pl_mrs_date,"
+        query += "DATE_ADD(inv.inv_pl_mrs_date,INTERVAL inv.inv_pl_mrs_top DAY) AS inv_pl_mrs_top , inv.id_report_status "
         query += "FROM tb_inv_pl_mrs inv "
         query += "INNER JOIN tb_m_comp_contact e ON inv.id_comp_contact_to = e.id_comp_contact "
         query += "INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp "
@@ -120,8 +120,8 @@
     Sub view_retur()
         Dim query As String = "SELECT inv_ret.id_inv_pl_mrs_ret,inv_ret.inv_pl_mrs_ret_number,inv.id_inv_pl_mrs,inv.inv_pl_mrs_number,m.design_name,k.prod_order_number,j.prod_order_wo_number, inv_ret.id_comp_contact_from, "
         query += " (f.comp_name) AS comp_name_to, h.report_status, inv_ret.id_report_status,inv.id_prod_order_wo, "
-        query += "DATE_FORMAT(inv_ret.inv_pl_mrs_ret_date,'%d %M %Y') AS inv_pl_mrs_ret_date,"
-        query += "DATE_FORMAT(DATE_ADD(inv_ret.inv_pl_mrs_ret_date,INTERVAL inv_ret.inv_pl_mrs_ret_top DAY),'%d %M %Y') AS inv_pl_mrs_ret_top , inv_ret.id_report_status "
+        query += "inv_ret.inv_pl_mrs_ret_date AS inv_pl_mrs_ret_date,"
+        query += "DATE_ADD(inv_ret.inv_pl_mrs_ret_date,INTERVAL inv_ret.inv_pl_mrs_ret_top DAY) AS inv_pl_mrs_ret_top , inv_ret.id_report_status "
         query += "FROM tb_inv_pl_mrs_ret inv_ret "
         query += "INNER JOIN tb_inv_pl_mrs inv ON inv.id_inv_pl_mrs=inv_ret.id_inv_pl_mrs "
         query += "INNER JOIN tb_m_comp_contact e ON inv_ret.id_comp_contact_from = e.id_comp_contact "
@@ -138,8 +138,8 @@
     Sub viewInv_retur()
         Dim query As String = "SELECT inv.id_inv_pl_mrs,inv.inv_pl_mrs_number,m.design_name,k.prod_order_number, inv.id_comp_contact_to, "
         query += " (f.comp_name) AS comp_name_to, h.report_status, inv.id_report_status,j.prod_order_wo_number,inv.id_prod_order_wo, "
-        query += "DATE_FORMAT(inv.inv_pl_mrs_date,'%d %M %Y') AS inv_pl_mrs_date,"
-        query += "DATE_FORMAT(DATE_ADD(inv.inv_pl_mrs_date,INTERVAL inv.inv_pl_mrs_top DAY),'%d %M %Y') AS inv_pl_mrs_top , inv.id_report_status "
+        query += "inv.inv_pl_mrs_date AS inv_pl_mrs_date,"
+        query += "DATE_ADD(inv.inv_pl_mrs_date,INTERVAL inv.inv_pl_mrs_top DAY) AS inv_pl_mrs_top , inv.id_report_status "
         query += "FROM tb_inv_pl_mrs inv "
         query += "INNER JOIN tb_m_comp_contact e ON inv.id_comp_contact_to = e.id_comp_contact "
         query += "INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp "

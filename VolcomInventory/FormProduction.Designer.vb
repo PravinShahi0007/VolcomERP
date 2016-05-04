@@ -30,6 +30,7 @@ Partial Class FormProduction
         Me.GridColumnProdDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPOType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTerm = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesignCOP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrderQty = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -93,7 +94,6 @@ Partial Class FormProduction
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDesignCOP = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabProduction, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabProduction.SuspendLayout()
         Me.XTPListProduction.SuspendLayout()
@@ -196,6 +196,8 @@ Partial Class FormProduction
         'GridColumnProdDate
         '
         Me.GridColumnProdDate.Caption = "Date"
+        Me.GridColumnProdDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnProdDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnProdDate.FieldName = "prod_order_date"
         Me.GridColumnProdDate.Name = "GridColumnProdDate"
         Me.GridColumnProdDate.Visible = True
@@ -219,6 +221,20 @@ Partial Class FormProduction
         Me.GridColumnTerm.Visible = True
         Me.GridColumnTerm.VisibleIndex = 5
         Me.GridColumnTerm.Width = 78
+        '
+        'GridColumnDesignCOP
+        '
+        Me.GridColumnDesignCOP.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnDesignCOP.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnDesignCOP.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnDesignCOP.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnDesignCOP.Caption = "Cost Final"
+        Me.GridColumnDesignCOP.DisplayFormat.FormatString = "N2"
+        Me.GridColumnDesignCOP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnDesignCOP.FieldName = "design_cop"
+        Me.GridColumnDesignCOP.Name = "GridColumnDesignCOP"
+        Me.GridColumnDesignCOP.Visible = True
+        Me.GridColumnDesignCOP.VisibleIndex = 11
         '
         'GridColumnDesign
         '
@@ -817,20 +833,6 @@ Partial Class FormProduction
         Me.ColSize.OptionsColumn.AllowEdit = False
         Me.ColSize.Visible = True
         Me.ColSize.VisibleIndex = 4
-        '
-        'GridColumnDesignCOP
-        '
-        Me.GridColumnDesignCOP.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnDesignCOP.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnDesignCOP.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnDesignCOP.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnDesignCOP.Caption = "Cost Final"
-        Me.GridColumnDesignCOP.DisplayFormat.FormatString = "N2"
-        Me.GridColumnDesignCOP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnDesignCOP.FieldName = "design_cop"
-        Me.GridColumnDesignCOP.Name = "GridColumnDesignCOP"
-        Me.GridColumnDesignCOP.Visible = True
-        Me.GridColumnDesignCOP.VisibleIndex = 11
         '
         'FormProduction
         '

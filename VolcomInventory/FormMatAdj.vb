@@ -20,7 +20,7 @@
     'View Data
     Sub viewAdjIn()
         Dim query As String = ""
-        query += "SELECT *, DATE_FORMAT(a.adj_in_mat_date, '%d %M %Y') AS adj_in_mat_datex "
+        query += "SELECT *, a.adj_in_mat_date AS adj_in_mat_datex "
         query += "FROM tb_adj_in_mat a "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status = b.id_report_status "
         query += "INNER JOIN tb_lookup_currency c ON a.id_currency = c.id_currency  "
@@ -31,7 +31,7 @@
     End Sub
     Sub viewAdjOut()
         Dim query As String = ""
-        query += "SELECT *, DATE_FORMAT(a.adj_out_mat_date, '%d %M %Y') AS adj_out_mat_datex "
+        query += "SELECT *, a.adj_out_mat_date AS adj_out_mat_datex "
         query += "FROM tb_adj_out_mat a "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status = b.id_report_status "
         query += "INNER JOIN tb_lookup_currency c ON a.id_currency = c.id_currency  "

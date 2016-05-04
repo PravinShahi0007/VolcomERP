@@ -21,7 +21,7 @@
     End Sub
 
     Sub view_mat_pr()
-        Dim query As String = "SELECT b.id_delivery, g.id_season,g0.delivery, z.id_report_status,h.report_status,z.pr_mat_purc_note,z.id_pr_mat_purc,z.pr_mat_purc_number,z.pr_mat_purc_date,g.season,a.id_mat_purc_rec,a.mat_purc_rec_number,DATE_FORMAT(a.delivery_order_date,'%d %M %Y') AS delivery_order_date,a.delivery_order_number,b.mat_purc_number,a.mat_purc_rec_date, d.comp_name AS comp_to, "
+        Dim query As String = "SELECT b.id_delivery, g.id_season,g0.delivery, z.id_report_status,h.report_status,z.pr_mat_purc_note,z.id_pr_mat_purc,z.pr_mat_purc_number,z.pr_mat_purc_date,g.season,a.id_mat_purc_rec,a.mat_purc_rec_number,a.delivery_order_date,a.delivery_order_number,b.mat_purc_number,a.mat_purc_rec_date, d.comp_name AS comp_to, "
         query += "pr_mat_purc_due_date "
         query += "FROM tb_pr_mat_purc z "
         query += "LEFT JOIN tb_mat_purc_rec a ON z.id_mat_purc_rec = a.id_mat_purc_rec "
@@ -80,9 +80,9 @@
         query += "f.comp_name AS comp_name_ship_to, "
         query += "a.mat_purc_number,"
         query += "(SELECT COUNT(tb_pr_mat_purc.id_pr_mat_purc) FROM tb_pr_mat_purc WHERE tb_pr_mat_purc.id_mat_purc = a.id_mat_purc) AS qty_payment, "
-        query += "DATE_FORMAT(a.mat_purc_date,'%d %M %Y') AS mat_purc_date, "
-        query += "DATE_FORMAT(DATE_ADD(a.mat_purc_date,INTERVAL a.mat_purc_lead_time DAY),'%d %M %Y') AS mat_purc_lead_time, "
-        query += "DATE_FORMAT(DATE_ADD(a.mat_purc_date,INTERVAL (a.mat_purc_top+a.mat_purc_lead_time) DAY),'%d %M %Y') AS mat_purc_top "
+        query += "a.mat_purc_date, "
+        query += "DATE_ADD(a.mat_purc_date,INTERVAL a.mat_purc_lead_time DAY) AS mat_purc_lead_time, "
+        query += "DATE_ADD(a.mat_purc_date,INTERVAL (a.mat_purc_top+a.mat_purc_lead_time) DAY) AS mat_purc_top "
         query += "FROM tb_mat_purc a "
         query += "INNER JOIN tb_season_delivery b0 ON a.id_delivery = b0.id_delivery "
         query += "INNER JOIN tb_season b ON b0.id_season = b.id_season "

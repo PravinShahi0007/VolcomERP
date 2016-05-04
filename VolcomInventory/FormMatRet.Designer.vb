@@ -182,6 +182,8 @@ Partial Class FormMatRet
         'ColRecDate
         '
         Me.ColRecDate.Caption = "Return Out Date"
+        Me.ColRecDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColRecDate.FieldName = "mat_purc_ret_out_date"
         Me.ColRecDate.Name = "ColRecDate"
         Me.ColRecDate.Visible = True
@@ -191,6 +193,8 @@ Partial Class FormMatRet
         'ColDueDate
         '
         Me.ColDueDate.Caption = "Due Date"
+        Me.ColDueDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColDueDate.FieldName = "mat_purc_ret_out_due_date"
         Me.ColDueDate.Name = "ColDueDate"
         Me.ColDueDate.Visible = True
@@ -223,7 +227,7 @@ Partial Class FormMatRet
         '
         Me.XTPRetIn.Controls.Add(Me.GCRetIn)
         Me.XTPRetIn.Name = "XTPRetIn"
-        Me.XTPRetIn.Size = New System.Drawing.Size(763, 329)
+        Me.XTPRetIn.Size = New System.Drawing.Size(761, 329)
         Me.XTPRetIn.Text = "Return In"
         '
         'GCRetIn
@@ -232,7 +236,7 @@ Partial Class FormMatRet
         Me.GCRetIn.Location = New System.Drawing.Point(0, 0)
         Me.GCRetIn.MainView = Me.GVRetIn
         Me.GCRetIn.Name = "GCRetIn"
-        Me.GCRetIn.Size = New System.Drawing.Size(763, 329)
+        Me.GCRetIn.Size = New System.Drawing.Size(761, 329)
         Me.GCRetIn.TabIndex = 4
         Me.GCRetIn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetIn})
         '
@@ -288,6 +292,8 @@ Partial Class FormMatRet
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Return Out Date"
+        Me.GridColumn6.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn6.FieldName = "mat_purc_ret_in_date"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
@@ -389,6 +395,8 @@ Partial Class FormMatRet
         'GridColumn25
         '
         Me.GridColumn25.Caption = "Return In Date"
+        Me.GridColumn25.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn25.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn25.FieldName = "mat_prod_ret_in_date"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
@@ -447,7 +455,6 @@ Partial Class FormMatRet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatRet"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Return Raw Material"
