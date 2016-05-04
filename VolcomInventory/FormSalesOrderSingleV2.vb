@@ -187,4 +187,13 @@
     Private Sub GCProdList_KeyDown(sender As Object, e As KeyEventArgs) Handles GCProdList.KeyDown
 
     End Sub
+
+    Private Sub GVProdList_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVProdList.CustomSummaryCalculate
+
+    End Sub
+
+    Private Sub GVProdList_HiddenEditor(sender As Object, e As EventArgs) Handles GVProdList.HiddenEditor
+        GVProdList.RefreshData()
+        LabelTotal.Text = GVProdList.Columns("total_order").SummaryItem.SummaryValue.ToString
+    End Sub
 End Class

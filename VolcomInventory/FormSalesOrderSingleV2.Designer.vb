@@ -32,10 +32,10 @@ Partial Class FormSalesOrderSingleV2
         Me.GridColumnProductCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendorCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnProductOrigin = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnColod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnClass = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnProdSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnColod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDelivery = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnWHStock = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,10 +52,14 @@ Partial Class FormSalesOrderSingleV2
         Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepositoryItemTextEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelTotal = New DevExpress.XtraEditors.LabelControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -64,7 +68,6 @@ Partial Class FormSalesOrderSingleV2
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.GridColumnPriceName = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -212,6 +215,15 @@ Partial Class FormSalesOrderSingleV2
         Me.GridColumnProductOrigin.OptionsColumn.ReadOnly = True
         Me.GridColumnProductOrigin.Width = 89
         '
+        'GridColumnColod
+        '
+        Me.GridColumnColod.Caption = "Color"
+        Me.GridColumnColod.FieldName = "Color_display"
+        Me.GridColumnColod.Name = "GridColumnColod"
+        Me.GridColumnColod.OptionsColumn.AllowEdit = False
+        Me.GridColumnColod.OptionsColumn.ReadOnly = True
+        Me.GridColumnColod.Width = 89
+        '
         'GridColumnClass
         '
         Me.GridColumnClass.Caption = "Class"
@@ -239,15 +251,6 @@ Partial Class FormSalesOrderSingleV2
         Me.GridColumnProdSize.Visible = True
         Me.GridColumnProdSize.VisibleIndex = 1
         Me.GridColumnProdSize.Width = 89
-        '
-        'GridColumnColod
-        '
-        Me.GridColumnColod.Caption = "Color"
-        Me.GridColumnColod.FieldName = "Color_display"
-        Me.GridColumnColod.Name = "GridColumnColod"
-        Me.GridColumnColod.OptionsColumn.AllowEdit = False
-        Me.GridColumnColod.OptionsColumn.ReadOnly = True
-        Me.GridColumnColod.Width = 89
         '
         'GridColumnDelivery
         '
@@ -439,6 +442,14 @@ Partial Class FormSalesOrderSingleV2
         Me.GridColumnPriceType.Visible = True
         Me.GridColumnPriceType.VisibleIndex = 3
         '
+        'GridColumnPriceName
+        '
+        Me.GridColumnPriceName.Caption = "Price Name"
+        Me.GridColumnPriceName.FieldName = "design_price_name"
+        Me.GridColumnPriceName.Name = "GridColumnPriceName"
+        Me.GridColumnPriceName.Visible = True
+        Me.GridColumnPriceName.VisibleIndex = 4
+        '
         'RepositoryItemTextEdit1
         '
         Me.RepositoryItemTextEdit1.AutoHeight = False
@@ -468,6 +479,9 @@ Partial Class FormSalesOrderSingleV2
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Controls.Add(Me.LabelTotal)
         Me.PanelControl2.Controls.Add(Me.SLESeason)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.BtnView)
@@ -476,6 +490,42 @@ Partial Class FormSalesOrderSingleV2
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(995, 45)
         Me.PanelControl2.TabIndex = 100
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.LabelControl2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelControl2.Location = New System.Drawing.Point(783, 2)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Padding = New System.Windows.Forms.Padding(0, 5, 5, 0)
+        Me.LabelControl2.Size = New System.Drawing.Size(176, 34)
+        Me.LabelControl2.TabIndex = 101
+        Me.LabelControl2.Text = "TOTAL ORDER"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.LabelControl1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelControl1.Location = New System.Drawing.Point(959, 2)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Padding = New System.Windows.Forms.Padding(0, 5, 5, 0)
+        Me.LabelControl1.Size = New System.Drawing.Size(14, 34)
+        Me.LabelControl1.TabIndex = 100
+        Me.LabelControl1.Text = ":"
+        '
+        'LabelTotal
+        '
+        Me.LabelTotal.Appearance.Font = New System.Drawing.Font("Tahoma", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelTotal.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.LabelTotal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.LabelTotal.Location = New System.Drawing.Point(973, 2)
+        Me.LabelTotal.Name = "LabelTotal"
+        Me.LabelTotal.Padding = New System.Windows.Forms.Padding(0, 5, 5, 0)
+        Me.LabelTotal.Size = New System.Drawing.Size(20, 34)
+        Me.LabelTotal.TabIndex = 99
+        Me.LabelTotal.Text = "0"
         '
         'SLESeason
         '
@@ -544,14 +594,6 @@ Partial Class FormSalesOrderSingleV2
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(995, 351)
         Me.PanelControl3.TabIndex = 101
-        '
-        'GridColumnPriceName
-        '
-        Me.GridColumnPriceName.Caption = "Price Name"
-        Me.GridColumnPriceName.FieldName = "design_price_name"
-        Me.GridColumnPriceName.Name = "GridColumnPriceName"
-        Me.GridColumnPriceName.Visible = True
-        Me.GridColumnPriceName.VisibleIndex = 4
         '
         'FormSalesOrderSingleV2
         '
@@ -636,4 +678,7 @@ Partial Class FormSalesOrderSingleV2
     Friend WithEvents GridColumnPriceType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GridColumnPriceName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelTotal As DevExpress.XtraEditors.LabelControl
 End Class
