@@ -802,4 +802,15 @@
         EP_TE_cant_blank(EPForm, TxtWHNameTo)
         EPForm.SetIconPadding(TxtWHNameTo, 28)
     End Sub
+
+    Private Sub BtnImportExcelNew_Click(sender As Object, e As EventArgs) Handles BtnImportExcelNew.Click
+        Cursor = Cursors.WaitCursor
+        If id_comp_par = "-1" Or id_store = "-1" Then
+            stopCustom("Please select warehouse and store first !")
+        Else
+            FormImportExcel.id_pop_up = "25"
+            FormImportExcel.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class
