@@ -86,6 +86,7 @@ Partial Class FormSalesOrderDet
         Me.GridColumnIsFound = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnErr = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
@@ -850,6 +851,7 @@ Partial Class FormSalesOrderDet
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.BtnImportExcelNew)
         Me.PanelControlNav.Controls.Add(Me.BtnImportExcel)
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
         Me.PanelControlNav.Controls.Add(Me.BtnEdit)
@@ -862,6 +864,18 @@ Partial Class FormSalesOrderDet
         Me.PanelControlNav.Size = New System.Drawing.Size(820, 35)
         Me.PanelControlNav.TabIndex = 0
         '
+        'BtnImportExcelNew
+        '
+        Me.BtnImportExcelNew.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnImportExcelNew.ImageIndex = 3
+        Me.BtnImportExcelNew.ImageList = Me.LargeImageCollection
+        Me.BtnImportExcelNew.Location = New System.Drawing.Point(326, 0)
+        Me.BtnImportExcelNew.Name = "BtnImportExcelNew"
+        Me.BtnImportExcelNew.Size = New System.Drawing.Size(105, 35)
+        Me.BtnImportExcelNew.TabIndex = 9
+        Me.BtnImportExcelNew.TabStop = False
+        Me.BtnImportExcelNew.Text = "Import Excel"
+        '
         'BtnImportExcel
         '
         Me.BtnImportExcel.Dock = System.Windows.Forms.DockStyle.Left
@@ -869,10 +883,10 @@ Partial Class FormSalesOrderDet
         Me.BtnImportExcel.ImageList = Me.LargeImageCollection
         Me.BtnImportExcel.Location = New System.Drawing.Point(182, 0)
         Me.BtnImportExcel.Name = "BtnImportExcel"
-        Me.BtnImportExcel.Size = New System.Drawing.Size(110, 35)
+        Me.BtnImportExcel.Size = New System.Drawing.Size(144, 35)
         Me.BtnImportExcel.TabIndex = 8
         Me.BtnImportExcel.TabStop = False
-        Me.BtnImportExcel.Text = "Import Excel"
+        Me.BtnImportExcel.Text = "Import Excel Per Size"
         '
         'BtnDel
         '
@@ -1071,4 +1085,5 @@ Partial Class FormSalesOrderDet
     Friend WithEvents BtnAddV3 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnIsFound As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnErr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnImportExcelNew As DevExpress.XtraEditors.SimpleButton
 End Class
