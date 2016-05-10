@@ -1330,24 +1330,56 @@ Public Class FormImportExcel
                 If d > 0 Then
                     qry += "UNION ALL "
                 End If
-                qry += "SELECT '" + FormSalesOrderDet.id_store + "' AS `id_store`,'" + id_user + "' AS `id_user`, '" + data_temp.Rows(d)("KODE").ToString + "' AS `code`, '" + data_temp.Rows(d)("SIZETYP").ToString + "' AS `sizetype`,  '" + data_temp.Rows(d)("xxs/1").ToString + "' AS `1`, '" + data_temp.Rows(d)("xs/2").ToString + "' AS `2`, '" + data_temp.Rows(d)("s/3").ToString + "' AS `3`, '" + data_temp.Rows(d)("m/4").ToString + "' AS `4`, '" + data_temp.Rows(d)("ml/5").ToString + "' AS `5`, '" + data_temp.Rows(d)("l/6").ToString + "' AS `6`, '" + data_temp.Rows(d)("xl/7").ToString + "' AS `7`, '" + data_temp.Rows(d)("xxl/8").ToString + "' AS `8`, '" + data_temp.Rows(d)("all/9").ToString + "' AS `9`, '" + data_temp.Rows(d)("~/0").ToString + "' AS `0` "
+                qry += "SELECT '" + FormSalesOrderDet.id_comp_par + "' AS `id_wh`,'" + id_user + "' AS `id_user`, '" + data_temp.Rows(d)("KODE").ToString + "' AS `code`, '" + data_temp.Rows(d)("SIZETYP").ToString + "' AS `sizetype`,  '" + data_temp.Rows(d)("xxs/1").ToString + "' AS `1`, '" + data_temp.Rows(d)("xs/2").ToString + "' AS `2`, '" + data_temp.Rows(d)("s/3").ToString + "' AS `3`, '" + data_temp.Rows(d)("m/4").ToString + "' AS `4`, '" + data_temp.Rows(d)("ml/5").ToString + "' AS `5`, '" + data_temp.Rows(d)("l/6").ToString + "' AS `6`, '" + data_temp.Rows(d)("xl/7").ToString + "' AS `7`, '" + data_temp.Rows(d)("xxl/8").ToString + "' AS `8`, '" + data_temp.Rows(d)("all/9").ToString + "' AS `9`, '" + data_temp.Rows(d)("~/0").ToString + "' AS `0` "
             Next
             qry += ") a ); ALTER TABLE tb_so_single_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
-            Console.WriteLine(qry)
+            'Console.WriteLine(qry)
 
             Dim data As New DataTable
-            Dim adapter As New MySqlDataAdapter("CALL view_sales_order_single_temp(" + FormSalesOrderDet.id_store + ", '" + id_user + "')", connection)
+            Dim adapter As New MySqlDataAdapter("CALL view_sales_order_single_temp(" + FormSalesOrderDet.id_comp_par + ", '" + id_user + "')", connection)
             adapter.SelectCommand.CommandTimeout = 300
             adapter.Fill(data)
             adapter.Dispose()
             data.Dispose()
-            GCData.DataSource = data
-
+            Dim data_par As DataTable = FormSalesOrderDet.GCItemList.DataSource
+            If data_par.Rows.Count = 0 Then
+                GCData.DataSource = data
+            Else
+                Dim t1 = data.AsEnumerable()
+                Dim t2 = data_par.AsEnumerable()
+                Dim except As DataTable = (From _t1 In t1
+                                           Group Join _t2 In t2
+                                           On _t1("id_product") Equals _t2("id_product") Into Group
+                                           From _t3 In Group.DefaultIfEmpty()
+                                           Where _t3 Is Nothing
+                                           Select _t1).CopyToDataTable
+                GCData.DataSource = except
+            End If
             connection.Close()
             connection.Dispose()
+
+            'Customize column
+            GVData.Columns("id_design_price").Visible = False
+            GVData.Columns("design_price_type").Visible = False
+            GVData.Columns("id_product").Visible = False
+            GVData.Columns("id_design").Visible = False
+            GVData.Columns("id_wh").Visible = False
+            GVData.Columns("id_user").Visible = False
+            GVData.Columns("Class").Visible = False
+            GVData.Columns("Code").VisibleIndex = 0
+            GVData.Columns("Style").VisibleIndex = 1
+            GVData.Columns("Size").VisibleIndex = 2
+            GVData.Columns("Price").VisibleIndex = 3
+            GVData.Columns("Available").VisibleIndex = 4
+            GVData.Columns("Qty").VisibleIndex = 5
+            GVData.Columns("Status").VisibleIndex = 6
+            GVData.Columns("Available").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
+            GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -1394,7 +1426,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -2020,7 +2052,7 @@ Public Class FormImportExcel
                         makeSafeGV(GVData)
                     End If
                 End If
-            ElseIf id_pop_up = "15" Then 'SALES ORDER
+            ElseIf id_pop_up = "15" Or id_pop_up = "25" Then 'SALES ORDER
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will include in order list." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     makeSafeGV(GVData)
