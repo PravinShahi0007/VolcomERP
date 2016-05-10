@@ -134,26 +134,23 @@
         dt.Clear()
 
         Dim jum_select As Integer = 0
-        For i As Integer = 0 To (GVProduct.RowCount - 1)
-            Try
-                Dim is_select As String = GVProduct.GetRowCellValue(i, "is_select").ToString
-                Dim code As String = GVProduct.GetRowCellValue(i, "code").ToString
-                Dim name As String = GVProduct.GetRowCellValue(i, "name").ToString
-                Dim size As String = GVProduct.GetRowCellValue(i, "size").ToString
-                Dim color As String = GVProduct.GetRowCellValue(i, "color").ToString
-                Dim bom_unit_price As String = Decimal.Parse(GVProduct.GetRowCellValue(i, "bom_unit_price").ToString)
-                Dim id_design_price As String = Decimal.Parse(GVProduct.GetRowCellValue(i, "id_design_price").ToString)
-                Dim design_price As String = Decimal.Parse(GVProduct.GetRowCellValue(i, "design_price").ToString)
-                Dim id_product As String = GVProduct.GetRowCellValue(i, "id_product").ToString
-                Dim id_design As String = GVProduct.GetRowCellValue(i, "id_design").ToString
-                Dim id_sample As String = GVProduct.GetRowCellValue(i, "id_sample").ToString
-                If is_select = "Yes" Then
-                    insertDt(code, name, size, color, bom_unit_price, id_design_price, design_price, id_product, id_design, id_sample)
-                    jum_select = jum_select + 1
-                End If
-                cond_general = True
-            Catch ex As Exception
-            End Try
+        For i As Integer = 0 To ((GVProduct.RowCount - 1) - GetGroupRowCount(GVProduct))
+            Dim is_select As String = GVProduct.GetRowCellValue(i, "is_select").ToString
+            Dim code As String = GVProduct.GetRowCellValue(i, "code").ToString
+            Dim name As String = GVProduct.GetRowCellValue(i, "name").ToString
+            Dim size As String = GVProduct.GetRowCellValue(i, "size").ToString
+            Dim color As String = GVProduct.GetRowCellValue(i, "color").ToString
+            Dim bom_unit_price As String = Decimal.Parse(GVProduct.GetRowCellValue(i, "bom_unit_price").ToString)
+            Dim id_design_price As String = GVProduct.GetRowCellValue(i, "id_design_price").ToString
+            Dim design_price As Decimal = GVProduct.GetRowCellValue(i, "design_price")
+            Dim id_product As String = GVProduct.GetRowCellValue(i, "id_product").ToString
+            Dim id_design As String = GVProduct.GetRowCellValue(i, "id_design").ToString
+            Dim id_sample As String = GVProduct.GetRowCellValue(i, "id_sample").ToString
+            If is_select = "Yes" Then
+                insertDt(code, name, size, color, bom_unit_price, id_design_price, design_price, id_product, id_design, id_sample)
+                jum_select = jum_select + 1
+            End If
+            cond_general = True
         Next
 
         If jum_select < 1 Then

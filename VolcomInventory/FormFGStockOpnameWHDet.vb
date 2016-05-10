@@ -582,7 +582,7 @@
     End Sub
 
     Private Sub BtnBrowseStoreFrom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBrowseCompFrom.Click
-        FormPopUpContact.id_cat = id_comp_cat_wh
+        'FormPopUpContact.id_cat = id_comp_cat_wh
         FormPopUpContact.id_pop_up = "47"
         FormPopUpContact.ShowDialog()
     End Sub
