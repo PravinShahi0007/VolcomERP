@@ -527,6 +527,10 @@ Partial Class FormFGStock
         '
         'BandedGridViewFGStockCard
         '
+        Me.BandedGridViewFGStockCard.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.BandedGridViewFGStockCard.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridViewFGStockCard.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.BandedGridViewFGStockCard.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridViewFGStockCard.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1})
         Me.BandedGridViewFGStockCard.GridControl = Me.GCFGStockCard
         Me.BandedGridViewFGStockCard.Name = "BandedGridViewFGStockCard"
@@ -537,6 +541,9 @@ Partial Class FormFGStock
         Me.BandedGridViewFGStockCard.OptionsLayout.Columns.StoreAppearance = True
         Me.BandedGridViewFGStockCard.OptionsLayout.StoreAllOptions = True
         Me.BandedGridViewFGStockCard.OptionsLayout.StoreAppearance = True
+        Me.BandedGridViewFGStockCard.OptionsPrint.AllowMultilineHeaders = True
+        Me.BandedGridViewFGStockCard.OptionsView.ColumnAutoWidth = False
+        Me.BandedGridViewFGStockCard.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.BandedGridViewFGStockCard.OptionsView.ShowGroupPanel = False
         '
         'BandedGridColumn1

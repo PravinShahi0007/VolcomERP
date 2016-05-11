@@ -460,10 +460,23 @@
             ElseIf data.Columns(i).ColumnName.ToString = "Status" Then
                 band_stat.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Status"))
             ElseIf data.Columns(i).ColumnName.ToString.Contains(" Bal") Then
-                Dim st_caption As String = data.Columns(i).ColumnName.ToString.Length - 4
-                band_bal.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
+                If data.Columns(i).ColumnName.ToString.Contains("enter") Then
+                    Dim col_foc_str As String() = Split(data.Columns(i).ColumnName.ToString, "enter")
+                    Dim cap_col As String = col_foc_str(0).ToString + System.Environment.NewLine + col_foc_str(1).ToString
+                    Dim st_caption As String = cap_col.Length - 4
+                    band_bal.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, cap_col.Substring(0, st_caption)))
+                Else
+                    Dim st_caption As String = data.Columns(i).ColumnName.ToString.Length - 4
+                    band_bal.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
+                End If
             Else
-                band_qty.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
+                If data.Columns(i).ColumnName.ToString.Contains("enter") Then
+                    Dim col_foc_str As String() = Split(data.Columns(i).ColumnName.ToString, "enter")
+                    Dim cap_col As String = col_foc_str(0).ToString + System.Environment.NewLine + col_foc_str(1).ToString
+                    band_qty.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, cap_col))
+                Else
+                    band_qty.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
+                End If
             End If
         Next
 
