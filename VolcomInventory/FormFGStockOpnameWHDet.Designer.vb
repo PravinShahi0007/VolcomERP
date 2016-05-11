@@ -287,7 +287,6 @@ Partial Class FormFGStockOpnameWHDet
         Me.TxtCodeCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCodeCompFrom.Properties.Appearance.Options.UseFont = True
         Me.TxtCodeCompFrom.Properties.EditValueChangedDelay = 1
-        Me.TxtCodeCompFrom.Properties.ReadOnly = True
         Me.TxtCodeCompFrom.Size = New System.Drawing.Size(82, 20)
         Me.TxtCodeCompFrom.TabIndex = 8890
         Me.TxtCodeCompFrom.TabStop = False
@@ -297,9 +296,9 @@ Partial Class FormFGStockOpnameWHDet
         Me.TxtStore.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtStore.Location = New System.Drawing.Point(33, 39)
         Me.TxtStore.Name = "TxtStore"
-        Me.TxtStore.Size = New System.Drawing.Size(55, 13)
+        Me.TxtStore.Size = New System.Drawing.Size(39, 13)
         Me.TxtStore.TabIndex = 15
-        Me.TxtStore.Text = "Warehouse"
+        Me.TxtStore.Text = "Account"
         '
         'TxtSONumber
         '
@@ -947,7 +946,7 @@ Partial Class FormFGStockOpnameWHDet
         Me.Name = "FormFGStockOpnameWHDet"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Warehouse Stock Opname"
+        Me.Text = "Stock Opname"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
