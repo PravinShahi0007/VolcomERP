@@ -5532,6 +5532,7 @@ Public Class FormMain
                 Report.LabelProduct.Text = FormFGStock.TxtCodeDsgSC.Text + " - " + FormFGStock.LabelControl5.Text
                 Report.LabelPeriod.Text = period_from + " - " + period_until
                 ReportStyleBanded(Report.BandedGridView1)
+                Report.BandedGridView1.ColumnPanelRowHeight = 40
 
                 ' Show the report's preview. 
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
