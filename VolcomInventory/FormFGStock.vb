@@ -103,6 +103,11 @@
             XTPFGStockWHSum.PageVisible = False
             XTPFGStockQC.PageVisible = True
         End If
+        Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
+        DEFrom.EditValue = data_dt.Rows(0)("dt")
+        DEUntil.EditValue = data_dt.Rows(0)("dt")
+        DEUntilStockFG.EditValue = data_dt.Rows(0)("dt")
+        DEUntilStockQC.EditValue = data_dt.Rows(0)("dt")
     End Sub
 
     '=============== TAB STOCK CARD FG=================================
@@ -469,6 +474,9 @@
                     Dim st_caption As String = data.Columns(i).ColumnName.ToString.Length - 4
                     band_bal.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
                 End If
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
             Else
                 If data.Columns(i).ColumnName.ToString.Contains("enter") Then
                     Dim col_foc_str As String() = Split(data.Columns(i).ColumnName.ToString, "enter")
@@ -477,6 +485,9 @@
                 Else
                     band_qty.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
                 End If
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
             End If
         Next
 
