@@ -61,21 +61,23 @@
     Sub choose()
         Cursor = Cursors.WaitCursor
         If GVDesign.RowCount > 0 Then
-            FormFGStock.TxtCodeDsgSC.Text = GVDesign.GetFocusedRowCellValue("design_code").ToString
-            FormFGStock.id_design_selected = GVDesign.GetFocusedRowCellValue("id_design").ToString.ToUpper
-            FormFGStock.LabelControl5.Text = GVDesign.GetFocusedRowCellValue("design_display_name").ToString.ToUpper
-            FormFGStock.LabelColor.Text = GVDesign.GetFocusedRowCellValue("color").ToString.ToUpper
-            FormFGStock.LabelSizeType.Text = GVDesign.GetFocusedRowCellValue("size_type").ToString.ToUpper
-            FormFGStock.LabelBranding.Text = GVDesign.GetFocusedRowCellValue("product_class").ToString.ToUpper + " (" + GVDesign.GetFocusedRowCellValue("product_class_display").ToString.ToUpper + ")"
-            FormFGStock.LabelSource.Text = GVDesign.GetFocusedRowCellValue("size_chart").ToString.ToUpper
-            FormFGStock.LabelCurrentPrice.Text = GVDesign.GetFocusedRowCellValue("design_price").ToString.ToUpper
-            FormFGStock.LabelPriceType.Text = GVDesign.GetFocusedRowCellValue("design_price_type").ToString.ToUpper
-            pre_viewImages("2", FormFGStock.PictureEdit1, FormFGStock.id_design_selected, False)
-            FormFGStock.GroupControlInfo.Enabled = True
-            FormFGStock.GroupControlTraccking.Enabled = True
-            FormFGStock.GCFGStockCard.DataSource = Nothing
-            Close()
-            FormFGStock.TxtCodeDsgSC.Focus()
+            If id_pop_up = "1" Then
+                FormFGStock.TxtCodeDsgSC.Text = GVDesign.GetFocusedRowCellValue("design_code").ToString
+                FormFGStock.id_design_selected = GVDesign.GetFocusedRowCellValue("id_design").ToString.ToUpper
+                FormFGStock.LabelControl5.Text = GVDesign.GetFocusedRowCellValue("design_display_name").ToString.ToUpper
+                FormFGStock.LabelColor.Text = GVDesign.GetFocusedRowCellValue("color").ToString.ToUpper
+                FormFGStock.LabelSizeType.Text = GVDesign.GetFocusedRowCellValue("size_type").ToString.ToUpper
+                FormFGStock.LabelBranding.Text = GVDesign.GetFocusedRowCellValue("product_class").ToString.ToUpper + " (" + GVDesign.GetFocusedRowCellValue("product_class_display").ToString.ToUpper + ")"
+                FormFGStock.LabelSource.Text = GVDesign.GetFocusedRowCellValue("size_chart").ToString.ToUpper
+                FormFGStock.LabelCurrentPrice.Text = GVDesign.GetFocusedRowCellValue("design_price").ToString.ToUpper
+                FormFGStock.LabelPriceType.Text = GVDesign.GetFocusedRowCellValue("design_price_type").ToString.ToUpper
+                pre_viewImages("2", FormFGStock.PictureEdit1, FormFGStock.id_design_selected, False)
+                FormFGStock.GroupControlInfo.Enabled = True
+                FormFGStock.GroupControlTraccking.Enabled = True
+                FormFGStock.GCFGStockCard.DataSource = Nothing
+                Close()
+                FormFGStock.TxtCodeDsgSC.Focus()
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
