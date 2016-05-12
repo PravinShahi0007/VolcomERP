@@ -934,7 +934,7 @@
         id_design_selected = "-1"
         LabelControl5.Text = "-"
         LabelColor.Text = "-"
-        LabelDivision.Text = "-"
+        LabelSizeType.Text = "-"
         LabelBranding.Text = "-"
         LabelSource.Text = "-"
         LabelCurrentPrice.Text = "-"
@@ -957,7 +957,7 @@
                 id_design_selected = data.Rows(0)("id_design").ToString.ToUpper
                 LabelControl5.Text = data.Rows(0)("design_display_name").ToString.ToUpper
                 LabelColor.Text = data.Rows(0)("color").ToString.ToUpper
-                LabelDivision.Text = data.Rows(0)("product_division").ToString.ToUpper
+                LabelSizeType.Text = data.Rows(0)("size_type").ToString.ToUpper
                 LabelBranding.Text = data.Rows(0)("product_class").ToString.ToUpper + " (" + data.Rows(0)("product_class_display").ToString.ToUpper + ")"
                 LabelSource.Text = data.Rows(0)("size_chart").ToString.ToUpper
                 LabelCurrentPrice.Text = data.Rows(0)("design_price").ToString.ToUpper
