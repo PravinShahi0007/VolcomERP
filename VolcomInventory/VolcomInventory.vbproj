@@ -679,6 +679,12 @@
     <Compile Include="FormOptViewSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPopUpDesign.Designer.vb">
+      <DependentUpon>FormPopUpDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpInvoiceMissing.designer.vb">
       <DependentUpon>FormPopUpInvoiceMissing.vb</DependentUpon>
     </Compile>
@@ -4350,6 +4356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOptViewSingle.resx">
       <DependentUpon>FormOptViewSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpDesign.resx">
+      <DependentUpon>FormPopUpDesign.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpInvoiceMissing.resx">
       <DependentUpon>FormPopUpInvoiceMissing.vb</DependentUpon>

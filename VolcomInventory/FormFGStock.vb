@@ -1020,4 +1020,11 @@
     Private Sub SLEWH_Closed(sender As Object, e As DevExpress.XtraEditors.Controls.ClosedEventArgs) Handles SLEWH.Closed
         DEFrom.Focus()
     End Sub
+
+    Private Sub BtnBrowseDesign_Click(sender As Object, e As EventArgs) Handles BtnBrowseDesign.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpDesign.id_pop_up = "1"
+        FormPopUpDesign.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

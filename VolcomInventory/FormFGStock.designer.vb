@@ -81,6 +81,7 @@ Partial Class FormFGStock
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
         Me.BtnViewImg = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnBrowseDesign = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtCodeDsgSC = New DevExpress.XtraEditors.TextEdit()
         Me.SLEWH = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -788,6 +789,7 @@ Partial Class FormFGStock
         '
         'GroupControlFilter
         '
+        Me.GroupControlFilter.Controls.Add(Me.BtnBrowseDesign)
         Me.GroupControlFilter.Controls.Add(Me.TxtCodeDsgSC)
         Me.GroupControlFilter.Controls.Add(Me.SLEWH)
         Me.GroupControlFilter.Controls.Add(Me.LabelControl4)
@@ -804,6 +806,16 @@ Partial Class FormFGStock
         Me.GroupControlFilter.TabIndex = 1
         Me.GroupControlFilter.Text = "Filter"
         '
+        'BtnBrowseDesign
+        '
+        Me.BtnBrowseDesign.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BtnBrowseDesign.Location = New System.Drawing.Point(166, 30)
+        Me.BtnBrowseDesign.Name = "BtnBrowseDesign"
+        Me.BtnBrowseDesign.Size = New System.Drawing.Size(20, 20)
+        Me.BtnBrowseDesign.TabIndex = 8896
+        Me.BtnBrowseDesign.TabStop = False
+        Me.BtnBrowseDesign.Text = "..."
+        '
         'TxtCodeDsgSC
         '
         Me.TxtCodeDsgSC.Location = New System.Drawing.Point(50, 30)
@@ -813,7 +825,7 @@ Partial Class FormFGStock
         '
         'SLEWH
         '
-        Me.SLEWH.Location = New System.Drawing.Point(213, 31)
+        Me.SLEWH.Location = New System.Drawing.Point(237, 31)
         Me.SLEWH.Name = "SLEWH"
         Me.SLEWH.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEWH.Properties.View = Me.GridView1
@@ -829,7 +841,7 @@ Partial Class FormFGStock
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(170, 33)
+        Me.LabelControl4.Location = New System.Drawing.Point(194, 33)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(40, 13)
         Me.LabelControl4.TabIndex = 8893
@@ -838,7 +850,7 @@ Partial Class FormFGStock
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(628, 30)
+        Me.DEUntil.Location = New System.Drawing.Point(652, 30)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -851,7 +863,7 @@ Partial Class FormFGStock
         'DEFrom
         '
         Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(476, 30)
+        Me.DEFrom.Location = New System.Drawing.Point(500, 30)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -863,7 +875,7 @@ Partial Class FormFGStock
         '
         'BtnTracking
         '
-        Me.BtnTracking.Location = New System.Drawing.Point(742, 30)
+        Me.BtnTracking.Location = New System.Drawing.Point(766, 30)
         Me.BtnTracking.Name = "BtnTracking"
         Me.BtnTracking.Size = New System.Drawing.Size(63, 20)
         Me.BtnTracking.TabIndex = 2
@@ -879,7 +891,7 @@ Partial Class FormFGStock
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(604, 33)
+        Me.LabelControl2.Location = New System.Drawing.Point(628, 33)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl2.TabIndex = 3
@@ -887,7 +899,7 @@ Partial Class FormFGStock
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(446, 33)
+        Me.LabelControl1.Location = New System.Drawing.Point(470, 33)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl1.TabIndex = 2
@@ -1481,4 +1493,5 @@ Partial Class FormFGStock
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelSizeType As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnBrowseDesign As DevExpress.XtraEditors.SimpleButton
 End Class
