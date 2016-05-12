@@ -551,24 +551,24 @@
     End Sub
 
     Sub viewProductStockStore()
-        Dim query As String = ""
-        query += "CALL view_design_wh(TRUE) "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        For i As Integer = 0 To data.Rows.Count - 1
-            If i = 0 Then
-                label_design_stock_store_def = data.Rows(i)("label_design").ToString
-                Exit For
-            End If
-        Next
-        SLEDesignStockStore.Properties.DataSource = Nothing
-        SLEDesignStockStore.Properties.DataSource = data
-        SLEDesignStockStore.Properties.DisplayMember = "label_design"
-        SLEDesignStockStore.Properties.ValueMember = "id_design"
-        If data.Rows.Count.ToString >= 1 Then
-            SLEDesignStockStore.EditValue = data.Rows(0)("id_design").ToString
-        Else
-            SLEDesignStockStore.EditValue = Nothing
-        End If
+        'Dim query As String = ""
+        'query += "CALL view_design_wh(TRUE) "
+        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'For i As Integer = 0 To data.Rows.Count - 1
+        '    If i = 0 Then
+        '        label_design_stock_store_def = data.Rows(i)("label_design").ToString
+        '        Exit For
+        '    End If
+        'Next
+        'SLEDesignStockStore.Properties.DataSource = Nothing
+        'SLEDesignStockStore.Properties.DataSource = data
+        'SLEDesignStockStore.Properties.DisplayMember = "label_design"
+        'SLEDesignStockStore.Properties.ValueMember = "id_design"
+        'If data.Rows.Count.ToString >= 1 Then
+        '    SLEDesignStockStore.EditValue = data.Rows(0)("id_design").ToString
+        'Else
+        '    SLEDesignStockStore.EditValue = Nothing
+        'End If
     End Sub
 
     Private Sub BtnViewStockStore_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnViewStockStore.Click
