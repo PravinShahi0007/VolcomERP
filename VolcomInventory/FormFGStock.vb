@@ -397,8 +397,8 @@
                 item.DisplayFormat = "{0:n0}"
                 item.ShowInGroupColumnFooter = BGVFGStock.Columns(data.Columns(i).ColumnName.ToString)
                 BGVFGStock.GroupSummary.Add(item)
-
             End If
+            progres_bar_update(i, data.Columns.Count - 1)
         Next
         GCFGStock.DataSource = data
         dt_sum = data
@@ -489,6 +489,7 @@
                 BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
             End If
+            progres_bar_update(i, data.Columns.Count - 1)
         Next
 
 

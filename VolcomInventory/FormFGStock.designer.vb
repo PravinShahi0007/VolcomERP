@@ -811,7 +811,7 @@ Partial Class FormFGStock
         Me.BtnBrowseDesign.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.BtnBrowseDesign.Location = New System.Drawing.Point(166, 30)
         Me.BtnBrowseDesign.Name = "BtnBrowseDesign"
-        Me.BtnBrowseDesign.Size = New System.Drawing.Size(20, 20)
+        Me.BtnBrowseDesign.Size = New System.Drawing.Size(20, 19)
         Me.BtnBrowseDesign.TabIndex = 8896
         Me.BtnBrowseDesign.TabStop = False
         Me.BtnBrowseDesign.Text = "..."
