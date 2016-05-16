@@ -1168,6 +1168,7 @@
 
     Sub getReport()
         Cursor = Cursors.WaitCursor
+        GridColumnStatus.Visible = False
         ReportFGTrf.id_fg_trf = id_fg_trf
         ReportFGTrf.id_type = id_type
         ReportFGTrf.dt = GCItemList.DataSource

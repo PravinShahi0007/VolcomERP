@@ -1053,6 +1053,7 @@
     End Sub
 
     Sub getReport()
+        GridColumnStatus.Visible = False
         ReportSalesDelOrderDet.dt = GCItemList.DataSource
         ReportSalesDelOrderDet.id_pl_sales_order_del = id_pl_sales_order_del
         Dim Report As New ReportSalesDelOrderDet()

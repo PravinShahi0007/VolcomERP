@@ -103,6 +103,11 @@
             XTPFGStockWHSum.PageVisible = False
             XTPFGStockQC.PageVisible = True
         End If
+        Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
+        DEFrom.EditValue = data_dt.Rows(0)("dt")
+        DEUntil.EditValue = data_dt.Rows(0)("dt")
+        DEUntilStockFG.EditValue = data_dt.Rows(0)("dt")
+        DEUntilStockQC.EditValue = data_dt.Rows(0)("dt")
     End Sub
 
     '=============== TAB STOCK CARD FG=================================
@@ -392,8 +397,8 @@
                 item.DisplayFormat = "{0:n0}"
                 item.ShowInGroupColumnFooter = BGVFGStock.Columns(data.Columns(i).ColumnName.ToString)
                 BGVFGStock.GroupSummary.Add(item)
-
             End If
+            progres_bar_update(i, data.Columns.Count - 1)
         Next
         GCFGStock.DataSource = data
         dt_sum = data
@@ -460,11 +465,31 @@
             ElseIf data.Columns(i).ColumnName.ToString = "Status" Then
                 band_stat.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Status"))
             ElseIf data.Columns(i).ColumnName.ToString.Contains(" Bal") Then
-                Dim st_caption As String = data.Columns(i).ColumnName.ToString.Length - 4
-                band_bal.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
+                If data.Columns(i).ColumnName.ToString.Contains("enter") Then
+                    Dim col_foc_str As String() = Split(data.Columns(i).ColumnName.ToString, "enter")
+                    Dim cap_col As String = col_foc_str(0).ToString + System.Environment.NewLine + col_foc_str(1).ToString
+                    Dim st_caption As String = cap_col.Length - 4
+                    band_bal.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, cap_col.Substring(0, st_caption)))
+                Else
+                    Dim st_caption As String = data.Columns(i).ColumnName.ToString.Length - 4
+                    band_bal.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
+                End If
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
             Else
-                band_qty.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
+                If data.Columns(i).ColumnName.ToString.Contains("enter") Then
+                    Dim col_foc_str As String() = Split(data.Columns(i).ColumnName.ToString, "enter")
+                    Dim cap_col As String = col_foc_str(0).ToString + System.Environment.NewLine + col_foc_str(1).ToString
+                    band_qty.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, cap_col))
+                Else
+                    band_qty.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
+                End If
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
             End If
+            progres_bar_update(i, data.Columns.Count - 1)
         Next
 
 
@@ -527,24 +552,24 @@
     End Sub
 
     Sub viewProductStockStore()
-        Dim query As String = ""
-        query += "CALL view_design_wh(TRUE) "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        For i As Integer = 0 To data.Rows.Count - 1
-            If i = 0 Then
-                label_design_stock_store_def = data.Rows(i)("label_design").ToString
-                Exit For
-            End If
-        Next
-        SLEDesignStockStore.Properties.DataSource = Nothing
-        SLEDesignStockStore.Properties.DataSource = data
-        SLEDesignStockStore.Properties.DisplayMember = "label_design"
-        SLEDesignStockStore.Properties.ValueMember = "id_design"
-        If data.Rows.Count.ToString >= 1 Then
-            SLEDesignStockStore.EditValue = data.Rows(0)("id_design").ToString
-        Else
-            SLEDesignStockStore.EditValue = Nothing
-        End If
+        'Dim query As String = ""
+        'query += "CALL view_design_wh(TRUE) "
+        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'For i As Integer = 0 To data.Rows.Count - 1
+        '    If i = 0 Then
+        '        label_design_stock_store_def = data.Rows(i)("label_design").ToString
+        '        Exit For
+        '    End If
+        'Next
+        'SLEDesignStockStore.Properties.DataSource = Nothing
+        'SLEDesignStockStore.Properties.DataSource = data
+        'SLEDesignStockStore.Properties.DisplayMember = "label_design"
+        'SLEDesignStockStore.Properties.ValueMember = "id_design"
+        'If data.Rows.Count.ToString >= 1 Then
+        '    SLEDesignStockStore.EditValue = data.Rows(0)("id_design").ToString
+        'Else
+        '    SLEDesignStockStore.EditValue = Nothing
+        'End If
     End Sub
 
     Private Sub BtnViewStockStore_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnViewStockStore.Click
@@ -921,7 +946,7 @@
         id_design_selected = "-1"
         LabelControl5.Text = "-"
         LabelColor.Text = "-"
-        LabelDivision.Text = "-"
+        LabelSizeType.Text = "-"
         LabelBranding.Text = "-"
         LabelSource.Text = "-"
         LabelCurrentPrice.Text = "-"
@@ -944,7 +969,7 @@
                 id_design_selected = data.Rows(0)("id_design").ToString.ToUpper
                 LabelControl5.Text = data.Rows(0)("design_display_name").ToString.ToUpper
                 LabelColor.Text = data.Rows(0)("color").ToString.ToUpper
-                LabelDivision.Text = data.Rows(0)("product_division").ToString.ToUpper
+                LabelSizeType.Text = data.Rows(0)("size_type").ToString.ToUpper
                 LabelBranding.Text = data.Rows(0)("product_class").ToString.ToUpper + " (" + data.Rows(0)("product_class_display").ToString.ToUpper + ")"
                 LabelSource.Text = data.Rows(0)("size_chart").ToString.ToUpper
                 LabelCurrentPrice.Text = data.Rows(0)("design_price").ToString.ToUpper
@@ -995,5 +1020,12 @@
 
     Private Sub SLEWH_Closed(sender As Object, e As DevExpress.XtraEditors.Controls.ClosedEventArgs) Handles SLEWH.Closed
         DEFrom.Focus()
+    End Sub
+
+    Private Sub BtnBrowseDesign_Click(sender As Object, e As EventArgs) Handles BtnBrowseDesign.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpDesign.id_pop_up = "1"
+        FormPopUpDesign.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -58,6 +58,9 @@ Partial Class FormFGStock
         Me.BandedGridViewFGStockCard = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControlInfo = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelSizeType = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelPriceType = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
@@ -74,13 +77,11 @@ Partial Class FormFGStock
         Me.LabelBranding = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelDivision = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlImg = New DevExpress.XtraEditors.PanelControl()
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
         Me.BtnViewImg = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlFilter = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnBrowseDesign = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtCodeDsgSC = New DevExpress.XtraEditors.TextEdit()
         Me.SLEWH = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -294,6 +295,7 @@ Partial Class FormFGStock
         Me.DEUntilStockFG.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntilStockFG.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilStockFG.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilStockFG.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEUntilStockFG.Size = New System.Drawing.Size(153, 20)
         Me.DEUntilStockFG.TabIndex = 8898
         '
@@ -527,6 +529,10 @@ Partial Class FormFGStock
         '
         'BandedGridViewFGStockCard
         '
+        Me.BandedGridViewFGStockCard.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.BandedGridViewFGStockCard.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BandedGridViewFGStockCard.AppearancePrint.HeaderPanel.Options.UseTextOptions = True
+        Me.BandedGridViewFGStockCard.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.BandedGridViewFGStockCard.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn1})
         Me.BandedGridViewFGStockCard.GridControl = Me.GCFGStockCard
         Me.BandedGridViewFGStockCard.Name = "BandedGridViewFGStockCard"
@@ -537,6 +543,10 @@ Partial Class FormFGStock
         Me.BandedGridViewFGStockCard.OptionsLayout.Columns.StoreAppearance = True
         Me.BandedGridViewFGStockCard.OptionsLayout.StoreAllOptions = True
         Me.BandedGridViewFGStockCard.OptionsLayout.StoreAppearance = True
+        Me.BandedGridViewFGStockCard.OptionsPrint.AllowMultilineHeaders = True
+        Me.BandedGridViewFGStockCard.OptionsView.ColumnAutoWidth = False
+        Me.BandedGridViewFGStockCard.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
+        Me.BandedGridViewFGStockCard.OptionsView.ShowFooter = True
         Me.BandedGridViewFGStockCard.OptionsView.ShowGroupPanel = False
         '
         'BandedGridColumn1
@@ -548,6 +558,9 @@ Partial Class FormFGStock
         'GroupControlInfo
         '
         Me.GroupControlInfo.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlInfo.Controls.Add(Me.LabelSizeType)
+        Me.GroupControlInfo.Controls.Add(Me.LabelControl11)
+        Me.GroupControlInfo.Controls.Add(Me.LabelControl10)
         Me.GroupControlInfo.Controls.Add(Me.LabelPriceType)
         Me.GroupControlInfo.Controls.Add(Me.LabelControl31)
         Me.GroupControlInfo.Controls.Add(Me.LabelControl30)
@@ -564,9 +577,6 @@ Partial Class FormFGStock
         Me.GroupControlInfo.Controls.Add(Me.LabelBranding)
         Me.GroupControlInfo.Controls.Add(Me.LabelControl15)
         Me.GroupControlInfo.Controls.Add(Me.LabelControl13)
-        Me.GroupControlInfo.Controls.Add(Me.LabelDivision)
-        Me.GroupControlInfo.Controls.Add(Me.LabelControl11)
-        Me.GroupControlInfo.Controls.Add(Me.LabelControl10)
         Me.GroupControlInfo.Controls.Add(Me.PanelControlImg)
         Me.GroupControlInfo.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlInfo.Enabled = False
@@ -576,10 +586,37 @@ Partial Class FormFGStock
         Me.GroupControlInfo.TabIndex = 2
         Me.GroupControlInfo.Text = "Information"
         '
+        'LabelSizeType
+        '
+        Me.LabelSizeType.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelSizeType.Location = New System.Drawing.Point(254, 110)
+        Me.LabelSizeType.Name = "LabelSizeType"
+        Me.LabelSizeType.Size = New System.Drawing.Size(4, 14)
+        Me.LabelSizeType.TabIndex = 30
+        Me.LabelSizeType.Text = "-"
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(234, 110)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(4, 14)
+        Me.LabelControl11.TabIndex = 29
+        Me.LabelControl11.Text = ":"
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(162, 110)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(53, 14)
+        Me.LabelControl10.TabIndex = 28
+        Me.LabelControl10.Text = "Size Type"
+        '
         'LabelPriceType
         '
         Me.LabelPriceType.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPriceType.Location = New System.Drawing.Point(575, 68)
+        Me.LabelPriceType.Location = New System.Drawing.Point(629, 68)
         Me.LabelPriceType.Name = "LabelPriceType"
         Me.LabelPriceType.Size = New System.Drawing.Size(4, 14)
         Me.LabelPriceType.TabIndex = 27
@@ -588,7 +625,7 @@ Partial Class FormFGStock
         'LabelControl31
         '
         Me.LabelControl31.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl31.Location = New System.Drawing.Point(439, 68)
+        Me.LabelControl31.Location = New System.Drawing.Point(493, 68)
         Me.LabelControl31.Name = "LabelControl31"
         Me.LabelControl31.Size = New System.Drawing.Size(58, 14)
         Me.LabelControl31.TabIndex = 26
@@ -597,7 +634,7 @@ Partial Class FormFGStock
         'LabelControl30
         '
         Me.LabelControl30.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl30.Location = New System.Drawing.Point(556, 68)
+        Me.LabelControl30.Location = New System.Drawing.Point(610, 68)
         Me.LabelControl30.Name = "LabelControl30"
         Me.LabelControl30.Size = New System.Drawing.Size(4, 14)
         Me.LabelControl30.TabIndex = 25
@@ -606,7 +643,7 @@ Partial Class FormFGStock
         'LabelCurrentPrice
         '
         Me.LabelCurrentPrice.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCurrentPrice.Location = New System.Drawing.Point(575, 45)
+        Me.LabelCurrentPrice.Location = New System.Drawing.Point(629, 45)
         Me.LabelCurrentPrice.Name = "LabelCurrentPrice"
         Me.LabelCurrentPrice.Size = New System.Drawing.Size(4, 14)
         Me.LabelCurrentPrice.TabIndex = 23
@@ -615,7 +652,7 @@ Partial Class FormFGStock
         'LabelControl27
         '
         Me.LabelControl27.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl27.Location = New System.Drawing.Point(556, 45)
+        Me.LabelControl27.Location = New System.Drawing.Point(610, 45)
         Me.LabelControl27.Name = "LabelControl27"
         Me.LabelControl27.Size = New System.Drawing.Size(4, 14)
         Me.LabelControl27.TabIndex = 22
@@ -624,7 +661,7 @@ Partial Class FormFGStock
         'LabelControl26
         '
         Me.LabelControl26.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl26.Location = New System.Drawing.Point(439, 45)
+        Me.LabelControl26.Location = New System.Drawing.Point(493, 45)
         Me.LabelControl26.Name = "LabelControl26"
         Me.LabelControl26.Size = New System.Drawing.Size(71, 14)
         Me.LabelControl26.TabIndex = 21
@@ -669,7 +706,7 @@ Partial Class FormFGStock
         'LabelSource
         '
         Me.LabelSource.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSource.Location = New System.Drawing.Point(254, 114)
+        Me.LabelSource.Location = New System.Drawing.Point(254, 88)
         Me.LabelSource.Name = "LabelSource"
         Me.LabelSource.Size = New System.Drawing.Size(4, 14)
         Me.LabelSource.TabIndex = 16
@@ -678,7 +715,7 @@ Partial Class FormFGStock
         'LabelControl17
         '
         Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl17.Location = New System.Drawing.Point(234, 114)
+        Me.LabelControl17.Location = New System.Drawing.Point(234, 89)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(4, 14)
         Me.LabelControl17.TabIndex = 15
@@ -687,7 +724,7 @@ Partial Class FormFGStock
         'LabelControl16
         '
         Me.LabelControl16.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl16.Location = New System.Drawing.Point(162, 114)
+        Me.LabelControl16.Location = New System.Drawing.Point(162, 89)
         Me.LabelControl16.Name = "LabelControl16"
         Me.LabelControl16.Size = New System.Drawing.Size(54, 14)
         Me.LabelControl16.TabIndex = 14
@@ -696,7 +733,7 @@ Partial Class FormFGStock
         'LabelBranding
         '
         Me.LabelBranding.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelBranding.Location = New System.Drawing.Point(254, 91)
+        Me.LabelBranding.Location = New System.Drawing.Point(254, 68)
         Me.LabelBranding.Name = "LabelBranding"
         Me.LabelBranding.Size = New System.Drawing.Size(4, 14)
         Me.LabelBranding.TabIndex = 13
@@ -705,7 +742,7 @@ Partial Class FormFGStock
         'LabelControl15
         '
         Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl15.Location = New System.Drawing.Point(234, 91)
+        Me.LabelControl15.Location = New System.Drawing.Point(234, 66)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(4, 14)
         Me.LabelControl15.TabIndex = 12
@@ -714,38 +751,11 @@ Partial Class FormFGStock
         'LabelControl13
         '
         Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl13.Location = New System.Drawing.Point(162, 91)
+        Me.LabelControl13.Location = New System.Drawing.Point(162, 66)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(25, 14)
         Me.LabelControl13.TabIndex = 11
         Me.LabelControl13.Text = "Class"
-        '
-        'LabelDivision
-        '
-        Me.LabelDivision.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelDivision.Location = New System.Drawing.Point(254, 68)
-        Me.LabelDivision.Name = "LabelDivision"
-        Me.LabelDivision.Size = New System.Drawing.Size(4, 14)
-        Me.LabelDivision.TabIndex = 10
-        Me.LabelDivision.Text = "-"
-        '
-        'LabelControl11
-        '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(234, 68)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(4, 14)
-        Me.LabelControl11.TabIndex = 9
-        Me.LabelControl11.Text = ":"
-        '
-        'LabelControl10
-        '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(162, 68)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(39, 14)
-        Me.LabelControl10.TabIndex = 8
-        Me.LabelControl10.Text = "Division"
         '
         'PanelControlImg
         '
@@ -779,6 +789,7 @@ Partial Class FormFGStock
         '
         'GroupControlFilter
         '
+        Me.GroupControlFilter.Controls.Add(Me.BtnBrowseDesign)
         Me.GroupControlFilter.Controls.Add(Me.TxtCodeDsgSC)
         Me.GroupControlFilter.Controls.Add(Me.SLEWH)
         Me.GroupControlFilter.Controls.Add(Me.LabelControl4)
@@ -795,6 +806,16 @@ Partial Class FormFGStock
         Me.GroupControlFilter.TabIndex = 1
         Me.GroupControlFilter.Text = "Filter"
         '
+        'BtnBrowseDesign
+        '
+        Me.BtnBrowseDesign.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BtnBrowseDesign.Location = New System.Drawing.Point(166, 30)
+        Me.BtnBrowseDesign.Name = "BtnBrowseDesign"
+        Me.BtnBrowseDesign.Size = New System.Drawing.Size(20, 19)
+        Me.BtnBrowseDesign.TabIndex = 8896
+        Me.BtnBrowseDesign.TabStop = False
+        Me.BtnBrowseDesign.Text = "..."
+        '
         'TxtCodeDsgSC
         '
         Me.TxtCodeDsgSC.Location = New System.Drawing.Point(50, 30)
@@ -804,7 +825,7 @@ Partial Class FormFGStock
         '
         'SLEWH
         '
-        Me.SLEWH.Location = New System.Drawing.Point(213, 31)
+        Me.SLEWH.Location = New System.Drawing.Point(237, 31)
         Me.SLEWH.Name = "SLEWH"
         Me.SLEWH.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEWH.Properties.View = Me.GridView1
@@ -820,7 +841,7 @@ Partial Class FormFGStock
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(170, 33)
+        Me.LabelControl4.Location = New System.Drawing.Point(194, 33)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(40, 13)
         Me.LabelControl4.TabIndex = 8893
@@ -829,7 +850,7 @@ Partial Class FormFGStock
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(628, 30)
+        Me.DEUntil.Location = New System.Drawing.Point(652, 30)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -842,7 +863,7 @@ Partial Class FormFGStock
         'DEFrom
         '
         Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(476, 30)
+        Me.DEFrom.Location = New System.Drawing.Point(500, 30)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -854,7 +875,7 @@ Partial Class FormFGStock
         '
         'BtnTracking
         '
-        Me.BtnTracking.Location = New System.Drawing.Point(742, 30)
+        Me.BtnTracking.Location = New System.Drawing.Point(766, 30)
         Me.BtnTracking.Name = "BtnTracking"
         Me.BtnTracking.Size = New System.Drawing.Size(63, 20)
         Me.BtnTracking.TabIndex = 2
@@ -870,7 +891,7 @@ Partial Class FormFGStock
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(604, 33)
+        Me.LabelControl2.Location = New System.Drawing.Point(628, 33)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl2.TabIndex = 3
@@ -878,7 +899,7 @@ Partial Class FormFGStock
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(446, 33)
+        Me.LabelControl1.Location = New System.Drawing.Point(470, 33)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl1.TabIndex = 2
@@ -1385,9 +1406,6 @@ Partial Class FormFGStock
     Friend WithEvents LabelBranding As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelDivision As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControlImg As DevExpress.XtraEditors.PanelControl
     Friend WithEvents PictureEdit1 As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents BtnViewImg As DevExpress.XtraEditors.SimpleButton
@@ -1473,4 +1491,8 @@ Partial Class FormFGStock
     Friend WithEvents LabelCurrentPrice As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl27 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl26 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelSizeType As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnBrowseDesign As DevExpress.XtraEditors.SimpleButton
 End Class
