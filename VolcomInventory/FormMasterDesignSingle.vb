@@ -179,35 +179,36 @@
         End Try
 
     End Sub
-    Sub load_isi_param()
+    Sub load_isi_param(ByVal id_type As String)
         Cursor = Cursors.WaitCursor
 
-        data_insert_parameter.Clear()
-        data_insert_parameter_dsg.Clear()
-
-        If data_insert_parameter.Columns.Count < 2 Then
-            data_insert_parameter.Columns.Add("code")
-            data_insert_parameter.Columns.Add("value")
+        If id_type = "1" Then
+            data_insert_parameter.Clear()
+            If data_insert_parameter.Columns.Count < 2 Then
+                data_insert_parameter.Columns.Add("code")
+                data_insert_parameter.Columns.Add("value")
+            End If
+            GCCode.DataSource = data_insert_parameter
+            DNCode.DataSource = data_insert_parameter
+            Try
+                add_combo_grid_val(GVCode, 0)
+                view_value_code(GVCode, 1)
+            Catch ex As Exception
+            End Try
+        Else
+            data_insert_parameter_dsg.Clear()
+            If data_insert_parameter_dsg.Columns.Count < 2 Then
+                data_insert_parameter_dsg.Columns.Add("code")
+                data_insert_parameter_dsg.Columns.Add("value")
+            End If
+            GCCodeDsg.DataSource = data_insert_parameter_dsg
+            DNCodeDesign.DataSource = data_insert_parameter_dsg
+            Try
+                add_combo_grid_val(GVCodeDsg, 0)
+                view_value_code(GVCodeDsg, 1)
+            Catch ex As Exception
+            End Try
         End If
-
-        If data_insert_parameter_dsg.Columns.Count < 2 Then
-            data_insert_parameter_dsg.Columns.Add("code")
-            data_insert_parameter_dsg.Columns.Add("value")
-        End If
-
-        GCCode.DataSource = data_insert_parameter
-        DNCode.DataSource = data_insert_parameter
-        GCCodeDsg.DataSource = data_insert_parameter_dsg
-        DNCodeDesign.DataSource = data_insert_parameter_dsg
-
-        Try
-            add_combo_grid_val(GVCode, 0)
-            view_value_code(GVCode, 1)
-            add_combo_grid_val(GVCodeDsg, 0)
-            view_value_code(GVCodeDsg, 1)
-        Catch ex As Exception
-        End Try
-
         Cursor = Cursors.Default
     End Sub
     Private Sub add_combo_grid_val(ByVal grid As DevExpress.XtraGrid.Views.Grid.GridView, ByVal col As Integer)
@@ -302,7 +303,8 @@
         viewSeason(LESeason)
         viewSampleOrign(LESampleOrign)
         view_ret_code(LERetCode)
-        load_isi_param()
+        load_isi_param("1")
+        load_isi_param("2")
 
         'permission condition
         If id_pop_up = "-1" Or id_pop_up = "2" Then
@@ -1139,7 +1141,7 @@
         End If
     End Sub
     Private Sub BRefreshCode_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BRefreshCode.Click
-        load_isi_param()
+        load_isi_param("1")
         load_template(LETemplate.EditValue)
     End Sub
 
@@ -1513,5 +1515,16 @@
             clone_dsg.RowFilter = "[id_code] = " + row("code").ToString()
             edit.Properties.DataSource = clone_dsg
         End If
+    End Sub
+
+    Private Sub SimpleButton2_Click_2(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+        load_isi_param("2")
+        load_template_dsg(LETemplateDsg.EditValue)
+    End Sub
+
+    Private Sub SimpleButton3_Click_1(sender As Object, e As EventArgs) Handles SimpleButton3.Click
+        FormCodeTemplateEdit.id_pop_up = "6"
+        FormCodeTemplateEdit.id_template_code = LETemplateDsg.EditValue.ToString
+        FormCodeTemplateEdit.ShowDialog()
     End Sub
 End Class
