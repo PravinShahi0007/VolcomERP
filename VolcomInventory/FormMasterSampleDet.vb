@@ -534,7 +534,7 @@
     End Sub
 
     Sub view_sample_price(ByVal id_samplex As String)
-        Dim query As String = "SELECT tb_lookup_currency.id_currency,tb_lookup_currency.currency,tb_m_sample_price.id_sample_price,tb_m_sample_price.sample_price_name,tb_m_sample_price.sample_price,tb_m_sample_price.sample_price_date,tb_m_comp.comp_name,IF(tb_m_sample_price.is_default_cost=1,'yes','no') AS is_default_cost FROM tb_m_sample_price,tb_m_comp,tb_m_comp_contact,tb_lookup_currency WHERE tb_m_sample_price.id_currency=tb_lookup_currency.id_currency AND tb_m_sample_price.id_comp_contact=tb_m_comp_contact.id_comp_contact AND tb_m_comp_contact.id_comp=tb_m_comp.id_comp AND tb_m_sample_price.id_sample='" & id_samplex & "' ORDER BY tb_m_sample_price.id_sample_price DESC"
+        Dim query As String = "SELECT tb_lookup_currency.id_currency,tb_lookup_currency.currency,tb_m_sample_price.id_sample_price,tb_m_sample_price.sample_price_name,tb_m_sample_price.sample_price,tb_m_sample_price.sample_price_date,tb_m_comp.comp_name,IF(tb_m_sample_price.is_default_cost=1,'yes','no') AS is_default_cost,IF(tb_m_sample_price.is_buy_price=1,'yes','no') AS is_buy_price FROM tb_m_sample_price,tb_m_comp,tb_m_comp_contact,tb_lookup_currency WHERE tb_m_sample_price.id_currency=tb_lookup_currency.id_currency AND tb_m_sample_price.id_comp_contact=tb_m_comp_contact.id_comp_contact AND tb_m_comp_contact.id_comp=tb_m_comp.id_comp AND tb_m_sample_price.id_sample='" & id_samplex & "' ORDER BY tb_m_sample_price.id_sample_price DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSamplePrice.DataSource = data
 
@@ -756,5 +756,28 @@
         FormCodeTemplateEdit.id_pop_up = "1"
         FormCodeTemplateEdit.id_template_code = LETemplate.EditValue.ToString
         FormCodeTemplateEdit.ShowDialog()
+    End Sub
+
+    Private Sub BSetFOBPrice_Click(sender As Object, e As EventArgs) Handles BSetFOBPrice.Click
+        'change default cost 
+        Dim id_sample_price As String = GVSamplePrice.GetFocusedRowCellDisplayText("id_sample_price").ToString
+        Dim query As String
+
+        Dim confirm As DialogResult
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to change sample FOB price to this price?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Try
+                query = String.Format("UPDATE tb_m_sample_price SET is_buy_price='2' WHERE id_sample='{1}'; UPDATE tb_m_sample_price SET is_buy_price='1' WHERE id_sample_price = '{0}'", id_sample_price, id_sample)
+                execute_non_query(query, True, "", "", "", "")
+                view_sample_price(id_sample)
+                infoCustom("Default FOB Price changed.")
+            Catch ex As Exception
+                DevExpress.XtraEditors.XtraMessageBox.Show("Please check your connection.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
