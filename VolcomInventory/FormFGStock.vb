@@ -456,7 +456,7 @@
         Dim query As String = "CALL view_stock_card_fg('" + id_design_selected + "', '" + id_wh_selected + "', '" + date_from_selected + "', '" + date_until_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Columns.Count - 1
-            If data.Columns(i).ColumnName.ToString = "id_comp" Or data.Columns(i).ColumnName.ToString = "id_report" Or data.Columns(i).ColumnName.ToString = "report_mark_type" Or data.Columns(i).ColumnName.ToString = "id_storage_category" Or data.Columns(i).ColumnName.ToString = "Time" Or data.Columns(i).ColumnName.ToString = "Transaction" Or data.Columns(i).ColumnName.ToString = "Transaction Type" Then
+            If data.Columns(i).ColumnName.ToString = "id_comp" Or data.Columns(i).ColumnName.ToString = "id_report" Or data.Columns(i).ColumnName.ToString = "report_mark_type" Or data.Columns(i).ColumnName.ToString = "id_storage_category" Or data.Columns(i).ColumnName.ToString = "Time" Or data.Columns(i).ColumnName.ToString = "Transaction" Or data.Columns(i).ColumnName.ToString = "Transaction Type" Or data.Columns(i).ColumnName.ToString = "Size Type" Then
                 band_ref.Columns.Add(BandedGridViewFGStockCard.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
                 If data.Columns(i).ColumnName.ToString = "Time" Then
                     BandedGridViewFGStockCard.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
@@ -504,6 +504,8 @@
 
 
         'enable group
+        BandedGridViewFGStockCard.Columns("Size Type").GroupIndex = 0
+        BandedGridViewFGStockCard.ExpandAllGroups()
         GroupControlInfo.Enabled = True
         GroupControlTraccking.Enabled = True
         Cursor = Cursors.Default
@@ -946,7 +948,6 @@
         id_design_selected = "-1"
         LabelControl5.Text = "-"
         LabelColor.Text = "-"
-        LabelSizeType.Text = "-"
         LabelBranding.Text = "-"
         LabelSource.Text = "-"
         LabelCurrentPrice.Text = "-"
@@ -969,7 +970,6 @@
                 id_design_selected = data.Rows(0)("id_design").ToString.ToUpper
                 LabelControl5.Text = data.Rows(0)("design_display_name").ToString.ToUpper
                 LabelColor.Text = data.Rows(0)("color").ToString.ToUpper
-                LabelSizeType.Text = data.Rows(0)("size_type").ToString.ToUpper
                 LabelBranding.Text = data.Rows(0)("product_class").ToString.ToUpper + " (" + data.Rows(0)("product_class_display").ToString.ToUpper + ")"
                 LabelSource.Text = data.Rows(0)("size_chart").ToString.ToUpper
                 LabelCurrentPrice.Text = data.Rows(0)("design_price").ToString.ToUpper
