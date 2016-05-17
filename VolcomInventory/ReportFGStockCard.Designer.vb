@@ -25,7 +25,6 @@ Partial Public Class ReportFGStockCard
         Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-        Me.LabelPeriod = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelProduct = New DevExpress.XtraReports.UI.XRLabel()
         Me.LabelWH = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
@@ -37,9 +36,7 @@ Partial Public Class ReportFGStockCard
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
-        Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.LabelSizeType = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelPeriod = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,23 +79,11 @@ Partial Public Class ReportFGStockCard
         '
         'TopMargin
         '
-        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelSizeType, Me.XrLabel9, Me.XrLabel8, Me.LabelPeriod, Me.LabelProduct, Me.LabelWH, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1})
-        Me.TopMargin.HeightF = 157.2917!
+        Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelPeriod, Me.LabelProduct, Me.LabelWH, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1})
+        Me.TopMargin.HeightF = 137.5!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'LabelPeriod
-        '
-        Me.LabelPeriod.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPeriod.LocationFloat = New DevExpress.Utils.PointFloat(112.5!, 108.25!)
-        Me.LabelPeriod.Name = "LabelPeriod"
-        Me.LabelPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelPeriod.SizeF = New System.Drawing.SizeF(452.0833!, 25.08333!)
-        Me.LabelPeriod.StylePriority.UseFont = False
-        Me.LabelPeriod.StylePriority.UseTextAlignment = False
-        Me.LabelPeriod.Text = "-"
-        Me.LabelPeriod.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LabelProduct
         '
@@ -127,7 +112,7 @@ Partial Public Class ReportFGStockCard
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(99.99997!, 108.25!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(99.99997!, 83.16666!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(12.5!, 25.08333!)
@@ -139,7 +124,7 @@ Partial Public Class ReportFGStockCard
         'XrLabel6
         '
         Me.XrLabel6.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 108.25!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 83.16668!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(100.0!, 25.08333!)
@@ -230,48 +215,24 @@ Partial Public Class ReportFGStockCard
         Me.XrPageInfo1.StylePriority.UseTextAlignment = False
         Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
         '
-        'XrLabel8
+        'LabelPeriod
         '
-        Me.XrLabel8.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(0!, 83.16666!)
-        Me.XrLabel8.Name = "XrLabel8"
-        Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(100.0!, 25.08333!)
-        Me.XrLabel8.StylePriority.UseFont = False
-        Me.XrLabel8.StylePriority.UseTextAlignment = False
-        Me.XrLabel8.Text = "Size Type"
-        Me.XrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel9
-        '
-        Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(100.0!, 83.16666!)
-        Me.XrLabel9.Name = "XrLabel9"
-        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(12.5!, 25.08333!)
-        Me.XrLabel9.StylePriority.UseFont = False
-        Me.XrLabel9.StylePriority.UseTextAlignment = False
-        Me.XrLabel9.Text = ":"
-        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'LabelSizeType
-        '
-        Me.LabelSizeType.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelSizeType.LocationFloat = New DevExpress.Utils.PointFloat(112.5!, 83.16666!)
-        Me.LabelSizeType.Name = "LabelSizeType"
-        Me.LabelSizeType.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LabelSizeType.SizeF = New System.Drawing.SizeF(452.0833!, 25.08333!)
-        Me.LabelSizeType.StylePriority.UseFont = False
-        Me.LabelSizeType.StylePriority.UseTextAlignment = False
-        Me.LabelSizeType.Text = "-"
-        Me.LabelSizeType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelPeriod.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPeriod.LocationFloat = New DevExpress.Utils.PointFloat(112.5!, 83.16666!)
+        Me.LabelPeriod.Name = "LabelPeriod"
+        Me.LabelPeriod.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelPeriod.SizeF = New System.Drawing.SizeF(452.0833!, 25.08333!)
+        Me.LabelPeriod.StylePriority.UseFont = False
+        Me.LabelPeriod.StylePriority.UseTextAlignment = False
+        Me.LabelPeriod.Text = "-"
+        Me.LabelPeriod.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'ReportFGStockCard
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin})
         Me.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Bold)
         Me.Landscape = True
-        Me.Margins = New System.Drawing.Printing.Margins(50, 53, 157, 100)
+        Me.Margins = New System.Drawing.Printing.Margins(50, 53, 138, 100)
         Me.PageHeight = 827
         Me.PageWidth = 1169
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -291,7 +252,6 @@ Partial Public Class ReportFGStockCard
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents LabelPeriod As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelProduct As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents LabelWH As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrPageInfo1 As DevExpress.XtraReports.UI.XRPageInfo
@@ -299,7 +259,5 @@ Partial Public Class ReportFGStockCard
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents BandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents LabelSizeType As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel8 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelPeriod As DevExpress.XtraReports.UI.XRLabel
 End Class

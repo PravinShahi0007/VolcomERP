@@ -47,6 +47,9 @@ Partial Class FormMasterSample
         Me.GridColumnLastPriceName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCurrLast = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFOBPriceName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCurrFOBPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFOBPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastVendorCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -82,7 +85,7 @@ Partial Class FormMasterSample
         '
         'GVSample
         '
-        Me.GVSample.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNormalReject, Me.GridColumn6, Me.ColSampleID, Me.ColSampleDisplayName, Me.ColSampleName, Me.ColSampleUSCode, Me.ColSampleUOM, Me.ColSampleSeason, Me.ColSeasonOrigin, Me.ColSampleCode, Me.GridColumnIdSeason, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnNo, Me.GridColumnSamplePriceName, Me.GridColumnCurr, Me.GridColumnPrice, Me.GridColumnLastPriceName, Me.GridColumnLastPrice, Me.GridColumnCurrLast, Me.GridColumnLastVendorCode, Me.GridColumnVendor})
+        Me.GVSample.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNormalReject, Me.GridColumn6, Me.ColSampleID, Me.ColSampleDisplayName, Me.ColSampleName, Me.ColSampleUSCode, Me.ColSampleUOM, Me.ColSampleSeason, Me.ColSeasonOrigin, Me.ColSampleCode, Me.GridColumnIdSeason, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnNo, Me.GridColumnSamplePriceName, Me.GridColumnCurr, Me.GridColumnPrice, Me.GridColumnLastPriceName, Me.GridColumnLastPrice, Me.GridColumnCurrLast, Me.GridColumnFOBPriceName, Me.GridColumnCurrFOBPrice, Me.GridColumnFOBPrice, Me.GridColumnLastVendorCode, Me.GridColumnVendor})
         Me.GVSample.GridControl = Me.GCSample
         Me.GVSample.GroupCount = 1
         Me.GVSample.Name = "GVSample"
@@ -96,7 +99,7 @@ Partial Class FormMasterSample
         Me.GridColumnNormalReject.FieldName = "status_nr"
         Me.GridColumnNormalReject.Name = "GridColumnNormalReject"
         Me.GridColumnNormalReject.Visible = True
-        Me.GridColumnNormalReject.VisibleIndex = 20
+        Me.GridColumnNormalReject.VisibleIndex = 23
         '
         'GridColumn6
         '
@@ -297,7 +300,7 @@ Partial Class FormMasterSample
         Me.GridColumnLastPriceName.Name = "GridColumnLastPriceName"
         Me.GridColumnLastPriceName.OptionsColumn.AllowEdit = False
         Me.GridColumnLastPriceName.Visible = True
-        Me.GridColumnLastPriceName.VisibleIndex = 17
+        Me.GridColumnLastPriceName.VisibleIndex = 20
         '
         'GridColumnLastPrice
         '
@@ -308,7 +311,7 @@ Partial Class FormMasterSample
         Me.GridColumnLastPrice.Name = "GridColumnLastPrice"
         Me.GridColumnLastPrice.OptionsColumn.AllowEdit = False
         Me.GridColumnLastPrice.Visible = True
-        Me.GridColumnLastPrice.VisibleIndex = 19
+        Me.GridColumnLastPrice.VisibleIndex = 22
         Me.GridColumnLastPrice.Width = 65
         '
         'GridColumnCurrLast
@@ -318,8 +321,34 @@ Partial Class FormMasterSample
         Me.GridColumnCurrLast.Name = "GridColumnCurrLast"
         Me.GridColumnCurrLast.OptionsColumn.AllowEdit = False
         Me.GridColumnCurrLast.Visible = True
-        Me.GridColumnCurrLast.VisibleIndex = 18
+        Me.GridColumnCurrLast.VisibleIndex = 21
         Me.GridColumnCurrLast.Width = 69
+        '
+        'GridColumnFOBPriceName
+        '
+        Me.GridColumnFOBPriceName.Caption = "FOB Price Name"
+        Me.GridColumnFOBPriceName.FieldName = "sample_price_name_fob"
+        Me.GridColumnFOBPriceName.Name = "GridColumnFOBPriceName"
+        Me.GridColumnFOBPriceName.Visible = True
+        Me.GridColumnFOBPriceName.VisibleIndex = 17
+        '
+        'GridColumnCurrFOBPrice
+        '
+        Me.GridColumnCurrFOBPrice.Caption = "FOB Price Currency"
+        Me.GridColumnCurrFOBPrice.FieldName = "currency_fob"
+        Me.GridColumnCurrFOBPrice.Name = "GridColumnCurrFOBPrice"
+        Me.GridColumnCurrFOBPrice.Visible = True
+        Me.GridColumnCurrFOBPrice.VisibleIndex = 18
+        '
+        'GridColumnFOBPrice
+        '
+        Me.GridColumnFOBPrice.Caption = "FOB Price"
+        Me.GridColumnFOBPrice.DisplayFormat.FormatString = "N2"
+        Me.GridColumnFOBPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnFOBPrice.FieldName = "sample_price_fob"
+        Me.GridColumnFOBPrice.Name = "GridColumnFOBPrice"
+        Me.GridColumnFOBPrice.Visible = True
+        Me.GridColumnFOBPrice.VisibleIndex = 19
         '
         'GridColumnLastVendorCode
         '
@@ -481,4 +510,7 @@ Partial Class FormMasterSample
     Friend WithEvents GridColumnNormalReject As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PCSelAll As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CheckEditSelAll As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnFOBPriceName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCurrFOBPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnFOBPrice As DevExpress.XtraGrid.Columns.GridColumn
 End Class

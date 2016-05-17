@@ -66,7 +66,6 @@
                 FormFGStock.id_design_selected = GVDesign.GetFocusedRowCellValue("id_design").ToString.ToUpper
                 FormFGStock.LabelControl5.Text = GVDesign.GetFocusedRowCellValue("design_display_name").ToString.ToUpper
                 FormFGStock.LabelColor.Text = GVDesign.GetFocusedRowCellValue("color").ToString.ToUpper
-                FormFGStock.LabelSizeType.Text = GVDesign.GetFocusedRowCellValue("size_type").ToString.ToUpper
                 FormFGStock.LabelBranding.Text = GVDesign.GetFocusedRowCellValue("product_class").ToString.ToUpper + " (" + GVDesign.GetFocusedRowCellValue("product_class_display").ToString.ToUpper + ")"
                 FormFGStock.LabelSource.Text = GVDesign.GetFocusedRowCellValue("size_chart").ToString.ToUpper
                 FormFGStock.LabelCurrentPrice.Text = GVDesign.GetFocusedRowCellValue("design_price").ToString.ToUpper

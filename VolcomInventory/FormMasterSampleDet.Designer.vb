@@ -46,6 +46,8 @@ Partial Class FormMasterSampleDet
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PanC2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LEStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.MESampleFabrication = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.BViewImage = New DevExpress.XtraEditors.SimpleButton()
@@ -141,8 +143,9 @@ Partial Class FormMasterSampleDet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView7 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LEStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnFOBPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BSetFOBPrice = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterSample, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCDetSample, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,6 +164,7 @@ Partial Class FormMasterSampleDet
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanC2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanC2.SuspendLayout()
+        CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MESampleFabrication.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEUOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -209,7 +213,7 @@ Partial Class FormMasterSampleDet
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -467,6 +471,26 @@ Partial Class FormMasterSampleDet
         Me.PanC2.Size = New System.Drawing.Size(421, 357)
         Me.PanC2.TabIndex = 3
         '
+        'LEStatus
+        '
+        Me.LEStatus.Location = New System.Drawing.Point(11, 267)
+        Me.LEStatus.Name = "LEStatus"
+        Me.LEStatus.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
+        Me.LEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_status_nr", "ID STATUS", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Center), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("status_nr", "Status", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Center)})
+        Me.LEStatus.Properties.NullText = ""
+        Me.LEStatus.Properties.ShowFooter = False
+        Me.LEStatus.Size = New System.Drawing.Size(174, 20)
+        Me.LEStatus.TabIndex = 101
+        '
+        'LabelControl13
+        '
+        Me.LabelControl13.Location = New System.Drawing.Point(11, 248)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl13.TabIndex = 100
+        Me.LabelControl13.Text = "Status"
+        '
         'MESampleFabrication
         '
         Me.MESampleFabrication.Location = New System.Drawing.Point(11, 312)
@@ -653,6 +677,7 @@ Partial Class FormMasterSampleDet
         '
         'XTPPrice
         '
+        Me.XTPPrice.Controls.Add(Me.BSetFOBPrice)
         Me.XTPPrice.Controls.Add(Me.BAdd)
         Me.XTPPrice.Controls.Add(Me.BSetDefault)
         Me.XTPPrice.Controls.Add(Me.Bdelete)
@@ -681,7 +706,7 @@ Partial Class FormMasterSampleDet
         Me.BSetDefault.Name = "BSetDefault"
         Me.BSetDefault.Size = New System.Drawing.Size(142, 44)
         Me.BSetDefault.TabIndex = 12
-        Me.BSetDefault.Text = "Set default cost"
+        Me.BSetDefault.Text = "Set Default Cost"
         '
         'Bdelete
         '
@@ -715,14 +740,14 @@ Partial Class FormMasterSampleDet
         Me.GCSamplePrice.Location = New System.Drawing.Point(0, 0)
         Me.GCSamplePrice.MainView = Me.GVSamplePrice
         Me.GCSamplePrice.Name = "GCSamplePrice"
-        Me.GCSamplePrice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
+        Me.GCSamplePrice.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit2})
         Me.GCSamplePrice.Size = New System.Drawing.Size(818, 265)
         Me.GCSamplePrice.TabIndex = 2
         Me.GCSamplePrice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSamplePrice, Me.GridView4})
         '
         'GVSamplePrice
         '
-        Me.GVSamplePrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColSamplePirce, Me.ColPriceName, Me.ColCompany, Me.ColPrice, Me.ColDate, Me.ColCurrenct, Me.ColIsDefault, Me.GridColumnIdCurrency})
+        Me.GVSamplePrice.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColSamplePirce, Me.ColPriceName, Me.ColCompany, Me.ColPrice, Me.ColDate, Me.ColCurrenct, Me.ColIsDefault, Me.GridColumnFOBPrice, Me.GridColumnIdCurrency})
         Me.GVSamplePrice.GridControl = Me.GCSamplePrice
         Me.GVSamplePrice.Name = "GVSamplePrice"
         Me.GVSamplePrice.OptionsBehavior.Editable = False
@@ -1305,25 +1330,33 @@ Partial Class FormMasterSampleDet
         Me.GridView7.GridControl = Me.GridControl1
         Me.GridView7.Name = "GridView7"
         '
-        'LEStatus
+        'GridColumnFOBPrice
         '
-        Me.LEStatus.Location = New System.Drawing.Point(11, 267)
-        Me.LEStatus.Name = "LEStatus"
-        Me.LEStatus.Properties.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup
-        Me.LEStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_status_nr", "ID STATUS", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Center), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("status_nr", "Status", 20, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Center)})
-        Me.LEStatus.Properties.NullText = ""
-        Me.LEStatus.Properties.ShowFooter = False
-        Me.LEStatus.Size = New System.Drawing.Size(174, 20)
-        Me.LEStatus.TabIndex = 101
+        Me.GridColumnFOBPrice.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnFOBPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnFOBPrice.Caption = "FOB Price"
+        Me.GridColumnFOBPrice.ColumnEdit = Me.RepositoryItemCheckEdit2
+        Me.GridColumnFOBPrice.FieldName = "is_buy_price"
+        Me.GridColumnFOBPrice.Name = "GridColumnFOBPrice"
+        Me.GridColumnFOBPrice.Visible = True
+        Me.GridColumnFOBPrice.VisibleIndex = 6
         '
-        'LabelControl13
+        'RepositoryItemCheckEdit2
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(11, 248)
-        Me.LabelControl13.Name = "LabelControl13"
-        Me.LabelControl13.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl13.TabIndex = 100
-        Me.LabelControl13.Text = "Status"
+        Me.RepositoryItemCheckEdit2.AutoHeight = False
+        Me.RepositoryItemCheckEdit2.Name = "RepositoryItemCheckEdit2"
+        Me.RepositoryItemCheckEdit2.ValueChecked = "yes"
+        Me.RepositoryItemCheckEdit2.ValueUnchecked = "no"
+        '
+        'BSetFOBPrice
+        '
+        Me.BSetFOBPrice.ImageIndex = 6
+        Me.BSetFOBPrice.ImageList = Me.LargeImageCollection
+        Me.BSetFOBPrice.Location = New System.Drawing.Point(160, 6)
+        Me.BSetFOBPrice.Name = "BSetFOBPrice"
+        Me.BSetFOBPrice.Size = New System.Drawing.Size(142, 44)
+        Me.BSetFOBPrice.TabIndex = 14
+        Me.BSetFOBPrice.Text = "Set FOB Price"
         '
         'FormMasterSampleDet
         '
@@ -1338,7 +1371,6 @@ Partial Class FormMasterSampleDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterSampleDet"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Detail"
@@ -1363,6 +1395,7 @@ Partial Class FormMasterSampleDet
         CType(Me.PanC2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanC2.ResumeLayout(False)
         Me.PanC2.PerformLayout()
+        CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MESampleFabrication.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEUOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1414,7 +1447,7 @@ Partial Class FormMasterSampleDet
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1540,4 +1573,7 @@ Partial Class FormMasterSampleDet
     Friend WithEvents MESampleFabrication As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LEStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnFOBPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents BSetFOBPrice As DevExpress.XtraEditors.SimpleButton
 End Class

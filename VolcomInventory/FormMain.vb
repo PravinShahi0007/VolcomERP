@@ -5530,7 +5530,6 @@ Public Class FormMain
 
                 Report.LabelWH.Text = FormFGStock.SLEWH.Text.ToUpper
                 Report.LabelProduct.Text = FormFGStock.TxtCodeDsgSC.Text + " - " + FormFGStock.LabelControl5.Text
-                Report.LabelSizeType.Text = FormFGStock.LabelSizeType.Text
                 Report.LabelPeriod.Text = period_from + " - " + period_until
                 ReportStyleBanded(Report.BandedGridView1)
                 Report.BandedGridView1.ColumnPanelRowHeight = 40
