@@ -1,6 +1,7 @@
 ﻿Public Class FormMasterDesignSingle
     Dim opt_id_code_color As String = "1"
     Public data_insert_parameter As New DataTable
+    Public data_insert_parameter_dsg As New DataTable
     Public id_design As String = "-1"
     Public dupe As String = "-1"
     Public form_name As String = "-1"
@@ -155,6 +156,7 @@
     Private Sub viewTemplate(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit, ByVal id_type_par As String)
         '1 = md
         '2 = non md
+        '3 = for design dept
 
         Dim query As String = "SELECT id_template_code,template_code FROM tb_template_code ORDER BY template_code ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -169,6 +171,8 @@
                 lookup.EditValue = get_setup_field("id_code_template_design")
             ElseIf id_type_par = "2" Then
                 lookup.EditValue = get_setup_field("id_code_template_design_non_md")
+            ElseIf id_type_par = "3" Then
+                lookup.EditValue = get_setup_field("id_code_template_design_dsg")
             End If
         Catch ex As Exception
             lookup.EditValue = data.Rows(0)("id_template_code").ToString
@@ -179,18 +183,28 @@
         Cursor = Cursors.WaitCursor
 
         data_insert_parameter.Clear()
+        data_insert_parameter_dsg.Clear()
 
         If data_insert_parameter.Columns.Count < 2 Then
             data_insert_parameter.Columns.Add("code")
             data_insert_parameter.Columns.Add("value")
         End If
 
+        If data_insert_parameter_dsg.Columns.Count < 2 Then
+            data_insert_parameter_dsg.Columns.Add("code")
+            data_insert_parameter_dsg.Columns.Add("value")
+        End If
+
         GCCode.DataSource = data_insert_parameter
         DNCode.DataSource = data_insert_parameter
+        GCCodeDsg.DataSource = data_insert_parameter_dsg
+        DNCodeDesign.DataSource = data_insert_parameter_dsg
 
         Try
             add_combo_grid_val(GVCode, 0)
             view_value_code(GVCode, 1)
+            add_combo_grid_val(GVCodeDsg, 0)
+            view_value_code(GVCodeDsg, 1)
         Catch ex As Exception
         End Try
 
@@ -293,6 +307,7 @@
         'permission condition
         If id_pop_up = "-1" Or id_pop_up = "2" Then
             viewTemplate(LETemplate, "1")
+            viewTemplate(LETemplateDsg, "3")
             ss_dept = get_setup_field("ss_default_dept")
         ElseIf id_pop_up = "3" Then 'non merch
             viewTemplate(LETemplate, "2")
@@ -374,12 +389,22 @@
                 pre_viewImages("2", PictureEdit1, id_design, False)
                 BViewImage.Visible = True
 
+                'view code detail
                 query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplate.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
                 Dim data_value As DataTable = execute_query(query, -1, True, "", "", "", "")
                 data_insert_parameter.Clear()
                 If Not data_value.Rows.Count = 0 Then
                     For i As Integer = 0 To data_value.Rows.Count - 1
                         data_insert_parameter.Rows.Add(data_value.Rows(i)("id_code").ToString, data_value.Rows(i)("id_code_detail").ToString)
+                    Next
+                End If
+
+                query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplateDsg.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
+                Dim data_value_dsg As DataTable = execute_query(query, -1, True, "", "", "", "")
+                data_insert_parameter_dsg.Clear()
+                If Not data_value_dsg.Rows.Count = 0 Then
+                    For i As Integer = 0 To data_value_dsg.Rows.Count - 1
+                        data_insert_parameter_dsg.Rows.Add(data_value_dsg.Rows(i)("id_code").ToString, data_value_dsg.Rows(i)("id_code_detail").ToString)
                     Next
                 End If
 
@@ -627,6 +652,19 @@
         End If
     End Sub
 
+    Sub load_template_dsg(ByVal id_template As String)
+        Dim query As String = String.Format("SELECT * FROM tb_template_code_det WHERE id_template_code = '{0}'", id_template)
+        Dim data_value As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        data_insert_parameter_dsg.Clear()
+        If Not data_value.Rows.Count = 0 Then
+            For i As Integer = 0 To data_value.Rows.Count - 1
+                data_insert_parameter_dsg.Rows.Add(data_value.Rows(i)("id_code").ToString)
+            Next
+        End If
+    End Sub
+
+
     Private Sub LETemplate_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LETemplate.EditValueChanged
         load_template(LETemplate.EditValue)
     End Sub
@@ -667,11 +705,11 @@
         Dim class_name As String = ""
         Dim promo_name As String = ""
 
-        For i As Integer = 0 To GVCode.RowCount - 1
+        For i As Integer = 0 To GVCodeDsg.RowCount - 1
             code = ""
             id_code = ""
             Try
-                id_code = GVCode.GetRowCellValue(i, "value").ToString
+                id_code = GVCodeDsg.GetRowCellValue(i, "value").ToString
             Catch ex As Exception
                 id_code = ""
             End Try
@@ -1430,5 +1468,50 @@
         FormMasterProductMulti.id_popup = "1"
         FormMasterProductMulti.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LETemplateDsg_EditValueChanged(sender As Object, e As EventArgs) Handles LETemplateDsg.EditValueChanged
+        load_template_dsg(LETemplateDsg.EditValue)
+    End Sub
+
+    Private Sub GVCodeDsg_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVCodeDsg.CellValueChanged
+        If e.Column.Name.ToString <> "ColCodeParam" Then
+            Exit Sub
+        Else
+            Dim cellValue As String = e.Value.ToString()
+
+            Dim query As String = String.Format("SELECT id_code,id_code_detail,CODE as Code,code_detail_name as Name,display_name as 'Printed Name',CONCAT(CODE,' - ',code_detail_name) AS value FROM tb_m_code_detail WHERE id_code='" & cellValue.ToString & "'")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GVCodeDsg.SetRowCellValue(e.RowHandle, GVCodeDsg.Columns("value"), data.Rows(0)("id_code").ToString)
+        End If
+    End Sub
+
+    Private Sub GVCodeDsg_HiddenEditor(sender As Object, e As EventArgs) Handles GVCodeDsg.HiddenEditor
+        If clone_dsg IsNot Nothing Then
+            clone_dsg.Dispose()
+            clone_dsg = Nothing
+        End If
+    End Sub
+
+    Private clone_dsg As DataView = Nothing
+    Private Sub GVCodeDsg_ShownEditor(sender As Object, e As EventArgs) Handles GVCodeDsg.ShownEditor
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        If view.FocusedColumn.FieldName = "value" AndAlso TypeOf view.ActiveEditor Is DevExpress.XtraEditors.SearchLookUpEdit Then
+            Dim edit As DevExpress.XtraEditors.SearchLookUpEdit
+            Dim table As DataTable
+            Dim row As DataRow
+
+            edit = CType(view.ActiveEditor, DevExpress.XtraEditors.SearchLookUpEdit)
+            Try
+                table = CType(edit.Properties.DataSource, DataTable)
+            Catch ex As Exception
+                table = CType(edit.Properties.DataSource, DataView).Table
+            End Try
+            clone_dsg = New DataView(table)
+
+            row = view.GetDataRow(view.FocusedRowHandle)
+            clone_dsg.RowFilter = "[id_code] = " + row("code").ToString()
+            edit.Properties.DataSource = clone_dsg
+        End If
     End Sub
 End Class

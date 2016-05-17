@@ -583,7 +583,7 @@
 </value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="BtnAddSeaason.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BtnAddRetCode.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAMlSURBVDhPdZINLNRhHMefVFurMHEI54wuF4cMq40tY5Y1S2GtvKyFHeJOlLwNSXlLbrXebKbu
@@ -602,7 +602,7 @@
         Su/nKqRNOY3SZgO0Vopk9XIRnYmnRCqVSq+4uDjyG7f1NkjfUz4JAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="BtnAddRetCode.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BtnAddSeaason.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAMlSURBVDhPdZINLNRhHMefVFurMHEI54wuF4cMq40tY5Y1S2GtvKyFHeJOlLwNSXlLbrXebKbu
