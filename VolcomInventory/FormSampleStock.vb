@@ -203,7 +203,8 @@
 
     Private Sub BtnViewStock_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnViewStock.Click
         Cursor = Cursors.WaitCursor
-       viewSampleStorage()
+        viewSampleStorage()
+        GVSample.BestFitColumns()
         Cursor = Cursors.Default
     End Sub
 

@@ -1434,7 +1434,7 @@ Partial Class FormBOM
         Me.GridColumn43.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn43.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn43.Caption = "Color"
-        Me.GridColumn43.FieldName = "color"
+        Me.GridColumn43.FieldName = "color_display"
         Me.GridColumn43.Name = "GridColumn43"
         Me.GridColumn43.Visible = True
         Me.GridColumn43.VisibleIndex = 4
@@ -1460,7 +1460,7 @@ Partial Class FormBOM
         Me.GridColumn45.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn45.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn45.Caption = "Class"
-        Me.GridColumn45.FieldName = "product_class"
+        Me.GridColumn45.FieldName = "product_class_display"
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 1
