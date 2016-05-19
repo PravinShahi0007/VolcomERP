@@ -95,4 +95,19 @@
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
         view_design()
     End Sub
+
+    Private Sub GVDesign_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVDesign.PopupMenuShowing
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
+        If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
+            view.FocusedRowHandle = hitInfo.RowHandle
+            ViewMenu.Show(view.GridControl, e.Point)
+        End If
+    End Sub
+
+    Private Sub SMEditEcopFinal_Click(sender As Object, e As EventArgs) Handles SMEditEcopFinal.Click
+        'MASTER RET CODE
+        FormProductionCOP.id_design = GVDesign.GetFocusedRowCellValue("id_design").ToString
+        FormProductionCOP.ShowDialog()
+    End Sub
 End Class

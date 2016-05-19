@@ -258,7 +258,7 @@ Public Class FormMain
             BBView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormAccountingSummary" Or formName = "FormSalesOrderList" Or formName = "FormSalesOrderSvcLevel" Or formName = "FormWHImportDO" Or formName = "FormWHSvcLevel" Then
+        If formName = "FormAccountingSummary" Or formName = "FormMasterDesignCOP" Or formName = "FormSalesOrderList" Or formName = "FormSalesOrderSvcLevel" Or formName = "FormWHImportDO" Or formName = "FormWHSvcLevel" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -302,7 +302,7 @@ Public Class FormMain
             BBRefresh.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             RGAreaManage.Visible = False
         End If
-        If formName = "FormSOHPrice" Or formName = "FormMasterDesignCOP" Then
+        If formName = "FormSOHPrice" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
@@ -359,7 +359,7 @@ Public Class FormMain
             BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormMasterWH" Then
+        If formName = "FormMasterWH" Or formName = "FormMasterDesignCOP" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
@@ -417,7 +417,7 @@ Public Class FormMain
             BBRefresh.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             RGAreaManage.Visible = True
         End If
-        If formName = "FormSOHPrice" Or formName = "FormMasterDesignCOP" Then
+        If formName = "FormSOHPrice" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If

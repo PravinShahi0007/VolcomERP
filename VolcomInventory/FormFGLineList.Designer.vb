@@ -35,6 +35,21 @@ Partial Class FormFGLineList
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditOpt = New DevExpress.XtraEditors.CheckEdit()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BBPD = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBProposePrice = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBMasterSeason = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBDs = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBPrepEstPrice = New DevExpress.XtraBars.BarButtonItem()
+        Me.BtnImportEstPrice = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBSubEstPrice = New DevExpress.XtraBars.BarSubItem()
+        Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
@@ -56,19 +71,6 @@ Partial Class FormFGLineList
         Me.BtnDesign = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDropQuickMenu = New DevExpress.XtraEditors.DropDownButton()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.BBSubEstPrice = New DevExpress.XtraBars.BarSubItem()
-        Me.BBPrepEstPrice = New DevExpress.XtraBars.BarButtonItem()
-        Me.BtnImportEstPrice = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
-        Me.BBMasterSeason = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBDs = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBPD = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBProposePrice = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMEditDesign = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewDupe = New System.Windows.Forms.ToolStripMenuItem()
@@ -76,8 +78,6 @@ Partial Class FormFGLineList
         Me.SMViewHistoryPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewCostHist = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckEditOpt = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,6 +88,10 @@ Partial Class FormFGLineList
         Me.PCType.SuspendLayout()
         CType(Me.SLETypeLineList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelOpt.SuspendLayout()
+        CType(Me.CheckEditOpt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,11 +106,7 @@ Partial Class FormFGLineList
         Me.PCSelAll.SuspendLayout()
         CType(Me.PBCLineList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
-        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelOpt.SuspendLayout()
-        CType(Me.CheckEditOpt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -236,6 +236,114 @@ Partial Class FormFGLineList
         Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl1.TabIndex = 92
         Me.LabelControl1.Text = "Type"
+        '
+        'PanelOpt
+        '
+        Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelOpt.Controls.Add(Me.CheckEditOpt)
+        Me.PanelOpt.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelOpt.Location = New System.Drawing.Point(1119, 2)
+        Me.PanelOpt.Name = "PanelOpt"
+        Me.PanelOpt.Size = New System.Drawing.Size(137, 35)
+        Me.PanelOpt.TabIndex = 107
+        '
+        'CheckEditOpt
+        '
+        Me.CheckEditOpt.Location = New System.Drawing.Point(5, 8)
+        Me.CheckEditOpt.MenuManager = Me.BarManager1
+        Me.CheckEditOpt.Name = "CheckEditOpt"
+        Me.CheckEditOpt.Properties.Caption = "Show Breakdown Qty"
+        Me.CheckEditOpt.Size = New System.Drawing.Size(127, 19)
+        Me.CheckEditOpt.TabIndex = 0
+        '
+        'BarManager1
+        '
+        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager1.Form = Me
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther})
+        Me.BarManager1.MaxItemId = 11
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1362, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 532)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1362, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 532)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1362, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 532)
+        '
+        'BBPD
+        '
+        Me.BBPD.Caption = "Production Demand"
+        Me.BBPD.Id = 3
+        Me.BBPD.Name = "BBPD"
+        '
+        'BBProposePrice
+        '
+        Me.BBProposePrice.Caption = "Propose Price"
+        Me.BBProposePrice.Id = 4
+        Me.BBProposePrice.Name = "BBProposePrice"
+        '
+        'BBMasterSeason
+        '
+        Me.BBMasterSeason.Caption = "Master Season"
+        Me.BBMasterSeason.Id = 5
+        Me.BBMasterSeason.Name = "BBMasterSeason"
+        '
+        'BBDs
+        '
+        Me.BBDs.Caption = "Distribution Scheme"
+        Me.BBDs.Id = 6
+        Me.BBDs.Name = "BBDs"
+        '
+        'BBPrepEstPrice
+        '
+        Me.BBPrepEstPrice.Caption = "Prepare Est Price"
+        Me.BBPrepEstPrice.Id = 7
+        Me.BBPrepEstPrice.Name = "BBPrepEstPrice"
+        '
+        'BtnImportEstPrice
+        '
+        Me.BtnImportEstPrice.Caption = "Import Est Price"
+        Me.BtnImportEstPrice.Id = 8
+        Me.BtnImportEstPrice.Name = "BtnImportEstPrice"
+        '
+        'BBSubEstPrice
+        '
+        Me.BBSubEstPrice.Border = DevExpress.XtraEditors.Controls.BorderStyles.[Default]
+        Me.BBSubEstPrice.Caption = "Estimate Price"
+        Me.BBSubEstPrice.Id = 9
+        Me.BBSubEstPrice.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBPrepEstPrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BtnImportEstPrice)})
+        Me.BBSubEstPrice.Name = "BBSubEstPrice"
+        '
+        'BBSubOther
+        '
+        Me.BBSubOther.Caption = "Other Menu"
+        Me.BBSubOther.Id = 10
+        Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice)})
+        Me.BBSubOther.Name = "BBSubOther"
         '
         'BtnView
         '
@@ -467,100 +575,11 @@ Partial Class FormFGLineList
         Me.PopupMenu1.Manager = Me.BarManager1
         Me.PopupMenu1.Name = "PopupMenu1"
         '
-        'BBSubEstPrice
-        '
-        Me.BBSubEstPrice.Border = DevExpress.XtraEditors.Controls.BorderStyles.[Default]
-        Me.BBSubEstPrice.Caption = "Estimate Price"
-        Me.BBSubEstPrice.Id = 9
-        Me.BBSubEstPrice.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBPrepEstPrice), New DevExpress.XtraBars.LinkPersistInfo(Me.BtnImportEstPrice)})
-        Me.BBSubEstPrice.Name = "BBSubEstPrice"
-        '
-        'BBPrepEstPrice
-        '
-        Me.BBPrepEstPrice.Caption = "Prepare Est Price"
-        Me.BBPrepEstPrice.Id = 7
-        Me.BBPrepEstPrice.Name = "BBPrepEstPrice"
-        '
-        'BtnImportEstPrice
-        '
-        Me.BtnImportEstPrice.Caption = "Import Est Price"
-        Me.BtnImportEstPrice.Id = 8
-        Me.BtnImportEstPrice.Name = "BtnImportEstPrice"
-        '
-        'BBSubOther
-        '
-        Me.BBSubOther.Caption = "Other Menu"
-        Me.BBSubOther.Id = 10
-        Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice)})
-        Me.BBSubOther.Name = "BBSubOther"
-        '
-        'BBMasterSeason
-        '
-        Me.BBMasterSeason.Caption = "Master Season"
-        Me.BBMasterSeason.Id = 5
-        Me.BBMasterSeason.Name = "BBMasterSeason"
-        '
-        'BBDs
-        '
-        Me.BBDs.Caption = "Distribution Scheme"
-        Me.BBDs.Id = 6
-        Me.BBDs.Name = "BBDs"
-        '
-        'BBPD
-        '
-        Me.BBPD.Caption = "Production Demand"
-        Me.BBPD.Id = 3
-        Me.BBPD.Name = "BBPD"
-        '
-        'BBProposePrice
-        '
-        Me.BBProposePrice.Caption = "Propose Price"
-        Me.BBProposePrice.Id = 4
-        Me.BBProposePrice.Name = "BBProposePrice"
-        '
-        'BarManager1
-        '
-        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
-        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
-        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
-        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
-        Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBPD, Me.BBProposePrice, Me.BBMasterSeason, Me.BBDs, Me.BBPrepEstPrice, Me.BtnImportEstPrice, Me.BBSubEstPrice, Me.BBSubOther})
-        Me.BarManager1.MaxItemId = 11
-        '
-        'barDockControlTop
-        '
-        Me.barDockControlTop.CausesValidation = False
-        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1362, 0)
-        '
-        'barDockControlBottom
-        '
-        Me.barDockControlBottom.CausesValidation = False
-        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 532)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1362, 0)
-        '
-        'barDockControlLeft
-        '
-        Me.barDockControlLeft.CausesValidation = False
-        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 532)
-        '
-        'barDockControlRight
-        '
-        Me.barDockControlRight.CausesValidation = False
-        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1362, 0)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 532)
-        '
         'ViewMenu
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditDesign, Me.SMViewDupe, Me.SMDeleteDesign, Me.SMViewHistoryPD, Me.SMViewPD, Me.SMViewCostHist})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(201, 136)
+        Me.ViewMenu.Size = New System.Drawing.Size(201, 158)
         '
         'SMEditDesign
         '
@@ -598,25 +617,6 @@ Partial Class FormFGLineList
         Me.SMViewCostHist.Size = New System.Drawing.Size(200, 22)
         Me.SMViewCostHist.Text = "View History Cost"
         '
-        'PanelOpt
-        '
-        Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelOpt.Controls.Add(Me.CheckEditOpt)
-        Me.PanelOpt.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelOpt.Location = New System.Drawing.Point(1119, 2)
-        Me.PanelOpt.Name = "PanelOpt"
-        Me.PanelOpt.Size = New System.Drawing.Size(137, 35)
-        Me.PanelOpt.TabIndex = 107
-        '
-        'CheckEditOpt
-        '
-        Me.CheckEditOpt.Location = New System.Drawing.Point(5, 8)
-        Me.CheckEditOpt.MenuManager = Me.BarManager1
-        Me.CheckEditOpt.Name = "CheckEditOpt"
-        Me.CheckEditOpt.Properties.Caption = "Show Breakdown Qty"
-        Me.CheckEditOpt.Size = New System.Drawing.Size(127, 19)
-        Me.CheckEditOpt.TabIndex = 0
-        '
         'FormFGLineList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -645,6 +645,10 @@ Partial Class FormFGLineList
         Me.PCType.PerformLayout()
         CType(Me.SLETypeLineList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelOpt.ResumeLayout(False)
+        CType(Me.CheckEditOpt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCLineList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -659,11 +663,7 @@ Partial Class FormFGLineList
         Me.PCSelAll.ResumeLayout(False)
         CType(Me.PBCLineList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
-        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelOpt.ResumeLayout(False)
-        CType(Me.CheckEditOpt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

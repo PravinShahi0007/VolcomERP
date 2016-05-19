@@ -19,6 +19,7 @@ Partial Class FormMasterDesignCOP
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
         Me.GVDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -42,6 +43,9 @@ Partial Class FormMasterDesignCOP
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMEditEcopPD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SMEditEcopFinal = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,6 +53,7 @@ Partial Class FormMasterDesignCOP
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCDesign
@@ -68,6 +73,7 @@ Partial Class FormMasterDesignCOP
         Me.GVDesign.GroupCount = 1
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.Editable = False
+        Me.GVDesign.OptionsFind.AlwaysVisible = True
         Me.GVDesign.OptionsView.ShowGroupPanel = False
         Me.GVDesign.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColSampleSeason, DevExpress.Data.ColumnSortOrder.Descending)})
         '
@@ -255,6 +261,24 @@ Partial Class FormMasterDesignCOP
         Me.LabelControl1.TabIndex = 8897
         Me.LabelControl1.Text = "Season"
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditEcopPD, Me.SMEditEcopFinal})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(156, 70)
+        '
+        'SMEditEcopPD
+        '
+        Me.SMEditEcopPD.Name = "SMEditEcopPD"
+        Me.SMEditEcopPD.Size = New System.Drawing.Size(155, 22)
+        Me.SMEditEcopPD.Text = "Edit ECOP PD"
+        '
+        'SMEditEcopFinal
+        '
+        Me.SMEditEcopFinal.Name = "SMEditEcopFinal"
+        Me.SMEditEcopFinal.Size = New System.Drawing.Size(155, 22)
+        Me.SMEditEcopFinal.Text = "Edit ECOP Final"
+        '
         'FormMasterDesignCOP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -277,6 +301,7 @@ Partial Class FormMasterDesignCOP
         Me.PanelControl1.PerformLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -303,4 +328,7 @@ Partial Class FormMasterDesignCOP
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents SMEditEcopPD As ToolStripMenuItem
+    Friend WithEvents SMEditEcopFinal As ToolStripMenuItem
 End Class
