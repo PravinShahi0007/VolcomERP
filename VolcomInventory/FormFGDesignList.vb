@@ -76,11 +76,11 @@
                 bdel_active = "0"
             Else
                 'show all
-                If id_pop_up = "1" Then 'design dept - input sample for line list
-                    bnew_active = "0"
-                    bedit_active = "1"
-                    bdel_active = "0"
-                End If
+                'If id_pop_up = "1" Then 'design dept - input sample for line list
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+                'End If
             End If
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)

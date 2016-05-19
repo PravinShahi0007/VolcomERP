@@ -9334,7 +9334,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormFGDesignList.MdiParent = Me
-            FormFGDesignList.id_pop_up = "1"
+            'FormFGDesignList.id_pop_up = "1"
             FormFGDesignList.Show()
             FormFGDesignList.WindowState = FormWindowState.Maximized
             FormFGDesignList.Focus()

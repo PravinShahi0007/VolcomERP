@@ -49,6 +49,9 @@ Partial Class FormFGDesignList
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCodeImport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSourceDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -157,13 +160,16 @@ Partial Class FormFGDesignList
         '
         'GVDesign
         '
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnFabrication, Me.GridColumnOrign, Me.ColDesignCode, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1})
+        Me.GVDesign.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GVDesign.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnFabrication, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupCount = 1
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDesign.OptionsBehavior.Editable = False
         Me.GVDesign.OptionsCustomization.AllowGroup = False
+        Me.GVDesign.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVDesign.OptionsView.ShowGroupPanel = False
         Me.GVDesign.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColSampleSeason, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColID, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -186,6 +192,8 @@ Partial Class FormFGDesignList
         Me.ColSampleSeason.FieldName = "season"
         Me.ColSampleSeason.FieldNameSortGroup = "id_season"
         Me.ColSampleSeason.Name = "ColSampleSeason"
+        Me.ColSampleSeason.Visible = True
+        Me.ColSampleSeason.VisibleIndex = 9
         '
         'GridColumn7
         '
@@ -199,8 +207,7 @@ Partial Class FormFGDesignList
         Me.GridColumnFabrication.Caption = "Fabrication"
         Me.GridColumnFabrication.FieldName = "design_fabrication"
         Me.GridColumnFabrication.Name = "GridColumnFabrication"
-        Me.GridColumnFabrication.Visible = True
-        Me.GridColumnFabrication.VisibleIndex = 7
+        Me.GridColumnFabrication.Width = 249
         '
         'GridColumnOrign
         '
@@ -219,8 +226,8 @@ Partial Class FormFGDesignList
         Me.ColDesignCode.FieldName = "design_code"
         Me.ColDesignCode.Name = "ColDesignCode"
         Me.ColDesignCode.Visible = True
-        Me.ColDesignCode.VisibleIndex = 0
-        Me.ColDesignCode.Width = 92
+        Me.ColDesignCode.VisibleIndex = 1
+        Me.ColDesignCode.Width = 64
         '
         'ColDisplayName
         '
@@ -228,8 +235,8 @@ Partial Class FormFGDesignList
         Me.ColDisplayName.FieldName = "design_display_name"
         Me.ColDisplayName.Name = "ColDisplayName"
         Me.ColDisplayName.Visible = True
-        Me.ColDisplayName.VisibleIndex = 2
-        Me.ColDisplayName.Width = 92
+        Me.ColDisplayName.VisibleIndex = 6
+        Me.ColDisplayName.Width = 98
         '
         'Orign
         '
@@ -237,8 +244,8 @@ Partial Class FormFGDesignList
         Me.Orign.FieldName = "season_orign"
         Me.Orign.Name = "Orign"
         Me.Orign.Visible = True
-        Me.Orign.VisibleIndex = 3
-        Me.Orign.Width = 120
+        Me.Orign.VisibleIndex = 2
+        Me.Orign.Width = 122
         '
         'GridColumnColor
         '
@@ -250,8 +257,8 @@ Partial Class FormFGDesignList
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 4
-        Me.GridColumnColor.Width = 67
+        Me.GridColumnColor.VisibleIndex = 7
+        Me.GridColumnColor.Width = 84
         '
         'GridColumnClass
         '
@@ -264,7 +271,7 @@ Partial Class FormFGDesignList
         Me.GridColumnClass.Name = "GridColumnClass"
         Me.GridColumnClass.Visible = True
         Me.GridColumnClass.VisibleIndex = 5
-        Me.GridColumnClass.Width = 64
+        Me.GridColumnClass.Width = 81
         '
         'GridColumnBreakSize
         '
@@ -272,12 +279,12 @@ Partial Class FormFGDesignList
         Me.GridColumnBreakSize.FieldName = "size_chart"
         Me.GridColumnBreakSize.Name = "GridColumnBreakSize"
         Me.GridColumnBreakSize.Visible = True
-        Me.GridColumnBreakSize.VisibleIndex = 6
+        Me.GridColumnBreakSize.VisibleIndex = 8
+        Me.GridColumnBreakSize.Width = 119
         '
         'GridColumnPrice
         '
         Me.GridColumnPrice.Caption = "Current Price"
-        Me.GridColumnPrice.DisplayFormat.FormatString = "N2"
         Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
@@ -293,8 +300,6 @@ Partial Class FormFGDesignList
         Me.GridColumnUSCode.Caption = "US Code"
         Me.GridColumnUSCode.FieldName = "sample_us_code"
         Me.GridColumnUSCode.Name = "GridColumnUSCode"
-        Me.GridColumnUSCode.Visible = True
-        Me.GridColumnUSCode.VisibleIndex = 1
         '
         'GridColumnIdSample
         '
@@ -307,8 +312,6 @@ Partial Class FormFGDesignList
         Me.GridColumn1.Caption = "Data Sample"
         Me.GridColumn1.FieldName = "status_sample"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 8
         '
         'RepositoryItemCheckEdit1
         '
@@ -321,6 +324,33 @@ Partial Class FormFGDesignList
         '
         Me.GridView2.GridControl = Me.GCDesign
         Me.GridView2.Name = "GridView2"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Style Country"
+        Me.GridColumn2.FieldName = "country"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.Width = 123
+        '
+        'GridColumnCodeImport
+        '
+        Me.GridColumnCodeImport.Caption = "Code Import"
+        Me.GridColumnCodeImport.FieldName = "code_import"
+        Me.GridColumnCodeImport.Name = "GridColumnCodeImport"
+        Me.GridColumnCodeImport.Visible = True
+        Me.GridColumnCodeImport.VisibleIndex = 0
+        Me.GridColumnCodeImport.Width = 100
+        '
+        'GridColumnSourceDisplay
+        '
+        Me.GridColumnSourceDisplay.Caption = "Product Origin"
+        Me.GridColumnSourceDisplay.FieldName = "product_source_display"
+        Me.GridColumnSourceDisplay.Name = "GridColumnSourceDisplay"
+        Me.GridColumnSourceDisplay.Visible = True
+        Me.GridColumnSourceDisplay.VisibleIndex = 4
+        Me.GridColumnSourceDisplay.Width = 111
         '
         'FormFGDesignList
         '
@@ -379,4 +409,7 @@ Partial Class FormFGDesignList
     Friend WithEvents GridColumnUSCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdSample As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCodeImport As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSourceDisplay As DevExpress.XtraGrid.Columns.GridColumn
 End Class
