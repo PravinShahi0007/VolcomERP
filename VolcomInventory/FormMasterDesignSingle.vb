@@ -465,7 +465,7 @@
         Else
             'ins jika dilakuyukan di LINE LIST
             SLEDesign.EditValue = Nothing
-            If formName = "FormFGLineList" Then
+            If formName = "FormFGLineList" Or formName = "FormFGDesignList" Then
                 LESeason.EditValue = id_season_par
                 LESampleOrign.EditValue = Nothing
             End If
@@ -479,7 +479,7 @@
             TxtFabrication.Enabled = False
             LESampleOrign.Enabled = False
             LEPlanStatus.Enabled = False
-        ElseIf id_pop_up = "2" Then 'design
+        ElseIf id_pop_up = "2" Then 'sample dept
             XTPLineList.PageVisible = False
             XTPPrice.PageVisible = False
             XTPSize.PageVisible = False
@@ -550,6 +550,38 @@
             XTPSize.Visible = False
             XTPLineList.Visible = False
             XTPPrice.Visible = False
+        ElseIf id_pop_up = "5" Then 'design dept
+            TEName.Enabled = True
+            BeditCodeDsg.Enabled = True
+            BRefreshCodeDsg.Enabled = True
+            BGenerateDesc.Enabled = True
+            LESampleOrign.Enabled = True
+            TxtFabrication.Enabled = True
+            SLEDesign.Enabled = True
+            GCCodeDsg.Enabled = True
+            BtnAddSeaason.Enabled = True
+
+            XTPLineList.PageVisible = False
+            XTPPrice.PageVisible = False
+            XTPSize.PageVisible = False
+            LEUOM.Enabled = False
+            LESeason.Enabled = False
+            SLEDel.Enabled = False
+            TxtDelDate.Enabled = False
+            LERetCode.Enabled = False
+            DERetDate.Enabled = False
+            TELifetime.Enabled = False
+            DEEOS.Enabled = False
+            BeditCode.Enabled = False
+            BRefreshCode.Enabled = False
+            TECode.Enabled = False
+            BGenerate.Enabled = False
+            TEDisplayName.Enabled = False
+            BtnGetLastCount.Enabled = False
+            GCCode.Enabled = False
+            DEWHDate.Enabled = False
+            DEInStoreDet.Enabled = False
+            BtnAddRetCode.Enabled = False
         Else 'unidentified -> from formmasterproduct
             XTPLineList.PageVisible = False
             XTPSize.PageVisible = False
@@ -1401,9 +1433,6 @@
         lifetime()
     End Sub
 
-    Private Sub TEDisplayName_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TEDisplayName.EditValueChanged
-
-    End Sub
 
     Private Sub GVProduct_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVProduct.DoubleClick
         editSize()
@@ -1517,7 +1546,7 @@
         End If
     End Sub
 
-    Private Sub SimpleButton2_Click_2(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+    Private Sub SimpleButton2_Click_2(sender As Object, e As EventArgs) Handles BRefreshCodeDsg.Click
         load_isi_param("2")
         load_template_dsg(LETemplateDsg.EditValue)
     End Sub
@@ -1527,4 +1556,5 @@
         FormCodeTemplateEdit.id_template_code = LETemplateDsg.EditValue.ToString
         FormCodeTemplateEdit.ShowDialog()
     End Sub
+
 End Class

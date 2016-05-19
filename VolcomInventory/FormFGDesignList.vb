@@ -11,12 +11,12 @@
     'view season
     Sub viewSeason()
         Dim query As String = ""
-        query += "Select (-1) As id_season, ('All Season') AS season,  (-1) AS id_range, (0) AS `range` "
-        query += "UNION ALL "
+        'query += "Select (-1) As id_season, ('All Season') AS season,  (-1) AS id_range, (0) AS `range` "
+        'query += "UNION ALL "
         query += "Select a.id_season, a.season, b.id_range, b.`range`  "
         query += "From tb_season a "
         query += "INNER Join tb_range b ON a.id_range = b.id_range "
-        query += "ORDER BY `range` ASC "
+        query += "ORDER BY `range` DESC "
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
 
@@ -57,7 +57,7 @@
     Sub check_menu()
         If GVDesign.RowCount < 1 Then
             'hide all except new
-            bnew_active = "0"
+            bnew_active = "1"
             bedit_active = "0"
             bdel_active = "0"
             checkFormAccess(Name)

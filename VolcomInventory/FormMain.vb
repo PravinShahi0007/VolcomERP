@@ -725,10 +725,10 @@ Public Class FormMain
             If FormBOM.XTCBOMSelection.SelectedTabPageIndex = 0 Then
                 'Try
                 FormBOMDesignSingle.id_pop_up = "-1"
-                    FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
-                    FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
-                    'FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-                    FormBOMDesignSingle.ShowDialog()
+                FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
+                'FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                FormBOMDesignSingle.ShowDialog()
                 'Catch ex As Exception
                 'stopCustom("Please try again later.")
                 'End Try
@@ -1409,6 +1409,13 @@ Public Class FormMain
             'Return Internal sale
             FormSampleReturnPLDet.action = "ins"
             FormSampleReturnPLDet.ShowDialog()
+        ElseIf formName = "FormFGDesignList" Then
+            'DESIGN LIST
+            FormMasterDesignSingle.id_pop_up = "5"
+            FormMasterDesignSingle.id_season_par = FormFGDesignList.SLESeason.EditValue.ToString
+            FormMasterDesignSingle.form_name = Name
+            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+            FormMasterDesignSingle.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
