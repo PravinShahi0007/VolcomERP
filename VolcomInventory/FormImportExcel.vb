@@ -773,7 +773,7 @@ Public Class FormImportExcel
             Try
                 Dim id_ovh_estimate As String = get_setup_field("id_ovh_estimate")
 
-                Dim query_master As String = "call view_all_design_param('AND f1.id_active=1 ')"
+                Dim query_master As String = "CALL view_all_design_param('AND f1.id_active=1 ')"
                 Dim data_master As DataTable = execute_query(query_master, -1, True, "", "", "", "")
 
                 Dim query_vendor_ovh As String = "SELECT ovhp.id_ovh_price,c.id_comp AS id_comp,cc.id_comp_contact,comp_number,c.comp_name,cur.currency FROM tb_m_ovh_price ovhp INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = ovhp.id_comp_contact INNER JOIN  tb_m_comp c ON cc.id_comp=c.id_comp INNER JOIN tb_lookup_currency cur ON cur.id_currency=ovhp.id_currency WHERE ovhp.id_ovh='" + id_ovh_estimate + "'"
