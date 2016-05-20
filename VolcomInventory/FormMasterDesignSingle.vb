@@ -394,17 +394,18 @@
                 'view code detail
                 query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplate.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
                 Dim data_value As DataTable = execute_query(query, -1, True, "", "", "", "")
-                data_insert_parameter.Clear()
                 If Not data_value.Rows.Count = 0 Then
+                    data_insert_parameter.Clear()
                     For i As Integer = 0 To data_value.Rows.Count - 1
                         data_insert_parameter.Rows.Add(data_value.Rows(i)("id_code").ToString, data_value.Rows(i)("id_code_detail").ToString)
                     Next
                 End If
 
+                'view DESIGN detail
                 query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplateDsg.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
                 Dim data_value_dsg As DataTable = execute_query(query, -1, True, "", "", "", "")
-                data_insert_parameter_dsg.Clear()
                 If Not data_value_dsg.Rows.Count = 0 Then
+                    data_insert_parameter_dsg.Clear()
                     For i As Integer = 0 To data_value_dsg.Rows.Count - 1
                         data_insert_parameter_dsg.Rows.Add(data_value_dsg.Rows(i)("id_code").ToString, data_value_dsg.Rows(i)("id_code_detail").ToString)
                     Next
@@ -775,25 +776,30 @@
         If id_pop_up = "6" Then
             EP_TE_cant_blank(EPMasterDesign, TECode)
         End If
+        If id_pop_up = "5" Then
+            EP_TE_cant_blank(EPMasterDesign, TEDisplayName)
+        End If
         validateLifetime()
         EP_DE_cant_blank(EPMasterDesign, DERetDate)
         EP_DE_cant_blank(EPMasterDesign, TxtDelDate)
 
-        'cek code
-        Dim query_cek_code As String = ""
-        If id_design = "-1" Then 'New
-            query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' "
-        Else 'Edit
-            If dupe = "-1" Then
-                query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_design !='" + id_design + "' "
-            Else
-                query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_active=1 "
+        'cek code- hanya utk codefikasi
+        If id_pop_up = "6" Then
+            Dim query_cek_code As String = ""
+            If id_design = "-1" Then 'New
+                query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' "
+            Else 'Edit
+                If dupe = "-1" Then
+                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_design !='" + id_design + "' "
+                Else
+                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_active=1 "
+                End If
             End If
-        End If
-        Dim jum_row As String = execute_query(query_cek_code, 0, True, "", "", "", "")
-        If jum_row > 0 Then
-            stopCustom("Duplicate code, please fill another code.")
-            Exit Sub
+            Dim jum_row As String = execute_query(query_cek_code, 0, True, "", "", "", "")
+            If jum_row > 0 Then
+                stopCustom("Duplicate code, please fill another code.")
+                Exit Sub
+            End If
         End If
 
         Cursor = Cursors.WaitCursor
@@ -840,10 +846,23 @@
                         save_image_ori(PictureEdit1, product_image_path, id_design_tersimpan & ".jpg")
                         query = String.Format("DELETE FROM tb_m_design_code WHERE id_design='" & id_design_tersimpan & "'")
                         execute_non_query(query, True, "", "", "", "")
+
+                        'codefication
                         For i As Integer = 0 To GVCode.RowCount - 1
                             Try
                                 If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = 0 Then
                                     query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCode.GetRowCellValue(i, "value").ToString)
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
+                            Catch ex As Exception
+                            End Try
+                        Next
+
+                        'detail design
+                        For i As Integer = 0 To GVCodeDsg.RowCount - 1
+                            Try
+                                If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = "0" Then
+                                    query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design, GVCodeDsg.GetRowCellValue(i, "value").ToString)
                                     execute_non_query(query, True, "", "", "", "")
                                 End If
                             Catch ex As Exception
@@ -860,19 +879,23 @@
                             FormFGLineList.SLESeason.EditValue = LESeason.EditValue
                             FormFGLineList.viewLineList()
                             FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design_tersimpan)
+                        ElseIf form_name = "FormFGDesignList" Then
+                            FormFGDesignList.SLESeason.EditValue = LESeason.EditValue
+                            FormFGDesignList.viewData()
+                            FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design_tersimpan)
                         End If
 
                         dupe = "-1"
                         id_design = id_design_tersimpan
                         Dim stt As New ClassDesign
                         stt.updatedTime(id_design)
-                        infoCustom("Design : " + code + "/" + display_name + ", has been sucessfully created. Please input master size.")
+                        infoCustom(display_name + ", has been sucessfully created. Please input master size.")
                         actionLoad()
                     End If
                 End If
             Else
                 'edit
-                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Then
+                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Then
                     errorInput()
                 Else
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -909,10 +932,23 @@
                         save_image_ori(PictureEdit1, product_image_path, id_design & ".jpg")
                         query = String.Format("DELETE FROM tb_m_design_code WHERE id_design='" & id_design & "'")
                         execute_non_query(query, True, "", "", "", "")
+
+                        'codefication
                         For i As Integer = 0 To GVCode.RowCount - 1
                             Try
                                 If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = "0" Then
                                     query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design, GVCode.GetRowCellValue(i, "value").ToString)
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
+                            Catch ex As Exception
+                            End Try
+                        Next
+
+                        'detail design
+                        For i As Integer = 0 To GVCodeDsg.RowCount - 1
+                            Try
+                                If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = "0" Then
+                                    query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design, GVCodeDsg.GetRowCellValue(i, "value").ToString)
                                     execute_non_query(query, True, "", "", "", "")
                                 End If
                             Catch ex As Exception
@@ -944,7 +980,7 @@
             End If
         Else
             'insert
-            If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Then
+            If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Then
                 errorInput()
             Else
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -982,6 +1018,18 @@
                     query = String.Format("DELETE FROM tb_m_design_code WHERE id_design='" & id_design_tersimpan & "'")
                     execute_non_query(query, True, "", "", "", "")
 
+                    'design detail
+                    For i As Integer = 0 To GVCodeDsg.RowCount - 1
+                        Try
+                            If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = 0 Then
+                                query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeDsg.GetRowCellValue(i, "value").ToString)
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
+                        Catch ex As Exception
+                        End Try
+                    Next
+
+                    'codefikasi
                     For i As Integer = 0 To GVCode.RowCount - 1
                         Try
                             If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = 0 Then
@@ -1002,6 +1050,10 @@
                         FormFGLineList.SLESeason.EditValue = LESeason.EditValue
                         FormFGLineList.viewLineList()
                         FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design_tersimpan)
+                    ElseIf form_name = "FormFGDesignList" Then
+                        FormFGDesignList.SLESeason.EditValue = LESeason.EditValue
+                        FormFGDesignList.viewData()
+                        FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design_tersimpan)
                     End If
                     id_design = id_design_tersimpan
 
@@ -1009,7 +1061,7 @@
                     Dim stt As New ClassDesign
                     stt.updatedTime(id_design)
 
-                    infoCustom("Design : " + code + "/" + display_name + ", has been sucessfully created. Please input master size.")
+                    infoCustom(display_name + " has been sucessfully created.")
                     actionLoad()
                 End If
             End If
@@ -1041,7 +1093,9 @@
     End Sub
 
     Private Sub TEDisplayName_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEDisplayName.Validating
-        EP_TE_cant_blank(EPMasterDesign, TEDisplayName)
+        If id_pop_up = "5" Then
+            EP_TE_cant_blank(EPMasterDesign, TEDisplayName)
+        End If
     End Sub
 
     Private Sub TELifetime_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TELifetime.Validating

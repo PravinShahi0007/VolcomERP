@@ -1413,7 +1413,7 @@ Public Class FormMain
             'DESIGN LIST
             FormMasterDesignSingle.id_pop_up = "5"
             FormMasterDesignSingle.id_season_par = FormFGDesignList.SLESeason.EditValue.ToString
-            FormMasterDesignSingle.form_name = Name
+            FormMasterDesignSingle.form_name = "FormFGDesignList"
             FormMasterDesignSingle.WindowState = FormWindowState.Maximized
             FormMasterDesignSingle.ShowDialog()
         Else
@@ -2178,7 +2178,7 @@ Public Class FormMain
                 FormMasterPriceSingle.id_fg_price = FormMasterPrice.GVPrice.GetFocusedRowCellValue("id_fg_price").ToString
                 FormMasterPriceSingle.ShowDialog()
             ElseIf formName = "FormFGDesignList" Then
-                FormMasterDesignSingle.id_pop_up = "2"
+                FormMasterDesignSingle.id_pop_up = "5"
                 FormMasterDesignSingle.form_name = "FormFGDesignList"
                 FormMasterDesignSingle.id_design = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
                 FormMasterDesignSingle.WindowState = FormWindowState.Maximized
@@ -5049,6 +5049,18 @@ Public Class FormMain
                 End If
             Else
                 stopCustom("This data already marked")
+            End If
+        ElseIf formName = "FormFGDesignList" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim id_design As String = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                    query = String.Format("DELETE FROM tb_m_design WHERE id_design='{0}'", id_design)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormFGDesignList.viewData()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
             End If
         Else
             RPSubMenu.Visible = False

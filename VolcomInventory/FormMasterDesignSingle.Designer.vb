@@ -126,7 +126,7 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DNCodeDesign = New DevExpress.XtraEditors.DataNavigator()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelDesc = New DevExpress.XtraEditors.PanelControl()
         Me.BGenerateDesc = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefreshCodeDsg = New DevExpress.XtraEditors.SimpleButton()
@@ -234,8 +234,8 @@ Partial Class FormMasterDesignSingle
         Me.XTPDesign.SuspendLayout()
         CType(Me.GCCodeDsg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCodeDsg, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
+        CType(Me.PanelDesc, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelDesc.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LETemplateDsg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1309,7 +1309,7 @@ Partial Class FormMasterDesignSingle
         '
         Me.XTPDesign.Controls.Add(Me.GCCodeDsg)
         Me.XTPDesign.Controls.Add(Me.DNCodeDesign)
-        Me.XTPDesign.Controls.Add(Me.PanelControl4)
+        Me.XTPDesign.Controls.Add(Me.PanelDesc)
         Me.XTPDesign.Controls.Add(Me.PanelControl3)
         Me.XTPDesign.Name = "XTPDesign"
         Me.XTPDesign.Size = New System.Drawing.Size(499, 538)
@@ -1372,18 +1372,18 @@ Partial Class FormMasterDesignSingle
         Me.DNCodeDesign.TabIndex = 94
         Me.DNCodeDesign.Visible = False
         '
-        'PanelControl4
+        'PanelDesc
         '
-        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.TEDisplayName)
-        Me.PanelControl4.Controls.Add(Me.BGenerateDesc)
-        Me.PanelControl4.Controls.Add(Me.LabelControl1)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 461)
-        Me.PanelControl4.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(499, 77)
-        Me.PanelControl4.TabIndex = 100
+        Me.PanelDesc.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelDesc.Controls.Add(Me.TEDisplayName)
+        Me.PanelDesc.Controls.Add(Me.BGenerateDesc)
+        Me.PanelDesc.Controls.Add(Me.LabelControl1)
+        Me.PanelDesc.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelDesc.Location = New System.Drawing.Point(0, 461)
+        Me.PanelDesc.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.PanelDesc.Name = "PanelDesc"
+        Me.PanelDesc.Size = New System.Drawing.Size(499, 77)
+        Me.PanelDesc.TabIndex = 100
         '
         'BGenerateDesc
         '
@@ -1948,9 +1948,9 @@ Partial Class FormMasterDesignSingle
         Me.XTPDesign.ResumeLayout(False)
         CType(Me.GCCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
+        CType(Me.PanelDesc, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelDesc.ResumeLayout(False)
+        Me.PanelDesc.PerformLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
@@ -2134,6 +2134,6 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelDesc As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BGenerateDesc As DevExpress.XtraEditors.SimpleButton
 End Class
