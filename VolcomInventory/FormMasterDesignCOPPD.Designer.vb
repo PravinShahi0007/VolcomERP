@@ -35,9 +35,9 @@ Partial Class FormMasterDesignCOPPD
         Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEEcop = New DevExpress.XtraEditors.TextEdit()
         Me.PictureSeason = New DevExpress.XtraEditors.PictureEdit()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,8 +47,8 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEEcop.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -70,7 +70,7 @@ Partial Class FormMasterDesignCOPPD
         Me.TEVendor.Properties.Appearance.Options.UseFont = True
         Me.TEVendor.Properties.EditValueChangedDelay = 1
         Me.TEVendor.Size = New System.Drawing.Size(130, 20)
-        Me.TEVendor.TabIndex = 8889
+        Me.TEVendor.TabIndex = 1
         '
         'TEVendorName
         '
@@ -131,7 +131,8 @@ Partial Class FormMasterDesignCOPPD
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(529, 38)
-        Me.PanelControl3.TabIndex = 8893
+        Me.PanelControl3.TabIndex = 5
+        Me.PanelControl3.TabStop = True
         '
         'BtnCancel
         '
@@ -141,8 +142,7 @@ Partial Class FormMasterDesignCOPPD
         Me.BtnCancel.Location = New System.Drawing.Point(377, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
-        Me.BtnCancel.TabIndex = 10
-        Me.BtnCancel.TabStop = False
+        Me.BtnCancel.TabIndex = 7
         Me.BtnCancel.Text = "Cancel"
         '
         'BtnSave
@@ -153,8 +153,7 @@ Partial Class FormMasterDesignCOPPD
         Me.BtnSave.Location = New System.Drawing.Point(452, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 34)
-        Me.BtnSave.TabIndex = 8
-        Me.BtnSave.TabStop = False
+        Me.BtnSave.TabIndex = 6
         Me.BtnSave.Text = "Save"
         '
         'LabelControl2
@@ -205,7 +204,7 @@ Partial Class FormMasterDesignCOPPD
         Me.LECurrency.Properties.NullText = ""
         Me.LECurrency.Properties.ShowFooter = False
         Me.LECurrency.Size = New System.Drawing.Size(173, 20)
-        Me.LECurrency.TabIndex = 8899
+        Me.LECurrency.TabIndex = 2
         '
         'LabelControl7
         '
@@ -224,16 +223,19 @@ Partial Class FormMasterDesignCOPPD
         Me.LabelControl3.TabIndex = 8901
         Me.LabelControl3.Text = "Kurs"
         '
-        'TextEdit3
+        'TEKurs
         '
-        Me.TextEdit3.EditValue = ""
-        Me.TextEdit3.Location = New System.Drawing.Point(85, 100)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit3.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit3.Properties.EditValueChangedDelay = 1
-        Me.TextEdit3.Size = New System.Drawing.Size(231, 20)
-        Me.TextEdit3.TabIndex = 8900
+        Me.TEKurs.EditValue = ""
+        Me.TEKurs.Location = New System.Drawing.Point(85, 100)
+        Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEKurs.Properties.Appearance.Options.UseFont = True
+        Me.TEKurs.Properties.EditValueChangedDelay = 1
+        Me.TEKurs.Properties.Mask.EditMask = "N2"
+        Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEKurs.Size = New System.Drawing.Size(231, 20)
+        Me.TEKurs.TabIndex = 3
         '
         'LabelControl4
         '
@@ -244,16 +246,23 @@ Partial Class FormMasterDesignCOPPD
         Me.LabelControl4.TabIndex = 8903
         Me.LabelControl4.Text = "ECOP"
         '
-        'TextEdit4
+        'TEEcop
         '
-        Me.TextEdit4.EditValue = ""
-        Me.TextEdit4.Location = New System.Drawing.Point(85, 126)
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextEdit4.Properties.Appearance.Options.UseFont = True
-        Me.TextEdit4.Properties.EditValueChangedDelay = 1
-        Me.TextEdit4.Size = New System.Drawing.Size(231, 20)
-        Me.TextEdit4.TabIndex = 8902
+        Me.TEEcop.EditValue = ""
+        Me.TEEcop.Location = New System.Drawing.Point(85, 126)
+        Me.TEEcop.Name = "TEEcop"
+        Me.TEEcop.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TEEcop.Properties.Appearance.Options.UseFont = True
+        Me.TEEcop.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEEcop.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEEcop.Properties.EditFormat.FormatString = "N2"
+        Me.TEEcop.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEEcop.Properties.EditValueChangedDelay = 1
+        Me.TEEcop.Properties.Mask.EditMask = "N2"
+        Me.TEEcop.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEEcop.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEEcop.Size = New System.Drawing.Size(231, 20)
+        Me.TEEcop.TabIndex = 4
         '
         'PictureSeason
         '
@@ -274,9 +283,9 @@ Partial Class FormMasterDesignCOPPD
         Me.ClientSize = New System.Drawing.Size(529, 206)
         Me.Controls.Add(Me.PictureSeason)
         Me.Controls.Add(Me.LabelControl4)
-        Me.Controls.Add(Me.TextEdit4)
+        Me.Controls.Add(Me.TEEcop)
         Me.Controls.Add(Me.LabelControl3)
-        Me.Controls.Add(Me.TextEdit3)
+        Me.Controls.Add(Me.TEKurs)
         Me.Controls.Add(Me.LECurrency)
         Me.Controls.Add(Me.LabelControl7)
         Me.Controls.Add(Me.LabelControl2)
@@ -291,6 +300,7 @@ Partial Class FormMasterDesignCOPPD
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterDesignCOPPD"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Design ECOP PD"
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -301,8 +311,8 @@ Partial Class FormMasterDesignCOPPD
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEEcop.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -323,8 +333,8 @@ Partial Class FormMasterDesignCOPPD
     Friend WithEvents LECurrency As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEEcop As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PictureSeason As DevExpress.XtraEditors.PictureEdit
 End Class

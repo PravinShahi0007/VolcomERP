@@ -12,7 +12,22 @@
     End Sub
 
     Private Sub FormMasterDesignCOPPD_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TEEcop.EditValue = 0.00
+        TEKurs.EditValue = 1.0
 
+        view_currency(LECurrency)
+        TEVendor.Focus()
+    End Sub
+
+    Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
+        Dim query As String = "SELECT id_currency,currency FROM tb_lookup_currency"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        lookup.Properties.DataSource = data
+
+        lookup.Properties.DisplayMember = "currency"
+        lookup.Properties.ValueMember = "id_currency"
+        lookup.ItemIndex = 0
     End Sub
 
     Private Sub TEVendor_KeyDown(sender As Object, e As KeyEventArgs) Handles TEVendor.KeyDown
@@ -40,5 +55,31 @@
                 LECurrency.Focus()
             End If
         End If
+    End Sub
+
+    Private Sub LECurrency_KeyDown(sender As Object, e As KeyEventArgs) Handles LECurrency.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            TEKurs.Focus()
+        End If
+    End Sub
+
+    Private Sub TEKurs_KeyDown(sender As Object, e As KeyEventArgs) Handles TEKurs.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            TEEcop.Focus()
+        End If
+    End Sub
+
+    Private Sub TEEcop_KeyDown(sender As Object, e As KeyEventArgs) Handles TEEcop.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BtnSave.Focus()
+        End If
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        Dim query As String = ""
+        query = String.Format("UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor='{3}',prod_order_cop_pd_curr='{4}' WHERE id_design='{0}'", id_design, decimalSQL(TEEcop.EditValue.ToString), decimalSQL(TEKurs.EditValue.ToString), id_comp_contact, LECurrency.EditValue.ToString)
+        execute_non_query(query, True, "", "", "", "")
+        infoCustom("ECOP entry success.")
+        Close()
     End Sub
 End Class

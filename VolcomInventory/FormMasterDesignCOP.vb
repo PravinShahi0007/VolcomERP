@@ -110,4 +110,11 @@
         FormProductionCOP.id_design = GVDesign.GetFocusedRowCellValue("id_design").ToString
         FormProductionCOP.ShowDialog()
     End Sub
+
+    Private Sub SMEditEcopPD_Click(sender As Object, e As EventArgs) Handles SMEditEcopPD.Click
+        FormMasterDesignCOPPD.id_design = GVDesign.GetFocusedRowCellValue("id_design").ToString
+        FormMasterDesignCOPPD.TECode.Text = GVDesign.GetFocusedRowCellValue("design_code").ToString
+        FormMasterDesignCOPPD.TEDesc.Text = GVDesign.GetFocusedRowCellValue("design_display_name").ToString
+        FormMasterDesignCOPPD.ShowDialog()
+    End Sub
 End Class
