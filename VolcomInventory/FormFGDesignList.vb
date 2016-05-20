@@ -2,6 +2,7 @@
     Dim bnew_active As String = "0"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "0"
+    Dim bdupe_active As String = "1"
     Public id_pop_up As String = "-1"
 
     Private Sub FormFGDesignList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -66,8 +67,10 @@
             bnew_active = "1"
             bedit_active = "0"
             bdel_active = "0"
+            bdupe_active = "0"
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
+            button_main_ext("3", bdupe_active)
         Else
             noManipulating()
         End If
@@ -77,19 +80,22 @@
         Try
             Dim indeks As Integer = GVDesign.FocusedRowHandle
             If indeks < 0 Then
-                bnew_active = "0"
+                bnew_active = "1"
                 bedit_active = "0"
                 bdel_active = "0"
+                bdupe_active = "0"
             Else
                 'show all
                 'If id_pop_up = "1" Then 'design dept - input sample for line list
                 bnew_active = "1"
                 bedit_active = "1"
                 bdel_active = "1"
+                bdupe_active = "1"
                 'End If
             End If
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
+            button_main_ext("3", bdupe_active)
         Catch ex As Exception
         End Try
     End Sub

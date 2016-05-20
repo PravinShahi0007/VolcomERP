@@ -307,7 +307,7 @@
         load_isi_param("2")
 
         'permission condition
-        If id_pop_up = "-1" Or id_pop_up = "2" Then
+        If id_pop_up = "-1" Or id_pop_up = "2" Or id_pop_up = "5" Then
             viewTemplate(LETemplate, "1")
             viewTemplate(LETemplateDsg, "3")
             ss_dept = get_setup_field("ss_default_dept")
@@ -560,12 +560,12 @@
             SLEDesign.Enabled = True
             GCCodeDsg.Enabled = True
             BtnAddSeaason.Enabled = True
+            LESeason.Enabled = True
 
             XTPLineList.PageVisible = False
             XTPPrice.PageVisible = False
             XTPSize.PageVisible = False
             LEUOM.Enabled = False
-            LESeason.Enabled = False
             SLEDel.Enabled = False
             TxtDelDate.Enabled = False
             LERetCode.Enabled = False
@@ -734,56 +734,12 @@
             code_full += code
         Next
         TECode.Text = code_full
-        'display name
-        Dim string_name As String = ""
-        Dim class_name As String = ""
-        Dim promo_name As String = ""
-
-        For i As Integer = 0 To GVCodeDsg.RowCount - 1
-            code = ""
-            id_code = ""
-            Try
-                id_code = GVCodeDsg.GetRowCellValue(i, "value").ToString
-            Catch ex As Exception
-                id_code = ""
-            End Try
-
-            If Not id_code = "" Or id_code = "0" Then
-                query = String.Format("SELECT tb_m_code.is_include_name FROM tb_m_code,tb_m_code_detail WHERE tb_m_code.id_code=tb_m_code_detail.id_code AND tb_m_code_detail.id_code_detail='" & id_code & "'")
-                code = execute_query(query, 0, True, "", "", "", "")
-                If code.ToString = "True" Then
-                    query = String.Format("SELECT m_c.id_code, m_c_d.display_name,m_c.code_name FROM tb_m_code_detail m_c_d INNER JOIN tb_m_code m_c ON m_c.id_code=m_c_d.id_code WHERE m_c_d.id_code_detail='" & id_code & "'")
-                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-                    code = data.Rows(0)("display_name").ToString
-                    If data.Rows(0)("id_code").ToString = get_setup_field("id_code_fg_class") Then
-                        class_name = code
-                    ElseIf data.Rows(0)("id_code").ToString = get_setup_field("id_code_fg_prod_non_md") Then
-                        promo_name = code
-                    Else
-                        string_name += " " & code
-                    End If
-                End If
-            End If
-        Next
-
-        Dim full_desc As String = ""
-        If id_pop_up = "3" Then 'non merch
-            full_desc = promo_name & " " & class_name & " " & TEName.Text.ToUpper & string_name.ToUpper
-        Else
-            full_desc = class_name & " " & TEName.Text.ToUpper & string_name.ToUpper
-        End If
-
-        If full_desc.Length > 25 Then
-            TEDisplayName.Text = full_desc.Substring(0, 25)
-        Else
-            TEDisplayName.Text = full_desc
-        End If
     End Sub
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         ValidateChildren()
         Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active, design_detail As String
-        namex = addSlashes(TEName.Text)
+        namex = addSlashes(TEName.Text.TrimStart(" ").TrimEnd(" "))
         display_name = TEDisplayName.Text
         code = TECode.Text
         id_uom = LEUOM.EditValue
@@ -816,7 +772,9 @@
         'validate
         EP_TE_cant_blank(EPMasterDesign, TEName)
         EP_TE_cant_blank(EPMasterDesign, TEDisplayName)
-        EP_TE_cant_blank(EPMasterDesign, TECode)
+        If id_pop_up = "6" Then
+            EP_TE_cant_blank(EPMasterDesign, TECode)
+        End If
         validateLifetime()
         EP_DE_cant_blank(EPMasterDesign, DERetDate)
         EP_DE_cant_blank(EPMasterDesign, TxtDelDate)
@@ -1091,8 +1049,10 @@
     End Sub
 
     Private Sub TECode_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TECode.Validating
-        EP_TE_cant_blank(EPMasterDesign, TECode)
-        EPMasterDesign.SetIconPadding(TECode, 400)
+        If id_pop_up = "6" Then 'only for codefication
+            EP_TE_cant_blank(EPMasterDesign, TECode)
+            EPMasterDesign.SetIconPadding(TECode, 400)
+        End If
     End Sub
 
     Private Sub FormMasterDesignSingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
@@ -1456,6 +1416,9 @@
         Catch ex As Exception
         End Try
         FormSeason.quick_edit = "1"
+        If id_pop_up = "5" Then
+            FormSeason.id_pop_up = "1"
+        End If
         FormSeason.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -1557,4 +1520,51 @@
         FormCodeTemplateEdit.ShowDialog()
     End Sub
 
+    Private Sub BGenerateDesc_Click(sender As Object, e As EventArgs) Handles BGenerateDesc.Click
+        'display name
+        Dim id_code, code, query As String
+        Dim string_name As String = ""
+        Dim class_name As String = ""
+        Dim promo_name As String = ""
+
+        For i As Integer = 0 To GVCodeDsg.RowCount - 1
+            code = ""
+            id_code = ""
+            Try
+                id_code = GVCodeDsg.GetRowCellValue(i, "value").ToString
+            Catch ex As Exception
+                id_code = ""
+            End Try
+
+            If Not id_code = "" Or id_code = "0" Then
+                query = String.Format("SELECT tb_m_code.is_include_name FROM tb_m_code,tb_m_code_detail WHERE tb_m_code.id_code=tb_m_code_detail.id_code AND tb_m_code_detail.id_code_detail='" & id_code & "'")
+                code = execute_query(query, 0, True, "", "", "", "")
+                If code.ToString = "True" Then
+                    query = String.Format("SELECT m_c.id_code, m_c_d.display_name,m_c.code_name FROM tb_m_code_detail m_c_d INNER JOIN tb_m_code m_c ON m_c.id_code=m_c_d.id_code WHERE m_c_d.id_code_detail='" & id_code & "'")
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    code = data.Rows(0)("display_name").ToString
+                    If data.Rows(0)("id_code").ToString = get_setup_field("id_code_fg_class") Then
+                        class_name = code
+                    ElseIf data.Rows(0)("id_code").ToString = get_setup_field("id_code_fg_prod_non_md") Then
+                        promo_name = code
+                    Else
+                        string_name += " " & code
+                    End If
+                End If
+            End If
+        Next
+
+        Dim full_desc As String = ""
+        If id_pop_up = "3" Then 'non merch
+            full_desc = promo_name & " " & class_name & " " & TEName.Text.ToUpper & string_name.ToUpper
+        Else
+            full_desc = class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+        End If
+
+        If full_desc.Length > 25 Then
+            TEDisplayName.Text = full_desc.Substring(0, 25)
+        Else
+            TEDisplayName.Text = full_desc
+        End If
+    End Sub
 End Class

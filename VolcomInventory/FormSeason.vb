@@ -18,6 +18,7 @@
     Dim bdel_active21 As String = "1"
     Public quick_edit As String = "-1"
     Public is_md As String = "1"
+    Public id_pop_up As String = "-1"
 
     'load
     Private Sub FormSeason_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -34,6 +35,10 @@
         'form is_md
         If is_md <> "1" Then
             XTPOriginSeason.PageVisible = False
+        End If
+
+        If id_pop_up = "1" Then
+            XTPDelivery.PageEnabled = False
         End If
     End Sub
     'View Range

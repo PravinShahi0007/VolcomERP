@@ -121,13 +121,13 @@ Partial Class FormMasterDesignSingle
         Me.PanC3 = New DevExpress.XtraEditors.PanelControl()
         Me.BeditCodeDsg = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.BGenerateDesc = New DevExpress.XtraEditors.SimpleButton()
         Me.GCCodeDsg = New DevExpress.XtraGrid.GridControl()
         Me.GVCodeDsg = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DNCodeDesign = New DevExpress.XtraEditors.DataNavigator()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BGenerateDesc = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefreshCodeDsg = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
@@ -232,10 +232,10 @@ Partial Class FormMasterDesignSingle
         CType(Me.BeditCodeDsg, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.BeditCodeDsg.SuspendLayout()
         Me.XTPDesign.SuspendLayout()
-        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl4.SuspendLayout()
         CType(Me.GCCodeDsg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCodeDsg, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LETemplateDsg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1315,29 +1315,6 @@ Partial Class FormMasterDesignSingle
         Me.XTPDesign.Size = New System.Drawing.Size(499, 538)
         Me.XTPDesign.Text = "Design Detail"
         '
-        'PanelControl4
-        '
-        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl4.Controls.Add(Me.TEDisplayName)
-        Me.PanelControl4.Controls.Add(Me.BGenerateDesc)
-        Me.PanelControl4.Controls.Add(Me.LabelControl1)
-        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 461)
-        Me.PanelControl4.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(499, 77)
-        Me.PanelControl4.TabIndex = 100
-        '
-        'BGenerateDesc
-        '
-        Me.BGenerateDesc.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BGenerateDesc.Location = New System.Drawing.Point(349, 34)
-        Me.BGenerateDesc.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.BGenerateDesc.Name = "BGenerateDesc"
-        Me.BGenerateDesc.Size = New System.Drawing.Size(124, 20)
-        Me.BGenerateDesc.TabIndex = 17
-        Me.BGenerateDesc.Text = "Generate Description"
-        '
         'GCCodeDsg
         '
         Me.GCCodeDsg.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1394,6 +1371,29 @@ Partial Class FormMasterDesignSingle
         Me.DNCodeDesign.Size = New System.Drawing.Size(499, 24)
         Me.DNCodeDesign.TabIndex = 94
         Me.DNCodeDesign.Visible = False
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.TEDisplayName)
+        Me.PanelControl4.Controls.Add(Me.BGenerateDesc)
+        Me.PanelControl4.Controls.Add(Me.LabelControl1)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 461)
+        Me.PanelControl4.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(499, 77)
+        Me.PanelControl4.TabIndex = 100
+        '
+        'BGenerateDesc
+        '
+        Me.BGenerateDesc.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BGenerateDesc.Location = New System.Drawing.Point(349, 34)
+        Me.BGenerateDesc.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BGenerateDesc.Name = "BGenerateDesc"
+        Me.BGenerateDesc.Size = New System.Drawing.Size(124, 20)
+        Me.BGenerateDesc.TabIndex = 17
+        Me.BGenerateDesc.Text = "Generate Description"
         '
         'PanelControl3
         '
@@ -1946,11 +1946,11 @@ Partial Class FormMasterDesignSingle
         CType(Me.BeditCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
         Me.BeditCodeDsg.ResumeLayout(False)
         Me.XTPDesign.ResumeLayout(False)
+        CType(Me.GCCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.GCCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
