@@ -5,19 +5,25 @@
     Public id_pop_up As String = "-1"
 
     Private Sub FormFGDesignList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        viewSeason()
+        viewType()
     End Sub
 
     'view season
-    Sub viewSeason()
+    Sub viewSeason(ByVal type As String)
         Dim query As String = ""
         'query += "Select (-1) As id_season, ('All Season') AS season,  (-1) AS id_range, (0) AS `range` "
         'query += "UNION ALL "
         query += "Select a.id_season, a.season, b.id_range, b.`range`  "
         query += "From tb_season a "
         query += "INNER Join tb_range b ON a.id_range = b.id_range "
+        query += "WHERE b.is_md='" + type + "' "
         query += "ORDER BY `range` DESC "
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
+    End Sub
+
+    Sub viewType()
+        Dim query As String = "SELECT * FROM tb_lookup_line_list_type a ORDER BY a.id_line_list_type ASC "
+        viewSearchLookupQuery(SLEType, query, "id_line_list_type", "line_list_type", "id_line_list_type")
     End Sub
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
@@ -98,5 +104,14 @@
             FormMain.but_edit()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub SLEType_EditValueChanged(sender As Object, e As EventArgs) Handles SLEType.EditValueChanged
+        Dim type_par As String = "-1"
+        Try
+            type_par = SLEType.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        viewSeason(type_par)
     End Sub
 End Class
