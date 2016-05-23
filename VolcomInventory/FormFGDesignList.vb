@@ -34,6 +34,9 @@
     End Sub
 
     Sub viewData()
+        GridColumnPic.Visible = False
+        CheckImg.EditValue = False
+
         Dim id_ss As String = SLESeason.EditValue.ToString
         Dim cond As String = ""
         If id_ss = "-1" Then
@@ -50,6 +53,12 @@
         End If
 
         check_menu()
+
+        If GVDesign.RowCount > 0 Then
+            PanelOpt.Visible = True
+        Else
+            PanelOpt.Visible = False
+        End If
     End Sub
 
     Private Sub FormFGDesignList_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -119,5 +128,25 @@
         Catch ex As Exception
         End Try
         viewSeason(type_par)
+    End Sub
+
+    Private Sub CheckImg_CheckedChanged(sender As Object, e As EventArgs) Handles CheckImg.CheckedChanged
+        Dim val As String = CheckImg.EditValue.ToString
+        If val = "True" Then
+            GridColumnPic.Visible = True
+            For i As Integer = 0 To ((GVDesign.RowCount - 1) - GetGroupRowCount(GVDesign))
+                Dim id As String = GVDesign.GetRowCellValue(i, "id_design").ToString
+                Dim path As String = ""
+                If System.IO.File.Exists(product_image_path & id & ".jpg".ToLower) Then
+                    path = product_image_path & id & ".jpg".ToLower
+                Else
+                    path = product_image_path & "default" & ".jpg".ToLower
+                End If
+                Dim img As Image = Image.FromFile(path)
+                GVDesign.SetRowCellValue(i, GridColumnPic, img)
+            Next
+        Else
+            GridColumnPic.Visible = False
+        End If
     End Sub
 End Class
