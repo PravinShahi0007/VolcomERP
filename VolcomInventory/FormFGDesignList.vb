@@ -36,6 +36,7 @@
     Sub viewData()
         GridColumnPic.Visible = False
         CheckImg.EditValue = False
+        GVDesign.RowHeight = 10
 
         Dim id_ss As String = SLESeason.EditValue.ToString
         Dim cond As String = ""
@@ -131,22 +132,52 @@
     End Sub
 
     Private Sub CheckImg_CheckedChanged(sender As Object, e As EventArgs) Handles CheckImg.CheckedChanged
+        Cursor = Cursors.WaitCursor
         Dim val As String = CheckImg.EditValue.ToString
         If val = "True" Then
             GridColumnPic.Visible = True
-            For i As Integer = 0 To ((GVDesign.RowCount - 1) - GetGroupRowCount(GVDesign))
-                Dim id As String = GVDesign.GetRowCellValue(i, "id_design").ToString
-                Dim path As String = ""
-                If System.IO.File.Exists(product_image_path & id & ".jpg".ToLower) Then
-                    path = product_image_path & id & ".jpg".ToLower
-                Else
-                    path = product_image_path & "default" & ".jpg".ToLower
-                End If
-                Dim img As Image = Image.FromFile(path)
-                GVDesign.SetRowCellValue(i, GridColumnPic, img)
-            Next
         Else
             GridColumnPic.Visible = False
         End If
+        GCDesign.RefreshDataSource()
+        GVDesign.RefreshData()
+        Cursor = Cursors.Default
     End Sub
+
+    Private ImageDir As String = product_image_path
+    Private Images As Hashtable = New Hashtable()
+    Private Sub GVDesign_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVDesign.CustomUnboundColumnData
+        If e.Column.FieldName = "img" AndAlso e.IsGetData And CheckImg.EditValue.ToString = "True" Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim id As String = CStr(view.GetRowCellValue(e.ListSourceRowIndex, "id_design"))
+
+            Dim fileName As String = id & ".jpg".ToLower
+
+            If (Not Images.ContainsKey(fileName)) Then
+                Dim img As Image = Nothing
+                Dim resizeImg As Image = Nothing
+
+                Try
+
+                    Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(ImageDir, fileName, False)
+                    img = Image.FromFile(filePath)
+                    resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+                Catch
+
+                End Try
+
+                Images.Add(fileName, resizeImg)
+
+            End If
+
+            e.Value = Images(fileName)
+        End If
+    End Sub
+
+    Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
+        PanelOpt.Visible = False
+        GCDesign.DataSource = Nothing
+    End Sub
+
+
 End Class
