@@ -356,7 +356,10 @@
                 id_range_par = data.Rows(0)("id_range").ToString
                 TEName.Text = data.Rows(0)("design_name").ToString
                 TEDisplayName.Text = data.Rows(0)("design_display_name").ToString
-                TECode.Text = data.Rows(0)("design_code").ToString
+                If dupe = "-1" Then
+                    TECode.Text = data.Rows(0)("design_code").ToString
+                End If
+
 
                 LERetCode.EditValue = Nothing
                 LERetCode.ItemIndex = LERetCode.Properties.GetDataSourceRowIndex("id_ret_code", data.Rows(0)("id_ret_code").ToString)
@@ -392,14 +395,17 @@
                 BViewImage.Visible = True
 
                 'view code detail
-                query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplate.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
-                Dim data_value As DataTable = execute_query(query, -1, True, "", "", "", "")
-                If Not data_value.Rows.Count = 0 Then
-                    data_insert_parameter.Clear()
-                    For i As Integer = 0 To data_value.Rows.Count - 1
-                        data_insert_parameter.Rows.Add(data_value.Rows(i)("id_code").ToString, data_value.Rows(i)("id_code_detail").ToString)
-                    Next
+                If dupe = "-1" Then 'jika mode edit
+                    query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplate.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
+                    Dim data_value As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If Not data_value.Rows.Count = 0 Then
+                        data_insert_parameter.Clear()
+                        For i As Integer = 0 To data_value.Rows.Count - 1
+                            data_insert_parameter.Rows.Add(data_value.Rows(i)("id_code").ToString, data_value.Rows(i)("id_code_detail").ToString)
+                        Next
+                    End If
                 End If
+
 
                 'view DESIGN detail
                 query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplateDsg.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
@@ -812,9 +818,6 @@
                 Else
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                     If confirm = Windows.Forms.DialogResult.Yes Then
-                        'jika duplikat
-                        id_design_ref = id_design
-
                         query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code,id_uom,id_season,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail) "
                         query += "VALUES('" + namex + "','" + display_name + "','" + code + "','" + id_uom + "','" + id_season + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                         If design_eos = "-1" Then
@@ -862,7 +865,7 @@
                         For i As Integer = 0 To GVCodeDsg.RowCount - 1
                             Try
                                 If Not GVCodeDsg.GetRowCellValue(i, "value").ToString = "" Or GVCodeDsg.GetRowCellValue(i, "value").ToString = "0" Then
-                                    query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design, GVCodeDsg.GetRowCellValue(i, "value").ToString)
+                                    query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeDsg.GetRowCellValue(i, "value").ToString)
                                     execute_non_query(query, True, "", "", "", "")
                                 End If
                             Catch ex As Exception
@@ -889,7 +892,7 @@
                         id_design = id_design_tersimpan
                         Dim stt As New ClassDesign
                         stt.updatedTime(id_design)
-                        infoCustom(display_name + ", has been sucessfully created. Please input master size.")
+                        infoCustom(display_name + ", has been sucessfully created.")
                         actionLoad()
                     End If
                 End If
@@ -965,7 +968,9 @@
                             FormFGLineList.viewLineList()
                             FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design)
                         ElseIf form_name = "FormFGDesignList" Then
+                            FormFGDesignList.SLESeason.EditValue = LESeason.EditValue
                             FormFGDesignList.viewData()
+                            FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design_tersimpan)
                         End If
 
                         'ipdate time
@@ -1135,8 +1140,8 @@
             id_sample_par = LESampleOrign.EditValue.ToString
         Catch ex As Exception
         End Try
-        pre_viewImages("1", PictureEdit1, id_sample_par, False)
-        BViewImage.Visible = False
+        'pre_viewImages("1", PictureEdit1, id_sample_par, False)
+        'BViewImage.Visible = False
     End Sub
 
     '============= begin code price ================

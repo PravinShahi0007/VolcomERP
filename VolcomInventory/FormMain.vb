@@ -6719,6 +6719,19 @@ Public Class FormMain
             FormMasterSampleDet.dupe = "1"
             FormMasterSampleDet.id_sample = FormMasterSample.GVSample.GetFocusedRowCellDisplayText("id_sample").ToString
             FormMasterSampleDet.ShowDialog()
+        ElseIf formName = "FormFGDesignList" Then
+            'LINE LIST DESIGN
+            FormMasterDesignSingle.id_pop_up = "5"
+            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+            FormMasterDesignSingle.form_name = "FormFGDesignList"
+            FormMasterDesignSingle.dupe = "1"
+            Dim id_dsg_param As String = "-1"
+            Try
+                id_dsg_param = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
+            Catch ex As Exception
+            End Try
+            FormMasterDesignSingle.id_design = id_dsg_param
+            FormMasterDesignSingle.ShowDialog()
         End If
     End Sub
     'Contact 
