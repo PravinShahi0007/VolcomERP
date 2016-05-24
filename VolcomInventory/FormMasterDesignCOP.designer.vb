@@ -46,6 +46,10 @@ Partial Class FormMasterDesignCOP
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMEditEcopPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMEditEcopFinal = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumnIdCurrECOPPD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCurrECOPPD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnKursECOPPD = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnECOPPD = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,12 +72,13 @@ Partial Class FormMasterDesignCOP
         '
         'GVDesign
         '
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColDisplayName, Me.ColName, Me.ColUOM, Me.ColSampleSeason, Me.ColSampleCode, Me.Orign, Me.ColIdSeason, Me.GridColumnColor, Me.GridColumnOrign, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnFabrication})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColDisplayName, Me.ColName, Me.ColUOM, Me.ColSampleSeason, Me.ColSampleCode, Me.Orign, Me.ColIdSeason, Me.GridColumnColor, Me.GridColumnOrign, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnFabrication, Me.GridColumnIdCurrECOPPD, Me.GridColumnCurrECOPPD, Me.GridColumnKursECOPPD, Me.GridColumnECOPPD})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupCount = 1
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.Editable = False
         Me.GVDesign.OptionsFind.AlwaysVisible = True
+        Me.GVDesign.OptionsView.ColumnAutoWidth = False
         Me.GVDesign.OptionsView.ShowGroupPanel = False
         Me.GVDesign.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColSampleSeason, DevExpress.Data.ColumnSortOrder.Descending)})
         '
@@ -265,7 +270,7 @@ Partial Class FormMasterDesignCOP
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditEcopPD, Me.SMEditEcopFinal})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(156, 70)
+        Me.ViewMenu.Size = New System.Drawing.Size(156, 48)
         '
         'SMEditEcopPD
         '
@@ -278,6 +283,48 @@ Partial Class FormMasterDesignCOP
         Me.SMEditEcopFinal.Name = "SMEditEcopFinal"
         Me.SMEditEcopFinal.Size = New System.Drawing.Size(155, 22)
         Me.SMEditEcopFinal.Text = "Edit ECOP Final"
+        '
+        'GridColumnIdCurrECOPPD
+        '
+        Me.GridColumnIdCurrECOPPD.Caption = "ECOP PD ID Currency"
+        Me.GridColumnIdCurrECOPPD.FieldName = "prod_order_cop_pd_curr"
+        Me.GridColumnIdCurrECOPPD.Name = "GridColumnIdCurrECOPPD"
+        '
+        'GridColumnCurrECOPPD
+        '
+        Me.GridColumnCurrECOPPD.Caption = "ECOP PD Currency"
+        Me.GridColumnCurrECOPPD.FieldName = "curr_pd"
+        Me.GridColumnCurrECOPPD.Name = "GridColumnCurrECOPPD"
+        Me.GridColumnCurrECOPPD.Visible = True
+        Me.GridColumnCurrECOPPD.VisibleIndex = 9
+        '
+        'GridColumnKursECOPPD
+        '
+        Me.GridColumnKursECOPPD.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKursECOPPD.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursECOPPD.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKursECOPPD.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursECOPPD.Caption = "ECOP PD Kurs"
+        Me.GridColumnKursECOPPD.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKursECOPPD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnKursECOPPD.FieldName = "prod_order_cop_kurs_pd"
+        Me.GridColumnKursECOPPD.Name = "GridColumnKursECOPPD"
+        Me.GridColumnKursECOPPD.Visible = True
+        Me.GridColumnKursECOPPD.VisibleIndex = 10
+        '
+        'GridColumnECOPPD
+        '
+        Me.GridColumnECOPPD.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnECOPPD.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnECOPPD.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnECOPPD.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnECOPPD.Caption = "ECOP PD"
+        Me.GridColumnECOPPD.DisplayFormat.FormatString = "N2"
+        Me.GridColumnECOPPD.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnECOPPD.FieldName = "prod_order_cop_pd"
+        Me.GridColumnECOPPD.Name = "GridColumnECOPPD"
+        Me.GridColumnECOPPD.Visible = True
+        Me.GridColumnECOPPD.VisibleIndex = 11
         '
         'FormMasterDesignCOP
         '
@@ -331,4 +378,8 @@ Partial Class FormMasterDesignCOP
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents SMEditEcopPD As ToolStripMenuItem
     Friend WithEvents SMEditEcopFinal As ToolStripMenuItem
+    Friend WithEvents GridColumnIdCurrECOPPD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCurrECOPPD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnKursECOPPD As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnECOPPD As DevExpress.XtraGrid.Columns.GridColumn
 End Class

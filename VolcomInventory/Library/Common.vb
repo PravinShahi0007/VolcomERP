@@ -2,9 +2,6 @@
 Imports System.Text
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraPrinting
-Imports System.IO
-Imports System.Drawing
-Imports System.Drawing.Printing
 Imports DevExpress.XtraReports.UI
 Imports System.Reflection
 

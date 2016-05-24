@@ -26,6 +26,7 @@
             Dim query As String = "CALL view_all_design_param(""" + query_where + """)"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDesign.DataSource = data
+            GVDesign.BestFitColumns()
             check_menu()
         Catch ex As Exception
             errorConnection()

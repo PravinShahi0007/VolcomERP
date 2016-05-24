@@ -405,16 +405,17 @@
         GVPerDesign.Columns("kurs_ecop").Caption = "kurs"
         GVPerDesign.Columns("prod_order_cop_bom").Caption = "ecop"
 
+        'xls
         Cursor = Cursors.WaitCursor
         Dim printableComponentLink1 As New DevExpress.XtraPrinting.PrintableComponentLink(New DevExpress.XtraPrinting.PrintingSystem())
         Dim save_d As SaveFileDialog = New SaveFileDialog()
         save_d.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx"
-        save_d.FileName = "import_ecop_" + Now.ToString
+        save_d.FileName = "import_ecop_" + Now.ToString("yyyy_MMM_dd__hh_mm_ss_tt")
 
         If save_d.ShowDialog() = DialogResult.OK Then
             Dim exp As String = save_d.FileName
             Dim opt As DevExpress.XtraPrinting.XlsExportOptions = New DevExpress.XtraPrinting.XlsExportOptions()
-            opt.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text
+
             printableComponentLink1.Component = GCPerDesign
             printableComponentLink1.CreateDocument()
             printableComponentLink1.ExportToXls(exp, opt)

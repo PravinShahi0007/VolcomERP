@@ -143,6 +143,7 @@ Partial Class FormBOM
         Me.GridColumn55 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn56 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn57 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatusLineList = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
@@ -192,7 +193,6 @@ Partial Class FormBOM
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStatusLineList = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.SplitContainerControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1396,7 +1396,7 @@ Partial Class FormBOM
         Me.GridColumn37.Name = "GridColumn37"
         Me.GridColumn37.Visible = True
         Me.GridColumn37.VisibleIndex = 3
-        Me.GridColumn37.Width = 176
+        Me.GridColumn37.Width = 129
         '
         'GridColumn38
         '
@@ -1418,7 +1418,7 @@ Partial Class FormBOM
         Me.GridColumn40.Name = "GridColumn40"
         Me.GridColumn40.Visible = True
         Me.GridColumn40.VisibleIndex = 2
-        Me.GridColumn40.Width = 164
+        Me.GridColumn40.Width = 120
         '
         'GridColumn41
         '
@@ -1444,7 +1444,7 @@ Partial Class FormBOM
         Me.GridColumn43.Name = "GridColumn43"
         Me.GridColumn43.Visible = True
         Me.GridColumn43.VisibleIndex = 4
-        Me.GridColumn43.Width = 118
+        Me.GridColumn43.Width = 69
         '
         'GridColumn44
         '
@@ -1457,7 +1457,7 @@ Partial Class FormBOM
         Me.GridColumn44.Name = "GridColumn44"
         Me.GridColumn44.Visible = True
         Me.GridColumn44.VisibleIndex = 0
-        Me.GridColumn44.Width = 56
+        Me.GridColumn44.Width = 41
         '
         'GridColumn45
         '
@@ -1470,7 +1470,7 @@ Partial Class FormBOM
         Me.GridColumn45.Name = "GridColumn45"
         Me.GridColumn45.Visible = True
         Me.GridColumn45.VisibleIndex = 1
-        Me.GridColumn45.Width = 113
+        Me.GridColumn45.Width = 82
         '
         'GridColumnUnitCost
         '
@@ -1485,7 +1485,7 @@ Partial Class FormBOM
         Me.GridColumnUnitCost.Name = "GridColumnUnitCost"
         Me.GridColumnUnitCost.Visible = True
         Me.GridColumnUnitCost.VisibleIndex = 5
-        Me.GridColumnUnitCost.Width = 53
+        Me.GridColumnUnitCost.Width = 45
         '
         'GridColumn52
         '
@@ -1500,7 +1500,7 @@ Partial Class FormBOM
         Me.GridColumn52.Name = "GridColumn52"
         Me.GridColumn52.Visible = True
         Me.GridColumn52.VisibleIndex = 6
-        Me.GridColumn52.Width = 60
+        Me.GridColumn52.Width = 47
         '
         'GridColumn55
         '
@@ -1519,6 +1519,15 @@ Partial Class FormBOM
         Me.GridColumn57.Caption = "vendor"
         Me.GridColumn57.FieldName = "vend_ecop"
         Me.GridColumn57.Name = "GridColumn57"
+        '
+        'GridColumnStatusLineList
+        '
+        Me.GridColumnStatusLineList.Caption = "Status"
+        Me.GridColumnStatusLineList.FieldName = "lookup_status_order"
+        Me.GridColumnStatusLineList.Name = "GridColumnStatusLineList"
+        Me.GridColumnStatusLineList.Visible = True
+        Me.GridColumnStatusLineList.VisibleIndex = 7
+        Me.GridColumnStatusLineList.Width = 65
         '
         'GridView4
         '
@@ -2055,14 +2064,6 @@ Partial Class FormBOM
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Width = 113
-        '
-        'GridColumnStatusLineList
-        '
-        Me.GridColumnStatusLineList.Caption = "Status"
-        Me.GridColumnStatusLineList.FieldName = "lookup_status_order"
-        Me.GridColumnStatusLineList.Name = "GridColumnStatusLineList"
-        Me.GridColumnStatusLineList.Visible = True
-        Me.GridColumnStatusLineList.VisibleIndex = 7
         '
         'FormBOM
         '
