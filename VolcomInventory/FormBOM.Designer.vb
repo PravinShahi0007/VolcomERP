@@ -192,6 +192,7 @@ Partial Class FormBOM
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatusLineList = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.SplitContainerControl2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1366,7 +1367,7 @@ Partial Class FormBOM
         '
         Me.GVPerDesign.AppearancePrint.HeaderPanel.BackColor = System.Drawing.Color.Transparent
         Me.GVPerDesign.AppearancePrint.HeaderPanel.Options.UseBackColor = True
-        Me.GVPerDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumnUnitCost, Me.GridColumn52, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57})
+        Me.GVPerDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn41, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumnUnitCost, Me.GridColumn52, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumnStatusLineList})
         Me.GVPerDesign.GridControl = Me.GCPerDesign
         Me.GVPerDesign.GroupCount = 1
         Me.GVPerDesign.Name = "GVPerDesign"
@@ -2055,6 +2056,14 @@ Partial Class FormBOM
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Width = 113
         '
+        'GridColumnStatusLineList
+        '
+        Me.GridColumnStatusLineList.Caption = "Status"
+        Me.GridColumnStatusLineList.FieldName = "lookup_status_order"
+        Me.GridColumnStatusLineList.Name = "GridColumnStatusLineList"
+        Me.GridColumnStatusLineList.Visible = True
+        Me.GridColumnStatusLineList.VisibleIndex = 7
+        '
         'FormBOM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2308,4 +2317,5 @@ Partial Class FormBOM
     Friend WithEvents GridColumn55 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn56 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn57 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStatusLineList As DevExpress.XtraGrid.Columns.GridColumn
 End Class

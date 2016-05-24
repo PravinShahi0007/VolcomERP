@@ -389,6 +389,7 @@
         GVPerDesign.Columns("cur_ecop").Visible = True
         GVPerDesign.Columns("kurs_ecop").Visible = True
         GVPerDesign.Columns("prod_order_cop_bom").Visible = True
+        GVPerDesign.Columns("lookup_status_order").Visible = True
         '
         GVPerDesign.Columns("design_code").VisibleIndex = 0
         GVPerDesign.Columns("design_name").VisibleIndex = 1
@@ -396,6 +397,7 @@
         GVPerDesign.Columns("cur_ecop").VisibleIndex = 3
         GVPerDesign.Columns("kurs_ecop").VisibleIndex = 4
         GVPerDesign.Columns("prod_order_cop_bom").VisibleIndex = 5
+        GVPerDesign.Columns("lookup_status_order").VisibleIndex = 6
         '
         GVPerDesign.Columns("design_code").Caption = "code"
         GVPerDesign.Columns("vend_ecop").Caption = "vendor"
