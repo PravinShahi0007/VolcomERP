@@ -1835,6 +1835,7 @@ Partial Class FormBOM
         Me.GVCompPerDesign.GroupCount = 1
         Me.GVCompPerDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn47, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "price", Me.ColPrice, "Sub Total{0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "cost_per_pcs", Me.GridColumnCostPerPcs, "{0:N2}")})
         Me.GVCompPerDesign.Name = "GVCompPerDesign"
+        Me.GVCompPerDesign.OptionsBehavior.Editable = False
         Me.GVCompPerDesign.OptionsView.ShowFooter = True
         Me.GVCompPerDesign.OptionsView.ShowGroupPanel = False
         Me.GVCompPerDesign.OptionsView.ShowIndicator = False
