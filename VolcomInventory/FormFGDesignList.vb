@@ -148,6 +148,8 @@
     Private Images As Hashtable = New Hashtable()
     Private Sub GVDesign_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVDesign.CustomUnboundColumnData
         If e.Column.FieldName = "img" AndAlso e.IsGetData And CheckImg.EditValue.ToString = "True" Then
+            Images = Nothing
+            Images = New Hashtable()
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             Dim id As String = CStr(view.GetRowCellValue(e.ListSourceRowIndex, "id_design"))
 
