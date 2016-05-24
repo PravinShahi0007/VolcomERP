@@ -1040,7 +1040,7 @@
                         ElseIf form_name = "FormFGDesignList" Then
                             FormFGDesignList.SLESeason.EditValue = LESeason.EditValue
                             FormFGDesignList.viewData()
-                            FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design_tersimpan)
+                            FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design)
                         End If
 
                         'ipdate time

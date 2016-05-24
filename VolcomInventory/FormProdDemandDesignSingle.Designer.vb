@@ -966,6 +966,7 @@ Partial Class FormProdDemandDesignSingle
         Me.GroupControlLog.Size = New System.Drawing.Size(514, 137)
         Me.GroupControlLog.TabIndex = 8931
         Me.GroupControlLog.Text = "Estimate Cost Log"
+        Me.GroupControlLog.Visible = False
         '
         'GCLogCost
         '
