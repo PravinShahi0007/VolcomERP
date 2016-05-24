@@ -119,7 +119,7 @@ Partial Class FormMasterDesignSingle
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
         Me.PanC3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BeditCodeDsg = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPCode = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
         Me.GCCodeDsg = New DevExpress.XtraGrid.GridControl()
         Me.GVCodeDsg = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -130,7 +130,7 @@ Partial Class FormMasterDesignSingle
         Me.BGenerateDesc = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BRefreshCodeDsg = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BeditCodeDsg = New DevExpress.XtraEditors.SimpleButton()
         Me.LETemplateDsg = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView8 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -229,8 +229,8 @@ Partial Class FormMasterDesignSingle
         Me.XTPGeneral.SuspendLayout()
         CType(Me.PanC3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanC3.SuspendLayout()
-        CType(Me.BeditCodeDsg, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.BeditCodeDsg.SuspendLayout()
+        CType(Me.XTPCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPCode.SuspendLayout()
         Me.XTPDesign.SuspendLayout()
         CType(Me.GCCodeDsg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCodeDsg, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1287,7 +1287,7 @@ Partial Class FormMasterDesignSingle
         'PanC3
         '
         Me.PanC3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanC3.Controls.Add(Me.BeditCodeDsg)
+        Me.PanC3.Controls.Add(Me.XTPCode)
         Me.PanC3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanC3.Location = New System.Drawing.Point(402, 0)
         Me.PanC3.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
@@ -1295,15 +1295,15 @@ Partial Class FormMasterDesignSingle
         Me.PanC3.Size = New System.Drawing.Size(505, 566)
         Me.PanC3.TabIndex = 98
         '
-        'BeditCodeDsg
+        'XTPCode
         '
-        Me.BeditCodeDsg.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BeditCodeDsg.Location = New System.Drawing.Point(0, 0)
-        Me.BeditCodeDsg.Name = "BeditCodeDsg"
-        Me.BeditCodeDsg.SelectedTabPage = Me.XTPDesign
-        Me.BeditCodeDsg.Size = New System.Drawing.Size(505, 566)
-        Me.BeditCodeDsg.TabIndex = 100
-        Me.BeditCodeDsg.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPMD})
+        Me.XTPCode.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTPCode.Location = New System.Drawing.Point(0, 0)
+        Me.XTPCode.Name = "XTPCode"
+        Me.XTPCode.SelectedTabPage = Me.XTPDesign
+        Me.XTPCode.Size = New System.Drawing.Size(505, 566)
+        Me.XTPCode.TabIndex = 100
+        Me.XTPCode.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPMD})
         '
         'XTPDesign
         '
@@ -1401,7 +1401,7 @@ Partial Class FormMasterDesignSingle
         Me.PanelControl3.Appearance.Options.UseBackColor = True
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl3.Controls.Add(Me.BRefreshCodeDsg)
-        Me.PanelControl3.Controls.Add(Me.SimpleButton3)
+        Me.PanelControl3.Controls.Add(Me.BeditCodeDsg)
         Me.PanelControl3.Controls.Add(Me.LETemplateDsg)
         Me.PanelControl3.Controls.Add(Me.LabelControl13)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
@@ -1420,14 +1420,14 @@ Partial Class FormMasterDesignSingle
         Me.BRefreshCodeDsg.TabIndex = 14
         Me.BRefreshCodeDsg.Text = "Reset"
         '
-        'SimpleButton3
+        'BeditCodeDsg
         '
-        Me.SimpleButton3.Location = New System.Drawing.Point(374, 10)
-        Me.SimpleButton3.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(35, 20)
-        Me.SimpleButton3.TabIndex = 13
-        Me.SimpleButton3.Text = "Code"
+        Me.BeditCodeDsg.Location = New System.Drawing.Point(374, 10)
+        Me.BeditCodeDsg.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BeditCodeDsg.Name = "BeditCodeDsg"
+        Me.BeditCodeDsg.Size = New System.Drawing.Size(35, 20)
+        Me.BeditCodeDsg.TabIndex = 13
+        Me.BeditCodeDsg.Text = "Code"
         '
         'LETemplateDsg
         '
@@ -1943,8 +1943,8 @@ Partial Class FormMasterDesignSingle
         Me.XTPGeneral.ResumeLayout(False)
         CType(Me.PanC3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanC3.ResumeLayout(False)
-        CType(Me.BeditCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.BeditCodeDsg.ResumeLayout(False)
+        CType(Me.XTPCode, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPCode.ResumeLayout(False)
         Me.XTPDesign.ResumeLayout(False)
         CType(Me.GCCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2118,7 +2118,7 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MEDetail As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents BeditCodeDsg As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPCode As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPMD As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPDesign As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCCodeDsg As DevExpress.XtraGrid.GridControl
@@ -2128,7 +2128,7 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents DNCodeDesign As DevExpress.XtraEditors.DataNavigator
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BRefreshCodeDsg As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BeditCodeDsg As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LETemplateDsg As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView8 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn

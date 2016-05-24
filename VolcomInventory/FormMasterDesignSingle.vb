@@ -483,9 +483,40 @@
     Sub inputPermission()
         'type
         If id_pop_up = "-1" Then 'merchandise
-            TxtFabrication.Enabled = False
+            TEName.Enabled = False
+            BeditCodeDsg.Enabled = False
+            BRefreshCodeDsg.Enabled = False
+            BGenerateDesc.Enabled = False
             LESampleOrign.Enabled = False
-            LEPlanStatus.Enabled = False
+            TxtFabrication.Enabled = False
+            SLEDesign.Enabled = False
+            GCCodeDsg.Enabled = False
+            BtnAddSeaason.Enabled = False
+            LESeason.Enabled = False
+            XTPPrice.PageVisible = False
+            LEUOM.Enabled = False
+            TxtDelDate.Enabled = False
+            DERetDate.Enabled = False
+            TELifetime.Enabled = False
+            TEDisplayName.Enabled = False
+            DEInStoreDet.Enabled = False
+            MEDetail.Enabled = False
+
+            XTPLineList.PageVisible = True
+            XTPSize.PageVisible = True
+            SLEDel.Enabled = True
+            LERetCode.Enabled = True
+            DEEOS.Enabled = True
+            BeditCode.Enabled = True
+            BRefreshCode.Enabled = True
+            TECode.Enabled = True
+            BGenerate.Enabled = True
+            BtnGetLastCount.Enabled = True
+            GCCode.Enabled = True
+            DEWHDate.Enabled = True
+            BtnAddRetCode.Enabled = True
+            PictureEdit1.Properties.ReadOnly = True
+            XTPCode.SelectedTabPageIndex = 1
         ElseIf id_pop_up = "2" Then 'sample dept
             XTPLineList.PageVisible = False
             XTPPrice.PageVisible = False
@@ -568,7 +599,9 @@
             GCCodeDsg.Enabled = True
             BtnAddSeaason.Enabled = True
             LESeason.Enabled = True
+            MEDetail.Enabled = True
 
+            PictureEdit1.Properties.ReadOnly = False
             XTPLineList.PageVisible = False
             XTPPrice.PageVisible = False
             XTPSize.PageVisible = False
@@ -779,7 +812,7 @@
         'validate
         EP_TE_cant_blank(EPMasterDesign, TEName)
         EP_TE_cant_blank(EPMasterDesign, TEDisplayName)
-        If id_pop_up = "6" Then
+        If id_pop_up = "-1" Then
             EP_TE_cant_blank(EPMasterDesign, TECode)
         End If
         If id_pop_up = "5" Then
@@ -790,7 +823,7 @@
         EP_DE_cant_blank(EPMasterDesign, TxtDelDate)
 
         'cek code- hanya utk codefikasi
-        If id_pop_up = "6" Then
+        If id_pop_up = "-1" Then
             Dim query_cek_code As String = ""
             If id_design = "-1" Then 'New
                 query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' "
@@ -1108,7 +1141,7 @@
     End Sub
 
     Private Sub TECode_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TECode.Validating
-        If id_pop_up = "6" Then 'only for codefication
+        If id_pop_up = "-1" Then 'only for codefication
             EP_TE_cant_blank(EPMasterDesign, TECode)
             EPMasterDesign.SetIconPadding(TECode, 400)
         End If
@@ -1573,7 +1606,7 @@
         load_template_dsg(LETemplateDsg.EditValue)
     End Sub
 
-    Private Sub SimpleButton3_Click_1(sender As Object, e As EventArgs) Handles SimpleButton3.Click
+    Private Sub SimpleButton3_Click_1(sender As Object, e As EventArgs) Handles BeditCodeDsg.Click
         FormCodeTemplateEdit.id_pop_up = "6"
         FormCodeTemplateEdit.id_template_code = LETemplateDsg.EditValue.ToString
         FormCodeTemplateEdit.ShowDialog()

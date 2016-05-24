@@ -154,7 +154,7 @@ Public Class FormFGLineList
                 BtnCopyFrom.Visible = True
                 BtnCreateNewPD.Visible = True
                 BtnPlanStatus.Visible = True
-                BtnDesign.Visible = True
+                BtnDesign.Visible = False
             ElseIf SLETypeLineList.EditValue.ToString = "2" Then
                 'BtnProposePrice.Visible = False
                 ' BtnActualCost.Visible = False
@@ -162,7 +162,7 @@ Public Class FormFGLineList
                 BtnCopyFrom.Visible = True
                 BtnCreateNewPD.Visible = True
                 BtnPlanStatus.Visible = True
-                BtnDesign.Visible = True
+                BtnDesign.Visible = False
             Else
                 'BtnProposePrice.Visible = True
                 'BtnActualCost.Visible = True
@@ -301,11 +301,11 @@ Public Class FormFGLineList
             line_act = query_c.getLineActFocus(SLETypeLineList.EditValue.ToString, BGVLineList)
         Catch ex As Exception
         End Try
-        If BGVLineList.RowCount > 0 And BtnDesign.Visible = True Then
+        If BGVLineList.RowCount > 0 Then
             If line_act = "1" Then
                 SMEditDesign.Visible = True
-                SMDeleteDesign.Visible = True
-                SMViewDupe.Visible = True
+                SMDeleteDesign.Visible = False
+                SMViewDupe.Visible = False
             Else
                 SMEditDesign.Visible = False
                 SMDeleteDesign.Visible = False
