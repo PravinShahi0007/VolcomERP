@@ -1600,8 +1600,8 @@ Partial Class FormMasterDesignSingle
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BtnTemplateSize)
         Me.PanelControl1.Controls.Add(Me.BtnDelSize)
+        Me.PanelControl1.Controls.Add(Me.BtnTemplateSize)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.LookAndFeel.SkinName = "Blue"
@@ -1613,10 +1613,10 @@ Partial Class FormMasterDesignSingle
         '
         'BtnTemplateSize
         '
-        Me.BtnTemplateSize.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnTemplateSize.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnTemplateSize.ImageIndex = 12
         Me.BtnTemplateSize.ImageList = Me.LargeImageCollection
-        Me.BtnTemplateSize.Location = New System.Drawing.Point(2, 2)
+        Me.BtnTemplateSize.Location = New System.Drawing.Point(796, 2)
         Me.BtnTemplateSize.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BtnTemplateSize.Name = "BtnTemplateSize"
         Me.BtnTemplateSize.Size = New System.Drawing.Size(109, 35)
@@ -1628,7 +1628,7 @@ Partial Class FormMasterDesignSingle
         Me.BtnDelSize.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelSize.ImageIndex = 4
         Me.BtnDelSize.ImageList = Me.LargeImageCollection
-        Me.BtnDelSize.Location = New System.Drawing.Point(823, 2)
+        Me.BtnDelSize.Location = New System.Drawing.Point(714, 2)
         Me.BtnDelSize.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BtnDelSize.Name = "BtnDelSize"
         Me.BtnDelSize.Size = New System.Drawing.Size(82, 35)

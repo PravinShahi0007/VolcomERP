@@ -389,7 +389,6 @@
                     SLEActive.EditValue = "1"
                 End If
 
-
                 'from sample
                 pre_viewImages("2", PictureEdit1, id_design, False)
                 BViewImage.Visible = True
@@ -426,7 +425,6 @@
                         'disable season (mode edit)
                         LESeason.Enabled = True
                         BtnAddSeaason.Enabled = True
-                        BtnGetLastCount.Visible = False
 
                         'cari id_prod_demand_design berdasarkan type yg aktuf & Load line list only UPDATE TYPE
                         If FormFGLineList.SLETypeLineList.EditValue.ToString = "1" Then
@@ -444,25 +442,6 @@
                             id_prod_demand_design_active = data.Rows(0)("id_prod_demand_design_line_final").ToString
                             XTPLineList.PageVisible = False
                         End If
-                    End If
-
-                    'cek PO & FG Line List
-                    Dim is_permanent_master_dsg As String = get_setup_field("is_permanent_master_dsg")
-                    If is_permanent_master_dsg = "1" And dupe = "-1" Then
-                        Dim query_cek_po As String = ""
-                        query_cek_po += "SELECT COUNT(*) FROM tb_prod_order pr_ord "
-                        query_cek_po += "INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand_design = pd_dsg.id_prod_demand_design "
-                        query_cek_po += "WHERE pd_dsg.id_design = '" + id_design + "' AND pr_ord.id_report_status !='5' "
-                        Dim jum_cek_po As String = execute_query(query_cek_po, 0, True, "", "", "", "")
-                        If jum_cek_po > 0 Then
-                            BSave.Enabled = False
-                            XTPSize.PageEnabled = False
-                        Else
-                            BSave.Enabled = True
-                            XTPSize.PageEnabled = True
-                        End If
-                    Else
-                        BSave.Enabled = True
                     End If
                 End If
                 inputPermission()  'access limit
@@ -501,6 +480,7 @@
             TEDisplayName.Enabled = False
             DEInStoreDet.Enabled = False
             MEDetail.Enabled = False
+            TECode.Enabled = False
 
             XTPLineList.PageVisible = True
             XTPSize.PageVisible = True
@@ -509,7 +489,6 @@
             DEEOS.Enabled = True
             BeditCode.Enabled = True
             BRefreshCode.Enabled = True
-            TECode.Enabled = True
             BGenerate.Enabled = True
             BtnGetLastCount.Enabled = True
             GCCode.Enabled = True
@@ -517,6 +496,17 @@
             BtnAddRetCode.Enabled = True
             PictureEdit1.Properties.ReadOnly = True
             XTPCode.SelectedTabPageIndex = 1
+
+            'jika belum ada code size dan line list mati
+            If TECode.Text = "" Then
+                XTPSize.PageVisible = False
+                XTPLineList.PageVisible = False
+                BtnGetLastCount.Visible = True
+            Else
+                XTPSize.PageVisible = True
+                XTPLineList.PageVisible = True
+                BtnGetLastCount.Visible = False
+            End If
         ElseIf id_pop_up = "2" Then 'sample dept
             XTPLineList.PageVisible = False
             XTPPrice.PageVisible = False
@@ -653,6 +643,53 @@
             LERetCode.Enabled = True
             DEEOS.Enabled = True
             SLEActive.Enabled = True
+        End If
+
+        'cek PO & FG Line List
+        Dim is_permanent_master_dsg As String = get_setup_field("is_permanent_master_dsg")
+        If is_permanent_master_dsg = "1" And dupe = "-1" Then
+            Dim query_cek_po As String = ""
+            query_cek_po += "SELECT COUNT(*) FROM tb_prod_order pr_ord "
+            query_cek_po += "INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand_design = pd_dsg.id_prod_demand_design "
+            query_cek_po += "WHERE pd_dsg.id_design = '" + id_design + "' AND pr_ord.id_report_status !='5' "
+            Dim jum_cek_po As String = execute_query(query_cek_po, 0, True, "", "", "", "")
+            'jika uda ada PO yg diproses
+            If jum_cek_po > 0 Then
+                TEName.Enabled = False
+                BeditCodeDsg.Enabled = False
+                BRefreshCodeDsg.Enabled = False
+                BGenerateDesc.Enabled = False
+                LESampleOrign.Enabled = False
+                TxtFabrication.Enabled = False
+                SLEDesign.Enabled = False
+                GCCodeDsg.Enabled = False
+                BtnAddSeaason.Enabled = False
+                LESeason.Enabled = False
+                XTPPrice.PageVisible = False
+                LEUOM.Enabled = False
+                TxtDelDate.Enabled = False
+                DERetDate.Enabled = False
+                TELifetime.Enabled = False
+                TEDisplayName.Enabled = False
+                DEInStoreDet.Enabled = False
+                MEDetail.Enabled = False
+                TECode.Enabled = False
+
+                If id_pop_up = "-1" Then
+                    XTPLineList.PageVisible = True
+                End If
+                XTPSize.PageVisible = False
+                SLEDel.Enabled = False
+                LERetCode.Enabled = False
+                DEEOS.Enabled = False
+                BeditCode.Enabled = False
+                BRefreshCode.Enabled = False
+                BGenerate.Enabled = False
+                BtnGetLastCount.Enabled = False
+                GCCode.Enabled = False
+                DEWHDate.Enabled = False
+                BtnAddRetCode.Enabled = False
+            End If
         End If
     End Sub
 
