@@ -136,6 +136,7 @@
         Dim val As String = CheckImg.EditValue.ToString
         If val = "True" Then
             GridColumnPic.Visible = True
+            GridColumnPic.VisibleIndex = 0
         Else
             GridColumnPic.Visible = False
         End If
@@ -151,7 +152,7 @@
             Images = Nothing
             Images = New Hashtable()
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
-            Dim id As String = CStr(view.GetRowCellValue(e.ListSourceRowIndex, "id_design"))
+            Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "id_design"))
 
             Dim fileName As String = id & ".jpg".ToLower
 

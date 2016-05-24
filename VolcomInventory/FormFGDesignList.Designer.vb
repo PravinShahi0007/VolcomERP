@@ -33,9 +33,9 @@ Partial Class FormFGDesignList
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
         Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
         Me.GVDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -210,16 +210,6 @@ Partial Class FormFGDesignList
         Me.LabelControl1.TabIndex = 90
         Me.LabelControl1.Text = "Type"
         '
-        'BtnView
-        '
-        Me.BtnView.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnView.ImageIndex = 15
-        Me.BtnView.Location = New System.Drawing.Point(670, 2)
-        Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(86, 35)
-        Me.BtnView.TabIndex = 94
-        Me.BtnView.Text = "View List"
-        '
         'PanelOpt
         '
         Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -238,6 +228,16 @@ Partial Class FormFGDesignList
         Me.CheckImg.Properties.Caption = "Show Images"
         Me.CheckImg.Size = New System.Drawing.Size(87, 19)
         Me.CheckImg.TabIndex = 0
+        '
+        'BtnView
+        '
+        Me.BtnView.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnView.ImageIndex = 15
+        Me.BtnView.Location = New System.Drawing.Point(670, 2)
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(86, 35)
+        Me.BtnView.TabIndex = 94
+        Me.BtnView.Text = "View List"
         '
         'GCDesign
         '
@@ -320,8 +320,7 @@ Partial Class FormFGDesignList
         Me.ColDesignCode.FieldName = "design_code"
         Me.ColDesignCode.Name = "ColDesignCode"
         Me.ColDesignCode.Visible = True
-        Me.ColDesignCode.VisibleIndex = 1
-        Me.ColDesignCode.Width = 64
+        Me.ColDesignCode.VisibleIndex = 2
         '
         'GridColumnCodeImport
         '
@@ -329,8 +328,8 @@ Partial Class FormFGDesignList
         Me.GridColumnCodeImport.FieldName = "code_import"
         Me.GridColumnCodeImport.Name = "GridColumnCodeImport"
         Me.GridColumnCodeImport.Visible = True
-        Me.GridColumnCodeImport.VisibleIndex = 0
-        Me.GridColumnCodeImport.Width = 100
+        Me.GridColumnCodeImport.VisibleIndex = 1
+        Me.GridColumnCodeImport.Width = 88
         '
         'ColDisplayName
         '
@@ -338,8 +337,8 @@ Partial Class FormFGDesignList
         Me.ColDisplayName.FieldName = "design_display_name"
         Me.ColDisplayName.Name = "ColDisplayName"
         Me.ColDisplayName.Visible = True
-        Me.ColDisplayName.VisibleIndex = 6
-        Me.ColDisplayName.Width = 98
+        Me.ColDisplayName.VisibleIndex = 7
+        Me.ColDisplayName.Width = 107
         '
         'Orign
         '
@@ -347,8 +346,8 @@ Partial Class FormFGDesignList
         Me.Orign.FieldName = "season_orign"
         Me.Orign.Name = "Orign"
         Me.Orign.Visible = True
-        Me.Orign.VisibleIndex = 2
-        Me.Orign.Width = 122
+        Me.Orign.VisibleIndex = 3
+        Me.Orign.Width = 101
         '
         'GridColumnColor
         '
@@ -360,8 +359,8 @@ Partial Class FormFGDesignList
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 7
-        Me.GridColumnColor.Width = 84
+        Me.GridColumnColor.VisibleIndex = 8
+        Me.GridColumnColor.Width = 94
         '
         'GridColumnClass
         '
@@ -373,8 +372,8 @@ Partial Class FormFGDesignList
         Me.GridColumnClass.FieldName = "product_class_display"
         Me.GridColumnClass.Name = "GridColumnClass"
         Me.GridColumnClass.Visible = True
-        Me.GridColumnClass.VisibleIndex = 5
-        Me.GridColumnClass.Width = 81
+        Me.GridColumnClass.VisibleIndex = 6
+        Me.GridColumnClass.Width = 53
         '
         'GridColumnBreakSize
         '
@@ -382,8 +381,8 @@ Partial Class FormFGDesignList
         Me.GridColumnBreakSize.FieldName = "size_chart"
         Me.GridColumnBreakSize.Name = "GridColumnBreakSize"
         Me.GridColumnBreakSize.Visible = True
-        Me.GridColumnBreakSize.VisibleIndex = 8
-        Me.GridColumnBreakSize.Width = 119
+        Me.GridColumnBreakSize.VisibleIndex = 9
+        Me.GridColumnBreakSize.Width = 164
         '
         'GridColumnPrice
         '
@@ -422,8 +421,8 @@ Partial Class FormFGDesignList
         Me.GridColumn2.FieldName = "country"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
-        Me.GridColumn2.Width = 123
+        Me.GridColumn2.VisibleIndex = 4
+        Me.GridColumn2.Width = 64
         '
         'GridColumnSourceDisplay
         '
@@ -431,8 +430,8 @@ Partial Class FormFGDesignList
         Me.GridColumnSourceDisplay.FieldName = "product_source_display"
         Me.GridColumnSourceDisplay.Name = "GridColumnSourceDisplay"
         Me.GridColumnSourceDisplay.Visible = True
-        Me.GridColumnSourceDisplay.VisibleIndex = 4
-        Me.GridColumnSourceDisplay.Width = 111
+        Me.GridColumnSourceDisplay.VisibleIndex = 5
+        Me.GridColumnSourceDisplay.Width = 59
         '
         'GridColumnPic
         '
@@ -440,10 +439,13 @@ Partial Class FormFGDesignList
         Me.GridColumnPic.ColumnEdit = Me.RepositoryItemPictureEdit1
         Me.GridColumnPic.FieldName = "img"
         Me.GridColumnPic.Name = "GridColumnPic"
+        Me.GridColumnPic.OptionsColumn.AllowEdit = False
+        Me.GridColumnPic.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnPic.OptionsColumn.AllowShowHide = False
+        Me.GridColumnPic.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnPic.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnPic.UnboundType = DevExpress.Data.UnboundColumnType.[Object]
-        Me.GridColumnPic.Visible = True
-        Me.GridColumnPic.VisibleIndex = 9
+        Me.GridColumnPic.Width = 97
         '
         'RepositoryItemPictureEdit1
         '
