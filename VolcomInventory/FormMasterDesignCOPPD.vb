@@ -17,6 +17,17 @@
 
         view_currency(LECurrency)
         TEVendor.Focus()
+        '
+        id_comp = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("id_comp_pd").ToString
+        id_comp_contact = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString
+        TEVendor.Text = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("comp_number_pd").ToString
+        TEVendorName.Text = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("comp_name_pd").ToString
+        TEKurs.EditValue = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
+        TEEcop.EditValue = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("prod_order_cop_pd")
+        '
+        LECurrency.EditValue = Nothing
+        LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString)
+
     End Sub
 
     Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -80,6 +91,14 @@
         query = String.Format("UPDATE tb_m_design SET prod_order_cop_pd='{1}',prod_order_cop_kurs_pd='{2}',prod_order_cop_pd_vendor='{3}',prod_order_cop_pd_curr='{4}' WHERE id_design='{0}'", id_design, decimalSQL(TEEcop.EditValue.ToString), decimalSQL(TEKurs.EditValue.ToString), id_comp_contact, LECurrency.EditValue.ToString)
         execute_non_query(query, True, "", "", "", "")
         infoCustom("ECOP entry success.")
+        FormMasterDesignCOP.view_design()
+        FormMasterDesignCOP.GVDesign.FocusedRowHandle = find_row(FormMasterDesignCOP.GVDesign, "id_design", id_design)
         Close()
+    End Sub
+
+    Private Sub BtnBrowseContactFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseContactFrom.Click
+        FormPopUpContact.id_pop_up = "68"
+        FormPopUpContact.id_cat = 1
+        FormPopUpContact.ShowDialog()
     End Sub
 End Class

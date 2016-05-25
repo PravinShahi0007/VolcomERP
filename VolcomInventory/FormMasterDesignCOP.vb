@@ -32,6 +32,7 @@
             errorConnection()
         End Try
     End Sub
+
     Private Sub GVDesign_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVDesign.FocusedRowChanged
         Dim focusedRowHandle As Integer = -1
         If e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.NewItemRowHandle OrElse e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.AutoFilterRowHandle Then
@@ -65,6 +66,7 @@
             End If
         End If
     End Sub
+
     Sub check_menu()
         If GVDesign.RowCount < 1 Then
             'hide all except new
@@ -116,6 +118,7 @@
         FormMasterDesignCOPPD.id_design = GVDesign.GetFocusedRowCellValue("id_design").ToString
         FormMasterDesignCOPPD.TECode.Text = GVDesign.GetFocusedRowCellValue("design_code").ToString
         FormMasterDesignCOPPD.TEDesc.Text = GVDesign.GetFocusedRowCellValue("design_display_name").ToString
+        '
         FormMasterDesignCOPPD.ShowDialog()
     End Sub
 End Class
