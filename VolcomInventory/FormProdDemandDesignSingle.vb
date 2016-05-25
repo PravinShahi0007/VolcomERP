@@ -441,7 +441,7 @@ Public Class FormProdDemandDesignSingle
             prod_demand_design_total_cost = decimalSQL(TxtTotalCost.EditValue.ToString)
             royalty_design = decimalSQL(addSlashes(TxtRoyaltyDesign.EditValue.ToString))
             royalty_special = decimalSQL(addSlashes(TxtRoyaltySpecial.EditValue.ToString))
-            prod_demand_design_estimate_price = decimalSQL(TxtEstimateCost.EditValue.ToString)
+            prod_demand_design_estimate_price = decimalSQL(TxtTotalCost.EditValue.ToString)
             inflation = decimalSQL(TxtInflasi.EditValue.ToString)
             If id_currency = "" Then
                 id_currency = "-1"
@@ -626,12 +626,21 @@ Public Class FormProdDemandDesignSingle
         Cursor = Cursors.WaitCursor
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want update to current estimate COP?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim query As String = "CALL generate_pd_upd_est_cost('" + id_prod_demand_design + "', '" + id_user + "', FALSE) "
-            execute_non_query(query, True, "", "", "", "")
+            'query get cost
+            Dim q_cost As String = ""
+            Dim dt_cost As DataTable = execute_query(q_cost, -1, True, "", "", "", "")
+            Dim cost_upd As Decimal = 0.0
+            Try
+
+            Catch ex As Exception
+            End Try
+            TxtEstimateCost.EditValue = cost_upd
+            TxtTotalCost.EditValue = cost_upd
+
+
+            getMarkUp()
             viewBreakdown()
             viewAllocation()
-            getEstimate()
-            getMarkUp()
             Dim rate_def As Decimal = 0.0
             Try
                 rate_def = GVProductRev.GetFocusedRowCellValue("Kurs")
@@ -655,8 +664,7 @@ Public Class FormProdDemandDesignSingle
     End Sub
     'Edit Value Markup
     Private Sub TxtMarkup_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxtMarkup.KeyUp
-        'getPropose()
-        'getRealEstimate()
+
     End Sub
    
 
@@ -693,8 +701,7 @@ Public Class FormProdDemandDesignSingle
         End If
         TxtProposePrice.EditValue = propose_price
 
-        'updated 9 desember 2014 - get real estimate (bom price + royalty + inflation)
-        'getRealEstimate()
+
     End Sub
     'Get Estimate BOM
     Private Sub BtnEstimate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEstimate.Click
@@ -714,88 +721,84 @@ Public Class FormProdDemandDesignSingle
     End Sub
 
     Sub getEstimate()
-        Dim total_estimate As Decimal = 0.0
-        Try
-            total_estimate = GVProductRev.Columns("Total").SummaryItem.SummaryValue
-        Catch ex As Exception
-        End Try
+        'Dim total_estimate As Decimal = 0.0
+        'Try
+        '    total_estimate = GVProductRev.Columns("Total").SummaryItem.SummaryValue
+        'Catch ex As Exception
+        'End Try
 
-        Dim total_qty As Decimal = 0.0
-        Try
-            total_qty = GVProductRev.Columns("Qty").SummaryItem.SummaryValue
-        Catch ex As Exception
-        End Try
+        'Dim total_qty As Decimal = 0.0
+        'Try
+        '    total_qty = GVProductRev.Columns("Qty").SummaryItem.SummaryValue
+        'Catch ex As Exception
+        'End Try
 
-        Dim res_est As Decimal = 0.0
-        Try
-            res_est = total_estimate / total_qty
-        Catch ex As Exception
-        End Try
-        TxtEstimateCost.EditValue = res_est
+        'Dim res_est As Decimal = 0.0
+        'Try
+        '    res_est = total_estimate / total_qty
+        'Catch ex As Exception
+        'End Try
+        'TxtEstimateCost.EditValue = res_est
 
-        'updated 9 desember 2014 - get real estimate (bom price + royalty + inflation)
-        getRealEstimate()
+        ''updated 9 desember 2014 - get real estimate (bom price + royalty + inflation)
+        'getRealEstimate()
     End Sub
 
     Sub getRealEstimate()
-        'updated 9 desember 2014 - get real estimate (bom price + royalty + inflation)
-        Dim bom_price As Decimal = 0.0
-        Try
-            bom_price = Decimal.Parse(TxtEstimateCost.EditValue.ToString)
-        Catch ex As Exception
-        End Try
+        ''updated 9 desember 2014 - get real estimate (bom price + royalty + inflation)
+        'Dim bom_price As Decimal = 0.0
+        'Try
+        '    bom_price = Decimal.Parse(TxtEstimateCost.EditValue.ToString)
+        'Catch ex As Exception
+        'End Try
 
 
 
-        getRoyalty()
-        Dim propose_price As Decimal = 0.0
-        Try
-            propose_price = Decimal.Parse(TxtProposePrice.EditValue.ToString)
-        Catch ex As Exception
-        End Try
-        Dim pr As Decimal = propose_price * royalty
+        'getRoyalty()
+        'Dim propose_price As Decimal = 0.0
+        'Try
+        '    propose_price = Decimal.Parse(TxtProposePrice.EditValue.ToString)
+        'Catch ex As Exception
+        'End Try
+        'Dim pr As Decimal = propose_price * royalty
 
-        Dim inflation As Decimal = 0.0
-        Try
-            inflation = Decimal.Parse(TxtInflasi.EditValue.ToString) / 100
-        Catch ex As Exception
-        End Try
-        Dim pi As Decimal = propose_price * inflation
+        'Dim inflation As Decimal = 0.0
+        'Try
+        '    inflation = Decimal.Parse(TxtInflasi.EditValue.ToString) / 100
+        'Catch ex As Exception
+        'End Try
+        'Dim pi As Decimal = propose_price * inflation
 
-        Dim real_estimate As Decimal = 0.0
-        Try
-            real_estimate = bom_price + pr + pi
-        Catch ex As Exception
-        End Try
-        TxtTotalCost.EditValue = real_estimate
+        'Dim real_estimate As Decimal = 0.0
+        'Try
+        '    real_estimate = bom_price + pr + pi
+        'Catch ex As Exception
+        'End Try
+        'TxtTotalCost.EditValue = real_estimate
     End Sub
 
     'Get Markup
     Sub getMarkUp()
+        estimate_cost = 0
         Try
-            estimate_cost = Decimal.Parse(TxtEstimateCost.EditValue)
+            estimate_cost = Decimal.Parse(TxtTotalCost.EditValue)
         Catch ex As Exception
 
         End Try
-        Dim propose_price As Decimal
+        Dim propose_price As Decimal = 0.0
         Dim markup As Decimal
         Try
             propose_price = Decimal.Parse(TxtProposePrice.EditValue)
         Catch ex As Exception
-            'no action
-            propose_price = 0.0
         End Try
         getRoyalty()
         Dim inflation As Decimal = TxtInflasi.EditValue / 100
         Try
-            markup = propose_price / (estimate_cost + (royalty * propose_price) + (inflation * propose_price))
+            ' markup = propose_price / (estimate_cost + (royalty * propose_price) + (inflation * propose_price))
+            markup = propose_price / estimate_cost
         Catch ex As Exception
-
         End Try
         TxtMarkup.EditValue = markup
-
-        'updated 9 desember 2014 - get real estimate (bom price + royalty + inflation)
-        'getRealEstimate()
     End Sub
     'Edit Value Royalty
     Private Sub TxtRoyaltyDesign_KeyUp(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxtRoyaltyDesign.KeyUp
@@ -985,42 +988,7 @@ Public Class FormProdDemandDesignSingle
         Cursor = Cursors.Default
     End Sub
 
-    
-    Private Sub TxtProposePrice_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TxtProposePrice.EditValueChanged
-        'Try
-        '    getMarkUp()
-        '    getRealEstimate()
-        'Catch ex As Exception
-        'End Try
-    End Sub
 
-    Private Sub TxtMarkup_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        'Try
-        '    getPropose()
-        '    getRealEstimate()
-        'Catch ex As Exception
-        'End Try
-    End Sub
-
-    Private Sub TxtProposePrice_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxtProposePrice.KeyDown
-        'getMarkUp()
-        'getRealEstimate()
-    End Sub
-
-    Private Sub TxtMarkup_KeyDown(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxtMarkup.KeyDown
-        'getPropose()
-        'getRealEstimate()
-    End Sub
-
-    Private Sub TxtProposePrice_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtProposePrice.KeyPress
-        'getMarkUp()
-        'getRealEstimate()
-    End Sub
-
-    Private Sub TxtMarkup_KeyPress(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxtMarkup.KeyPress
-        'getPropose()
-        'getRealEstimate()
-    End Sub
 
     Private Sub GroupControlRetail_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles GroupControlRetail.Paint
 
