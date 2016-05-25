@@ -244,15 +244,15 @@ Public Class FormProdDemandDesignSingle
             'form
             TxtRoyaltyDesign.Properties.ReadOnly = True
             TxtRoyaltySpecial.Properties.ReadOnly = True
-            TxtProposePrice.Properties.ReadOnly = True
+            TxtProposePrice.Properties.ReadOnly = False
             DEStart.Properties.ReadOnly = True
             TxtMarkup.Properties.ReadOnly = True
             TxtEstimateCost.Properties.ReadOnly = True
             TxtTotalCost.Properties.ReadOnly = True
             TxtInflasi.Properties.ReadOnly = True
-            BtnCheckPrice.Enabled = False
+            BtnCheckPrice.Enabled = True
             BtnEstimate.Enabled = False
-            BtnSave.Enabled = False
+            BtnSave.Enabled = True
 
             'button
             BtnEdit.Visible = False
@@ -262,7 +262,7 @@ Public Class FormProdDemandDesignSingle
 
             TxtRate.Properties.ReadOnly = True
             TxtCurr.Properties.ReadOnly = True
-            TxtMSRP.Properties.ReadOnly = True
+            TxtMSRP.Properties.ReadOnly = False
         Else
             'form
             TxtRoyaltyDesign.Properties.ReadOnly = False
@@ -285,7 +285,7 @@ Public Class FormProdDemandDesignSingle
             End If
             BViewBOM.Visible = True
 
-            TxtRate.Properties.ReadOnly = False
+            TxtRate.Properties.ReadOnly = True
             TxtCurr.Properties.ReadOnly = True
             TxtMSRP.Properties.ReadOnly = False
 
@@ -297,6 +297,8 @@ Public Class FormProdDemandDesignSingle
             GVProductRev.Columns("id_currency").Visible = False
             GVProductRev.Columns("Currency").Visible = False
             GVProductRev.Columns("Kurs").Visible = False
+            GVProductRev.Columns("Cost").Visible = False
+
 
             '**REPO SPIN EDIT**
             Dim riTE As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
@@ -362,6 +364,7 @@ Public Class FormProdDemandDesignSingle
             columnTotalCost.SummaryItem.DisplayFormat = "{0:n0}"
             columnTotalCost.AppearanceHeader.Font = New Font(GVProductRev.Appearance.Row.Font.FontFamily, GVProductRev.Appearance.Row.Font.Size, FontStyle.Bold)
             columnTotalCost.AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+            GVProductRev.Columns("Total").Visible = False
 
             '*GROUP**
             GVProductRev.Columns("Style").GroupIndex = 0
@@ -627,32 +630,42 @@ Public Class FormProdDemandDesignSingle
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want update to current estimate COP?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             'query get cost
-            Dim q_cost As String = ""
+            Dim q_cost As String = "SELECT dsg.id_design, "
+            q_cost += "CAST(IF(dsg.prod_order_cop_pd_curr!=opt.id_currency_default, dsg.prod_order_cop_pd*dsg.prod_order_cop_kurs_pd, dsg.prod_order_cop_pd) AS DECIMAL(15,2)) as `cost_upd`, "
+            q_cost += "dsg.prod_order_cop_pd, dsg.prod_order_cop_kurs_pd, dsg.prod_order_cop_pd_curr "
+            q_cost += "FROM tb_m_design dsg "
+            q_cost += "JOIN tb_opt opt "
+            q_cost += "WHERE dsg.id_design='" + id_design + "' "
             Dim dt_cost As DataTable = execute_query(q_cost, -1, True, "", "", "", "")
             Dim cost_upd As Decimal = 0.0
+            Dim curr_upd As String = "1"
+            Dim rate_upd As Decimal = "1"
+            id_currency = "-1"
             Try
-
+                cost_upd = dt_cost.Rows(0)("cost_upd")
+            Catch ex As Exception
+            End Try
+            Try
+                curr_upd = dt_cost.Rows(0)("prod_order_cop_pd_curr")
+            Catch ex As Exception
+            End Try
+            Try
+                rate_upd = dt_cost.Rows(0)("prod_order_cop_kurs_pd")
+            Catch ex As Exception
+            End Try
+            Try
+                id_currency = curr_upd.ToString
             Catch ex As Exception
             End Try
             TxtEstimateCost.EditValue = cost_upd
             TxtTotalCost.EditValue = cost_upd
+            TxtRate.EditValue = rate_upd
 
 
             getMarkUp()
             viewBreakdown()
             viewAllocation()
-            Dim rate_def As Decimal = 0.0
-            Try
-                rate_def = GVProductRev.GetFocusedRowCellValue("Kurs")
-            Catch ex As Exception
-            End Try
-            TxtRate.EditValue = rate_def
 
-            id_currency = "-1"
-            Try
-                id_currency = GVProductRev.GetFocusedRowCellValue("id_currency").ToString
-            Catch ex As Exception
-            End Try
             Dim cur As String = ""
             Try
                 cur = GVProductRev.GetFocusedRowCellValue("Currency").ToString

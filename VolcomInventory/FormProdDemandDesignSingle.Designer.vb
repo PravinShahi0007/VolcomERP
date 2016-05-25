@@ -382,6 +382,7 @@ Partial Class FormProdDemandDesignSingle
         Me.BViewBOM.Size = New System.Drawing.Size(91, 37)
         Me.BViewBOM.TabIndex = 17
         Me.BViewBOM.Text = "BOM"
+        Me.BViewBOM.Visible = False
         '
         'BtnEdit
         '
