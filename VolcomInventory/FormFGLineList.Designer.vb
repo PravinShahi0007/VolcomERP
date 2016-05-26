@@ -643,7 +643,7 @@ Partial Class FormFGLineList
         Me.CheckImg.MenuManager = Me.BarManager1
         Me.CheckImg.Name = "CheckImg"
         Me.CheckImg.Properties.Caption = "Show Image"
-        Me.CheckImg.Size = New System.Drawing.Size(127, 19)
+        Me.CheckImg.Size = New System.Drawing.Size(79, 19)
         Me.CheckImg.TabIndex = 0
         '
         'FormFGLineList

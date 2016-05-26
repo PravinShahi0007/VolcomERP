@@ -95,6 +95,8 @@ Public Class FormFGLineList
 
     Private Sub BtnView_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnView.Click
         Cursor = Cursors.WaitCursor
+        CheckImg.EditValue = False
+        CheckEditOpt.EditValue = False
         BtnView.Text = "Loading..."
         BtnView.Enabled = False
         viewLineList()
@@ -103,7 +105,7 @@ Public Class FormFGLineList
         BtnView.Enabled = True
         PanelOpt.Visible = False
         PanelImg.Visible = True
-        BGVLineList.RowHeight = 100
+        BGVLineList.RowHeight = 10
         Cursor = Cursors.Default
     End Sub
 
@@ -1052,8 +1054,10 @@ Public Class FormFGLineList
         Cursor = Cursors.WaitCursor
         Dim val As String = CheckImg.EditValue.ToString
         If val = "True" Then
+            BGVLineList.RowHeight = 100
             BGVLineList.Columns("img").Visible = True
         Else
+            BGVLineList.RowHeight = 10
             BGVLineList.Columns("img").Visible = False
         End If
         GCLineList.RefreshDataSource()
