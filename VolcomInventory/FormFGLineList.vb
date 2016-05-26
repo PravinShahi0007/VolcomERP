@@ -601,13 +601,14 @@ Public Class FormFGLineList
                     For l As Integer = 0 To ((BGVLineList.RowCount - 1) - GetGroupRowCount(BGVLineList))
                         If BGVLineList.GetRowCellValue(l, "Select_sct") = "Yes" Then
                             If jum_str > 0 Then
-                                id_str += ";"
+                                id_str += "OR "
                             End If
-                            id_str += myCoalesce(BGVLineList.GetRowCellValue(l, ll_type).ToString, "0")
+                            id_str += "pd_dsg.id_prod_demand_design = " + myCoalesce(BGVLineList.GetRowCellValue(l, ll_type).ToString, "0") + " "
                             jum_str += 1
                         End If
                     Next
-                    Dim query As String = "CALL generate_pd_upd_est_cost('" + id_str + "', '" + id_user + "', TRUE)"
+                    Console.WriteLine(id_str)
+                    Dim query As String = "CALL generate_pd_upd_est_cost_new('" + id_str + "')"
                     execute_non_query(query, True, "", "", "", "")
                     viewLineList()
                     infoCustom("Estimate Cost Updated.")
