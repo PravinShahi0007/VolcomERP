@@ -78,6 +78,8 @@ Partial Class FormFGLineList
         Me.SMViewHistoryPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewCostHist = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PanelImg = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,6 +109,9 @@ Partial Class FormFGLineList
         CType(Me.PBCLineList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
+        CType(Me.PanelImg, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelImg.SuspendLayout()
+        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -114,6 +119,7 @@ Partial Class FormFGLineList
         Me.PanelControlNavLineList.Controls.Add(Me.PCNavLineList)
         Me.PanelControlNavLineList.Controls.Add(Me.PCType)
         Me.PanelControlNavLineList.Controls.Add(Me.PanelOpt)
+        Me.PanelControlNavLineList.Controls.Add(Me.PanelImg)
         Me.PanelControlNavLineList.Controls.Add(Me.BtnView)
         Me.PanelControlNavLineList.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNavLineList.Location = New System.Drawing.Point(0, 0)
@@ -129,7 +135,7 @@ Partial Class FormFGLineList
         Me.PCNavLineList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PCNavLineList.Location = New System.Drawing.Point(2, 2)
         Me.PCNavLineList.Name = "PCNavLineList"
-        Me.PCNavLineList.Size = New System.Drawing.Size(838, 35)
+        Me.PCNavLineList.Size = New System.Drawing.Size(747, 35)
         Me.PCNavLineList.TabIndex = 105
         '
         'SLESeason
@@ -142,7 +148,7 @@ Partial Class FormFGLineList
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(777, 20)
+        Me.SLESeason.Size = New System.Drawing.Size(686, 20)
         Me.SLESeason.TabIndex = 95
         '
         'SearchLookUpEdit1View
@@ -189,7 +195,7 @@ Partial Class FormFGLineList
         Me.PCType.Controls.Add(Me.SLETypeLineList)
         Me.PCType.Controls.Add(Me.LabelControl1)
         Me.PCType.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PCType.Location = New System.Drawing.Point(840, 2)
+        Me.PCType.Location = New System.Drawing.Point(749, 2)
         Me.PCType.Name = "PCType"
         Me.PCType.Size = New System.Drawing.Size(279, 35)
         Me.PCType.TabIndex = 106
@@ -242,7 +248,7 @@ Partial Class FormFGLineList
         Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelOpt.Controls.Add(Me.CheckEditOpt)
         Me.PanelOpt.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelOpt.Location = New System.Drawing.Point(1119, 2)
+        Me.PanelOpt.Location = New System.Drawing.Point(1028, 2)
         Me.PanelOpt.Name = "PanelOpt"
         Me.PanelOpt.Size = New System.Drawing.Size(137, 35)
         Me.PanelOpt.TabIndex = 107
@@ -580,7 +586,7 @@ Partial Class FormFGLineList
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditDesign, Me.SMViewDupe, Me.SMDeleteDesign, Me.SMViewHistoryPD, Me.SMViewPD, Me.SMViewCostHist})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(201, 158)
+        Me.ViewMenu.Size = New System.Drawing.Size(201, 136)
         '
         'SMEditDesign
         '
@@ -619,6 +625,26 @@ Partial Class FormFGLineList
         Me.SMViewCostHist.Name = "SMViewCostHist"
         Me.SMViewCostHist.Size = New System.Drawing.Size(200, 22)
         Me.SMViewCostHist.Text = "View History Cost"
+        '
+        'PanelImg
+        '
+        Me.PanelImg.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelImg.Controls.Add(Me.CheckImg)
+        Me.PanelImg.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelImg.Location = New System.Drawing.Point(1165, 2)
+        Me.PanelImg.Name = "PanelImg"
+        Me.PanelImg.Size = New System.Drawing.Size(91, 35)
+        Me.PanelImg.TabIndex = 108
+        Me.PanelImg.Visible = False
+        '
+        'CheckImg
+        '
+        Me.CheckImg.Location = New System.Drawing.Point(5, 8)
+        Me.CheckImg.MenuManager = Me.BarManager1
+        Me.CheckImg.Name = "CheckImg"
+        Me.CheckImg.Properties.Caption = "Show Image"
+        Me.CheckImg.Size = New System.Drawing.Size(127, 19)
+        Me.CheckImg.TabIndex = 0
         '
         'FormFGLineList
         '
@@ -667,6 +693,9 @@ Partial Class FormFGLineList
         CType(Me.PBCLineList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
+        CType(Me.PanelImg, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelImg.ResumeLayout(False)
+        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -728,4 +757,6 @@ Partial Class FormFGLineList
     Friend WithEvents BtnPlanStatus As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelOpt As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CheckEditOpt As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents PanelImg As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CheckImg As DevExpress.XtraEditors.CheckEdit
 End Class
