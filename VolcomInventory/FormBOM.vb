@@ -124,7 +124,6 @@
                 bdel_active = "0"
                 '
                 bdupe_active = "0"
-
             End If
         End If
         checkFormAccess(Name)

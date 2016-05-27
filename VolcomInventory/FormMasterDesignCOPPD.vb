@@ -27,7 +27,6 @@
         '
         LECurrency.EditValue = Nothing
         LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString)
-
     End Sub
 
     Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)

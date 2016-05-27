@@ -506,7 +506,7 @@ Partial Class FormProductionCOP
         Me.XTPCostManagement.Controls.Add(Me.PanelControl3)
         Me.XTPCostManagement.Name = "XTPCostManagement"
         Me.XTPCostManagement.Size = New System.Drawing.Size(911, 410)
-        Me.XTPCostManagement.Text = "Cost Kurs Management"
+        Me.XTPCostManagement.Text = "Cost Calculation"
         '
         'GCCostMan
         '
@@ -646,7 +646,7 @@ Partial Class FormProductionCOP
         Me.GridColumn28.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn28.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn28.Caption = "Original Price"
+        Me.GridColumn28.Caption = "Price Before Kurs"
         Me.GridColumn28.DisplayFormat.FormatString = "N2"
         Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn28.FieldName = "actual_price"
@@ -661,7 +661,7 @@ Partial Class FormProductionCOP
         Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn20.Caption = "Price"
+        Me.GridColumn20.Caption = "Price After Kurs"
         Me.GridColumn20.DisplayFormat.FormatString = "N2"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "price"
@@ -807,9 +807,9 @@ Partial Class FormProductionCOP
         '
         Me.LabelControl14.Location = New System.Drawing.Point(626, 37)
         Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(18, 13)
+        Me.LabelControl14.Size = New System.Drawing.Size(59, 13)
         Me.LabelControl14.TabIndex = 147
-        Me.LabelControl14.Text = "Qty"
+        Me.LabelControl14.Text = "Qty Receive"
         '
         'PanelControl3
         '
@@ -868,6 +868,7 @@ Partial Class FormProductionCOP
         Me.XTPCostBOM.Controls.Add(Me.PanelControl5)
         Me.XTPCostBOM.Controls.Add(Me.PanelControl1)
         Me.XTPCostBOM.Name = "XTPCostBOM"
+        Me.XTPCostBOM.PageVisible = False
         Me.XTPCostBOM.Size = New System.Drawing.Size(911, 410)
         Me.XTPCostBOM.Text = "Cost Kurs BOM"
         '
@@ -1223,6 +1224,7 @@ Partial Class FormProductionCOP
         Me.XTPCostPD.Controls.Add(Me.PanelControl6)
         Me.XTPCostPD.Controls.Add(Me.PanelControl2)
         Me.XTPCostPD.Name = "XTPCostPD"
+        Me.XTPCostPD.PageVisible = False
         Me.XTPCostPD.Size = New System.Drawing.Size(911, 410)
         Me.XTPCostPD.Text = "Cost Kurs PD"
         '
@@ -1579,7 +1581,7 @@ Partial Class FormProductionCOP
         Me.BRefresh.Name = "BRefresh"
         Me.BRefresh.Size = New System.Drawing.Size(917, 31)
         Me.BRefresh.TabIndex = 151
-        Me.BRefresh.Text = "Refresh"
+        Me.BRefresh.Text = "Recalculate Cost"
         '
         'GroupControl4
         '

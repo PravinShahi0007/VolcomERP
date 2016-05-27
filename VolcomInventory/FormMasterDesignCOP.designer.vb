@@ -337,19 +337,19 @@ Partial Class FormMasterDesignCOP
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditEcopPD, Me.SMEditEcopFinal})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(156, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(235, 70)
         '
         'SMEditEcopPD
         '
         Me.SMEditEcopPD.Name = "SMEditEcopPD"
-        Me.SMEditEcopPD.Size = New System.Drawing.Size(155, 22)
+        Me.SMEditEcopPD.Size = New System.Drawing.Size(234, 22)
         Me.SMEditEcopPD.Text = "Edit ECOP PD"
         '
         'SMEditEcopFinal
         '
         Me.SMEditEcopFinal.Name = "SMEditEcopFinal"
-        Me.SMEditEcopFinal.Size = New System.Drawing.Size(155, 22)
-        Me.SMEditEcopFinal.Text = "Edit ECOP Final"
+        Me.SMEditEcopFinal.Size = New System.Drawing.Size(234, 22)
+        Me.SMEditEcopFinal.Text = "Edit Pre-Final COP / Final COP"
         '
         'FormMasterDesignCOP
         '
