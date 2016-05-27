@@ -5955,28 +5955,30 @@ Public Class FormMain
         ElseIf formName = "FormFGLineList" Then
             'LINE LIST
             Cursor = Cursors.WaitCursor
-            If FormFGLineList.BGVLineList.RowCount > 0 Then
-                '... 
-                ' creating and saving the view's layout to a new memory stream 
-                Dim str As System.IO.Stream
-                str = New System.IO.MemoryStream()
-                FormFGLineList.BGVLineList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
-                ReportFGLineList.dt = FormFGLineList.GCLineList.DataSource
-                Dim Report As New ReportFGLineList()
-                Report.AdvBandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
+            print(FormFGLineList.GCLineList, FormFGLineList.SLESeason.Text.ToString.ToUpper + " LINE LIST" + System.Environment.NewLine + "TYPE : " + FormFGLineList.SLETypeLineList.Text.ToUpper)
+            'If FormFGLineList.BGVLineList.RowCount > 0 Then
+            '    '... 
+            '    ' creating and saving the view's layout to a new memory stream 
+            '    Dim str As System.IO.Stream
+            '    str = New System.IO.MemoryStream()
+            '    FormFGLineList.BGVLineList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            '    str.Seek(0, System.IO.SeekOrigin.Begin)
+            '    ReportFGLineList.dt = FormFGLineList.GCLineList.DataSource
+            '    ReportFGLineList.img_cond = FormFGLineList.CheckImg.EditValue
+            '    Dim Report As New ReportFGLineList()
+            '    Report.AdvBandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            '    str.Seek(0, System.IO.SeekOrigin.Begin)
 
 
-                Report.LabelSeason.Text = FormFGLineList.SLESeason.Text.ToString
-                Report.LabelType.Text = FormFGLineList.SLETypeLineList.Text.ToString
-                ReportStyleBanded(Report.AdvBandedGridView1)
-                Report.AdvBandedGridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+            '    Report.LabelSeason.Text = FormFGLineList.SLESeason.Text.ToString
+            '    Report.LabelType.Text = FormFGLineList.SLETypeLineList.Text.ToString
+            '    ReportStyleBanded(Report.AdvBandedGridView1)
+            '    Report.AdvBandedGridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
 
-                ' Show the report's preview. 
-                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-                Tool.ShowPreview()
-            End If
+            '    ' Show the report's preview. 
+            '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            '    Tool.ShowPreview()
+            'End If
             Cursor = Cursors.Default
         ElseIf formName = "FormMasterRetCode" Then
             print(FormMasterRetCode.GCRetCode, "Return Code")
