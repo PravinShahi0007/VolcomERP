@@ -76,6 +76,20 @@
         lookup.Properties.ValueMember = "id_design_type"
         lookup.ItemIndex = 0
     End Sub
+
+    'view season orign
+    Sub viewSeasonOrign(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
+        Dim query As String = "SELECT * FROM tb_season_orign a ORDER BY a.id_season_orign DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        lookup.Properties.DataSource = Nothing
+        lookup.Properties.DataSource = data
+
+        lookup.Properties.DisplayMember = "season_orign"
+        lookup.Properties.ValueMember = "id_season_orign"
+        lookup.EditValue = data.Rows(0)("id_season_orign").ToString
+    End Sub
+
     'View Season
     Sub viewSeason(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
         Dim query As String = "SELECT id_season,season FROM tb_season "
@@ -301,6 +315,7 @@
     Sub actionLoad()
         viewUOM(LEUOM)
         viewSeason(LESeason)
+        viewSeasonOrign(SLESeasonOrigin)
         viewSampleOrign(LESampleOrign)
         view_ret_code(LERetCode)
         load_isi_param("1")
@@ -1443,7 +1458,7 @@
 
     End Sub
 
-    Private Sub SimpleButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SimpleButton1.Click
+    Private Sub SimpleButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         MsgBox(del_date_.ToString)
         MsgBox(ret_date_.ToString)
         MsgBox(DateDiff(DateInterval.Month, del_date_, ret_date_).ToString)
@@ -1696,4 +1711,6 @@
             TEDisplayName.Text = full_desc
         End If
     End Sub
+
+
 End Class
