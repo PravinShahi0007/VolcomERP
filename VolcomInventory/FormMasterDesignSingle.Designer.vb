@@ -151,8 +151,8 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnTemplateSize = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelSize = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnTemplateSize = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPLineList = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPPrice = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProductPrice = New DevExpress.XtraGrid.GridControl()
@@ -829,9 +829,9 @@ Partial Class FormMasterDesignSingle
         Me.LabelControl5.Location = New System.Drawing.Point(10, 44)
         Me.LabelControl5.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(85, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(49, 13)
         Me.LabelControl5.TabIndex = 124
-        Me.LabelControl5.Text = "Design Reference"
+        Me.LabelControl5.Text = "Carryover"
         '
         'TxtDelDate
         '
@@ -1611,18 +1611,6 @@ Partial Class FormMasterDesignSingle
         Me.PanelControl1.Size = New System.Drawing.Size(907, 39)
         Me.PanelControl1.TabIndex = 20
         '
-        'BtnTemplateSize
-        '
-        Me.BtnTemplateSize.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnTemplateSize.ImageIndex = 12
-        Me.BtnTemplateSize.ImageList = Me.LargeImageCollection
-        Me.BtnTemplateSize.Location = New System.Drawing.Point(796, 2)
-        Me.BtnTemplateSize.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.BtnTemplateSize.Name = "BtnTemplateSize"
-        Me.BtnTemplateSize.Size = New System.Drawing.Size(109, 35)
-        Me.BtnTemplateSize.TabIndex = 18
-        Me.BtnTemplateSize.Text = "Add Multiple"
-        '
         'BtnDelSize
         '
         Me.BtnDelSize.Dock = System.Windows.Forms.DockStyle.Right
@@ -1634,6 +1622,18 @@ Partial Class FormMasterDesignSingle
         Me.BtnDelSize.Size = New System.Drawing.Size(82, 35)
         Me.BtnDelSize.TabIndex = 14
         Me.BtnDelSize.Text = "Delete"
+        '
+        'BtnTemplateSize
+        '
+        Me.BtnTemplateSize.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnTemplateSize.ImageIndex = 12
+        Me.BtnTemplateSize.ImageList = Me.LargeImageCollection
+        Me.BtnTemplateSize.Location = New System.Drawing.Point(796, 2)
+        Me.BtnTemplateSize.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BtnTemplateSize.Name = "BtnTemplateSize"
+        Me.BtnTemplateSize.Size = New System.Drawing.Size(109, 35)
+        Me.BtnTemplateSize.TabIndex = 18
+        Me.BtnTemplateSize.Text = "Add Multiple"
         '
         'XTPLineList
         '

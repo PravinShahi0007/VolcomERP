@@ -1757,7 +1757,7 @@ Partial Class FormMain
         '
         'NBDesignLineList
         '
-        Me.NBDesignLineList.Caption = "Design List"
+        Me.NBDesignLineList.Caption = "Line List (Design)"
         Me.NBDesignLineList.Name = "NBDesignLineList"
         Me.NBDesignLineList.SmallImageIndex = 26
         '
