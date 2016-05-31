@@ -68,6 +68,7 @@ Partial Class FormFGDesignList
         Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnIsApproved = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelApp = New DevExpress.XtraEditors.PanelControl()
@@ -276,7 +277,7 @@ Partial Class FormFGDesignList
         '
         Me.GVDesign.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GVDesign.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnFabrication, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnFabrication, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupCount = 1
         Me.GVDesign.Name = "GVDesign"
@@ -572,6 +573,14 @@ Partial Class FormFGDesignList
         Me.RepositoryItemCheckEdit2.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit2.ValueUnchecked = "No"
         '
+        'GridColumnIsApproved
+        '
+        Me.GridColumnIsApproved.Caption = "GridColumn5"
+        Me.GridColumnIsApproved.FieldName = "is_approved"
+        Me.GridColumnIsApproved.Name = "GridColumnIsApproved"
+        Me.GridColumnIsApproved.OptionsColumn.AllowEdit = False
+        Me.GridColumnIsApproved.OptionsColumn.ShowInCustomizationForm = False
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -611,28 +620,30 @@ Partial Class FormFGDesignList
         Me.BtnApprove.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnApprove.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnApprove.Name = "BtnApprove"
-        Me.BtnApprove.Size = New System.Drawing.Size(659, 31)
+        Me.BtnApprove.Size = New System.Drawing.Size(668, 31)
         Me.BtnApprove.TabIndex = 3
         Me.BtnApprove.Text = "Approve"
         '
         'PanelSelect
         '
-        Me.PanelSelect.Appearance.BackColor = System.Drawing.Color.White
+        Me.PanelSelect.Appearance.BackColor = System.Drawing.Color.LimeGreen
         Me.PanelSelect.Appearance.Options.UseBackColor = True
         Me.PanelSelect.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelSelect.Controls.Add(Me.CheckSelAll)
         Me.PanelSelect.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelSelect.Location = New System.Drawing.Point(661, 2)
+        Me.PanelSelect.Location = New System.Drawing.Point(670, 2)
         Me.PanelSelect.Name = "PanelSelect"
-        Me.PanelSelect.Size = New System.Drawing.Size(95, 31)
+        Me.PanelSelect.Size = New System.Drawing.Size(86, 31)
         Me.PanelSelect.TabIndex = 0
         '
         'CheckSelAll
         '
-        Me.CheckSelAll.Location = New System.Drawing.Point(14, 6)
+        Me.CheckSelAll.Location = New System.Drawing.Point(11, 6)
         Me.CheckSelAll.Name = "CheckSelAll"
+        Me.CheckSelAll.Properties.Appearance.ForeColor = System.Drawing.Color.White
+        Me.CheckSelAll.Properties.Appearance.Options.UseForeColor = True
         Me.CheckSelAll.Properties.Caption = "Select All"
-        Me.CheckSelAll.Size = New System.Drawing.Size(75, 19)
+        Me.CheckSelAll.Size = New System.Drawing.Size(72, 19)
         Me.CheckSelAll.TabIndex = 0
         '
         'FormFGDesignList
@@ -735,4 +746,5 @@ Partial Class FormFGDesignList
     Friend WithEvents PanelSelect As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CheckSelAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents BtnApprove As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnIsApproved As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -68,6 +68,8 @@
         Else
             GridColumnSelect.Visible = False
         End If
+
+        noEdit()
     End Sub
 
     Private Sub FormFGDesignList_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -120,6 +122,7 @@
 
     Private Sub GVDesign_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVDesign.FocusedRowChanged
         noManipulating()
+        noEdit()
     End Sub
 
     Private Sub GVDesign_DoubleClick(sender As Object, e As EventArgs) Handles GVDesign.DoubleClick
@@ -193,5 +196,44 @@
         End If
     End Sub
 
+    Private Sub CheckSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckSelAll.CheckedChanged
+        If GVDesign.RowCount > 0 Then
+            Dim cek As String = CheckSelAll.EditValue.ToString
+            For i As Integer = 0 To ((GVDesign.RowCount - 1) - GetGroupRowCount(GVDesign))
+                Dim is_approved As String = GVDesign.GetRowCellValue(i, "is_approved").ToString
+                If cek And is_approved = "2" Then
+                    GVDesign.SetRowCellValue(i, "is_select", "Yes")
+                Else
+                    GVDesign.SetRowCellValue(i, "is_select", "No")
+                End If
+            Next
+        End If
+    End Sub
 
+    Sub noEdit()
+        Dim is_approved As String = "1"
+        Try
+            is_approved = GVDesign.GetFocusedRowCellValue("is_approved").ToString
+        Catch ex As Exception
+        End Try
+        If is_approved = "2" Then
+            GVDesign.Columns("is_select").OptionsColumn.AllowEdit = True
+        Else
+            GVDesign.Columns("is_select").OptionsColumn.AllowEdit = False
+        End If
+    End Sub
+
+    Private Sub BtnApprove_Click(sender As Object, e As EventArgs) Handles BtnApprove.Click
+        GVDesign.ActiveFilterString = "[is_select]='Yes'"
+        If GVDesign.RowCount = 0 Then
+            stopCustom("Please select design first.")
+        Else
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to aprrove these data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+
+            Else
+                GVDesign.ActiveFilterString = ""
+            End If
+        End If
+    End Sub
 End Class
