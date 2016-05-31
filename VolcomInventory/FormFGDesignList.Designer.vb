@@ -273,7 +273,6 @@ Partial Class FormFGDesignList
         Me.GVDesign.GroupCount = 1
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVDesign.OptionsBehavior.Editable = False
         Me.GVDesign.OptionsCustomization.AllowGroup = False
         Me.GVDesign.OptionsView.ColumnAutoWidth = False
         Me.GVDesign.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
@@ -286,12 +285,14 @@ Partial Class FormFGDesignList
         Me.ColID.Caption = "Id Design"
         Me.ColID.FieldName = "id_design"
         Me.ColID.Name = "ColID"
+        Me.ColID.OptionsColumn.AllowEdit = False
         '
         'ColName
         '
         Me.ColName.Caption = "Design"
         Me.ColName.FieldName = "design_name"
         Me.ColName.Name = "ColName"
+        Me.ColName.OptionsColumn.AllowEdit = False
         Me.ColName.Width = 99
         '
         'ColSampleSeason
@@ -300,6 +301,7 @@ Partial Class FormFGDesignList
         Me.ColSampleSeason.FieldName = "season"
         Me.ColSampleSeason.FieldNameSortGroup = "id_season"
         Me.ColSampleSeason.Name = "ColSampleSeason"
+        Me.ColSampleSeason.OptionsColumn.AllowEdit = False
         Me.ColSampleSeason.Visible = True
         Me.ColSampleSeason.VisibleIndex = 9
         '
@@ -308,6 +310,7 @@ Partial Class FormFGDesignList
         Me.GridColumn7.Caption = "id season"
         Me.GridColumn7.FieldName = "id_season"
         Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.OptionsColumn.ShowInCustomizationForm = False
         '
         'GridColumnFabrication
@@ -315,6 +318,7 @@ Partial Class FormFGDesignList
         Me.GridColumnFabrication.Caption = "Fabrication"
         Me.GridColumnFabrication.FieldName = "design_fabrication"
         Me.GridColumnFabrication.Name = "GridColumnFabrication"
+        Me.GridColumnFabrication.OptionsColumn.AllowEdit = False
         Me.GridColumnFabrication.Width = 249
         '
         'GridColumnOrign
@@ -326,6 +330,7 @@ Partial Class FormFGDesignList
         Me.GridColumnOrign.Caption = "Source"
         Me.GridColumnOrign.FieldName = "product_source"
         Me.GridColumnOrign.Name = "GridColumnOrign"
+        Me.GridColumnOrign.OptionsColumn.AllowEdit = False
         Me.GridColumnOrign.Width = 69
         '
         'ColDesignCode
@@ -333,6 +338,7 @@ Partial Class FormFGDesignList
         Me.ColDesignCode.Caption = "Code"
         Me.ColDesignCode.FieldName = "design_code"
         Me.ColDesignCode.Name = "ColDesignCode"
+        Me.ColDesignCode.OptionsColumn.AllowEdit = False
         Me.ColDesignCode.Visible = True
         Me.ColDesignCode.VisibleIndex = 1
         '
@@ -341,6 +347,7 @@ Partial Class FormFGDesignList
         Me.GridColumnCodeImport.Caption = "Code Import"
         Me.GridColumnCodeImport.FieldName = "code_import"
         Me.GridColumnCodeImport.Name = "GridColumnCodeImport"
+        Me.GridColumnCodeImport.OptionsColumn.AllowEdit = False
         Me.GridColumnCodeImport.Visible = True
         Me.GridColumnCodeImport.VisibleIndex = 0
         Me.GridColumnCodeImport.Width = 88
@@ -350,6 +357,7 @@ Partial Class FormFGDesignList
         Me.ColDisplayName.Caption = "Description"
         Me.ColDisplayName.FieldName = "design_display_name"
         Me.ColDisplayName.Name = "ColDisplayName"
+        Me.ColDisplayName.OptionsColumn.AllowEdit = False
         Me.ColDisplayName.Visible = True
         Me.ColDisplayName.VisibleIndex = 6
         Me.ColDisplayName.Width = 107
@@ -359,6 +367,7 @@ Partial Class FormFGDesignList
         Me.Orign.Caption = "Season Origin"
         Me.Orign.FieldName = "season_orign"
         Me.Orign.Name = "Orign"
+        Me.Orign.OptionsColumn.AllowEdit = False
         Me.Orign.Visible = True
         Me.Orign.VisibleIndex = 2
         Me.Orign.Width = 101
@@ -372,6 +381,7 @@ Partial Class FormFGDesignList
         Me.GridColumnColor.Caption = "Color"
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
+        Me.GridColumnColor.OptionsColumn.AllowEdit = False
         Me.GridColumnColor.Visible = True
         Me.GridColumnColor.VisibleIndex = 7
         Me.GridColumnColor.Width = 94
@@ -385,6 +395,7 @@ Partial Class FormFGDesignList
         Me.GridColumnClass.Caption = "Class"
         Me.GridColumnClass.FieldName = "product_class_display"
         Me.GridColumnClass.Name = "GridColumnClass"
+        Me.GridColumnClass.OptionsColumn.AllowEdit = False
         Me.GridColumnClass.Visible = True
         Me.GridColumnClass.VisibleIndex = 5
         Me.GridColumnClass.Width = 53
@@ -394,6 +405,7 @@ Partial Class FormFGDesignList
         Me.GridColumnBreakSize.Caption = "Size Chart"
         Me.GridColumnBreakSize.FieldName = "size_chart"
         Me.GridColumnBreakSize.Name = "GridColumnBreakSize"
+        Me.GridColumnBreakSize.OptionsColumn.AllowEdit = False
         Me.GridColumnBreakSize.Visible = True
         Me.GridColumnBreakSize.VisibleIndex = 8
         Me.GridColumnBreakSize.Width = 164
@@ -404,36 +416,42 @@ Partial Class FormFGDesignList
         Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
+        Me.GridColumnPrice.OptionsColumn.AllowEdit = False
         '
         'GridColumnActive
         '
         Me.GridColumnActive.Caption = "Active"
         Me.GridColumnActive.FieldName = "active"
         Me.GridColumnActive.Name = "GridColumnActive"
+        Me.GridColumnActive.OptionsColumn.AllowEdit = False
         '
         'GridColumnUSCode
         '
         Me.GridColumnUSCode.Caption = "US Code"
         Me.GridColumnUSCode.FieldName = "sample_us_code"
         Me.GridColumnUSCode.Name = "GridColumnUSCode"
+        Me.GridColumnUSCode.OptionsColumn.AllowEdit = False
         '
         'GridColumnIdSample
         '
         Me.GridColumnIdSample.Caption = "Id Sample"
         Me.GridColumnIdSample.FieldName = "id_sample"
         Me.GridColumnIdSample.Name = "GridColumnIdSample"
+        Me.GridColumnIdSample.OptionsColumn.AllowEdit = False
         '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Data Sample"
         Me.GridColumn1.FieldName = "status_sample"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Style Country"
         Me.GridColumn2.FieldName = "country"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 3
         Me.GridColumn2.Width = 64
@@ -443,6 +461,7 @@ Partial Class FormFGDesignList
         Me.GridColumnSourceDisplay.Caption = "Product Origin"
         Me.GridColumnSourceDisplay.FieldName = "product_source_display"
         Me.GridColumnSourceDisplay.Name = "GridColumnSourceDisplay"
+        Me.GridColumnSourceDisplay.OptionsColumn.AllowEdit = False
         Me.GridColumnSourceDisplay.Visible = True
         Me.GridColumnSourceDisplay.VisibleIndex = 4
         Me.GridColumnSourceDisplay.Width = 59
@@ -489,12 +508,14 @@ Partial Class FormFGDesignList
         Me.BtnApprove.Size = New System.Drawing.Size(83, 35)
         Me.BtnApprove.TabIndex = 108
         Me.BtnApprove.Text = "Approve"
+        Me.BtnApprove.Visible = False
         '
         'GridColumnApp
         '
         Me.GridColumnApp.Caption = "Approved By"
         Me.GridColumnApp.FieldName = "app_by"
         Me.GridColumnApp.Name = "GridColumnApp"
+        Me.GridColumnApp.OptionsColumn.AllowEdit = False
         Me.GridColumnApp.Visible = True
         Me.GridColumnApp.VisibleIndex = 10
         '
@@ -523,6 +544,7 @@ Partial Class FormFGDesignList
         Me.GridColumnUpdBy.Caption = "Updated By"
         Me.GridColumnUpdBy.FieldName = "upd_by"
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
+        Me.GridColumnUpdBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdBy.Visible = True
         Me.GridColumnUpdBy.VisibleIndex = 12
         '
@@ -534,6 +556,7 @@ Partial Class FormFGDesignList
         Me.GridColumnLastUpdated.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnLastUpdated.FieldName = "last_updated"
         Me.GridColumnLastUpdated.Name = "GridColumnLastUpdated"
+        Me.GridColumnLastUpdated.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdated.Visible = True
         Me.GridColumnLastUpdated.VisibleIndex = 11
         Me.GridColumnLastUpdated.Width = 54
@@ -556,8 +579,6 @@ Partial Class FormFGDesignList
         Me.GridColumnSelect.ColumnEdit = Me.RepositoryItemCheckEdit2
         Me.GridColumnSelect.FieldName = "is_select"
         Me.GridColumnSelect.Name = "GridColumnSelect"
-        Me.GridColumnSelect.Visible = True
-        Me.GridColumnSelect.VisibleIndex = 13
         '
         'RepositoryItemCheckEdit2
         '

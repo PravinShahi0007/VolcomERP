@@ -49,9 +49,6 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesign.DataSource = data
 
-        If id_pop_up = "1" Then
-            GVDesign.ActiveFilterString = "[status_sample]='Not Found' "
-        End If
 
         check_menu()
 
@@ -59,6 +56,17 @@
             PanelOpt.Visible = True
         Else
             PanelOpt.Visible = False
+        End If
+
+        If id_pop_up = "1" Then 'approve
+            GridColumnSelect.Visible = True
+            If GVDesign.RowCount > 0 Then
+                BtnApprove.Visible = True
+            Else
+                BtnApprove.Visible = False
+            End If
+        Else
+            GridColumnSelect.Visible = False
         End If
     End Sub
 
@@ -180,6 +188,9 @@
     Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
         PanelOpt.Visible = False
         GCDesign.DataSource = Nothing
+        If id_pop_up = "1" Then 'approve
+            BtnApprove.Visible = False
+        End If
     End Sub
 
 

@@ -9368,7 +9368,6 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormFGDesignList.MdiParent = Me
-            'FormFGDesignList.id_pop_up = "1"
             FormFGDesignList.Show()
             FormFGDesignList.WindowState = FormWindowState.Maximized
             FormFGDesignList.Focus()
@@ -9496,6 +9495,20 @@ Public Class FormMain
             FormSampleReturnPL.Show()
             FormSampleReturnPL.WindowState = FormWindowState.Maximized
             FormSampleReturnPL.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDesignListApp_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDesignListApp.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGDesignList.MdiParent = Me
+            FormFGDesignList.id_pop_up = "1"
+            FormFGDesignList.Show()
+            FormFGDesignList.WindowState = FormWindowState.Maximized
+            FormFGDesignList.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
