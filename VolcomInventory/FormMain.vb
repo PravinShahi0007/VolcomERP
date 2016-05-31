@@ -2106,7 +2106,7 @@ Public Class FormMain
                 FormMasterRetCodeDet.ShowDialog()
             ElseIf formName = "FormMasterDesignCOP" Then
                 'MASTER RET CODE
-                FormProductionCOP.id_design = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                FormProductionCOP.id_design = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_design").ToString
                 FormProductionCOP.ShowDialog()
             ElseIf formName = "FormSampleOrdered" Then
                 'SAMPLE ORDERED

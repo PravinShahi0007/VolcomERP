@@ -177,6 +177,9 @@
                     'execute_non_query(query, True, "", "", "", "")
                     Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_qty='{0}',prod_order_cop_last_upd=NOW(), design_cop='{1}', id_cop_status='2' WHERE id_design='{2}'", decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design)
                     execute_non_query(query, True, "", "", "", "")
+                    'add final
+                    query = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_kurs_mng='{1}',prod_order_cop_mng='{2}' WHERE id_design='{3}' AND (ISNULL(prod_order_cop_mng) OR prod_order_cop_mng=0)", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design)
+                    execute_non_query(query, True, "", "", "", "")
                 End If
             Else 'pre final
                 'Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_total_bom='{1}',prod_order_cop_total_pd='{2}',prod_order_cop_qty='{3}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{4}',prod_order_cop_kurs_bom='{5}',prod_order_cop_kurs_pd='{6}',id_cop_status='1' WHERE id_design='{7}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TETotalBOM.EditValue.ToString), decimalSQL(TETotalCostPD.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEKursBom.EditValue.ToString), decimalSQL(TEKursPD.EditValue.ToString), id_design)

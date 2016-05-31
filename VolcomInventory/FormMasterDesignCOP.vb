@@ -26,14 +26,15 @@
             Dim query As String = "CALL view_all_design_param(""" + query_where + """)"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDesign.DataSource = data
-            GVDesign.BestFitColumns()
+            BGVDesign.BestFitColumns()
+            BGVDesign.ExpandAllGroups()
             check_menu()
         Catch ex As Exception
             errorConnection()
         End Try
     End Sub
 
-    Private Sub GVDesign_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVDesign.FocusedRowChanged
+    Private Sub GVDesign_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs)
         Dim focusedRowHandle As Integer = -1
         If e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.NewItemRowHandle OrElse e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.AutoFilterRowHandle Then
             Return
@@ -68,7 +69,7 @@
     End Sub
 
     Sub check_menu()
-        If GVDesign.RowCount < 1 Then
+        If BGVDesign.RowCount < 1 Then
             'hide all except new
             bnew_active = "1"
             bedit_active = "0"
@@ -97,9 +98,10 @@
 
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
         view_design()
+
     End Sub
 
-    Private Sub GVDesign_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVDesign.PopupMenuShowing
+    Private Sub GVDesign_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs)
         Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
         Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
         If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
@@ -110,15 +112,78 @@
 
     Private Sub SMEditEcopFinal_Click(sender As Object, e As EventArgs) Handles SMEditEcopFinal.Click
         'MASTER RET CODE
-        FormProductionCOP.id_design = GVDesign.GetFocusedRowCellValue("id_design").ToString
+        FormProductionCOP.id_design = BGVDesign.GetFocusedRowCellValue("id_design").ToString
         FormProductionCOP.ShowDialog()
     End Sub
 
     Private Sub SMEditEcopPD_Click(sender As Object, e As EventArgs) Handles SMEditEcopPD.Click
-        FormMasterDesignCOPPD.id_design = GVDesign.GetFocusedRowCellValue("id_design").ToString
-        FormMasterDesignCOPPD.TECode.Text = GVDesign.GetFocusedRowCellValue("design_code").ToString
-        FormMasterDesignCOPPD.TEDesc.Text = GVDesign.GetFocusedRowCellValue("design_display_name").ToString
+        FormMasterDesignCOPPD.id_design = BGVDesign.GetFocusedRowCellValue("id_design").ToString
+        FormMasterDesignCOPPD.TECode.Text = BGVDesign.GetFocusedRowCellValue("design_code").ToString
+        FormMasterDesignCOPPD.TEDesc.Text = BGVDesign.GetFocusedRowCellValue("design_display_name").ToString
         '
         FormMasterDesignCOPPD.ShowDialog()
+    End Sub
+
+    Private Sub BGVDesign_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles BGVDesign.PopupMenuShowing
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
+        If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
+            view.FocusedRowHandle = hitInfo.RowHandle
+            ViewMenu.Show(view.GridControl, e.Point)
+        End If
+    End Sub
+
+    Private Sub CEFreeze_CheckedChanged(sender As Object, e As EventArgs) Handles CEFreeze.CheckedChanged
+        If CEFreeze.Checked = True Then 'freeze band detail
+            GridBandDetail.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Else 'not freeze
+            GridBandDetail.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+        End If
+    End Sub
+
+    Private Sub CEShowImg_CheckedChanged(sender As Object, e As EventArgs) Handles CEShowImg.CheckedChanged
+        Cursor = Cursors.WaitCursor
+        Dim val As String = CEShowImg.EditValue.ToString
+        If val = "True" Then
+            Picture.Visible = True
+            Picture.VisibleIndex = 0
+        Else
+            Picture.Visible = False
+        End If
+        GCDesign.RefreshDataSource()
+        BGVDesign.RefreshData()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private ImageDir As String = product_image_path
+    Private Images As Hashtable = New Hashtable()
+    Private Sub BGVDesign_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles BGVDesign.CustomUnboundColumnData
+        If e.Column.FieldName = "img" AndAlso e.IsGetData And CEShowImg.EditValue.ToString = "True" Then
+            Images = Nothing
+            Images = New Hashtable()
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "id_design"))
+
+            Dim fileName As String = id & ".jpg".ToLower
+
+            If (Not Images.ContainsKey(fileName)) Then
+                Dim img As Image = Nothing
+                Dim resizeImg As Image = Nothing
+
+                Try
+
+                    Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(ImageDir, fileName, False)
+                    img = Image.FromFile(filePath)
+                    resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+                Catch
+
+                End Try
+
+                Images.Add(fileName, resizeImg)
+
+            End If
+
+            e.Value = Images(fileName)
+        End If
     End Sub
 End Class

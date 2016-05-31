@@ -18,15 +18,15 @@
         view_currency(LECurrency)
         TEVendor.Focus()
         '
-        id_comp = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("id_comp_pd").ToString
-        id_comp_contact = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString
-        TEVendor.Text = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("comp_number_pd").ToString
-        TEVendorName.Text = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("comp_name_pd").ToString
-        TEKurs.EditValue = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
-        TEEcop.EditValue = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("prod_order_cop_pd")
+        id_comp = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_comp_pd").ToString
+        id_comp_contact = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_vendor").ToString
+        TEVendor.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_number_pd").ToString
+        TEVendorName.Text = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("comp_name_pd").ToString
+        TEKurs.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_kurs_pd")
+        TEEcop.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd")
         '
         LECurrency.EditValue = Nothing
-        LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString)
+        LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("prod_order_cop_pd_curr").ToString)
     End Sub
 
     Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -91,7 +91,7 @@
         execute_non_query(query, True, "", "", "", "")
         infoCustom("ECOP entry success.")
         FormMasterDesignCOP.view_design()
-        FormMasterDesignCOP.GVDesign.FocusedRowHandle = find_row(FormMasterDesignCOP.GVDesign, "id_design", id_design)
+        FormMasterDesignCOP.BGVDesign.FocusedRowHandle = find_row(FormMasterDesignCOP.BGVDesign, "id_design", id_design)
         Close()
     End Sub
 
