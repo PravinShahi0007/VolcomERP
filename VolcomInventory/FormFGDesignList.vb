@@ -61,9 +61,9 @@
         If id_pop_up = "1" Then 'approve
             GridColumnSelect.Visible = True
             If GVDesign.RowCount > 0 Then
-                BtnApprove.Visible = True
+                PanelApp.Visible = True
             Else
-                BtnApprove.Visible = False
+                PanelApp.Visible = False
             End If
         Else
             GridColumnSelect.Visible = False
@@ -189,7 +189,7 @@
         PanelOpt.Visible = False
         GCDesign.DataSource = Nothing
         If id_pop_up = "1" Then 'approve
-            BtnApprove.Visible = False
+            PanelApp.Visible = False
         End If
     End Sub
 
