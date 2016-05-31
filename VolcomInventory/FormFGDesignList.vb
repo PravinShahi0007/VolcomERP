@@ -230,7 +230,24 @@
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to aprrove these data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
-
+                Cursor = Cursors.WaitCursor
+                Dim query As String = "UPDATE tb_m_design SET is_approved='1', approved_by='" + id_user + "', approved_time=NOW() WHERE id_design >0 AND ( "
+                For i As Integer = 0 To ((GVDesign.RowCount - 1) - GetGroupRowCount(GVDesign))
+                    If i > 0 Then
+                        query += "OR "
+                    End If
+                    query += "id_design='" + GVDesign.GetRowCellValue(i, "id_design").ToString + "' "
+                Next
+                query += ") "
+                Try
+                    execute_non_query(query, True, "", "", "", "")
+                    infoCustom("Design approved succesfully")
+                Catch ex As Exception
+                    infoCustom("Error excecution, please try again later.")
+                End Try
+                GVDesign.ActiveFilterString = ""
+                viewData()
+                Cursor = Cursors.Default
             Else
                 GVDesign.ActiveFilterString = ""
             End If
