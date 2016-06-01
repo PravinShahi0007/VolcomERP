@@ -38,7 +38,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         id_fg_wh_alloc = data.Rows(0)("id_fg_wh_alloc").ToString
         id_report_status = data.Rows(0)("id_report_status").ToString
-        SLESeason.EditValue = data.Rows(0)("id_season").ToString
+        'SLESeason.EditValue = data.Rows(0)("id_season").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         TxtNumber.Text = data.Rows(0)("fg_wh_alloc_number").ToString
         DEForm.Text = view_date_from(data.Rows(0)("fg_wh_alloc_datex").ToString, 0)

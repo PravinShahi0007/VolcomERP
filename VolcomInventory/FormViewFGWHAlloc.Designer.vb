@@ -244,14 +244,14 @@ Partial Class FormViewFGWHAlloc
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 65)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 72)
         Me.GroupGeneralHeader.TabIndex = 201
         '
         'SLESeason
         '
         Me.SLESeason.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLESeason.Location = New System.Drawing.Point(94, 33)
+        Me.SLESeason.Location = New System.Drawing.Point(94, 88)
         Me.SLESeason.Name = "SLESeason"
         Me.SLESeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
@@ -293,7 +293,7 @@ Partial Class FormViewFGWHAlloc
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(32, 36)
+        Me.LabelControl2.Location = New System.Drawing.Point(32, 91)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl2.TabIndex = 8909
@@ -345,7 +345,7 @@ Partial Class FormViewFGWHAlloc
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelHeaderLeft.Location = New System.Drawing.Point(606, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
-        Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 61)
+        Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 68)
         Me.PanelHeaderLeft.TabIndex = 8899
         '
         'TxtNumber
@@ -454,9 +454,9 @@ Partial Class FormViewFGWHAlloc
         Me.GroupControlItemList.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlItemList.Controls.Add(Me.XtraTabControl1)
         Me.GroupControlItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 65)
+        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 72)
         Me.GroupControlItemList.Name = "GroupControlItemList"
-        Me.GroupControlItemList.Size = New System.Drawing.Size(859, 268)
+        Me.GroupControlItemList.Size = New System.Drawing.Size(859, 261)
         Me.GroupControlItemList.TabIndex = 204
         '
         'XtraTabControl1
@@ -465,7 +465,7 @@ Partial Class FormViewFGWHAlloc
         Me.XtraTabControl1.Location = New System.Drawing.Point(20, 2)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPDetail
-        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 264)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 257)
         Me.XtraTabControl1.TabIndex = 8905
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPSummary})
         '
@@ -473,7 +473,7 @@ Partial Class FormViewFGWHAlloc
         '
         Me.XTPDetail.Controls.Add(Me.GCItemList)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(831, 236)
+        Me.XTPDetail.Size = New System.Drawing.Size(831, 229)
         Me.XTPDetail.Text = "Detail"
         '
         'GCItemList
@@ -483,7 +483,7 @@ Partial Class FormViewFGWHAlloc
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(831, 236)
+        Me.GCItemList.Size = New System.Drawing.Size(831, 229)
         Me.GCItemList.TabIndex = 0
         Me.GCItemList.TabStop = False
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
@@ -618,7 +618,7 @@ Partial Class FormViewFGWHAlloc
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(831, 245)
+        Me.XTPSummary.Size = New System.Drawing.Size(831, 236)
         Me.XTPSummary.Text = "Summary By Code"
         '
         'GCSummary
@@ -628,7 +628,7 @@ Partial Class FormViewFGWHAlloc
         Me.GCSummary.MainView = Me.GVSummary
         Me.GCSummary.MenuManager = Me.BarManager1
         Me.GCSummary.Name = "GCSummary"
-        Me.GCSummary.Size = New System.Drawing.Size(831, 245)
+        Me.GCSummary.Size = New System.Drawing.Size(831, 236)
         Me.GCSummary.TabIndex = 0
         Me.GCSummary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSummary})
         '
