@@ -735,7 +735,7 @@ Partial Class FormMasterDesignSingle
         Me.TxtCodeImport.Name = "TxtCodeImport"
         Me.TxtCodeImport.Properties.MaxLength = 17
         Me.TxtCodeImport.Size = New System.Drawing.Size(234, 20)
-        Me.TxtCodeImport.TabIndex = 132
+        Me.TxtCodeImport.TabIndex = 3
         '
         'BtnAddSeasonOrign
         '
@@ -745,7 +745,7 @@ Partial Class FormMasterDesignSingle
         Me.BtnAddSeasonOrign.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BtnAddSeasonOrign.Name = "BtnAddSeasonOrign"
         Me.BtnAddSeasonOrign.Size = New System.Drawing.Size(32, 18)
-        Me.BtnAddSeasonOrign.TabIndex = 131
+        Me.BtnAddSeasonOrign.TabIndex = 5
         Me.BtnAddSeasonOrign.ToolTip = "Add Season"
         '
         'SLESeasonOrigin
@@ -759,7 +759,7 @@ Partial Class FormMasterDesignSingle
         Me.SLESeasonOrigin.Properties.ShowFooter = False
         Me.SLESeasonOrigin.Properties.View = Me.GridView10
         Me.SLESeasonOrigin.Size = New System.Drawing.Size(198, 20)
-        Me.SLESeasonOrigin.TabIndex = 3
+        Me.SLESeasonOrigin.TabIndex = 4
         '
         'GridView10
         '
@@ -797,7 +797,7 @@ Partial Class FormMasterDesignSingle
         Me.MEDetail.Location = New System.Drawing.Point(10, 472)
         Me.MEDetail.Name = "MEDetail"
         Me.MEDetail.Size = New System.Drawing.Size(373, 34)
-        Me.MEDetail.TabIndex = 11
+        Me.MEDetail.TabIndex = 13
         '
         'LabelControl11
         '
@@ -821,6 +821,7 @@ Partial Class FormMasterDesignSingle
         Me.SLEActive.Properties.View = Me.GridView9
         Me.SLEActive.Size = New System.Drawing.Size(373, 20)
         Me.SLEActive.TabIndex = 12
+        Me.SLEActive.TabStop = False
         '
         'GridView9
         '
@@ -877,7 +878,7 @@ Partial Class FormMasterDesignSingle
         Me.BtnAddSeaason.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.BtnAddSeaason.Name = "BtnAddSeaason"
         Me.BtnAddSeaason.Size = New System.Drawing.Size(32, 18)
-        Me.BtnAddSeaason.TabIndex = 6
+        Me.BtnAddSeaason.TabIndex = 8
         Me.BtnAddSeaason.ToolTip = "Add Season"
         '
         'SLEDesign
@@ -934,7 +935,7 @@ Partial Class FormMasterDesignSingle
         Me.TxtFabrication.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.TxtFabrication.Name = "TxtFabrication"
         Me.TxtFabrication.Size = New System.Drawing.Size(371, 20)
-        Me.TxtFabrication.TabIndex = 10
+        Me.TxtFabrication.TabIndex = 12
         '
         'LabelControl5
         '
@@ -1024,7 +1025,7 @@ Partial Class FormMasterDesignSingle
         Me.DEEOS.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.DEEOS.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEEOS.Size = New System.Drawing.Size(187, 20)
-        Me.DEEOS.TabIndex = 8
+        Me.DEEOS.TabIndex = 10
         '
         'LabelFromSample
         '
@@ -1073,7 +1074,7 @@ Partial Class FormMasterDesignSingle
         Me.LESampleOrign.Properties.ShowFooter = False
         Me.LESampleOrign.Properties.View = Me.SearchLookUpEdit1View
         Me.LESampleOrign.Size = New System.Drawing.Size(371, 20)
-        Me.LESampleOrign.TabIndex = 9
+        Me.LESampleOrign.TabIndex = 11
         '
         'SearchLookUpEdit1View
         '
@@ -1149,7 +1150,7 @@ Partial Class FormMasterDesignSingle
         Me.LERetCode.Properties.NullText = ""
         Me.LERetCode.Properties.ShowFooter = False
         Me.LERetCode.Size = New System.Drawing.Size(126, 20)
-        Me.LERetCode.TabIndex = 7
+        Me.LERetCode.TabIndex = 9
         '
         'LabelControlUpdateName
         '
@@ -1207,7 +1208,7 @@ Partial Class FormMasterDesignSingle
         Me.LESeason.Properties.ShowFooter = False
         Me.LESeason.Properties.View = Me.GridView3
         Me.LESeason.Size = New System.Drawing.Size(126, 20)
-        Me.LESeason.TabIndex = 4
+        Me.LESeason.TabIndex = 6
         '
         'GridView3
         '
@@ -1251,7 +1252,7 @@ Partial Class FormMasterDesignSingle
         Me.SLEDel.Properties.ShowFooter = False
         Me.SLEDel.Properties.View = Me.GridView1
         Me.SLEDel.Size = New System.Drawing.Size(67, 20)
-        Me.SLEDel.TabIndex = 5
+        Me.SLEDel.TabIndex = 7
         '
         'GridView1
         '
