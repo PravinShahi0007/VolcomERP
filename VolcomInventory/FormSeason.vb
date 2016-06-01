@@ -147,7 +147,9 @@
     End Sub
     'Activated
     Private Sub FormSeason_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
-        FormMain.show_rb(Name)
+        If quick_edit = "-1" Then
+            FormMain.show_rb(Name)
+        End If
         mainPageChanged()
     End Sub
     'Deadactivated
