@@ -152,7 +152,9 @@
     End Sub
     'Deadactivated
     Private Sub FormSeason_Deactivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Deactivate
-        FormMain.hide_rb()
+        If quick_edit = "-1" Then
+            FormMain.hide_rb()
+        End If
     End Sub
 
     'Click Grid Season
