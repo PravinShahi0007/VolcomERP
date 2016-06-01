@@ -14,7 +14,7 @@
     Public bool_qty_line As Boolean = False
     Public id_pop_up As String = "-1"
     Public ss_dept As String = "-1"
-    Dim is_approved As Boolean = False
+    Dim is_approved As String = "-1"
 
     'View UOM
     Private Sub viewUOM(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -375,7 +375,7 @@
                 If dupe = "-1" Then
                     TECode.Text = data.Rows(0)("design_code").ToString
                 End If
-
+                TxtCodeImport.Text = data.Rows(0)("design_code_import").ToString
 
                 LERetCode.EditValue = Nothing
                 LERetCode.ItemIndex = LERetCode.Properties.GetDataSourceRowIndex("id_ret_code", data.Rows(0)("id_ret_code").ToString)
@@ -387,6 +387,7 @@
                 LEDesignType.ItemIndex = LEDesignType.Properties.GetDataSourceRowIndex("id_design_type", data.Rows(0)("id_design_type").ToString)
 
                 LESeason.EditValue = data.Rows(0)("id_season").ToString
+                SLESeasonOrigin.EditValue = data.Rows(0)("id_season_orign").ToString
                 LESampleOrign.EditValue = data.Rows(0)("id_sample").ToString
 
                 SLEDel.EditValue = data.Rows(0)("id_delivery").ToString
@@ -400,7 +401,12 @@
                 SLEDesign.EditValue = data.Rows(0)("id_design_ref")
                 MEDetail.Text = data.Rows(0)("design_detail").ToString
                 is_approved = data.Rows(0)("is_approved").ToString
-                CheckEditApproved.EditValue = is_approved
+                If is_approved = "1" Then
+                    CheckEditApproved.EditValue = True
+                Else
+                    CheckEditApproved.EditValue = False
+                End If
+
                 If dupe = "-1" And id_pop_up = "5" Then ' only for dsg Line List
                     CheckEditApproved.Visible = True
                 Else
@@ -618,6 +624,7 @@
             MEDetail.Enabled = True
             SLEDesign.Enabled = True
             TxtCodeImport.Enabled = True
+            LESeason.Enabled = True
             SLESeasonOrigin.Enabled = True
             BtnAddSeasonOrign.Enabled = True
 
@@ -628,7 +635,6 @@
             XTPSize.PageVisible = False
             LEUOM.Enabled = False
             BtnAddSeaason.Enabled = False
-            LESeason.Enabled = False
             SLEDel.Enabled = False
             TxtDelDate.Enabled = False
             LERetCode.Enabled = False
@@ -851,12 +857,19 @@
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         ValidateChildren()
-        Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active, design_detail As String
+        Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active, design_detail, code_import, id_season_orign As String
         namex = addSlashes(TEName.Text.TrimStart(" ").TrimEnd(" "))
         display_name = TEDisplayName.Text
         code = TECode.Text
+        code_import = TxtCodeImport.Text
+        If code_import = "" Then
+            code_import = "NULL"
+        Else
+            code_import = "'" + code_import + "'"
+        End If
         id_uom = LEUOM.EditValue
         id_season = LESeason.EditValue
+        id_season_orign = SLESeasonOrigin.EditValue
         design_ret_code = LERetCode.EditValue.ToString
         id_design_type = "1"
         id_delivery = myCoalesce(SLEDel.EditValue.ToString, "0")
@@ -924,8 +937,8 @@
                 Else
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                     If confirm = Windows.Forms.DialogResult.Yes Then
-                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code,id_uom,id_season,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail) "
-                        query += "VALUES('" + namex + "','" + display_name + "','" + code + "','" + id_uom + "','" + id_season + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
+                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail) "
+                        query += "VALUES('" + namex + "','" + display_name + "','" + code + "', " + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                         If design_eos = "-1" Then
                             query += "NULL, "
                         Else
@@ -1010,7 +1023,7 @@
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                     If confirm = Windows.Forms.DialogResult.Yes Then
                         Cursor = Cursors.WaitCursor
-                        query = "UPDATE tb_m_design SET design_name='{0}',design_display_name='{1}',design_code='{2}',id_uom='{3}',id_season='{4}',id_design_type='{6}',id_ret_code='{7}', id_delivery='" + id_delivery + "', id_delivery_act='" + id_delivery_act + "', "
+                        query = "UPDATE tb_m_design SET design_name='{0}',design_display_name='{1}',design_code='{2}', design_code_import=" + code_import + ",id_uom='{3}',id_season='{4}', id_season_orign='" + id_season_orign + "',id_design_type='{6}',id_ret_code='{7}', id_delivery='" + id_delivery + "', id_delivery_act='" + id_delivery_act + "', "
                         If design_eos = "-1" Then
                             query += "design_eos=NULL, "
                         Else
@@ -1096,8 +1109,8 @@
             Else
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
-                    query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code,id_uom,id_season,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail) "
-                    query += "VALUES('" + namex + "','" + display_name + "','" + code + "','" + id_uom + "','" + id_season + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
+                    query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail) "
+                    query += "VALUES('" + namex + "','" + display_name + "','" + code + "'," + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                     If design_eos = "-1" Then
                         query += "NULL, "
                     Else
