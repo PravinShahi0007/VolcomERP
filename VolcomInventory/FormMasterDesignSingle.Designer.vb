@@ -389,6 +389,7 @@ Partial Class FormMasterDesignSingle
         Me.CheckEditApproved.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CheckEditApproved.Properties.Appearance.Options.UseFont = True
         Me.CheckEditApproved.Properties.Caption = "Approved"
+        Me.CheckEditApproved.Properties.ReadOnly = True
         Me.CheckEditApproved.Size = New System.Drawing.Size(90, 22)
         Me.CheckEditApproved.TabIndex = 95
         '

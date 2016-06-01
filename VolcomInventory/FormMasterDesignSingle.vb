@@ -14,6 +14,7 @@
     Public bool_qty_line As Boolean = False
     Public id_pop_up As String = "-1"
     Public ss_dept As String = "-1"
+    Dim is_approved As Boolean = False
 
     'View UOM
     Private Sub viewUOM(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -398,6 +399,15 @@
                 LEPlanStatus.EditValue = data.Rows(0)("id_lookup_status_order")
                 SLEDesign.EditValue = data.Rows(0)("id_design_ref")
                 MEDetail.Text = data.Rows(0)("design_detail").ToString
+                is_approved = data.Rows(0)("is_approved").ToString
+                CheckEditApproved.EditValue = is_approved
+                If dupe = "-1" And id_pop_up = "5" Then ' only for dsg Line List
+                    CheckEditApproved.Visible = True
+                Else
+                    CheckEditApproved.Visible = False
+                End If
+
+
                 If dupe = "-1" Then
                     SLEActive.EditValue = data.Rows(0)("id_active")
                 Else
@@ -485,18 +495,22 @@
             TxtFabrication.Enabled = False
             SLEDesign.Enabled = False
             GCCodeDsg.Enabled = False
-            BtnAddSeaason.Enabled = False
-            LESeason.Enabled = False
             XTPPrice.PageVisible = False
             LEUOM.Enabled = False
             TxtDelDate.Enabled = False
+            DEWHDate.Enabled = False
             DERetDate.Enabled = False
             TELifetime.Enabled = False
             TEDisplayName.Enabled = False
             DEInStoreDet.Enabled = False
             MEDetail.Enabled = False
             TECode.Enabled = False
+            TxtCodeImport.Enabled = False
+            SLESeasonOrigin.Enabled = False
+            BtnAddSeasonOrign.Enabled = False
 
+            LESeason.Enabled = True
+            BtnAddSeaason.Enabled = True
             XTPLineList.PageVisible = True
             XTPSize.PageVisible = True
             SLEDel.Enabled = True
@@ -507,7 +521,6 @@
             BGenerate.Enabled = True
             BtnGetLastCount.Enabled = True
             GCCode.Enabled = True
-            DEWHDate.Enabled = True
             BtnAddRetCode.Enabled = True
             PictureEdit1.Properties.ReadOnly = True
             XTPCode.SelectedTabPageIndex = 1
@@ -602,15 +615,20 @@
             TxtFabrication.Enabled = True
             SLEDesign.Enabled = True
             GCCodeDsg.Enabled = True
-            BtnAddSeaason.Enabled = True
-            LESeason.Enabled = True
             MEDetail.Enabled = True
+            SLEDesign.Enabled = True
+            TxtCodeImport.Enabled = True
+            SLESeasonOrigin.Enabled = True
+            BtnAddSeasonOrign.Enabled = True
+
 
             PictureEdit1.Properties.ReadOnly = False
             XTPLineList.PageVisible = False
             XTPPrice.PageVisible = False
             XTPSize.PageVisible = False
             LEUOM.Enabled = False
+            BtnAddSeaason.Enabled = False
+            LESeason.Enabled = False
             SLEDel.Enabled = False
             TxtDelDate.Enabled = False
             LERetCode.Enabled = False
@@ -689,6 +707,9 @@
                 DEInStoreDet.Enabled = False
                 MEDetail.Enabled = False
                 TECode.Enabled = False
+                TxtCodeImport.Enabled = False
+                SLESeasonOrigin.Enabled = False
+                BtnAddSeasonOrign.Enabled = False
 
                 If id_pop_up = "-1" Then
                     XTPLineList.PageVisible = True
@@ -1560,9 +1581,7 @@
         Catch ex As Exception
         End Try
         FormSeason.quick_edit = "1"
-        If id_pop_up = "5" Then
-            FormSeason.id_pop_up = "1"
-        End If
+        FormSeason.id_pop_up = "1"
         FormSeason.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -1712,5 +1731,16 @@
         End If
     End Sub
 
-
+    Private Sub BtnAddSeasonOrign_Click(sender As Object, e As EventArgs) Handles BtnAddSeasonOrign.Click
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSeason.Close()
+            FormSeason.Dispose()
+        Catch ex As Exception
+        End Try
+        FormSeason.quick_edit = "1"
+        FormSeason.id_pop_up = "2"
+        FormSeason.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

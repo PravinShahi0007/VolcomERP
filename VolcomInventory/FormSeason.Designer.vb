@@ -77,6 +77,10 @@ Partial Class FormSeason
         Me.GridColumnCountry = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdCountry = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnYearSeasonOrign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControlOrigin = New DevExpress.XtraEditors.PanelControl()
+        Me.DeleteOrigin = New DevExpress.XtraEditors.SimpleButton()
+        Me.EditOrigin = New DevExpress.XtraEditors.SimpleButton()
+        Me.AddOrigin = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCMainSeason, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMainSeason.SuspendLayout()
         Me.XTPSeasonTrans.SuspendLayout()
@@ -109,6 +113,8 @@ Partial Class FormSeason
         Me.XTPOriginSeason.SuspendLayout()
         CType(Me.GCOrignSeason, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOrignSeason, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlOrigin, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlOrigin.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCMainSeason
@@ -601,6 +607,7 @@ Partial Class FormSeason
         Me.XTPOriginSeason.Appearance.Header.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XTPOriginSeason.Appearance.Header.Options.UseFont = True
         Me.XTPOriginSeason.Controls.Add(Me.GCOrignSeason)
+        Me.XTPOriginSeason.Controls.Add(Me.PanelControlOrigin)
         Me.XTPOriginSeason.Image = CType(resources.GetObject("XTPOriginSeason.Image"), System.Drawing.Image)
         Me.XTPOriginSeason.Name = "XTPOriginSeason"
         Me.XTPOriginSeason.Size = New System.Drawing.Size(643, 368)
@@ -609,10 +616,10 @@ Partial Class FormSeason
         'GCOrignSeason
         '
         Me.GCOrignSeason.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCOrignSeason.Location = New System.Drawing.Point(0, 0)
+        Me.GCOrignSeason.Location = New System.Drawing.Point(0, 31)
         Me.GCOrignSeason.MainView = Me.GVOrignSeason
         Me.GCOrignSeason.Name = "GCOrignSeason"
-        Me.GCOrignSeason.Size = New System.Drawing.Size(643, 368)
+        Me.GCOrignSeason.Size = New System.Drawing.Size(643, 337)
         Me.GCOrignSeason.TabIndex = 0
         Me.GCOrignSeason.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOrignSeason})
         '
@@ -668,6 +675,56 @@ Partial Class FormSeason
         Me.GridColumnYearSeasonOrign.Visible = True
         Me.GridColumnYearSeasonOrign.VisibleIndex = 3
         '
+        'PanelControlOrigin
+        '
+        Me.PanelControlOrigin.Appearance.BackColor = System.Drawing.Color.AliceBlue
+        Me.PanelControlOrigin.Appearance.Options.UseBackColor = True
+        Me.PanelControlOrigin.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlOrigin.Controls.Add(Me.DeleteOrigin)
+        Me.PanelControlOrigin.Controls.Add(Me.EditOrigin)
+        Me.PanelControlOrigin.Controls.Add(Me.AddOrigin)
+        Me.PanelControlOrigin.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlOrigin.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlOrigin.LookAndFeel.SkinName = "Blue"
+        Me.PanelControlOrigin.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PanelControlOrigin.Name = "PanelControlOrigin"
+        Me.PanelControlOrigin.Size = New System.Drawing.Size(643, 31)
+        Me.PanelControlOrigin.TabIndex = 2
+        Me.PanelControlOrigin.Visible = False
+        '
+        'DeleteOrigin
+        '
+        Me.DeleteOrigin.Dock = System.Windows.Forms.DockStyle.Right
+        Me.DeleteOrigin.ImageIndex = 1
+        Me.DeleteOrigin.ImageList = Me.LargeImageCollection
+        Me.DeleteOrigin.Location = New System.Drawing.Point(418, 0)
+        Me.DeleteOrigin.Name = "DeleteOrigin"
+        Me.DeleteOrigin.Size = New System.Drawing.Size(75, 31)
+        Me.DeleteOrigin.TabIndex = 2
+        Me.DeleteOrigin.Text = "Delete"
+        '
+        'EditOrigin
+        '
+        Me.EditOrigin.Dock = System.Windows.Forms.DockStyle.Right
+        Me.EditOrigin.ImageIndex = 2
+        Me.EditOrigin.ImageList = Me.LargeImageCollection
+        Me.EditOrigin.Location = New System.Drawing.Point(493, 0)
+        Me.EditOrigin.Name = "EditOrigin"
+        Me.EditOrigin.Size = New System.Drawing.Size(75, 31)
+        Me.EditOrigin.TabIndex = 1
+        Me.EditOrigin.Text = "Edit"
+        '
+        'AddOrigin
+        '
+        Me.AddOrigin.Dock = System.Windows.Forms.DockStyle.Right
+        Me.AddOrigin.ImageIndex = 0
+        Me.AddOrigin.ImageList = Me.LargeImageCollection
+        Me.AddOrigin.Location = New System.Drawing.Point(568, 0)
+        Me.AddOrigin.Name = "AddOrigin"
+        Me.AddOrigin.Size = New System.Drawing.Size(75, 31)
+        Me.AddOrigin.TabIndex = 0
+        Me.AddOrigin.Text = "Add"
+        '
         'FormSeason
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -678,7 +735,6 @@ Partial Class FormSeason
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSeason"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Season"
@@ -716,6 +772,8 @@ Partial Class FormSeason
         Me.XTPOriginSeason.ResumeLayout(False)
         CType(Me.GCOrignSeason, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVOrignSeason, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlOrigin, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlOrigin.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -775,4 +833,8 @@ Partial Class FormSeason
     Friend WithEvents GridColumnIdSeason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSeason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSeasonDisplay As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControlOrigin As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents DeleteOrigin As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents EditOrigin As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents AddOrigin As DevExpress.XtraEditors.SimpleButton
 End Class

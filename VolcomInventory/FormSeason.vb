@@ -30,6 +30,7 @@
             PanelControlRange.Visible = True
             PanelControlSeason.Visible = True
             PanelControlDel.Visible = True
+            PanelControlOrigin.Visible = True
         End If
 
         'form is_md
@@ -38,8 +39,13 @@
         End If
 
         If id_pop_up = "1" Then
-            XTPDelivery.PageEnabled = False
+            XTPSeasonTrans.PageVisible = True
+            XTPOriginSeason.PageVisible = False
+        ElseIf id_pop_up = "2" Then
+            XTPSeasonTrans.PageVisible = False
+            XTPOriginSeason.PageVisible = True
         End If
+
     End Sub
     'View Range
     Sub viewRange()
@@ -211,6 +217,7 @@
         If quick_edit <> "-1" Then
             FormMasterDesignSingle.viewSeason(FormMasterDesignSingle.LESeason)
             FormMasterDesignSingle.viewDelivery(FormMasterDesignSingle.LESeason.EditValue.ToString)
+            FormMasterDesignSingle.viewSeasonOrign(FormMasterDesignSingle.SLESeasonOrigin)
         End If
         Dispose()
     End Sub
@@ -326,5 +333,34 @@
     Private Sub GVRange_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVRange.FocusedRowChanged
         getSeasonInformation()
         viewDelivery(id_season)
+    End Sub
+
+    Private Sub AddOrigin_Click(sender As Object, e As EventArgs) Handles AddOrigin.Click
+        FormSeasonorignSingle.action = "ins"
+        FormSeasonorignSingle.ShowDialog()
+    End Sub
+
+    Private Sub EditOrigin_Click(sender As Object, e As EventArgs) Handles EditOrigin.Click
+        FormSeasonorignSingle.action = "upd"
+        FormSeasonorignSingle.id_season_orign = GVOrignSeason.GetFocusedRowCellDisplayText("id_season_orign").ToString
+        FormSeasonorignSingle.TxtSeason.Text = GVOrignSeason.GetFocusedRowCellDisplayText("season_orign").ToString
+        FormSeasonorignSingle.TxtSeasonPrintedName.Text = GVOrignSeason.GetFocusedRowCellDisplayText("season_orign_display").ToString
+        'LECountry.ItemIndex = FormSeasonorignSingle.LECountry.Properties.GetDataSourceRowIndex("id_country", FormSeason.GVOrignSeason.GetFocusedRowCellDisplayText("id_country").ToString)
+        FormSeasonorignSingle.id_country = GVOrignSeason.GetFocusedRowCellDisplayText("id_country").ToString
+        FormSeasonorignSingle.season_orign_year = GVOrignSeason.GetFocusedRowCellDisplayText("season_orign_year").ToString
+        FormSeasonorignSingle.ShowDialog()
+    End Sub
+
+    Private Sub DeleteOrigin_Click(sender As Object, e As EventArgs) Handles DeleteOrigin.Click
+        Try
+            Dim query As String = ""
+            Dim id_season_origin As String = GVOrignSeason.GetFocusedRowCellDisplayText("id_season_orign").ToString
+            query = String.Format("DELETE FROM tb_season_orign WHERE id_season_orign = '{0}'", id_season_origin)
+            execute_non_query(query, True, "", "", "", "")
+            logData("tb_season_orign", 3)
+            viewSeasonOrign()
+        Catch ex As Exception
+            errorDelete()
+        End Try
     End Sub
 End Class
