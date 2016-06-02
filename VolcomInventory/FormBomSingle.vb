@@ -7,6 +7,8 @@
     Public id_pop_up As String = "-1"
 
     Public id_is_design As String = "-1"
+    '
+    Public is_update_cop As Boolean = False
 
     Private Sub FormBOMSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         RICEisCOP.ValueChecked = Convert.ToSByte(1)
@@ -251,7 +253,6 @@
                     '
                     infoCustom("BOM updated.")
                     act_load()
-                    'Close()
                 End If
             Else
                 'insert
@@ -270,7 +271,6 @@
                     id_bom = id_bom_new
                     infoCustom("BOM saved.")
                     act_load()
-                    'Close()
                 End If
             End If
         ElseIf id_pop_up = "1" Then
@@ -284,7 +284,6 @@
                     '
                     infoCustom("BOM updated.")
                     act_load()
-                    'Close()
                 End If
             Else
                 'insert
@@ -303,7 +302,6 @@
                     id_bom_approve = id_bom_approve_new
                     infoCustom("BOM saved.")
                     act_load()
-                    'Close()
                 End If
             End If
             FormBOM.show_bom_per_design(FormBOM.GVPerDesign.GetFocusedRowCellDisplayText("id_design").ToString)

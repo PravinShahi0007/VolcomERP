@@ -2,9 +2,6 @@
 Imports System.Text
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraPrinting
-Imports System.IO
-Imports System.Drawing
-Imports System.Drawing.Printing
 Imports DevExpress.XtraReports.UI
 Imports System.Reflection
 
@@ -3257,8 +3254,6 @@ Module Common
             execute_non_query(query_det, True, "", "", "", "")
         End If
     End Sub
-
-
 
     Sub frmNotifOld(ByVal form_par As String)
         Dim ass As String = "VolcomMRP"

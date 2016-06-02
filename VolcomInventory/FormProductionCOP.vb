@@ -11,10 +11,10 @@
         view_status(LEStatus)
 
         If Not id_design = "-1" Then
-            Dim query As String = String.Format("SELECT rate_management,design_name,design_code,id_cop_status FROM tb_m_design WHERE id_design = '{0}'", id_design)
+            Dim query As String = String.Format("SELECT rate_management,design_name,design_display_name,design_code,id_cop_status FROM tb_m_design WHERE id_design = '{0}'", id_design)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
-            TEDesign.Text = data.Rows(0)("design_name").ToString
+            TEDesign.Text = data.Rows(0)("design_display_name").ToString
             TEDesignCode.Text = data.Rows(0)("design_code").ToString
             LEStatus.EditValue = data.Rows(0)("id_cop_status").ToString
             '
@@ -173,17 +173,26 @@
                 Dim confirm As DialogResult
                 confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to finalize this COP ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
-                    Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_total_bom='{1}',prod_order_cop_total_pd='{2}',prod_order_cop_qty='{3}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{4}',prod_order_cop_kurs_bom='{5}',prod_order_cop_kurs_pd='{6}',prod_order_cop_mng='{8}',prod_order_cop_bom='{9}',prod_order_cop_pd='{10}', design_cop='{11}', id_cop_status='2' WHERE id_design='{7}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TETotalBOM.EditValue.ToString), decimalSQL(TETotalCostPD.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEKursBom.EditValue.ToString), decimalSQL(TEKursPD.EditValue.ToString), id_design, decimalSQL(TEUnitPrice.EditValue.ToString), decimalSQL(TEUnitCostBOM.EditValue.ToString), decimalSQL(TEUnitCostPD.EditValue.ToString), decimalSQL(TEUnitCostBOM.EditValue.ToString))
+                    'Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_total_bom='{1}',prod_order_cop_total_pd='{2}',prod_order_cop_qty='{3}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{4}',prod_order_cop_kurs_bom='{5}',prod_order_cop_kurs_pd='{6}',prod_order_cop_mng='{8}',prod_order_cop_bom='{9}',prod_order_cop_pd='{10}', design_cop='{11}', id_cop_status='2' WHERE id_design='{7}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TETotalBOM.EditValue.ToString), decimalSQL(TETotalCostPD.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEKursBom.EditValue.ToString), decimalSQL(TEKursPD.EditValue.ToString), id_design, decimalSQL(TEUnitPrice.EditValue.ToString), decimalSQL(TEUnitCostBOM.EditValue.ToString), decimalSQL(TEUnitCostPD.EditValue.ToString), decimalSQL(TEUnitCostBOM.EditValue.ToString))
+                    'execute_non_query(query, True, "", "", "", "")
+                    Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_qty='{0}',prod_order_cop_last_upd=NOW(), design_cop='{1}', id_cop_status='2' WHERE id_design='{2}'", decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design)
+                    execute_non_query(query, True, "", "", "", "")
+                    'add final
+                    query = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_kurs_mng='{1}',prod_order_cop_mng='{2}' WHERE id_design='{3}' AND (ISNULL(prod_order_cop_mng) OR prod_order_cop_mng=0)", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design)
                     execute_non_query(query, True, "", "", "", "")
                 End If
-            Else
-                Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_total_bom='{1}',prod_order_cop_total_pd='{2}',prod_order_cop_qty='{3}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{4}',prod_order_cop_kurs_bom='{5}',prod_order_cop_kurs_pd='{6}',id_cop_status='1' WHERE id_design='{7}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TETotalBOM.EditValue.ToString), decimalSQL(TETotalCostPD.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEKursBom.EditValue.ToString), decimalSQL(TEKursPD.EditValue.ToString), id_design)
+            Else 'pre final
+                'Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_total_bom='{1}',prod_order_cop_total_pd='{2}',prod_order_cop_qty='{3}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{4}',prod_order_cop_kurs_bom='{5}',prod_order_cop_kurs_pd='{6}',id_cop_status='1' WHERE id_design='{7}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TETotalBOM.EditValue.ToString), decimalSQL(TETotalCostPD.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEKursBom.EditValue.ToString), decimalSQL(TEKursPD.EditValue.ToString), id_design)
+                'execute_non_query(query, True, "", "", "", "")
+                Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_qty='{1}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{2}',prod_order_cop_mng='{3}',id_cop_status='1' WHERE id_design='{4}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design)
                 execute_non_query(query, True, "", "", "", "")
             End If
             DevExpress.XtraEditors.XtraMessageBox.Show("Cost Of Production Updated.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Close()
+        Else
+            stopCustom("Please select design first.")
+            Close()
         End If
-        load_form()
         Cursor = Cursors.Default
     End Sub
 

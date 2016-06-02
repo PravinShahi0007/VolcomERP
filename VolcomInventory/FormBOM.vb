@@ -124,7 +124,6 @@
                 bdel_active = "0"
                 '
                 bdupe_active = "0"
-
             End If
         End If
         checkFormAccess(Name)
@@ -370,9 +369,83 @@
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-        print(GCPerDesign, "List Design " + SLESeason.Text)
+        print_bom(GCPerDesign, "List Design " + SLESeason.Text)
+
+        view_design()
+        GVPerDesign.BestFitColumns()
     End Sub
 
+    Sub print_bom(ByVal GridControlHere As DevExpress.XtraGrid.GridControl, ByVal title_here As String)
+        'before
+        GVPerDesign.Columns("season").GroupIndex = "-1"
+
+        For i As Integer = 0 To GVPerDesign.Columns.Count - 1
+            GVPerDesign.Columns(i).Visible = False
+        Next
+        GVPerDesign.Columns("design_code").Visible = True
+        GVPerDesign.Columns("design_name").Visible = True
+        GVPerDesign.Columns("vend_ecop").Visible = True
+        GVPerDesign.Columns("cur_ecop").Visible = True
+        GVPerDesign.Columns("kurs_ecop").Visible = True
+        GVPerDesign.Columns("prod_order_cop_bom").Visible = True
+        GVPerDesign.Columns("lookup_status_order").Visible = True
+        '
+        GVPerDesign.Columns("design_code").VisibleIndex = 0
+        GVPerDesign.Columns("design_name").VisibleIndex = 1
+        GVPerDesign.Columns("vend_ecop").VisibleIndex = 2
+        GVPerDesign.Columns("cur_ecop").VisibleIndex = 3
+        GVPerDesign.Columns("kurs_ecop").VisibleIndex = 4
+        GVPerDesign.Columns("prod_order_cop_bom").VisibleIndex = 5
+        GVPerDesign.Columns("lookup_status_order").VisibleIndex = 6
+        '
+        GVPerDesign.Columns("design_code").Caption = "code"
+        GVPerDesign.Columns("vend_ecop").Caption = "vendor"
+        GVPerDesign.Columns("cur_ecop").Caption = "currency"
+        GVPerDesign.Columns("kurs_ecop").Caption = "kurs"
+        GVPerDesign.Columns("prod_order_cop_bom").Caption = "ecop"
+
+        'xls
+        Cursor = Cursors.WaitCursor
+        Dim printableComponentLink1 As New DevExpress.XtraPrinting.PrintableComponentLink(New DevExpress.XtraPrinting.PrintingSystem())
+        Dim save_d As SaveFileDialog = New SaveFileDialog()
+        save_d.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx"
+        save_d.FileName = "import_ecop_" + Now.ToString("yyyy_MMM_dd__hh_mm_ss_tt")
+
+        If save_d.ShowDialog() = DialogResult.OK Then
+            Dim exp As String = save_d.FileName
+            Dim opt As DevExpress.XtraPrinting.XlsExportOptions = New DevExpress.XtraPrinting.XlsExportOptions()
+
+            printableComponentLink1.Component = GCPerDesign
+            printableComponentLink1.CreateDocument()
+            printableComponentLink1.ExportToXls(exp, opt)
+            Process.Start(exp)
+        End If
+        Cursor = Cursors.Default
+
+        'after
+        GVPerDesign.Columns("season").GroupIndex = "0"
+        For i As Integer = 0 To GVPerDesign.Columns.Count - 1
+            GVPerDesign.Columns(i).Visible = False
+        Next
+        GVPerDesign.Columns("product_source").Visible = True
+        GVPerDesign.Columns("product_class_display").Visible = True
+        GVPerDesign.Columns("design_code").Visible = True
+        GVPerDesign.Columns("design_name").Visible = True
+        GVPerDesign.Columns("color_display").Visible = True
+        GVPerDesign.Columns("prod_order_cop_bom").Visible = True
+        GVPerDesign.Columns("design_cop").Visible = True
+        '
+        GVPerDesign.Columns("product_source").VisibleIndex = 0
+        GVPerDesign.Columns("product_class_display").VisibleIndex = 1
+        GVPerDesign.Columns("design_code").VisibleIndex = 2
+        GVPerDesign.Columns("design_name").VisibleIndex = 3
+        GVPerDesign.Columns("color_display").VisibleIndex = 4
+        GVPerDesign.Columns("prod_order_cop_bom").VisibleIndex = 5
+        GVPerDesign.Columns("design_cop").VisibleIndex = 6
+        '
+        GVPerDesign.Columns("design_code").Caption = "Code"
+        GVPerDesign.Columns("prod_order_cop_bom").Caption = "ECOP BOM"
+    End Sub
     Private Sub GVPerDesign_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVPerDesign.ColumnFilterChanged
         If Not GVPerDesign.FocusedRowHandle < 0 Then
             show_bom_per_design(GVPerDesign.GetFocusedRowCellValue("id_design").ToString)

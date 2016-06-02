@@ -84,7 +84,6 @@
             errorConnection()
         End Try
     End Sub
-
     Private Sub CEBOM_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CEBOM.CheckedChanged
         If CEBOM.Checked = True Then
             view_ovh_only_bom(id_prod_demand_design)

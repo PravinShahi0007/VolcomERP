@@ -380,6 +380,9 @@
                         'update who
                         query = String.Format("UPDATE tb_bom SET id_user_last_update='{0}',bom_date_updated=NOW() WHERE id_bom_approve='{1}'", id_user, FormBOMSingle.id_bom_approve)
                         execute_non_query(query, True, "", "", "", "")
+                        'update ecop
+                        query = String.Format("CALL update_bom_tot_app('{0}')", FormBOMSingle.id_bom_approve)
+                        execute_non_query(query, True, "", "", "", "")
                         '
                         FormBOMSingle.act_load()
                         Close()
@@ -404,6 +407,9 @@
                         execute_non_query(query, True, "", "", "", "")
                         'update who
                         query = String.Format("UPDATE tb_bom SET id_user_last_update='{0}',bom_date_updated=NOW() WHERE id_bom_approve='{1}'", id_user, FormBOMSingle.id_bom_approve)
+                        execute_non_query(query, True, "", "", "", "")
+                        'update ecop
+                        query = String.Format("CALL update_bom_tot_app('{0}')", FormBOMSingle.id_bom_approve)
                         execute_non_query(query, True, "", "", "", "")
                         '
                         FormBOMSingle.act_load()
