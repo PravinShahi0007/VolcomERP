@@ -96,7 +96,6 @@ Public Class FormFGLineList
     Private Sub BtnView_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnView.Click
         Cursor = Cursors.WaitCursor
         CheckImg.EditValue = False
-        CheckEditOpt.EditValue = False
         BtnView.Text = "Loading..."
         BtnView.Enabled = False
         viewLineList()
@@ -142,6 +141,7 @@ Public Class FormFGLineList
     Private Sub SLESeason_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLESeason.EditValueChanged
         Cursor = Cursors.WaitCursor
         nothingLineList()
+        CheckEditOpt.EditValue = False
         PanelOpt.Visible = True
         PanelImg.Visible = False
         Cursor = Cursors.Default
@@ -150,6 +150,7 @@ Public Class FormFGLineList
     Private Sub SLETypeLineList_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLETypeLineList.EditValueChanged
         Cursor = Cursors.WaitCursor
         nothingLineList()
+        CheckEditOpt.EditValue = False
         PanelOpt.Visible = True
         PanelImg.Visible = False
 
