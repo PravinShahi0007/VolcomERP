@@ -54,8 +54,10 @@
 
         If GVDesign.RowCount > 0 Then
             PanelOpt.Visible = True
+            PanelControlFreeze.Visible = True
         Else
             PanelOpt.Visible = False
+            PanelControlFreeze.Visible = False
         End If
 
         If id_pop_up = "1" Then 'approve
@@ -190,6 +192,7 @@
 
     Private Sub SLESeason_EditValueChanged(sender As Object, e As EventArgs) Handles SLESeason.EditValueChanged
         PanelOpt.Visible = False
+        PanelControlFreeze.Visible = False
         GCDesign.DataSource = Nothing
         If id_pop_up = "1" Then 'approve
             PanelApp.Visible = False
@@ -252,5 +255,38 @@
                 GVDesign.ActiveFilterString = ""
             End If
         End If
+    End Sub
+
+    Sub freeze(ByVal check As Boolean)
+        If check Then
+            GridColumnPic.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            ColDesignCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            GridColumnCodeImport.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            ColDisplayName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            GridColumnSelect.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
+        Else
+            GridColumnPic.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            ColDesignCode.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            GridColumnCodeImport.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            ColDisplayName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            GridColumnSelect.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            If CheckImg.EditValue = True Then
+                GridColumnPic.VisibleIndex = 0
+            End If
+            ColDesignCode.VisibleIndex = 1
+            GridColumnCodeImport.VisibleIndex = 2
+            ColDisplayName.VisibleIndex = 3
+        End If
+    End Sub
+
+    Private Sub CheckEditFreeze_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditFreeze.CheckedChanged
+        Cursor = Cursors.WaitCursor
+        Dim val As String = CheckEditFreeze.EditValue.ToString
+        If val = "True" Then
+            freeze(True)
+        Else
+            freeze(False)
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

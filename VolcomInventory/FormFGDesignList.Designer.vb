@@ -27,14 +27,16 @@ Partial Class FormFGDesignList
         Me.GridColumnRange = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControlFreeze = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditFreeze = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEType = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
         Me.GVDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -42,7 +44,6 @@ Partial Class FormFGDesignList
         Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSampleSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnFabrication = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCodeImport = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -69,6 +70,12 @@ Partial Class FormFGDesignList
         Me.GridColumnSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnIsApproved = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSampleOrign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFabrication = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDetailDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
+        Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSubcategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelApp = New DevExpress.XtraEditors.PanelControl()
@@ -81,19 +88,23 @@ Partial Class FormFGDesignList
         Me.PCNavLineList.SuspendLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelOpt.SuspendLayout()
+        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlFreeze, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlFreeze.SuspendLayout()
+        CType(Me.CheckEditFreeze.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelOpt.SuspendLayout()
-        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelApp, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,8 +117,9 @@ Partial Class FormFGDesignList
         'PanelControlNavLineList
         '
         Me.PanelControlNavLineList.Controls.Add(Me.PCNavLineList)
-        Me.PanelControlNavLineList.Controls.Add(Me.PanelControl1)
         Me.PanelControlNavLineList.Controls.Add(Me.PanelOpt)
+        Me.PanelControlNavLineList.Controls.Add(Me.PanelControlFreeze)
+        Me.PanelControlNavLineList.Controls.Add(Me.PanelControl1)
         Me.PanelControlNavLineList.Controls.Add(Me.BtnView)
         Me.PanelControlNavLineList.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNavLineList.Location = New System.Drawing.Point(0, 0)
@@ -121,9 +133,9 @@ Partial Class FormFGDesignList
         Me.PCNavLineList.Controls.Add(Me.SLESeason)
         Me.PCNavLineList.Controls.Add(Me.LabelControl4)
         Me.PCNavLineList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PCNavLineList.Location = New System.Drawing.Point(212, 2)
+        Me.PCNavLineList.Location = New System.Drawing.Point(165, 2)
         Me.PCNavLineList.Name = "PCNavLineList"
-        Me.PCNavLineList.Size = New System.Drawing.Size(354, 35)
+        Me.PCNavLineList.Size = New System.Drawing.Size(318, 35)
         Me.PCNavLineList.TabIndex = 105
         '
         'SLESeason
@@ -136,7 +148,7 @@ Partial Class FormFGDesignList
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(299, 20)
+        Me.SLESeason.Size = New System.Drawing.Size(265, 20)
         Me.SLESeason.TabIndex = 95
         '
         'SearchLookUpEdit1View
@@ -177,6 +189,44 @@ Partial Class FormFGDesignList
         Me.LabelControl4.TabIndex = 90
         Me.LabelControl4.Text = "Season"
         '
+        'PanelOpt
+        '
+        Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelOpt.Controls.Add(Me.CheckImg)
+        Me.PanelOpt.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelOpt.Location = New System.Drawing.Point(483, 2)
+        Me.PanelOpt.Name = "PanelOpt"
+        Me.PanelOpt.Size = New System.Drawing.Size(96, 35)
+        Me.PanelOpt.TabIndex = 107
+        Me.PanelOpt.Visible = False
+        '
+        'CheckImg
+        '
+        Me.CheckImg.Location = New System.Drawing.Point(6, 7)
+        Me.CheckImg.Name = "CheckImg"
+        Me.CheckImg.Properties.Caption = "Show Images"
+        Me.CheckImg.Size = New System.Drawing.Size(87, 19)
+        Me.CheckImg.TabIndex = 0
+        '
+        'PanelControlFreeze
+        '
+        Me.PanelControlFreeze.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlFreeze.Controls.Add(Me.CheckEditFreeze)
+        Me.PanelControlFreeze.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlFreeze.Location = New System.Drawing.Point(579, 2)
+        Me.PanelControlFreeze.Name = "PanelControlFreeze"
+        Me.PanelControlFreeze.Size = New System.Drawing.Size(97, 35)
+        Me.PanelControlFreeze.TabIndex = 108
+        Me.PanelControlFreeze.Visible = False
+        '
+        'CheckEditFreeze
+        '
+        Me.CheckEditFreeze.Location = New System.Drawing.Point(3, 7)
+        Me.CheckEditFreeze.Name = "CheckEditFreeze"
+        Me.CheckEditFreeze.Properties.Caption = "Freeze Column"
+        Me.CheckEditFreeze.Size = New System.Drawing.Size(93, 19)
+        Me.CheckEditFreeze.TabIndex = 0
+        '
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -185,7 +235,7 @@ Partial Class FormFGDesignList
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControl1.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(210, 35)
+        Me.PanelControl1.Size = New System.Drawing.Size(163, 35)
         Me.PanelControl1.TabIndex = 106
         '
         'SLEType
@@ -198,7 +248,7 @@ Partial Class FormFGDesignList
         Me.SLEType.Properties.Appearance.Options.UseFont = True
         Me.SLEType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEType.Properties.View = Me.GridView1
-        Me.SLEType.Size = New System.Drawing.Size(166, 20)
+        Me.SLEType.Size = New System.Drawing.Size(119, 20)
         Me.SLEType.TabIndex = 95
         '
         'GridView1
@@ -231,35 +281,16 @@ Partial Class FormFGDesignList
         Me.LabelControl1.TabIndex = 90
         Me.LabelControl1.Text = "Type"
         '
-        'PanelOpt
-        '
-        Me.PanelOpt.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelOpt.Controls.Add(Me.CheckImg)
-        Me.PanelOpt.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelOpt.Location = New System.Drawing.Point(566, 2)
-        Me.PanelOpt.Name = "PanelOpt"
-        Me.PanelOpt.Size = New System.Drawing.Size(104, 35)
-        Me.PanelOpt.TabIndex = 107
-        Me.PanelOpt.Visible = False
-        '
-        'CheckImg
-        '
-        Me.CheckImg.Location = New System.Drawing.Point(6, 7)
-        Me.CheckImg.Name = "CheckImg"
-        Me.CheckImg.Properties.Caption = "Show Images"
-        Me.CheckImg.Size = New System.Drawing.Size(87, 19)
-        Me.CheckImg.TabIndex = 0
-        '
         'BtnView
         '
         Me.BtnView.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnView.ImageIndex = 15
-        Me.BtnView.Location = New System.Drawing.Point(670, 2)
+        Me.BtnView.Location = New System.Drawing.Point(676, 2)
         Me.BtnView.LookAndFeel.SkinName = "Metropolis"
         Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(86, 35)
+        Me.BtnView.Size = New System.Drawing.Size(80, 35)
         Me.BtnView.TabIndex = 94
-        Me.BtnView.Text = "View List"
+        Me.BtnView.Text = "View"
         '
         'GCDesign
         '
@@ -267,7 +298,7 @@ Partial Class FormFGDesignList
         Me.GCDesign.Location = New System.Drawing.Point(0, 39)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemPictureEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit2})
+        Me.GCDesign.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemPictureEdit1, Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2, Me.RepositoryItemCheckEdit2, Me.RepositoryItemMemoEdit1})
         Me.GCDesign.Size = New System.Drawing.Size(758, 312)
         Me.GCDesign.TabIndex = 106
         Me.GCDesign.TabStop = False
@@ -275,19 +306,21 @@ Partial Class FormFGDesignList
         '
         'GVDesign
         '
+        Me.GVDesign.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.GVDesign.Appearance.HeaderPanel.Options.UseFont = True
         Me.GVDesign.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.GVDesign.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnFabrication, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved})
+        Me.GVDesign.Appearance.Row.Options.UseTextOptions = True
+        Me.GVDesign.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory})
         Me.GVDesign.GridControl = Me.GCDesign
-        Me.GVDesign.GroupCount = 1
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVDesign.OptionsCustomization.AllowGroup = False
         Me.GVDesign.OptionsView.ColumnAutoWidth = False
         Me.GVDesign.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVDesign.OptionsView.RowAutoHeight = True
         Me.GVDesign.OptionsView.ShowGroupPanel = False
-        Me.GVDesign.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColSampleSeason, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColID, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVDesign.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn7, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColID, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'ColID
         '
@@ -311,8 +344,6 @@ Partial Class FormFGDesignList
         Me.ColSampleSeason.FieldNameSortGroup = "id_season"
         Me.ColSampleSeason.Name = "ColSampleSeason"
         Me.ColSampleSeason.OptionsColumn.AllowEdit = False
-        Me.ColSampleSeason.Visible = True
-        Me.ColSampleSeason.VisibleIndex = 9
         '
         'GridColumn7
         '
@@ -321,14 +352,6 @@ Partial Class FormFGDesignList
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.AllowEdit = False
         Me.GridColumn7.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumnFabrication
-        '
-        Me.GridColumnFabrication.Caption = "Fabrication"
-        Me.GridColumnFabrication.FieldName = "design_fabrication"
-        Me.GridColumnFabrication.Name = "GridColumnFabrication"
-        Me.GridColumnFabrication.OptionsColumn.AllowEdit = False
-        Me.GridColumnFabrication.Width = 249
         '
         'GridColumnOrign
         '
@@ -349,7 +372,7 @@ Partial Class FormFGDesignList
         Me.ColDesignCode.Name = "ColDesignCode"
         Me.ColDesignCode.OptionsColumn.AllowEdit = False
         Me.ColDesignCode.Visible = True
-        Me.ColDesignCode.VisibleIndex = 1
+        Me.ColDesignCode.VisibleIndex = 0
         '
         'GridColumnCodeImport
         '
@@ -358,8 +381,8 @@ Partial Class FormFGDesignList
         Me.GridColumnCodeImport.Name = "GridColumnCodeImport"
         Me.GridColumnCodeImport.OptionsColumn.AllowEdit = False
         Me.GridColumnCodeImport.Visible = True
-        Me.GridColumnCodeImport.VisibleIndex = 0
-        Me.GridColumnCodeImport.Width = 88
+        Me.GridColumnCodeImport.VisibleIndex = 1
+        Me.GridColumnCodeImport.Width = 72
         '
         'ColDisplayName
         '
@@ -368,8 +391,8 @@ Partial Class FormFGDesignList
         Me.ColDisplayName.Name = "ColDisplayName"
         Me.ColDisplayName.OptionsColumn.AllowEdit = False
         Me.ColDisplayName.Visible = True
-        Me.ColDisplayName.VisibleIndex = 6
-        Me.ColDisplayName.Width = 107
+        Me.ColDisplayName.VisibleIndex = 2
+        Me.ColDisplayName.Width = 142
         '
         'Orign
         '
@@ -378,22 +401,18 @@ Partial Class FormFGDesignList
         Me.Orign.Name = "Orign"
         Me.Orign.OptionsColumn.AllowEdit = False
         Me.Orign.Visible = True
-        Me.Orign.VisibleIndex = 2
-        Me.Orign.Width = 101
+        Me.Orign.VisibleIndex = 3
+        Me.Orign.Width = 65
         '
         'GridColumnColor
         '
-        Me.GridColumnColor.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnColor.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnColor.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnColor.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnColor.Caption = "Color"
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.OptionsColumn.AllowEdit = False
         Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 7
-        Me.GridColumnColor.Width = 94
+        Me.GridColumnColor.VisibleIndex = 9
+        Me.GridColumnColor.Width = 67
         '
         'GridColumnClass
         '
@@ -406,7 +425,7 @@ Partial Class FormFGDesignList
         Me.GridColumnClass.Name = "GridColumnClass"
         Me.GridColumnClass.OptionsColumn.AllowEdit = False
         Me.GridColumnClass.Visible = True
-        Me.GridColumnClass.VisibleIndex = 5
+        Me.GridColumnClass.VisibleIndex = 8
         Me.GridColumnClass.Width = 53
         '
         'GridColumnBreakSize
@@ -416,8 +435,8 @@ Partial Class FormFGDesignList
         Me.GridColumnBreakSize.Name = "GridColumnBreakSize"
         Me.GridColumnBreakSize.OptionsColumn.AllowEdit = False
         Me.GridColumnBreakSize.Visible = True
-        Me.GridColumnBreakSize.VisibleIndex = 8
-        Me.GridColumnBreakSize.Width = 164
+        Me.GridColumnBreakSize.VisibleIndex = 10
+        Me.GridColumnBreakSize.Width = 87
         '
         'GridColumnPrice
         '
@@ -462,7 +481,7 @@ Partial Class FormFGDesignList
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.VisibleIndex = 4
         Me.GridColumn2.Width = 64
         '
         'GridColumnSourceDisplay
@@ -472,7 +491,7 @@ Partial Class FormFGDesignList
         Me.GridColumnSourceDisplay.Name = "GridColumnSourceDisplay"
         Me.GridColumnSourceDisplay.OptionsColumn.AllowEdit = False
         Me.GridColumnSourceDisplay.Visible = True
-        Me.GridColumnSourceDisplay.VisibleIndex = 4
+        Me.GridColumnSourceDisplay.VisibleIndex = 5
         Me.GridColumnSourceDisplay.Width = 59
         '
         'GridColumnPic
@@ -480,6 +499,7 @@ Partial Class FormFGDesignList
         Me.GridColumnPic.Caption = "Image"
         Me.GridColumnPic.ColumnEdit = Me.RepositoryItemPictureEdit1
         Me.GridColumnPic.FieldName = "img"
+        Me.GridColumnPic.MinWidth = 30
         Me.GridColumnPic.Name = "GridColumnPic"
         Me.GridColumnPic.OptionsColumn.AllowEdit = False
         Me.GridColumnPic.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
@@ -503,7 +523,8 @@ Partial Class FormFGDesignList
         Me.GridColumnApp.Name = "GridColumnApp"
         Me.GridColumnApp.OptionsColumn.AllowEdit = False
         Me.GridColumnApp.Visible = True
-        Me.GridColumnApp.VisibleIndex = 10
+        Me.GridColumnApp.VisibleIndex = 15
+        Me.GridColumnApp.Width = 58
         '
         'GridColumnAppDate
         '
@@ -515,7 +536,7 @@ Partial Class FormFGDesignList
         Me.GridColumnAppDate.Name = "GridColumnAppDate"
         Me.GridColumnAppDate.OptionsColumn.AllowEdit = False
         Me.GridColumnAppDate.Visible = True
-        Me.GridColumnAppDate.VisibleIndex = 9
+        Me.GridColumnAppDate.VisibleIndex = 14
         '
         'RepositoryItemTextEdit1
         '
@@ -532,7 +553,8 @@ Partial Class FormFGDesignList
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 12
+        Me.GridColumnUpdBy.VisibleIndex = 17
+        Me.GridColumnUpdBy.Width = 60
         '
         'GridColumnLastUpdated
         '
@@ -544,7 +566,7 @@ Partial Class FormFGDesignList
         Me.GridColumnLastUpdated.Name = "GridColumnLastUpdated"
         Me.GridColumnLastUpdated.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdated.Visible = True
-        Me.GridColumnLastUpdated.VisibleIndex = 11
+        Me.GridColumnLastUpdated.VisibleIndex = 16
         Me.GridColumnLastUpdated.Width = 54
         '
         'RepositoryItemTextEdit2
@@ -564,6 +586,7 @@ Partial Class FormFGDesignList
         Me.GridColumnSelect.Caption = "Select"
         Me.GridColumnSelect.ColumnEdit = Me.RepositoryItemCheckEdit2
         Me.GridColumnSelect.FieldName = "is_select"
+        Me.GridColumnSelect.MinWidth = 10
         Me.GridColumnSelect.Name = "GridColumnSelect"
         '
         'RepositoryItemCheckEdit2
@@ -580,6 +603,60 @@ Partial Class FormFGDesignList
         Me.GridColumnIsApproved.Name = "GridColumnIsApproved"
         Me.GridColumnIsApproved.OptionsColumn.AllowEdit = False
         Me.GridColumnIsApproved.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnSampleOrign
+        '
+        Me.GridColumnSampleOrign.Caption = "Sample Origin"
+        Me.GridColumnSampleOrign.FieldName = "orign"
+        Me.GridColumnSampleOrign.Name = "GridColumnSampleOrign"
+        Me.GridColumnSampleOrign.OptionsColumn.AllowEdit = False
+        Me.GridColumnSampleOrign.Visible = True
+        Me.GridColumnSampleOrign.VisibleIndex = 11
+        '
+        'GridColumnFabrication
+        '
+        Me.GridColumnFabrication.Caption = "Fabrication"
+        Me.GridColumnFabrication.FieldName = "design_fabrication"
+        Me.GridColumnFabrication.Name = "GridColumnFabrication"
+        Me.GridColumnFabrication.OptionsColumn.AllowEdit = False
+        Me.GridColumnFabrication.Visible = True
+        Me.GridColumnFabrication.VisibleIndex = 12
+        Me.GridColumnFabrication.Width = 118
+        '
+        'GridColumnDetailDesc
+        '
+        Me.GridColumnDetailDesc.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnDetailDesc.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GridColumnDetailDesc.Caption = "Detail Description"
+        Me.GridColumnDetailDesc.ColumnEdit = Me.RepositoryItemMemoEdit1
+        Me.GridColumnDetailDesc.FieldName = "design_detail"
+        Me.GridColumnDetailDesc.Name = "GridColumnDetailDesc"
+        Me.GridColumnDetailDesc.OptionsColumn.AllowEdit = False
+        Me.GridColumnDetailDesc.Visible = True
+        Me.GridColumnDetailDesc.VisibleIndex = 13
+        Me.GridColumnDetailDesc.Width = 173
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
+        '
+        'GridColumnDivision
+        '
+        Me.GridColumnDivision.Caption = "Division"
+        Me.GridColumnDivision.FieldName = "product_division"
+        Me.GridColumnDivision.Name = "GridColumnDivision"
+        Me.GridColumnDivision.OptionsColumn.AllowEdit = False
+        Me.GridColumnDivision.Visible = True
+        Me.GridColumnDivision.VisibleIndex = 6
+        Me.GridColumnDivision.Width = 48
+        '
+        'GridColumnSubcategory
+        '
+        Me.GridColumnSubcategory.Caption = "Subcategory"
+        Me.GridColumnSubcategory.FieldName = "product_subcategory"
+        Me.GridColumnSubcategory.Name = "GridColumnSubcategory"
+        Me.GridColumnSubcategory.Visible = True
+        Me.GridColumnSubcategory.VisibleIndex = 7
         '
         'RepositoryItemCheckEdit1
         '
@@ -666,20 +743,24 @@ Partial Class FormFGDesignList
         Me.PCNavLineList.PerformLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelOpt.ResumeLayout(False)
+        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlFreeze, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlFreeze.ResumeLayout(False)
+        CType(Me.CheckEditFreeze.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.SLEType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelOpt.ResumeLayout(False)
-        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelApp, System.ComponentModel.ISupportInitialize).EndInit()
@@ -747,4 +828,11 @@ Partial Class FormFGDesignList
     Friend WithEvents CheckSelAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents BtnApprove As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnIsApproved As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSampleOrign As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDetailDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemMemoEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit
+    Friend WithEvents GridColumnDivision As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSubcategory As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControlFreeze As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents CheckEditFreeze As DevExpress.XtraEditors.CheckEdit
 End Class
