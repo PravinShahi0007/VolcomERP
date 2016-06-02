@@ -648,7 +648,9 @@ Public Class FormFGLineList
 
     Private Sub BGVLineList_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BGVLineList.DoubleClick
         Cursor = Cursors.WaitCursor
-        editLineList()
+        If id_pop_up <> "2" Then
+            editLineList()
+        End If
         Cursor = Cursors.Default
     End Sub
 
