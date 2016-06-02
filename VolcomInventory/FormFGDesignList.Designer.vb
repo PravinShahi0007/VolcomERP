@@ -73,10 +73,10 @@ Partial Class FormFGDesignList
         Me.GridColumnSampleOrign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFabrication = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDetailDesc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridColumnDivision = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSubcategory = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelApp = New DevExpress.XtraEditors.PanelControl()
         Me.BtnApprove = New DevExpress.XtraEditors.SimpleButton()
@@ -104,8 +104,8 @@ Partial Class FormFGDesignList
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelApp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelApp.SuspendLayout()
@@ -316,6 +316,7 @@ Partial Class FormFGDesignList
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDesign.OptionsCustomization.AllowRowSizing = True
         Me.GVDesign.OptionsView.ColumnAutoWidth = False
         Me.GVDesign.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVDesign.OptionsView.RowAutoHeight = True
@@ -628,17 +629,12 @@ Partial Class FormFGDesignList
         Me.GridColumnDetailDesc.AppearanceCell.Options.UseTextOptions = True
         Me.GridColumnDetailDesc.AppearanceCell.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GridColumnDetailDesc.Caption = "Detail Description"
-        Me.GridColumnDetailDesc.ColumnEdit = Me.RepositoryItemMemoEdit1
         Me.GridColumnDetailDesc.FieldName = "design_detail"
         Me.GridColumnDetailDesc.Name = "GridColumnDetailDesc"
         Me.GridColumnDetailDesc.OptionsColumn.AllowEdit = False
         Me.GridColumnDetailDesc.Visible = True
         Me.GridColumnDetailDesc.VisibleIndex = 13
         Me.GridColumnDetailDesc.Width = 173
-        '
-        'RepositoryItemMemoEdit1
-        '
-        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GridColumnDivision
         '
@@ -664,6 +660,10 @@ Partial Class FormFGDesignList
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
         Me.RepositoryItemCheckEdit1.ValueChecked = "Active"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "Not Active"
+        '
+        'RepositoryItemMemoEdit1
+        '
+        Me.RepositoryItemMemoEdit1.Name = "RepositoryItemMemoEdit1"
         '
         'GridView2
         '
@@ -760,8 +760,8 @@ Partial Class FormFGDesignList
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelApp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelApp.ResumeLayout(False)

@@ -250,6 +250,7 @@
                 End Try
                 GVDesign.ActiveFilterString = ""
                 viewData()
+                CheckSelAll.EditValue = False
                 Cursor = Cursors.Default
             Else
                 GVDesign.ActiveFilterString = ""
