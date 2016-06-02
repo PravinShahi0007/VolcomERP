@@ -1,8 +1,25 @@
 ﻿Public Class ReportFGLineList
     Public Shared dt As New DataTable
+    Public Shared img_cond As Boolean = False
 
     Private Sub ReportFGLineList_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
         GridControl1.DataSource = dt
+
+        'pic repo
+        Dim unb_PE As DevExpress.XtraGrid.Columns.GridColumn = BandedGridView1.Columns.AddVisible("img", "Image")
+        unb_PE.UnboundType = DevExpress.Data.UnboundColumnType.Object
+        BandedGridView1.Columns.Add(unb_PE)
+        Dim PE As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
+        PE.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        GridControl1.RepositoryItems.Add(PE)
+        BandedGridView1.Columns("img").ColumnEdit = PE
+        If img_cond = "True" Then
+            BandedGridView1.RowHeight = 100
+            BandedGridView1.Columns("img").Visible = True
+        Else
+            BandedGridView1.RowHeight = 10
+            BandedGridView1.Columns("img").Visible = False
+        End If
     End Sub
 
     Private Sub BandedGridView1_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles AdvBandedGridView1.CustomColumnDisplayText
@@ -135,6 +152,38 @@
                         e.TotalValue = sum_res
                 End Select
             End If
+        End If
+    End Sub
+
+    Private ImageDir As String = product_image_path
+    Private Images As Hashtable = New Hashtable()
+    Private Sub BandedGridView1_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles BandedGridView1.CustomUnboundColumnData
+        If e.Column.FieldName = "img" AndAlso e.IsGetData And img_cond = "True" Then
+            Images = Nothing
+            Images = New Hashtable()
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "id_design"))
+
+            Dim fileName As String = id & ".jpg".ToLower
+
+            If (Not Images.ContainsKey(fileName)) Then
+                Dim img As Image = Nothing
+                Dim resizeImg As Image = Nothing
+
+                Try
+
+                    Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(ImageDir, fileName, False)
+                    img = Image.FromFile(filePath)
+                    resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+                Catch
+
+                End Try
+
+                Images.Add(fileName, resizeImg)
+
+            End If
+
+            e.Value = Images(fileName)
         End If
     End Sub
 End Class

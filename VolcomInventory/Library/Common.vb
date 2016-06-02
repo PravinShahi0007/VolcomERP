@@ -2,9 +2,6 @@
 Imports System.Text
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraPrinting
-Imports System.IO
-Imports System.Drawing
-Imports System.Drawing.Printing
 Imports DevExpress.XtraReports.UI
 Imports System.Reflection
 
@@ -2923,6 +2920,24 @@ Module Common
         End If
     End Sub
 
+    Sub viewImagesRepo(ByVal PE As DevExpress.XtraEditors.PictureEdit, ByVal dir As String, ByVal id_goods As String, ByVal is_open As Boolean)
+        If System.IO.File.Exists(dir & id_goods & ".jpg") Then
+            If Not is_open Then
+                PE.LoadAsync(dir & id_goods & ".jpg")
+            Else
+                My.Computer.Network.DownloadFile(dir & id_goods & ".jpg", Application.StartupPath & "\imagestemp\" & id_goods & ".jpg", "", "", True, 100, True)
+                Process.Start(Application.StartupPath & "\imagestemp\" & id_goods & ".jpg")
+            End If
+        Else
+            If Not is_open Then
+                PE.LoadAsync(dir & "default" & ".jpg")
+            Else
+                My.Computer.Network.DownloadFile(dir & "default" & ".jpg", Application.StartupPath & "\imagestemp\" & "default" & ".jpg", "", "", True, 100, True)
+                Process.Start(Application.StartupPath & "\imagestemp\" & "default" & ".jpg")
+            End If
+        End If
+    End Sub
+
     Sub viewImagesBarcode(ByVal PE As DevExpress.XtraEditors.PictureEdit, ByVal dir As String, ByVal is_open As Boolean)
         If Not is_open Then
             PE.LoadAsync(dir & "default_barcode" & ".png")
@@ -3239,8 +3254,6 @@ Module Common
             execute_non_query(query_det, True, "", "", "", "")
         End If
     End Sub
-
-
 
     Sub frmNotifOld(ByVal form_par As String)
         Dim ass As String = "VolcomMRP"

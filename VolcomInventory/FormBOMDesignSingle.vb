@@ -3,12 +3,13 @@
     Public id_prod_demand_design As String = "-1"
     Public id_design As String = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
     Public id_pop_up As String = "-1"
-
+    '
     Public id_bom_approve As String = "-1"
     '
     Public user_mat_approve As String = "-1"
     Public user_ovh_approve As String = "-1"
     '
+
     Private Sub FormBOMSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         RICECOP.ValueChecked = Convert.ToSByte(1)
         RICECOP.ValueUnchecked = Convert.ToSByte(2)
@@ -296,6 +297,7 @@
     End Sub
 
     Private Sub FormBOMSingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
+        '
         Dispose()
     End Sub
 

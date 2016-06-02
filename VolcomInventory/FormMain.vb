@@ -233,7 +233,7 @@ Public Class FormMain
         If formName = "FormAccess" Or formName = "FormMarkAssign" Then
             BBMapping.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
-        If formName = "FormBOM" Or formName = "FormAccess" Or formName = "FormMasterSample" Then
+        If formName = "FormBOM" Or formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
             BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
         If formName = "FormMasterWH" Then
@@ -258,7 +258,7 @@ Public Class FormMain
             BBView.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormAccountingSummary" Or formName = "FormSalesOrderList" Or formName = "FormSalesOrderSvcLevel" Or formName = "FormWHImportDO" Or formName = "FormWHSvcLevel" Then
+        If formName = "FormAccountingSummary" Or formName = "FormMasterDesignCOP" Or formName = "FormSalesOrderList" Or formName = "FormSalesOrderSvcLevel" Or formName = "FormWHImportDO" Or formName = "FormWHSvcLevel" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -302,7 +302,7 @@ Public Class FormMain
             BBRefresh.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             RGAreaManage.Visible = False
         End If
-        If formName = "FormSOHPrice" Or formName = "FormMasterDesignCOP" Then
+        If formName = "FormSOHPrice" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
@@ -355,11 +355,11 @@ Public Class FormMain
         If formName = "FormAccess" Or formName = "FormMarkAssign" Then
             BBMapping.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
-        If formName = "FormBOM" Or formName = "FormAccess" Or formName = "FormMasterSample" Then
+        If formName = "FormBOM" Or formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
             BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormMasterWH" Then
+        If formName = "FormMasterWH" Or formName = "FormMasterDesignCOP" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             BBEdit.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
@@ -417,7 +417,7 @@ Public Class FormMain
             BBRefresh.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             RGAreaManage.Visible = True
         End If
-        If formName = "FormSOHPrice" Or formName = "FormMasterDesignCOP" Then
+        If formName = "FormSOHPrice" Then
             BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
@@ -725,10 +725,10 @@ Public Class FormMain
             If FormBOM.XTCBOMSelection.SelectedTabPageIndex = 0 Then
                 'Try
                 FormBOMDesignSingle.id_pop_up = "-1"
-                    FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
-                    FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
-                    'FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-                    FormBOMDesignSingle.ShowDialog()
+                FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
+                'FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                FormBOMDesignSingle.ShowDialog()
                 'Catch ex As Exception
                 'stopCustom("Please try again later.")
                 'End Try
@@ -1409,6 +1409,13 @@ Public Class FormMain
             'Return Internal sale
             FormSampleReturnPLDet.action = "ins"
             FormSampleReturnPLDet.ShowDialog()
+        ElseIf formName = "FormFGDesignList" Then
+            'DESIGN LIST
+            FormMasterDesignSingle.id_pop_up = "5"
+            FormMasterDesignSingle.id_season_par = FormFGDesignList.SLESeason.EditValue.ToString
+            FormMasterDesignSingle.form_name = "FormFGDesignList"
+            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+            FormMasterDesignSingle.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2106,7 +2113,7 @@ Public Class FormMain
                 FormMasterRetCodeDet.ShowDialog()
             ElseIf formName = "FormMasterDesignCOP" Then
                 'MASTER RET CODE
-                FormProductionCOP.id_design = FormMasterDesignCOP.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                FormProductionCOP.id_design = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("id_design").ToString
                 FormProductionCOP.ShowDialog()
             ElseIf formName = "FormSampleOrdered" Then
                 'SAMPLE ORDERED
@@ -2171,7 +2178,7 @@ Public Class FormMain
                 FormMasterPriceSingle.id_fg_price = FormMasterPrice.GVPrice.GetFocusedRowCellValue("id_fg_price").ToString
                 FormMasterPriceSingle.ShowDialog()
             ElseIf formName = "FormFGDesignList" Then
-                FormMasterDesignSingle.id_pop_up = "2"
+                FormMasterDesignSingle.id_pop_up = "5"
                 FormMasterDesignSingle.form_name = "FormFGDesignList"
                 FormMasterDesignSingle.id_design = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
                 FormMasterDesignSingle.WindowState = FormWindowState.Maximized
@@ -5043,6 +5050,18 @@ Public Class FormMain
             Else
                 stopCustom("This data already marked")
             End If
+        ElseIf formName = "FormFGDesignList" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim id_design As String = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                    query = String.Format("DELETE FROM tb_m_design WHERE id_design='{0}'", id_design)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormFGDesignList.viewData()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -5936,28 +5955,30 @@ Public Class FormMain
         ElseIf formName = "FormFGLineList" Then
             'LINE LIST
             Cursor = Cursors.WaitCursor
-            If FormFGLineList.BGVLineList.RowCount > 0 Then
-                '... 
-                ' creating and saving the view's layout to a new memory stream 
-                Dim str As System.IO.Stream
-                str = New System.IO.MemoryStream()
-                FormFGLineList.BGVLineList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
-                ReportFGLineList.dt = FormFGLineList.GCLineList.DataSource
-                Dim Report As New ReportFGLineList()
-                Report.AdvBandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
+            print(FormFGLineList.GCLineList, FormFGLineList.SLESeason.Text.ToString.ToUpper + " LINE LIST" + System.Environment.NewLine + "TYPE : " + FormFGLineList.SLETypeLineList.Text.ToUpper)
+            'If FormFGLineList.BGVLineList.RowCount > 0 Then
+            '    '... 
+            '    ' creating and saving the view's layout to a new memory stream 
+            '    Dim str As System.IO.Stream
+            '    str = New System.IO.MemoryStream()
+            '    FormFGLineList.BGVLineList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            '    str.Seek(0, System.IO.SeekOrigin.Begin)
+            '    ReportFGLineList.dt = FormFGLineList.GCLineList.DataSource
+            '    ReportFGLineList.img_cond = FormFGLineList.CheckImg.EditValue
+            '    Dim Report As New ReportFGLineList()
+            '    Report.AdvBandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            '    str.Seek(0, System.IO.SeekOrigin.Begin)
 
 
-                Report.LabelSeason.Text = FormFGLineList.SLESeason.Text.ToString
-                Report.LabelType.Text = FormFGLineList.SLETypeLineList.Text.ToString
-                ReportStyleBanded(Report.AdvBandedGridView1)
-                Report.AdvBandedGridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+            '    Report.LabelSeason.Text = FormFGLineList.SLESeason.Text.ToString
+            '    Report.LabelType.Text = FormFGLineList.SLETypeLineList.Text.ToString
+            '    ReportStyleBanded(Report.AdvBandedGridView1)
+            '    Report.AdvBandedGridView1.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
 
-                ' Show the report's preview. 
-                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-                Tool.ShowPreview()
-            End If
+            '    ' Show the report's preview. 
+            '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            '    Tool.ShowPreview()
+            'End If
             Cursor = Cursors.Default
         ElseIf formName = "FormMasterRetCode" Then
             print(FormMasterRetCode.GCRetCode, "Return Code")
@@ -6700,6 +6721,19 @@ Public Class FormMain
             FormMasterSampleDet.dupe = "1"
             FormMasterSampleDet.id_sample = FormMasterSample.GVSample.GetFocusedRowCellDisplayText("id_sample").ToString
             FormMasterSampleDet.ShowDialog()
+        ElseIf formName = "FormFGDesignList" Then
+            'LINE LIST DESIGN
+            FormMasterDesignSingle.id_pop_up = "5"
+            FormMasterDesignSingle.WindowState = FormWindowState.Maximized
+            FormMasterDesignSingle.form_name = "FormFGDesignList"
+            FormMasterDesignSingle.dupe = "1"
+            Dim id_dsg_param As String = "-1"
+            Try
+                id_dsg_param = FormFGDesignList.GVDesign.GetFocusedRowCellValue("id_design").ToString
+            Catch ex As Exception
+            End Try
+            FormMasterDesignSingle.id_design = id_dsg_param
+            FormMasterDesignSingle.ShowDialog()
         End If
     End Sub
     'Contact 
@@ -9334,7 +9368,6 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormFGDesignList.MdiParent = Me
-            FormFGDesignList.id_pop_up = "1"
             FormFGDesignList.Show()
             FormFGDesignList.WindowState = FormWindowState.Maximized
             FormFGDesignList.Focus()
@@ -9462,6 +9495,20 @@ Public Class FormMain
             FormSampleReturnPL.Show()
             FormSampleReturnPL.WindowState = FormWindowState.Maximized
             FormSampleReturnPL.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDesignListApp_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDesignListApp.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGDesignList.MdiParent = Me
+            FormFGDesignList.id_pop_up = "1"
+            FormFGDesignList.Show()
+            FormFGDesignList.WindowState = FormWindowState.Maximized
+            FormFGDesignList.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

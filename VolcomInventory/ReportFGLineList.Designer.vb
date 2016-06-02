@@ -19,26 +19,26 @@ Partial Public Class ReportFGLineList
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Detail = New DevExpress.XtraReports.UI.DetailBand
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl
-        Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand
-        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand
-        Me.LabelSeason = New DevExpress.XtraReports.UI.XRLabel
-        Me.LabelType = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel
-        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand
-        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo
-        Me.AdvBandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView
-        Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand
+        Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.AdvBandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.AdvBandedGridView()
+        Me.GridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
+        Me.LabelSeason = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelType = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
+        Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.AdvBandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -51,7 +51,7 @@ Partial Public Class ReportFGLineList
         '
         'WinControlContainer1
         '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 0.0!)
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
         Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1553.0!, 217.7083!)
         Me.WinControlContainer1.WinControl = Me.GridControl1
@@ -63,7 +63,20 @@ Partial Public Class ReportFGLineList
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.Size = New System.Drawing.Size(1491, 209)
         Me.GridControl1.TabIndex = 0
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridView1, Me.AdvBandedGridView1})
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.AdvBandedGridView1, Me.BandedGridView1})
+        '
+        'AdvBandedGridView1
+        '
+        Me.AdvBandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand2})
+        Me.AdvBandedGridView1.GridControl = Me.GridControl1
+        Me.AdvBandedGridView1.Name = "AdvBandedGridView1"
+        '
+        'GridBand2
+        '
+        Me.GridBand2.Caption = "GridBand1"
+        Me.GridBand2.MinWidth = 20
+        Me.GridBand2.Name = "GridBand2"
+        Me.GridBand2.VisibleIndex = 0
         '
         'BandedGridView1
         '
@@ -75,6 +88,7 @@ Partial Public Class ReportFGLineList
         '
         Me.GridBand1.Caption = "GridBand1"
         Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
         '
         'TopMargin
         '
@@ -111,7 +125,7 @@ Partial Public Class ReportFGLineList
         'XrLabel4
         '
         Me.XrLabel4.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 46.62501!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 46.62501!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(100.0!, 15.25!)
@@ -123,7 +137,7 @@ Partial Public Class ReportFGLineList
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 10.00001!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 10.00001!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(165.625!, 23.0!)
@@ -135,7 +149,7 @@ Partial Public Class ReportFGLineList
         'XrLabel2
         '
         Me.XrLabel2.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.0!, 33.00001!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 33.00001!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(100.0!, 13.625!)
@@ -181,7 +195,7 @@ Partial Public Class ReportFGLineList
         Me.XrPageInfo1.Borders = DevExpress.XtraPrinting.BorderSide.None
         Me.XrPageInfo1.Font = New System.Drawing.Font("Lucida Sans", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrPageInfo1.Format = "Page {0} of {1}"
-        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(1403.0!, 0.0!)
+        Me.XrPageInfo1.LocationFloat = New DevExpress.Utils.PointFloat(1403.0!, 0!)
         Me.XrPageInfo1.Name = "XrPageInfo1"
         Me.XrPageInfo1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrPageInfo1.SizeF = New System.Drawing.SizeF(150.0!, 18.71793!)
@@ -189,18 +203,6 @@ Partial Public Class ReportFGLineList
         Me.XrPageInfo1.StylePriority.UseFont = False
         Me.XrPageInfo1.StylePriority.UseTextAlignment = False
         Me.XrPageInfo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
-        'AdvBandedGridView1
-        '
-        Me.AdvBandedGridView1.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand2})
-        Me.AdvBandedGridView1.GridControl = Me.GridControl1
-        Me.AdvBandedGridView1.Name = "AdvBandedGridView1"
-        '
-        'GridBand2
-        '
-        Me.GridBand2.Caption = "GridBand1"
-        Me.GridBand2.MinWidth = 20
-        Me.GridBand2.Name = "GridBand2"
         '
         'ReportFGLineList
         '
@@ -210,10 +212,10 @@ Partial Public Class ReportFGLineList
         Me.PageHeight = 1169
         Me.PageWidth = 1654
         Me.PaperKind = System.Drawing.Printing.PaperKind.A3
-        Me.Version = "11.1"
+        Me.Version = "15.1"
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.AdvBandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub

@@ -83,7 +83,7 @@ Public Class FormRangeSingle
                         Dim id_season As String = execute_query(query_season, 0, True, "", "", "", "")
 
                         'del
-                        Dim query_del = String.Format("INSERT INTO tb_season_delivery(delivery, id_season) VALUES('1', '{0}'); ", id_season)
+                        Dim query_del = String.Format("INSERT INTO tb_season_delivery(delivery, id_season, delivery_date, est_wh_date) VALUES('1', '{0}','2050-01-01','2050-01-01'); ", id_season)
                         execute_non_query(query_del, True, "", "", "", "")
 
                         logData("tb_range", 1)

@@ -733,6 +733,13 @@
             FormSampleReturnPLDet.viewDetail()
             FormSampleReturnPLDet.codeAvailableIns()
             Close()
+        ElseIf id_pop_up = "68" Then
+            'Design COP PD
+            FormMasterDesignCOPPD.TEVendorName.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "1")
+            FormMasterDesignCOPPD.TEVendor.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
+            FormMasterDesignCOPPD.id_comp_contact = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+            FormMasterDesignCOPPD.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub
