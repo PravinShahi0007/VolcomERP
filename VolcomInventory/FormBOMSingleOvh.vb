@@ -407,6 +407,13 @@
                         "SET bom_d.id_ovh_price='{0}',bom_d.kurs='{1}',bom_d.bom_price='{2}',bom_d.component_qty='{3}',bom_d.is_ovh_main='{4}' " +
                         "WHERE mop.id_ovh='{5}' and bom.id_bom_approve='{6}'", id_component_price, decimalSQL(kurs.ToString), decimalSQL(bom_price.ToString), decimalSQL(component_qty.ToString), is_ovh_main, id_ovh, FormBOMSingle.id_bom_approve)
                         execute_non_query(query, True, "", "", "", "")
+                        'update who
+                        query = String.Format("UPDATE tb_bom SET id_user_last_update='{0}',bom_date_updated=NOW() WHERE id_bom_approve='{1}'", id_user, FormBOMSingle.id_bom_approve)
+                        execute_non_query(query, True, "", "", "", "")
+                        'update ecop
+                        query = String.Format("CALL update_bom_tot_app('{0}')", FormBOMSingle.id_bom_approve)
+                        execute_non_query(query, True, "", "", "", "")
+                        '
                         FormBOMSingle.act_load()
                         Close()
                     End If
@@ -432,6 +439,13 @@
                         query += "'" + is_ovh_main.ToString + "' As is_ovh_main"
                         query += " FROM tb_bom WHERE id_bom_approve='" + FormBOMSingle.id_bom_approve + "'"
                         execute_non_query(query, True, "", "", "", "")
+                        'update who
+                        query = String.Format("UPDATE tb_bom SET id_user_last_update='{0}',bom_date_updated=NOW() WHERE id_bom_approve='{1}'", id_user, FormBOMSingle.id_bom_approve)
+                        execute_non_query(query, True, "", "", "", "")
+                        'update ecop
+                        query = String.Format("CALL update_bom_tot_app('{0}')", FormBOMSingle.id_bom_approve)
+                        execute_non_query(query, True, "", "", "", "")
+                        '
                         FormBOMSingle.act_load()
                         Close()
                     End If
