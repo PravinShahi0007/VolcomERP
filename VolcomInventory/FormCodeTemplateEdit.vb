@@ -87,7 +87,7 @@
                     'FormMasterDesignSingle.load_template(FormMasterDesignSingle.LETemplate.EditValue)
                     data_insert_parameter_temp = FormMasterDesignSingle.data_insert_parameter.Copy()
 
-                    FormMasterDesignSingle.load_isi_param()
+                    FormMasterDesignSingle.load_isi_param("1")
                     FormMasterDesignSingle.load_template(FormMasterDesignSingle.LETemplate.EditValue)
 
                     FormMasterDesignSingle.data_insert_parameter.Clear()
@@ -121,7 +121,7 @@
                         Next
                     End If
                 ElseIf id_pop_up = "5" Then 'raw mat
-                    
+
                     data_insert_parameter_temp = FormMasterRawMaterialSingle.data_insert_parameter.Copy()
 
                     FormMasterRawMaterialSingle.loadIsiParam()
@@ -131,6 +131,18 @@
                     If Not data_insert_parameter_temp.Rows.Count = 0 Then
                         For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
                             FormMasterRawMaterialSingle.data_insert_parameter.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                        Next
+                    End If
+                ElseIf id_pop_up = "6" Then
+                    data_insert_parameter_temp = FormMasterDesignSingle.data_insert_parameter_dsg.Copy()
+
+                    FormMasterDesignSingle.load_isi_param("2")
+                    FormMasterDesignSingle.load_template_dsg(FormMasterDesignSingle.LETemplateDsg.EditValue)
+
+                    FormMasterDesignSingle.data_insert_parameter_dsg.Clear()
+                    If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                        For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                            FormMasterDesignSingle.data_insert_parameter_dsg.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
                         Next
                     End If
                 End If

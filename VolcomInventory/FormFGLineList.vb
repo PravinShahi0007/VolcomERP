@@ -8,7 +8,11 @@ Public Class FormFGLineList
     Dim id_role_super_admin As String = "-1"
     Public data_column As New DataTable
 
-    'id_pop_up = 1 for pop up windows  
+    'id_pop_up :
+    '-1 = line list MD
+    '1  = for pop up windows
+    '2  = view Line List
+    '3  = Line list non MD 
 
     Private Sub FormFGLineList_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         If id_pop_up <> "1" Then
@@ -50,12 +54,7 @@ Public Class FormFGLineList
             BGVLineList.ActiveFilterString = "[id_design]='" + FormProductionPLToWHDet.id_design.ToString + "' "
             BGVLineList.Columns("Select_sct").Visible = False
         ElseIf id_pop_up = "2" Then
-            BtnDesign.Visible = False
-            BtnEstimateCost.Visible = False
-            BtnCopyFrom.Visible = False
-            BtnDropQuickMenu.Visible = False
-            BtnCreateNewPD.Visible = False
-            BtnPlanStatus.Visible = False
+            PanelControlNavLineListBottom.Visible = False
         ElseIf id_pop_up = "3" Then
             BBProposePrice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDs.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -95,12 +94,16 @@ Public Class FormFGLineList
 
     Private Sub BtnView_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnView.Click
         Cursor = Cursors.WaitCursor
+        CheckImg.EditValue = False
         BtnView.Text = "Loading..."
         BtnView.Enabled = False
         viewLineList()
         noEdit()
         BtnView.Text = "View Line List"
         BtnView.Enabled = True
+        PanelOpt.Visible = False
+        PanelImg.Visible = True
+        BGVLineList.RowHeight = 10
         Cursor = Cursors.Default
     End Sub
 
@@ -137,12 +140,18 @@ Public Class FormFGLineList
     Private Sub SLESeason_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLESeason.EditValueChanged
         Cursor = Cursors.WaitCursor
         nothingLineList()
+        CheckEditOpt.EditValue = False
+        PanelOpt.Visible = True
+        PanelImg.Visible = False
         Cursor = Cursors.Default
     End Sub
 
     Private Sub SLETypeLineList_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLETypeLineList.EditValueChanged
         Cursor = Cursors.WaitCursor
         nothingLineList()
+        CheckEditOpt.EditValue = False
+        PanelOpt.Visible = True
+        PanelImg.Visible = False
 
 
         'show/hide btn
@@ -154,7 +163,7 @@ Public Class FormFGLineList
                 BtnCopyFrom.Visible = True
                 BtnCreateNewPD.Visible = True
                 BtnPlanStatus.Visible = True
-                BtnDesign.Visible = True
+                BtnDesign.Visible = False
             ElseIf SLETypeLineList.EditValue.ToString = "2" Then
                 'BtnProposePrice.Visible = False
                 ' BtnActualCost.Visible = False
@@ -162,7 +171,7 @@ Public Class FormFGLineList
                 BtnCopyFrom.Visible = True
                 BtnCreateNewPD.Visible = True
                 BtnPlanStatus.Visible = True
-                BtnDesign.Visible = True
+                BtnDesign.Visible = False
             Else
                 'BtnProposePrice.Visible = True
                 'BtnActualCost.Visible = True
@@ -301,11 +310,11 @@ Public Class FormFGLineList
             line_act = query_c.getLineActFocus(SLETypeLineList.EditValue.ToString, BGVLineList)
         Catch ex As Exception
         End Try
-        If BGVLineList.RowCount > 0 And BtnDesign.Visible = True Then
+        If BGVLineList.RowCount > 0 And id_pop_up <> "2" Then
             If line_act = "1" Then
                 SMEditDesign.Visible = True
-                SMDeleteDesign.Visible = True
-                SMViewDupe.Visible = True
+                SMDeleteDesign.Visible = False
+                SMViewDupe.Visible = False
             Else
                 SMEditDesign.Visible = False
                 SMDeleteDesign.Visible = False
@@ -601,13 +610,14 @@ Public Class FormFGLineList
                     For l As Integer = 0 To ((BGVLineList.RowCount - 1) - GetGroupRowCount(BGVLineList))
                         If BGVLineList.GetRowCellValue(l, "Select_sct") = "Yes" Then
                             If jum_str > 0 Then
-                                id_str += ";"
+                                id_str += "OR "
                             End If
-                            id_str += myCoalesce(BGVLineList.GetRowCellValue(l, ll_type).ToString, "0")
+                            id_str += "pd_dsg.id_prod_demand_design = " + myCoalesce(BGVLineList.GetRowCellValue(l, ll_type).ToString, "0") + " "
                             jum_str += 1
                         End If
                     Next
-                    Dim query As String = "CALL generate_pd_upd_est_cost('" + id_str + "', '" + id_user + "', TRUE)"
+                    Console.WriteLine(id_str)
+                    Dim query As String = "CALL generate_pd_upd_est_cost_new('" + id_str + "')"
                     execute_non_query(query, True, "", "", "", "")
                     viewLineList()
                     infoCustom("Estimate Cost Updated.")
@@ -638,7 +648,9 @@ Public Class FormFGLineList
 
     Private Sub BGVLineList_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BGVLineList.DoubleClick
         Cursor = Cursors.WaitCursor
-        editLineList()
+        If id_pop_up <> "2" Then
+            editLineList()
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -1005,6 +1017,53 @@ Public Class FormFGLineList
             End If
         End If
         BGVLineList.ActiveFilterString = ""
+        Cursor = Cursors.Default
+    End Sub
+
+    Private ImageDir As String = product_image_path
+    Private Images As Hashtable = New Hashtable()
+    Private Sub BGVLineList_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles BGVLineList.CustomUnboundColumnData
+        If e.Column.FieldName = "img" AndAlso e.IsGetData And CheckImg.EditValue.ToString = "True" Then
+            Images = Nothing
+            Images = New Hashtable()
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim id As String = CStr(view.GetListSourceRowCellValue(e.ListSourceRowIndex, "id_design"))
+
+            Dim fileName As String = id & ".jpg".ToLower
+
+            If (Not Images.ContainsKey(fileName)) Then
+                Dim img As Image = Nothing
+                Dim resizeImg As Image = Nothing
+
+                Try
+
+                    Dim filePath As String = DevExpress.Utils.FilesHelper.FindingFileName(ImageDir, fileName, False)
+                    img = Image.FromFile(filePath)
+                    resizeImg = img.GetThumbnailImage(100, 100, Nothing, Nothing)
+                Catch
+
+                End Try
+
+                Images.Add(fileName, resizeImg)
+
+            End If
+
+            e.Value = Images(fileName)
+        End If
+    End Sub
+
+    Private Sub CheckImg_CheckedChanged(sender As Object, e As EventArgs) Handles CheckImg.CheckedChanged
+        Cursor = Cursors.WaitCursor
+        Dim val As String = CheckImg.EditValue.ToString
+        If val = "True" Then
+            BGVLineList.RowHeight = 100
+            BGVLineList.Columns("img").Visible = True
+        Else
+            BGVLineList.RowHeight = 10
+            BGVLineList.Columns("img").Visible = False
+        End If
+        GCLineList.RefreshDataSource()
+        BGVLineList.RefreshData()
         Cursor = Cursors.Default
     End Sub
 End Class

@@ -382,6 +382,7 @@ Partial Class FormProdDemandDesignSingle
         Me.BViewBOM.Size = New System.Drawing.Size(91, 37)
         Me.BViewBOM.TabIndex = 17
         Me.BViewBOM.Text = "BOM"
+        Me.BViewBOM.Visible = False
         '
         'BtnEdit
         '
@@ -966,6 +967,7 @@ Partial Class FormProdDemandDesignSingle
         Me.GroupControlLog.Size = New System.Drawing.Size(514, 137)
         Me.GroupControlLog.TabIndex = 8931
         Me.GroupControlLog.Text = "Estimate Cost Log"
+        Me.GroupControlLog.Visible = False
         '
         'GCLogCost
         '
