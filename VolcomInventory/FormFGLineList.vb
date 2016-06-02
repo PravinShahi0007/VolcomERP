@@ -8,7 +8,11 @@ Public Class FormFGLineList
     Dim id_role_super_admin As String = "-1"
     Public data_column As New DataTable
 
-    'id_pop_up = 1 for pop up windows  
+    'id_pop_up :
+    '-1 = line list MD
+    '1  = for pop up windows
+    '2  = view Line List
+    '3  = Line list non MD 
 
     Private Sub FormFGLineList_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         If id_pop_up <> "1" Then
@@ -50,12 +54,7 @@ Public Class FormFGLineList
             BGVLineList.ActiveFilterString = "[id_design]='" + FormProductionPLToWHDet.id_design.ToString + "' "
             BGVLineList.Columns("Select_sct").Visible = False
         ElseIf id_pop_up = "2" Then
-            BtnDesign.Visible = False
-            BtnEstimateCost.Visible = False
-            BtnCopyFrom.Visible = False
-            BtnDropQuickMenu.Visible = False
-            BtnCreateNewPD.Visible = False
-            BtnPlanStatus.Visible = False
+            PanelControlNavLineListBottom.Visible = False
         ElseIf id_pop_up = "3" Then
             BBProposePrice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDs.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
@@ -311,7 +310,7 @@ Public Class FormFGLineList
             line_act = query_c.getLineActFocus(SLETypeLineList.EditValue.ToString, BGVLineList)
         Catch ex As Exception
         End Try
-        If BGVLineList.RowCount > 0 Then
+        If BGVLineList.RowCount > 0 And id_pop_up <> "2" Then
             If line_act = "1" Then
                 SMEditDesign.Visible = True
                 SMDeleteDesign.Visible = False
