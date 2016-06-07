@@ -3,6 +3,7 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
     Dim id_season_par As String = "-1"
+    Dim super_user As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormSalesOrder_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewSalesOrder()
@@ -11,7 +12,12 @@
 
     Sub viewSalesOrderGen()
         Dim query_c As ClassSalesOrder = New ClassSalesOrder()
-        Dim query As String = query_c.queryMainGen("AND gen.id_user='" + id_user + "' ", "2")
+        Dim query As String = ""
+        If id_role_login <> super_user Then
+            query = query_c.queryMainGen("AND gen.id_user='" + id_user + "' ", "2")
+        Else
+            query = query_c.queryMainGen("-1", "2")
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCGen.DataSource = data
         check_menu()
@@ -20,7 +26,11 @@
 
     Sub viewSalesOrder()
         Dim query_c As ClassSalesOrder = New ClassSalesOrder()
-        Dim query As String = query_c.queryMain("AND a.id_user_created='" + id_user + "' AND ISNULL(a.id_sales_order_gen) ", "2")
+        Dim cond As String = "AND ISNULL(a.id_sales_order_gen) "
+        If id_role_login <> super_user Then
+            cond += "AND a.id_user_created='" + id_user + "' "
+        End If
+        Dim query As String = query_c.queryMain(cond, "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesOrder.DataSource = data
         check_menu()
