@@ -828,8 +828,10 @@
         GridColumnCode.VisibleIndex = 0
         GridColumnQty.VisibleIndex = 1
         GVItemList.OptionsPrint.PrintFooter = False
+        GVItemList.OptionsPrint.PrintHeader = False
         GVItemList.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-        GVItemList.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+        GVItemList.AppearancePrint.HeaderPanel.ForeColor = Color.Transparent
+
 
         'export excel
         Dim printableComponentLink1 As New DevExpress.XtraPrinting.PrintableComponentLink(New DevExpress.XtraPrinting.PrintingSystem())
@@ -838,7 +840,7 @@
         If Not IO.Directory.Exists(path_root) Then
             System.IO.Directory.CreateDirectory(path_root)
         End If
-        Dim fileName As String = "order" + ".XLS"
+        Dim fileName As String = "order" + ".xls"
         Dim exp As String = IO.Path.Combine(path_root, fileName)
         Dim opt As DevExpress.XtraPrinting.XlsExportOptions = New DevExpress.XtraPrinting.XlsExportOptions()
         opt.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text
@@ -848,6 +850,7 @@
         'Process.Start(exp)
 
         'show column
+        'GVItemList.OptionsView.ShowColumnHeaders = True
         GridColumnNo.VisibleIndex = 0
         GridColumnCode.VisibleIndex = 1
         GridColumnName.VisibleIndex = 2
