@@ -358,6 +358,10 @@
         Else
             BtnPrint.Enabled = False
         End If
+
+        If id_report_status = "6" Then
+            BtnXlsBOF.Visible = True
+        End If
         TxtSalesOrderNumber.Focus()
     End Sub
 
@@ -811,6 +815,47 @@
             FormImportExcel.id_pop_up = "25"
             FormImportExcel.ShowDialog()
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        Cursor = Cursors.WaitCursor
+
+        'hide column
+        For c As Integer = 0 To GVItemList.Columns.Count - 1
+            GVItemList.Columns(c).Visible = False
+        Next
+        GridColumnCode.VisibleIndex = 0
+        GridColumnQty.VisibleIndex = 1
+        GVItemList.OptionsPrint.PrintFooter = False
+        GVItemList.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
+        GVItemList.AppearancePrint.HeaderPanel.ForeColor = Color.Black
+
+        'export excel
+        Dim printableComponentLink1 As New DevExpress.XtraPrinting.PrintableComponentLink(New DevExpress.XtraPrinting.PrintingSystem())
+        Dim path_root As String = Application.StartupPath & "\import\"
+        'create directory if not exist
+        If Not IO.Directory.Exists(path_root) Then
+            System.IO.Directory.CreateDirectory(path_root)
+        End If
+        Dim fileName As String = "order" + ".XLS"
+        Dim exp As String = IO.Path.Combine(path_root, fileName)
+        Dim opt As DevExpress.XtraPrinting.XlsExportOptions = New DevExpress.XtraPrinting.XlsExportOptions()
+        opt.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text
+        printableComponentLink1.Component = GCItemList
+        printableComponentLink1.CreateDocument()
+        printableComponentLink1.ExportToXls(exp, opt)
+        'Process.Start(exp)
+
+        'show column
+        GridColumnNo.VisibleIndex = 0
+        GridColumnCode.VisibleIndex = 1
+        GridColumnName.VisibleIndex = 2
+        GridColumnSize.VisibleIndex = 3
+        GridColumnQty.VisibleIndex = 4
+        GridColumnPrice.VisibleIndex = 5
+        GridColumnAmount.VisibleIndex = 6
+        GridColumnRemark.VisibleIndex = 7
         Cursor = Cursors.Default
     End Sub
 End Class
