@@ -8,7 +8,7 @@
     '5 = TRF
 
     Sub viewReportStatus()
-        Dim query As String = "SELECT id_report_status, report_status FROM tb_lookup_report_status WHERE id_report_status=3 OR id_report_status=5 OR id_report_status=6 ORDER BY id_report_status ASC "
+        Dim query As String = "SELECT id_report_status, report_status FROM tb_lookup_report_status WHERE id_report_status=5 OR id_report_status=6 ORDER BY id_report_status DESC "
         viewSearchLookupQuery(SLEStatusRec, query, "id_report_status", "report_status", "id_report_status")
     End Sub
 

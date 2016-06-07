@@ -26,19 +26,22 @@ Partial Class FormChangeStatus
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnUpdateRec = New DevExpress.XtraEditors.SimpleButton()
         Me.PBC = New DevExpress.XtraEditors.ProgressBarControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEComment = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.SLEStatusRec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEComment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SLEStatusRec
         '
-        Me.SLEStatusRec.Location = New System.Drawing.Point(51, 16)
+        Me.SLEStatusRec.Location = New System.Drawing.Point(76, 16)
         Me.SLEStatusRec.Name = "SLEStatusRec"
         Me.SLEStatusRec.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEStatusRec.Properties.ShowClearButton = False
         Me.SLEStatusRec.Properties.View = Me.GridView4
-        Me.SLEStatusRec.Size = New System.Drawing.Size(156, 20)
+        Me.SLEStatusRec.Size = New System.Drawing.Size(311, 20)
         Me.SLEStatusRec.TabIndex = 1
         '
         'GridView4
@@ -74,10 +77,10 @@ Partial Class FormChangeStatus
         '
         'BtnUpdateRec
         '
-        Me.BtnUpdateRec.Location = New System.Drawing.Point(212, 16)
+        Me.BtnUpdateRec.Location = New System.Drawing.Point(303, 144)
         Me.BtnUpdateRec.LookAndFeel.SkinName = "Blue"
         Me.BtnUpdateRec.Name = "BtnUpdateRec"
-        Me.BtnUpdateRec.Size = New System.Drawing.Size(84, 20)
+        Me.BtnUpdateRec.Size = New System.Drawing.Size(84, 27)
         Me.BtnUpdateRec.TabIndex = 2
         Me.BtnUpdateRec.Text = "Update Status"
         '
@@ -86,15 +89,32 @@ Partial Class FormChangeStatus
         Me.PBC.Dock = System.Windows.Forms.DockStyle.Top
         Me.PBC.Location = New System.Drawing.Point(0, 0)
         Me.PBC.Name = "PBC"
-        Me.PBC.Size = New System.Drawing.Size(308, 6)
+        Me.PBC.Size = New System.Drawing.Size(399, 6)
         Me.PBC.TabIndex = 8902
         Me.PBC.Visible = False
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(14, 44)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl2.TabIndex = 8904
+        Me.LabelControl2.Text = "Comment"
+        '
+        'MEComment
+        '
+        Me.MEComment.Location = New System.Drawing.Point(76, 42)
+        Me.MEComment.Name = "MEComment"
+        Me.MEComment.Size = New System.Drawing.Size(311, 96)
+        Me.MEComment.TabIndex = 8905
         '
         'FormChangeStatus
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(308, 50)
+        Me.ClientSize = New System.Drawing.Size(399, 186)
+        Me.Controls.Add(Me.MEComment)
+        Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.PBC)
         Me.Controls.Add(Me.BtnUpdateRec)
         Me.Controls.Add(Me.SLEStatusRec)
@@ -108,6 +128,7 @@ Partial Class FormChangeStatus
         CType(Me.SLEStatusRec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEComment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -120,4 +141,6 @@ Partial Class FormChangeStatus
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnUpdateRec As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PBC As DevExpress.XtraEditors.ProgressBarControl
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MEComment As DevExpress.XtraEditors.MemoEdit
 End Class
