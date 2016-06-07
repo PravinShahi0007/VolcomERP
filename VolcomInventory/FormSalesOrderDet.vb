@@ -1,4 +1,6 @@
-﻿Public Class FormSalesOrderDet 
+﻿Imports Microsoft.Office.Interop
+
+Public Class FormSalesOrderDet
     Public action As String
     Public id_sales_order As String = "-1"
     Public id_store_contact_to As String = "-1"
@@ -379,7 +381,7 @@
         Dispose()
     End Sub
 
-   
+
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
         FormSalesOrderSingle.action_pop = "ins"
         FormSalesOrderSingle.ShowDialog()
@@ -829,8 +831,6 @@
         GridColumnQty.VisibleIndex = 1
         GVItemList.OptionsPrint.PrintFooter = False
         GVItemList.OptionsPrint.PrintHeader = False
-        GVItemList.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
-        GVItemList.AppearancePrint.HeaderPanel.ForeColor = Color.Transparent
 
 
         'export excel
@@ -842,15 +842,15 @@
         End If
         Dim fileName As String = "order" + ".xls"
         Dim exp As String = IO.Path.Combine(path_root, fileName)
-        Dim opt As DevExpress.XtraPrinting.XlsExportOptions = New DevExpress.XtraPrinting.XlsExportOptions()
-        opt.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text
-        printableComponentLink1.Component = GCItemList
-        printableComponentLink1.CreateDocument()
-        printableComponentLink1.ExportToXls(exp, opt)
+        ExportToExcel(GVItemList, exp)
+        'Dim opt As DevExpress.XtraPrinting.XlsExportOptions = New DevExpress.XtraPrinting.XlsExportOptions()
+        'opt.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text
+        'printableComponentLink1.Component = GCItemList
+        'printableComponentLink1.CreateDocument()
+        'printableComponentLink1.ExportToXls(exp, opt)
         'Process.Start(exp)
 
         'show column
-        'GVItemList.OptionsView.ShowColumnHeaders = True
         GridColumnNo.VisibleIndex = 0
         GridColumnCode.VisibleIndex = 1
         GridColumnName.VisibleIndex = 2
@@ -861,4 +861,67 @@
         GridColumnRemark.VisibleIndex = 7
         Cursor = Cursors.Default
     End Sub
+    Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String)
+        Dim strFileName As String = filepath
+        If System.IO.File.Exists(strFileName) Then
+            System.IO.File.Delete(strFileName)
+
+        End If
+        Dim _excel As New Excel.Application
+        Dim wBook As Excel.Workbook
+        Dim wSheet As Excel.Worksheet
+
+        wBook = _excel.Workbooks.Add()
+        wSheet = wBook.ActiveSheet()
+
+
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = -1
+
+        ' export the Columns 
+        'If CheckBox1.Checked Then
+        '    For Each dc In dt.Columns
+        '        colIndex = colIndex + 1
+        '        wSheet.Cells(1, colIndex) = dc.ColumnName
+        '    Next
+        'End If
+
+        'export the rows 
+        For i As Integer = 0 To dtTemp.RowCount - 1
+            rowIndex = rowIndex + 1
+            colIndex = 0
+            For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
+                colIndex = colIndex + 1
+                If j = 0 Then
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
+                Else
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "sales_order_det_qty")
+                End If
+            Next
+        Next
+
+        wSheet.Columns.AutoFit()
+        wBook.SaveAs(strFileName, Excel.XlFileFormat.xlExcel5)
+
+        'release the objects
+        ReleaseObject(wSheet)
+        wBook.Close(False)
+        ReleaseObject(wBook)
+        _excel.Quit()
+        ReleaseObject(_excel)
+        ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+        GC.Collect()
+
+        MessageBox.Show("File Export Successfully!")
+    End Sub
+    Private Sub ReleaseObject(ByVal o As Object)
+        Try
+            While (System.Runtime.InteropServices.Marshal.ReleaseComObject(o) > 0)
+            End While
+        Catch
+        Finally
+            o = Nothing
+        End Try
+    End Sub
+
 End Class
