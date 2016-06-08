@@ -18,19 +18,51 @@
 
     Private Sub BtnUpdateRec_Click(sender As Object, e As EventArgs) Handles BtnUpdateRec.Click
         'var
-        Dim assigned As Boolean = False
-        Dim query_jml As String
-        Dim jml As Integer
+        Dim report_mark_type As String = ""
+        Dim assigned As Boolean = True
         Dim note As String = MEComment.Text
         Dim id_status_reportx As String = SLEStatusRec.EditValue.ToString
-        If id_status_reportx = "6" Or id_status_reportx = "4" Then
+        Dim gv As DevExpress.XtraGrid.Views.Grid.GridView
+        Dim id As String = ""
+        If id_status_reportx = "6" Then
             'completed or processed
-            assigned = True
-            query_jml = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status <= '3' AND id_mark != '2' AND is_use='1'", report_mark_type, id_report)
-            jml = execute_query(query_jml, 0, True, "", "", "", "")
+            If id_pop_up = "1" Then 'rec
+                report_mark_type = "37"
+                gv = FormSalesOrderSvcLevel.GVPL
+                id = "id_pl_prod_order_rec"
+            ElseIf id_pop_up = "2" Then 'DO
+                report_mark_type = "43"
+                gv = FormSalesOrderSvcLevel.GVSalesDelOrder
+                id = "id_pl_sales_order_del"
+            ElseIf id_pop_up = "3" Then 'RETURN
+                report_mark_type = "46"
+                gv = FormSalesOrderSvcLevel.GVSalesReturn
+                id = "id_sales_return"
+            ElseIf id_pop_up = "4" Then 'RETURN QC
+                report_mark_type = "49"
+                gv = FormSalesOrderSvcLevel.GVSalesReturnQC
+                id = "id_sales_return_qc"
+            ElseIf id_pop_up = "5" Then 'TRF
+                report_mark_type = "57"
+                gv = FormSalesOrderSvcLevel.GVFGTrf
+                id = "id_fg_trf"
+            Else
+                gv = Nothing
+            End If
+
+            For c As Integer = 0 To ((gv.RowCount - 1) - GetGroupRowCount(gv))
+                Dim id_report As String = gv.GetRowCellValue(c, id).ToString
+                Dim query_jml As String = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status <= '3' AND id_mark != '2' AND is_use='1'", report_mark_type, id_report)
+                Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
+                If jml >= 1 Then
+                    assigned = False
+                End If
+            Next
+        Else
+            gv = Nothing
         End If
 
-        If (jml < 1 And assigned = True) Or id_status_reportx = "5" Then
+        If (assigned = True) Or id_status_reportx = "5" Then
             If id_pop_up = "1" Then
                 Dim check_stt As Boolean = False
                 For c As Integer = 0 To ((FormSalesOrderSvcLevel.GVPL.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVPL))
@@ -52,6 +84,7 @@
                         For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVPL.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVPL))
                             Dim ch_stt As ClassProductionPLToWHRec = New ClassProductionPLToWHRec()
                             ch_stt.changeStatus(FormSalesOrderSvcLevel.GVPL.GetRowCellValue(i, "id_pl_prod_order_rec").ToString, SLEStatusRec.EditValue.ToString)
+                            insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVPL.GetRowCellValue(i, "id_pl_prod_order_rec").ToString, id_status_reportx, note)
                             PBC.PerformStep()
                             PBC.Update()
                         Next
@@ -82,6 +115,7 @@
                         For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVSalesDelOrder.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVSalesDelOrder))
                             Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
                             stt.changeStatus(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, SLEStatusRec.EditValue.ToString)
+                            insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx, note)
                             PBC.PerformStep()
                             PBC.Update()
                         Next
@@ -112,6 +146,7 @@
                         For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVSalesReturn.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVSalesReturn))
                             Dim stt As ClassSalesReturn = New ClassSalesReturn()
                             stt.changeStatus(FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "id_sales_return").ToString, SLEStatusRec.EditValue.ToString)
+                            insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "id_sales_return").ToString, id_status_reportx, note)
                             PBC.PerformStep()
                             PBC.Update()
                         Next
@@ -142,6 +177,7 @@
                         For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVSalesReturnQC.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVSalesReturnQC))
                             Dim stt As ClassSalesReturnQC = New ClassSalesReturnQC()
                             stt.changeStatus(FormSalesOrderSvcLevel.GVSalesReturnQC.GetRowCellValue(i, "id_sales_return_qc").ToString, SLEStatusRec.EditValue.ToString)
+                            insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesReturnQC.GetRowCellValue(i, "id_sales_return_qc").ToString, id_status_reportx, note)
                             PBC.PerformStep()
                             PBC.Update()
                         Next
@@ -172,6 +208,7 @@
                         For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVFGTrf.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVFGTrf))
                             Dim stt As ClassFGTrf = New ClassFGTrf()
                             stt.changeStatus(FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, SLEStatusRec.EditValue.ToString)
+                            insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, id_status_reportx, note)
                             PBC.PerformStep()
                             PBC.Update()
                         Next
@@ -189,5 +226,11 @@
 
     Private Sub FormChangeStatus_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub insertFinalComment(ByVal rmt As String, ByVal id_report As String, ByVal id_report_status As String, ByVal comment As String)
+        Dim query As String = "INSERT INTO tb_report_mark_final_comment(report_mark_type, id_report, id_report_status, id_user, final_comment, final_comment_date) VALUES "
+        query += "('" + rmt + "', '" + id_report + "', '" + id_report_status + "', '" + id_user + "', '" + comment + "', NOW()) "
+        execute_non_query(query, True, "", "", "", "")
     End Sub
 End Class
