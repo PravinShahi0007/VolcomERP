@@ -2771,6 +2771,12 @@
     <Compile Include="FormSeasonSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSendMessage.Designer.vb">
+      <DependentUpon>FormSendMessage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSendMessage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSetupNumberHeader.Designer.vb">
       <DependentUpon>FormSetupNumberHeader.vb</DependentUpon>
     </Compile>
@@ -5743,6 +5749,9 @@
     <EmbeddedResource Include="FormSeasonSingle.resx">
       <DependentUpon>FormSeasonSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSendMessage.resx">
+      <DependentUpon>FormSendMessage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetupNumberHeader.resx">
       <DependentUpon>FormSetupNumberHeader.vb</DependentUpon>

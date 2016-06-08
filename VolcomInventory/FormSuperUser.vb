@@ -41,4 +41,8 @@
         TxtHost.Text = app_host
         TxtDB.Text = app_database
     End Sub
+
+    Private Sub BSendMessage_Click(sender As Object, e As EventArgs) Handles BSendMessage.Click
+        FormSendMessage.ShowDialog()
+    End Sub
 End Class
