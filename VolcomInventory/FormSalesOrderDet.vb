@@ -11,6 +11,8 @@ Public Class FormSalesOrderDet
     Public id_comp_contact_par As String = "-1"
     Public id_comp_par As String = "-1"
     Dim id_comp_cat_wh As String = "-1"
+    Public bof_column As String = get_setup_field("bof_column")
+    Public bof_xls_so As String = get_setup_field("bof_xls_so")
     Public dt As DataTable
 
     Private Sub FormSalesOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -361,7 +363,7 @@ Public Class FormSalesOrderDet
             BtnPrint.Enabled = False
         End If
 
-        If id_report_status = "6" Then
+        If id_report_status = "6" And bof_column = "1" Then
             BtnXlsBOF.Visible = True
         End If
         TxtSalesOrderNumber.Focus()
@@ -834,13 +836,22 @@ Public Class FormSalesOrderDet
 
 
         'export excel
-        Dim printableComponentLink1 As New DevExpress.XtraPrinting.PrintableComponentLink(New DevExpress.XtraPrinting.PrintingSystem())
-        Dim path_root As String = Application.StartupPath & "\import\"
+        Dim path_root As String = ""
+        Try
+            ' Open the file using a stream reader.
+            Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                ' Read the stream to a string and write the string to the console.
+                path_root = sr.ReadToEnd()
+            End Using
+        Catch ex As Exception
+        End Try
+        'Dim path_root As String = Application.StartupPath & "\import\"
         'create directory if not exist
-        If Not IO.Directory.Exists(path_root) Then
-            System.IO.Directory.CreateDirectory(path_root)
-        End If
-        Dim fileName As String = "order" + ".xls"
+        'If Not IO.Directory.Exists(path_root) Then
+        'System.IO.Directory.CreateDirectory(path_root)
+        'End If
+
+        Dim fileName As String = bof_xls_so + ".xls"
         Dim exp As String = IO.Path.Combine(path_root, fileName)
         ExportToExcel(GVItemList, exp)
         'Dim opt As DevExpress.XtraPrinting.XlsExportOptions = New DevExpress.XtraPrinting.XlsExportOptions()
