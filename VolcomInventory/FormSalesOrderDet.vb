@@ -845,21 +845,10 @@ Public Class FormSalesOrderDet
             End Using
         Catch ex As Exception
         End Try
-        'Dim path_root As String = Application.StartupPath & "\import\"
-        'create directory if not exist
-        'If Not IO.Directory.Exists(path_root) Then
-        'System.IO.Directory.CreateDirectory(path_root)
-        'End If
 
         Dim fileName As String = bof_xls_so + ".xls"
         Dim exp As String = IO.Path.Combine(path_root, fileName)
         ExportToExcel(GVItemList, exp)
-        'Dim opt As DevExpress.XtraPrinting.XlsExportOptions = New DevExpress.XtraPrinting.XlsExportOptions()
-        'opt.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text
-        'printableComponentLink1.Component = GCItemList
-        'printableComponentLink1.CreateDocument()
-        'printableComponentLink1.ExportToXls(exp, opt)
-        'Process.Start(exp)
 
         'show column
         GridColumnNo.VisibleIndex = 0
