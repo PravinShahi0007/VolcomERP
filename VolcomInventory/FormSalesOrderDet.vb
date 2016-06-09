@@ -827,47 +827,49 @@ Public Class FormSalesOrderDet
     End Sub
 
     Sub exportToBOF(ByVal show_msg As Boolean)
-        Cursor = Cursors.WaitCursor
+        If bof_column = "1" Then
+            Cursor = Cursors.WaitCursor
 
-        'hide column
-        For c As Integer = 0 To GVItemList.Columns.Count - 1
-            GVItemList.Columns(c).Visible = False
-        Next
-        GridColumnCode.VisibleIndex = 0
-        GridColumnQty.VisibleIndex = 1
-        GVItemList.OptionsPrint.PrintFooter = False
-        GVItemList.OptionsPrint.PrintHeader = False
+            'hide column
+            For c As Integer = 0 To GVItemList.Columns.Count - 1
+                GVItemList.Columns(c).Visible = False
+            Next
+            GridColumnCode.VisibleIndex = 0
+            GridColumnQty.VisibleIndex = 1
+            GVItemList.OptionsPrint.PrintFooter = False
+            GVItemList.OptionsPrint.PrintHeader = False
 
 
-        'export excel
-        Dim path_root As String = ""
-        Try
-            ' Open the file using a stream reader.
-            Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
-                ' Read the stream to a string and write the string to the console.
-                path_root = sr.ReadToEnd()
-            End Using
-        Catch ex As Exception
-        End Try
+            'export excel
+            Dim path_root As String = ""
+            Try
+                ' Open the file using a stream reader.
+                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                    ' Read the stream to a string and write the string to the console.
+                    path_root = sr.ReadToEnd()
+                End Using
+            Catch ex As Exception
+            End Try
 
-        Dim fileName As String = bof_xls_so + ".xls"
-        Dim exp As String = IO.Path.Combine(path_root, fileName)
-        Try
-            ExportToExcel(GVItemList, exp, show_msg)
-        Catch ex As Exception
-            stopCustom("Please close your excel file first then try again later")
-        End Try
+            Dim fileName As String = bof_xls_so + ".xls"
+            Dim exp As String = IO.Path.Combine(path_root, fileName)
+            Try
+                ExportToExcel(GVItemList, exp, show_msg)
+            Catch ex As Exception
+                stopCustom("Please close your excel file first then try again later")
+            End Try
 
-        'show column
-        GridColumnNo.VisibleIndex = 0
-        GridColumnCode.VisibleIndex = 1
-        GridColumnName.VisibleIndex = 2
-        GridColumnSize.VisibleIndex = 3
-        GridColumnQty.VisibleIndex = 4
-        GridColumnPrice.VisibleIndex = 5
-        GridColumnAmount.VisibleIndex = 6
-        GridColumnRemark.VisibleIndex = 7
-        Cursor = Cursors.Default
+            'show column
+            GridColumnNo.VisibleIndex = 0
+            GridColumnCode.VisibleIndex = 1
+            GridColumnName.VisibleIndex = 2
+            GridColumnSize.VisibleIndex = 3
+            GridColumnQty.VisibleIndex = 4
+            GridColumnPrice.VisibleIndex = 5
+            GridColumnAmount.VisibleIndex = 6
+            GridColumnRemark.VisibleIndex = 7
+            Cursor = Cursors.Default
+        End If
     End Sub
 
     Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
