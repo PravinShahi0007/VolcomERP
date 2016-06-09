@@ -1753,6 +1753,7 @@
             infoCustom("Status changed.")
             'Try
             If form_origin = "FormSalesOrderDet" Then
+                FormSalesOrderDet.exportToBOF(False)
                 FormSalesOrderDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSalesOrderDet.check_but()
                 FormSalesOrderDet.actionLoad()

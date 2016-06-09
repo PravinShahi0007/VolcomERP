@@ -94,6 +94,7 @@ Partial Class FormSalesOrderDet
         Me.BtnAddV3 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddV2 = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -422,6 +423,7 @@ Partial Class FormSalesOrderDet
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
+        Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.SimpleButton1)
         Me.PanelControl3.Controls.Add(Me.BMark)
@@ -440,7 +442,7 @@ Partial Class FormSalesOrderDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(516, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(410, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(99, 34)
         Me.BtnAttachment.TabIndex = 13
@@ -461,6 +463,7 @@ Partial Class FormSalesOrderDet
         Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "ordering32.png")
         '
         'BtnPrint
         '
@@ -955,6 +958,18 @@ Partial Class FormSalesOrderDet
         '
         Me.EPForm.ContainerControl = Me
         '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(509, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(106, 34)
+        Me.BtnXlsBOF.TabIndex = 15
+        Me.BtnXlsBOF.Text = "XLS for BOF"
+        Me.BtnXlsBOF.Visible = False
+        '
         'FormSalesOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1086,4 +1101,5 @@ Partial Class FormSalesOrderDet
     Friend WithEvents GridColumnIsFound As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnErr As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnImportExcelNew As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
 End Class
