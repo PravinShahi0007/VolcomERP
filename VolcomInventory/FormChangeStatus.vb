@@ -24,43 +24,39 @@
         Dim id_status_reportx As String = SLEStatusRec.EditValue.ToString
         Dim gv As DevExpress.XtraGrid.Views.Grid.GridView
         Dim id As String = ""
-        If id_status_reportx = "6" Then
-            'completed or processed
-            If id_pop_up = "1" Then 'rec
-                report_mark_type = "37"
-                gv = FormSalesOrderSvcLevel.GVPL
-                id = "id_pl_prod_order_rec"
-            ElseIf id_pop_up = "2" Then 'DO
-                report_mark_type = "43"
-                gv = FormSalesOrderSvcLevel.GVSalesDelOrder
-                id = "id_pl_sales_order_del"
-            ElseIf id_pop_up = "3" Then 'RETURN
-                report_mark_type = "46"
-                gv = FormSalesOrderSvcLevel.GVSalesReturn
-                id = "id_sales_return"
-            ElseIf id_pop_up = "4" Then 'RETURN QC
-                report_mark_type = "49"
-                gv = FormSalesOrderSvcLevel.GVSalesReturnQC
-                id = "id_sales_return_qc"
-            ElseIf id_pop_up = "5" Then 'TRF
-                report_mark_type = "57"
-                gv = FormSalesOrderSvcLevel.GVFGTrf
-                id = "id_fg_trf"
-            Else
-                gv = Nothing
-            End If
-
-            For c As Integer = 0 To ((gv.RowCount - 1) - GetGroupRowCount(gv))
-                Dim id_report As String = gv.GetRowCellValue(c, id).ToString
-                Dim query_jml As String = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status <= '3' AND id_mark != '2' AND is_use='1'", report_mark_type, id_report)
-                Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
-                If jml >= 1 Then
-                    assigned = False
-                End If
-            Next
+        'completed or processed
+        If id_pop_up = "1" Then 'rec
+            report_mark_type = "37"
+            gv = FormSalesOrderSvcLevel.GVPL
+            id = "id_pl_prod_order_rec"
+        ElseIf id_pop_up = "2" Then 'DO
+            report_mark_type = "43"
+            gv = FormSalesOrderSvcLevel.GVSalesDelOrder
+            id = "id_pl_sales_order_del"
+        ElseIf id_pop_up = "3" Then 'RETURN
+            report_mark_type = "46"
+            gv = FormSalesOrderSvcLevel.GVSalesReturn
+            id = "id_sales_return"
+        ElseIf id_pop_up = "4" Then 'RETURN QC
+            report_mark_type = "49"
+            gv = FormSalesOrderSvcLevel.GVSalesReturnQC
+            id = "id_sales_return_qc"
+        ElseIf id_pop_up = "5" Then 'TRF
+            report_mark_type = "57"
+            gv = FormSalesOrderSvcLevel.GVFGTrf
+            id = "id_fg_trf"
         Else
             gv = Nothing
         End If
+
+        For c As Integer = 0 To ((gv.RowCount - 1) - GetGroupRowCount(gv))
+            Dim id_report As String = gv.GetRowCellValue(c, id).ToString
+            Dim query_jml As String = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status <= '3' AND id_mark != '2' AND is_use='1'", report_mark_type, id_report)
+            Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
+            If jml >= 1 Then
+                assigned = False
+            End If
+        Next
 
         If (assigned = True) Or id_status_reportx = "5" Then
             If id_pop_up = "1" Then

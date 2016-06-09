@@ -74,7 +74,7 @@ Partial Class FormReportMark
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(879, 220)
+        Me.GroupControl1.Size = New System.Drawing.Size(879, 195)
         Me.GroupControl1.TabIndex = 7
         Me.GroupControl1.Text = "Approval List"
         '
@@ -84,7 +84,7 @@ Partial Class FormReportMark
         Me.GCMark.Location = New System.Drawing.Point(2, 20)
         Me.GCMark.MainView = Me.GVMark
         Me.GCMark.Name = "GCMark"
-        Me.GCMark.Size = New System.Drawing.Size(875, 198)
+        Me.GCMark.Size = New System.Drawing.Size(875, 173)
         Me.GCMark.TabIndex = 0
         Me.GCMark.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMark})
         '
@@ -323,9 +323,9 @@ Partial Class FormReportMark
         '
         Me.GroupControl3.Controls.Add(Me.GCFinal)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 220)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 195)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(879, 94)
+        Me.GroupControl3.Size = New System.Drawing.Size(879, 119)
         Me.GroupControl3.TabIndex = 8
         Me.GroupControl3.Text = "Final Status"
         Me.GroupControl3.Visible = False
@@ -336,7 +336,7 @@ Partial Class FormReportMark
         Me.GCFinal.Location = New System.Drawing.Point(2, 20)
         Me.GCFinal.MainView = Me.GVFinal
         Me.GCFinal.Name = "GCFinal"
-        Me.GCFinal.Size = New System.Drawing.Size(875, 72)
+        Me.GCFinal.Size = New System.Drawing.Size(875, 97)
         Me.GCFinal.TabIndex = 1
         Me.GCFinal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFinal})
         '

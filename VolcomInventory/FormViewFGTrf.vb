@@ -194,6 +194,7 @@
         FormReportMark.id_report = id_fg_trf
         FormReportMark.form_origin = Name
         FormReportMark.is_view = "1"
+        FormReportMark.is_view_finalize = "1"
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
     End Sub
