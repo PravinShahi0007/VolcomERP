@@ -300,6 +300,7 @@
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
+        FormReportMark.is_view_finalize = "1"
         FormReportMark.id_report = id_pl_sales_order_del
         FormReportMark.report_mark_type = "43"
         FormReportMark.is_view = "1"
