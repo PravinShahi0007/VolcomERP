@@ -23,8 +23,8 @@ Public Class FormMain
     '--------------GENERAL FUNCTION--------------------------------
     Private Sub FormMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'here global setting
-        Dim arguments As String() = Environment.GetCommandLineArgs()
-        MsgBox("GetCommandLineArgs: {0}", String.Join(", ", arguments))
+        'Dim arguments As String() = Environment.GetCommandLineArgs()
+        'MsgBox("GetCommandLineArgs: " + arguments(1).ToString)
 
         My.Application.ChangeCulture("en-US")
         My.Application.Culture.NumberFormat.NumberDecimalSeparator = ","
