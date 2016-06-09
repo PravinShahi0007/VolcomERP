@@ -823,6 +823,10 @@ Public Class FormSalesOrderDet
     End Sub
 
     Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        exportToBOF(True)
+    End Sub
+
+    Sub exportToBOF(ByVal show_msg As Boolean)
         Cursor = Cursors.WaitCursor
 
         'hide column
@@ -848,7 +852,11 @@ Public Class FormSalesOrderDet
 
         Dim fileName As String = bof_xls_so + ".xls"
         Dim exp As String = IO.Path.Combine(path_root, fileName)
-        ExportToExcel(GVItemList, exp)
+        Try
+            ExportToExcel(GVItemList, exp, show_msg)
+        Catch ex As Exception
+            stopCustom("Please close your excel file first then try again later")
+        End Try
 
         'show column
         GridColumnNo.VisibleIndex = 0
@@ -861,11 +869,11 @@ Public Class FormSalesOrderDet
         GridColumnRemark.VisibleIndex = 7
         Cursor = Cursors.Default
     End Sub
-    Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String)
+
+    Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
         Dim strFileName As String = filepath
         If System.IO.File.Exists(strFileName) Then
             System.IO.File.Delete(strFileName)
-
         End If
         Dim _excel As New Excel.Application
         Dim wBook As Excel.Workbook
@@ -912,7 +920,9 @@ Public Class FormSalesOrderDet
         ' some time Office application does not quit after automation: so i am calling GC.Collect method.
         GC.Collect()
 
-        MessageBox.Show("File Export Successfully!")
+        If show_msg Then
+            infoCustom("File exported successfully")
+        End If
     End Sub
     Private Sub ReleaseObject(ByVal o As Object)
         Try
