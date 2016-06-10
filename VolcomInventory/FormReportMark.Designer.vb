@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormReportMark
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormReportMark
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCMark = New DevExpress.XtraGrid.GridControl()
@@ -46,6 +46,14 @@ Partial Class FormReportMark
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCFinal = New DevExpress.XtraGrid.GridControl()
+        Me.GVFinal = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCMark, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +62,10 @@ Partial Class FormReportMark
         Me.GroupControl2.SuspendLayout()
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl3.SuspendLayout()
+        CType(Me.GCFinal, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVFinal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -62,8 +74,9 @@ Partial Class FormReportMark
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(879, 272)
+        Me.GroupControl1.Size = New System.Drawing.Size(879, 195)
         Me.GroupControl1.TabIndex = 7
+        Me.GroupControl1.Text = "Approval List"
         '
         'GCMark
         '
@@ -71,7 +84,7 @@ Partial Class FormReportMark
         Me.GCMark.Location = New System.Drawing.Point(2, 20)
         Me.GCMark.MainView = Me.GVMark
         Me.GCMark.Name = "GCMark"
-        Me.GCMark.Size = New System.Drawing.Size(875, 250)
+        Me.GCMark.Size = New System.Drawing.Size(875, 173)
         Me.GCMark.TabIndex = 0
         Me.GCMark.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMark})
         '
@@ -213,7 +226,7 @@ Partial Class FormReportMark
         Me.GroupControl2.Controls.Add(Me.BEdit)
         Me.GroupControl2.Controls.Add(Me.BAdd)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 272)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 314)
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.Size = New System.Drawing.Size(879, 62)
         Me.GroupControl2.TabIndex = 6
@@ -306,18 +319,95 @@ Partial Class FormReportMark
         Me.BAdd.Text = "Add"
         Me.BAdd.Visible = False
         '
+        'GroupControl3
+        '
+        Me.GroupControl3.Controls.Add(Me.GCFinal)
+        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 195)
+        Me.GroupControl3.Name = "GroupControl3"
+        Me.GroupControl3.Size = New System.Drawing.Size(879, 119)
+        Me.GroupControl3.TabIndex = 8
+        Me.GroupControl3.Text = "Final Status"
+        Me.GroupControl3.Visible = False
+        '
+        'GCFinal
+        '
+        Me.GCFinal.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCFinal.Location = New System.Drawing.Point(2, 20)
+        Me.GCFinal.MainView = Me.GVFinal
+        Me.GCFinal.Name = "GCFinal"
+        Me.GCFinal.Size = New System.Drawing.Size(875, 97)
+        Me.GCFinal.TabIndex = 1
+        Me.GCFinal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFinal})
+        '
+        'GVFinal
+        '
+        Me.GVFinal.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6, Me.GridColumn9})
+        Me.GVFinal.CustomizationFormBounds = New System.Drawing.Rectangle(974, 245, 216, 178)
+        Me.GVFinal.GridControl = Me.GCFinal
+        Me.GVFinal.GroupCount = 1
+        Me.GVFinal.Name = "GVFinal"
+        Me.GVFinal.OptionsBehavior.Editable = False
+        Me.GVFinal.OptionsView.ShowGroupExpandCollapseButtons = False
+        Me.GVFinal.OptionsView.ShowGroupPanel = False
+        Me.GVFinal.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn5, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "ID USer"
+        Me.GridColumn2.FieldName = "id_user"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Name"
+        Me.GridColumn3.FieldName = "employee_name"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        Me.GridColumn3.Width = 258
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Status"
+        Me.GridColumn5.FieldName = "report_status"
+        Me.GridColumn5.FieldNameSortGroup = "id_report_status"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Width = 98
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Comment"
+        Me.GridColumn6.FieldName = "final_comment"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 1
+        Me.GridColumn6.Width = 246
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Date"
+        Me.GridColumn9.FieldName = "final_date"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
+        Me.GridColumn9.Width = 222
+        '
         'FormReportMark
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(879, 334)
+        Me.ClientSize = New System.Drawing.Size(879, 376)
         Me.Controls.Add(Me.GroupControl1)
+        Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormReportMark"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Mark"
@@ -329,6 +419,10 @@ Partial Class FormReportMark
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl3.ResumeLayout(False)
+        CType(Me.GCFinal, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVFinal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -359,4 +453,12 @@ Partial Class FormReportMark
     Friend WithEvents PBC As DevExpress.XtraEditors.ProgressBarControl
     Friend WithEvents GridColumnAssigned As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BReset As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GCFinal As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVFinal As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
