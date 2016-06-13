@@ -1253,8 +1253,10 @@ Public Class FormMain
             End If
         ElseIf formName = "FormMasterEmployee" Then
             'Master Employee
-            FormMasterEmployeeDet.action = "ins"
-            FormMasterEmployeeDet.ShowDialog()
+            FormMasterEmployeeNewDet.action = "ins"
+            FormMasterEmployeeNewDet.ShowDialog()
+            'FormMasterEmployeeDet.action = "ins"
+            'FormMasterEmployeeDet.ShowDialog()
         ElseIf formName = "FormSampleDel" Then
             'Delivery Sample Never Returned
             FormSampleDelDet.action = "ins"
