@@ -177,6 +177,7 @@
     <Compile Include="barcodeaa.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
     <Compile Include="ClassFGBorrowQCReq.vb" />
     <Compile Include="ClassFGCodeReplace.vb" />

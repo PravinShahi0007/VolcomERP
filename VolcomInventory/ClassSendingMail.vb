@@ -13,7 +13,7 @@ Public Class ClassSendingMail
         mail.Body = body
         client.Send(mail)
     End Sub
-    Sub send_email_html(ByVal email_to As String, ByVal subject As String, ByVal body As String)
+    Sub send_email_html(ByVal send_to As String, ByVal email_to As String, ByVal subject As String, ByVal number As String, ByVal body As String)
         Dim mail As MailMessage = New MailMessage("septian@volcom.mail", email_to)
         Dim client As SmtpClient = New SmtpClient()
         client.Port = 25
@@ -23,7 +23,7 @@ Public Class ClassSendingMail
         client.Credentials = New System.Net.NetworkCredential("septian@volcom.mail", "septian")
         mail.Subject = subject
         mail.IsBodyHtml = True
-        mail.Body = email_body("Arif", "Cuti", "Cuti0001", "Catur")
+        mail.Body = email_body(send_to, subject, number, "Catur")
         client.Send(mail)
     End Sub
     Function email_body(ByVal employee As String, ByVal mark_type As String, ByVal mark_number As String, ByVal mark_sender As String)
@@ -38,7 +38,7 @@ Public Class ClassSendingMail
 	            #yiv0832847839 img, #yiv0832847839 a img{border:0;height:auto;outline:none;text-decoration:none;}
 	            #yiv0832847839 body, #yiv0832847839 #yiv0832847839bodyTable, #yiv0832847839 #yiv0832847839bodyCell{height:100%;margin:0;padding:0;width:100%;}
 
-	            #yiv0832847839  #yiv0832847839  CLIENT-SPECIFIC STYLES  
+	            #yiv0832847839 #yiv0832847839 CLIENT-SPECIFIC STYLES  
 	            #yiv0832847839 #yiv0832847839outlook a{padding:0;}#yiv0832847839  
 	             _filtered #yiv0832847839 {}#yiv0832847839  
 	            #yiv0832847839 img{}#yiv0832847839  
@@ -80,7 +80,6 @@ Public Class ClassSendingMail
 	            #yiv0832847839 *, #yiv0832847839 td{font-family:'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;}
 	            #yiv0832847839 
             </style>
-    
                 <div id=""yui_3_16_0_ym19_1_1465365162626_3230"">
                     <center id=""yui_3_16_0_ym19_1_1465365162626_3229"">
                         <table align=""center"" border=""0"" cellpadding=""0"" cellspacing=""0"" height=""100%"" width=""100%"" id=""yiv0832847839bodyTable"">
