@@ -23,10 +23,10 @@ Public Class ClassSendingMail
         client.Credentials = New System.Net.NetworkCredential("septian@volcom.mail", "septian")
         mail.Subject = subject
         mail.IsBodyHtml = True
-        mail.Body = email_body()
+        mail.Body = email_body("Arif", "Cuti", "Cuti0001", "Catur")
         client.Send(mail)
     End Sub
-    Function email_body()
+    Function email_body(ByVal employee As String, ByVal mark_type As String, ByVal mark_number As String, ByVal mark_sender As String)
         Dim body_template As String = ""
         body_template = "<html><head></head><body>
             <title>Auto notification Volcom ERP</title>
@@ -103,7 +103,7 @@ Public Class ClassSendingMail
 																            <tbody>
 																            <tr>
 																	            <td align=""left"" valign=""top"" id=""yiv0832847839bodyContent"" style=""padding-bottom:30px;padding-top:40px;"">
-																		            <h1 style=""color:#737373;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:30px;font-style:normal;font-weight:600;line-height:42px;letter-spacing:normal;margin:0;padding:0;text-align:center;"">You have 1 new waiting approval, User.</h1>
+																		            <h1 style=""color:#737373;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;font-size:30px;font-style:normal;font-weight:600;line-height:42px;letter-spacing:normal;margin:0;padding:0;text-align:center;"">You have 1 new waiting approval, " & employee & ".</h1>
 																	            </td>
 																            </tr>
 															            </tbody></table>
@@ -142,7 +142,7 @@ Public Class ClassSendingMail
 																							            :
 																						            </td>
 																						            <td align=""left"" valign=""near"">
-																							            Cuti
+																							            " + mark_type + "
 																						            </td>
 																					            </tr>
 																					            <tr>
@@ -153,7 +153,7 @@ Public Class ClassSendingMail
 																							            :
 																						            </td>
 																						            <td align=""left"" valign=""near"">
-																							            POS0009
+																							             " + mark_number + "
 																						            </td>
 																					            </tr>
 																					            <tr>
@@ -164,7 +164,7 @@ Public Class ClassSendingMail
 																							            :
 																						            </td>
 																						            <td align=""left"" valign=""near"">
-																							            Putu Septian Primadewa
+																							            " + mark_sender + "
 																						            </td>
 																					            </tr>
 																				            </tbody>

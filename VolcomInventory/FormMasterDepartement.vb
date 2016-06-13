@@ -14,7 +14,7 @@
     End Sub
 
     Sub view_department()
-        Dim data As DataTable = execute_query("SELECT * FROM tb_m_departement ORDER BY departement", -1, True, "", "", "", "")
+        Dim data As DataTable = execute_query("SELECT * FROM tb_m_departement dept LEFT JOIN tb_m_user usr ON usr.id_user = dept.id_user_head LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee ORDER BY dept.departement", -1, True, "", "", "", "")
         GCDepartement.DataSource = data
         If data.Rows.Count > 0 Then
             'show all
