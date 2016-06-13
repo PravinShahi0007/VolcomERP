@@ -24,7 +24,12 @@
 
     Sub viewCountry()
         Dim query As String = "SELECT * FROM tb_m_country cty ORDER BY cty.id_country ASC "
-        viewSearchLookupQuery(SLENationality, query, "id_country", "country", "id_country")
+        viewLookupQuery(LECountry, query, 0, "country", "id_country")
+    End Sub
+
+    Sub viewLevel()
+        Dim query As String = "SELECT * FROM tb_lookup_employee_level lvl ORDER BY lvl.id_employee_level ASC  "
+        viewLookupQuery(LELevel, query, 0, "employee_level", "id_employee_level")
     End Sub
 
     Private Sub FormMasterEmployeeNewDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -37,9 +42,26 @@
         viewBloodType()
         viewReligion()
         viewCountry()
+        viewLevel()
+        actionLoad()
     End Sub
 
     Sub actionLoad()
+        If action = "ins" Then
+            XTPActivity.PageEnabled = False
+            XTPEducation.PageEnabled = False
+            XTPFamily.PageEnabled = False
+            XTPInfo.PageEnabled = False
+            XTPStatus.PageEnabled = False
+
+            'load img
+            pre_viewImages("4", PEEmployee, id_employee, False)
+        End If
+    End Sub
+
+
+
+    Sub save()
 
     End Sub
 
@@ -98,5 +120,11 @@
 
     Private Sub TxtPosition_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TxtPosition.Validating
         EP_TE_cant_blank(ErrorProvider1, TxtPosition)
+    End Sub
+
+    Private Sub PEEmployee_DoubleClick(sender As Object, e As EventArgs) Handles PEEmployee.DoubleClick
+        Cursor = Cursors.WaitCursor
+        pre_viewImages("4", PEEmployee, id_employee, True)
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -25,7 +25,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.DEJoinDate = New DevExpress.XtraEditors.DateEdit()
         Me.LEDept = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label28 = New System.Windows.Forms.Label()
-        Me.LE = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LELevel = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.TxtPosition = New DevExpress.XtraEditors.TextEdit()
@@ -52,6 +52,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlMain = New DevExpress.XtraEditors.PanelControl()
         Me.XTPEmployee = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.LECountry = New DevExpress.XtraEditors.LookUpEdit()
         Me.DEDOB = New DevExpress.XtraEditors.DateEdit()
         Me.LESex = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label30 = New System.Windows.Forms.Label()
@@ -77,8 +80,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.DEPassport = New DevExpress.XtraEditors.DateEdit()
         Me.TxtPassport = New DevExpress.XtraEditors.TextEdit()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.SLENationality = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.DEKTP = New DevExpress.XtraEditors.DateEdit()
         Me.TxtKTP = New DevExpress.XtraEditors.TextEdit()
         Me.Label13 = New System.Windows.Forms.Label()
@@ -102,7 +103,7 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEJoinDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LE.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LELevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPosition.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtInitialName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNickName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,6 +120,8 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.XTPEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPEmployee.SuspendLayout()
         Me.XTPGeneral.SuspendLayout()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LECountry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDOB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDOB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LESex.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,8 +138,6 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.DEPassport.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPassport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPassport.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLENationality.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEKTP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEKTP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtKTP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -153,7 +154,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlTop.Controls.Add(Me.DEJoinDate)
         Me.PanelControlTop.Controls.Add(Me.LEDept)
         Me.PanelControlTop.Controls.Add(Me.Label28)
-        Me.PanelControlTop.Controls.Add(Me.LE)
+        Me.PanelControlTop.Controls.Add(Me.LELevel)
         Me.PanelControlTop.Controls.Add(Me.Label27)
         Me.PanelControlTop.Controls.Add(Me.Label26)
         Me.PanelControlTop.Controls.Add(Me.TxtPosition)
@@ -184,7 +185,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.DEJoinDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEJoinDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEJoinDate.Size = New System.Drawing.Size(138, 20)
-        Me.DEJoinDate.TabIndex = 8891
+        Me.DEJoinDate.TabIndex = 5
         '
         'LEDept
         '
@@ -205,13 +206,14 @@ Partial Class FormMasterEmployeeNewDet
         Me.Label28.TabIndex = 54
         Me.Label28.Text = "Join Date"
         '
-        'LE
+        'LELevel
         '
-        Me.LE.Location = New System.Drawing.Point(668, 116)
-        Me.LE.Name = "LE"
-        Me.LE.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LE.Size = New System.Drawing.Size(138, 20)
-        Me.LE.TabIndex = 7
+        Me.LELevel.Location = New System.Drawing.Point(668, 116)
+        Me.LELevel.Name = "LELevel"
+        Me.LELevel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LELevel.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_level", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_level", "Level")})
+        Me.LELevel.Size = New System.Drawing.Size(138, 20)
+        Me.LELevel.TabIndex = 7
         '
         'Label27
         '
@@ -377,6 +379,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.LEBloodType.Location = New System.Drawing.Point(651, 12)
         Me.LEBloodType.Name = "LEBloodType"
         Me.LEBloodType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBloodType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_blood_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("blood_type", "Blood Type")})
         Me.LEBloodType.Size = New System.Drawing.Size(130, 20)
         Me.LEBloodType.TabIndex = 5
         '
@@ -455,6 +458,9 @@ Partial Class FormMasterEmployeeNewDet
         '
         'XTPGeneral
         '
+        Me.XTPGeneral.Controls.Add(Me.TextEdit2)
+        Me.XTPGeneral.Controls.Add(Me.Label29)
+        Me.XTPGeneral.Controls.Add(Me.LECountry)
         Me.XTPGeneral.Controls.Add(Me.DEDOB)
         Me.XTPGeneral.Controls.Add(Me.LESex)
         Me.XTPGeneral.Controls.Add(Me.Label16)
@@ -489,7 +495,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.Controls.Add(Me.DEPassport)
         Me.XTPGeneral.Controls.Add(Me.TxtPassport)
         Me.XTPGeneral.Controls.Add(Me.Label15)
-        Me.XTPGeneral.Controls.Add(Me.SLENationality)
         Me.XTPGeneral.Controls.Add(Me.DEKTP)
         Me.XTPGeneral.Controls.Add(Me.TxtKTP)
         Me.XTPGeneral.Controls.Add(Me.Label13)
@@ -501,6 +506,31 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.Name = "XTPGeneral"
         Me.XTPGeneral.Size = New System.Drawing.Size(797, 412)
         Me.XTPGeneral.Text = "General"
+        '
+        'TextEdit2
+        '
+        Me.TextEdit2.Location = New System.Drawing.Point(625, 220)
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Size = New System.Drawing.Size(156, 20)
+        Me.TextEdit2.TabIndex = 8895
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(560, 223)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(59, 13)
+        Me.Label29.TabIndex = 8894
+        Me.Label29.Text = "Extensions"
+        '
+        'LECountry
+        '
+        Me.LECountry.Location = New System.Drawing.Point(352, 64)
+        Me.LECountry.Name = "LECountry"
+        Me.LECountry.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LECountry.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_country", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("country", "Country")})
+        Me.LECountry.Size = New System.Drawing.Size(226, 20)
+        Me.LECountry.TabIndex = 8893
         '
         'DEDOB
         '
@@ -543,7 +573,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(9, 353)
+        Me.Label25.Location = New System.Drawing.Point(9, 327)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(52, 26)
         Me.Label25.TabIndex = 47
@@ -551,14 +581,14 @@ Partial Class FormMasterEmployeeNewDet
         '
         'MEAddressBoarding
         '
-        Me.MEAddressBoarding.Location = New System.Drawing.Point(96, 352)
+        Me.MEAddressBoarding.Location = New System.Drawing.Point(96, 326)
         Me.MEAddressBoarding.Name = "MEAddressBoarding"
         Me.MEAddressBoarding.Size = New System.Drawing.Size(685, 48)
         Me.MEAddressBoarding.TabIndex = 46
         '
         'MEAddress
         '
-        Me.MEAddress.Location = New System.Drawing.Point(96, 298)
+        Me.MEAddress.Location = New System.Drawing.Point(96, 272)
         Me.MEAddress.Name = "MEAddress"
         Me.MEAddress.Size = New System.Drawing.Size(685, 48)
         Me.MEAddress.TabIndex = 45
@@ -566,7 +596,7 @@ Partial Class FormMasterEmployeeNewDet
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(9, 300)
+        Me.Label24.Location = New System.Drawing.Point(9, 274)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(75, 13)
         Me.Label24.TabIndex = 44
@@ -574,15 +604,15 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtOtherEmail
         '
-        Me.TxtOtherEmail.Location = New System.Drawing.Point(96, 272)
+        Me.TxtOtherEmail.Location = New System.Drawing.Point(625, 246)
         Me.TxtOtherEmail.Name = "TxtOtherEmail"
-        Me.TxtOtherEmail.Size = New System.Drawing.Size(685, 20)
+        Me.TxtOtherEmail.Size = New System.Drawing.Size(156, 20)
         Me.TxtOtherEmail.TabIndex = 43
         '
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(10, 275)
+        Me.Label23.Location = New System.Drawing.Point(561, 249)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(62, 13)
         Me.Label23.TabIndex = 42
@@ -590,25 +620,25 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtEmailExternal
         '
-        Me.TxtEmailExternal.Location = New System.Drawing.Point(501, 246)
+        Me.TxtEmailExternal.Location = New System.Drawing.Point(352, 246)
         Me.TxtEmailExternal.Name = "TxtEmailExternal"
-        Me.TxtEmailExternal.Size = New System.Drawing.Size(280, 20)
+        Me.TxtEmailExternal.Size = New System.Drawing.Size(203, 20)
         Me.TxtEmailExternal.TabIndex = 41
         '
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(425, 249)
+        Me.Label22.Location = New System.Drawing.Point(280, 249)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(74, 13)
+        Me.Label22.Size = New System.Drawing.Size(47, 13)
         Me.Label22.TabIndex = 40
-        Me.Label22.Text = "External Email"
+        Me.Label22.Text = "External"
         '
         'TxtEmailLocal
         '
         Me.TxtEmailLocal.Location = New System.Drawing.Point(96, 246)
         Me.TxtEmailLocal.Name = "TxtEmailLocal"
-        Me.TxtEmailLocal.Size = New System.Drawing.Size(323, 20)
+        Me.TxtEmailLocal.Size = New System.Drawing.Size(178, 20)
         Me.TxtEmailLocal.TabIndex = 39
         '
         'Label21
@@ -622,15 +652,15 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtMobilePhone
         '
-        Me.TxtMobilePhone.Location = New System.Drawing.Point(501, 220)
+        Me.TxtMobilePhone.Location = New System.Drawing.Point(352, 220)
         Me.TxtMobilePhone.Name = "TxtMobilePhone"
-        Me.TxtMobilePhone.Size = New System.Drawing.Size(281, 20)
+        Me.TxtMobilePhone.Size = New System.Drawing.Size(203, 20)
         Me.TxtMobilePhone.TabIndex = 37
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(425, 223)
+        Me.Label20.Location = New System.Drawing.Point(280, 223)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(70, 13)
         Me.Label20.TabIndex = 36
@@ -649,7 +679,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.TxtPhone.Location = New System.Drawing.Point(97, 220)
         Me.TxtPhone.Name = "TxtPhone"
-        Me.TxtPhone.Size = New System.Drawing.Size(322, 20)
+        Me.TxtPhone.Size = New System.Drawing.Size(177, 20)
         Me.TxtPhone.TabIndex = 34
         '
         'Label18
@@ -710,22 +740,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.Label15.TabIndex = 26
         Me.Label15.Text = "Passport"
         '
-        'SLENationality
-        '
-        Me.SLENationality.Location = New System.Drawing.Point(352, 64)
-        Me.SLENationality.Name = "SLENationality"
-        Me.SLENationality.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLENationality.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLENationality.Size = New System.Drawing.Size(226, 20)
-        Me.SLENationality.TabIndex = 25
-        '
-        'SearchLookUpEdit1View
-        '
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
-        '
         'DEKTP
         '
         Me.DEKTP.EditValue = Nothing
@@ -782,6 +796,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.LEReligion.Location = New System.Drawing.Point(97, 64)
         Me.LEReligion.Name = "LEReligion"
         Me.LEReligion.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReligion.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_religion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("religion", "Religion")})
         Me.LEReligion.Size = New System.Drawing.Size(177, 20)
         Me.LEReligion.TabIndex = 19
         '
@@ -891,7 +906,7 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEJoinDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LE.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LELevel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPosition.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtInitialName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNickName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -909,6 +924,8 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPEmployee.ResumeLayout(False)
         Me.XTPGeneral.ResumeLayout(False)
         Me.XTPGeneral.PerformLayout()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LECountry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDOB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDOB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LESex.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -925,8 +942,6 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.DEPassport.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPassport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPassport.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLENationality.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEKTP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEKTP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtKTP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -975,8 +990,6 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents TxtKTP As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label13 As Label
     Friend WithEvents DEKTP As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents SLENationality As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents DEPassport As DevExpress.XtraEditors.DateEdit
     Friend WithEvents TxtPassport As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label15 As Label
@@ -1008,11 +1021,14 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents Label26 As Label
     Friend WithEvents TxtPosition As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label14 As Label
-    Friend WithEvents LE As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LELevel As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label28 As Label
     Friend WithEvents LESex As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LEDept As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents ErrorProvider1 As ErrorProvider
     Friend WithEvents DEJoinDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEDOB As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LECountry As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label29 As Label
 End Class

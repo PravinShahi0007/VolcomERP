@@ -2891,6 +2891,7 @@ Module Common
         '1 = sample
         '2 = design
         '3 = mat
+        '4 = emp
         'change id_goods and dir if something happened
         Dim dir As String = ""
         If opt = "1" Then
@@ -2899,6 +2900,8 @@ Module Common
             dir = get_setup_field("pic_path_design") & "\"
         ElseIf opt = "3" Then
             dir = get_setup_field("pic_path_mat") & "\"
+        ElseIf opt = "4" Then
+            dir = get_setup_field("pic_path_emp") & "\"
         End If
         viewImages(PE, dir, id_goods, is_open)
     End Sub
