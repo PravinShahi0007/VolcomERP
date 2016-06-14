@@ -32,6 +32,11 @@
         viewLookupQuery(LELevel, query, 0, "employee_level", "id_employee_level")
     End Sub
 
+    Sub viewActive()
+        Dim query As String = "SELECT * FROM tb_lookup_employee_active act ORDER BY act.id_employee_active ASC "
+        viewLookupQuery(LEActive, query, 0, "employee_active", "id_employee_active")
+    End Sub
+
     Private Sub FormMasterEmployeeNewDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEJoinDate.EditValue = data_dt.Rows(0)("dt")
@@ -43,6 +48,7 @@
         viewReligion()
         viewCountry()
         viewLevel()
+        viewActive()
         actionLoad()
     End Sub
 
@@ -95,11 +101,16 @@
     End Sub
 
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
+        XTPEmployee.TabPages.Item(XTPEmployee.SelectedTabPageIndex + 1).PageEnabled = True
         XTPEmployee.SelectedTabPageIndex = XTPEmployee.SelectedTabPageIndex + 1
+        XTPEmployee.TabPages.Item(XTPEmployee.SelectedTabPageIndex - 1).PageEnabled = False
     End Sub
 
+
     Private Sub BtnPrevious_Click(sender As Object, e As EventArgs) Handles BtnPrevious.Click
+        XTPEmployee.TabPages.Item(XTPEmployee.SelectedTabPageIndex - 1).PageEnabled = True
         XTPEmployee.SelectedTabPageIndex = XTPEmployee.SelectedTabPageIndex - 1
+        XTPEmployee.TabPages.Item(XTPEmployee.SelectedTabPageIndex + 1).PageEnabled = False
     End Sub
 
     Private Sub TxtCode_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TxtCode.Validating
