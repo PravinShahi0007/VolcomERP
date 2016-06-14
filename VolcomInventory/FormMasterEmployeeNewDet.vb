@@ -139,4 +139,10 @@
         pre_viewImages("4", PEEmployee, id_employee, True)
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub LEActive_KeyDown(sender As Object, e As KeyEventArgs) Handles LEActive.KeyDown
+        If e.KeyData = Keys.Tab Then
+            MsgBox("a")
+        End If
+    End Sub
 End Class

@@ -205,7 +205,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.LEActive.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEActive.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_active", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_active", "Active Status")})
         Me.LEActive.Size = New System.Drawing.Size(575, 20)
-        Me.LEActive.TabIndex = 55
+        Me.LEActive.TabIndex = 5
         '
         'DEJoinDate
         '
@@ -219,7 +219,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.DEJoinDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEJoinDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEJoinDate.Size = New System.Drawing.Size(576, 20)
-        Me.DEJoinDate.TabIndex = 5
+        Me.DEJoinDate.TabIndex = 4
         '
         'Label28
         '
@@ -340,6 +340,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.LEDept.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
         Me.LEDept.Size = New System.Drawing.Size(372, 20)
         Me.LEDept.TabIndex = 4
+        Me.LEDept.TabStop = False
         '
         'LELevel
         '
@@ -349,6 +350,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.LELevel.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_level", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_level", "Level")})
         Me.LELevel.Size = New System.Drawing.Size(138, 20)
         Me.LELevel.TabIndex = 7
+        Me.LELevel.TabStop = False
         '
         'Label27
         '
@@ -379,6 +381,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtPosition.Properties.Appearance.Options.UseFont = True
         Me.TxtPosition.Size = New System.Drawing.Size(372, 20)
         Me.TxtPosition.TabIndex = 6
+        Me.TxtPosition.TabStop = False
         '
         'Label14
         '
@@ -415,7 +418,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.LEBloodType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEBloodType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_blood_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("blood_type", "Blood Type")})
         Me.LEBloodType.Size = New System.Drawing.Size(130, 20)
-        Me.LEBloodType.TabIndex = 5
+        Me.LEBloodType.TabIndex = 7
         '
         'Label16
         '
@@ -458,7 +461,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtPOB.Location = New System.Drawing.Point(107, 38)
         Me.TxtPOB.Name = "TxtPOB"
         Me.TxtPOB.Size = New System.Drawing.Size(167, 20)
-        Me.TxtPOB.TabIndex = 14
+        Me.TxtPOB.TabIndex = 8
         '
         'Label7
         '
@@ -488,7 +491,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPEmployee.SelectedTabPage = Me.XTPGeneral
         Me.XTPEmployee.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[True]
         Me.XTPEmployee.Size = New System.Drawing.Size(826, 428)
-        Me.XTPEmployee.TabIndex = 0
+        Me.XTPEmployee.TabIndex = 1
         Me.XTPEmployee.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPGeneral, Me.XTPStatus, Me.XTPPosition, Me.XTPDependent})
         '
         'XTPGeneral
@@ -599,7 +602,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.DEDOB.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEDOB.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEDOB.Size = New System.Drawing.Size(226, 20)
-        Me.DEDOB.TabIndex = 8892
+        Me.DEDOB.TabIndex = 9
         '
         'LESex
         '
@@ -608,7 +611,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.LESex.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LESex.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_sex", "Id Sex", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("sex", "Sex")})
         Me.LESex.Size = New System.Drawing.Size(471, 20)
-        Me.LESex.TabIndex = 53
+        Me.LESex.TabIndex = 6
         '
         'Label30
         '
@@ -971,6 +974,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnPrevious.Name = "BtnPrevious"
         Me.BtnPrevious.Size = New System.Drawing.Size(91, 36)
         Me.BtnPrevious.TabIndex = 1
+        Me.BtnPrevious.TabStop = False
         Me.BtnPrevious.Text = "Previous"
         Me.BtnPrevious.Visible = False
         '
@@ -982,6 +986,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext.Name = "BtnNext"
         Me.BtnNext.Size = New System.Drawing.Size(79, 36)
         Me.BtnNext.TabIndex = 0
+        Me.BtnNext.TabStop = False
         Me.BtnNext.Text = "Next"
         Me.BtnNext.Visible = False
         '
@@ -993,6 +998,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnSaveChanges.Name = "BtnSaveChanges"
         Me.BtnSaveChanges.Size = New System.Drawing.Size(117, 36)
         Me.BtnSaveChanges.TabIndex = 3
+        Me.BtnSaveChanges.TabStop = False
         Me.BtnSaveChanges.Text = "Create New"
         '
         'ErrorProvider1
