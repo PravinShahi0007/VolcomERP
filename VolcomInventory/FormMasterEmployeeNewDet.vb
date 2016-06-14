@@ -37,10 +37,17 @@
         viewLookupQuery(LEActive, query, 0, "employee_active", "id_employee_active")
     End Sub
 
+    Sub viewDegree()
+        Dim query As String = "SELECT * FROM tb_lookup_education a ORDER BY a.id_education ASC "
+        viewLookupQuery(LEDegree, query, 0, "education", "id_education")
+    End Sub
+
     Private Sub FormMasterEmployeeNewDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEJoinDate.EditValue = data_dt.Rows(0)("dt")
         DEDOB.EditValue = data_dt.Rows(0)("dt")
+        DEKTP.EditValue = data_dt.Rows(0)("dt")
+        DEPassport.EditValue = data_dt.Rows(0)("dt")
         TxtCode.Focus()
         viewSex()
         viewDept()
@@ -49,15 +56,13 @@
         viewCountry()
         viewLevel()
         viewActive()
+        viewDegree()
         actionLoad()
     End Sub
 
     Sub actionLoad()
         If action = "ins" Then
-            XTPActivity.PageEnabled = False
-            XTPEducation.PageEnabled = False
-            XTPFamily.PageEnabled = False
-            XTPInfo.PageEnabled = False
+            XTPDependent.PageEnabled = False
             XTPStatus.PageEnabled = False
 
             'load img
@@ -75,28 +80,21 @@
         If XTPEmployee.SelectedTabPageIndex = 0 Then
             BtnNext.Visible = True
             BtnPrevious.Visible = False
-            BtnFinish.Visible = False
         ElseIf XTPEmployee.SelectedTabPageIndex = 1 Then
             BtnNext.Visible = True
             BtnPrevious.Visible = True
-            BtnFinish.Visible = False
         ElseIf XTPEmployee.SelectedTabPageIndex = 2 Then
             BtnNext.Visible = True
             BtnPrevious.Visible = True
-            BtnFinish.Visible = False
         ElseIf XTPEmployee.SelectedTabPageIndex = 3 Then
             BtnNext.Visible = True
             BtnPrevious.Visible = True
-            BtnFinish.Visible = False
         ElseIf XTPEmployee.SelectedTabPageIndex = 4 Then
             BtnNext.Visible = True
             BtnPrevious.Visible = True
-            BtnFinish.Visible = False
         ElseIf XTPEmployee.SelectedTabPageIndex = 5 Then
             BtnNext.Visible = False
             BtnPrevious.Visible = True
-            BtnFinish.Visible = True
-            BtnFinish.SendToBack()
         End If
     End Sub
 
@@ -106,6 +104,9 @@
         XTPEmployee.TabPages.Item(XTPEmployee.SelectedTabPageIndex - 1).PageEnabled = False
     End Sub
 
+    Sub saveTab()
+
+    End Sub
 
     Private Sub BtnPrevious_Click(sender As Object, e As EventArgs) Handles BtnPrevious.Click
         XTPEmployee.TabPages.Item(XTPEmployee.SelectedTabPageIndex - 1).PageEnabled = True
