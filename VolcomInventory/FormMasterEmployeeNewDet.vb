@@ -45,9 +45,6 @@
     Private Sub FormMasterEmployeeNewDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEJoinDate.EditValue = data_dt.Rows(0)("dt")
-        DEDOB.EditValue = data_dt.Rows(0)("dt")
-        DEKTP.EditValue = data_dt.Rows(0)("dt")
-        DEPassport.EditValue = data_dt.Rows(0)("dt")
         TxtCode.Focus()
         viewSex()
         viewDept()
@@ -64,6 +61,7 @@
         If action = "ins" Then
             XTPDependent.PageEnabled = False
             XTPStatus.PageEnabled = False
+            XTPPosition.PageEnabled = False
 
             'load img
             pre_viewImages("4", PEEmployee, id_employee, False)
@@ -140,9 +138,39 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub LEActive_KeyDown(sender As Object, e As KeyEventArgs) Handles LEActive.KeyDown
-        If e.KeyData = Keys.Tab Then
-            MsgBox("a")
+
+
+    Private Sub TxtFocus_Enter(sender As Object, e As EventArgs) Handles TxtFocus.Enter
+        LESex.Focus()
+    End Sub
+
+    Private Sub TxtPOB_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TxtPOB.Validating
+        EP_TE_cant_blank(ErrorProvider1, TxtPOB)
+    End Sub
+
+    Private Sub DEDOB_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DEDOB.Validating
+        EP_DE_cant_blank(ErrorProvider1, DEDOB)
+    End Sub
+
+    Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
+        ValidateChildren()
+        EP_TE_cant_blank(ErrorProvider1, TxtPOB)
+        EP_DE_cant_blank(ErrorProvider1, DEDOB)
+
+        If Not formIsValidInPanel(ErrorProvider1, PanelControlTop) Or Not formIsValidInXTP(ErrorProvider1, XTPGeneral) Then
+            errorInput()
+        Else
+            MsgBox("sip")
         End If
+    End Sub
+
+
+
+    Private Sub BtnAddNationality_Click(sender As Object, e As EventArgs) Handles BtnAddNationality.Click
+        Cursor = Cursors.WaitCursor
+        FormMasterArea.quick_edit = "1"
+        FormMasterArea.id_pop_up = "1"
+        FormMasterArea.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

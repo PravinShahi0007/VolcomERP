@@ -19,40 +19,44 @@ Partial Class FormMasterArea
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterArea))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.XTCArea = New DevExpress.XtraTab.XtraTabControl
-        Me.XTCountry = New DevExpress.XtraTab.XtraTabPage
-        Me.GCCountry = New DevExpress.XtraGrid.GridControl
-        Me.GVCountry = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.id_country = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.country = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCountryDisplayName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.XTRegion = New DevExpress.XtraTab.XtraTabPage
-        Me.GCRegion = New DevExpress.XtraGrid.GridControl
-        Me.GVRegion = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.Panel1 = New System.Windows.Forms.Panel
-        Me.LCountry = New System.Windows.Forms.Label
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.XTState = New DevExpress.XtraTab.XtraTabPage
-        Me.GCState = New DevExpress.XtraGrid.GridControl
-        Me.GVState = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.id_state = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.state = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.Panel2 = New System.Windows.Forms.Panel
-        Me.LRegion = New System.Windows.Forms.Label
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.XTCity = New DevExpress.XtraTab.XtraTabPage
-        Me.GCCity = New DevExpress.XtraGrid.GridControl
-        Me.GVCity = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.id_city = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.city = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.Panel3 = New System.Windows.Forms.Panel
-        Me.LState = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
+        Me.XTCArea = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCountry = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCCountry = New DevExpress.XtraGrid.GridControl()
+        Me.GVCountry = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.id_country = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.country = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCountryDisplayName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTRegion = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRegion = New DevExpress.XtraGrid.GridControl()
+        Me.GVRegion = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.LCountry = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.XTState = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCState = New DevExpress.XtraGrid.GridControl()
+        Me.GVState = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.id_state = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.state = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.LRegion = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.XTCity = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCCity = New DevExpress.XtraGrid.GridControl()
+        Me.GVCity = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.id_city = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.city = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.LState = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.PanelControlTop = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCArea, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCArea.SuspendLayout()
@@ -71,6 +75,8 @@ Partial Class FormMasterArea
         CType(Me.GCCity, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCity, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
+        CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlTop.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -82,7 +88,6 @@ Partial Class FormMasterArea
         'XTCArea
         '
         Me.XTCArea.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCArea.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XTCArea.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.XTCArea.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Vertical
         Me.XTCArea.Images = Me.LargeImageCollection
@@ -96,18 +101,19 @@ Partial Class FormMasterArea
         'XTCountry
         '
         Me.XTCountry.Controls.Add(Me.GCCountry)
+        Me.XTCountry.Controls.Add(Me.PanelControlTop)
         Me.XTCountry.ImageIndex = 0
         Me.XTCountry.Name = "XTCountry"
-        Me.XTCountry.Size = New System.Drawing.Size(506, 359)
+        Me.XTCountry.Size = New System.Drawing.Size(504, 359)
         Me.XTCountry.Text = "Country"
         '
         'GCCountry
         '
         Me.GCCountry.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCCountry.Location = New System.Drawing.Point(0, 0)
+        Me.GCCountry.Location = New System.Drawing.Point(0, 41)
         Me.GCCountry.MainView = Me.GVCountry
         Me.GCCountry.Name = "GCCountry"
-        Me.GCCountry.Size = New System.Drawing.Size(506, 359)
+        Me.GCCountry.Size = New System.Drawing.Size(504, 318)
         Me.GCCountry.TabIndex = 8
         Me.GCCountry.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCountry})
         '
@@ -146,7 +152,7 @@ Partial Class FormMasterArea
         Me.XTRegion.Controls.Add(Me.GCRegion)
         Me.XTRegion.Controls.Add(Me.Panel1)
         Me.XTRegion.Name = "XTRegion"
-        Me.XTRegion.Size = New System.Drawing.Size(506, 359)
+        Me.XTRegion.Size = New System.Drawing.Size(504, 359)
         Me.XTRegion.Text = "Region"
         '
         'GCRegion
@@ -155,7 +161,7 @@ Partial Class FormMasterArea
         Me.GCRegion.Location = New System.Drawing.Point(0, 42)
         Me.GCRegion.MainView = Me.GVRegion
         Me.GCRegion.Name = "GCRegion"
-        Me.GCRegion.Size = New System.Drawing.Size(506, 317)
+        Me.GCRegion.Size = New System.Drawing.Size(504, 317)
         Me.GCRegion.TabIndex = 11
         Me.GCRegion.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRegion})
         '
@@ -188,7 +194,7 @@ Partial Class FormMasterArea
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(506, 42)
+        Me.Panel1.Size = New System.Drawing.Size(504, 42)
         Me.Panel1.TabIndex = 10
         '
         'LCountry
@@ -216,7 +222,7 @@ Partial Class FormMasterArea
         Me.XTState.Controls.Add(Me.GCState)
         Me.XTState.Controls.Add(Me.Panel2)
         Me.XTState.Name = "XTState"
-        Me.XTState.Size = New System.Drawing.Size(506, 359)
+        Me.XTState.Size = New System.Drawing.Size(504, 359)
         Me.XTState.Text = "State"
         '
         'GCState
@@ -225,7 +231,7 @@ Partial Class FormMasterArea
         Me.GCState.Location = New System.Drawing.Point(0, 42)
         Me.GCState.MainView = Me.GVState
         Me.GCState.Name = "GCState"
-        Me.GCState.Size = New System.Drawing.Size(506, 317)
+        Me.GCState.Size = New System.Drawing.Size(504, 317)
         Me.GCState.TabIndex = 9
         Me.GCState.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVState})
         '
@@ -258,7 +264,7 @@ Partial Class FormMasterArea
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(0, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(506, 42)
+        Me.Panel2.Size = New System.Drawing.Size(504, 42)
         Me.Panel2.TabIndex = 8
         '
         'LRegion
@@ -286,7 +292,7 @@ Partial Class FormMasterArea
         Me.XTCity.Controls.Add(Me.GCCity)
         Me.XTCity.Controls.Add(Me.Panel3)
         Me.XTCity.Name = "XTCity"
-        Me.XTCity.Size = New System.Drawing.Size(506, 359)
+        Me.XTCity.Size = New System.Drawing.Size(504, 359)
         Me.XTCity.Text = "City"
         '
         'GCCity
@@ -295,7 +301,7 @@ Partial Class FormMasterArea
         Me.GCCity.Location = New System.Drawing.Point(0, 42)
         Me.GCCity.MainView = Me.GVCity
         Me.GCCity.Name = "GCCity"
-        Me.GCCity.Size = New System.Drawing.Size(506, 317)
+        Me.GCCity.Size = New System.Drawing.Size(504, 317)
         Me.GCCity.TabIndex = 10
         Me.GCCity.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCity})
         '
@@ -328,7 +334,7 @@ Partial Class FormMasterArea
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(0, 0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(506, 42)
+        Me.Panel3.Size = New System.Drawing.Size(504, 42)
         Me.Panel3.TabIndex = 9
         '
         'LState
@@ -351,6 +357,49 @@ Partial Class FormMasterArea
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "State : "
         '
+        'PanelControlTop
+        '
+        Me.PanelControlTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTop.Controls.Add(Me.BtnDelete)
+        Me.PanelControlTop.Controls.Add(Me.BtnEdit)
+        Me.PanelControlTop.Controls.Add(Me.BtnAdd)
+        Me.PanelControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlTop.Name = "PanelControlTop"
+        Me.PanelControlTop.Size = New System.Drawing.Size(504, 41)
+        Me.PanelControlTop.TabIndex = 9
+        Me.PanelControlTop.Visible = False
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(427, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(75, 37)
+        Me.BtnAdd.TabIndex = 0
+        Me.BtnAdd.Text = "Add"
+        '
+        'BtnEdit
+        '
+        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
+        Me.BtnEdit.Location = New System.Drawing.Point(352, 2)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(75, 37)
+        Me.BtnEdit.TabIndex = 1
+        Me.BtnEdit.Text = "Edit"
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
+        Me.BtnDelete.Location = New System.Drawing.Point(277, 2)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(75, 37)
+        Me.BtnDelete.TabIndex = 2
+        Me.BtnDelete.Text = "Delete"
+        '
         'FormMasterArea
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -361,7 +410,6 @@ Partial Class FormMasterArea
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterArea"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Area"
@@ -386,6 +434,8 @@ Partial Class FormMasterArea
         CType(Me.GVCity, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlTop.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -421,4 +471,8 @@ Partial Class FormMasterArea
     Friend WithEvents LState As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents GridColumnCountryDisplayName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControlTop As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
 End Class

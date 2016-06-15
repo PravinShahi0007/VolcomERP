@@ -2,6 +2,8 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Public quick_edit As String = "-1"
+    Public id_pop_up As String = "-1"
 
     Private Sub FormArea_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
         Dispose()
@@ -10,6 +12,16 @@
     Private Sub FormArea_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         apply_skin()
         view_country()
+
+        If quick_edit = "1" Then
+            PanelControlTop.Visible = True
+        End If
+
+        If id_pop_up = "1" Then
+            XTRegion.PageVisible = False
+            XTCity.PageVisible = False
+            XTState.PageVisible = False
+        End If
     End Sub
 
     Sub view_country()
@@ -101,13 +113,17 @@
     End Sub
 
     Private Sub FormMasterArea_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
-        FormMain.show_rb(Name)
-        checkFormAccess(Name)
-        button_main(bnew_active, bedit_active, bdel_active)
+        If quick_edit = "-1" Then
+            FormMain.show_rb(Name)
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
+        End If
     End Sub
 
     Private Sub FormMasterArea_Deactivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Deactivate
-        FormMain.hide_rb()
+        If quick_edit = "-1" Then
+            FormMain.hide_rb()
+        End If
     End Sub
 
     Private Sub XTCArea_SelectedPageChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCArea.SelectedPageChanged

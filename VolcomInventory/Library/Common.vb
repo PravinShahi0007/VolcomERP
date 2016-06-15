@@ -1184,6 +1184,20 @@ Module Common
             Return False
         End If
     End Function
+
+    Public Function formIsValidInXTP(ByVal EPNameHere As ErrorProvider, ByVal Page As DevExpress.XtraTab.XtraTabPage) As Boolean
+        Dim count_error As Integer = 0
+        For Each c As Windows.Forms.Control In Page.Controls
+            If Not EPNameHere.GetError(c) = "" Then
+                count_error += 1
+            End If
+        Next
+        If count_error < 1 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
     '==== Validate function
     Public Function isPhoneNumber(ByVal phoneNumber As String)
         Dim pattern As String = "^([\+][0-9]{1,3}[ \.\-])?([\(]{1}[0-9]{2,6}[\)])?([0-9 \.\-\/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$"
