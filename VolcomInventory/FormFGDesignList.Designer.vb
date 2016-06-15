@@ -83,6 +83,7 @@ Partial Class FormFGDesignList
         Me.BtnApprove = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelSelect = New DevExpress.XtraEditors.PanelControl()
         Me.CheckSelAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridColumnStatusOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -313,7 +314,7 @@ Partial Class FormFGDesignList
         Me.GVDesign.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.GVDesign.Appearance.Row.Options.UseTextOptions = True
         Me.GVDesign.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
-        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder})
+        Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColID, Me.ColName, Me.ColSampleSeason, Me.GridColumn7, Me.GridColumnOrign, Me.ColDesignCode, Me.GridColumnCodeImport, Me.ColDisplayName, Me.Orign, Me.GridColumnColor, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnPrice, Me.GridColumnActive, Me.GridColumnUSCode, Me.GridColumnIdSample, Me.GridColumn1, Me.GridColumn2, Me.GridColumnSourceDisplay, Me.GridColumnPic, Me.GridColumnApp, Me.GridColumnAppDate, Me.GridColumnUpdBy, Me.GridColumnLastUpdated, Me.GridColumnSelect, Me.GridColumnIsApproved, Me.GridColumnSampleOrign, Me.GridColumnFabrication, Me.GridColumnDetailDesc, Me.GridColumnDivision, Me.GridColumnSubcategory, Me.GridColumnTotalOrder, Me.GridColumnStatusOrder})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", Me.GridColumnTotalOrder, "{0:n0}")})
         Me.GVDesign.Name = "GVDesign"
@@ -527,7 +528,7 @@ Partial Class FormFGDesignList
         Me.GridColumnApp.Name = "GridColumnApp"
         Me.GridColumnApp.OptionsColumn.AllowEdit = False
         Me.GridColumnApp.Visible = True
-        Me.GridColumnApp.VisibleIndex = 16
+        Me.GridColumnApp.VisibleIndex = 17
         Me.GridColumnApp.Width = 58
         '
         'GridColumnAppDate
@@ -540,7 +541,7 @@ Partial Class FormFGDesignList
         Me.GridColumnAppDate.Name = "GridColumnAppDate"
         Me.GridColumnAppDate.OptionsColumn.AllowEdit = False
         Me.GridColumnAppDate.Visible = True
-        Me.GridColumnAppDate.VisibleIndex = 15
+        Me.GridColumnAppDate.VisibleIndex = 16
         '
         'RepositoryItemTextEdit1
         '
@@ -557,7 +558,7 @@ Partial Class FormFGDesignList
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 18
+        Me.GridColumnUpdBy.VisibleIndex = 19
         Me.GridColumnUpdBy.Width = 60
         '
         'GridColumnLastUpdated
@@ -570,7 +571,7 @@ Partial Class FormFGDesignList
         Me.GridColumnLastUpdated.Name = "GridColumnLastUpdated"
         Me.GridColumnLastUpdated.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdated.Visible = True
-        Me.GridColumnLastUpdated.VisibleIndex = 17
+        Me.GridColumnLastUpdated.VisibleIndex = 18
         Me.GridColumnLastUpdated.Width = 54
         '
         'RepositoryItemTextEdit2
@@ -670,7 +671,7 @@ Partial Class FormFGDesignList
         Me.GridColumnTotalOrder.Name = "GridColumnTotalOrder"
         Me.GridColumnTotalOrder.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_ord", "{0:n0}")})
         Me.GridColumnTotalOrder.Visible = True
-        Me.GridColumnTotalOrder.VisibleIndex = 14
+        Me.GridColumnTotalOrder.VisibleIndex = 15
         Me.GridColumnTotalOrder.Width = 58
         '
         'RepositoryItemCheckEdit1
@@ -741,6 +742,16 @@ Partial Class FormFGDesignList
         Me.CheckSelAll.Properties.Caption = "Select All"
         Me.CheckSelAll.Size = New System.Drawing.Size(72, 19)
         Me.CheckSelAll.TabIndex = 0
+        '
+        'GridColumnStatusOrder
+        '
+        Me.GridColumnStatusOrder.Caption = "Move/Drop"
+        Me.GridColumnStatusOrder.FieldName = "lookup_status_order"
+        Me.GridColumnStatusOrder.Name = "GridColumnStatusOrder"
+        Me.GridColumnStatusOrder.OptionsColumn.AllowEdit = False
+        Me.GridColumnStatusOrder.Visible = True
+        Me.GridColumnStatusOrder.VisibleIndex = 14
+        Me.GridColumnStatusOrder.Width = 79
         '
         'FormFGDesignList
         '
@@ -855,4 +866,5 @@ Partial Class FormFGDesignList
     Friend WithEvents PanelControlFreeze As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CheckEditFreeze As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnTotalOrder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStatusOrder As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -9,6 +9,7 @@
     Public is_disabled_set_stt = "-1"
 
     Public report_number As String = ""
+    Public is_view_finalize As String = "-1"
 
     ' report_mark_type
     ' WARNING : if want to add new report type, also add on the tb_lookup_report_mark_type ^_-
@@ -45,6 +46,14 @@
             If is_disabled_set_stt = "1" Then
                 LEReportStatus.Enabled = False
                 BSetStatus.Enabled = False
+            End If
+
+            'view finalize
+            If is_view_finalize = "1" Then
+                view_mark_final()
+                If GVFinal.RowCount > 0 Then
+                    GroupControl3.Visible = True
+                End If
             End If
         End If
     End Sub
@@ -362,6 +371,20 @@
 
             End If
         End If
+    End Sub
+
+    Sub view_mark_final()
+        Dim query As String = "SELECT fnl.id_final_comment, rs.id_report_status, fnl.report_mark_type, fnl.id_report, rs.report_status,  "
+        query += "emp.employee_name, fnl.final_comment,  "
+        query += "CONCAT_WS(' ',DATE_FORMAT(fnl.final_comment_date,'%d %M %Y'),TIME(fnl.final_comment_date)) AS `final_date`  "
+        query += "FROM tb_report_mark_final_comment fnl  "
+        query += "INNER JOIN tb_lookup_report_status rs ON rs.id_report_status = fnl.id_report_status  "
+        query += "INNER JOIN tb_m_user usr ON usr.id_user = fnl.id_user  "
+        query += "INNER JOIN tb_m_employee emp ON emp.id_employee = usr.id_employee  "
+        query += "WHERE fnl.id_report='" + id_report + "' AND fnl.report_mark_type='" + report_mark_type + "'  "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCFinal.DataSource = data
+        GVFinal.ExpandAllGroups()
     End Sub
 
     Function check_available(ByVal id_report_markx As String)
@@ -1753,6 +1776,7 @@
             infoCustom("Status changed.")
             'Try
             If form_origin = "FormSalesOrderDet" Then
+                FormSalesOrderDet.exportToBOF(False)
                 FormSalesOrderDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSalesOrderDet.check_but()
                 FormSalesOrderDet.actionLoad()

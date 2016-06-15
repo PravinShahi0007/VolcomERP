@@ -364,6 +364,7 @@
         FormReportMark.is_view = "1"
         FormReportMark.report_mark_type = "49"
         FormReportMark.form_origin = Name
+        FormReportMark.is_view_finalize = "1"
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
     End Sub

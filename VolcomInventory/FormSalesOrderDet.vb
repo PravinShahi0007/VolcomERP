@@ -1,4 +1,6 @@
-﻿Public Class FormSalesOrderDet 
+﻿Imports Microsoft.Office.Interop
+
+Public Class FormSalesOrderDet
     Public action As String
     Public id_sales_order As String = "-1"
     Public id_store_contact_to As String = "-1"
@@ -9,6 +11,8 @@
     Public id_comp_contact_par As String = "-1"
     Public id_comp_par As String = "-1"
     Dim id_comp_cat_wh As String = "-1"
+    Public bof_column As String = get_setup_field("bof_column")
+    Public bof_xls_so As String = get_setup_field("bof_xls_so")
     Public dt As DataTable
 
     Private Sub FormSalesOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -358,6 +362,10 @@
         Else
             BtnPrint.Enabled = False
         End If
+
+        If id_report_status = "6" And bof_column = "1" Then
+            BtnXlsBOF.Visible = True
+        End If
         TxtSalesOrderNumber.Focus()
     End Sub
 
@@ -375,7 +383,7 @@
         Dispose()
     End Sub
 
-   
+
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
         FormSalesOrderSingle.action_pop = "ins"
         FormSalesOrderSingle.ShowDialog()
@@ -813,4 +821,119 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        exportToBOF(True)
+    End Sub
+
+    Sub exportToBOF(ByVal show_msg As Boolean)
+        If bof_column = "1" Then
+            Cursor = Cursors.WaitCursor
+
+            'hide column
+            For c As Integer = 0 To GVItemList.Columns.Count - 1
+                GVItemList.Columns(c).Visible = False
+            Next
+            GridColumnCode.VisibleIndex = 0
+            GridColumnQty.VisibleIndex = 1
+            GVItemList.OptionsPrint.PrintFooter = False
+            GVItemList.OptionsPrint.PrintHeader = False
+
+
+            'export excel
+            Dim path_root As String = ""
+            Try
+                ' Open the file using a stream reader.
+                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                    ' Read the stream to a string and write the string to the console.
+                    path_root = sr.ReadToEnd()
+                End Using
+            Catch ex As Exception
+            End Try
+
+            Dim fileName As String = bof_xls_so + ".xls"
+            Dim exp As String = IO.Path.Combine(path_root, fileName)
+            Try
+                ExportToExcel(GVItemList, exp, show_msg)
+            Catch ex As Exception
+                stopCustom("Please close your excel file first then try again later")
+            End Try
+
+            'show column
+            GridColumnNo.VisibleIndex = 0
+            GridColumnCode.VisibleIndex = 1
+            GridColumnName.VisibleIndex = 2
+            GridColumnSize.VisibleIndex = 3
+            GridColumnQty.VisibleIndex = 4
+            GridColumnPrice.VisibleIndex = 5
+            GridColumnAmount.VisibleIndex = 6
+            GridColumnRemark.VisibleIndex = 7
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
+        Dim strFileName As String = filepath
+        If System.IO.File.Exists(strFileName) Then
+            System.IO.File.Delete(strFileName)
+        End If
+        Dim _excel As New Excel.Application
+        Dim wBook As Excel.Workbook
+        Dim wSheet As Excel.Worksheet
+
+        wBook = _excel.Workbooks.Add()
+        wSheet = wBook.ActiveSheet()
+
+
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = -1
+
+        ' export the Columns 
+        'If CheckBox1.Checked Then
+        '    For Each dc In dt.Columns
+        '        colIndex = colIndex + 1
+        '        wSheet.Cells(1, colIndex) = dc.ColumnName
+        '    Next
+        'End If
+
+        'export the rows 
+        For i As Integer = 0 To dtTemp.RowCount - 1
+            rowIndex = rowIndex + 1
+            colIndex = 0
+            For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
+                colIndex = colIndex + 1
+                If j = 0 Then
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
+                Else
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "sales_order_det_qty")
+                End If
+            Next
+        Next
+
+        wSheet.Columns.AutoFit()
+        wBook.SaveAs(strFileName, Excel.XlFileFormat.xlExcel5)
+
+        'release the objects
+        ReleaseObject(wSheet)
+        wBook.Close(False)
+        ReleaseObject(wBook)
+        _excel.Quit()
+        ReleaseObject(_excel)
+        ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+        GC.Collect()
+
+        If show_msg Then
+            infoCustom("File exported successfully")
+        End If
+    End Sub
+    Private Sub ReleaseObject(ByVal o As Object)
+        Try
+            While (System.Runtime.InteropServices.Marshal.ReleaseComObject(o) > 0)
+            End While
+        Catch
+        Finally
+            o = Nothing
+        End Try
+    End Sub
+
 End Class

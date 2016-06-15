@@ -739,6 +739,7 @@
         FormReportMark.id_report = id_pl_prod_order_rec
         FormReportMark.report_mark_type = "37"
         FormReportMark.is_view = "1"
+        FormReportMark.is_view_finalize = "1"
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
     End Sub

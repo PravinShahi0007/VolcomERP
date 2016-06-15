@@ -711,6 +711,7 @@
         FormReportMark.report_mark_type = "43"
         FormReportMark.form_origin = Name
         FormReportMark.is_disabled_set_stt = "1"
+        FormReportMark.is_view_finalize = "1"
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
     End Sub

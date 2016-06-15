@@ -6169,6 +6169,13 @@ Public Class FormMain
             print(FormFGWHAllocLog.GCFGWHAlloc, "INVENTORY ALLOCATION LOG" + System.Environment.NewLine + FormFGWHAllocLog.DEFrom.Text + " - " + FormFGWHAllocLog.DEUntil.Text)
         ElseIf formName = "FormSampleReturnPL" Then
             print(FormSampleReturnPL.GCSamplePL, "RETURN TO WH LIST")
+        ElseIf formName = "FormWHCargoRate" Then
+            If FormWHCargoRate.XTCRate.SelectedTabPageIndex = 0 Then
+                print(FormWHCargoRate.GCCompany, "Cargo Rate Outbound")
+            Else
+                print(FormWHCargoRate.GCCompanyIn, "Cargo Rate Inbound")
+            End If
+
         Else
             RPSubMenu.Visible = False
         End If
@@ -6657,6 +6664,10 @@ Public Class FormMain
             'RETURN INTERNAL SALE
             FormSampleReturnPL.Close()
             FormSampleReturnPL.Dispose()
+        ElseIf formName = "FormWHCargoRate" Then
+            'Cargo Rate
+            FormWHCargoRate.Close()
+            FormWHCargoRate.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7257,6 +7268,13 @@ Public Class FormMain
         ElseIf formName = "FormSampleReturnPL" Then
             'Return From Internal Sale
             FormSampleReturnPL.viewSamplePL()
+        ElseIf formName = "FormWHCargoRate" Then
+            'Cargo Rate
+            If FormWHCargoRate.XTCRate.SelectedTabPageIndex = 0 Then
+                FormWHCargoRate.load_cargo_rate()
+            Else
+                FormWHCargoRate.load_cargo_rate_in()
+            End If
         End If
     End Sub
     'Switch
