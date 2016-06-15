@@ -65,6 +65,11 @@
 
             'load img
             pre_viewImages("4", PEEmployee, id_employee, False)
+        Else
+            XTPDependent.PageEnabled = True
+            XTPStatus.PageEnabled = True
+            XTPPosition.PageEnabled = True
+
         End If
     End Sub
 
@@ -156,11 +161,43 @@
         ValidateChildren()
         EP_TE_cant_blank(ErrorProvider1, TxtPOB)
         EP_DE_cant_blank(ErrorProvider1, DEDOB)
+        EP_ME_cant_blank(ErrorProvider1, MEAddress)
 
         If Not formIsValidInPanel(ErrorProvider1, PanelControlTop) Or Not formIsValidInXTP(ErrorProvider1, XTPGeneral) Then
             errorInput()
         Else
-            MsgBox("sip")
+            infoCustom("OK")
+            Dim employee_code As String = addSlashes(TxtCode.Text)
+            Dim employee_name As String = addSlashes(TxtFullName.Text)
+            Dim employee_nick_name As String = addSlashes(TxtNickName.Text)
+            Dim employee_intial_name As String = addSlashes(TxtInitialName.Text)
+            Dim employee_join_date As String = addSlashes(DateTime.Parse(DEJoinDate.EditValue.ToString).ToString("yyyy-MM-dd"))
+            Dim id_employee_active As String = addSlashes(LEActive.EditValue.ToString)
+            Dim id_sex As String = addSlashes(LESex.EditValue.ToString)
+            Dim id_blood_type As String = addSlashes(LEBloodType.EditValue.ToString)
+            Dim employee_pob As String = addSlashes(TxtPOB.Text)
+            Dim employee_dob As String = addSlashes(DateTime.Parse(DEDOB.EditValue.ToString).ToString("yyyy-MM-dd"))
+            Dim id_religion As String = addSlashes(LEReligion.EditValue.ToString)
+            Dim id_country As String = addSlashes(LECountry.EditValue.ToString)
+            Dim employee_ethnic As String = addSlashes(addSlashes(TxtEthnic.Text))
+            Dim id_education As String = addSlashes(LEDegree.EditValue.ToString)
+            Dim employee_ktp As String = addSlashes(TxtKTP.Text)
+            Dim employee_ktp_period As String = "NULL"
+            Try
+                employee_ktp_period = checkNullInput(DateTime.Parse(DEKTP.EditValue.ToString).ToString("yyyy-MM-dd"))
+            Catch ex As Exception
+            End Try
+            Dim employee_passport As String = addSlashes(TxtPassport.Text)
+            Dim employee_passport_period As String = "NULL"
+            Try
+                employee_passport_period = checkNullInput(DateTime.Parse(DEPassport.EditValue.ToString).ToString("yyyy-MM-dd"))
+            Catch ex As Exception
+            End Try
+            Dim employee_bpjs_tk As String = addSlashes(TxtBPJSTK.Text)
+            Dim employee_bpjs_kesehatan As String = addSlashes(TxtBPJSSehat.Text)
+            Dim employee_npwp As String = addSlashes(TxtNpwp.Text)
+            Dim address_primary As String = addSlashes(MEAddress.Text)
+            Dim address_additional As String = addSlashes(MEAddressBoarding.Text)
         End If
     End Sub
 
@@ -172,5 +209,9 @@
         FormMasterArea.id_pop_up = "1"
         FormMasterArea.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub MEAddress_KeyDown(sender As Object, e As KeyEventArgs) Handles MEAddress.KeyDown
+        EP_ME_cant_blank(ErrorProvider1, MEAddress)
     End Sub
 End Class

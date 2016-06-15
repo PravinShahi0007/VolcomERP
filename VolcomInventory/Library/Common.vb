@@ -3186,6 +3186,16 @@ Module Common
         End If
     End Function
 
+    Function checkNullInput(ByVal val As String) As String
+        Dim res As String = ""
+        If val = "" Then
+            res = "NULL"
+        Else
+            res = "'" + addSlashes(val) + "'"
+        End If
+        Return res
+    End Function
+
     <Runtime.CompilerServices.Extension()>
     Public Sub AddMyMergeBand(Of T)(ByRef arr As T(), ByVal item As T)
         Try

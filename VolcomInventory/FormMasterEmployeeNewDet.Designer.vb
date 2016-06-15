@@ -55,6 +55,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlMain = New DevExpress.XtraEditors.PanelControl()
         Me.XTPEmployee = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
+        Me.BtnAddNationality = New DevExpress.XtraEditors.SimpleButton()
         Me.LEDegree = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
@@ -107,7 +108,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.BtnAddNationality = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.TxtFocus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -563,6 +563,15 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.Size = New System.Drawing.Size(797, 422)
         Me.XTPGeneral.Text = "General"
         '
+        'BtnAddNationality
+        '
+        Me.BtnAddNationality.Image = CType(resources.GetObject("BtnAddNationality.Image"), System.Drawing.Image)
+        Me.BtnAddNationality.Location = New System.Drawing.Point(551, 64)
+        Me.BtnAddNationality.Name = "BtnAddNationality"
+        Me.BtnAddNationality.Size = New System.Drawing.Size(27, 20)
+        Me.BtnAddNationality.TabIndex = 57
+        Me.BtnAddNationality.TabStop = False
+        '
         'LEDegree
         '
         Me.LEDegree.Location = New System.Drawing.Point(107, 90)
@@ -1016,15 +1025,6 @@ Partial Class FormMasterEmployeeNewDet
         'ErrorProvider1
         '
         Me.ErrorProvider1.ContainerControl = Me
-        '
-        'BtnAddNationality
-        '
-        Me.BtnAddNationality.Image = CType(resources.GetObject("BtnAddNationality.Image"), System.Drawing.Image)
-        Me.BtnAddNationality.Location = New System.Drawing.Point(551, 64)
-        Me.BtnAddNationality.Name = "BtnAddNationality"
-        Me.BtnAddNationality.Size = New System.Drawing.Size(27, 20)
-        Me.BtnAddNationality.TabIndex = 57
-        Me.BtnAddNationality.TabStop = False
         '
         'FormMasterEmployeeNewDet
         '

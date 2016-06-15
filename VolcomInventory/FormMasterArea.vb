@@ -216,4 +216,46 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Cursor = Cursors.WaitCursor
+        'country
+        FormMasterCountrySingle.id_country = "-1"
+        FormMasterCountrySingle.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click
+        Cursor = Cursors.WaitCursor
+        'country
+        FormMasterCountrySingle.id_country = GVCountry.GetFocusedRowCellDisplayText("id_country").ToString
+        FormMasterCountrySingle.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        Cursor = Cursors.WaitCursor
+        'country
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this country?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        Dim id_country As String = GVCountry.GetFocusedRowCellDisplayText("id_country").ToString
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Try
+                Dim query As String = String.Format("DELETE FROM tb_m_country WHERE id_country = '{0}'", id_country)
+                execute_non_query(query, True, "", "", "", "")
+                view_country()
+            Catch ex As Exception
+                DevExpress.XtraEditors.XtraMessageBox.Show("This country already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+            Cursor = Cursors.Default
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormMasterArea_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        If id_pop_up = "1" Then
+            FormMasterEmployeeNewDet.viewCountry()
+        End If
+    End Sub
 End Class

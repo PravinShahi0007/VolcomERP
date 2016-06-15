@@ -29,6 +29,10 @@ Partial Class FormMasterArea
         Me.id_country = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.country = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCountryDisplayName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControlTop = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTRegion = New DevExpress.XtraTab.XtraTabPage()
         Me.GCRegion = New DevExpress.XtraGrid.GridControl()
         Me.GVRegion = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -53,16 +57,14 @@ Partial Class FormMasterArea
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.LState = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.PanelControlTop = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCArea, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCArea.SuspendLayout()
         Me.XTCountry.SuspendLayout()
         CType(Me.GCCountry, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCountry, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlTop.SuspendLayout()
         Me.XTRegion.SuspendLayout()
         CType(Me.GCRegion, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRegion, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -75,8 +77,6 @@ Partial Class FormMasterArea
         CType(Me.GCCity, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCity, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
-        CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlTop.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -146,6 +146,49 @@ Partial Class FormMasterArea
         Me.GridColumnCountryDisplayName.Name = "GridColumnCountryDisplayName"
         Me.GridColumnCountryDisplayName.Visible = True
         Me.GridColumnCountryDisplayName.VisibleIndex = 1
+        '
+        'PanelControlTop
+        '
+        Me.PanelControlTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTop.Controls.Add(Me.BtnDelete)
+        Me.PanelControlTop.Controls.Add(Me.BtnEdit)
+        Me.PanelControlTop.Controls.Add(Me.BtnAdd)
+        Me.PanelControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlTop.Name = "PanelControlTop"
+        Me.PanelControlTop.Size = New System.Drawing.Size(504, 41)
+        Me.PanelControlTop.TabIndex = 9
+        Me.PanelControlTop.Visible = False
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
+        Me.BtnDelete.Location = New System.Drawing.Point(279, 0)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(75, 41)
+        Me.BtnDelete.TabIndex = 2
+        Me.BtnDelete.Text = "Delete"
+        '
+        'BtnEdit
+        '
+        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
+        Me.BtnEdit.Location = New System.Drawing.Point(354, 0)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(75, 41)
+        Me.BtnEdit.TabIndex = 1
+        Me.BtnEdit.Text = "Edit"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(429, 0)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(75, 41)
+        Me.BtnAdd.TabIndex = 0
+        Me.BtnAdd.Text = "Add"
         '
         'XTRegion
         '
@@ -357,49 +400,6 @@ Partial Class FormMasterArea
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "State : "
         '
-        'PanelControlTop
-        '
-        Me.PanelControlTop.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTop.Controls.Add(Me.BtnDelete)
-        Me.PanelControlTop.Controls.Add(Me.BtnEdit)
-        Me.PanelControlTop.Controls.Add(Me.BtnAdd)
-        Me.PanelControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControlTop.Name = "PanelControlTop"
-        Me.PanelControlTop.Size = New System.Drawing.Size(504, 41)
-        Me.PanelControlTop.TabIndex = 9
-        Me.PanelControlTop.Visible = False
-        '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(427, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(75, 37)
-        Me.BtnAdd.TabIndex = 0
-        Me.BtnAdd.Text = "Add"
-        '
-        'BtnEdit
-        '
-        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
-        Me.BtnEdit.Location = New System.Drawing.Point(352, 2)
-        Me.BtnEdit.Name = "BtnEdit"
-        Me.BtnEdit.Size = New System.Drawing.Size(75, 37)
-        Me.BtnEdit.TabIndex = 1
-        Me.BtnEdit.Text = "Edit"
-        '
-        'BtnDelete
-        '
-        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(277, 2)
-        Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(75, 37)
-        Me.BtnDelete.TabIndex = 2
-        Me.BtnDelete.Text = "Delete"
-        '
         'FormMasterArea
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -419,6 +419,8 @@ Partial Class FormMasterArea
         Me.XTCountry.ResumeLayout(False)
         CType(Me.GCCountry, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCountry, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlTop.ResumeLayout(False)
         Me.XTRegion.ResumeLayout(False)
         CType(Me.GCRegion, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRegion, System.ComponentModel.ISupportInitialize).EndInit()
@@ -434,8 +436,6 @@ Partial Class FormMasterArea
         CType(Me.GVCity, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
-        CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlTop.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
