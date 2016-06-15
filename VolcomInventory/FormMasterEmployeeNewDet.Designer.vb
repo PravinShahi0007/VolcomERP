@@ -804,6 +804,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.DEPassport.Name = "DEPassport"
         Me.DEPassport.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPassport.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPassport.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEPassport.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEPassport.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEPassport.Size = New System.Drawing.Size(131, 20)
         Me.DEPassport.TabIndex = 11
         '
@@ -830,6 +833,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.DEKTP.Name = "DEKTP"
         Me.DEKTP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEKTP.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEKTP.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEKTP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEKTP.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEKTP.Size = New System.Drawing.Size(131, 20)
         Me.DEKTP.TabIndex = 9
         '

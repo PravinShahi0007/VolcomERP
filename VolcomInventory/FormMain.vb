@@ -2031,9 +2031,9 @@ Public Class FormMain
                 FormFGTrfDet.ShowDialog()
             ElseIf formName = "FormMasterEmployee" Then
                 'Master Employee
-                FormMasterEmployeeDet.id_employee = FormMasterEmployee.GVEmployee.GetFocusedRowCellValue("id_employee").ToString
-                FormMasterEmployeeDet.action = "upd"
-                FormMasterEmployeeDet.ShowDialog()
+                FormMasterEmployeeNewDet.id_employee = FormMasterEmployee.GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+                FormMasterEmployeeNewDet.action = "upd"
+                FormMasterEmployeeNewDet.ShowDialog()
             ElseIf formName = "FormSampleDel" Then
                 'PL Sample Delivery
                 FormSampleDelDet.action = "upd"
