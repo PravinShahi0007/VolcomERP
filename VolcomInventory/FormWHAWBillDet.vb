@@ -348,12 +348,22 @@
                 End If
 
                 'infoCustom("AWB calculation updated.")
-
+                Dim find_string As String = ""
+                Dim filter_string As String = ""
+                '
                 If id_awb_type = "1" Then
+                    filter_string = FormWHAWBill.GVAWBill.ActiveFilterString
+                    find_string = FormWHAWBill.GVAWBill.FindFilterText.ToString
                     FormWHAWBill.load_outbound()
+                    FormWHAWBill.GVAWBill.ActiveFilterString = filter_string
+                    FormWHAWBill.GVAWBill.ApplyFindFilter(find_string)
                     FormWHAWBill.GVAWBill.FocusedRowHandle = find_row(FormWHAWBill.GVAWBill, "id_awbill", id_awb)
                 Else
+                    filter_string = FormWHAWBill.GVAwbillIn.ActiveFilterString
+                    find_string = FormWHAWBill.GVAwbillIn.FindFilterText.ToString
                     FormWHAWBill.load_inbound()
+                    FormWHAWBill.GVAwbillIn.ActiveFilterString = filter_string
+                    FormWHAWBill.GVAwbillIn.ApplyFindFilter(find_string)
                     FormWHAWBill.GVAwbillIn.FocusedRowHandle = find_row(FormWHAWBill.GVAwbillIn, "id_awbill", id_awb)
                 End If
             End If
