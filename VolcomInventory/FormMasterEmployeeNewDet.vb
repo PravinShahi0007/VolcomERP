@@ -166,7 +166,6 @@
         If Not formIsValidInPanel(ErrorProvider1, PanelControlTop) Or Not formIsValidInXTP(ErrorProvider1, XTPGeneral) Then
             errorInput()
         Else
-            infoCustom("OK")
             Dim employee_code As String = addSlashes(TxtCode.Text)
             Dim employee_name As String = addSlashes(TxtFullName.Text)
             Dim employee_nick_name As String = addSlashes(TxtNickName.Text)
@@ -196,8 +195,31 @@
             Dim employee_bpjs_tk As String = addSlashes(TxtBPJSTK.Text)
             Dim employee_bpjs_kesehatan As String = addSlashes(TxtBPJSSehat.Text)
             Dim employee_npwp As String = addSlashes(TxtNpwp.Text)
+            Dim phone As String = TxtPhone.Text
+            Dim phone_mobile As String = TxtMobilePhone.Text
+            Dim phone_ext As String = TxtPhoneExt.Text
+            Dim email_lokal As String = TxtEmailLocal.Text
+            Dim email_external As String = TxtEmailExternal.Text
+            Dim email_other As String = TxtOtherEmail.Text
             Dim address_primary As String = addSlashes(MEAddress.Text)
             Dim address_additional As String = addSlashes(MEAddressBoarding.Text)
+
+            If action = "ins" Then
+                'main
+                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_intial_name, employee_join_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_kesehatan, employee_npwp, address_primary, address_additional) "
+                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_intial_name + "', '" + employee_join_date + "', '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', '" + employee_bpjs_kesehatan + "', '" + employee_npwp + "', '" + address_primary + "', '" + address_additional + "'); SELECT LAST_INSERT_ID(); "
+                id_employee = execute_query(query, 0, True, "", "", "", "")
+
+                'pic
+                save_image_ori(PEEmployee, emp_image_path, id_employee & ".jpg")
+
+                'info & refresh
+                infoCustom("Created successfully, please add some information detail.")
+                action = "upd"
+                actionLoad()
+            Else
+
+            End If
         End If
     End Sub
 

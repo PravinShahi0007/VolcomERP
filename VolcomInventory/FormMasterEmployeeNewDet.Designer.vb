@@ -58,7 +58,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnAddNationality = New DevExpress.XtraEditors.SimpleButton()
         Me.LEDegree = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label31 = New System.Windows.Forms.Label()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtPhoneExt = New DevExpress.XtraEditors.TextEdit()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.LECountry = New DevExpress.XtraEditors.LookUpEdit()
         Me.DEDOB = New DevExpress.XtraEditors.DateEdit()
@@ -133,7 +133,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPEmployee.SuspendLayout()
         Me.XTPGeneral.SuspendLayout()
         CType(Me.LEDegree.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPhoneExt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECountry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDOB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDOB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -514,7 +514,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.Controls.Add(Me.BtnAddNationality)
         Me.XTPGeneral.Controls.Add(Me.LEDegree)
         Me.XTPGeneral.Controls.Add(Me.Label31)
-        Me.XTPGeneral.Controls.Add(Me.TextEdit2)
+        Me.XTPGeneral.Controls.Add(Me.TxtPhoneExt)
         Me.XTPGeneral.Controls.Add(Me.Label29)
         Me.XTPGeneral.Controls.Add(Me.LECountry)
         Me.XTPGeneral.Controls.Add(Me.DEDOB)
@@ -590,12 +590,12 @@ Partial Class FormMasterEmployeeNewDet
         Me.Label31.TabIndex = 8896
         Me.Label31.Text = "Academic Degree"
         '
-        'TextEdit2
+        'TxtPhoneExt
         '
-        Me.TextEdit2.Location = New System.Drawing.Point(626, 246)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(156, 20)
-        Me.TextEdit2.TabIndex = 17
+        Me.TxtPhoneExt.Location = New System.Drawing.Point(626, 246)
+        Me.TxtPhoneExt.Name = "TxtPhoneExt"
+        Me.TxtPhoneExt.Size = New System.Drawing.Size(156, 20)
+        Me.TxtPhoneExt.TabIndex = 17
         '
         'Label29
         '
@@ -1067,7 +1067,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.ResumeLayout(False)
         Me.XTPGeneral.PerformLayout()
         CType(Me.LEDegree.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPhoneExt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECountry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDOB.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDOB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1177,7 +1177,7 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents DEJoinDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEDOB As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LECountry As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtPhoneExt As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label29 As Label
     Friend WithEvents LEDegree As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label31 As Label

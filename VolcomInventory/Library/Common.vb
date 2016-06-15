@@ -17,11 +17,13 @@ Module Common
     Public username_user As String
     Public name_user As String
     Public product_image_path As String = ""
+    Public emp_image_path As String = ""
     Public is_change_pass_user As String = ""
     Public again_awb As String = ""
 
     Sub loadImgPath()
         product_image_path = get_setup_field("pic_path_design") & "\"
+        emp_image_path = get_setup_field("pic_path_emp") & "\"
     End Sub
 
     '============ = OPT CODE HEAD ======================================
