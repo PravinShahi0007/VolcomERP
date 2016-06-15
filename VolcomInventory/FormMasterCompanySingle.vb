@@ -66,7 +66,11 @@
 
             id_def_drawer = data.Rows(0)("id_drawer_def").ToString
             TEDefDrawer.Text = data.Rows(0)("wh_drawer").ToString
-
+            '
+            TECargoDest.Text = data.Rows(0)("awb_destination").ToString
+            TECargoZone.Text = data.Rows(0)("awb_zone").ToString
+            TECargoCode.Text = data.Rows(0)("awb_cargo_code").ToString
+            '
             SLEGroup.EditValue = id_comp_group
 
             data.Dispose()
@@ -241,7 +245,10 @@
         Dim id_dept As String = LEDepartement.EditValue.ToString
         Dim id_comp_group As String = SLEGroup.EditValue.ToString
         Dim id_baru As String = ""
-
+        '
+        Dim cargo_dest As String = TECargoDest.Text
+        Dim cargo_zone As String = TECargoZone.Text
+        Dim cargo_code As String = TECargoCode.Text
         'update 8 juni 2015
         Dim comp_commission As String = Nothing
         Try
@@ -295,8 +302,8 @@
                 errorInput()
             Else
                 'insert to company
-                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def) "
-                query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}', "
+                query = "INSERT INTO tb_m_comp(comp_name,comp_display_name,comp_number,address_primary,address_other,postal_code,email,website,id_city,id_comp_cat,is_active,id_tax,npwp,fax,id_comp_group,awb_destination,awb_zone,awb_cargo_code,id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_pd_alloc, id_wh_type, id_so_type, id_drawer_def) "
+                query += "VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}','{15}','{16}','{17}', "
                 If id_dept = "0" Then
                     query += "NULL, "
                 Else
@@ -343,7 +350,7 @@
                     query += "'" + id_def_drawer + "' "
                 End If
                 query += "); SELECT LAST_INSERT_ID(); "
-                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group)
+                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code)
 
                 'call last id
                 id_baru = execute_query(query, 0, True, "", "", "", "")
@@ -376,7 +383,7 @@
                 errorInput()
             Else
                 'update company
-                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}', "
+                query = "UPDATE tb_m_comp SET comp_name='{0}',comp_display_name='{1}',comp_number='{2}',address_primary='{3}',address_other='{4}',postal_code='{5}',email='{6}',website='{7}',id_city='{8}',id_comp_cat='{9}',is_active='{10}',id_tax='{11}',npwp='{12}',fax='{13}',id_comp_group='{14}',awb_destination='{15}',awb_zone='{16}',awb_cargo_code='{17}', "
                 If id_dept = "0" Then
                     query += "id_departement = NULL, "
                 Else
@@ -423,7 +430,7 @@
                     query += "id_drawer_def = '" + id_def_drawer + "' "
                 End If
                 query += "WHERE id_comp='" + id_company + "' "
-                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group)
+                query = String.Format(query, name, printed_name, code, address, oaddress, postal_code, email, web, id_city, id_company_category, is_active, id_tax, npwp, fax, id_comp_group, cargo_dest, cargo_zone, cargo_code)
                 execute_non_query(query, True, "", "", "", "")
 
 
@@ -702,4 +709,5 @@
         TEDefDrawer.Text = ""
         id_def_drawer = "-1"
     End Sub
+
 End Class

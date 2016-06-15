@@ -19,108 +19,115 @@ Partial Class FormMasterCompanySingle
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterCompanySingle))
         Me.EPCompany = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl
-        Me.TEFax = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl
-        Me.LEStatus = New DevExpress.XtraEditors.LookUpEdit
-        Me.LETax = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl
-        Me.TENPWP = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl
-        Me.TEWeb = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl
-        Me.TEEMail = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl
-        Me.TEPhone = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl
-        Me.TEAttn = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl
-        Me.LEDepartement = New DevExpress.XtraEditors.LookUpEdit
-        Me.LECompanyCategory = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl
-        Me.LERegion = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl
-        Me.LECity = New DevExpress.XtraEditors.LookUpEdit
-        Me.LEState = New DevExpress.XtraEditors.LookUpEdit
-        Me.LECountry = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl
-        Me.TEPostalCode = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl
-        Me.MEOAddress = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl
-        Me.MEAddress = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl
-        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.TEFax = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LETax = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.TENPWP = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEWeb = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEEMail = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPhone = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEAttn = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEDepartement = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LECompanyCategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.LERegion = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.LECity = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LEState = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LECountry = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPostalCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEOAddress = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEAddress = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.BRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.SLEGroup = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCompGroup = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.BGroupComp = New DevExpress.XtraEditors.SimpleButton
-        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl
-        Me.TECompanyPrintedName = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.TECompanyCode = New DevExpress.XtraEditors.TextEdit
-        Me.TECompanyName = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl
-        Me.BPickDrawer = New DevExpress.XtraEditors.SimpleButton
-        Me.TEDefDrawer = New DevExpress.XtraEditors.TextEdit
-        Me.BClearDrawer = New DevExpress.XtraEditors.SimpleButton
-        Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl
-        Me.BClearSOType = New DevExpress.XtraEditors.SimpleButton
-        Me.LESOType = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl
-        Me.BtnWHType = New DevExpress.XtraEditors.SimpleButton
-        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl
-        Me.BtnClearAllocation = New DevExpress.XtraEditors.SimpleButton
-        Me.LabelControl25 = New DevExpress.XtraEditors.LabelControl
-        Me.LEArea = New DevExpress.XtraEditors.LookUpEdit
-        Me.BtnClearSalesRep = New DevExpress.XtraEditors.SimpleButton
-        Me.SLESalesRep = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl
-        Me.BtnClearLEArea = New DevExpress.XtraEditors.SimpleButton
-        Me.LabelControl26 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl
-        Me.BtnClearStoreType = New DevExpress.XtraEditors.SimpleButton
-        Me.LEAllocation = New DevExpress.XtraEditors.LookUpEdit
-        Me.LEStoreType = New DevExpress.XtraEditors.LookUpEdit
-        Me.LEWHType = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtCommission = New DevExpress.XtraEditors.TextEdit
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl
-        Me.XTCCompany = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPDesc = New DevExpress.XtraTab.XtraTabPage
-        Me.XTPSetup = New DevExpress.XtraTab.XtraTabPage
-        Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl
-        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl
-        Me.GCCoaTrans = New DevExpress.XtraGrid.GridControl
-        Me.GVCoaTrans = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GCCoaMapping = New DevExpress.XtraGrid.GridControl
-        Me.GVCoaMapping = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GCIDDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn
+        Me.SLEGroup = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompGroup = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BGroupComp = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECompanyPrintedName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECompanyCode = New DevExpress.XtraEditors.TextEdit()
+        Me.TECompanyName = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
+        Me.BPickDrawer = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEDefDrawer = New DevExpress.XtraEditors.TextEdit()
+        Me.BClearDrawer = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl28 = New DevExpress.XtraEditors.LabelControl()
+        Me.BClearSOType = New DevExpress.XtraEditors.SimpleButton()
+        Me.LESOType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl29 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnWHType = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnClearAllocation = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl25 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEArea = New DevExpress.XtraEditors.LookUpEdit()
+        Me.BtnClearSalesRep = New DevExpress.XtraEditors.SimpleButton()
+        Me.SLESalesRep = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnClearLEArea = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl26 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnClearStoreType = New DevExpress.XtraEditors.SimpleButton()
+        Me.LEAllocation = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LEStoreType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LEWHType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCommission = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.XTCCompany = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPDesc = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPSetup = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GCCoaTrans = New DevExpress.XtraGrid.GridControl()
+        Me.GVCoaTrans = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCoaMapping = New DevExpress.XtraGrid.GridControl()
+        Me.GVCoaMapping = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCIDDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl6 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl32 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl31 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl30 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECargoDest = New DevExpress.XtraEditors.TextEdit()
+        Me.TECargoZone = New DevExpress.XtraEditors.TextEdit()
+        Me.TECargoCode = New DevExpress.XtraEditors.TextEdit()
         CType(Me.EPCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -176,6 +183,11 @@ Partial Class FormMasterCompanySingle
         CType(Me.GVCoaTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCoaMapping, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCoaMapping, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl6.SuspendLayout()
+        CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPCompany
@@ -204,7 +216,7 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(0, 321)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(641, 171)
+        Me.GroupControl3.Size = New System.Drawing.Size(641, 169)
         Me.GroupControl3.TabIndex = 14
         Me.GroupControl3.Text = "Detail"
         '
@@ -766,7 +778,7 @@ Partial Class FormMasterCompanySingle
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(641, 165)
+        Me.GroupControl4.Size = New System.Drawing.Size(641, 174)
         Me.GroupControl4.TabIndex = 15
         Me.GroupControl4.Text = "Setup"
         '
@@ -1076,37 +1088,38 @@ Partial Class FormMasterCompanySingle
         Me.XTPDesc.Controls.Add(Me.GroupControl2)
         Me.XTPDesc.Controls.Add(Me.GroupControl1)
         Me.XTPDesc.Name = "XTPDesc"
-        Me.XTPDesc.Size = New System.Drawing.Size(641, 492)
+        Me.XTPDesc.Size = New System.Drawing.Size(641, 490)
         Me.XTPDesc.Text = "General"
         '
         'XTPSetup
         '
         Me.XTPSetup.Controls.Add(Me.GroupControl5)
+        Me.XTPSetup.Controls.Add(Me.GroupControl6)
         Me.XTPSetup.Controls.Add(Me.GroupControl4)
         Me.XTPSetup.Name = "XTPSetup"
-        Me.XTPSetup.Size = New System.Drawing.Size(641, 492)
+        Me.XTPSetup.Size = New System.Drawing.Size(641, 490)
         Me.XTPSetup.Text = "Advanced Setup"
         '
         'GroupControl5
         '
         Me.GroupControl5.Controls.Add(Me.SplitContainerControl1)
         Me.GroupControl5.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl5.Location = New System.Drawing.Point(0, 165)
+        Me.GroupControl5.Location = New System.Drawing.Point(0, 260)
         Me.GroupControl5.Name = "GroupControl5"
-        Me.GroupControl5.Size = New System.Drawing.Size(641, 327)
+        Me.GroupControl5.Size = New System.Drawing.Size(641, 230)
         Me.GroupControl5.TabIndex = 16
         Me.GroupControl5.Text = "Accounting"
         '
         'SplitContainerControl1
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(2, 22)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(2, 20)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.GCCoaTrans)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GCCoaMapping)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(637, 303)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(637, 208)
         Me.SplitContainerControl1.SplitterPosition = 184
         Me.SplitContainerControl1.TabIndex = 0
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1117,7 +1130,7 @@ Partial Class FormMasterCompanySingle
         Me.GCCoaTrans.Location = New System.Drawing.Point(0, 0)
         Me.GCCoaTrans.MainView = Me.GVCoaTrans
         Me.GCCoaTrans.Name = "GCCoaTrans"
-        Me.GCCoaTrans.Size = New System.Drawing.Size(184, 303)
+        Me.GCCoaTrans.Size = New System.Drawing.Size(184, 208)
         Me.GCCoaTrans.TabIndex = 0
         Me.GCCoaTrans.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCoaTrans})
         '
@@ -1149,7 +1162,7 @@ Partial Class FormMasterCompanySingle
         Me.GCCoaMapping.Location = New System.Drawing.Point(0, 0)
         Me.GCCoaMapping.MainView = Me.GVCoaMapping
         Me.GCCoaMapping.Name = "GCCoaMapping"
-        Me.GCCoaMapping.Size = New System.Drawing.Size(448, 303)
+        Me.GCCoaMapping.Size = New System.Drawing.Size(448, 208)
         Me.GCCoaMapping.TabIndex = 1
         Me.GCCoaMapping.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCoaMapping})
         '
@@ -1196,6 +1209,75 @@ Partial Class FormMasterCompanySingle
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 1
         '
+        'GroupControl6
+        '
+        Me.GroupControl6.Controls.Add(Me.TECargoCode)
+        Me.GroupControl6.Controls.Add(Me.TECargoZone)
+        Me.GroupControl6.Controls.Add(Me.TECargoDest)
+        Me.GroupControl6.Controls.Add(Me.LabelControl32)
+        Me.GroupControl6.Controls.Add(Me.LabelControl31)
+        Me.GroupControl6.Controls.Add(Me.LabelControl30)
+        Me.GroupControl6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl6.Location = New System.Drawing.Point(0, 174)
+        Me.GroupControl6.Name = "GroupControl6"
+        Me.GroupControl6.Size = New System.Drawing.Size(641, 86)
+        Me.GroupControl6.TabIndex = 17
+        Me.GroupControl6.Text = "Cargo"
+        '
+        'LabelControl32
+        '
+        Me.LabelControl32.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl32.Location = New System.Drawing.Point(331, 31)
+        Me.LabelControl32.Name = "LabelControl32"
+        Me.LabelControl32.Size = New System.Drawing.Size(57, 13)
+        Me.LabelControl32.TabIndex = 34
+        Me.LabelControl32.Text = "Cargo Code"
+        '
+        'LabelControl31
+        '
+        Me.LabelControl31.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl31.Location = New System.Drawing.Point(10, 57)
+        Me.LabelControl31.Name = "LabelControl31"
+        Me.LabelControl31.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl31.TabIndex = 32
+        Me.LabelControl31.Text = "Zone"
+        '
+        'LabelControl30
+        '
+        Me.LabelControl30.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl30.Location = New System.Drawing.Point(10, 31)
+        Me.LabelControl30.Name = "LabelControl30"
+        Me.LabelControl30.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl30.TabIndex = 30
+        Me.LabelControl30.Text = "Destination"
+        '
+        'TECargoDest
+        '
+        Me.TECargoDest.Location = New System.Drawing.Point(81, 28)
+        Me.TECargoDest.Name = "TECargoDest"
+        Me.TECargoDest.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECargoDest.Properties.Appearance.Options.UseFont = True
+        Me.TECargoDest.Size = New System.Drawing.Size(232, 20)
+        Me.TECargoDest.TabIndex = 35
+        '
+        'TECargoZone
+        '
+        Me.TECargoZone.Location = New System.Drawing.Point(81, 54)
+        Me.TECargoZone.Name = "TECargoZone"
+        Me.TECargoZone.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECargoZone.Properties.Appearance.Options.UseFont = True
+        Me.TECargoZone.Size = New System.Drawing.Size(232, 20)
+        Me.TECargoZone.TabIndex = 36
+        '
+        'TECargoCode
+        '
+        Me.TECargoCode.Location = New System.Drawing.Point(409, 28)
+        Me.TECargoCode.Name = "TECargoCode"
+        Me.TECargoCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TECargoCode.Properties.Appearance.Options.UseFont = True
+        Me.TECargoCode.Size = New System.Drawing.Size(223, 20)
+        Me.TECargoCode.TabIndex = 37
+        '
         'FormMasterCompanySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1207,7 +1289,6 @@ Partial Class FormMasterCompanySingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterCompanySingle"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Company"
@@ -1270,6 +1351,12 @@ Partial Class FormMasterCompanySingle
         CType(Me.GVCoaTrans, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCCoaMapping, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCoaMapping, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl6.ResumeLayout(False)
+        Me.GroupControl6.PerformLayout()
+        CType(Me.TECargoDest.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECargoZone.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECargoCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1373,4 +1460,11 @@ Partial Class FormMasterCompanySingle
     Friend WithEvents LabelControl28 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEDefDrawer As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BPickDrawer As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GroupControl6 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents LabelControl30 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl32 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl31 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TECargoCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECargoZone As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECargoDest As DevExpress.XtraEditors.TextEdit
 End Class
