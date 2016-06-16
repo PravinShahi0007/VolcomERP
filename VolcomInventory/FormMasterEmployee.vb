@@ -10,11 +10,7 @@
     End Sub
 
     Sub viewEmployee()
-        Dim query As String = ""
-        query += "SELECT * FROM tb_m_employee a "
-        query += "INNER JOIN tb_lookup_sex b ON a.id_sex = b.id_sex "
-        query += "LEFT JOIN tb_m_departement c ON a.id_departement = c.id_departement "
-        query += "ORDER BY a.employee_name ASC "
+        Dim query As String = "CALL view_employee('-1', 2)"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmployee.DataSource = data
     End Sub

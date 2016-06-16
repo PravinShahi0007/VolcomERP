@@ -71,6 +71,40 @@
             XTPStatus.PageEnabled = True
             XTPPosition.PageEnabled = True
 
+            Dim query As String = "CALL view_employee('AND emp.id_employee=" + id_employee + " ', 1)"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            Dim datarow As DataRow = data.Rows(0)
+            'general tab
+            TxtCode.Text = datarow("employee_code").ToString
+            TxtFullName.Text = datarow("employee_name").ToString
+            TxtNickName.Text = datarow("employee_nick_name").ToString
+            TxtInitialName.Text = datarow("employee_initial_name").ToString
+            DEJoinDate.EditValue = datarow("employee_join_date")
+            LEActive.EditValue = datarow("id_employee_active").ToString
+            LESex.EditValue = datarow("id_sex").ToString
+            LEBloodType.EditValue = datarow("id_blood_type").ToString
+            TxtPOB.Text = datarow("employee_pob").ToString
+            DEDOB.EditValue = datarow("employee_dob")
+            LEReligion.EditValue = datarow("id_religion").ToString
+            LECountry.EditValue = datarow("id_country").ToString
+            TxtEthnic.Text = datarow("employee_ethnic").ToString
+            LEDegree.EditValue = datarow("id_education").ToString
+            TxtKTP.Text = datarow("employee_ktp").ToString
+            DEKTP.EditValue = datarow("employee_ktp_period")
+            TxtPassport.Text = datarow("employee_passport").ToString
+            DEPassport.EditValue = datarow("employee_passport_period")
+            TxtBPJSTK.Text = datarow("employee_bpjs_tk").ToString
+            TxtBPJSSehat.Text = datarow("employee_bpjs_kesehatan").ToString
+            TxtNpwp.Text = datarow("employee_npwp").ToString
+            TxtPhone.Text = datarow("phone").ToString
+            TxtMobilePhone.Text = datarow("phone_mobile").ToString
+            TxtPhoneExt.Text = datarow("phone_ext").ToString
+            TxtEmailLocal.Text = datarow("email_lokal").ToString
+            TxtEmailExternal.Text = datarow("email_external").ToString
+            TxtOtherEmail.Text = datarow("email_other").ToString
+            MEAddress.Text = datarow("address_primary").ToString
+            MEAddressBoarding.Text = datarow("address_additional").ToString
+
             'load img
             pre_viewImages("4", PEEmployee, id_employee, False)
         End If
@@ -172,7 +206,7 @@
             Dim employee_code As String = addSlashes(TxtCode.Text)
             Dim employee_name As String = addSlashes(TxtFullName.Text)
             Dim employee_nick_name As String = addSlashes(TxtNickName.Text)
-            Dim employee_intial_name As String = addSlashes(TxtInitialName.Text)
+            Dim employee_initial_name As String = addSlashes(TxtInitialName.Text)
             Dim employee_join_date As String = addSlashes(DateTime.Parse(DEJoinDate.EditValue.ToString).ToString("yyyy-MM-dd"))
             Dim id_employee_active As String = addSlashes(LEActive.EditValue.ToString)
             Dim id_sex As String = addSlashes(LESex.EditValue.ToString)
@@ -209,8 +243,8 @@
 
             If action = "ins" Then
                 'main
-                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_intial_name, employee_join_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_kesehatan, employee_npwp, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other) "
-                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_intial_name + "', '" + employee_join_date + "', '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', '" + employee_bpjs_kesehatan + "', '" + employee_npwp + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_kesehatan, employee_npwp, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other) "
+                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', '" + employee_bpjs_kesehatan + "', '" + employee_npwp + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "'); SELECT LAST_INSERT_ID(); "
                 id_employee = execute_query(query, 0, True, "", "", "", "")
 
                 'pic
