@@ -1,6 +1,7 @@
 ﻿Public Class FormMasterEmployeeNewDet
     Public action As String = "-1"
     Public id_employee As String = "-1"
+    Dim data_dt As DataTable = Nothing
 
     Sub viewDept()
         Dim query As String = "SELECT * FROM tb_m_departement a ORDER BY a.departement ASC "
@@ -43,7 +44,7 @@
     End Sub
 
     Private Sub FormMasterEmployeeNewDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
+        data_dt = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEJoinDate.EditValue = data_dt.Rows(0)("dt")
         TxtCode.Focus()
         viewSex()
@@ -80,15 +81,15 @@
             TxtNickName.Text = datarow("employee_nick_name").ToString
             TxtInitialName.Text = datarow("employee_initial_name").ToString
             DEJoinDate.EditValue = datarow("employee_join_date")
-            LEActive.EditValue = datarow("id_employee_active").ToString
-            LESex.EditValue = datarow("id_sex").ToString
-            LEBloodType.EditValue = datarow("id_blood_type").ToString
+            LEActive.ItemIndex = LEActive.Properties.GetDataSourceRowIndex("id_employee_active", data.Rows(0)("id_employee_active").ToString)
+            LESex.ItemIndex = LESex.Properties.GetDataSourceRowIndex("id_sex", data.Rows(0)("id_sex").ToString)
+            LEBloodType.ItemIndex = LEBloodType.Properties.GetDataSourceRowIndex("id_blood_type", data.Rows(0)("id_blood_type").ToString)
             TxtPOB.Text = datarow("employee_pob").ToString
             DEDOB.EditValue = datarow("employee_dob")
-            LEReligion.EditValue = datarow("id_religion").ToString
-            LECountry.EditValue = datarow("id_country").ToString
+            LEReligion.ItemIndex = LEReligion.Properties.GetDataSourceRowIndex("id_religion", data.Rows(0)("id_religion").ToString)
+            LECountry.ItemIndex = LECountry.Properties.GetDataSourceRowIndex("id_country", data.Rows(0)("id_country").ToString)
             TxtEthnic.Text = datarow("employee_ethnic").ToString
-            LEDegree.EditValue = datarow("id_education").ToString
+            LEDegree.ItemIndex = LEDegree.Properties.GetDataSourceRowIndex("id_education", data.Rows(0)("id_education").ToString)
             TxtKTP.Text = datarow("employee_ktp").ToString
             DEKTP.EditValue = datarow("employee_ktp_period")
             TxtPassport.Text = datarow("employee_passport").ToString
@@ -117,25 +118,7 @@
     End Sub
 
     Private Sub XTPEmployee_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTPEmployee.SelectedPageChanged
-        If XTPEmployee.SelectedTabPageIndex = 0 Then
-            BtnNext.Visible = True
-            BtnPrevious.Visible = False
-        ElseIf XTPEmployee.SelectedTabPageIndex = 1 Then
-            BtnNext.Visible = True
-            BtnPrevious.Visible = True
-        ElseIf XTPEmployee.SelectedTabPageIndex = 2 Then
-            BtnNext.Visible = True
-            BtnPrevious.Visible = True
-        ElseIf XTPEmployee.SelectedTabPageIndex = 3 Then
-            BtnNext.Visible = True
-            BtnPrevious.Visible = True
-        ElseIf XTPEmployee.SelectedTabPageIndex = 4 Then
-            BtnNext.Visible = True
-            BtnPrevious.Visible = True
-        ElseIf XTPEmployee.SelectedTabPageIndex = 5 Then
-            BtnNext.Visible = False
-            BtnPrevious.Visible = True
-        End If
+
     End Sub
 
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
@@ -256,7 +239,48 @@
                 actionLoad()
                 infoCustom("Created successfully, please add some information detail.")
             Else
+                'main
+                Dim query As String = "UPDATE tb_m_employee SET "
+                query += "employee_code='" + employee_code + "', "
+                query += "employee_name='" + employee_name + "', "
+                query += "employee_nick_name='" + employee_nick_name + "', "
+                query += "employee_initial_name='" + employee_initial_name + "', "
+                query += "employee_join_date='" + employee_join_date + "', "
+                query += "id_employee_active='" + id_employee_active + "', "
+                query += "id_sex='" + id_sex + "', "
+                query += "id_blood_type='" + id_blood_type + "', "
+                query += "employee_pob='" + employee_pob + "', "
+                query += "employee_dob='" + employee_dob + "', "
+                query += "id_religion='" + id_religion + "', "
+                query += "id_country='" + id_country + "', "
+                query += "employee_ethnic='" + employee_ethnic + "', "
+                query += "id_education='" + id_education + "', "
+                query += "employee_ktp='" + employee_ktp + "', "
+                query += "employee_ktp_period=" + employee_ktp_period + ", "
+                query += "employee_passport='" + employee_passport + "', "
+                query += "employee_passport_period=" + employee_passport_period + ", "
+                query += "employee_bpjs_tk='" + employee_bpjs_tk + "', "
+                query += "employee_bpjs_kesehatan='" + employee_bpjs_kesehatan + "', "
+                query += "employee_npwp='" + employee_npwp + "', "
+                query += "phone='" + phone + "', "
+                query += "phone_mobile='" + phone_mobile + "', "
+                query += "phone_ext='" + phone_ext + "', "
+                query += "email_lokal='" + email_lokal + "', "
+                query += "email_external='" + email_external + "', "
+                query += "email_other='" + email_other + "', "
+                query += "address_primary='" + address_primary + "', "
+                query += "address_additional='" + address_additional + "' "
+                query += "WHERE id_employee=" + id_employee + " "
+                execute_non_query(query, True, "", "", "", "")
 
+                'pic
+                save_image_ori(PEEmployee, emp_image_path, id_employee & ".jpg")
+
+                'info & refresh
+                FormMasterEmployee.viewEmployee()
+                action = "upd"
+                actionLoad()
+                infoCustom("Edited successfully.")
             End If
         End If
     End Sub
@@ -273,5 +297,14 @@
 
     Private Sub MEAddress_KeyDown(sender As Object, e As KeyEventArgs) Handles MEAddress.KeyDown
         EP_ME_cant_blank(ErrorProvider1, MEAddress)
+    End Sub
+
+    Private Sub DEDOB_EditValueChanged(sender As Object, e As EventArgs) Handles DEDOB.EditValueChanged
+        Dim age As Long = 0
+        Try
+            age = DateDiff(DateInterval.Year, DEDOB.EditValue, data_dt.Rows(0)("dt"))
+        Catch ex As Exception
+        End Try
+        TxtAge.Text = age.ToString + " years old"
     End Sub
 End Class

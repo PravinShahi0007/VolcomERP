@@ -47,7 +47,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.Label5 = New System.Windows.Forms.Label()
         Me.LEBloodType = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label16 = New System.Windows.Forms.Label()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtAge = New DevExpress.XtraEditors.TextEdit()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TxtPOB = New DevExpress.XtraEditors.TextEdit()
@@ -125,7 +125,7 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.LELevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPosition.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEBloodType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtAge.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPOB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlMain.SuspendLayout()
@@ -444,14 +444,14 @@ Partial Class FormMasterEmployeeNewDet
         Me.Label16.Text = "Available " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Until"
         Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
-        'TextEdit1
+        'TxtAge
         '
-        Me.TextEdit1.Enabled = False
-        Me.TextEdit1.Location = New System.Drawing.Point(651, 38)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(131, 20)
-        Me.TextEdit1.TabIndex = 18
-        Me.TextEdit1.TabStop = False
+        Me.TxtAge.Enabled = False
+        Me.TxtAge.Location = New System.Drawing.Point(651, 38)
+        Me.TxtAge.Name = "TxtAge"
+        Me.TxtAge.Size = New System.Drawing.Size(131, 20)
+        Me.TxtAge.TabIndex = 18
+        Me.TxtAge.TabStop = False
         '
         'Label9
         '
@@ -521,7 +521,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.Controls.Add(Me.LESex)
         Me.XTPGeneral.Controls.Add(Me.Label16)
         Me.XTPGeneral.Controls.Add(Me.Label30)
-        Me.XTPGeneral.Controls.Add(Me.TextEdit1)
+        Me.XTPGeneral.Controls.Add(Me.TxtAge)
         Me.XTPGeneral.Controls.Add(Me.Label9)
         Me.XTPGeneral.Controls.Add(Me.TxtBPJSSehat)
         Me.XTPGeneral.Controls.Add(Me.Label25)
@@ -1064,7 +1064,7 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.LELevel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPosition.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEBloodType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtAge.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPOB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlMain.ResumeLayout(False)
@@ -1131,7 +1131,7 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents TxtPOB As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label7 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtAge As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label9 As Label
     Friend WithEvents PEEmployee As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents XTPEmployee As DevExpress.XtraTab.XtraTabControl
