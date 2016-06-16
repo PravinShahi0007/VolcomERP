@@ -2,6 +2,7 @@
     Public action As String = "-1"
     Public id_employee As String = "-1"
     Dim data_dt As DataTable = Nothing
+    Dim id_marriage_stattus_db As String = "-1"
 
     Sub viewDept()
         Dim query As String = "SELECT * FROM tb_m_departement a ORDER BY a.departement ASC "
@@ -43,6 +44,26 @@
         viewLookupQuery(LEDegree, query, 0, "education", "id_education")
     End Sub
 
+    Sub viewMarriageStatus()
+        Dim query As String = "SELECT * FROM tb_lookup_marriage_status a ORDER BY a.id_marriage_status ASC "
+        viewLookupQuery(LEMarriageStatus, query, 0, "marriage_status", "id_marriage_status")
+    End Sub
+
+    Sub viewDependent()
+        Dim query As String = "SELECT * FROM tb_m_employee_dependent d "
+        query += "INNER JOIN tb_lookup_relationship r ON r.id_relationship = d.id_relationship "
+        query += "WHERE d.id_employee = '" + id_employee + "' "
+        query += "ORDER BY d.id_employee_dependent ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDependent.DataSource = data
+        If GVDependent.RowCount > 0 Then
+            BtnDeleteDependent.Enabled = True
+        Else
+            BtnDeleteDependent.Enabled = False
+        End If
+    End Sub
+
+
     Private Sub FormMasterEmployeeNewDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         data_dt = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEJoinDate.EditValue = data_dt.Rows(0)("dt")
@@ -55,6 +76,7 @@
         viewLevel()
         viewActive()
         viewDegree()
+        viewMarriageStatus()
         actionLoad()
     End Sub
 
@@ -105,9 +127,13 @@
             TxtOtherEmail.Text = datarow("email_other").ToString
             MEAddress.Text = datarow("address_primary").ToString
             MEAddressBoarding.Text = datarow("address_additional").ToString
+            id_marriage_stattus_db = data.Rows(0)("id_marriage_status").ToString
 
             'load img
             pre_viewImages("4", PEEmployee, id_employee, False)
+
+            'detail
+            viewDependent()
         End If
     End Sub
 
@@ -118,7 +144,9 @@
     End Sub
 
     Private Sub XTPEmployee_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTPEmployee.SelectedPageChanged
-
+        If XTPEmployee.TabPages.Item(XTPEmployee.SelectedTabPageIndex).Name.ToString = "XTPDependent" Then
+            LEMarriageStatus.ItemIndex = LEMarriageStatus.Properties.GetDataSourceRowIndex("id_marriage_status", id_marriage_stattus_db)
+        End If
     End Sub
 
     Private Sub BtnNext_Click(sender As Object, e As EventArgs) Handles BtnNext.Click
@@ -223,6 +251,11 @@
             Dim email_other As String = TxtOtherEmail.Text
             Dim address_primary As String = addSlashes(MEAddress.Text)
             Dim address_additional As String = addSlashes(MEAddressBoarding.Text)
+            Dim id_marriage_status As String = "NULL"
+            Try
+                id_marriage_status = LEMarriageStatus.EditValue.ToString
+            Catch ex As Exception
+            End Try
 
             If action = "ins" Then
                 'main
@@ -235,6 +268,7 @@
 
                 'info & refresh
                 FormMasterEmployee.viewEmployee()
+                FormMasterEmployee.GVEmployee.FocusedRowHandle = find_row(FormMasterEmployee.GVEmployee, "id_employee", id_employee)
                 action = "upd"
                 actionLoad()
                 infoCustom("Created successfully, please add some information detail.")
@@ -255,6 +289,7 @@
                 query += "id_country='" + id_country + "', "
                 query += "employee_ethnic='" + employee_ethnic + "', "
                 query += "id_education='" + id_education + "', "
+                query += "id_marriage_status=" + id_marriage_status + ", "
                 query += "employee_ktp='" + employee_ktp + "', "
                 query += "employee_ktp_period=" + employee_ktp_period + ", "
                 query += "employee_passport='" + employee_passport + "', "
@@ -278,6 +313,7 @@
 
                 'info & refresh
                 FormMasterEmployee.viewEmployee()
+                FormMasterEmployee.GVEmployee.FocusedRowHandle = find_row(FormMasterEmployee.GVEmployee, "id_employee", id_employee)
                 action = "upd"
                 actionLoad()
                 infoCustom("Edited successfully.")
@@ -306,5 +342,18 @@
         Catch ex As Exception
         End Try
         TxtAge.Text = age.ToString + " years old"
+    End Sub
+
+    Private Sub LEMarriageStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LEMarriageStatus.EditValueChanged
+        'Try
+        '    Dim stt As String = LEMarriageStatus.EditValue.ToString
+        '    execute_non_query("UPDATE tb_m_employee SET id_marriage_status='" + stt + "' WHERE id_employee='" + id_employee + "'", True, "", "", "", "")
+        '    infoCustom("Status changed successfully.")
+        'Catch ex As Exception
+        'End Try
+    End Sub
+
+    Private Sub FormMasterEmployeeNewDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
