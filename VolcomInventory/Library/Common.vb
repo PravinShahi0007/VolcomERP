@@ -2129,6 +2129,21 @@ Module Common
         Return index
     End Function
 
+    Function find_row_as_is(ByVal gridview As DevExpress.XtraGrid.Views.Grid.GridView, ByVal col_name As String, ByVal value_s As String) As Integer
+        Dim index As Integer
+
+        index = 0
+        For i As Integer = 0 To gridview.RowCount - 1 - GetGroupRowCount(gridview)
+            If gridview.GetRowCellValue(i, col_name).ToString = value_s Then
+                index = i
+                'gridview.CollapseAllGroups()
+                Exit For
+            End If
+        Next
+        gridview.MakeRowVisible(index)
+        Return index
+    End Function
+
     Sub makeSafeGV(ByVal gridview As DevExpress.XtraGrid.Views.Grid.GridView)
         gridview.ApplyFindFilter("")
         gridview.ActiveFilter.Clear()

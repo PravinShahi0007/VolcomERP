@@ -347,7 +347,6 @@
     End Sub
 
     Private Sub GVAWBill_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVAWBill.CellMerge
-        'If (e.Column.FieldName = "do_no" Or e.Column.FieldName = "scan_date" Or e.Column.FieldName = "reff" Or e.Column.FieldName = "qty") Then
         If (e.Column.FieldName = "id_awbill" Or e.Column.FieldName = "weight" Or e.Column.FieldName = "length" Or e.Column.FieldName = "width" Or e.Column.FieldName = "height" Or e.Column.FieldName = "volume" Or e.Column.FieldName = "c_weight" Or e.Column.FieldName = "c_tot_price" Or e.Column.FieldName = "a_weight" Or e.Column.FieldName = "a_tot_price" Or e.Column.FieldName = "weight_diff" Or e.Column.FieldName = "amount_diff") Then
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             Dim val1 As String = view.GetRowCellValue(e.RowHandle1, "id_awbill")
@@ -360,4 +359,48 @@
         End If
     End Sub
 
+    Private Sub GCAWBill_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles GCAWBill.ProcessGridKey
+        If e.KeyCode = Keys.Enter Then
+            GVAWBill.FocusedRowHandle += 1
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub GCAwbillIn_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles GCAwbillIn.ProcessGridKey
+        If e.KeyCode = Keys.Enter Then
+            GVAwbillIn.FocusedRowHandle += 1
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub GVAWBill_HiddenEditor(sender As Object, e As EventArgs) Handles GVAWBill.HiddenEditor
+        If GVAWBill.FocusedColumn.FieldName = "rec_by_store_date" Then
+            Dim datex As String = ""
+            If Not GVAWBill.GetFocusedRowCellValue("rec_by_store_date").ToString = "" Then
+                datex = "'" & Date.Parse(GVAWBill.GetFocusedRowCellValue("rec_by_store_date").ToString).ToString("yyyy-MM-dd") & "'"
+            Else
+                datex = "NULL"
+            End If
+
+            Dim query As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" + datex + " WHERE id_awbill='" + GVAWBill.GetFocusedRowCellValue("id_awbill").ToString + "'"
+            execute_non_query(query, True, "", "", "", "")
+            Try
+                GVAWBill.SetFocusedRowCellValue("del_time", DateDiff(DateInterval.Day, GVAWBill.GetFocusedRowCellValue("pick_up_date"), GVAWBill.GetFocusedRowCellValue("rec_by_store_date")))
+                GVAWBill.SetFocusedRowCellValue("lead_time_diff", DateDiff(DateInterval.Day, GVAWBill.GetFocusedRowCellValue("eta_date"), GVAWBill.GetFocusedRowCellValue("rec_by_store_date")))
+                If GVAWBill.GetFocusedRowCellValue("lead_time_diff").ToString = "0" Then
+                    GVAWBill.SetFocusedRowCellValue("time_remark", "ON TIME")
+                ElseIf GVAWBill.GetFocusedRowCellValue("lead_time_diff") > 0 Then
+                    GVAWBill.SetFocusedRowCellValue("time_remark", "LATE")
+                ElseIf GVAWBill.GetFocusedRowCellValue("lead_time_diff") < 0 Then
+                    GVAWBill.SetFocusedRowCellValue("time_remark", "EARLY")
+                Else
+                    GVAWBill.SetFocusedRowCellValue("time_remark", "ON DELIVERY")
+                End If
+            Catch ex As Exception
+            End Try
+        ElseIf GVAWBill.FocusedColumn.FieldName = "rec_by_store_person" Then
+            Dim query As String = "UPDATE tb_wh_awbill SET rec_by_store_person='" + GVAWBill.GetFocusedRowCellValue("rec_by_store_person") + "' WHERE id_awbill='" + GVAWBill.GetFocusedRowCellValue("id_awbill").ToString + "'"
+            execute_non_query(query, True, "", "", "", "")
+        End If
+    End Sub
 End Class

@@ -111,6 +111,8 @@ Partial Class FormWHAWBillDet
         Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.TERecByPerson = New DevExpress.XtraEditors.TextEdit()
         Me.Panel1.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -171,6 +173,7 @@ Partial Class FormWHAWBillDet
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.TERecByPerson.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -824,6 +827,8 @@ Partial Class FormWHAWBillDet
         '
         'XTPInvoice
         '
+        Me.XTPInvoice.Controls.Add(Me.Label21)
+        Me.XTPInvoice.Controls.Add(Me.TERecByPerson)
         Me.XTPInvoice.Controls.Add(Me.BRecStoreNothing)
         Me.XTPInvoice.Controls.Add(Me.BPickupNothing)
         Me.XTPInvoice.Controls.Add(Me.Label18)
@@ -840,7 +845,7 @@ Partial Class FormWHAWBillDet
         '
         'BRecStoreNothing
         '
-        Me.BRecStoreNothing.Location = New System.Drawing.Point(349, 84)
+        Me.BRecStoreNothing.Location = New System.Drawing.Point(371, 67)
         Me.BRecStoreNothing.Name = "BRecStoreNothing"
         Me.BRecStoreNothing.Size = New System.Drawing.Size(80, 23)
         Me.BRecStoreNothing.TabIndex = 104
@@ -848,7 +853,7 @@ Partial Class FormWHAWBillDet
         '
         'BPickupNothing
         '
-        Me.BPickupNothing.Location = New System.Drawing.Point(349, 50)
+        Me.BPickupNothing.Location = New System.Drawing.Point(371, 41)
         Me.BPickupNothing.Name = "BPickupNothing"
         Me.BPickupNothing.Size = New System.Drawing.Size(80, 23)
         Me.BPickupNothing.TabIndex = 103
@@ -857,7 +862,7 @@ Partial Class FormWHAWBillDet
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(14, 137)
+        Me.Label18.Location = New System.Drawing.Point(14, 123)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(30, 13)
         Me.Label18.TabIndex = 102
@@ -866,39 +871,39 @@ Partial Class FormWHAWBillDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(146, 125)
+        Me.MENote.Location = New System.Drawing.Point(146, 121)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(420, 85)
-        Me.MENote.TabIndex = 101
+        Me.MENote.TabIndex = 102
         '
         'DEStore
         '
         Me.DEStore.EditValue = Nothing
-        Me.DEStore.Location = New System.Drawing.Point(146, 86)
+        Me.DEStore.Location = New System.Drawing.Point(146, 69)
         Me.DEStore.Name = "DEStore"
         Me.DEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStore.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStore.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEStore.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStore.Size = New System.Drawing.Size(197, 20)
+        Me.DEStore.Size = New System.Drawing.Size(219, 20)
         Me.DEStore.TabIndex = 100
         '
         'DEPickUp
         '
         Me.DEPickUp.EditValue = Nothing
-        Me.DEPickUp.Location = New System.Drawing.Point(146, 52)
+        Me.DEPickUp.Location = New System.Drawing.Point(146, 43)
         Me.DEPickUp.Name = "DEPickUp"
         Me.DEPickUp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPickUp.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPickUp.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEPickUp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEPickUp.Size = New System.Drawing.Size(197, 20)
+        Me.DEPickUp.Size = New System.Drawing.Size(219, 20)
         Me.DEPickUp.TabIndex = 99
         '
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(13, 89)
+        Me.Label17.Location = New System.Drawing.Point(13, 72)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(71, 13)
         Me.Label17.TabIndex = 98
@@ -908,7 +913,7 @@ Partial Class FormWHAWBillDet
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(14, 55)
+        Me.Label16.Location = New System.Drawing.Point(14, 46)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(67, 13)
         Me.Label16.TabIndex = 97
@@ -930,7 +935,7 @@ Partial Class FormWHAWBillDet
         Me.TEInvNo.Location = New System.Drawing.Point(146, 17)
         Me.TEInvNo.Name = "TEInvNo"
         Me.TEInvNo.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEInvNo.Size = New System.Drawing.Size(179, 20)
+        Me.TEInvNo.Size = New System.Drawing.Size(197, 20)
         Me.TEInvNo.TabIndex = 98
         '
         'DECreated
@@ -1144,6 +1149,24 @@ Partial Class FormWHAWBillDet
         Me.PanelControl4.Size = New System.Drawing.Size(807, 284)
         Me.PanelControl4.TabIndex = 2
         '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(14, 98)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(60, 13)
+        Me.Label21.TabIndex = 105
+        Me.Label21.Text = "Receive By"
+        Me.Label21.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'TERecByPerson
+        '
+        Me.TERecByPerson.Location = New System.Drawing.Point(146, 95)
+        Me.TERecByPerson.Name = "TERecByPerson"
+        Me.TERecByPerson.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TERecByPerson.Size = New System.Drawing.Size(197, 20)
+        Me.TERecByPerson.TabIndex = 101
+        '
         'FormWHAWBillDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1224,6 +1247,7 @@ Partial Class FormWHAWBillDet
         Me.GroupControl1.PerformLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        CType(Me.TERecByPerson.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1320,4 +1344,6 @@ Partial Class FormWHAWBillDet
     Friend WithEvents Label20 As Label
     Friend WithEvents GridColumnSLEMinWeight As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents CEPaid As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents Label21 As Label
+    Friend WithEvents TERecByPerson As DevExpress.XtraEditors.TextEdit
 End Class
