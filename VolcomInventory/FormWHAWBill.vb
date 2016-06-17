@@ -384,7 +384,20 @@
 
             Dim query As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" + datex + " WHERE id_awbill='" + GVAWBill.GetFocusedRowCellValue("id_awbill").ToString + "'"
             execute_non_query(query, True, "", "", "", "")
-            'MsgBox(DateDiff(DateInterval.Day, GVAWBill.GetFocusedRowCellValue("eta_date"), GVAWBill.GetFocusedRowCellValue("rec_by_store_date"))).ToString()
+            Try
+                GVAWBill.SetFocusedRowCellValue("del_time", DateDiff(DateInterval.Day, GVAWBill.GetFocusedRowCellValue("pick_up_date"), GVAWBill.GetFocusedRowCellValue("rec_by_store_date")))
+                GVAWBill.SetFocusedRowCellValue("lead_time_diff", DateDiff(DateInterval.Day, GVAWBill.GetFocusedRowCellValue("eta_date"), GVAWBill.GetFocusedRowCellValue("rec_by_store_date")))
+                If GVAWBill.GetFocusedRowCellValue("lead_time_diff").ToString = "0" Then
+                    GVAWBill.SetFocusedRowCellValue("time_remark", "ON TIME")
+                ElseIf GVAWBill.GetFocusedRowCellValue("lead_time_diff") > 0 Then
+                    GVAWBill.SetFocusedRowCellValue("time_remark", "LATE")
+                ElseIf GVAWBill.GetFocusedRowCellValue("lead_time_diff") < 0 Then
+                    GVAWBill.SetFocusedRowCellValue("time_remark", "EARLY")
+                Else
+                    GVAWBill.SetFocusedRowCellValue("time_remark", "ON DELIVERY")
+                End If
+            Catch ex As Exception
+            End Try
         ElseIf GVAWBill.FocusedColumn.FieldName = "rec_by_store_person" Then
             Dim query As String = "UPDATE tb_wh_awbill SET rec_by_store_person='" + GVAWBill.GetFocusedRowCellValue("rec_by_store_person") + "' WHERE id_awbill='" + GVAWBill.GetFocusedRowCellValue("id_awbill").ToString + "'"
             execute_non_query(query, True, "", "", "", "")
