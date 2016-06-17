@@ -350,11 +350,23 @@
                 'infoCustom("AWB calculation updated.")
                 Dim find_string As String = ""
                 Dim filter_string As String = ""
+                Dim sort(FormWHCargoRate.GVCompany.Columns.Count, 2) As String
                 '
                 If id_awb_type = "1" Then
                     filter_string = FormWHAWBill.GVAWBill.ActiveFilterString
                     find_string = FormWHAWBill.GVAWBill.FindFilterText.ToString
+                    'sorting
+                    For i As Integer = 0 To FormWHCargoRate.GVCompany.SortedColumns.Count - 1
+                        sort(i, 1) = FormWHCargoRate.GVCompany.SortedColumns.Item(i).FieldName
+                        If FormWHCargoRate.GVCompany.SortedColumns.Item(i).SortOrder = DevExpress.Data.ColumnSortOrder.Ascending Then
+                            sort(i, 2) = "1"
+                        Else
+                            sort(i, 2) = "2"
+                        End If
+                    Next
+                    '
                     FormWHAWBill.load_outbound()
+
                     FormWHAWBill.GVAWBill.ActiveFilterString = filter_string
                     FormWHAWBill.GVAWBill.ApplyFindFilter(find_string)
                     FormWHAWBill.GVAWBill.FocusedRowHandle = find_row(FormWHAWBill.GVAWBill, "id_awbill", id_awb)
@@ -431,7 +443,7 @@
                 id_comp = data.Rows(0)("id_comp").ToString
                 TECompName.Text = data.Rows(0)("comp_name").ToString
                 TECompCode.Text = data.Rows(0)("comp_number").ToString
-                'TEWeight.Focus()
+                'TEWeight.Focus() ---三
                 rate_table()
                 e.SuppressKeyPress = True
                 SelectNextControl(ActiveControl, True, True, True, True)

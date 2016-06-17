@@ -137,6 +137,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn23 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CERO = New DevExpress.XtraEditors.CheckEdit()
         Me.BInView = New DevExpress.XtraEditors.SimpleButton()
         Me.CEInCompare = New DevExpress.XtraEditors.CheckEdit()
         Me.DEInEnd = New DevExpress.XtraEditors.DateEdit()
@@ -147,7 +148,6 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
-        Me.CERO = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RCICOD, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,6 +169,7 @@ Partial Class FormWHAWBill
         CType(Me.GVAwbillIn, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CERO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEInCompare.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEInEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEInEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,7 +177,6 @@ Partial Class FormWHAWBill
         CType(Me.DEInStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEInNoEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEInNoStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CERO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCAWBill
@@ -186,7 +186,7 @@ Partial Class FormWHAWBill
         Me.GCAWBill.MainView = Me.GVAWBill
         Me.GCAWBill.Name = "GCAWBill"
         Me.GCAWBill.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RCICOD})
-        Me.GCAWBill.Size = New System.Drawing.Size(904, 234)
+        Me.GCAWBill.Size = New System.Drawing.Size(931, 234)
         Me.GCAWBill.TabIndex = 0
         Me.GCAWBill.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAWBill})
         '
@@ -196,7 +196,6 @@ Partial Class FormWHAWBill
         Me.GVAWBill.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnDONo, Me.BandedGridColumnPBS, Me.BandedGridColumnQty, Me.BandedGridColumnReff, Me.GridColumnAccountCode, Me.BandedGridColumnZone, Me.BandedGridColumnCargoCode, Me.BandedGridColumnDestination, Me.GridColumnStoreName, Me.GridColumnID, Me.GridColumnNumber, Me.BandedGridColumnLaedTime, Me.GridColumnCargo, Me.GridColumnWeight, Me.GridColumnCargoRate, Me.GridColumnTotalAmount, Me.GridColumndate, Me.GridColumnAWBNumber, Me.BandedGridColumnAirportWeight, Me.BandedGridColumnAirportAmount, Me.BandedGridColumnPickUpDate, Me.BandedGridColumnRecByStoreDate, Me.BandedGridColumnDiffweight, Me.BandedGridColumnDiffAmount, Me.BandedGridColumnETA, Me.BandedGridColumnDelTime, Me.BandedGridColumnDiff, Me.BandedGridColumnRemarkDiff, Me.BandedGridColumn25, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn35, Me.BandedGridColumn36})
         Me.GVAWBill.GridControl = Me.GCAWBill
         Me.GVAWBill.Name = "GVAWBill"
-        Me.GVAWBill.OptionsBehavior.ReadOnly = True
         Me.GVAWBill.OptionsView.AllowCellMerge = True
         Me.GVAWBill.OptionsView.ColumnAutoWidth = False
         Me.GVAWBill.OptionsView.ShowGroupPanel = False
@@ -227,6 +226,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDONo.Caption = "DO#"
         Me.BandedGridColumnDONo.FieldName = "do_no"
         Me.BandedGridColumnDONo.Name = "BandedGridColumnDONo"
+        Me.BandedGridColumnDONo.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDONo.Visible = True
         '
         'BandedGridColumn35
@@ -234,6 +234,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn35.Caption = "Date Scanned"
         Me.BandedGridColumn35.FieldName = "scan_date"
         Me.BandedGridColumn35.Name = "BandedGridColumn35"
+        Me.BandedGridColumn35.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn35.Visible = True
         Me.BandedGridColumn35.Width = 97
         '
@@ -242,6 +243,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnReff.Caption = "Reff"
         Me.BandedGridColumnReff.FieldName = "reff"
         Me.BandedGridColumnReff.Name = "BandedGridColumnReff"
+        Me.BandedGridColumnReff.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnReff.Visible = True
         '
         'BandedGridColumnQty
@@ -249,6 +251,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnQty.Caption = "Qty"
         Me.BandedGridColumnQty.FieldName = "qty"
         Me.BandedGridColumnQty.Name = "BandedGridColumnQty"
+        Me.BandedGridColumnQty.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnQty.Visible = True
         Me.BandedGridColumnQty.Width = 53
         '
@@ -267,6 +270,7 @@ Partial Class FormWHAWBill
         Me.GridColumnNumber.Caption = "Collie No"
         Me.GridColumnNumber.FieldName = "id_awbill"
         Me.GridColumnNumber.Name = "GridColumnNumber"
+        Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.Visible = True
         Me.GridColumnNumber.Width = 54
         '
@@ -291,6 +295,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnCargoCode.Caption = "Cargo Code"
         Me.BandedGridColumnCargoCode.FieldName = "awb_cargo_code"
         Me.BandedGridColumnCargoCode.Name = "BandedGridColumnCargoCode"
+        Me.BandedGridColumnCargoCode.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnCargoCode.Visible = True
         Me.BandedGridColumnCargoCode.Width = 78
         '
@@ -299,6 +304,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDestination.Caption = "Destination"
         Me.BandedGridColumnDestination.FieldName = "awb_destination"
         Me.BandedGridColumnDestination.Name = "BandedGridColumnDestination"
+        Me.BandedGridColumnDestination.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDestination.Visible = True
         Me.BandedGridColumnDestination.Width = 78
         '
@@ -307,12 +313,14 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnZone.Caption = "Zone"
         Me.BandedGridColumnZone.FieldName = "awb_zone"
         Me.BandedGridColumnZone.Name = "BandedGridColumnZone"
+        Me.BandedGridColumnZone.OptionsColumn.AllowEdit = False
         '
         'GridColumnAccountCode
         '
         Me.GridColumnAccountCode.Caption = "Store Code"
         Me.GridColumnAccountCode.FieldName = "account"
         Me.GridColumnAccountCode.Name = "GridColumnAccountCode"
+        Me.GridColumnAccountCode.OptionsColumn.AllowEdit = False
         Me.GridColumnAccountCode.Visible = True
         Me.GridColumnAccountCode.Width = 73
         '
@@ -321,6 +329,7 @@ Partial Class FormWHAWBill
         Me.GridColumnStoreName.Caption = "Store Name"
         Me.GridColumnStoreName.FieldName = "account_name"
         Me.GridColumnStoreName.Name = "GridColumnStoreName"
+        Me.GridColumnStoreName.OptionsColumn.AllowEdit = False
         Me.GridColumnStoreName.Visible = True
         Me.GridColumnStoreName.Width = 90
         '
@@ -329,6 +338,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn36.Caption = "Group Account"
         Me.BandedGridColumn36.FieldName = "comp_group"
         Me.BandedGridColumn36.Name = "BandedGridColumn36"
+        Me.BandedGridColumn36.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn36.Visible = True
         Me.BandedGridColumn36.Width = 84
         '
@@ -337,6 +347,7 @@ Partial Class FormWHAWBill
         Me.GridColumnID.Caption = "ID"
         Me.GridColumnID.FieldName = "id_awbill"
         Me.GridColumnID.Name = "GridColumnID"
+        Me.GridColumnID.OptionsColumn.AllowEdit = False
         Me.GridColumnID.Width = 30
         '
         'GBResult
@@ -371,6 +382,7 @@ Partial Class FormWHAWBill
         Me.GridColumnWeight.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnWeight.FieldName = "weight"
         Me.GridColumnWeight.Name = "GridColumnWeight"
+        Me.GridColumnWeight.OptionsColumn.AllowEdit = False
         Me.GridColumnWeight.Visible = True
         Me.GridColumnWeight.Width = 59
         '
@@ -379,6 +391,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn25.Caption = "Length"
         Me.BandedGridColumn25.FieldName = "length"
         Me.BandedGridColumn25.Name = "BandedGridColumn25"
+        Me.BandedGridColumn25.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn25.Visible = True
         '
         'BandedGridColumn26
@@ -386,6 +399,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn26.Caption = "Width"
         Me.BandedGridColumn26.FieldName = "width"
         Me.BandedGridColumn26.Name = "BandedGridColumn26"
+        Me.BandedGridColumn26.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn26.Visible = True
         '
         'BandedGridColumn27
@@ -393,6 +407,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn27.Caption = "Height"
         Me.BandedGridColumn27.FieldName = "height"
         Me.BandedGridColumn27.Name = "BandedGridColumn27"
+        Me.BandedGridColumn27.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn27.Visible = True
         '
         'BandedGridColumn28
@@ -402,6 +417,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn28.FieldName = "volume"
         Me.BandedGridColumn28.Name = "BandedGridColumn28"
+        Me.BandedGridColumn28.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn28.Visible = True
         '
         'BandedGridColumn29
@@ -409,6 +425,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn29.Caption = "Final Weight"
         Me.BandedGridColumn29.FieldName = "c_weight"
         Me.BandedGridColumn29.Name = "BandedGridColumn29"
+        Me.BandedGridColumn29.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn29.Visible = True
         '
         'GridColumnCargo
@@ -416,6 +433,7 @@ Partial Class FormWHAWBill
         Me.GridColumnCargo.Caption = "Cargo"
         Me.GridColumnCargo.FieldName = "cargo"
         Me.GridColumnCargo.Name = "GridColumnCargo"
+        Me.GridColumnCargo.OptionsColumn.AllowEdit = False
         Me.GridColumnCargo.Visible = True
         Me.GridColumnCargo.Width = 84
         '
@@ -429,6 +447,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnPBS.ColumnEdit = Me.RCICOD
         Me.BandedGridColumnPBS.FieldName = "is_cod"
         Me.BandedGridColumnPBS.Name = "BandedGridColumnPBS"
+        Me.BandedGridColumnPBS.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnPBS.Visible = True
         Me.BandedGridColumnPBS.Width = 62
         '
@@ -448,6 +467,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnLaedTime.Caption = "Lead Time (days)"
         Me.BandedGridColumnLaedTime.FieldName = "cargo_lead_time"
         Me.BandedGridColumnLaedTime.Name = "BandedGridColumnLaedTime"
+        Me.BandedGridColumnLaedTime.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnLaedTime.Visible = True
         '
         'GridColumnCargoRate
@@ -461,6 +481,7 @@ Partial Class FormWHAWBill
         Me.GridColumnCargoRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnCargoRate.FieldName = "cargo_rate"
         Me.GridColumnCargoRate.Name = "GridColumnCargoRate"
+        Me.GridColumnCargoRate.OptionsColumn.AllowEdit = False
         Me.GridColumnCargoRate.Visible = True
         Me.GridColumnCargoRate.Width = 93
         '
@@ -475,6 +496,7 @@ Partial Class FormWHAWBill
         Me.GridColumnTotalAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTotalAmount.FieldName = "c_tot_price"
         Me.GridColumnTotalAmount.Name = "GridColumnTotalAmount"
+        Me.GridColumnTotalAmount.OptionsColumn.AllowEdit = False
         Me.GridColumnTotalAmount.Visible = True
         Me.GridColumnTotalAmount.Width = 79
         '
@@ -568,6 +590,7 @@ Partial Class FormWHAWBill
         Me.GridColumnAWBNumber.Caption = "AWB Number"
         Me.GridColumnAWBNumber.FieldName = "awbill_inv_no"
         Me.GridColumnAWBNumber.Name = "GridColumnAWBNumber"
+        Me.GridColumnAWBNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnAWBNumber.Visible = True
         Me.GridColumnAWBNumber.Width = 109
         '
@@ -578,6 +601,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnPickUpDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumnPickUpDate.FieldName = "pick_up_date"
         Me.BandedGridColumnPickUpDate.Name = "BandedGridColumnPickUpDate"
+        Me.BandedGridColumnPickUpDate.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnPickUpDate.Visible = True
         Me.BandedGridColumnPickUpDate.Width = 95
         '
@@ -615,6 +639,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnAirportWeight.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnAirportWeight.FieldName = "a_weight"
         Me.BandedGridColumnAirportWeight.Name = "BandedGridColumnAirportWeight"
+        Me.BandedGridColumnAirportWeight.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnAirportWeight.Visible = True
         Me.BandedGridColumnAirportWeight.Width = 101
         '
@@ -629,6 +654,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnAirportAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnAirportAmount.FieldName = "a_tot_price"
         Me.BandedGridColumnAirportAmount.Name = "BandedGridColumnAirportAmount"
+        Me.BandedGridColumnAirportAmount.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnAirportAmount.Visible = True
         Me.BandedGridColumnAirportAmount.Width = 91
         '
@@ -639,6 +665,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDiffweight.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnDiffweight.FieldName = "weight_diff"
         Me.BandedGridColumnDiffweight.Name = "BandedGridColumnDiffweight"
+        Me.BandedGridColumnDiffweight.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDiffweight.Visible = True
         Me.BandedGridColumnDiffweight.Width = 79
         '
@@ -649,6 +676,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDiffAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnDiffAmount.FieldName = "amount_diff"
         Me.BandedGridColumnDiffAmount.Name = "BandedGridColumnDiffAmount"
+        Me.BandedGridColumnDiffAmount.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDiffAmount.Visible = True
         Me.BandedGridColumnDiffAmount.Width = 80
         '
@@ -672,6 +700,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnETA.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.BandedGridColumnETA.FieldName = "eta_date"
         Me.BandedGridColumnETA.Name = "BandedGridColumnETA"
+        Me.BandedGridColumnETA.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnETA.Visible = True
         '
         'BandedGridColumnDelTime
@@ -681,6 +710,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDelTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnDelTime.FieldName = "del_time"
         Me.BandedGridColumnDelTime.Name = "BandedGridColumnDelTime"
+        Me.BandedGridColumnDelTime.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDelTime.Visible = True
         '
         'BandedGridColumnDiff
@@ -690,6 +720,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnDiff.FieldName = "lead_time_diff"
         Me.BandedGridColumnDiff.Name = "BandedGridColumnDiff"
+        Me.BandedGridColumnDiff.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDiff.Visible = True
         '
         'BandedGridColumnRemarkDiff
@@ -697,6 +728,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnRemarkDiff.Caption = "Remark"
         Me.BandedGridColumnRemarkDiff.FieldName = "time_remark"
         Me.BandedGridColumnRemarkDiff.Name = "BandedGridColumnRemarkDiff"
+        Me.BandedGridColumnRemarkDiff.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnRemarkDiff.Visible = True
         '
         'PanelControl1
@@ -715,7 +747,7 @@ Partial Class FormWHAWBill
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(904, 39)
+        Me.PanelControl1.Size = New System.Drawing.Size(931, 39)
         Me.PanelControl1.TabIndex = 1
         '
         'CEDO
@@ -841,7 +873,7 @@ Partial Class FormWHAWBill
         Me.XTPOutbound.Controls.Add(Me.GCAWBill)
         Me.XTPOutbound.Controls.Add(Me.PanelControl1)
         Me.XTPOutbound.Name = "XTPOutbound"
-        Me.XTPOutbound.Size = New System.Drawing.Size(904, 273)
+        Me.XTPOutbound.Size = New System.Drawing.Size(931, 273)
         Me.XTPOutbound.Text = "Outbound"
         '
         'XTPInbound
@@ -1346,6 +1378,14 @@ Partial Class FormWHAWBill
         Me.PanelControl2.Size = New System.Drawing.Size(931, 39)
         Me.PanelControl2.TabIndex = 3
         '
+        'CERO
+        '
+        Me.CERO.Location = New System.Drawing.Point(727, 10)
+        Me.CERO.Name = "CERO"
+        Me.CERO.Properties.Caption = "Show Return Order"
+        Me.CERO.Size = New System.Drawing.Size(120, 19)
+        Me.CERO.TabIndex = 108
+        '
         'BInView
         '
         Me.BInView.Location = New System.Drawing.Point(856, 8)
@@ -1445,14 +1485,6 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
         '
-        'CERO
-        '
-        Me.CERO.Location = New System.Drawing.Point(727, 10)
-        Me.CERO.Name = "CERO"
-        Me.CERO.Properties.Caption = "Show Return Order"
-        Me.CERO.Size = New System.Drawing.Size(120, 19)
-        Me.CERO.TabIndex = 108
-        '
         'FormWHAWBill
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1489,6 +1521,7 @@ Partial Class FormWHAWBill
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.CERO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEInCompare.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEInEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEInEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1496,7 +1529,6 @@ Partial Class FormWHAWBill
         CType(Me.DEInStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEInNoEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEInNoStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CERO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

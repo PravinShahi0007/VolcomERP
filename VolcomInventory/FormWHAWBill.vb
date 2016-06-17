@@ -347,7 +347,6 @@
     End Sub
 
     Private Sub GVAWBill_CellMerge(sender As Object, e As DevExpress.XtraGrid.Views.Grid.CellMergeEventArgs) Handles GVAWBill.CellMerge
-        'If (e.Column.FieldName = "do_no" Or e.Column.FieldName = "scan_date" Or e.Column.FieldName = "reff" Or e.Column.FieldName = "qty") Then
         If (e.Column.FieldName = "id_awbill" Or e.Column.FieldName = "weight" Or e.Column.FieldName = "length" Or e.Column.FieldName = "width" Or e.Column.FieldName = "height" Or e.Column.FieldName = "volume" Or e.Column.FieldName = "c_weight" Or e.Column.FieldName = "c_tot_price" Or e.Column.FieldName = "a_weight" Or e.Column.FieldName = "a_tot_price" Or e.Column.FieldName = "weight_diff" Or e.Column.FieldName = "amount_diff") Then
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             Dim val1 As String = view.GetRowCellValue(e.RowHandle1, "id_awbill")
@@ -359,5 +358,4 @@
             e.Handled = True
         End If
     End Sub
-
 End Class

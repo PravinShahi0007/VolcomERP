@@ -51,29 +51,30 @@ Public Class FormWHCargoRateDet
         '
         Dim find_string As String = ""
         Dim filter_string As String = ""
-        Dim sort(FormWHCargoRate.GVCompany.Columns.Count, 2) As String
+        Dim sort_out(FormWHCargoRate.GVCompany.Columns.Count, 2) As String
+        Dim sort_in(FormWHCargoRate.GVCompanyIn.Columns.Count, 2) As String
         '
         If id_rate_type = "1" Then
             find_string = FormWHCargoRate.GVCompany.FindFilterText.ToString
             filter_string = FormWHCargoRate.GVCompany.ActiveFilterString
             'sorting
             For i As Integer = 0 To FormWHCargoRate.GVCompany.SortedColumns.Count - 1
-                sort(i, 1) = FormWHCargoRate.GVCompany.SortedColumns.Item(i).FieldName
+                sort_out(i, 1) = FormWHCargoRate.GVCompany.SortedColumns.Item(i).FieldName
                 If FormWHCargoRate.GVCompany.SortedColumns.Item(i).SortOrder = DevExpress.Data.ColumnSortOrder.Ascending Then
-                    sort(i, 2) = "1"
+                    sort_out(i, 2) = "1"
                 Else
-                    sort(i, 2) = "2"
+                    sort_out(i, 2) = "2"
                 End If
             Next
             '
             FormWHCargoRate.load_cargo_rate()
             'sorting
             For i As Integer = 0 To FormWHCargoRate.GVCompany.Columns.Count.ToString
-                If Not sort(i, 2) = "" Then
-                    If sort(i, 2) = "1" Then
-                        FormWHCargoRate.GVCompany.Columns(sort(i, 1)).SortOrder = DevExpress.Data.ColumnSortOrder.Ascending
+                If Not sort_out(i, 2) = "" Then
+                    If sort_out(i, 2) = "1" Then
+                        FormWHCargoRate.GVCompany.Columns(sort_out(i, 1)).SortOrder = DevExpress.Data.ColumnSortOrder.Ascending
                     Else
-                        FormWHCargoRate.GVCompany.Columns(sort(i, 1)).SortOrder = DevExpress.Data.ColumnSortOrder.Descending
+                        FormWHCargoRate.GVCompany.Columns(sort_out(i, 1)).SortOrder = DevExpress.Data.ColumnSortOrder.Descending
                     End If
 
                 End If
@@ -86,7 +87,16 @@ Public Class FormWHCargoRateDet
         Else
             find_string = FormWHCargoRate.GVCompanyIn.FindFilterText.ToString
             filter_string = FormWHCargoRate.GVCompanyIn.ActiveFilterString
-
+            'sorting
+            For i As Integer = 0 To FormWHCargoRate.GVCompany.SortedColumns.Count - 1
+                sort_out(i, 1) = FormWHCargoRate.GVCompany.SortedColumns.Item(i).FieldName
+                If FormWHCargoRate.GVCompany.SortedColumns.Item(i).SortOrder = DevExpress.Data.ColumnSortOrder.Ascending Then
+                    sort_out(i, 2) = "1"
+                Else
+                    sort_out(i, 2) = "2"
+                End If
+            Next
+            '
             FormWHCargoRate.load_cargo_rate_in()
 
             FormWHCargoRate.GVCompanyIn.ApplyFindFilter(find_string)
