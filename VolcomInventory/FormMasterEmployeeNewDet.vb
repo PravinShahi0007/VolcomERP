@@ -105,6 +105,7 @@
             TxtNickName.Text = datarow("employee_nick_name").ToString
             TxtInitialName.Text = datarow("employee_initial_name").ToString
             DEJoinDate.EditValue = datarow("employee_join_date")
+            DELastDay.EditValue = datarow("employee_last_date")
             LEActive.ItemIndex = LEActive.Properties.GetDataSourceRowIndex("id_employee_active", data.Rows(0)("id_employee_active").ToString)
             LESex.ItemIndex = LESex.Properties.GetDataSourceRowIndex("id_sex", data.Rows(0)("id_sex").ToString)
             LEBloodType.ItemIndex = LEBloodType.Properties.GetDataSourceRowIndex("id_blood_type", data.Rows(0)("id_blood_type").ToString)
@@ -216,12 +217,17 @@
         If Not formIsValidInPanel(ErrorProvider1, PanelControlTop) Or Not formIsValidInXTP(ErrorProvider1, XTPGeneral) Then
             errorInput()
         Else
+            Dim id_employee_active As String = addSlashes(LEActive.EditValue.ToString)
             Dim employee_code As String = addSlashes(TxtCode.Text)
             Dim employee_name As String = addSlashes(TxtFullName.Text)
             Dim employee_nick_name As String = addSlashes(TxtNickName.Text)
             Dim employee_initial_name As String = addSlashes(TxtInitialName.Text)
             Dim employee_join_date As String = addSlashes(DateTime.Parse(DEJoinDate.EditValue.ToString).ToString("yyyy-MM-dd"))
-            Dim id_employee_active As String = addSlashes(LEActive.EditValue.ToString)
+            Dim employee_last_date As String = "NULL"
+            Try
+                employee_last_date = checkNullInput(DateTime.Parse(DELastDay.EditValue.ToString).ToString("yyyy-MM-dd"))
+            Catch ex As Exception
+            End Try
             Dim id_sex As String = addSlashes(LESex.EditValue.ToString)
             Dim id_blood_type As String = addSlashes(LEBloodType.EditValue.ToString)
             Dim employee_pob As String = addSlashes(TxtPOB.Text)
@@ -261,8 +267,8 @@
 
             If action = "ins" Then
                 'main
-                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_kesehatan, employee_npwp, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other) "
-                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', '" + employee_bpjs_kesehatan + "', '" + employee_npwp + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_kesehatan, employee_npwp, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other) "
+                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', '" + employee_bpjs_kesehatan + "', '" + employee_npwp + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "'); SELECT LAST_INSERT_ID(); "
                 id_employee = execute_query(query, 0, True, "", "", "", "")
 
                 'pic
@@ -282,6 +288,7 @@
                 query += "employee_nick_name='" + employee_nick_name + "', "
                 query += "employee_initial_name='" + employee_initial_name + "', "
                 query += "employee_join_date='" + employee_join_date + "', "
+                query += "employee_last_date=" + employee_last_date + ", "
                 query += "id_employee_active='" + id_employee_active + "', "
                 query += "id_sex='" + id_sex + "', "
                 query += "id_blood_type='" + id_blood_type + "', "
@@ -398,6 +405,15 @@
     Private Sub GVDependent_DoubleClick(sender As Object, e As EventArgs) Handles GVDependent.DoubleClick
         If GVDependent.RowCount > 0 And GVDependent.FocusedRowHandle >= 0 Then
             editDependent()
+        End If
+    End Sub
+
+    Private Sub LEActive_EditValueChanged(sender As Object, e As EventArgs) Handles LEActive.EditValueChanged
+        If LEActive.EditValue.ToString > 1 Then
+            DELastDay.Enabled = True
+        Else
+            DELastDay.EditValue = Nothing
+            DELastDay.Enabled = False
         End If
     End Sub
 End Class
