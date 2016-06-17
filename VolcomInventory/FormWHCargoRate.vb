@@ -93,6 +93,7 @@
             GCCompany.DataSource = data
 
             GVCompany.Columns("id_store").Visible = False
+            GVCompany.Columns("id").Visible = False
 
             GVCompany.BestFitColumns()
         End If
@@ -160,6 +161,7 @@
             GCCompanyIn.DataSource = data
 
             GVCompanyIn.Columns("id_store").Visible = False
+            GVCompanyIn.Columns("id").Visible = False
 
             GVCompanyIn.BestFitColumns()
         End If

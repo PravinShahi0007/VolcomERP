@@ -1,4 +1,6 @@
-﻿Public Class FormWHCargoRateDet
+﻿Imports System.Collections.ObjectModel
+
+Public Class FormWHCargoRateDet
     Public id_store As String = "-1"
     Public id_cargo As String = "-1"
     Public id_rate_type As String = "-1"
@@ -46,12 +48,61 @@
         query = "INSERT INTO tb_wh_cargo_rate (id_store,id_cargo,id_rate_type,cargo_rate,cargo_lead_time,cargo_min_weight,cargo_rate_date) VALUES('" + id_store + "','" + id_cargo + "','" + id_rate_type + "','" + decimalSQL(TERate.EditValue.ToString) + "','" + decimalSQL(TELeadTime.EditValue.ToString) + "','" + decimalSQL(TEMinWeight.EditValue.ToString) + "',now())"
         execute_non_query(query, True, "", "", "", "")
         infoCustom("Rate saved.")
+        '
+        Dim find_string As String = ""
+        Dim filter_string As String = ""
+        Dim sort_out(FormWHCargoRate.GVCompany.Columns.Count, 2) As String
+        Dim sort_in(FormWHCargoRate.GVCompanyIn.Columns.Count, 2) As String
+        '
         If id_rate_type = "1" Then
+            find_string = FormWHCargoRate.GVCompany.FindFilterText.ToString
+            filter_string = FormWHCargoRate.GVCompany.ActiveFilterString
+            'sorting
+            For i As Integer = 0 To FormWHCargoRate.GVCompany.SortedColumns.Count - 1
+                sort_out(i, 1) = FormWHCargoRate.GVCompany.SortedColumns.Item(i).FieldName
+                If FormWHCargoRate.GVCompany.SortedColumns.Item(i).SortOrder = DevExpress.Data.ColumnSortOrder.Ascending Then
+                    sort_out(i, 2) = "1"
+                Else
+                    sort_out(i, 2) = "2"
+                End If
+            Next
+            '
             FormWHCargoRate.load_cargo_rate()
-            FormWHCargoRate.GVCompany.FocusedRowHandle = find_row(FormWHCargoRate.GVCompany, "id_store", id_store)
+            'sorting
+            For i As Integer = 0 To FormWHCargoRate.GVCompany.Columns.Count.ToString
+                If Not sort_out(i, 2) = "" Then
+                    If sort_out(i, 2) = "1" Then
+                        FormWHCargoRate.GVCompany.Columns(sort_out(i, 1)).SortOrder = DevExpress.Data.ColumnSortOrder.Ascending
+                    Else
+                        FormWHCargoRate.GVCompany.Columns(sort_out(i, 1)).SortOrder = DevExpress.Data.ColumnSortOrder.Descending
+                    End If
+
+                End If
+            Next
+            '
+            FormWHCargoRate.GVCompany.ApplyFindFilter(find_string)
+            FormWHCargoRate.GVCompany.ActiveFilterString = filter_string
+
+            FormWHCargoRate.GVCompany.FocusedRowHandle = find_row_as_is(FormWHCargoRate.GVCompany, "id_store", id_store)
         Else
+            find_string = FormWHCargoRate.GVCompanyIn.FindFilterText.ToString
+            filter_string = FormWHCargoRate.GVCompanyIn.ActiveFilterString
+            'sorting
+            For i As Integer = 0 To FormWHCargoRate.GVCompany.SortedColumns.Count - 1
+                sort_out(i, 1) = FormWHCargoRate.GVCompany.SortedColumns.Item(i).FieldName
+                If FormWHCargoRate.GVCompany.SortedColumns.Item(i).SortOrder = DevExpress.Data.ColumnSortOrder.Ascending Then
+                    sort_out(i, 2) = "1"
+                Else
+                    sort_out(i, 2) = "2"
+                End If
+            Next
+            '
             FormWHCargoRate.load_cargo_rate_in()
-            FormWHCargoRate.GVCompanyIn.FocusedRowHandle = find_row(FormWHCargoRate.GVCompanyIn, "id_store", id_store)
+
+            FormWHCargoRate.GVCompanyIn.ApplyFindFilter(find_string)
+            FormWHCargoRate.GVCompanyIn.ActiveFilterString = filter_string
+
+            FormWHCargoRate.GVCompanyIn.FocusedRowHandle = find_row_as_is(FormWHCargoRate.GVCompanyIn, "id_store", id_store)
         End If
         Close()
     End Sub
