@@ -358,4 +358,36 @@
             e.Handled = True
         End If
     End Sub
+
+    Private Sub GCAWBill_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles GCAWBill.ProcessGridKey
+        If e.KeyCode = Keys.Enter Then
+            GVAWBill.FocusedRowHandle += 1
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub GCAwbillIn_ProcessGridKey(sender As Object, e As KeyEventArgs) Handles GCAwbillIn.ProcessGridKey
+        If e.KeyCode = Keys.Enter Then
+            GVAwbillIn.FocusedRowHandle += 1
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub GVAWBill_HiddenEditor(sender As Object, e As EventArgs) Handles GVAWBill.HiddenEditor
+        If GVAWBill.FocusedColumn.FieldName = "rec_by_store_date" Then
+            Dim datex As String = ""
+            If Not GVAWBill.GetFocusedRowCellValue("rec_by_store_date").ToString = "" Then
+                datex = "'" & Date.Parse(GVAWBill.GetFocusedRowCellValue("rec_by_store_date").ToString).ToString("yyyy-MM-dd") & "'"
+            Else
+                datex = "NULL"
+            End If
+
+            Dim query As String = "UPDATE tb_wh_awbill SET rec_by_store_date=" + datex + " WHERE id_awbill='" + GVAWBill.GetFocusedRowCellValue("id_awbill").ToString + "'"
+            execute_non_query(query, True, "", "", "", "")
+            'MsgBox(DateDiff(DateInterval.Day, GVAWBill.GetFocusedRowCellValue("eta_date"), GVAWBill.GetFocusedRowCellValue("rec_by_store_date"))).ToString()
+        ElseIf GVAWBill.FocusedColumn.FieldName = "rec_by_store_person" Then
+            Dim query As String = "UPDATE tb_wh_awbill SET rec_by_store_person='" + GVAWBill.GetFocusedRowCellValue("rec_by_store_person") + "' WHERE id_awbill='" + GVAWBill.GetFocusedRowCellValue("id_awbill").ToString + "'"
+            execute_non_query(query, True, "", "", "", "")
+        End If
+    End Sub
 End Class
