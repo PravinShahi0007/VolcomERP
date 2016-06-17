@@ -112,6 +112,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.Label33 = New System.Windows.Forms.Label()
         Me.BtnDeleteDependent = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnEditDependent = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddDependent = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrevious = New DevExpress.XtraEditors.SimpleButton()
@@ -1059,6 +1060,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControl2.Controls.Add(Me.LEMarriageStatus)
         Me.PanelControl2.Controls.Add(Me.Label33)
         Me.PanelControl2.Controls.Add(Me.BtnDeleteDependent)
+        Me.PanelControl2.Controls.Add(Me.BtnEditDependent)
         Me.PanelControl2.Controls.Add(Me.BtnAddDependent)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
@@ -1080,11 +1082,21 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.BtnDeleteDependent.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDeleteDependent.Image = CType(resources.GetObject("BtnDeleteDependent.Image"), System.Drawing.Image)
-        Me.BtnDeleteDependent.Location = New System.Drawing.Point(619, 0)
+        Me.BtnDeleteDependent.Location = New System.Drawing.Point(530, 0)
         Me.BtnDeleteDependent.Name = "BtnDeleteDependent"
         Me.BtnDeleteDependent.Size = New System.Drawing.Size(89, 37)
         Me.BtnDeleteDependent.TabIndex = 6
         Me.BtnDeleteDependent.Text = "Delete"
+        '
+        'BtnEditDependent
+        '
+        Me.BtnEditDependent.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnEditDependent.Image = CType(resources.GetObject("BtnEditDependent.Image"), System.Drawing.Image)
+        Me.BtnEditDependent.Location = New System.Drawing.Point(619, 0)
+        Me.BtnEditDependent.Name = "BtnEditDependent"
+        Me.BtnEditDependent.Size = New System.Drawing.Size(89, 37)
+        Me.BtnEditDependent.TabIndex = 58
+        Me.BtnEditDependent.Text = "Edit"
         '
         'BtnAddDependent
         '
@@ -1330,4 +1342,5 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnEditDependent As DevExpress.XtraEditors.SimpleButton
 End Class

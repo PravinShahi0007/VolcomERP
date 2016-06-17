@@ -640,6 +640,12 @@
     <Compile Include="FormMasterDesignCOPPD.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterEmployeeDependent.Designer.vb">
+      <DependentUpon>FormMasterEmployeeDependent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterEmployeeDependent.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterEmployeeNewDet.Designer.vb">
       <DependentUpon>FormMasterEmployeeNewDet.vb</DependentUpon>
     </Compile>
@@ -4350,6 +4356,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterDesignCOPPD.resx">
       <DependentUpon>FormMasterDesignCOPPD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterEmployeeDependent.resx">
+      <DependentUpon>FormMasterEmployeeDependent.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeeNewDet.resx">
       <DependentUpon>FormMasterEmployeeNewDet.vb</DependentUpon>

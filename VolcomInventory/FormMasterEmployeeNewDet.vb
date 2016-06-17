@@ -57,8 +57,10 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDependent.DataSource = data
         If GVDependent.RowCount > 0 Then
+            BtnEditDependent.Enabled = True
             BtnDeleteDependent.Enabled = True
         Else
+            BtnEditDependent.Enabled = False
             BtnDeleteDependent.Enabled = False
         End If
     End Sub
@@ -355,5 +357,47 @@
 
     Private Sub FormMasterEmployeeNewDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BtnAddDependent_Click(sender As Object, e As EventArgs) Handles BtnAddDependent.Click
+        Cursor = Cursors.WaitCursor
+        FormMasterEmployeeDependent.action = "ins"
+        FormMasterEmployeeDependent.id_employee = id_employee
+        FormMasterEmployeeDependent.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnEditDependent_Click(sender As Object, e As EventArgs) Handles BtnEditDependent.Click
+        editDependent()
+    End Sub
+
+    Sub editDependent()
+        Cursor = Cursors.WaitCursor
+        FormMasterEmployeeDependent.action = "upd"
+        FormMasterEmployeeDependent.id_employee = id_employee
+        FormMasterEmployeeDependent.id_employee_dependent = GVDependent.GetFocusedRowCellValue("id_employee_dependent").ToString
+        FormMasterEmployeeDependent.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDeleteDependent_Click(sender As Object, e As EventArgs) Handles BtnDeleteDependent.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this country?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        Dim id_employee_dependent As String = GVDependent.GetFocusedRowCellDisplayText("id_employee_dependent").ToString
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Try
+                Dim query As String = "DELETE FROM tb_m_employee_dependent WHERE id_employee_dependent='" + id_employee_dependent + "'"
+                execute_non_query(query, True, "", "", "", "")
+                viewDependent()
+            Catch ex As Exception
+                errorDelete()
+            End Try
+        End If
+    End Sub
+
+    Private Sub GVDependent_DoubleClick(sender As Object, e As EventArgs) Handles GVDependent.DoubleClick
+        If GVDependent.RowCount > 0 And GVDependent.FocusedRowHandle >= 0 Then
+            editDependent()
+        End If
     End Sub
 End Class
