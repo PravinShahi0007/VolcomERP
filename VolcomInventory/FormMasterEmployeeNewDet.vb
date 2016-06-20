@@ -65,6 +65,17 @@
         End If
     End Sub
 
+    Sub viewEmployeeStatus()
+        Dim query As String = "SELECT * FROM tb_m_employee_status_det a INNER JOIN tb_lookup_employee_status b on b.id_employee_status=a.id_employee_status WHERE a.id_employee='" + id_employee + "' ORDER BY a.id_employee_status_det DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCStatus.DataSource = data
+        If GVStatus.RowCount > 0 Then
+            BtnDeleteStatus.Enabled = True
+        Else
+            BtnDeleteStatus.Enabled = False
+        End If
+    End Sub
+
 
     Private Sub FormMasterEmployeeNewDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         data_dt = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
@@ -79,6 +90,7 @@
         viewActive()
         viewDegree()
         viewMarriageStatus()
+        viewEmployeeStatus()
         actionLoad()
     End Sub
 
@@ -414,6 +426,28 @@
         Else
             DELastDay.EditValue = Nothing
             DELastDay.Enabled = False
+        End If
+    End Sub
+
+    Private Sub BtnAddStatus_Click(sender As Object, e As EventArgs) Handles BtnAddStatus.Click
+        Cursor = Cursors.WaitCursor
+        FormMasterEmployeeStatus.id_employee = id_employee
+        FormMasterEmployeeStatus.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDeleteStatus_Click(sender As Object, e As EventArgs) Handles BtnDeleteStatus.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        Dim id_employee_status_det As String = GVStatus.GetFocusedRowCellDisplayText("id_employee_status_det").ToString
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Try
+                Dim query As String = "DELETE FROM tb_m_employee_status_det WHERE id_employee_status_det='" + id_employee_status_det + "'"
+                execute_non_query(query, True, "", "", "", "")
+                viewEmployeeStatus()
+            Catch ex As Exception
+                errorDelete()
+            End Try
         End If
     End Sub
 End Class

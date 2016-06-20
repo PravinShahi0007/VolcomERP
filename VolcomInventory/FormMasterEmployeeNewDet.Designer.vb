@@ -101,9 +101,13 @@ Partial Class FormMasterEmployeeNewDet
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCStatus = New DevExpress.XtraGrid.GridControl()
         Me.GVStatus = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStartPeriod = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEnd = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDeleteStatus = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPosition = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPDependent = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDependent = New DevExpress.XtraGrid.GridControl()
@@ -988,40 +992,77 @@ Partial Class FormMasterEmployeeNewDet
         '
         'GVStatus
         '
+        Me.GVStatus.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDet, Me.GridColumn1, Me.GridColumnStartPeriod, Me.GridColumnEnd})
         Me.GVStatus.GridControl = Me.GCStatus
         Me.GVStatus.Name = "GVStatus"
+        Me.GVStatus.OptionsBehavior.Editable = False
+        Me.GVStatus.OptionsCustomization.AllowSort = False
         Me.GVStatus.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIdDet
+        '
+        Me.GridColumnIdDet.Caption = "Id"
+        Me.GridColumnIdDet.FieldName = "id_employee_status_det"
+        Me.GridColumnIdDet.Name = "GridColumnIdDet"
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Status"
+        Me.GridColumn1.FieldName = "employee_status"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumnStartPeriod
+        '
+        Me.GridColumnStartPeriod.Caption = "Start"
+        Me.GridColumnStartPeriod.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnStartPeriod.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnStartPeriod.FieldName = "start_period"
+        Me.GridColumnStartPeriod.Name = "GridColumnStartPeriod"
+        Me.GridColumnStartPeriod.Visible = True
+        Me.GridColumnStartPeriod.VisibleIndex = 1
+        '
+        'GridColumnEnd
+        '
+        Me.GridColumnEnd.Caption = "End"
+        Me.GridColumnEnd.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnEnd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnEnd.FieldName = "end_period"
+        Me.GridColumnEnd.Name = "GridColumnEnd"
+        Me.GridColumnEnd.Visible = True
+        Me.GridColumnEnd.VisibleIndex = 2
         '
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BtnDeleteStatus)
+        Me.PanelControl1.Controls.Add(Me.BtnAddStatus)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(2, 2)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(793, 37)
         Me.PanelControl1.TabIndex = 0
         '
-        'SimpleButton2
+        'BtnDeleteStatus
         '
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
-        Me.SimpleButton2.Location = New System.Drawing.Point(615, 0)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(89, 37)
-        Me.SimpleButton2.TabIndex = 6
-        Me.SimpleButton2.Text = "Delete"
+        Me.BtnDeleteStatus.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDeleteStatus.Image = CType(resources.GetObject("BtnDeleteStatus.Image"), System.Drawing.Image)
+        Me.BtnDeleteStatus.Location = New System.Drawing.Point(615, 0)
+        Me.BtnDeleteStatus.Name = "BtnDeleteStatus"
+        Me.BtnDeleteStatus.Size = New System.Drawing.Size(89, 37)
+        Me.BtnDeleteStatus.TabIndex = 6
+        Me.BtnDeleteStatus.Text = "Delete"
         '
-        'SimpleButton1
+        'BtnAddStatus
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(704, 0)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(89, 37)
-        Me.SimpleButton1.TabIndex = 3
-        Me.SimpleButton1.Text = "Add"
+        Me.BtnAddStatus.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddStatus.Image = CType(resources.GetObject("BtnAddStatus.Image"), System.Drawing.Image)
+        Me.BtnAddStatus.Location = New System.Drawing.Point(704, 0)
+        Me.BtnAddStatus.Name = "BtnAddStatus"
+        Me.BtnAddStatus.Size = New System.Drawing.Size(89, 37)
+        Me.BtnAddStatus.TabIndex = 3
+        Me.BtnAddStatus.Text = "Add"
         '
         'XTPPosition
         '
@@ -1360,8 +1401,8 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCStatus As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVStatus As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnDeleteStatus As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddStatus As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSaveChanges As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTPPosition As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents TxtFocus As DevExpress.XtraEditors.TextEdit
@@ -1379,4 +1420,8 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents BtnEditDependent As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DELastDay As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelLastDay As Label
+    Friend WithEvents GridColumnIdDet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStartPeriod As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEnd As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -652,6 +652,12 @@
     <Compile Include="FormMasterEmployeeNewDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterEmployeeStatus.Designer.vb">
+      <DependentUpon>FormMasterEmployeeStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterEmployeeStatus.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterPrice.Designer.vb">
       <DependentUpon>FormMasterPrice.vb</DependentUpon>
     </Compile>
@@ -4362,6 +4368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeeNewDet.resx">
       <DependentUpon>FormMasterEmployeeNewDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterEmployeeStatus.resx">
+      <DependentUpon>FormMasterEmployeeStatus.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterPrice.resx">
       <DependentUpon>FormMasterPrice.vb</DependentUpon>
