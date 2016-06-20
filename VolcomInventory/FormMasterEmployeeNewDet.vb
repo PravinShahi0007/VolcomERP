@@ -445,6 +445,26 @@
                 Dim query As String = "DELETE FROM tb_m_employee_status_det WHERE id_employee_status_det='" + id_employee_status_det + "'"
                 execute_non_query(query, True, "", "", "", "")
                 viewEmployeeStatus()
+
+                If GVStatus.RowCount > 0 Then
+                    Dim query_upd As String = "UPDATE tb_m_employee emp "
+                    query_upd += "INNER JOIN ( "
+                    query_upd += "SELECT a.id_employee_status, a.id_employee FROM tb_m_employee_status_det a  "
+                    query_upd += "INNER JOIN ( "
+                    query_upd += "SELECT MAX(id_employee_status_det) AS id_employee_status_det "
+                    query_upd += "FROM tb_m_employee_status_det b  "
+                    query_upd += "WHERE b.id_employee='" + id_employee + "' "
+                    query_upd += ") mx ON mx.id_employee_status_det = a.id_employee_status_det "
+                    query_upd += "WHERE a.id_employee='" + id_employee + "' ORDER BY a.id_employee_status_det DESC "
+                    query_upd += ") dt ON dt.id_employee = emp.id_employee "
+                    query_upd += "SET emp.id_employee_status = dt.id_employee_status "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                Else
+                    Dim query_upd As String = "UPDATE tb_m_employee emp "
+                    query_upd += "SET emp.id_employee_status =0 "
+                    query_upd += "WHERE emp.id_employee='" + id_employee + "' "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                End If
             Catch ex As Exception
                 errorDelete()
             End Try
