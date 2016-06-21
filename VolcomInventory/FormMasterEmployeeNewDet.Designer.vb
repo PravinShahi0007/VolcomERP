@@ -102,6 +102,19 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnDeleteStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPPosition = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPosition = New DevExpress.XtraGrid.GridControl()
+        Me.GVPosition = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDatePostion = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDeletePosition = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddPosition = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDependent = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDependent = New DevExpress.XtraGrid.GridControl()
         Me.GVDependent = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -118,19 +131,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDeletePosition = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAddPosition = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCPosition = New DevExpress.XtraGrid.GridControl()
-        Me.GVPosition = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDatePostion = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.DELastDay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -185,6 +185,10 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         Me.XTPPosition.SuspendLayout()
+        CType(Me.GCPosition, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPosition, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         Me.XTPDependent.SuspendLayout()
         CType(Me.GCDependent, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDependent, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -193,10 +197,6 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.GCPosition, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVPosition, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlTop
@@ -1005,6 +1005,124 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPPosition.Size = New System.Drawing.Size(797, 422)
         Me.XTPPosition.Text = "Position"
         '
+        'GCPosition
+        '
+        Me.GCPosition.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPosition.Location = New System.Drawing.Point(0, 37)
+        Me.GCPosition.MainView = Me.GVPosition
+        Me.GCPosition.Name = "GCPosition"
+        Me.GCPosition.Size = New System.Drawing.Size(797, 385)
+        Me.GCPosition.TabIndex = 2
+        Me.GCPosition.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPosition})
+        '
+        'GVPosition
+        '
+        Me.GVPosition.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumnDatePostion})
+        Me.GVPosition.GridControl = Me.GCPosition
+        Me.GVPosition.Name = "GVPosition"
+        Me.GVPosition.OptionsBehavior.Editable = False
+        Me.GVPosition.OptionsCustomization.AllowSort = False
+        Me.GVPosition.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Id"
+        Me.GridColumn4.FieldName = "id_employee_position"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Origin Dept"
+        Me.GridColumn5.FieldName = "departement_origin"
+        Me.GridColumn5.FieldNameSortGroup = "id_departement_origin"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Origin Level"
+        Me.GridColumn6.FieldName = "employee_level_origin"
+        Me.GridColumn6.FieldNameSortGroup = "id_employee_level_origin"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Origin Position"
+        Me.GridColumn7.FieldName = "employee_position_origin"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 6
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Dept"
+        Me.GridColumn8.FieldName = "departement"
+        Me.GridColumn8.FieldNameSortGroup = "id_departement"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Level"
+        Me.GridColumn9.FieldName = "employee_level"
+        Me.GridColumn9.FieldNameSortGroup = "id_employee_level"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Position"
+        Me.GridColumn10.FieldName = "employee_position"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        '
+        'GridColumnDatePostion
+        '
+        Me.GridColumnDatePostion.Caption = "Date"
+        Me.GridColumnDatePostion.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnDatePostion.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnDatePostion.FieldName = "employee_position_date"
+        Me.GridColumnDatePostion.Name = "GridColumnDatePostion"
+        Me.GridColumnDatePostion.Visible = True
+        Me.GridColumnDatePostion.VisibleIndex = 0
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.BtnDeletePosition)
+        Me.PanelControl3.Controls.Add(Me.BtnAddPosition)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(797, 37)
+        Me.PanelControl3.TabIndex = 1
+        '
+        'BtnDeletePosition
+        '
+        Me.BtnDeletePosition.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDeletePosition.Image = CType(resources.GetObject("BtnDeletePosition.Image"), System.Drawing.Image)
+        Me.BtnDeletePosition.Location = New System.Drawing.Point(619, 0)
+        Me.BtnDeletePosition.Name = "BtnDeletePosition"
+        Me.BtnDeletePosition.Size = New System.Drawing.Size(89, 37)
+        Me.BtnDeletePosition.TabIndex = 6
+        Me.BtnDeletePosition.Text = "Delete"
+        '
+        'BtnAddPosition
+        '
+        Me.BtnAddPosition.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddPosition.Image = CType(resources.GetObject("BtnAddPosition.Image"), System.Drawing.Image)
+        Me.BtnAddPosition.Location = New System.Drawing.Point(708, 0)
+        Me.BtnAddPosition.Name = "BtnAddPosition"
+        Me.BtnAddPosition.Size = New System.Drawing.Size(89, 37)
+        Me.BtnAddPosition.TabIndex = 3
+        Me.BtnAddPosition.Text = "Add"
+        '
         'XTPDependent
         '
         Me.XTPDependent.Controls.Add(Me.GCDependent)
@@ -1160,124 +1278,6 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.BtnDeletePosition)
-        Me.PanelControl3.Controls.Add(Me.BtnAddPosition)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(797, 37)
-        Me.PanelControl3.TabIndex = 1
-        '
-        'BtnDeletePosition
-        '
-        Me.BtnDeletePosition.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDeletePosition.Image = CType(resources.GetObject("BtnDeletePosition.Image"), System.Drawing.Image)
-        Me.BtnDeletePosition.Location = New System.Drawing.Point(619, 0)
-        Me.BtnDeletePosition.Name = "BtnDeletePosition"
-        Me.BtnDeletePosition.Size = New System.Drawing.Size(89, 37)
-        Me.BtnDeletePosition.TabIndex = 6
-        Me.BtnDeletePosition.Text = "Delete"
-        '
-        'BtnAddPosition
-        '
-        Me.BtnAddPosition.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAddPosition.Image = CType(resources.GetObject("BtnAddPosition.Image"), System.Drawing.Image)
-        Me.BtnAddPosition.Location = New System.Drawing.Point(708, 0)
-        Me.BtnAddPosition.Name = "BtnAddPosition"
-        Me.BtnAddPosition.Size = New System.Drawing.Size(89, 37)
-        Me.BtnAddPosition.TabIndex = 3
-        Me.BtnAddPosition.Text = "Add"
-        '
-        'GCPosition
-        '
-        Me.GCPosition.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPosition.Location = New System.Drawing.Point(0, 37)
-        Me.GCPosition.MainView = Me.GVPosition
-        Me.GCPosition.Name = "GCPosition"
-        Me.GCPosition.Size = New System.Drawing.Size(797, 385)
-        Me.GCPosition.TabIndex = 2
-        Me.GCPosition.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPosition})
-        '
-        'GVPosition
-        '
-        Me.GVPosition.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumnDatePostion})
-        Me.GVPosition.GridControl = Me.GCPosition
-        Me.GVPosition.Name = "GVPosition"
-        Me.GVPosition.OptionsBehavior.Editable = False
-        Me.GVPosition.OptionsCustomization.AllowSort = False
-        Me.GVPosition.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Id"
-        Me.GridColumn4.FieldName = "id_employee_position"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Origin Dept"
-        Me.GridColumn5.FieldName = "departement_origin"
-        Me.GridColumn5.FieldNameSortGroup = "id_departement_origin"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Origin Level"
-        Me.GridColumn6.FieldName = "employee_level_origin"
-        Me.GridColumn6.FieldNameSortGroup = "id_employee_level_origin"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Origin Position"
-        Me.GridColumn7.FieldName = "employee_position_origin"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 6
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Dept"
-        Me.GridColumn8.FieldName = "departement"
-        Me.GridColumn8.FieldNameSortGroup = "id_departement"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Level"
-        Me.GridColumn9.FieldName = "employee_level"
-        Me.GridColumn9.FieldNameSortGroup = "id_employee_level"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Position"
-        Me.GridColumn10.FieldName = "employee_position"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
-        '
-        'GridColumnDatePostion
-        '
-        Me.GridColumnDatePostion.Caption = "Date"
-        Me.GridColumnDatePostion.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnDatePostion.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnDatePostion.FieldName = "employee_position_date"
-        Me.GridColumnDatePostion.Name = "GridColumnDatePostion"
-        Me.GridColumnDatePostion.Visible = True
-        Me.GridColumnDatePostion.VisibleIndex = 0
-        '
         'FormMasterEmployeeNewDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1348,6 +1348,10 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.XTPPosition.ResumeLayout(False)
+        CType(Me.GCPosition, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPosition, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         Me.XTPDependent.ResumeLayout(False)
         CType(Me.GCDependent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDependent, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1357,10 +1361,6 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        CType(Me.GCPosition, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPosition, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

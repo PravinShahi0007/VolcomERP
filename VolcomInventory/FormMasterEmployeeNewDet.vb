@@ -4,10 +4,7 @@
     Dim data_dt As DataTable = Nothing
     Dim id_marriage_stattus_db As String = "-1"
 
-    'Sub viewDept()
-    '    Dim query As String = "SELECT * FROM tb_m_departement a ORDER BY a.departement ASC "
-    '    viewLookupQuery(LEDept, query, 0, "departement", "id_departement")
-    'End Sub
+
 
     Sub viewSex()
         Dim query As String = "SELECT * FROM tb_lookup_sex a ORDER BY a.id_sex "
@@ -28,11 +25,6 @@
         Dim query As String = "SELECT * FROM tb_m_country cty ORDER BY cty.id_country ASC "
         viewLookupQuery(LECountry, query, 0, "country", "id_country")
     End Sub
-
-    'Sub viewLevel()
-    '    Dim query As String = "SELECT * FROM tb_lookup_employee_level lvl ORDER BY lvl.id_employee_level ASC  "
-    '    viewLookupQuery(LELevel, query, 0, "employee_level", "id_employee_level")
-    'End Sub
 
     Sub viewActive()
         Dim query As String = "SELECT * FROM tb_lookup_employee_active act ORDER BY act.id_employee_active ASC "
@@ -486,5 +478,12 @@
                 errorDelete()
             End Try
         End If
+    End Sub
+
+    Private Sub BtnAddPosition_Click(sender As Object, e As EventArgs) Handles BtnAddPosition.Click
+        Cursor = Cursors.WaitCursor
+        FormMasterEmployeePosition.id_employee = id_employee
+        FormMasterEmployeePosition.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
