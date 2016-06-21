@@ -121,6 +121,8 @@
     <Reference Include="DevExpress.XtraReports.v15.1.Extensions, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
@@ -448,6 +450,18 @@
       <DependentUpon>FormDataReff.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDataReff.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpCalendar.Designer.vb">
+      <DependentUpon>FormEmpCalendar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpCalendar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpHoliday.Designer.vb">
+      <DependentUpon>FormEmpHoliday.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpHoliday.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpLeave.Designer.vb">
@@ -4248,6 +4262,12 @@
     <EmbeddedResource Include="FormDataReff.resx">
       <DependentUpon>FormDataReff.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpCalendar.resx">
+      <DependentUpon>FormEmpCalendar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpHoliday.resx">
+      <DependentUpon>FormEmpHoliday.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeave.resx">
       <DependentUpon>FormEmpLeave.vb</DependentUpon>

@@ -50,4 +50,12 @@
     Private Sub BSendMessage_Click(sender As Object, e As EventArgs) Handles BSendMessage.Click
         FormSendMessage.ShowDialog()
     End Sub
+
+    Private Sub BCalendar_Click(sender As Object, e As EventArgs) 
+        FormEmpCalendar.ShowDialog()
+    End Sub
+
+    Private Sub BTest_Click(sender As Object, e As EventArgs) Handles BTest.Click
+        FormEmpHoliday.ShowDialog()
+    End Sub
 End Class
