@@ -4,10 +4,10 @@
     Dim data_dt As DataTable = Nothing
     Dim id_marriage_stattus_db As String = "-1"
 
-    Sub viewDept()
-        Dim query As String = "SELECT * FROM tb_m_departement a ORDER BY a.departement ASC "
-        viewLookupQuery(LEDept, query, 0, "departement", "id_departement")
-    End Sub
+    'Sub viewDept()
+    '    Dim query As String = "SELECT * FROM tb_m_departement a ORDER BY a.departement ASC "
+    '    viewLookupQuery(LEDept, query, 0, "departement", "id_departement")
+    'End Sub
 
     Sub viewSex()
         Dim query As String = "SELECT * FROM tb_lookup_sex a ORDER BY a.id_sex "
@@ -29,10 +29,10 @@
         viewLookupQuery(LECountry, query, 0, "country", "id_country")
     End Sub
 
-    Sub viewLevel()
-        Dim query As String = "SELECT * FROM tb_lookup_employee_level lvl ORDER BY lvl.id_employee_level ASC  "
-        viewLookupQuery(LELevel, query, 0, "employee_level", "id_employee_level")
-    End Sub
+    'Sub viewLevel()
+    '    Dim query As String = "SELECT * FROM tb_lookup_employee_level lvl ORDER BY lvl.id_employee_level ASC  "
+    '    viewLookupQuery(LELevel, query, 0, "employee_level", "id_employee_level")
+    'End Sub
 
     Sub viewActive()
         Dim query As String = "SELECT * FROM tb_lookup_employee_active act ORDER BY act.id_employee_active ASC "
@@ -76,21 +76,42 @@
         End If
     End Sub
 
+    Sub viewEmployeePosition()
+        Dim query As String = "SELECT pos.id_employee_position, pos.id_employee,  "
+        query += "pos.id_departement_origin, org_dpt.departement, "
+        query += "pos.id_employee_level_origin, org_lvl.employee_level, pos.employee_position_origin, "
+        query += "pos.id_departement, dpt.departement, "
+        query += "pos.id_employee_level, lvl.employee_level, pos.employee_position, pos.employee_position_date "
+        query += "FROM tb_m_employee_position pos  "
+        query += "INNER JOIN tb_m_departement org_dpt ON org_dpt.id_departement = pos.id_departement_origin  "
+        query += "INNER JOIN tb_lookup_employee_level org_lvl ON org_lvl.id_employee_level = pos.id_employee_level_origin "
+        query += "INNER JOIN tb_m_departement dpt ON dpt.id_departement = pos.id_departement_origin  "
+        query += "INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level = pos.id_employee_level_origin "
+        query += "WHERE pos.id_employee='" + id_employee + "'  "
+        query += "ORDER BY pos.id_employee_position DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPosition.DataSource = data
+        If GVPosition.RowCount > 0 Then
+            BtnDeletePosition.Enabled = True
+        Else
+            BtnDeletePosition.Enabled = False
+        End If
+    End Sub
+
 
     Private Sub FormMasterEmployeeNewDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         data_dt = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEJoinDate.EditValue = data_dt.Rows(0)("dt")
         TxtCode.Focus()
         viewSex()
-        viewDept()
         viewBloodType()
         viewReligion()
         viewCountry()
-        viewLevel()
         viewActive()
         viewDegree()
         viewMarriageStatus()
         viewEmployeeStatus()
+        viewEmployeePosition()
         actionLoad()
     End Sub
 
@@ -194,10 +215,6 @@
 
     Private Sub TxtInitialName_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TxtInitialName.Validating
         EP_TE_cant_blank(ErrorProvider1, TxtInitialName)
-    End Sub
-
-    Private Sub TxtPosition_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TxtPosition.Validating
-        EP_TE_cant_blank(ErrorProvider1, TxtPosition)
     End Sub
 
     Private Sub PEEmployee_DoubleClick(sender As Object, e As EventArgs) Handles PEEmployee.DoubleClick

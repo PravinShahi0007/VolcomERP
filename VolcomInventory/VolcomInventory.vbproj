@@ -121,6 +121,8 @@
     <Reference Include="DevExpress.XtraReports.v15.1.Extensions, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
@@ -650,6 +652,12 @@
       <DependentUpon>FormMasterEmployeeNewDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMasterEmployeeNewDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterEmployeePosition.Designer.vb">
+      <DependentUpon>FormMasterEmployeePosition.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterEmployeePosition.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMasterEmployeeStatus.Designer.vb">
@@ -4368,6 +4376,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeeNewDet.resx">
       <DependentUpon>FormMasterEmployeeNewDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterEmployeePosition.resx">
+      <DependentUpon>FormMasterEmployeePosition.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeeStatus.resx">
       <DependentUpon>FormMasterEmployeeStatus.vb</DependentUpon>

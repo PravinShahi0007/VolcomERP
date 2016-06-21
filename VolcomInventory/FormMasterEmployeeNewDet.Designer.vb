@@ -40,12 +40,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlPic = New DevExpress.XtraEditors.PanelControl()
         Me.PEEmployee = New DevExpress.XtraEditors.PictureEdit()
         Me.LEMarriageStatus = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LEDept = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LELevel = New DevExpress.XtraEditors.LookUpEdit()
-        Me.Label27 = New System.Windows.Forms.Label()
-        Me.Label26 = New System.Windows.Forms.Label()
-        Me.TxtPosition = New DevExpress.XtraEditors.TextEdit()
-        Me.Label14 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.LEBloodType = New DevExpress.XtraEditors.LookUpEdit()
@@ -98,7 +92,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.LEReligion = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label10 = New System.Windows.Forms.Label()
         Me.XTPStatus = New DevExpress.XtraTab.XtraTabPage()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCStatus = New DevExpress.XtraGrid.GridControl()
         Me.GVStatus = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdDet = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -125,6 +118,19 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDeletePosition = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddPosition = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCPosition = New DevExpress.XtraGrid.GridControl()
+        Me.GVPosition = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDatePostion = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.DELastDay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,9 +147,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlPic.SuspendLayout()
         CType(Me.PEEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEMarriageStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LELevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtPosition.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEBloodType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAge.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPOB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -177,8 +180,6 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.TxtEthnic.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReligion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPStatus.SuspendLayout()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
         CType(Me.GCStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -192,6 +193,10 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.GCPosition, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPosition, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlTop
@@ -407,67 +412,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.LEMarriageStatus.Properties.NullText = "- Select Status -"
         Me.LEMarriageStatus.Size = New System.Drawing.Size(141, 20)
         Me.LEMarriageStatus.TabIndex = 57
-        '
-        'LEDept
-        '
-        Me.LEDept.Location = New System.Drawing.Point(107, 22)
-        Me.LEDept.Name = "LEDept"
-        Me.LEDept.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEDept.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LEDept.Size = New System.Drawing.Size(372, 20)
-        Me.LEDept.TabIndex = 4
-        Me.LEDept.TabStop = False
-        '
-        'LELevel
-        '
-        Me.LELevel.Location = New System.Drawing.Point(112, 80)
-        Me.LELevel.Name = "LELevel"
-        Me.LELevel.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LELevel.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_level", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_level", "Level")})
-        Me.LELevel.Size = New System.Drawing.Size(138, 20)
-        Me.LELevel.TabIndex = 7
-        Me.LELevel.TabStop = False
-        '
-        'Label27
-        '
-        Me.Label27.AutoSize = True
-        Me.Label27.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label27.Location = New System.Drawing.Point(43, 89)
-        Me.Label27.Name = "Label27"
-        Me.Label27.Size = New System.Drawing.Size(32, 13)
-        Me.Label27.TabIndex = 12
-        Me.Label27.Text = "Level"
-        '
-        'Label26
-        '
-        Me.Label26.AutoSize = True
-        Me.Label26.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(31, 61)
-        Me.Label26.Name = "Label26"
-        Me.Label26.Size = New System.Drawing.Size(44, 13)
-        Me.Label26.TabIndex = 11
-        Me.Label26.Text = "Position"
-        '
-        'TxtPosition
-        '
-        Me.TxtPosition.EditValue = ""
-        Me.TxtPosition.Location = New System.Drawing.Point(112, 54)
-        Me.TxtPosition.Name = "TxtPosition"
-        Me.TxtPosition.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPosition.Properties.Appearance.Options.UseFont = True
-        Me.TxtPosition.Size = New System.Drawing.Size(372, 20)
-        Me.TxtPosition.TabIndex = 6
-        Me.TxtPosition.TabStop = False
-        '
-        'Label14
-        '
-        Me.Label14.AutoSize = True
-        Me.Label14.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label14.Location = New System.Drawing.Point(31, 25)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(70, 13)
-        Me.Label14.TabIndex = 8
-        Me.Label14.Text = "Departement"
         '
         'Label6
         '
@@ -963,30 +907,19 @@ Partial Class FormMasterEmployeeNewDet
         '
         'XTPStatus
         '
-        Me.XTPStatus.Controls.Add(Me.GroupControl2)
+        Me.XTPStatus.Controls.Add(Me.GCStatus)
+        Me.XTPStatus.Controls.Add(Me.PanelControl1)
         Me.XTPStatus.Name = "XTPStatus"
         Me.XTPStatus.Size = New System.Drawing.Size(797, 422)
         Me.XTPStatus.Text = "Employee Status"
         '
-        'GroupControl2
-        '
-        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Bottom
-        Me.GroupControl2.Controls.Add(Me.GCStatus)
-        Me.GroupControl2.Controls.Add(Me.PanelControl1)
-        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(797, 422)
-        Me.GroupControl2.TabIndex = 1
-        Me.GroupControl2.Text = "Detail"
-        '
         'GCStatus
         '
         Me.GCStatus.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCStatus.Location = New System.Drawing.Point(2, 39)
+        Me.GCStatus.Location = New System.Drawing.Point(0, 37)
         Me.GCStatus.MainView = Me.GVStatus
         Me.GCStatus.Name = "GCStatus"
-        Me.GCStatus.Size = New System.Drawing.Size(793, 363)
+        Me.GCStatus.Size = New System.Drawing.Size(797, 385)
         Me.GCStatus.TabIndex = 1
         Me.GCStatus.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVStatus})
         '
@@ -1039,16 +972,16 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControl1.Controls.Add(Me.BtnDeleteStatus)
         Me.PanelControl1.Controls.Add(Me.BtnAddStatus)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(793, 37)
+        Me.PanelControl1.Size = New System.Drawing.Size(797, 37)
         Me.PanelControl1.TabIndex = 0
         '
         'BtnDeleteStatus
         '
         Me.BtnDeleteStatus.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDeleteStatus.Image = CType(resources.GetObject("BtnDeleteStatus.Image"), System.Drawing.Image)
-        Me.BtnDeleteStatus.Location = New System.Drawing.Point(615, 0)
+        Me.BtnDeleteStatus.Location = New System.Drawing.Point(619, 0)
         Me.BtnDeleteStatus.Name = "BtnDeleteStatus"
         Me.BtnDeleteStatus.Size = New System.Drawing.Size(89, 37)
         Me.BtnDeleteStatus.TabIndex = 6
@@ -1058,7 +991,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.BtnAddStatus.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAddStatus.Image = CType(resources.GetObject("BtnAddStatus.Image"), System.Drawing.Image)
-        Me.BtnAddStatus.Location = New System.Drawing.Point(704, 0)
+        Me.BtnAddStatus.Location = New System.Drawing.Point(708, 0)
         Me.BtnAddStatus.Name = "BtnAddStatus"
         Me.BtnAddStatus.Size = New System.Drawing.Size(89, 37)
         Me.BtnAddStatus.TabIndex = 3
@@ -1066,12 +999,8 @@ Partial Class FormMasterEmployeeNewDet
         '
         'XTPPosition
         '
-        Me.XTPPosition.Controls.Add(Me.Label14)
-        Me.XTPPosition.Controls.Add(Me.LEDept)
-        Me.XTPPosition.Controls.Add(Me.Label26)
-        Me.XTPPosition.Controls.Add(Me.TxtPosition)
-        Me.XTPPosition.Controls.Add(Me.LELevel)
-        Me.XTPPosition.Controls.Add(Me.Label27)
+        Me.XTPPosition.Controls.Add(Me.GCPosition)
+        Me.XTPPosition.Controls.Add(Me.PanelControl3)
         Me.XTPPosition.Name = "XTPPosition"
         Me.XTPPosition.Size = New System.Drawing.Size(797, 422)
         Me.XTPPosition.Text = "Position"
@@ -1231,6 +1160,124 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.BtnDeletePosition)
+        Me.PanelControl3.Controls.Add(Me.BtnAddPosition)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(797, 37)
+        Me.PanelControl3.TabIndex = 1
+        '
+        'BtnDeletePosition
+        '
+        Me.BtnDeletePosition.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDeletePosition.Image = CType(resources.GetObject("BtnDeletePosition.Image"), System.Drawing.Image)
+        Me.BtnDeletePosition.Location = New System.Drawing.Point(619, 0)
+        Me.BtnDeletePosition.Name = "BtnDeletePosition"
+        Me.BtnDeletePosition.Size = New System.Drawing.Size(89, 37)
+        Me.BtnDeletePosition.TabIndex = 6
+        Me.BtnDeletePosition.Text = "Delete"
+        '
+        'BtnAddPosition
+        '
+        Me.BtnAddPosition.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddPosition.Image = CType(resources.GetObject("BtnAddPosition.Image"), System.Drawing.Image)
+        Me.BtnAddPosition.Location = New System.Drawing.Point(708, 0)
+        Me.BtnAddPosition.Name = "BtnAddPosition"
+        Me.BtnAddPosition.Size = New System.Drawing.Size(89, 37)
+        Me.BtnAddPosition.TabIndex = 3
+        Me.BtnAddPosition.Text = "Add"
+        '
+        'GCPosition
+        '
+        Me.GCPosition.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPosition.Location = New System.Drawing.Point(0, 37)
+        Me.GCPosition.MainView = Me.GVPosition
+        Me.GCPosition.Name = "GCPosition"
+        Me.GCPosition.Size = New System.Drawing.Size(797, 385)
+        Me.GCPosition.TabIndex = 2
+        Me.GCPosition.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPosition})
+        '
+        'GVPosition
+        '
+        Me.GVPosition.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumnDatePostion})
+        Me.GVPosition.GridControl = Me.GCPosition
+        Me.GVPosition.Name = "GVPosition"
+        Me.GVPosition.OptionsBehavior.Editable = False
+        Me.GVPosition.OptionsCustomization.AllowSort = False
+        Me.GVPosition.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Id"
+        Me.GridColumn4.FieldName = "id_employee_position"
+        Me.GridColumn4.Name = "GridColumn4"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Origin Dept"
+        Me.GridColumn5.FieldName = "departement_origin"
+        Me.GridColumn5.FieldNameSortGroup = "id_departement_origin"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Origin Level"
+        Me.GridColumn6.FieldName = "employee_level_origin"
+        Me.GridColumn6.FieldNameSortGroup = "id_employee_level_origin"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Origin Position"
+        Me.GridColumn7.FieldName = "employee_position_origin"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 6
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Dept"
+        Me.GridColumn8.FieldName = "departement"
+        Me.GridColumn8.FieldNameSortGroup = "id_departement"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 1
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Level"
+        Me.GridColumn9.FieldName = "employee_level"
+        Me.GridColumn9.FieldNameSortGroup = "id_employee_level"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 2
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Position"
+        Me.GridColumn10.FieldName = "employee_position"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        '
+        'GridColumnDatePostion
+        '
+        Me.GridColumnDatePostion.Caption = "Date"
+        Me.GridColumnDatePostion.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnDatePostion.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnDatePostion.FieldName = "employee_position_date"
+        Me.GridColumnDatePostion.Name = "GridColumnDatePostion"
+        Me.GridColumnDatePostion.Visible = True
+        Me.GridColumnDatePostion.VisibleIndex = 0
+        '
         'FormMasterEmployeeNewDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1262,9 +1309,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlPic.ResumeLayout(False)
         CType(Me.PEEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEMarriageStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LELevel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtPosition.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEBloodType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAge.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPOB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1299,14 +1343,11 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.TxtEthnic.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReligion.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPStatus.ResumeLayout(False)
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCStatus, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVStatus, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.XTPPosition.ResumeLayout(False)
-        Me.XTPPosition.PerformLayout()
         Me.XTPDependent.ResumeLayout(False)
         CType(Me.GCDependent, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDependent, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1316,6 +1357,10 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.GCPosition, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPosition, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1379,14 +1424,8 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents TxtBPJSSehat As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label16 As Label
     Friend WithEvents XTPStatus As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents Label27 As Label
-    Friend WithEvents Label26 As Label
-    Friend WithEvents TxtPosition As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label14 As Label
-    Friend WithEvents LELevel As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label28 As Label
     Friend WithEvents LESex As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LEDept As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents ErrorProvider1 As ErrorProvider
     Friend WithEvents DEJoinDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEDOB As DevExpress.XtraEditors.DateEdit
@@ -1397,7 +1436,6 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents Label31 As Label
     Friend WithEvents Label32 As Label
     Friend WithEvents LEActive As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCStatus As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVStatus As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1424,4 +1462,17 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStartPeriod As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnEnd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GCPosition As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPosition As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDatePostion As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnDeletePosition As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddPosition As DevExpress.XtraEditors.SimpleButton
 End Class
