@@ -408,7 +408,8 @@
         Cursor = Cursors.WaitCursor
         Dim printableComponentLink1 As New DevExpress.XtraPrinting.PrintableComponentLink(New DevExpress.XtraPrinting.PrintingSystem())
         Dim save_d As SaveFileDialog = New SaveFileDialog()
-        save_d.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx"
+        'save_d.Filter = "Excel (2003)(.xls)|*.xls|Excel (2010) (.xlsx)|*.xlsx"
+        save_d.Filter = "Excel (1993)(.XLS)|*.XLS|Excel (2010) (.xlsx)|*.xlsx"
         save_d.FileName = "import_ecop_" + Now.ToString("yyyy_MMM_dd__hh_mm_ss_tt")
 
         If save_d.ShowDialog() = DialogResult.OK Then
@@ -421,6 +422,10 @@
             Process.Start(exp)
         End If
         Cursor = Cursors.Default
+
+        '95
+
+        '
 
         'after
         GVPerDesign.Columns("season").GroupIndex = "0"
