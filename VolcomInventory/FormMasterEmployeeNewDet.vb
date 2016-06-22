@@ -70,15 +70,15 @@
 
     Sub viewEmployeePosition()
         Dim query As String = "SELECT pos.id_employee_position, pos.id_employee,  "
-        query += "pos.id_departement_origin, org_dpt.departement, "
-        query += "pos.id_employee_level_origin, org_lvl.employee_level, pos.employee_position_origin, "
+        query += "pos.id_departement_origin, IFNULL(org_dpt.departement, '-') AS `departement_origin`, "
+        query += "pos.id_employee_level_origin, IFNULL(org_lvl.employee_level,'-') AS `employee_level_origin`, IFNULL(pos.employee_position_origin,'-') AS `employee_position_origin`, "
         query += "pos.id_departement, dpt.departement, "
         query += "pos.id_employee_level, lvl.employee_level, pos.employee_position, pos.employee_position_date "
         query += "FROM tb_m_employee_position pos  "
-        query += "INNER JOIN tb_m_departement org_dpt ON org_dpt.id_departement = pos.id_departement_origin  "
-        query += "INNER JOIN tb_lookup_employee_level org_lvl ON org_lvl.id_employee_level = pos.id_employee_level_origin "
-        query += "INNER JOIN tb_m_departement dpt ON dpt.id_departement = pos.id_departement_origin  "
-        query += "INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level = pos.id_employee_level_origin "
+        query += "LEFT JOIN tb_m_departement org_dpt ON org_dpt.id_departement = pos.id_departement_origin  "
+        query += "LEFT JOIN tb_lookup_employee_level org_lvl ON org_lvl.id_employee_level = pos.id_employee_level_origin "
+        query += "INNER JOIN tb_m_departement dpt ON dpt.id_departement = pos.id_departement  "
+        query += "INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level = pos.id_employee_level "
         query += "WHERE pos.id_employee='" + id_employee + "'  "
         query += "ORDER BY pos.id_employee_position DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -485,5 +485,42 @@
         FormMasterEmployeePosition.id_employee = id_employee
         FormMasterEmployeePosition.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDeletePosition_Click(sender As Object, e As EventArgs) Handles BtnDeletePosition.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        Dim id_employee_position As String = GVPosition.GetFocusedRowCellDisplayText("id_employee_position").ToString
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Try
+                Dim query As String = "DELETE FROM tb_m_employee_position WHERE id_employee_position='" + id_employee_position + "'"
+                execute_non_query(query, True, "", "", "", "")
+                viewEmployeePosition()
+
+                If GVPosition.RowCount > 0 Then
+                    Dim query_upd As String = "UPDATE tb_m_employee emp "
+                    query_upd += "INNER JOIN ( "
+                    query_upd += "SELECT a.id_employee_position, a.id_departement, a.id_employee, a.id_employee_level, a.employee_position FROM tb_m_employee_position a  "
+                    query_upd += "INNER JOIN ( "
+                    query_upd += "SELECT MAX(id_employee_position) AS id_employee_position "
+                    query_upd += "FROM tb_m_employee_position b  "
+                    query_upd += "WHERE b.id_employee='" + id_employee + "' "
+                    query_upd += ") mx ON mx.id_employee_position = a.id_employee_position "
+                    query_upd += "WHERE a.id_employee='" + id_employee + "' ORDER BY a.id_employee_position DESC "
+                    query_upd += ") dt ON dt.id_employee = emp.id_employee "
+                    query_upd += "SET emp.id_departement = dt.id_departement, "
+                    query_upd += "emp.id_employee_level = dt.id_employee_level, "
+                    query_upd += "emp.employee_position = dt.employee_position "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                Else
+                    Dim query_upd As String = "UPDATE tb_m_employee emp "
+                    query_upd += "SET emp.id_departement=NULL, emp.id_employee_level =NULL, emp.employee_position=NULL "
+                    query_upd += "WHERE emp.id_employee='" + id_employee + "' "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                End If
+            Catch ex As Exception
+                errorDelete()
+            End Try
+        End If
     End Sub
 End Class

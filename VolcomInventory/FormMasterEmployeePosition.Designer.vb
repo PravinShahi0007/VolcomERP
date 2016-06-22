@@ -19,6 +19,7 @@ Partial Class FormMasterEmployeePosition
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -34,7 +35,8 @@ Partial Class FormMasterEmployeePosition
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEJoinDate = New DevExpress.XtraEditors.DateEdit()
+        Me.DEDate = New DevExpress.XtraEditors.DateEdit()
+        Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEOriginDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -43,8 +45,9 @@ Partial Class FormMasterEmployeePosition
         CType(Me.TxtPosition.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LELevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEJoinDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BtnSave
@@ -53,7 +56,7 @@ Partial Class FormMasterEmployeePosition
         Me.BtnSave.Location = New System.Drawing.Point(415, 0)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 37)
-        Me.BtnSave.TabIndex = 0
+        Me.BtnSave.TabIndex = 4
         Me.BtnSave.Text = "Save"
         '
         'PanelControl1
@@ -61,10 +64,10 @@ Partial Class FormMasterEmployeePosition
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 216)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 201)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(490, 37)
-        Me.PanelControl1.TabIndex = 1
+        Me.PanelControl1.TabIndex = 100
         '
         'LabelControl1
         '
@@ -84,6 +87,7 @@ Partial Class FormMasterEmployeePosition
         Me.LEOriginDept.Properties.NullText = "-"
         Me.LEOriginDept.Size = New System.Drawing.Size(358, 20)
         Me.LEOriginDept.TabIndex = 3
+        Me.LEOriginDept.TabStop = False
         '
         'LabelControl2
         '
@@ -103,6 +107,7 @@ Partial Class FormMasterEmployeePosition
         Me.LEOriginLevel.Properties.NullText = "-"
         Me.LEOriginLevel.Size = New System.Drawing.Size(358, 20)
         Me.LEOriginLevel.TabIndex = 5
+        Me.LEOriginLevel.TabStop = False
         '
         'TxtOriginPosition
         '
@@ -111,6 +116,7 @@ Partial Class FormMasterEmployeePosition
         Me.TxtOriginPosition.Name = "TxtOriginPosition"
         Me.TxtOriginPosition.Size = New System.Drawing.Size(358, 20)
         Me.TxtOriginPosition.TabIndex = 6
+        Me.TxtOriginPosition.TabStop = False
         '
         'LabelControl3
         '
@@ -125,7 +131,7 @@ Partial Class FormMasterEmployeePosition
         Me.TxtPosition.Location = New System.Drawing.Point(114, 142)
         Me.TxtPosition.Name = "TxtPosition"
         Me.TxtPosition.Size = New System.Drawing.Size(358, 20)
-        Me.TxtPosition.TabIndex = 10
+        Me.TxtPosition.TabIndex = 2
         '
         'LELevel
         '
@@ -135,7 +141,7 @@ Partial Class FormMasterEmployeePosition
         Me.LELevel.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_level", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_level", "Level")})
         Me.LELevel.Properties.NullText = "-"
         Me.LELevel.Size = New System.Drawing.Size(358, 20)
-        Me.LELevel.TabIndex = 9
+        Me.LELevel.TabIndex = 1
         '
         'LEDepartement
         '
@@ -145,7 +151,7 @@ Partial Class FormMasterEmployeePosition
         Me.LEDepartement.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departement")})
         Me.LEDepartement.Properties.NullText = "-"
         Me.LEDepartement.Size = New System.Drawing.Size(358, 20)
-        Me.LEDepartement.TabIndex = 8
+        Me.LEDepartement.TabIndex = 0
         '
         'LabelControl4
         '
@@ -179,26 +185,31 @@ Partial Class FormMasterEmployeePosition
         Me.LabelControl7.TabIndex = 14
         Me.LabelControl7.Text = "Effective Date"
         '
-        'DEJoinDate
+        'DEDate
         '
-        Me.DEJoinDate.EditValue = Nothing
-        Me.DEJoinDate.Location = New System.Drawing.Point(114, 166)
-        Me.DEJoinDate.Name = "DEJoinDate"
-        Me.DEJoinDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
-        Me.DEJoinDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEJoinDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEJoinDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEJoinDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEJoinDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEJoinDate.Size = New System.Drawing.Size(358, 20)
-        Me.DEJoinDate.TabIndex = 15
+        Me.DEDate.EditValue = Nothing
+        Me.DEDate.Location = New System.Drawing.Point(114, 166)
+        Me.DEDate.Name = "DEDate"
+        Me.DEDate.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[False]
+        Me.DEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEDate.Size = New System.Drawing.Size(358, 20)
+        Me.DEDate.TabIndex = 3
+        '
+        'ErrorProvider1
+        '
+        Me.ErrorProvider1.ContainerControl = Me
         '
         'FormMasterEmployeePosition
         '
+        Me.AcceptButton = Me.BtnSave
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(490, 253)
-        Me.Controls.Add(Me.DEJoinDate)
+        Me.ClientSize = New System.Drawing.Size(490, 238)
+        Me.Controls.Add(Me.DEDate)
         Me.Controls.Add(Me.LabelControl7)
         Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.LabelControl5)
@@ -227,8 +238,9 @@ Partial Class FormMasterEmployeePosition
         CType(Me.TxtPosition.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LELevel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEJoinDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -249,5 +261,6 @@ Partial Class FormMasterEmployeePosition
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DEJoinDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents ErrorProvider1 As ErrorProvider
 End Class

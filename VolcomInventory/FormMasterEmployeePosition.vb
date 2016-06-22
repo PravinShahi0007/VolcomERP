@@ -23,9 +23,65 @@
         'current position
         Dim query As String = "SELECT emp.id_departement,emp.employee_position, emp.id_employee_level FROM tb_m_employee emp WHERE emp.id_employee='" + id_employee + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        LEOriginDept.EditValue = data.Rows(0)("id_departement")
-        LEOriginLevel.EditValue = data.Rows(0)("id_employee_level")
+
+        If data.Rows(0)("id_departement").ToString = "" Then
+            LEOriginDept.EditValue = Nothing
+        Else
+            LEOriginDept.ItemIndex = LEOriginDept.Properties.GetDataSourceRowIndex("id_departement", data.Rows(0)("id_departement").ToString)
+        End If
+
+        If data.Rows(0)("id_employee_level").ToString = "" Then
+            LEOriginLevel.EditValue = Nothing
+        Else
+            LEOriginLevel.ItemIndex = LEOriginLevel.Properties.GetDataSourceRowIndex("id_employee_level", data.Rows(0)("id_employee_level").ToString)
+        End If
         TxtOriginPosition.Text = data.Rows(0)("employee_position").ToString
     End Sub
 
+    Private Sub DEJoinDate_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DEDate.Validating
+        EP_DE_cant_blank(ErrorProvider1, DEDate)
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        ValidateChildren()
+        If Not formIsValid(ErrorProvider1) Then
+            errorInput()
+        Else
+            Dim id_departement_origin As String = "NULL"
+            Try
+                id_departement_origin = checkNullInput(LEOriginDept.EditValue.ToString)
+            Catch ex As Exception
+            End Try
+            Dim id_employee_level_origin As String = "NULL"
+            Try
+                id_employee_level_origin = checkNullInput(LEOriginLevel.EditValue.ToString)
+            Catch ex As Exception
+            End Try
+            Dim employee_position_origin As String = checkNullInput(TxtOriginPosition.Text)
+            Dim id_departement As String = LEDepartement.EditValue.ToString
+            Dim id_employee_level As String = LELevel.EditValue.ToString
+            Dim employee_position As String = addSlashes(TxtPosition.Text)
+            Dim employee_position_date As String = DateTime.Parse(DEDate.EditValue.ToString).ToString("yyyy-MM-dd")
+
+            'ins
+            Dim query As String = "INSERT INTO tb_m_employee_position(id_employee, id_departement_origin, id_employee_level_origin, employee_position_origin, id_departement, id_employee_level, employee_position, employee_position_date) "
+            query += "VALUES('" + id_employee + "', " + id_departement_origin + ",  " + id_employee_level_origin + ", " + employee_position_origin + ", '" + id_departement + "', '" + id_employee_level + "', '" + employee_position + "', '" + employee_position_date + "'); SELECT LAST_INSERT_ID(); "
+            id_employee_position = execute_query(query, 0, True, "", "", "", "")
+
+            'update position
+            Dim query_upd As String = "UPDATE tb_m_employee SET id_departement='" + id_departement + "', id_employee_level='" + id_employee_level + "', employee_position='" + employee_position + "' WHERE id_employee='" + id_employee + "' "
+            execute_non_query(query_upd, True, "", "", "", "")
+
+            FormMasterEmployeeNewDet.viewEmployeePosition()
+            Close()
+        End If
+    End Sub
+
+    Private Sub FormMasterEmployeePosition_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub TxtPosition_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TxtPosition.Validating
+        EP_TE_cant_blank(ErrorProvider1, TxtPosition)
+    End Sub
 End Class
