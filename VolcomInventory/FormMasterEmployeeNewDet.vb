@@ -523,4 +523,8 @@
             End Try
         End If
     End Sub
+
+    Private Sub DEJoinDate_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DEJoinDate.Validating
+        EP_DE_cant_blank(ErrorProvider1, DEJoinDate)
+    End Sub
 End Class
