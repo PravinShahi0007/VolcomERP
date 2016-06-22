@@ -21,17 +21,14 @@ Partial Class FormEmpHoliday
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
-        Me.SearchLookUpEdit1 = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SLEReligion = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdReligionSLE = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReligionSLE = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEYear = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GVSLEDesgSearch = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnCodeSearch = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnYear = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -43,7 +40,7 @@ Partial Class FormEmpHoliday
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEReligion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,7 +52,7 @@ Partial Class FormEmpHoliday
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BSearch)
-        Me.PanelControl1.Controls.Add(Me.SearchLookUpEdit1)
+        Me.PanelControl1.Controls.Add(Me.SLEReligion)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.SLEYear)
         Me.PanelControl1.Controls.Add(Me.LabelControl9)
@@ -73,53 +70,36 @@ Partial Class FormEmpHoliday
         Me.BSearch.TabIndex = 8904
         Me.BSearch.Text = "View"
         '
-        'SearchLookUpEdit1
+        'SLEReligion
         '
-        Me.SearchLookUpEdit1.Location = New System.Drawing.Point(272, 12)
-        Me.SearchLookUpEdit1.Name = "SearchLookUpEdit1"
-        Me.SearchLookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SearchLookUpEdit1.Properties.View = Me.GridView1
-        Me.SearchLookUpEdit1.Size = New System.Drawing.Size(166, 20)
-        Me.SearchLookUpEdit1.TabIndex = 8900
+        Me.SLEReligion.Location = New System.Drawing.Point(272, 12)
+        Me.SLEReligion.Name = "SLEReligion"
+        Me.SLEReligion.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEReligion.Properties.View = Me.GridView1
+        Me.SLEReligion.Size = New System.Drawing.Size(166, 20)
+        Me.SLEReligion.TabIndex = 8900
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdReligionSLE, Me.GridColumnReligionSLE})
         Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
+        'GridColumnIdReligionSLE
         '
-        Me.GridColumn1.Caption = "Code"
-        Me.GridColumn1.FieldName = "design_code"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 186
+        Me.GridColumnIdReligionSLE.Caption = "Id Religion"
+        Me.GridColumnIdReligionSLE.FieldName = "id_religion"
+        Me.GridColumnIdReligionSLE.Name = "GridColumnIdReligionSLE"
         '
-        'GridColumn2
+        'GridColumnReligionSLE
         '
-        Me.GridColumn2.Caption = "Description"
-        Me.GridColumn2.FieldName = "display_name"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 360
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn3.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn3.Caption = "Color"
-        Me.GridColumn3.FieldName = "color"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 146
+        Me.GridColumnReligionSLE.Caption = "Religion"
+        Me.GridColumnReligionSLE.FieldName = "religion"
+        Me.GridColumnReligionSLE.Name = "GridColumnReligionSLE"
+        Me.GridColumnReligionSLE.Visible = True
+        Me.GridColumnReligionSLE.VisibleIndex = 0
         '
         'LabelControl1
         '
@@ -141,42 +121,19 @@ Partial Class FormEmpHoliday
         '
         'GVSLEDesgSearch
         '
-        Me.GVSLEDesgSearch.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCodeSearch, Me.GridColumn7, Me.GridColumn9})
+        Me.GVSLEDesgSearch.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnYear})
         Me.GVSLEDesgSearch.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GVSLEDesgSearch.Name = "GVSLEDesgSearch"
         Me.GVSLEDesgSearch.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GVSLEDesgSearch.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnCodeSearch
+        'GridColumnYear
         '
-        Me.GridColumnCodeSearch.Caption = "Code"
-        Me.GridColumnCodeSearch.FieldName = "design_code"
-        Me.GridColumnCodeSearch.Name = "GridColumnCodeSearch"
-        Me.GridColumnCodeSearch.Visible = True
-        Me.GridColumnCodeSearch.VisibleIndex = 0
-        Me.GridColumnCodeSearch.Width = 186
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Description"
-        Me.GridColumn7.FieldName = "display_name"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
-        Me.GridColumn7.Width = 360
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn9.Caption = "Color"
-        Me.GridColumn9.FieldName = "color"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 2
-        Me.GridColumn9.Width = 146
+        Me.GridColumnYear.Caption = "Year"
+        Me.GridColumnYear.FieldName = "year"
+        Me.GridColumnYear.Name = "GridColumnYear"
+        Me.GridColumnYear.Visible = True
+        Me.GridColumnYear.VisibleIndex = 0
         '
         'LabelControl9
         '
@@ -253,11 +210,12 @@ Partial Class FormEmpHoliday
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormEmpHoliday"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Holiday List"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.SearchLookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEReligion.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEYear.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).EndInit()
@@ -271,15 +229,9 @@ Partial Class FormEmpHoliday
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SLEYear As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GVSLEDesgSearch As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnCodeSearch As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SearchLookUpEdit1 As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents SLEReligion As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCProd As DevExpress.XtraGrid.GridControl
@@ -290,4 +242,7 @@ Partial Class FormEmpHoliday
     Friend WithEvents GridColumnReligion As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnYear As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdReligionSLE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnReligionSLE As DevExpress.XtraGrid.Columns.GridColumn
 End Class
