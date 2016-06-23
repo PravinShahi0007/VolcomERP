@@ -116,6 +116,38 @@
         Dim query As String = query_c.queryMain("AND a.id_report_status = '6' AND (a.id_prepare_status='1') ", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesReturnOrder.DataSource = data
+
+        Dim id_sales_return_order As String = "-1"
+        Try
+            id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
+        Catch ex As Exception
+        End Try
+        Dim id_store_contact_to As String = "-1"
+        Try
+            id_store_contact_to = GVSalesReturnOrder.GetFocusedRowCellValue("id_store_contact_to").ToString
+        Catch ex As Exception
+        End Try
+
+        Dim id_wh_drawer As String = "-1"
+        Try
+            id_wh_drawer = GVSalesReturnOrder.GetFocusedRowCellValue("id_wh_drawer_store").ToString
+        Catch ex As Exception
+        End Try
+
+        Dim id_wh_rack As String = "-1"
+        Try
+            id_wh_rack = GVSalesReturnOrder.GetFocusedRowCellValue("id_wh_rack_store").ToString
+        Catch ex As Exception
+        End Try
+
+        Dim id_wh_locator As String = "-1"
+        Try
+            id_wh_locator = GVSalesReturnOrder.GetFocusedRowCellValue("id_wh_locator_store").ToString
+        Catch ex As Exception
+        End Try
+        viewListReturnOrder(id_sales_return_order, get_company_contact_x(id_store_contact_to, "3"), id_wh_drawer, id_wh_rack, id_wh_locator)
+
+
         check_menu()
     End Sub
 
