@@ -857,7 +857,6 @@ Partial Class FormAccountingFakturScanSingle
         Me.GridColumnMasaPajakDK.Caption = "MASA_PAJAK"
         Me.GridColumnMasaPajakDK.FieldName = "masa_pajak"
         Me.GridColumnMasaPajakDK.Name = "GridColumnMasaPajakDK"
-        Me.GridColumnMasaPajakDK.OptionsColumn.ReadOnly = True
         Me.GridColumnMasaPajakDK.Visible = True
         Me.GridColumnMasaPajakDK.VisibleIndex = 8
         '
@@ -866,7 +865,6 @@ Partial Class FormAccountingFakturScanSingle
         Me.GridColumnTahunPajakDK.Caption = "TAHUN_PAJAK"
         Me.GridColumnTahunPajakDK.FieldName = "tahun_pajak"
         Me.GridColumnTahunPajakDK.Name = "GridColumnTahunPajakDK"
-        Me.GridColumnTahunPajakDK.OptionsColumn.ReadOnly = True
         Me.GridColumnTahunPajakDK.Visible = True
         Me.GridColumnTahunPajakDK.VisibleIndex = 9
         '
@@ -972,7 +970,7 @@ Partial Class FormAccountingFakturScanSingle
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddRowToolStripMenuItem, Me.DeleteRowToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(131, 48)
         '
         'AddRowToolStripMenuItem
         '
@@ -983,7 +981,7 @@ Partial Class FormAccountingFakturScanSingle
         'DeleteRowToolStripMenuItem
         '
         Me.DeleteRowToolStripMenuItem.Name = "DeleteRowToolStripMenuItem"
-        Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.DeleteRowToolStripMenuItem.Text = "Delete row"
         '
         'FormAccountingFakturScanSingle

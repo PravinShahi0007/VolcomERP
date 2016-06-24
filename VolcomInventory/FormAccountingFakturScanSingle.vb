@@ -359,6 +359,23 @@ Public Class FormAccountingFakturScanSingle
                             query_detail += "('" + id_acc_fak_scan + "', '" + kd_jenis_transaksi + "', '" + fg_pengganti + "', '" + nomor_faktur + "', '" + masa_pajak + "', '" + tahun_pajak + "', '" + tanggal_faktur + "', '" + npwp + "', '" + nama + "', '" + alamat_lengkap + "', '" + jumlah_dpp + "', '" + jumlah_ppn + "', '" + jumlah_ppnbm + "', '" + is_creditable + "') "
                             jum_ins_j = jum_ins_j + 1
                         Else
+                            Dim query_upd As String = "UPDATE tb_a_acc_fak_scan_det SET "
+                            query_upd += "id_acc_fak_scan_det ='" + id_acc_fak_scan_det + "', "
+                            query_upd += "kd_jenis_transaksi ='" + kd_jenis_transaksi + "', "
+                            query_upd += "fg_pengganti='" + fg_pengganti + "', "
+                            query_upd += "nomor_faktur ='" + nomor_faktur + "', "
+                            query_upd += "masa_pajak='" + masa_pajak + "', "
+                            query_upd += "tahun_pajak ='" + tahun_pajak + "', "
+                            query_upd += "tanggal_faktur ='" + tanggal_faktur + "', "
+                            query_upd += "npwp ='" + npwp + "', "
+                            query_upd += "nama ='" + nama + "', "
+                            query_upd += "alamat_lengkap='" + alamat_lengkap + "',  "
+                            query_upd += "jumlah_dpp ='" + jumlah_dpp + "', "
+                            query_upd += "jumlah_ppn ='" + jumlah_ppn + "', "
+                            query_upd += "jumlah_ppnbm ='" + jumlah_ppnbm + "', "
+                            query_upd += "is_creditable ='" + is_creditable + "' "
+                            query_upd += "WHERE id_acc_fak_scan_det = '" + id_acc_fak_scan_det + "' "
+                            execute_non_query(query_upd, True, "", "", "", "")
                             id_acc_fak_scan_det_list.Remove(id_acc_fak_scan_det)
                         End If
                     Catch ex As Exception
@@ -410,6 +427,7 @@ Public Class FormAccountingFakturScanSingle
                             jum_ins_j = jum_ins_j + 1
                         Else
                             Dim query_upd_ As String = "UPDATE tb_a_acc_fak_scan_dm_det SET jenis_transaksi='" + jenis_transaksi + "', jenis_dokumen='" + jenis_dokumen + "', kd_jns_transaksi='" + kd_jns_transaksi + "', fg_pengganti='" + fg_pengganti + "', nomor_dok_lain_ganti='" + nomor_dok_lain_ganti + "', nomor_dok_lain='" + nomor_dok_lain + "', tanggal_dok_lain='" + tanggal_dok_lain + "', masa_pajak='" + masa_pajak + "', tahun_pajak='" + tahun_pajak + "', npwp='" + npwp + "', nama='" + nama + "', alamat_lengkap='" + alamat_lengkap + "', jumlah_dpp='" + jumlah_dpp + "', jumlah_ppn='" + jumlah_ppn + "', jumlah_ppnbm='" + jumlah_ppnbm + "', keterangan='" + keterangan + "' WHERE id_acc_fak_scan_dm_det='" + id_acc_fak_scan_dm_det + "' "
+                            execute_non_query(query_upd_, True, "", "", "", "")
                             id_acc_fak_scan_det_list.Remove(id_acc_fak_scan_dm_det)
                         End If
                     Catch ex As Exception
