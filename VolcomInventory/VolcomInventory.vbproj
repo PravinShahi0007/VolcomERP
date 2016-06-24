@@ -121,6 +121,8 @@
     <Reference Include="DevExpress.XtraReports.v15.1.Extensions, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraReports.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraRichEdit.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeList.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraVerticalGrid.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
@@ -177,6 +179,7 @@
     <Compile Include="barcodeaa.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
     <Compile Include="ClassFGBorrowQCReq.vb" />
     <Compile Include="ClassFGCodeReplace.vb" />
@@ -203,6 +206,7 @@
     <Compile Include="ClassSampleOrdered.vb" />
     <Compile Include="ClassSamplePLtoWH.vb" />
     <Compile Include="ClassSampleReturnPL.vb" />
+    <Compile Include="ClassSendingMail.vb" />
     <Compile Include="ClassShowPopUp.vb" />
     <Compile Include="ClassStock.vb" />
     <Compile Include="FindPanel.vb">
@@ -446,6 +450,30 @@
       <DependentUpon>FormDataReff.vb</DependentUpon>
     </Compile>
     <Compile Include="FormDataReff.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpCalendar.Designer.vb">
+      <DependentUpon>FormEmpCalendar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpCalendar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpHoliday.Designer.vb">
+      <DependentUpon>FormEmpHoliday.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpHoliday.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpLeave.Designer.vb">
+      <DependentUpon>FormEmpLeave.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpLeave.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpLeaveDet.Designer.vb">
+      <DependentUpon>FormEmpLeaveDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpLeaveDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGBorrowQCReq.Designer.vb">
@@ -2770,6 +2798,12 @@
     <Compile Include="FormSeasonSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSendMessage.Designer.vb">
+      <DependentUpon>FormSendMessage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSendMessage.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSetupNumberHeader.Designer.vb">
       <DependentUpon>FormSetupNumberHeader.vb</DependentUpon>
     </Compile>
@@ -4228,6 +4262,18 @@
     <EmbeddedResource Include="FormDataReff.resx">
       <DependentUpon>FormDataReff.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpCalendar.resx">
+      <DependentUpon>FormEmpCalendar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpHoliday.resx">
+      <DependentUpon>FormEmpHoliday.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpLeave.resx">
+      <DependentUpon>FormEmpLeave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpLeaveDet.resx">
+      <DependentUpon>FormEmpLeaveDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGBorrowQCReq.resx">
       <DependentUpon>FormFGBorrowQCReq.vb</DependentUpon>
@@ -5742,6 +5788,9 @@
     <EmbeddedResource Include="FormSeasonSingle.resx">
       <DependentUpon>FormSeasonSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSendMessage.resx">
+      <DependentUpon>FormSendMessage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSetupNumberHeader.resx">
       <DependentUpon>FormSetupNumberHeader.vb</DependentUpon>

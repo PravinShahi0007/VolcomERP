@@ -50,9 +50,10 @@
                 If Not formIsValid(EPDepartement) Then
                     errorInput()
                 Else
-                    query = String.Format("UPDATE tb_m_departement SET departement='{0}',departement_code='{1}',description='{2}' WHERE id_departement='{3}'", departement, departement_code, description, id_departement)
+                    query = String.Format("UPDATE tb_m_departement SET departement='{0}',departement_code='{1}',description='{2}',id_user_head='{4}' WHERE id_departement='{3}'", departement, departement_code, description, id_departement, SLEHeadDept.EditValue.ToString)
                     execute_non_query(query, True, "", "", "", "")
                     FormMasterDepartement.view_department()
+                    FormMasterDepartement.GVDepartment.FocusedRowHandle = find_row(FormMasterDepartement.GVDepartment, "id_departement", id_departement)
                     Close()
                 End If
             Else
@@ -60,9 +61,10 @@
                 If Not formIsValid(EPDepartement) Then
                     errorInput()
                 Else
-                    query = String.Format("INSERT INTO tb_m_departement(departement,departement_code,description) VALUES('{0}','{1}','{2}')", departement, departement_code, description)
-                    execute_non_query(query, True, "", "", "", "")
+                    query = String.Format("INSERT INTO tb_m_departement(departement,departement_code,description) VALUES('{0}','{1}','{2}'); SELECT LAST_INSERT_ID()", departement, departement_code, description)
+                    id_departement = execute_query(query, 0, True, "", "", "", "")
                     FormMasterDepartement.view_department()
+                    FormMasterDepartement.GVDepartment.FocusedRowHandle = find_row(FormMasterDepartement.GVDepartment, "id_departement", id_departement)
                     Close()
                 End If
             End If
@@ -71,8 +73,9 @@
         End Try
         Cursor = Cursors.Default
     End Sub
-
     Private Sub FormMasterDepartementSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        load_user()
+
         If id_departement <> "-1" Then
             'update
             Dim query As String = String.Format("SELECT * FROM tb_m_departement WHERE id_departement = '{0}'", id_departement)
@@ -82,15 +85,20 @@
             Dim departement_code As String = data.Rows(0)("departement_code").ToString
             Dim description As String = data.Rows(0)("description").ToString
 
+            Dim id_user_head As String = data.Rows(0)("id_user_head").ToString
+            SLEHeadDept.EditValue = id_user_head
+
             data.Dispose()
 
             TEDepartement.Text = departement
             TEDepartementCode.Text = departement_code
             MEDescription.Text = description
-
         End If
     End Sub
-
+    Sub load_user()
+        Dim query As String = "SELECT * FROM tb_m_user usr INNER JOIN tb_m_employee emp ON usr.id_employee=emp.id_employee AND emp.id_departement='" + id_departement + "'"
+        viewSearchLookupQuery(SLEHeadDept, query, "id_user", "employee_name", "id_user")
+    End Sub
     Private Sub FormMasterDepartementSingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
         checkFormAccess("FormMasterDepartement")

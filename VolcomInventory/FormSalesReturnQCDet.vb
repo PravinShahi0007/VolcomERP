@@ -372,11 +372,11 @@
     End Sub
 
     Sub allowDelete()
-        If GVBarcode.RowCount <= 0 Then
-            BDelete.Enabled = False
-        Else
-            BDelete.Enabled = True
-        End If
+        'If GVBarcode.RowCount <= 0 Then
+        '    BDelete.Enabled = False
+        'Else
+        '    BDelete.Enabled = True
+        'End If
     End Sub
 
     Sub noEdit()
@@ -774,21 +774,23 @@
 
     End Sub
 
-
+    Sub disableControl()
+        MENote.Enabled = False
+        BtnSave.Enabled = False
+        BScan.Enabled = False
+        BStop.Enabled = True
+        BDelete.Enabled = False
+        BtnCancel.Enabled = False
+        GVItemList.OptionsBehavior.Editable = False
+        ControlBox = False
+        BtnInfoSrs.Enabled = False
+        LEPLCategory.Enabled = False
+        TEDrawer.Enabled = False
+        BPickDrawer.Enabled = False
+    End Sub
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
         If GVItemList.RowCount > 0 Then
-            MENote.Enabled = False
-            BtnSave.Enabled = False
-            BScan.Enabled = False
-            BStop.Enabled = True
-            BDelete.Enabled = False
-            BtnCancel.Enabled = False
-            GVItemList.OptionsBehavior.Editable = False
-            ControlBox = False
-            BtnInfoSrs.Enabled = False
-            LEPLCategory.Enabled = False
-            TEDrawer.Enabled = False
-            BPickDrawer.Enabled = False
+            disableControl()
             newRowsBc()
         Else
             errorCustom("Item list can't blank")
@@ -812,6 +814,7 @@
         BtnSave.Enabled = True
         BScan.Enabled = True
         BStop.Enabled = False
+        BDelete.Enabled = True
         BtnCancel.Enabled = True
         allowDelete()
         GVItemList.OptionsBehavior.Editable = True
@@ -820,57 +823,64 @@
         LEPLCategory.Enabled = True
         TEDrawer.Enabled = True
         BPickDrawer.Enabled = True
+        LabelDelScan.Visible = False
+        TxtDeleteScan.Visible = False
     End Sub
 
     Private Sub BDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BDelete.Click
-        Dim id_sales_return_qc_det_counting As String = "-1"
-        Try
-            id_sales_return_qc_det_counting = GVBarcode.GetFocusedRowCellValue("id_sales_return_qc_det_counting").ToString
-        Catch ex As Exception
-        End Try
+        disableControl()
+        LabelDelScan.Visible = True
+        TxtDeleteScan.Visible = True
+        TxtDeleteScan.Focus()
 
-        If action = "ins" Then
-            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
-                Dim bom_unit_price As Decimal = Decimal.Parse(GVBarcode.GetFocusedRowCellValue("bom_unit_price").ToString)
-                Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
-                Dim id_sales_return_det_counting As String = GVBarcode.GetFocusedRowCellValue("id_sales_return_det_counting").ToString
-                Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
+        'Dim id_sales_return_qc_det_counting As String = "-1"
+        'Try
+        '    id_sales_return_qc_det_counting = GVBarcode.GetFocusedRowCellValue("id_sales_return_qc_det_counting").ToString
+        'Catch ex As Exception
+        'End Try
 
-                deleteRowsBc()
-                If id_product <> "" Or id_product <> Nothing Then
-                    GVBarcode.ApplyFindFilter("")
-                    countQty(id_product)
-                    countUnitCost(id_product, bom_unit_price)
-                End If
-                allowDelete()
-            End If
-        ElseIf action = "upd" Then
-            If id_sales_return_qc_det_counting = "0" Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
-                    Dim bom_unit_price As Decimal = Decimal.Parse(GVBarcode.GetFocusedRowCellValue("bom_unit_price").ToString)
-                    Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
-                    Dim id_sales_return_det_counting As String = GVBarcode.GetFocusedRowCellValue("id_sales_return_det_counting").ToString
-                    Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
+        'If action = "ins" Then
+        '    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        '    If confirm = Windows.Forms.DialogResult.Yes Then
+        '        Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
+        '        Dim bom_unit_price As Decimal = Decimal.Parse(GVBarcode.GetFocusedRowCellValue("bom_unit_price").ToString)
+        '        Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
+        '        Dim id_sales_return_det_counting As String = GVBarcode.GetFocusedRowCellValue("id_sales_return_det_counting").ToString
+        '        Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
 
-                    deleteRowsBc()
-                    If id_product <> "" Or id_product <> Nothing Then
-                        GVBarcode.ApplyFindFilter("")
-                        countQty(id_product)
-                        countUnitCost(id_product, bom_unit_price)
-                    End If
+        '        deleteRowsBc()
+        '        If id_product <> "" Or id_product <> Nothing Then
+        '            GVBarcode.ApplyFindFilter("")
+        '            countQty(id_product)
+        '            countUnitCost(id_product, bom_unit_price)
+        '        End If
+        '        allowDelete()
+        '    End If
+        'ElseIf action = "upd" Then
+        '    If id_sales_return_qc_det_counting = "0" Then
+        '        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        '        If confirm = Windows.Forms.DialogResult.Yes Then
+        '            Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
+        '            Dim bom_unit_price As Decimal = Decimal.Parse(GVBarcode.GetFocusedRowCellValue("bom_unit_price").ToString)
+        '            Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
+        '            Dim id_sales_return_det_counting As String = GVBarcode.GetFocusedRowCellValue("id_sales_return_det_counting").ToString
+        '            Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
 
-                    'set into dt (update action only)
-                    allowDelete()
+        '            deleteRowsBc()
+        '            If id_product <> "" Or id_product <> Nothing Then
+        '                GVBarcode.ApplyFindFilter("")
+        '                countQty(id_product)
+        '                countUnitCost(id_product, bom_unit_price)
+        '            End If
 
-                End If
-            Else
-                 errorCustom("This data already locked and can't delete.")
-            End If
-        End If
+        '            'set into dt (update action only)
+        '            allowDelete()
+
+        '        End If
+        '    Else
+        '         errorCustom("This data already locked and can't delete.")
+        '    End If
+        'End If
     End Sub
 
     Private Sub GVBarcode_CustomColumnDisplayText_1(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVBarcode.CustomColumnDisplayText
@@ -1308,5 +1318,81 @@
         ReportSalesReturnQC.id_pre = "-1"
         getReport()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TxtDeleteScan_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDeleteScan.KeyDown
+        If e.KeyCode = Keys.Enter And TxtDeleteScan.Text.Length > 0 Then
+            Cursor = Cursors.WaitCursor
+            GVBarcode.ActiveFilterString = "[code]='" + TxtDeleteScan.Text + "'"
+            If GVBarcode.RowCount <= 0 Then
+                stopCustom("Code not found.")
+                GVBarcode.ActiveFilterString = ""
+                TxtDeleteScan.Text = ""
+                TxtDeleteScan.Focus()
+            Else
+                Dim id_sales_return_qc_det_counting As String = "-1"
+                Try
+                    id_sales_return_qc_det_counting = GVBarcode.GetFocusedRowCellValue("id_sales_return_qc_det_counting").ToString
+                Catch ex As Exception
+                End Try
+
+                If action = "ins" Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
+                        Dim bom_unit_price As Decimal = Decimal.Parse(GVBarcode.GetFocusedRowCellValue("bom_unit_price").ToString)
+                        Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
+                        ' Dim id_sales_return_det_counting As String = GVBarcode.GetFocusedRowCellValue("id_sales_return_det_counting").ToString
+                        Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
+
+                        deleteRowsBc()
+                        If id_product <> "" Or id_product <> Nothing Then
+                            GVBarcode.ApplyFindFilter("")
+                            GVBarcode.ActiveFilterString = ""
+                            countQty(id_product)
+                            countUnitCost(id_product, bom_unit_price)
+                        End If
+                        GCItemList.RefreshDataSource()
+                        GVItemList.RefreshData()
+                        allowDelete()
+                    Else
+                        GVBarcode.ActiveFilterString = ""
+                    End If
+                    TxtDeleteScan.Text = ""
+                    TxtDeleteScan.Focus()
+                ElseIf action = "upd" Then
+                    If id_sales_return_qc_det_counting = "0" Then
+                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            Dim id_product As String = GVBarcode.GetFocusedRowCellValue("id_product").ToString
+                            Dim bom_unit_price As Decimal = Decimal.Parse(GVBarcode.GetFocusedRowCellValue("bom_unit_price").ToString)
+                            Dim counting_code As String = GVBarcode.GetFocusedRowCellValue("counting_code").ToString
+                            'Dim id_sales_return_det_counting As String = GVBarcode.GetFocusedRowCellValue("id_sales_return_det_counting").ToString
+                            Dim code As String = GVBarcode.GetFocusedRowCellValue("code").ToString
+
+                            deleteRowsBc()
+                            If id_product <> "" Or id_product <> Nothing Then
+                                GVBarcode.ApplyFindFilter("")
+                                GVBarcode.ActiveFilterString = ""
+                                countQty(id_product)
+                                countUnitCost(id_product, bom_unit_price)
+                            End If
+
+                            'set into dt (update action only)
+                            GCItemList.RefreshDataSource()
+                            GVItemList.RefreshData()
+                            allowDelete()
+                        Else
+                            GVBarcode.ActiveFilterString = ""
+                        End If
+                    Else
+                        errorCustom("This data already locked and can't delete.")
+                    End If
+                    TxtDeleteScan.Text = ""
+                    TxtDeleteScan.Focus()
+                End If
+            End If
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
