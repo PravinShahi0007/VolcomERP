@@ -145,7 +145,12 @@
             id_wh_locator = GVSalesReturnOrder.GetFocusedRowCellValue("id_wh_locator_store").ToString
         Catch ex As Exception
         End Try
-        viewListReturnOrder(id_sales_return_order, get_company_contact_x(id_store_contact_to, "3"), id_wh_drawer, id_wh_rack, id_wh_locator)
+        Try
+            viewListReturnOrder(id_sales_return_order, get_company_contact_x(id_store_contact_to, "3"), id_wh_drawer, id_wh_rack, id_wh_locator)
+        Catch ex As Exception
+
+        End Try
+
 
 
         check_menu()
@@ -214,7 +219,11 @@
             id_wh_locator = GVSalesReturnOrder.GetFocusedRowCellValue("id_wh_locator_store").ToString
         Catch ex As Exception
         End Try
-        viewListReturnOrder(id_sales_return_order, get_company_contact_x(id_store_contact_to, "3"), id_wh_drawer, id_wh_rack, id_wh_locator)
+        Try
+            viewListReturnOrder(id_sales_return_order, get_company_contact_x(id_store_contact_to, "3"), id_wh_drawer, id_wh_rack, id_wh_locator)
+        Catch ex As Exception
+
+        End Try
         Cursor = Cursors.Default
     End Sub
 
