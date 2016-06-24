@@ -19,6 +19,7 @@ Partial Class FormAccountingFakturScanSingle
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdDetail = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -113,6 +114,9 @@ Partial Class FormAccountingFakturScanSingle
         Me.BtnDeleteDM = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddDM = New DevExpress.XtraEditors.SimpleButton()
         Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,6 +149,7 @@ Partial Class FormAccountingFakturScanSingle
         CType(Me.GVDM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        Me.ContextMenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCData
@@ -963,11 +968,30 @@ Partial Class FormAccountingFakturScanSingle
         '
         Me.PrintDialog1.UseEXDialog = True
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddRowToolStripMenuItem, Me.DeleteRowToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
+        '
+        'AddRowToolStripMenuItem
+        '
+        Me.AddRowToolStripMenuItem.Name = "AddRowToolStripMenuItem"
+        Me.AddRowToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.AddRowToolStripMenuItem.Text = "Add row"
+        '
+        'DeleteRowToolStripMenuItem
+        '
+        Me.DeleteRowToolStripMenuItem.Name = "DeleteRowToolStripMenuItem"
+        Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteRowToolStripMenuItem.Text = "Delete row"
+        '
         'FormAccountingFakturScanSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(815, 425)
+        Me.ContextMenuStrip = Me.ContextMenuStrip1
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.GroupControl1)
@@ -1011,6 +1035,7 @@ Partial Class FormAccountingFakturScanSingle
         CType(Me.GVDM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        Me.ContextMenuStrip1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1108,4 +1133,7 @@ Partial Class FormAccountingFakturScanSingle
     Friend WithEvents GridColumnJumlahPPNBMDK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnKeteranganDK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents AddRowToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteRowToolStripMenuItem As ToolStripMenuItem
 End Class

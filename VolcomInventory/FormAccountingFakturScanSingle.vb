@@ -149,6 +149,10 @@ Public Class FormAccountingFakturScanSingle
     End Sub
 
     Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        deleteScan()
+    End Sub
+
+    Sub deleteScan()
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want To delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             GVData.DeleteSelectedRows()
@@ -508,5 +512,46 @@ Public Class FormAccountingFakturScanSingle
         End Try
     End Sub
 
+    Private Sub AddRowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddRowToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        If XTCFaktur.SelectedTabPageIndex = 0 Then
+            Dim newRow As DataRow = (TryCast(GCData.DataSource, DataTable)).NewRow()
+            newRow("id_acc_fak_scan_det") = "0"
+            newRow("id_acc_fak_scan") = "0"
+            newRow("masa_pajak") = TxtPeriod.Text
+            newRow("tahun_pajak") = TxtYear.Text
+            newRow("is_creditable") = "1"
+            newRow("type") = LEType.Text
+            newRow("kd_jenis_transaksi") = ""
+            newRow("fg_pengganti") = ""
+            newRow("nomor_faktur") = ""
+            newRow("tanggal_faktur") = ""
+            newRow("npwp") = ""
+            newRow("nama") = ""
+            newRow("alamat_lengkap") = ""
+            newRow("jumlah_dpp") = ""
+            newRow("jumlah_ppn") = ""
+            newRow("jumlah_ppnbm") = ""
+            TryCast(GCData.DataSource, DataTable).Rows.Add(newRow)
+        ElseIf XTCFaktur.SelectedTabPageIndex = 1 Then
+            'nothing
+        ElseIf XTCFaktur.SelectedTabPageIndex = 2 Then
+            'dm
+            addDM()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 
+    Private Sub DeleteRowToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteRowToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        If XTCFaktur.SelectedTabPageIndex = 0 Then
+            deleteScan()
+        ElseIf XTCFaktur.SelectedTabPageIndex = 1 Then
+            'nothing
+        ElseIf XTCFaktur.SelectedTabPageIndex = 2 Then
+            'dm
+            delDM()
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class
