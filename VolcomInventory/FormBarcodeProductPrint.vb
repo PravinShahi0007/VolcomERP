@@ -104,6 +104,8 @@ Public Class FormBarcodeProductPrint
     Private Sub BPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPrint.Click
         If SEPrintTo.EditValue < SEPrintFrom.EditValue Then
             stopCustom("Please make sure barcode unique on the left is before unique on the right.")
+        ElseIf TEPrice.Text.ToString = "" Or TEPrice.Text.ToString = "0"
+            stopCustom("Please make sure barcode price is not empty.")
         Else
             Dim print_command As String = ""
             If LEPrinter.EditValue.ToString = "1" Then 'sato
@@ -218,6 +220,8 @@ Public Class FormBarcodeProductPrint
     Private Sub BtnPrintBack_Click(sender As Object, e As EventArgs) Handles BtnPrintBack.Click
         If SEPrintTo.EditValue < SEPrintFrom.EditValue Then
             stopCustom("Please make sure barcode unique on the left is before unique on the right.")
+        ElseIf TEPrice.Text.ToString = "" Or TEPrice.Text.ToString = "0"
+            stopCustom("Please make sure barcode price is not empty.")
         Else
             Dim print_command As String = ""
             If LEPrinter.EditValue.ToString = "1" Then 'sato
@@ -282,53 +286,56 @@ Public Class FormBarcodeProductPrint
 
     Private Sub BtnPrintFront_Click(sender As Object, e As EventArgs) Handles BtnPrintFront.Click
         Dim print_command As String = ""
-        'Console.WriteLine(i.ToString(format_string))
-        If LEPrinter.EditValue.ToString = "1" Then
-            print_command += "<ESC>A"
-            print_command += "<ESC>#E5"
-            print_command += "<ESC>H615<ESC>V0010<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
-            print_command += "<ESC>H615<ESC>V0030<ESC>D202160" & TEProdCode.Text & vbNewLine
-            print_command += "<ESC>H615<ESC>V0200<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
-            print_command += "<ESC>H685<ESC>V0220<ESC>L0200<ESC>XUsize" & vbNewLine
-            print_command += "<ESC>H775<ESC>V0220<ESC>L0200<ESC>XUcolor" & vbNewLine
-            print_command += "<ESC>H615<ESC>V0240<ESC>L0202<ESC>S" & TERetCode.Text & vbNewLine
-            print_command += "<ESC>H685<ESC>V0240<ESC>L0202<ESC>S" & TESize.Text & vbNewLine
-            print_command += "<ESC>H680<ESC>V0235<ESC>(65,40" & vbNewLine
-            print_command += "<ESC>H775<ESC>V0240<ESC>L0202<ESC>S" & TEColor.Text & vbNewLine
-            print_command += "<ESC>H615<ESC>V0280<ESC>L0202<ESC>S" & TECurPrice.Text & " " & TEPrice.Text & vbNewLine
-            print_command += "<ESC>Q" + SEQtyPrint.EditValue.ToString + "" & vbNewLine
-            print_command += "<ESC>Z" & vbNewLine
-            print_command += "" & vbNewLine
+        If TEPrice.Text.ToString = "" Then
+            stopCustom("Please make sure barcode price is not empty.")
+        Else
+            If LEPrinter.EditValue.ToString = "1" Then
+                print_command += "<ESC>A"
+                print_command += "<ESC>#E5"
+                print_command += "<ESC>H615<ESC>V0010<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
+                print_command += "<ESC>H615<ESC>V0030<ESC>D202160" & TEProdCode.Text & vbNewLine
+                print_command += "<ESC>H615<ESC>V0200<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
+                print_command += "<ESC>H685<ESC>V0220<ESC>L0200<ESC>XUsize" & vbNewLine
+                print_command += "<ESC>H775<ESC>V0220<ESC>L0200<ESC>XUcolor" & vbNewLine
+                print_command += "<ESC>H615<ESC>V0240<ESC>L0202<ESC>S" & TERetCode.Text & vbNewLine
+                print_command += "<ESC>H685<ESC>V0240<ESC>L0202<ESC>S" & TESize.Text & vbNewLine
+                print_command += "<ESC>H680<ESC>V0235<ESC>(65,40" & vbNewLine
+                print_command += "<ESC>H775<ESC>V0240<ESC>L0202<ESC>S" & TEColor.Text & vbNewLine
+                print_command += "<ESC>H615<ESC>V0280<ESC>L0202<ESC>S" & TECurPrice.Text & " " & TEPrice.Text & vbNewLine
+                print_command += "<ESC>Q" + SEQtyPrint.EditValue.ToString + "" & vbNewLine
+                print_command += "<ESC>Z" & vbNewLine
+                print_command += "" & vbNewLine
 
-            print_command = print_command.ToString().Replace("<ESC>", (ChrW(27)).ToString())
-        ElseIf LEPrinter.EditValue.ToString = "2" Then
-            'front new
-            print_command += "CT~~CD,~CC^~CT~" & vbNewLine
-            print_command += "^XA~TA000~JSN^LT0^MNW^MTT^PON^PMN^LH0,0^JMA^PR4,4~SD30^JUS^LRN^CI0^XZ" & vbNewLine
-            print_command += "^XA" & vbNewLine
-            print_command += "^MMT" & vbNewLine
-            print_command += "^PW277" & vbNewLine
-            print_command += "^LL0406" & vbNewLine
-            print_command += "^LS0" & vbNewLine
-            print_command += "^FT159,307^A0N,34,33^FH\^FD" & TEColor.Text & "^FS" & vbNewLine
-            print_command += "^FO86,274^GB54,42,42^FS" & vbNewLine
-            print_command += "^FT86,307^A0N,34,33^FR^FH\^FD" & TESize.Text & "^FS" & vbNewLine
-            print_command += "^FT3,355^A0N,39,38^FH\^FD" & TECurPrice.Text & " " & TEPrice.Text & "^FS" & vbNewLine
-            print_command += "^FT3,307^A0N,34,33^FH\^FD" & TERetCode.Text & "^FS" & vbNewLine
-            print_command += "^FT1,237^A0N,17,16^FH\^FD" & TEDesignName.Text & "^FS" & vbNewLine
-            print_command += "^FT2,47^A0N,17,16^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
-            print_command += "^BY2,2,162^FT3,216^B2N,,N,N" & vbNewLine
-            print_command += "^FD" & TEProdCode.Text & "^FS" & vbNewLine
-            print_command += "^FT159,269^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
-            print_command += "^FT87,268^A0N,14,14^FH\^FDsize^FS" & vbNewLine
-            print_command += "^PQ" + SEQtyPrint.EditValue.ToString + ",0,1,Y^XZ" & vbNewLine
-        End If
+                print_command = print_command.ToString().Replace("<ESC>", (ChrW(27)).ToString())
+            ElseIf LEPrinter.EditValue.ToString = "2" Then
+                'front new
+                print_command += "CT~~CD,~CC^~CT~" & vbNewLine
+                print_command += "^XA~TA000~JSN^LT0^MNW^MTT^PON^PMN^LH0,0^JMA^PR4,4~SD30^JUS^LRN^CI0^XZ" & vbNewLine
+                print_command += "^XA" & vbNewLine
+                print_command += "^MMT" & vbNewLine
+                print_command += "^PW277" & vbNewLine
+                print_command += "^LL0406" & vbNewLine
+                print_command += "^LS0" & vbNewLine
+                print_command += "^FT159,307^A0N,34,33^FH\^FD" & TEColor.Text & "^FS" & vbNewLine
+                print_command += "^FO86,274^GB54,42,42^FS" & vbNewLine
+                print_command += "^FT86,307^A0N,34,33^FR^FH\^FD" & TESize.Text & "^FS" & vbNewLine
+                print_command += "^FT3,355^A0N,39,38^FH\^FD" & TECurPrice.Text & " " & TEPrice.Text & "^FS" & vbNewLine
+                print_command += "^FT3,307^A0N,34,33^FH\^FD" & TERetCode.Text & "^FS" & vbNewLine
+                print_command += "^FT1,237^A0N,17,16^FH\^FD" & TEDesignName.Text & "^FS" & vbNewLine
+                print_command += "^FT2,47^A0N,17,16^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
+                print_command += "^BY2,2,162^FT3,216^B2N,,N,N" & vbNewLine
+                print_command += "^FD" & TEProdCode.Text & "^FS" & vbNewLine
+                print_command += "^FT159,269^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
+                print_command += "^FT87,268^A0N,14,14^FH\^FDsize^FS" & vbNewLine
+                print_command += "^PQ" + SEQtyPrint.EditValue.ToString + ",0,1,Y^XZ" & vbNewLine
+            End If
 
-        Dim pd As New PrintDialog()
+            Dim pd As New PrintDialog()
 
-        pd.PrinterSettings = New PrinterSettings()
-        If (pd.ShowDialog() = DialogResult.OK) Then
-            RawPrinterHelper.SendStringToPrinter(pd.PrinterSettings.PrinterName, print_command)
+            pd.PrinterSettings = New PrinterSettings()
+            If (pd.ShowDialog() = DialogResult.OK) Then
+                RawPrinterHelper.SendStringToPrinter(pd.PrinterSettings.PrinterName, print_command)
+            End If
         End If
     End Sub
     Private Sub TEPrice_KeyDown(sender As Object, e As KeyEventArgs) Handles TEPrice.KeyDown
