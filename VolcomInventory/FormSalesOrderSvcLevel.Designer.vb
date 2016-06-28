@@ -814,10 +814,12 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GridColumnSvcLevel
         '
-        Me.GridColumnSvcLevel.Caption = "Service Level"
+        Me.GridColumnSvcLevel.Caption = "Completed"
         Me.GridColumnSvcLevel.ColumnEdit = Me.RepositoryItemProgressBar2
         Me.GridColumnSvcLevel.FieldName = "svc_level"
         Me.GridColumnSvcLevel.Name = "GridColumnSvcLevel"
+        Me.GridColumnSvcLevel.Visible = True
+        Me.GridColumnSvcLevel.VisibleIndex = 6
         '
         'RepositoryItemProgressBar2
         '
