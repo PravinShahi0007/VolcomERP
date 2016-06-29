@@ -115,6 +115,8 @@ Partial Class FormSalesReturnQCDet
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
@@ -151,8 +153,6 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -201,6 +201,7 @@ Partial Class FormSalesReturnQCDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
+        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPStorage.SuspendLayout()
         CType(Me.SCCStorage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCStorage.SuspendLayout()
@@ -216,7 +217,6 @@ Partial Class FormSalesReturnQCDet
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -265,7 +265,7 @@ Partial Class FormSalesReturnQCDet
         '
         'LEPLCategory
         '
-        Me.LEPLCategory.Location = New System.Drawing.Point(105, 57)
+        Me.LEPLCategory.Location = New System.Drawing.Point(105, 151)
         Me.LEPLCategory.Name = "LEPLCategory"
         Me.LEPLCategory.Properties.Appearance.Options.UseTextOptions = True
         Me.LEPLCategory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -317,7 +317,7 @@ Partial Class FormSalesReturnQCDet
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(8, 60)
+        Me.LabelControl2.Location = New System.Drawing.Point(8, 153)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl2.TabIndex = 10002
@@ -1200,6 +1200,24 @@ Partial Class FormSalesReturnQCDet
         Me.PanelNavBarcode.Size = New System.Drawing.Size(882, 39)
         Me.PanelNavBarcode.TabIndex = 2
         '
+        'TxtDeleteScan
+        '
+        Me.TxtDeleteScan.Location = New System.Drawing.Point(74, 10)
+        Me.TxtDeleteScan.MenuManager = Me.BMDD
+        Me.TxtDeleteScan.Name = "TxtDeleteScan"
+        Me.TxtDeleteScan.Size = New System.Drawing.Size(248, 20)
+        Me.TxtDeleteScan.TabIndex = 23
+        Me.TxtDeleteScan.Visible = False
+        '
+        'LabelDelScan
+        '
+        Me.LabelDelScan.Location = New System.Drawing.Point(12, 13)
+        Me.LabelDelScan.Name = "LabelDelScan"
+        Me.LabelDelScan.Size = New System.Drawing.Size(56, 13)
+        Me.LabelDelScan.TabIndex = 22
+        Me.LabelDelScan.Text = "Delete scan"
+        Me.LabelDelScan.Visible = False
+        '
         'BDelete
         '
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
@@ -1499,24 +1517,6 @@ Partial Class FormSalesReturnQCDet
         '
         Me.EPForm.ContainerControl = Me
         '
-        'TxtDeleteScan
-        '
-        Me.TxtDeleteScan.Location = New System.Drawing.Point(74, 10)
-        Me.TxtDeleteScan.MenuManager = Me.BMDD
-        Me.TxtDeleteScan.Name = "TxtDeleteScan"
-        Me.TxtDeleteScan.Size = New System.Drawing.Size(248, 20)
-        Me.TxtDeleteScan.TabIndex = 23
-        Me.TxtDeleteScan.Visible = False
-        '
-        'LabelDelScan
-        '
-        Me.LabelDelScan.Location = New System.Drawing.Point(12, 13)
-        Me.LabelDelScan.Name = "LabelDelScan"
-        Me.LabelDelScan.Size = New System.Drawing.Size(56, 13)
-        Me.LabelDelScan.TabIndex = 22
-        Me.LabelDelScan.Text = "Delete scan"
-        Me.LabelDelScan.Visible = False
-        '
         'FormSalesReturnQCDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1590,6 +1590,7 @@ Partial Class FormSalesReturnQCDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
         Me.PanelNavBarcode.PerformLayout()
+        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPStorage.ResumeLayout(False)
         CType(Me.SCCStorage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SCCStorage.ResumeLayout(False)
@@ -1605,7 +1606,6 @@ Partial Class FormSalesReturnQCDet
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

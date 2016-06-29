@@ -65,6 +65,10 @@
             DDBPrint.Enabled = False
             DEForm.Text = view_date(0)
             check_but()
+
+            If id_sales_return <> "-1" Then
+                viewSalesReturn()
+            End If
         ElseIf action = "upd" Then
             GroupControlListItem.Enabled = True
             GroupControlScannedItem.Enabled = True
@@ -133,6 +137,66 @@
                 Close()
             End If
         End If
+    End Sub
+
+    Sub viewSalesReturn()
+        Dim query As String = ""
+        query += "SELECT a.id_sales_return, getCompByContact(a.id_store_contact_from,'1') AS `id_comp_from`, a.id_store_contact_from, getCompByContact(a.id_comp_contact_to,'1') AS `id_comp_to`,a.id_comp_contact_to, (d.comp_number) AS store_code_from,(d.comp_name) AS store_name_from, (d1.comp_number) AS comp_code_to,(d1.comp_name) AS comp_name_to,a.id_report_status, f.report_status, "
+        query += "a.sales_return_note, a.sales_return_number, "
+        query += "DATE_FORMAT(a.sales_return_date,'%d %M %Y') AS sales_return_date "
+        query += "FROM tb_sales_return a "
+        query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_from "
+        query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
+        query += "INNER JOIN tb_m_comp_contact c1 ON c1.id_comp_contact = a.id_comp_contact_to "
+        query += "INNER JOIN tb_m_comp d1 ON c1.id_comp = d1.id_comp "
+        query += "INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status "
+        query += "INNER JOIN "
+        query += "( "
+        query += "SELECT a.id_sales_return,  a.id_sales_return_det, "
+        query += "(a.sales_return_det_qty - COALESCE(ret.jum_ret, 0)) AS jum "
+        query += "FROM tb_sales_return_det a "
+        query += "INNER JOIN tb_sales_return b ON b.id_sales_return = a.id_sales_return "
+        query += "LEFT JOIN ( "
+        query += "SELECT b1.id_sales_return_det, SUM(b1.sales_return_qc_det_qty) AS jum_ret FROM tb_sales_return_qc_det b1 "
+        query += "INNER JOIN tb_sales_return_qc b2 ON b1.id_sales_return_qc = b2.id_sales_return_qc "
+        query += "WHERE b2.id_report_status != '5' "
+        query += "GROUP BY b1.id_sales_return_det "
+        query += ")ret ON ret.id_sales_return_det = a.id_sales_return_det  "
+        query += "WHERE b.id_report_status = '6' AND (a.sales_return_det_qty - COALESCE(ret.jum_ret, 0)) >'0' "
+        query += "GROUP BY a.id_sales_return "
+        query += ") g ON g.id_sales_return = a.id_sales_return "
+        query += "WHERE a.id_report_status = '6' "
+        query += "AND a.id_sales_return_order = '" + id_sales_return + "' "
+        query += "ORDER BY a.id_sales_return ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        'Return 
+        TxtSalesReturnNumber.Text = data.Rows(0)("sales_return_number").ToString
+
+        'store data
+        Dim query_comp_from As String = "SELECT id_comp FROM tb_m_comp_contact WHERE id_comp_contact = '" + data.Rows(0)("id_store_contact_from").ToString + "'"
+        Dim id_comp_from As String = data.Rows(0)("id_comp_from").ToString
+        id_store = id_comp_from
+        id_store_contact_from = data.Rows(0)("id_store_contact_from").ToString
+        TxtCodeCompFrom.Text = data.Rows(0)("store_code_from").ToString
+        TxtNameCompFrom.Text = data.Rows(0)("store_name_from").ToString
+        'MEAdrressCompFrom.Text = get_company_x(id_comp_from, 3)
+
+        Dim id_comp_to As String = data.Rows(0)("id_comp_to").ToString
+        id_comp_contact_to_return = data.Rows(0)("id_comp_contact_to").ToString
+        TxtCodeFrom.Text = data.Rows(0)("comp_code_to").ToString
+        TxtNameFrom.Text = data.Rows(0)("comp_name_to").ToString
+
+
+        'general
+        viewDetail()
+        viewDetailDrawer()
+        viewDetailDrawer2()
+        view_barcode_list()
+        GroupControlListItem.Enabled = True
+        GroupControlScannedItem.Enabled = True
+        BtnInfoSrs.Enabled = True
+        BtnBrowseRO.Enabled = False
     End Sub
 
     Sub viewReportStatus()
