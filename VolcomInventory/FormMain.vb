@@ -1189,8 +1189,14 @@ Public Class FormMain
             FormSalesPOSDet.ShowDialog()
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
-            FormSalesReturnQCDet.action = "ins"
-            FormSalesReturnQCDet.ShowDialog()
+            If FormSalesReturnQC.XTCReturnQC.SelectedTabPageIndex = 0 Then
+                FormSalesReturnQCDet.action = "ins"
+                FormSalesReturnQCDet.ShowDialog()
+            Else
+                FormSalesReturnQCDet.action = "ins"
+                FormSalesReturnQCDet.id_sales_return = FormSalesReturnQC.GVSalesReturn.GetFocusedRowCellValue("id_sales_return").ToString
+                FormSalesReturnQCDet.ShowDialog()
+            End If
         ElseIf formName = "FormSalesInvoice" Then
             'SALES INVOICE
             FormSalesInvoiceNew.ShowDialog()
