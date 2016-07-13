@@ -20,11 +20,19 @@ Partial Class FormMasterEmployee
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
-        Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GVEmployee = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnLevel = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnReligion = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnEmployeeStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnJoinDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnDegree = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnEmployeeDOB = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAge = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -41,7 +49,8 @@ Partial Class FormMasterEmployee
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4})
+        Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandGeneral})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.BandedGridColumnLevel, Me.BandedGridColumnReligion, Me.BandedGridColumnEmployeeStatus, Me.BandedGridColumnJoinDate, Me.BandedGridColumnDegree, Me.BandedGridColumnEmployeeDOB, Me.BandedGridColumnAge})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsBehavior.ReadOnly = True
@@ -53,7 +62,7 @@ Partial Class FormMasterEmployee
         Me.GridColumn2.FieldName = "employee_code"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.Width = 83
         '
         'GridColumn1
         '
@@ -61,7 +70,7 @@ Partial Class FormMasterEmployee
         Me.GridColumn1.FieldName = "employee_name"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 1
+        Me.GridColumn1.Width = 83
         '
         'GridColumn3
         '
@@ -69,7 +78,7 @@ Partial Class FormMasterEmployee
         Me.GridColumn3.FieldName = "sex"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.Width = 83
         '
         'GridColumn4
         '
@@ -77,7 +86,77 @@ Partial Class FormMasterEmployee
         Me.GridColumn4.FieldName = "departement"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.Width = 83
+        '
+        'BandedGridColumnLevel
+        '
+        Me.BandedGridColumnLevel.Caption = "Level"
+        Me.BandedGridColumnLevel.FieldName = "employee_level"
+        Me.BandedGridColumnLevel.Name = "BandedGridColumnLevel"
+        Me.BandedGridColumnLevel.Visible = True
+        Me.BandedGridColumnLevel.Width = 83
+        '
+        'BandedGridColumnReligion
+        '
+        Me.BandedGridColumnReligion.Caption = "Religion"
+        Me.BandedGridColumnReligion.FieldName = "religion"
+        Me.BandedGridColumnReligion.Name = "BandedGridColumnReligion"
+        Me.BandedGridColumnReligion.Visible = True
+        Me.BandedGridColumnReligion.Width = 83
+        '
+        'BandedGridColumnEmployeeStatus
+        '
+        Me.BandedGridColumnEmployeeStatus.Caption = "Employee Status"
+        Me.BandedGridColumnEmployeeStatus.FieldName = "employee_status"
+        Me.BandedGridColumnEmployeeStatus.Name = "BandedGridColumnEmployeeStatus"
+        Me.BandedGridColumnEmployeeStatus.Visible = True
+        Me.BandedGridColumnEmployeeStatus.Width = 92
+        '
+        'BandedGridColumnJoinDate
+        '
+        Me.BandedGridColumnJoinDate.Caption = "Join Date"
+        Me.BandedGridColumnJoinDate.FieldName = "employee_join_date"
+        Me.BandedGridColumnJoinDate.Name = "BandedGridColumnJoinDate"
+        Me.BandedGridColumnJoinDate.Visible = True
+        '
+        'BandedGridColumnDegree
+        '
+        Me.BandedGridColumnDegree.Caption = "Degree"
+        Me.BandedGridColumnDegree.FieldName = "education"
+        Me.BandedGridColumnDegree.Name = "BandedGridColumnDegree"
+        Me.BandedGridColumnDegree.Visible = True
+        '
+        'BandedGridColumnEmployeeDOB
+        '
+        Me.BandedGridColumnEmployeeDOB.Caption = "DOB"
+        Me.BandedGridColumnEmployeeDOB.FieldName = "employee_dob"
+        Me.BandedGridColumnEmployeeDOB.Name = "BandedGridColumnEmployeeDOB"
+        Me.BandedGridColumnEmployeeDOB.Visible = True
+        '
+        'BandedGridColumnAge
+        '
+        Me.BandedGridColumnAge.Caption = "Age"
+        Me.BandedGridColumnAge.FieldName = "age"
+        Me.BandedGridColumnAge.Name = "BandedGridColumnAge"
+        Me.BandedGridColumnAge.Visible = True
+        '
+        'GridBandGeneral
+        '
+        Me.GridBandGeneral.Caption = "General"
+        Me.GridBandGeneral.Columns.Add(Me.GridColumn2)
+        Me.GridBandGeneral.Columns.Add(Me.GridColumn1)
+        Me.GridBandGeneral.Columns.Add(Me.GridColumn3)
+        Me.GridBandGeneral.Columns.Add(Me.GridColumn4)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnLevel)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnReligion)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnEmployeeStatus)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnJoinDate)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnDegree)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnEmployeeDOB)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnAge)
+        Me.GridBandGeneral.Name = "GridBandGeneral"
+        Me.GridBandGeneral.VisibleIndex = 0
+        Me.GridBandGeneral.Width = 890
         '
         'FormMasterEmployee
         '
@@ -98,9 +177,17 @@ Partial Class FormMasterEmployee
 
     End Sub
     Friend WithEvents GCEmployee As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnLevel As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnReligion As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnEmployeeStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnJoinDate As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnDegree As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnEmployeeDOB As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnAge As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
 End Class
