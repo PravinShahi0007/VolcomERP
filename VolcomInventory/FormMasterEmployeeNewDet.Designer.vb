@@ -116,16 +116,17 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnDeletePosition = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddPosition = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDependent = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCDependent = New DevExpress.XtraGrid.GridControl()
-        Me.GVDependent = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.Label34 = New System.Windows.Forms.Label()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.TxtChild3 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtChild2 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtChild1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtWife = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtHusband = New DevExpress.XtraEditors.TextEdit()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
-        Me.BtnDeleteDependent = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnEditDependent = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAddDependent = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrevious = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
@@ -190,10 +191,11 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         Me.XTPDependent.SuspendLayout()
-        CType(Me.GCDependent, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDependent, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
+        CType(Me.TxtChild3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtChild2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtChild1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtWife.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtHusband.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -405,12 +407,12 @@ Partial Class FormMasterEmployeeNewDet
         '
         'LEMarriageStatus
         '
-        Me.LEMarriageStatus.Location = New System.Drawing.Point(100, 9)
+        Me.LEMarriageStatus.Location = New System.Drawing.Point(22, 29)
         Me.LEMarriageStatus.Name = "LEMarriageStatus"
         Me.LEMarriageStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEMarriageStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_marriage_status", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("marriage_status", "Status")})
         Me.LEMarriageStatus.Properties.NullText = "- Select Status -"
-        Me.LEMarriageStatus.Size = New System.Drawing.Size(141, 20)
+        Me.LEMarriageStatus.Size = New System.Drawing.Size(759, 20)
         Me.LEMarriageStatus.TabIndex = 57
         '
         'Label6
@@ -1125,108 +1127,131 @@ Partial Class FormMasterEmployeeNewDet
         '
         'XTPDependent
         '
-        Me.XTPDependent.Controls.Add(Me.GCDependent)
-        Me.XTPDependent.Controls.Add(Me.PanelControl2)
+        Me.XTPDependent.Controls.Add(Me.Label35)
+        Me.XTPDependent.Controls.Add(Me.Label34)
+        Me.XTPDependent.Controls.Add(Me.Label27)
+        Me.XTPDependent.Controls.Add(Me.Label26)
+        Me.XTPDependent.Controls.Add(Me.TxtChild3)
+        Me.XTPDependent.Controls.Add(Me.TxtChild2)
+        Me.XTPDependent.Controls.Add(Me.TxtChild1)
+        Me.XTPDependent.Controls.Add(Me.TxtWife)
+        Me.XTPDependent.Controls.Add(Me.TxtHusband)
+        Me.XTPDependent.Controls.Add(Me.Label14)
+        Me.XTPDependent.Controls.Add(Me.Label33)
+        Me.XTPDependent.Controls.Add(Me.LEMarriageStatus)
         Me.XTPDependent.Name = "XTPDependent"
         Me.XTPDependent.Size = New System.Drawing.Size(797, 422)
         Me.XTPDependent.Text = "Dependent"
         '
-        'GCDependent
+        'Label35
         '
-        Me.GCDependent.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDependent.Location = New System.Drawing.Point(0, 37)
-        Me.GCDependent.MainView = Me.GVDependent
-        Me.GCDependent.Name = "GCDependent"
-        Me.GCDependent.Size = New System.Drawing.Size(797, 385)
-        Me.GCDependent.TabIndex = 2
-        Me.GCDependent.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDependent})
+        Me.Label35.AutoSize = True
+        Me.Label35.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label35.Location = New System.Drawing.Point(19, 256)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(45, 13)
+        Me.Label35.TabIndex = 67
+        Me.Label35.Text = "Child III"
         '
-        'GVDependent
+        'Label34
         '
-        Me.GVDependent.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumn2, Me.GridColumn3})
-        Me.GVDependent.GridControl = Me.GCDependent
-        Me.GVDependent.Name = "GVDependent"
-        Me.GVDependent.OptionsBehavior.Editable = False
-        Me.GVDependent.OptionsCustomization.AllowSort = False
-        Me.GVDependent.OptionsView.ShowGroupPanel = False
+        Me.Label34.AutoSize = True
+        Me.Label34.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label34.Location = New System.Drawing.Point(19, 206)
+        Me.Label34.Name = "Label34"
+        Me.Label34.Size = New System.Drawing.Size(41, 13)
+        Me.Label34.TabIndex = 66
+        Me.Label34.Text = "Child II"
         '
-        'GridColumnId
+        'Label27
         '
-        Me.GridColumnId.Caption = "id"
-        Me.GridColumnId.FieldName = "id_employee_dependent"
-        Me.GridColumnId.Name = "GridColumnId"
+        Me.Label27.AutoSize = True
+        Me.Label27.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label27.Location = New System.Drawing.Point(19, 158)
+        Me.Label27.Name = "Label27"
+        Me.Label27.Size = New System.Drawing.Size(37, 13)
+        Me.Label27.TabIndex = 65
+        Me.Label27.Text = "Child I"
         '
-        'GridColumn2
+        'Label26
         '
-        Me.GridColumn2.Caption = "Relationship"
-        Me.GridColumn2.FieldName = "relationship"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 170
+        Me.Label26.AutoSize = True
+        Me.Label26.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label26.Location = New System.Drawing.Point(19, 110)
+        Me.Label26.Name = "Label26"
+        Me.Label26.Size = New System.Drawing.Size(29, 13)
+        Me.Label26.TabIndex = 64
+        Me.Label26.Text = "Wife"
         '
-        'GridColumn3
+        'TxtChild3
         '
-        Me.GridColumn3.Caption = "Name"
-        Me.GridColumn3.FieldName = "employee_dependent_name"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 609
+        Me.TxtChild3.EditValue = ""
+        Me.TxtChild3.Location = New System.Drawing.Point(22, 272)
+        Me.TxtChild3.Name = "TxtChild3"
+        Me.TxtChild3.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtChild3.Properties.Appearance.Options.UseFont = True
+        Me.TxtChild3.Size = New System.Drawing.Size(759, 20)
+        Me.TxtChild3.TabIndex = 63
         '
-        'PanelControl2
+        'TxtChild2
         '
-        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.LEMarriageStatus)
-        Me.PanelControl2.Controls.Add(Me.Label33)
-        Me.PanelControl2.Controls.Add(Me.BtnDeleteDependent)
-        Me.PanelControl2.Controls.Add(Me.BtnEditDependent)
-        Me.PanelControl2.Controls.Add(Me.BtnAddDependent)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(797, 37)
-        Me.PanelControl2.TabIndex = 1
+        Me.TxtChild2.EditValue = ""
+        Me.TxtChild2.Location = New System.Drawing.Point(22, 222)
+        Me.TxtChild2.Name = "TxtChild2"
+        Me.TxtChild2.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtChild2.Properties.Appearance.Options.UseFont = True
+        Me.TxtChild2.Size = New System.Drawing.Size(759, 20)
+        Me.TxtChild2.TabIndex = 62
+        '
+        'TxtChild1
+        '
+        Me.TxtChild1.EditValue = ""
+        Me.TxtChild1.Location = New System.Drawing.Point(22, 174)
+        Me.TxtChild1.Name = "TxtChild1"
+        Me.TxtChild1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtChild1.Properties.Appearance.Options.UseFont = True
+        Me.TxtChild1.Size = New System.Drawing.Size(759, 20)
+        Me.TxtChild1.TabIndex = 61
+        '
+        'TxtWife
+        '
+        Me.TxtWife.EditValue = ""
+        Me.TxtWife.Location = New System.Drawing.Point(22, 126)
+        Me.TxtWife.Name = "TxtWife"
+        Me.TxtWife.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtWife.Properties.Appearance.Options.UseFont = True
+        Me.TxtWife.Size = New System.Drawing.Size(759, 20)
+        Me.TxtWife.TabIndex = 60
+        '
+        'TxtHusband
+        '
+        Me.TxtHusband.EditValue = ""
+        Me.TxtHusband.Location = New System.Drawing.Point(22, 78)
+        Me.TxtHusband.Name = "TxtHusband"
+        Me.TxtHusband.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtHusband.Properties.Appearance.Options.UseFont = True
+        Me.TxtHusband.Size = New System.Drawing.Size(759, 20)
+        Me.TxtHusband.TabIndex = 59
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label14.Location = New System.Drawing.Point(19, 62)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(49, 13)
+        Me.Label14.TabIndex = 58
+        Me.Label14.Text = "Husband"
         '
         'Label33
         '
         Me.Label33.AutoSize = True
         Me.Label33.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label33.Location = New System.Drawing.Point(12, 12)
+        Me.Label33.Location = New System.Drawing.Point(19, 13)
         Me.Label33.Name = "Label33"
         Me.Label33.Size = New System.Drawing.Size(82, 13)
         Me.Label33.TabIndex = 57
         Me.Label33.Text = "Marriage status"
-        '
-        'BtnDeleteDependent
-        '
-        Me.BtnDeleteDependent.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDeleteDependent.Image = CType(resources.GetObject("BtnDeleteDependent.Image"), System.Drawing.Image)
-        Me.BtnDeleteDependent.Location = New System.Drawing.Point(530, 0)
-        Me.BtnDeleteDependent.Name = "BtnDeleteDependent"
-        Me.BtnDeleteDependent.Size = New System.Drawing.Size(89, 37)
-        Me.BtnDeleteDependent.TabIndex = 6
-        Me.BtnDeleteDependent.Text = "Delete"
-        '
-        'BtnEditDependent
-        '
-        Me.BtnEditDependent.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnEditDependent.Image = CType(resources.GetObject("BtnEditDependent.Image"), System.Drawing.Image)
-        Me.BtnEditDependent.Location = New System.Drawing.Point(619, 0)
-        Me.BtnEditDependent.Name = "BtnEditDependent"
-        Me.BtnEditDependent.Size = New System.Drawing.Size(89, 37)
-        Me.BtnEditDependent.TabIndex = 58
-        Me.BtnEditDependent.Text = "Edit"
-        '
-        'BtnAddDependent
-        '
-        Me.BtnAddDependent.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAddDependent.Image = CType(resources.GetObject("BtnAddDependent.Image"), System.Drawing.Image)
-        Me.BtnAddDependent.Location = New System.Drawing.Point(708, 0)
-        Me.BtnAddDependent.Name = "BtnAddDependent"
-        Me.BtnAddDependent.Size = New System.Drawing.Size(89, 37)
-        Me.BtnAddDependent.TabIndex = 3
-        Me.BtnAddDependent.Text = "Add"
         '
         'PanelControlBottom
         '
@@ -1353,11 +1378,12 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.XTPDependent.ResumeLayout(False)
-        CType(Me.GCDependent, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDependent, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        Me.PanelControl2.PerformLayout()
+        Me.XTPDependent.PerformLayout()
+        CType(Me.TxtChild3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtChild2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtChild1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtWife.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtHusband.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1445,17 +1471,8 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents XTPPosition As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents TxtFocus As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnAddNationality As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LEMarriageStatus As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label33 As Label
-    Friend WithEvents BtnDeleteDependent As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnAddDependent As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GCDependent As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVDependent As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BtnEditDependent As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DELastDay As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelLastDay As Label
     Friend WithEvents GridColumnIdDet As DevExpress.XtraGrid.Columns.GridColumn
@@ -1475,4 +1492,14 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnDeletePosition As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAddPosition As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Label35 As Label
+    Friend WithEvents Label34 As Label
+    Friend WithEvents Label27 As Label
+    Friend WithEvents Label26 As Label
+    Friend WithEvents TxtChild3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtChild2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtChild1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtWife As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtHusband As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label14 As Label
 End Class

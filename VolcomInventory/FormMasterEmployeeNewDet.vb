@@ -41,22 +41,6 @@
         viewLookupQuery(LEMarriageStatus, query, 0, "marriage_status", "id_marriage_status")
     End Sub
 
-    Sub viewDependent()
-        Dim query As String = "SELECT * FROM tb_m_employee_dependent d "
-        query += "INNER JOIN tb_lookup_relationship r ON r.id_relationship = d.id_relationship "
-        query += "WHERE d.id_employee = '" + id_employee + "' "
-        query += "ORDER BY d.id_employee_dependent ASC "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCDependent.DataSource = data
-        If GVDependent.RowCount > 0 Then
-            BtnEditDependent.Enabled = True
-            BtnDeleteDependent.Enabled = True
-        Else
-            BtnEditDependent.Enabled = False
-            BtnDeleteDependent.Enabled = False
-        End If
-    End Sub
-
     Sub viewEmployeeStatus()
         Dim query As String = "SELECT * FROM tb_m_employee_status_det a INNER JOIN tb_lookup_employee_status b on b.id_employee_status=a.id_employee_status WHERE a.id_employee='" + id_employee + "' ORDER BY a.id_employee_status_det DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -156,12 +140,14 @@
             MEAddress.Text = datarow("address_primary").ToString
             MEAddressBoarding.Text = datarow("address_additional").ToString
             id_marriage_stattus_db = data.Rows(0)("id_marriage_status").ToString
+            TxtHusband.Text = data.Rows(0)("husband").ToString
+            TxtWife.Text = data.Rows(0)("wife").ToString
+            TxtChild1.Text = data.Rows(0)("child1").ToString
+            TxtChild2.Text = data.Rows(0)("child2").ToString
+            TxtChild3.Text = data.Rows(0)("child3").ToString
 
             'load img
             pre_viewImages("4", PEEmployee, id_employee, False)
-
-            'detail
-            viewDependent()
         End If
     End Sub
 
@@ -285,6 +271,11 @@
                 id_marriage_status = LEMarriageStatus.EditValue.ToString
             Catch ex As Exception
             End Try
+            Dim husband As String = TxtHusband.Text
+            Dim wife As String = TxtWife.Text
+            Dim child1 As String = TxtChild1.Text
+            Dim child2 As String = TxtChild2.Text
+            Dim child3 As String = TxtChild3.Text
 
             If action = "ins" Then
                 'main
@@ -334,7 +325,12 @@
                 query += "email_external='" + email_external + "', "
                 query += "email_other='" + email_other + "', "
                 query += "address_primary='" + address_primary + "', "
-                query += "address_additional='" + address_additional + "' "
+                query += "address_additional='" + address_additional + "', "
+                query += "husband='" + husband + "', "
+                query += "wife='" + wife + "', "
+                query += "child1='" + child1 + "', "
+                query += "child2='" + child2 + "', "
+                query += "child3='" + child3 + "' "
                 query += "WHERE id_employee=" + id_employee + " "
                 execute_non_query(query, True, "", "", "", "")
 
@@ -387,7 +383,7 @@
         Dispose()
     End Sub
 
-    Private Sub BtnAddDependent_Click(sender As Object, e As EventArgs) Handles BtnAddDependent.Click
+    Private Sub BtnAddDependent_Click(sender As Object, e As EventArgs)
         Cursor = Cursors.WaitCursor
         FormMasterEmployeeDependent.action = "ins"
         FormMasterEmployeeDependent.id_employee = id_employee
@@ -395,39 +391,6 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BtnEditDependent_Click(sender As Object, e As EventArgs) Handles BtnEditDependent.Click
-        editDependent()
-    End Sub
-
-    Sub editDependent()
-        Cursor = Cursors.WaitCursor
-        FormMasterEmployeeDependent.action = "upd"
-        FormMasterEmployeeDependent.id_employee = id_employee
-        FormMasterEmployeeDependent.id_employee_dependent = GVDependent.GetFocusedRowCellValue("id_employee_dependent").ToString
-        FormMasterEmployeeDependent.ShowDialog()
-        Cursor = Cursors.Default
-    End Sub
-
-    Private Sub BtnDeleteDependent_Click(sender As Object, e As EventArgs) Handles BtnDeleteDependent.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this country?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-
-        Dim id_employee_dependent As String = GVDependent.GetFocusedRowCellDisplayText("id_employee_dependent").ToString
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Try
-                Dim query As String = "DELETE FROM tb_m_employee_dependent WHERE id_employee_dependent='" + id_employee_dependent + "'"
-                execute_non_query(query, True, "", "", "", "")
-                viewDependent()
-            Catch ex As Exception
-                errorDelete()
-            End Try
-        End If
-    End Sub
-
-    Private Sub GVDependent_DoubleClick(sender As Object, e As EventArgs) Handles GVDependent.DoubleClick
-        If GVDependent.RowCount > 0 And GVDependent.FocusedRowHandle >= 0 Then
-            editDependent()
-        End If
-    End Sub
 
     Private Sub LEActive_EditValueChanged(sender As Object, e As EventArgs) Handles LEActive.EditValueChanged
         If LEActive.EditValue.ToString > 1 Then

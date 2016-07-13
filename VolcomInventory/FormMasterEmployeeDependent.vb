@@ -26,12 +26,12 @@
                 Dim query As String = "INSERT INTO tb_m_employee_dependent(id_employee, id_relationship, employee_dependent_name) VALUES "
                 query += "('" + id_employee + "', '" + id_relationship + "', '" + employee_dependent_name + "'); SELECT LAST_INSERT_ID(); "
                 id_employee_dependent = execute_query(query, 0, True, "", "", "", "")
-                FormMasterEmployeeNewDet.viewDependent()
+                'FormMasterEmployeeNewDet.viewDependent()
                 Close()
             Else
                 Dim query As String = "UPDATE tb_m_employee_dependent SET id_relationship='" + id_relationship + "', employee_dependent_name='" + employee_dependent_name + "' WHERE id_employee_dependent='" + id_employee_dependent + "'"
                 execute_non_query(query, True, "", "", "", "")
-                FormMasterEmployeeNewDet.viewDependent()
+                ' FormMasterEmployeeNewDet.viewDependent()
                 Close()
             End If
         Else
