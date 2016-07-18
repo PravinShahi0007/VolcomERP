@@ -7055,7 +7055,11 @@ Public Class FormMain
             FormSalesPOS.viewSalesPOS()
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
-            FormSalesReturnQC.viewSalesReturnQC()
+            If FormSalesReturnQC.XTCReturnQC.SelectedTabPageIndex = 0 Then
+                FormSalesReturnQC.viewSalesReturnQC()
+            Else
+                FormSalesReturnQC.viewSalesReturn()
+            End If
         ElseIf formName = "FormProdPRWO" Then
             'REC PL FG To WH
             If FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 0 Then 'list

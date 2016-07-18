@@ -166,7 +166,6 @@
         query += "GROUP BY a.id_sales_return "
         query += ") g ON g.id_sales_return = a.id_sales_return "
         query += "WHERE a.id_report_status = '6' "
-        query += "AND a.id_sales_return_order = '" + id_sales_return + "' "
         query += "ORDER BY a.id_sales_return ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -721,6 +720,7 @@
 
 
                     FormSalesReturnQC.viewSalesReturnQC()
+                    FormSalesReturnQC.viewSalesReturn()
                     FormSalesReturnQC.GVSalesReturnQC.FocusedRowHandle = find_row(FormSalesReturnQC.GVSalesReturnQC, "id_sales_return_qc", id_sales_return_qc)
                     action = "upd"
                     actionLoad()

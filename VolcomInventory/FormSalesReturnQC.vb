@@ -98,6 +98,12 @@
         query += "ORDER BY a.id_sales_return ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesReturn.DataSource = data
+        Dim id_ret As String = "-1"
+        Try
+            id_ret = GVSalesReturn.GetFocusedRowCellValue("id_sales_return").ToString
+        Catch ex As Exception
+        End Try
+        viewListSalesReturnDet(id_ret)
         check_menu()
     End Sub
 
