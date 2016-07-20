@@ -127,6 +127,20 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtHusband = New DevExpress.XtraEditors.TextEdit()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label33 = New System.Windows.Forms.Label()
+        Me.XTPSalary = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSalary = New DevExpress.XtraGrid.GridControl()
+        Me.GVSalary = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdSalary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBasicSalary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAllowJob = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAllowMeal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAllowTrans = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAllowHouse = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAllowCar = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEffectiveDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDelSalary = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddSalary = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlBottom = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrevious = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
@@ -196,6 +210,11 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.TxtChild1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtWife.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtHusband.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPSalary.SuspendLayout()
+        CType(Me.GCSalary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSalary, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -515,7 +534,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPEmployee.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[True]
         Me.XTPEmployee.Size = New System.Drawing.Size(826, 428)
         Me.XTPEmployee.TabIndex = 1
-        Me.XTPEmployee.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPGeneral, Me.XTPStatus, Me.XTPPosition, Me.XTPDependent})
+        Me.XTPEmployee.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPGeneral, Me.XTPStatus, Me.XTPPosition, Me.XTPDependent, Me.XTPSalary})
         '
         'XTPGeneral
         '
@@ -1253,6 +1272,141 @@ Partial Class FormMasterEmployeeNewDet
         Me.Label33.TabIndex = 57
         Me.Label33.Text = "Marriage status"
         '
+        'XTPSalary
+        '
+        Me.XTPSalary.Controls.Add(Me.GCSalary)
+        Me.XTPSalary.Controls.Add(Me.PanelControl2)
+        Me.XTPSalary.Name = "XTPSalary"
+        Me.XTPSalary.Size = New System.Drawing.Size(797, 422)
+        Me.XTPSalary.Text = "Salary"
+        '
+        'GCSalary
+        '
+        Me.GCSalary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSalary.Location = New System.Drawing.Point(0, 37)
+        Me.GCSalary.MainView = Me.GVSalary
+        Me.GCSalary.Name = "GCSalary"
+        Me.GCSalary.Size = New System.Drawing.Size(797, 385)
+        Me.GCSalary.TabIndex = 3
+        Me.GCSalary.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalary})
+        '
+        'GVSalary
+        '
+        Me.GVSalary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdSalary, Me.GridColumnBasicSalary, Me.GridColumnAllowJob, Me.GridColumnAllowMeal, Me.GridColumnAllowTrans, Me.GridColumnAllowHouse, Me.GridColumnAllowCar, Me.GridColumnEffectiveDate})
+        Me.GVSalary.GridControl = Me.GCSalary
+        Me.GVSalary.Name = "GVSalary"
+        Me.GVSalary.OptionsBehavior.Editable = False
+        Me.GVSalary.OptionsCustomization.AllowSort = False
+        Me.GVSalary.OptionsView.ShowGroupPanel = False
+        Me.GVSalary.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdSalary, DevExpress.Data.ColumnSortOrder.Descending)})
+        '
+        'GridColumnIdSalary
+        '
+        Me.GridColumnIdSalary.Caption = "ID"
+        Me.GridColumnIdSalary.FieldName = "id_employee_salary"
+        Me.GridColumnIdSalary.Name = "GridColumnIdSalary"
+        '
+        'GridColumnBasicSalary
+        '
+        Me.GridColumnBasicSalary.Caption = "Basic Salary"
+        Me.GridColumnBasicSalary.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnBasicSalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnBasicSalary.FieldName = "basic_salary"
+        Me.GridColumnBasicSalary.Name = "GridColumnBasicSalary"
+        Me.GridColumnBasicSalary.Visible = True
+        Me.GridColumnBasicSalary.VisibleIndex = 0
+        '
+        'GridColumnAllowJob
+        '
+        Me.GridColumnAllowJob.Caption = "Job Allowance"
+        Me.GridColumnAllowJob.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnAllowJob.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAllowJob.FieldName = "allow_job"
+        Me.GridColumnAllowJob.Name = "GridColumnAllowJob"
+        Me.GridColumnAllowJob.Visible = True
+        Me.GridColumnAllowJob.VisibleIndex = 1
+        '
+        'GridColumnAllowMeal
+        '
+        Me.GridColumnAllowMeal.Caption = "Meal Allowance"
+        Me.GridColumnAllowMeal.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnAllowMeal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAllowMeal.FieldName = "allow_meal"
+        Me.GridColumnAllowMeal.Name = "GridColumnAllowMeal"
+        Me.GridColumnAllowMeal.Visible = True
+        Me.GridColumnAllowMeal.VisibleIndex = 2
+        '
+        'GridColumnAllowTrans
+        '
+        Me.GridColumnAllowTrans.Caption = "Transport Alllowance"
+        Me.GridColumnAllowTrans.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnAllowTrans.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAllowTrans.FieldName = "allow_trans"
+        Me.GridColumnAllowTrans.Name = "GridColumnAllowTrans"
+        Me.GridColumnAllowTrans.Visible = True
+        Me.GridColumnAllowTrans.VisibleIndex = 3
+        '
+        'GridColumnAllowHouse
+        '
+        Me.GridColumnAllowHouse.Caption = "Housing Allowance"
+        Me.GridColumnAllowHouse.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnAllowHouse.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAllowHouse.FieldName = "allow_house"
+        Me.GridColumnAllowHouse.Name = "GridColumnAllowHouse"
+        Me.GridColumnAllowHouse.Visible = True
+        Me.GridColumnAllowHouse.VisibleIndex = 4
+        '
+        'GridColumnAllowCar
+        '
+        Me.GridColumnAllowCar.Caption = "Car Allowance"
+        Me.GridColumnAllowCar.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnAllowCar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAllowCar.FieldName = "allow_car"
+        Me.GridColumnAllowCar.Name = "GridColumnAllowCar"
+        Me.GridColumnAllowCar.Visible = True
+        Me.GridColumnAllowCar.VisibleIndex = 5
+        '
+        'GridColumnEffectiveDate
+        '
+        Me.GridColumnEffectiveDate.Caption = "Effective Date"
+        Me.GridColumnEffectiveDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnEffectiveDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnEffectiveDate.FieldName = "effective_date"
+        Me.GridColumnEffectiveDate.Name = "GridColumnEffectiveDate"
+        Me.GridColumnEffectiveDate.Visible = True
+        Me.GridColumnEffectiveDate.VisibleIndex = 6
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.BtnDelSalary)
+        Me.PanelControl2.Controls.Add(Me.BtnAddSalary)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(797, 37)
+        Me.PanelControl2.TabIndex = 2
+        '
+        'BtnDelSalary
+        '
+        Me.BtnDelSalary.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelSalary.Image = CType(resources.GetObject("BtnDelSalary.Image"), System.Drawing.Image)
+        Me.BtnDelSalary.Location = New System.Drawing.Point(619, 0)
+        Me.BtnDelSalary.Name = "BtnDelSalary"
+        Me.BtnDelSalary.Size = New System.Drawing.Size(89, 37)
+        Me.BtnDelSalary.TabIndex = 6
+        Me.BtnDelSalary.Text = "Delete"
+        '
+        'BtnAddSalary
+        '
+        Me.BtnAddSalary.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddSalary.Image = CType(resources.GetObject("BtnAddSalary.Image"), System.Drawing.Image)
+        Me.BtnAddSalary.Location = New System.Drawing.Point(708, 0)
+        Me.BtnAddSalary.Name = "BtnAddSalary"
+        Me.BtnAddSalary.Size = New System.Drawing.Size(89, 37)
+        Me.BtnAddSalary.TabIndex = 3
+        Me.BtnAddSalary.Text = "Add"
+        '
         'PanelControlBottom
         '
         Me.PanelControlBottom.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1384,6 +1538,11 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.TxtChild1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtWife.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtHusband.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPSalary.ResumeLayout(False)
+        CType(Me.GCSalary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSalary, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1502,4 +1661,18 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents TxtWife As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtHusband As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label14 As Label
+    Friend WithEvents XTPSalary As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCSalary As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSalary As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnIdSalary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnBasicSalary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAllowJob As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAllowMeal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAllowTrans As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAllowHouse As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAllowCar As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEffectiveDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnDelSalary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddSalary As DevExpress.XtraEditors.SimpleButton
 End Class

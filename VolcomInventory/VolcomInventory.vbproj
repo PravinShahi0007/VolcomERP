@@ -660,6 +660,12 @@
     <Compile Include="FormMasterEmployeePosition.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterEmployeeSalary.Designer.vb">
+      <DependentUpon>FormMasterEmployeeSalary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterEmployeeSalary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterEmployeeStatus.Designer.vb">
       <DependentUpon>FormMasterEmployeeStatus.vb</DependentUpon>
     </Compile>
@@ -4379,6 +4385,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeePosition.resx">
       <DependentUpon>FormMasterEmployeePosition.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterEmployeeSalary.resx">
+      <DependentUpon>FormMasterEmployeeSalary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeeStatus.resx">
       <DependentUpon>FormMasterEmployeeStatus.vb</DependentUpon>

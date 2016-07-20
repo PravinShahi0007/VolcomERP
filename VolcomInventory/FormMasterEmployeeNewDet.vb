@@ -88,7 +88,19 @@
         viewMarriageStatus()
         viewEmployeeStatus()
         viewEmployeePosition()
+        viewSalary()
         actionLoad()
+    End Sub
+
+    Sub viewSalary()
+        Dim query As String = "SELECT * FROM tb_m_employee_salary sal WHERE sal.id_employee='" + id_employee + "' ORDER BY sal.id_employee_salary DESC  "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSalary.DataSource = data
+        If GVSalary.RowCount > 0 Then
+            BtnDelSalary.Enabled = True
+        Else
+            BtnDelSalary.Enabled = False
+        End If
     End Sub
 
     Sub actionLoad()
@@ -96,6 +108,7 @@
             XTPDependent.PageEnabled = False
             XTPStatus.PageEnabled = False
             XTPPosition.PageEnabled = False
+            XTPSalary.PageEnabled = False
 
             'load img
             pre_viewImages("4", PEEmployee, id_employee, False)
@@ -104,6 +117,7 @@
             XTPDependent.PageEnabled = True
             XTPStatus.PageEnabled = True
             XTPPosition.PageEnabled = True
+            XTPSalary.PageEnabled = True
 
             Dim query As String = "CALL view_employee('AND emp.id_employee=" + id_employee + " ', 1)"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -489,5 +503,51 @@
 
     Private Sub DEJoinDate_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles DEJoinDate.Validating
         EP_DE_cant_blank(ErrorProvider1, DEJoinDate)
+    End Sub
+
+    Private Sub BtnAddSalary_Click(sender As Object, e As EventArgs) Handles BtnAddSalary.Click
+        Cursor = Cursors.WaitCursor
+        FormMasterEmployeeSalary.id_employee = id_employee
+        FormMasterEmployeeSalary.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDelSalary_Click(sender As Object, e As EventArgs) Handles BtnDelSalary.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        Dim id_employee_salary As String = GVSalary.GetFocusedRowCellDisplayText("id_employee_salary").ToString
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Try
+                Dim query As String = "DELETE FROM tb_m_employee_salary WHERE id_employee_salary='" + id_employee_salary + "'"
+                execute_non_query(query, True, "", "", "", "")
+                viewSalary()
+
+                If GVSalary.RowCount > 0 Then
+                    Dim query_upd As String = "UPDATE tb_m_employee main "
+                    query_upd += "INNER JOIN ( "
+                    query_upd += "SELECT * FROM tb_m_employee_salary a WHERE a.id_employee='" + id_employee + "' ORDER BY a.id_employee_salary DESC LIMIT 1 "
+                    query_upd += ") src ON main.id_employee = src.id_employee "
+                    query_upd += "SET main.basic_salary = src.basic_salary, "
+                    query_upd += "main.allow_job = src.allow_job, "
+                    query_upd += "main.allow_meal = src.allow_meal, "
+                    query_upd += "main.allow_trans = src.allow_trans, "
+                    query_upd += "main.allow_house = src.allow_house, "
+                    query_upd += "main.allow_car = src.allow_car "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                Else
+                    Dim query_upd As String = "UPDATE tb_m_employee main "
+                    query_upd += "SET main.basic_salary = 0, "
+                    query_upd += "main.allow_job = 0, "
+                    query_upd += "main.allow_meal = 0, "
+                    query_upd += "main.allow_trans = 0, "
+                    query_upd += "main.allow_house = 0, "
+                    query_upd += "main.allow_car = 0 "
+                    query_upd += "WHERE main.id_employee='" + id_employee + "' "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                End If
+            Catch ex As Exception
+                errorDelete()
+            End Try
+        End If
     End Sub
 End Class
