@@ -414,7 +414,7 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnAllowJob.Caption = "Job Allowance"
         Me.BandedGridColumnAllowJob.DisplayFormat.FormatString = "{0:n2}"
         Me.BandedGridColumnAllowJob.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnAllowJob.FieldName = "alllow_job"
+        Me.BandedGridColumnAllowJob.FieldName = "allow_job"
         Me.BandedGridColumnAllowJob.Name = "BandedGridColumnAllowJob"
         Me.BandedGridColumnAllowJob.Visible = True
         '
