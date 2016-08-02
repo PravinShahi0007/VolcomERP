@@ -65,4 +65,40 @@
             e.Value = Images(fileName)
         End If
     End Sub
+
+    Private Sub GVEmployee_DoubleClick(sender As Object, e As EventArgs) Handles GVEmployee.DoubleClick
+        If GVEmployee.RowCount > 0 And GVEmployee.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormMain.but_edit()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Sub freeze(ByVal check As Boolean)
+        If check Then
+            GridColumnPic.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            GridColumn2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+            GridColumn1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Else
+            GridColumnPic.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            GridColumn1.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            GridColumn2.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.None
+            If CheckImg.EditValue = True Then
+                GridColumnPic.VisibleIndex = 0
+            End If
+            GridColumn2.VisibleIndex = 1
+            GridColumn1.VisibleIndex = 2
+        End If
+    End Sub
+
+    Private Sub CheckEditFreeze_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditFreeze.CheckedChanged
+        Cursor = Cursors.WaitCursor
+        Dim val As String = CheckEditFreeze.EditValue.ToString
+        If val = "True" Then
+            freeze(True)
+        Else
+            freeze(False)
+        End If
+        Cursor = Cursors.Default
+    End Sub
 End Class

@@ -47,6 +47,12 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnChild1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnChild2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnChild3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnBasicSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAllowJob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAllowMeal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAllowTrans = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAllowHouse = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAllowCar = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPhoneExt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPhon = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnMobilePhone = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -58,12 +64,7 @@ Partial Class FormMasterEmployee
         Me.CheckEditFreeze = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
         Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
-        Me.BandedGridColumnBasicSalary = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnAllowJob = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnAllowMeal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnAllowTrans = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnAllowHouse = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnAllowCar = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBandGENERALNew = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridBandGeneral = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandDependent = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBandSalary = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -94,9 +95,9 @@ Partial Class FormMasterEmployee
         '
         'GVEmployee
         '
-        Me.GVEmployee.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GVEmployee.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVEmployee.Appearance.HeaderPanel.Options.UseFont = True
-        Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandGeneral, Me.gridBandDependent, Me.gridBandSalary, Me.gridBandContact})
+        Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGENERALNew, Me.GridBandGeneral, Me.gridBandDependent, Me.gridBandSalary, Me.gridBandContact})
         Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.BandedGridColumnLevel, Me.BandedGridColumnReligion, Me.BandedGridColumnEmployeeStatus, Me.BandedGridColumnJoinDate, Me.BandedGridColumnDegree, Me.BandedGridColumnEmployeeDOB, Me.BandedGridColumnAge, Me.BandedGridColumnAddress, Me.BandedGridColumnBPJSTK, Me.BandedGridColumnBPJSSehat, Me.BandedGridColumnnpwp, Me.BandedGridColumnMrgStatus, Me.BandedGridColumnHusband, Me.BandedGridColumnWife, Me.BandedGridColumnChild1, Me.BandedGridColumnChild2, Me.BandedGridColumnChild3, Me.BandedGridColumnPhon, Me.BandedGridColumnMobilePhone, Me.BandedGridColumnPhoneExt, Me.BandedGridColumnLocaleM, Me.BandedGridColumnExternalEm, Me.BandedGridColumnOthEm, Me.BandedGridColumnPosition, Me.BandedGridColumnActiveStatus, Me.BandedGridColumnLength, Me.GridColumnPic, Me.BandedGridColumnBasicSalary, Me.BandedGridColumnAllowJob, Me.BandedGridColumnAllowMeal, Me.BandedGridColumnAllowTrans, Me.BandedGridColumnAllowHouse, Me.BandedGridColumnAllowCar})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
@@ -311,6 +312,60 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnChild3.Name = "BandedGridColumnChild3"
         Me.BandedGridColumnChild3.Visible = True
         '
+        'BandedGridColumnBasicSalary
+        '
+        Me.BandedGridColumnBasicSalary.Caption = "Basic Salary"
+        Me.BandedGridColumnBasicSalary.DisplayFormat.FormatString = "{0:n2}"
+        Me.BandedGridColumnBasicSalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnBasicSalary.FieldName = "basic_salary"
+        Me.BandedGridColumnBasicSalary.Name = "BandedGridColumnBasicSalary"
+        Me.BandedGridColumnBasicSalary.Visible = True
+        '
+        'BandedGridColumnAllowJob
+        '
+        Me.BandedGridColumnAllowJob.Caption = "Job Allowance"
+        Me.BandedGridColumnAllowJob.DisplayFormat.FormatString = "{0:n2}"
+        Me.BandedGridColumnAllowJob.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnAllowJob.FieldName = "allow_job"
+        Me.BandedGridColumnAllowJob.Name = "BandedGridColumnAllowJob"
+        Me.BandedGridColumnAllowJob.Visible = True
+        '
+        'BandedGridColumnAllowMeal
+        '
+        Me.BandedGridColumnAllowMeal.Caption = "Meal Allowance"
+        Me.BandedGridColumnAllowMeal.DisplayFormat.FormatString = "{0:n2}"
+        Me.BandedGridColumnAllowMeal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnAllowMeal.FieldName = "allow_meal"
+        Me.BandedGridColumnAllowMeal.Name = "BandedGridColumnAllowMeal"
+        Me.BandedGridColumnAllowMeal.Visible = True
+        '
+        'BandedGridColumnAllowTrans
+        '
+        Me.BandedGridColumnAllowTrans.Caption = "Transport Allowance"
+        Me.BandedGridColumnAllowTrans.DisplayFormat.FormatString = "{0:n2}"
+        Me.BandedGridColumnAllowTrans.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnAllowTrans.FieldName = "allow_trans"
+        Me.BandedGridColumnAllowTrans.Name = "BandedGridColumnAllowTrans"
+        Me.BandedGridColumnAllowTrans.Visible = True
+        '
+        'BandedGridColumnAllowHouse
+        '
+        Me.BandedGridColumnAllowHouse.Caption = "Housing Allowance"
+        Me.BandedGridColumnAllowHouse.DisplayFormat.FormatString = "{0:n2}"
+        Me.BandedGridColumnAllowHouse.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnAllowHouse.FieldName = "allow_house"
+        Me.BandedGridColumnAllowHouse.Name = "BandedGridColumnAllowHouse"
+        Me.BandedGridColumnAllowHouse.Visible = True
+        '
+        'BandedGridColumnAllowCar
+        '
+        Me.BandedGridColumnAllowCar.Caption = "Car Allowance"
+        Me.BandedGridColumnAllowCar.DisplayFormat.FormatString = "{0:n2}"
+        Me.BandedGridColumnAllowCar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnAllowCar.FieldName = "allow_car"
+        Me.BandedGridColumnAllowCar.Name = "BandedGridColumnAllowCar"
+        Me.BandedGridColumnAllowCar.Visible = True
+        '
         'BandedGridColumnPhoneExt
         '
         Me.BandedGridColumnPhoneExt.Caption = "Ext"
@@ -373,6 +428,7 @@ Partial Class FormMasterEmployee
         Me.PanelControlFreeze.Name = "PanelControlFreeze"
         Me.PanelControlFreeze.Size = New System.Drawing.Size(97, 35)
         Me.PanelControlFreeze.TabIndex = 109
+        Me.PanelControlFreeze.Visible = False
         '
         'CheckEditFreeze
         '
@@ -400,70 +456,28 @@ Partial Class FormMasterEmployee
         Me.CheckImg.Size = New System.Drawing.Size(87, 19)
         Me.CheckImg.TabIndex = 0
         '
-        'BandedGridColumnBasicSalary
+        'gridBandGENERALNew
         '
-        Me.BandedGridColumnBasicSalary.Caption = "Basic Salary"
-        Me.BandedGridColumnBasicSalary.DisplayFormat.FormatString = "{0:n2}"
-        Me.BandedGridColumnBasicSalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnBasicSalary.FieldName = "basic_salary"
-        Me.BandedGridColumnBasicSalary.Name = "BandedGridColumnBasicSalary"
-        Me.BandedGridColumnBasicSalary.Visible = True
-        '
-        'BandedGridColumnAllowJob
-        '
-        Me.BandedGridColumnAllowJob.Caption = "Job Allowance"
-        Me.BandedGridColumnAllowJob.DisplayFormat.FormatString = "{0:n2}"
-        Me.BandedGridColumnAllowJob.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnAllowJob.FieldName = "allow_job"
-        Me.BandedGridColumnAllowJob.Name = "BandedGridColumnAllowJob"
-        Me.BandedGridColumnAllowJob.Visible = True
-        '
-        'BandedGridColumnAllowMeal
-        '
-        Me.BandedGridColumnAllowMeal.Caption = "Meal Allowance"
-        Me.BandedGridColumnAllowMeal.DisplayFormat.FormatString = "{0:n2}"
-        Me.BandedGridColumnAllowMeal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnAllowMeal.FieldName = "allow_meal"
-        Me.BandedGridColumnAllowMeal.Name = "BandedGridColumnAllowMeal"
-        Me.BandedGridColumnAllowMeal.Visible = True
-        '
-        'BandedGridColumnAllowTrans
-        '
-        Me.BandedGridColumnAllowTrans.Caption = "Transport Allowance"
-        Me.BandedGridColumnAllowTrans.DisplayFormat.FormatString = "{0:n2}"
-        Me.BandedGridColumnAllowTrans.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnAllowTrans.FieldName = "allow_trans"
-        Me.BandedGridColumnAllowTrans.Name = "BandedGridColumnAllowTrans"
-        Me.BandedGridColumnAllowTrans.Visible = True
-        '
-        'BandedGridColumnAllowHouse
-        '
-        Me.BandedGridColumnAllowHouse.Caption = "Housing Allowance"
-        Me.BandedGridColumnAllowHouse.DisplayFormat.FormatString = "{0:n2}"
-        Me.BandedGridColumnAllowHouse.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnAllowHouse.FieldName = "allow_house"
-        Me.BandedGridColumnAllowHouse.Name = "BandedGridColumnAllowHouse"
-        Me.BandedGridColumnAllowHouse.Visible = True
-        '
-        'BandedGridColumnAllowCar
-        '
-        Me.BandedGridColumnAllowCar.Caption = "Car Allowance"
-        Me.BandedGridColumnAllowCar.DisplayFormat.FormatString = "{0:n2}"
-        Me.BandedGridColumnAllowCar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnAllowCar.FieldName = "allow_car"
-        Me.BandedGridColumnAllowCar.Name = "BandedGridColumnAllowCar"
-        Me.BandedGridColumnAllowCar.Visible = True
+        Me.gridBandGENERALNew.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.gridBandGENERALNew.AppearanceHeader.Options.UseFont = True
+        Me.gridBandGENERALNew.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBandGENERALNew.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBandGENERALNew.Caption = "GENERAL"
+        Me.gridBandGENERALNew.Columns.Add(Me.GridColumnPic)
+        Me.gridBandGENERALNew.Columns.Add(Me.GridColumn2)
+        Me.gridBandGENERALNew.Columns.Add(Me.GridColumn1)
+        Me.gridBandGENERALNew.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.gridBandGENERALNew.Name = "gridBandGENERALNew"
+        Me.gridBandGENERALNew.VisibleIndex = 0
+        Me.gridBandGENERALNew.Width = 275
         '
         'GridBandGeneral
         '
-        Me.GridBandGeneral.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.GridBandGeneral.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GridBandGeneral.AppearanceHeader.Options.UseFont = True
         Me.GridBandGeneral.AppearanceHeader.Options.UseTextOptions = True
         Me.GridBandGeneral.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridBandGeneral.Caption = "GENERAL"
-        Me.GridBandGeneral.Columns.Add(Me.GridColumnPic)
-        Me.GridBandGeneral.Columns.Add(Me.GridColumn2)
-        Me.GridBandGeneral.Columns.Add(Me.GridColumn1)
+        Me.GridBandGeneral.Caption = "DETAIL"
         Me.GridBandGeneral.Columns.Add(Me.GridColumn3)
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnActiveStatus)
         Me.GridBandGeneral.Columns.Add(Me.GridColumn4)
@@ -482,12 +496,12 @@ Partial Class FormMasterEmployee
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnnpwp)
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnMrgStatus)
         Me.GridBandGeneral.Name = "GridBandGeneral"
-        Me.GridBandGeneral.VisibleIndex = 0
-        Me.GridBandGeneral.Width = 1761
+        Me.GridBandGeneral.VisibleIndex = 1
+        Me.GridBandGeneral.Width = 1486
         '
         'gridBandDependent
         '
-        Me.gridBandDependent.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBandDependent.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gridBandDependent.AppearanceHeader.Options.UseFont = True
         Me.gridBandDependent.AppearanceHeader.Options.UseTextOptions = True
         Me.gridBandDependent.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
@@ -498,12 +512,12 @@ Partial Class FormMasterEmployee
         Me.gridBandDependent.Columns.Add(Me.BandedGridColumnChild2)
         Me.gridBandDependent.Columns.Add(Me.BandedGridColumnChild3)
         Me.gridBandDependent.Name = "gridBandDependent"
-        Me.gridBandDependent.VisibleIndex = 1
+        Me.gridBandDependent.VisibleIndex = 2
         Me.gridBandDependent.Width = 375
         '
         'gridBandSalary
         '
-        Me.gridBandSalary.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBandSalary.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gridBandSalary.AppearanceHeader.Options.UseFont = True
         Me.gridBandSalary.AppearanceHeader.Options.UseTextOptions = True
         Me.gridBandSalary.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
@@ -515,12 +529,12 @@ Partial Class FormMasterEmployee
         Me.gridBandSalary.Columns.Add(Me.BandedGridColumnAllowHouse)
         Me.gridBandSalary.Columns.Add(Me.BandedGridColumnAllowCar)
         Me.gridBandSalary.Name = "gridBandSalary"
-        Me.gridBandSalary.VisibleIndex = 2
+        Me.gridBandSalary.VisibleIndex = 3
         Me.gridBandSalary.Width = 450
         '
         'gridBandContact
         '
-        Me.gridBandContact.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.gridBandContact.AppearanceHeader.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.gridBandContact.AppearanceHeader.Options.UseFont = True
         Me.gridBandContact.AppearanceHeader.Options.UseTextOptions = True
         Me.gridBandContact.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
@@ -532,7 +546,7 @@ Partial Class FormMasterEmployee
         Me.gridBandContact.Columns.Add(Me.BandedGridColumnExternalEm)
         Me.gridBandContact.Columns.Add(Me.BandedGridColumnOthEm)
         Me.gridBandContact.Name = "gridBandContact"
-        Me.gridBandContact.VisibleIndex = 3
+        Me.gridBandContact.VisibleIndex = 4
         Me.gridBandContact.Width = 450
         '
         'FormMasterEmployee
@@ -602,14 +616,15 @@ Partial Class FormMasterEmployee
     Friend WithEvents CheckEditFreeze As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnPic As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RepositoryItemPictureEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
-    Friend WithEvents GridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandDependent As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBandSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnBasicSalary As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnAllowJob As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnAllowMeal As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnAllowTrans As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnAllowHouse As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnAllowCar As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBandGENERALNew As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandDependent As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBandSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandContact As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

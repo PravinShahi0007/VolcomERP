@@ -4377,11 +4377,11 @@ Public Class FormMain
             'employee
             confirm = XtraMessageBox.Show("Are you sure want to delete this employee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-            Dim id_employee As String = FormMasterArea.GVState.GetFocusedRowCellValue("id_employee").ToString
+            Dim id_employee As String = FormMasterEmployee.GVEmployee.GetFocusedRowCellValue("id_employee").ToString
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 Try
-                    query = String.Format("DELETE FROM tb_m_employee WHERE id_state = '{0}'", id_employee)
+                    query = String.Format("DELETE FROM tb_m_employee WHERE id_employee = '{0}'", id_employee)
                     execute_non_query(query, True, "", "", "", "")
                     FormMasterEmployee.viewEmployee()
                 Catch ex As Exception
