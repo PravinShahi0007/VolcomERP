@@ -853,6 +853,7 @@
         BPickDrawer.Enabled = False
     End Sub
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
+        FormRejectType.ShowDialog()
         If GVItemList.RowCount > 0 Then
             disableControl()
             newRowsBc()
@@ -1458,5 +1459,9 @@
             End If
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub FormSalesReturnQCDet_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+
     End Sub
 End Class
