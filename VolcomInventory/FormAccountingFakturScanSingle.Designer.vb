@@ -117,6 +117,7 @@ Partial Class FormAccountingFakturScanSingle
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BtnImportFKDetail = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -740,6 +741,7 @@ Partial Class FormAccountingFakturScanSingle
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.BtnImportFKDetail)
         Me.PanelControl3.Controls.Add(Me.BtnImportFK)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
@@ -984,6 +986,15 @@ Partial Class FormAccountingFakturScanSingle
         Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.DeleteRowToolStripMenuItem.Text = "Delete row"
         '
+        'BtnImportFKDetail
+        '
+        Me.BtnImportFKDetail.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnImportFKDetail.Location = New System.Drawing.Point(571, 0)
+        Me.BtnImportFKDetail.Name = "BtnImportFKDetail"
+        Me.BtnImportFKDetail.Size = New System.Drawing.Size(116, 36)
+        Me.BtnImportFKDetail.TabIndex = 4
+        Me.BtnImportFKDetail.Text = "Import Excel FK Detail"
+        '
         'FormAccountingFakturScanSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1134,4 +1145,5 @@ Partial Class FormAccountingFakturScanSingle
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents AddRowToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteRowToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnImportFKDetail As DevExpress.XtraEditors.SimpleButton
 End Class

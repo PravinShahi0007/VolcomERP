@@ -572,4 +572,11 @@ Public Class FormAccountingFakturScanSingle
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnImportFKDetail_Click(sender As Object, e As EventArgs) Handles BtnImportFKDetail.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = ""
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

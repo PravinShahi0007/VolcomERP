@@ -92,6 +92,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select VENDOR, KODE, NAMA, SIZETYP, `xxs/1`, `xs/2`, `s/3`, `m/4`, `ml/5`, `l/6`, `xl/7`, `xxl/8`, `all/9`, `~/0` from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         ElseIf id_pop_up = "25" Then
             MyCommand = New OleDbDataAdapter("select KODE, NAMA, SIZETYP, `xxs/1`, `xs/2`, `s/3`, `m/4`, `ml/5`, `l/6`, `xl/7`, `xxl/8`, `all/9`, `~/0` from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
+        ElseIf id_pop_up = "26" Then
+            MyCommand = New OleDbDataAdapter("select no_faktur, nama_toko, npwp, alamat, kode_barang, ket_barang, qty, harga, total, diskon, ppn, dpp, jumlah_ppn, jumlah_dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -1380,6 +1382,16 @@ Public Class FormImportExcel
             GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
+        ElseIf id_pop_up = "26" Then
+            'FAKTUR KELUARAN
+            Try
+                GCData.DataSource = Nothing
+                GCData.DataSource = data_temp
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+            Catch ex As Exception
+                stopCustom("Incorrect format on table.")
+            End Try
         End If
         data_temp.Dispose()
         oledbconn.Close()
