@@ -15,6 +15,8 @@
     Public dt As New DataTable
     Public id_comp_to As String = "-1"
     Public id_comp_to_return As String = "-1"
+    Public id_reject_type As String = "-1"
+    Public reject_type As String = "-1"
     'Dim is_scan As Boolean = False
 
     'var check qty

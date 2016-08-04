@@ -85,7 +85,7 @@ Partial Class FormRejectType
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(27, 20)
         Me.BtnDelete.TabIndex = 3
-        Me.BtnDelete.ToolTip = "Add"
+        Me.BtnDelete.ToolTip = "Delete"
         Me.BtnDelete.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
         '
         'FormRejectType
