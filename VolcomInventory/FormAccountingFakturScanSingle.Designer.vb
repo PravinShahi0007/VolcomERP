@@ -87,6 +87,7 @@ Partial Class FormAccountingFakturScanSingle
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn0 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnImportFKDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportFK = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDM = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDM = New DevExpress.XtraGrid.GridControl()
@@ -117,7 +118,6 @@ Partial Class FormAccountingFakturScanSingle
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.BtnImportFKDetail = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -749,6 +749,15 @@ Partial Class FormAccountingFakturScanSingle
         Me.PanelControl3.Size = New System.Drawing.Size(787, 36)
         Me.PanelControl3.TabIndex = 4
         '
+        'BtnImportFKDetail
+        '
+        Me.BtnImportFKDetail.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnImportFKDetail.Location = New System.Drawing.Point(561, 0)
+        Me.BtnImportFKDetail.Name = "BtnImportFKDetail"
+        Me.BtnImportFKDetail.Size = New System.Drawing.Size(126, 36)
+        Me.BtnImportFKDetail.TabIndex = 4
+        Me.BtnImportFKDetail.Text = "Import Excel FK Detail"
+        '
         'BtnImportFK
         '
         Me.BtnImportFK.Dock = System.Windows.Forms.DockStyle.Right
@@ -985,15 +994,6 @@ Partial Class FormAccountingFakturScanSingle
         Me.DeleteRowToolStripMenuItem.Name = "DeleteRowToolStripMenuItem"
         Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.DeleteRowToolStripMenuItem.Text = "Delete row"
-        '
-        'BtnImportFKDetail
-        '
-        Me.BtnImportFKDetail.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnImportFKDetail.Location = New System.Drawing.Point(571, 0)
-        Me.BtnImportFKDetail.Name = "BtnImportFKDetail"
-        Me.BtnImportFKDetail.Size = New System.Drawing.Size(116, 36)
-        Me.BtnImportFKDetail.TabIndex = 4
-        Me.BtnImportFKDetail.Text = "Import Excel FK Detail"
         '
         'FormAccountingFakturScanSingle
         '
