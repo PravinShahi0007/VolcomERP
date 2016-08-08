@@ -71,7 +71,7 @@ Public Class FormAccountingFakturScanSingle
             End If
             GCData.DataSource = data
         ElseIf LEType.EditValue.ToString = "2" Then 'FK
-            query += "call view_acc_fak_scan_fk(" + id_acc_fak_scan + ") "
+            query += "call view_acc_fak_scan_fk_det(" + id_acc_fak_scan + ") "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCFK.DataSource = data
         Else
@@ -570,6 +570,13 @@ Public Class FormAccountingFakturScanSingle
             'dm
             delDM()
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnImportFKDetail_Click(sender As Object, e As EventArgs) Handles BtnImportFKDetail.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "26"
+        FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

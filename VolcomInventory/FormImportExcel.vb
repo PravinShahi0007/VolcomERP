@@ -92,6 +92,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select VENDOR, KODE, NAMA, SIZETYP, `xxs/1`, `xs/2`, `s/3`, `m/4`, `ml/5`, `l/6`, `xl/7`, `xxl/8`, `all/9`, `~/0` from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         ElseIf id_pop_up = "25" Then
             MyCommand = New OleDbDataAdapter("select KODE, NAMA, SIZETYP, `xxs/1`, `xs/2`, `s/3`, `m/4`, `ml/5`, `l/6`, `xl/7`, `xxl/8`, `all/9`, `~/0` from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
+        ElseIf id_pop_up = "26" Then
+            MyCommand = New OleDbDataAdapter("select no_faktur, nama_toko, npwp, alamat, kode_barang, ket_barang, jumlah_barang, harga_satuan, harga_total, diskon, ppn, dpp, jumlah_ppn, jumlah_dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -1380,6 +1382,16 @@ Public Class FormImportExcel
             GVData.Columns("Available").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
+        ElseIf id_pop_up = "26" Then
+            'FAKTUR KELUARAN
+            Try
+                GCData.DataSource = Nothing
+                GCData.DataSource = data_temp
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+            Catch ex As Exception
+                stopCustom("Incorrect format on table.")
+            End Try
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2478,6 +2490,52 @@ Public Class FormImportExcel
                         stopCustom("There is no data for import process, please make sure your input !")
                         makeSafeGV(GVData)
                     End If
+                End If
+            ElseIf id_pop_up = "26" Then
+                If GVData.RowCount > 0 Then
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+
+                    Dim bulk_query As String = ""
+                    Dim id_acc_fak_scan As String = FormAccountingFakturScanSingle.id_acc_fak_scan
+
+                    Dim del_query As String = "DELETE FROM tb_a_acc_fak_scan_fk_det WHERE id_acc_fak_scan='" + id_acc_fak_scan + "'"
+                    execute_non_query(del_query, True, "", "", "", "")
+
+                    bulk_query = "INSERT INTO tb_a_acc_fak_scan_fk_det(id_acc_fak_scan, kd_jenis_transaksi, fg_pengganti, nomor_faktur, masa_pajak, tahun_pajak, tanggal_faktur, npwp, nama, alamat_lengkap, jumlah_dpp, jumlah_ppn, jumlah_ppnbm, id_keterangan_tambahan, fg_uang_muka, uang_muka_dpp, uang_muka_ppn, uang_muka_ppnbm, referensi, of, kode_objek, nama3, harga_satuan, jumlah_barang, harga_total, diskon, dpp, ppn, tarif_ppnbm, ppnbm) VALUES "
+                    For i As Integer = 0 To (GVData.RowCount - 1)
+                        'number
+                        Dim harga_total As Decimal = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "harga_total").ToString))
+                        Dim diskon As Decimal = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "diskon").ToString))
+                        Dim ppn As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "ppn").ToString))
+                        Dim dpp As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "dpp").ToString))
+                        Dim jumlah_ppn As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "jumlah_ppn").ToString))
+                        Dim jumlah_dpp As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "jumlah_dpp").ToString))
+
+
+                        'no faktur
+                        Dim no_faktur_ori As String = GVData.GetRowCellValue(i, "no_faktur").ToString
+                        Dim col_foc_str As String() = Split(no_faktur_ori, ".")
+                        Dim kd_jenis_transaksi As String = col_foc_str(0).Substring(0, 2).ToString
+                        Dim fg_pengganti As String = col_foc_str(0).Substring(2, 1)
+                        Dim no_faktur As String = col_foc_str(1).Replace("-", "").Replace(".", "") + col_foc_str(2).ToString
+
+                        'query
+                        bulk_query += "('" + id_acc_fak_scan + "','" + kd_jenis_transaksi + "','" + fg_pengganti + "','" + addSlashes(no_faktur) + "','" + FormAccountingFakturScanSingle.TxtPeriod.Text + "','" + FormAccountingFakturScanSingle.TxtYear.Text + "', '" + FormAccountingFakturScanSingle.TxtFakturDate.Text + "', '" + addSlashes(GVData.GetRowCellValue(i, "npwp").Replace(".", "").Replace("-", "")) + "', '" + addSlashes(GVData.GetRowCellValue(i, "nama_toko").ToString) + "', '" + addSlashes(GVData.GetRowCellValue(i, "alamat").ToString) + "', '" + decimalSQL(jumlah_dpp.ToString) + "', '" + decimalSQL(jumlah_ppn.ToString) + "', '0', '','0','0', '0', '0', '" + addSlashes(GVData.GetRowCellValue(i, "referensi").ToString) + "', 'OF', '" + addSlashes(GVData.GetRowCellValue(i, "kode_barang").ToString) + "', '" + addSlashes(GVData.GetRowCellValue(i, "ket_barang").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "harga_satuan").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "jumlah_barang").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "harga_total").ToString) + "', '" + decimalSQL(GVData.GetRowCellValue(i, "diskon").ToString) + "', '" + decimalSQL(dpp.ToString) + "', '" + decimalSQL(ppn.ToString) + "', '0', '0') "
+                        If Not i = GVData.RowCount - 1 Then
+                            bulk_query += ","
+                        End If
+                        PBC.PerformStep()
+                        PBC.Update()
+                    Next
+
+                    execute_non_query(bulk_query, True, "", "", "", "")
+                    FormAccountingFakturScanSingle.viewDetail()
+                    Close()
+                Else
+                    stopCustom("No data available.")
                 End If
             End If
         End If
