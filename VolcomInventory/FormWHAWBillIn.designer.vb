@@ -21,6 +21,12 @@ Partial Class FormWHAWBillIn
     Private Sub InitializeComponent()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEDeadlineStorePickUp = New DevExpress.XtraEditors.DateEdit()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEStorePickUp = New DevExpress.XtraEditors.DateEdit()
+        Me.Label22 = New System.Windows.Forms.Label()
         Me.CEPaid = New DevExpress.XtraEditors.CheckEdit()
         Me.TECargoWeight = New DevExpress.XtraEditors.TextEdit()
         Me.Label21 = New System.Windows.Forms.Label()
@@ -115,6 +121,10 @@ Partial Class FormWHAWBillIn
         Me.PanelControl2.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.DEDeadlineStorePickUp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDeadlineStorePickUp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStorePickUp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStorePickUp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEPaid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECargoMinWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -178,11 +188,17 @@ Partial Class FormWHAWBillIn
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(807, 141)
+        Me.PanelControl2.Size = New System.Drawing.Size(807, 178)
         Me.PanelControl2.TabIndex = 5
         '
         'GroupControl3
         '
+        Me.GroupControl3.Controls.Add(Me.SimpleButton2)
+        Me.GroupControl3.Controls.Add(Me.DEDeadlineStorePickUp)
+        Me.GroupControl3.Controls.Add(Me.Label23)
+        Me.GroupControl3.Controls.Add(Me.SimpleButton1)
+        Me.GroupControl3.Controls.Add(Me.DEStorePickUp)
+        Me.GroupControl3.Controls.Add(Me.Label22)
         Me.GroupControl3.Controls.Add(Me.CEPaid)
         Me.GroupControl3.Controls.Add(Me.TECargoWeight)
         Me.GroupControl3.Controls.Add(Me.Label21)
@@ -209,9 +225,71 @@ Partial Class FormWHAWBillIn
         Me.GroupControl3.Location = New System.Drawing.Point(2, 2)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.ShowCaption = False
-        Me.GroupControl3.Size = New System.Drawing.Size(623, 137)
+        Me.GroupControl3.Size = New System.Drawing.Size(623, 174)
         Me.GroupControl3.TabIndex = 1
         Me.GroupControl3.Text = "Destination"
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Location = New System.Drawing.Point(547, 141)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(69, 23)
+        Me.SimpleButton2.TabIndex = 122
+        Me.SimpleButton2.Text = "Set Nothing"
+        '
+        'DEDeadlineStorePickUp
+        '
+        Me.DEDeadlineStorePickUp.EditValue = Nothing
+        Me.DEDeadlineStorePickUp.Location = New System.Drawing.Point(323, 143)
+        Me.DEDeadlineStorePickUp.Name = "DEDeadlineStorePickUp"
+        Me.DEDeadlineStorePickUp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDeadlineStorePickUp.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDeadlineStorePickUp.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEDeadlineStorePickUp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDeadlineStorePickUp.Properties.Mask.EditMask = "dd-MM-yyyy"
+        Me.DEDeadlineStorePickUp.Size = New System.Drawing.Size(218, 20)
+        Me.DEDeadlineStorePickUp.TabIndex = 120
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(320, 126)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(161, 13)
+        Me.Label23.TabIndex = 121
+        Me.Label23.Text = "Store Ready to Pick Up Deadline"
+        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Location = New System.Drawing.Point(248, 141)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(69, 23)
+        Me.SimpleButton1.TabIndex = 119
+        Me.SimpleButton1.Text = "Set Nothing"
+        '
+        'DEStorePickUp
+        '
+        Me.DEStorePickUp.EditValue = Nothing
+        Me.DEStorePickUp.Location = New System.Drawing.Point(13, 142)
+        Me.DEStorePickUp.Name = "DEStorePickUp"
+        Me.DEStorePickUp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStorePickUp.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStorePickUp.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStorePickUp.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStorePickUp.Properties.Mask.EditMask = "dd-MM-yyyy"
+        Me.DEStorePickUp.Size = New System.Drawing.Size(229, 20)
+        Me.DEStorePickUp.TabIndex = 117
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(10, 126)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(130, 13)
+        Me.Label22.TabIndex = 118
+        Me.Label22.Text = "Store Ready Pick Up Date"
+        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'CEPaid
         '
@@ -514,14 +592,14 @@ Partial Class FormWHAWBillIn
         Me.GroupControl1.Location = New System.Drawing.Point(625, 2)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.ShowCaption = False
-        Me.GroupControl1.Size = New System.Drawing.Size(180, 137)
+        Me.GroupControl1.Size = New System.Drawing.Size(180, 174)
         Me.GroupControl1.TabIndex = 92
         Me.GroupControl1.Text = "Collie"
         '
         'DECreated
         '
         Me.DECreated.EditValue = Nothing
-        Me.DECreated.Location = New System.Drawing.Point(13, 103)
+        Me.DECreated.Location = New System.Drawing.Point(13, 128)
         Me.DECreated.Name = "DECreated"
         Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -535,7 +613,7 @@ Partial Class FormWHAWBillIn
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(13, 87)
+        Me.Label14.Location = New System.Drawing.Point(13, 112)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(72, 13)
         Me.Label14.TabIndex = 96
@@ -563,7 +641,7 @@ Partial Class FormWHAWBillIn
         '
         'TEAwbType
         '
-        Me.TEAwbType.Location = New System.Drawing.Point(13, 64)
+        Me.TEAwbType.Location = New System.Drawing.Point(13, 76)
         Me.TEAwbType.Name = "TEAwbType"
         Me.TEAwbType.Properties.ReadOnly = True
         Me.TEAwbType.Size = New System.Drawing.Size(157, 20)
@@ -573,7 +651,7 @@ Partial Class FormWHAWBillIn
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(13, 48)
+        Me.Label6.Location = New System.Drawing.Point(13, 60)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(31, 13)
         Me.Label6.TabIndex = 3
@@ -583,9 +661,9 @@ Partial Class FormWHAWBillIn
         '
         Me.GroupControl2.Controls.Add(Me.XTCDetail)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 141)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 178)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(807, 334)
+        Me.GroupControl2.Size = New System.Drawing.Size(807, 349)
         Me.GroupControl2.TabIndex = 6
         Me.GroupControl2.Text = "Detail"
         '
@@ -595,7 +673,7 @@ Partial Class FormWHAWBillIn
         Me.XTCDetail.Location = New System.Drawing.Point(2, 20)
         Me.XTCDetail.Name = "XTCDetail"
         Me.XTCDetail.SelectedTabPage = Me.XTPInvoice
-        Me.XTCDetail.Size = New System.Drawing.Size(803, 312)
+        Me.XTCDetail.Size = New System.Drawing.Size(803, 327)
         Me.XTCDetail.TabIndex = 104
         Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPInvoice, Me.XTPDetail})
         '
@@ -607,7 +685,7 @@ Partial Class FormWHAWBillIn
         Me.XTPInvoice.Controls.Add(Me.MENote)
         Me.XTPInvoice.Controls.Add(Me.BBrowse)
         Me.XTPInvoice.Name = "XTPInvoice"
-        Me.XTPInvoice.Size = New System.Drawing.Size(797, 284)
+        Me.XTPInvoice.Size = New System.Drawing.Size(797, 299)
         Me.XTPInvoice.Text = "AWB"
         '
         'BRemoveDO
@@ -621,7 +699,7 @@ Partial Class FormWHAWBillIn
         'GCDO
         '
         Me.GCDO.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GCDO.Location = New System.Drawing.Point(0, 98)
+        Me.GCDO.Location = New System.Drawing.Point(0, 113)
         Me.GCDO.MainView = Me.GVDO
         Me.GCDO.Name = "GCDO"
         Me.GCDO.Size = New System.Drawing.Size(797, 186)
@@ -701,7 +779,7 @@ Partial Class FormWHAWBillIn
         Me.XTPDetail.Controls.Add(Me.BRefresh)
         Me.XTPDetail.Controls.Add(Me.PanelControl3)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(797, 284)
+        Me.XTPDetail.Size = New System.Drawing.Size(797, 299)
         Me.XTPDetail.Text = "WH Volume"
         '
         'GCCargoRate
@@ -710,7 +788,7 @@ Partial Class FormWHAWBillIn
         Me.GCCargoRate.Location = New System.Drawing.Point(0, 62)
         Me.GCCargoRate.MainView = Me.GVCargoRate
         Me.GCCargoRate.Name = "GCCargoRate"
-        Me.GCCargoRate.Size = New System.Drawing.Size(797, 199)
+        Me.GCCargoRate.Size = New System.Drawing.Size(797, 214)
         Me.GCCargoRate.TabIndex = 0
         Me.GCCargoRate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCargoRate, Me.GridView1})
         '
@@ -798,7 +876,7 @@ Partial Class FormWHAWBillIn
         'BRefresh
         '
         Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BRefresh.Location = New System.Drawing.Point(0, 261)
+        Me.BRefresh.Location = New System.Drawing.Point(0, 276)
         Me.BRefresh.Name = "BRefresh"
         Me.BRefresh.Size = New System.Drawing.Size(797, 23)
         Me.BRefresh.TabIndex = 103
@@ -960,7 +1038,7 @@ Partial Class FormWHAWBillIn
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 621)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 673)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(807, 39)
         Me.PanelControl1.TabIndex = 8
@@ -991,7 +1069,7 @@ Partial Class FormWHAWBillIn
         Me.GroupControl4.Controls.Add(Me.GroupBox1)
         Me.GroupControl4.Controls.Add(Me.Label7)
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl4.Location = New System.Drawing.Point(0, 475)
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 527)
         Me.GroupControl4.Name = "GroupControl4"
         Me.GroupControl4.Size = New System.Drawing.Size(807, 146)
         Me.GroupControl4.TabIndex = 7
@@ -1142,7 +1220,7 @@ Partial Class FormWHAWBillIn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(807, 660)
+        Me.ClientSize = New System.Drawing.Size(807, 712)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.GroupControl4)
         Me.Controls.Add(Me.PanelControl2)
@@ -1159,6 +1237,10 @@ Partial Class FormWHAWBillIn
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.DEDeadlineStorePickUp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDeadlineStorePickUp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStorePickUp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStorePickUp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEPaid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECargoMinWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1313,4 +1395,10 @@ Partial Class FormWHAWBillIn
     Friend WithEvents TECargoWeight As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label21 As Label
     Friend WithEvents CEPaid As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEStorePickUp As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label22 As Label
+    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEDeadlineStorePickUp As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label23 As Label
 End Class
