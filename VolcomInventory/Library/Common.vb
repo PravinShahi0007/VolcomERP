@@ -17,11 +17,13 @@ Module Common
     Public username_user As String
     Public name_user As String
     Public product_image_path As String = ""
+    Public emp_image_path As String = ""
     Public is_change_pass_user As String = ""
     Public again_awb As String = ""
 
     Sub loadImgPath()
         product_image_path = get_setup_field("pic_path_design") & "\"
+        emp_image_path = get_setup_field("pic_path_emp") & "\"
     End Sub
 
     '============ = OPT CODE HEAD ======================================
@@ -1174,6 +1176,20 @@ Module Common
     Public Function formIsValidInPanel(ByVal EPNameHere As ErrorProvider, ByVal GroupnameHere As PanelControl)
         Dim count_error As Integer = 0
         For Each c As Windows.Forms.Control In GroupnameHere.Controls
+            If Not EPNameHere.GetError(c) = "" Then
+                count_error += 1
+            End If
+        Next
+        If count_error < 1 Then
+            Return True
+        Else
+            Return False
+        End If
+    End Function
+
+    Public Function formIsValidInXTP(ByVal EPNameHere As ErrorProvider, ByVal Page As DevExpress.XtraTab.XtraTabPage) As Boolean
+        Dim count_error As Integer = 0
+        For Each c As Windows.Forms.Control In Page.Controls
             If Not EPNameHere.GetError(c) = "" Then
                 count_error += 1
             End If
@@ -2906,6 +2922,7 @@ Module Common
         '1 = sample
         '2 = design
         '3 = mat
+        '4 = emp
         'change id_goods and dir if something happened
         Dim dir As String = ""
         If opt = "1" Then
@@ -2914,6 +2931,8 @@ Module Common
             dir = get_setup_field("pic_path_design") & "\"
         ElseIf opt = "3" Then
             dir = get_setup_field("pic_path_mat") & "\"
+        ElseIf opt = "4" Then
+            dir = get_setup_field("pic_path_emp") & "\"
         End If
         viewImages(PE, dir, id_goods, is_open)
     End Sub
@@ -3182,6 +3201,16 @@ Module Common
         Else
             Return par
         End If
+    End Function
+
+    Function checkNullInput(ByVal val As String) As String
+        Dim res As String = ""
+        If val = "" Then
+            res = "NULL"
+        Else
+            res = "'" + addSlashes(val) + "'"
+        End If
+        Return res
     End Function
 
     <Runtime.CompilerServices.Extension()>
