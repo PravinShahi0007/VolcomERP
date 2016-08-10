@@ -36,7 +36,6 @@
         checkFormAccess(Name)
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub
-
     Sub load_outbound()
         Dim number_start, number_end, date_start, date_end As String
 
@@ -303,6 +302,7 @@
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
                 query += " (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,"
+                query += " (IF(DATEDIFF(awb.store_deadline_pickup_date, awb.store_pickup_date)<0, 'LATE','-')) AS store_pickup_status,"
                 query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff"
                 query += " FROM tb_wh_awbill awb"
                 query += " inner join tb_m_comp comp_store On comp_store.id_comp=awb.id_store"
@@ -318,6 +318,7 @@
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
                 query += " (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,"
+                query += " (IF(DATEDIFF(awb.store_deadline_pickup_date, awb.store_pickup_date)<0, 'LATE','-')) AS store_pickup_status,"
                 query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff FROM tb_wh_awbill awb"
                 query += " inner join tb_m_comp comp_store On comp_store.id_comp=awb.id_store"
                 query += " inner join tb_m_comp comp_cargo On comp_cargo.id_comp=awb.id_cargo"
