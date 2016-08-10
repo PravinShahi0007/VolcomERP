@@ -72,16 +72,16 @@
             Else
                 DEStore.EditValue = data.Rows(0)("rec_by_store_date")
             End If
-            If data.Rows(0)("store_pick_up_date").ToString = "" Then
+            If data.Rows(0)("store_pickup_date").ToString = "" Then
                 DEStorePickUp.EditValue = Nothing
             Else
-                DEStorePickUp.EditValue = data.Rows(0)("store_pick_up_date")
+                DEStorePickUp.EditValue = data.Rows(0)("store_pickup_date")
             End If
 
-            If data.Rows(0)("store_deadline_pick_up_date").ToString = "" Then
+            If data.Rows(0)("store_deadline_pickup_date").ToString = "" Then
                 DEDeadlineStorePickUp.EditValue = Nothing
             Else
-                DEDeadlineStorePickUp.EditValue = data.Rows(0)("store_deadline_pick_up_date")
+                DEDeadlineStorePickUp.EditValue = data.Rows(0)("store_deadline_pickup_date")
             End If
             If data.Rows(0)("is_paid_by_store").ToString = "1" Then
                 CEPaid.Checked = True

@@ -663,7 +663,7 @@ Partial Class FormWHAWBillIn
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 178)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(807, 349)
+        Me.GroupControl2.Size = New System.Drawing.Size(807, 308)
         Me.GroupControl2.TabIndex = 6
         Me.GroupControl2.Text = "Detail"
         '
@@ -673,7 +673,7 @@ Partial Class FormWHAWBillIn
         Me.XTCDetail.Location = New System.Drawing.Point(2, 20)
         Me.XTCDetail.Name = "XTCDetail"
         Me.XTCDetail.SelectedTabPage = Me.XTPInvoice
-        Me.XTCDetail.Size = New System.Drawing.Size(803, 327)
+        Me.XTCDetail.Size = New System.Drawing.Size(803, 286)
         Me.XTCDetail.TabIndex = 104
         Me.XTCDetail.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPInvoice, Me.XTPDetail})
         '
@@ -685,7 +685,7 @@ Partial Class FormWHAWBillIn
         Me.XTPInvoice.Controls.Add(Me.MENote)
         Me.XTPInvoice.Controls.Add(Me.BBrowse)
         Me.XTPInvoice.Name = "XTPInvoice"
-        Me.XTPInvoice.Size = New System.Drawing.Size(797, 299)
+        Me.XTPInvoice.Size = New System.Drawing.Size(797, 258)
         Me.XTPInvoice.Text = "AWB"
         '
         'BRemoveDO
@@ -699,10 +699,10 @@ Partial Class FormWHAWBillIn
         'GCDO
         '
         Me.GCDO.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GCDO.Location = New System.Drawing.Point(0, 113)
+        Me.GCDO.Location = New System.Drawing.Point(0, 102)
         Me.GCDO.MainView = Me.GVDO
         Me.GCDO.Name = "GCDO"
-        Me.GCDO.Size = New System.Drawing.Size(797, 186)
+        Me.GCDO.Size = New System.Drawing.Size(797, 156)
         Me.GCDO.TabIndex = 1
         Me.GCDO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDO, Me.GridView2})
         '
@@ -779,7 +779,7 @@ Partial Class FormWHAWBillIn
         Me.XTPDetail.Controls.Add(Me.BRefresh)
         Me.XTPDetail.Controls.Add(Me.PanelControl3)
         Me.XTPDetail.Name = "XTPDetail"
-        Me.XTPDetail.Size = New System.Drawing.Size(797, 299)
+        Me.XTPDetail.Size = New System.Drawing.Size(797, 258)
         Me.XTPDetail.Text = "WH Volume"
         '
         'GCCargoRate
@@ -788,7 +788,7 @@ Partial Class FormWHAWBillIn
         Me.GCCargoRate.Location = New System.Drawing.Point(0, 62)
         Me.GCCargoRate.MainView = Me.GVCargoRate
         Me.GCCargoRate.Name = "GCCargoRate"
-        Me.GCCargoRate.Size = New System.Drawing.Size(797, 214)
+        Me.GCCargoRate.Size = New System.Drawing.Size(797, 173)
         Me.GCCargoRate.TabIndex = 0
         Me.GCCargoRate.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCargoRate, Me.GridView1})
         '
@@ -876,7 +876,7 @@ Partial Class FormWHAWBillIn
         'BRefresh
         '
         Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BRefresh.Location = New System.Drawing.Point(0, 276)
+        Me.BRefresh.Location = New System.Drawing.Point(0, 235)
         Me.BRefresh.Name = "BRefresh"
         Me.BRefresh.Size = New System.Drawing.Size(797, 23)
         Me.BRefresh.TabIndex = 103
@@ -1038,7 +1038,7 @@ Partial Class FormWHAWBillIn
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.BSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 673)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 632)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(807, 39)
         Me.PanelControl1.TabIndex = 8
@@ -1069,7 +1069,7 @@ Partial Class FormWHAWBillIn
         Me.GroupControl4.Controls.Add(Me.GroupBox1)
         Me.GroupControl4.Controls.Add(Me.Label7)
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl4.Location = New System.Drawing.Point(0, 527)
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 486)
         Me.GroupControl4.Name = "GroupControl4"
         Me.GroupControl4.Size = New System.Drawing.Size(807, 146)
         Me.GroupControl4.TabIndex = 7
@@ -1220,7 +1220,7 @@ Partial Class FormWHAWBillIn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(807, 712)
+        Me.ClientSize = New System.Drawing.Size(807, 671)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.GroupControl4)
         Me.Controls.Add(Me.PanelControl2)
