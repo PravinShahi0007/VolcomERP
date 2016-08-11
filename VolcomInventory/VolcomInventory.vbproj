@@ -189,6 +189,7 @@
     <Compile Include="ClassFGTrf.vb" />
     <Compile Include="ClassFGWHAlloc.vb" />
     <Compile Include="ClassFGWoff.vb" />
+    <Compile Include="ClassFingerPrint.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassProdDemand.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
@@ -642,6 +643,12 @@
       <DependentUpon>FormFGWHAllocLog.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGWHAllocLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFingerPrint.Designer.vb">
+      <DependentUpon>FormFingerPrint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFingerPrint.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormGuide.Designer.vb">
@@ -4409,6 +4416,9 @@
     <EmbeddedResource Include="FormFGWHAllocLog.resx">
       <DependentUpon>FormFGWHAllocLog.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFingerPrint.resx">
+      <DependentUpon>FormFingerPrint.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormGuide.resx">
       <DependentUpon>FormGuide.vb</DependentUpon>
     </EmbeddedResource>
@@ -6706,6 +6716,17 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="zkemkeeper">
+      <Guid>{FE9DED34-E159-408E-8490-B720A5E632C7}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
