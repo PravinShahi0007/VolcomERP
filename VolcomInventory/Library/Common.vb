@@ -4614,4 +4614,12 @@ Module Common
         Next
         Return table
     End Function
+    Function get_emp(ByVal param As String, ByVal opt As String)
+        Dim ret_var As String = ""
+        If opt = "1" Then 'get id_employee from nip
+            Dim query As String = "SELECT id_employee FROM tb_m_employee WHERE employee_code='" + param + "' LIMIT 1"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
+        End If
+        Return ret_var
+    End Function
 End Module
