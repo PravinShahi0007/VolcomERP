@@ -2,6 +2,8 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Public quick_edit As String = "-1"
+    Public id_pop_up As String = "-1"
 
     Private Sub FormArea_FormClosing(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles MyBase.FormClosing
         Dispose()
@@ -10,6 +12,16 @@
     Private Sub FormArea_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         apply_skin()
         view_country()
+
+        If quick_edit = "1" Then
+            PanelControlTop.Visible = True
+        End If
+
+        If id_pop_up = "1" Then
+            XTRegion.PageVisible = False
+            XTCity.PageVisible = False
+            XTState.PageVisible = False
+        End If
     End Sub
 
     Sub view_country()
@@ -101,13 +113,17 @@
     End Sub
 
     Private Sub FormMasterArea_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
-        FormMain.show_rb(Name)
-        checkFormAccess(Name)
-        button_main(bnew_active, bedit_active, bdel_active)
+        If quick_edit = "-1" Then
+            FormMain.show_rb(Name)
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
+        End If
     End Sub
 
     Private Sub FormMasterArea_Deactivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Deactivate
-        FormMain.hide_rb()
+        If quick_edit = "-1" Then
+            FormMain.hide_rb()
+        End If
     End Sub
 
     Private Sub XTCArea_SelectedPageChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCArea.SelectedPageChanged
@@ -199,5 +215,47 @@
             FormMain.but_edit()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Cursor = Cursors.WaitCursor
+        'country
+        FormMasterCountrySingle.id_country = "-1"
+        FormMasterCountrySingle.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click
+        Cursor = Cursors.WaitCursor
+        'country
+        FormMasterCountrySingle.id_country = GVCountry.GetFocusedRowCellDisplayText("id_country").ToString
+        FormMasterCountrySingle.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        Cursor = Cursors.WaitCursor
+        'country
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this country?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        Dim id_country As String = GVCountry.GetFocusedRowCellDisplayText("id_country").ToString
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Try
+                Dim query As String = String.Format("DELETE FROM tb_m_country WHERE id_country = '{0}'", id_country)
+                execute_non_query(query, True, "", "", "", "")
+                view_country()
+            Catch ex As Exception
+                DevExpress.XtraEditors.XtraMessageBox.Show("This country already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+            Cursor = Cursors.Default
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormMasterArea_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        If id_pop_up = "1" Then
+            FormMasterEmployeeNewDet.viewCountry()
+        End If
     End Sub
 End Class
