@@ -453,6 +453,12 @@
     <Compile Include="FormDataReff.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpAttn.Designer.vb">
+      <DependentUpon>FormEmpAttn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttn.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpCalendar.Designer.vb">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </Compile>
@@ -4299,6 +4305,9 @@
     <EmbeddedResource Include="FormDataReff.resx">
       <DependentUpon>FormDataReff.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttn.resx">
+      <DependentUpon>FormEmpAttn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
