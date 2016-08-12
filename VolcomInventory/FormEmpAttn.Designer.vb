@@ -32,6 +32,9 @@ Partial Class FormEmpAttn
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,7 +130,7 @@ Partial Class FormEmpAttn
         '
         'GVSchedule
         '
-        Me.GVSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn5, Me.GridColumn7})
         Me.GVSchedule.GridControl = Me.GCSchedule
         Me.GVSchedule.Name = "GVSchedule"
         Me.GVSchedule.OptionsView.ShowGroupPanel = False
@@ -155,13 +158,39 @@ Partial Class FormEmpAttn
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Log"
+        Me.GridColumn4.Caption = "Log Masuk"
         Me.GridColumn4.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn4.FieldName = "datetime"
+        Me.GridColumn4.FieldName = "log_masuk"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Log Pulang"
+        Me.GridColumn5.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn5.FieldName = "log_pulang"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Metode Masuk"
+        Me.GridColumn6.FieldName = "meth_masuk"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 3
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Metode Pulang"
+        Me.GridColumn7.FieldName = "meth_pulang"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 5
         '
         'FormEmpAttn
         '
@@ -198,4 +227,7 @@ Partial Class FormEmpAttn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
