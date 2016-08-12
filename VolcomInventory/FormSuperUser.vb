@@ -29,9 +29,9 @@
         't.report_mark_type = "28"
         't.show()
 
-        Dim t As ClassDepartement = New ClassDepartement("3")
-        t.test()
-
+        'Dim t As ClassDepartement = New ClassDepartement("3")
+        't.test()
+        FormFingerPrint.ShowDialog()
     End Sub
 
     Private Sub BtnDepartement_Click(sender As Object, e As EventArgs) Handles BtnDepartement.Click
