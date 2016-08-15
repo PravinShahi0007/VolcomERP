@@ -153,6 +153,8 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GridColumnIdRejectType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRejectType = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1077,7 +1079,7 @@ Partial Class FormSalesReturnQCDet
         '
         'GVBarcode
         '
-        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix, Me.GridColumnIdUniqueReceiving, Me.GridColumnIdProductScan, Me.GridColumnBomUnitPricex, Me.GridColumnIdDesignPriceBc, Me.GridColumnDesignPriceBc})
+        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix, Me.GridColumnIdUniqueReceiving, Me.GridColumnIdProductScan, Me.GridColumnBomUnitPricex, Me.GridColumnIdDesignPriceBc, Me.GridColumnDesignPriceBc, Me.GridColumnIdRejectType, Me.GridColumnRejectType})
         Me.GVBarcode.GridControl = Me.GCBarcode
         Me.GVBarcode.Name = "GVBarcode"
         Me.GVBarcode.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -1517,6 +1519,22 @@ Partial Class FormSalesReturnQCDet
         '
         Me.EPForm.ContainerControl = Me
         '
+        'GridColumnIdRejectType
+        '
+        Me.GridColumnIdRejectType.Caption = "Id Reject"
+        Me.GridColumnIdRejectType.FieldName = "id_reject_type"
+        Me.GridColumnIdRejectType.Name = "GridColumnIdRejectType"
+        Me.GridColumnIdRejectType.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnRejectType
+        '
+        Me.GridColumnRejectType.Caption = "Reject"
+        Me.GridColumnRejectType.FieldName = "reject_type"
+        Me.GridColumnRejectType.Name = "GridColumnRejectType"
+        Me.GridColumnRejectType.OptionsColumn.AllowEdit = False
+        Me.GridColumnRejectType.Visible = True
+        Me.GridColumnRejectType.VisibleIndex = 2
+        '
         'FormSalesReturnQCDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1742,4 +1760,6 @@ Partial Class FormSalesReturnQCDet
     Friend WithEvents DDBPrint As DevExpress.XtraEditors.DropDownButton
     Friend WithEvents TxtDeleteScan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnIdRejectType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRejectType As DevExpress.XtraGrid.Columns.GridColumn
 End Class
