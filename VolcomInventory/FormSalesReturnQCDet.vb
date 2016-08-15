@@ -167,7 +167,7 @@
         query += "WHERE b.id_report_status = '6' AND (a.sales_return_det_qty - COALESCE(ret.jum_ret, 0)) >'0' "
         query += "GROUP BY a.id_sales_return "
         query += ") g ON g.id_sales_return = a.id_sales_return "
-        query += "WHERE a.id_report_status = '6' "
+        query += "WHERE a.id_report_status = '6' AND a.id_sales_return='" + id_sales_return + "' "
         query += "ORDER BY a.id_sales_return ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
@@ -176,7 +176,7 @@
 
         'store data
         Dim query_comp_from As String = "SELECT id_comp FROM tb_m_comp_contact WHERE id_comp_contact = '" + data.Rows(0)("id_store_contact_from").ToString + "'"
-        Dim id_comp_from As String = data.Rows(0)("id_comp_from").ToString
+        Dim id_comp_from As String = execute_query(query_comp_from, 0, True, "", "", "", "")
         id_store = id_comp_from
         id_store_contact_from = data.Rows(0)("id_store_contact_from").ToString
         TxtCodeCompFrom.Text = data.Rows(0)("store_code_from").ToString
