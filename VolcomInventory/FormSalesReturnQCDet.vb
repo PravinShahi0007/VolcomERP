@@ -695,10 +695,11 @@
                     Dim jum_ins_p As Integer = 0
                     Dim query_counting As String = ""
                     If GVBarcode.RowCount > 0 Then
-                        query_counting = "INSERT INTO tb_sales_return_qc_det_counting(id_sales_return_qc_det, id_sales_return_det_counting, sales_return_qc_det_counting) VALUES "
+                        query_counting = "INSERT INTO tb_sales_return_qc_det_counting(id_sales_return_qc_det, id_sales_return_det_counting, sales_return_qc_det_counting, id_reject_type) VALUES "
                     End If
                     For p As Integer = 0 To (GVBarcode.RowCount - 1)
                         Dim id_product_counting As String = GVBarcode.GetRowCellValue(p, "id_product").ToString
+                        Dim id_reject_type As String = GVBarcode.GetRowCellValue(p, "id_reject_type").ToString
                         Dim id_design_price_counting As String = GVBarcode.GetRowCellValue(p, "id_design_price").ToString
                         Dim design_price_counting As Decimal = Decimal.Parse(GVBarcode.GetRowCellValue(p, "design_price").ToString)
                         Dim id_sales_return_det_counting As String = GVBarcode.GetRowCellValue(p, "id_sales_return_det_counting").ToString
@@ -711,7 +712,7 @@
                                 If jum_ins_p > 0 Then
                                     query_counting += ", "
                                 End If
-                                query_counting += "('" + data_get_detail_id.Rows(p1)("id_sales_return_qc_det").ToString + "', " + id_sales_return_det_counting + ", '" + sales_return_qc_det_counting + "') "
+                                query_counting += "('" + data_get_detail_id.Rows(p1)("id_sales_return_qc_det").ToString + "', " + id_sales_return_det_counting + ", '" + sales_return_qc_det_counting + "', '" + id_reject_type + "') "
                                 jum_ins_p = jum_ins_p + 1
                                 Exit For
                             End If
@@ -787,10 +788,11 @@
                     Dim jum_ins_p As Integer = 0
                     Dim query_counting As String = ""
                     If GVBarcode.RowCount > 0 Then
-                        query_counting = "INSERT INTO tb_sales_return_qc_det_counting(id_sales_return_qc_det, id_sales_return_det_counting, sales_return_qc_det_counting) VALUES "
+                        query_counting = "INSERT INTO tb_sales_return_qc_det_counting(id_sales_return_qc_det, id_sales_return_det_counting, sales_return_qc_det_counting, id_reject_type) VALUES "
                     End If
                     For p As Integer = 0 To (GVBarcode.RowCount - 1)
                         Dim id_sales_return_qc_det_counting As String = GVBarcode.GetRowCellValue(p, "id_sales_return_qc_det_counting").ToString
+                        Dim id_reject_type As String = GVBarcode.GetRowCellValue(p, "id_reject_type").ToString
                         Dim id_product_counting As String = GVBarcode.GetRowCellValue(p, "id_product")
                         Dim id_sales_return_det_counting As String = GVBarcode.GetRowCellValue(p, "id_sales_return_det_counting").ToString
                         If id_sales_return_det_counting = "0" Then
@@ -805,7 +807,7 @@
                                     If jum_ins_p > 0 Then
                                         query_counting += ", "
                                     End If
-                                    query_counting += "('" + data_get_detail_id.Rows(p1)("id_sales_return_qc_det").ToString + "', " + id_sales_return_det_counting + ", '" + sales_return_qc_det_counting + "') "
+                                    query_counting += "('" + data_get_detail_id.Rows(p1)("id_sales_return_qc_det").ToString + "', " + id_sales_return_det_counting + ", '" + sales_return_qc_det_counting + "', '" + id_reject_type + "') "
                                     jum_ins_p = jum_ins_p + 1
                                     Exit For
                                 End If
@@ -1459,6 +1461,8 @@
                         End If
                     Else
                         errorCustom("This data already locked and can't delete.")
+                        GVBarcode.ApplyFindFilter("")
+                        GVBarcode.ActiveFilterString = ""
                     End If
                     TxtDeleteScan.Text = ""
                     TxtDeleteScan.Focus()

@@ -168,12 +168,13 @@
         query += "(a.sales_return_qc_det_counting) AS counting_code, "
         query += "a.id_sales_return_det_counting, a.id_sales_return_qc_det_counting,('2') AS is_fix, "
         query += "d0.id_pl_prod_order_rec_det_unique, b.id_product, "
-        query += "d.bom_unit_price, b.id_design_price, b.design_price "
+        query += "d.bom_unit_price, b.id_design_price, b.design_price, rj.reject_type "
         query += "FROM tb_sales_return_qc_det_counting a "
         query += "INNER JOIN tb_sales_return_qc_det b ON a.id_sales_return_qc_det = b.id_sales_return_qc_det "
         query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product "
         query += "LEFT JOIN tb_sales_return_det_counting d0 ON d0.id_sales_return_det_counting = a.id_sales_return_det_counting "
         query += "LEFT JOIN tb_pl_prod_order_rec_det_counting d ON d.id_pl_prod_order_rec_det_unique = d0.id_pl_prod_order_rec_det_unique "
+        query += "LEFT JOIN tb_m_reject_type rj ON rj.id_reject_type = a.id_reject_type "
         query += "WHERE b.id_sales_return_qc = '" + id_sales_return_qc + "' AND a.id_sales_return_qc_det = '" + id_sales_return_qc_det + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCBarcode.DataSource = data
