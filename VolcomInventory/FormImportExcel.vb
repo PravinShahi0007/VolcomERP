@@ -2507,13 +2507,12 @@ Public Class FormImportExcel
                     bulk_query = "INSERT INTO tb_a_acc_fak_scan_fk_det(id_acc_fak_scan, kd_jenis_transaksi, fg_pengganti, nomor_faktur, masa_pajak, tahun_pajak, tanggal_faktur, npwp, nama, alamat_lengkap, jumlah_dpp, jumlah_ppn, jumlah_ppnbm, id_keterangan_tambahan, fg_uang_muka, uang_muka_dpp, uang_muka_ppn, uang_muka_ppnbm, referensi, of, kode_objek, nama3, harga_satuan, jumlah_barang, harga_total, diskon, dpp, ppn, tarif_ppnbm, ppnbm) VALUES "
                     For i As Integer = 0 To (GVData.RowCount - 1)
                         'number
-                        Dim harga_total As Decimal = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "harga_total").ToString))
-                        Dim diskon As Decimal = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "diskon").ToString))
-                        Dim ppn As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "ppn").ToString))
-                        Dim dpp As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "dpp").ToString))
-                        Dim jumlah_ppn As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "jumlah_ppn").ToString))
-                        Dim jumlah_dpp As String = Math.Round(Decimal.Parse(GVData.GetRowCellValue(i, "jumlah_dpp").ToString))
-
+                        Dim harga_total As Decimal = GVData.GetRowCellValue(i, "harga_total").ToString
+                        Dim diskon As Decimal = GVData.GetRowCellValue(i, "diskon").ToString
+                        Dim ppn As String = GVData.GetRowCellValue(i, "ppn").ToString
+                        Dim dpp As String = GVData.GetRowCellValue(i, "dpp").ToString
+                        Dim jumlah_ppn As String = GVData.GetRowCellValue(i, "jumlah_ppn").ToString
+                        Dim jumlah_dpp As String = GVData.GetRowCellValue(i, "jumlah_dpp").ToString
 
                         'no faktur
                         Dim no_faktur_ori As String = GVData.GetRowCellValue(i, "no_faktur").ToString

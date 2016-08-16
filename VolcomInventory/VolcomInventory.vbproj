@@ -453,6 +453,12 @@
     <Compile Include="FormDataReff.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpAttn.Designer.vb">
+      <DependentUpon>FormEmpAttn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttn.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpCalendar.Designer.vb">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </Compile>
@@ -729,6 +735,12 @@
     <Compile Include="FormMasterPriceSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterRejectType.Designer.vb">
+      <DependentUpon>FormMasterRejectType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterRejectType.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterSampleNR.designer.vb">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
     </Compile>
@@ -775,6 +787,18 @@
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionWOList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRejectType.Designer.vb">
+      <DependentUpon>FormRejectType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRejectType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRejectTypeDet.Designer.vb">
+      <DependentUpon>FormRejectTypeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormRejectTypeDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesCreditNote.designer.vb">
@@ -4121,6 +4145,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="test.vb" />
+    <Compile Include="WaitForm.Designer.vb">
+      <DependentUpon>WaitForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="WaitForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="WaitForm1.Designer.vb">
       <DependentUpon>WaitForm1.vb</DependentUpon>
     </Compile>
@@ -4306,6 +4336,9 @@
       <DependentUpon>FormDataReff.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttn.resx">
+      <DependentUpon>FormEmpAttn.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </EmbeddedResource>
@@ -4464,6 +4497,9 @@
     <EmbeddedResource Include="FormMasterPriceSingle.resx">
       <DependentUpon>FormMasterPriceSingle.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterRejectType.resx">
+      <DependentUpon>FormMasterRejectType.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMasterSampleNR.resx">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
     </EmbeddedResource>
@@ -4488,6 +4524,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRejectType.resx">
+      <DependentUpon>FormRejectType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRejectTypeDet.resx">
+      <DependentUpon>FormRejectTypeDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesCreditNote.resx">
       <DependentUpon>FormSalesCreditNote.vb</DependentUpon>
@@ -6665,6 +6707,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitForm.resx">
+      <DependentUpon>WaitForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.vb</DependentUpon>
