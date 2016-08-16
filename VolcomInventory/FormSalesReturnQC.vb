@@ -5,6 +5,7 @@
 
     Private Sub FormSalesReturnQC_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewSalesReturnQC()
+        viewSalesReturn()
     End Sub
 
     Private Sub FormSalesReturnQC_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
@@ -22,24 +23,6 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesReturnQC.DataSource = data
         check_menu()
-    End Sub
-
-    Sub check_menu()
-        If GVSalesReturnQC.RowCount < 1 Then
-            'hide all except new
-            bnew_active = "1"
-            bedit_active = "0"
-            bdel_active = "0"
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
-        Else
-            'show all
-            bnew_active = "1"
-            bedit_active = "1"
-            bdel_active = "1"
-            checkFormAccess(Name)
-            button_main(bnew_active, bedit_active, bdel_active)
-        End If
     End Sub
 
     Private Sub GVSalesReturnQC_DoubleClick(sender As Object, e As EventArgs) Handles GVSalesReturnQC.DoubleClick
@@ -83,5 +66,155 @@
                 ViewMenu.Show(view.GridControl, e.Point)
             End If
         End If
+    End Sub
+
+    Sub viewSalesReturn()
+        Dim query As String = ""
+        query += "SELECT a.id_sales_return, a.id_store_contact_from, a.id_comp_contact_to,(d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to,a.id_report_status, f.report_status, "
+        query += "a.sales_return_note, a.sales_return_number, "
+        query += "DATE_FORMAT(a.sales_return_date,'%d %M %Y') AS sales_return_date "
+        query += "FROM tb_sales_return a "
+        query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_from "
+        query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
+        query += "INNER JOIN tb_m_comp_contact c1 ON c1.id_comp_contact = a.id_comp_contact_to "
+        query += "INNER JOIN tb_m_comp d1 ON c1.id_comp = d1.id_comp "
+        query += "INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status "
+        query += "INNER JOIN "
+        query += "( "
+        query += "SELECT a.id_sales_return,  a.id_sales_return_det, "
+        query += "(a.sales_return_det_qty - COALESCE(ret.jum_ret, 0)) AS jum "
+        query += "FROM tb_sales_return_det a "
+        query += "INNER JOIN tb_sales_return b ON b.id_sales_return = a.id_sales_return "
+        query += "LEFT JOIN ( "
+        query += "SELECT b1.id_sales_return_det, SUM(b1.sales_return_qc_det_qty) AS jum_ret FROM tb_sales_return_qc_det b1 "
+        query += "INNER JOIN tb_sales_return_qc b2 ON b1.id_sales_return_qc = b2.id_sales_return_qc "
+        query += "WHERE b2.id_report_status != '5' "
+        query += "GROUP BY b1.id_sales_return_det "
+        query += ")ret ON ret.id_sales_return_det = a.id_sales_return_det  "
+        query += "WHERE b.id_report_status = '6' AND (a.sales_return_det_qty - COALESCE(ret.jum_ret, 0)) >'0' "
+        query += "GROUP BY a.id_sales_return "
+        query += ") g ON g.id_sales_return = a.id_sales_return "
+        query += "WHERE a.id_report_status = '6' "
+        query += "ORDER BY a.id_sales_return ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSalesReturn.DataSource = data
+        Dim id_ret As String = "-1"
+        Try
+            id_ret = GVSalesReturn.GetFocusedRowCellValue("id_sales_return").ToString
+        Catch ex As Exception
+        End Try
+        viewListSalesReturnDet(id_ret)
+        check_menu()
+    End Sub
+
+    Sub viewListSalesReturnDet(ByVal id_sales_return As String)
+        Dim query As String = "CALL view_sales_return_limit('" + id_sales_return + "','0', '0')"
+        Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+        GCItemList.DataSource = data
+        GVItemList.OptionsBehavior.AutoExpandAllGroups = True
+    End Sub
+
+    Private Sub GVItemList_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVSalesReturnOrder_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVSalesReturn.FocusedRowChanged
+        Dim id_sales_return As String = "0"
+        Try
+            id_sales_return = GVSalesReturn.GetFocusedRowCellValue("id_sales_return").ToString
+        Catch ex As Exception
+        End Try
+
+        viewListSalesReturnDet(id_sales_return)
+    End Sub
+
+    Private Sub GVSalesReturn_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVSalesReturn.ColumnFilterChanged
+        Dim id_sales_return As String = "0"
+        Try
+            id_sales_return = GVSalesReturn.GetFocusedRowCellValue("id_sales_return").ToString
+        Catch ex As Exception
+        End Try
+
+        viewListSalesReturnDet(id_sales_return)
+    End Sub
+
+    Sub check_menu()
+        If XTCReturnQC.SelectedTabPageIndex = 0 Then
+            'based on receive
+            If GVSalesReturnQC.RowCount < 1 Then
+                'hide all except new
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                noManipulating()
+            Else
+                'show all
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                noManipulating()
+            End If
+        ElseIf XTCReturnQC.SelectedTabPageIndex = 1 Then
+            'based on SO
+            If GVSalesReturn.RowCount < 1 Then
+                'hide all
+                bnew_active = "0"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                noManipulating()
+            Else
+                'show all
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+                checkFormAccess(Name)
+                button_main(bnew_active, bedit_active, bdel_active)
+                noManipulating()
+            End If
+        End If
+    End Sub
+
+    Sub noManipulating()
+        Try
+            If XTCReturnQC.SelectedTabPageIndex = 0 Then
+                Dim indeks As Integer = GVSalesReturnQC.FocusedRowHandle
+                If indeks < 0 Then
+                    bnew_active = "1"
+                    bedit_active = "0"
+                    bdel_active = "0"
+                Else
+                    bnew_active = "1"
+                    bedit_active = "1"
+                    bdel_active = "1"
+                End If
+            ElseIf XTCReturnQC.SelectedTabPageIndex = 1 Then
+                Dim indeks As Integer = GVSalesReturn.FocusedRowHandle
+                If indeks < 0 Then
+                    bnew_active = "0"
+                    bedit_active = "0"
+                    bdel_active = "0"
+                Else
+                    bnew_active = "1"
+                    bedit_active = "0"
+                    bdel_active = "0"
+                End If
+            End If
+            checkFormAccess(Name)
+            button_main(bnew_active, bedit_active, bdel_active)
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub XTCReturnQC_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCReturnQC.SelectedPageChanged
+        check_menu()
     End Sub
 End Class
