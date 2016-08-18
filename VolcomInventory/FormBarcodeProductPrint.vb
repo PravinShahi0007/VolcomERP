@@ -7,6 +7,7 @@ Imports System.IO
 Public Class FormBarcodeProductPrint
     Public id_product As String = "-1"
     Dim format_string As String = ""
+    Dim last_print_unique As String = "1"
 
     Private Sub FormBarcodeProductPrint_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If Not id_product = "-1" Then
@@ -80,6 +81,14 @@ Public Class FormBarcodeProductPrint
             load_unique()
             load_printer()
         End If
+        load_last_unique()
+    End Sub
+
+    Sub load_last_unique()
+        Dim query As String = "SELECT last_print_unique FROM tb_m_product WHERE id_product='" + id_product + "'"
+        last_print_unique = execute_query(query, 0, True, "", "", "", "")
+        SEPrintFrom.EditValue = Integer.Parse(last_print_unique.ToString) + 1
+        SEPrintTo.EditValue = Integer.Parse(last_print_unique.ToString) + 1
     End Sub
 
     Sub load_printer()
@@ -196,23 +205,37 @@ Public Class FormBarcodeProductPrint
                         print_command += "^BY2,3,43^FT3,376^BCN,,N,N" & vbNewLine
                         print_command += "^FD>;" & TEProdCode.Text & i.ToString(format_string) & "^FS" & vbNewLine
                         print_command += "^PQ1,0,1,Y^XZ" & vbNewLine
-
                     Next
                 Next
 
                 print_command = print_command.ToString()
             End If
-
+            '
             Dim pd As New PrintDialog()
 
             pd.PrinterSettings = New PrinterSettings()
             If (pd.ShowDialog() = DialogResult.OK) Then
                 RawPrinterHelper.SendStringToPrinter(pd.PrinterSettings.PrinterName, print_command)
+                upd_last_digit("3")
             End If
         End If
     End Sub
 
-
+    Sub upd_last_digit(ByVal opt As String)
+        If Not opt = "1" Then
+            If Integer.Parse(SEPrintTo.EditValue) > Integer.Parse(last_print_unique) Then
+                Dim query_ins As String = "UPDATE tb_m_product SET last_print_unique='" & SEPrintTo.EditValue.ToString & "' WHERE id_product='" & id_product & "'"
+                execute_non_query(query_ins, True, "", "", "", "")
+                last_print_unique = SEPrintTo.EditValue
+            End If
+        End If
+        log_print(opt)
+        load_last_unique()
+    End Sub
+    Sub log_print(ByVal opt As String)
+        Dim query_ins As String = "INSERT INTO tb_m_product_log_print(id_product,type,unique_from,unique_to,qty,datetime,id_printer,id_user) VALUES('" & id_product & "','" & opt & "','" & SEPrintFrom.EditValue.ToString & "','" & SEPrintTo.EditValue.ToString & "','" & SEQtyPrint.EditValue.ToString & "',NOW(),'" & LEPrinter.EditValue.ToString & "','" & id_user & "')"
+        execute_non_query(query_ins, True, "", "", "", "")
+    End Sub
     Private Sub FormBarcodeProductPrint_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -274,12 +297,15 @@ Public Class FormBarcodeProductPrint
                     print_command += "^PQ1,0,1,Y^XZ" & vbNewLine
                 Next
             End If
+            '
 
+            '
             Dim pd As New PrintDialog()
 
             pd.PrinterSettings = New PrinterSettings()
             If (pd.ShowDialog() = DialogResult.OK) Then
                 RawPrinterHelper.SendStringToPrinter(pd.PrinterSettings.PrinterName, print_command)
+                upd_last_digit("2")
             End If
         End If
     End Sub
@@ -335,6 +361,7 @@ Public Class FormBarcodeProductPrint
             pd.PrinterSettings = New PrinterSettings()
             If (pd.ShowDialog() = DialogResult.OK) Then
                 RawPrinterHelper.SendStringToPrinter(pd.PrinterSettings.PrinterName, print_command)
+                upd_last_digit("1")
             End If
         End If
     End Sub
@@ -371,5 +398,10 @@ Public Class FormBarcodeProductPrint
             e.SuppressKeyPress = True
             SelectNextControl(ActiveControl, True, True, True, True)
         End If
+    End Sub
+
+    Private Sub BLogUnique_Click(sender As Object, e As EventArgs) Handles BLogUnique.Click
+        FormBarcodeProductPrintLog.id_product = id_product
+        FormBarcodeProductPrintLog.ShowDialog()
     End Sub
 End Class
