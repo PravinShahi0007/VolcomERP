@@ -112,6 +112,8 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnBomUnitPricex = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdRejectType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRejectType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
@@ -153,8 +155,6 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnIdRejectType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRejectType = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1171,6 +1171,22 @@ Partial Class FormSalesReturnQCDet
         Me.GridColumnDesignPriceBc.FieldName = "design_price"
         Me.GridColumnDesignPriceBc.Name = "GridColumnDesignPriceBc"
         '
+        'GridColumnIdRejectType
+        '
+        Me.GridColumnIdRejectType.Caption = "Id Reject"
+        Me.GridColumnIdRejectType.FieldName = "id_reject_type"
+        Me.GridColumnIdRejectType.Name = "GridColumnIdRejectType"
+        Me.GridColumnIdRejectType.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnRejectType
+        '
+        Me.GridColumnRejectType.Caption = "Reject"
+        Me.GridColumnRejectType.FieldName = "reject_type"
+        Me.GridColumnRejectType.Name = "GridColumnRejectType"
+        Me.GridColumnRejectType.OptionsColumn.AllowEdit = False
+        Me.GridColumnRejectType.Visible = True
+        Me.GridColumnRejectType.VisibleIndex = 2
+        '
         'RepositoryItemCheckEdit2
         '
         Me.RepositoryItemCheckEdit2.AutoHeight = False
@@ -1519,22 +1535,6 @@ Partial Class FormSalesReturnQCDet
         '
         Me.EPForm.ContainerControl = Me
         '
-        'GridColumnIdRejectType
-        '
-        Me.GridColumnIdRejectType.Caption = "Id Reject"
-        Me.GridColumnIdRejectType.FieldName = "id_reject_type"
-        Me.GridColumnIdRejectType.Name = "GridColumnIdRejectType"
-        Me.GridColumnIdRejectType.OptionsColumn.AllowEdit = False
-        '
-        'GridColumnRejectType
-        '
-        Me.GridColumnRejectType.Caption = "Reject"
-        Me.GridColumnRejectType.FieldName = "reject_type"
-        Me.GridColumnRejectType.Name = "GridColumnRejectType"
-        Me.GridColumnRejectType.OptionsColumn.AllowEdit = False
-        Me.GridColumnRejectType.Visible = True
-        Me.GridColumnRejectType.VisibleIndex = 2
-        '
         'FormSalesReturnQCDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1554,7 +1554,7 @@ Partial Class FormSalesReturnQCDet
         Me.Name = "FormSalesReturnQCDet"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Return Quality Control"
+        Me.Text = "Return Transfer"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()

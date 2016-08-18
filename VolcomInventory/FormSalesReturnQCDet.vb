@@ -829,6 +829,7 @@
 
 
                     FormSalesReturnQC.viewSalesReturnQC()
+                    FormSalesReturnQC.viewSalesReturn()
                     FormSalesReturnQC.GVSalesReturnQC.FocusedRowHandle = find_row(FormSalesReturnQC.GVSalesReturnQC, "id_sales_return_qc", id_sales_return_qc)
                     action = "upd"
                     actionLoad()
@@ -858,13 +859,19 @@
         BPickDrawer.Enabled = False
     End Sub
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
-        FormRejectType.ShowDialog()
+        'FormRejectType.ShowDialog()
         If GVItemList.RowCount > 0 Then
             disableControl()
             newRowsBc()
         Else
             errorCustom("Item list can't blank")
         End If
+    End Sub
+
+    Sub loadRejectType()
+        FormRejectType.ShowDialog()
+        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_reject_type", id_reject_type)
+        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "reject_type", reject_type)
     End Sub
 
     Private Sub BStop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BStop.Click
@@ -1032,6 +1039,7 @@
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "design_price", design_price)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_reject_type", id_reject_type)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "reject_type", reject_type)
+                loadRejectType()
                 countQty(id_product)
                 checkUnitCost(id_product, bom_unit_price, id_design_price)
                 newRowsBc()
@@ -1070,6 +1078,7 @@
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "design_price", design_price)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_reject_type", id_reject_type)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "reject_type", reject_type)
+                    loadRejectType()
                     countQty(id_product)
                     checkUnitCost(id_product, bom_unit_price, id_design_price)
                     newRowsBc()
