@@ -33,6 +33,11 @@
         axCZKEM1.EnableDevice(iMachineNumber, False)
     End Sub
 
+    Public Sub refresh_fp()
+        axCZKEM1.RefreshData(iMachineNumber)
+    End Sub
+
+
     Public Sub get_attlog()
         disable_fp()
 
