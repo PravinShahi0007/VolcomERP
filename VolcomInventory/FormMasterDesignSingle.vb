@@ -927,6 +927,15 @@
             End If
         End If
 
+        'keep view
+        Dim find_string As String = ""
+        Dim filter_string As String = ""
+        If form_name = "FormFGDesignList" Then
+            find_string = FormFGDesignList.GVDesign.FindFilterText.ToString
+            filter_string = FormFGDesignList.GVDesign.ActiveFilterString
+            MsgBox(filter_string)
+        End If
+
         Cursor = Cursors.WaitCursor
         'save
         If id_design <> "-1" Then
@@ -1004,6 +1013,8 @@
                         ElseIf form_name = "FormFGDesignList" Then
                             FormFGDesignList.SLESeason.EditValue = LESeason.EditValue
                             FormFGDesignList.viewData()
+                            FormFGDesignList.GVDesign.ApplyFindFilter(find_string)
+                            FormFGDesignList.GVDesign.ActiveFilterString = filter_string
                             FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design_tersimpan)
                         End If
 
@@ -1089,7 +1100,10 @@
                         ElseIf form_name = "FormFGDesignList" Then
                             FormFGDesignList.SLESeason.EditValue = LESeason.EditValue
                             FormFGDesignList.viewData()
+                            FormFGDesignList.GVDesign.ApplyFindFilter(find_string)
+                            FormFGDesignList.GVDesign.ActiveFilterString = filter_string
                             FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design)
+                            MsgBox(filter_string)
                         End If
 
                         'ipdate time
@@ -1177,6 +1191,8 @@
                     ElseIf form_name = "FormFGDesignList" Then
                         FormFGDesignList.SLESeason.EditValue = LESeason.EditValue
                         FormFGDesignList.viewData()
+                        FormFGDesignList.GVDesign.ApplyFindFilter(find_string)
+                        FormFGDesignList.GVDesign.ActiveFilterString = filter_string
                         FormFGDesignList.GVDesign.FocusedRowHandle = find_row(FormFGDesignList.GVDesign, "id_design", id_design_tersimpan)
                     End If
                     id_design = id_design_tersimpan
