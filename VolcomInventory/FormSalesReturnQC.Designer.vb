@@ -555,7 +555,7 @@ Partial Class FormSalesReturnQC
         Me.Name = "FormSalesReturnQC"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Return Quality Control"
+        Me.Text = "Return Transfer"
         CType(Me.GCSalesReturnQC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSalesReturnQC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)

@@ -4029,6 +4029,7 @@ Public Class FormMain
                         'del mark
                         delete_all_mark_related("49", id_sales_return_qc)
                         FormSalesReturnQC.viewSalesReturnQC()
+                        FormSalesReturnQC.viewSalesReturn()
                         'FormSalesReturnQC.viewSalesReturnOrder()
                     Catch ex As Exception
                         errorDelete()
