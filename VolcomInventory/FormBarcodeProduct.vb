@@ -1,6 +1,7 @@
 ﻿Public Class FormBarcodeProduct 
 
     Private Sub FormBarcodeProduct_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        viewSeason()
         viewProd()
     End Sub
 
@@ -21,6 +22,7 @@
         '    noManipulating()
         'End If
     End Sub
+
     Sub viewSeason()
         Dim query As String = "SELECT * FROM tb_season a "
         query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
@@ -48,7 +50,7 @@
     'End Sub
 
     Sub viewProd()
-        Dim query As String = "CALL view_product()"
+        Dim query As String = "CALL view_product_opt(1,'WHERE e.id_season=" & SLESeason.EditValue.ToString & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProdList.DataSource = data
         GVProdList.ExpandAllGroups()
