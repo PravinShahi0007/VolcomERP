@@ -32,8 +32,8 @@ Partial Class FormEmpAttn
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -166,6 +166,14 @@ Partial Class FormEmpAttn
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
         '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Metode Masuk"
+        Me.GridColumn6.FieldName = "meth_masuk"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 3
+        '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Log Pulang"
@@ -175,14 +183,6 @@ Partial Class FormEmpAttn
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 4
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Metode Masuk"
-        Me.GridColumn6.FieldName = "meth_masuk"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 3
         '
         'GridColumn7
         '
@@ -200,7 +200,7 @@ Partial Class FormEmpAttn
         Me.Controls.Add(Me.GCSchedule)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormEmpAttn"
-        Me.Text = "FormEmpAttn"
+        Me.Text = "Attendance"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
