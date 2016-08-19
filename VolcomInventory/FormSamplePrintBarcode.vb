@@ -102,12 +102,14 @@
                     For i As Integer = 0 To GVSample.RowCount - 1 - GetGroupRowCount(GVSample)
                         Dim pb As New print_barcode
                         pb.season = GVSample.GetRowCellValue(i, "season_orign_display").ToString
+                        pb.season = GVSample.GetRowCellValue(i, "season_orign_display").ToString
                         pb.color = GVSample.GetRowCellValue(i, "display_Color").ToString
                         pb.desc = GVSample.GetRowCellValue(i, "sample_display_name").ToString
                         pb.code = GVSample.GetRowCellValue(i, "sample_code").ToString
                         pb.size = GVSample.GetRowCellValue(i, "size").ToString
                         pb.class_ = GVSample.GetRowCellValue(i, "Sample Counting Class").ToString
                         pb.qty = GVSample.GetRowCellValue(i, "qty").ToString
+                        pb.country_orign = GVSample.GetRowCellValue(i, "country_display_name").ToString
                         RawPrinterHelper.SendStringToPrinter(pd.PrinterSettings.PrinterName, pb.generate_barcode_sample())
                     Next
 
@@ -156,6 +158,7 @@
                         pb.size = GVSample.GetRowCellValue(i, "size").ToString
                         pb.class_ = GVSample.GetRowCellValue(i, "Sample Counting Class").ToString
                         pb.qty = GVSample.GetRowCellValue(i, "qty").ToString
+                        pb.country_orign = GVSample.GetRowCellValue(i, "country_display_name").ToString
                         RawPrinterHelper.SendStringToPrinter(pd.PrinterSettings.PrinterName, pb.generate_barcode_sample_zebra())
                     Next
 
