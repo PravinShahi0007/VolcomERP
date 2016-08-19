@@ -20,6 +20,7 @@ Partial Class FormSamplePrintBarcode
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrintZebra = New DevExpress.XtraEditors.SimpleButton()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GCSample = New DevExpress.XtraGrid.GridControl()
@@ -49,7 +50,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumnIdSeasonOrign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeasonOrignDisplay = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BPrintZebra = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnCountry = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +73,15 @@ Partial Class FormSamplePrintBarcode
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(743, 44)
         Me.PanelControl1.TabIndex = 1
+        '
+        'BPrintZebra
+        '
+        Me.BPrintZebra.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrintZebra.Location = New System.Drawing.Point(497, 2)
+        Me.BPrintZebra.Name = "BPrintZebra"
+        Me.BPrintZebra.Size = New System.Drawing.Size(122, 40)
+        Me.BPrintZebra.TabIndex = 2
+        Me.BPrintZebra.Text = "Print Code Zebra"
         '
         'CheckEditSelAll
         '
@@ -103,7 +113,7 @@ Partial Class FormSamplePrintBarcode
         '
         'GVSample
         '
-        Me.GVSample.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColSampleID, Me.ColSampleDisplayName, Me.ColSampleName, Me.ColSampleUSCode, Me.ColSampleUOM, Me.ColSampleSeason, Me.ColSeasonOrigin, Me.ColSampleCode, Me.GridColumnIdSeason, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnClass, Me.GridColumnCEPrint, Me.GridColumn7, Me.GridColumnQty, Me.GridColumnIdSeasonOrign, Me.GridColumnSeasonOrignDisplay})
+        Me.GVSample.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColSampleID, Me.ColSampleDisplayName, Me.ColSampleName, Me.ColSampleUSCode, Me.ColSampleUOM, Me.ColSampleSeason, Me.ColSeasonOrigin, Me.ColSampleCode, Me.GridColumnIdSeason, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnClass, Me.GridColumnCEPrint, Me.GridColumn7, Me.GridColumnQty, Me.GridColumnIdSeasonOrign, Me.GridColumnSeasonOrignDisplay, Me.GridColumnCountry})
         Me.GVSample.GridControl = Me.GCSample
         Me.GVSample.GroupCount = 1
         Me.GVSample.Name = "GVSample"
@@ -122,7 +132,7 @@ Partial Class FormSamplePrintBarcode
         Me.ColSampleDisplayName.FieldName = "sample_display_name"
         Me.ColSampleDisplayName.Name = "ColSampleDisplayName"
         Me.ColSampleDisplayName.Visible = True
-        Me.ColSampleDisplayName.VisibleIndex = 3
+        Me.ColSampleDisplayName.VisibleIndex = 4
         '
         'ColSampleName
         '
@@ -130,7 +140,7 @@ Partial Class FormSamplePrintBarcode
         Me.ColSampleName.FieldName = "sample_name"
         Me.ColSampleName.Name = "ColSampleName"
         Me.ColSampleName.Visible = True
-        Me.ColSampleName.VisibleIndex = 4
+        Me.ColSampleName.VisibleIndex = 5
         '
         'ColSampleUSCode
         '
@@ -138,7 +148,7 @@ Partial Class FormSamplePrintBarcode
         Me.ColSampleUSCode.FieldName = "sample_us_code"
         Me.ColSampleUSCode.Name = "ColSampleUSCode"
         Me.ColSampleUSCode.Visible = True
-        Me.ColSampleUSCode.VisibleIndex = 1
+        Me.ColSampleUSCode.VisibleIndex = 2
         '
         'ColSampleUOM
         '
@@ -168,7 +178,7 @@ Partial Class FormSamplePrintBarcode
         Me.ColSampleCode.FieldName = "sample_code"
         Me.ColSampleCode.Name = "ColSampleCode"
         Me.ColSampleCode.Visible = True
-        Me.ColSampleCode.VisibleIndex = 2
+        Me.ColSampleCode.VisibleIndex = 3
         '
         'GridColumnIdSeason
         '
@@ -182,7 +192,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumn1.FieldName = "Sample Source"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 5
+        Me.GridColumn1.VisibleIndex = 6
         '
         'GridColumn2
         '
@@ -190,7 +200,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumn2.FieldName = "Sample Category"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 6
+        Me.GridColumn2.VisibleIndex = 7
         '
         'GridColumn3
         '
@@ -198,7 +208,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumn3.FieldName = "display_Color"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 7
+        Me.GridColumn3.VisibleIndex = 8
         '
         'GridColumn4
         '
@@ -206,7 +216,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumn4.FieldName = "size"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 8
+        Me.GridColumn4.VisibleIndex = 9
         '
         'GridColumn5
         '
@@ -214,7 +224,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumn5.FieldName = "Sample Division"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 9
+        Me.GridColumn5.VisibleIndex = 10
         '
         'GridColumnClass
         '
@@ -222,7 +232,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumnClass.FieldName = "Sample Counting Class"
         Me.GridColumnClass.Name = "GridColumnClass"
         Me.GridColumnClass.Visible = True
-        Me.GridColumnClass.VisibleIndex = 10
+        Me.GridColumnClass.VisibleIndex = 11
         '
         'GridColumnCEPrint
         '
@@ -231,7 +241,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumnCEPrint.FieldName = "is_print"
         Me.GridColumnCEPrint.Name = "GridColumnCEPrint"
         Me.GridColumnCEPrint.Visible = True
-        Me.GridColumnCEPrint.VisibleIndex = 11
+        Me.GridColumnCEPrint.VisibleIndex = 12
         '
         'RCEPrint
         '
@@ -270,7 +280,7 @@ Partial Class FormSamplePrintBarcode
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 12
+        Me.GridColumnQty.VisibleIndex = 13
         '
         'RPEQty
         '
@@ -298,14 +308,13 @@ Partial Class FormSamplePrintBarcode
         Me.GridView2.GridControl = Me.GCSample
         Me.GridView2.Name = "GridView2"
         '
-        'BPrintZebra
+        'GridColumnCountry
         '
-        Me.BPrintZebra.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrintZebra.Location = New System.Drawing.Point(497, 2)
-        Me.BPrintZebra.Name = "BPrintZebra"
-        Me.BPrintZebra.Size = New System.Drawing.Size(122, 40)
-        Me.BPrintZebra.TabIndex = 2
-        Me.BPrintZebra.Text = "Print Code Zebra"
+        Me.GridColumnCountry.Caption = "Country Orign"
+        Me.GridColumnCountry.FieldName = "country_display_name"
+        Me.GridColumnCountry.Name = "GridColumnCountry"
+        Me.GridColumnCountry.Visible = True
+        Me.GridColumnCountry.VisibleIndex = 1
         '
         'FormSamplePrintBarcode
         '
@@ -365,4 +374,5 @@ Partial Class FormSamplePrintBarcode
     Friend WithEvents CheckEditSelAll As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnClass As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BPrintZebra As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnCountry As DevExpress.XtraGrid.Columns.GridColumn
 End Class
