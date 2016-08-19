@@ -6,6 +6,7 @@
     Public retur_code As String = ""
     Public price As Decimal = 0.0
     Public qty As Integer = 1
+    Public country_orign As String = ""
     'sample
     Public season As String = ""
     Public year As String = ""
@@ -15,7 +16,7 @@
         Dim com_print As System.Text.StringBuilder = New System.Text.StringBuilder
         com_print.AppendLine()
         com_print.AppendLine("<ESC>A")
-        com_print.AppendLine("<ESC>P02<ESC>H570<ESC>V0060<ESC>L0200<ESC>S" & season & "  " & class_ & "  " & color & "  " & size)
+        com_print.AppendLine("<ESC>P02<ESC>H570<ESC>V0060<ESC>L0200<ESC>S" & season & "  " & country_orign & " " & class_ & "  " & color & "  " & size)
         com_print.AppendLine("<ESC>P02<ESC>H570<ESC>V0080<ESC>L0200<ESC>S" & desc)
         com_print.AppendLine("<ESC>H590<ESC>V0100<ESC>D202120" & code)
         com_print.AppendLine("<ESC>P02<ESC>H570<ESC>V0240<ESC>L0200<ESC>S" & code)
@@ -38,7 +39,7 @@
         com_print.AppendLine("^FD0" & code & "8^FS")
         com_print.AppendLine("^FT19,258^A0N,23,24^FH\^FD" & code & "^FS")
         com_print.AppendLine("^FT19,71^A0N,14,14^FH\^FD" & desc & "^FS")
-        com_print.AppendLine("^FT19,53^A0N,14,14^FH\^FD" & season & "  " & class_ & "  " & color & "  " & size & "^FS")
+        com_print.AppendLine("^FT19,53^A0N,14,14^FH\^FD" & season & "  " & country_orign & "  " & class_ & "  " & color & "  " & size & "^FS")
         com_print.AppendLine("^PQ" & qty.ToString & ",0,1,Y^XZ")
         Dim output As String = com_print.ToString()
         Return output
