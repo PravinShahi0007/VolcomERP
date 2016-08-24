@@ -38,7 +38,7 @@
         Dim fp As New ClassFingerPrint()
         fp.connect()
         fp.disable_fp()
-        axCZKEM1.SSR_SetUserInfo(1, "18082016", "Soekarno", "merdeka", 0, True)
+        axCZKEM1.SSR_SetUserInfo(1, "1", "asd", "321", 0, True)
         fp.refresh_fp()
         fp.enable_fp()
         fp.disconnect()
