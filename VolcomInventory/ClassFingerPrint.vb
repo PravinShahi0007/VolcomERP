@@ -4,8 +4,8 @@
 
     Public bIsConnected = False 'the boolean value identifies whether the device is connected
     Private iMachineNumber As Integer 'the serial number of the device.After connecting the device ,this value will be changed.
-    Public ip As String = get_setup_field("fingerprint_ip")
-    Public port As String = get_setup_field("fingerprint_port")
+    Public ip As String = ""
+    Public port As String = ""
 
     Public Sub connect()
         Dim idwErrorCode As Integer
