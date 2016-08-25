@@ -96,4 +96,8 @@
 
         enable_fp()
     End Sub
+
+    Sub setUserInfo(ByVal user_id As String, ByVal name As String, ByVal password As String, privilege As Integer, user_enabled As Boolean)
+        axCZKEM1.SSR_SetUserInfo(1, user_id, name, password, privilege, user_enabled)
+    End Sub
 End Class
