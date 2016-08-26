@@ -194,7 +194,7 @@
                 query += " ,'1' AS is_default"
                 query += " ,'" & id_bom_approve & "'"
                 query += " ,'" & id_user & "' AS id_user_last_update"
-                query += " ,NOW() AS bom_last_updated"
+                query += " ,NOW() AS bom_date_updated"
                 query += " FROM tb_prod_demand_product"
                 query += " WHERE id_prod_demand_design='" & FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString & "'"
                 execute_non_query(query, True, "", "", "", "")
@@ -247,7 +247,7 @@
                 query += " ,id_currency='" & id_currency & "'"
                 query += " ,kurs='" & kurs & "'"
                 query += " ,bom_unit_price='" & unit_price & "'"
-                query += " ,bom_last_updated=NOW()"
+                query += " ,bom_date_updated=NOW()"
                 query += " ,id_user_last_update='" & id_user & "'"
                 query += " WHERE m_p.id_design='" & id_design & "' AND bom.is_default='1'"
                 execute_non_query(query, True, "", "", "", "")
