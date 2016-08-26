@@ -912,10 +912,10 @@
         If id_pop_up = "-1" Then
             Dim query_cek_code As String = ""
             If id_design = "-1" Then 'New
-                query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' "
+                query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_active=1 "
             Else 'Edit
                 If dupe = "-1" Then
-                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_design !='" + id_design + "' "
+                    query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_design !='" + id_design + "' AND a.id_active=1 "
                 Else
                     query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_active=1 "
                 End If
