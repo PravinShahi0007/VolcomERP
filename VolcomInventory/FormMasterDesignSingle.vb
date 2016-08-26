@@ -911,7 +911,6 @@
         'cek code- hanya utk codefikasi
         If id_pop_up = "-1" Then
             Dim query_cek_code As String = ""
-            MsgBox(id_design)
             If id_design = "-1" Then 'New
                 query_cek_code = "SELECT COUNT(*) FROM tb_m_design a WHERE a.design_code = '" + code + "' AND a.id_active=1 "
             Else 'Edit
