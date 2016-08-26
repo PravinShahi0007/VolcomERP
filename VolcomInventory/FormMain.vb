@@ -1421,6 +1421,8 @@ Public Class FormMain
             FormMasterDesignSingle.form_name = "FormFGDesignList"
             FormMasterDesignSingle.WindowState = FormWindowState.Maximized
             FormMasterDesignSingle.ShowDialog()
+        ElseIf formName = "FormEmpInitialize" Then
+            FormEmpInitialize.addUser()
         Else
             RPSubMenu.Visible = False
         End If

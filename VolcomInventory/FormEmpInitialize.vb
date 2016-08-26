@@ -4,7 +4,7 @@
     End Sub
 
     Sub viewEmployee()
-        Dim query As String = "CALL view_employee('-1', 2)"
+        Dim query As String = "CALL view_employee('AND !ISNULL(emp.employee_code)', 2)"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmployee.DataSource = data
     End Sub
@@ -40,5 +40,27 @@
                 End If
             Next
         End If
+    End Sub
+
+    Sub addUser()
+        Cursor = Cursors.WaitCursor
+        Dim fp As New ClassFingerPrint()
+        Dim data_fp As DataTable = fp.get_fp_register()
+        fp.ip = data_fp.Rows(0)("ip").ToString
+        fp.port = data_fp.Rows(0)("port").ToString
+        fp.connect()
+        fp.disable_fp()
+        For i As Integer = 0 To ((GVEmployee.RowCount - 1) - GetGroupRowCount(GVEmployee))
+            Dim is_select As String = GVEmployee.GetRowCellValue(i, "is_select").ToString
+            Dim code As String = GVEmployee.GetRowCellValue(i, "employee_code").ToString
+            Dim name As String = GVEmployee.GetRowCellValue(i, "employee_name").ToString
+            If is_select = "Yes" Then
+                fp.setUserInfo(code, name, "", 0, True)
+            End If
+        Next
+        fp.refresh_fp()
+        fp.enable_fp()
+        fp.disconnect()
+        Cursor = Cursors.Default
     End Sub
 End Class
