@@ -483,6 +483,18 @@
     <Compile Include="FormEmpLeaveDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpShift.Designer.vb">
+      <DependentUpon>FormEmpShift.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpShift.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpShiftDet.Designer.vb">
+      <DependentUpon>FormEmpShiftDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpShiftDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGBorrowQCReq.Designer.vb">
       <DependentUpon>FormFGBorrowQCReq.vb</DependentUpon>
     </Compile>
@@ -4320,6 +4332,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeaveDet.resx">
       <DependentUpon>FormEmpLeaveDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpShift.resx">
+      <DependentUpon>FormEmpShift.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpShiftDet.resx">
+      <DependentUpon>FormEmpShiftDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGBorrowQCReq.resx">
       <DependentUpon>FormFGBorrowQCReq.vb</DependentUpon>

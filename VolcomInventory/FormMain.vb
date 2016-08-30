@@ -1421,6 +1421,10 @@ Public Class FormMain
             FormMasterDesignSingle.form_name = "FormFGDesignList"
             FormMasterDesignSingle.WindowState = FormWindowState.Maximized
             FormMasterDesignSingle.ShowDialog()
+        ElseIf formName = "FormEmpShift" Then
+            'DESIGN LIST
+            FormEmpShiftDet.id_shift = "-1"
+            FormEmpShiftDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2207,6 +2211,10 @@ Public Class FormMain
                 FormSampleReturnPLDet.action = "upd"
                 FormSampleReturnPLDet.id_sample_pl = FormSampleReturnPL.GVSamplePL.GetFocusedRowCellValue("id_sample_pl_ret").ToString
                 FormSampleReturnPLDet.ShowDialog()
+            ElseIf formName = "FormEmpShiftDet" Then
+                'Template Shift Employee
+                FormEmpShiftDet.id_shift = FormEmpShift.GVShift.GetFocusedRowCellValue("id_shift").ToString
+                FormEmpShiftDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -9545,6 +9553,19 @@ Public Class FormMain
             FormEmpAttn.Show()
             FormEmpAttn.WindowState = FormWindowState.Maximized
             FormEmpAttn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBShift_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBShift.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpShift.MdiParent = Me
+            FormEmpShift.Show()
+            FormEmpShift.WindowState = FormWindowState.Maximized
+            FormEmpShift.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
