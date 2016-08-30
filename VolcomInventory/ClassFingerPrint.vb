@@ -106,4 +106,96 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
+
+    Sub download_fp_tmp()
+        Dim jum As Integer = 0
+        Dim sdwEnrollNumber As String = ""
+        Dim sName As String = ""
+        Dim sPassword As String = ""
+        Dim iPrivilege As Integer
+        Dim bEnabled As Boolean = False
+        Dim idwFingerIndex As Integer
+        Dim sTmpData As String = ""
+        Dim iTmpLength As Integer
+        Dim iFlag As Integer
+
+        connect()
+        disable_fp()
+        axCZKEM1.ReadAllUserID(iMachineNumber) 'read all the user information to the memory
+        axCZKEM1.ReadAllTemplate(iMachineNumber) 'read all the users' fingerprint templates to the memory
+
+        Dim query As String = "INSERT INTO tb_m_employee_finger(user_id, name, finger_index, tmp_data, privilege, password, enabled, flag) VALUES "
+        While axCZKEM1.SSR_GetAllUserInfo(iMachineNumber, sdwEnrollNumber, sName, sPassword, iPrivilege, bEnabled) = True  'get all the users' information from the memory
+            For idwFingerIndex = 0 To 9
+                If axCZKEM1.GetUserTmpExStr(iMachineNumber, sdwEnrollNumber, idwFingerIndex, iFlag, sTmpData, iTmpLength) Then 'get the corresponding templates string and length from the memory
+                    If jum > 0 Then
+                        query += ", "
+                    End If
+                    Dim enabled_fp As String = ""
+                    If bEnabled = True Then
+                        enabled_fp = "true"
+                    Else
+                        enabled_fp = "false"
+                    End If
+                    query += "('" + sdwEnrollNumber + "', '" + sName + "', '" + idwFingerIndex.ToString + "', '" + sTmpData + "', '" + iPrivilege.ToString() + "', '" + sPassword + "', '" + enabled_fp + "', '" + iFlag.ToString() + "') "
+                    jum += 1
+                End If
+            Next
+        End While
+        enable_fp()
+        disconnect()
+        If jum > 0 Then
+            Try
+                Dim query_trunc As String = "TRUNCATE `tb_m_employee_finger`"
+                execute_non_query(query_trunc, True, "", "", "", "")
+                execute_non_query(query, True, "", "", "", "")
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+    Sub download_face_tmp()
+        Dim jum As Integer = 0
+        Dim sUserID As String = ""
+        Dim sName As String = ""
+        Dim sPassword As String = ""
+        Dim iPrivilege As Integer
+        Dim bEnabled As Boolean = False
+
+        Dim iFaceIndex As Integer = 50 'the only possible parameter value
+        Dim sTmpData As String = ""
+        Dim iLength As Integer
+
+        connect()
+        disable_fp()
+        axCZKEM1.ReadAllUserID(iMachineNumber) 'read all the user information to the memory
+
+        Dim query As String = "INSERT INTO tb_m_employee_face(user_id, name, face_index, tmp_data, privilege, password, enabled) VALUES "
+        While axCZKEM1.SSR_GetAllUserInfo(iMachineNumber, sUserID, sName, sPassword, iPrivilege, bEnabled) = True  'get all the users' information from the memory
+            If axCZKEM1.GetUserFaceStr(iMachineNumber, sUserID, iFaceIndex, sTmpData, iLength) = True Then 'get the face templates from the memory
+                If jum > 0 Then
+                    query += ", "
+                End If
+                Dim enabled_fp As String = ""
+                If bEnabled = True Then
+                    enabled_fp = "true"
+                Else
+                    enabled_fp = "false"
+                End If
+                query += "('" + sUserID + "', '" + sName + "', '" + iFaceIndex.ToString + "', '" + sTmpData + "', '" + iPrivilege.ToString() + "', '" + sPassword + "', '" + enabled_fp + "') "
+                jum += 1
+            End If
+        End While
+
+        enable_fp()
+        disconnect()
+        If jum > 0 Then
+            Try
+                Dim query_trunc As String = "TRUNCATE `tb_m_employee_face`"
+                execute_non_query(query_trunc, True, "", "", "", "")
+                execute_non_query(query, True, "", "", "", "")
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
 End Class
