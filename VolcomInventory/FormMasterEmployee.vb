@@ -111,6 +111,8 @@
             fp.port = data_fp.Rows(0)("port").ToString
             fp.download_fp_tmp()
             fp.download_face_tmp()
+            fp.upload_fp_temp()
+            fp.upload_face_tmp()
             infoCustom("OK")
         Catch ex As Exception
             stopCustom("syncronization problems, please try again later.")

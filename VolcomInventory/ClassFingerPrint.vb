@@ -198,4 +198,112 @@
             End Try
         End If
     End Sub
+
+    Sub upload_fp_temp()
+        'data fp employee
+        Dim query_fp As String = "SELECT * FROM tb_m_employee_finger"
+        Dim data_fp As DataTable = execute_query(query_fp, -1, True, "", "", "", "")
+
+        'data fp machine
+        Dim query_mcn As String = "SELECT * FROM tb_m_fingerprint a WHERE a.is_register='2'"
+        Dim data_mcn As DataTable = execute_query(query_mcn, -1, True, "", "", "", "")
+        For i As Integer = 0 To data_mcn.Rows.Count - 1
+            ip = data_mcn.Rows(i)("ip").ToString
+            port = data_mcn.Rows(i)("port").ToString
+            connect()
+            Dim idwErrorCode As Integer
+            Dim sdwEnrollNumber As String
+            Dim sName As String = ""
+            Dim sPassword As String = ""
+            Dim iPrivilege As Integer
+            Dim idwFingerIndex As Integer
+            Dim sTmpData As String = ""
+            Dim sEnabled As String = ""
+            Dim bEnabled As Boolean = False
+            Dim iflag As Integer
+            disable_fp()
+
+            For j As Integer = 0 To data_fp.Rows.Count - 1
+                sdwEnrollNumber = Convert.ToInt32(data_fp.Rows(j)("user_id").ToString.Trim())
+                sName = data_fp.Rows(j)("name").ToString.Trim()
+                idwFingerIndex = Convert.ToInt32(data_fp.Rows(j)("finger_index").ToString.Trim())
+                sTmpData = data_fp.Rows(j)("tmp_data").ToString.Trim()
+                iPrivilege = Convert.ToInt32(data_fp.Rows(j)("privilege").ToString.Trim())
+                sPassword = data_fp.Rows(j)("password").ToString.Trim()
+                sEnabled = data_fp.Rows(j)("enabled").ToString.Trim()
+                iflag = Convert.ToInt32(data_fp.Rows(j)("flag").ToString.Trim())
+                If sEnabled = "true" Then
+                    bEnabled = True
+                Else
+                    bEnabled = False
+                End If
+                If axCZKEM1.SSR_SetUserInfo(iMachineNumber, sdwEnrollNumber, sName, sPassword, iPrivilege, bEnabled) Then 'upload user information to the device
+                    axCZKEM1.SetUserTmpExStr(iMachineNumber, sdwEnrollNumber, idwFingerIndex, iflag, sTmpData) 'upload templates information to the device
+                Else
+                    axCZKEM1.GetLastError(idwErrorCode)
+                    MsgBox("Operation failed,ErrorCode=" & idwErrorCode.ToString(), MsgBoxStyle.Exclamation, "Error")
+                    enable_fp()
+                    Return
+                End If
+            Next
+            axCZKEM1.RefreshData(iMachineNumber) 'the data in the device should be refreshed
+            enable_fp()
+            disconnect()
+        Next
+    End Sub
+
+    Sub upload_face_tmp()
+        'data fp employee
+        Dim query_face As String = "SELECT * FROM tb_m_employee_face"
+        Dim data_face As DataTable = execute_query(query_face, -1, True, "", "", "", "")
+
+        'data fp machine
+        Dim query_mcn As String = "SELECT * FROM tb_m_fingerprint a WHERE a.is_register='2'"
+        Dim data_mcn As DataTable = execute_query(query_mcn, -1, True, "", "", "", "")
+        For i As Integer = 0 To data_mcn.Rows.Count - 1
+            ip = data_mcn.Rows(i)("ip").ToString
+            port = data_mcn.Rows(i)("port").ToString
+            connect()
+            Dim idwErrorCode As Integer
+
+            Dim sUserID As String = ""
+            Dim sName As String = ""
+            Dim iFaceIndex As Integer
+            Dim iLength As Integer
+            Dim sPassword As String = ""
+            Dim iPrivilege As Integer
+            Dim sTmpData As String = ""
+            Dim sEnabled As String = ""
+            Dim bEnabled As Boolean = False
+
+            disable_fp()
+            For j As Integer = 0 To data_face.Rows.Count - 1
+                sUserID = data_face.Rows(j)("user_id").ToString.Trim
+                sName = data_face.Rows(j)("name").ToString.Trim
+                sPassword = data_face.Rows(j)("password").ToString.Trim
+                iPrivilege = Convert.ToInt32(data_face.Rows(j)("privilege").ToString.Trim)
+                iFaceIndex = Convert.ToInt32(data_face.Rows(j)("face_index").ToString.Trim)
+                sTmpData = data_face.Rows(j)("tmp_data").ToString.Trim
+                sEnabled = data_face.Rows(j)("enabled").ToString.Trim
+
+                If sEnabled = "true" Then
+                    bEnabled = True
+                Else
+                    bEnabled = False
+                End If
+
+                If axCZKEM1.SSR_SetUserInfo(iMachineNumber, sUserID, sName, sPassword, iPrivilege, bEnabled) Then 'upload user information to the device
+                    axCZKEM1.SetUserFaceStr(iMachineNumber, sUserID, iFaceIndex, sTmpData, iLength) 'upload face templates information to the device
+                Else
+                    axCZKEM1.GetLastError(idwErrorCode)
+                    MsgBox("Operation failed,ErrorCode=" & idwErrorCode.ToString(), MsgBoxStyle.Exclamation, "Error")
+                    axCZKEM1.EnableDevice(iMachineNumber, True)
+                    Return
+                End If
+            Next
+            axCZKEM1.RefreshData(iMachineNumber) 'the data in the device should be refreshed
+            enable_fp()
+            disconnect()
+        Next
+    End Sub
 End Class
