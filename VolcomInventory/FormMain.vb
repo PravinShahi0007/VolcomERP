@@ -9551,20 +9551,9 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub NBAttnLog_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnLog.LinkClicked
-        Cursor = Cursors.WaitCursor
-        Try
-            FormEmpAttn.MdiParent = Me
-            FormEmpAttn.Show()
-            FormEmpAttn.WindowState = FormWindowState.Maximized
-            FormEmpAttn.Focus()
-        Catch ex As Exception
-            errorProcess()
-        End Try
-        Cursor = Cursors.Default
-    End Sub
 
-    Private Sub NBInitializeFP_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInitializeFP.LinkClicked
+
+    Private Sub NBInitializeFP_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInitializeFP.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
             FormEmpInitialize.MdiParent = Me
