@@ -1427,6 +1427,8 @@ Public Class FormMain
             FormMasterDesignSingle.form_name = "FormFGDesignList"
             FormMasterDesignSingle.WindowState = FormWindowState.Maximized
             FormMasterDesignSingle.ShowDialog()
+        ElseIf formName = "FormEmpInitialize" Then
+            FormEmpInitialize.addUser()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9543,6 +9545,32 @@ Public Class FormMain
             FormFGDesignList.Show()
             FormFGDesignList.WindowState = FormWindowState.Maximized
             FormFGDesignList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAttnLog_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnLog.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttn.MdiParent = Me
+            FormEmpAttn.Show()
+            FormEmpAttn.WindowState = FormWindowState.Maximized
+            FormEmpAttn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInitializeFP_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInitializeFP.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpInitialize.MdiParent = Me
+            FormEmpInitialize.Show()
+            FormEmpInitialize.WindowState = FormWindowState.Maximized
+            FormEmpInitialize.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
