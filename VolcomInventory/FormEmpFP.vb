@@ -126,4 +126,42 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub TestConnectionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestConnectionToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Dim fp As New ClassFingerPrint()
+        fp.ip = GVFP.GetFocusedRowCellValue("ip").ToString
+        fp.port = GVFP.GetFocusedRowCellValue("port").ToString
+        fp.connect()
+        Dim conn As Boolean = fp.bIsConnected
+        If conn Then
+            infoCustom("Connection success")
+        End If
+        fp.disconnect()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RestartToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RestartToolStripMenuItem.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to restart this device?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim fp As New ClassFingerPrint()
+            fp.ip = GVFP.GetFocusedRowCellValue("ip").ToString
+            fp.port = GVFP.GetFocusedRowCellValue("port").ToString
+            fp.restart_fp()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub TurnOffToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TurnOffToolStripMenuItem.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to turn off this device?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim fp As New ClassFingerPrint()
+            fp.ip = GVFP.GetFocusedRowCellValue("ip").ToString
+            fp.port = GVFP.GetFocusedRowCellValue("port").ToString
+            fp.power_off()
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class

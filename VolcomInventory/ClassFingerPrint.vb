@@ -406,4 +406,24 @@
         enable_fp()
         disconnect()
     End Sub
+
+    Sub restart_fp()
+        connect()
+        Dim idwErrorCode As Integer
+        If axCZKEM1.RestartDevice(iMachineNumber) = False Then
+            axCZKEM1.GetLastError(idwErrorCode)
+            MsgBox("Operation failed,ErrorCode=" & idwErrorCode.ToString(), MsgBoxStyle.Exclamation, "Error")
+        End If
+        disconnect()
+    End Sub
+
+    Sub power_off()
+        connect()
+        Dim idwErrorCode As Integer
+        If axCZKEM1.PowerOffDevice(iMachineNumber) = False Then
+            axCZKEM1.GetLastError(idwErrorCode)
+            MsgBox("Operation failed,ErrorCode=" & idwErrorCode.ToString(), MsgBoxStyle.Exclamation, "Error")
+        End If
+        disconnect()
+    End Sub
 End Class
