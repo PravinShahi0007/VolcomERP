@@ -1427,6 +1427,10 @@ Public Class FormMain
             FormEmpShiftDet.ShowDialog()
         ElseIf formName = "FormEmpInitialize" Then
             FormEmpInitialize.addUser()
+        ElseIf formName = "FormEmpHoliday" Then
+            'DESIGN LIST
+            FormEmpHolidayDet.id_holiday = "-1"
+            FormEmpHolidayDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2213,10 +2217,14 @@ Public Class FormMain
                 FormSampleReturnPLDet.action = "upd"
                 FormSampleReturnPLDet.id_sample_pl = FormSampleReturnPL.GVSamplePL.GetFocusedRowCellValue("id_sample_pl_ret").ToString
                 FormSampleReturnPLDet.ShowDialog()
-            ElseIf formName = "FormEmpShiftDet" Then
+            ElseIf formName = "FormEmpShift" Then
                 'Template Shift Employee
                 FormEmpShiftDet.id_shift = FormEmpShift.GVShift.GetFocusedRowCellValue("id_shift").ToString
                 FormEmpShiftDet.ShowDialog()
+            ElseIf formName = "FormEmpHoliday" Then
+                'Template Shift Employee
+                FormEmpHolidayDet.id_holiday = FormEmpHoliday.GVHoliday.GetFocusedRowCellValue("id_holiday").ToString
+                FormEmpHolidayDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5077,6 +5085,18 @@ Public Class FormMain
                     errorDelete()
                 End Try
             End If
+        ElseIf formName = "FormEmpShift" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Try
+                    Dim id_shift As String = FormEmpShift.GVShift.GetFocusedRowCellValue("id_shift").ToString
+                    query = String.Format("DELETE FROM tb_emp_shift WHERE id_shift='{0}'", id_shift)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormEmpShift.load_schedule()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -6190,7 +6210,8 @@ Public Class FormMain
             Else
                 print(FormWHCargoRate.GCCompanyIn, "Cargo Rate Inbound")
             End If
-
+        ElseIf formName = "FormEmpShift" Then
+            print(FormEmpShift.GCShift, "Template Shift")
         Else
             RPSubMenu.Visible = False
         End If
@@ -6683,6 +6704,10 @@ Public Class FormMain
             'Cargo Rate
             FormWHCargoRate.Close()
             FormWHCargoRate.Dispose()
+        ElseIf formName = "FormEmpShift" Then
+            'Employee Shift
+            FormEmpShift.Close()
+            FormEmpShift.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7290,6 +7315,9 @@ Public Class FormMain
             Else
                 FormWHCargoRate.load_cargo_rate_in()
             End If
+        ElseIf formName = "FormEmpShift" Then
+            'Shift employee
+            FormEmpShift.load_schedule()
         End If
     End Sub
     'Switch
@@ -9580,6 +9608,19 @@ Public Class FormMain
             FormEmpInitialize.Show()
             FormEmpInitialize.WindowState = FormWindowState.Maximized
             FormEmpInitialize.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBHoliday_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBHoliday.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpHoliday.MdiParent = Me
+            FormEmpHoliday.Show()
+            FormEmpHoliday.WindowState = FormWindowState.Maximized
+            FormEmpHoliday.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

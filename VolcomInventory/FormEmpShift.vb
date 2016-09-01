@@ -24,4 +24,8 @@
         checkFormAccess(Name)
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub
+
+    Private Sub FormEmpShift_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
 End Class

@@ -471,6 +471,12 @@
     <Compile Include="FormEmpHoliday.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpHolidayDet.Designer.vb">
+      <DependentUpon>FormEmpHolidayDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpHolidayDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpInitialize.Designer.vb">
       <DependentUpon>FormEmpInitialize.vb</DependentUpon>
     </Compile>
@@ -4332,6 +4338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpHoliday.resx">
       <DependentUpon>FormEmpHoliday.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpHolidayDet.resx">
+      <DependentUpon>FormEmpHolidayDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpInitialize.resx">
       <DependentUpon>FormEmpInitialize.vb</DependentUpon>
