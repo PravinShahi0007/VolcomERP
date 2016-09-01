@@ -25,10 +25,15 @@ Partial Class FormFingerPrint
         Me.txtPort = New System.Windows.Forms.TextBox()
         Me.label1 = New System.Windows.Forms.Label()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnSet = New System.Windows.Forms.Button()
+        Me.BtnGet = New System.Windows.Forms.Button()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BtnGet = New System.Windows.Forms.Button()
-        Me.BtnSet = New System.Windows.Forms.Button()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,6 +98,24 @@ Partial Class FormFingerPrint
         Me.PanelControl1.Size = New System.Drawing.Size(522, 46)
         Me.PanelControl1.TabIndex = 16
         '
+        'BtnSet
+        '
+        Me.BtnSet.Location = New System.Drawing.Point(395, 11)
+        Me.BtnSet.Name = "BtnSet"
+        Me.BtnSet.Size = New System.Drawing.Size(75, 23)
+        Me.BtnSet.TabIndex = 16
+        Me.BtnSet.Text = "Set User"
+        Me.BtnSet.UseVisualStyleBackColor = True
+        '
+        'BtnGet
+        '
+        Me.BtnGet.Location = New System.Drawing.Point(314, 11)
+        Me.BtnGet.Name = "BtnGet"
+        Me.BtnGet.Size = New System.Drawing.Size(75, 23)
+        Me.BtnGet.TabIndex = 15
+        Me.BtnGet.Text = "Get User"
+        Me.BtnGet.UseVisualStyleBackColor = True
+        '
         'GridControl1
         '
         Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -105,26 +128,49 @@ Partial Class FormFingerPrint
         '
         'GridView1
         '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         '
-        'BtnGet
+        'GridColumn1
         '
-        Me.BtnGet.Location = New System.Drawing.Point(314, 11)
-        Me.BtnGet.Name = "BtnGet"
-        Me.BtnGet.Size = New System.Drawing.Size(75, 23)
-        Me.BtnGet.TabIndex = 15
-        Me.BtnGet.Text = "Get User"
-        Me.BtnGet.UseVisualStyleBackColor = True
+        Me.GridColumn1.Caption = "User ID"
+        Me.GridColumn1.FieldName = "user_id"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
         '
-        'BtnSet
+        'GridColumn2
         '
-        Me.BtnSet.Location = New System.Drawing.Point(395, 11)
-        Me.BtnSet.Name = "BtnSet"
-        Me.BtnSet.Size = New System.Drawing.Size(75, 23)
-        Me.BtnSet.TabIndex = 16
-        Me.BtnSet.Text = "Set User"
-        Me.BtnSet.UseVisualStyleBackColor = True
+        Me.GridColumn2.Caption = "Name"
+        Me.GridColumn2.FieldName = "name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Password"
+        Me.GridColumn3.FieldName = "password"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Privilege"
+        Me.GridColumn4.FieldName = "privilege"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Enabled"
+        Me.GridColumn5.FieldName = "enabled"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
         '
         'FormFingerPrint
         '
@@ -154,4 +200,9 @@ Partial Class FormFingerPrint
     Private WithEvents BtnGet As Button
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -1425,6 +1425,8 @@ Public Class FormMain
             'DESIGN LIST
             FormEmpShiftDet.id_shift = "-1"
             FormEmpShiftDet.ShowDialog()
+        ElseIf formName = "FormEmpInitialize" Then
+            FormEmpInitialize.addUser()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9566,6 +9568,18 @@ Public Class FormMain
             FormEmpShift.Show()
             FormEmpShift.WindowState = FormWindowState.Maximized
             FormEmpShift.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+    Private Sub NBInitializeFP_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInitializeFP.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpInitialize.MdiParent = Me
+            FormEmpInitialize.Show()
+            FormEmpInitialize.WindowState = FormWindowState.Maximized
+            FormEmpInitialize.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

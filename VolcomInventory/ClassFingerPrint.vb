@@ -4,8 +4,8 @@
 
     Public bIsConnected = False 'the boolean value identifies whether the device is connected
     Private iMachineNumber As Integer 'the serial number of the device.After connecting the device ,this value will be changed.
-    Public ip As String = get_setup_field("fingerprint_ip")
-    Public port As String = get_setup_field("fingerprint_port")
+    Public ip As String = ""
+    Public port As String = ""
 
     Public Sub connect()
         Dim idwErrorCode As Integer
@@ -32,6 +32,11 @@
     Public Sub disable_fp()
         axCZKEM1.EnableDevice(iMachineNumber, False)
     End Sub
+
+    Public Sub refresh_fp()
+        axCZKEM1.RefreshData(iMachineNumber)
+    End Sub
+
 
     Public Sub get_attlog()
         disable_fp()
@@ -91,4 +96,14 @@
 
         enable_fp()
     End Sub
+
+    Sub setUserInfo(ByVal user_id As String, ByVal name As String, ByVal password As String, privilege As Integer, user_enabled As Boolean)
+        axCZKEM1.SSR_SetUserInfo(1, user_id, name, password, privilege, user_enabled)
+    End Sub
+
+    Function get_fp_register() As DataTable
+        Dim query As String = "SELECT fp.id_fingerprint,fp.name, fp.ip, fp.port, fp.is_register FROM tb_m_fingerprint fp WHERE fp.is_register='1'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
 End Class
