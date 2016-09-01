@@ -465,6 +465,18 @@
     <Compile Include="FormEmpCalendar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpFP.Designer.vb">
+      <DependentUpon>FormEmpFP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpFP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpFPAdd.Designer.vb">
+      <DependentUpon>FormEmpFPAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpFPAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpHoliday.Designer.vb">
       <DependentUpon>FormEmpHoliday.vb</DependentUpon>
     </Compile>
@@ -4317,6 +4329,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpFP.resx">
+      <DependentUpon>FormEmpFP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpFPAdd.resx">
+      <DependentUpon>FormEmpFPAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpHoliday.resx">
       <DependentUpon>FormEmpHoliday.vb</DependentUpon>

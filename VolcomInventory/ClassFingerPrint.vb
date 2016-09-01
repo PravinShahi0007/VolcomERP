@@ -199,6 +199,7 @@
         End If
     End Sub
 
+    'UPLOAD FINGERPRINT TO ALL MACHINE EXCEPT REGISTER MACHINE
     Sub upload_fp_temp()
         'data fp employee
         Dim query_fp As String = "SELECT * FROM tb_m_employee_finger"
@@ -252,6 +253,7 @@
         Next
     End Sub
 
+    'UPLOAD FACE TO ALL MACHINE EXCEPT REGISTER MACHINE
     Sub upload_face_tmp()
         'data fp employee
         Dim query_face As String = "SELECT * FROM tb_m_employee_face"

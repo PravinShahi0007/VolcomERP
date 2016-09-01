@@ -9565,4 +9565,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBFPSetup_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFPSetup.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpFP.MdiParent = Me
+            FormEmpFP.Show()
+            FormEmpFP.WindowState = FormWindowState.Maximized
+            FormEmpFP.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
