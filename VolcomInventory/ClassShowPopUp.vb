@@ -796,9 +796,9 @@
             table_name = "tb_bom"
             field_id = "id_bom"
             Dim queryx As String = "SELECT bom_date_created FROM tb_bom WHERE id_bom_approve='" + id_report + "' LIMIT 1"
-            Dim datax As DataTable = execute_query(queryx, -1, "", "", "", "", "")
+            Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
             field_number = "'-'"
-            field_date = datax.Rows(0)("bom_date_created").ToString
+            field_date = "'" & Date.Parse(datax.Rows(0)("bom_date_created")).ToString("yyyy-MM-dd") & "'"
         ElseIf report_mark_type = "82" Then
             'MASTER PRICE FROM EXCEL
             table_name = "tb_fg_price"

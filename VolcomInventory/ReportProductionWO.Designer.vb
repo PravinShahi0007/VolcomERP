@@ -556,7 +556,7 @@ Partial Public Class ReportProductionWO
         Me.XrLabel35.StylePriority.UseBorders = False
         Me.XrLabel35.StylePriority.UseFont = False
         Me.XrLabel35.StylePriority.UseTextAlignment = False
-        Me.XrLabel35.Text = "WO Type"
+        Me.XrLabel35.Text = "Type"
         Me.XrLabel35.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LWOType

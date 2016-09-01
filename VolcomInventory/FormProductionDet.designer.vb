@@ -87,8 +87,9 @@ Partial Class FormProductionDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.DEDate = New DevExpress.XtraEditors.DateEdit()
+        Me.DERecDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TERecDate = New DevExpress.XtraEditors.TextEdit()
         Me.TELeadTime = New DevExpress.XtraEditors.SpinEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
@@ -113,7 +114,6 @@ Partial Class FormProductionDet
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdPOType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPOType = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TEDate = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BPickDesign = New DevExpress.XtraEditors.SimpleButton()
@@ -194,7 +194,10 @@ Partial Class FormProductionDet
         CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
-        CType(Me.TERecDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TELeadTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -206,7 +209,6 @@ Partial Class FormProductionDet
         CType(Me.TERange.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPOType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPWorkOrder.SuspendLayout()
@@ -923,8 +925,9 @@ Partial Class FormProductionDet
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.DEDate)
+        Me.GroupGeneralHeader.Controls.Add(Me.DERecDate)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl11)
-        Me.GroupGeneralHeader.Controls.Add(Me.TERecDate)
         Me.GroupGeneralHeader.Controls.Add(Me.TELeadTime)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl13)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl10)
@@ -943,7 +946,6 @@ Partial Class FormProductionDet
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl2)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl12)
         Me.GroupGeneralHeader.Controls.Add(Me.LEPOType)
-        Me.GroupGeneralHeader.Controls.Add(Me.TEDate)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl6)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl1)
         Me.GroupGeneralHeader.Controls.Add(Me.BPickDesign)
@@ -957,6 +959,35 @@ Partial Class FormProductionDet
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(971, 135)
         Me.GroupGeneralHeader.TabIndex = 1
         '
+        'DEDate
+        '
+        Me.DEDate.EditValue = Nothing
+        Me.DEDate.Enabled = False
+        Me.DEDate.Location = New System.Drawing.Point(782, 9)
+        Me.DEDate.Name = "DEDate"
+        Me.DEDate.Properties.Appearance.Options.UseTextOptions = True
+        Me.DEDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.DEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDate.Size = New System.Drawing.Size(169, 20)
+        Me.DEDate.TabIndex = 174
+        '
+        'DERecDate
+        '
+        Me.DERecDate.EditValue = Nothing
+        Me.DERecDate.Location = New System.Drawing.Point(782, 96)
+        Me.DERecDate.Name = "DERecDate"
+        Me.DERecDate.Properties.Appearance.Options.UseTextOptions = True
+        Me.DERecDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.DERecDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERecDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DERecDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DERecDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERecDate.Size = New System.Drawing.Size(169, 20)
+        Me.DERecDate.TabIndex = 173
+        '
         'LabelControl11
         '
         Me.LabelControl11.Location = New System.Drawing.Point(710, 99)
@@ -964,17 +995,6 @@ Partial Class FormProductionDet
         Me.LabelControl11.Size = New System.Drawing.Size(66, 13)
         Me.LabelControl11.TabIndex = 162
         Me.LabelControl11.Text = "Est. Rec Date"
-        '
-        'TERecDate
-        '
-        Me.TERecDate.EditValue = ""
-        Me.TERecDate.Location = New System.Drawing.Point(782, 96)
-        Me.TERecDate.Name = "TERecDate"
-        Me.TERecDate.Properties.EditValueChangedDelay = 1
-        Me.TERecDate.Properties.ReadOnly = True
-        Me.TERecDate.Size = New System.Drawing.Size(169, 20)
-        Me.TERecDate.TabIndex = 159
-        Me.TERecDate.TabStop = False
         '
         'TELeadTime
         '
@@ -1027,7 +1047,7 @@ Partial Class FormProductionDet
         '
         'LECategory
         '
-        Me.LECategory.Location = New System.Drawing.Point(442, 70)
+        Me.LECategory.Location = New System.Drawing.Point(442, 68)
         Me.LECategory.Name = "LECategory"
         Me.LECategory.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
         Me.LECategory.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
@@ -1064,7 +1084,7 @@ Partial Class FormProductionDet
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(381, 73)
+        Me.LabelControl5.Location = New System.Drawing.Point(381, 71)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl5.TabIndex = 155
@@ -1164,7 +1184,7 @@ Partial Class FormProductionDet
         '
         'LEPOType
         '
-        Me.LEPOType.Location = New System.Drawing.Point(782, 70)
+        Me.LEPOType.Location = New System.Drawing.Point(782, 68)
         Me.LEPOType.Name = "LEPOType"
         Me.LEPOType.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
         Me.LEPOType.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
@@ -1199,17 +1219,6 @@ Partial Class FormProductionDet
         Me.ColPOType.Visible = True
         Me.ColPOType.VisibleIndex = 0
         '
-        'TEDate
-        '
-        Me.TEDate.EditValue = ""
-        Me.TEDate.Location = New System.Drawing.Point(782, 9)
-        Me.TEDate.Name = "TEDate"
-        Me.TEDate.Properties.EditValueChangedDelay = 1
-        Me.TEDate.Properties.ReadOnly = True
-        Me.TEDate.Size = New System.Drawing.Size(169, 20)
-        Me.TEDate.TabIndex = 0
-        Me.TEDate.TabStop = False
-        '
         'LabelControl6
         '
         Me.LabelControl6.Location = New System.Drawing.Point(710, 12)
@@ -1220,7 +1229,7 @@ Partial Class FormProductionDet
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(710, 73)
+        Me.LabelControl1.Location = New System.Drawing.Point(710, 71)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(41, 13)
         Me.LabelControl1.TabIndex = 121
@@ -1260,6 +1269,7 @@ Partial Class FormProductionDet
         Me.TEPONumber.Location = New System.Drawing.Point(782, 39)
         Me.TEPONumber.Name = "TEPONumber"
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
+        Me.TEPONumber.Properties.ReadOnly = True
         Me.TEPONumber.Size = New System.Drawing.Size(169, 20)
         Me.TEPONumber.TabIndex = 3
         '
@@ -1730,7 +1740,10 @@ Partial Class FormProductionDet
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
-        CType(Me.TERecDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TELeadTime.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1742,7 +1755,6 @@ Partial Class FormProductionDet
         CType(Me.TERange.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPOType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPWorkOrder.ResumeLayout(False)
@@ -1802,7 +1814,6 @@ Partial Class FormProductionDet
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupGeneralHeader As DevExpress.XtraEditors.GroupControl
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TERecDate As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TELeadTime As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
@@ -1827,7 +1838,6 @@ Partial Class FormProductionDet
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ColIdPOType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColPOType As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents TEDate As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BPickDesign As DevExpress.XtraEditors.SimpleButton
@@ -1906,4 +1916,6 @@ Partial Class FormProductionDet
     Friend WithEvents GridColumnIsOVHMain As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RCIMainVendor As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnUPC As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DERecDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEDate As DevExpress.XtraEditors.DateEdit
 End Class

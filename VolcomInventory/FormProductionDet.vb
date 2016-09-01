@@ -5,19 +5,25 @@
     Public id_delivery As String = "-1"
     Public id_report_status_g As String = "-1"
     Public is_pd_base As String = "-1"
-    Public date_created As String = ""
+    Public date_created As Date
     Public is_wo_view As String = "-1"
+
+
     Private Sub FormProductionDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         RCIMainVendor.ValueChecked = Convert.ToSByte(1)
         RCIMainVendor.ValueUnchecked = Convert.ToSByte(2)
         '
         view_term_production(LECategory)
         view_po_type(LEPOType)
+
+        date_created = Now
+        DEDate.EditValue = date_created
+        DERecDate.EditValue = date_created
+
         If id_prod_order = "-1" Then
             'new
             TEPONumber.Text = header_number_prod("1")
-            TEDate.Text = view_date(0)
-            TERecDate.Text = view_date(0)
+
             XTPWorkOrder.PageVisible = False
             XTPMRS.PageVisible = False
             DDBPrint.Visible = False
@@ -50,10 +56,11 @@
             LEPOType.EditValue = data.Rows(0)("id_po_type").ToString()
             LECategory.EditValue = data.Rows(0)("id_term_production").ToString()
 
-            date_created = data.Rows(0)("prod_order_datex").ToString
+            date_created = data.Rows(0)("prod_order_date")
             TELeadTime.Text = data.Rows(0)("prod_order_lead_time").ToString
-            TERecDate.Text = view_date_from(date_created, Integer.Parse(data.Rows(0)("prod_order_lead_time").ToString))
-            TEDate.Text = view_date_from(date_created, 0)
+            '
+            DEDate.EditValue = date_created
+            DERecDate.EditValue = date_created.AddDays(data.Rows(0)("prod_order_lead_time"))
             '
             id_prod_demand_design = data.Rows(0)("id_prod_demand_design").ToString()
             id_prod_demand = get_prod_demand_design_x(id_prod_demand_design, "1")
@@ -188,7 +195,8 @@
             If Not formIsValidInGroup(EPProdOrder, GroupGeneralHeader) Or id_prod_demand_design = "-1" Then
                 errorInput()
             Else
-                query = String.Format("INSERT INTO tb_prod_order(id_prod_demand_design,prod_order_number,id_po_type,id_term_production,prod_order_date,prod_order_note,id_delivery,prod_order_lead_time) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}');SELECT LAST_INSERT_ID() ", id_prod_demand_design, TEPONumber.Text, LEPOType.EditValue.ToString, LECategory.EditValue.ToString, MENote.Text, id_delivery, TELeadTime.Text)
+                Dim po_number As String = header_number_prod(1)
+                query = String.Format("INSERT INTO tb_prod_order(id_prod_demand_design,prod_order_number,id_po_type,id_term_production,prod_order_date,prod_order_note,id_delivery,prod_order_lead_time) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}');SELECT LAST_INSERT_ID() ", id_prod_demand_design, po_number, LEPOType.EditValue.ToString, LECategory.EditValue.ToString, MENote.Text, id_delivery, TELeadTime.Text)
                 Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
 
                 If GVListProduct.RowCount > 0 Then
@@ -244,16 +252,17 @@
             Next
         End If
     End Sub
-    Private Sub TEPONumber_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEPONumber.Validating
-        Dim query_jml As String
-        query_jml = String.Format("SELECT COUNT(id_prod_order) FROM tb_prod_order WHERE prod_order_number='{0}' AND id_prod_order!='{1}'", TEPONumber.Text, id_prod_order)
-        Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
-        If Not jml < 1 Then
-            EP_TE_already_used(EPProdOrder, TEPONumber, "1")
-        Else
-            EP_TE_cant_blank(EPProdOrder, TEPONumber)
-        End If
-    End Sub
+
+    'Private Sub TEPONumber_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEPONumber.Validating
+    'Dim query_jml As String
+    '    query_jml = String.Format("SELECT COUNT(id_prod_order) FROM tb_prod_order WHERE prod_order_number='{0}' AND id_prod_order!='{1}'", TEPONumber.Text, id_prod_order)
+    'Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
+    'If Not jml < 1 Then
+    '        EP_TE_already_used(EPProdOrder, TEPONumber, "1")
+    'Else
+    '        EP_TE_cant_blank(EPProdOrder, TEPONumber)
+    'End If
+    'End Sub
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_prod_order
@@ -382,19 +391,11 @@
     End Sub
 
     Private Sub TELeadTime_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TELeadTime.EditValueChanged
-        If id_prod_order <> "-1" Then
-            Try
-                TERecDate.Text = view_date_from(date_created, Integer.Parse(TELeadTime.Text))
-            Catch ex As Exception
-                TERecDate.Text = view_date_from(date_created, 0)
-            End Try
-        Else
-            Try
-                TERecDate.Text = view_date(Integer.Parse(TELeadTime.Text))
-            Catch ex As Exception
-                TERecDate.Text = view_date(0)
-            End Try
-        End If
+        Try
+            DERecDate.EditValue = date_created.AddDays(TELeadTime.EditValue)
+        Catch ex As Exception
+            '
+        End Try
     End Sub
     '================ view MRS ====================
     Sub view_mrs()
@@ -520,7 +521,7 @@
         Report.LCode.Text = TEDesignCode.Text
         Report.LDesign.Text = TEDesign.Text
         Report.LPONo.Text = TEPONumber.Text
-        Report.LDate.Text = TEDate.Text
+        Report.LDate.Text = DEDate.EditValue.ToString("dd MMM yyyy")
         Report.LBOMType.Text = LECategory.Text
         ' cost here
         Report.LTotCost.Text = Decimal.Parse(GVBOM.Columns("total").SummaryItem.SummaryValue).ToString("N2")
@@ -561,4 +562,13 @@
             edit_wo()
         End If
     End Sub
+
+    Private Sub DERecDate_EditValueChanged(sender As Object, e As EventArgs) Handles DERecDate.EditValueChanged
+        Try
+            TELeadTime.EditValue = DateDiff(DateInterval.Day, date_created, DERecDate.EditValue)
+        Catch ex As Exception
+            '
+        End Try
+    End Sub
+
 End Class
