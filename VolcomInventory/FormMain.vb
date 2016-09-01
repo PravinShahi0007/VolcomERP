@@ -5097,6 +5097,18 @@ Public Class FormMain
                     errorDelete()
                 End Try
             End If
+        ElseIf formName = "FormEmpHoliday" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Try
+                    Dim id_holiday As String = FormEmpHoliday.GVHoliday.GetFocusedRowCellValue("id_holiday").ToString
+                    query = String.Format("DELETE FROM tb_emp_holiday WHERE id_holiday='{0}'", id_holiday)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormEmpHoliday.view_holiday()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
         Else
             RPSubMenu.Visible = False
         End If

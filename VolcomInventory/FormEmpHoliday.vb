@@ -20,6 +20,9 @@
         viewSearchLookupQuery(SLEReligion, query, "id_religion", "religion", "id_religion")
     End Sub
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        view_holiday()
+    End Sub
+    Sub view_holiday()
         Dim date_search As String = ""
         If SLEYear.EditValue.ToString = "ALL" Then
             date_search = " LIKE '%%' "
@@ -29,7 +32,6 @@
         Dim query As String = "SELECT * FROM tb_emp_holiday WHERE YEAR(emp_holiday_date) " + date_search + " AND id_religion = '" + SLEReligion.EditValue.ToString + "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
     End Sub
-
     Private Sub FormEmpHoliday_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
