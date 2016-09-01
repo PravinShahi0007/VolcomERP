@@ -26,6 +26,10 @@ Partial Class FormEmpFP
         Me.EditMachineToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteMachineToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DownloadTemplateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowFingerTemplateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DownloadFingerTemplateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DownloadFaceTemplateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVFP = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -34,7 +38,6 @@ Partial Class FormEmpFP
         Me.GridColumnPort = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFPRegister = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.DownloadTemplateToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCFP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVFP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,33 +58,57 @@ Partial Class FormEmpFP
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddMachineToolStripMenuItem, Me.EditMachineToolStripMenuItem, Me.DeleteMachineToolStripMenuItem, Me.ToolStripMenuItem1, Me.DownloadTemplateToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddMachineToolStripMenuItem, Me.EditMachineToolStripMenuItem, Me.DeleteMachineToolStripMenuItem, Me.ToolStripMenuItem1, Me.DownloadTemplateToolStripMenuItem, Me.ShowFingerTemplateToolStripMenuItem, Me.DownloadFingerTemplateToolStripMenuItem, Me.DownloadFaceTemplateToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(199, 136)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(218, 180)
         '
         'AddMachineToolStripMenuItem
         '
         Me.AddMachineToolStripMenuItem.Name = "AddMachineToolStripMenuItem"
-        Me.AddMachineToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.AddMachineToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
         Me.AddMachineToolStripMenuItem.Text = "Add Machine"
         '
         'EditMachineToolStripMenuItem
         '
         Me.EditMachineToolStripMenuItem.Name = "EditMachineToolStripMenuItem"
-        Me.EditMachineToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.EditMachineToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
         Me.EditMachineToolStripMenuItem.Text = "Edit Machine"
         '
         'DeleteMachineToolStripMenuItem
         '
         Me.DeleteMachineToolStripMenuItem.Name = "DeleteMachineToolStripMenuItem"
-        Me.DeleteMachineToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
+        Me.DeleteMachineToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
         Me.DeleteMachineToolStripMenuItem.Text = "Delete Machine"
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(198, 22)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(217, 22)
         Me.ToolStripMenuItem1.Text = "Set as Register Machine"
+        '
+        'DownloadTemplateToolStripMenuItem
+        '
+        Me.DownloadTemplateToolStripMenuItem.Name = "DownloadTemplateToolStripMenuItem"
+        Me.DownloadTemplateToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.DownloadTemplateToolStripMenuItem.Text = "Show Finger Template"
+        '
+        'ShowFingerTemplateToolStripMenuItem
+        '
+        Me.ShowFingerTemplateToolStripMenuItem.Name = "ShowFingerTemplateToolStripMenuItem"
+        Me.ShowFingerTemplateToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.ShowFingerTemplateToolStripMenuItem.Text = "Show Face Template"
+        '
+        'DownloadFingerTemplateToolStripMenuItem
+        '
+        Me.DownloadFingerTemplateToolStripMenuItem.Name = "DownloadFingerTemplateToolStripMenuItem"
+        Me.DownloadFingerTemplateToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.DownloadFingerTemplateToolStripMenuItem.Text = "Download Finger Template"
+        '
+        'DownloadFaceTemplateToolStripMenuItem
+        '
+        Me.DownloadFaceTemplateToolStripMenuItem.Name = "DownloadFaceTemplateToolStripMenuItem"
+        Me.DownloadFaceTemplateToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.DownloadFaceTemplateToolStripMenuItem.Text = "Download Face Template"
         '
         'GVFP
         '
@@ -145,12 +172,6 @@ Partial Class FormEmpFP
         Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
-        'DownloadTemplateToolStripMenuItem
-        '
-        Me.DownloadTemplateToolStripMenuItem.Name = "DownloadTemplateToolStripMenuItem"
-        Me.DownloadTemplateToolStripMenuItem.Size = New System.Drawing.Size(198, 22)
-        Me.DownloadTemplateToolStripMenuItem.Text = "Download Template"
-        '
         'FormEmpFP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -182,4 +203,7 @@ Partial Class FormEmpFP
     Friend WithEvents DeleteMachineToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents DownloadTemplateToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ShowFingerTemplateToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DownloadFingerTemplateToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DownloadFaceTemplateToolStripMenuItem As ToolStripMenuItem
 End Class

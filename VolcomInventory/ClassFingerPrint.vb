@@ -150,6 +150,7 @@
                 execute_non_query(query_trunc, True, "", "", "", "")
                 execute_non_query(query, True, "", "", "", "")
             Catch ex As Exception
+                stopCustom(ex.ToString)
             End Try
         End If
     End Sub
@@ -195,6 +196,7 @@
                 execute_non_query(query_trunc, True, "", "", "", "")
                 execute_non_query(query, True, "", "", "", "")
             Catch ex As Exception
+                stopCustom(ex.ToString)
             End Try
         End If
     End Sub

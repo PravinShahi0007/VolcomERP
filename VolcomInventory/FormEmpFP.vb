@@ -32,4 +32,55 @@
             viewFP()
         End If
     End Sub
+
+    Private Sub DownloadTemplateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DownloadTemplateToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpFPFinger.ip = GVFP.GetFocusedRowCellValue("ip").ToString
+            FormEmpFPFinger.port = GVFP.GetFocusedRowCellValue("port").ToString
+            FormEmpFPFinger.ShowDialog()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub ShowFingerTemplateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowFingerTemplateToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpFPFaceNew.ip = GVFP.GetFocusedRowCellValue("ip").ToString
+            FormEmpFPFaceNew.port = GVFP.GetFocusedRowCellValue("port").ToString
+            FormEmpFPFaceNew.ShowDialog()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub DownloadFingerTemplateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DownloadFingerTemplateToolStripMenuItem.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to download finger template to database?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim fp As New ClassFingerPrint()
+            fp.ip = GVFP.GetFocusedRowCellValue("ip").ToString
+            fp.port = GVFP.GetFocusedRowCellValue("port").ToString
+            fp.download_fp_tmp()
+            infoCustom("Process completed")
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub DownloadFaceTemplateToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DownloadFaceTemplateToolStripMenuItem.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to download face template to database?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim fp As New ClassFingerPrint()
+            Dim data_fp As DataTable = fp.get_fp_register()
+            fp.ip = GVFP.GetFocusedRowCellValue("ip").ToString
+            fp.port = GVFP.GetFocusedRowCellValue("port").ToString
+            fp.download_face_tmp()
+            infoCustom("Process completed")
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
