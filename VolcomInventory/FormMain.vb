@@ -6675,6 +6675,9 @@ Public Class FormMain
             'Cargo Rate
             FormWHCargoRate.Close()
             FormWHCargoRate.Dispose()
+        ElseIf formName = "FormEmpFP" Then
+            FormEmpFP.Close()
+            FormEmpFP.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7282,6 +7285,8 @@ Public Class FormMain
             Else
                 FormWHCargoRate.load_cargo_rate_in()
             End If
+        ElseIf formName = "FormEmpFP" Then
+            FormEmpFP.viewFP()
         End If
     End Sub
     'Switch
