@@ -9571,7 +9571,7 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub NBFPSetup_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFPSetup.LinkClicked
+    Private Sub NBFPSetup_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFPSetup.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
             FormEmpFP.MdiParent = Me
