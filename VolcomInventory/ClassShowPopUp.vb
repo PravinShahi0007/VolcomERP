@@ -523,14 +523,14 @@
             field_date = "prod_order_rec_date"
         ElseIf report_mark_type = "29" Then
             'MRS Material
-            table_name = "id_prod_order_mrs"
-            field_id = "tb_prod_order_mrs"
+            table_name = "tb_prod_order_mrs"
+            field_id = "id_prod_order_mrs"
             field_number = "prod_order_mrs_number"
             field_date = "prod_order_mrs_date"
         ElseIf report_mark_type = "30" Then
             'PL MRS Production
-            table_name = "id_pl_mrs"
-            field_id = "tb_pl_mrs"
+            table_name = "tb_pl_mrs"
+            field_id = "id_pl_mrs"
             field_number = "pl_mrs_number"
             field_date = "pl_mrs_date"
         ElseIf report_mark_type = "31" Then

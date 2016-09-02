@@ -428,7 +428,6 @@
 
     Private Sub BEditMRS_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BEditMRS.Click
         FormProductionMRS.id_prod_order = id_prod_order
-        FormProductionMRS.id_wo = GVMRS.GetFocusedRowCellValue("id_prod_order_wo").ToString
         FormProductionMRS.id_mrs = GVMRS.GetFocusedRowCellValue("id_prod_order_mrs").ToString
         FormProductionMRS.id_comp_req_from = GVMRS.GetFocusedRowCellValue("id_comp_name_req_from").ToString
         FormProductionMRS.id_comp_req_to = GVMRS.GetFocusedRowCellValue("id_comp_name_req_to").ToString

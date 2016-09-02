@@ -1574,7 +1574,7 @@ Partial Class FormProductionDet
         Me.GridColumnCompReqFrom.FieldName = "comp_name_req_from"
         Me.GridColumnCompReqFrom.Name = "GridColumnCompReqFrom"
         Me.GridColumnCompReqFrom.Visible = True
-        Me.GridColumnCompReqFrom.VisibleIndex = 2
+        Me.GridColumnCompReqFrom.VisibleIndex = 1
         Me.GridColumnCompReqFrom.Width = 214
         '
         'GridColumnIdCompReqTo
@@ -1589,7 +1589,7 @@ Partial Class FormProductionDet
         Me.GridColumnCompReqTo.FieldName = "comp_name_req_to"
         Me.GridColumnCompReqTo.Name = "GridColumnCompReqTo"
         Me.GridColumnCompReqTo.Visible = True
-        Me.GridColumnCompReqTo.VisibleIndex = 3
+        Me.GridColumnCompReqTo.VisibleIndex = 2
         Me.GridColumnCompReqTo.Width = 214
         '
         'GridColumnDate
@@ -1600,7 +1600,7 @@ Partial Class FormProductionDet
         Me.GridColumnDate.FieldName = "prod_order_mrs_date"
         Me.GridColumnDate.Name = "GridColumnDate"
         Me.GridColumnDate.Visible = True
-        Me.GridColumnDate.VisibleIndex = 4
+        Me.GridColumnDate.VisibleIndex = 3
         Me.GridColumnDate.Width = 129
         '
         'GridColumnStatus
@@ -1609,7 +1609,7 @@ Partial Class FormProductionDet
         Me.GridColumnStatus.FieldName = "report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 5
+        Me.GridColumnStatus.VisibleIndex = 4
         Me.GridColumnStatus.Width = 96
         '
         'GridColumnWONumber
@@ -1617,8 +1617,6 @@ Partial Class FormProductionDet
         Me.GridColumnWONumber.Caption = "WO Number"
         Me.GridColumnWONumber.FieldName = "prod_order_wo_number"
         Me.GridColumnWONumber.Name = "GridColumnWONumber"
-        Me.GridColumnWONumber.Visible = True
-        Me.GridColumnWONumber.VisibleIndex = 1
         Me.GridColumnWONumber.Width = 150
         '
         'GridColumnMRSNumber
