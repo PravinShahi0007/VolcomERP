@@ -6682,6 +6682,9 @@ Public Class FormMain
             'Cargo Rate
             FormWHCargoRate.Close()
             FormWHCargoRate.Dispose()
+        ElseIf formName = "FormEmpFP" Then
+            FormEmpFP.Close()
+            FormEmpFP.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7293,6 +7296,8 @@ Public Class FormMain
             Else
                 FormWHCargoRate.load_cargo_rate_in()
             End If
+        ElseIf formName = "FormEmpFP" Then
+            FormEmpFP.viewFP()
         End If
     End Sub
     'Switch
@@ -9560,6 +9565,19 @@ Public Class FormMain
             FormEmpInitialize.Show()
             FormEmpInitialize.WindowState = FormWindowState.Maximized
             FormEmpInitialize.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBFPSetup_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFPSetup.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpFP.MdiParent = Me
+            FormEmpFP.Show()
+            FormEmpFP.WindowState = FormWindowState.Maximized
+            FormEmpFP.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
