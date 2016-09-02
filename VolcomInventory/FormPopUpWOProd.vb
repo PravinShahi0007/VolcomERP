@@ -71,12 +71,13 @@
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         If GVProdWO.RowCount > 0 Then
             If id_popup = "1" Then
-                FormProductionMRS.id_wo = GVProdWO.GetFocusedRowCellValue("id_prod_order_wo").ToString
-                FormProductionMRS.TEWONumber.Text = GVProdWO.GetFocusedRowCellValue("prod_order_wo_number").ToString
-                FormProductionMRS.id_comp_req_from = GVProdWO.GetFocusedRowCellValue("id_comp_contact").ToString
-                FormProductionMRS.TECompName.Text = get_company_x(get_id_company(GVProdWO.GetFocusedRowCellValue("id_comp_contact").ToString), "1")
-                FormProductionMRS.TECompCode.Text = get_company_x(get_id_company(GVProdWO.GetFocusedRowCellValue("id_comp_contact").ToString), "2")
-                Close()
+                'not use WO on MRS prod
+                'FormProductionMRS.id_wo = GVProdWO.GetFocusedRowCellValue("id_prod_order_wo").ToString
+                'FormProductionMRS.TEWONumber.Text = GVProdWO.GetFocusedRowCellValue("prod_order_wo_number").ToString
+                'FormProductionMRS.id_comp_req_from = GVProdWO.GetFocusedRowCellValue("id_comp_contact").ToString
+                'FormProductionMRS.TECompName.Text = get_company_x(get_id_company(GVProdWO.GetFocusedRowCellValue("id_comp_contact").ToString), "1")
+                'FormProductionMRS.TECompCode.Text = get_company_x(get_id_company(GVProdWO.GetFocusedRowCellValue("id_comp_contact").ToString), "2")
+                'Close()
             ElseIf id_popup = "2" Then
                 FormProdPRWODet.id_prod_order_wo = GVProdWO.GetFocusedRowCellValue("id_prod_order_wo").ToString
                 FormProdPRWODet.id_prod_order = GVProdWO.GetFocusedRowCellValue("id_prod_order").ToString

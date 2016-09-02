@@ -1995,7 +1995,7 @@ Partial Class FormBOM
         'GridColumn49
         '
         Me.GridColumn49.Caption = "Category"
-        Me.GridColumn49.FieldName = "category"
+        Me.GridColumn49.FieldName = "component_category"
         Me.GridColumn49.FieldNameSortGroup = "id_component_category"
         Me.GridColumn49.Name = "GridColumn49"
         Me.GridColumn49.Visible = True

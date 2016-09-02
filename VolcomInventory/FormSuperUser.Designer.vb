@@ -148,7 +148,7 @@ Partial Class FormSuperUser
         Me.BTest.Name = "BTest"
         Me.BTest.Size = New System.Drawing.Size(430, 23)
         Me.BTest.TabIndex = 16
-        Me.BTest.Text = "Test"
+        Me.BTest.Text = "Download Finger and Face Template"
         '
         'FormSuperUser
         '

@@ -236,7 +236,7 @@ Public Class FormMain
         If formName = "FormAccess" Or formName = "FormMarkAssign" Then
             BBMapping.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
-        If formName = "FormBOM" Or formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
+        If formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
             BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
         If formName = "FormMasterWH" Then
@@ -358,7 +358,7 @@ Public Class FormMain
         If formName = "FormAccess" Or formName = "FormMarkAssign" Then
             BBMapping.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
-        If formName = "FormBOM" Or formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
+        If formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
             BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
@@ -1427,6 +1427,8 @@ Public Class FormMain
             FormMasterDesignSingle.form_name = "FormFGDesignList"
             FormMasterDesignSingle.WindowState = FormWindowState.Maximized
             FormMasterDesignSingle.ShowDialog()
+        ElseIf formName = "FormEmpInitialize" Then
+            FormEmpInitialize.addUser()
         Else
             RPSubMenu.Visible = False
         End If
@@ -6680,6 +6682,9 @@ Public Class FormMain
             'Cargo Rate
             FormWHCargoRate.Close()
             FormWHCargoRate.Dispose()
+        ElseIf formName = "FormEmpFP" Then
+            FormEmpFP.Close()
+            FormEmpFP.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7291,6 +7296,8 @@ Public Class FormMain
             Else
                 FormWHCargoRate.load_cargo_rate_in()
             End If
+        ElseIf formName = "FormEmpFP" Then
+            FormEmpFP.viewFP()
         End If
     End Sub
     'Switch
@@ -9543,6 +9550,34 @@ Public Class FormMain
             FormFGDesignList.Show()
             FormFGDesignList.WindowState = FormWindowState.Maximized
             FormFGDesignList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+
+
+    Private Sub NBInitializeFP_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInitializeFP.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpInitialize.MdiParent = Me
+            FormEmpInitialize.Show()
+            FormEmpInitialize.WindowState = FormWindowState.Maximized
+            FormEmpInitialize.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBFPSetup_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFPSetup.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpFP.MdiParent = Me
+            FormEmpFP.Show()
+            FormEmpFP.WindowState = FormWindowState.Maximized
+            FormEmpFP.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

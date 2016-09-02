@@ -101,4 +101,18 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Cursor = Cursors.WaitCursor
+        Dim fp As New ClassFingerPrint()
+        Dim data_fp As DataTable = fp.get_fp_register()
+        fp.ip = data_fp.Rows(0)("ip").ToString
+        fp.port = data_fp.Rows(0)("port").ToString
+        fp.download_fp_tmp()
+        fp.download_face_tmp()
+        fp.upload_fp_temp()
+        fp.upload_face_tmp()
+        infoCustom("Process completed")
+        Cursor = Cursors.Default
+    End Sub
 End Class

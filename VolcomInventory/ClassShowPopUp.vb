@@ -523,14 +523,14 @@
             field_date = "prod_order_rec_date"
         ElseIf report_mark_type = "29" Then
             'MRS Material
-            table_name = "id_prod_order_mrs"
-            field_id = "tb_prod_order_mrs"
+            table_name = "tb_prod_order_mrs"
+            field_id = "id_prod_order_mrs"
             field_number = "prod_order_mrs_number"
             field_date = "prod_order_mrs_date"
         ElseIf report_mark_type = "30" Then
             'PL MRS Production
-            table_name = "id_pl_mrs"
-            field_id = "tb_pl_mrs"
+            table_name = "tb_pl_mrs"
+            field_id = "id_pl_mrs"
             field_number = "pl_mrs_number"
             field_date = "pl_mrs_date"
         ElseIf report_mark_type = "31" Then
@@ -796,9 +796,9 @@
             table_name = "tb_bom"
             field_id = "id_bom"
             Dim queryx As String = "SELECT bom_date_created FROM tb_bom WHERE id_bom_approve='" + id_report + "' LIMIT 1"
-            Dim datax As DataTable = execute_query(queryx, -1, "", "", "", "", "")
+            Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
             field_number = "'-'"
-            field_date = datax.Rows(0)("bom_date_created").ToString
+            field_date = "'" & Date.Parse(datax.Rows(0)("bom_date_created")).ToString("yyyy-MM-dd") & "'"
         ElseIf report_mark_type = "82" Then
             'MASTER PRICE FROM EXCEL
             table_name = "tb_fg_price"

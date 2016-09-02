@@ -471,10 +471,40 @@
     <Compile Include="FormEmpCalendar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpFP.Designer.vb">
+      <DependentUpon>FormEmpFP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpFP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpFPAdd.Designer.vb">
+      <DependentUpon>FormEmpFPAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpFPAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpFPFaceNew.Designer.vb">
+      <DependentUpon>FormEmpFPFaceNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpFPFaceNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpFPFinger.Designer.vb">
+      <DependentUpon>FormEmpFPFinger.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpFPFinger.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpHoliday.Designer.vb">
       <DependentUpon>FormEmpHoliday.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpHoliday.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpInitialize.Designer.vb">
+      <DependentUpon>FormEmpInitialize.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpInitialize.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpLeave.Designer.vb">
@@ -4351,8 +4381,23 @@
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpFP.resx">
+      <DependentUpon>FormEmpFP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpFPAdd.resx">
+      <DependentUpon>FormEmpFPAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpFPFaceNew.resx">
+      <DependentUpon>FormEmpFPFaceNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpFPFinger.resx">
+      <DependentUpon>FormEmpFPFinger.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpHoliday.resx">
       <DependentUpon>FormEmpHoliday.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpInitialize.resx">
+      <DependentUpon>FormEmpInitialize.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeave.resx">
       <DependentUpon>FormEmpLeave.vb</DependentUpon>

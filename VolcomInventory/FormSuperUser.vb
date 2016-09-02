@@ -1,4 +1,6 @@
 ﻿Public Class FormSuperUser
+    Public axCZKEM1 As New zkemkeeper.CZKEM
+
     Private Sub BtnConn_Click(sender As Object, e As EventArgs) Handles BtnConn.Click
         Close()
         FormDatabase.id_type = "1"
@@ -31,7 +33,18 @@
 
         'Dim t As ClassDepartement = New ClassDepartement("3")
         't.test()
-        FormFingerPrint.ShowDialog()
+        'FormFingerPrint.ShowDialog()
+
+        Dim fp As New ClassFingerPrint()
+        fp.connect()
+        fp.disable_fp()
+        fp.setUserInfo("24", "Trijaya", "", 0, True)
+        fp.setUserInfo("25", "Komang", "", 0, True)
+        fp.setUserInfo("26", "Ketut Kasih", "123", 3, True)
+        fp.refresh_fp()
+        fp.enable_fp()
+        fp.disconnect()
+        infoCustom("OK")
     End Sub
 
     Private Sub BtnDepartement_Click(sender As Object, e As EventArgs) Handles BtnDepartement.Click
@@ -51,11 +64,19 @@
         FormSendMessage.ShowDialog()
     End Sub
 
-    Private Sub BCalendar_Click(sender As Object, e As EventArgs) 
+    Private Sub BCalendar_Click(sender As Object, e As EventArgs)
         FormEmpCalendar.ShowDialog()
     End Sub
 
     Private Sub BTest_Click(sender As Object, e As EventArgs) Handles BTest.Click
-        FormEmpHoliday.ShowDialog()
+        Cursor = Cursors.WaitCursor
+        Dim fp As New ClassFingerPrint()
+        Dim data_fp As DataTable = fp.get_fp_register()
+        fp.ip = data_fp.Rows(0)("ip").ToString
+        fp.port = data_fp.Rows(0)("port").ToString
+        fp.download_fp_tmp()
+        fp.download_face_tmp()
+        infoCustom("Process completed")
+        Cursor = Cursors.Default
     End Sub
 End Class
