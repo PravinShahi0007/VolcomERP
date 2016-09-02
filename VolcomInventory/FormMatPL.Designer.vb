@@ -369,7 +369,7 @@ Partial Class FormMatPL
         Me.GridColumnCompReqFrom.FieldName = "comp_name_req_from"
         Me.GridColumnCompReqFrom.Name = "GridColumnCompReqFrom"
         Me.GridColumnCompReqFrom.Visible = True
-        Me.GridColumnCompReqFrom.VisibleIndex = 4
+        Me.GridColumnCompReqFrom.VisibleIndex = 3
         Me.GridColumnCompReqFrom.Width = 118
         '
         'GridColumnIdCompReqTo
@@ -384,7 +384,7 @@ Partial Class FormMatPL
         Me.GridColumnCompReqTo.FieldName = "comp_name_req_to"
         Me.GridColumnCompReqTo.Name = "GridColumnCompReqTo"
         Me.GridColumnCompReqTo.Visible = True
-        Me.GridColumnCompReqTo.VisibleIndex = 5
+        Me.GridColumnCompReqTo.VisibleIndex = 4
         Me.GridColumnCompReqTo.Width = 118
         '
         'GridColumnDate
@@ -395,7 +395,7 @@ Partial Class FormMatPL
         Me.GridColumnDate.FieldName = "prod_order_mrs_date"
         Me.GridColumnDate.Name = "GridColumnDate"
         Me.GridColumnDate.Visible = True
-        Me.GridColumnDate.VisibleIndex = 6
+        Me.GridColumnDate.VisibleIndex = 5
         Me.GridColumnDate.Width = 70
         '
         'GridColumn1
@@ -404,7 +404,7 @@ Partial Class FormMatPL
         Me.GridColumn1.FieldName = "report_status"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 7
+        Me.GridColumn1.VisibleIndex = 6
         Me.GridColumn1.Width = 63
         '
         'GridColumnWONumber
@@ -412,8 +412,6 @@ Partial Class FormMatPL
         Me.GridColumnWONumber.Caption = "WO Number"
         Me.GridColumnWONumber.FieldName = "prod_order_wo_number"
         Me.GridColumnWONumber.Name = "GridColumnWONumber"
-        Me.GridColumnWONumber.Visible = True
-        Me.GridColumnWONumber.VisibleIndex = 2
         Me.GridColumnWONumber.Width = 90
         '
         'GridColumnMRSNumber
@@ -440,7 +438,7 @@ Partial Class FormMatPL
         Me.GridColumnMRSDesign.FieldName = "design_name"
         Me.GridColumnMRSDesign.Name = "GridColumnMRSDesign"
         Me.GridColumnMRSDesign.Visible = True
-        Me.GridColumnMRSDesign.VisibleIndex = 3
+        Me.GridColumnMRSDesign.VisibleIndex = 2
         Me.GridColumnMRSDesign.Width = 100
         '
         'RepositoryItemProgressBar1

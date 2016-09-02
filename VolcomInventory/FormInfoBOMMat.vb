@@ -10,7 +10,7 @@
     Sub view_bom_mat()
         Try
             Dim query As String
-            query = "CALL view_mat_design(" & id_pd_design & ")"
+            query = "CALL view_mat_design('" & id_pd_design & "')"
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBomDetMat.DataSource = data

@@ -236,7 +236,7 @@ Public Class FormMain
         If formName = "FormAccess" Or formName = "FormMarkAssign" Then
             BBMapping.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
-        If formName = "FormBOM" Or formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
+        If formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
             BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
         If formName = "FormMasterWH" Then
@@ -358,7 +358,7 @@ Public Class FormMain
         If formName = "FormAccess" Or formName = "FormMarkAssign" Then
             BBMapping.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
-        If formName = "FormBOM" Or formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
+        If formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
             BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 

@@ -298,6 +298,7 @@
                 End Try
             Else
                 'new
+                wo_number = header_number_prod(2)
                 Try
                     'insert
                     'reset main vendor
@@ -333,16 +334,16 @@
         End If
     End Sub
 
-    Private Sub TEPONumber_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEWONumber.Validating
-        Dim query_jml As String
-        query_jml = String.Format("SELECT COUNT(id_prod_order_wo) FROM tb_prod_order_wo WHERE prod_order_wo_number='{0}' AND id_prod_order_wo!='{1}'", TEWONumber.Text, id_wo)
-        Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
-        If Not jml < 1 Then
-            EP_TE_already_used(EPMatWO, TEWONumber, "1")
-        Else
-            EP_TE_cant_blank(EPMatWO, TEWONumber)
-        End If
-    End Sub
+    'Private Sub TEPONumber_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEWONumber.Validating
+    'Dim query_jml As String
+    '    query_jml = String.Format("SELECT COUNT(id_prod_order_wo) FROM tb_prod_order_wo WHERE prod_order_wo_number='{0}' AND id_prod_order_wo!='{1}'", TEWONumber.Text, id_wo)
+    'Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
+    'If Not jml < 1 Then
+    '        EP_TE_already_used(EPMatWO, TEWONumber, "1")
+    'Else
+    '        EP_TE_cant_blank(EPMatWO, TEWONumber)
+    'End If
+    'End Sub
 
     Private Sub TELeadTime_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TELeadTime.EditValueChanged
         If id_wo <> "-1" Then
@@ -445,6 +446,12 @@
             ReportProductionWO.is_pre = "-1"
         Else
             ReportProductionWO.is_pre = "1"
+        End If
+
+        If CheckEditMainVendor.Checked = True Then
+            ReportProductionWO.is_main = "1"
+        Else
+            ReportProductionWO.is_main = "-1"
         End If
 
         Dim Report As New ReportProductionWO()
