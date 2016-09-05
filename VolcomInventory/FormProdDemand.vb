@@ -5,6 +5,7 @@
     Dim total_size_column As Integer = 0
     Public cond_view As String = "-1"
     Public sort_view As String = "2"
+    Dim super_user As String = get_setup_field("id_role_super_admin")
 
     'Form Load
     Private Sub FormProdDemand_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -13,7 +14,9 @@
     'View Production Demand
     Sub viewProdDemand()
         Dim query_c As ClassProdDemand = New ClassProdDemand()
-        cond_view = "AND rg.id_departement =''" + id_departement_user + "'' "
+        If id_role_login <> super_user Then
+            cond_view = "AND rg.id_departement =''" + id_departement_user + "'' "
+        End If
         Dim query As String = query_c.queryMain(cond_view, sort_view)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProdDemand.DataSource = data
