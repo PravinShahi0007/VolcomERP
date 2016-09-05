@@ -651,6 +651,12 @@
     <Compile Include="FormFGMissingWHDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGRepair.Designer.vb">
+      <DependentUpon>FormFGRepair.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepair.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGStock.designer.vb">
       <DependentUpon>FormFGStock.vb</DependentUpon>
     </Compile>
@@ -4481,6 +4487,9 @@
     <EmbeddedResource Include="FormFGMissingWHDet.resx">
       <DependentUpon>FormFGMissingWHDet.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepair.resx">
+      <DependentUpon>FormFGRepair.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGStock.resx">
       <DependentUpon>FormFGStock.vb</DependentUpon>
