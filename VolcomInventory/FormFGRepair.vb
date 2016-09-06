@@ -63,10 +63,6 @@
         noManipulating()
     End Sub
 
-    Private Sub FormFGRepair_DockChanged(sender As Object, e As EventArgs) Handles MyBase.DockChanged
-        FormMain.hide_rb()
-    End Sub
-
     Sub viewData()
         Dim date_from_selected As String = "0000-01-01"
         Dim date_until_selected As String = "9999-01-01"
@@ -90,5 +86,9 @@
         Cursor = Cursors.WaitCursor
         viewData()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormFGRepair_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
     End Sub
 End Class

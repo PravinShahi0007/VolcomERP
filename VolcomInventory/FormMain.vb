@@ -347,6 +347,7 @@ Public Class FormMain
         If formName = "FormBarcodeProduct" Then
             RGAreaManage.Visible = False
         End If
+        MsgBox(formName)
     End Sub
     'Hide Ribbon
     Sub hide_rb()
@@ -1427,6 +1428,10 @@ Public Class FormMain
             FormMasterDesignSingle.form_name = "FormFGDesignList"
             FormMasterDesignSingle.WindowState = FormWindowState.Maximized
             FormMasterDesignSingle.ShowDialog()
+        ElseIf formName = "FormFGRepair" Then
+            'Repair
+            FormFGRepairDet.action = "ins"
+            FormFGRepairDet.ShowDialog()
         ElseIf formName = "FormEmpInitialize" Then
             FormEmpInitialize.addUser()
         Else
@@ -2215,6 +2220,11 @@ Public Class FormMain
                 FormSampleReturnPLDet.action = "upd"
                 FormSampleReturnPLDet.id_sample_pl = FormSampleReturnPL.GVSamplePL.GetFocusedRowCellValue("id_sample_pl_ret").ToString
                 FormSampleReturnPLDet.ShowDialog()
+            ElseIf formName = "FormFGRepair" Then
+                'Repair
+                FormFGRepairDet.action = "upd"
+                FormFGRepairDet.id_fg_repair = FormFGRepair.GVRepair.GetFocusedRowCellValue("id_fg_repair").ToString
+                FormFGRepairDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
