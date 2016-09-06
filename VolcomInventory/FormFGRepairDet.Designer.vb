@@ -37,6 +37,7 @@ Partial Class FormFGRepairDet
         Me.DEForm = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -48,24 +49,23 @@ Partial Class FormFGRepairDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlItemList = New DevExpress.XtraEditors.GroupControl()
-        Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtScannedCode = New DevExpress.XtraEditors.TextEdit()
-        Me.LblScannedCode = New DevExpress.XtraEditors.LabelControl()
-        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
-        Me.BStop = New DevExpress.XtraEditors.SimpleButton()
-        Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScan = New DevExpress.XtraGrid.GridControl()
         Me.GVScan = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFullCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStyle = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtScannedCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LblScannedCode = New DevExpress.XtraEditors.LabelControl()
+        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BStop = New DevExpress.XtraEditors.SimpleButton()
+        Me.BScan = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +78,7 @@ Partial Class FormFGRepairDet
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,17 +87,16 @@ Partial Class FormFGRepairDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlItemList.SuspendLayout()
-        CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelNavBarcode.SuspendLayout()
-        CType(Me.TxtScannedCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPScan.SuspendLayout()
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelNavBarcode.SuspendLayout()
+        CType(Me.TxtScannedCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -292,6 +292,25 @@ Partial Class FormFGRepairDet
         Me.BtnAttachment.TabIndex = 9
         Me.BtnAttachment.Text = "Attachment"
         '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "attachment-icon.png")
+        '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
@@ -408,6 +427,77 @@ Partial Class FormFGRepairDet
         Me.GroupControlItemList.Size = New System.Drawing.Size(859, 277)
         Me.GroupControlItemList.TabIndex = 205
         '
+        'XtraTabControl1
+        '
+        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XtraTabControl1.Location = New System.Drawing.Point(20, 2)
+        Me.XtraTabControl1.Name = "XtraTabControl1"
+        Me.XtraTabControl1.SelectedTabPage = Me.XTPScan
+        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 273)
+        Me.XtraTabControl1.TabIndex = 3
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary})
+        '
+        'XTPScan
+        '
+        Me.XTPScan.Controls.Add(Me.GCScan)
+        Me.XTPScan.Controls.Add(Me.PanelNavBarcode)
+        Me.XTPScan.Name = "XTPScan"
+        Me.XTPScan.Size = New System.Drawing.Size(831, 245)
+        Me.XTPScan.Text = "Scan Product"
+        '
+        'GCScan
+        '
+        Me.GCScan.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCScan.Location = New System.Drawing.Point(0, 33)
+        Me.GCScan.MainView = Me.GVScan
+        Me.GCScan.Name = "GCScan"
+        Me.GCScan.Size = New System.Drawing.Size(831, 212)
+        Me.GCScan.TabIndex = 3
+        Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
+        '
+        'GVScan
+        '
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle})
+        Me.GVScan.GridControl = Me.GCScan
+        Me.GVScan.Name = "GVScan"
+        Me.GVScan.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.Caption = "No"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
+        Me.GridColumnNo.Width = 48
+        '
+        'GridColumnFullCode
+        '
+        Me.GridColumnFullCode.Caption = "Full Code"
+        Me.GridColumnFullCode.FieldName = "full_code"
+        Me.GridColumnFullCode.Name = "GridColumnFullCode"
+        Me.GridColumnFullCode.Visible = True
+        Me.GridColumnFullCode.VisibleIndex = 1
+        Me.GridColumnFullCode.Width = 187
+        '
+        'GridColumnCode
+        '
+        Me.GridColumnCode.Caption = "Code"
+        Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.Name = "GridColumnCode"
+        Me.GridColumnCode.Visible = True
+        Me.GridColumnCode.VisibleIndex = 2
+        Me.GridColumnCode.Width = 196
+        '
+        'GridColumnStyle
+        '
+        Me.GridColumnStyle.Caption = "Style"
+        Me.GridColumnStyle.FieldName = "name"
+        Me.GridColumnStyle.Name = "GridColumnStyle"
+        Me.GridColumnStyle.Visible = True
+        Me.GridColumnStyle.VisibleIndex = 3
+        Me.GridColumnStyle.Width = 647
+        '
         'PanelNavBarcode
         '
         Me.PanelNavBarcode.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -480,109 +570,19 @@ Partial Class FormFGRepairDet
         Me.BScan.TabIndex = 3
         Me.BScan.Text = "Start Scan"
         '
-        'PUDD
-        '
-        Me.PUDD.Name = "PUDD"
-        '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "attachment-icon.png")
-        '
-        'EPForm
-        '
-        Me.EPForm.ContainerControl = Me
-        '
-        'XtraTabControl1
-        '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.Location = New System.Drawing.Point(20, 2)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPScan
-        Me.XtraTabControl1.Size = New System.Drawing.Size(837, 273)
-        Me.XtraTabControl1.TabIndex = 3
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPSummary})
-        '
-        'XTPScan
-        '
-        Me.XTPScan.Controls.Add(Me.GCScan)
-        Me.XTPScan.Controls.Add(Me.PanelNavBarcode)
-        Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(831, 245)
-        Me.XTPScan.Text = "Scan Product"
-        '
         'XTPSummary
         '
         Me.XTPSummary.Name = "XTPSummary"
         Me.XTPSummary.Size = New System.Drawing.Size(831, 245)
         Me.XTPSummary.Text = "Summary"
         '
-        'GCScan
+        'PUDD
         '
-        Me.GCScan.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCScan.Location = New System.Drawing.Point(0, 33)
-        Me.GCScan.MainView = Me.GVScan
-        Me.GCScan.Name = "GCScan"
-        Me.GCScan.Size = New System.Drawing.Size(831, 212)
-        Me.GCScan.TabIndex = 3
-        Me.GCScan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScan})
+        Me.PUDD.Name = "PUDD"
         '
-        'GVScan
+        'EPForm
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle})
-        Me.GVScan.GridControl = Me.GCScan
-        Me.GVScan.Name = "GVScan"
-        Me.GVScan.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumnNo
-        '
-        Me.GridColumnNo.Caption = "No"
-        Me.GridColumnNo.FieldName = "no"
-        Me.GridColumnNo.Name = "GridColumnNo"
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 48
-        '
-        'GridColumnFullCode
-        '
-        Me.GridColumnFullCode.Caption = "Full Code"
-        Me.GridColumnFullCode.FieldName = "full_code"
-        Me.GridColumnFullCode.Name = "GridColumnFullCode"
-        Me.GridColumnFullCode.Visible = True
-        Me.GridColumnFullCode.VisibleIndex = 1
-        Me.GridColumnFullCode.Width = 187
-        '
-        'GridColumnCode
-        '
-        Me.GridColumnCode.Caption = "Code"
-        Me.GridColumnCode.FieldName = "code"
-        Me.GridColumnCode.Name = "GridColumnCode"
-        Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 2
-        Me.GridColumnCode.Width = 196
-        '
-        'GridColumnStyle
-        '
-        Me.GridColumnStyle.Caption = "Style"
-        Me.GridColumnStyle.FieldName = "name"
-        Me.GridColumnStyle.Name = "GridColumnStyle"
-        Me.GridColumnStyle.Visible = True
-        Me.GridColumnStyle.VisibleIndex = 3
-        Me.GridColumnStyle.Width = 647
+        Me.EPForm.ContainerControl = Me
         '
         'FormFGRepairDet
         '
@@ -611,6 +611,7 @@ Partial Class FormFGRepairDet
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
@@ -621,18 +622,17 @@ Partial Class FormFGRepairDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlItemList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlItemList.ResumeLayout(False)
-        CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelNavBarcode.ResumeLayout(False)
-        Me.PanelNavBarcode.PerformLayout()
-        CType(Me.TxtScannedCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPScan.ResumeLayout(False)
         CType(Me.GCScan, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScan, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelNavBarcode.ResumeLayout(False)
+        Me.PanelNavBarcode.PerformLayout()
+        CType(Me.TxtScannedCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
