@@ -58,6 +58,7 @@ Public Class FormFGLineList
         ElseIf id_pop_up = "3" Then
             BBProposePrice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDs.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            BtnDesign.Visible = True
         End If
 
         'custom column template inisialisasi
@@ -163,7 +164,11 @@ Public Class FormFGLineList
                 BtnCopyFrom.Visible = True
                 BtnCreateNewPD.Visible = True
                 BtnPlanStatus.Visible = True
-                BtnDesign.Visible = False
+                If id_pop_up <> "3" Then
+                    BtnDesign.Visible = False
+                Else
+                    BtnDesign.Visible = True
+                End If
             ElseIf SLETypeLineList.EditValue.ToString = "2" Then
                 'BtnProposePrice.Visible = False
                 ' BtnActualCost.Visible = False
@@ -171,7 +176,11 @@ Public Class FormFGLineList
                 BtnCopyFrom.Visible = True
                 BtnCreateNewPD.Visible = True
                 BtnPlanStatus.Visible = True
-                BtnDesign.Visible = False
+                If id_pop_up <> "3" Then
+                    BtnDesign.Visible = False
+                Else
+                    BtnDesign.Visible = True
+                End If
             Else
                 'BtnProposePrice.Visible = True
                 'BtnActualCost.Visible = True

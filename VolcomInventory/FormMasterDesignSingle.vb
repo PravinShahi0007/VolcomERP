@@ -2,6 +2,7 @@
     Dim opt_id_code_color As String = "1"
     Public data_insert_parameter As New DataTable
     Public data_insert_parameter_dsg As New DataTable
+    Public data_insert_parameter_non_md As New DataTable
     Public id_design As String = "-1"
     Public dupe As String = "-1"
     Public form_name As String = "-1"
@@ -210,7 +211,7 @@
                 view_value_code(GVCode, 1)
             Catch ex As Exception
             End Try
-        Else
+        ElseIf id_type = "2" Then
             data_insert_parameter_dsg.Clear()
             If data_insert_parameter_dsg.Columns.Count < 2 Then
                 data_insert_parameter_dsg.Columns.Add("code")
@@ -221,6 +222,19 @@
             Try
                 add_combo_grid_val(GVCodeDsg, 0)
                 view_value_code(GVCodeDsg, 1)
+            Catch ex As Exception
+            End Try
+        Else
+            data_insert_parameter_non_md.Clear()
+            If data_insert_parameter_non_md.Columns.Count < 2 Then
+                data_insert_parameter_non_md.Columns.Add("code")
+                data_insert_parameter_non_md.Columns.Add("value")
+            End If
+            GCCodeNonMD.DataSource = data_insert_parameter_non_md
+            DNCodeNonMD.DataSource = data_insert_parameter_non_md
+            Try
+                add_combo_grid_val(GVCodeNonMD, 0)
+                view_value_code(GVCodeNonMD, 1)
             Catch ex As Exception
             End Try
         End If
@@ -322,13 +336,20 @@
         load_isi_param("1")
         load_isi_param("2")
 
+
         'permission condition
         If id_pop_up = "-1" Or id_pop_up = "2" Or id_pop_up = "5" Then
+            XTPDesign.PageVisible = True
+            XTPMD.PageVisible = True
+            XTPNonMD.PageVisible = False
             viewTemplate(LETemplate, "1")
             viewTemplate(LETemplateDsg, "3")
             ss_dept = get_setup_field("ss_default_dept")
         ElseIf id_pop_up = "3" Then 'non merch
-            viewTemplate(LETemplate, "2")
+            XTPDesign.PageVisible = False
+            XTPMD.PageVisible = False
+            XTPNonMD.PageVisible = True
+            viewTemplate(LETemplateNonMD, "2")
             ss_dept = id_departement_user
         End If
 
@@ -813,6 +834,18 @@
         If Not data_value.Rows.Count = 0 Then
             For i As Integer = 0 To data_value.Rows.Count - 1
                 data_insert_parameter_dsg.Rows.Add(data_value.Rows(i)("id_code").ToString)
+            Next
+        End If
+    End Sub
+
+    Sub load_template_non_md(ByVal id_template As String)
+        Dim query As String = String.Format("SELECT * FROM tb_template_code_det WHERE id_template_code = '{0}'", id_template)
+        Dim data_value As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        data_insert_parameter_non_md.Clear()
+        If Not data_value.Rows.Count = 0 Then
+            For i As Integer = 0 To data_value.Rows.Count - 1
+                data_insert_parameter_non_md.Rows.Add(data_value.Rows(i)("id_code").ToString)
             Next
         End If
     End Sub
@@ -1769,5 +1802,14 @@
         FormSeason.id_pop_up = "2"
         FormSeason.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LETemplateNonMD_EditValueChanged(sender As Object, e As EventArgs) Handles LETemplateNonMD.EditValueChanged
+        load_template_non_md(LETemplateNonMD.EditValue)
+    End Sub
+
+    Private Sub BRefreshCodeNonMD_Click(sender As Object, e As EventArgs) Handles BRefreshCodeNonMD.Click
+        load_isi_param("3")
+        load_template_non_md(LETemplateNonMD.EditValue)
     End Sub
 End Class
