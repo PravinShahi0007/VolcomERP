@@ -335,6 +335,7 @@
         view_ret_code(LERetCode)
         load_isi_param("1")
         load_isi_param("2")
+        load_isi_param("3")
 
 
         'permission condition
@@ -1811,5 +1812,52 @@
     Private Sub BRefreshCodeNonMD_Click(sender As Object, e As EventArgs) Handles BRefreshCodeNonMD.Click
         load_isi_param("3")
         load_template_non_md(LETemplateNonMD.EditValue)
+    End Sub
+
+    Private Sub BeditCodeNonMD_Click(sender As Object, e As EventArgs) Handles BeditCodeNonMD.Click
+        FormCodeTemplateEdit.id_pop_up = "7"
+        FormCodeTemplateEdit.id_template_code = LETemplateNonMD.EditValue.ToString
+        FormCodeTemplateEdit.ShowDialog()
+    End Sub
+
+    Private Sub GVCodeNonMD_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVCodeNonMD.CellValueChanged
+        If e.Column.Name.ToString <> "ColCodeParam" Then
+            Exit Sub
+        Else
+            Dim cellValue As String = e.Value.ToString()
+
+            Dim query As String = String.Format("SELECT id_code,id_code_detail,CODE as Code,code_detail_name as Name,display_name as 'Printed Name',CONCAT(CODE,' - ',code_detail_name) AS value FROM tb_m_code_detail WHERE id_code='" & cellValue.ToString & "'")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GVCodeNonMD.SetRowCellValue(e.RowHandle, GVCodeNonMD.Columns("value"), data.Rows(0)("id_code").ToString)
+        End If
+    End Sub
+
+    Private Sub GVCodeNonMD_HiddenEditor(sender As Object, e As EventArgs) Handles GVCodeNonMD.HiddenEditor
+        If clone_non_md IsNot Nothing Then
+            clone_dsg.Dispose()
+            clone_dsg = Nothing
+        End If
+    End Sub
+
+    Private clone_non_md As DataView = Nothing
+    Private Sub GVCodeNonMD_ShownEditor(sender As Object, e As EventArgs) Handles GVCodeNonMD.ShownEditor
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        If view.FocusedColumn.FieldName = "value" AndAlso TypeOf view.ActiveEditor Is DevExpress.XtraEditors.SearchLookUpEdit Then
+            Dim edit As DevExpress.XtraEditors.SearchLookUpEdit
+            Dim table As DataTable
+            Dim row As DataRow
+
+            edit = CType(view.ActiveEditor, DevExpress.XtraEditors.SearchLookUpEdit)
+            Try
+                table = CType(edit.Properties.DataSource, DataTable)
+            Catch ex As Exception
+                table = CType(edit.Properties.DataSource, DataView).Table
+            End Try
+            clone_non_md = New DataView(table)
+
+            row = view.GetDataRow(view.FocusedRowHandle)
+            clone_non_md.RowFilter = "[id_code] = " + row("code").ToString()
+            edit.Properties.DataSource = clone_non_md
+        End If
     End Sub
 End Class

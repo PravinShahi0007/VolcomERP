@@ -145,6 +145,18 @@
                             FormMasterDesignSingle.data_insert_parameter_dsg.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
                         Next
                     End If
+                ElseIf id_pop_up = "7" Then
+                    data_insert_parameter_temp = FormMasterDesignSingle.data_insert_parameter_non_md.Copy()
+
+                    FormMasterDesignSingle.load_isi_param("3")
+                    FormMasterDesignSingle.load_template_non_md(FormMasterDesignSingle.LETemplateNonMD.EditValue)
+
+                    FormMasterDesignSingle.data_insert_parameter_non_md.Clear()
+                    If Not data_insert_parameter_temp.Rows.Count = 0 Then
+                        For i As Integer = 0 To data_insert_parameter_temp.Rows.Count - 1
+                            FormMasterDesignSingle.data_insert_parameter_non_md.Rows.Add(data_insert_parameter_temp.Rows(i)("code").ToString, data_insert_parameter_temp.Rows(i)("value").ToString)
+                        Next
+                    End If
                 End If
             Catch ex As Exception
                 stopCustom("Code already used.")
