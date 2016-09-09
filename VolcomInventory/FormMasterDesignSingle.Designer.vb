@@ -154,7 +154,7 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DNCodeNonMD = New DevExpress.XtraEditors.DataNavigator()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanC5 = New DevExpress.XtraEditors.PanelControl()
         Me.TEDisplayNameNonMD = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.BGenerateNonMD = New DevExpress.XtraEditors.SimpleButton()
@@ -281,8 +281,8 @@ Partial Class FormMasterDesignSingle
         Me.XTPNonMD.SuspendLayout()
         CType(Me.GCCodeNonMD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCodeNonMD, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
+        CType(Me.PanC5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanC5.SuspendLayout()
         CType(Me.TEDisplayNameNonMD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECodeNonMD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1647,7 +1647,7 @@ Partial Class FormMasterDesignSingle
         '
         Me.XTPNonMD.Controls.Add(Me.GCCodeNonMD)
         Me.XTPNonMD.Controls.Add(Me.DNCodeNonMD)
-        Me.XTPNonMD.Controls.Add(Me.PanelControl5)
+        Me.XTPNonMD.Controls.Add(Me.PanC5)
         Me.XTPNonMD.Controls.Add(Me.BtnGetLastCountNonMD)
         Me.XTPNonMD.Controls.Add(Me.PanelControl4)
         Me.XTPNonMD.Name = "XTPNonMD"
@@ -1711,20 +1711,20 @@ Partial Class FormMasterDesignSingle
         Me.DNCodeNonMD.TabIndex = 101
         Me.DNCodeNonMD.Visible = False
         '
-        'PanelControl5
+        'PanC5
         '
-        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl5.Controls.Add(Me.TEDisplayNameNonMD)
-        Me.PanelControl5.Controls.Add(Me.LabelControl19)
-        Me.PanelControl5.Controls.Add(Me.BGenerateNonMD)
-        Me.PanelControl5.Controls.Add(Me.TECodeNonMD)
-        Me.PanelControl5.Controls.Add(Me.LabelControl18)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 410)
-        Me.PanelControl5.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(499, 131)
-        Me.PanelControl5.TabIndex = 100
+        Me.PanC5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanC5.Controls.Add(Me.TEDisplayNameNonMD)
+        Me.PanC5.Controls.Add(Me.LabelControl19)
+        Me.PanC5.Controls.Add(Me.BGenerateNonMD)
+        Me.PanC5.Controls.Add(Me.TECodeNonMD)
+        Me.PanC5.Controls.Add(Me.LabelControl18)
+        Me.PanC5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanC5.Location = New System.Drawing.Point(0, 410)
+        Me.PanC5.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.PanC5.Name = "PanC5"
+        Me.PanC5.Size = New System.Drawing.Size(499, 131)
+        Me.PanC5.TabIndex = 100
         '
         'TEDisplayNameNonMD
         '
@@ -2318,9 +2318,9 @@ Partial Class FormMasterDesignSingle
         Me.XTPNonMD.ResumeLayout(False)
         CType(Me.GCCodeNonMD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCodeNonMD, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl5.ResumeLayout(False)
-        Me.PanelControl5.PerformLayout()
+        CType(Me.PanC5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanC5.ResumeLayout(False)
+        Me.PanC5.PerformLayout()
         CType(Me.TEDisplayNameNonMD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECodeNonMD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2525,7 +2525,7 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DNCodeNonMD As DevExpress.XtraEditors.DataNavigator
-    Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanC5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BGenerateNonMD As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TECodeNonMD As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
