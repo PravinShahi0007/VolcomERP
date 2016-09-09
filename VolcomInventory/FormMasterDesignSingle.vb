@@ -1834,8 +1834,8 @@
 
     Private Sub GVCodeNonMD_HiddenEditor(sender As Object, e As EventArgs) Handles GVCodeNonMD.HiddenEditor
         If clone_non_md IsNot Nothing Then
-            clone_dsg.Dispose()
-            clone_dsg = Nothing
+            clone_non_md.Dispose()
+            clone_non_md = Nothing
         End If
     End Sub
 
@@ -1858,6 +1858,91 @@
             row = view.GetDataRow(view.FocusedRowHandle)
             clone_non_md.RowFilter = "[id_code] = " + row("code").ToString()
             edit.Properties.DataSource = clone_non_md
+        End If
+    End Sub
+
+    Private Sub BtnGetLastCountNonMD_Click(sender As Object, e As EventArgs) Handles BtnGetLastCountNonMD.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_fg_code_count As String = ""
+        Dim digit_par As String = "1"
+        id_fg_code_count = get_setup_field("id_code_fg_non_md_counting")
+        digit_par = "4"
+
+        For i As Integer = 0 To GVCodeNonMD.RowCount - 1
+            If GVCodeNonMD.GetRowCellValue(i, "code").ToString = id_fg_code_count Then
+                Dim counting_x As String = getLastCounting(digit_par)
+                Dim data_filter As DataRow() = counting_det.Select("[display_name]='" + counting_x + "'")
+                GVCodeNonMD.SetRowCellValue(i, "value", data_filter(0)("id_code_detail"))
+                Exit For
+            End If
+        Next
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BGenerateNonMD_Click(sender As Object, e As EventArgs) Handles BGenerateNonMD.Click
+        Dim id_code, code, code_name, query As String
+        Dim code_full As String = ""
+        'display name
+        Dim string_name As String = ""
+        Dim class_name As String = ""
+        Dim promo_name As String = ""
+
+
+        For i As Integer = 0 To GVCodeNonMD.RowCount - 1
+            code = ""
+            code_name = ""
+            id_code = ""
+            Try
+                id_code = GVCodeNonMD.GetRowCellValue(i, "value").ToString
+            Catch ex As Exception
+                id_code = ""
+            End Try
+
+            If Not id_code = "" Or id_code = "0" Then
+                Try
+                    query = String.Format("Select is_include_code FROM tb_m_code,tb_m_code_detail WHERE tb_m_code.id_code=tb_m_code_detail.id_code And tb_m_code_detail.id_code_detail='" & id_code & "'")
+                    code = execute_query(query, 0, True, "", "", "", "")
+                Catch ex As Exception
+                    code = "False"
+                End Try
+
+                If code = "True" Then
+                    query = String.Format("SELECT id_code,code,display_name FROM tb_m_code_detail WHERE id_code_detail='" & id_code & "'")
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    code = data.Rows(0)("code").ToString
+                Else
+                    code = ""
+                End If
+
+                query = String.Format("SELECT tb_m_code.is_include_name FROM tb_m_code,tb_m_code_detail WHERE tb_m_code.id_code=tb_m_code_detail.id_code AND tb_m_code_detail.id_code_detail='" & id_code & "'")
+                code_name = execute_query(query, 0, True, "", "", "", "")
+                If code_name.ToString = "True" Then
+                    query = String.Format("SELECT m_c.id_code, m_c_d.display_name,m_c.code_name FROM tb_m_code_detail m_c_d INNER JOIN tb_m_code m_c ON m_c.id_code=m_c_d.id_code WHERE m_c_d.id_code_detail='" & id_code & "'")
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    code_name = data.Rows(0)("display_name").ToString
+                    If data.Rows(0)("id_code").ToString = get_setup_field("id_code_fg_class") Then
+                        class_name = code_name
+                    ElseIf data.Rows(0)("id_code").ToString = get_setup_field("id_code_fg_prod_non_md") Then
+                        promo_name = code_name
+                    Else
+                        string_name += " " & code_name
+                    End If
+                End If
+            End If
+            code_full += code
+        Next
+
+        'code
+        TECodeNonMD.Text = code_full
+
+        'desc
+        Dim full_desc As String = ""
+        full_desc = promo_name & " " & class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+
+        If full_desc.Length > 25 Then
+            TEDisplayNameNonMD.Text = full_desc.Substring(0, 25)
+        Else
+            TEDisplayNameNonMD.Text = full_desc
         End If
     End Sub
 End Class

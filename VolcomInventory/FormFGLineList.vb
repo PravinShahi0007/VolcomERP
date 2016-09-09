@@ -125,7 +125,7 @@ Public Class FormFGLineList
         Dim query_c As ClassDesign = New ClassDesign()
         If id_type = 1 Or id_type = "2" Then 'workspace
             query_c.viewLineList(id_season_par, id_type, BGVLineList, GCLineList, data_band_break_par, data_band_alloc_par, show_breakdown)
-            optionsViewBanded(BGVLineList, "FormFGLineList", "BGVLineList", "1")
+            'optionsViewBanded(BGVLineList, "FormFGLineList", "BGVLineList", "1")
         Else 'summary & final line list
             query_c.viewLineListFinal(id_season_par, id_type, BGVLineList, GCLineList, data_band_break_par, data_band_break_plan_par, data_band_alloc_par, data_band_alloc_plan_par, show_breakdown)
         End If
