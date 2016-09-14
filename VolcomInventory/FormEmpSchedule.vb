@@ -33,7 +33,12 @@
 
     Private Sub BViewSchedule_Click(sender As Object, e As EventArgs) Handles BViewSchedule.Click
         If GVEmployee.RowCount > 0 Then
-
+            FormEmpScheduleView.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpScheduleView.TEName.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
+            FormEmpScheduleView.TECode.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            FormEmpScheduleView.TEDept.Text = GVEmployee.GetFocusedRowCellValue("departement").ToString
+            FormEmpScheduleView.TEPosition.Text = GVEmployee.GetFocusedRowCellValue("employee_position").ToString
+            FormEmpScheduleView.ShowDialog()
         End If
     End Sub
 End Class

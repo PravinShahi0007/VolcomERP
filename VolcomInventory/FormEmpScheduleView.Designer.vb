@@ -22,45 +22,49 @@ Partial Class FormEmpScheduleView
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpScheduleView))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEPosition = New DevExpress.XtraEditors.TextEdit()
+        Me.TEDept = New DevExpress.XtraEditors.TextEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TECode = New DevExpress.XtraEditors.TextEdit()
+        Me.TEName = New DevExpress.XtraEditors.TextEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.GCSchedule = New DevExpress.XtraGrid.GridControl()
-        Me.GVSchedule = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BTempSchedule = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCSchedule = New DevExpress.XtraGrid.GridControl()
+        Me.GVSchedule = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPosition.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.TextEdit3)
-        Me.PanelControl1.Controls.Add(Me.TextEdit4)
+        Me.PanelControl1.Controls.Add(Me.TEPosition)
+        Me.PanelControl1.Controls.Add(Me.TEDept)
         Me.PanelControl1.Controls.Add(Me.Label3)
         Me.PanelControl1.Controls.Add(Me.Label4)
-        Me.PanelControl1.Controls.Add(Me.TextEdit2)
-        Me.PanelControl1.Controls.Add(Me.TextEdit1)
+        Me.PanelControl1.Controls.Add(Me.TECode)
+        Me.PanelControl1.Controls.Add(Me.TEName)
         Me.PanelControl1.Controls.Add(Me.Label2)
         Me.PanelControl1.Controls.Add(Me.Label1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -69,19 +73,21 @@ Partial Class FormEmpScheduleView
         Me.PanelControl1.Size = New System.Drawing.Size(746, 71)
         Me.PanelControl1.TabIndex = 0
         '
-        'TextEdit3
+        'TEPosition
         '
-        Me.TextEdit3.Location = New System.Drawing.Point(337, 38)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Size = New System.Drawing.Size(180, 20)
-        Me.TextEdit3.TabIndex = 7
+        Me.TEPosition.Enabled = False
+        Me.TEPosition.Location = New System.Drawing.Point(337, 38)
+        Me.TEPosition.Name = "TEPosition"
+        Me.TEPosition.Size = New System.Drawing.Size(180, 20)
+        Me.TEPosition.TabIndex = 7
         '
-        'TextEdit4
+        'TEDept
         '
-        Me.TextEdit4.Location = New System.Drawing.Point(337, 12)
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Size = New System.Drawing.Size(251, 20)
-        Me.TextEdit4.TabIndex = 6
+        Me.TEDept.Enabled = False
+        Me.TEDept.Location = New System.Drawing.Point(337, 12)
+        Me.TEDept.Name = "TEDept"
+        Me.TEDept.Size = New System.Drawing.Size(251, 20)
+        Me.TEDept.TabIndex = 6
         '
         'Label3
         '
@@ -101,19 +107,21 @@ Partial Class FormEmpScheduleView
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "Dept"
         '
-        'TextEdit2
+        'TECode
         '
-        Me.TextEdit2.Location = New System.Drawing.Point(52, 38)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(152, 20)
-        Me.TextEdit2.TabIndex = 3
+        Me.TECode.Enabled = False
+        Me.TECode.Location = New System.Drawing.Point(52, 38)
+        Me.TECode.Name = "TECode"
+        Me.TECode.Size = New System.Drawing.Size(152, 20)
+        Me.TECode.TabIndex = 3
         '
-        'TextEdit1
+        'TEName
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(52, 12)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(221, 20)
-        Me.TextEdit1.TabIndex = 2
+        Me.TEName.Enabled = False
+        Me.TEName.Location = New System.Drawing.Point(52, 12)
+        Me.TEName.Name = "TEName"
+        Me.TEName.Size = New System.Drawing.Size(221, 20)
+        Me.TEName.TabIndex = 2
         '
         'Label2
         '
@@ -135,29 +143,24 @@ Partial Class FormEmpScheduleView
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl2.Controls.Add(Me.BTempSchedule)
         Me.PanelControl2.Controls.Add(Me.BClose)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 261)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 311)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(746, 37)
         Me.PanelControl2.TabIndex = 1
         '
-        'GCSchedule
+        'BTempSchedule
         '
-        Me.GCSchedule.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSchedule.Location = New System.Drawing.Point(0, 71)
-        Me.GCSchedule.MainView = Me.GVSchedule
-        Me.GCSchedule.Name = "GCSchedule"
-        Me.GCSchedule.Size = New System.Drawing.Size(746, 190)
-        Me.GCSchedule.TabIndex = 2
-        Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
-        '
-        'GVSchedule
-        '
-        Me.GVSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
-        Me.GVSchedule.GridControl = Me.GCSchedule
-        Me.GVSchedule.Name = "GVSchedule"
+        Me.BTempSchedule.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BTempSchedule.ImageIndex = 14
+        Me.BTempSchedule.ImageList = Me.LargeImageCollection
+        Me.BTempSchedule.Location = New System.Drawing.Point(2, 2)
+        Me.BTempSchedule.Name = "BTempSchedule"
+        Me.BTempSchedule.Size = New System.Drawing.Size(112, 33)
+        Me.BTempSchedule.TabIndex = 3
+        Me.BTempSchedule.Text = "Use Template"
         '
         'LargeImageCollection
         '
@@ -195,16 +198,22 @@ Partial Class FormEmpScheduleView
         Me.BClose.TabIndex = 2
         Me.BClose.Text = "Close"
         '
-        'SimpleButton1
+        'GCSchedule
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton1.ImageIndex = 14
-        Me.SimpleButton1.ImageList = Me.LargeImageCollection
-        Me.SimpleButton1.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(112, 33)
-        Me.SimpleButton1.TabIndex = 3
-        Me.SimpleButton1.Text = "Use Template"
+        Me.GCSchedule.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSchedule.Location = New System.Drawing.Point(0, 109)
+        Me.GCSchedule.MainView = Me.GVSchedule
+        Me.GCSchedule.Name = "GCSchedule"
+        Me.GCSchedule.Size = New System.Drawing.Size(746, 202)
+        Me.GCSchedule.TabIndex = 2
+        Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
+        '
+        'GVSchedule
+        '
+        Me.GVSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6})
+        Me.GVSchedule.GridControl = Me.GCSchedule
+        Me.GVSchedule.Name = "GVSchedule"
+        Me.GVSchedule.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -220,13 +229,6 @@ Partial Class FormEmpScheduleView
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
         '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Out"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Tolerance In"
@@ -234,12 +236,42 @@ Partial Class FormEmpScheduleView
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 3
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Out"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Break Out"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Break In"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'PanelControl3
+        '
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 71)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(746, 38)
+        Me.PanelControl3.TabIndex = 3
+        '
         'FormEmpScheduleView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(746, 298)
+        Me.ClientSize = New System.Drawing.Size(746, 348)
         Me.Controls.Add(Me.GCSchedule)
+        Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -251,15 +283,16 @@ Partial Class FormEmpScheduleView
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPosition.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -270,17 +303,20 @@ Partial Class FormEmpScheduleView
     Friend WithEvents GVSchedule As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEPosition As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEDept As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BTempSchedule As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
 End Class

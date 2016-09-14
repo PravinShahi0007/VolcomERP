@@ -507,6 +507,12 @@
     <Compile Include="FormEmpScheduleView.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpScheduleViewSet.Designer.vb">
+      <DependentUpon>FormEmpScheduleViewSet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpScheduleViewSet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpShift.Designer.vb">
       <DependentUpon>FormEmpShift.vb</DependentUpon>
     </Compile>
@@ -4368,6 +4374,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpScheduleView.resx">
       <DependentUpon>FormEmpScheduleView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpScheduleViewSet.resx">
+      <DependentUpon>FormEmpScheduleViewSet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpShift.resx">
       <DependentUpon>FormEmpShift.vb</DependentUpon>

@@ -30,8 +30,8 @@ Partial Class FormEmpSchedule
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BSetSchedule = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BViewSchedule = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,7 +99,7 @@ Partial Class FormEmpSchedule
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Status"
-        Me.GridColumn6.FieldName = "active"
+        Me.GridColumn6.FieldName = "employee_active"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
@@ -113,6 +113,17 @@ Partial Class FormEmpSchedule
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(766, 38)
         Me.PanelControl1.TabIndex = 1
+        '
+        'BSetSchedule
+        '
+        Me.BSetSchedule.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BSetSchedule.ImageIndex = 14
+        Me.BSetSchedule.ImageList = Me.LargeImageCollection
+        Me.BSetSchedule.Location = New System.Drawing.Point(2, 2)
+        Me.BSetSchedule.Name = "BSetSchedule"
+        Me.BSetSchedule.Size = New System.Drawing.Size(127, 34)
+        Me.BSetSchedule.TabIndex = 2
+        Me.BSetSchedule.Text = "Bulk Set Schedule"
         '
         'LargeImageCollection
         '
@@ -138,17 +149,6 @@ Partial Class FormEmpSchedule
         Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
-        '
-        'BSetSchedule
-        '
-        Me.BSetSchedule.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BSetSchedule.ImageIndex = 14
-        Me.BSetSchedule.ImageList = Me.LargeImageCollection
-        Me.BSetSchedule.Location = New System.Drawing.Point(2, 2)
-        Me.BSetSchedule.Name = "BSetSchedule"
-        Me.BSetSchedule.Size = New System.Drawing.Size(127, 34)
-        Me.BSetSchedule.TabIndex = 2
-        Me.BSetSchedule.Text = "Bulk Set Schedule"
         '
         'BViewSchedule
         '
