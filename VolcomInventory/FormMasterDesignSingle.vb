@@ -1534,25 +1534,34 @@
 
     Private Sub SimpleButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDelSize.Click
         Cursor = Cursors.WaitCursor
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        Dim query As String = ""
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Try
-                Dim id_product As String = GVProduct.GetFocusedRowCellDisplayText("id_product").ToString
-                query = String.Format("DELETE FROM tb_m_product WHERE id_product='{0}'", id_product)
-                execute_non_query(query, True, "", "", "", "")
-                view_product(id_design)
-                If form_name = "-1" Then
-                    FormMasterProduct.view_design()
-                    FormMasterProduct.GVDesign.FocusedRowHandle = find_row(FormMasterProduct.GVDesign, "id_design", id_design)
-                ElseIf form_name = "FormFGLineList" Then
-                    FormFGLineList.viewLineList()
-                    FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design)
-                    loadLineList(id_prod_demand_design_active)
-                End If
-            Catch ex As Exception
-                errorDelete()
-            End Try
+        Dim id_product As String = GVProduct.GetFocusedRowCellDisplayText("id_product").ToString
+        Dim query_cek As String = "SELECT COUNT(*) FROM tb_prod_demand_product pd_prod  "
+        query_cek += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = pd_prod.id_prod_demand_design AND pd_prod.id_product='" + id_product + "' "
+        query_cek += "INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pd_dsg.id_prod_demand "
+        query_cek += "WHERE pd.is_pd='1' "
+        Dim jum_cek As String = execute_query(query_cek, 0, True, "", "", "", "")
+        If jum_cek <= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim query As String = ""
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    query = String.Format("DELETE FROM tb_m_product WHERE id_product='{0}'", id_product)
+                    execute_non_query(query, True, "", "", "", "")
+                    view_product(id_design)
+                    If form_name = "-1" Then
+                        FormMasterProduct.view_design()
+                        FormMasterProduct.GVDesign.FocusedRowHandle = find_row(FormMasterProduct.GVDesign, "id_design", id_design)
+                    ElseIf form_name = "FormFGLineList" Then
+                        FormFGLineList.viewLineList()
+                        FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design)
+                        loadLineList(id_prod_demand_design_active)
+                    End If
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
+        Else
+            stopCustom("Data currently used in Production Demand.")
         End If
         Cursor = Cursors.Default
     End Sub

@@ -270,6 +270,12 @@
             FormProductionMRS.TECompToCode.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
             FormProductionMRS.TECompToName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
             Close()
+        ElseIf id_pop_up = "22f" Then
+            'mrs req from
+            FormProductionMRS.id_comp_req_from = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+            FormProductionMRS.TECompCode.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
+            FormProductionMRS.TECompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
+            Close()
         ElseIf id_pop_up = "23" Then
             FormMatRetInDet.id_comp_contact_to = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
             FormMatRetInDet.TxtCodeCompTo.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString

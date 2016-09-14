@@ -1,6 +1,5 @@
 ﻿Public Class FormProductionMRS
     Public id_mrs As String = "-1"
-    Public id_wo As String = "-1"
     Public id_prod_order As String = "-1"
     Public id_comp_req_from As String = "-1"
     Public id_comp_req_to As String = "-1"
@@ -30,7 +29,6 @@
             TEDate.Text = view_date_from(data.Rows(0)("prod_order_mrs_datex").ToString, 0)
 
             MENote.Text = data.Rows(0)("prod_order_mrs_note").ToString
-
 
             allow_status()
             BMark.Enabled = True
@@ -64,12 +62,12 @@
         '    BPrint.Enabled = False
         'End If
     End Sub
-    Private Sub BPickWO_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPickWO.Click
-        FormPopUpWOProd.id_prod_order = id_prod_order
-        FormPopUpWOProd.id_wo = id_wo
-        FormPopUpWOProd.id_popup = "1"
-        FormPopUpWOProd.ShowDialog()
-    End Sub
+    'Private Sub BPickWO_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPickWO.Click
+    '    FormPopUpWOProd.id_prod_order = id_prod_order
+    '    FormPopUpWOProd.id_wo = id_wo
+    '    FormPopUpWOProd.id_popup = "1"
+    '    FormPopUpWOProd.ShowDialog()
+    'End Sub
 
     Private Sub BPickCompTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPickCompTo.Click
         FormPopUpContact.id_pop_up = "22"
@@ -137,8 +135,8 @@
 
         If id_mrs = "-1" Then
             'new
-            If Not formIsValidInGroup(EPProdOrderMRS, GroupGeneralHeader) Or id_wo = "-1" Or id_comp_req_to = "-1" Then
-                stopCustom("Please make sure that : " & vbNewLine & "- MRS number is correct" & vbNewLine & "- Work Order not blank" & vbNewLine & "- Request To not blank")
+            If Not formIsValidInGroup(EPProdOrderMRS, GroupGeneralHeader) Or id_comp_req_to = "-1" Or id_comp_req_from = "-1" Then
+                stopCustom("Please make sure that : " & vbNewLine & "- MRS number is correct" & vbNewLine & "- Request From not blank" & vbNewLine & "- Request To not blank")
             Else
                 If more_qty = True Then
                     'warn
@@ -154,7 +152,7 @@
                 End If
 
                 If proceed = True Then
-                    query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,prod_order_mrs_number,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note,id_prod_order_wo) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}');SELECT LAST_INSERT_ID()", id_prod_order, TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, MENote.Text, id_wo)
+                    query = String.Format("INSERT INTO tb_prod_order_mrs(id_prod_order,prod_order_mrs_number,id_comp_contact_req_to,id_comp_contact_req_from,prod_order_mrs_date,prod_order_mrs_note) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}');SELECT LAST_INSERT_ID()", id_prod_order, TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, MENote.Text)
                     Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
 
                     If GVMat.RowCount > 0 Then
@@ -179,8 +177,8 @@
             End If
         Else
             'edit
-            If Not formIsValidInGroup(EPProdOrderMRS, GroupGeneralHeader) Or id_wo = "-1" Or id_comp_req_to = "-1" Then
-                stopCustom("Please make sure that : " & vbNewLine & "- MRS number is correct" & vbNewLine & "- Work Order not blank" & vbNewLine & "- Request To not blank")
+            If Not formIsValidInGroup(EPProdOrderMRS, GroupGeneralHeader) Or id_comp_req_from = "-1" Or id_comp_req_to = "-1" Then
+                stopCustom("Please make sure that : " & vbNewLine & "- MRS number is correct" & vbNewLine & "- Request From not blank" & vbNewLine & "- Request To not blank")
             Else
                 If more_qty = True Then
                     'warn
@@ -196,7 +194,7 @@
                 End If
 
                 If proceed = True Then
-                    query = String.Format("UPDATE tb_prod_order_mrs SET prod_order_mrs_number='{0}',id_comp_contact_req_to='{1}',id_comp_contact_req_from='{2}',prod_order_mrs_note='{3}',id_prod_order_wo='{4}' WHERE id_prod_order_mrs='{5}'", TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, MENote.Text, id_wo, id_mrs)
+                    query = String.Format("UPDATE tb_prod_order_mrs SET prod_order_mrs_number='{0}',id_comp_contact_req_to='{1}',id_comp_contact_req_from='{2}',prod_order_mrs_note='{3}' WHERE id_prod_order_mrs='{4}'", TEMRSNumber.Text, id_comp_req_to, id_comp_req_from, MENote.Text, id_mrs)
                     execute_non_query(query, True, "", "", "", "")
 
                     'delete first
@@ -310,5 +308,10 @@
         FormDocumentUpload.report_mark_type = "29"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BReqFrom_Click(sender As Object, e As EventArgs) Handles BReqFrom.Click
+        FormPopUpContact.id_pop_up = "22f"
+        FormPopUpContact.ShowDialog()
     End Sub
 End Class
