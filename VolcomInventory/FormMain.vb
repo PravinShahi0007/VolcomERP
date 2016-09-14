@@ -9638,4 +9638,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBSchedule_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSchedule.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpSchedule.MdiParent = Me
+            FormEmpSchedule.Show()
+            FormEmpSchedule.WindowState = FormWindowState.Maximized
+            FormEmpSchedule.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
