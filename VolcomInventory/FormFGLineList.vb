@@ -53,12 +53,17 @@ Public Class FormFGLineList
             viewLineList()
             BGVLineList.ActiveFilterString = "[id_design]='" + FormProductionPLToWHDet.id_design.ToString + "' "
             BGVLineList.Columns("Select_sct").Visible = False
+            SMDeleteDesign.Visible = False
         ElseIf id_pop_up = "2" Then
             PanelControlNavLineListBottom.Visible = False
+            SMDeleteDesign.Visible = False
         ElseIf id_pop_up = "3" Then
             BBProposePrice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDs.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BtnDesign.Visible = True
+            SMDeleteDesign.Visible = True
+        Else
+            SMDeleteDesign.Visible = False
         End If
 
         'custom column template inisialisasi
@@ -322,11 +327,9 @@ Public Class FormFGLineList
         If BGVLineList.RowCount > 0 And id_pop_up <> "2" Then
             If line_act = "1" Then
                 SMEditDesign.Visible = True
-                SMDeleteDesign.Visible = False
                 SMViewDupe.Visible = False
             Else
                 SMEditDesign.Visible = False
-                SMDeleteDesign.Visible = False
                 SMViewDupe.Visible = False
             End If
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
