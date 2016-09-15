@@ -66,11 +66,12 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnExternalEm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnOthEm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlFreeze = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditFreeze = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
         Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -515,6 +516,16 @@ Partial Class FormMasterEmployee
         Me.PanelControl1.Size = New System.Drawing.Size(734, 35)
         Me.PanelControl1.TabIndex = 1
         '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(0, 0)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(170, 35)
+        Me.SimpleButton1.TabIndex = 110
+        Me.SimpleButton1.Text = "Synchronize Fingerprint"
+        '
         'PanelControlFreeze
         '
         Me.PanelControlFreeze.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -552,15 +563,9 @@ Partial Class FormMasterEmployee
         Me.CheckImg.Size = New System.Drawing.Size(87, 19)
         Me.CheckImg.TabIndex = 0
         '
-        'SimpleButton1
+        'SplashScreenManager1
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(0, 0)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(170, 35)
-        Me.SimpleButton1.TabIndex = 110
-        Me.SimpleButton1.Text = "Synchronize Fingerprint"
+        Me.SplashScreenManager1.ClosingDelay = 500
         '
         'FormMasterEmployee
         '
@@ -641,4 +646,5 @@ Partial Class FormMasterEmployee
     Friend WithEvents gridBandSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandContact As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
 End Class

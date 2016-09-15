@@ -47,6 +47,7 @@ Partial Class FormEmpFP
         Me.GridColumnFPRegister = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
+        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.GCFP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVFP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,7 +70,7 @@ Partial Class FormEmpFP
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TestConnectionToolStripMenuItem, Me.MasterMachineToolStripMenuItem, Me.DataToolStripMenuItem, Me.DeviceToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(162, 114)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(162, 92)
         '
         'TestConnectionToolStripMenuItem
         '
@@ -161,13 +162,13 @@ Partial Class FormEmpFP
         'RestartToolStripMenuItem
         '
         Me.RestartToolStripMenuItem.Name = "RestartToolStripMenuItem"
-        Me.RestartToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RestartToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.RestartToolStripMenuItem.Text = "Restart"
         '
         'TurnOffToolStripMenuItem
         '
         Me.TurnOffToolStripMenuItem.Name = "TurnOffToolStripMenuItem"
-        Me.TurnOffToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.TurnOffToolStripMenuItem.Size = New System.Drawing.Size(119, 22)
         Me.TurnOffToolStripMenuItem.Text = "Turn Off"
         '
         'GVFP
@@ -250,6 +251,10 @@ Partial Class FormEmpFP
         Me.BAccept.TabIndex = 137
         Me.BAccept.Text = "Syncronize All Machine"
         '
+        'SplashScreenManager1
+        '
+        Me.SplashScreenManager1.ClosingDelay = 500
+        '
         'FormEmpFP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -294,4 +299,5 @@ Partial Class FormEmpFP
     Friend WithEvents RestartToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TurnOffToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TestConnectionToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
 End Class
