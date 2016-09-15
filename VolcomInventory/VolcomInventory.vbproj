@@ -3507,6 +3507,12 @@
     <Compile Include="FormWHAWBillInDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormWHCargo.Designer.vb">
+      <DependentUpon>FormWHCargo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWHCargo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormWHCargoRate.designer.vb">
       <DependentUpon>FormWHCargoRate.vb</DependentUpon>
     </Compile>
@@ -6328,6 +6334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHAWBillInDet.resx">
       <DependentUpon>FormWHAWBillInDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWHCargo.resx">
+      <DependentUpon>FormWHCargo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHCargoRate.resx">
       <DependentUpon>FormWHCargoRate.vb</DependentUpon>

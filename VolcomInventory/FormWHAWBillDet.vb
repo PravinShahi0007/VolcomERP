@@ -170,7 +170,7 @@
         query += " ,comp.awb_rank"
         query += " FROM tb_wh_cargo_rate As rate"
         query += " INNER JOIN tb_m_comp comp ON comp.id_comp=rate.id_cargo"
-        query += " WHERE rate.id_store='" + id_comp + "' AND rate.id_rate_type='" + id_awb_type + "'"
+        query += " WHERE rate.id_store='" + id_comp + "' AND rate.id_rate_type='" + id_awb_type + "' AND comp.is_active='1'"
         query += " ORDER BY amount ASC,awb_rank ASC"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
