@@ -114,7 +114,6 @@ Partial Class FormWHCargoRate
         Me.BAddComp.Size = New System.Drawing.Size(149, 37)
         Me.BAddComp.TabIndex = 3
         Me.BAddComp.Text = "Master Store / Cargo"
-        Me.BAddComp.Visible = False
         '
         'GCCompany
         '
