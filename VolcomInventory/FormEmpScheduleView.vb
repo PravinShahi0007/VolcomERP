@@ -13,4 +13,7 @@
         Close()
     End Sub
 
+    Private Sub BTempSchedule_Click(sender As Object, e As EventArgs) Handles BTempSchedule.Click
+        FormEmpScheduleViewSet.ShowDialog()
+    End Sub
 End Class
