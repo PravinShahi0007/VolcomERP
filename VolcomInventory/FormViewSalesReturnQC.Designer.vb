@@ -19,112 +19,113 @@ Partial Class FormViewSalesReturnQC
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl
-        Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl
-        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl
-        Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtSalesReturnQCNumber = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl
-        Me.DEForm = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.TEDrawer = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtNameFrom = New DevExpress.XtraEditors.TextEdit
-        Me.TxtCodeFrom = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit
-        Me.TxtSalesReturnNumber = New DevExpress.XtraEditors.TextEdit
-        Me.MEAdrressCompFrom = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit
-        Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl
-        Me.GroupControlListItem = New DevExpress.XtraEditors.GroupControl
-        Me.XTCReturnQC = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPList = New DevExpress.XtraTab.XtraTabPage
-        Me.GCItemList = New DevExpress.XtraGrid.GridControl
-        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnQtyWH = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnEanCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSalesOrderDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdPlSalesOrderDel = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.XTCReturn = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPScan = New DevExpress.XtraTab.XtraTabPage
-        Me.GroupControlScannedItem = New DevExpress.XtraEditors.GroupControl
-        Me.GCBarcode = New DevExpress.XtraGrid.GridControl
-        Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCountingCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdPLCounting = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIsFix = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdUniqueReceiving = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdProductScan = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnBomUnitPricex = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.XTPStorage = New DevExpress.XtraTab.XtraTabPage
-        Me.SCCStorage = New DevExpress.XtraEditors.SplitContainerControl
-        Me.GroupControlListStorage = New DevExpress.XtraEditors.GroupControl
-        Me.GCDrawer = New DevExpress.XtraGrid.GridControl
-        Me.GVDrawer = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnBomUnitPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnQtyTotal = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnQtySaved = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnLocator = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnRack = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDrawer = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWhDrawer = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSalesReturnDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSalesReturnDetDrawer = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDesignPriceDrawer = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDesignPriceDrawer = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.PanelNavStorage = New DevExpress.XtraEditors.PanelControl
-        Me.BtmDeleteStorage = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnSaveToStorage = New DevExpress.XtraEditors.SimpleButton
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl
-        Me.GCDrawerDetail = New DevExpress.XtraGrid.GridControl
-        Me.GVDrawerDetail = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnLocatorDrawerDetail = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnRackDetail = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDrawerDetail = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWHDrawerDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtSalesReturnQCNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEForm = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEDrawer = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtNameFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCodeFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtSalesReturnNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.MEAdrressCompFrom = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupControlListItem = New DevExpress.XtraEditors.GroupControl()
+        Me.XTCReturnQC = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyWH = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEanCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSalesOrderDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdPlSalesOrderDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.XTCReturn = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControlScannedItem = New DevExpress.XtraEditors.GroupControl()
+        Me.GCBarcode = New DevExpress.XtraGrid.GridControl()
+        Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCountingCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdPLCounting = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsFix = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdUniqueReceiving = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProductScan = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBomUnitPricex = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.XTPStorage = New DevExpress.XtraTab.XtraTabPage()
+        Me.SCCStorage = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupControlListStorage = New DevExpress.XtraEditors.GroupControl()
+        Me.GCDrawer = New DevExpress.XtraGrid.GridControl()
+        Me.GVDrawer = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnBomUnitPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyTotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtySaved = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLocator = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRack = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWhDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSalesReturnDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSalesReturnDetDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesignPriceDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesignPriceDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelNavStorage = New DevExpress.XtraEditors.PanelControl()
+        Me.BtmDeleteStorage = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSaveToStorage = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCDrawerDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVDrawerDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnLocatorDrawerDetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRackDetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDrawerDetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWHDrawerDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReject = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -198,18 +199,18 @@ Partial Class FormViewSalesReturnQC
         'BtnAttachment
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Top
-        Me.BtnAttachment.Location = New System.Drawing.Point(22, 34)
+        Me.BtnAttachment.Location = New System.Drawing.Point(20, 34)
         Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(887, 32)
+        Me.BtnAttachment.Size = New System.Drawing.Size(889, 32)
         Me.BtnAttachment.TabIndex = 5
         Me.BtnAttachment.Text = "Attachment"
         '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Top
-        Me.BMark.Location = New System.Drawing.Point(22, 2)
+        Me.BMark.Location = New System.Drawing.Point(20, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(887, 32)
+        Me.BMark.Size = New System.Drawing.Size(889, 32)
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Mark"
         '
@@ -572,10 +573,10 @@ Partial Class FormViewSalesReturnQC
         'XTCReturnQC
         '
         Me.XTCReturnQC.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCReturnQC.Location = New System.Drawing.Point(22, 2)
+        Me.XTCReturnQC.Location = New System.Drawing.Point(20, 2)
         Me.XTCReturnQC.Name = "XTCReturnQC"
         Me.XTCReturnQC.SelectedTabPage = Me.XTPList
-        Me.XTCReturnQC.Size = New System.Drawing.Size(887, 192)
+        Me.XTCReturnQC.Size = New System.Drawing.Size(889, 192)
         Me.XTCReturnQC.TabIndex = 5
         Me.XTCReturnQC.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList})
         '
@@ -583,7 +584,7 @@ Partial Class FormViewSalesReturnQC
         '
         Me.XTPList.Controls.Add(Me.GCItemList)
         Me.XTPList.Name = "XTPList"
-        Me.XTPList.Size = New System.Drawing.Size(881, 166)
+        Me.XTPList.Size = New System.Drawing.Size(883, 164)
         Me.XTPList.Text = "Item"
         '
         'GCItemList
@@ -594,7 +595,7 @@ Partial Class FormViewSalesReturnQC
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(881, 166)
+        Me.GCItemList.Size = New System.Drawing.Size(883, 164)
         Me.GCItemList.TabIndex = 5
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -810,7 +811,7 @@ Partial Class FormViewSalesReturnQC
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
@@ -829,7 +830,7 @@ Partial Class FormViewSalesReturnQC
         '
         Me.XTPScan.Controls.Add(Me.GroupControlScannedItem)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(905, 153)
+        Me.XTPScan.Size = New System.Drawing.Size(905, 151)
         Me.XTPScan.Text = "Scanned Item"
         '
         'GroupControlScannedItem
@@ -840,24 +841,24 @@ Partial Class FormViewSalesReturnQC
         Me.GroupControlScannedItem.Enabled = False
         Me.GroupControlScannedItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlScannedItem.Name = "GroupControlScannedItem"
-        Me.GroupControlScannedItem.Size = New System.Drawing.Size(905, 153)
+        Me.GroupControlScannedItem.Size = New System.Drawing.Size(905, 151)
         Me.GroupControlScannedItem.TabIndex = 3
         Me.GroupControlScannedItem.Text = "Scanned Code"
         '
         'GCBarcode
         '
         Me.GCBarcode.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBarcode.Location = New System.Drawing.Point(22, 2)
+        Me.GCBarcode.Location = New System.Drawing.Point(20, 2)
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(881, 149)
+        Me.GCBarcode.Size = New System.Drawing.Size(883, 147)
         Me.GCBarcode.TabIndex = 6
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
         'GVBarcode
         '
-        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix, Me.GridColumnIdUniqueReceiving, Me.GridColumnIdProductScan, Me.GridColumnBomUnitPricex, Me.GridColumnIdDesignPriceBc, Me.GridColumnDesignPriceBc})
+        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix, Me.GridColumnIdUniqueReceiving, Me.GridColumnIdProductScan, Me.GridColumnBomUnitPricex, Me.GridColumnIdDesignPriceBc, Me.GridColumnDesignPriceBc, Me.GridColumnReject})
         Me.GVBarcode.GridControl = Me.GCBarcode
         Me.GVBarcode.Name = "GVBarcode"
         Me.GVBarcode.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -957,7 +958,7 @@ Partial Class FormViewSalesReturnQC
         'RepositoryItemSpinEdit2
         '
         Me.RepositoryItemSpinEdit2.AutoHeight = False
-        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit2.EditValueChangedDelay = 50
         Me.RepositoryItemSpinEdit2.Mask.EditMask = "n2"
         Me.RepositoryItemSpinEdit2.Mask.SaveLiteral = False
@@ -969,7 +970,7 @@ Partial Class FormViewSalesReturnQC
         Me.XTPStorage.Controls.Add(Me.SCCStorage)
         Me.XTPStorage.Name = "XTPStorage"
         Me.XTPStorage.PageVisible = False
-        Me.XTPStorage.Size = New System.Drawing.Size(905, 153)
+        Me.XTPStorage.Size = New System.Drawing.Size(905, 151)
         Me.XTPStorage.Text = "Save to Storage"
         '
         'SCCStorage
@@ -982,7 +983,7 @@ Partial Class FormViewSalesReturnQC
         Me.SCCStorage.Panel1.Text = "Panel1"
         Me.SCCStorage.Panel2.Controls.Add(Me.GroupControl2)
         Me.SCCStorage.Panel2.Text = "Panel2"
-        Me.SCCStorage.Size = New System.Drawing.Size(905, 153)
+        Me.SCCStorage.Size = New System.Drawing.Size(905, 151)
         Me.SCCStorage.SplitterPosition = 900
         Me.SCCStorage.TabIndex = 0
         Me.SCCStorage.Text = "SplitContainerControl2"
@@ -995,17 +996,17 @@ Partial Class FormViewSalesReturnQC
         Me.GroupControlListStorage.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlListStorage.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListStorage.Name = "GroupControlListStorage"
-        Me.GroupControlListStorage.Size = New System.Drawing.Size(900, 153)
+        Me.GroupControlListStorage.Size = New System.Drawing.Size(900, 151)
         Me.GroupControlListStorage.TabIndex = 0
         Me.GroupControlListStorage.Text = "Item Based On Cost"
         '
         'GCDrawer
         '
         Me.GCDrawer.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDrawer.Location = New System.Drawing.Point(22, 38)
+        Me.GCDrawer.Location = New System.Drawing.Point(20, 38)
         Me.GCDrawer.MainView = Me.GVDrawer
         Me.GCDrawer.Name = "GCDrawer"
-        Me.GCDrawer.Size = New System.Drawing.Size(876, 113)
+        Me.GCDrawer.Size = New System.Drawing.Size(878, 111)
         Me.GCDrawer.TabIndex = 4
         Me.GCDrawer.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDrawer, Me.GridView2})
         '
@@ -1126,11 +1127,11 @@ Partial Class FormViewSalesReturnQC
         Me.PanelNavStorage.Controls.Add(Me.BtmDeleteStorage)
         Me.PanelNavStorage.Controls.Add(Me.BtnSaveToStorage)
         Me.PanelNavStorage.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelNavStorage.Location = New System.Drawing.Point(22, 2)
+        Me.PanelNavStorage.Location = New System.Drawing.Point(20, 2)
         Me.PanelNavStorage.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelNavStorage.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelNavStorage.Name = "PanelNavStorage"
-        Me.PanelNavStorage.Size = New System.Drawing.Size(876, 36)
+        Me.PanelNavStorage.Size = New System.Drawing.Size(878, 36)
         Me.PanelNavStorage.TabIndex = 3
         '
         'BtmDeleteStorage
@@ -1165,10 +1166,10 @@ Partial Class FormViewSalesReturnQC
         'GCDrawerDetail
         '
         Me.GCDrawerDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDrawerDetail.Location = New System.Drawing.Point(22, 2)
+        Me.GCDrawerDetail.Location = New System.Drawing.Point(20, 2)
         Me.GCDrawerDetail.MainView = Me.GVDrawerDetail
         Me.GCDrawerDetail.Name = "GCDrawerDetail"
-        Me.GCDrawerDetail.Size = New System.Drawing.Size(471, 153)
+        Me.GCDrawerDetail.Size = New System.Drawing.Size(473, 153)
         Me.GCDrawerDetail.TabIndex = 0
         Me.GCDrawerDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDrawerDetail})
         '
@@ -1224,6 +1225,15 @@ Partial Class FormViewSalesReturnQC
         Me.GridColumnIdx2.Name = "GridColumnIdx2"
         Me.GridColumnIdx2.Visible = True
         Me.GridColumnIdx2.VisibleIndex = 4
+        '
+        'GridColumnReject
+        '
+        Me.GridColumnReject.Caption = "Reject"
+        Me.GridColumnReject.FieldName = "reject_type"
+        Me.GridColumnReject.Name = "GridColumnReject"
+        Me.GridColumnReject.OptionsColumn.AllowEdit = False
+        Me.GridColumnReject.Visible = True
+        Me.GridColumnReject.VisibleIndex = 2
         '
         'FormViewSalesReturnQC
         '
@@ -1409,4 +1419,5 @@ Partial Class FormViewSalesReturnQC
     Friend WithEvents GridColumnIdWHDrawerDet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdx As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdx2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnReject As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -236,7 +236,7 @@ Public Class FormMain
         If formName = "FormAccess" Or formName = "FormMarkAssign" Then
             BBMapping.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
-        If formName = "FormBOM" Or formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
+        If formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
             BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
         If formName = "FormMasterWH" Then
@@ -358,7 +358,7 @@ Public Class FormMain
         If formName = "FormAccess" Or formName = "FormMarkAssign" Then
             BBMapping.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
-        If formName = "FormBOM" Or formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
+        If formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
             BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
@@ -1189,8 +1189,14 @@ Public Class FormMain
             FormSalesPOSDet.ShowDialog()
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
-            FormSalesReturnQCDet.action = "ins"
-            FormSalesReturnQCDet.ShowDialog()
+            If FormSalesReturnQC.XTCReturnQC.SelectedTabPageIndex = 0 Then
+                FormSalesReturnQCDet.action = "ins"
+                FormSalesReturnQCDet.ShowDialog()
+            Else
+                FormSalesReturnQCDet.action = "ins"
+                FormSalesReturnQCDet.id_sales_return = FormSalesReturnQC.GVSalesReturn.GetFocusedRowCellValue("id_sales_return").ToString
+                FormSalesReturnQCDet.ShowDialog()
+            End If
         ElseIf formName = "FormSalesInvoice" Then
             'SALES INVOICE
             FormSalesInvoiceNew.ShowDialog()
@@ -4025,6 +4031,7 @@ Public Class FormMain
                         'del mark
                         delete_all_mark_related("49", id_sales_return_qc)
                         FormSalesReturnQC.viewSalesReturnQC()
+                        FormSalesReturnQC.viewSalesReturn()
                         'FormSalesReturnQC.viewSalesReturnOrder()
                     Catch ex As Exception
                         errorDelete()
@@ -7056,7 +7063,11 @@ Public Class FormMain
             FormSalesPOS.viewSalesPOS()
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
-            FormSalesReturnQC.viewSalesReturnQC()
+            If FormSalesReturnQC.XTCReturnQC.SelectedTabPageIndex = 0 Then
+                FormSalesReturnQC.viewSalesReturnQC()
+            Else
+                FormSalesReturnQC.viewSalesReturn()
+            End If
         ElseIf formName = "FormProdPRWO" Then
             'REC PL FG To WH
             If FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 0 Then 'list
@@ -9545,20 +9556,9 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub NBAttnLog_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnLog.LinkClicked
-        Cursor = Cursors.WaitCursor
-        Try
-            FormEmpAttn.MdiParent = Me
-            FormEmpAttn.Show()
-            FormEmpAttn.WindowState = FormWindowState.Maximized
-            FormEmpAttn.Focus()
-        Catch ex As Exception
-            errorProcess()
-        End Try
-        Cursor = Cursors.Default
-    End Sub
 
-    Private Sub NBInitializeFP_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInitializeFP.LinkClicked
+
+    Private Sub NBInitializeFP_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInitializeFP.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
             FormEmpInitialize.MdiParent = Me
@@ -9571,7 +9571,7 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub NBFPSetup_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFPSetup.LinkClicked
+    Private Sub NBFPSetup_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFPSetup.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
             FormEmpFP.MdiParent = Me

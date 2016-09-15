@@ -62,6 +62,7 @@ Partial Class FormProductionWO
         Me.ColIdMat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVendorCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -111,7 +112,6 @@ Partial Class FormProductionWO
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEWONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnVendorCode = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPMatWO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -620,6 +620,15 @@ Partial Class FormProductionWO
         Me.ColCode.Visible = True
         Me.ColCode.VisibleIndex = 1
         Me.ColCode.Width = 112
+        '
+        'GridColumnVendorCode
+        '
+        Me.GridColumnVendorCode.Caption = "UPC Code"
+        Me.GridColumnVendorCode.FieldName = "ean_code"
+        Me.GridColumnVendorCode.Name = "GridColumnVendorCode"
+        Me.GridColumnVendorCode.Visible = True
+        Me.GridColumnVendorCode.VisibleIndex = 3
+        Me.GridColumnVendorCode.Width = 80
         '
         'ColName
         '
@@ -1155,6 +1164,7 @@ Partial Class FormProductionWO
         Me.TEWONumber.Location = New System.Drawing.Point(92, 134)
         Me.TEWONumber.Name = "TEWONumber"
         Me.TEWONumber.Properties.EditValueChangedDelay = 1
+        Me.TEWONumber.Properties.ReadOnly = True
         Me.TEWONumber.Size = New System.Drawing.Size(246, 20)
         Me.TEWONumber.TabIndex = 3
         '
@@ -1165,15 +1175,6 @@ Partial Class FormProductionWO
         Me.LabelControl3.Size = New System.Drawing.Size(58, 13)
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "WO Number"
-        '
-        'GridColumnVendorCode
-        '
-        Me.GridColumnVendorCode.Caption = "UPC Code"
-        Me.GridColumnVendorCode.FieldName = "ean_code"
-        Me.GridColumnVendorCode.Name = "GridColumnVendorCode"
-        Me.GridColumnVendorCode.Visible = True
-        Me.GridColumnVendorCode.VisibleIndex = 3
-        Me.GridColumnVendorCode.Width = 80
         '
         'FormProductionWO
         '

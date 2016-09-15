@@ -249,7 +249,7 @@
     Sub view_design()
         Try
             Dim query As String = ""
-            query = "CALL view_all_design_param(' AND f1.id_season=" + SLESeason.EditValue.ToString + " ')"
+            query = "CALL view_all_design_param(' AND f1.id_season=" + SLESeason.EditValue.ToString + " AND f1.is_approved=1')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCPerDesign.DataSource = data
             GVPerDesign.ExpandAllGroups()
@@ -260,7 +260,7 @@
                 show_bom_per_design(GVPerDesign.GetFocusedRowCellDisplayText("id_design").ToString)
             End If
         Catch ex As Exception
-            errorConnection()
+            ex.ToString()
         End Try
     End Sub
     Sub show_bom_per_design(ByVal id_design As String)

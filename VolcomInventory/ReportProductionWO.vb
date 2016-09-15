@@ -8,6 +8,9 @@ Public Class ReportProductionWO
     Public Shared id_cur As String = "-1"
     Public Shared id_po As String = "-1"
     Public Shared is_pre As String = "-1"
+    '
+    Public Shared is_main As String = "-1"
+
     Dim id_ovh_price As String = "-1"
 
     Sub view_wo()
@@ -66,6 +69,12 @@ Public Class ReportProductionWO
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         load_po(id_po)
+
+        If is_main = "1" Then
+            LTitle.Text = "PURCHASE ORDER"
+        Else
+            LTitle.Text = "WORK ORDER"
+        End If
 
         LWONumber.Text = data.Rows(0)("prod_order_wo_number").ToString
         DisplayName = "Production Work Order " & data.Rows(0)("prod_order_wo_number").ToString

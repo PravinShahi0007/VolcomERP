@@ -53,8 +53,9 @@ Partial Class FormBarcodeProductPrint
         Me.TEProdBarcode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrintFront = New DevExpress.XtraEditors.SimpleButton()
+        Me.BLogUnique = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnPrintFront = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintBack = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -285,13 +286,13 @@ Partial Class FormBarcodeProductPrint
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 201)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(752, 106)
+        Me.GroupControl1.Size = New System.Drawing.Size(752, 114)
         Me.GroupControl1.TabIndex = 35
         '
         'LabelControl13
         '
         Me.LabelControl13.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.LabelControl13.Location = New System.Drawing.Point(34, 77)
+        Me.LabelControl13.Location = New System.Drawing.Point(34, 82)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(36, 14)
         Me.LabelControl13.TabIndex = 167
@@ -299,7 +300,7 @@ Partial Class FormBarcodeProductPrint
         '
         'LEPrinter
         '
-        Me.LEPrinter.Location = New System.Drawing.Point(96, 75)
+        Me.LEPrinter.Location = New System.Drawing.Point(96, 80)
         Me.LEPrinter.Name = "LEPrinter"
         Me.LEPrinter.Properties.Appearance.Options.UseTextOptions = True
         Me.LEPrinter.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -313,7 +314,7 @@ Partial Class FormBarcodeProductPrint
         'SEQtyPrint
         '
         Me.SEQtyPrint.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.SEQtyPrint.Location = New System.Drawing.Point(643, 74)
+        Me.SEQtyPrint.Location = New System.Drawing.Point(643, 79)
         Me.SEQtyPrint.Name = "SEQtyPrint"
         Me.SEQtyPrint.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.SEQtyPrint.Properties.Appearance.Options.UseFont = True
@@ -330,7 +331,7 @@ Partial Class FormBarcodeProductPrint
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.LabelControl8.Location = New System.Drawing.Point(588, 77)
+        Me.LabelControl8.Location = New System.Drawing.Point(588, 82)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(49, 14)
         Me.LabelControl8.TabIndex = 164
@@ -339,7 +340,7 @@ Partial Class FormBarcodeProductPrint
         'LabelControl4
         '
         Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.LabelControl4.Location = New System.Drawing.Point(417, 49)
+        Me.LabelControl4.Location = New System.Drawing.Point(417, 54)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(15, 14)
         Me.LabelControl4.TabIndex = 163
@@ -348,7 +349,7 @@ Partial Class FormBarcodeProductPrint
         'TEPrintTo
         '
         Me.TEPrintTo.EditValue = ""
-        Me.TEPrintTo.Location = New System.Drawing.Point(438, 45)
+        Me.TEPrintTo.Location = New System.Drawing.Point(438, 50)
         Me.TEPrintTo.Name = "TEPrintTo"
         Me.TEPrintTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.TEPrintTo.Properties.Appearance.Options.UseFont = True
@@ -361,7 +362,7 @@ Partial Class FormBarcodeProductPrint
         'TEPrintFrom
         '
         Me.TEPrintFrom.EditValue = ""
-        Me.TEPrintFrom.Location = New System.Drawing.Point(96, 45)
+        Me.TEPrintFrom.Location = New System.Drawing.Point(96, 50)
         Me.TEPrintFrom.Name = "TEPrintFrom"
         Me.TEPrintFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.TEPrintFrom.Properties.Appearance.Options.UseFont = True
@@ -374,7 +375,7 @@ Partial Class FormBarcodeProductPrint
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.LabelControl3.Location = New System.Drawing.Point(34, 49)
+        Me.LabelControl3.Location = New System.Drawing.Point(34, 54)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(25, 14)
         Me.LabelControl3.TabIndex = 160
@@ -383,7 +384,7 @@ Partial Class FormBarcodeProductPrint
         'SEPrintTo
         '
         Me.SEPrintTo.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.SEPrintTo.Location = New System.Drawing.Point(643, 12)
+        Me.SEPrintTo.Location = New System.Drawing.Point(643, 17)
         Me.SEPrintTo.Name = "SEPrintTo"
         Me.SEPrintTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.SEPrintTo.Properties.Appearance.Options.UseFont = True
@@ -398,7 +399,7 @@ Partial Class FormBarcodeProductPrint
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.LabelControl2.Location = New System.Drawing.Point(620, 15)
+        Me.LabelControl2.Location = New System.Drawing.Point(620, 20)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(15, 14)
         Me.LabelControl2.TabIndex = 158
@@ -407,7 +408,7 @@ Partial Class FormBarcodeProductPrint
         'SEPrintFrom
         '
         Me.SEPrintFrom.EditValue = New Decimal(New Integer() {1, 0, 0, 0})
-        Me.SEPrintFrom.Location = New System.Drawing.Point(508, 12)
+        Me.SEPrintFrom.Location = New System.Drawing.Point(508, 17)
         Me.SEPrintFrom.Name = "SEPrintFrom"
         Me.SEPrintFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
         Me.SEPrintFrom.Properties.Appearance.Options.UseFont = True
@@ -424,7 +425,7 @@ Partial Class FormBarcodeProductPrint
         'TEProdBarcode
         '
         Me.TEProdBarcode.EditValue = ""
-        Me.TEProdBarcode.Location = New System.Drawing.Point(96, 11)
+        Me.TEProdBarcode.Location = New System.Drawing.Point(96, 16)
         Me.TEProdBarcode.Name = "TEProdBarcode"
         Me.TEProdBarcode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.TEProdBarcode.Properties.Appearance.Options.UseFont = True
@@ -437,7 +438,7 @@ Partial Class FormBarcodeProductPrint
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!)
-        Me.LabelControl1.Location = New System.Drawing.Point(34, 15)
+        Me.LabelControl1.Location = New System.Drawing.Point(34, 20)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(44, 14)
         Me.LabelControl1.TabIndex = 0
@@ -445,25 +446,26 @@ Partial Class FormBarcodeProductPrint
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BLogUnique)
         Me.PanelControl1.Controls.Add(Me.BtnPrintFront)
         Me.PanelControl1.Controls.Add(Me.BtnPrintBack)
         Me.PanelControl1.Controls.Add(Me.BPrint)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 307)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 315)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(752, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(752, 40)
         Me.PanelControl1.TabIndex = 36
         '
-        'BtnPrintFront
+        'BLogUnique
         '
-        Me.BtnPrintFront.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrintFront.ImageIndex = 6
-        Me.BtnPrintFront.ImageList = Me.LargeImageCollection
-        Me.BtnPrintFront.Location = New System.Drawing.Point(445, 2)
-        Me.BtnPrintFront.Name = "BtnPrintFront"
-        Me.BtnPrintFront.Size = New System.Drawing.Size(114, 37)
-        Me.BtnPrintFront.TabIndex = 14
-        Me.BtnPrintFront.Text = "Print Front Only"
+        Me.BLogUnique.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BLogUnique.ImageIndex = 11
+        Me.BLogUnique.ImageList = Me.LargeImageCollection
+        Me.BLogUnique.Location = New System.Drawing.Point(2, 2)
+        Me.BLogUnique.Name = "BLogUnique"
+        Me.BLogUnique.Size = New System.Drawing.Size(101, 36)
+        Me.BLogUnique.TabIndex = 15
+        Me.BLogUnique.Text = "Log Unique"
         '
         'LargeImageCollection
         '
@@ -480,6 +482,18 @@ Partial Class FormBarcodeProductPrint
         Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "30-Text_32x32.png")
+        '
+        'BtnPrintFront
+        '
+        Me.BtnPrintFront.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrintFront.ImageIndex = 6
+        Me.BtnPrintFront.ImageList = Me.LargeImageCollection
+        Me.BtnPrintFront.Location = New System.Drawing.Point(445, 2)
+        Me.BtnPrintFront.Name = "BtnPrintFront"
+        Me.BtnPrintFront.Size = New System.Drawing.Size(114, 36)
+        Me.BtnPrintFront.TabIndex = 14
+        Me.BtnPrintFront.Text = "Print Front Only"
         '
         'BtnPrintBack
         '
@@ -488,7 +502,7 @@ Partial Class FormBarcodeProductPrint
         Me.BtnPrintBack.ImageList = Me.LargeImageCollection
         Me.BtnPrintBack.Location = New System.Drawing.Point(559, 2)
         Me.BtnPrintBack.Name = "BtnPrintBack"
-        Me.BtnPrintBack.Size = New System.Drawing.Size(109, 37)
+        Me.BtnPrintBack.Size = New System.Drawing.Size(109, 36)
         Me.BtnPrintBack.TabIndex = 13
         Me.BtnPrintBack.Text = "Print Back Only"
         '
@@ -499,7 +513,7 @@ Partial Class FormBarcodeProductPrint
         Me.BPrint.ImageList = Me.LargeImageCollection
         Me.BPrint.Location = New System.Drawing.Point(668, 2)
         Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(82, 37)
+        Me.BPrint.Size = New System.Drawing.Size(82, 36)
         Me.BPrint.TabIndex = 12
         Me.BPrint.Text = "Print"
         '
@@ -507,7 +521,7 @@ Partial Class FormBarcodeProductPrint
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(752, 348)
+        Me.ClientSize = New System.Drawing.Size(752, 355)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupGeneralHeader)
@@ -582,4 +596,5 @@ Partial Class FormBarcodeProductPrint
     Friend WithEvents BtnPrintBack As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEPrinter As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents BLogUnique As DevExpress.XtraEditors.SimpleButton
 End Class
