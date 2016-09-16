@@ -53,11 +53,17 @@ Public Class FormFGLineList
             viewLineList()
             BGVLineList.ActiveFilterString = "[id_design]='" + FormProductionPLToWHDet.id_design.ToString + "' "
             BGVLineList.Columns("Select_sct").Visible = False
+            SMDeleteDesign.Visible = False
         ElseIf id_pop_up = "2" Then
             PanelControlNavLineListBottom.Visible = False
+            SMDeleteDesign.Visible = False
         ElseIf id_pop_up = "3" Then
             BBProposePrice.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
             BBDs.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+            BtnDesign.Visible = True
+            SMDeleteDesign.Visible = True
+        Else
+            SMDeleteDesign.Visible = False
         End If
 
         'custom column template inisialisasi
@@ -124,7 +130,7 @@ Public Class FormFGLineList
         Dim query_c As ClassDesign = New ClassDesign()
         If id_type = 1 Or id_type = "2" Then 'workspace
             query_c.viewLineList(id_season_par, id_type, BGVLineList, GCLineList, data_band_break_par, data_band_alloc_par, show_breakdown)
-            optionsViewBanded(BGVLineList, "FormFGLineList", "BGVLineList", "1")
+            'optionsViewBanded(BGVLineList, "FormFGLineList", "BGVLineList", "1")
         Else 'summary & final line list
             query_c.viewLineListFinal(id_season_par, id_type, BGVLineList, GCLineList, data_band_break_par, data_band_break_plan_par, data_band_alloc_par, data_band_alloc_plan_par, show_breakdown)
         End If
@@ -163,7 +169,11 @@ Public Class FormFGLineList
                 BtnCopyFrom.Visible = True
                 BtnCreateNewPD.Visible = True
                 BtnPlanStatus.Visible = True
-                BtnDesign.Visible = False
+                If id_pop_up <> "3" Then
+                    BtnDesign.Visible = False
+                Else
+                    BtnDesign.Visible = True
+                End If
             ElseIf SLETypeLineList.EditValue.ToString = "2" Then
                 'BtnProposePrice.Visible = False
                 ' BtnActualCost.Visible = False
@@ -171,7 +181,11 @@ Public Class FormFGLineList
                 BtnCopyFrom.Visible = True
                 BtnCreateNewPD.Visible = True
                 BtnPlanStatus.Visible = True
-                BtnDesign.Visible = False
+                If id_pop_up <> "3" Then
+                    BtnDesign.Visible = False
+                Else
+                    BtnDesign.Visible = True
+                End If
             Else
                 'BtnProposePrice.Visible = True
                 'BtnActualCost.Visible = True
@@ -313,11 +327,9 @@ Public Class FormFGLineList
         If BGVLineList.RowCount > 0 And id_pop_up <> "2" Then
             If line_act = "1" Then
                 SMEditDesign.Visible = True
-                SMDeleteDesign.Visible = False
                 SMViewDupe.Visible = False
             Else
                 SMEditDesign.Visible = False
-                SMDeleteDesign.Visible = False
                 SMViewDupe.Visible = False
             End If
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)

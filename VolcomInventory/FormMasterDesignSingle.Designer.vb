@@ -148,6 +148,27 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlBot = New DevExpress.XtraEditors.PanelControl()
         Me.PanC4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnGetLastCount = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPNonMD = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCCodeNonMD = New DevExpress.XtraGrid.GridControl()
+        Me.GVCodeNonMD = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DNCodeNonMD = New DevExpress.XtraEditors.DataNavigator()
+        Me.PanC5 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEDisplayNameNonMD = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+        Me.BGenerateNonMD = New DevExpress.XtraEditors.SimpleButton()
+        Me.TECodeNonMD = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnGetLastCountNonMD = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BRefreshCodeNonMD = New DevExpress.XtraEditors.SimpleButton()
+        Me.BeditCodeNonMD = New DevExpress.XtraEditors.SimpleButton()
+        Me.LETemplateNonMD = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView11 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPSize = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProduct = New DevExpress.XtraGrid.GridControl()
         Me.GVProduct = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -257,6 +278,17 @@ Partial Class FormMasterDesignSingle
         Me.PanelControlBot.SuspendLayout()
         CType(Me.PanC4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanC4.SuspendLayout()
+        Me.XTPNonMD.SuspendLayout()
+        CType(Me.GCCodeNonMD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVCodeNonMD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanC5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanC5.SuspendLayout()
+        CType(Me.TEDisplayNameNonMD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECodeNonMD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.LETemplateNonMD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSize.SuspendLayout()
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1395,7 +1427,7 @@ Partial Class FormMasterDesignSingle
         Me.XTPCode.SelectedTabPage = Me.XTPDesign
         Me.XTPCode.Size = New System.Drawing.Size(505, 569)
         Me.XTPCode.TabIndex = 100
-        Me.XTPCode.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPMD})
+        Me.XTPCode.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPMD, Me.XTPNonMD})
         '
         'XTPDesign
         '
@@ -1610,6 +1642,231 @@ Partial Class FormMasterDesignSingle
         Me.BtnGetLastCount.Size = New System.Drawing.Size(499, 20)
         Me.BtnGetLastCount.TabIndex = 15
         Me.BtnGetLastCount.Text = "Get Last Counting"
+        '
+        'XTPNonMD
+        '
+        Me.XTPNonMD.Controls.Add(Me.GCCodeNonMD)
+        Me.XTPNonMD.Controls.Add(Me.DNCodeNonMD)
+        Me.XTPNonMD.Controls.Add(Me.PanC5)
+        Me.XTPNonMD.Controls.Add(Me.BtnGetLastCountNonMD)
+        Me.XTPNonMD.Controls.Add(Me.PanelControl4)
+        Me.XTPNonMD.Name = "XTPNonMD"
+        Me.XTPNonMD.Size = New System.Drawing.Size(499, 541)
+        Me.XTPNonMD.Text = "Non Merchandise"
+        '
+        'GCCodeNonMD
+        '
+        Me.GCCodeNonMD.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCCodeNonMD.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.GCCodeNonMD.Location = New System.Drawing.Point(0, 60)
+        Me.GCCodeNonMD.MainView = Me.GVCodeNonMD
+        Me.GCCodeNonMD.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.GCCodeNonMD.Name = "GCCodeNonMD"
+        Me.GCCodeNonMD.Size = New System.Drawing.Size(499, 330)
+        Me.GCCodeNonMD.TabIndex = 102
+        Me.GCCodeNonMD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCodeNonMD})
+        '
+        'GVCodeNonMD
+        '
+        Me.GVCodeNonMD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn30, Me.GridColumn31})
+        Me.GVCodeNonMD.GridControl = Me.GCCodeNonMD
+        Me.GVCodeNonMD.Name = "GVCodeNonMD"
+        Me.GVCodeNonMD.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVCodeNonMD.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVCodeNonMD.OptionsCustomization.AllowColumnMoving = False
+        Me.GVCodeNonMD.OptionsCustomization.AllowFilter = False
+        Me.GVCodeNonMD.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVCodeNonMD.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GVCodeNonMD.OptionsView.EnableAppearanceEvenRow = True
+        Me.GVCodeNonMD.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
+        Me.GVCodeNonMD.OptionsView.ShowGroupPanel = False
+        Me.GVCodeNonMD.OptionsView.ShowIndicator = False
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Category"
+        Me.GridColumn30.FieldName = "code"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 0
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Value"
+        Me.GridColumn31.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
+        Me.GridColumn31.FieldName = "value"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 1
+        '
+        'DNCodeNonMD
+        '
+        Me.DNCodeNonMD.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.DNCodeNonMD.Location = New System.Drawing.Point(0, 390)
+        Me.DNCodeNonMD.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.DNCodeNonMD.Name = "DNCodeNonMD"
+        Me.DNCodeNonMD.Size = New System.Drawing.Size(499, 20)
+        Me.DNCodeNonMD.TabIndex = 101
+        Me.DNCodeNonMD.Visible = False
+        '
+        'PanC5
+        '
+        Me.PanC5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanC5.Controls.Add(Me.TEDisplayNameNonMD)
+        Me.PanC5.Controls.Add(Me.LabelControl19)
+        Me.PanC5.Controls.Add(Me.BGenerateNonMD)
+        Me.PanC5.Controls.Add(Me.TECodeNonMD)
+        Me.PanC5.Controls.Add(Me.LabelControl18)
+        Me.PanC5.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanC5.Location = New System.Drawing.Point(0, 410)
+        Me.PanC5.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.PanC5.Name = "PanC5"
+        Me.PanC5.Size = New System.Drawing.Size(499, 131)
+        Me.PanC5.TabIndex = 100
+        '
+        'TEDisplayNameNonMD
+        '
+        Me.TEDisplayNameNonMD.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TEDisplayNameNonMD.Location = New System.Drawing.Point(14, 83)
+        Me.TEDisplayNameNonMD.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.TEDisplayNameNonMD.Name = "TEDisplayNameNonMD"
+        Me.TEDisplayNameNonMD.Properties.MaxLength = 25
+        Me.TEDisplayNameNonMD.Size = New System.Drawing.Size(456, 20)
+        Me.TEDisplayNameNonMD.TabIndex = 1891
+        Me.TEDisplayNameNonMD.TabStop = False
+        '
+        'LabelControl19
+        '
+        Me.LabelControl19.Location = New System.Drawing.Point(14, 64)
+        Me.LabelControl19.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.LabelControl19.Name = "LabelControl19"
+        Me.LabelControl19.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl19.TabIndex = 1892
+        Me.LabelControl19.Text = "Description"
+        '
+        'BGenerateNonMD
+        '
+        Me.BGenerateNonMD.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BGenerateNonMD.Location = New System.Drawing.Point(374, 38)
+        Me.BGenerateNonMD.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BGenerateNonMD.Name = "BGenerateNonMD"
+        Me.BGenerateNonMD.Size = New System.Drawing.Size(96, 20)
+        Me.BGenerateNonMD.TabIndex = 17
+        Me.BGenerateNonMD.Text = "Generate"
+        '
+        'TECodeNonMD
+        '
+        Me.TECodeNonMD.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TECodeNonMD.Enabled = False
+        Me.TECodeNonMD.Location = New System.Drawing.Point(14, 38)
+        Me.TECodeNonMD.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.TECodeNonMD.Name = "TECodeNonMD"
+        Me.TECodeNonMD.Size = New System.Drawing.Size(356, 20)
+        Me.TECodeNonMD.TabIndex = 1890
+        Me.TECodeNonMD.TabStop = False
+        '
+        'LabelControl18
+        '
+        Me.LabelControl18.Location = New System.Drawing.Point(14, 20)
+        Me.LabelControl18.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.LabelControl18.Name = "LabelControl18"
+        Me.LabelControl18.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl18.TabIndex = 95
+        Me.LabelControl18.Text = "Design Code"
+        '
+        'BtnGetLastCountNonMD
+        '
+        Me.BtnGetLastCountNonMD.Dock = System.Windows.Forms.DockStyle.Top
+        Me.BtnGetLastCountNonMD.Location = New System.Drawing.Point(0, 40)
+        Me.BtnGetLastCountNonMD.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BtnGetLastCountNonMD.Name = "BtnGetLastCountNonMD"
+        Me.BtnGetLastCountNonMD.Size = New System.Drawing.Size(499, 20)
+        Me.BtnGetLastCountNonMD.TabIndex = 93
+        Me.BtnGetLastCountNonMD.Text = "Get Last Counting"
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.PanelControl4.Appearance.Options.UseBackColor = True
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.BRefreshCodeNonMD)
+        Me.PanelControl4.Controls.Add(Me.BeditCodeNonMD)
+        Me.PanelControl4.Controls.Add(Me.LETemplateNonMD)
+        Me.PanelControl4.Controls.Add(Me.LabelControl17)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl4.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(499, 40)
+        Me.PanelControl4.TabIndex = 92
+        '
+        'BRefreshCodeNonMD
+        '
+        Me.BRefreshCodeNonMD.Location = New System.Drawing.Point(413, 10)
+        Me.BRefreshCodeNonMD.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BRefreshCodeNonMD.Name = "BRefreshCodeNonMD"
+        Me.BRefreshCodeNonMD.Size = New System.Drawing.Size(42, 20)
+        Me.BRefreshCodeNonMD.TabIndex = 14
+        Me.BRefreshCodeNonMD.Text = "Reset"
+        '
+        'BeditCodeNonMD
+        '
+        Me.BeditCodeNonMD.Location = New System.Drawing.Point(374, 10)
+        Me.BeditCodeNonMD.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.BeditCodeNonMD.Name = "BeditCodeNonMD"
+        Me.BeditCodeNonMD.Size = New System.Drawing.Size(35, 20)
+        Me.BeditCodeNonMD.TabIndex = 13
+        Me.BeditCodeNonMD.Text = "Code"
+        '
+        'LETemplateNonMD
+        '
+        Me.LETemplateNonMD.Location = New System.Drawing.Point(88, 10)
+        Me.LETemplateNonMD.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.LETemplateNonMD.Name = "LETemplateNonMD"
+        Me.LETemplateNonMD.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LETemplateNonMD.Properties.NullText = ""
+        Me.LETemplateNonMD.Properties.ReadOnly = True
+        Me.LETemplateNonMD.Properties.ShowFooter = False
+        Me.LETemplateNonMD.Properties.View = Me.GridView11
+        Me.LETemplateNonMD.Size = New System.Drawing.Size(282, 20)
+        Me.LETemplateNonMD.TabIndex = 2
+        Me.LETemplateNonMD.TabStop = False
+        '
+        'GridView11
+        '
+        Me.GridView11.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn29})
+        Me.GridView11.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView11.Name = "GridView11"
+        Me.GridView11.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView11.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Id Template Code"
+        Me.GridColumn28.FieldName = "id_template_code"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Template Code"
+        Me.GridColumn29.FieldName = "template_code"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        '
+        'LabelControl17
+        '
+        Me.LabelControl17.Location = New System.Drawing.Point(14, 13)
+        Me.LabelControl17.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
+        Me.LabelControl17.Name = "LabelControl17"
+        Me.LabelControl17.Size = New System.Drawing.Size(69, 13)
+        Me.LabelControl17.TabIndex = 88
+        Me.LabelControl17.Text = "TemplateCode"
         '
         'XTPSize
         '
@@ -2058,6 +2315,19 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanC4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanC4.ResumeLayout(False)
         Me.PanC4.PerformLayout()
+        Me.XTPNonMD.ResumeLayout(False)
+        CType(Me.GCCodeNonMD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVCodeNonMD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanC5, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanC5.ResumeLayout(False)
+        Me.PanC5.PerformLayout()
+        CType(Me.TEDisplayNameNonMD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECodeNonMD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.LETemplateNonMD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView11, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSize.ResumeLayout(False)
         CType(Me.GCProduct, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProduct, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2240,4 +2510,25 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtCodeImport As DevExpress.XtraEditors.TextEdit
     Friend WithEvents CheckEditApproved As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents XTPNonMD As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents BtnGetLastCountNonMD As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BRefreshCodeNonMD As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BeditCodeNonMD As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LETemplateNonMD As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView11 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GCCodeNonMD As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVCodeNonMD As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DNCodeNonMD As DevExpress.XtraEditors.DataNavigator
+    Friend WithEvents PanC5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BGenerateNonMD As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TECodeNonMD As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEDisplayNameNonMD As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
 End Class
