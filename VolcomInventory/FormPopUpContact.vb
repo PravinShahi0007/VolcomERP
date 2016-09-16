@@ -93,7 +93,7 @@
     End Sub
 
     Sub view_company()
-        Dim query As String = "SELECT tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active,tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group "
+        Dim query As String = "SELECT tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active,tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group, tb_m_comp.id_wh_type "
         query += " FROM tb_m_comp INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat "
         query += " INNER JOIN tb_m_comp_group ON tb_m_comp_group.id_comp_group=tb_m_comp.id_comp_group "
         If id_cat <> "-1" Then
@@ -467,7 +467,12 @@
             FormSalesReturnQCDet.TxtNameCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
             FormSalesReturnQCDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
             FormSalesReturnQCDet.id_comp_user = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            FormSalesReturnQCDet.id_wh_type = GVCompany.GetFocusedRowCellValue("id_wh_type").ToString
             FormSalesReturnQCDet.setDefDrawer()
+            FormSalesReturnQCDet.viewDetail()
+            FormSalesReturnQCDet.view_barcode_list()
+            FormSalesReturnQCDet.id_reject_type = "-1"
+            FormSalesReturnQCDet.reject_type = ""
             'FormSalesReturnDet.GroupControlDrawerDetail.Enabled = True
             Close()
         ElseIf id_pop_up = "44" Then

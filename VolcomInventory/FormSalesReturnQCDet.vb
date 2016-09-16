@@ -16,7 +16,7 @@
     Public id_comp_to As String = "-1"
     Public id_comp_to_return As String = "-1"
     Public id_reject_type As String = "-1"
-    Public reject_type As String = "-1"
+    Public reject_type As String = ""
     'Dim is_scan As Boolean = False
 
     'var check qty
@@ -32,6 +32,7 @@
     Dim rack_sel As String = "-1"
     Dim drawer_sel As String = "-1"
     Public id_pre As String = "-1"
+    Public id_wh_type As String = "-1"
 
     Private Sub FormSalesReturnQCDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -860,18 +861,20 @@
     End Sub
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
         'FormRejectType.ShowDialog()
-        If GVItemList.RowCount > 0 Then
+        If GVItemList.RowCount > 0 And id_wh_type <> "-1" Then
             disableControl()
             newRowsBc()
         Else
-            errorCustom("Item list can't blank")
+            errorCustom("Item list and destination can't blank")
         End If
     End Sub
 
     Sub loadRejectType()
-        FormRejectType.ShowDialog()
-        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_reject_type", id_reject_type)
-        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "reject_type", reject_type)
+        If id_wh_type = "3" Or id_wh_type = "5" Then
+            FormRejectType.ShowDialog()
+            GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_reject_type", id_reject_type)
+            GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "reject_type", reject_type)
+        End If
     End Sub
 
     Private Sub BStop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BStop.Click
