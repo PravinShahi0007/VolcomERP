@@ -50,6 +50,8 @@ Partial Class FormFGLineList
         Me.BtnImportEstPrice = New DevExpress.XtraBars.BarButtonItem()
         Me.BBSubEstPrice = New DevExpress.XtraBars.BarSubItem()
         Me.BBSubOther = New DevExpress.XtraBars.BarSubItem()
+        Me.PanelImg = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
@@ -78,8 +80,6 @@ Partial Class FormFGLineList
         Me.SMViewHistoryPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMViewCostHist = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PanelImg = New DevExpress.XtraEditors.PanelControl()
-        Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +94,9 @@ Partial Class FormFGLineList
         Me.PanelOpt.SuspendLayout()
         CType(Me.CheckEditOpt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelImg, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelImg.SuspendLayout()
+        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,9 +112,6 @@ Partial Class FormFGLineList
         CType(Me.PBCLineList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
-        CType(Me.PanelImg, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelImg.SuspendLayout()
-        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNavLineList
@@ -350,6 +350,26 @@ Partial Class FormFGLineList
         Me.BBSubOther.Id = 10
         Me.BBSubOther.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBMasterSeason), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDs), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPD), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProposePrice)})
         Me.BBSubOther.Name = "BBSubOther"
+        '
+        'PanelImg
+        '
+        Me.PanelImg.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelImg.Controls.Add(Me.CheckImg)
+        Me.PanelImg.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelImg.Location = New System.Drawing.Point(1165, 2)
+        Me.PanelImg.Name = "PanelImg"
+        Me.PanelImg.Size = New System.Drawing.Size(91, 35)
+        Me.PanelImg.TabIndex = 108
+        Me.PanelImg.Visible = False
+        '
+        'CheckImg
+        '
+        Me.CheckImg.Location = New System.Drawing.Point(5, 8)
+        Me.CheckImg.MenuManager = Me.BarManager1
+        Me.CheckImg.Name = "CheckImg"
+        Me.CheckImg.Properties.Caption = "Show Image"
+        Me.CheckImg.Size = New System.Drawing.Size(79, 19)
+        Me.CheckImg.TabIndex = 0
         '
         'BtnView
         '
@@ -606,7 +626,6 @@ Partial Class FormFGLineList
         Me.SMDeleteDesign.Name = "SMDeleteDesign"
         Me.SMDeleteDesign.Size = New System.Drawing.Size(200, 22)
         Me.SMDeleteDesign.Text = "Delete"
-        Me.SMDeleteDesign.Visible = False
         '
         'SMViewHistoryPD
         '
@@ -625,26 +644,6 @@ Partial Class FormFGLineList
         Me.SMViewCostHist.Name = "SMViewCostHist"
         Me.SMViewCostHist.Size = New System.Drawing.Size(200, 22)
         Me.SMViewCostHist.Text = "View History Cost"
-        '
-        'PanelImg
-        '
-        Me.PanelImg.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelImg.Controls.Add(Me.CheckImg)
-        Me.PanelImg.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelImg.Location = New System.Drawing.Point(1165, 2)
-        Me.PanelImg.Name = "PanelImg"
-        Me.PanelImg.Size = New System.Drawing.Size(91, 35)
-        Me.PanelImg.TabIndex = 108
-        Me.PanelImg.Visible = False
-        '
-        'CheckImg
-        '
-        Me.CheckImg.Location = New System.Drawing.Point(5, 8)
-        Me.CheckImg.MenuManager = Me.BarManager1
-        Me.CheckImg.Name = "CheckImg"
-        Me.CheckImg.Properties.Caption = "Show Image"
-        Me.CheckImg.Size = New System.Drawing.Size(79, 19)
-        Me.CheckImg.TabIndex = 0
         '
         'FormFGLineList
         '
@@ -678,6 +677,9 @@ Partial Class FormFGLineList
         Me.PanelOpt.ResumeLayout(False)
         CType(Me.CheckEditOpt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelImg, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelImg.ResumeLayout(False)
+        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCLineList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -693,9 +695,6 @@ Partial Class FormFGLineList
         CType(Me.PBCLineList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
-        CType(Me.PanelImg, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelImg.ResumeLayout(False)
-        CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

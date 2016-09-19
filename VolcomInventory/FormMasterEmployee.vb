@@ -103,7 +103,7 @@
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
-        Cursor = Cursors.WaitCursor
+        SplashScreenManager1.ShowWaitForm()
         Dim fp As New ClassFingerPrint()
         Dim data_fp As DataTable = fp.get_fp_register()
         fp.ip = data_fp.Rows(0)("ip").ToString
@@ -113,6 +113,6 @@
         fp.upload_fp_temp()
         fp.upload_face_tmp()
         infoCustom("Process completed")
-        Cursor = Cursors.Default
+        SplashScreenManager1.CloseWaitForm()
     End Sub
 End Class

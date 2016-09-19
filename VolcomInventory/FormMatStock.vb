@@ -254,7 +254,7 @@
             LabelColor.Text = view.GetRowCellValue(row_handle, "color")
             LabelSizeSetting.Text = view.GetRowCellValue(row_handle, "size")
             LabelYear.Text = view.GetRowCellValue(row_handle, "year")
-            LabelMatCategory.Text = view.GetRowCellValue(row_handle, "mat_category")
+            LabelMatCategory.Text = view.GetRowCellValue(row_handle, "mat_category").ToString
             LUom.Text = view.GetRowCellValue(row_handle, "uom")
 
             'for information print
