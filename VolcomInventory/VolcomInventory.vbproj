@@ -459,6 +459,12 @@
     <Compile Include="FormEmpAttn.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpAttnInd.Designer.vb">
+      <DependentUpon>FormEmpAttnInd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttnInd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpCalendar.Designer.vb">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </Compile>
@@ -499,6 +505,12 @@
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpSchedule.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpScheduleBulkSet.Designer.vb">
+      <DependentUpon>FormEmpScheduleBulkSet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpScheduleBulkSet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpScheduleView.Designer.vb">
@@ -4371,6 +4383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpSchedule.resx">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpScheduleBulkSet.resx">
+      <DependentUpon>FormEmpScheduleBulkSet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpScheduleView.resx">
       <DependentUpon>FormEmpScheduleView.vb</DependentUpon>

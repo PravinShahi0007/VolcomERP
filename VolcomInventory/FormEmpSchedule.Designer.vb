@@ -63,12 +63,14 @@ Partial Class FormEmpSchedule
         Me.GridColumn1.Caption = "Id Employee"
         Me.GridColumn1.FieldName = "id_employee"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Employee Code (NIP)"
         Me.GridColumn2.FieldName = "employee_code"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
         '
@@ -77,6 +79,7 @@ Partial Class FormEmpSchedule
         Me.GridColumn3.Caption = "Employee Name"
         Me.GridColumn3.FieldName = "employee_name"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
         '
@@ -85,6 +88,7 @@ Partial Class FormEmpSchedule
         Me.GridColumn4.Caption = "Departement"
         Me.GridColumn4.FieldName = "departement"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
         '
@@ -93,6 +97,7 @@ Partial Class FormEmpSchedule
         Me.GridColumn5.Caption = "Position"
         Me.GridColumn5.FieldName = "employee_position"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 3
         '
@@ -101,6 +106,7 @@ Partial Class FormEmpSchedule
         Me.GridColumn6.Caption = "Status"
         Me.GridColumn6.FieldName = "employee_active"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
         '

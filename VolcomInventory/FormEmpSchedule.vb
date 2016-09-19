@@ -41,4 +41,8 @@
             FormEmpScheduleView.ShowDialog()
         End If
     End Sub
+
+    Private Sub BSetSchedule_Click(sender As Object, e As EventArgs) Handles BSetSchedule.Click
+        FormEmpScheduleBulkSet.ShowDialog()
+    End Sub
 End Class

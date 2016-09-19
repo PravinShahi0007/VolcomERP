@@ -2,14 +2,18 @@
     Public id_employee As String = "-1"
 
     Private Sub BTempSchedule_Click(sender As Object, e As EventArgs) Handles BTempSchedule.Click
-        Dim date_start, date_until As Date
+        Cursor = Cursors.WaitCursor
+
+        Dim date_start, date_until As String
         '
-        date_start = Date.Parse(DEStart.EditValue).ToString("yyyy-mm-dd")
-        date_until = Date.Parse(DEUntil.EditValue).ToString("yyyy-mm-dd")
+        date_start = Date.Parse(DEStart.EditValue).ToString("yyyy-MM-dd")
+        date_until = Date.Parse(DEUntil.EditValue).ToString("yyyy-MM-dd")
         '
         Dim query As String = "CALL add_shift(" & id_employee & "," & GVShift.GetFocusedRowCellValue("id_shift").ToString & ",'" & date_start & "','" & date_until & "')"
         execute_non_query(query, True, "", "", "", "")
+        infoCustom("Schedule success.")
         '
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub FormEmpScheduleViewSet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
