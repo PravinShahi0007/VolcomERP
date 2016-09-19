@@ -32,9 +32,13 @@
             fp.ip = data_fp.Rows(0)("ip").ToString
             fp.port = data_fp.Rows(0)("port").ToString
             fp.download_fp_tmp()
+            infoCustom("Download FP")
             fp.download_face_tmp()
+            infoCustom("Download Face")
             fp.upload_fp_temp()
+            infoCustom("Upload FP")
             fp.upload_face_tmp()
+            infoCustom("Upload Face")
             infoCustom("Process completed")
             SplashScreenManager1.CloseWaitForm()
         End If
