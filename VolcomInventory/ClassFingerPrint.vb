@@ -101,6 +101,10 @@
         axCZKEM1.SSR_SetUserInfo(1, user_id, name, password, privilege, user_enabled)
     End Sub
 
+    Sub deleteUserInfo(ByVal user_id As String)
+        axCZKEM1.SSR_DeleteEnrollData(iMachineNumber, user_id, 12)
+    End Sub
+
     Function get_fp_register() As DataTable
         Dim query As String = "SELECT fp.id_fingerprint,fp.name, fp.ip, fp.port, fp.is_register FROM tb_m_fingerprint fp WHERE fp.is_register='1'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
