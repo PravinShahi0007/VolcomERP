@@ -465,6 +465,12 @@
     <Compile Include="FormEmpAttnInd.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpAttnIndView.Designer.vb">
+      <DependentUpon>FormEmpAttnIndView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttnIndView.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpCalendar.Designer.vb">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </Compile>
@@ -4362,6 +4368,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttn.resx">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttnInd.resx">
+      <DependentUpon>FormEmpAttnInd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttnIndView.resx">
+      <DependentUpon>FormEmpAttnIndView.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>

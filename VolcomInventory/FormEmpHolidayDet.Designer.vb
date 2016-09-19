@@ -20,8 +20,8 @@ Partial Class FormEmpHolidayDet
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEReligion = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdReligionSLE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -50,15 +50,6 @@ Partial Class FormEmpHolidayDet
         Me.PanelControl1.Size = New System.Drawing.Size(341, 36)
         Me.PanelControl1.TabIndex = 0
         '
-        'BSave
-        '
-        Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BSave.Location = New System.Drawing.Point(266, 2)
-        Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(73, 32)
-        Me.BSave.TabIndex = 0
-        Me.BSave.Text = "Save"
-        '
         'BClose
         '
         Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
@@ -67,6 +58,15 @@ Partial Class FormEmpHolidayDet
         Me.BClose.Size = New System.Drawing.Size(77, 32)
         Me.BClose.TabIndex = 1
         Me.BClose.Text = "Cancel"
+        '
+        'BSave
+        '
+        Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSave.Location = New System.Drawing.Point(266, 2)
+        Me.BSave.Name = "BSave"
+        Me.BSave.Size = New System.Drawing.Size(73, 32)
+        Me.BSave.TabIndex = 0
+        Me.BSave.Text = "Save"
         '
         'SLEReligion
         '

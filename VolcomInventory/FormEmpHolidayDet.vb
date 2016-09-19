@@ -17,4 +17,8 @@
         Dim query As String = "SELECT '0' AS id_religion,'ALL' AS religion UNION SELECT id_religion,religion FROM tb_lookup_religion"
         viewSearchLookupQuery(SLEReligion, query, "id_religion", "religion", "id_religion")
     End Sub
+
+    Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
+
+    End Sub
 End Class

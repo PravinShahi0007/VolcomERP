@@ -6720,6 +6720,14 @@ Public Class FormMain
             'Employee Shift
             FormEmpShift.Close()
             FormEmpShift.Dispose()
+        ElseIf formName = "FormEmpSchedule" Then
+            'Employee Shift
+            FormEmpSchedule.Close()
+            FormEmpSchedule.Dispose()
+        ElseIf formName = "FormEmpAttnInd" Then
+            'Employee Attn Report Individual
+            FormEmpAttnInd.Close()
+            FormEmpAttnInd.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9646,6 +9654,19 @@ Public Class FormMain
             FormEmpSchedule.Show()
             FormEmpSchedule.WindowState = FormWindowState.Maximized
             FormEmpSchedule.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAttnInd_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnInd.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttnInd.MdiParent = Me
+            FormEmpAttnInd.Show()
+            FormEmpAttnInd.WindowState = FormWindowState.Maximized
+            FormEmpAttnInd.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
