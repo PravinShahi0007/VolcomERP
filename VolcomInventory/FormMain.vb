@@ -347,7 +347,6 @@ Public Class FormMain
         If formName = "FormBarcodeProduct" Then
             RGAreaManage.Visible = False
         End If
-        MsgBox(formName)
     End Sub
     'Hide Ribbon
     Sub hide_rb()

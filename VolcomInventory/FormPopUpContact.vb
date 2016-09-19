@@ -746,6 +746,16 @@
             FormMasterDesignCOPPD.id_comp_contact = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
             FormMasterDesignCOPPD.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
             Close()
+        ElseIf id_pop_up = "69" Then
+            'REPAIR
+            FormFGRepairDet.id_comp_from = GVCompany.GetFocusedRowCellValue("id_comp").ToString
+            FormFGRepairDet.TxtNameCompFrom.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
+            FormFGRepairDet.TxtCodeCompFrom.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
+            FormFGRepairDet.setDefaultDrawer()
+            FormFGRepairDet.viewDetail()
+            FormFGRepairDet.codeAvailableIns()
+            FormFGRepairDet.TxtCodeCompTo.Focus()
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub

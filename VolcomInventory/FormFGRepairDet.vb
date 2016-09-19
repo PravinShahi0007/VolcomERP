@@ -32,6 +32,7 @@
             Dim data As DataTable = get_company_by_code(TxtCodeCompFrom.Text, query_cond)
             If data.Rows.Count = 0 Then
                 stopCustom("Account not found!")
+                TxtCodeCompFrom.Text = ""
                 TxtNameCompFrom.Text = ""
                 id_comp_from = "-1"
                 TxtCodeCompFrom.Focus()
@@ -96,5 +97,17 @@
             R("price") = data.Rows(k)("sample_ret_price")
             dt.Rows.Add(R)
         Next
+    End Sub
+
+    Private Sub BtnBrowseFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseFrom.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpContact.id_pop_up = "69"
+        FormPopUpContact.id_departement = id_departement_user
+        FormPopUpContact.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBrowseTo_Click(sender As Object, e As EventArgs) Handles BtnBrowseTo.Click
+
     End Sub
 End Class
