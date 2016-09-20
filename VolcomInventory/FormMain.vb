@@ -1427,8 +1427,16 @@ Public Class FormMain
             FormMasterDesignSingle.form_name = "FormFGDesignList"
             FormMasterDesignSingle.WindowState = FormWindowState.Maximized
             FormMasterDesignSingle.ShowDialog()
+        ElseIf formName = "FormEmpShift" Then
+            'DESIGN LIST
+            FormEmpShiftDet.id_shift = "-1"
+            FormEmpShiftDet.ShowDialog()
         ElseIf formName = "FormEmpInitialize" Then
             FormEmpInitialize.addUser()
+        ElseIf formName = "FormEmpHoliday" Then
+            'DESIGN LIST
+            FormEmpHolidayDet.id_holiday = "-1"
+            FormEmpHolidayDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2215,6 +2223,14 @@ Public Class FormMain
                 FormSampleReturnPLDet.action = "upd"
                 FormSampleReturnPLDet.id_sample_pl = FormSampleReturnPL.GVSamplePL.GetFocusedRowCellValue("id_sample_pl_ret").ToString
                 FormSampleReturnPLDet.ShowDialog()
+            ElseIf formName = "FormEmpShift" Then
+                'Template Shift Employee
+                FormEmpShiftDet.id_shift = FormEmpShift.GVShift.GetFocusedRowCellValue("id_shift").ToString
+                FormEmpShiftDet.ShowDialog()
+            ElseIf formName = "FormEmpHoliday" Then
+                'Template Shift Employee
+                FormEmpHolidayDet.id_holiday = FormEmpHoliday.GVHoliday.GetFocusedRowCellValue("id_holiday").ToString
+                FormEmpHolidayDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5094,6 +5110,30 @@ Public Class FormMain
                     errorDelete()
                 End Try
             End If
+        ElseIf formName = "FormEmpShift" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Try
+                    Dim id_shift As String = FormEmpShift.GVShift.GetFocusedRowCellValue("id_shift").ToString
+                    query = String.Format("DELETE FROM tb_emp_shift WHERE id_shift='{0}'", id_shift)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormEmpShift.load_schedule()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
+        ElseIf formName = "FormEmpHoliday" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Try
+                    Dim id_holiday As String = FormEmpHoliday.GVHoliday.GetFocusedRowCellValue("id_holiday").ToString
+                    query = String.Format("DELETE FROM tb_emp_holiday WHERE id_holiday='{0}'", id_holiday)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormEmpHoliday.view_holiday()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -6207,7 +6247,10 @@ Public Class FormMain
             Else
                 print(FormWHCargoRate.GCCompanyIn, "Cargo Rate Inbound")
             End If
-
+        ElseIf formName = "FormEmpShift" Then
+            print(FormEmpShift.GCShift, "Template Shift")
+        ElseIf formName = "FormEmpAttnInd" Then
+            print(FormEmpAttnInd.GCEmployee, "Employee List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -6703,6 +6746,22 @@ Public Class FormMain
         ElseIf formName = "FormEmpFP" Then
             FormEmpFP.Close()
             FormEmpFP.Dispose()
+        ElseIf formName = "FormEmpShift" Then
+            'Employee Shift
+            FormEmpShift.Close()
+            FormEmpShift.Dispose()
+        ElseIf formName = "FormEmpSchedule" Then
+            'Employee Shift
+            FormEmpSchedule.Close()
+            FormEmpSchedule.Dispose()
+        ElseIf formName = "FormEmpAttnInd" Then
+            'Employee Attn Report Individual
+            FormEmpAttnInd.Close()
+            FormEmpAttnInd.Dispose()
+        ElseIf formName = "FormEmpAttnSum" Then
+            'Employee Attn Report Summary
+            FormEmpAttnSum.Close()
+            FormEmpAttnSum.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7316,6 +7375,9 @@ Public Class FormMain
             End If
         ElseIf formName = "FormEmpFP" Then
             FormEmpFP.viewFP()
+        ElseIf formName = "FormEmpShift" Then
+            'Shift employee
+            FormEmpShift.load_schedule()
         End If
     End Sub
     'Switch
@@ -9574,8 +9636,6 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
-
-
     Private Sub NBInitializeFP_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInitializeFP.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
@@ -9589,6 +9649,21 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
+
+    Private Sub NBShift_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBShift.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpShift.MdiParent = Me
+            FormEmpShift.Show()
+            FormEmpShift.WindowState = FormWindowState.Maximized
+            FormEmpShift.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+
     Private Sub NBFPSetup_LinkClicked_1(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFPSetup.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
@@ -9596,6 +9671,58 @@ Public Class FormMain
             FormEmpFP.Show()
             FormEmpFP.WindowState = FormWindowState.Maximized
             FormEmpFP.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBHoliday_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBHoliday.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpHoliday.MdiParent = Me
+            FormEmpHoliday.Show()
+            FormEmpHoliday.WindowState = FormWindowState.Maximized
+            FormEmpHoliday.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSchedule_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSchedule.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpSchedule.MdiParent = Me
+            FormEmpSchedule.Show()
+            FormEmpSchedule.WindowState = FormWindowState.Maximized
+            FormEmpSchedule.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAttnInd_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnInd.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttnInd.MdiParent = Me
+            FormEmpAttnInd.Show()
+            FormEmpAttnInd.WindowState = FormWindowState.Maximized
+            FormEmpAttnInd.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAttnSum_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnSum.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttnSum.MdiParent = Me
+            FormEmpAttnSum.Show()
+            FormEmpAttnSum.WindowState = FormWindowState.Maximized
+            FormEmpAttnSum.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
