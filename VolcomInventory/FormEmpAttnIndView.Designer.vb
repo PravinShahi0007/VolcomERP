@@ -50,7 +50,7 @@ Partial Class FormEmpAttnIndView
         Me.Label5 = New System.Windows.Forms.Label()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.TEPosition = New DevExpress.XtraEditors.TextEdit()
@@ -359,7 +359,7 @@ Partial Class FormEmpAttnIndView
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl2.Controls.Add(Me.BPrint)
         Me.PanelControl2.Controls.Add(Me.BClose)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 300)
@@ -367,16 +367,16 @@ Partial Class FormEmpAttnIndView
         Me.PanelControl2.Size = New System.Drawing.Size(720, 37)
         Me.PanelControl2.TabIndex = 5
         '
-        'SimpleButton1
+        'BPrint
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton1.ImageIndex = 6
-        Me.SimpleButton1.ImageList = Me.LargeImageCollection
-        Me.SimpleButton1.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(90, 33)
-        Me.SimpleButton1.TabIndex = 3
-        Me.SimpleButton1.Text = "Print"
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPrint.ImageIndex = 6
+        Me.BPrint.ImageList = Me.LargeImageCollection
+        Me.BPrint.Location = New System.Drawing.Point(2, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(90, 33)
+        Me.BPrint.TabIndex = 3
+        Me.BPrint.Text = "Print"
         '
         'BClose
         '
@@ -540,7 +540,7 @@ Partial Class FormEmpAttnIndView
     Friend WithEvents TEName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label2 As Label
     Friend WithEvents Label1 As Label
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn

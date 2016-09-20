@@ -54,4 +54,36 @@
         DEUntil.EditValue = Now
         load_report()
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        getReport()
+    End Sub
+
+    Sub getReport()
+        ReportEmpAttnInd.dt = GCSchedule.DataSource
+        Dim Report As New ReportEmpAttnInd()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVSchedule.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVEmployee.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVEmployee)
+
+        'Parse val
+        Report.Lname.Text = TEName.Text
+        Report.Lcode.Text = TECode.Text
+        Report.LDept.Text = TEDept.Text
+        Report.LPosition.Text = TEPosition.Text
+        Report.LDateRange.Text = Date.Parse(DEStart.EditValue.ToString).ToString("dd MMM yyyy") + " - " + Date.Parse(DEUntil.EditValue.ToString).ToString("dd MMM yyyy")
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+    End Sub
 End Class
