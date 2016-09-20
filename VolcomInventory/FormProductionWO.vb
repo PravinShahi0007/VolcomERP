@@ -533,8 +533,4 @@
             End Try
         End If
     End Sub
-
-    Private Sub TEKurs_EditValueChanged(sender As Object, e As EventArgs) Handles TEKurs.EditValueChanged
-
-    End Sub
 End Class

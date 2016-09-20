@@ -6224,6 +6224,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormEmpShift" Then
             print(FormEmpShift.GCShift, "Template Shift")
+        ElseIf formName = "FormEmpAttnInd" Then
+            print(FormEmpAttnInd.GCEmployee, "Employee List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -6728,6 +6730,10 @@ Public Class FormMain
             'Employee Attn Report Individual
             FormEmpAttnInd.Close()
             FormEmpAttnInd.Dispose()
+        ElseIf formName = "FormEmpAttnSum" Then
+            'Employee Attn Report Summary
+            FormEmpAttnSum.Close()
+            FormEmpAttnSum.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -9667,6 +9673,19 @@ Public Class FormMain
             FormEmpAttnInd.Show()
             FormEmpAttnInd.WindowState = FormWindowState.Maximized
             FormEmpAttnInd.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAttnSum_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnSum.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttnSum.MdiParent = Me
+            FormEmpAttnSum.Show()
+            FormEmpAttnSum.WindowState = FormWindowState.Maximized
+            FormEmpAttnSum.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

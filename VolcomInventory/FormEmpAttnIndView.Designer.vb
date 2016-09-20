@@ -122,6 +122,7 @@ Partial Class FormEmpAttnIndView
         Me.GVSchedule.Name = "GVSchedule"
         Me.GVSchedule.OptionsView.ShowFooter = True
         Me.GVSchedule.OptionsView.ShowGroupPanel = False
+        Me.GVSchedule.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn1
         '
