@@ -132,7 +132,7 @@
     Sub load_wo()
         view_list_purchase()
 
-        Dim query As String = "SELECT a.id_currency, a.ovh_price, b.overhead as name, b.overhead_code as code,a.id_comp_contact from tb_m_ovh_price a INNER JOIN tb_m_ovh b WHERE a.id_ovh_price='" & id_ovh_price & "'"
+        Dim query As String = "SELECT a.id_currency, a.ovh_price, b.overhead as name, b.overhead_code as code,a.id_comp_contact from tb_m_ovh_price a INNER JOIN tb_m_ovh b ON a.id_ovh=b.id_ovh WHERE a.id_ovh_price='" & id_ovh_price & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         TEWO.Text = data.Rows(0)("name").ToString
