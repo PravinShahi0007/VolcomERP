@@ -388,7 +388,7 @@
     End Sub
 
     Private Sub LEpayment_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LEpayment.EditValueChanged
-        If LEpayment.EditValue = 1 Then
+        If LEpayment.EditValue = 1 Or LEpayment.EditValue = 4 Or LEpayment.EditValue = 5 Then
             TETOP.Enabled = True
         Else
             TETOP.Text = 0
