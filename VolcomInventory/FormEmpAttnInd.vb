@@ -34,8 +34,8 @@
     Private Sub BViewReport_Click(sender As Object, e As EventArgs) Handles BViewReport.Click
         If GVEmployee.RowCount > 0 Then
             FormEmpAttnIndView.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
-            FormEmpAttnIndView.TEName.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
-            FormEmpAttnIndView.TECode.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            FormEmpAttnIndView.TEName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            FormEmpAttnIndView.TECode.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
             FormEmpAttnIndView.TEDept.Text = GVEmployee.GetFocusedRowCellValue("departement").ToString
             FormEmpAttnIndView.TEPosition.Text = GVEmployee.GetFocusedRowCellValue("employee_position").ToString
             FormEmpAttnIndView.ShowDialog()
