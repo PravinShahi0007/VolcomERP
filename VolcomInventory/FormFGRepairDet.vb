@@ -149,6 +149,7 @@
     End Sub
 
     Private Sub BScan_Click(sender As Object, e As EventArgs) Handles BScan.Click
+        GVScan.OptionsCustomization.AllowSort = False
         TxtScannedCode.Visible = True
         LblScannedCode.Visible = True
         BScan.Enabled = False
@@ -162,6 +163,7 @@
 
     Private Sub BStop_Click(sender As Object, e As EventArgs) Handles BStop.Click
         TxtScannedCode.Text = ""
+        GVScan.OptionsCustomization.AllowSort = True
         TxtScannedCode.Visible = False
         LblScannedCode.Visible = False
         BStop.Enabled = False
