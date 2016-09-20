@@ -747,14 +747,21 @@
             FormMasterDesignCOPPD.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
             Close()
         ElseIf id_pop_up = "69" Then
-            'REPAIR
+            'REPAIR FROM
             FormFGRepairDet.id_comp_from = GVCompany.GetFocusedRowCellValue("id_comp").ToString
             FormFGRepairDet.TxtNameCompFrom.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
             FormFGRepairDet.TxtCodeCompFrom.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
-            FormFGRepairDet.setDefaultDrawer()
+            FormFGRepairDet.setDefaultDrawerFrom()
             FormFGRepairDet.viewDetail()
             FormFGRepairDet.codeAvailableIns()
             FormFGRepairDet.TxtCodeCompTo.Focus()
+            Close()
+        ElseIf id_pop_up = "70" Then
+            'REPAIR TO
+            FormFGRepairDet.id_comp_to = GVCompany.GetFocusedRowCellValue("id_comp").ToString
+            FormFGRepairDet.TxtNameCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
+            FormFGRepairDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
+            FormFGRepairDet.setDefaultDrawerTo()
             Close()
         End If
         Cursor = Cursors.Default

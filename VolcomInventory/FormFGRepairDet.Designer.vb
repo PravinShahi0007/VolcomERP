@@ -57,6 +57,7 @@ Partial Class FormFGRepairDet
         Me.GridColumnFullCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStyle = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
         Me.TxtScannedCode = New DevExpress.XtraEditors.TextEdit()
         Me.LblScannedCode = New DevExpress.XtraEditors.LabelControl()
@@ -66,6 +67,7 @@ Partial Class FormFGRepairDet
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -457,7 +459,7 @@ Partial Class FormFGRepairDet
         '
         'GVScan
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle})
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize})
         Me.GVScan.GridControl = Me.GCScan
         Me.GVScan.Name = "GVScan"
         Me.GVScan.OptionsView.ShowGroupPanel = False
@@ -469,25 +471,25 @@ Partial Class FormFGRepairDet
         Me.GridColumnNo.Name = "GridColumnNo"
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 48
+        Me.GridColumnNo.Width = 44
         '
         'GridColumnFullCode
         '
         Me.GridColumnFullCode.Caption = "Full Code"
-        Me.GridColumnFullCode.FieldName = "full_code"
+        Me.GridColumnFullCode.FieldName = "code"
         Me.GridColumnFullCode.Name = "GridColumnFullCode"
         Me.GridColumnFullCode.Visible = True
         Me.GridColumnFullCode.VisibleIndex = 1
-        Me.GridColumnFullCode.Width = 187
+        Me.GridColumnFullCode.Width = 238
         '
         'GridColumnCode
         '
         Me.GridColumnCode.Caption = "Code"
-        Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.FieldName = "product_code"
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 2
-        Me.GridColumnCode.Width = 196
+        Me.GridColumnCode.Width = 214
         '
         'GridColumnStyle
         '
@@ -496,7 +498,16 @@ Partial Class FormFGRepairDet
         Me.GridColumnStyle.Name = "GridColumnStyle"
         Me.GridColumnStyle.Visible = True
         Me.GridColumnStyle.VisibleIndex = 3
-        Me.GridColumnStyle.Width = 647
+        Me.GridColumnStyle.Width = 516
+        '
+        'GridColumnSize
+        '
+        Me.GridColumnSize.Caption = "Size"
+        Me.GridColumnSize.FieldName = "size"
+        Me.GridColumnSize.Name = "GridColumnSize"
+        Me.GridColumnSize.Visible = True
+        Me.GridColumnSize.VisibleIndex = 4
+        Me.GridColumnSize.Width = 66
         '
         'PanelNavBarcode
         '
@@ -583,6 +594,10 @@ Partial Class FormFGRepairDet
         'EPForm
         '
         Me.EPForm.ContainerControl = Me
+        '
+        'SplashScreenManager1
+        '
+        Me.SplashScreenManager1.ClosingDelay = 500
         '
         'FormFGRepairDet
         '
@@ -682,4 +697,6 @@ Partial Class FormFGRepairDet
     Friend WithEvents GridColumnFullCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStyle As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
 End Class
