@@ -112,7 +112,7 @@
         fp.download_face_tmp()
         fp.upload_fp_temp()
         fp.upload_face_tmp()
-        infoCustom("Process completed")
         SplashScreenManager1.CloseWaitForm()
+        infoCustom("Process completed")
     End Sub
 End Class

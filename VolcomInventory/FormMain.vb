@@ -4390,11 +4390,29 @@ Public Class FormMain
             confirm = XtraMessageBox.Show("Are you sure want to delete this employee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
             Dim id_employee As String = FormMasterEmployee.GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+            Dim employee_code As String = FormMasterEmployee.GVEmployee.GetFocusedRowCellValue("employee_code").ToString
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
                 Try
                     query = String.Format("DELETE FROM tb_m_employee WHERE id_employee = '{0}'", id_employee)
                     execute_non_query(query, True, "", "", "", "")
+
+                    'delete fp
+                    Try
+                        Dim fp As New ClassFingerPrint()
+                        Dim data_fp As DataTable = fp.get_fp_register()
+                        fp.ip = data_fp.Rows(0)("ip").ToString
+                        fp.port = data_fp.Rows(0)("port").ToString
+                        fp.connect()
+                        fp.disable_fp()
+                        fp.deleteUserInfo(employee_code)
+                        fp.refresh_fp()
+                        fp.enable_fp()
+                        fp.disconnect()
+                    Catch ex As Exception
+                        stopCustom(ex.ToString)
+                    End Try
+
                     FormMasterEmployee.viewEmployee()
                 Catch ex As Exception
                     XtraMessageBox.Show("This employee already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
