@@ -229,6 +229,41 @@
         EP_DE_cant_blank(ErrorProvider1, DEDOB)
     End Sub
 
+    'set fingerprint
+    Sub setFP(ByVal emp_code As String, ByVal emp_name As String, ByVal emp_active As String)
+        If emp_active = "1" Then
+            Try
+                Dim fp As New ClassFingerPrint()
+                Dim data_fp As DataTable = fp.get_fp_register()
+                fp.ip = data_fp.Rows(0)("ip").ToString
+                fp.port = data_fp.Rows(0)("port").ToString
+                fp.connect()
+                fp.disable_fp()
+                fp.setUserInfo(emp_code, emp_name, "", 0, True)
+                fp.refresh_fp()
+                fp.enable_fp()
+                fp.disconnect()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
+        Else
+            Try
+                Dim fp As New ClassFingerPrint()
+                Dim data_fp As DataTable = fp.get_fp_register()
+                fp.ip = data_fp.Rows(0)("ip").ToString
+                fp.port = data_fp.Rows(0)("port").ToString
+                fp.connect()
+                fp.disable_fp()
+                fp.deleteUserInfo(emp_code)
+                fp.refresh_fp()
+                fp.enable_fp()
+                fp.disconnect()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
+        End If
+    End Sub
+
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
         ValidateChildren()
         EP_TE_cant_blank(ErrorProvider1, TxtPOB)
@@ -300,6 +335,9 @@
                 'pic
                 save_image_ori(PEEmployee, emp_image_path, id_employee & ".jpg")
 
+                'fp
+                setFP(employee_code, employee_name, id_employee_active)
+
                 'info & refresh
                 FormMasterEmployee.viewEmployee()
                 FormMasterEmployee.GVEmployee.FocusedRowHandle = find_row(FormMasterEmployee.GVEmployee, "id_employee", id_employee)
@@ -350,6 +388,9 @@
 
                 'pic
                 save_image_ori(PEEmployee, emp_image_path, id_employee & ".jpg")
+
+                'fp
+                setFP(employee_code, employee_name, id_employee_active)
 
                 'info & refresh
                 FormMasterEmployee.viewEmployee()

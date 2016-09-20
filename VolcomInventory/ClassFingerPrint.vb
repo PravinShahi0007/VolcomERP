@@ -101,6 +101,10 @@
         axCZKEM1.SSR_SetUserInfo(1, user_id, name, password, privilege, user_enabled)
     End Sub
 
+    Sub deleteUserInfo(ByVal user_id As String)
+        axCZKEM1.SSR_DeleteEnrollData(iMachineNumber, user_id, 12)
+    End Sub
+
     Function get_fp_register() As DataTable
         Dim query As String = "SELECT fp.id_fingerprint,fp.name, fp.ip, fp.port, fp.is_register FROM tb_m_fingerprint fp WHERE fp.is_register='1'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -155,7 +159,7 @@
         End If
     End Sub
 
-    Sub download_face_tmp()
+    Sub download_face_tmp_bulk()
         Dim jum As Integer = 0
         Dim sUserID As String = ""
         Dim sName As String = ""
@@ -199,6 +203,47 @@
                 stopCustom(ex.ToString)
             End Try
         End If
+    End Sub
+
+    Sub download_face_tmp()
+        Dim jum As Integer = 0
+        Dim sUserID As String = ""
+        Dim sName As String = ""
+        Dim sPassword As String = ""
+        Dim iPrivilege As Integer
+        Dim bEnabled As Boolean = False
+
+        Dim iFaceIndex As Integer = 50 'the only possible parameter value
+        Dim sTmpData As String = ""
+        Dim iLength As Integer
+
+        connect()
+        disable_fp()
+        axCZKEM1.ReadAllUserID(iMachineNumber) 'read all the user information to the memory
+
+
+        While axCZKEM1.SSR_GetAllUserInfo(iMachineNumber, sUserID, sName, sPassword, iPrivilege, bEnabled) = True  'get all the users' information from the memory
+            If axCZKEM1.GetUserFaceStr(iMachineNumber, sUserID, iFaceIndex, sTmpData, iLength) = True Then 'get the face templates from the memory
+                If jum = 0 Then
+                    Dim query_trunc As String = "TRUNCATE `tb_m_employee_face`"
+                    execute_non_query(query_trunc, True, "", "", "", "")
+                End If
+
+                Dim enabled_fp As String = ""
+                If bEnabled = True Then
+                    enabled_fp = "true"
+                Else
+                    enabled_fp = "false"
+                End If
+                Dim query As String = "INSERT INTO tb_m_employee_face(user_id, name, face_index, tmp_data, privilege, password, enabled) VALUES "
+                query += "('" + sUserID + "', '" + sName + "', '" + iFaceIndex.ToString + "', '" + sTmpData + "', '" + iPrivilege.ToString() + "', '" + sPassword + "', '" + enabled_fp + "') "
+                execute_non_query(query, True, "", "", "", "")
+                jum += 1
+            End If
+        End While
+
+        enable_fp()
+        disconnect()
     End Sub
 
     'UPLOAD FINGERPRINT TO ALL MACHINE EXCEPT REGISTER MACHINE
