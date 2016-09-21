@@ -23,8 +23,9 @@ Partial Class FormProductionWO
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionWO))
         Me.EPMatWO = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BReviseWO = New DevExpress.XtraEditors.SimpleButton()
         Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -172,6 +173,7 @@ Partial Class FormProductionWO
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.BReviseWO)
         Me.GroupControl3.Controls.Add(Me.BtnAttachment)
         Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Controls.Add(Me.BPrint)
@@ -183,16 +185,16 @@ Partial Class FormProductionWO
         Me.GroupControl3.Size = New System.Drawing.Size(909, 39)
         Me.GroupControl3.TabIndex = 56
         '
-        'BtnAttachment
+        'BReviseWO
         '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.ImageIndex = 10
-        Me.BtnAttachment.ImageList = Me.ImgBut
-        Me.BtnAttachment.Location = New System.Drawing.Point(519, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(115, 35)
-        Me.BtnAttachment.TabIndex = 16
-        Me.BtnAttachment.Text = "Attachment"
+        Me.BReviseWO.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BReviseWO.ImageIndex = 3
+        Me.BReviseWO.ImageList = Me.ImgBut
+        Me.BReviseWO.Location = New System.Drawing.Point(112, 2)
+        Me.BReviseWO.Name = "BReviseWO"
+        Me.BReviseWO.Size = New System.Drawing.Size(92, 35)
+        Me.BReviseWO.TabIndex = 17
+        Me.BReviseWO.Text = "Revise"
         '
         'ImgBut
         '
@@ -210,6 +212,17 @@ Partial Class FormProductionWO
         Me.ImgBut.Images.SetKeyName(9, "18_24x24.png")
         Me.ImgBut.Images.SetKeyName(10, "attachment-icon.png")
         Me.ImgBut.Images.SetKeyName(11, "document_32.png")
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 10
+        Me.BtnAttachment.ImageList = Me.ImgBut
+        Me.BtnAttachment.Location = New System.Drawing.Point(519, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(115, 35)
+        Me.BtnAttachment.TabIndex = 16
+        Me.BtnAttachment.Text = "Attachment"
         '
         'BMark
         '
@@ -1339,4 +1352,5 @@ Partial Class FormProductionWO
     Friend WithEvents DEDateNow As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumnVendorCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BReviseWO As DevExpress.XtraEditors.SimpleButton
 End Class
