@@ -7,13 +7,19 @@
         load_report()
     End Sub
     Sub load_report()
-        Dim date_start, date_until As String
+        Dim date_start, date_until, dept As String
 
         date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         date_until = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
 
+        If LEDept.EditValue.ToString = "0" Then
+            dept = "%%"
+        Else
+            dept = LEDept.EditValue.ToString
+        End If
+
         Dim query As String = ""
-        query = "SELECT tb.*,(tb.over-tb.late-tb.over_break) AS balance FROM"
+        query = "SELECT tb.*,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL()) as present FROM"
         query += " ("
         query += " SELECT sch.id_employee,emp.employee_name,sch.date,"
         query += " sch.In,sch.in_tolerance,at_in.datetime As `att_in`,"
@@ -33,8 +39,8 @@
         query += " LEFT JOIN tb_emp_attn at_out On at_out.id_employee=sch.id_employee And Date(at_out.datetime) = sch.Date And at_out.type_log = 2"
         query += " LEFT JOIN tb_emp_attn at_brout On at_brout.id_employee=sch.id_employee And Date(at_brout.datetime) = sch.Date And at_brout.type_log = 3"
         query += " LEFT JOIN tb_emp_attn at_brin On at_brin.id_employee=sch.id_employee And Date(at_brin.datetime) = sch.Date And at_brin.type_log = 4"
-        query += " WHERE "
-        query += " sch.date >='" & date_start & "'"
+        query += " WHERE emp.id_departement LIKE '" & dept & "'"
+        query += " AND sch.date >='" & date_start & "'"
         query += " AND sch.date <='" & date_until & "'"
         query += " ) tb"
 
@@ -45,14 +51,25 @@
     End Sub
 
     Private Sub FormEmpAttnSum_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
-
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+        button_main(bnew_active, bedit_active, bdel_active)
     End Sub
 
     Private Sub FormEmpAttnSum_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
-
+        FormMain.hide_rb()
     End Sub
 
     Private Sub FormEmpAttnSum_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub FormEmpAttnSum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewDept()
+    End Sub
+
+    Sub viewDept()
+        Dim query As String = "SELECT 0 as id_departement, 'All departement' as departement UNION (SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
+        viewLookupQuery(LEDept, query, 0, "departement", "id_departement")
     End Sub
 End Class
