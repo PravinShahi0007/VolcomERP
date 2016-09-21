@@ -24,7 +24,6 @@ Partial Class FormMasterEmployeeCustom
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.XTCCustomView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCCustomView.SuspendLayout()
         Me.XtpContract.SuspendLayout()
@@ -40,7 +39,7 @@ Partial Class FormMasterEmployeeCustom
         Me.XTCCustomView.SelectedTabPage = Me.XtpContract
         Me.XTCCustomView.Size = New System.Drawing.Size(408, 106)
         Me.XTCCustomView.TabIndex = 0
-        Me.XTCCustomView.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtpContract, Me.XtraTabPage2})
+        Me.XTCCustomView.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtpContract})
         '
         'XtpContract
         '
@@ -81,18 +80,14 @@ Partial Class FormMasterEmployeeCustom
         Me.LabelControl3.TabIndex = 8897
         Me.LabelControl3.Text = "Date"
         '
-        'XtraTabPage2
-        '
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(402, 78)
-        Me.XtraTabPage2.Text = "XtraTabPage2"
-        '
         'FormMasterEmployeeCustom
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(408, 106)
         Me.Controls.Add(Me.XTCCustomView)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormMasterEmployeeCustom"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Select Custom View"
@@ -108,7 +103,6 @@ Partial Class FormMasterEmployeeCustom
 
     Friend WithEvents XTCCustomView As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XtpContract As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents XtraTabPage2 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
