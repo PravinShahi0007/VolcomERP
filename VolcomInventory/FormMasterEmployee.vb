@@ -1,4 +1,5 @@
-﻿Public Class FormMasterEmployee 
+﻿Public Class FormMasterEmployee
+    Public contract_rvw_date As String = "-1"
 
     Private Sub FormMasterEmployee_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
@@ -9,14 +10,14 @@
         FormMain.hide_rb()
     End Sub
 
-    Sub viewEmployee()
-        Dim query As String = "CALL view_employee('-1', 2)"
+    Sub viewEmployee(ByVal cond_param As String)
+        Dim query As String = "CALL view_employee('" + cond_param + "', '2')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmployee.DataSource = data
     End Sub
 
     Private Sub FormMasterEmployee_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        viewEmployee()
+        viewEmployee("-1")
     End Sub
 
     Private Sub CheckImg_CheckedChanged(sender As Object, e As EventArgs) Handles CheckImg.CheckedChanged
@@ -102,17 +103,28 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
-        SplashScreenManager1.ShowWaitForm()
-        Dim fp As New ClassFingerPrint()
-        Dim data_fp As DataTable = fp.get_fp_register()
-        fp.ip = data_fp.Rows(0)("ip").ToString
-        fp.port = data_fp.Rows(0)("port").ToString
-        fp.download_fp_tmp()
-        fp.download_face_tmp()
-        fp.upload_fp_temp()
-        fp.upload_face_tmp()
-        SplashScreenManager1.CloseWaitForm()
-        infoCustom("Process completed")
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub BAccept_Click(sender As Object, e As EventArgs) Handles BAccept.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to sync all machine?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            SplashScreenManager1.ShowWaitForm()
+            Dim fp As New ClassFingerPrint()
+            Dim data_fp As DataTable = fp.get_fp_register()
+            fp.ip = data_fp.Rows(0)("ip").ToString
+            fp.port = data_fp.Rows(0)("port").ToString
+            fp.download_fp_tmp()
+            fp.download_face_tmp()
+            fp.upload_fp_temp()
+            fp.upload_face_tmp()
+            SplashScreenManager1.CloseWaitForm()
+            infoCustom("Process completed")
+        End If
+    End Sub
+
+    Private Sub SimpleButton1_Click_1(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        FormMasterEmployeeCustom.ShowDialog()
     End Sub
 End Class

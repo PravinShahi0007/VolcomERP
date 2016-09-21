@@ -280,7 +280,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Then
+        If formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Then
             RGAreaManage.Visible = False
         End If
 
@@ -395,7 +395,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Then
+        If formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Then
             RGAreaManage.Visible = True
         End If
 
@@ -4429,7 +4429,7 @@ Public Class FormMain
                         stopCustom(ex.ToString)
                     End Try
 
-                    FormMasterEmployee.viewEmployee()
+                    FormMasterEmployee.viewEmployee("-1")
                 Catch ex As Exception
                     XtraMessageBox.Show("This employee already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
@@ -6762,6 +6762,9 @@ Public Class FormMain
             'Employee Attn Report Summary
             FormEmpAttnSum.Close()
             FormEmpAttnSum.Dispose()
+        ElseIf formName = "FormEmpReview" Then
+            FormEmpReview.Close()
+            FormEmpReview.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7196,7 +7199,7 @@ Public Class FormMain
             FormAccountingSummary.CreateNodes(FormAccountingSummary.TreeList1)
         ElseIf formName = "FormMasterEmployee" Then
             'employee
-            FormMasterEmployee.viewEmployee()
+            FormMasterEmployee.viewEmployee("-1")
         ElseIf formName = "FormSampleDel" Then
             'PL SAMPLE DEL
             FormSampleDel.viewSampleDel()
@@ -9723,6 +9726,18 @@ Public Class FormMain
             FormEmpAttnSum.Show()
             FormEmpAttnSum.WindowState = FormWindowState.Maximized
             FormEmpAttnSum.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+    End Sub
+
+    Private Sub NBEmpReview_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpReview.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpReview.MdiParent = Me
+            FormEmpReview.Show()
+            FormEmpReview.WindowState = FormWindowState.Maximized
+            FormEmpReview.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
