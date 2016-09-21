@@ -476,7 +476,7 @@
                 If GVStatus.RowCount > 0 Then
                     Dim query_upd As String = "UPDATE tb_m_employee emp "
                     query_upd += "INNER JOIN ( "
-                    query_upd += "SELECT a.id_employee_status, a.id_employee FROM tb_m_employee_status_det a  "
+                    query_upd += "SELECT a.id_employee_status, a.id_employee, a.start_period, a.end_period FROM tb_m_employee_status_det a  "
                     query_upd += "INNER JOIN ( "
                     query_upd += "SELECT MAX(id_employee_status_det) AS id_employee_status_det "
                     query_upd += "FROM tb_m_employee_status_det b  "
@@ -484,11 +484,13 @@
                     query_upd += ") mx ON mx.id_employee_status_det = a.id_employee_status_det "
                     query_upd += "WHERE a.id_employee='" + id_employee + "' ORDER BY a.id_employee_status_det DESC "
                     query_upd += ") dt ON dt.id_employee = emp.id_employee "
-                    query_upd += "SET emp.id_employee_status = dt.id_employee_status "
+                    query_upd += "SET emp.id_employee_status = dt.id_employee_status, "
+                    query_upd += "emp.start_period = dt.start_period, "
+                    query_upd += "emp.end_period = dt.end_period "
                     execute_non_query(query_upd, True, "", "", "", "")
                 Else
                     Dim query_upd As String = "UPDATE tb_m_employee emp "
-                    query_upd += "SET emp.id_employee_status =0 "
+                    query_upd += "SET emp.id_employee_status =0, start_period=NULL, end_period=NULL "
                     query_upd += "WHERE emp.id_employee='" + id_employee + "' "
                     execute_non_query(query_upd, True, "", "", "", "")
                 End If
