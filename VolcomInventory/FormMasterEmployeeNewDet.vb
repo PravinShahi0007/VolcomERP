@@ -339,7 +339,7 @@
                 setFP(employee_code, employee_name, id_employee_active)
 
                 'info & refresh
-                FormMasterEmployee.viewEmployee()
+                FormMasterEmployee.viewEmployee("-1")
                 FormMasterEmployee.GVEmployee.FocusedRowHandle = find_row(FormMasterEmployee.GVEmployee, "id_employee", id_employee)
                 action = "upd"
                 actionLoad()
@@ -393,7 +393,7 @@
                 setFP(employee_code, employee_name, id_employee_active)
 
                 'info & refresh
-                FormMasterEmployee.viewEmployee()
+                FormMasterEmployee.viewEmployee("-1")
                 FormMasterEmployee.GVEmployee.FocusedRowHandle = find_row(FormMasterEmployee.GVEmployee, "id_employee", id_employee)
                 action = "upd"
                 actionLoad()

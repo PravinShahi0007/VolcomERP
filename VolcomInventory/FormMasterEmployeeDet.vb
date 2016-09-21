@@ -56,12 +56,12 @@
         If action = "ins" Then
             Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, id_sex, id_departement) VALUES ('" + employee_code + "', '" + employee_name + "', '" + id_sex + "', '" + id_departement + "') "
             execute_non_query(query, True, "", "", "", "")
-            FormMasterEmployee.viewEmployee()
+            FormMasterEmployee.viewEmployee("-1")
             Close()
         ElseIf action = "upd" Then
             Dim query As String = "UPDATE tb_m_employee SET employee_code = '" + employee_code + "', employee_name='" + employee_name + "', id_sex='" + id_sex + "', id_departement = '" + id_departement + "' WHERE id_employee = '" + id_employee + "' "
             execute_non_query(query, True, "", "", "", "")
-            FormMasterEmployee.viewEmployee()
+            FormMasterEmployee.viewEmployee("-1")
             Close()
         End If
     End Sub
