@@ -11,7 +11,7 @@
     End Sub
 
     Sub viewEmployee(ByVal cond_param As String)
-        Dim query As String = "CALL view_employee(" + cond_param + ", 2)"
+        Dim query As String = "CALL view_employee('" + cond_param + "', '2')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmployee.DataSource = data
     End Sub

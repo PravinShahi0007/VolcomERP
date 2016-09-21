@@ -21,10 +21,10 @@ Partial Class FormMasterEmployeeCustom
     Private Sub InitializeComponent()
         Me.XTCCustomView = New DevExpress.XtraTab.XtraTabControl()
         Me.XtpContract = New DevExpress.XtraTab.XtraTabPage()
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.XTCCustomView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCCustomView.SuspendLayout()
         Me.XtpContract.SuspendLayout()
@@ -51,11 +51,18 @@ Partial Class FormMasterEmployeeCustom
         Me.XtpContract.Size = New System.Drawing.Size(402, 78)
         Me.XtpContract.Text = "Contract Review"
         '
-        'XtraTabPage2
+        'DEStart
         '
-        Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(402, 78)
-        Me.XtraTabPage2.Text = "XtraTabPage2"
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(11, 29)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEStart.Size = New System.Drawing.Size(303, 20)
+        Me.DEStart.TabIndex = 8900
         '
         'BtnView
         '
@@ -74,18 +81,11 @@ Partial Class FormMasterEmployeeCustom
         Me.LabelControl3.TabIndex = 8897
         Me.LabelControl3.Text = "Date"
         '
-        'DEStart
+        'XtraTabPage2
         '
-        Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(11, 29)
-        Me.DEStart.Name = "DEStart"
-        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEStart.Size = New System.Drawing.Size(303, 20)
-        Me.DEStart.TabIndex = 8900
+        Me.XtraTabPage2.Name = "XtraTabPage2"
+        Me.XtraTabPage2.Size = New System.Drawing.Size(402, 78)
+        Me.XtraTabPage2.Text = "XtraTabPage2"
         '
         'FormMasterEmployeeCustom
         '
