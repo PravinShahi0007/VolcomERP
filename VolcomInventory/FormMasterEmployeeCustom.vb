@@ -6,7 +6,7 @@
         Else
             Close()
             FormMasterEmployee.SplashScreenManager1.ShowWaitForm()
-            FormMasterEmployee.viewEmployee("AND emp.id_employee_active=''1'' AND emp.id_employee_status=''1'' AND emp.end_period<=DATE_ADD(''" + period + "'',INTERVAL 3 MONTH)")
+            FormMasterEmployee.viewEmployee("AND emp.id_employee_active=''1'' AND emp.id_employee_status=''1'' AND (emp.end_period>=''" + period + "'' AND emp.end_period<=DATE_ADD(''" + period + "'',INTERVAL 3 MONTH))")
             FormMasterEmployee.SplashScreenManager1.CloseWaitForm()
         End If
     End Sub
