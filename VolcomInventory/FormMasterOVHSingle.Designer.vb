@@ -28,6 +28,8 @@ Partial Class FormMasterOVHSingle
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
         Me.PCGeneral = New DevExpress.XtraEditors.PanelControl()
+        Me.LEOVHCat = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LEUOM = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.PictureEditIcon = New DevExpress.XtraEditors.PictureEdit()
@@ -53,8 +55,6 @@ Partial Class FormMasterOVHSingle
         Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LEOVHCat = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.ErrorProviderOVH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCLotTitle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCLotTitle.SuspendLayout()
@@ -64,6 +64,7 @@ Partial Class FormMasterOVHSingle
         Me.XTPGeneral.SuspendLayout()
         CType(Me.PCGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCGeneral.SuspendLayout()
+        CType(Me.LEOVHCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEUOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureEditIcon.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOVH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,7 +78,6 @@ Partial Class FormMasterOVHSingle
         CType(Me.GCPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEOVHCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ErrorProviderOVH
@@ -163,6 +163,24 @@ Partial Class FormMasterOVHSingle
         Me.PCGeneral.Name = "PCGeneral"
         Me.PCGeneral.Size = New System.Drawing.Size(590, 228)
         Me.PCGeneral.TabIndex = 41
+        '
+        'LEOVHCat
+        '
+        Me.LEOVHCat.Location = New System.Drawing.Point(180, 35)
+        Me.LEOVHCat.Name = "LEOVHCat"
+        Me.LEOVHCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEOVHCat.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_ovh_cat", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ovh_cat", "Category"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ovh_cat_desc", "Description")})
+        Me.LEOVHCat.Size = New System.Drawing.Size(379, 20)
+        Me.LEOVHCat.TabIndex = 49
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(180, 14)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(48, 15)
+        Me.LabelControl3.TabIndex = 50
+        Me.LabelControl3.Text = "Category"
         '
         'LEUOM
         '
@@ -276,7 +294,7 @@ Partial Class FormMasterOVHSingle
         Me.XTPPrice.ImageIndex = 1
         Me.XTPPrice.Name = "XTPPrice"
         Me.XTPPrice.PageVisible = False
-        Me.XTPPrice.Size = New System.Drawing.Size(612, 272)
+        Me.XTPPrice.Size = New System.Drawing.Size(612, 308)
         Me.XTPPrice.Text = "Price"
         '
         'BtnAdd
@@ -341,6 +359,7 @@ Partial Class FormMasterOVHSingle
         Me.GVPrice.GridControl = Me.GCPrice
         Me.GVPrice.Name = "GVPrice"
         Me.GVPrice.OptionsBehavior.Editable = False
+        Me.GVPrice.OptionsView.ShowGroupPanel = False
         '
         'ColIdOVHPrice
         '
@@ -383,6 +402,8 @@ Partial Class FormMasterOVHSingle
         'ColDate
         '
         Me.ColDate.Caption = "Date"
+        Me.ColDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColDate.FieldName = "ovh_price_date"
         Me.ColDate.Name = "ColDate"
         Me.ColDate.Visible = True
@@ -392,24 +413,6 @@ Partial Class FormMasterOVHSingle
         '
         Me.GridView4.GridControl = Me.GCPrice
         Me.GridView4.Name = "GridView4"
-        '
-        'LEOVHCat
-        '
-        Me.LEOVHCat.Location = New System.Drawing.Point(180, 35)
-        Me.LEOVHCat.Name = "LEOVHCat"
-        Me.LEOVHCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEOVHCat.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_ovh_cat", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ovh_cat", "Category"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ovh_cat_desc", "Description")})
-        Me.LEOVHCat.Size = New System.Drawing.Size(379, 20)
-        Me.LEOVHCat.TabIndex = 49
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(180, 14)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(48, 15)
-        Me.LabelControl3.TabIndex = 50
-        Me.LabelControl3.Text = "Category"
         '
         'FormMasterOVHSingle
         '
@@ -425,7 +428,6 @@ Partial Class FormMasterOVHSingle
         Me.MinimizeBox = False
         Me.Name = "FormMasterOVHSingle"
         Me.ShowInTaskbar = False
-        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Overhead"
         CType(Me.ErrorProviderOVH, System.ComponentModel.ISupportInitialize).EndInit()
@@ -439,6 +441,7 @@ Partial Class FormMasterOVHSingle
         CType(Me.PCGeneral, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCGeneral.ResumeLayout(False)
         Me.PCGeneral.PerformLayout()
+        CType(Me.LEOVHCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEUOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureEditIcon.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEOVH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -452,7 +455,6 @@ Partial Class FormMasterOVHSingle
         CType(Me.GCPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEOVHCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
