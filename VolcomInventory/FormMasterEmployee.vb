@@ -16,6 +16,12 @@
         GCEmployee.DataSource = data
     End Sub
 
+    Sub viewEmployeeAge(ByVal cond_param As String, ByVal date_param As String)
+        Dim query As String = "CALL view_employee_age('" + cond_param + "', '2', '" + date_param + "')"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCEmployee.DataSource = data
+    End Sub
+
     Private Sub FormMasterEmployee_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewEmployee("-1")
     End Sub

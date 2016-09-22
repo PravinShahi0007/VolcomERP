@@ -24,11 +24,18 @@ Partial Class FormMasterEmployeeCustom
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPAge = New DevExpress.XtraTab.XtraTabPage()
+        Me.BtnViewAge = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEAge = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCCustomView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCCustomView.SuspendLayout()
         Me.XtpContract.SuspendLayout()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPAge.SuspendLayout()
+        CType(Me.DEAge.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEAge.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCCustomView
@@ -39,7 +46,7 @@ Partial Class FormMasterEmployeeCustom
         Me.XTCCustomView.SelectedTabPage = Me.XtpContract
         Me.XTCCustomView.Size = New System.Drawing.Size(408, 106)
         Me.XTCCustomView.TabIndex = 0
-        Me.XTCCustomView.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtpContract})
+        Me.XTCCustomView.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtpContract, Me.XTPAge})
         '
         'XtpContract
         '
@@ -53,7 +60,7 @@ Partial Class FormMasterEmployeeCustom
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(11, 29)
+        Me.DEStart.Location = New System.Drawing.Point(11, 28)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -65,7 +72,7 @@ Partial Class FormMasterEmployeeCustom
         '
         'BtnView
         '
-        Me.BtnView.Location = New System.Drawing.Point(320, 29)
+        Me.BtnView.Location = New System.Drawing.Point(320, 28)
         Me.BtnView.LookAndFeel.SkinName = "Blue"
         Me.BtnView.Name = "BtnView"
         Me.BtnView.Size = New System.Drawing.Size(75, 20)
@@ -74,11 +81,50 @@ Partial Class FormMasterEmployeeCustom
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(11, 10)
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 9)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl3.TabIndex = 8897
         Me.LabelControl3.Text = "Date"
+        '
+        'XTPAge
+        '
+        Me.XTPAge.Controls.Add(Me.BtnViewAge)
+        Me.XTPAge.Controls.Add(Me.DEAge)
+        Me.XTPAge.Controls.Add(Me.LabelControl1)
+        Me.XTPAge.Name = "XTPAge"
+        Me.XTPAge.Size = New System.Drawing.Size(402, 78)
+        Me.XTPAge.Text = "Age Review"
+        '
+        'BtnViewAge
+        '
+        Me.BtnViewAge.Location = New System.Drawing.Point(320, 28)
+        Me.BtnViewAge.LookAndFeel.SkinName = "Blue"
+        Me.BtnViewAge.Name = "BtnViewAge"
+        Me.BtnViewAge.Size = New System.Drawing.Size(75, 20)
+        Me.BtnViewAge.TabIndex = 8903
+        Me.BtnViewAge.Text = "View"
+        '
+        'DEAge
+        '
+        Me.DEAge.EditValue = Nothing
+        Me.DEAge.Location = New System.Drawing.Point(11, 28)
+        Me.DEAge.Name = "DEAge"
+        Me.DEAge.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEAge.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEAge.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEAge.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEAge.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEAge.Size = New System.Drawing.Size(303, 20)
+        Me.DEAge.TabIndex = 8902
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(11, 9)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl1.TabIndex = 8901
+        Me.LabelControl1.Text = "Date"
         '
         'FormMasterEmployeeCustom
         '
@@ -97,6 +143,10 @@ Partial Class FormMasterEmployeeCustom
         Me.XtpContract.PerformLayout()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPAge.ResumeLayout(False)
+        Me.XTPAge.PerformLayout()
+        CType(Me.DEAge.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEAge.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -106,4 +156,8 @@ Partial Class FormMasterEmployeeCustom
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents XTPAge As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents BtnViewAge As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEAge As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
 End Class

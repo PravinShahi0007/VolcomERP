@@ -4632,4 +4632,11 @@ Module Common
         End If
         Return ret_var
     End Function
+
+    Public Function GetCurrentAge(ByVal dob As Date, ByVal start As Date) As Integer
+        Dim age As Integer
+        age = start.Year - dob.Year
+        If (dob > start.AddYears(-age)) Then age -= 1
+        Return age
+    End Function
 End Module
