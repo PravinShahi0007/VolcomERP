@@ -606,7 +606,7 @@ Partial Class FormMasterEmployee
         '
         'BAccept
         '
-        Me.BAccept.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BAccept.Appearance.BackColor = System.Drawing.SystemColors.Highlight
         Me.BAccept.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BAccept.Appearance.ForeColor = System.Drawing.Color.White
         Me.BAccept.Appearance.Options.UseBackColor = True
