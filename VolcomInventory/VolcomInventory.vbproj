@@ -465,6 +465,24 @@
     <Compile Include="FormEmpAttn.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpAttnInd.Designer.vb">
+      <DependentUpon>FormEmpAttnInd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttnInd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpAttnIndView.Designer.vb">
+      <DependentUpon>FormEmpAttnIndView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttnIndView.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpAttnSum.Designer.vb">
+      <DependentUpon>FormEmpAttnSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttnSum.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpCalendar.Designer.vb">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </Compile>
@@ -501,6 +519,12 @@
     <Compile Include="FormEmpHoliday.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpHolidayDet.Designer.vb">
+      <DependentUpon>FormEmpHolidayDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpHolidayDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpInitialize.Designer.vb">
       <DependentUpon>FormEmpInitialize.vb</DependentUpon>
     </Compile>
@@ -518,6 +542,42 @@
     </Compile>
     <Compile Include="FormEmpLeaveDet.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpSchedule.Designer.vb">
+      <DependentUpon>FormEmpSchedule.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpSchedule.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpScheduleBulkSet.Designer.vb">
+      <DependentUpon>FormEmpScheduleBulkSet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpScheduleBulkSet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpScheduleView.Designer.vb">
+      <DependentUpon>FormEmpScheduleView.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpScheduleView.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpScheduleViewSet.Designer.vb">
+      <DependentUpon>FormEmpScheduleViewSet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpScheduleViewSet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpShift.Designer.vb">
+      <DependentUpon>FormEmpShift.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpShift.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpShiftDet.Designer.vb">
+      <DependentUpon>FormEmpShiftDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpShiftDet.vb">
+    <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpReview.Designer.vb">
       <DependentUpon>FormEmpReview.vb</DependentUpon>
@@ -3633,6 +3693,12 @@
     <Compile Include="FormMasterCompany.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportEmpAttnInd.Designer.vb">
+      <DependentUpon>ReportEmpAttnInd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpAttnInd.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGAdjIn.Designer.vb">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
     </Compile>
@@ -4384,6 +4450,15 @@
     <EmbeddedResource Include="FormEmpAttn.resx">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttnInd.resx">
+      <DependentUpon>FormEmpAttnInd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttnIndView.resx">
+      <DependentUpon>FormEmpAttnIndView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttnSum.resx">
+      <DependentUpon>FormEmpAttnSum.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </EmbeddedResource>
@@ -4402,6 +4477,9 @@
     <EmbeddedResource Include="FormEmpHoliday.resx">
       <DependentUpon>FormEmpHoliday.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpHolidayDet.resx">
+      <DependentUpon>FormEmpHolidayDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpInitialize.resx">
       <DependentUpon>FormEmpInitialize.vb</DependentUpon>
     </EmbeddedResource>
@@ -4410,6 +4488,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeaveDet.resx">
       <DependentUpon>FormEmpLeaveDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpSchedule.resx">
+      <DependentUpon>FormEmpSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpScheduleBulkSet.resx">
+      <DependentUpon>FormEmpScheduleBulkSet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpScheduleView.resx">
+      <DependentUpon>FormEmpScheduleView.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpScheduleViewSet.resx">
+      <DependentUpon>FormEmpScheduleViewSet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpShift.resx">
+      <DependentUpon>FormEmpShift.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpShiftDet.resx">
+      <DependentUpon>FormEmpShiftDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpReview.resx">
       <DependentUpon>FormEmpReview.vb</DependentUpon>
@@ -6409,6 +6505,9 @@
     <EmbeddedResource Include="FormMasterCompany.resx">
       <DependentUpon>FormMasterCompany.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpAttnInd.resx">
+      <DependentUpon>ReportEmpAttnInd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGAdjIn.resx">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
