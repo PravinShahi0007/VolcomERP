@@ -302,7 +302,7 @@
                     For i As Integer = 0 To GVListPurchase.RowCount - 1
                         If Not GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString = "" Then
                             'safe
-                            query = String.Format("INSERT INTO tb_prod_order_wo_det(id_prod_order_wo,id_prod_order_det,prod_order_wo_det_price,prod_order_wo_det_qty,prod_order_wo_det_note) VALUES('{0}','{1}','{2}','{3}','{4}')", id_wo, GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString, GVListPurchase.GetRowCellValue(i, "estimate_cost").ToString, GVListPurchase.GetRowCellValue(i, "prod_order_qty").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString)
+                            query = String.Format("INSERT INTO tb_prod_order_wo_det(id_prod_order_wo,id_prod_order_det,prod_order_wo_det_price,prod_order_wo_det_qty,prod_order_wo_det_note) VALUES('{0}','{1}','{2}','{3}','{4}')", id_wo, GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "estimate_cost").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "prod_order_qty").ToString), GVListPurchase.GetRowCellValue(i, "note").ToString)
                             execute_non_query(query, True, "", "", "", "")
                         End If
                     Next
@@ -338,7 +338,7 @@
                     For i As Integer = 0 To GVListPurchase.RowCount - 1
                         If Not GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString = "" Then
                             'safe
-                            query = String.Format("INSERT INTO tb_prod_order_wo_det(id_prod_order_wo,id_prod_order_det,prod_order_wo_det_price,prod_order_wo_det_qty,prod_order_wo_det_note) VALUES('{0}','{1}','{2}','{3}','{4}')", id_wo_new, GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString, GVListPurchase.GetRowCellValue(i, "estimate_cost").ToString, GVListPurchase.GetRowCellValue(i, "prod_order_qty").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString)
+                            query = String.Format("INSERT INTO tb_prod_order_wo_det(id_prod_order_wo,id_prod_order_det,prod_order_wo_det_price,prod_order_wo_det_qty,prod_order_wo_det_note) VALUES('{0}','{1}','{2}','{3}','{4}')", id_wo_new, GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "estimate_cost").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "prod_order_qty").ToString), GVListPurchase.GetRowCellValue(i, "note").ToString)
                             execute_non_query(query, True, "", "", "", "")
                         End If
                     Next
