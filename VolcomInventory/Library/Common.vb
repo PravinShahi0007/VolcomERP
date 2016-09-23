@@ -3277,7 +3277,10 @@ Module Common
 
     '----------------NOTIF------------
     Sub playNotify()
-        My.Computer.Audio.Play(Application.StartupPath + "\notify.wav")
+        Try
+            My.Computer.Audio.Play(Application.StartupPath + "\notify.wav")
+        Catch ex As Exception
+        End Try
     End Sub
 
     Sub showNotify(ByVal title As String, ByVal content As String, ByVal id_type As String)
@@ -4631,5 +4634,12 @@ Module Common
             ret_var = execute_query(query, 0, True, "", "", "", "")
         End If
         Return ret_var
+    End Function
+
+    Public Function GetCurrentAge(ByVal dob As Date, ByVal start As Date) As Integer
+        Dim age As Integer
+        age = start.Year - dob.Year
+        If (dob > start.AddYears(-age)) Then age -= 1
+        Return age
     End Function
 End Module

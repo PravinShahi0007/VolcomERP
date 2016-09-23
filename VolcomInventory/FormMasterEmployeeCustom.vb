@@ -19,5 +19,18 @@
         'date now
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEStart.EditValue = data_dt.Rows(0)("dt")
+        DEAge.EditValue = data_dt.Rows(0)("dt")
+    End Sub
+
+    Private Sub BtnViewAge_Click(sender As Object, e As EventArgs) Handles BtnViewAge.Click
+        Dim period As String = DateTime.Parse(DEAge.EditValue.ToString).ToString("yyyy-MM-dd")
+        If period = "" Then
+            stopCustom("Date can't blank !")
+        Else
+            Close()
+            FormMasterEmployee.SplashScreenManager1.ShowWaitForm()
+            FormMasterEmployee.viewEmployeeAge("-1", period)
+            FormMasterEmployee.SplashScreenManager1.CloseWaitForm()
+        End If
     End Sub
 End Class

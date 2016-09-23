@@ -322,15 +322,14 @@
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("ovh_cat", GVOVH.GetFocusedRowCellValue("ovh_cat").ToString)
 
                         If GVOVHPrice.GetFocusedRowCellValue("id_currency").ToString = "1" Then
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", GVOVHPrice.GetFocusedRowCellValue("ovh_price") * TEQty.EditValue)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", bom_price)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", bom_price)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", bom_price * component_qty)
                         Else
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", TEKurs.EditValue * GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", GVOVHPrice.GetFocusedRowCellValue("ovh_price") * TEQty.EditValue * TEKurs.EditValue)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", bom_price)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", bom_price * kurs)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", bom_price * component_qty * kurs)
                         End If
-
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("is_ovh_main", is_ovh_main)
                         FormBOMDesignSingle.GCBomDetOvh.RefreshDataSource()
                         FormBOMDesignSingle.GVBomDetOvh.RefreshData()
@@ -370,13 +369,13 @@
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("uom", GVOVH.GetFocusedRowCellValue("uom").ToString)
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("ovh_cat", GVOVH.GetFocusedRowCellValue("ovh_cat").ToString)
                         If GVOVHPrice.GetFocusedRowCellValue("id_currency").ToString = "1" Then
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", GVOVHPrice.GetFocusedRowCellValue("ovh_price") * TEQty.EditValue)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", bom_price)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", bom_price)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", bom_price * component_qty)
                         Else
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", TEKurs.EditValue * GVOVHPrice.GetFocusedRowCellValue("ovh_price"))
-                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", GVOVHPrice.GetFocusedRowCellValue("ovh_price") * TEQty.EditValue * TEKurs.EditValue)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("price", bom_price)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("unit_price", bom_price * kurs)
+                            FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("total", bom_price * component_qty * kurs)
                         End If
                         FormBOMDesignSingle.GVBomDetOvh.SetFocusedRowCellValue("is_ovh_main", is_ovh_main)
                         FormBOMDesignSingle.GVBomDetOvh.CloseEditor()

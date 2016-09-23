@@ -42,6 +42,7 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnDegree = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnEmployeeDOB = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAge = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnAgeUnb = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnAddress = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnBPJSSehat = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnBPJSTK = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -104,7 +105,7 @@ Partial Class FormMasterEmployee
         Me.GVEmployee.Appearance.HeaderPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVEmployee.Appearance.HeaderPanel.Options.UseFont = True
         Me.GVEmployee.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandGENERALNew, Me.GridBandGeneral, Me.gridBandDependent, Me.gridBandSalary, Me.gridBandContact})
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.BandedGridColumnLevel, Me.BandedGridColumnReligion, Me.BandedGridColumnEmployeeStatus, Me.BandedGridColumnJoinDate, Me.BandedGridColumnDegree, Me.BandedGridColumnEmployeeDOB, Me.BandedGridColumnAge, Me.BandedGridColumnAddress, Me.BandedGridColumnBPJSTK, Me.BandedGridColumnBPJSSehat, Me.BandedGridColumnnpwp, Me.BandedGridColumnMrgStatus, Me.BandedGridColumnHusband, Me.BandedGridColumnWife, Me.BandedGridColumnChild1, Me.BandedGridColumnChild2, Me.BandedGridColumnChild3, Me.BandedGridColumnPhon, Me.BandedGridColumnMobilePhone, Me.BandedGridColumnPhoneExt, Me.BandedGridColumnLocaleM, Me.BandedGridColumnExternalEm, Me.BandedGridColumnOthEm, Me.BandedGridColumnPosition, Me.BandedGridColumnActiveStatus, Me.BandedGridColumnLength, Me.GridColumnPic, Me.BandedGridColumnBasicSalary, Me.BandedGridColumnAllowJob, Me.BandedGridColumnAllowMeal, Me.BandedGridColumnAllowTrans, Me.BandedGridColumnAllowHouse, Me.BandedGridColumnAllowCar, Me.BandedGridColumnStartPeriod, Me.BandedGridColumnEndPeriod})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.BandedGridColumnLevel, Me.BandedGridColumnReligion, Me.BandedGridColumnEmployeeStatus, Me.BandedGridColumnJoinDate, Me.BandedGridColumnDegree, Me.BandedGridColumnEmployeeDOB, Me.BandedGridColumnAge, Me.BandedGridColumnAddress, Me.BandedGridColumnBPJSTK, Me.BandedGridColumnBPJSSehat, Me.BandedGridColumnnpwp, Me.BandedGridColumnMrgStatus, Me.BandedGridColumnHusband, Me.BandedGridColumnWife, Me.BandedGridColumnChild1, Me.BandedGridColumnChild2, Me.BandedGridColumnChild3, Me.BandedGridColumnPhon, Me.BandedGridColumnMobilePhone, Me.BandedGridColumnPhoneExt, Me.BandedGridColumnLocaleM, Me.BandedGridColumnExternalEm, Me.BandedGridColumnOthEm, Me.BandedGridColumnPosition, Me.BandedGridColumnActiveStatus, Me.BandedGridColumnLength, Me.GridColumnPic, Me.BandedGridColumnBasicSalary, Me.BandedGridColumnAllowJob, Me.BandedGridColumnAllowMeal, Me.BandedGridColumnAllowTrans, Me.BandedGridColumnAllowHouse, Me.BandedGridColumnAllowCar, Me.BandedGridColumnStartPeriod, Me.BandedGridColumnEndPeriod, Me.BandedGridColumnAgeUnb})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.GroupCount = 1
         Me.GVEmployee.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Count, "employee_code", Me.GridColumn2, "Sub Total : {0}")})
@@ -188,6 +189,7 @@ Partial Class FormMasterEmployee
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnDegree)
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnEmployeeDOB)
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnAge)
+        Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnAgeUnb)
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnAddress)
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnBPJSSehat)
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnBPJSTK)
@@ -195,7 +197,7 @@ Partial Class FormMasterEmployee
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnMrgStatus)
         Me.GridBandGeneral.Name = "GridBandGeneral"
         Me.GridBandGeneral.VisibleIndex = 1
-        Me.GridBandGeneral.Width = 1636
+        Me.GridBandGeneral.Width = 1711
         '
         'GridColumn3
         '
@@ -312,6 +314,15 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnAge.FieldName = "age"
         Me.BandedGridColumnAge.Name = "BandedGridColumnAge"
         Me.BandedGridColumnAge.Visible = True
+        '
+        'BandedGridColumnAgeUnb
+        '
+        Me.BandedGridColumnAgeUnb.Caption = "Umur"
+        Me.BandedGridColumnAgeUnb.FieldName = "age_unb"
+        Me.BandedGridColumnAgeUnb.Name = "BandedGridColumnAgeUnb"
+        Me.BandedGridColumnAgeUnb.UnboundExpression = "Floor(DateDiffMonth([employee_dob], LocalDateTimeNow()) / 12)"
+        Me.BandedGridColumnAgeUnb.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.BandedGridColumnAgeUnb.Visible = True
         '
         'BandedGridColumnAddress
         '
@@ -595,7 +606,7 @@ Partial Class FormMasterEmployee
         '
         'BAccept
         '
-        Me.BAccept.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BAccept.Appearance.BackColor = System.Drawing.SystemColors.Highlight
         Me.BAccept.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BAccept.Appearance.ForeColor = System.Drawing.Color.White
         Me.BAccept.Appearance.Options.UseBackColor = True
@@ -687,13 +698,14 @@ Partial Class FormMasterEmployee
     Friend WithEvents BandedGridColumnAllowHouse As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnAllowCar As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
-    Friend WithEvents gridBandGENERALNew As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents GridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnStartPeriod As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnEndPeriod As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BAccept As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents gridBandGENERALNew As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents GridBandGeneral As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnAgeUnb As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBandDependent As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandContact As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BAccept As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class
