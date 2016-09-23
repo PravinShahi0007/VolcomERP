@@ -238,6 +238,7 @@
                 act_load()
             Else 'edit
                 'update default bom
+                MsgBox("c")
                 query = "UPDATE "
                 query += " tb_bom bom "
                 query += " INNER JOIN tb_m_product m_p ON m_p.id_product = bom.id_product"
