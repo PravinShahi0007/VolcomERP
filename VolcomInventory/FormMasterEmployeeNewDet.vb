@@ -417,12 +417,17 @@
     End Sub
 
     Private Sub DEDOB_EditValueChanged(sender As Object, e As EventArgs) Handles DEDOB.EditValueChanged
+        Cursor = Cursors.WaitCursor
         Dim age As Long = 0
         Try
-            age = DateDiff(DateInterval.Year, DEDOB.EditValue, data_dt.Rows(0)("dt"))
+            Dim period As String = DateTime.Parse(DEDOB.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim query As String = "SELECT TIMESTAMPDIFF(YEAR,'" + period + "', DATE(NOW())) AS `age`"
+            age = execute_query(query, 0, True, "", "", "", "")
+            'age = DateDiff(DateInterval.Year, DEDOB.EditValue, data_dt.Rows(0)("dt"))
         Catch ex As Exception
         End Try
         TxtAge.Text = age.ToString + " years old"
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub LEMarriageStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LEMarriageStatus.EditValueChanged
