@@ -38,9 +38,10 @@ Partial Class FormEmpAttnSum
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrintSum = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.DEUntilSum = New DevExpress.XtraEditors.DateEdit()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -91,6 +92,7 @@ Partial Class FormEmpAttnSum
         CType(Me.GVSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,7 +118,7 @@ Partial Class FormEmpAttnSum
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPMonthly
-        Me.XtraTabControl1.Size = New System.Drawing.Size(823, 328)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1006, 328)
         Me.XtraTabControl1.TabIndex = 0
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMonthly, Me.XTPD2D})
         '
@@ -125,7 +127,7 @@ Partial Class FormEmpAttnSum
         Me.XTPMonthly.Controls.Add(Me.GCSum)
         Me.XTPMonthly.Controls.Add(Me.PanelControl2)
         Me.XTPMonthly.Name = "XTPMonthly"
-        Me.XTPMonthly.Size = New System.Drawing.Size(817, 300)
+        Me.XTPMonthly.Size = New System.Drawing.Size(1000, 300)
         Me.XTPMonthly.Text = "Summary"
         '
         'GCSum
@@ -134,7 +136,7 @@ Partial Class FormEmpAttnSum
         Me.GCSum.Location = New System.Drawing.Point(0, 38)
         Me.GCSum.MainView = Me.GVSum
         Me.GCSum.Name = "GCSum"
-        Me.GCSum.Size = New System.Drawing.Size(817, 262)
+        Me.GCSum.Size = New System.Drawing.Size(1000, 262)
         Me.GCSum.TabIndex = 8
         Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
         '
@@ -182,6 +184,8 @@ Partial Class FormEmpAttnSum
         '
         'GridColumn33
         '
+        Me.GridColumn33.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn33.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn33.Caption = "Working Minutes"
         Me.GridColumn33.FieldName = "work_hour"
         Me.GridColumn33.Name = "GridColumn33"
@@ -192,6 +196,8 @@ Partial Class FormEmpAttnSum
         '
         'GridColumn34
         '
+        Me.GridColumn34.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn34.Caption = "Actual Working Minutes"
         Me.GridColumn34.FieldName = "actual_work_hour"
         Me.GridColumn34.Name = "GridColumn34"
@@ -202,6 +208,8 @@ Partial Class FormEmpAttnSum
         '
         'GridColumn35
         '
+        Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn35.Caption = "Late"
         Me.GridColumn35.FieldName = "late"
         Me.GridColumn35.Name = "GridColumn35"
@@ -212,6 +220,8 @@ Partial Class FormEmpAttnSum
         '
         'GridColumn36
         '
+        Me.GridColumn36.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn36.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn36.Caption = "Over"
         Me.GridColumn36.FieldName = "over"
         Me.GridColumn36.Name = "GridColumn36"
@@ -222,6 +232,8 @@ Partial Class FormEmpAttnSum
         '
         'GridColumn37
         '
+        Me.GridColumn37.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn37.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn37.Caption = "Balance"
         Me.GridColumn37.FieldName = "balance"
         Me.GridColumn37.Name = "GridColumn37"
@@ -232,6 +244,8 @@ Partial Class FormEmpAttnSum
         '
         'GridColumn40
         '
+        Me.GridColumn40.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn40.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn40.Caption = "Over Break"
         Me.GridColumn40.FieldName = "over_break"
         Me.GridColumn40.Name = "GridColumn40"
@@ -242,6 +256,8 @@ Partial Class FormEmpAttnSum
         '
         'GridColumn19
         '
+        Me.GridColumn19.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn19.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn19.Caption = "Work days"
         Me.GridColumn19.FieldName = "workday"
         Me.GridColumn19.Name = "GridColumn19"
@@ -251,6 +267,8 @@ Partial Class FormEmpAttnSum
         '
         'GridColumn41
         '
+        Me.GridColumn41.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn41.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn41.Caption = "Work Present (days)"
         Me.GridColumn41.FieldName = "present"
         Me.GridColumn41.Name = "GridColumn41"
@@ -260,9 +278,10 @@ Partial Class FormEmpAttnSum
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.LookUpEdit1)
         Me.PanelControl2.Controls.Add(Me.LEDeptSum)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
-        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl2.Controls.Add(Me.BPrintSum)
         Me.PanelControl2.Controls.Add(Me.DEUntilSum)
         Me.PanelControl2.Controls.Add(Me.Label3)
         Me.PanelControl2.Controls.Add(Me.DEStartSum)
@@ -271,8 +290,17 @@ Partial Class FormEmpAttnSum
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(817, 38)
+        Me.PanelControl2.Size = New System.Drawing.Size(1000, 38)
         Me.PanelControl2.TabIndex = 3
+        '
+        'LookUpEdit1
+        '
+        Me.LookUpEdit1.Location = New System.Drawing.Point(816, 9)
+        Me.LookUpEdit1.Name = "LookUpEdit1"
+        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LookUpEdit1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
+        Me.LookUpEdit1.Size = New System.Drawing.Size(151, 20)
+        Me.LookUpEdit1.TabIndex = 15
         '
         'LEDeptSum
         '
@@ -291,14 +319,14 @@ Partial Class FormEmpAttnSum
         Me.LabelControl1.TabIndex = 13
         Me.LabelControl1.Text = "Departement"
         '
-        'SimpleButton1
+        'BPrintSum
         '
-        Me.SimpleButton1.ImageList = Me.LargeImageCollection
-        Me.SimpleButton1.Location = New System.Drawing.Point(724, 6)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(86, 25)
-        Me.SimpleButton1.TabIndex = 12
-        Me.SimpleButton1.Text = "print"
+        Me.BPrintSum.ImageList = Me.LargeImageCollection
+        Me.BPrintSum.Location = New System.Drawing.Point(724, 6)
+        Me.BPrintSum.Name = "BPrintSum"
+        Me.BPrintSum.Size = New System.Drawing.Size(86, 25)
+        Me.BPrintSum.TabIndex = 12
+        Me.BPrintSum.Text = "print"
         '
         'LargeImageCollection
         '
@@ -381,7 +409,7 @@ Partial Class FormEmpAttnSum
         Me.XTPD2D.Controls.Add(Me.GCSchedule)
         Me.XTPD2D.Controls.Add(Me.PanelControl1)
         Me.XTPD2D.Name = "XTPD2D"
-        Me.XTPD2D.Size = New System.Drawing.Size(817, 300)
+        Me.XTPD2D.Size = New System.Drawing.Size(1000, 300)
         Me.XTPD2D.Text = "Detail"
         '
         'GCSchedule
@@ -390,7 +418,7 @@ Partial Class FormEmpAttnSum
         Me.GCSchedule.Location = New System.Drawing.Point(0, 38)
         Me.GCSchedule.MainView = Me.GVSchedule
         Me.GCSchedule.Name = "GCSchedule"
-        Me.GCSchedule.Size = New System.Drawing.Size(817, 262)
+        Me.GCSchedule.Size = New System.Drawing.Size(1000, 262)
         Me.GCSchedule.TabIndex = 7
         Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
         '
@@ -633,7 +661,7 @@ Partial Class FormEmpAttnSum
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(817, 38)
+        Me.PanelControl1.Size = New System.Drawing.Size(1000, 38)
         Me.PanelControl1.TabIndex = 2
         '
         'LEDept
@@ -717,7 +745,7 @@ Partial Class FormEmpAttnSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(823, 328)
+        Me.ClientSize = New System.Drawing.Size(1006, 328)
         Me.Controls.Add(Me.XtraTabControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -732,6 +760,7 @@ Partial Class FormEmpAttnSum
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -793,7 +822,7 @@ Partial Class FormEmpAttnSum
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LEDeptSum As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrintSum As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DEUntilSum As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label3 As Label
     Friend WithEvents DEStartSum As DevExpress.XtraEditors.DateEdit
@@ -816,4 +845,5 @@ Partial Class FormEmpAttnSum
     Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
 End Class

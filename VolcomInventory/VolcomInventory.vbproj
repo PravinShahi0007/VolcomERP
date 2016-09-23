@@ -3606,6 +3606,12 @@
     <Compile Include="ReportAccountingJournalAdj.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportAttnSum.Designer.vb">
+      <DependentUpon>ReportAttnSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAttnSum.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBOM.Designer.vb">
       <DependentUpon>ReportBOM.vb</DependentUpon>
     </Compile>
@@ -6394,6 +6400,9 @@
     <EmbeddedResource Include="ReportAccountingJournalAdj.resx">
       <DependentUpon>ReportAccountingJournalAdj.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAttnSum.resx">
+      <DependentUpon>ReportAttnSum.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportBOM.resx">
       <DependentUpon>ReportBOM.vb</DependentUpon>
