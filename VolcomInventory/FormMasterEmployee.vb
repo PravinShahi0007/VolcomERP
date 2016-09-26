@@ -116,43 +116,8 @@
     Private Sub BAccept_Click(sender As Object, e As EventArgs) Handles BAccept.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to sync all machine?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            'SplashScreenManager1.ShowWaitForm()
-            'class declare
-            Dim fp_off As New List(Of String)
             Dim fp As New ClassFingerPrint()
-            Dim data_fp As DataTable = fp.get_fp_register()
-
-            'test connection
-            Dim query As String = "SELECT * FROM tb_m_fingerprint"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            Dim conn As Boolean = False
-            For i As Integer = 0 To data.Rows.Count - 1
-                Dim id_fp As String = data.Rows(i)("id_fingerprint").ToString
-                fp.ip = data.Rows(i)("ip").ToString
-                fp.port = data.Rows(i)("port").ToString
-                fp.connect()
-                conn = fp.bIsConnected
-                If Not conn Then
-                    fp.disconnect()
-                    fp_off.Add(id_fp)
-                    'stopCustom("Can't connect machine : " + data.Rows(i)("name").ToString)
-                    'Exit For
-                Else
-                    fp.disconnect()
-                End If
-            Next
-
-
-            If conn Then
-                fp.ip = data_fp.Rows(0)("ip").ToString
-                fp.port = data_fp.Rows(0)("port").ToString
-                fp.download_fp_tmp()
-                fp.download_face_tmp()
-                fp.upload_fp_temp(fp_off)
-                fp.upload_face_tmp(fp_off)
-                SplashScreenManager1.CloseWaitForm()
-                infoCustom("Process completed")
-            End If
+            fp.sync_all()
         End If
     End Sub
 
