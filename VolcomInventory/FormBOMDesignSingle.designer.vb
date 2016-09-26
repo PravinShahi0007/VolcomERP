@@ -58,6 +58,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnCOP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RICECOP = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnTotalCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnKursMat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BSubmitMat = New DevExpress.XtraEditors.SimpleButton()
@@ -73,7 +74,9 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVendPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnKursOVH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -96,9 +99,6 @@ Partial Class FormBOMDesignSingle
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnKursMat = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnKursOVH = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -547,6 +547,18 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnTotalCost.VisibleIndex = 8
         Me.GridColumnTotalCost.Width = 95
         '
+        'GridColumnKursMat
+        '
+        Me.GridColumnKursMat.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKursMat.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursMat.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKursMat.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursMat.Caption = "Kurs"
+        Me.GridColumnKursMat.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKursMat.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnKursMat.FieldName = "kurs"
+        Me.GridColumnKursMat.Name = "GridColumnKursMat"
+        '
         'GridView3
         '
         Me.GridView3.GridControl = Me.GCBomDetMat
@@ -698,6 +710,18 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn19.VisibleIndex = 4
         Me.GridColumn19.Width = 46
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn13.Caption = "Currency"
+        Me.GridColumn13.FieldName = "currency"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 6
+        '
         'GridColumnVendPrice
         '
         Me.GridColumnVendPrice.AppearanceCell.Options.UseTextOptions = True
@@ -711,6 +735,20 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnVendPrice.Name = "GridColumnVendPrice"
         Me.GridColumnVendPrice.Visible = True
         Me.GridColumnVendPrice.VisibleIndex = 7
+        '
+        'GridColumnKursOVH
+        '
+        Me.GridColumnKursOVH.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKursOVH.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursOVH.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKursOVH.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKursOVH.Caption = "Kurs"
+        Me.GridColumnKursOVH.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKursOVH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnKursOVH.FieldName = "kurs"
+        Me.GridColumnKursOVH.Name = "GridColumnKursOVH"
+        Me.GridColumnKursOVH.Visible = True
+        Me.GridColumnKursOVH.VisibleIndex = 8
         '
         'GridColumn20
         '
@@ -951,44 +989,6 @@ Partial Class FormBOMDesignSingle
         Me.BSave.Size = New System.Drawing.Size(70, 33)
         Me.BSave.TabIndex = 10
         Me.BSave.Text = "Save"
-        '
-        'GridColumnKursMat
-        '
-        Me.GridColumnKursMat.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnKursMat.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnKursMat.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnKursMat.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnKursMat.Caption = "Kurs"
-        Me.GridColumnKursMat.DisplayFormat.FormatString = "N2"
-        Me.GridColumnKursMat.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnKursMat.FieldName = "kurs"
-        Me.GridColumnKursMat.Name = "GridColumnKursMat"
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn13.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn13.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn13.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn13.Caption = "Currency"
-        Me.GridColumn13.FieldName = "currency"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 6
-        '
-        'GridColumnKursOVH
-        '
-        Me.GridColumnKursOVH.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnKursOVH.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnKursOVH.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnKursOVH.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnKursOVH.Caption = "Kurs"
-        Me.GridColumnKursOVH.DisplayFormat.FormatString = "N2"
-        Me.GridColumnKursOVH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnKursOVH.FieldName = "kurs"
-        Me.GridColumnKursOVH.Name = "GridColumnKursOVH"
-        Me.GridColumnKursOVH.Visible = True
-        Me.GridColumnKursOVH.VisibleIndex = 8
         '
         'FormBOMDesignSingle
         '
