@@ -38,7 +38,7 @@
     End Sub
 
 
-    Public Sub get_attlog()
+    Public Sub get_attlog(ByVal id_machine As String)
         disable_fp()
 
         Dim sdwEnrollNumber As String = ""
@@ -59,7 +59,7 @@
         If axCZKEM1.ReadGeneralLogData(iMachineNumber) Then 'read all the attendance records to the memory
             'get records from the memory
             'insert to database
-            Dim query As String = "INSERT INTO tb_emp_attn(id_employee,datetime,type_log,scan_method) VALUES"
+            Dim query As String = "INSERT INTO tb_emp_attn(employee_code,datetime,type_log,scan_method,id_fingerprint) VALUES"
             Dim query_val As String = ""
             Dim penanda As Integer = 0
             While axCZKEM1.SSR_GetGeneralLogData(iMachineNumber, sdwEnrollNumber, idwVerifyMode, idwInOutMode, idwYear, idwMonth, idwDay, idwHour, idwMinute, idwSecond, idwWorkcode)
@@ -67,7 +67,7 @@
                 If Not penanda = 1 Then
                     query_val += ","
                 End If
-                query_val += "('" + get_emp(sdwEnrollNumber.ToString, "1") + "','" & idwYear.ToString() & "-" + idwMonth.ToString() & "-" & idwDay.ToString() & " " & idwHour.ToString() & ":" & idwMinute.ToString() & ":" & idwSecond.ToString() & "','" & idwInOutMode.ToString() & "','" & idwVerifyMode.ToString() & "')"
+                query_val += "('" & sdwEnrollNumber.ToString & "','" & idwYear.ToString() & "-" + idwMonth.ToString() & "-" & idwDay.ToString() & " " & idwHour.ToString() & ":" & idwMinute.ToString() & ":" & idwSecond.ToString() & "','" & idwInOutMode.ToString() & "','" & idwVerifyMode.ToString() & "','" & id_machine & "')"
             End While
             If penanda > 0 Then
                 query += query_val
