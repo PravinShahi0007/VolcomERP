@@ -577,7 +577,7 @@
       <DependentUpon>FormEmpShiftDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpShiftDet.vb">
-    <SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpReview.Designer.vb">
       <DependentUpon>FormEmpReview.vb</DependentUpon>
@@ -4271,12 +4271,6 @@
     <Compile Include="WaitForm1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WaitForm2.Designer.vb">
-      <DependentUpon>WaitForm2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="WaitForm2.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="XtraFormViewFGWHAlloc.Designer.vb">
       <DependentUpon>XtraFormViewFGWHAlloc.vb</DependentUpon>
     </Compile>
@@ -6884,9 +6878,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WaitForm2.resx">
-      <DependentUpon>WaitForm2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XtraFormViewFGWHAlloc.resx">
       <DependentUpon>XtraFormViewFGWHAlloc.vb</DependentUpon>
