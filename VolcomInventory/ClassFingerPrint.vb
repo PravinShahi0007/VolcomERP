@@ -480,6 +480,7 @@
         FormMain.SplashScreenManager1.ShowWaitForm()
         'class declare
         Dim fp_off As New List(Of String)
+        Dim fp_off_label As New List(Of String)
         Dim fp As New ClassFingerPrint()
         Dim data_fp As DataTable = fp.get_fp_register()
 
@@ -496,6 +497,7 @@
             If Not conn Then
                 fp.disconnect()
                 fp_off.Add(id_fp)
+                fp_off_label.Add(data.Rows(i)("name").ToString + "/" + data.Rows(i)("ip").ToString)
             Else
                 fp.disconnect()
             End If
@@ -510,7 +512,15 @@
             fp.upload_fp_temp(fp_off)
             fp.upload_face_tmp(fp_off)
             FormMain.SplashScreenManager1.CloseWaitForm()
-            infoCustom("Process completed")
+            If fp_off_label.Count > 0 Then
+                Dim fp_info As String = ""
+                For j As Integer = 0 To fp_off_label.Count - 1
+                    fp_info += "- " + fp_off_label(j) + System.Environment.NewLine
+                Next
+                infoCustom("Synchronize completed. Error synchronize machine : " + System.Environment.NewLine + fp_info)
+            Else
+                infoCustom("Synchronize completed")
+            End If
         End If
     End Sub
 End Class
