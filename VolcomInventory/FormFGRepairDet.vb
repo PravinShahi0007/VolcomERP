@@ -13,6 +13,7 @@
     Public id_wh_rack_to As String = "-1"
     Public id_wh_drawer_to As String = "-1"
     Public dt As New DataTable
+    Dim is_delete_scan As Boolean = False
 
     Private Sub FormFGRepairDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -21,7 +22,87 @@
     End Sub
 
     Sub actionLoad()
+        If action = "ins" Then
+            BtnPrint.Enabled = False
+            BtnAttachment.Enabled = False
+            BMark.Enabled = False
+            DDBPrint.Enabled = False
+            DEForm.Text = view_date(0)
+            TxtCodeCompFrom.Focus()
+        ElseIf action = "upd" Then
+            XTPSummary.PageVisible = True
+            GVScan.OptionsBehavior.AutoExpandAllGroups = True
+            BMark.Enabled = True
+            DDBPrint.Enabled = True
 
+            'query view based on edit id's
+            Dim query_c As ClassFGRepair = New ClassFGRepair()
+            Dim query As String = query_c.queryMain("AND r.id_fg_repair='" + id_fg_repair + "' ", "2")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            id_fg_repair = data.Rows(0)("id_fg_repair").ToString
+            id_report_status = data.Rows(0)("id_report_status").ToString
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            TxtNumber.Text = data.Rows(0)("fg_repair_number").ToString
+            DEForm.Text = view_date_from(data.Rows(0)("fg_repair_datex").ToString, 0)
+            MENote.Text = data.Rows(0)("fg_repair_note").ToString
+            id_comp_from = data.Rows(0)("id_comp_from").ToString
+            id_comp_to = data.Rows(0)("id_comp_to").ToString
+            TxtCodeCompFrom.Text = data.Rows(0)("comp_number_from").ToString
+            TxtNameCompFrom.Text = data.Rows(0)("comp_name_from").ToString
+            TxtCodeCompTo.Text = data.Rows(0)("comp_number_to").ToString
+            TxtNameCompTo.Text = data.Rows(0)("comp_name_to").ToString
+            setDefaultDrawerFrom()
+            setDefaultDrawerTo()
+
+            'detail2
+            viewDetail()
+            allow_status()
+
+            If id_pre = "1" Then
+                prePrinting()
+                Close()
+            ElseIf id_pre = "2" Then
+                Printing()
+                Close()
+            End If
+        End If
+    End Sub
+
+    Sub allow_status()
+        If check_edit_report_status(id_report_status, "91", id_fg_repair) Then
+            MENote.Enabled = True
+            BtnSave.Enabled = True
+        Else
+            MENote.Enabled = False
+            BtnSave.Enabled = False
+        End If
+        PanelNavBarcode.Enabled = False
+        TxtCodeCompFrom.Enabled = False
+        TxtCodeCompTo.Enabled = False
+        BtnBrowseFrom.Enabled = False
+        BtnBrowseTo.Enabled = False
+        GridColumnQty.OptionsColumn.AllowEdit = False
+        GVScan.OptionsCustomization.AllowGroup = True
+
+        'ATTACH
+        If check_attach_report_status(id_report_status, "91", id_fg_repair) Then
+            BtnAttachment.Enabled = True
+        Else
+            BtnAttachment.Enabled = False
+        End If
+
+        If check_pre_print_report_status(id_report_status) Then
+            BtnPrePrinting.Enabled = True
+        Else
+            BtnPrePrinting.Enabled = False
+        End If
+
+        If check_print_report_status(id_report_status) Then
+            BtnPrint.Enabled = True
+        Else
+            BtnPrint.Enabled = False
+        End If
+        TxtNumber.Focus()
     End Sub
 
     Sub viewReportStatus()
@@ -149,16 +230,21 @@
     End Sub
 
     Private Sub BScan_Click(sender As Object, e As EventArgs) Handles BScan.Click
-        GVScan.OptionsCustomization.AllowSort = False
+        disableControl()
+        is_delete_scan = False
         TxtScannedCode.Visible = True
         LblScannedCode.Visible = True
+        TxtScannedCode.Focus()
+    End Sub
+
+    Sub disableControl()
+        GVScan.OptionsCustomization.AllowSort = False
         BScan.Enabled = False
         BStop.Enabled = True
         BDelete.Enabled = False
         GroupGeneralHeader.Enabled = False
         GroupControl3.Enabled = False
         PanelControl3.Enabled = False
-        TxtScannedCode.Focus()
     End Sub
 
     Private Sub BStop_Click(sender As Object, e As EventArgs) Handles BStop.Click
@@ -176,21 +262,51 @@
     End Sub
 
     Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BDelete.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            GVScan.DeleteSelectedRows()
-            GCScan.RefreshDataSource()
-            GVScan.RefreshData()
-        End If
+        disableControl()
+        is_delete_scan = True
+        TxtScannedCode.Visible = True
+        LblScannedCode.Visible = True
+        TxtScannedCode.Focus()
+        'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        'If confirm = Windows.Forms.DialogResult.Yes Then
+        '    GVScan.DeleteSelectedRows()
+        '    GCScan.RefreshDataSource()
+        '    GVScan.RefreshData()
+        'End If
     End Sub
 
     Private Sub TxtScannedCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScannedCode.KeyDown
         If e.KeyCode = Keys.Enter And TxtScannedCode.Text.Length > 0 Then
             Cursor = Cursors.WaitCursor
-            makeSafeGV(GVScan)
-            checkAvailable(TxtScannedCode.Text)
-            TxtScannedCode.Text = ""
-            TxtScannedCode.Focus()
+            If Not is_delete_scan Then 'scan
+                makeSafeGV(GVScan)
+                checkAvailable(TxtScannedCode.Text)
+                TxtScannedCode.Text = ""
+                TxtScannedCode.Focus()
+            Else 'delete scan
+                GVScan.ActiveFilterString = "[code]='" + TxtScannedCode.Text + "'"
+                If GVScan.RowCount <= 0 Then
+                    stopCustom("Code not found.")
+                    GVScan.ActiveFilterString = ""
+                    TxtScannedCode.Text = ""
+                    TxtScannedCode.Focus()
+                Else
+                    If action = "ins" Then
+                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            Dim id_pl_prod_order_rec_det_unique As String = GVScan.GetFocusedRowCellValue("id_pl_prod_order_rec_det_unique").ToString
+                            GVScan.DeleteRow(GVScan.FocusedRowHandle)
+                            GVScan.ActiveFilterString = ""
+                            GCScan.RefreshDataSource()
+                            GVScan.RefreshData()
+                        Else
+                            GVScan.ActiveFilterString = ""
+                        End If
+                        TxtScannedCode.Text = ""
+                        TxtScannedCode.Focus()
+                    End If
+                End If
+            End If
             Cursor = Cursors.Default
         End If
     End Sub
@@ -228,5 +344,87 @@
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+
+    Private Sub GVScanSum_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVScanSum.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Sub prePrinting()
+        Cursor = Cursors.WaitCursor
+        ReportSamplePLToWH.id_pre = "1"
+        getReport()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub printing()
+        Cursor = Cursors.WaitCursor
+        ReportSamplePLToWH.id_pre = "-1"
+        getReport()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub getReport()
+        'Cursor = Cursors.WaitCursor
+        'ReportSamplePLToWH.id_sample_pl = id_sample_pl
+        'ReportSamplePLToWH.dt = GCItemList.DataSource
+        'Dim Report As New ReportSamplePLToWH()
+
+        '' '... 
+        '' ' creating and saving the view's layout to a new memory stream 
+        'Dim str As System.IO.Stream
+        'str = New System.IO.MemoryStream()
+        'GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        ''Grid Detail
+        'ReportStyleGridview(Report.GVItemList)
+
+        ''Parse val
+        'Report.LabelNumber.Text = TxtNumber.Text
+        'Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+        'Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
+        'Report.LabelCreated.Text = DEForm.Text
+        'Report.LabelNote.Text = MENote.Text
+
+        '' Show the report's preview. 
+        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        'Tool.ShowPreview()
+        'Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Close()
+    End Sub
+
+    Private Sub FormFGRepairDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "91"
+        FormDocumentUpload.id_report = id_fg_repair
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "91"
+        FormReportMark.id_report = id_fg_repair
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        makeSafeGV(GVScan)
+
+
     End Sub
 End Class

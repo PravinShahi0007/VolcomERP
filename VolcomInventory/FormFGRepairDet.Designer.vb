@@ -65,7 +65,21 @@ Partial Class FormFGRepairDet
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCScanSum = New DevExpress.XtraGrid.GridControl()
+        Me.GVScanSum = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BtnPrePrinting = New DevExpress.XtraBars.BarButtonItem()
+        Me.BtnPrint = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,7 +111,11 @@ Partial Class FormFGRepairDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
         CType(Me.TxtScannedCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPSummary.SuspendLayout()
+        CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -583,13 +601,133 @@ Partial Class FormFGRepairDet
         '
         'XTPSummary
         '
+        Me.XTPSummary.Controls.Add(Me.GCScanSum)
         Me.XTPSummary.Name = "XTPSummary"
+        Me.XTPSummary.PageVisible = False
         Me.XTPSummary.Size = New System.Drawing.Size(831, 245)
         Me.XTPSummary.Text = "Summary"
         '
+        'GCScanSum
+        '
+        Me.GCScanSum.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCScanSum.Location = New System.Drawing.Point(0, 0)
+        Me.GCScanSum.MainView = Me.GVScanSum
+        Me.GCScanSum.Name = "GCScanSum"
+        Me.GCScanSum.Size = New System.Drawing.Size(831, 245)
+        Me.GCScanSum.TabIndex = 4
+        Me.GCScanSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScanSum})
+        '
+        'GVScanSum
+        '
+        Me.GVScanSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnQty})
+        Me.GVScanSum.GridControl = Me.GCScanSum
+        Me.GVScanSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}")})
+        Me.GVScanSum.Name = "GVScanSum"
+        Me.GVScanSum.OptionsBehavior.ReadOnly = True
+        Me.GVScanSum.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "No"
+        Me.GridColumn1.FieldName = "no"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 44
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Code"
+        Me.GridColumn3.FieldName = "code"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.Width = 214
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Style"
+        Me.GridColumn4.FieldName = "name"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 516
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Size"
+        Me.GridColumn5.FieldName = "size"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.Width = 66
+        '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 4
+        '
         'PUDD
         '
+        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrePrinting), New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrint)})
+        Me.PUDD.Manager = Me.BarManager1
         Me.PUDD.Name = "PUDD"
+        '
+        'BtnPrePrinting
+        '
+        Me.BtnPrePrinting.Caption = "Pre Printing"
+        Me.BtnPrePrinting.Id = 0
+        Me.BtnPrePrinting.Name = "BtnPrePrinting"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Caption = "Print"
+        Me.BtnPrint.Id = 1
+        Me.BtnPrint.Name = "BtnPrint"
+        '
+        'BarManager1
+        '
+        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager1.Form = Me
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BtnPrePrinting, Me.BtnPrint})
+        Me.BarManager1.MaxItemId = 2
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(859, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 469)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(859, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 469)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(859, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 469)
         '
         'EPForm
         '
@@ -608,6 +746,10 @@ Partial Class FormFGRepairDet
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupGeneralHeader)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.MinimizeBox = False
         Me.Name = "FormFGRepairDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -646,9 +788,14 @@ Partial Class FormFGRepairDet
         Me.PanelNavBarcode.ResumeLayout(False)
         Me.PanelNavBarcode.PerformLayout()
         CType(Me.TxtScannedCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPSummary.ResumeLayout(False)
+        CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -699,4 +846,18 @@ Partial Class FormFGRepairDet
     Friend WithEvents GridColumnStyle As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
+    Friend WithEvents GCScanSum As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVScanSum As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnPrePrinting As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BtnPrint As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
 End Class
