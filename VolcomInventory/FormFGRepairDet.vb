@@ -460,6 +460,49 @@
 
         connection.Close()
         connection.Dispose()
+
+        'get data stock
+        Dim query_stock As String = "call view_stock_fg('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
+        Dim data_stock As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
+        Dim tb1 = data_view.AsEnumerable()
+        Dim tb2 = data_stock.AsEnumerable()
+        Dim query = From table1 In tb1
+                    Group Join table_tmp In tb2 On table1("id_product").ToString Equals table_tmp("id_product").ToString
+                    Into Group
+                    From y1 In Group.DefaultIfEmpty()
+                    Select New With
+                    {
+                        .code = table1.Field(Of String)("code").ToString,
+                        .name = table1.Field(Of String)("name").ToString,
+                        .size = table1.Field(Of String)("size").ToString,
+                        .qty = table1("qty"),
+                        .available_qty = If(y1 Is Nothing, 0, y1("qty_all_product")),
+                        .price = If(y1 Is Nothing, 0, y1("design_price_retail")),
+                        .id_product = If(y1 Is Nothing, 0, y1("id_product")),
+                        .status = If(table1("qty") <= If(y1 Is Nothing, 0, y1("qty_all_product")), "OK", "Can't exceed" + If(y1 Is Nothing, 0, y1("qty_all_product").ToString))
+                    }
+        GCScanSum.DataSource = Nothing
+        GCScanSum.DataSource = query.ToList()
+        GCScanSum.RefreshDataSource()
+        GVScanSum.PopulateColumns()
+        XTPSummary.PageVisible = True
+        XtraTabControl1.SelectedTabPageIndex = 1
+
+        'Customize column
+        GVScanSum.Columns("id_product").Visible = False
+        GVScanSum.Columns("no").VisibleIndex = 0
+        GVScanSum.Columns("code").VisibleIndex = 1
+        GVScanSum.Columns("name").VisibleIndex = 2
+        GVScanSum.Columns("size").VisibleIndex = 3
+        GVScanSum.Columns("qty").VisibleIndex = 4
+        GVScanSum.Columns("available_qty").VisibleIndex = 5
+        GVScanSum.Columns("price").VisibleIndex = 6
+        GVScanSum.Columns("amount").VisibleIndex = 7
+        GVScanSum.Columns("status").VisibleIndex = 8
+        GVScanSum.Columns("price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        GVScanSum.Columns("price").DisplayFormat.FormatString = "{0:n2}"
+        GVScanSum.Columns("amount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        GVScanSum.Columns("amount").DisplayFormat.FormatString = "{0:n2}"
     End Sub
 
 
