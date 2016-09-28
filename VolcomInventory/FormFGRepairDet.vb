@@ -425,6 +425,42 @@
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         makeSafeGV(GVScan)
 
+        'insert to temporary
+        Dim data_temp As DataTable = GCScan.DataSource
+        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+        Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
+        connection.Open()
+        Dim command As MySql.Data.MySqlClient.MySqlCommand = connection.CreateCommand()
+        Dim qry As String = "DROP TABLE IF EXISTS tb_fg_repair_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_fg_repair_temp AS ( SELECT * FROM ("
+        For d As Integer = 0 To data_temp.Rows.Count - 1
+            Dim id_product As String = data_temp.Rows(d)("id_product").ToString
+            Dim id_pl_prod_order_rec_det_unique As String = data_temp.Rows(d)("id_pl_prod_order_rec_det_unique").ToString
+            Dim code As String = data_temp.Rows(d)("product_code").ToString
+            Dim name As String = data_temp.Rows(d)("name").ToString
+            Dim size As String = data_temp.Rows(d)("size").ToString
+            If d > 0 Then
+                qry += "UNION ALL "
+            End If
+            qry += "SELECT '" + id_product + "' AS `id_product`, '" + id_pl_prod_order_rec_det_unique + "' AS `id_pl_prod_order_rec_det_unique`, '" + code + "' AS `code`, '" + name + "' AS `name`, '" + size + "' AS `size`  "
+        Next
+        qry += ") a ); ALTER TABLE tb_fg_repair_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+        command.CommandText = qry
+        command.ExecuteNonQuery()
+        command.Dispose()
+        'Console.WriteLine(qry)
 
+        Dim data_view As New DataTable
+        Dim qry_view As String = "SELECT a.id_product, a.code, a.name, a.size, COUNT(a.id_product) AS `qty` 
+                                FROM tb_fg_repair_temp a 
+                                GROUP BY a.id_product"
+        Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(qry_view, connection)
+        adapter.SelectCommand.CommandTimeout = 300
+        adapter.Fill(data_view)
+        adapter.Dispose()
+
+        connection.Close()
+        connection.Dispose()
     End Sub
+
+
 End Class
