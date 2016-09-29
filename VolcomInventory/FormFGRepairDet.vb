@@ -506,10 +506,51 @@
         ElseIf Not cond_stc Then
             stopCustom("Some item can't exceed qty limit, please see error in column status!")
         Else
+            Dim fg_repair_note As String = MENote.Text.ToString
             If action = "ins" Then 'insert
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Stock qty will be updated after this process. Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    'main query
+                    Dim query As String = "INSERT INTO tb_fg_repair(id_wh_drawer_from, id_wh_drawer_to, fg_repair_number, fg_repair_date, fg_repair_note, id_report_status) 
+                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("27") + "', NOW(), '" + fg_repair_note + "', '1'); SELECT LAST_INSERT_ID(); "
+                    id_fg_repair = execute_query(query, 0, True, "", "", "", "")
+                    increase_inc_sales("27")
 
+                    'insert who prepared
+                    insert_who_prepared("91", id_fg_repair, id_user)
+
+                    'Detail 
+                    Dim jum_ins_j As Integer = 0
+                    Dim query_detail As String = ""
+                    If GVScan.RowCount > 0 Then
+                        query_detail = "INSERT tb_fg_repair_det(id_fg_repair, id_product, id_pl_prod_order_rec_det_unique, fg_repair_det_counting) VALUES "
+                    End If
+                    For j As Integer = 0 To ((GVScan.RowCount - 1) - GetGroupRowCount(GVScan))
+                        Dim id_product = GVScan.GetRowCellValue(j, "id_product").ToString
+                        Dim id_pl_prod_order_rec_det_unique = GVScan.GetRowCellValue(j, "id_pl_prod_order_rec_det_unique").ToString
+                        Dim fg_repair_det_counting As String = GVScan.GetRowCellValue(j, "fg_repair_det_counting").ToString
+
+                        If jum_ins_j > 0 Then
+                            query_detail += ", "
+                        End If
+                        query_detail += "('" + id_fg_repair + "', '" + id_product + "', '" + id_pl_prod_order_rec_det_unique + "', '" + fg_repair_det_counting + "') "
+                        jum_ins_j = jum_ins_j + 1
+                    Next
+                    If jum_ins_j > 0 Then
+                        execute_non_query(query_detail, True, "", "", "", "")
+                    End If
+
+                    'reserved stock
+
+
+                    'refresh data
+                    FormFGRepair.viewData()
+                    FormFGRepair.GVRepair.FocusedRowHandle = find_row(FormFGRepair.GVRepair, "id_fg_repair", id_fg_repair)
+                    action = "upd"
+                    actionLoad()
+                    infoCustom("Document #" + TxtNumber.Text + " was created successfully.")
+                    Cursor = Cursors.Default
                 End If
             Else 'update
 

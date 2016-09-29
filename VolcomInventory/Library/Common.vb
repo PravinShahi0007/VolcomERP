@@ -541,6 +541,7 @@ Module Common
         '21 = SO PRODUCT TRACKER
         '25 = Master Price From Excel
         '26 = Inventory Allocation
+        '27 = repair FG
 
         Dim header_number_x As String
         header_number_x = ""
@@ -599,6 +600,8 @@ Module Common
             header_number_x = combine_header_number(get_opt_sales_field("fg_price_code_head"), Integer.Parse(get_opt_sales_field("fg_price_code_inc")), Integer.Parse(get_opt_sales_field("fg_price_code_digit")))
         ElseIf opt = "26" Then
             header_number_x = combine_header_number(get_opt_sales_field("fg_wh_alloc_code_head"), Integer.Parse(get_opt_sales_field("fg_wh_alloc_code_inc")), Integer.Parse(get_opt_sales_field("fg_wh_alloc_code_digit")))
+        ElseIf opt = "27" Then
+            header_number_x = combine_header_number(get_opt_sales_field("fg_repair_head"), Integer.Parse(get_opt_sales_field("fg_repair_inc")), Integer.Parse(get_opt_sales_field("fg_repair_digit")))
         End If
         Return header_number_x
     End Function
@@ -628,6 +631,7 @@ Module Common
         '21 = SO Product tracker
         '25 = Import Price From Excel
         '26 = inventory allocation
+        '27 = repair FG
 
 
         Dim query As String
@@ -710,6 +714,9 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "26" Then
             query = "UPDATE tb_opt_sales SET fg_wh_alloc_code_inc  = (tb_opt_sales.fg_wh_alloc_code_inc +1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "27" Then
+            query = "UPDATE tb_opt_sales SET fg_repair_inc  = (tb_opt_sales.fg_repair_inc +1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
