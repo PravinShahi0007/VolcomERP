@@ -88,4 +88,11 @@
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
     End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        Try
+            DEUntil.Properties.MinValue = DEStart.EditValue
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class

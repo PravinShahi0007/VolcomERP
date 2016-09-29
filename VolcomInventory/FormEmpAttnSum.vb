@@ -199,4 +199,11 @@
     Private Sub BPrintSum_Click(sender As Object, e As EventArgs) Handles BPrintSum.Click
         getReportSum()
     End Sub
+
+    Private Sub DEStartSum_EditValueChanged(sender As Object, e As EventArgs) Handles DEStartSum.EditValueChanged
+        Try
+            DEUntil.Properties.MinValue = DEStart.EditValue
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class
