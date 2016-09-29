@@ -73,11 +73,11 @@
         Dim shift_name, start_work, end_work, start_break, end_break, start_tolerance, minutes_work, sun, mon, tues, wed, thurs, fri, sat As String
 
         shift_name = TEShiftName.Text
-        start_work = Date.Parse(TEWorkStart.EditValue).ToString("HH:mm:ss")
-        end_work = TEWorkEnd.EditValue.ToString
-        start_break = TEBreakStart.EditValue.ToString
-        end_break = TEBreakEnd.EditValue.ToString
-        start_tolerance = TEWorkStartTol.EditValue.ToString
+        start_work = Date.Parse(TEWorkStart.EditValue.ToString).ToString("HH:mm:ss")
+        end_work = Date.Parse(TEWorkEnd.EditValue.ToString).ToString("HH:mm:ss")
+        start_break = Date.Parse(TEBreakStart.EditValue.ToString).ToString("HH:mm:ss")
+        end_break = Date.Parse(TEBreakEnd.EditValue.ToString).ToString("HH:mm:ss")
+        start_tolerance = Date.Parse(TEWorkStartTol.EditValue.ToString).ToString("HH:mm:ss")
         minutes_work = TEMinutes.EditValue.ToString
         '
         sun = If(CESunday.Checked = True, 1, 0)
