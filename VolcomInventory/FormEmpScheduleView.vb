@@ -55,4 +55,11 @@
         GCSchedule.DataSource = data
         GVSchedule.BestFitColumns()
     End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        Try
+            DEUntil.Properties.MinValue = DEStart.EditValue
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class
