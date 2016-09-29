@@ -135,6 +135,8 @@
 
         If id_mrs = "-1" Then
             'new
+            TEPONumber.Text = header_number_prod("6")
+
             If Not formIsValidInGroup(EPProdOrderMRS, GroupGeneralHeader) Or id_comp_req_to = "-1" Or id_comp_req_from = "-1" Then
                 stopCustom("Please make sure that : " & vbNewLine & "- MRS number is correct" & vbNewLine & "- Request From not blank" & vbNewLine & "- Request To not blank")
             Else
