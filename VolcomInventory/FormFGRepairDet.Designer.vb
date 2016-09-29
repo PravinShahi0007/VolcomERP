@@ -67,12 +67,16 @@ Partial Class FormFGRepairDet
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScanSum = New DevExpress.XtraGrid.GridControl()
         Me.GVScanSum = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNoSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyAvail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BtnPrePrinting = New DevExpress.XtraBars.BarButtonItem()
         Me.BtnPrint = New DevExpress.XtraBars.BarButtonItem()
@@ -83,9 +87,6 @@ Partial Class FormFGRepairDet
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -607,7 +608,6 @@ Partial Class FormFGRepairDet
         '
         Me.XTPSummary.Controls.Add(Me.GCScanSum)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.PageVisible = False
         Me.XTPSummary.Size = New System.Drawing.Size(831, 245)
         Me.XTPSummary.Text = "Summary"
         '
@@ -623,21 +623,21 @@ Partial Class FormFGRepairDet
         '
         'GVScanSum
         '
-        Me.GVScanSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnQty, Me.GridColumnQtyAvail, Me.GridColumn2, Me.GridColumn6, Me.GridColumn7})
+        Me.GVScanSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnQty, Me.GridColumnQtyAvail, Me.GridColumn2, Me.GridColumn6, Me.GridColumnAmount, Me.GridColumnStatus})
         Me.GVScanSum.GridControl = Me.GCScanSum
         Me.GVScanSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "available_qty", Me.GridColumnQtyAvail, "{0:n0}")})
         Me.GVScanSum.Name = "GVScanSum"
         Me.GVScanSum.OptionsBehavior.ReadOnly = True
         Me.GVScanSum.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
+        'GridColumnNoSum
         '
-        Me.GridColumn1.Caption = "No"
-        Me.GridColumn1.FieldName = "no"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 44
+        Me.GridColumnNoSum.Caption = "No"
+        Me.GridColumnNoSum.FieldName = "no"
+        Me.GridColumnNoSum.Name = "GridColumnNoSum"
+        Me.GridColumnNoSum.Visible = True
+        Me.GridColumnNoSum.VisibleIndex = 0
+        Me.GridColumnNoSum.Width = 39
         '
         'GridColumn3
         '
@@ -646,7 +646,7 @@ Partial Class FormFGRepairDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 214
+        Me.GridColumn3.Width = 189
         '
         'GridColumn4
         '
@@ -655,7 +655,7 @@ Partial Class FormFGRepairDet
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
-        Me.GridColumn4.Width = 516
+        Me.GridColumn4.Width = 288
         '
         'GridColumn5
         '
@@ -676,6 +676,7 @@ Partial Class FormFGRepairDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.Width = 67
         '
         'GridColumnQtyAvail
         '
@@ -687,6 +688,46 @@ Partial Class FormFGRepairDet
         Me.GridColumnQtyAvail.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "available_qty", "{0:n0}")})
         Me.GridColumnQtyAvail.Visible = True
         Me.GridColumnQtyAvail.VisibleIndex = 5
+        Me.GridColumnQtyAvail.Width = 79
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Id Product"
+        Me.GridColumn2.FieldName = "id_product"
+        Me.GridColumn2.Name = "GridColumn2"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Price"
+        Me.GridColumn6.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "design_price_retail"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.Width = 112
+        '
+        'GridColumnAmount
+        '
+        Me.GridColumnAmount.Caption = "Amount"
+        Me.GridColumnAmount.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAmount.FieldName = "amount"
+        Me.GridColumnAmount.Name = "GridColumnAmount"
+        Me.GridColumnAmount.UnboundExpression = "[qty] * [design_price_retail]"
+        Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnAmount.Visible = True
+        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.Width = 112
+        '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 8
+        Me.GridColumnStatus.Width = 126
         '
         'PUDD
         '
@@ -751,34 +792,6 @@ Partial Class FormFGRepairDet
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Id Product"
-        Me.GridColumn2.FieldName = "id_product"
-        Me.GridColumn2.Name = "GridColumn2"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Price"
-        Me.GridColumn6.DisplayFormat.FormatString = "{0:n2}"
-        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn6.FieldName = "design_price_retail"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Amount"
-        Me.GridColumn7.DisplayFormat.FormatString = "{0:n2}"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "amount"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.UnboundExpression = "[qty] * [design_price_retail]"
-        Me.GridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
         '
         'FormFGRepairDet
         '
@@ -891,7 +904,7 @@ Partial Class FormFGRepairDet
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
     Friend WithEvents GCScanSum As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVScanSum As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNoSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
@@ -906,5 +919,6 @@ Partial Class FormFGRepairDet
     Friend WithEvents GridColumnQtyAvail As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class

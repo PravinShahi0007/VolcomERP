@@ -347,7 +347,7 @@
     End Sub
 
     Private Sub GVScanSum_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVScanSum.CustomColumnDisplayText
-        If e.Column.FieldName = "no" Then
+        If e.Column.Name = "GridColumnNoSum" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
@@ -477,32 +477,42 @@
                         .size = table1.Field(Of String)("size").ToString,
                         .qty = table1("qty"),
                         .available_qty = If(y1 Is Nothing, 0, y1("qty_all_product")),
-                        .price = If(y1 Is Nothing, 0, y1("design_price_retail")),
+                        .design_price_retail = If(y1 Is Nothing, 0, y1("design_price_retail")),
                         .id_product = If(y1 Is Nothing, 0, y1("id_product")),
                         .status = If(table1("qty") <= If(y1 Is Nothing, 0, y1("qty_all_product")), "OK", "Can't exceed" + If(y1 Is Nothing, 0, y1("qty_all_product").ToString))
                     }
         GCScanSum.DataSource = Nothing
         GCScanSum.DataSource = query.ToList()
         GCScanSum.RefreshDataSource()
-        GVScanSum.PopulateColumns()
         XTPSummary.PageVisible = True
         XtraTabControl1.SelectedTabPageIndex = 1
 
         'Customize column
-        GVScanSum.Columns("id_product").Visible = False
-        GVScanSum.Columns("no").VisibleIndex = 0
-        GVScanSum.Columns("code").VisibleIndex = 1
-        GVScanSum.Columns("name").VisibleIndex = 2
-        GVScanSum.Columns("size").VisibleIndex = 3
-        GVScanSum.Columns("qty").VisibleIndex = 4
-        GVScanSum.Columns("available_qty").VisibleIndex = 5
-        GVScanSum.Columns("price").VisibleIndex = 6
-        GVScanSum.Columns("amount").VisibleIndex = 7
-        GVScanSum.Columns("status").VisibleIndex = 8
-        GVScanSum.Columns("price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        GVScanSum.Columns("price").DisplayFormat.FormatString = "{0:n2}"
-        GVScanSum.Columns("amount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        GVScanSum.Columns("amount").DisplayFormat.FormatString = "{0:n2}"
+        'GVScanSum.Columns("id_product").Visible = False
+        'GridColumnNoSum.VisibleIndex = 0
+        'GridColumnNoSum.Caption = "No"
+        'GVScanSum.Columns("code").VisibleIndex = 1
+        'GVScanSum.Columns("code").Caption = "Code"
+        'GVScanSum.Columns("name").VisibleIndex = 2
+        'GVScanSum.Columns("name").Caption = "Name"
+        'GVScanSum.Columns("size").VisibleIndex = 3
+        'GVScanSum.Columns("size").Caption = "Size"
+        'GVScanSum.Columns("qty").VisibleIndex = 4
+        'GVScanSum.Columns("qty").Caption = "Qty"
+        'GVScanSum.Columns("available_qty").VisibleIndex = 5
+        'GVScanSum.Columns("available_qty").Caption = "Available"
+        'GVScanSum.Columns("price").VisibleIndex = 6
+        'GVScanSum.Columns("price").Caption = "Price"
+        'GridColumnAmount.VisibleIndex = 7
+        'GridColumnAmount.Caption = "Amount"
+        'GVScanSum.Columns("status").VisibleIndex = 8
+        'GVScanSum.Columns("status").Caption = "Status"
+        'GVScanSum.Columns("available_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        'GVScanSum.Columns("available_qty").DisplayFormat.FormatString = "{0:n0}"
+        'GVScanSum.Columns("price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        'GVScanSum.Columns("price").DisplayFormat.FormatString = "{0:n2}"
+        'GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        'GridColumnAmount.DisplayFormat.FormatString = "{0:n2}"
     End Sub
 
 
