@@ -628,6 +628,7 @@ Partial Class FormFGRepairDet
         Me.GVScanSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "available_qty", Me.GridColumnQtyAvail, "{0:n0}")})
         Me.GVScanSum.Name = "GVScanSum"
         Me.GVScanSum.OptionsBehavior.ReadOnly = True
+        Me.GVScanSum.OptionsView.ShowFooter = True
         Me.GVScanSum.OptionsView.ShowGroupPanel = False
         '
         'GridColumnNoSum

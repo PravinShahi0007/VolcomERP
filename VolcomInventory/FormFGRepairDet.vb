@@ -31,6 +31,7 @@
             TxtCodeCompFrom.Focus()
         ElseIf action = "upd" Then
             XTPSummary.PageVisible = True
+            XtraTabControl1.SelectedTabPageIndex = 1
             GVScan.OptionsBehavior.AutoExpandAllGroups = True
             BMark.Enabled = True
             DDBPrint.Enabled = True
@@ -56,6 +57,7 @@
 
             'detail2
             viewDetail()
+            'viewDetailSum()
             allow_status()
 
             If id_pre = "1" Then
@@ -206,6 +208,14 @@
         GCScan.DataSource = data
     End Sub
 
+    Sub viewDetailSum()
+        Dim query As String = "CALL view_fg_repair_sum('" + id_fg_repair + "')"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCScanSum.DataSource = data
+        GridColumnStatus.Visible = False
+        GridColumnQtyAvail.Visible = False
+    End Sub
+
     Sub codeAvailableIns()
         SplashScreenManager1.ShowWaitForm()
         dt.Clear()
@@ -245,6 +255,7 @@
         GroupGeneralHeader.Enabled = False
         GroupControl3.Enabled = False
         PanelControl3.Enabled = False
+        XTPSummary.PageVisible = False
     End Sub
 
     Private Sub BStop_Click(sender As Object, e As EventArgs) Handles BStop.Click
@@ -428,6 +439,9 @@
 
         If action = "ins" Then
             'insert to temporary
+            XTPSummary.PageVisible = True
+            XtraTabControl1.SelectedTabPageIndex = 1
+
             Dim data_temp As DataTable = GCScan.DataSource
             Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
             Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
@@ -486,8 +500,7 @@
             GCScanSum.DataSource = Nothing
             GCScanSum.DataSource = query.ToList()
             GCScanSum.RefreshDataSource()
-            XTPSummary.PageVisible = True
-            XtraTabControl1.SelectedTabPageIndex = 1
+
 
             'find not ok
             GVScanSum.ActiveFilterString = "[status]<>'OK'"
@@ -542,7 +555,8 @@
                     End If
 
                     'reserved stock
-
+                    Dim rsv_stock As ClassFGRepair = New ClassFGRepair()
+                    rsv_stock.reservedStock(id_fg_repair)
 
                     'refresh data
                     FormFGRepair.viewData()
