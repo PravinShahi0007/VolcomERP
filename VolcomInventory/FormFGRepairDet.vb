@@ -424,95 +424,97 @@
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         makeSafeGV(GVScan)
+        Dim cond_stc As Boolean = True
 
-        'insert to temporary
-        Dim data_temp As DataTable = GCScan.DataSource
-        Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
-        Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
-        connection.Open()
-        Dim command As MySql.Data.MySqlClient.MySqlCommand = connection.CreateCommand()
-        Dim qry As String = "DROP TABLE IF EXISTS tb_fg_repair_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_fg_repair_temp AS ( SELECT * FROM ("
-        For d As Integer = 0 To data_temp.Rows.Count - 1
-            Dim id_product As String = data_temp.Rows(d)("id_product").ToString
-            Dim id_pl_prod_order_rec_det_unique As String = data_temp.Rows(d)("id_pl_prod_order_rec_det_unique").ToString
-            Dim code As String = data_temp.Rows(d)("product_code").ToString
-            Dim name As String = data_temp.Rows(d)("name").ToString
-            Dim size As String = data_temp.Rows(d)("size").ToString
-            If d > 0 Then
-                qry += "UNION ALL "
-            End If
-            qry += "SELECT '" + id_product + "' AS `id_product`, '" + id_pl_prod_order_rec_det_unique + "' AS `id_pl_prod_order_rec_det_unique`, '" + code + "' AS `code`, '" + name + "' AS `name`, '" + size + "' AS `size`  "
-        Next
-        qry += ") a ); ALTER TABLE tb_fg_repair_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
-        command.CommandText = qry
-        command.ExecuteNonQuery()
-        command.Dispose()
-        'Console.WriteLine(qry)
+        If action = "ins" Then
+            'insert to temporary
+            Dim data_temp As DataTable = GCScan.DataSource
+            Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+            Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
+            connection.Open()
+            Dim command As MySql.Data.MySqlClient.MySqlCommand = connection.CreateCommand()
+            Dim qry As String = "DROP TABLE IF EXISTS tb_fg_repair_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_fg_repair_temp AS ( SELECT * FROM ("
+            For d As Integer = 0 To data_temp.Rows.Count - 1
+                Dim id_product As String = data_temp.Rows(d)("id_product").ToString
+                Dim id_pl_prod_order_rec_det_unique As String = data_temp.Rows(d)("id_pl_prod_order_rec_det_unique").ToString
+                Dim code As String = data_temp.Rows(d)("product_code").ToString
+                Dim name As String = data_temp.Rows(d)("name").ToString
+                Dim size As String = data_temp.Rows(d)("size").ToString
+                If d > 0 Then
+                    qry += "UNION ALL "
+                End If
+                qry += "SELECT '" + id_product + "' AS `id_product`, '" + id_pl_prod_order_rec_det_unique + "' AS `id_pl_prod_order_rec_det_unique`, '" + code + "' AS `code`, '" + name + "' AS `name`, '" + size + "' AS `size`  "
+            Next
+            qry += ") a ); ALTER TABLE tb_fg_repair_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+            command.CommandText = qry
+            command.ExecuteNonQuery()
+            command.Dispose()
+            'Console.WriteLine(qry)
 
-        Dim data_view As New DataTable
-        Dim qry_view As String = "SELECT a.id_product, a.code, a.name, a.size, COUNT(a.id_product) AS `qty` 
+            Dim data_view As New DataTable
+            Dim qry_view As String = "SELECT a.id_product, a.code, a.name, a.size, COUNT(a.id_product) AS `qty` 
                                 FROM tb_fg_repair_temp a 
                                 GROUP BY a.id_product"
-        Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(qry_view, connection)
-        adapter.SelectCommand.CommandTimeout = 300
-        adapter.Fill(data_view)
-        adapter.Dispose()
+            Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(qry_view, connection)
+            adapter.SelectCommand.CommandTimeout = 300
+            adapter.Fill(data_view)
+            adapter.Dispose()
 
-        connection.Close()
-        connection.Dispose()
+            connection.Close()
+            connection.Dispose()
 
-        'get data stock
-        Dim query_stock As String = "call view_stock_fg('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
-        Dim data_stock As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
-        Dim tb1 = data_view.AsEnumerable()
-        Dim tb2 = data_stock.AsEnumerable()
-        Dim query = From table1 In tb1
-                    Group Join table_tmp In tb2 On table1("id_product").ToString Equals table_tmp("id_product").ToString
-                    Into Group
-                    From y1 In Group.DefaultIfEmpty()
-                    Select New With
-                    {
-                        .code = table1.Field(Of String)("code").ToString,
-                        .name = table1.Field(Of String)("name").ToString,
-                        .size = table1.Field(Of String)("size").ToString,
-                        .qty = table1("qty"),
-                        .available_qty = If(y1 Is Nothing, 0, y1("qty_all_product")),
-                        .design_price_retail = If(y1 Is Nothing, 0, y1("design_price_retail")),
-                        .id_product = If(y1 Is Nothing, 0, y1("id_product")),
-                        .status = If(table1("qty") <= If(y1 Is Nothing, 0, y1("qty_all_product")), "OK", "Can't exceed" + If(y1 Is Nothing, 0, y1("qty_all_product").ToString))
-                    }
-        GCScanSum.DataSource = Nothing
-        GCScanSum.DataSource = query.ToList()
-        GCScanSum.RefreshDataSource()
-        XTPSummary.PageVisible = True
-        XtraTabControl1.SelectedTabPageIndex = 1
+            'get data stock
+            Dim query_stock As String = "call view_stock_fg('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
+            Dim data_stock As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
+            Dim tb1 = data_view.AsEnumerable()
+            Dim tb2 = data_stock.AsEnumerable()
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("id_product").ToString Equals table_tmp("id_product").ToString
+                        Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .code = table1.Field(Of String)("code").ToString,
+                            .name = table1.Field(Of String)("name").ToString,
+                            .size = table1.Field(Of String)("size").ToString,
+                            .qty = table1("qty"),
+                            .available_qty = If(y1 Is Nothing, 0, y1("qty_all_product")),
+                            .design_price_retail = If(y1 Is Nothing, 0, y1("design_price_retail")),
+                            .id_product = If(y1 Is Nothing, 0, y1("id_product")),
+                            .status = If(table1("qty") <= If(y1 Is Nothing, 0, y1("qty_all_product")), "OK", "Can't exceed " + If(y1 Is Nothing, 0, y1("qty_all_product").ToString))
+                        }
+            GCScanSum.DataSource = Nothing
+            GCScanSum.DataSource = query.ToList()
+            GCScanSum.RefreshDataSource()
+            XTPSummary.PageVisible = True
+            XtraTabControl1.SelectedTabPageIndex = 1
 
-        'Customize column
-        'GVScanSum.Columns("id_product").Visible = False
-        'GridColumnNoSum.VisibleIndex = 0
-        'GridColumnNoSum.Caption = "No"
-        'GVScanSum.Columns("code").VisibleIndex = 1
-        'GVScanSum.Columns("code").Caption = "Code"
-        'GVScanSum.Columns("name").VisibleIndex = 2
-        'GVScanSum.Columns("name").Caption = "Name"
-        'GVScanSum.Columns("size").VisibleIndex = 3
-        'GVScanSum.Columns("size").Caption = "Size"
-        'GVScanSum.Columns("qty").VisibleIndex = 4
-        'GVScanSum.Columns("qty").Caption = "Qty"
-        'GVScanSum.Columns("available_qty").VisibleIndex = 5
-        'GVScanSum.Columns("available_qty").Caption = "Available"
-        'GVScanSum.Columns("price").VisibleIndex = 6
-        'GVScanSum.Columns("price").Caption = "Price"
-        'GridColumnAmount.VisibleIndex = 7
-        'GridColumnAmount.Caption = "Amount"
-        'GVScanSum.Columns("status").VisibleIndex = 8
-        'GVScanSum.Columns("status").Caption = "Status"
-        'GVScanSum.Columns("available_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        'GVScanSum.Columns("available_qty").DisplayFormat.FormatString = "{0:n0}"
-        'GVScanSum.Columns("price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        'GVScanSum.Columns("price").DisplayFormat.FormatString = "{0:n2}"
-        'GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        'GridColumnAmount.DisplayFormat.FormatString = "{0:n2}"
+            'find not ok
+            GVScanSum.ActiveFilterString = "[status]<>'OK'"
+            If GVScanSum.RowCount > 0 Then
+                cond_stc = False
+            Else
+                cond_stc = True
+            End If
+            GVScanSum.ActiveFilterString = ""
+        End If
+
+        If id_wh_drawer_from = "-1" Or id_wh_drawer_to = "-1" Then
+            stopCustom("Account can't blank!")
+        ElseIf GVScan.RowCount <= 0
+            stopCustom("Data can't blank!")
+        ElseIf Not cond_stc Then
+            stopCustom("Some item can't exceed qty limit, please see error in column status!")
+        Else
+            If action = "ins" Then 'insert
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Stock qty will be updated after this process. Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+
+                End If
+            Else 'update
+
+            End If
+        End If
     End Sub
 
 
