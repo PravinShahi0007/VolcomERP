@@ -5085,6 +5085,23 @@ Public Class FormMain
                     errorDelete()
                 End Try
             End If
+        ElseIf formName = "FormFGRepair" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim id_fg_repair As String = FormFGRepair.GVRepair.GetFocusedRowCellValue("id_fg_repair").ToString
+
+                    'cancel reserve
+                    Dim cancel As New ClassFGRepair()
+                    cancel.cancelReservedStock(id_fg_repair)
+
+                    query = String.Format("DELETE FROM tb_fg_repair WHERE id_fg_repair='{0}'", id_fg_repair)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormFGDesignList.viewData()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -6694,6 +6711,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpFP" Then
             FormEmpFP.Close()
             FormEmpFP.Dispose()
+        ElseIf formName = "FormFGRepair" Then
+            FormFGRepair.Close()
+            FormFGRepair.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7307,6 +7327,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormEmpFP" Then
             FormEmpFP.viewFP()
+        ElseIf formName = "FormFGRepair" Then
+            FormFGRepair.viewData()
         End If
     End Sub
     'Switch

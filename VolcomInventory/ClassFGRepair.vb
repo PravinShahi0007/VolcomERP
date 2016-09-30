@@ -14,8 +14,8 @@
 
         Dim query As String = ""
         query += "Select r.id_fg_repair, "
-        query += "r.id_wh_drawer_from, comp_frm.id_comp As `id_comp_from`, comp_frm.comp_number As `comp_number_from`, comp_frm.comp_name As `comp_name_from`, "
-        query += "r.id_wh_drawer_to, comp_to.id_comp As `id_comp_to`, comp_frm.comp_number As `comp_number_to`, comp_frm.comp_name As `comp_name_to`, "
+        query += "r.id_wh_drawer_from, comp_frm.id_comp As `id_comp_from`, comp_frm.comp_number As `comp_number_from`, comp_frm.comp_name As `comp_name_from`, CONCAT(comp_frm.comp_number,' - ', comp_frm.comp_name) AS `comp_from`, "
+        query += "r.id_wh_drawer_to, comp_to.id_comp As `id_comp_to`, comp_to.comp_number As `comp_number_to`, comp_to.comp_name As `comp_name_to`, CONCAT(comp_to.comp_number,' - ', comp_to.comp_name) AS `comp_to`, "
         query += "r.fg_repair_number, r.fg_repair_date, DATE_FORMAT(r.fg_repair_date, '%Y-%m-%d') AS fg_repair_datex, "
         query += "r.fg_repair_note, r.id_report_status "
         query += "From tb_fg_repair r "
@@ -44,6 +44,49 @@
   	                        GROUP BY rpd.id_product"
         execute_non_query(query, True, "", "", "", "")
     End Sub
+
+    Public Sub cancelReservedStock(ByVal id_report_param As String)
+        Dim query As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+                            SELECT rp.id_wh_drawer_from, '1', rpd.id_product, dsg.design_cop, '91', '" + id_report_param + "', COUNT(rpd.id_product) AS `qty` , NOW(),'','2'
+  	                        FROM tb_fg_repair_det rpd
+	                        INNER JOIN tb_fg_repair rp ON rp.id_fg_repair = rpd.id_fg_repair
+                            INNER JOIN tb_m_product prod ON prod.id_product = rpd.id_product
+                            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+	                        WHERE rpd.id_fg_repair='" + id_report_param + "' 
+  	                        GROUP BY rpd.id_product"
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
+
+    Public Sub completedStock(ByVal id_report_param As String)
+        Dim query As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+                            SELECT rp.id_wh_drawer_from, '1', rpd.id_product, dsg.design_cop, '91', '" + id_report_param + "', COUNT(rpd.id_product) AS `qty` , NOW(),'','2'
+  	                        FROM tb_fg_repair_det rpd
+	                        INNER JOIN tb_fg_repair rp ON rp.id_fg_repair = rpd.id_fg_repair
+                            INNER JOIN tb_m_product prod ON prod.id_product = rpd.id_product
+                            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+	                        WHERE rpd.id_fg_repair='" + id_report_param + "' 
+  	                        GROUP BY rpd.id_product
+                            UNION ALL
+                            SELECT rp.id_wh_drawer_from, '2', rpd.id_product, dsg.design_cop, '91', '" + id_report_param + "', COUNT(rpd.id_product) AS `qty` , NOW(),'','1'
+  	                        FROM tb_fg_repair_det rpd
+	                        INNER JOIN tb_fg_repair rp ON rp.id_fg_repair = rpd.id_fg_repair
+                            INNER JOIN tb_m_product prod ON prod.id_product = rpd.id_product
+                            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+	                        WHERE rpd.id_fg_repair='" + id_report_param + "' 
+  	                        GROUP BY rpd.id_product
+                            UNION ALL
+                            SELECT rp.id_wh_drawer_to, '1', rpd.id_product, dsg.design_cop, '91', '" + id_report_param + "', COUNT(rpd.id_product) AS `qty` , NOW(),'','1'
+  	                        FROM tb_fg_repair_det rpd
+	                        INNER JOIN tb_fg_repair rp ON rp.id_fg_repair = rpd.id_fg_repair
+                            INNER JOIN tb_m_product prod ON prod.id_product = rpd.id_product
+                            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
+	                        WHERE rpd.id_fg_repair='" + id_report_param + "' 
+  	                        GROUP BY rpd.id_product
+                            "
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
 
 
 End Class

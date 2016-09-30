@@ -57,7 +57,7 @@
 
             'detail2
             viewDetail()
-            'viewDetailSum()
+            viewDetailSum()
             allow_status()
 
             If id_pre = "1" Then
@@ -197,7 +197,7 @@
         query += "INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = wh.id_drawer_def "
         query += "INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack "
         query += "INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
-        query += "WHERE wh.id_comp='" + id_comp_from + "' "
+        query += "WHERE wh.id_comp='" + id_comp + "' "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function
@@ -437,7 +437,7 @@
         makeSafeGV(GVScan)
         Dim cond_stc As Boolean = True
 
-        If action = "ins" Then
+        If action = "ins" And GVScan.RowCount > 0 Then
             'insert to temporary
             XTPSummary.PageVisible = True
             XtraTabControl1.SelectedTabPageIndex = 1
@@ -567,7 +567,19 @@
                     Cursor = Cursors.Default
                 End If
             Else 'update
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim query As String = "UPDATE tb_fg_repair SET fg_repair_note='" + fg_repair_note + "' WHERE id_fg_repair='" + id_fg_repair + "' "
+                    execute_non_query(query, True, "", "", "", "")
 
+                    'refresh data
+                    FormFGRepair.viewData()
+                    FormFGRepair.GVRepair.FocusedRowHandle = find_row(FormFGRepair.GVRepair, "id_fg_repair", id_fg_repair)
+                    action = "upd"
+                    actionLoad()
+                    infoCustom("Document #" + TxtNumber.Text + " was updated successfully.")
+                    Cursor = Cursors.Default
+                End If
             End If
         End If
     End Sub
