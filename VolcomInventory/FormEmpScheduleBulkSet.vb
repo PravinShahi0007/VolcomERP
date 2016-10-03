@@ -29,9 +29,10 @@
     End Sub
 
     Sub load_emp()
-        Dim query As String = "SELECT 'no' as is_select,emp.id_employee,emp.employee_code,emp.employee_name,dep.departement,emp.employee_position,active.employee_active"
+        Dim query As String = "SELECT 'no' as is_select,lvl.employee_level,emp.id_employee,emp.employee_code,emp.employee_name,dep.departement,emp.employee_position,active.employee_active"
         query += " FROM tb_m_employee emp"
         query += " INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement"
+        query += " INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level"
         query += " INNER JOIN tb_lookup_employee_active active On active.id_employee_active=emp.id_employee_active"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmployee.DataSource = data
