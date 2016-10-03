@@ -26,17 +26,8 @@
     Private Sub BAccept_Click(sender As Object, e As EventArgs) Handles BAccept.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to sync all machine?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
             Dim fp As New ClassFingerPrint()
-            Dim data_fp As DataTable = fp.get_fp_register()
-            fp.ip = data_fp.Rows(0)("ip").ToString
-            fp.port = data_fp.Rows(0)("port").ToString
-            fp.download_fp_tmp()
-            fp.download_face_tmp()
-            fp.upload_fp_temp()
-            fp.upload_face_tmp()
-            infoCustom("Process completed")
-            Cursor = Cursors.Default
+            fp.sync_all()
         End If
     End Sub
 
@@ -52,7 +43,7 @@
     End Sub
 
     Private Sub DownloadTemplateToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles DownloadTemplateToolStripMenuItem.Click
-        Cursor = Cursors.WaitCursor
+        SplashScreenManager1.ShowWaitForm()
         Try
             FormEmpFPFinger.ip = GVFP.GetFocusedRowCellValue("ip").ToString
             FormEmpFPFinger.port = GVFP.GetFocusedRowCellValue("port").ToString
@@ -60,7 +51,7 @@
         Catch ex As Exception
             errorProcess()
         End Try
-        Cursor = Cursors.Default
+        SplashScreenManager1.CloseWaitForm()
     End Sub
 
     Private Sub ShowFingerTemplateToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles ShowFingerTemplateToolStripMenuItem.Click
@@ -78,52 +69,52 @@
     Private Sub DownloadFingerTemplateToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles DownloadFingerTemplateToolStripMenuItem.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to download finger template to database?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
+            SplashScreenManager1.ShowWaitForm()
             Dim fp As New ClassFingerPrint()
             fp.ip = GVFP.GetFocusedRowCellValue("ip").ToString
             fp.port = GVFP.GetFocusedRowCellValue("port").ToString
             fp.download_fp_tmp()
             infoCustom("Process completed")
-            Cursor = Cursors.Default
+            SplashScreenManager1.CloseWaitForm()
         End If
     End Sub
 
     Private Sub DownloadFaceTemplateToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles DownloadFaceTemplateToolStripMenuItem.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to download face template to database?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
+            SplashScreenManager1.ShowWaitForm()
             Dim fp As New ClassFingerPrint()
             fp.ip = GVFP.GetFocusedRowCellValue("ip").ToString
             fp.port = GVFP.GetFocusedRowCellValue("port").ToString
             fp.download_face_tmp()
             infoCustom("Process completed")
-            Cursor = Cursors.Default
+            SplashScreenManager1.CloseWaitForm()
         End If
     End Sub
 
     Private Sub UploadFingerTemplateToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles UploadFingerTemplateToolStripMenuItem.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to upload finger template from database?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
+            SplashScreenManager1.ShowWaitForm()
             Dim fp As New ClassFingerPrint()
             fp.ip = GVFP.GetFocusedRowCellValue("ip").ToString
             fp.port = GVFP.GetFocusedRowCellValue("port").ToString
             fp.upload_fp_temp_single()
             infoCustom("Process completed")
-            Cursor = Cursors.Default
+            SplashScreenManager1.CloseWaitForm()
         End If
     End Sub
 
     Private Sub UploadFaceTemplateToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles UploadFaceTemplateToolStripMenuItem.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to upload face template from database?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
+            SplashScreenManager1.ShowWaitForm()
             Dim fp As New ClassFingerPrint()
             fp.ip = GVFP.GetFocusedRowCellValue("ip").ToString
             fp.port = GVFP.GetFocusedRowCellValue("port").ToString
             fp.upload_face_temp_single()
             infoCustom("Process completed")
-            Cursor = Cursors.Default
+            SplashScreenManager1.CloseWaitForm()
         End If
     End Sub
 

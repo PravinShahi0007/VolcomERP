@@ -3241,6 +3241,16 @@ Module Common
         FormMain.BEProgress.EditValue = progress
         FormMain.BEProgress.Refresh()
     End Sub
+
+    Sub progres_bar_cus_update(ByRef pgb As ProgressBarControl, ByVal progress As Decimal, ByVal max As Decimal)
+        pgb.Properties.Step = 1
+        pgb.Properties.PercentView = True
+        pgb.Properties.Maximum = max
+        pgb.Properties.Minimum = 0
+        pgb.EditValue = progress
+        pgb.Refresh()
+    End Sub
+
     Sub load_billing_type(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
         Dim query As String = "SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -3274,7 +3284,10 @@ Module Common
 
     '----------------NOTIF------------
     Sub playNotify()
-        My.Computer.Audio.Play(Application.StartupPath + "\notify.wav")
+        Try
+            My.Computer.Audio.Play(Application.StartupPath + "\notify.wav")
+        Catch ex As Exception
+        End Try
     End Sub
 
     Sub showNotify(ByVal title As String, ByVal content As String, ByVal id_type As String)
@@ -4628,5 +4641,12 @@ Module Common
             ret_var = execute_query(query, 0, True, "", "", "", "")
         End If
         Return ret_var
+    End Function
+
+    Public Function GetCurrentAge(ByVal dob As Date, ByVal start As Date) As Integer
+        Dim age As Integer
+        age = start.Year - dob.Year
+        If (dob > start.AddYears(-age)) Then age -= 1
+        Return age
     End Function
 End Module

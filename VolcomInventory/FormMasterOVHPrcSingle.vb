@@ -61,7 +61,7 @@
             Dim id_ovh As String = FormMasterOVHSingle.id_ovh
             Dim id_comp_contact As String = SLEVendorContact.EditValue
             Dim ovh_price_name As String = addSlashes(TxtPriceName.Text)
-            Dim ovh_price As String = addSlashes(TxtPrice.EditValue)
+            Dim ovh_price As String = decimalSQL(TxtPrice.EditValue.ToString)
             Dim id_currency As String = LECurrency.EditValue
             If action = "ins" Then
                 Try
@@ -98,7 +98,7 @@
     End Sub
     'Validating Price
     Private Sub TxtPrice_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TxtPrice.Validating
-        EP_TE_must_decimal(EPPrice, TxtPrice)
+        'EP_TE_must_decimal(EPPrice, TxtPrice)
     End Sub
     'Value Changed
     Private Sub SLEVendor_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLEVendor.EditValueChanged

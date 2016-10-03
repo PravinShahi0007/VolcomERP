@@ -10,6 +10,9 @@
     Public id_wo_type As String = "-1"
 
     Private Sub FormProductionWO_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        load_form()
+    End Sub
+    Sub load_form()
         view_currency(LECurrency)
         viewSeason(LESeason)
         'view delivery
@@ -42,6 +45,10 @@
             '
         Else
             load_po(id_po)
+
+            BPrint.Visible = True
+            BMark.Visible = True
+            BtnAttachment.Visible = True
 
             Dim query = "SELECT a.id_report_status,h.report_status,a.id_prod_order_wo,a.id_ovh_price,a.id_payment, "
             query += "a.id_prod_order,g.payment,b.id_currency,a.prod_order_wo_note,a.prod_order_wo_kurs, "
@@ -100,7 +107,7 @@
             'TEDueDate.Text = view_date_from(date_created, (Integer.Parse(data.Rows(0)("prod_order_wo_lead_time").ToString) + Integer.Parse(data.Rows(0)("prod_order_wo_top").ToString)))
             '
             GConListPurchase.Enabled = True
-            BPickWO.Enabled = False
+            'BPickWO.Enabled = False
             TEVat.Properties.ReadOnly = False
             Dim is_main_vendor As Boolean
 
@@ -115,8 +122,8 @@
             load_wo()
             TEVat.Text = data.Rows(0)("prod_order_wo_vat").ToString
             calculate()
-            End If
-            allow_status()
+        End If
+        allow_status()
     End Sub
     Sub load_po(ByVal id_po As String)
         Dim query As String = String.Format("SELECT *,DATE_FORMAT(prod_order_date,'%Y-%m-%d') as prod_order_datex FROM tb_prod_order WHERE id_prod_order = '{0}'", id_po)
@@ -132,7 +139,7 @@
     Sub load_wo()
         view_list_purchase()
 
-        Dim query As String = "SELECT a.id_currency, a.ovh_price, b.overhead as name, b.overhead_code as code,a.id_comp_contact from tb_m_ovh_price a INNER JOIN tb_m_ovh b WHERE a.id_ovh_price='" & id_ovh_price & "'"
+        Dim query As String = "SELECT a.id_currency, a.ovh_price, b.overhead as name, b.overhead_code as code,a.id_comp_contact from tb_m_ovh_price a INNER JOIN tb_m_ovh b ON a.id_ovh=b.id_ovh WHERE a.id_ovh_price='" & id_ovh_price & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         TEWO.Text = data.Rows(0)("name").ToString
@@ -287,12 +294,27 @@
                         query = "UPDATE tb_prod_order_wo SET is_main_vendor='2' WHERE id_prod_order='" + FormProductionDet.id_prod_order + "'"
                         execute_non_query(query, True, "", "", "", "")
                     End If
-                    query = String.Format("UPDATE tb_prod_order_wo SET prod_order_wo_number='{0}',id_comp_contact_ship_to='{1}',id_payment='{2}',prod_order_wo_lead_time='{3}',prod_order_wo_top='{4}',prod_order_wo_note='{5}',prod_order_wo_vat='{6}',prod_order_wo_del_date='{7}',prod_order_wo_kurs='{9}',id_currency='{10}', is_main_vendor='{11}' WHERE id_prod_order_wo='{8}'", wo_number, id_comp_ship_to, payment_type, lead_time, top, notex, vat, del_date, id_wo, decimalSQL(kurs.ToString), id_currency, is_main_vendor)
+                    query = String.Format("UPDATE tb_prod_order_wo SET prod_order_wo_number='{0}',id_comp_contact_ship_to='{1}',id_payment='{2}',prod_order_wo_lead_time='{3}',prod_order_wo_top='{4}',prod_order_wo_note='{5}',prod_order_wo_vat='{6}',prod_order_wo_del_date='{7}',prod_order_wo_kurs='{9}',id_currency='{10}', is_main_vendor='{11}',id_ovh_price='{12}' WHERE id_prod_order_wo='{8}'", wo_number, id_comp_ship_to, payment_type, lead_time, top, notex, vat, del_date, id_wo, decimalSQL(kurs.ToString), id_currency, is_main_vendor, id_ovh_price)
                     execute_non_query(query, True, "", "", "", "")
-
+                    '
+                    query = String.Format("DELETE FROM tb_prod_order_wo_det WHERE id_prod_order_wo='{0}'", id_wo)
+                    execute_non_query(query, True, "", "", "", "")
+                    For i As Integer = 0 To GVListPurchase.RowCount - 1
+                        If Not GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString = "" Then
+                            'safe
+                            query = String.Format("INSERT INTO tb_prod_order_wo_det(id_prod_order_wo,id_prod_order_det,prod_order_wo_det_price,prod_order_wo_det_qty,prod_order_wo_det_note) VALUES('{0}','{1}','{2}','{3}','{4}')", id_wo, GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "estimate_cost").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "prod_order_qty").ToString), GVListPurchase.GetRowCellValue(i, "note").ToString)
+                            execute_non_query(query, True, "", "", "", "")
+                        End If
+                    Next
+                    '
+                    query = "CALL update_trigger_PO_WO('" + id_wo + "')"
+                    execute_non_query(query, True, "", "", "", "")
+                    '
                     FormProductionDet.view_wo()
                     FormProductionDet.GVProdWO.FocusedRowHandle = find_row(FormProductionDet.GVProdWO, "id_prod_order_wo", id_wo)
-                    Close()
+                    '
+                    infoCustom("WO updated")
+                    load_form()
                 Catch ex As Exception
                     errorConnection()
                 End Try
@@ -316,7 +338,7 @@
                     For i As Integer = 0 To GVListPurchase.RowCount - 1
                         If Not GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString = "" Then
                             'safe
-                            query = String.Format("INSERT INTO tb_prod_order_wo_det(id_prod_order_wo,id_prod_order_det,prod_order_wo_det_price,prod_order_wo_det_qty,prod_order_wo_det_note) VALUES('{0}','{1}','{2}','{3}','{4}')", id_wo_new, GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString, GVListPurchase.GetRowCellValue(i, "estimate_cost").ToString, GVListPurchase.GetRowCellValue(i, "prod_order_qty").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString)
+                            query = String.Format("INSERT INTO tb_prod_order_wo_det(id_prod_order_wo,id_prod_order_det,prod_order_wo_det_price,prod_order_wo_det_qty,prod_order_wo_det_note) VALUES('{0}','{1}','{2}','{3}','{4}')", id_wo_new, GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "estimate_cost").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "prod_order_qty").ToString), GVListPurchase.GetRowCellValue(i, "note").ToString)
                             execute_non_query(query, True, "", "", "", "")
                         End If
                     Next
@@ -326,7 +348,10 @@
                     '
                     FormProductionDet.view_wo()
                     FormProductionDet.GVProdWO.FocusedRowHandle = find_row(FormProductionDet.GVProdWO, "id_prod_order_wo", id_wo_new)
-                    Close()
+                    '
+                    infoCustom("WO created")
+                    id_wo = id_wo_new
+                    load_form()
                 Catch ex As Exception
                     errorConnection()
                 End Try
@@ -388,7 +413,7 @@
     End Sub
 
     Private Sub LEpayment_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LEpayment.EditValueChanged
-        If LEpayment.EditValue = 1 Then
+        If LEpayment.EditValue = 1 Or LEpayment.EditValue = 4 Or LEpayment.EditValue = 5 Then
             TETOP.Enabled = True
         Else
             TETOP.Text = 0
@@ -472,12 +497,16 @@
     Sub allow_status()
         If check_edit_report_status(id_report_status_g, "23", id_wo) Then
             BSave.Enabled = True
+            BPickWO.Enabled = True
             '
             BSearchCompShipTo.Enabled = True
+            BReviseWO.Visible = False
         Else
             BSave.Enabled = False
+            BPickWO.Enabled = False
             '
             BSearchCompShipTo.Enabled = False
+            BReviseWO.Visible = True
         End If
 
         'If check_print_report_status(id_report_status_g) Then
@@ -541,7 +570,22 @@
         End If
     End Sub
 
-    Private Sub TEKurs_EditValueChanged(sender As Object, e As EventArgs) Handles TEKurs.EditValueChanged
-
+    Private Sub BReviseWO_Click(sender As Object, e As EventArgs) Handles BReviseWO.Click
+        Dim confirm As DialogResult
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Revise WO will remove all mark in this document, continue?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim query As String = ""
+            query = "DELETE FROM tb_report_mark WHERE id_report='" & id_wo & "' AND report_mark_type='23'"
+            execute_non_query(query, True, "", "", "", "")
+            query = "UPDATE tb_prod_order_wo SET id_report_status='1' WHERE id_prod_order_wo='" & id_wo & "'"
+            execute_non_query(query, True, "", "", "", "")
+        End If
+        load_form()
+        '
+        infoCustom("WO revised, please attach document related to this revision")
+        '
+        FormDocumentUpload.id_report = id_wo
+        FormDocumentUpload.report_mark_type = "23"
+        FormDocumentUpload.ShowDialog()
     End Sub
 End Class

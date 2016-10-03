@@ -143,7 +143,9 @@
             TxtPassport.Text = datarow("employee_passport").ToString
             DEPassport.EditValue = datarow("employee_passport_period")
             TxtBPJSTK.Text = datarow("employee_bpjs_tk").ToString
+            DERegBPJSTK.EditValue = datarow("employee_bpjs_tk_date")
             TxtBPJSSehat.Text = datarow("employee_bpjs_kesehatan").ToString
+            DERegBPJSKes.EditValue = datarow("employee_bpjs_kesehatan_date")
             TxtNpwp.Text = datarow("employee_npwp").ToString
             TxtPhone.Text = datarow("phone").ToString
             TxtMobilePhone.Text = datarow("phone_mobile").ToString
@@ -229,6 +231,41 @@
         EP_DE_cant_blank(ErrorProvider1, DEDOB)
     End Sub
 
+    'set fingerprint
+    Sub setFP(ByVal emp_code As String, ByVal emp_name As String, ByVal emp_active As String)
+        If emp_active = "1" Then
+            Try
+                Dim fp As New ClassFingerPrint()
+                Dim data_fp As DataTable = fp.get_fp_register()
+                fp.ip = data_fp.Rows(0)("ip").ToString
+                fp.port = data_fp.Rows(0)("port").ToString
+                fp.connect()
+                fp.disable_fp()
+                fp.setUserInfo(emp_code, emp_name, "", 0, True)
+                fp.refresh_fp()
+                fp.enable_fp()
+                fp.disconnect()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
+        Else
+            Try
+                Dim fp As New ClassFingerPrint()
+                Dim data_fp As DataTable = fp.get_fp_register()
+                fp.ip = data_fp.Rows(0)("ip").ToString
+                fp.port = data_fp.Rows(0)("port").ToString
+                fp.connect()
+                fp.disable_fp()
+                fp.deleteUserInfo(emp_code)
+                fp.refresh_fp()
+                fp.enable_fp()
+                fp.disconnect()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
+        End If
+    End Sub
+
     Private Sub BtnSaveChanges_Click(sender As Object, e As EventArgs) Handles BtnSaveChanges.Click
         ValidateChildren()
         EP_TE_cant_blank(ErrorProvider1, TxtPOB)
@@ -270,7 +307,17 @@
             Catch ex As Exception
             End Try
             Dim employee_bpjs_tk As String = addSlashes(TxtBPJSTK.Text)
+            Dim employee_bpjs_tk_date As String = "NULL"
+            Try
+                employee_bpjs_tk_date = checkNullInput(DateTime.Parse(DERegBPJSTK.EditValue.ToString).ToString("yyyy-MM-dd"))
+            Catch ex As Exception
+            End Try
             Dim employee_bpjs_kesehatan As String = addSlashes(TxtBPJSSehat.Text)
+            Dim employee_bpjs_kesehatan_date As String = "NULL"
+            Try
+                employee_bpjs_kesehatan_date = checkNullInput(DateTime.Parse(DERegBPJSKes.EditValue.ToString).ToString("yyyy-MM-dd"))
+            Catch ex As Exception
+            End Try
             Dim employee_npwp As String = addSlashes(TxtNpwp.Text)
             Dim phone As String = TxtPhone.Text
             Dim phone_mobile As String = TxtMobilePhone.Text
@@ -293,15 +340,18 @@
 
             If action = "ins" Then
                 'main
-                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_kesehatan, employee_npwp, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other) "
-                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', '" + employee_bpjs_kesehatan + "', '" + employee_npwp + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other) "
+                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + employee_bpjs_kesehatan + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "'); SELECT LAST_INSERT_ID(); "
                 id_employee = execute_query(query, 0, True, "", "", "", "")
 
                 'pic
                 save_image_ori(PEEmployee, emp_image_path, id_employee & ".jpg")
 
+                'fp
+                setFP(employee_code, employee_name, id_employee_active)
+
                 'info & refresh
-                FormMasterEmployee.viewEmployee()
+                FormMasterEmployee.viewEmployee("-1")
                 FormMasterEmployee.GVEmployee.FocusedRowHandle = find_row(FormMasterEmployee.GVEmployee, "id_employee", id_employee)
                 action = "upd"
                 actionLoad()
@@ -330,7 +380,9 @@
                 query += "employee_passport='" + employee_passport + "', "
                 query += "employee_passport_period=" + employee_passport_period + ", "
                 query += "employee_bpjs_tk='" + employee_bpjs_tk + "', "
+                query += "employee_bpjs_tk_date=" + employee_bpjs_tk_date + ", "
                 query += "employee_bpjs_kesehatan='" + employee_bpjs_kesehatan + "', "
+                query += "employee_bpjs_kesehatan_date=" + employee_bpjs_kesehatan_date + ", "
                 query += "employee_npwp='" + employee_npwp + "', "
                 query += "phone='" + phone + "', "
                 query += "phone_mobile='" + phone_mobile + "', "
@@ -351,8 +403,11 @@
                 'pic
                 save_image_ori(PEEmployee, emp_image_path, id_employee & ".jpg")
 
+                'fp
+                setFP(employee_code, employee_name, id_employee_active)
+
                 'info & refresh
-                FormMasterEmployee.viewEmployee()
+                FormMasterEmployee.viewEmployee("-1")
                 FormMasterEmployee.GVEmployee.FocusedRowHandle = find_row(FormMasterEmployee.GVEmployee, "id_employee", id_employee)
                 action = "upd"
                 actionLoad()
@@ -376,12 +431,17 @@
     End Sub
 
     Private Sub DEDOB_EditValueChanged(sender As Object, e As EventArgs) Handles DEDOB.EditValueChanged
+        Cursor = Cursors.WaitCursor
         Dim age As Long = 0
         Try
-            age = DateDiff(DateInterval.Year, DEDOB.EditValue, data_dt.Rows(0)("dt"))
+            Dim period As String = DateTime.Parse(DEDOB.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim query As String = "SELECT TIMESTAMPDIFF(YEAR,'" + period + "', DATE(NOW())) AS `age`"
+            age = execute_query(query, 0, True, "", "", "", "")
+            'age = DateDiff(DateInterval.Year, DEDOB.EditValue, data_dt.Rows(0)("dt"))
         Catch ex As Exception
         End Try
         TxtAge.Text = age.ToString + " years old"
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub LEMarriageStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LEMarriageStatus.EditValueChanged
@@ -435,7 +495,7 @@
                 If GVStatus.RowCount > 0 Then
                     Dim query_upd As String = "UPDATE tb_m_employee emp "
                     query_upd += "INNER JOIN ( "
-                    query_upd += "SELECT a.id_employee_status, a.id_employee FROM tb_m_employee_status_det a  "
+                    query_upd += "SELECT a.id_employee_status, a.id_employee, a.start_period, a.end_period FROM tb_m_employee_status_det a  "
                     query_upd += "INNER JOIN ( "
                     query_upd += "SELECT MAX(id_employee_status_det) AS id_employee_status_det "
                     query_upd += "FROM tb_m_employee_status_det b  "
@@ -443,11 +503,13 @@
                     query_upd += ") mx ON mx.id_employee_status_det = a.id_employee_status_det "
                     query_upd += "WHERE a.id_employee='" + id_employee + "' ORDER BY a.id_employee_status_det DESC "
                     query_upd += ") dt ON dt.id_employee = emp.id_employee "
-                    query_upd += "SET emp.id_employee_status = dt.id_employee_status "
+                    query_upd += "SET emp.id_employee_status = dt.id_employee_status, "
+                    query_upd += "emp.start_period = dt.start_period, "
+                    query_upd += "emp.end_period = dt.end_period "
                     execute_non_query(query_upd, True, "", "", "", "")
                 Else
                     Dim query_upd As String = "UPDATE tb_m_employee emp "
-                    query_upd += "SET emp.id_employee_status =0 "
+                    query_upd += "SET emp.id_employee_status =0, start_period=NULL, end_period=NULL "
                     query_upd += "WHERE emp.id_employee='" + id_employee + "' "
                     execute_non_query(query_upd, True, "", "", "", "")
                 End If

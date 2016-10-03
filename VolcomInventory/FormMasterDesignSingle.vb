@@ -2,6 +2,7 @@
     Dim opt_id_code_color As String = "1"
     Public data_insert_parameter As New DataTable
     Public data_insert_parameter_dsg As New DataTable
+    Public data_insert_parameter_non_md As New DataTable
     Public id_design As String = "-1"
     Public dupe As String = "-1"
     Public form_name As String = "-1"
@@ -210,7 +211,7 @@
                 view_value_code(GVCode, 1)
             Catch ex As Exception
             End Try
-        Else
+        ElseIf id_type = "2" Then
             data_insert_parameter_dsg.Clear()
             If data_insert_parameter_dsg.Columns.Count < 2 Then
                 data_insert_parameter_dsg.Columns.Add("code")
@@ -221,6 +222,19 @@
             Try
                 add_combo_grid_val(GVCodeDsg, 0)
                 view_value_code(GVCodeDsg, 1)
+            Catch ex As Exception
+            End Try
+        Else
+            data_insert_parameter_non_md.Clear()
+            If data_insert_parameter_non_md.Columns.Count < 2 Then
+                data_insert_parameter_non_md.Columns.Add("code")
+                data_insert_parameter_non_md.Columns.Add("value")
+            End If
+            GCCodeNonMD.DataSource = data_insert_parameter_non_md
+            DNCodeNonMD.DataSource = data_insert_parameter_non_md
+            Try
+                add_combo_grid_val(GVCodeNonMD, 0)
+                view_value_code(GVCodeNonMD, 1)
             Catch ex As Exception
             End Try
         End If
@@ -321,15 +335,24 @@
         view_ret_code(LERetCode)
         load_isi_param("1")
         load_isi_param("2")
+        load_isi_param("3")
+
 
         'permission condition
         If id_pop_up = "-1" Or id_pop_up = "2" Or id_pop_up = "5" Then
+            XTPDesign.PageVisible = True
+            XTPMD.PageVisible = True
+            XTPNonMD.PageVisible = False
             viewTemplate(LETemplate, "1")
             viewTemplate(LETemplateDsg, "3")
             ss_dept = get_setup_field("ss_default_dept")
         ElseIf id_pop_up = "3" Then 'non merch
-            viewTemplate(LETemplate, "2")
+            XTPDesign.PageVisible = False
+            XTPMD.PageVisible = False
+            XTPNonMD.PageVisible = True
+            viewTemplate(LETemplateNonMD, "2")
             ss_dept = id_departement_user
+            SLESeasonOrigin.EditValue = 0
         End If
 
 
@@ -371,9 +394,21 @@
 
                 id_range_par = data.Rows(0)("id_range").ToString
                 TEName.Text = data.Rows(0)("design_name").ToString
-                TEDisplayName.Text = data.Rows(0)("design_display_name").ToString
+
+                'display name
+                If id_pop_up = "3" Then
+                    TEDisplayNameNonMD.Text = data.Rows(0)("design_display_name").ToString
+                Else
+                    TEDisplayName.Text = data.Rows(0)("design_display_name").ToString
+                End If
+
+                'code
                 If dupe = "-1" Then
-                    TECode.Text = data.Rows(0)("design_code").ToString
+                    If id_pop_up = "3" Then
+                        TECodeNonMD.Text = data.Rows(0)("design_code").ToString
+                    Else
+                        TECode.Text = data.Rows(0)("design_code").ToString
+                    End If
                 End If
                 TxtCodeImport.Text = data.Rows(0)("design_code_import").ToString
 
@@ -424,27 +459,40 @@
                 pre_viewImages("2", PictureEdit1, id_design, False)
                 BViewImage.Visible = True
 
-                'view code detail
-                If dupe = "-1" Then 'jika mode edit
-                    query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplate.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
-                    Dim data_value As DataTable = execute_query(query, -1, True, "", "", "", "")
-                    If Not data_value.Rows.Count = 0 Then
-                        data_insert_parameter.Clear()
-                        For i As Integer = 0 To data_value.Rows.Count - 1
-                            data_insert_parameter.Rows.Add(data_value.Rows(i)("id_code").ToString, data_value.Rows(i)("id_code_detail").ToString)
+                '--DETAIL CODE---
+                If id_pop_up <> "3" Then
+                    'view code detail
+                    If dupe = "-1" Then 'jika mode edit
+                        query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplate.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
+                        Dim data_value As DataTable = execute_query(query, -1, True, "", "", "", "")
+                        If Not data_value.Rows.Count = 0 Then
+                            data_insert_parameter.Clear()
+                            For i As Integer = 0 To data_value.Rows.Count - 1
+                                data_insert_parameter.Rows.Add(data_value.Rows(i)("id_code").ToString, data_value.Rows(i)("id_code_detail").ToString)
+                            Next
+                        End If
+                    End If
+
+
+                    'view DESIGN detail
+                    query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplateDsg.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
+                    Dim data_value_dsg As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If Not data_value_dsg.Rows.Count = 0 Then
+                        data_insert_parameter_dsg.Clear()
+                        For i As Integer = 0 To data_value_dsg.Rows.Count - 1
+                            data_insert_parameter_dsg.Rows.Add(data_value_dsg.Rows(i)("id_code").ToString, data_value_dsg.Rows(i)("id_code_detail").ToString)
                         Next
                     End If
-                End If
-
-
-                'view DESIGN detail
-                query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplateDsg.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
-                Dim data_value_dsg As DataTable = execute_query(query, -1, True, "", "", "", "")
-                If Not data_value_dsg.Rows.Count = 0 Then
-                    data_insert_parameter_dsg.Clear()
-                    For i As Integer = 0 To data_value_dsg.Rows.Count - 1
-                        data_insert_parameter_dsg.Rows.Add(data_value_dsg.Rows(i)("id_code").ToString, data_value_dsg.Rows(i)("id_code_detail").ToString)
-                    Next
+                Else
+                    'view NON MD detail
+                    query = String.Format("SELECT tb_m_code_detail.id_code as id_code,tb_m_design_code.id_code_detail as id_code_detail FROM tb_m_design_code,tb_m_code_detail, tb_template_code_det WHERE  tb_m_design_code.id_code_detail = tb_m_code_detail.id_code_detail AND tb_template_code_det.id_code = tb_m_code_detail.id_code AND tb_template_code_det.id_template_code='" + LETemplateNonMD.EditValue.ToString + "' AND tb_m_design_code.id_design = '{0}' ORDER BY tb_template_code_det.id_template_code_det ASC", id_design)
+                    Dim data_value_non_md As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If Not data_value_non_md.Rows.Count = 0 Then
+                        data_insert_parameter_non_md.Clear()
+                        For i As Integer = 0 To data_value_non_md.Rows.Count - 1
+                            data_insert_parameter_non_md.Rows.Add(data_value_non_md.Rows(i)("id_code").ToString, data_value_non_md.Rows(i)("id_code_detail").ToString)
+                        Next
+                    End If
                 End If
 
                 'special case from FormFGLineList
@@ -817,6 +865,18 @@
         End If
     End Sub
 
+    Sub load_template_non_md(ByVal id_template As String)
+        Dim query As String = String.Format("SELECT * FROM tb_template_code_det WHERE id_template_code = '{0}'", id_template)
+        Dim data_value As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        data_insert_parameter_non_md.Clear()
+        If Not data_value.Rows.Count = 0 Then
+            For i As Integer = 0 To data_value.Rows.Count - 1
+                data_insert_parameter_non_md.Rows.Add(data_value.Rows(i)("id_code").ToString)
+            Next
+        End If
+    End Sub
+
 
     Private Sub LETemplate_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LETemplate.EditValueChanged
         load_template(LETemplate.EditValue)
@@ -859,14 +919,22 @@
         ValidateChildren()
         Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active, design_detail, code_import, id_season_orign As String
         namex = addSlashes(TEName.Text.TrimStart(" ").TrimEnd(" "))
-        display_name = TEDisplayName.Text
-        code = TECode.Text
+
+        'code & display name
+        If id_pop_up = "3" Then
+            display_name = TEDisplayNameNonMD.Text
+            code = TECodeNonMD.Text
+        Else
+            display_name = TEDisplayName.Text
+            code = TECode.Text
+        End If
         code_import = TxtCodeImport.Text
         If code_import = "" Then
             code_import = "NULL"
         Else
             code_import = "'" + code_import + "'"
         End If
+
         id_uom = LEUOM.EditValue
         id_season = LESeason.EditValue
         id_season_orign = SLESeasonOrigin.EditValue
@@ -897,12 +965,15 @@
 
         'validate
         EP_TE_cant_blank(EPMasterDesign, TEName)
-        EP_TE_cant_blank(EPMasterDesign, TEDisplayName)
         If id_pop_up = "-1" Then
             EP_TE_cant_blank(EPMasterDesign, TECode)
+        ElseIf id_pop_up = "3" Then
+            EP_TE_cant_blank(EPMasterDesign, TECodeNonMD)
         End If
         If id_pop_up = "5" Then
             EP_TE_cant_blank(EPMasterDesign, TEDisplayName)
+        ElseIf id_pop_up = "3" Then
+            EP_TE_cant_blank(EPMasterDesign, TEDisplayNameNonMD)
         End If
         validateLifetime()
         EP_DE_cant_blank(EPMasterDesign, DERetDate)
@@ -940,7 +1011,7 @@
         If id_design <> "-1" Then
             If dupe <> "-1" Then
                 'insert
-                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Then
+                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
                     errorInput()
                 Else
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -999,6 +1070,17 @@
                             End Try
                         Next
 
+                        'non MD
+                        For i As Integer = 0 To GVCodeNonMD.RowCount - 1
+                            Try
+                                If Not GVCodeNonMD.GetRowCellValue(i, "value").ToString = "" Or GVCodeNonMD.GetRowCellValue(i, "value").ToString = 0 Then
+                                    query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeNonMD.GetRowCellValue(i, "value").ToString)
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
+                            Catch ex As Exception
+                            End Try
+                        Next
+
                         'new line list
                         NewLineList(id_design_tersimpan, id_season, id_delivery)
 
@@ -1027,7 +1109,7 @@
                 End If
             Else
                 'edit
-                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Then
+                If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
                     errorInput()
                 Else
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -1087,6 +1169,17 @@
                             End Try
                         Next
 
+                        'non MD
+                        For i As Integer = 0 To GVCodeNonMD.RowCount - 1
+                            Try
+                                If Not GVCodeNonMD.GetRowCellValue(i, "value").ToString = "" Or GVCodeNonMD.GetRowCellValue(i, "value").ToString = 0 Then
+                                    query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design, GVCodeNonMD.GetRowCellValue(i, "value").ToString)
+                                    execute_non_query(query, True, "", "", "", "")
+                                End If
+                            Catch ex As Exception
+                            End Try
+                        Next
+
                         'pdate product code
                         updProductCode(id_design)
 
@@ -1116,12 +1209,17 @@
             End If
         Else
             'insert
-            If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Then
+            If Not formIsValidInPanel(EPMasterDesign, PanC1) Or Not formIsValidInPanel(EPMasterDesign, PanC2) Or Not formIsValidInPanel(EPMasterDesign, PanC4) Or Not formIsValidInPanel(EPMasterDesign, PanelDesc) Or Not formIsValidInPanel(EPMasterDesign, PanC5) Then
                 errorInput()
             Else
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
-                    query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail) "
+                    Dim approved As String = "2"
+                    If id_pop_up = "3" Then 'non MD
+                        approved = "1"
+                    End If
+
+                    query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_approved) "
                     query += "VALUES('" + namex + "','" + display_name + "','" + code + "'," + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                     If design_eos = "-1" Then
                         query += "NULL, "
@@ -1144,7 +1242,7 @@
                     Else
                         query += "'" + id_design_ref + "', "
                     End If
-                    query += "'" + id_lookup_status_order + "', '" + design_detail + "' "
+                    query += "'" + id_lookup_status_order + "', '" + design_detail + "', '" + approved + "' "
                     query += ");SELECT LAST_INSERT_ID(); "
                     id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 
@@ -1170,6 +1268,17 @@
                         Try
                             If Not GVCode.GetRowCellValue(i, "value").ToString = "" Or GVCode.GetRowCellValue(i, "value").ToString = 0 Then
                                 query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCode.GetRowCellValue(i, "value").ToString)
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
+                        Catch ex As Exception
+                        End Try
+                    Next
+
+                    'non MD
+                    For i As Integer = 0 To GVCodeNonMD.RowCount - 1
+                        Try
+                            If Not GVCodeNonMD.GetRowCellValue(i, "value").ToString = "" Or GVCodeNonMD.GetRowCellValue(i, "value").ToString = 0 Then
+                                query = String.Format("INSERT INTO tb_m_design_code(id_design,id_code_detail) VALUES('{0}','{1}')", id_design_tersimpan, GVCodeNonMD.GetRowCellValue(i, "value").ToString)
                                 execute_non_query(query, True, "", "", "", "")
                             End If
                         Catch ex As Exception
@@ -1425,25 +1534,34 @@
 
     Private Sub SimpleButton2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDelSize.Click
         Cursor = Cursors.WaitCursor
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        Dim query As String = ""
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Try
-                Dim id_product As String = GVProduct.GetFocusedRowCellDisplayText("id_product").ToString
-                query = String.Format("DELETE FROM tb_m_product WHERE id_product='{0}'", id_product)
-                execute_non_query(query, True, "", "", "", "")
-                view_product(id_design)
-                If form_name = "-1" Then
-                    FormMasterProduct.view_design()
-                    FormMasterProduct.GVDesign.FocusedRowHandle = find_row(FormMasterProduct.GVDesign, "id_design", id_design)
-                ElseIf form_name = "FormFGLineList" Then
-                    FormFGLineList.viewLineList()
-                    FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design)
-                    loadLineList(id_prod_demand_design_active)
-                End If
-            Catch ex As Exception
-                errorDelete()
-            End Try
+        Dim id_product As String = GVProduct.GetFocusedRowCellDisplayText("id_product").ToString
+        Dim query_cek As String = "SELECT COUNT(*) FROM tb_prod_demand_product pd_prod  "
+        query_cek += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = pd_prod.id_prod_demand_design AND pd_prod.id_product='" + id_product + "' "
+        query_cek += "INNER JOIN tb_prod_demand pd ON pd.id_prod_demand = pd_dsg.id_prod_demand "
+        query_cek += "WHERE pd.is_pd='1' "
+        Dim jum_cek As String = execute_query(query_cek, 0, True, "", "", "", "")
+        If jum_cek <= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim query As String = ""
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    query = String.Format("DELETE FROM tb_m_product WHERE id_product='{0}'", id_product)
+                    execute_non_query(query, True, "", "", "", "")
+                    view_product(id_design)
+                    If form_name = "-1" Then
+                        FormMasterProduct.view_design()
+                        FormMasterProduct.GVDesign.FocusedRowHandle = find_row(FormMasterProduct.GVDesign, "id_design", id_design)
+                    ElseIf form_name = "FormFGLineList" Then
+                        FormFGLineList.viewLineList()
+                        FormFGLineList.BGVLineList.FocusedRowHandle = find_row(FormFGLineList.BGVLineList, "id_design", id_design)
+                        loadLineList(id_prod_demand_design_active)
+                    End If
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
+        Else
+            stopCustom("Data currently used in Production Demand.")
         End If
         Cursor = Cursors.Default
     End Sub
@@ -1769,5 +1887,159 @@
         FormSeason.id_pop_up = "2"
         FormSeason.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub LETemplateNonMD_EditValueChanged(sender As Object, e As EventArgs) Handles LETemplateNonMD.EditValueChanged
+        load_template_non_md(LETemplateNonMD.EditValue)
+    End Sub
+
+    Private Sub BRefreshCodeNonMD_Click(sender As Object, e As EventArgs) Handles BRefreshCodeNonMD.Click
+        load_isi_param("3")
+        load_template_non_md(LETemplateNonMD.EditValue)
+    End Sub
+
+    Private Sub BeditCodeNonMD_Click(sender As Object, e As EventArgs) Handles BeditCodeNonMD.Click
+        FormCodeTemplateEdit.id_pop_up = "7"
+        FormCodeTemplateEdit.id_template_code = LETemplateNonMD.EditValue.ToString
+        FormCodeTemplateEdit.ShowDialog()
+    End Sub
+
+    Private Sub GVCodeNonMD_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVCodeNonMD.CellValueChanged
+        If e.Column.Name.ToString <> "ColCodeParam" Then
+            Exit Sub
+        Else
+            Dim cellValue As String = e.Value.ToString()
+
+            Dim query As String = String.Format("SELECT id_code,id_code_detail,CODE as Code,code_detail_name as Name,display_name as 'Printed Name',CONCAT(CODE,' - ',code_detail_name) AS value FROM tb_m_code_detail WHERE id_code='" & cellValue.ToString & "'")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GVCodeNonMD.SetRowCellValue(e.RowHandle, GVCodeNonMD.Columns("value"), data.Rows(0)("id_code").ToString)
+        End If
+    End Sub
+
+    Private Sub GVCodeNonMD_HiddenEditor(sender As Object, e As EventArgs) Handles GVCodeNonMD.HiddenEditor
+        If clone_non_md IsNot Nothing Then
+            clone_non_md.Dispose()
+            clone_non_md = Nothing
+        End If
+    End Sub
+
+    Private clone_non_md As DataView = Nothing
+    Private Sub GVCodeNonMD_ShownEditor(sender As Object, e As EventArgs) Handles GVCodeNonMD.ShownEditor
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        If view.FocusedColumn.FieldName = "value" AndAlso TypeOf view.ActiveEditor Is DevExpress.XtraEditors.SearchLookUpEdit Then
+            Dim edit As DevExpress.XtraEditors.SearchLookUpEdit
+            Dim table As DataTable
+            Dim row As DataRow
+
+            edit = CType(view.ActiveEditor, DevExpress.XtraEditors.SearchLookUpEdit)
+            Try
+                table = CType(edit.Properties.DataSource, DataTable)
+            Catch ex As Exception
+                table = CType(edit.Properties.DataSource, DataView).Table
+            End Try
+            clone_non_md = New DataView(table)
+
+            row = view.GetDataRow(view.FocusedRowHandle)
+            clone_non_md.RowFilter = "[id_code] = " + row("code").ToString()
+            edit.Properties.DataSource = clone_non_md
+        End If
+    End Sub
+
+    Private Sub BtnGetLastCountNonMD_Click(sender As Object, e As EventArgs) Handles BtnGetLastCountNonMD.Click
+        Cursor = Cursors.WaitCursor
+        Dim id_fg_code_count As String = ""
+        Dim digit_par As String = "1"
+        id_fg_code_count = get_setup_field("id_code_fg_non_md_counting")
+        digit_par = "4"
+
+        For i As Integer = 0 To GVCodeNonMD.RowCount - 1
+            If GVCodeNonMD.GetRowCellValue(i, "code").ToString = id_fg_code_count Then
+                Dim counting_x As String = getLastCounting(digit_par)
+                Dim data_filter As DataRow() = counting_det.Select("[display_name]='" + counting_x + "'")
+                GVCodeNonMD.SetRowCellValue(i, "value", data_filter(0)("id_code_detail"))
+                Exit For
+            End If
+        Next
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BGenerateNonMD_Click(sender As Object, e As EventArgs) Handles BGenerateNonMD.Click
+        Dim id_code, code, code_name, query As String
+        Dim code_full As String = ""
+        'display name
+        Dim string_name As String = ""
+        Dim class_name As String = ""
+        Dim promo_name As String = ""
+
+
+        For i As Integer = 0 To GVCodeNonMD.RowCount - 1
+            code = ""
+            code_name = ""
+            id_code = ""
+            Try
+                id_code = GVCodeNonMD.GetRowCellValue(i, "value").ToString
+            Catch ex As Exception
+                id_code = ""
+            End Try
+
+            If Not id_code = "" Or id_code = "0" Then
+                Try
+                    query = String.Format("Select is_include_code FROM tb_m_code,tb_m_code_detail WHERE tb_m_code.id_code=tb_m_code_detail.id_code And tb_m_code_detail.id_code_detail='" & id_code & "'")
+                    code = execute_query(query, 0, True, "", "", "", "")
+                Catch ex As Exception
+                    code = "False"
+                End Try
+
+                If code = "True" Then
+                    query = String.Format("SELECT id_code,code,display_name FROM tb_m_code_detail WHERE id_code_detail='" & id_code & "'")
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    code = data.Rows(0)("code").ToString
+                Else
+                    code = ""
+                End If
+
+                query = String.Format("SELECT tb_m_code.is_include_name FROM tb_m_code,tb_m_code_detail WHERE tb_m_code.id_code=tb_m_code_detail.id_code AND tb_m_code_detail.id_code_detail='" & id_code & "'")
+                code_name = execute_query(query, 0, True, "", "", "", "")
+                If code_name.ToString = "True" Then
+                    query = String.Format("SELECT m_c.id_code, m_c_d.display_name,m_c.code_name FROM tb_m_code_detail m_c_d INNER JOIN tb_m_code m_c ON m_c.id_code=m_c_d.id_code WHERE m_c_d.id_code_detail='" & id_code & "'")
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    code_name = data.Rows(0)("display_name").ToString
+                    If data.Rows(0)("id_code").ToString = get_setup_field("id_code_fg_class") Then
+                        class_name = code_name
+                    ElseIf data.Rows(0)("id_code").ToString = get_setup_field("id_code_fg_prod_non_md") Then
+                        promo_name = code_name
+                    Else
+                        string_name += " " & code_name
+                    End If
+                End If
+            End If
+            code_full += code
+        Next
+
+        'code
+        TECodeNonMD.Text = code_full
+
+        'desc
+        Dim full_desc As String = ""
+        full_desc = promo_name & " " & class_name & " " & TEName.Text.ToUpper.TrimStart(" ").TrimEnd(" ") & string_name.ToUpper
+
+        If full_desc.Length > 25 Then
+            TEDisplayNameNonMD.Text = full_desc.Substring(0, 25)
+        Else
+            TEDisplayNameNonMD.Text = full_desc
+        End If
+    End Sub
+
+    Private Sub TECodeNonMD_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TECodeNonMD.Validating
+        If id_pop_up = "3" Then 'only for codefication
+            EP_TE_cant_blank(EPMasterDesign, TECodeNonMD)
+            EPMasterDesign.SetIconPadding(TECodeNonMD, 400)
+        End If
+    End Sub
+
+    Private Sub TEDisplayNameNonMD_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEDisplayNameNonMD.Validating
+        If id_pop_up = "3" Then 'only for codefication
+            EP_TE_cant_blank(EPMasterDesign, TEDisplayNameNonMD)
+        End If
     End Sub
 End Class
