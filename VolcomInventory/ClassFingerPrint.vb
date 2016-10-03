@@ -15,7 +15,7 @@
             axCZKEM1.RegEvent(iMachineNumber, 65535) 'Here you can register the realtime events that you want to be triggered(the parameters 65535 means registering all)
         Else
             axCZKEM1.GetLastError(idwErrorCode)
-            stopCustom("Unable to connect the device,ErrorCode=" & idwErrorCode)
+            'stopCustom("Unable to connect the device,ErrorCode=" & idwErrorCode)
         End If
     End Sub
 
@@ -38,7 +38,7 @@
     End Sub
 
 
-    Public Sub get_attlog()
+    Public Sub get_attlog(ByVal id_machine As String)
         disable_fp()
 
         Dim sdwEnrollNumber As String = ""
@@ -59,7 +59,7 @@
         If axCZKEM1.ReadGeneralLogData(iMachineNumber) Then 'read all the attendance records to the memory
             'get records from the memory
             'insert to database
-            Dim query As String = "INSERT INTO tb_emp_attn(id_employee,datetime,type_log,scan_method) VALUES"
+            Dim query As String = "INSERT INTO tb_emp_attn(employee_code,datetime,type_log,scan_method,id_fingerprint) VALUES"
             Dim query_val As String = ""
             Dim penanda As Integer = 0
             While axCZKEM1.SSR_GetGeneralLogData(iMachineNumber, sdwEnrollNumber, idwVerifyMode, idwInOutMode, idwYear, idwMonth, idwDay, idwHour, idwMinute, idwSecond, idwWorkcode)
@@ -67,7 +67,7 @@
                 If Not penanda = 1 Then
                     query_val += ","
                 End If
-                query_val += "('" + get_emp(sdwEnrollNumber.ToString, "1") + "','" & idwYear.ToString() & "-" + idwMonth.ToString() & "-" & idwDay.ToString() & " " & idwHour.ToString() & ":" & idwMinute.ToString() & ":" & idwSecond.ToString() & "','" & idwInOutMode.ToString() & "','" & idwVerifyMode.ToString() & "')"
+                query_val += "('" & sdwEnrollNumber.ToString & "','" & idwYear.ToString() & "-" + idwMonth.ToString() & "-" & idwDay.ToString() & " " & idwHour.ToString() & ":" & idwMinute.ToString() & ":" & idwSecond.ToString() & "','" & idwInOutMode.ToString() & "','" & idwVerifyMode.ToString() & "','" & id_machine & "')"
             End While
             If penanda > 0 Then
                 query += query_val
@@ -247,7 +247,7 @@
     End Sub
 
     'UPLOAD FINGERPRINT TO ALL MACHINE EXCEPT REGISTER MACHINE
-    Sub upload_fp_temp()
+    Sub upload_fp_temp(ByVal fp_off As List(Of String))
         'data fp employee
         Dim query_fp As String = "SELECT * FROM tb_m_employee_finger"
         Dim data_fp As DataTable = execute_query(query_fp, -1, True, "", "", "", "")
@@ -256,52 +256,54 @@
         Dim query_mcn As String = "SELECT * FROM tb_m_fingerprint a WHERE a.is_register='2'"
         Dim data_mcn As DataTable = execute_query(query_mcn, -1, True, "", "", "", "")
         For i As Integer = 0 To data_mcn.Rows.Count - 1
-            ip = data_mcn.Rows(i)("ip").ToString
-            port = data_mcn.Rows(i)("port").ToString
-            connect()
-            Dim idwErrorCode As Integer
-            Dim sdwEnrollNumber As String
-            Dim sName As String = ""
-            Dim sPassword As String = ""
-            Dim iPrivilege As Integer
-            Dim idwFingerIndex As Integer
-            Dim sTmpData As String = ""
-            Dim sEnabled As String = ""
-            Dim bEnabled As Boolean = False
-            Dim iflag As Integer
-            disable_fp()
+            If Not fp_off.Contains(data_mcn.Rows(i)("id_fingerprint").ToString) Then
+                ip = data_mcn.Rows(i)("ip").ToString
+                port = data_mcn.Rows(i)("port").ToString
+                connect()
+                Dim idwErrorCode As Integer
+                Dim sdwEnrollNumber As String
+                Dim sName As String = ""
+                Dim sPassword As String = ""
+                Dim iPrivilege As Integer
+                Dim idwFingerIndex As Integer
+                Dim sTmpData As String = ""
+                Dim sEnabled As String = ""
+                Dim bEnabled As Boolean = False
+                Dim iflag As Integer
+                disable_fp()
 
-            For j As Integer = 0 To data_fp.Rows.Count - 1
-                sdwEnrollNumber = Convert.ToInt32(data_fp.Rows(j)("user_id").ToString.Trim())
-                sName = data_fp.Rows(j)("name").ToString.Trim()
-                idwFingerIndex = Convert.ToInt32(data_fp.Rows(j)("finger_index").ToString.Trim())
-                sTmpData = data_fp.Rows(j)("tmp_data").ToString.Trim()
-                iPrivilege = Convert.ToInt32(data_fp.Rows(j)("privilege").ToString.Trim())
-                sPassword = data_fp.Rows(j)("password").ToString.Trim()
-                sEnabled = data_fp.Rows(j)("enabled").ToString.Trim()
-                iflag = Convert.ToInt32(data_fp.Rows(j)("flag").ToString.Trim())
-                If sEnabled = "true" Then
-                    bEnabled = True
-                Else
-                    bEnabled = False
-                End If
-                If axCZKEM1.SSR_SetUserInfo(iMachineNumber, sdwEnrollNumber, sName, sPassword, iPrivilege, bEnabled) Then 'upload user information to the device
-                    axCZKEM1.SetUserTmpExStr(iMachineNumber, sdwEnrollNumber, idwFingerIndex, iflag, sTmpData) 'upload templates information to the device
-                Else
-                    axCZKEM1.GetLastError(idwErrorCode)
-                    MsgBox("Operation failed,ErrorCode=" & idwErrorCode.ToString(), MsgBoxStyle.Exclamation, "Error")
-                    enable_fp()
-                    Return
-                End If
-            Next
-            axCZKEM1.RefreshData(iMachineNumber) 'the data in the device should be refreshed
-            enable_fp()
-            disconnect()
+                For j As Integer = 0 To data_fp.Rows.Count - 1
+                    sdwEnrollNumber = Convert.ToInt32(data_fp.Rows(j)("user_id").ToString.Trim())
+                    sName = data_fp.Rows(j)("name").ToString.Trim()
+                    idwFingerIndex = Convert.ToInt32(data_fp.Rows(j)("finger_index").ToString.Trim())
+                    sTmpData = data_fp.Rows(j)("tmp_data").ToString.Trim()
+                    iPrivilege = Convert.ToInt32(data_fp.Rows(j)("privilege").ToString.Trim())
+                    sPassword = data_fp.Rows(j)("password").ToString.Trim()
+                    sEnabled = data_fp.Rows(j)("enabled").ToString.Trim()
+                    iflag = Convert.ToInt32(data_fp.Rows(j)("flag").ToString.Trim())
+                    If sEnabled = "true" Then
+                        bEnabled = True
+                    Else
+                        bEnabled = False
+                    End If
+                    If axCZKEM1.SSR_SetUserInfo(iMachineNumber, sdwEnrollNumber, sName, sPassword, iPrivilege, bEnabled) Then 'upload user information to the device
+                        axCZKEM1.SetUserTmpExStr(iMachineNumber, sdwEnrollNumber, idwFingerIndex, iflag, sTmpData) 'upload templates information to the device
+                    Else
+                        axCZKEM1.GetLastError(idwErrorCode)
+                        MsgBox("Operation failed,ErrorCode=" & idwErrorCode.ToString(), MsgBoxStyle.Exclamation, "Error")
+                        enable_fp()
+                        Return
+                    End If
+                Next
+                axCZKEM1.RefreshData(iMachineNumber) 'the data in the device should be refreshed
+                enable_fp()
+                disconnect()
+            End If
         Next
     End Sub
 
     'UPLOAD FACE TO ALL MACHINE EXCEPT REGISTER MACHINE
-    Sub upload_face_tmp()
+    Sub upload_face_tmp(ByVal fp_off As List(Of String))
         'data fp employee
         Dim query_face As String = "SELECT * FROM tb_m_employee_face"
         Dim data_face As DataTable = execute_query(query_face, -1, True, "", "", "", "")
@@ -310,49 +312,51 @@
         Dim query_mcn As String = "SELECT * FROM tb_m_fingerprint a WHERE a.is_register='2'"
         Dim data_mcn As DataTable = execute_query(query_mcn, -1, True, "", "", "", "")
         For i As Integer = 0 To data_mcn.Rows.Count - 1
-            ip = data_mcn.Rows(i)("ip").ToString
-            port = data_mcn.Rows(i)("port").ToString
-            connect()
-            Dim idwErrorCode As Integer
+            If Not fp_off.Contains(data_mcn.Rows(i)("id_fingerprint").ToString) Then
+                ip = data_mcn.Rows(i)("ip").ToString
+                port = data_mcn.Rows(i)("port").ToString
+                connect()
+                Dim idwErrorCode As Integer
 
-            Dim sUserID As String = ""
-            Dim sName As String = ""
-            Dim iFaceIndex As Integer
-            Dim iLength As Integer
-            Dim sPassword As String = ""
-            Dim iPrivilege As Integer
-            Dim sTmpData As String = ""
-            Dim sEnabled As String = ""
-            Dim bEnabled As Boolean = False
+                Dim sUserID As String = ""
+                Dim sName As String = ""
+                Dim iFaceIndex As Integer
+                Dim iLength As Integer
+                Dim sPassword As String = ""
+                Dim iPrivilege As Integer
+                Dim sTmpData As String = ""
+                Dim sEnabled As String = ""
+                Dim bEnabled As Boolean = False
 
-            disable_fp()
-            For j As Integer = 0 To data_face.Rows.Count - 1
-                sUserID = data_face.Rows(j)("user_id").ToString.Trim
-                sName = data_face.Rows(j)("name").ToString.Trim
-                sPassword = data_face.Rows(j)("password").ToString.Trim
-                iPrivilege = Convert.ToInt32(data_face.Rows(j)("privilege").ToString.Trim)
-                iFaceIndex = Convert.ToInt32(data_face.Rows(j)("face_index").ToString.Trim)
-                sTmpData = data_face.Rows(j)("tmp_data").ToString.Trim
-                sEnabled = data_face.Rows(j)("enabled").ToString.Trim
+                disable_fp()
+                For j As Integer = 0 To data_face.Rows.Count - 1
+                    sUserID = data_face.Rows(j)("user_id").ToString.Trim
+                    sName = data_face.Rows(j)("name").ToString.Trim
+                    sPassword = data_face.Rows(j)("password").ToString.Trim
+                    iPrivilege = Convert.ToInt32(data_face.Rows(j)("privilege").ToString.Trim)
+                    iFaceIndex = Convert.ToInt32(data_face.Rows(j)("face_index").ToString.Trim)
+                    sTmpData = data_face.Rows(j)("tmp_data").ToString.Trim
+                    sEnabled = data_face.Rows(j)("enabled").ToString.Trim
 
-                If sEnabled = "true" Then
-                    bEnabled = True
-                Else
-                    bEnabled = False
-                End If
+                    If sEnabled = "true" Then
+                        bEnabled = True
+                    Else
+                        bEnabled = False
+                    End If
 
-                If axCZKEM1.SSR_SetUserInfo(iMachineNumber, sUserID, sName, sPassword, iPrivilege, bEnabled) Then 'upload user information to the device
-                    axCZKEM1.SetUserFaceStr(iMachineNumber, sUserID, iFaceIndex, sTmpData, iLength) 'upload face templates information to the device
-                Else
-                    axCZKEM1.GetLastError(idwErrorCode)
-                    MsgBox("Operation failed,ErrorCode=" & idwErrorCode.ToString(), MsgBoxStyle.Exclamation, "Error")
-                    axCZKEM1.EnableDevice(iMachineNumber, True)
-                    Return
-                End If
-            Next
-            axCZKEM1.RefreshData(iMachineNumber) 'the data in the device should be refreshed
-            enable_fp()
-            disconnect()
+                    If axCZKEM1.SSR_SetUserInfo(iMachineNumber, sUserID, sName, sPassword, iPrivilege, bEnabled) Then 'upload user information to the device
+                        axCZKEM1.SetUserFaceStr(iMachineNumber, sUserID, iFaceIndex, sTmpData, iLength) 'upload face templates information to the device
+                    Else
+                        axCZKEM1.GetLastError(idwErrorCode)
+                        MsgBox("Operation failed,ErrorCode=" & idwErrorCode.ToString(), MsgBoxStyle.Exclamation, "Error")
+                        axCZKEM1.EnableDevice(iMachineNumber, True)
+                        Return
+                    End If
+                Next
+                axCZKEM1.RefreshData(iMachineNumber) 'the data in the device should be refreshed
+                enable_fp()
+                disconnect()
+            End If
         Next
     End Sub
 
@@ -470,5 +474,53 @@
             MsgBox("Operation failed,ErrorCode=" & idwErrorCode.ToString(), MsgBoxStyle.Exclamation, "Error")
         End If
         disconnect()
+    End Sub
+
+    Sub sync_all()
+        FormMain.SplashScreenManager1.ShowWaitForm()
+        'class declare
+        Dim fp_off As New List(Of String)
+        Dim fp_off_label As New List(Of String)
+        Dim fp As New ClassFingerPrint()
+        Dim data_fp As DataTable = fp.get_fp_register()
+
+        'test connection
+        Dim query As String = "SELECT * FROM tb_m_fingerprint"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim conn As Boolean = False
+        For i As Integer = 0 To data.Rows.Count - 1
+            Dim id_fp As String = data.Rows(i)("id_fingerprint").ToString
+            fp.ip = data.Rows(i)("ip").ToString
+            fp.port = data.Rows(i)("port").ToString
+            fp.connect()
+            conn = fp.bIsConnected
+            If Not conn Then
+                fp.disconnect()
+                fp_off.Add(id_fp)
+                fp_off_label.Add(data.Rows(i)("name").ToString + "/" + data.Rows(i)("ip").ToString)
+            Else
+                fp.disconnect()
+            End If
+        Next
+
+
+        If conn Then
+            fp.ip = data_fp.Rows(0)("ip").ToString
+            fp.port = data_fp.Rows(0)("port").ToString
+            fp.download_fp_tmp()
+            fp.download_face_tmp()
+            fp.upload_fp_temp(fp_off)
+            fp.upload_face_tmp(fp_off)
+            FormMain.SplashScreenManager1.CloseWaitForm()
+            If fp_off_label.Count > 0 Then
+                Dim fp_info As String = ""
+                For j As Integer = 0 To fp_off_label.Count - 1
+                    fp_info += "- " + fp_off_label(j) + System.Environment.NewLine
+                Next
+                infoCustom("Synchronize completed. Error synchronize machine : " + System.Environment.NewLine + fp_info)
+            Else
+                infoCustom("Synchronize completed")
+            End If
+        End If
     End Sub
 End Class

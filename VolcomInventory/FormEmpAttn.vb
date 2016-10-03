@@ -2,32 +2,71 @@
     Dim fp As New ClassFingerPrint
     Private Sub BGetData_Click(sender As Object, e As EventArgs) Handles BGetData.Click
         Cursor = Cursors.WaitCursor
-        fp.connect()
-
-        fp.get_attlog()
-        fp.clear_attlog()
-
-        fp.disconnect()
+        get_data()
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
-        Dim query As String = ""
-        'query = "SELECT * FROM tb_emp_attn emp_attn"
-        'query += " INNER JOIN tb_m_employee emp ON emp.id_employee=emp_attn.id_employee"
-        query = "SELECT log_att.id_employee,emp.employee_code,emp.employee_name,"
-        query += " log_att.log_masuk,att_masuk.scan_method AS meth_masuk,att_masuk.type_log AS type_masuk,"
-        query += " log_att.log_pulang,att_pulang.scan_method As meth_pulang,att_pulang.type_log As type_pulang"
-        query += " FROM "
-        query += " ("
-        query += " SELECT emp_attn.id_employee,MIN(emp_attn.datetime) AS log_masuk,MAX(emp_attn.datetime) AS log_pulang"
-        query += " FROM tb_emp_attn emp_attn"
-        query += " GROUP BY DATE(emp_attn.`datetime`),emp_attn.id_employee"
-        query += " ) log_att "
-        query += " INNER JOIN tb_m_employee emp ON emp.id_employee=log_att.id_employee"
-        query += " INNER JOIN tb_emp_attn att_masuk On att_masuk.id_employee=log_att.id_employee And att_masuk.datetime=log_att.log_masuk"
-        query += " INNER JOIN tb_emp_attn att_pulang ON att_pulang.id_employee=log_att.id_employee AND att_pulang.datetime=log_att.log_pulang"
+    Sub get_data()
+        Dim query As String = "SELECT * FROM tb_m_fingerprint"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCSchedule.DataSource = data
+
+        Dim string_err As String = ""
+
+        For i As Integer = 0 To data.Rows.Count - 1
+            fp.ip = data.Rows(i)("ip").ToString()
+            fp.port = data.Rows(i)("port").ToString()
+
+            fp.connect()
+
+            If fp.bIsConnected Then
+                fp.get_attlog(data.Rows(i)("id_fingerprint").ToString())
+                fp.clear_attlog()
+            Else
+                If Not i = 0 Then
+                    string_err += vbNewLine
+                End If
+                string_err += "- " & data.Rows(i)("name").ToString()
+            End If
+
+            fp.disconnect()
+        Next
+
+        If Not string_err = "" Then
+            string_err = "Fingerprint not connected : " & string_err
+            infoCustom(string_err)
+        End If
+    End Sub
+
+    Private Sub BView_Click(sender As Object, e As EventArgs) Handles BView.Click
+        get_log()
+    End Sub
+
+    Sub get_log()
+        Dim date_start, date_until As String
+
+        date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+        date_until = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+
+        Dim query As String = "SELECT emp.employee_code,emp.employee_name,att.datetime,type_log.type_log,fp.name AS fp_machine,IF(att.scan_method=1,'Fingerprint','Face') AS scan_method FROM tb_emp_attn att
+                                INNER JOIN tb_m_employee emp ON emp.id_employee=att.id_employee
+                                INNER JOIN tb_lookup_type_log type_log ON type_log.id_type_log=att.type_log
+                                INNER JOIN tb_m_fingerprint fp ON fp.id_fingerprint=att.id_fingerprint
+                                WHERE DATE(att.datetime) >='" & date_start & "' AND DATE(att.datetime) <='" & date_until & "'
+                                ORDER BY att.datetime ASC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCLogAttn.DataSource = data
+        GVLogAttn.BestFitColumns()
+    End Sub
+
+    Private Sub FormEmpAttn_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DEStart.EditValue = Now
+        DEUntil.EditValue = Now
+    End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        Try
+            DEUntil.Properties.MinValue = DEStart.EditValue
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

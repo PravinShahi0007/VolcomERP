@@ -32,7 +32,7 @@
             query += "VALUES('" + id_employee + "', '" + id_employee_status + "', '" + start_period + "', " + end_period + ") "
             execute_non_query(query, True, "", "", "", "")
 
-            Dim query_upd As String = "UPDATE tb_m_employee SET id_employee_status='" + id_employee_status + "' WHERE id_employee='" + id_employee + "' "
+            Dim query_upd As String = "UPDATE tb_m_employee SET id_employee_status='" + id_employee_status + "', start_period='" + start_period + "', end_period=" + end_period + " WHERE id_employee='" + id_employee + "' "
             execute_non_query(query_upd, True, "", "", "", "")
 
 

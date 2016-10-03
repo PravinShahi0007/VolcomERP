@@ -26,21 +26,8 @@
     Private Sub BAccept_Click(sender As Object, e As EventArgs) Handles BAccept.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to sync all machine?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            SplashScreenManager1.ShowWaitForm()
             Dim fp As New ClassFingerPrint()
-            Dim data_fp As DataTable = fp.get_fp_register()
-            fp.ip = data_fp.Rows(0)("ip").ToString
-            fp.port = data_fp.Rows(0)("port").ToString
-            fp.download_fp_tmp()
-            'infoCustom("Download FP")
-            fp.download_face_tmp()
-            'infoCustom("Download Face")
-            fp.upload_fp_temp()
-            'infoCustom("Upload FP")
-            fp.upload_face_tmp()
-            'infoCustom("Upload Face")
-            SplashScreenManager1.CloseWaitForm()
-            infoCustom("Process completed")
+            fp.sync_all()
         End If
     End Sub
 

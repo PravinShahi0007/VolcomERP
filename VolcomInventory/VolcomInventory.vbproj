@@ -579,6 +579,12 @@
     <Compile Include="FormEmpShiftDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpReview.Designer.vb">
+      <DependentUpon>FormEmpReview.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpReview.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGBorrowQCReq.Designer.vb">
       <DependentUpon>FormFGBorrowQCReq.vb</DependentUpon>
     </Compile>
@@ -775,6 +781,12 @@
       <DependentUpon>FormMasterDesignCOPPD.vb</DependentUpon>
     </Compile>
     <Compile Include="FormMasterDesignCOPPD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterEmployeeCustom.Designer.vb">
+      <DependentUpon>FormMasterEmployeeCustom.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterEmployeeCustom.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMasterEmployeeDependent.Designer.vb">
@@ -3654,6 +3666,12 @@
     <Compile Include="ReportAccountingJournalAdj.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportAttnSum.Designer.vb">
+      <DependentUpon>ReportAttnSum.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAttnSum.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportBOM.Designer.vb">
       <DependentUpon>ReportBOM.vb</DependentUpon>
     </Compile>
@@ -4253,12 +4271,6 @@
     <Compile Include="WaitForm1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="WaitForm2.Designer.vb">
-      <DependentUpon>WaitForm2.vb</DependentUpon>
-    </Compile>
-    <Compile Include="WaitForm2.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="XtraFormViewFGWHAlloc.Designer.vb">
       <DependentUpon>XtraFormViewFGWHAlloc.vb</DependentUpon>
     </Compile>
@@ -4495,6 +4507,9 @@
     <EmbeddedResource Include="FormEmpShiftDet.resx">
       <DependentUpon>FormEmpShiftDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpReview.resx">
+      <DependentUpon>FormEmpReview.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFGBorrowQCReq.resx">
       <DependentUpon>FormFGBorrowQCReq.vb</DependentUpon>
     </EmbeddedResource>
@@ -4613,6 +4628,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterDesignCOPPD.resx">
       <DependentUpon>FormMasterDesignCOPPD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterEmployeeCustom.resx">
+      <DependentUpon>FormMasterEmployeeCustom.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterEmployeeDependent.resx">
       <DependentUpon>FormMasterEmployeeDependent.vb</DependentUpon>
@@ -6473,6 +6491,9 @@
       <DependentUpon>ReportAccountingJournalAdj.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportAttnSum.resx">
+      <DependentUpon>ReportAttnSum.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportBOM.resx">
       <DependentUpon>ReportBOM.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -6857,9 +6878,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="WaitForm2.resx">
-      <DependentUpon>WaitForm2.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="XtraFormViewFGWHAlloc.resx">
       <DependentUpon>XtraFormViewFGWHAlloc.vb</DependentUpon>

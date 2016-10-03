@@ -23,11 +23,12 @@ Partial Class FormEmpScheduleBulkSet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpScheduleBulkSet))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BTempSchedule = New DevExpress.XtraEditors.SimpleButton()
+        Me.PGBBulk = New DevExpress.XtraEditors.ProgressBarControl()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.BTempSchedule = New DevExpress.XtraEditors.SimpleButton()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GCShift = New DevExpress.XtraGrid.GridControl()
         Me.GVShift = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -51,10 +52,11 @@ Partial Class FormEmpScheduleBulkSet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
-        Me.PGBBulk = New DevExpress.XtraEditors.ProgressBarControl()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.PGBBulk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,7 +71,6 @@ Partial Class FormEmpScheduleBulkSet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PGBBulk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -106,6 +107,27 @@ Partial Class FormEmpScheduleBulkSet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(787, 37)
         Me.PanelControl2.TabIndex = 3
+        '
+        'BTempSchedule
+        '
+        Me.BTempSchedule.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BTempSchedule.ImageIndex = 14
+        Me.BTempSchedule.ImageList = Me.LargeImageCollection
+        Me.BTempSchedule.Location = New System.Drawing.Point(673, 2)
+        Me.BTempSchedule.Name = "BTempSchedule"
+        Me.BTempSchedule.Size = New System.Drawing.Size(112, 33)
+        Me.BTempSchedule.TabIndex = 3
+        Me.BTempSchedule.Text = "Use Template"
+        '
+        'PGBBulk
+        '
+        Me.PGBBulk.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PGBBulk.Location = New System.Drawing.Point(2, 2)
+        Me.PGBBulk.Name = "PGBBulk"
+        Me.PGBBulk.Properties.FlowAnimationEnabled = True
+        Me.PGBBulk.Properties.ShowTitle = True
+        Me.PGBBulk.Size = New System.Drawing.Size(176, 33)
+        Me.PGBBulk.TabIndex = 1
         '
         'DEUntil
         '
@@ -148,17 +170,6 @@ Partial Class FormEmpScheduleBulkSet
         Me.Label1.Size = New System.Drawing.Size(85, 13)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Schedule from : "
-        '
-        'BTempSchedule
-        '
-        Me.BTempSchedule.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BTempSchedule.ImageIndex = 14
-        Me.BTempSchedule.ImageList = Me.LargeImageCollection
-        Me.BTempSchedule.Location = New System.Drawing.Point(673, 2)
-        Me.BTempSchedule.Name = "BTempSchedule"
-        Me.BTempSchedule.Size = New System.Drawing.Size(112, 33)
-        Me.BTempSchedule.TabIndex = 3
-        Me.BTempSchedule.Text = "Use Template"
         '
         'SplitContainerControl1
         '
@@ -269,7 +280,8 @@ Partial Class FormEmpScheduleBulkSet
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn8, Me.GridColumn9, Me.GridColumn15, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
+        Me.GVEmployee.CustomizationFormBounds = New System.Drawing.Rectangle(719, 479, 210, 172)
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsFind.AlwaysVisible = True
@@ -338,7 +350,7 @@ Partial Class FormEmpScheduleBulkSet
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 4
+        Me.GridColumn12.VisibleIndex = 5
         Me.GridColumn12.Width = 139
         '
         'GridColumn13
@@ -348,7 +360,7 @@ Partial Class FormEmpScheduleBulkSet
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 5
+        Me.GridColumn13.VisibleIndex = 6
         Me.GridColumn13.Width = 149
         '
         'PanelControl1
@@ -372,15 +384,17 @@ Partial Class FormEmpScheduleBulkSet
         Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
         Me.CESelectAll.TabIndex = 0
         '
-        'PGBBulk
+        'GridColumn15
         '
-        Me.PGBBulk.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PGBBulk.Location = New System.Drawing.Point(2, 2)
-        Me.PGBBulk.Name = "PGBBulk"
-        Me.PGBBulk.Properties.FlowAnimationEnabled = True
-        Me.PGBBulk.Properties.ShowTitle = True
-        Me.PGBBulk.Size = New System.Drawing.Size(176, 33)
-        Me.PGBBulk.TabIndex = 1
+        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn15.Caption = "Level"
+        Me.GridColumn15.FieldName = "employee_level"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 4
         '
         'FormEmpScheduleBulkSet
         '
@@ -398,6 +412,7 @@ Partial Class FormEmpScheduleBulkSet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PGBBulk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -413,7 +428,6 @@ Partial Class FormEmpScheduleBulkSet
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PGBBulk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -449,4 +463,5 @@ Partial Class FormEmpScheduleBulkSet
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEEmp As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents PGBBulk As DevExpress.XtraEditors.ProgressBarControl
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
