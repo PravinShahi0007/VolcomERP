@@ -52,6 +52,7 @@ Partial Class FormEmpScheduleBulkSet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -279,7 +280,8 @@ Partial Class FormEmpScheduleBulkSet
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn8, Me.GridColumn9, Me.GridColumn15, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13})
+        Me.GVEmployee.CustomizationFormBounds = New System.Drawing.Rectangle(719, 479, 210, 172)
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsFind.AlwaysVisible = True
@@ -348,7 +350,7 @@ Partial Class FormEmpScheduleBulkSet
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 4
+        Me.GridColumn12.VisibleIndex = 5
         Me.GridColumn12.Width = 139
         '
         'GridColumn13
@@ -358,7 +360,7 @@ Partial Class FormEmpScheduleBulkSet
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 5
+        Me.GridColumn13.VisibleIndex = 6
         Me.GridColumn13.Width = 149
         '
         'PanelControl1
@@ -381,6 +383,18 @@ Partial Class FormEmpScheduleBulkSet
         Me.CESelectAll.Properties.Caption = "Select All"
         Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
         Me.CESelectAll.TabIndex = 0
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn15.Caption = "Level"
+        Me.GridColumn15.FieldName = "employee_level"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 4
         '
         'FormEmpScheduleBulkSet
         '
@@ -449,4 +463,5 @@ Partial Class FormEmpScheduleBulkSet
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICEEmp As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents PGBBulk As DevExpress.XtraEditors.ProgressBarControl
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
