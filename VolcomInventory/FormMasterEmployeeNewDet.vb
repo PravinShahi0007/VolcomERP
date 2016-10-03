@@ -143,7 +143,9 @@
             TxtPassport.Text = datarow("employee_passport").ToString
             DEPassport.EditValue = datarow("employee_passport_period")
             TxtBPJSTK.Text = datarow("employee_bpjs_tk").ToString
+            DERegBPJSTK.EditValue = datarow("employee_bpjs_tk_date")
             TxtBPJSSehat.Text = datarow("employee_bpjs_kesehatan").ToString
+            DERegBPJSKes.EditValue = datarow("employee_bpjs_kesehatan_date")
             TxtNpwp.Text = datarow("employee_npwp").ToString
             TxtPhone.Text = datarow("phone").ToString
             TxtMobilePhone.Text = datarow("phone_mobile").ToString
@@ -305,7 +307,17 @@
             Catch ex As Exception
             End Try
             Dim employee_bpjs_tk As String = addSlashes(TxtBPJSTK.Text)
+            Dim employee_bpjs_tk_date As String = "NULL"
+            Try
+                employee_bpjs_tk_date = checkNullInput(DateTime.Parse(DERegBPJSTK.EditValue.ToString).ToString("yyyy-MM-dd"))
+            Catch ex As Exception
+            End Try
             Dim employee_bpjs_kesehatan As String = addSlashes(TxtBPJSSehat.Text)
+            Dim employee_bpjs_kesehatan_date As String = "NULL"
+            Try
+                employee_bpjs_kesehatan_date = checkNullInput(DateTime.Parse(DERegBPJSKes.EditValue.ToString).ToString("yyyy-MM-dd"))
+            Catch ex As Exception
+            End Try
             Dim employee_npwp As String = addSlashes(TxtNpwp.Text)
             Dim phone As String = TxtPhone.Text
             Dim phone_mobile As String = TxtMobilePhone.Text
@@ -328,8 +340,8 @@
 
             If action = "ins" Then
                 'main
-                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_kesehatan, employee_npwp, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other) "
-                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', '" + employee_bpjs_kesehatan + "', '" + employee_npwp + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other) "
+                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + employee_bpjs_kesehatan + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "'); SELECT LAST_INSERT_ID(); "
                 id_employee = execute_query(query, 0, True, "", "", "", "")
 
                 'pic
@@ -368,7 +380,9 @@
                 query += "employee_passport='" + employee_passport + "', "
                 query += "employee_passport_period=" + employee_passport_period + ", "
                 query += "employee_bpjs_tk='" + employee_bpjs_tk + "', "
+                query += "employee_bpjs_tk_date=" + employee_bpjs_tk_date + ", "
                 query += "employee_bpjs_kesehatan='" + employee_bpjs_kesehatan + "', "
+                query += "employee_bpjs_kesehatan_date=" + employee_bpjs_kesehatan_date + ", "
                 query += "employee_npwp='" + employee_npwp + "', "
                 query += "phone='" + phone + "', "
                 query += "phone_mobile='" + phone_mobile + "', "
