@@ -42,13 +42,18 @@
 
     Sub view_bom()
         Try
+            If id_prod_demand_design = "" Then
+                id_prod_demand_design = "-1"
+            End If
             Dim query As String
-            query = "CALL view_bom_pd_design(" & id_prod_demand_design & ")"
+            query = "CALL view_bom_design_list(" & id_prod_demand_design & ",1)"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBOM.DataSource = data
-            GVBOM.ClearGrouping()
-            GVBOM.Columns("id_component_category").GroupIndex = 0
+            GVBOM.ActiveFilterString = "[is_cost] = 1"
             GVBOM.ExpandAllGroups()
+            If GVBOM.RowCount > 0 Then
+                METotSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
+            End If
         Catch ex As Exception
             errorConnection()
         End Try
