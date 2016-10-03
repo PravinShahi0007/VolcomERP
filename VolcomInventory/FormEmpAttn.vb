@@ -20,7 +20,7 @@
 
             If fp.bIsConnected Then
                 fp.get_attlog(data.Rows(i)("id_fingerprint").ToString())
-                'fp.clear_attlog()
+                fp.clear_attlog()
             Else
                 If Not i = 0 Then
                     string_err += vbNewLine
@@ -61,5 +61,12 @@
     Private Sub FormEmpAttn_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
+    End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        Try
+            DEUntil.Properties.MinValue = DEStart.EditValue
+        Catch ex As Exception
+        End Try
     End Sub
 End Class

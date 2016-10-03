@@ -9743,4 +9743,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBAttnLog_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnLog.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttn.MdiParent = Me
+            FormEmpAttn.Show()
+            FormEmpAttn.WindowState = FormWindowState.Maximized
+            FormEmpAttn.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
