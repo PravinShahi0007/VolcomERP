@@ -6,6 +6,8 @@
 
     Public report_number As String = ""
     Public report_date As Date = Now
+    Public info_col As String = ""
+
     Sub show()
         If report_mark_type = "1" Then
             'sample purchase
@@ -841,6 +843,19 @@
         If data.Rows.Count > 0 Then
             report_number = data.Rows(0)("report_number").ToString()
             report_date = data.Rows(0)("report_date")
+            'info col
+            If report_mark_type = "22" Then
+                'po production
+                query = "SELECT pot.po_type FROM tb_prod_order po
+                        INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type WHERE po.id_prod_order='" & id_report & "'"
+                info_col = execute_query(query, 0, True, "", "", "", "")
+            ElseIf report_mark_type = "23" Then
+                'wo production
+                query = "SELECT pot.po_type FROM tb_prod_order_wo wo
+                        INNER JOIN tb_prod_order po ON po.id_prod_order=wo.id_prod_order
+                        INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type WHERE po.id_production='" & id_report & "'"
+                info_col = execute_query(query, 0, True, "", "", "", "")
+            End If
         End If
     End Sub
 End Class

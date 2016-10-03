@@ -19,9 +19,9 @@ Partial Class FormWork
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim GridLevelNode3 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode4 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn711 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn712 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -603,6 +603,7 @@ Partial Class FormWork
         Me.ColMarkNeedReportType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColMarkIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColMarkNeedReportNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn327 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColMarkNeedIdStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColMarkNeedStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColMarkNeedCan = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -625,6 +626,7 @@ Partial Class FormWork
         Me.GridCol33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GColMHYear = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn328 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl11 = New DevExpress.XtraEditors.PanelControl()
         Me.BViewHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPMaterial = New DevExpress.XtraTab.XtraTabPage()
@@ -1754,6 +1756,11 @@ Partial Class FormWork
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.GridColumnMarkDatetime = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.Label16 = New System.Windows.Forms.Label()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesCreditNote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesCreditNote, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2348,6 +2355,10 @@ Partial Class FormWork
         CType(Me.RepositoryItemSpinEdit32, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlFGWoff, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlFGWoff.SuspendLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GVSalesPOSDet
@@ -2549,9 +2560,9 @@ Partial Class FormWork
         'GCSalesCreditNote
         '
         Me.GCSalesCreditNote.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode1.LevelTemplate = Me.GVSalesPOSDet
-        GridLevelNode1.RelationName = "Detail Transaction"
-        Me.GCSalesCreditNote.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        GridLevelNode3.LevelTemplate = Me.GVSalesPOSDet
+        GridLevelNode3.RelationName = "Detail Transaction"
+        Me.GCSalesCreditNote.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode3})
         Me.GCSalesCreditNote.Location = New System.Drawing.Point(2, 20)
         Me.GCSalesCreditNote.MainView = Me.GVSalesCreditNote
         Me.GCSalesCreditNote.Name = "GCSalesCreditNote"
@@ -2934,9 +2945,9 @@ Partial Class FormWork
         'GCFGMissing
         '
         Me.GCFGMissing.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode2.LevelTemplate = Me.GridView16
-        GridLevelNode2.RelationName = "Detail Transaction"
-        Me.GCFGMissing.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
+        GridLevelNode4.LevelTemplate = Me.GridView16
+        GridLevelNode4.RelationName = "Detail Transaction"
+        Me.GCFGMissing.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode4})
         Me.GCFGMissing.Location = New System.Drawing.Point(2, 20)
         Me.GCFGMissing.MainView = Me.GVFGMissing
         Me.GCFGMissing.Name = "GCFGMissing"
@@ -3302,9 +3313,9 @@ Partial Class FormWork
         'GCFGMissingCNStore
         '
         Me.GCFGMissingCNStore.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode3.LevelTemplate = Me.GridView17
-        GridLevelNode3.RelationName = "Detail Transaction"
-        Me.GCFGMissingCNStore.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode3})
+        GridLevelNode1.LevelTemplate = Me.GridView17
+        GridLevelNode1.RelationName = "Detail Transaction"
+        Me.GCFGMissingCNStore.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.GCFGMissingCNStore.Location = New System.Drawing.Point(2, 20)
         Me.GCFGMissingCNStore.MainView = Me.GVFGMissingCNStore
         Me.GCFGMissingCNStore.Name = "GCFGMissingCNStore"
@@ -3502,6 +3513,7 @@ Partial Class FormWork
         '
         Me.XTPSample.Controls.Add(Me.XTCSample)
         Me.XTPSample.Name = "XTPSample"
+        Me.XTPSample.PageVisible = False
         Me.XTPSample.Size = New System.Drawing.Size(945, 468)
         Me.XTPSample.Text = "Sample"
         '
@@ -3883,7 +3895,7 @@ Partial Class FormWork
         Me.XTPSampleReceive.Controls.Add(Me.SplitContainerControl2)
         Me.XTPSampleReceive.Controls.Add(Me.PanelControl2)
         Me.XTPSampleReceive.Name = "XTPSampleReceive"
-        Me.XTPSampleReceive.Size = New System.Drawing.Size(939, 442)
+        Me.XTPSampleReceive.Size = New System.Drawing.Size(939, 440)
         Me.XTPSampleReceive.Text = "Receive"
         '
         'SplitContainerControl2
@@ -3896,7 +3908,7 @@ Partial Class FormWork
         Me.SplitContainerControl2.Panel1.Text = "Panel1"
         Me.SplitContainerControl2.Panel2.Controls.Add(Me.GCListSampleReceive)
         Me.SplitContainerControl2.Panel2.Text = "Panel2"
-        Me.SplitContainerControl2.Size = New System.Drawing.Size(939, 406)
+        Me.SplitContainerControl2.Size = New System.Drawing.Size(939, 404)
         Me.SplitContainerControl2.SplitterPosition = 244
         Me.SplitContainerControl2.TabIndex = 4
         Me.SplitContainerControl2.Text = "SplitContainerControl2"
@@ -4058,7 +4070,7 @@ Partial Class FormWork
         Me.GCListSampleReceive.Location = New System.Drawing.Point(0, 0)
         Me.GCListSampleReceive.MainView = Me.GVListSampleReceive
         Me.GCListSampleReceive.Name = "GCListSampleReceive"
-        Me.GCListSampleReceive.Size = New System.Drawing.Size(939, 157)
+        Me.GCListSampleReceive.Size = New System.Drawing.Size(939, 155)
         Me.GCListSampleReceive.TabIndex = 3
         Me.GCListSampleReceive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListSampleReceive})
         '
@@ -4189,7 +4201,7 @@ Partial Class FormWork
         Me.XTPSamplePL.Controls.Add(Me.PanelControl4)
         Me.XTPSamplePL.Name = "XTPSamplePL"
         Me.XTPSamplePL.PageVisible = False
-        Me.XTPSamplePL.Size = New System.Drawing.Size(939, 442)
+        Me.XTPSamplePL.Size = New System.Drawing.Size(939, 440)
         Me.XTPSamplePL.Text = "Packing List"
         '
         'SplitContainerControl4
@@ -4472,7 +4484,7 @@ Partial Class FormWork
         Me.XTPSamplePR.Controls.Add(Me.SplitContainerControl3)
         Me.XTPSamplePR.Controls.Add(Me.PanelControl3)
         Me.XTPSamplePR.Name = "XTPSamplePR"
-        Me.XTPSamplePR.Size = New System.Drawing.Size(939, 442)
+        Me.XTPSamplePR.Size = New System.Drawing.Size(939, 440)
         Me.XTPSamplePR.Text = "Payment Requisition"
         '
         'SplitContainerControl3
@@ -4485,7 +4497,7 @@ Partial Class FormWork
         Me.SplitContainerControl3.Panel1.Text = "Panel1"
         Me.SplitContainerControl3.Panel2.Controls.Add(Me.GCListSamplePR)
         Me.SplitContainerControl3.Panel2.Text = "Panel2"
-        Me.SplitContainerControl3.Size = New System.Drawing.Size(939, 406)
+        Me.SplitContainerControl3.Size = New System.Drawing.Size(939, 404)
         Me.SplitContainerControl3.SplitterPosition = 249
         Me.SplitContainerControl3.TabIndex = 6
         Me.SplitContainerControl3.Text = "SplitContainerControl3"
@@ -4639,7 +4651,7 @@ Partial Class FormWork
         Me.GCListSamplePR.Location = New System.Drawing.Point(0, 0)
         Me.GCListSamplePR.MainView = Me.GVListSamplePR
         Me.GCListSamplePR.Name = "GCListSamplePR"
-        Me.GCListSamplePR.Size = New System.Drawing.Size(939, 152)
+        Me.GCListSamplePR.Size = New System.Drawing.Size(939, 150)
         Me.GCListSamplePR.TabIndex = 2
         Me.GCListSamplePR.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListSamplePR, Me.GridView1})
         '
@@ -4834,7 +4846,7 @@ Partial Class FormWork
         Me.XTPSampleRequisition.Controls.Add(Me.SCCSampleReq)
         Me.XTPSampleRequisition.Controls.Add(Me.PanelControl14)
         Me.XTPSampleRequisition.Name = "XTPSampleRequisition"
-        Me.XTPSampleRequisition.Size = New System.Drawing.Size(939, 442)
+        Me.XTPSampleRequisition.Size = New System.Drawing.Size(939, 440)
         Me.XTPSampleRequisition.Text = "Sample Borrow Requisition"
         '
         'SCCSampleReq
@@ -4847,7 +4859,7 @@ Partial Class FormWork
         Me.SCCSampleReq.Panel1.Text = "Panel1"
         Me.SCCSampleReq.Panel2.Controls.Add(Me.GCListSampleReq)
         Me.SCCSampleReq.Panel2.Text = "Panel2"
-        Me.SCCSampleReq.Size = New System.Drawing.Size(939, 406)
+        Me.SCCSampleReq.Size = New System.Drawing.Size(939, 404)
         Me.SCCSampleReq.SplitterPosition = 188
         Me.SCCSampleReq.TabIndex = 12
         Me.SCCSampleReq.Text = "SplitContainerControl11"
@@ -4973,7 +4985,7 @@ Partial Class FormWork
         Me.GCListSampleReq.MainView = Me.GVListSampleReq
         Me.GCListSampleReq.Name = "GCListSampleReq"
         Me.GCListSampleReq.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit25})
-        Me.GCListSampleReq.Size = New System.Drawing.Size(939, 213)
+        Me.GCListSampleReq.Size = New System.Drawing.Size(939, 211)
         Me.GCListSampleReq.TabIndex = 2
         Me.GCListSampleReq.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListSampleReq})
         '
@@ -5176,7 +5188,7 @@ Partial Class FormWork
         Me.XTPSamplePLDel.Controls.Add(Me.SplitContainerControl5)
         Me.XTPSamplePLDel.Controls.Add(Me.PanelControl5)
         Me.XTPSamplePLDel.Name = "XTPSamplePLDel"
-        Me.XTPSamplePLDel.Size = New System.Drawing.Size(939, 442)
+        Me.XTPSamplePLDel.Size = New System.Drawing.Size(939, 440)
         Me.XTPSamplePLDel.Text = "Packing List Borrow Sample"
         '
         'SplitContainerControl5
@@ -5189,7 +5201,7 @@ Partial Class FormWork
         Me.SplitContainerControl5.Panel1.Text = "Panel1"
         Me.SplitContainerControl5.Panel2.Controls.Add(Me.GCListSampleDrawerPLDel)
         Me.SplitContainerControl5.Panel2.Text = "Panel2"
-        Me.SplitContainerControl5.Size = New System.Drawing.Size(939, 406)
+        Me.SplitContainerControl5.Size = New System.Drawing.Size(939, 404)
         Me.SplitContainerControl5.SplitterPosition = 229
         Me.SplitContainerControl5.TabIndex = 7
         Me.SplitContainerControl5.Text = "SplitContainerControl5"
@@ -5325,7 +5337,7 @@ Partial Class FormWork
         Me.GCListSampleDrawerPLDel.MainView = Me.GVListSampleDrawerPLDel
         Me.GCListSampleDrawerPLDel.Name = "GCListSampleDrawerPLDel"
         Me.GCListSampleDrawerPLDel.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2})
-        Me.GCListSampleDrawerPLDel.Size = New System.Drawing.Size(939, 172)
+        Me.GCListSampleDrawerPLDel.Size = New System.Drawing.Size(939, 170)
         Me.GCListSampleDrawerPLDel.TabIndex = 25
         Me.GCListSampleDrawerPLDel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListSampleDrawerPLDel})
         '
@@ -5511,7 +5523,7 @@ Partial Class FormWork
         Me.XTPSampleReturn.Controls.Add(Me.SplitContainerControl6)
         Me.XTPSampleReturn.Controls.Add(Me.PanelControl6)
         Me.XTPSampleReturn.Name = "XTPSampleReturn"
-        Me.XTPSampleReturn.Size = New System.Drawing.Size(939, 442)
+        Me.XTPSampleReturn.Size = New System.Drawing.Size(939, 440)
         Me.XTPSampleReturn.Text = "Return Sample Borrow"
         '
         'SplitContainerControl6
@@ -5524,7 +5536,7 @@ Partial Class FormWork
         Me.SplitContainerControl6.Panel1.Text = "Panel1"
         Me.SplitContainerControl6.Panel2.Controls.Add(Me.GCListSampleReturn)
         Me.SplitContainerControl6.Panel2.Text = "Panel2"
-        Me.SplitContainerControl6.Size = New System.Drawing.Size(939, 406)
+        Me.SplitContainerControl6.Size = New System.Drawing.Size(939, 404)
         Me.SplitContainerControl6.SplitterPosition = 203
         Me.SplitContainerControl6.TabIndex = 10
         Me.SplitContainerControl6.Text = "SplitContainerControl6"
@@ -5615,7 +5627,7 @@ Partial Class FormWork
         Me.GCListSampleReturn.MainView = Me.GVListSampleReturn
         Me.GCListSampleReturn.Name = "GCListSampleReturn"
         Me.GCListSampleReturn.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCListSampleReturn.Size = New System.Drawing.Size(939, 198)
+        Me.GCListSampleReturn.Size = New System.Drawing.Size(939, 196)
         Me.GCListSampleReturn.TabIndex = 2
         Me.GCListSampleReturn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListSampleReturn, Me.GridView2})
         '
@@ -5813,7 +5825,7 @@ Partial Class FormWork
         Me.XTPAdjInSample.Controls.Add(Me.SplitContainerControl7)
         Me.XTPAdjInSample.Controls.Add(Me.PanelControl7)
         Me.XTPAdjInSample.Name = "XTPAdjInSample"
-        Me.XTPAdjInSample.Size = New System.Drawing.Size(939, 442)
+        Me.XTPAdjInSample.Size = New System.Drawing.Size(939, 440)
         Me.XTPAdjInSample.Text = "Adjustment In "
         '
         'SplitContainerControl7
@@ -5826,7 +5838,7 @@ Partial Class FormWork
         Me.SplitContainerControl7.Panel1.Text = "Panel1"
         Me.SplitContainerControl7.Panel2.Controls.Add(Me.GCListAdjInSample)
         Me.SplitContainerControl7.Panel2.Text = "Panel2"
-        Me.SplitContainerControl7.Size = New System.Drawing.Size(939, 406)
+        Me.SplitContainerControl7.Size = New System.Drawing.Size(939, 404)
         Me.SplitContainerControl7.SplitterPosition = 192
         Me.SplitContainerControl7.TabIndex = 11
         Me.SplitContainerControl7.Text = "SplitContainerControl7"
@@ -5909,7 +5921,7 @@ Partial Class FormWork
         Me.GCListAdjInSample.MainView = Me.GVListAdjInSample
         Me.GCListAdjInSample.Name = "GCListAdjInSample"
         Me.GCListAdjInSample.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit3})
-        Me.GCListAdjInSample.Size = New System.Drawing.Size(939, 209)
+        Me.GCListAdjInSample.Size = New System.Drawing.Size(939, 207)
         Me.GCListAdjInSample.TabIndex = 3
         Me.GCListAdjInSample.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListAdjInSample, Me.GridView3})
         '
@@ -6179,7 +6191,7 @@ Partial Class FormWork
         Me.XTPAdjOutSample.Controls.Add(Me.SplitContainerControl8)
         Me.XTPAdjOutSample.Controls.Add(Me.PanelControl8)
         Me.XTPAdjOutSample.Name = "XTPAdjOutSample"
-        Me.XTPAdjOutSample.Size = New System.Drawing.Size(939, 442)
+        Me.XTPAdjOutSample.Size = New System.Drawing.Size(939, 440)
         Me.XTPAdjOutSample.Text = "Adjustment Out"
         '
         'SplitContainerControl8
@@ -6192,7 +6204,7 @@ Partial Class FormWork
         Me.SplitContainerControl8.Panel1.Text = "Panel1"
         Me.SplitContainerControl8.Panel2.Controls.Add(Me.GCListAdjOutSample)
         Me.SplitContainerControl8.Panel2.Text = "Panel2"
-        Me.SplitContainerControl8.Size = New System.Drawing.Size(939, 406)
+        Me.SplitContainerControl8.Size = New System.Drawing.Size(939, 404)
         Me.SplitContainerControl8.SplitterPosition = 182
         Me.SplitContainerControl8.TabIndex = 12
         Me.SplitContainerControl8.Text = "SplitContainerControl8"
@@ -6274,7 +6286,7 @@ Partial Class FormWork
         Me.GCListAdjOutSample.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GCListAdjOutSample.MainView = Me.GVListAdjOutSample
         Me.GCListAdjOutSample.Name = "GCListAdjOutSample"
-        Me.GCListAdjOutSample.Size = New System.Drawing.Size(939, 219)
+        Me.GCListAdjOutSample.Size = New System.Drawing.Size(939, 217)
         Me.GCListAdjOutSample.TabIndex = 3
         Me.GCListAdjOutSample.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListAdjOutSample, Me.GridView4})
         '
@@ -6528,7 +6540,7 @@ Partial Class FormWork
         Me.XTPSamplePLDelivery.Controls.Add(Me.SCCSampleDel)
         Me.XTPSamplePLDelivery.Controls.Add(Me.PanelControl15)
         Me.XTPSamplePLDelivery.Name = "XTPSamplePLDelivery"
-        Me.XTPSamplePLDelivery.Size = New System.Drawing.Size(939, 442)
+        Me.XTPSamplePLDelivery.Size = New System.Drawing.Size(939, 440)
         Me.XTPSamplePLDelivery.Text = "PL Delivery Sample"
         '
         'SCCSampleDel
@@ -6541,7 +6553,7 @@ Partial Class FormWork
         Me.SCCSampleDel.Panel1.Text = "Panel1"
         Me.SCCSampleDel.Panel2.Controls.Add(Me.GCListSampleDel)
         Me.SCCSampleDel.Panel2.Text = "Panel2"
-        Me.SCCSampleDel.Size = New System.Drawing.Size(939, 406)
+        Me.SCCSampleDel.Size = New System.Drawing.Size(939, 404)
         Me.SCCSampleDel.SplitterPosition = 181
         Me.SCCSampleDel.TabIndex = 13
         Me.SCCSampleDel.Text = "SplitContainerControl11"
@@ -6631,7 +6643,7 @@ Partial Class FormWork
         Me.GCListSampleDel.MainView = Me.GVListSampleDel
         Me.GCListSampleDel.Name = "GCListSampleDel"
         Me.GCListSampleDel.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit26})
-        Me.GCListSampleDel.Size = New System.Drawing.Size(939, 220)
+        Me.GCListSampleDel.Size = New System.Drawing.Size(939, 218)
         Me.GCListSampleDel.TabIndex = 4
         Me.GCListSampleDel.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListSampleDel})
         '
@@ -6865,7 +6877,7 @@ Partial Class FormWork
         Me.XTPSamplePLDeliveryRec.Controls.Add(Me.SCCSampleDelRec)
         Me.XTPSamplePLDeliveryRec.Controls.Add(Me.PanelControl16)
         Me.XTPSamplePLDeliveryRec.Name = "XTPSamplePLDeliveryRec"
-        Me.XTPSamplePLDeliveryRec.Size = New System.Drawing.Size(939, 442)
+        Me.XTPSamplePLDeliveryRec.Size = New System.Drawing.Size(939, 440)
         Me.XTPSamplePLDeliveryRec.Text = "Receive PL Delivery Sample"
         '
         'SCCSampleDelRec
@@ -6878,7 +6890,7 @@ Partial Class FormWork
         Me.SCCSampleDelRec.Panel1.Text = "Panel1"
         Me.SCCSampleDelRec.Panel2.Controls.Add(Me.GCListSampleDelRec)
         Me.SCCSampleDelRec.Panel2.Text = "Panel2"
-        Me.SCCSampleDelRec.Size = New System.Drawing.Size(939, 406)
+        Me.SCCSampleDelRec.Size = New System.Drawing.Size(939, 404)
         Me.SCCSampleDelRec.SplitterPosition = 190
         Me.SCCSampleDelRec.TabIndex = 14
         Me.SCCSampleDelRec.Text = "SplitContainerControl11"
@@ -6978,7 +6990,7 @@ Partial Class FormWork
         Me.GCListSampleDelRec.MainView = Me.GVListSampleDelRec
         Me.GCListSampleDelRec.Name = "GCListSampleDelRec"
         Me.GCListSampleDelRec.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit27})
-        Me.GCListSampleDelRec.Size = New System.Drawing.Size(939, 211)
+        Me.GCListSampleDelRec.Size = New System.Drawing.Size(939, 209)
         Me.GCListSampleDelRec.TabIndex = 4
         Me.GCListSampleDelRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListSampleDelRec})
         '
@@ -7234,7 +7246,7 @@ Partial Class FormWork
         Me.XTPSampleOrder.Controls.Add(Me.SCCSampleOrder)
         Me.XTPSampleOrder.Controls.Add(Me.PanelControl17)
         Me.XTPSampleOrder.Name = "XTPSampleOrder"
-        Me.XTPSampleOrder.Size = New System.Drawing.Size(939, 442)
+        Me.XTPSampleOrder.Size = New System.Drawing.Size(939, 440)
         Me.XTPSampleOrder.Text = "Sales Order Sample"
         '
         'SCCSampleOrder
@@ -7247,7 +7259,7 @@ Partial Class FormWork
         Me.SCCSampleOrder.Panel1.Text = "Panel1"
         Me.SCCSampleOrder.Panel2.Controls.Add(Me.GCListSampleOrder)
         Me.SCCSampleOrder.Panel2.Text = "Panel2"
-        Me.SCCSampleOrder.Size = New System.Drawing.Size(939, 406)
+        Me.SCCSampleOrder.Size = New System.Drawing.Size(939, 404)
         Me.SCCSampleOrder.SplitterPosition = 197
         Me.SCCSampleOrder.TabIndex = 15
         Me.SCCSampleOrder.Text = "SplitContainerControl11"
@@ -7352,7 +7364,7 @@ Partial Class FormWork
         Me.GCListSampleOrder.MainView = Me.GVListSampleOrder
         Me.GCListSampleOrder.Name = "GCListSampleOrder"
         Me.GCListSampleOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit28})
-        Me.GCListSampleOrder.Size = New System.Drawing.Size(939, 204)
+        Me.GCListSampleOrder.Size = New System.Drawing.Size(939, 202)
         Me.GCListSampleOrder.TabIndex = 3
         Me.GCListSampleOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListSampleOrder})
         '
@@ -7562,7 +7574,7 @@ Partial Class FormWork
         Me.XTPSampleDelOrder.Controls.Add(Me.SCCSampleDelOrder)
         Me.XTPSampleDelOrder.Controls.Add(Me.PanelControl18)
         Me.XTPSampleDelOrder.Name = "XTPSampleDelOrder"
-        Me.XTPSampleDelOrder.Size = New System.Drawing.Size(939, 442)
+        Me.XTPSampleDelOrder.Size = New System.Drawing.Size(939, 440)
         Me.XTPSampleDelOrder.Text = "Del. Order Sample"
         '
         'SCCSampleDelOrder
@@ -7575,7 +7587,7 @@ Partial Class FormWork
         Me.SCCSampleDelOrder.Panel1.Text = "Panel1"
         Me.SCCSampleDelOrder.Panel2.Controls.Add(Me.GCListSampleDelOrder)
         Me.SCCSampleDelOrder.Panel2.Text = "Panel2"
-        Me.SCCSampleDelOrder.Size = New System.Drawing.Size(939, 406)
+        Me.SCCSampleDelOrder.Size = New System.Drawing.Size(939, 404)
         Me.SCCSampleDelOrder.SplitterPosition = 179
         Me.SCCSampleDelOrder.TabIndex = 16
         Me.SCCSampleDelOrder.Text = "SplitContainerControl11"
@@ -7673,7 +7685,7 @@ Partial Class FormWork
         Me.GCListSampleDelOrder.MainView = Me.GVListSampleDelOrder
         Me.GCListSampleDelOrder.Name = "GCListSampleDelOrder"
         Me.GCListSampleDelOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit29})
-        Me.GCListSampleDelOrder.Size = New System.Drawing.Size(939, 222)
+        Me.GCListSampleDelOrder.Size = New System.Drawing.Size(939, 220)
         Me.GCListSampleDelOrder.TabIndex = 7
         Me.GCListSampleDelOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListSampleDelOrder})
         '
@@ -7923,7 +7935,7 @@ Partial Class FormWork
         '
         'GVMarkNeed
         '
-        Me.GVMarkNeed.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMarkNeed, Me.ColMarkNeedIdReportType, Me.ColMarkNeedReportType, Me.ColMarkIdReport, Me.ColMarkNeedReportNumber, Me.ColMarkNeedIdStatus, Me.ColMarkNeedStatus, Me.ColMarkNeedCan, Me.ColMarkNeedReportDate, Me.ColLeadTime, Me.ColRawLeadTime, Me.GridColumnTimeMiss})
+        Me.GVMarkNeed.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMarkNeed, Me.ColMarkNeedIdReportType, Me.ColMarkNeedReportType, Me.ColMarkIdReport, Me.ColMarkNeedReportNumber, Me.GridColumn327, Me.ColMarkNeedIdStatus, Me.ColMarkNeedStatus, Me.ColMarkNeedCan, Me.ColMarkNeedReportDate, Me.ColLeadTime, Me.ColRawLeadTime, Me.GridColumnTimeMiss})
         Me.GVMarkNeed.GridControl = Me.GCMarkNeed
         Me.GVMarkNeed.Name = "GVMarkNeed"
         Me.GVMarkNeed.OptionsBehavior.Editable = False
@@ -7964,8 +7976,20 @@ Partial Class FormWork
         Me.ColMarkNeedReportNumber.FieldName = "report_number"
         Me.ColMarkNeedReportNumber.Name = "ColMarkNeedReportNumber"
         Me.ColMarkNeedReportNumber.Visible = True
-        Me.ColMarkNeedReportNumber.VisibleIndex = 1
+        Me.ColMarkNeedReportNumber.VisibleIndex = 2
         Me.ColMarkNeedReportNumber.Width = 159
+        '
+        'GridColumn327
+        '
+        Me.GridColumn327.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn327.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn327.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn327.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn327.Caption = "Info"
+        Me.GridColumn327.FieldName = "info"
+        Me.GridColumn327.Name = "GridColumn327"
+        Me.GridColumn327.Visible = True
+        Me.GridColumn327.VisibleIndex = 1
         '
         'ColMarkNeedIdStatus
         '
@@ -7979,7 +8003,7 @@ Partial Class FormWork
         Me.ColMarkNeedStatus.FieldName = "report_status"
         Me.ColMarkNeedStatus.Name = "ColMarkNeedStatus"
         Me.ColMarkNeedStatus.Visible = True
-        Me.ColMarkNeedStatus.VisibleIndex = 3
+        Me.ColMarkNeedStatus.VisibleIndex = 4
         Me.ColMarkNeedStatus.Width = 431
         '
         'ColMarkNeedCan
@@ -7991,19 +8015,23 @@ Partial Class FormWork
         'ColMarkNeedReportDate
         '
         Me.ColMarkNeedReportDate.Caption = "Date"
+        Me.ColMarkNeedReportDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColMarkNeedReportDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColMarkNeedReportDate.FieldName = "report_date"
         Me.ColMarkNeedReportDate.Name = "ColMarkNeedReportDate"
         Me.ColMarkNeedReportDate.Visible = True
-        Me.ColMarkNeedReportDate.VisibleIndex = 2
+        Me.ColMarkNeedReportDate.VisibleIndex = 3
         Me.ColMarkNeedReportDate.Width = 150
         '
         'ColLeadTime
         '
         Me.ColLeadTime.Caption = "Lead Time"
+        Me.ColLeadTime.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
+        Me.ColLeadTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColLeadTime.FieldName = "lead_time"
         Me.ColLeadTime.Name = "ColLeadTime"
         Me.ColLeadTime.Visible = True
-        Me.ColLeadTime.VisibleIndex = 4
+        Me.ColLeadTime.VisibleIndex = 5
         Me.ColLeadTime.Width = 200
         '
         'ColRawLeadTime
@@ -8056,14 +8084,14 @@ Partial Class FormWork
         '
         'GVMarkHistory
         '
-        Me.GVMarkHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn35, Me.GridCol33, Me.GColMHYear, Me.GridColumn34})
+        Me.GVMarkHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn35, Me.GridColumnMarkDatetime, Me.GridCol33, Me.GColMHYear, Me.GridColumn34, Me.GridColumn328})
         Me.GVMarkHistory.GridControl = Me.GCMarkHistory
         Me.GVMarkHistory.GroupCount = 2
         Me.GVMarkHistory.Name = "GVMarkHistory"
         Me.GVMarkHistory.OptionsBehavior.Editable = False
         Me.GVMarkHistory.OptionsFind.AlwaysVisible = True
         Me.GVMarkHistory.OptionsView.ShowGroupPanel = False
-        Me.GVMarkHistory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GColMHYear, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn34, DevExpress.Data.ColumnSortOrder.Descending)})
+        Me.GVMarkHistory.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GColMHYear, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn34, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn27
         '
@@ -8111,10 +8139,12 @@ Partial Class FormWork
         'GridColumn35
         '
         Me.GridColumn35.Caption = "Date"
+        Me.GridColumn35.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn35.FieldName = "report_date"
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 2
+        Me.GridColumn35.VisibleIndex = 3
         Me.GridColumn35.Width = 150
         '
         'GridCol33
@@ -8123,7 +8153,7 @@ Partial Class FormWork
         Me.GridCol33.FieldName = "report_status"
         Me.GridCol33.Name = "GridCol33"
         Me.GridCol33.Visible = True
-        Me.GridCol33.VisibleIndex = 3
+        Me.GridCol33.VisibleIndex = 4
         '
         'GColMHYear
         '
@@ -8141,8 +8171,24 @@ Partial Class FormWork
         Me.GridColumn34.Visible = True
         Me.GridColumn34.VisibleIndex = 0
         '
+        'GridColumn328
+        '
+        Me.GridColumn328.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn328.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn328.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn328.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn328.Caption = "Info"
+        Me.GridColumn328.FieldName = "info"
+        Me.GridColumn328.Name = "GridColumn328"
+        Me.GridColumn328.Visible = True
+        Me.GridColumn328.VisibleIndex = 2
+        '
         'PanelControl11
         '
+        Me.PanelControl11.Controls.Add(Me.DEUntil)
+        Me.PanelControl11.Controls.Add(Me.Label3)
+        Me.PanelControl11.Controls.Add(Me.DEStart)
+        Me.PanelControl11.Controls.Add(Me.Label16)
         Me.PanelControl11.Controls.Add(Me.BViewHistory)
         Me.PanelControl11.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl11.Location = New System.Drawing.Point(0, 0)
@@ -8152,10 +8198,9 @@ Partial Class FormWork
         '
         'BViewHistory
         '
-        Me.BViewHistory.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BViewHistory.Location = New System.Drawing.Point(860, 2)
+        Me.BViewHistory.Location = New System.Drawing.Point(306, 5)
         Me.BViewHistory.Name = "BViewHistory"
-        Me.BViewHistory.Size = New System.Drawing.Size(77, 32)
+        Me.BViewHistory.Size = New System.Drawing.Size(78, 26)
         Me.BViewHistory.TabIndex = 0
         Me.BViewHistory.Text = "View"
         '
@@ -8163,6 +8208,7 @@ Partial Class FormWork
         '
         Me.XTPMaterial.Controls.Add(Me.XTCMaterial)
         Me.XTPMaterial.Name = "XTPMaterial"
+        Me.XTPMaterial.PageVisible = False
         Me.XTPMaterial.Size = New System.Drawing.Size(945, 468)
         Me.XTPMaterial.Text = "Material"
         '
@@ -9653,6 +9699,7 @@ Partial Class FormWork
         '
         Me.XTPProduct.Controls.Add(Me.XTCProduction)
         Me.XTPProduct.Name = "XTPProduct"
+        Me.XTPProduct.PageVisible = False
         Me.XTPProduct.Size = New System.Drawing.Size(945, 468)
         Me.XTPProduct.Text = "Production"
         '
@@ -11480,6 +11527,7 @@ Partial Class FormWork
         '
         Me.XTPSales.Controls.Add(Me.XTCSales)
         Me.XTPSales.Name = "XTPSales"
+        Me.XTPSales.PageVisible = False
         Me.XTPSales.Size = New System.Drawing.Size(945, 468)
         Me.XTPSales.Text = "Sales"
         '
@@ -19510,6 +19558,59 @@ Partial Class FormWork
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = -1
         '
+        'GridColumnMarkDatetime
+        '
+        Me.GridColumnMarkDatetime.Caption = "Approval Datetime"
+        Me.GridColumnMarkDatetime.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
+        Me.GridColumnMarkDatetime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnMarkDatetime.FieldName = "report_mark_datetime"
+        Me.GridColumnMarkDatetime.Name = "GridColumnMarkDatetime"
+        Me.GridColumnMarkDatetime.Visible = True
+        Me.GridColumnMarkDatetime.VisibleIndex = 5
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(184, 8)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Size = New System.Drawing.Size(116, 20)
+        Me.DEUntil.TabIndex = 113
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(167, 11)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(11, 13)
+        Me.Label3.TabIndex = 112
+        Me.Label3.Text = "-"
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(45, 8)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Size = New System.Drawing.Size(116, 20)
+        Me.DEStart.TabIndex = 111
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(9, 11)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(30, 13)
+        Me.Label16.TabIndex = 110
+        Me.Label16.Text = "Date"
+        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'FormWork
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -19520,7 +19621,6 @@ Partial Class FormWork
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormWork"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Work Place"
@@ -19706,6 +19806,7 @@ Partial Class FormWork
         CType(Me.GVMarkHistory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl11, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl11.ResumeLayout(False)
+        Me.PanelControl11.PerformLayout()
         Me.XTPMaterial.ResumeLayout(False)
         CType(Me.XTCMaterial, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCMaterial.ResumeLayout(False)
@@ -20118,6 +20219,10 @@ Partial Class FormWork
         CType(Me.RepositoryItemSpinEdit32, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlFGWoff, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlFGWoff.ResumeLayout(False)
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -21853,4 +21958,11 @@ Partial Class FormWork
     Friend WithEvents GridColumnWHName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCategory As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView10 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn327 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn328 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMarkDatetime As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label3 As Label
+    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label16 As Label
 End Class

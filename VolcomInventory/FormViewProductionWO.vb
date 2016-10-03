@@ -4,7 +4,7 @@
     Public id_po As String = "-1"
     Public id_prod_demand_design As String = "-1"
     Public id_comp_ship_to As String = "-1"
-    Public date_created As String = ""
+    Public date_created As Date
     Public id_report_status_g As String = "1"
     Public id_wo_type As String = "-1"
 
@@ -14,13 +14,27 @@
         'view delivery
         view_payment_type(LEpayment)
 
+        TEDelDate.EditValue = Now
+
+        Dim default_kurs As Decimal = 1.0
+        TEKurs.EditValue = default_kurs
+
+        date_created = Now
+        DEDateNow.EditValue = date_created
+        DEEstRecDate.EditValue = date_created
+        DEDueDate.EditValue = date_created
+
+        load_po(id_po)
+
+        BMark.Visible = True
 
         Dim query = "SELECT a.id_report_status,h.report_status,a.id_prod_order_wo,a.id_ovh_price,a.id_payment, "
-        query += "a.id_prod_order,g.payment,b.id_currency,a.prod_order_wo_note, "
+        query += "a.id_prod_order,g.payment,b.id_currency,a.prod_order_wo_note,a.prod_order_wo_kurs, "
         query += "d.comp_name AS comp_name_to, "
         query += "f.comp_name AS comp_name_ship_to,a.id_comp_contact_ship_to, "
         query += "a.prod_order_wo_number,a.id_ovh_price,j.overhead, "
-        query += "DATE_FORMAT(a.prod_order_wo_date,'%Y-%m-%d') as prod_order_wo_datex,a.prod_order_wo_lead_time,a.prod_order_wo_top,a.prod_order_wo_vat "
+        query += "a.prod_order_wo_del_date, "
+        query += "DATE_FORMAT(a.prod_order_wo_date,'%Y-%m-%d') as prod_order_wo_datex,a.prod_order_wo_date,a.prod_order_wo_lead_time,a.prod_order_wo_top,a.prod_order_wo_vat, a.is_main_vendor "
         query += "FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price "
         query += "INNER JOIN tb_m_comp_contact c ON b.id_comp_contact = c.id_comp_contact "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
@@ -32,11 +46,11 @@
         query += "WHERE a.id_prod_order_wo='" & id_wo & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         '
-        id_po = data.Rows(0)("id_prod_order").ToString
-        load_po(id_po)
         id_ovh_price = data.Rows(0)("id_ovh_price").ToString
         '
         TEWONumber.Text = data.Rows(0)("prod_order_wo_number").ToString
+        '
+        TEKurs.EditValue = data.Rows(0)("prod_order_wo_kurs")
 
         LECurrency.EditValue = Nothing
         LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", data.Rows(0)("id_currency").ToString)
@@ -55,15 +69,34 @@
 
         MENote.Text = data.Rows(0)("prod_order_wo_note").ToString
 
-        date_created = data.Rows(0)("prod_order_wo_datex").ToString
-        TEDate.Text = view_date_from(date_created, 0)
+        date_created = data.Rows(0)("prod_order_wo_date")
+        DEDateNow.EditValue = date_created
+        'Dim tgl_delivery() As String = data.Rows(0)("prod_order_wo_del_date").ToString.Split(" ")
+        'TEDelDate.Text = tgl_delivery(0)
+
+        TEDelDate.EditValue = data.Rows(0)("prod_order_wo_del_date")
+
         TELeadTime.Text = data.Rows(0)("prod_order_wo_lead_time").ToString
-        TERecDate.Text = view_date_from(date_created, Integer.Parse(data.Rows(0)("prod_order_wo_lead_time").ToString))
+        DEEstRecDate.EditValue = date_created.AddDays(data.Rows(0)("prod_order_wo_lead_time"))
+        'TERecDate.Text = view_date_from(date_created, Integer.Parse(data.Rows(0)("prod_order_wo_lead_time").ToString))
+
         TETOP.Text = data.Rows(0)("prod_order_wo_top").ToString
-        TEDueDate.Text = view_date_from(date_created, (Integer.Parse(data.Rows(0)("prod_order_wo_lead_time").ToString) + Integer.Parse(data.Rows(0)("prod_order_wo_top").ToString)))
+        DEDueDate.EditValue = date_created.AddDays(data.Rows(0)("prod_order_wo_lead_time") + (data.Rows(0)("prod_order_wo_top")))
+        'TEDueDate.Text = view_date_from(date_created, (Integer.Parse(data.Rows(0)("prod_order_wo_lead_time").ToString) + Integer.Parse(data.Rows(0)("prod_order_wo_top").ToString)))
         '
         GConListPurchase.Enabled = True
+        'BPickWO.Enabled = False
         TEVat.Properties.ReadOnly = False
+        Dim is_main_vendor As Boolean
+
+        If data.Rows(0)("is_main_vendor").ToString = "1" Then
+            is_main_vendor = True
+        Else
+            is_main_vendor = False
+        End If
+
+        CheckEditMainVendor.EditValue = is_main_vendor
+
         load_wo()
         TEVat.Text = data.Rows(0)("prod_order_wo_vat").ToString
         calculate()
@@ -80,11 +113,10 @@
         TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
         TEDesignCode.Text = get_design_x(get_prod_demand_design_x(id_prod_demand_design, "3"), "2")
     End Sub
-
     Sub load_wo()
         view_list_purchase()
 
-        Dim query As String = "SELECT a.id_currency, a.ovh_price, b.overhead as name, b.overhead_code as code,a.id_comp_contact from tb_m_ovh_price a INNER JOIN tb_m_ovh b WHERE a.id_ovh_price='" & id_ovh_price & "'"
+        Dim query As String = "SELECT a.id_currency, a.ovh_price, b.overhead as name, b.overhead_code as code,a.id_comp_contact from tb_m_ovh_price a INNER JOIN tb_m_ovh b ON a.id_ovh=b.id_ovh WHERE a.id_ovh_price='" & id_ovh_price & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         TEWO.Text = data.Rows(0)("name").ToString
@@ -193,63 +225,59 @@
         End If
     End Sub
 
-    Private Sub BSearchCompShipTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        FormPopUpContact.id_pop_up = "24"
-        FormPopUpContact.ShowDialog()
-    End Sub
-
-    Private Sub TEPONumber_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEWONumber.Validating
-        Dim query_jml As String
-        query_jml = String.Format("SELECT COUNT(id_prod_order_wo) FROM tb_prod_order_wo WHERE prod_order_wo_number='{0}' AND id_prod_order_wo!='{1}'", TEWONumber.Text, id_wo)
-        Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
-        If Not jml < 1 Then
-            EP_TE_already_used(EPMatWO, TEWONumber, "1")
-        Else
-            EP_TE_cant_blank(EPMatWO, TEWONumber)
-        End If
-    End Sub
-
     Private Sub TELeadTime_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TELeadTime.EditValueChanged
         If id_wo <> "-1" Then
             Try
-                TERecDate.Text = view_date_from(date_created, Integer.Parse(TELeadTime.Text))
+                'TERecDate.Text = view_date_from(date_created, Integer.Parse(TELeadTime.Text))
+                DEEstRecDate.EditValue = date_created.AddDays(TELeadTime.EditValue)
+                DEDueDate.EditValue = date_created.AddDays(TELeadTime.EditValue + TETOP.EditValue)
             Catch ex As Exception
-                TERecDate.Text = view_date_from(date_created, 0)
+                ' DEEstRecDate.EditValue = date_created
             End Try
         Else
             Try
-                TERecDate.Text = view_date(Integer.Parse(TELeadTime.Text))
+                'TERecDate.Text = view_date(Integer.Parse(TELeadTime.Text))
+                DEEstRecDate.EditValue = date_created.AddDays(TELeadTime.EditValue)
+                DEDueDate.EditValue = date_created.AddDays(TELeadTime.EditValue + TETOP.EditValue)
             Catch ex As Exception
-                TERecDate.Text = view_date(0)
+                'TERecDate.Text = view_date(0)
+                'DEEstRecDate.EditValue = date_created
             End Try
         End If
     End Sub
 
     Private Sub TETOP_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TETOP.EditValueChanged
+
         If id_wo <> "-1" Then
             Try
-                TEDueDate.Text = view_date_from(date_created, (Integer.Parse(TELeadTime.Text) + Integer.Parse(TETOP.Text)))
+                'TEDueDate.Text = view_date_from(date_created, (Integer.Parse(TELeadTime.Text) + Integer.Parse(TETOP.Text)))\
+                DEDueDate.EditValue = date_created.AddDays(TELeadTime.EditValue + TETOP.EditValue)
             Catch ex As Exception
-                TEDueDate.Text = view_date_from(date_created, 0)
+                'TEDueDate.Text = view_date_from(date_created, 0)
+                'DEDueDate.EditValue = Now
             End Try
         Else
             Try
-                TEDueDate.Text = view_date(Integer.Parse(TELeadTime.Text) + Integer.Parse(TETOP.Text))
+                'TEDueDate.Text = view_date(Integer.Parse(TELeadTime.Text) + Integer.Parse(TETOP.Text))
+                DEDueDate.EditValue = date_created.AddDays(TELeadTime.EditValue + TETOP.EditValue)
             Catch ex As Exception
-                TEDueDate.Text = view_date(0)
+                'TEDueDate.Text = view_date(0)
+                'DEDueDate.EditValue = Now
             End Try
         End If
     End Sub
 
     Private Sub LEpayment_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LEpayment.EditValueChanged
-        If LEpayment.EditValue = 1 Then
+        If LEpayment.EditValue = 1 Or LEpayment.EditValue = 4 Or LEpayment.EditValue = 5 Then
             TETOP.Enabled = True
         Else
             TETOP.Text = 0
             If id_wo <> "-1" Then
-                TEDueDate.Text = view_date_from(date_created, (Integer.Parse(TELeadTime.Text) + Integer.Parse(TETOP.Text)))
+                'TEDueDate.Text = view_date_from(date_created, (Integer.Parse(TELeadTime.Text) + Integer.Parse(TETOP.Text)))
+                DEDueDate.EditValue = date_created.AddDays(TELeadTime.EditValue + TETOP.EditValue)
             Else
-                TEDueDate.Text = view_date(Integer.Parse(TELeadTime.Text) + Integer.Parse(TETOP.Text))
+                'TEDueDate.Text = view_date(Integer.Parse(TELeadTime.Text) + Integer.Parse(TETOP.Text))
+                DEDueDate.EditValue = date_created.AddDays(TELeadTime.EditValue + TETOP.EditValue)
             End If
             TETOP.Enabled = False
         End If
@@ -260,11 +288,13 @@
     End Sub
 
     Sub calculate()
+        GVListPurchase.RefreshData()
+
         Dim total, sub_tot, gross_tot, vat As Decimal
 
         Try
-            sub_tot = Decimal.Parse(GVListPurchase.Columns("total_cost").SummaryText.ToString)
-            vat = (Decimal.Parse(TEVat.Text) / 100) * Decimal.Parse(GVListPurchase.Columns("total_cost").SummaryText.ToString)
+            sub_tot = GVListPurchase.Columns("total_cost").SummaryItem.SummaryValue
+            vat = (TEVat.EditValue / 100) * sub_tot
         Catch ex As Exception
         End Try
 
@@ -299,8 +329,12 @@
         view_delivery(LESeason.EditValue, LEDelivery)
     End Sub
 
-    Private Sub BPickWO_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        FormPopUpProdOVH.id_prod_demand_design = get_prod_order_x(id_po, "1")
-        FormPopUpProdOVH.ShowDialog()
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BAttach.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_view = "1"
+        FormDocumentUpload.id_report = id_wo
+        FormDocumentUpload.report_mark_type = "23"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
