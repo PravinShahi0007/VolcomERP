@@ -52,6 +52,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlMain = New DevExpress.XtraEditors.PanelControl()
         Me.XTPEmployee = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
+        Me.Label36 = New System.Windows.Forms.Label()
+        Me.DERegBPJSKes = New DevExpress.XtraEditors.DateEdit()
+        Me.DERegBPJSTK = New DevExpress.XtraEditors.DateEdit()
         Me.BtnAddNationality = New DevExpress.XtraEditors.SimpleButton()
         Me.LEDegree = New DevExpress.XtraEditors.LookUpEdit()
         Me.Label31 = New System.Windows.Forms.Label()
@@ -170,6 +173,10 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.XTPEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPEmployee.SuspendLayout()
         Me.XTPGeneral.SuspendLayout()
+        CType(Me.DERegBPJSKes.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSKes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSTK.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERegBPJSTK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDegree.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPhoneExt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECountry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -538,6 +545,9 @@ Partial Class FormMasterEmployeeNewDet
         '
         'XTPGeneral
         '
+        Me.XTPGeneral.Controls.Add(Me.Label36)
+        Me.XTPGeneral.Controls.Add(Me.DERegBPJSKes)
+        Me.XTPGeneral.Controls.Add(Me.DERegBPJSTK)
         Me.XTPGeneral.Controls.Add(Me.BtnAddNationality)
         Me.XTPGeneral.Controls.Add(Me.LEDegree)
         Me.XTPGeneral.Controls.Add(Me.Label31)
@@ -590,6 +600,42 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.Size = New System.Drawing.Size(797, 422)
         Me.XTPGeneral.Text = "General"
         '
+        'Label36
+        '
+        Me.Label36.AutoSize = True
+        Me.Label36.Location = New System.Drawing.Point(585, 175)
+        Me.Label36.Name = "Label36"
+        Me.Label36.Size = New System.Drawing.Size(50, 26)
+        Me.Label36.TabIndex = 8899
+        Me.Label36.Text = "Register " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Date"
+        Me.Label36.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'DERegBPJSKes
+        '
+        Me.DERegBPJSKes.EditValue = Nothing
+        Me.DERegBPJSKes.Location = New System.Drawing.Point(650, 194)
+        Me.DERegBPJSKes.Name = "DERegBPJSKes"
+        Me.DERegBPJSKes.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKes.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSKes.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DERegBPJSKes.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERegBPJSKes.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DERegBPJSKes.Size = New System.Drawing.Size(131, 20)
+        Me.DERegBPJSKes.TabIndex = 15
+        '
+        'DERegBPJSTK
+        '
+        Me.DERegBPJSTK.EditValue = Nothing
+        Me.DERegBPJSTK.Location = New System.Drawing.Point(651, 168)
+        Me.DERegBPJSTK.Name = "DERegBPJSTK"
+        Me.DERegBPJSTK.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSTK.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERegBPJSTK.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DERegBPJSTK.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERegBPJSTK.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DERegBPJSTK.Size = New System.Drawing.Size(131, 20)
+        Me.DERegBPJSTK.TabIndex = 13
+        '
         'BtnAddNationality
         '
         Me.BtnAddNationality.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.HotFlat
@@ -623,7 +669,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtPhoneExt.Location = New System.Drawing.Point(626, 246)
         Me.TxtPhoneExt.Name = "TxtPhoneExt"
         Me.TxtPhoneExt.Size = New System.Drawing.Size(156, 20)
-        Me.TxtPhoneExt.TabIndex = 17
+        Me.TxtPhoneExt.TabIndex = 19
         '
         'Label29
         '
@@ -678,8 +724,8 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.TxtBPJSSehat.Location = New System.Drawing.Point(107, 194)
         Me.TxtBPJSSehat.Name = "TxtBPJSSehat"
-        Me.TxtBPJSSehat.Size = New System.Drawing.Size(674, 20)
-        Me.TxtBPJSSehat.TabIndex = 13
+        Me.TxtBPJSSehat.Size = New System.Drawing.Size(472, 20)
+        Me.TxtBPJSSehat.TabIndex = 14
         '
         'Label25
         '
@@ -695,14 +741,14 @@ Partial Class FormMasterEmployeeNewDet
         Me.MEAddressBoarding.Location = New System.Drawing.Point(107, 352)
         Me.MEAddressBoarding.Name = "MEAddressBoarding"
         Me.MEAddressBoarding.Size = New System.Drawing.Size(675, 48)
-        Me.MEAddressBoarding.TabIndex = 22
+        Me.MEAddressBoarding.TabIndex = 24
         '
         'MEAddress
         '
         Me.MEAddress.Location = New System.Drawing.Point(107, 298)
         Me.MEAddress.Name = "MEAddress"
         Me.MEAddress.Size = New System.Drawing.Size(675, 48)
-        Me.MEAddress.TabIndex = 21
+        Me.MEAddress.TabIndex = 23
         '
         'Label24
         '
@@ -718,7 +764,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtOtherEmail.Location = New System.Drawing.Point(626, 272)
         Me.TxtOtherEmail.Name = "TxtOtherEmail"
         Me.TxtOtherEmail.Size = New System.Drawing.Size(156, 20)
-        Me.TxtOtherEmail.TabIndex = 20
+        Me.TxtOtherEmail.TabIndex = 22
         '
         'Label23
         '
@@ -734,7 +780,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtEmailExternal.Location = New System.Drawing.Point(353, 272)
         Me.TxtEmailExternal.Name = "TxtEmailExternal"
         Me.TxtEmailExternal.Size = New System.Drawing.Size(203, 20)
-        Me.TxtEmailExternal.TabIndex = 19
+        Me.TxtEmailExternal.TabIndex = 21
         '
         'Label22
         '
@@ -750,7 +796,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtEmailLocal.Location = New System.Drawing.Point(107, 272)
         Me.TxtEmailLocal.Name = "TxtEmailLocal"
         Me.TxtEmailLocal.Size = New System.Drawing.Size(168, 20)
-        Me.TxtEmailLocal.TabIndex = 18
+        Me.TxtEmailLocal.TabIndex = 20
         '
         'Label21
         '
@@ -766,7 +812,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtMobilePhone.Location = New System.Drawing.Point(353, 246)
         Me.TxtMobilePhone.Name = "TxtMobilePhone"
         Me.TxtMobilePhone.Size = New System.Drawing.Size(203, 20)
-        Me.TxtMobilePhone.TabIndex = 16
+        Me.TxtMobilePhone.TabIndex = 18
         '
         'Label20
         '
@@ -791,7 +837,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtPhone.Location = New System.Drawing.Point(107, 246)
         Me.TxtPhone.Name = "TxtPhone"
         Me.TxtPhone.Size = New System.Drawing.Size(168, 20)
-        Me.TxtPhone.TabIndex = 15
+        Me.TxtPhone.TabIndex = 17
         '
         'Label18
         '
@@ -807,13 +853,13 @@ Partial Class FormMasterEmployeeNewDet
         Me.TxtNpwp.Location = New System.Drawing.Point(107, 220)
         Me.TxtNpwp.Name = "TxtNpwp"
         Me.TxtNpwp.Size = New System.Drawing.Size(675, 20)
-        Me.TxtNpwp.TabIndex = 14
+        Me.TxtNpwp.TabIndex = 16
         '
         'TxtBPJSTK
         '
         Me.TxtBPJSTK.Location = New System.Drawing.Point(107, 168)
         Me.TxtBPJSTK.Name = "TxtBPJSTK"
-        Me.TxtBPJSTK.Size = New System.Drawing.Size(675, 20)
+        Me.TxtBPJSTK.Size = New System.Drawing.Size(472, 20)
         Me.TxtBPJSTK.TabIndex = 12
         '
         'Label17
@@ -1497,6 +1543,10 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPEmployee.ResumeLayout(False)
         Me.XTPGeneral.ResumeLayout(False)
         Me.XTPGeneral.PerformLayout()
+        CType(Me.DERegBPJSKes.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSKes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSTK.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERegBPJSTK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDegree.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPhoneExt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECountry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1675,4 +1725,7 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnDelSalary As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAddSalary As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Label36 As Label
+    Friend WithEvents DERegBPJSKes As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DERegBPJSTK As DevExpress.XtraEditors.DateEdit
 End Class
