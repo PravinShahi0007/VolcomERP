@@ -1,25 +1,21 @@
-﻿Public Class ReportFGRepair
+﻿Public Class ReportFGRepairDet
     Public Shared id_pre As String = "-1"
     Public Shared id_fg_repair As String = "-1"
     Public Shared id_type As String = "-1"
     Public Shared dt As DataTable
 
-    Private Sub TopMargin_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles TopMargin.BeforePrint
-
-    End Sub
-
-    Private Sub GVScanSum_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
-
-    End Sub
-
-    Private Sub GVScanSum_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVScanSum.CustomColumnDisplayText
+    Private Sub GVScan_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVScan.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 
-    Private Sub ReportFGRepair_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
-        GCScanSum.DataSource = dt
+    Private Sub TopMargin_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles TopMargin.BeforePrint
+
+    End Sub
+
+    Private Sub ReportFGRepairDet_BeforePrint(sender As Object, e As Printing.PrintEventArgs) Handles MyBase.BeforePrint
+        GCScan.DataSource = dt
         If id_type = "-1" Then
             'Mark
             If id_pre = "-1" Then
