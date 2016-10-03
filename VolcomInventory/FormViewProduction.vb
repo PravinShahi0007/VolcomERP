@@ -53,6 +53,7 @@
             GVBOM.ExpandAllGroups()
             If GVBOM.RowCount > 0 Then
                 METotSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
+                TEUnitCost.EditValue = GVBOM.Columns("total").SummaryItem.SummaryValue
             End If
         Catch ex As Exception
             errorConnection()
@@ -137,5 +138,14 @@
         FormReportMark.report_mark_type = "22"
         FormReportMark.is_view = "1"
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_view = "1"
+        FormDocumentUpload.id_report = id_prod_order
+        FormDocumentUpload.report_mark_type = "22"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
