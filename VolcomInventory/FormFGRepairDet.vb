@@ -14,6 +14,7 @@
     Public id_wh_drawer_to As String = "-1"
     Public dt As New DataTable
     Dim is_delete_scan As Boolean = False
+    Public id_type As String = "-1"
 
     Private Sub FormFGRepairDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -365,47 +366,52 @@
 
     Sub prePrinting()
         Cursor = Cursors.WaitCursor
-        ReportSamplePLToWH.id_pre = "1"
+        ReportFGRepair.id_pre = "1"
         getReport()
         Cursor = Cursors.Default
     End Sub
 
     Sub printing()
         Cursor = Cursors.WaitCursor
-        ReportSamplePLToWH.id_pre = "-1"
+        ReportFGRepair.id_pre = "-1"
         getReport()
         Cursor = Cursors.Default
     End Sub
 
     Sub getReport()
-        'Cursor = Cursors.WaitCursor
-        'ReportSamplePLToWH.id_sample_pl = id_sample_pl
-        'ReportSamplePLToWH.dt = GCItemList.DataSource
-        'Dim Report As New ReportSamplePLToWH()
+        Cursor = Cursors.WaitCursor
+        GridColumnStatus.Visible = False
+        ReportFGRepair.id_fg_repair = id_fg_repair
+        ReportFGRepair.id_type = id_type
+        ReportFGRepair.dt = GCScanSum.DataSource
+        Dim Report As New ReportFGRepair()
 
-        '' '... 
-        '' ' creating and saving the view's layout to a new memory stream 
-        'Dim str As System.IO.Stream
-        'str = New System.IO.MemoryStream()
-        'GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
-        'Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVScanSum.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVScanSum.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        ''Grid Detail
-        'ReportStyleGridview(Report.GVItemList)
+        'Grid Detail
+        ReportStyleGridview(Report.GVScanSum)
 
-        ''Parse val
-        'Report.LabelNumber.Text = TxtNumber.Text
-        'Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
-        'Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
-        'Report.LabelCreated.Text = DEForm.Text
-        'Report.LabelNote.Text = MENote.Text
+        'Parse val
+        Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+        Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
+        Report.LRecNumber.Text = TxtNumber.Text
+        Report.LRecDate.Text = DEForm.Text
+        Report.LabelNote.Text = MENote.Text
+        If id_type = "1" Then
+            Report.XrPanel2.Visible = False
+        End If
 
-        '' Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreview()
-        'Cursor = Cursors.Default
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
@@ -584,5 +590,11 @@
         End If
     End Sub
 
+    Private Sub BtnPrePrinting_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnPrePrinting.ItemClick
+        prePrinting()
+    End Sub
 
+    Private Sub BtnPrint_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnPrint.ItemClick
+        printing()
+    End Sub
 End Class

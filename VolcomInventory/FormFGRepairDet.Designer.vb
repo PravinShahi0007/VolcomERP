@@ -40,6 +40,14 @@ Partial Class FormFGRepairDet
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
+        Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BtnPrePrinting = New DevExpress.XtraBars.BarButtonItem()
+        Me.BtnPrint = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
@@ -77,14 +85,6 @@ Partial Class FormFGRepairDet
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.BtnPrePrinting = New DevExpress.XtraBars.BarButtonItem()
-        Me.BtnPrint = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
-        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +100,8 @@ Partial Class FormFGRepairDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -119,8 +121,6 @@ Partial Class FormFGRepairDet
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -359,6 +359,62 @@ Partial Class FormFGRepairDet
         Me.DDBPrint.Size = New System.Drawing.Size(79, 33)
         Me.DDBPrint.TabIndex = 8
         Me.DDBPrint.Text = "Print"
+        '
+        'PUDD
+        '
+        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrePrinting), New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrint)})
+        Me.PUDD.Manager = Me.BarManager1
+        Me.PUDD.Name = "PUDD"
+        '
+        'BtnPrePrinting
+        '
+        Me.BtnPrePrinting.Caption = "Pre Printing"
+        Me.BtnPrePrinting.Id = 0
+        Me.BtnPrePrinting.Name = "BtnPrePrinting"
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Caption = "Print"
+        Me.BtnPrint.Id = 1
+        Me.BtnPrint.Name = "BtnPrint"
+        '
+        'BarManager1
+        '
+        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager1.Form = Me
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BtnPrePrinting, Me.BtnPrint})
+        Me.BarManager1.MaxItemId = 2
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(859, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 469)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(859, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 469)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(859, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 469)
         '
         'BtnCancel
         '
@@ -732,62 +788,6 @@ Partial Class FormFGRepairDet
         Me.GridColumnStatus.VisibleIndex = 8
         Me.GridColumnStatus.Width = 126
         '
-        'PUDD
-        '
-        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrePrinting), New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrint)})
-        Me.PUDD.Manager = Me.BarManager1
-        Me.PUDD.Name = "PUDD"
-        '
-        'BtnPrePrinting
-        '
-        Me.BtnPrePrinting.Caption = "Pre Printing"
-        Me.BtnPrePrinting.Id = 0
-        Me.BtnPrePrinting.Name = "BtnPrePrinting"
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Caption = "Print"
-        Me.BtnPrint.Id = 1
-        Me.BtnPrint.Name = "BtnPrint"
-        '
-        'BarManager1
-        '
-        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
-        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
-        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
-        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
-        Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BtnPrePrinting, Me.BtnPrint})
-        Me.BarManager1.MaxItemId = 2
-        '
-        'barDockControlTop
-        '
-        Me.barDockControlTop.CausesValidation = False
-        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(859, 0)
-        '
-        'barDockControlBottom
-        '
-        Me.barDockControlBottom.CausesValidation = False
-        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 469)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(859, 0)
-        '
-        'barDockControlLeft
-        '
-        Me.barDockControlLeft.CausesValidation = False
-        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 469)
-        '
-        'barDockControlRight
-        '
-        Me.barDockControlRight.CausesValidation = False
-        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(859, 0)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 469)
-        '
         'EPForm
         '
         Me.EPForm.ContainerControl = Me
@@ -828,6 +828,8 @@ Partial Class FormFGRepairDet
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
@@ -850,8 +852,6 @@ Partial Class FormFGRepairDet
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCScanSum, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVScanSum, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
