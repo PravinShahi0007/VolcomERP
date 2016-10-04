@@ -45,6 +45,10 @@ Partial Class FormEmpShiftDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.CEStartNext = New DevExpress.XtraEditors.CheckEdit()
+        Me.CETolNext = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEEndNext = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEHoliday = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.TEShiftName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -65,6 +69,10 @@ Partial Class FormEmpShiftDet
         CType(Me.CESunday.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.CEStartNext.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CETolNext.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEEndNext.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEHoliday.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TEShiftName
@@ -115,7 +123,7 @@ Partial Class FormEmpShiftDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 40)
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 72)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(60, 13)
         Me.LabelControl3.TabIndex = 6
@@ -124,7 +132,7 @@ Partial Class FormEmpShiftDet
         'TEWorkEnd
         '
         Me.TEWorkEnd.EditValue = New Date(2016, 8, 30, 0, 0, 0, 0)
-        Me.TEWorkEnd.Location = New System.Drawing.Point(97, 37)
+        Me.TEWorkEnd.Location = New System.Drawing.Point(97, 69)
         Me.TEWorkEnd.Name = "TEWorkEnd"
         Me.TEWorkEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEWorkEnd.Properties.Mask.EditMask = "HH:mm:ss"
@@ -133,7 +141,7 @@ Partial Class FormEmpShiftDet
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(12, 99)
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 128)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(73, 13)
         Me.LabelControl4.TabIndex = 10
@@ -142,7 +150,7 @@ Partial Class FormEmpShiftDet
         'TEBreakEnd
         '
         Me.TEBreakEnd.EditValue = New Date(2016, 8, 30, 0, 0, 0, 0)
-        Me.TEBreakEnd.Location = New System.Drawing.Point(97, 96)
+        Me.TEBreakEnd.Location = New System.Drawing.Point(97, 125)
         Me.TEBreakEnd.Name = "TEBreakEnd"
         Me.TEBreakEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEBreakEnd.Properties.Mask.EditMask = "HH:mm:ss"
@@ -151,7 +159,7 @@ Partial Class FormEmpShiftDet
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(12, 73)
+        Me.LabelControl5.Location = New System.Drawing.Point(12, 102)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(79, 13)
         Me.LabelControl5.TabIndex = 8
@@ -160,7 +168,7 @@ Partial Class FormEmpShiftDet
         'TEBreakStart
         '
         Me.TEBreakStart.EditValue = New Date(2016, 8, 30, 0, 0, 0, 0)
-        Me.TEBreakStart.Location = New System.Drawing.Point(97, 70)
+        Me.TEBreakStart.Location = New System.Drawing.Point(97, 99)
         Me.TEBreakStart.Name = "TEBreakStart"
         Me.TEBreakStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEBreakStart.Properties.Mask.EditMask = "HH:mm:ss"
@@ -169,7 +177,7 @@ Partial Class FormEmpShiftDet
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(12, 138)
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 167)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(79, 13)
         Me.LabelControl6.TabIndex = 11
@@ -177,7 +185,7 @@ Partial Class FormEmpShiftDet
         '
         'TEMinutes
         '
-        Me.TEMinutes.Location = New System.Drawing.Point(97, 133)
+        Me.TEMinutes.Location = New System.Drawing.Point(97, 162)
         Me.TEMinutes.Name = "TEMinutes"
         Me.TEMinutes.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.TEMinutes.Properties.Appearance.Options.UseFont = True
@@ -186,6 +194,10 @@ Partial Class FormEmpShiftDet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.CEHoliday)
+        Me.PanelControl2.Controls.Add(Me.CEEndNext)
+        Me.PanelControl2.Controls.Add(Me.CETolNext)
+        Me.PanelControl2.Controls.Add(Me.CEStartNext)
         Me.PanelControl2.Controls.Add(Me.TEWorkStartTol)
         Me.PanelControl2.Controls.Add(Me.LabelControl7)
         Me.PanelControl2.Controls.Add(Me.CESaturday)
@@ -208,13 +220,13 @@ Partial Class FormEmpShiftDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(0, 52)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(492, 193)
+        Me.PanelControl2.Size = New System.Drawing.Size(492, 219)
         Me.PanelControl2.TabIndex = 13
         '
         'TEWorkStartTol
         '
         Me.TEWorkStartTol.EditValue = New Date(2016, 8, 30, 0, 0, 0, 0)
-        Me.TEWorkStartTol.Location = New System.Drawing.Point(265, 11)
+        Me.TEWorkStartTol.Location = New System.Drawing.Point(97, 37)
         Me.TEWorkStartTol.Name = "TEWorkStartTol"
         Me.TEWorkStartTol.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEWorkStartTol.Properties.Mask.EditMask = "HH:mm:ss"
@@ -223,7 +235,7 @@ Partial Class FormEmpShiftDet
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(212, 14)
+        Me.LabelControl7.Location = New System.Drawing.Point(12, 40)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl7.TabIndex = 21
@@ -290,7 +302,7 @@ Partial Class FormEmpShiftDet
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 245)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 271)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(492, 41)
         Me.PanelControl3.TabIndex = 14
@@ -313,11 +325,43 @@ Partial Class FormEmpShiftDet
         Me.BSave.TabIndex = 0
         Me.BSave.Text = "Save"
         '
+        'CEStartNext
+        '
+        Me.CEStartNext.Location = New System.Drawing.Point(203, 11)
+        Me.CEStartNext.Name = "CEStartNext"
+        Me.CEStartNext.Properties.Caption = "Day Before"
+        Me.CEStartNext.Size = New System.Drawing.Size(75, 19)
+        Me.CEStartNext.TabIndex = 22
+        '
+        'CETolNext
+        '
+        Me.CETolNext.Location = New System.Drawing.Point(203, 37)
+        Me.CETolNext.Name = "CETolNext"
+        Me.CETolNext.Properties.Caption = "Day Before"
+        Me.CETolNext.Size = New System.Drawing.Size(75, 19)
+        Me.CETolNext.TabIndex = 23
+        '
+        'CEEndNext
+        '
+        Me.CEEndNext.Location = New System.Drawing.Point(203, 69)
+        Me.CEEndNext.Name = "CEEndNext"
+        Me.CEEndNext.Properties.Caption = "Day After"
+        Me.CEEndNext.Size = New System.Drawing.Size(75, 19)
+        Me.CEEndNext.TabIndex = 24
+        '
+        'CEHoliday
+        '
+        Me.CEHoliday.Location = New System.Drawing.Point(383, 186)
+        Me.CEHoliday.Name = "CEHoliday"
+        Me.CEHoliday.Properties.Caption = "Ignore Holiday"
+        Me.CEHoliday.Size = New System.Drawing.Size(97, 19)
+        Me.CEHoliday.TabIndex = 25
+        '
         'FormEmpShiftDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(492, 286)
+        Me.ClientSize = New System.Drawing.Size(492, 312)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl1)
@@ -348,6 +392,10 @@ Partial Class FormEmpShiftDet
         CType(Me.CESunday.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.CEStartNext.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CETolNext.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEEndNext.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEHoliday.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -378,4 +426,8 @@ Partial Class FormEmpShiftDet
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents CETolNext As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEStartNext As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEEndNext As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEHoliday As DevExpress.XtraEditors.CheckEdit
 End Class
