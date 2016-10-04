@@ -12,6 +12,8 @@
 
     Private Sub FormWork_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         checkFormAccess(Name)
+        DEStart.EditValue = Now
+        DEUntil.EditValue = Now
     End Sub
     '=============== begin mark tab =======================
     Private Sub BViewApproval_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BViewApproval.Click
@@ -26,10 +28,10 @@
         Cursor = Cursors.Default
     End Sub
     Sub view_mark_need()
-        Dim query = "SELECT a.id_mark , a.report_mark_type , a.id_report , a.id_report_status , c.report_status , b.report_mark_type_name "
-        query += ",CONCAT_WS(' ',DATE_FORMAT(a.report_mark_start_datetime,'%d %M %Y'),TIME(a.report_mark_start_datetime)) AS date_time_start "
-        query += ",CONCAT_WS(' ',DATE_FORMAT((ADDTIME(report_mark_start_datetime,report_mark_lead_time)),'%d %M %Y'),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS lead_time "
-        query += ",CONCAT_WS(' ',DATE(ADDTIME(report_mark_start_datetime,report_mark_lead_time)),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS raw_lead_time "
+        Dim query = "SELECT a.id_mark,a.info , a.report_mark_type , a.id_report , a.id_report_status , c.report_status , b.report_mark_type_name "
+        query += ",a.report_mark_start_datetime AS date_time_start "
+        query += ",ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS lead_time "
+        query += ",ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS raw_lead_time "
         query += ",TIME_TO_SEC(TIMEDIFF(NOW(),((ADDTIME(report_mark_start_datetime,report_mark_lead_time))))) AS time_miss, report_date, report_number "
         query += "FROM tb_report_mark a "
         query += "INNER JOIN tb_lookup_report_mark_type b ON b.report_mark_type = a.report_mark_type "
@@ -40,479 +42,22 @@
 
         GCMarkNeed.DataSource = data
     End Sub
-    Function get_report_number(ByVal report_mark_type As String, ByVal id_report As String)
-        Dim number As String = ""
-        Dim query_dalam As String = ""
-        Dim data_dalam As DataTable
-        ' Get Number
-        If report_mark_type = "1" Then
-            'sample purchase
-            query_dalam = String.Format("SELECT sample_purc_number as report_number FROM tb_sample_purc WHERE id_sample_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "2" Then
-            'sample receive
-            query_dalam = String.Format("SELECT sample_purc_rec_number as report_number FROM tb_sample_purc_rec WHERE id_sample_purc_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "3" Then
-            'sample PL
-            query_dalam = String.Format("SELECT pl_sample_purc_number as report_number FROM tb_pl_sample_purc WHERE id_pl_sample_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "4" Then
-            'sample PR
-            query_dalam = String.Format("SELECT pr_sample_purc_number as report_number FROM tb_pr_sample_purc WHERE id_pr_sample_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "5" Then
-            'sample ret out
-            query_dalam = String.Format("SELECT sample_purc_ret_out_number as report_number FROM tb_sample_purc_ret_out WHERE id_sample_purc_ret_out = '{0}'", id_report)
-        ElseIf report_mark_type = "6" Then
-            'sample ret in
-            query_dalam = String.Format("SELECT sample_purc_ret_in_number as report_number FROM tb_sample_purc_ret_in WHERE id_sample_purc_ret_in = '{0}'", id_report)
-        ElseIf report_mark_type = "7" Then
-            'sample receipt
-            query_dalam = String.Format("SELECT receipt_sample_number as report_number FROM tb_pl_sample_purc WHERE id_pl_sample_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "8" Then
-            'bom
-            query_dalam = String.Format("SELECT CONCAT_WS('/',b.product_full_code,a.bom_name) AS report_number FROM tb_bom a INNER JOIN tb_m_product b ON a.id_product = b.id_product WHERE a.id_bom = '{0}'", id_report)
-        ElseIf report_mark_type = "9" Then
-            'prod demand
-            query_dalam = String.Format("SELECT prod_demand_number as report_number FROM tb_prod_Demand WHERE id_prod_demand = '{0}'", id_report)
-        ElseIf report_mark_type = "10" Then
-            'PL DEL
-            query_dalam = String.Format("SELECT pl_sample_del_number as report_number FROM tb_pl_sample_del WHERE id_pl_sample_del = '{0}'", id_report)
-        ElseIf report_mark_type = "11" Then
-            'sample REQ
-            query_dalam = String.Format("SELECT sample_requisition_number as report_number FROM tb_sample_requisition WHERE id_sample_requisition = '{0}'", id_report)
-        ElseIf report_mark_type = "12" Then
-            'sample plan
-            query_dalam = String.Format("SELECT sample_plan_number as report_number FROM tb_sample_plan WHERE id_sample_plan = '{0}'", id_report)
-        ElseIf report_mark_type = "13" Then
-            'material purchase
-            query_dalam = String.Format("SELECT mat_purc_number as report_number FROM tb_mat_purc WHERE id_mat_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "14" Then
-            'sample return
-            query_dalam = String.Format("SELECT sample_return_number as report_number FROM tb_sample_return WHERE id_sample_return = '{0}'", id_report)
-        ElseIf report_mark_type = "15" Then
-            'material wo
-            query_dalam = String.Format("SELECT mat_wo_number as report_number FROM tb_mat_wo WHERE id_mat_wo = '{0}'", id_report)
-        ElseIf report_mark_type = "16" Then
-            'receive material purchase
-            query_dalam = String.Format("SELECT mat_purc_rec_number as report_number FROM tb_mat_purc_rec WHERE id_mat_purc_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "17" Then
-            'receive material wo
-            query_dalam = String.Format("SELECT mat_wo_rec_number as report_number FROM tb_mat_wo_rec WHERE id_mat_wo_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "18" Then
-            'return out material 
-            query_dalam = String.Format("SELECT mat_purc_ret_out_number as report_number FROM tb_mat_purc_ret_out WHERE id_mat_purc_ret_out = '{0}'", id_report)
-        ElseIf report_mark_type = "19" Then
-            'return in material 
-            query_dalam = String.Format("SELECT mat_purc_ret_in_number as report_number FROM tb_mat_purc_ret_in WHERE id_mat_purc_ret_in = '{0}'", id_report)
-        ElseIf report_mark_type = "20" Then
-            'Adj In Sample
-            query_dalam = String.Format("SELECT adj_in_sample_number as report_number FROM tb_adj_in_sample WHERE id_adj_in_sample = '{0}'", id_report)
-        ElseIf report_mark_type = "21" Then
-            'Adj Out Sample
-            query_dalam = String.Format("SELECT adj_out_sample_number as report_number FROM tb_adj_out_sample WHERE id_adj_out_sample = '{0}'", id_report)
-        ElseIf report_mark_type = "22" Then
-            'Production Order
-            query_dalam = String.Format("SELECT prod_order_number as report_number FROM tb_prod_order WHERE id_prod_order = '{0}'", id_report)
-        ElseIf report_mark_type = "23" Then
-            'Production Order Work order
-            query_dalam = String.Format("SELECT prod_order_wo_number as report_number FROM tb_prod_order_wo WHERE id_prod_order_wo = '{0}'", id_report)
-        ElseIf report_mark_type = "24" Then
-            'Material PR PO
-            query_dalam = String.Format("SELECT pr_mat_purc_number as report_number FROM tb_pr_mat_purc WHERE id_pr_mat_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "25" Then
-            'Material PR PO
-            query_dalam = String.Format("SELECT pr_mat_wo_number as report_number FROM tb_pr_mat_wo WHERE id_pr_mat_wo = '{0}'", id_report)
-        ElseIf report_mark_type = "26" Then
-            'Adj In Material
-            query_dalam = String.Format("SELECT adj_in_mat_number as report_number FROM tb_adj_in_mat WHERE id_adj_in_mat = '{0}'", id_report)
-        ElseIf report_mark_type = "27" Then
-            'Adj Out Material
-            query_dalam = String.Format("SELECT adj_out_mat_number as report_number FROM tb_adj_out_mat WHERE id_adj_out_mat = '{0}'", id_report)
-        ElseIf report_mark_type = "28" Then
-            'receive QC FG
-            query_dalam = String.Format("SELECT prod_order_rec_number as report_number FROM tb_prod_order_rec WHERE id_prod_order_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "29" Then
-            'MRS Material
-            query_dalam = String.Format("SELECT prod_order_mrs_number as report_number FROM tb_prod_order_mrs WHERE id_prod_order_mrs = '{0}'", id_report)
-        ElseIf report_mark_type = "30" Then
-            'PL MRS Production
-            query_dalam = String.Format("SELECT pl_mrs_number as report_number FROM tb_pl_mrs WHERE id_pl_mrs = '{0}'", id_report)
-        ElseIf report_mark_type = "31" Then
-            'return out FG
-            query_dalam = String.Format("SELECT prod_order_ret_out_number as report_number FROM tb_prod_order_ret_out WHERE id_prod_order_ret_out = '{0}'", id_report)
-        ElseIf report_mark_type = "32" Then
-            'return in FG
-            query_dalam = String.Format("SELECT prod_order_ret_in_number as report_number FROM tb_prod_order_ret_in WHERE id_prod_order_ret_in = '{0}'", id_report)
-        ElseIf report_mark_type = "33" Then
-            'PL FG TO WH
-            query_dalam = String.Format("SELECT pl_prod_order_number as report_number FROM tb_pl_prod_order WHERE id_pl_prod_order = '{0}'", id_report)
-        ElseIf report_mark_type = "34" Then
-            'Invoice Material PL MRS
-            query_dalam = String.Format("SELECT inv_pl_mrs_number as report_number FROM tb_inv_pl_mrs WHERE id_inv_pl_mrs = '{0}'", id_report)
-        ElseIf report_mark_type = "35" Then
-            'Retur Invoice Material PL MRS
-            query_dalam = String.Format("SELECT inv_pl_mrs_ret_number as report_number FROM tb_inv_pl_mrs_ret WHERE id_inv_pl_mrs_ret = '{0}'", id_report)
-        ElseIf report_mark_type = "36" Then
-            'Entry Journal
-            query_dalam = String.Format("SELECT acc_trans_number as report_number FROM tb_a_acc_trans WHERE id_acc_trans = '{0}'", id_report)
-        ElseIf report_mark_type = "37" Then
-            'REC PL FG TO WH
-            query_dalam = String.Format("SELECT pl_prod_order_rec_number as report_number FROM tb_pl_prod_order_rec WHERE id_pl_prod_order_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "39" Then
-            'SALES ORDER
-            query_dalam = String.Format("SELECT sales_order_number as report_number FROM tb_sales_order WHERE id_sales_order = '{0}'", id_report)
-        ElseIf report_mark_type = "40" Then
-            'Entry Journal Adj
-            query_dalam = String.Format("SELECT acc_trans_adj_number as report_number FROM tb_a_acc_trans_adj WHERE id_acc_trans_adj = '{0}'", id_report)
-        ElseIf report_mark_type = "41" Then
-            'Adj In FG
-            query_dalam = String.Format("SELECT adj_in_fg_number as report_number FROM tb_adj_in_fg WHERE id_adj_in_fg = '{0}'", id_report)
-        ElseIf report_mark_type = "42" Then
-            'Adj Out FG
-            query_dalam = String.Format("SELECT adj_out_fg_number as report_number FROM tb_adj_out_fg WHERE id_adj_out_fg = '{0}'", id_report)
-        ElseIf report_mark_type = "43" Then
-            'SALES DEL ORDER
-            query_dalam = String.Format("SELECT pl_sales_order_del_number as report_number FROM tb_pl_sales_order_del WHERE id_pl_sales_order_del = '{0}'", id_report)
-        ElseIf report_mark_type = "44" Then
-            'MRS WO
-            query_dalam = String.Format("SELECT prod_order_mrs_number as report_number FROM tb_prod_order_mrs WHERE id_prod_order_mrs = '{0}'", id_report)
-        ElseIf report_mark_type = "45" Then
-            'SALES RETURN ORDER
-            query_dalam = String.Format("SELECT sales_return_order_number as report_number FROM tb_sales_return_order WHERE id_sales_return_order = '{0}'", id_report)
-        ElseIf report_mark_type = "46" Then
-            'SALES RETURN
-            query_dalam = String.Format("SELECT sales_return_number as report_number FROM tb_sales_return WHERE id_sales_return = '{0}'", id_report)
-        ElseIf report_mark_type = "47" Then
-            'Return In Material
-            query_dalam = String.Format("SELECT mat_prod_ret_in_number as report_number FROM tb_mat_prod_ret_in WHERE id_mat_prod_ret_in = '{0}'", id_report)
-        ElseIf report_mark_type = "48" Then
-            'SALES POS
-            query_dalam = String.Format("SELECT sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        ElseIf report_mark_type = "49" Then
-            'SALES RETURN QC
-            query_dalam = String.Format("SELECT sales_return_qc_number as report_number FROM tb_sales_return_qc WHERE id_sales_return_qc = '{0}'", id_report)
-        ElseIf report_mark_type = "50" Then
-            'PR PRoduction
-            query_dalam = String.Format("SELECT pr_prod_order_number as report_number FROM tb_pr_prod_order WHERE id_pr_prod_order = '{0}'", id_report)
-        ElseIf report_mark_type = "51" Then
-            'SALES INVOICE
-            query_dalam = String.Format("SELECT sales_invoice_number as report_number FROM tb_sales_invoice WHERE id_sales_invoice = '{0}'", id_report)
-        ElseIf report_mark_type = "52" Then
-            'Mat Stock opname
-            query_dalam = String.Format("SELECT mat_so_number as report_number FROM tb_mat_so WHERE id_mat_so = '{0}'", id_report)
-        ElseIf report_mark_type = "53" Then
-            'FG SO STORE
-            query_dalam = String.Format("SELECT fg_so_store_number as report_number FROM tb_fg_so_store WHERE id_fg_so_store = '{0}'", id_report)
-        ElseIf report_mark_type = "54" Then
-            'FG MISSING
-            query_dalam = String.Format("SELECT sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        ElseIf report_mark_type = "55" Then
-            'FG MISSING INVOICE
-            query_dalam = String.Format("SELECT fg_missing_invoice_number as report_number FROM tb_fg_missing_invoice WHERE id_fg_missing_invoice = '{0}'", id_report)
-        ElseIf report_mark_type = "56" Then
-            'FG SO WH
-            query_dalam = String.Format("SELECT fg_so_wh_number as report_number FROM tb_fg_so_wh WHERE id_fg_so_wh = '{0}'", id_report)
-        ElseIf report_mark_type = "57" Then
-            'FG TRF
-            query_dalam = String.Format("SELECT fg_trf_number as report_number FROM tb_fg_trf WHERE id_fg_trf = '{0}'", id_report)
-        ElseIf report_mark_type = "58" Then
-            'FG TRF REC
-            query_dalam = String.Format("SELECT fg_trf_number as report_number FROM tb_fg_trf WHERE id_fg_trf = '{0}'", id_report)
-        ElseIf report_mark_type = "60" Then
-            'PL SAMPLE DELIVERY
-            query_dalam = String.Format("SELECT sample_del_number as report_number FROM tb_sample_del WHERE id_sample_del = '{0}'", id_report)
-        ElseIf report_mark_type = "61" Then
-            'PL SAMPLE DELIVERY REC
-            query_dalam = String.Format("SELECT sample_del_rec_number as report_number FROM tb_sample_del_rec WHERE id_sample_del_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "62" Then
-            'SALES ORDER SAMPLE
-            query_dalam = String.Format("SELECT sample_order_number as report_number FROM tb_sample_order WHERE id_sample_order = '{0}'", id_report)
-        ElseIf report_mark_type = "63" Then
-            'DELIVERY ORDER SAMPME
-            query_dalam = String.Format("SELECT pl_sample_order_del_number as report_number FROM tb_pl_sample_order_del WHERE id_pl_sample_order_del = '{0}'", id_report)
-        ElseIf report_mark_type = "64" Then
-            'Sample Stock Opname
-            query_dalam = String.Format("SELECT sample_so_number as report_number FROM tb_sample_so WHERE id_sample_so = '{0}'", id_report)
-        ElseIf report_mark_type = "65" Then
-            'CODE REPLACEMENT
-            query_dalam = String.Format("SELECT fg_code_replace_store_number as report_number FROM tb_fg_code_replace_store WHERE id_fg_code_replace_store = '{0}'", id_report)
-        ElseIf report_mark_type = "66" Then
-            'SALES CREDIT NOTE
-            query_dalam = String.Format("SELECT sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        ElseIf report_mark_type = "67" Then
-            'MISSING CREDIT NOTE
-            query_dalam = String.Format("SELECT sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        ElseIf report_mark_type = "68" Then
-            'CODE REPLACEMENT
-            query_dalam = String.Format("SELECT fg_code_replace_wh_number as report_number FROM tb_fg_code_replace_wh WHERE id_fg_code_replace_wh = '{0}'", id_report)
-        ElseIf report_mark_type = "69" Then
-            'FG WOFF
-            query_dalam = String.Format("SELECT fg_woff_number as report_number FROM tb_fg_woff WHERE id_fg_woff = '{0}'", id_report)
-        ElseIf report_mark_type = "70" Then
-            'FG PROPSE PRCE
-            query_dalam = String.Format("SELECT fg_propose_price_number as report_number FROM tb_fg_propose_price WHERE id_fg_propose_price = '{0}'", id_report)
-        ElseIf report_mark_type = "72" Then
-            'QC adj IN
-            query_dalam = String.Format("SELECT prod_order_qc_adj_in_number as report_number FROM tb_prod_order_qc_adj_in WHERE id_prod_order_qc_adj_in = '{0}'", id_report)
-        ElseIf report_mark_type = "73" Then
-            'QC adj OUT
-            query_dalam = String.Format("SELECT prod_order_qc_adj_out_number as report_number FROM tb_prod_order_qc_adj_out WHERE id_prod_order_qc_adj_out = '{0}'", id_report)
-        ElseIf report_mark_type = "75" Then
-            'QANALIIS SO
-            query_dalam = String.Format("SELECT fg_so_reff_number as report_number FROM tb_fg_so_reff WHERE id_fg_so_reff = '{0}'", id_report)
-        ElseIf report_mark_type = "76" Then
-            'Sales Promo
-            query_dalam = String.Format("SELECT sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        End If
-
-        Try
-            data_dalam = execute_query(query_dalam, -1, True, "", "", "", "")
-            number = data_dalam.Rows(0)("report_number").ToString
-        Catch ex As Exception
-        End Try
-
-        Return number
-    End Function
-    Function get_report_date(ByVal report_mark_type As String, ByVal id_report As String)
-        Dim datex As String = ""
-        Dim query_dalam As String = ""
-        Dim data_dalam As DataTable
-        'Date
-        If report_mark_type = "1" Then
-            'sample purchase
-            query_dalam = String.Format("SELECT DATE_FORMAT(sample_purc_date,'%d %M %Y') as report_date FROM tb_sample_purc WHERE id_sample_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "2" Then
-            'sample receive
-            query_dalam = String.Format("SELECT DATE_FORMAT(sample_purc_rec_date,'%d %M %Y') as report_date FROM tb_sample_purc_rec WHERE id_sample_purc_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "3" Then
-            'sample PL
-            query_dalam = String.Format("SELECT DATE_FORMAT(pl_sample_purc_date,'%d %M %Y') as report_date FROM tb_pl_sample_purc WHERE id_pl_sample_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "4" Then
-            'sample PR
-            query_dalam = String.Format("SELECT DATE_FORMAT(pr_sample_purc_date,'%d %M %Y') as report_date FROM tb_pr_sample_purc WHERE id_pr_sample_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "5" Then
-            'sample ret out
-            query_dalam = String.Format("SELECT DATE_FORMAT(sample_purc_ret_out_date,'%d %M %Y') as report_date FROM tb_sample_purc_ret_out WHERE id_sample_purc_ret_out = '{0}'", id_report)
-        ElseIf report_mark_type = "6" Then
-            'sample ret in
-            query_dalam = String.Format("SELECT DATE_FORMAT(sample_purc_ret_in_date,'%d %M %Y') as report_date FROM tb_sample_purc_ret_in WHERE id_sample_purc_ret_in = '{0}'", id_report)
-        ElseIf report_mark_type = "7" Then
-            'sample receipt
-            query_dalam = String.Format("SELECT DATE_FORMAT(receipt_sample_date,'%d %M %Y') as report_date FROM tb_pl_sample_purc WHERE id_pl_sample_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "8" Then
-            'bom
-            query_dalam = String.Format("SELECT DATE_FORMAT(bom_date_created,'%d %M %Y') as report_date FROM tb_bom WHERE id_bom = '{0}'", id_report)
-        ElseIf report_mark_type = "9" Then
-            'prod demand
-            query_dalam = String.Format("SELECT prod_demand_number as report_date FROM tb_prod_Demand WHERE id_prod_demand = '{0}'", id_report)
-        ElseIf report_mark_type = "10" Then
-            'sample PL DEL
-            query_dalam = String.Format("SELECT DATE_FORMAT(pl_sample_del_number,'%d %M %Y') as report_date FROM tb_pl_sample_del WHERE id_pl_sample_del = '{0}'", id_report)
-        ElseIf report_mark_type = "11" Then
-            'sample req
-            query_dalam = String.Format("SELECT DATE_FORMAT(sample_requisition_date,'%d %M %Y') as report_date FROM tb_sample_requisition WHERE id_sample_requisition = '{0}'", id_report)
-        ElseIf report_mark_type = "12" Then
-            'sample plan
-            query_dalam = String.Format("SELECT DATE_FORMAT(sample_plan_date,'%d %M %Y') as report_date FROM tb_sample_plan WHERE id_sample_plan = '{0}'", id_report)
-        ElseIf report_mark_type = "13" Then
-            'material purchase
-            query_dalam = String.Format("SELECT DATE_FORMAT(mat_purc_date,'%d %M %Y') as report_date FROM tb_mat_purc WHERE id_mat_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "14" Then
-            'sample return
-            query_dalam = String.Format("SELECT DATE_FORMAT(sample_return_date,'%d %M %Y') as report_date FROM tb_sample_return WHERE id_sample_return = '{0}'", id_report)
-        ElseIf report_mark_type = "15" Then
-            'material wo
-            query_dalam = String.Format("SELECT DATE_FORMAT(mat_wo_date,'%d %M %Y') as report_date FROM tb_mat_wo WHERE id_mat_wo = '{0}'", id_report)
-        ElseIf report_mark_type = "16" Then
-            'receive material purchase
-            query_dalam = String.Format("SELECT DATE_FORMAT(mat_purc_rec_date,'%d %M %Y') as report_date FROM tb_mat_purc_rec WHERE id_mat_purc_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "17" Then
-            'receive material wo
-            query_dalam = String.Format("SELECT DATE_FORMAT(mat_wo_rec_date,'%d %M %Y') as report_date FROM tb_mat_wo_rec WHERE id_mat_wo_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "18" Then
-            'return out material
-            query_dalam = String.Format("SELECT DATE_FORMAT(mat_purc_ret_out_date,'%d %M %Y') as report_date FROM tb_mat_purc_ret_out WHERE id_mat_purc_ret_out = '{0}'", id_report)
-        ElseIf report_mark_type = "19" Then
-            'return out material
-            query_dalam = String.Format("SELECT DATE_FORMAT(mat_purc_ret_in_date,'%d %M %Y') as report_date FROM tb_mat_purc_ret_in WHERE id_mat_purc_ret_in = '{0}'", id_report)
-        ElseIf report_mark_type = "20" Then
-            'Adj In Sample
-            query_dalam = String.Format("SELECT DATE_FORMAT(adj_in_sample_date,'%d %M %Y') as report_date FROM tb_adj_in_sample WHERE id_adj_in_sample = '{0}'", id_report)
-        ElseIf report_mark_type = "21" Then
-            'Adj Out Sample
-            query_dalam = String.Format("SELECT DATE_FORMAT(adj_out_sample_date,'%d %M %Y') as report_date FROM tb_adj_out_sample WHERE id_adj_out_sample = '{0}'", id_report)
-        ElseIf report_mark_type = "22" Then
-            'Production Order
-            query_dalam = String.Format("SELECT DATE_FORMAT(prod_order_date,'%d %M %Y') as report_date FROM tb_prod_order WHERE id_prod_order = '{0}'", id_report)
-        ElseIf report_mark_type = "23" Then
-            'Production Order Work order
-            query_dalam = String.Format("SELECT DATE_FORMAT(prod_order_wo_date,'%d %M %Y') as report_date FROM tb_prod_order_wo WHERE id_prod_order_wo = '{0}'", id_report)
-        ElseIf report_mark_type = "24" Then
-            'Material PR PO
-            query_dalam = String.Format("SELECT DATE_FORMAT(pr_mat_purc_date,'%d %M %Y') as report_date FROM tb_pr_mat_purc WHERE id_pr_mat_purc = '{0}'", id_report)
-        ElseIf report_mark_type = "25" Then
-            'Material PR WO
-            query_dalam = String.Format("SELECT DATE_FORMAT(pr_mat_wo_date,'%d %M %Y') as report_date FROM tb_pr_mat_wo WHERE id_pr_mat_wo = '{0}'", id_report)
-        ElseIf report_mark_type = "26" Then
-            'Adj In Mat
-            query_dalam = String.Format("SELECT DATE_FORMAT(adj_in_mat_date,'%d %M %Y') as report_date FROM tb_adj_in_mat WHERE id_adj_in_mat = '{0}'", id_report)
-        ElseIf report_mark_type = "27" Then
-            'Adj Out Mat
-            query_dalam = String.Format("SELECT DATE_FORMAT(adj_out_mat_date,'%d %M %Y') as report_date FROM tb_adj_out_mat WHERE id_adj_out_mat = '{0}'", id_report)
-        ElseIf report_mark_type = "28" Then
-            'receive FG QC
-            query_dalam = String.Format("SELECT DATE_FORMAT(prod_order_rec_date,'%d %M %Y') as report_date FROM tb_prod_order_rec WHERE id_prod_order_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "29" Then
-            'MRS Material
-            query_dalam = String.Format("SELECT DATE_FORMAT(prod_order_mrs_date,'%d %M %Y') as report_date FROM tb_prod_order_mrs WHERE id_prod_order_mrs = '{0}'", id_report)
-        ElseIf report_mark_type = "30" Then
-            'PL MRS Production
-            query_dalam = String.Format("SELECT DATE_FORMAT(pl_mrs_date,'%d %M %Y') as report_date FROM tb_pl_mrs WHERE id_pl_mrs = '{0}'", id_report)
-        ElseIf report_mark_type = "31" Then
-            'return out FG
-            query_dalam = String.Format("SELECT DATE_FORMAT(prod_order_ret_out_date,'%d %M %Y') as report_date FROM tb_prod_order_ret_out WHERE id_prod_order_ret_out = '{0}'", id_report)
-        ElseIf report_mark_type = "32" Then
-            'return in FG
-            query_dalam = String.Format("SELECT DATE_FORMAT(prod_order_ret_in_date,'%d %M %Y') as report_date FROM tb_prod_order_ret_in WHERE id_prod_order_ret_in = '{0}'", id_report)
-        ElseIf report_mark_type = "33" Then
-            'PL FG TO WH
-            query_dalam = String.Format("SELECT DATE_FORMAT(pl_prod_order_date,'%d %M %Y') as report_date FROM tb_pl_prod_order WHERE id_pl_prod_order = '{0}'", id_report)
-        ElseIf report_mark_type = "34" Then
-            'Invoice mat pl mrs
-            query_dalam = String.Format("SELECT DATE_FORMAT(inv_pl_mrs_date,'%d %M %Y') as report_date FROM tb_inv_pl_mrs WHERE id_inv_pl_mrs = '{0}'", id_report)
-        ElseIf report_mark_type = "35" Then
-            'Retur Invoice mat pl mrs
-            query_dalam = String.Format("SELECT DATE_FORMAT(inv_pl_mrs_ret_date,'%d %M %Y') as report_date FROM tb_inv_pl_mrs_ret WHERE id_inv_pl_mrs_ret = '{0}'", id_report)
-        ElseIf report_mark_type = "36" Then
-            'Entry Journal
-            query_dalam = String.Format("SELECT DATE_FORMAT(date_created,'%d %M %Y') as report_date FROM tb_a_acc_trans WHERE id_acc_trans = '{0}'", id_report)
-        ElseIf report_mark_type = "37" Then
-            'PL FG TO WH
-            query_dalam = String.Format("SELECT DATE_FORMAT(pl_prod_order_rec_date,'%d %M %Y') as report_date FROM tb_pl_prod_order_rec WHERE id_pl_prod_order_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "39" Then
-            'SALES ORDER
-            query_dalam = String.Format("SELECT DATE_FORMAT(sales_order_date,'%d %M %Y') as report_date FROM tb_sales_order WHERE id_sales_order = '{0}'", id_report)
-        ElseIf report_mark_type = "40" Then
-            'Entry Journal Adj
-            query_dalam = String.Format("SELECT DATE_FORMAT(date_created,'%d %M %Y') as report_date FROM tb_a_acc_trans_adj WHERE id_acc_trans_adj = '{0}'", id_report)
-        ElseIf report_mark_type = "41" Then
-            'Adj In FG
-            query_dalam = String.Format("SELECT DATE_FORMAT(adj_in_fg_date,'%d %M %Y') as report_date FROM tb_adj_in_fg WHERE id_adj_in_fg = '{0}'", id_report)
-        ElseIf report_mark_type = "42" Then
-            'Adj Out FG
-            query_dalam = String.Format("SELECT DATE_FORMAT(adj_out_fg_date,'%d %M %Y') as report_date FROM tb_adj_out_fg WHERE id_adj_out_fg = '{0}'", id_report)
-        ElseIf report_mark_type = "43" Then
-            'SALES ORDER DEL
-            query_dalam = String.Format("SELECT DATE_FORMAT(pl_sales_order_del_date,'%d %M %Y') as report_date FROM tb_pl_sales_order_del WHERE id_pl_sales_order_del = '{0}'", id_report)
-        ElseIf report_mark_type = "44" Then
-            'MRS WO
-            query_dalam = String.Format("SELECT DATE_FORMAT(prod_order_mrs_date,'%d %M %Y') as report_date FROM tb_prod_order_mrs WHERE id_prod_order_mrs = '{0}'", id_report)
-        ElseIf report_mark_type = "45" Then
-            'SALES RETURN ORDER
-            query_dalam = String.Format("SELECT DATE_FORMAT(sales_return_order_date,'%d %M %Y') as report_date FROM tb_sales_return_order WHERE id_sales_return_order = '{0}'", id_report)
-        ElseIf report_mark_type = "46" Then
-            'SALES RETURN
-            query_dalam = String.Format("SELECT DATE_FORMAT(sales_return_date,'%d %M %Y') as report_date FROM tb_sales_return WHERE id_sales_return = '{0}'", id_report)
-        ElseIf report_mark_type = "47" Then
-            'Entry Journal Adj
-            query_dalam = String.Format("SELECT DATE_FORMAT(mat_prod_ret_in_date,'%d %M %Y') as report_date FROM tb_mat_prod_ret_in WHERE id_mat_prod_ret_in = '{0}'", id_report)
-        ElseIf report_mark_type = "48" Then
-            'SALES POS
-            query_dalam = String.Format("SELECT DATE_FORMAT(sales_pos_date,'%d %M %Y') as report_date FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        ElseIf report_mark_type = "49" Then
-            'SALES RETURN QC
-            query_dalam = String.Format("SELECT DATE_FORMAT(sales_return_qc_date,'%d %M %Y') as report_date FROM tb_sales_return_qc WHERE id_sales_return_qc = '{0}'", id_report)
-        ElseIf report_mark_type = "50" Then
-            'PR Production
-            query_dalam = String.Format("SELECT DATE_FORMAT(pr_prod_order_date,'%d %M %Y') as report_date FROM tb_pr_prod_order WHERE id_pr_prod_order = '{0}'", id_report)
-        ElseIf report_mark_type = "51" Then
-            'SALES INVOICE
-            query_dalam = String.Format("SELECT DATE_FORMAT(sales_invoice_date,'%d %M %Y') as report_date FROM tb_sales_invoice WHERE id_sales_invoice = '{0}'", id_report)
-        ElseIf report_mark_type = "52" Then
-            'PR Production
-            query_dalam = String.Format("SELECT DATE_FORMAT(mat_so_date_created,'%d %M %Y') as report_date FROM tb_mat_so WHERE id_mat_so = '{0}'", id_report)
-        ElseIf report_mark_type = "53" Then
-            'FG SO STORE
-            query_dalam = String.Format("SELECT DATE_FORMAT(fg_so_store_date_created,'%d %M %Y') as report_date FROM tb_fg_so_store WHERE id_fg_so_store = '{0}'", id_report)
-        ElseIf report_mark_type = "54" Then
-            'FG MISSING
-            query_dalam = String.Format("SELECT DATE_FORMAT(sales_pos_date,'%d %M %Y') as report_date FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        ElseIf report_mark_type = "55" Then
-            'FG MISSING INVOICE
-            query_dalam = String.Format("SELECT DATE_FORMAT(fg_missing_invoice_date,'%d %M %Y') as report_date FROM tb_fg_missing_invoice WHERE id_fg_missing_invoice = '{0}'", id_report)
-        ElseIf report_mark_type = "56" Then
-            'FG SO WH
-            query_dalam = String.Format("SELECT DATE_FORMAT(fg_so_wh_date_created,'%d %M %Y') as report_date FROM tb_fg_so_wh WHERE id_fg_so_wh = '{0}'", id_report)
-        ElseIf report_mark_type = "57" Then
-            'FG TRF
-            query_dalam = String.Format("SELECT DATE_FORMAT(fg_trf_date,'%d %M %Y') as report_date FROM tb_fg_trf WHERE id_fg_trf = '{0}'", id_report)
-        ElseIf report_mark_type = "58" Then
-            'FG TRF REC
-            query_dalam = String.Format("SELECT DATE_FORMAT(fg_trf_date,'%d %M %Y') as report_date FROM tb_fg_trf WHERE id_fg_trf = '{0}'", id_report)
-        ElseIf report_mark_type = "60" Then
-            'PL SAMPLE DELIVERY
-            query_dalam = String.Format("SELECT DATE_FORMAT(sample_del_date,'%d %M %Y') as report_date FROM tb_sample_del WHERE id_sample_del = '{0}'", id_report)
-        ElseIf report_mark_type = "61" Then
-            'PL SAMPLE DELIVERY REC
-            query_dalam = String.Format("SELECT DATE_FORMAT(sample_del_rec_date,'%d %M %Y') as report_date FROM tb_sample_del_rec WHERE id_sample_del_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "62" Then
-            'SALES ORDER SAMPLE
-            query_dalam = String.Format("SELECT DATE_FORMAT(sample_order_date,'%d %M %Y') as report_date FROM tb_sample_order WHERE id_sample_order = '{0}'", id_report)
-        ElseIf report_mark_type = "63" Then
-            'DELIVERY ORDER SAMPLE
-            query_dalam = String.Format("SELECT DATE_FORMAT(pl_sample_order_del_date,'%d %M %Y') as report_date FROM tb_pl_sample_order_del WHERE id_pl_sample_order_del = '{0}'", id_report)
-        ElseIf report_mark_type = "64" Then
-            'Sample Stock Opname
-            query_dalam = String.Format("SELECT DATE_FORMAT(sample_so_date_craeted,'%d %M %Y') as report_date FROM tb_sample_so WHERE id_sample_so = '{0}'", id_report)
-        ElseIf report_mark_type = "65" Then
-            'CODE REPLACEMENT
-            query_dalam = String.Format("SELECT DATE_FORMAT(fg_code_replace_store_date,'%d %M %Y') as report_date FROM tb_fg_code_replace_store WHERE id_fg_code_replace_store = '{0}'", id_report)
-        ElseIf report_mark_type = "66" Then
-            'SALES CREDIT NOTE
-            query_dalam = String.Format("SELECT DATE_FORMAT(sales_pos_date,'%d %M %Y') as report_date FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        ElseIf report_mark_type = "67" Then
-            'MISSING CREDIT NOTE
-            query_dalam = String.Format("SELECT DATE_FORMAT(sales_pos_date,'%d %M %Y') as report_date FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        ElseIf report_mark_type = "68" Then
-            'CODE REPLACEMENT WH
-            query_dalam = String.Format("SELECT DATE_FORMAT(fg_code_replace_wh_date,'%d %M %Y') as report_date FROM tb_fg_code_replace_wh WHERE id_fg_code_replace_wh = '{0}'", id_report)
-        ElseIf report_mark_type = "69" Then
-            'FG WOFF
-            query_dalam = String.Format("SELECT DATE_FORMAT(fg_woff_date,'%d %M %Y') as report_date FROM tb_fg_woff WHERE id_fg_woff = '{0}'", id_report)
-        ElseIf report_mark_type = "70" Then
-            'FG PROPOSE PRICE
-            query_dalam = String.Format("SELECT DATE_FORMAT(fg_propose_price_date,'%d %M %Y') as report_date FROM tb_fg_propose_price WHERE id_fg_propose_price = '{0}'", id_report)
-        ElseIf report_mark_type = "72" Then
-            'QC Adj In
-            query_dalam = String.Format("SELECT DATE_FORMAT(prod_order_qc_adj_in_date,'%d %M %Y') as report_date FROM tb_prod_order_qc_adj_in WHERE id_prod_order_qc_adj_in = '{0}'", id_report)
-        ElseIf report_mark_type = "73" Then
-            'QC Adj Out
-            query_dalam = String.Format("SELECT DATE_FORMAT(prod_order_qc_adj_out_date,'%d %M %Y') as report_date FROM tb_prod_order_qc_adj_out WHERE id_prod_order_qc_adj_out = '{0}'", id_report)
-        ElseIf report_mark_type = "75" Then
-            'Analisis SO
-            query_dalam = String.Format("SELECT DATE_FORMAT(fg_so_reff_date,'%d %M %Y') as report_date FROM tb_fg_so_reff WHERE id_fg_so_reff = '{0}'", id_report)
-        ElseIf report_mark_type = "76" Then
-            'Sales Promo
-            query_dalam = String.Format("SELECT DATE_FORMAT(sales_pos_date,'%d %M %Y') as report_date FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        End If
-
-        Try
-            data_dalam = execute_query(query_dalam, -1, True, "", "", "", "")
-            datex = data_dalam.Rows(0)("report_date").ToString
-        Catch ex As Exception
-        End Try
-
-        Return datex
-    End Function
     Sub view_mark_history()
-        Dim query = "SELECT a.id_mark , a.report_mark_type , a.id_report , a.id_report_status , c.report_status , b.report_mark_type_name "
-        query += ",CONCAT_WS(' ',DATE_FORMAT(a.report_mark_start_datetime,'%d %M %Y'),TIME(a.report_mark_start_datetime)) AS date_time_start "
-        query += ",CONCAT_WS(' ',DATE_FORMAT((ADDTIME(report_mark_start_datetime,report_mark_lead_time)),'%d %M %Y'),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS lead_time "
-        query += ",CONCAT_WS(' ',DATE(ADDTIME(report_mark_start_datetime,report_mark_lead_time)),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS raw_lead_time "
-        query += ",a.report_mark_datetime as y_datetime,a.report_mark_datetime as m_datetime "
+        Dim date_start, date_until As String
+
+        date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+        date_until = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+
+        Dim query = "SELECT a.id_mark , a.info, a.report_mark_type , a.id_report , a.id_report_status , c.report_status , b.report_mark_type_name, a.report_mark_datetime "
+        query += ",a.report_mark_start_datetime AS date_time_start "
+        query += ",ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS lead_time "
+        query += ",ADDTIME(report_mark_start_datetime,report_mark_lead_time) AS raw_lead_time "
+        query += ",YEAR(a.report_mark_datetime) as y_datetime,MONTHNAME(STR_TO_DATE(MONTH(a.report_mark_datetime), '%m')) as m_datetime "
         query += ",TIME_TO_SEC(TIMEDIFF(NOW(),((ADDTIME(report_mark_start_datetime,report_mark_lead_time))))) AS time_miss, report_date, report_number "
         query += "FROM tb_report_mark a "
         query += "INNER JOIN tb_lookup_report_mark_type b ON b.report_mark_type = a.report_mark_type "
         query += "INNER JOIN tb_lookup_report_status c ON c.id_report_status = a.id_report_status "
-        query += "WHERE a.id_mark != 1 AND a.id_user ='" & id_user & "' AND NOT ISNULL(a.report_mark_datetime)"
+        query += "WHERE DATE(a.report_mark_datetime) >='" & date_start & "' AND DATE(a.report_mark_datetime) <='" & date_until & "' AND a.id_mark != 1 AND a.id_user ='" & id_user & "' AND NOT ISNULL(a.report_mark_datetime) ORDER BY a.report_mark_datetime DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCMarkHistory.DataSource = data
@@ -527,6 +72,8 @@
             End If
         End If
     End Sub
+
+
 
     Private Sub GVMarkNeed_DoubleClick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVMarkNeed.DoubleClick
         view_popup_gv_mark()
@@ -5106,4 +4653,34 @@
         End If
 
     End Sub
+
+    Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
+        Try
+            DEUntil.Properties.MinValue = DEStart.EditValue
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    'Private Sub GVMarkNeed_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVMarkNeed.CustomColumnDisplayText
+    '    Try
+    '        If e.Column.FieldName = "info" Then
+    '            If GVMarkNeed.GetRowCellValue(GVMarkNeed.GetRowHandle(e.ListSourceRowIndex), "report_mark_type").ToString = "22" Then
+    '                'PO production
+    '                Dim id_po As String = GVMarkNeed.GetRowCellValue(GVMarkNeed.GetRowHandle(e.ListSourceRowIndex), "id_report").ToString
+    '                Dim query As String = "SELECT pot.po_type FROM tb_prod_order po
+    '                                    INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type WHERE po.id_prod_order='" & id_po & "'"
+    '                e.DisplayText = execute_query(query, 0, True, "", "", "", "")
+    '            ElseIf GVMarkNeed.GetRowCellValue(GVMarkNeed.GetRowHandle(e.ListSourceRowIndex), "report_mark_type").ToString = "23" Then
+    '                'WO production
+    '                Dim id_wo As String = GVMarkNeed.GetRowCellValue(GVMarkNeed.GetRowHandle(e.ListSourceRowIndex), "id_report").ToString
+    '                Dim query As String = "SELECT pot.po_type FROM tb_prod_order_wo wo
+    '                                    INNER JOIN tb_prod_order po ON po.id_prod_order=wo.id_prod_order
+    '                                    INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type WHERE po.id_prod_order='" & id_wo & "'"
+    '                e.DisplayText = execute_query(query, 0, True, "", "", "", "")
+    '            End If
+    '            e.DisplayText = ""
+    '        End If
+    '    Catch ex As Exception
+    '    End Try
+    'End Sub
 End Class
