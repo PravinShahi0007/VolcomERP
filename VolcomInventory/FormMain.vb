@@ -95,7 +95,7 @@ Public Class FormMain
             FormAccount.ShowDialog()
         End If
     End Sub
-    '==========HIDE WHEN MINIMIZED
+    '=========HIDE WHEN MINIMIZED
     Private Sub FormMain_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
         If WindowState = FormWindowState.Minimized Then
             Me.Hide()
