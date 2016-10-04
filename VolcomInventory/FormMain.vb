@@ -4404,7 +4404,7 @@ Public Class FormMain
                 Try
                     query = String.Format("DELETE FROM tb_m_employee WHERE id_employee = '{0}'", id_employee)
                     execute_non_query(query, True, "", "", "", "")
-                    FormMasterEmployee.viewEmployee()
+                    FormMasterEmployee.viewEmployee("-1")
                 Catch ex As Exception
                     XtraMessageBox.Show("This employee already used.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
@@ -7148,7 +7148,7 @@ Public Class FormMain
             FormAccountingSummary.CreateNodes(FormAccountingSummary.TreeList1)
         ElseIf formName = "FormMasterEmployee" Then
             'employee
-            FormMasterEmployee.viewEmployee()
+            FormMasterEmployee.viewEmployee("-1")
         ElseIf formName = "FormSampleDel" Then
             'PL SAMPLE DEL
             FormSampleDel.viewSampleDel()
