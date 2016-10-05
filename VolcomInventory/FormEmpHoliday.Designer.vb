@@ -20,6 +20,7 @@ Partial Class FormEmpHoliday
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEReligion = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -38,6 +39,19 @@ Partial Class FormEmpHoliday
         Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.XTCHoliday = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPView = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReligion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,10 +61,18 @@ Partial Class FormEmpHoliday
         CType(Me.GCHoliday, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVHoliday, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCHoliday, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCHoliday.SuspendLayout()
+        Me.XTPList.SuspendLayout()
+        Me.XTPView.SuspendLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.BSearch)
         Me.PanelControl1.Controls.Add(Me.SLEReligion)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -59,8 +81,17 @@ Partial Class FormEmpHoliday
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(641, 47)
+        Me.PanelControl1.Size = New System.Drawing.Size(728, 47)
         Me.PanelControl1.TabIndex = 0
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Location = New System.Drawing.Point(631, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(95, 43)
+        Me.SimpleButton1.TabIndex = 8906
+        Me.SimpleButton1.Text = "Import Excel"
         '
         'BSearch
         '
@@ -147,11 +178,11 @@ Partial Class FormEmpHoliday
         'GCHoliday
         '
         Me.GCHoliday.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCHoliday.Location = New System.Drawing.Point(0, 47)
+        Me.GCHoliday.Location = New System.Drawing.Point(0, 0)
         Me.GCHoliday.MainView = Me.GVHoliday
         Me.GCHoliday.Name = "GCHoliday"
         Me.GCHoliday.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
-        Me.GCHoliday.Size = New System.Drawing.Size(641, 279)
+        Me.GCHoliday.Size = New System.Drawing.Size(722, 251)
         Me.GCHoliday.TabIndex = 3
         Me.GCHoliday.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVHoliday})
         '
@@ -167,6 +198,7 @@ Partial Class FormEmpHoliday
         'GridColumnIdHoliday
         '
         Me.GridColumnIdHoliday.Caption = "Id Holiday"
+        Me.GridColumnIdHoliday.FieldName = "id_emp_holiday"
         Me.GridColumnIdHoliday.Name = "GridColumnIdHoliday"
         '
         'GridColumnIdReligion
@@ -177,20 +209,25 @@ Partial Class FormEmpHoliday
         'GridColumnReligion
         '
         Me.GridColumnReligion.Caption = "Religion"
+        Me.GridColumnReligion.FieldName = "religion"
         Me.GridColumnReligion.Name = "GridColumnReligion"
         Me.GridColumnReligion.Visible = True
-        Me.GridColumnReligion.VisibleIndex = 0
+        Me.GridColumnReligion.VisibleIndex = 1
         '
         'GridColumnDate
         '
         Me.GridColumnDate.Caption = "Holiday Date"
+        Me.GridColumnDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnDate.FieldName = "emp_holiday_date"
         Me.GridColumnDate.Name = "GridColumnDate"
         Me.GridColumnDate.Visible = True
-        Me.GridColumnDate.VisibleIndex = 1
+        Me.GridColumnDate.VisibleIndex = 0
         '
         'GridColumnDesc
         '
         Me.GridColumnDesc.Caption = "Holiday"
+        Me.GridColumnDesc.FieldName = "emp_holiday_desc"
         Me.GridColumnDesc.Name = "GridColumnDesc"
         Me.GridColumnDesc.Visible = True
         Me.GridColumnDesc.VisibleIndex = 2
@@ -200,12 +237,113 @@ Partial Class FormEmpHoliday
         Me.RIPictureEdit.Name = "RIPictureEdit"
         Me.RIPictureEdit.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         '
+        'XTCHoliday
+        '
+        Me.XTCHoliday.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCHoliday.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCHoliday.Location = New System.Drawing.Point(0, 47)
+        Me.XTCHoliday.Name = "XTCHoliday"
+        Me.XTCHoliday.SelectedTabPage = Me.XTPList
+        Me.XTCHoliday.Size = New System.Drawing.Size(728, 279)
+        Me.XTCHoliday.TabIndex = 4
+        Me.XTCHoliday.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPList, Me.XTPView})
+        '
+        'XTPList
+        '
+        Me.XTPList.Controls.Add(Me.GCHoliday)
+        Me.XTPList.Name = "XTPList"
+        Me.XTPList.Size = New System.Drawing.Size(722, 251)
+        Me.XTPList.Text = "List"
+        '
+        'XTPView
+        '
+        Me.XTPView.Controls.Add(Me.GridControl1)
+        Me.XTPView.Name = "XTPView"
+        Me.XTPView.Size = New System.Drawing.Size(722, 251)
+        Me.XTPView.Text = "View"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
+        Me.GridControl1.MainView = Me.GridView2
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemPictureEdit1})
+        Me.GridControl1.Size = New System.Drawing.Size(722, 251)
+        Me.GridControl1.TabIndex = 4
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GridView2.GridControl = Me.GridControl1
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsBehavior.Editable = False
+        Me.GridView2.OptionsFind.AlwaysVisible = True
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'RepositoryItemPictureEdit1
+        '
+        Me.RepositoryItemPictureEdit1.Name = "RepositoryItemPictureEdit1"
+        Me.RepositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Month"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Date"
+        Me.GridColumn2.FieldName = "hol_date"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Hindu"
+        Me.GridColumn3.FieldName = "hindu"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Islam"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Kristen"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Budha"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "*"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 6
+        '
         'FormEmpHoliday
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(641, 326)
-        Me.Controls.Add(Me.GCHoliday)
+        Me.ClientSize = New System.Drawing.Size(728, 326)
+        Me.Controls.Add(Me.XTCHoliday)
         Me.Controls.Add(Me.PanelControl1)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -222,6 +360,13 @@ Partial Class FormEmpHoliday
         CType(Me.GCHoliday, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVHoliday, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCHoliday, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCHoliday.ResumeLayout(False)
+        Me.XTPList.ResumeLayout(False)
+        Me.XTPView.ResumeLayout(False)
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -245,4 +390,18 @@ Partial Class FormEmpHoliday
     Friend WithEvents GridColumnYear As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdReligionSLE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReligionSLE As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XTCHoliday As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPList As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPView As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemPictureEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
 End Class

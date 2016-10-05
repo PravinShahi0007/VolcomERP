@@ -95,7 +95,7 @@ Public Class FormMain
             FormAccount.ShowDialog()
         End If
     End Sub
-    '==========HIDE WHEN MINIMIZED
+    '=========HIDE WHEN MINIMIZED
     Private Sub FormMain_Resize(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Resize
         If WindowState = FormWindowState.Minimized Then
             Me.Hide()
@@ -2229,7 +2229,7 @@ Public Class FormMain
                 FormEmpShiftDet.ShowDialog()
             ElseIf formName = "FormEmpHoliday" Then
                 'Template Shift Employee
-                FormEmpHolidayDet.id_holiday = FormEmpHoliday.GVHoliday.GetFocusedRowCellValue("id_holiday").ToString
+                FormEmpHolidayDet.id_holiday = FormEmpHoliday.GVHoliday.GetFocusedRowCellValue("id_emp_holiday").ToString
                 FormEmpHolidayDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
@@ -5126,8 +5126,8 @@ Public Class FormMain
             confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = DialogResult.Yes Then
                 Try
-                    Dim id_holiday As String = FormEmpHoliday.GVHoliday.GetFocusedRowCellValue("id_holiday").ToString
-                    query = String.Format("DELETE FROM tb_emp_holiday WHERE id_holiday='{0}'", id_holiday)
+                    Dim id_holiday As String = FormEmpHoliday.GVHoliday.GetFocusedRowCellValue("id_emp_holiday").ToString
+                    query = String.Format("DELETE FROM tb_emp_holiday WHERE id_emp_holiday='{0}'", id_holiday)
                     execute_non_query(query, True, "", "", "", "")
                     FormEmpHoliday.view_holiday()
                 Catch ex As Exception
@@ -6251,6 +6251,8 @@ Public Class FormMain
             print(FormEmpShift.GCShift, "Template Shift")
         ElseIf formName = "FormEmpAttnInd" Then
             print(FormEmpAttnInd.GCEmployee, "Employee List")
+        ElseIf formName = "FormEmpHoliday" Then
+            print(FormEmpAttnInd.GCEmployee, "Holiday List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -6765,6 +6767,10 @@ Public Class FormMain
         ElseIf formName = "FormEmpReview" Then
             FormEmpReview.Close()
             FormEmpReview.Dispose()
+        ElseIf formName = "FormEmpHoliday" Then
+            'Employee Holiday
+            FormEmpHoliday.Close()
+            FormEmpHoliday.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
