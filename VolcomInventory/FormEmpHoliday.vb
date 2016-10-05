@@ -23,14 +23,24 @@
         view_holiday()
     End Sub
     Sub view_holiday()
-        Dim date_search As String = ""
+        Dim date_search, religion_search As String
         If SLEYear.EditValue.ToString = "ALL" Then
             date_search = " LIKE '%%' "
         Else
             date_search = " = '" + SLEYear.EditValue.ToString + "'"
         End If
-        Dim query As String = "SELECT * FROM tb_emp_holiday WHERE YEAR(emp_holiday_date) " + date_search + " AND id_religion = '" + SLEReligion.EditValue.ToString + "'"
+        '
+        If SLEReligion.EditValue.ToString = "ALL" Then
+            religion_search = " LIKE '%%' "
+        Else
+            religion_search = " = '" + SLEReligion.EditValue.ToString + "'"
+        End If
+
+        Dim query As String = "SELECT hol.*,IF(hol.id_religion=0,'Public Holiday',rel.religion) AS religion FROM tb_emp_holiday hol
+                                LEFT JOIN tb_lookup_religion rel ON rel.id_religion=hol.id_religion WHERE YEAR(hol.emp_holiday_date) " + date_search + " AND (hol.id_religion " + religion_search + " OR hol.id_religion=0)"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCHoliday.DataSource = data
+
     End Sub
     Private Sub FormEmpHoliday_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
