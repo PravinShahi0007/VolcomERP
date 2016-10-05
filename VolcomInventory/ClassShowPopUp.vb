@@ -853,7 +853,7 @@
                 'wo production
                 query = "SELECT pot.po_type FROM tb_prod_order_wo wo
                         INNER JOIN tb_prod_order po ON po.id_prod_order=wo.id_prod_order
-                        INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type WHERE po.id_production='" & id_report & "'"
+                        INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type WHERE wo.id_prod_order_wo='" & id_report & "'"
                 info_col = execute_query(query, 0, True, "", "", "", "")
             End If
         End If
