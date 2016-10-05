@@ -1431,6 +1431,13 @@ Public Class FormMain
             'Repair
             FormFGRepairDet.action = "ins"
             FormFGRepairDet.ShowDialog()
+        ElseIf formName = "FormFGRepairRec" Then
+            'Repair receive
+            If FormFGRepairRec.XTCRepairRec.SelectedTabPageIndex = 1 Then
+                FormFGRepairRecDet.id_fg_repair_select = FormFGRepairRec.GVRepairList.GetFocusedRowCellValue("id_fg_repair").ToString
+                FormFGRepairRecDet.action = "ins"
+                FormFGRepairRecDet.ShowDialog()
+            End If
         ElseIf formName = "FormEmpInitialize" Then
             FormEmpInitialize.addUser()
         Else
@@ -2224,6 +2231,11 @@ Public Class FormMain
                 FormFGRepairDet.action = "upd"
                 FormFGRepairDet.id_fg_repair = FormFGRepair.GVRepair.GetFocusedRowCellValue("id_fg_repair").ToString
                 FormFGRepairDet.ShowDialog()
+            ElseIf formName = "FormFGRepairRec" Then
+                'Repair rec
+                FormFGRepairRecDet.action = "upd"
+                FormFGRepairRecDet.id_fg_repair_rec = FormFGRepairRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_rec").ToString
+                FormFGRepairRecDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5097,7 +5109,20 @@ Public Class FormMain
 
                     query = String.Format("DELETE FROM tb_fg_repair WHERE id_fg_repair='{0}'", id_fg_repair)
                     execute_non_query(query, True, "", "", "", "")
-                    FormFGDesignList.viewData()
+                    FormFGRepair.viewData()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
+        ElseIf formName = "FormFGRepairRec" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim id_fg_repair_rec As String = FormFGRepairRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_rec").ToString
+
+                    query = String.Format("DELETE FROM tb_fg_repair_rec WHERE id_fg_repair_rec='{0}'", id_fg_repair_rec)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormFGRepairRec.viewData()
                 Catch ex As Exception
                     errorDelete()
                 End Try
@@ -6217,6 +6242,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormFGRepair" Then
             print(FormFGRepair.GCRepair, "Repair Product")
+        ElseIf formName = "FormFGRepairRec" Then
+            print(FormFGRepairRec.GCRepairRec, "Repair Product")
         Else
             RPSubMenu.Visible = False
         End If
@@ -6715,6 +6742,9 @@ Public Class FormMain
         ElseIf formName = "FormFGRepair" Then
             FormFGRepair.Close()
             FormFGRepair.Dispose()
+        ElseIf formName = "FormFGRepairRec" Then
+            FormFGRepairRec.Close()
+            FormFGRepairRec.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7330,6 +7360,8 @@ Public Class FormMain
             FormEmpFP.viewFP()
         ElseIf formName = "FormFGRepair" Then
             FormFGRepair.viewData()
+        ElseIf formName = "FormFGRepairRec" Then
+            FormFGRepairRec.viewData()
         End If
     End Sub
     'Switch

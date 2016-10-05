@@ -22,7 +22,7 @@
         If XTCRepairRec.SelectedTabPageIndex = 0 Then
             If GVRepairRec.RowCount < 1 Then
                 'hide all except new
-                bnew_active = "1"
+                bnew_active = "0"
                 bedit_active = "0"
                 bdel_active = "0"
                 checkFormAccess(Name)
@@ -30,7 +30,7 @@
                 noManipulating()
             Else
                 'show all
-                bnew_active = "1"
+                bnew_active = "0"
                 bedit_active = "1"
                 bdel_active = "1"
                 checkFormAccess(Name)
@@ -66,11 +66,11 @@
             Catch ex As Exception
             End Try
             If indeks < 0 Then
-                bnew_active = "1"
+                bnew_active = "0"
                 bedit_active = "0"
                 bdel_active = "0"
             Else
-                bnew_active = "1"
+                bnew_active = "0"
                 bedit_active = "1"
                 bdel_active = "1"
             End If

@@ -737,6 +737,12 @@
     <Compile Include="FormFGRepairRec.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGRepairRecDet.Designer.vb">
+      <DependentUpon>FormFGRepairRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepairRecDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGStock.designer.vb">
       <DependentUpon>FormFGStock.vb</DependentUpon>
     </Compile>
@@ -4639,6 +4645,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGRepairRec.resx">
       <DependentUpon>FormFGRepairRec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepairRecDet.resx">
+      <DependentUpon>FormFGRepairRecDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGStock.resx">
       <DependentUpon>FormFGStock.vb</DependentUpon>
