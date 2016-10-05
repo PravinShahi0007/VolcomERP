@@ -75,14 +75,6 @@
                             INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
 	                        WHERE rpd.id_fg_repair='" + id_report_param + "' 
   	                        GROUP BY rpd.id_product
-                            UNION ALL
-                            SELECT rp.id_wh_drawer_to, '1', rpd.id_product, dsg.design_cop, '91', '" + id_report_param + "', COUNT(rpd.id_product) AS `qty` , NOW(),'','1'
-  	                        FROM tb_fg_repair_det rpd
-	                        INNER JOIN tb_fg_repair rp ON rp.id_fg_repair = rpd.id_fg_repair
-                            INNER JOIN tb_m_product prod ON prod.id_product = rpd.id_product
-                            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
-	                        WHERE rpd.id_fg_repair='" + id_report_param + "' 
-  	                        GROUP BY rpd.id_product
                             "
         execute_non_query(query, True, "", "", "", "")
     End Sub

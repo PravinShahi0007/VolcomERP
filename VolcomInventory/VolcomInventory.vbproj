@@ -186,6 +186,7 @@
     <Compile Include="ClassFGMissingInv.vb" />
     <Compile Include="ClassFGProposePrice.vb" />
     <Compile Include="ClassFGRepair.vb" />
+    <Compile Include="ClassFGRepairRec.vb" />
     <Compile Include="ClassFGSalesOrderReff.vb" />
     <Compile Include="ClassFGTrf.vb" />
     <Compile Include="ClassFGWHAlloc.vb" />

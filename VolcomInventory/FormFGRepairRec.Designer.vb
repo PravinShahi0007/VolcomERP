@@ -21,7 +21,15 @@ Partial Class FormFGRepairRec
     Private Sub InitializeComponent()
         Me.XTCRepairRec = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPTransList = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPWaitingList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRepairRec = New DevExpress.XtraGrid.GridControl()
+        Me.GVRepairRec = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFGRepairNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
@@ -30,17 +38,9 @@ Partial Class FormFGRepairRec
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GCRepair = New DevExpress.XtraGrid.GridControl()
-        Me.GVRepair = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCreatedDate = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnFGRepairNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCompFrom = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnCompTo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.XTPWaitingList = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRepairList = New DevExpress.XtraGrid.GridControl()
+        Me.GVRepairList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -51,17 +51,17 @@ Partial Class FormFGRepairRec
         CType(Me.XTCRepairRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRepairRec.SuspendLayout()
         Me.XTPTransList.SuspendLayout()
-        Me.XTPWaitingList.SuspendLayout()
+        CType(Me.GCRepairRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRepairRec, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCRepair, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVRepair, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPWaitingList.SuspendLayout()
+        CType(Me.GCRepairList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRepairList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCRepairRec
@@ -77,18 +77,85 @@ Partial Class FormFGRepairRec
         '
         'XTPTransList
         '
-        Me.XTPTransList.Controls.Add(Me.GCRepair)
+        Me.XTPTransList.Controls.Add(Me.GCRepairRec)
         Me.XTPTransList.Controls.Add(Me.GCFilter)
         Me.XTPTransList.Name = "XTPTransList"
         Me.XTPTransList.Size = New System.Drawing.Size(610, 277)
         Me.XTPTransList.Text = "Transaction List"
         '
-        'XTPWaitingList
+        'GCRepairRec
         '
-        Me.XTPWaitingList.Controls.Add(Me.GridControl1)
-        Me.XTPWaitingList.Name = "XTPWaitingList"
-        Me.XTPWaitingList.Size = New System.Drawing.Size(610, 277)
-        Me.XTPWaitingList.Text = "Waiting to Receive"
+        Me.GCRepairRec.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRepairRec.Location = New System.Drawing.Point(0, 39)
+        Me.GCRepairRec.MainView = Me.GVRepairRec
+        Me.GCRepairRec.Name = "GCRepairRec"
+        Me.GCRepairRec.Size = New System.Drawing.Size(610, 238)
+        Me.GCRepairRec.TabIndex = 7
+        Me.GCRepairRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRepairRec})
+        '
+        'GVRepairRec
+        '
+        Me.GVRepairRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnNumber, Me.GridColumnCreatedDate, Me.GridColumnFGRepairNote, Me.GridColumnStatus, Me.GridColumnCompFrom, Me.GridColumnCompTo})
+        Me.GVRepairRec.GridControl = Me.GCRepairRec
+        Me.GVRepairRec.Name = "GVRepairRec"
+        Me.GVRepairRec.OptionsBehavior.Editable = False
+        Me.GVRepairRec.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnID
+        '
+        Me.GridColumnID.Caption = "Id"
+        Me.GridColumnID.FieldName = "id_fg_repair"
+        Me.GridColumnID.Name = "GridColumnID"
+        '
+        'GridColumnNumber
+        '
+        Me.GridColumnNumber.Caption = "Number"
+        Me.GridColumnNumber.FieldName = "fg_repair_number"
+        Me.GridColumnNumber.Name = "GridColumnNumber"
+        Me.GridColumnNumber.Visible = True
+        Me.GridColumnNumber.VisibleIndex = 0
+        '
+        'GridColumnCreatedDate
+        '
+        Me.GridColumnCreatedDate.Caption = "Created Date"
+        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnCreatedDate.FieldName = "fg_repair_date"
+        Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
+        Me.GridColumnCreatedDate.Visible = True
+        Me.GridColumnCreatedDate.VisibleIndex = 3
+        '
+        'GridColumnFGRepairNote
+        '
+        Me.GridColumnFGRepairNote.Caption = "Note"
+        Me.GridColumnFGRepairNote.FieldName = "fg_repair_note"
+        Me.GridColumnFGRepairNote.Name = "GridColumnFGRepairNote"
+        Me.GridColumnFGRepairNote.Visible = True
+        Me.GridColumnFGRepairNote.VisibleIndex = 4
+        '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "report_status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 5
+        '
+        'GridColumnCompFrom
+        '
+        Me.GridColumnCompFrom.Caption = "From"
+        Me.GridColumnCompFrom.FieldName = "comp_from"
+        Me.GridColumnCompFrom.Name = "GridColumnCompFrom"
+        Me.GridColumnCompFrom.Visible = True
+        Me.GridColumnCompFrom.VisibleIndex = 1
+        '
+        'GridColumnCompTo
+        '
+        Me.GridColumnCompTo.Caption = "To"
+        Me.GridColumnCompTo.FieldName = "comp_to"
+        Me.GridColumnCompTo.Name = "GridColumnCompTo"
+        Me.GridColumnCompTo.Visible = True
+        Me.GridColumnCompTo.VisibleIndex = 2
         '
         'GCFilter
         '
@@ -177,97 +244,30 @@ Partial Class FormFGRepairRec
         Me.LabelControl3.TabIndex = 8892
         Me.LabelControl3.Text = "From"
         '
-        'GCRepair
+        'XTPWaitingList
         '
-        Me.GCRepair.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRepair.Location = New System.Drawing.Point(0, 39)
-        Me.GCRepair.MainView = Me.GVRepair
-        Me.GCRepair.Name = "GCRepair"
-        Me.GCRepair.Size = New System.Drawing.Size(610, 238)
-        Me.GCRepair.TabIndex = 7
-        Me.GCRepair.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRepair})
+        Me.XTPWaitingList.Controls.Add(Me.GCRepairList)
+        Me.XTPWaitingList.Name = "XTPWaitingList"
+        Me.XTPWaitingList.Size = New System.Drawing.Size(610, 277)
+        Me.XTPWaitingList.Text = "Waiting to Receive"
         '
-        'GVRepair
+        'GCRepairList
         '
-        Me.GVRepair.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnNumber, Me.GridColumnCreatedDate, Me.GridColumnFGRepairNote, Me.GridColumnStatus, Me.GridColumnCompFrom, Me.GridColumnCompTo})
-        Me.GVRepair.GridControl = Me.GCRepair
-        Me.GVRepair.Name = "GVRepair"
-        Me.GVRepair.OptionsBehavior.Editable = False
-        Me.GVRepair.OptionsView.ShowGroupPanel = False
+        Me.GCRepairList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRepairList.Location = New System.Drawing.Point(0, 0)
+        Me.GCRepairList.MainView = Me.GVRepairList
+        Me.GCRepairList.Name = "GCRepairList"
+        Me.GCRepairList.Size = New System.Drawing.Size(610, 277)
+        Me.GCRepairList.TabIndex = 8
+        Me.GCRepairList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRepairList})
         '
-        'GridColumnID
+        'GVRepairList
         '
-        Me.GridColumnID.Caption = "Id"
-        Me.GridColumnID.FieldName = "id_fg_repair"
-        Me.GridColumnID.Name = "GridColumnID"
-        '
-        'GridColumnNumber
-        '
-        Me.GridColumnNumber.Caption = "Number"
-        Me.GridColumnNumber.FieldName = "fg_repair_number"
-        Me.GridColumnNumber.Name = "GridColumnNumber"
-        Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 0
-        '
-        'GridColumnCreatedDate
-        '
-        Me.GridColumnCreatedDate.Caption = "Created Date"
-        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnCreatedDate.FieldName = "fg_repair_date"
-        Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
-        Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 3
-        '
-        'GridColumnFGRepairNote
-        '
-        Me.GridColumnFGRepairNote.Caption = "Note"
-        Me.GridColumnFGRepairNote.FieldName = "fg_repair_note"
-        Me.GridColumnFGRepairNote.Name = "GridColumnFGRepairNote"
-        Me.GridColumnFGRepairNote.Visible = True
-        Me.GridColumnFGRepairNote.VisibleIndex = 4
-        '
-        'GridColumnStatus
-        '
-        Me.GridColumnStatus.Caption = "Status"
-        Me.GridColumnStatus.FieldName = "report_status"
-        Me.GridColumnStatus.Name = "GridColumnStatus"
-        Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 5
-        '
-        'GridColumnCompFrom
-        '
-        Me.GridColumnCompFrom.Caption = "From"
-        Me.GridColumnCompFrom.FieldName = "comp_from"
-        Me.GridColumnCompFrom.Name = "GridColumnCompFrom"
-        Me.GridColumnCompFrom.Visible = True
-        Me.GridColumnCompFrom.VisibleIndex = 1
-        '
-        'GridColumnCompTo
-        '
-        Me.GridColumnCompTo.Caption = "To"
-        Me.GridColumnCompTo.FieldName = "comp_to"
-        Me.GridColumnCompTo.Name = "GridColumnCompTo"
-        Me.GridColumnCompTo.Visible = True
-        Me.GridColumnCompTo.VisibleIndex = 2
-        '
-        'GridControl1
-        '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(610, 277)
-        Me.GridControl1.TabIndex = 8
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
-        '
-        'GridView1
-        '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GVRepairList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVRepairList.GridControl = Me.GCRepairList
+        Me.GVRepairList.Name = "GVRepairList"
+        Me.GVRepairList.OptionsBehavior.Editable = False
+        Me.GVRepairList.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
         '
@@ -337,7 +337,8 @@ Partial Class FormFGRepairRec
         CType(Me.XTCRepairRec, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCRepairRec.ResumeLayout(False)
         Me.XTPTransList.ResumeLayout(False)
-        Me.XTPWaitingList.ResumeLayout(False)
+        CType(Me.GCRepairRec, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRepairRec, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
@@ -345,10 +346,9 @@ Partial Class FormFGRepairRec
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCRepair, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVRepair, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPWaitingList.ResumeLayout(False)
+        CType(Me.GCRepairList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRepairList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -364,8 +364,8 @@ Partial Class FormFGRepairRec
     Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GCRepair As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVRepair As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCRepairRec As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVRepairRec As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCreatedDate As DevExpress.XtraGrid.Columns.GridColumn
@@ -373,8 +373,8 @@ Partial Class FormFGRepairRec
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCompFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCompTo As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCRepairList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVRepairList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn

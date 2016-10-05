@@ -6215,7 +6215,8 @@ Public Class FormMain
             Else
                 print(FormWHCargoRate.GCCompanyIn, "Cargo Rate Inbound")
             End If
-
+        ElseIf formName = "FormFGRepair" Then
+            print(FormFGRepair.GCRepair, "Repair Product")
         Else
             RPSubMenu.Visible = False
         End If
@@ -9622,6 +9623,19 @@ Public Class FormMain
             FormFGRepair.Show()
             FormFGRepair.WindowState = FormWindowState.Maximized
             FormFGRepair.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBFGRepairRec_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFGRepairRec.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGRepairRec.MdiParent = Me
+            FormFGRepairRec.Show()
+            FormFGRepairRec.WindowState = FormWindowState.Maximized
+            FormFGRepairRec.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
