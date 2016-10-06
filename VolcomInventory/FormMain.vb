@@ -5123,6 +5123,7 @@ Public Class FormMain
                     query = String.Format("DELETE FROM tb_fg_repair_rec WHERE id_fg_repair_rec='{0}'", id_fg_repair_rec)
                     execute_non_query(query, True, "", "", "", "")
                     FormFGRepairRec.viewData()
+                    FormFGRepairRec.viewRepairList()
                 Catch ex As Exception
                     errorDelete()
                 End Try
@@ -7361,7 +7362,11 @@ Public Class FormMain
         ElseIf formName = "FormFGRepair" Then
             FormFGRepair.viewData()
         ElseIf formName = "FormFGRepairRec" Then
-            FormFGRepairRec.viewData()
+            If FormFGRepairRec.XTCRepairRec.SelectedTabPageIndex = 0 Then
+                FormFGRepairRec.viewData()
+            Else
+                FormFGRepairRec.viewRepairList()
+            End If
         End If
     End Sub
     'Switch
