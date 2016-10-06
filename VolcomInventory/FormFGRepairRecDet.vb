@@ -463,7 +463,17 @@
             Else
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim query As String = "UPDATE tb_fg_repair_rec SET fg_repair_rec_note='" + fg_repair_rec_note + "' WHERE id_fg_repair_rec='" + id_fg_repair_rec + "' "
+                    execute_non_query(query, True, "", "", "", "")
 
+                    'refresh data
+                    FormFGRepairRec.viewData()
+                    FormFGRepairRec.viewRepairList()
+                    FormFGRepairRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairRec.GVRepairRec, "id_fg_repair_rec", id_fg_repair_rec)
+                    action = "upd"
+                    actionLoad()
+                    infoCustom("Document #" + TxtNumber.Text + " was created successfully.")
+                    Cursor = Cursors.Default
                 End If
             End If
         End If
