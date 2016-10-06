@@ -347,6 +347,10 @@
             'repair FG
             FormViewFGRepair.id_fg_repair = id_report
             FormViewFGRepair.ShowDialog()
+        ElseIf report_mark_type = "92" Then
+            'repair rec FG
+            FormViewFGRepairRec.id_fg_repair_rec = id_report
+            FormViewFGRepairRec.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -841,6 +845,12 @@
             field_id = "id_fg_repair"
             field_number = "fg_repair_number"
             field_date = "fg_repair_date"
+        ElseIf report_mark_type = "92" Then
+            'Repair rec fg
+            table_name = "tb_fg_repair_rec"
+            field_id = "id_fg_repair_rec"
+            field_number = "fg_repair_rec_number"
+            field_date = "fg_repair_rec_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
