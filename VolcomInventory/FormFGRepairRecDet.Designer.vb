@@ -22,17 +22,15 @@ Partial Class FormFGRepairRecDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGRepairRecDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
-        Me.BtnBrowseTo = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnBrowseFrom = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtNumberRepair = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtNumberRepair = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -70,6 +68,7 @@ Partial Class FormFGRepairRecDet
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStyle = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdFGRepairDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
         Me.TxtScannedCode = New DevExpress.XtraEditors.TextEdit()
         Me.LblScannedCode = New DevExpress.XtraEditors.LabelControl()
@@ -92,12 +91,12 @@ Partial Class FormFGRepairRecDet
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNumberRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelHeaderLeft.SuspendLayout()
-        CType(Me.TxtNumberRepair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,9 +129,9 @@ Partial Class FormFGRepairRecDet
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl3)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtNameCompTo)
-        Me.GroupGeneralHeader.Controls.Add(Me.BtnBrowseTo)
-        Me.GroupGeneralHeader.Controls.Add(Me.BtnBrowseFrom)
+        Me.GroupGeneralHeader.Controls.Add(Me.TxtNumberRepair)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtCodeCompTo)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtNameCompFrom)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtCodeCompFrom)
@@ -145,13 +144,22 @@ Partial Class FormFGRepairRecDet
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 93)
         Me.GroupGeneralHeader.TabIndex = 201
         '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl3.Location = New System.Drawing.Point(28, 13)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl3.TabIndex = 164
+        Me.LabelControl3.Text = "Repair#"
+        '
         'TxtNameCompTo
         '
         Me.TxtNameCompTo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtNameCompTo.EditValue = ""
         Me.TxtNameCompTo.Enabled = False
-        Me.TxtNameCompTo.Location = New System.Drawing.Point(192, 35)
+        Me.TxtNameCompTo.Location = New System.Drawing.Point(192, 62)
         Me.TxtNameCompTo.Name = "TxtNameCompTo"
         Me.TxtNameCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNameCompTo.Properties.Appearance.Options.UseFont = True
@@ -161,34 +169,24 @@ Partial Class FormFGRepairRecDet
         Me.TxtNameCompTo.TabIndex = 8903
         Me.TxtNameCompTo.TabStop = False
         '
-        'BtnBrowseTo
+        'TxtNumberRepair
         '
-        Me.BtnBrowseTo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnBrowseTo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnBrowseTo.Appearance.Options.UseFont = True
-        Me.BtnBrowseTo.Location = New System.Drawing.Point(496, 35)
-        Me.BtnBrowseTo.Name = "BtnBrowseTo"
-        Me.BtnBrowseTo.Size = New System.Drawing.Size(20, 20)
-        Me.BtnBrowseTo.TabIndex = 8901
-        Me.BtnBrowseTo.TabStop = False
-        Me.BtnBrowseTo.Text = "..."
-        '
-        'BtnBrowseFrom
-        '
-        Me.BtnBrowseFrom.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnBrowseFrom.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnBrowseFrom.Appearance.Options.UseFont = True
-        Me.BtnBrowseFrom.Location = New System.Drawing.Point(496, 9)
-        Me.BtnBrowseFrom.Name = "BtnBrowseFrom"
-        Me.BtnBrowseFrom.Size = New System.Drawing.Size(20, 20)
-        Me.BtnBrowseFrom.TabIndex = 8907
-        Me.BtnBrowseFrom.TabStop = False
-        Me.BtnBrowseFrom.Text = "..."
+        Me.TxtNumberRepair.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtNumberRepair.EditValue = ""
+        Me.TxtNumberRepair.Enabled = False
+        Me.TxtNumberRepair.Location = New System.Drawing.Point(73, 10)
+        Me.TxtNumberRepair.Name = "TxtNumberRepair"
+        Me.TxtNumberRepair.Properties.EditValueChangedDelay = 1
+        Me.TxtNumberRepair.Properties.ReadOnly = True
+        Me.TxtNumberRepair.Size = New System.Drawing.Size(420, 20)
+        Me.TxtNumberRepair.TabIndex = 163
         '
         'TxtCodeCompTo
         '
         Me.TxtCodeCompTo.EditValue = ""
-        Me.TxtCodeCompTo.Location = New System.Drawing.Point(73, 35)
+        Me.TxtCodeCompTo.Enabled = False
+        Me.TxtCodeCompTo.Location = New System.Drawing.Point(73, 62)
         Me.TxtCodeCompTo.Name = "TxtCodeCompTo"
         Me.TxtCodeCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCodeCompTo.Properties.Appearance.Options.UseFont = True
@@ -202,7 +200,7 @@ Partial Class FormFGRepairRecDet
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtNameCompFrom.EditValue = ""
         Me.TxtNameCompFrom.Enabled = False
-        Me.TxtNameCompFrom.Location = New System.Drawing.Point(192, 9)
+        Me.TxtNameCompFrom.Location = New System.Drawing.Point(192, 36)
         Me.TxtNameCompFrom.Name = "TxtNameCompFrom"
         Me.TxtNameCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtNameCompFrom.Properties.Appearance.Options.UseFont = True
@@ -215,7 +213,8 @@ Partial Class FormFGRepairRecDet
         'TxtCodeCompFrom
         '
         Me.TxtCodeCompFrom.EditValue = ""
-        Me.TxtCodeCompFrom.Location = New System.Drawing.Point(73, 9)
+        Me.TxtCodeCompFrom.Enabled = False
+        Me.TxtCodeCompFrom.Location = New System.Drawing.Point(73, 36)
         Me.TxtCodeCompFrom.Name = "TxtCodeCompFrom"
         Me.TxtCodeCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCodeCompFrom.Properties.Appearance.Options.UseFont = True
@@ -226,7 +225,7 @@ Partial Class FormFGRepairRecDet
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(28, 38)
+        Me.LabelControl2.Location = New System.Drawing.Point(28, 65)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(12, 13)
         Me.LabelControl2.TabIndex = 8904
@@ -235,7 +234,7 @@ Partial Class FormFGRepairRecDet
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(28, 39)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl1.TabIndex = 8902
@@ -244,8 +243,6 @@ Partial Class FormFGRepairRecDet
         'PanelHeaderLeft
         '
         Me.PanelHeaderLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelHeaderLeft.Controls.Add(Me.LabelControl3)
-        Me.PanelHeaderLeft.Controls.Add(Me.TxtNumberRepair)
         Me.PanelHeaderLeft.Controls.Add(Me.TxtNumber)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl5)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl7)
@@ -255,26 +252,6 @@ Partial Class FormFGRepairRecDet
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
         Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 89)
         Me.PanelHeaderLeft.TabIndex = 8899
-        '
-        'LabelControl3
-        '
-        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(21, 58)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(39, 13)
-        Me.LabelControl3.TabIndex = 164
-        Me.LabelControl3.Text = "Repair#"
-        '
-        'TxtNumberRepair
-        '
-        Me.TxtNumberRepair.EditValue = ""
-        Me.TxtNumberRepair.Enabled = False
-        Me.TxtNumberRepair.Location = New System.Drawing.Point(73, 55)
-        Me.TxtNumberRepair.Name = "TxtNumberRepair"
-        Me.TxtNumberRepair.Properties.EditValueChangedDelay = 1
-        Me.TxtNumberRepair.Properties.ReadOnly = True
-        Me.TxtNumberRepair.Size = New System.Drawing.Size(172, 20)
-        Me.TxtNumberRepair.TabIndex = 163
         '
         'TxtNumber
         '
@@ -572,7 +549,7 @@ Partial Class FormFGRepairRecDet
         '
         'GVScan
         '
-        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize})
+        Me.GVScan.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnFullCode, Me.GridColumnCode, Me.GridColumnStyle, Me.GridColumnSize, Me.GridColumnIdFGRepairDet})
         Me.GVScan.GridControl = Me.GCScan
         Me.GVScan.Name = "GVScan"
         Me.GVScan.OptionsView.ShowGroupPanel = False
@@ -621,6 +598,12 @@ Partial Class FormFGRepairRecDet
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 4
         Me.GridColumnSize.Width = 66
+        '
+        'GridColumnIdFGRepairDet
+        '
+        Me.GridColumnIdFGRepairDet.Caption = "Id Det Repair"
+        Me.GridColumnIdFGRepairDet.FieldName = "id_fg_repair_det"
+        Me.GridColumnIdFGRepairDet.Name = "GridColumnIdFGRepairDet"
         '
         'PanelNavBarcode
         '
@@ -842,13 +825,13 @@ Partial Class FormFGRepairRecDet
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNumberRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelHeaderLeft.ResumeLayout(False)
         Me.PanelHeaderLeft.PerformLayout()
-        CType(Me.TxtNumberRepair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
@@ -943,8 +926,6 @@ Partial Class FormFGRepairRecDet
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TxtNameCompTo As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents BtnBrowseTo As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnBrowseFrom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtCodeCompTo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtNameCompFrom As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtCodeCompFrom As DevExpress.XtraEditors.TextEdit
@@ -952,4 +933,5 @@ Partial Class FormFGRepairRecDet
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtNumberRepair As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumnIdFGRepairDet As DevExpress.XtraGrid.Columns.GridColumn
 End Class

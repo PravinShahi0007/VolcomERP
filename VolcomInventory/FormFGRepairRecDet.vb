@@ -26,6 +26,7 @@
     Sub actionLoad()
         If action = "ins" Then
             viewRepair()
+            viewDetail()
             BtnPrint.Enabled = False
             BtnAttachment.Enabled = False
             BMark.Enabled = False
@@ -89,6 +90,15 @@
         TxtNameCompTo.Text = data.Rows(0)("comp_name_to").ToString
         setDefaultDrawerFrom()
         setDefaultDrawerTo()
+        codeAvailableIns()
+    End Sub
+
+    Sub codeAvailableIns()
+        SplashScreenManager1.ShowWaitForm()
+        dt.Clear()
+        Dim query As String = "CALL view_fg_repair('" + id_fg_repair_select + "') "
+        dt = execute_query(query, -1, True, "", "", "", "")
+        SplashScreenManager1.CloseWaitForm()
     End Sub
 
 
@@ -161,8 +171,6 @@
         PanelNavBarcode.Enabled = False
         TxtCodeCompFrom.Enabled = False
         TxtCodeCompTo.Enabled = False
-        BtnBrowseFrom.Enabled = False
-        BtnBrowseTo.Enabled = False
         GridColumnQty.OptionsColumn.AllowEdit = False
         GVScan.OptionsCustomization.AllowGroup = True
 
@@ -320,5 +328,124 @@
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
 
+    End Sub
+
+    Private Sub BScan_Click(sender As Object, e As EventArgs) Handles BScan.Click
+        disableControl()
+        is_delete_scan = False
+        TxtScannedCode.Visible = True
+        LblScannedCode.Visible = True
+        TxtScannedCode.Focus()
+    End Sub
+
+    Sub disableControl()
+        GVScan.OptionsCustomization.AllowSort = False
+        BScan.Enabled = False
+        BStop.Enabled = True
+        BDelete.Enabled = False
+        GroupGeneralHeader.Enabled = False
+        GroupControl3.Enabled = False
+        PanelControl3.Enabled = False
+        XTPSummary.PageVisible = False
+    End Sub
+
+    Private Sub BStop_Click(sender As Object, e As EventArgs) Handles BStop.Click
+        TxtScannedCode.Text = ""
+        GVScan.OptionsCustomization.AllowSort = True
+        TxtScannedCode.Visible = False
+        LblScannedCode.Visible = False
+        BStop.Enabled = False
+        BScan.Enabled = True
+        BDelete.Enabled = True
+        GroupGeneralHeader.Enabled = True
+        GroupControl3.Enabled = True
+        PanelControl3.Enabled = True
+        BScan.Focus()
+    End Sub
+
+    Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BDelete.Click
+        disableControl()
+        is_delete_scan = True
+        TxtScannedCode.Visible = True
+        LblScannedCode.Visible = True
+        TxtScannedCode.Focus()
+    End Sub
+
+    Private Sub TxtScannedCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScannedCode.KeyDown
+        If e.KeyCode = Keys.Enter And TxtScannedCode.Text.Length > 0 Then
+            Cursor = Cursors.WaitCursor
+            If Not is_delete_scan Then 'scan
+                makeSafeGV(GVScan)
+                checkAvailable(TxtScannedCode.Text)
+                TxtScannedCode.Text = ""
+                TxtScannedCode.Focus()
+            Else 'delete scan
+                GVScan.ActiveFilterString = "[code]='" + TxtScannedCode.Text + "'"
+                If GVScan.RowCount <= 0 Then
+                    stopCustom("Code not found.")
+                    GVScan.ActiveFilterString = ""
+                    TxtScannedCode.Text = ""
+                    TxtScannedCode.Focus()
+                Else
+                    If action = "ins" Then
+                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            Dim id_pl_prod_order_rec_det_unique As String = GVScan.GetFocusedRowCellValue("id_pl_prod_order_rec_det_unique").ToString
+                            GVScan.DeleteRow(GVScan.FocusedRowHandle)
+                            GVScan.ActiveFilterString = ""
+                            GCScan.RefreshDataSource()
+                            GVScan.RefreshData()
+                        Else
+                            GVScan.ActiveFilterString = ""
+                        End If
+                        TxtScannedCode.Text = ""
+                        TxtScannedCode.Focus()
+                    End If
+                End If
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub checkAvailable(ByVal code_par As String)
+        'check in GV
+        GVScan.ActiveFilterString = "[code]='" + code_par + "'"
+        If GVScan.RowCount > 0 Then
+            GVScan.ActiveFilterString = ""
+            stopCustom("Duplicate code")
+        Else
+            GVScan.ActiveFilterString = ""
+            Dim dt_filter As DataRow() = dt.Select("[code]='" + code_par + "' ")
+            If dt_filter.Length > 0 Then
+                Dim newRow As DataRow = (TryCast(GCScan.DataSource, DataTable)).NewRow()
+                newRow("id_fg_repair_rec_det") = "0"
+                newRow("id_fg_repair_det") = dt_filter(0)("id_fg_repair_det").ToString
+                newRow("id_fg_repair_rec") = 0
+                newRow("id_product") = dt_filter(0)("id_product").ToString
+                newRow("code") = dt_filter(0)("code").ToString
+                newRow("product_code") = dt_filter(0)("product_code").ToString
+                newRow("name") = dt_filter(0)("name").ToString
+                newRow("size") = dt_filter(0)("size").ToString
+                newRow("id_pl_prod_order_rec_det_unique") = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
+                newRow("fg_repair_rec_det_counting") = dt_filter(0)("fg_repair_det_counting").ToString
+                TryCast(GCScan.DataSource, DataTable).Rows.Add(newRow)
+                GCScan.RefreshDataSource()
+                GVScan.RefreshData()
+            Else
+                stopCustom("Code not found!")
+            End If
+        End If
+    End Sub
+
+    Private Sub GVScan_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVScan.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVScanSum_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVScanSum.CustomColumnDisplayText
+        If e.Column.Name = "GridColumnNoSum" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class
