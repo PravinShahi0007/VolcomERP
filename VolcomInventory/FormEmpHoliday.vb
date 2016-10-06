@@ -51,4 +51,9 @@
     Private Sub FormEmpHoliday_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
+
+    Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
+        FormImportExcel.id_pop_up = "27"
+        FormImportExcel.ShowDialog()
+    End Sub
 End Class

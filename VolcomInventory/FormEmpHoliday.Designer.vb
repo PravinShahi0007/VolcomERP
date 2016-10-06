@@ -20,7 +20,7 @@ Partial Class FormEmpHoliday
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEReligion = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -44,7 +44,6 @@ Partial Class FormEmpHoliday
         Me.XTPView = New DevExpress.XtraTab.XtraTabPage()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,6 +51,7 @@ Partial Class FormEmpHoliday
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemPictureEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEReligion.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,7 +72,7 @@ Partial Class FormEmpHoliday
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BImport)
         Me.PanelControl1.Controls.Add(Me.BSearch)
         Me.PanelControl1.Controls.Add(Me.SLEReligion)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
@@ -84,14 +84,14 @@ Partial Class FormEmpHoliday
         Me.PanelControl1.Size = New System.Drawing.Size(728, 47)
         Me.PanelControl1.TabIndex = 0
         '
-        'SimpleButton1
+        'BImport
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Location = New System.Drawing.Point(631, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(95, 43)
-        Me.SimpleButton1.TabIndex = 8906
-        Me.SimpleButton1.Text = "Import Excel"
+        Me.BImport.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BImport.Location = New System.Drawing.Point(631, 2)
+        Me.BImport.Name = "BImport"
+        Me.BImport.Size = New System.Drawing.Size(95, 43)
+        Me.BImport.TabIndex = 8906
+        Me.BImport.Text = "Import Excel"
         '
         'BSearch
         '
@@ -282,11 +282,6 @@ Partial Class FormEmpHoliday
         Me.GridView2.OptionsFind.AlwaysVisible = True
         Me.GridView2.OptionsView.ShowGroupPanel = False
         '
-        'RepositoryItemPictureEdit1
-        '
-        Me.RepositoryItemPictureEdit1.Name = "RepositoryItemPictureEdit1"
-        Me.RepositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        '
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Month"
@@ -337,6 +332,11 @@ Partial Class FormEmpHoliday
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 6
+        '
+        'RepositoryItemPictureEdit1
+        '
+        Me.RepositoryItemPictureEdit1.Name = "RepositoryItemPictureEdit1"
+        Me.RepositoryItemPictureEdit1.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         '
         'FormEmpHoliday
         '
@@ -390,7 +390,7 @@ Partial Class FormEmpHoliday
     Friend WithEvents GridColumnYear As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdReligionSLE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReligionSLE As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BImport As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents XTCHoliday As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPList As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPView As DevExpress.XtraTab.XtraTabPage

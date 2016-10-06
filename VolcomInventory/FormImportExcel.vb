@@ -95,6 +95,7 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "26" Then
             MyCommand = New OleDbDataAdapter("select no_faktur, nama_toko, npwp, alamat, id_keterangan_tambahan, kode_barang, ket_barang, jumlah_barang, harga_satuan, harga_total, diskon, ppn, dpp, jumlah_ppn, jumlah_dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
         Else
+            MsgBox("tes")
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
 
@@ -102,7 +103,7 @@ Public Class FormImportExcel
             MyCommand.Fill(data_temp)
             MyCommand.Dispose()
         Catch ex As Exception
-            'stopCustom("Input must be in accordance with the format specified !")
+            stopCustom("Input must be in accordance with the format specified !")
             Exit Sub
         End Try
 
@@ -1392,6 +1393,35 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom("Incorrect format on table.")
             End Try
+        ElseIf id_pop_up = "27" Then
+            'sample planning
+            Dim queryx As String = "SELECT id_religion,religion FROM tb_lookup_religion"
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("religion") Equals table_tmp("religion")
+                            Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                            {
+                                .Date = table1("date"),
+                                .IdReligion = If(y1 Is Nothing, "", y1("id_religion")),
+                                .Religion = table1("religion"),
+                                .Description = table1("nama_libur")
+                            }
+
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("IdReligion").Visible = False
+            GVData.Columns("Date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("Date").DisplayFormat.FormatString = "{0:dd MMM yyyy}"
+
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -1400,7 +1430,7 @@ Public Class FormImportExcel
     Private Sub BBrowse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BBrowse.Click
         Me.Cursor = Cursors.WaitCursor
         Dim fdlg As OpenFileDialog = New OpenFileDialog()
-        fdlg.Title = "Select excel file to import"
+        fdlg.Title = "Select excel file To import"
         fdlg.InitialDirectory = "C: \"
         fdlg.Filter = "Excel File|*.xls; *.xlsx"
         fdlg.FilterIndex = 0
@@ -2533,6 +2563,15 @@ Public Class FormImportExcel
 
                     execute_non_query(bulk_query, True, "", "", "", "")
                     FormAccountingFakturScanSingle.viewDetail()
+                    Close()
+                Else
+                    stopCustom("No data available.")
+                End If
+            ElseIf id_pop_up = "27" Then 'import holiday
+                If GVData.RowCount > 0 Then
+                    For i As Integer = 0 To GVData.RowCount - 1
+
+                    Next
                     Close()
                 Else
                     stopCustom("No data available.")
