@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormEmpAttnIndView
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormEmpAttnIndView
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpAttnIndView))
@@ -61,6 +61,15 @@ Partial Class FormEmpAttnIndView
         Me.TEName = New DevExpress.XtraEditors.TextEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.XTCAttnIndView = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPAttendance = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPDinas = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCLogAttn = New DevExpress.XtraGrid.GridControl()
+        Me.GVLogAttn = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +87,12 @@ Partial Class FormEmpAttnIndView
         CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCAttnIndView, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCAttnIndView.SuspendLayout()
+        Me.XTPAttendance.SuspendLayout()
+        Me.XTPDinas.SuspendLayout()
+        CType(Me.GCLogAttn, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVLogAttn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -108,10 +123,10 @@ Partial Class FormEmpAttnIndView
         'GCSchedule
         '
         Me.GCSchedule.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCSchedule.Location = New System.Drawing.Point(0, 109)
+        Me.GCSchedule.Location = New System.Drawing.Point(0, 0)
         Me.GCSchedule.MainView = Me.GVSchedule
         Me.GCSchedule.Name = "GCSchedule"
-        Me.GCSchedule.Size = New System.Drawing.Size(720, 191)
+        Me.GCSchedule.Size = New System.Drawing.Size(714, 163)
         Me.GCSchedule.TabIndex = 6
         Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
         '
@@ -474,12 +489,92 @@ Partial Class FormEmpAttnIndView
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Name"
         '
+        'XTCAttnIndView
+        '
+        Me.XTCAttnIndView.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCAttnIndView.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCAttnIndView.Location = New System.Drawing.Point(0, 109)
+        Me.XTCAttnIndView.Name = "XTCAttnIndView"
+        Me.XTCAttnIndView.SelectedTabPage = Me.XTPAttendance
+        Me.XTCAttnIndView.Size = New System.Drawing.Size(720, 191)
+        Me.XTCAttnIndView.TabIndex = 8
+        Me.XTCAttnIndView.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPAttendance, Me.XTPDinas})
+        '
+        'XTPAttendance
+        '
+        Me.XTPAttendance.Controls.Add(Me.GCSchedule)
+        Me.XTPAttendance.Name = "XTPAttendance"
+        Me.XTPAttendance.Size = New System.Drawing.Size(714, 163)
+        Me.XTPAttendance.Text = "Attendance"
+        '
+        'XTPDinas
+        '
+        Me.XTPDinas.Controls.Add(Me.GCLogAttn)
+        Me.XTPDinas.Name = "XTPDinas"
+        Me.XTPDinas.Size = New System.Drawing.Size(714, 163)
+        Me.XTPDinas.Text = "Dinas"
+        '
+        'GCLogAttn
+        '
+        Me.GCLogAttn.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCLogAttn.Location = New System.Drawing.Point(0, 0)
+        Me.GCLogAttn.MainView = Me.GVLogAttn
+        Me.GCLogAttn.Name = "GCLogAttn"
+        Me.GCLogAttn.Size = New System.Drawing.Size(714, 163)
+        Me.GCLogAttn.TabIndex = 2
+        Me.GCLogAttn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLogAttn})
+        '
+        'GVLogAttn
+        '
+        Me.GVLogAttn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn22, Me.GridColumn21, Me.GridColumn23, Me.GridColumn20})
+        Me.GVLogAttn.GridControl = Me.GCLogAttn
+        Me.GVLogAttn.Name = "GVLogAttn"
+        Me.GVLogAttn.OptionsView.ShowGroupPanel = False
+        Me.GVLogAttn.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn23, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Id Attn"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Width = 166
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Date"
+        Me.GridColumn21.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn21.FieldName = "date"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 0
+        Me.GridColumn21.Width = 166
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Log Time"
+        Me.GridColumn23.DisplayFormat.FormatString = "hh:mm:ss tt"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn23.FieldName = "time"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 1
+        Me.GridColumn23.Width = 221
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Type"
+        Me.GridColumn20.FieldName = "type_log"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 2
+        Me.GridColumn20.Width = 112
+        '
         'FormEmpAttnIndView
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(720, 337)
-        Me.Controls.Add(Me.GCSchedule)
+        Me.Controls.Add(Me.XTCAttnIndView)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl1)
@@ -508,6 +603,12 @@ Partial Class FormEmpAttnIndView
         CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCAttnIndView, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCAttnIndView.ResumeLayout(False)
+        Me.XTPAttendance.ResumeLayout(False)
+        Me.XTPDinas.ResumeLayout(False)
+        CType(Me.GCLogAttn, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVLogAttn, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -552,4 +653,13 @@ Partial Class FormEmpAttnIndView
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCAttnIndView As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPAttendance As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPDinas As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCLogAttn As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVLogAttn As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
