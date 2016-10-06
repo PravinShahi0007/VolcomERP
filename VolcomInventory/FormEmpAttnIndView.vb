@@ -52,7 +52,28 @@
     End Sub
 
     Private Sub BViewSchedule_Click(sender As Object, e As EventArgs) Handles BViewSchedule.Click
-        load_report()
+        If XTCAttnIndView.SelectedTabPageIndex = 0 Then
+            load_report()
+        Else
+            load_report_dinas()
+        End If
+    End Sub
+
+    Sub load_report_dinas()
+        Dim date_start, date_until As String
+
+        date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+        date_until = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+
+        Dim query As String = "SELECT emp.employee_code,emp.employee_name,att.datetime,DATE(att.datetime) as date,TIME(att.datetime) as time,type_log.type_log,fp.name AS fp_machine,IF(att.scan_method=1,'Fingerprint','Face') AS scan_method FROM tb_emp_attn att
+                                INNER JOIN tb_m_employee emp ON emp.id_employee=att.id_employee
+                                INNER JOIN tb_lookup_type_log type_log ON type_log.id_type_log=att.type_log
+                                INNER JOIN tb_m_fingerprint fp ON fp.id_fingerprint=att.id_fingerprint
+                                WHERE DATE(att.datetime) >='" & date_start & "' AND DATE(att.datetime) <='" & date_until & "' AND (att.type_log=5 OR att.type_log=6) AND att.id_employee='" & id_employee & "'
+                                ORDER BY att.datetime ASC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCLogAttn.DataSource = data
+        GVLogAttn.BestFitColumns()
     End Sub
 
     Private Sub FormEmpAttnIndView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -62,7 +83,40 @@
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
-        getReport()
+        If XTCAttnIndView.SelectedTabPageIndex = 0 Then
+            getReport()
+        Else
+            getReportDinas()
+        End If
+    End Sub
+
+    Sub getReportDinas()
+        ReportEmpAttnInd.dt = GCLogAttn.DataSource
+        Dim Report As New ReportEmpAttnInd()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVLogAttn.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVEmployee.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVEmployee)
+
+        'Parse val
+        Report.LTitle.Text = "REPORT INDIVIDUAL (DINAS)"
+        Report.Lname.Text = TEName.Text
+        Report.Lcode.Text = TECode.Text
+        Report.LDept.Text = TEDept.Text
+        Report.LPosition.Text = TEPosition.Text
+        Report.LDateRange.Text = Date.Parse(DEStart.EditValue.ToString).ToString("dd MMM yyyy") + " - " + Date.Parse(DEUntil.EditValue.ToString).ToString("dd MMM yyyy")
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 
     Sub getReport()
@@ -82,6 +136,7 @@
         ReportStyleGridview(Report.GVEmployee)
 
         'Parse val
+        Report.LTitle.Text = "REPORT INDIVIDUAL (ATTENDANCE)"
         Report.Lname.Text = TEName.Text
         Report.Lcode.Text = TECode.Text
         Report.LDept.Text = TEDept.Text
