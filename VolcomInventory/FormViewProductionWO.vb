@@ -24,8 +24,6 @@
         DEEstRecDate.EditValue = date_created
         DEDueDate.EditValue = date_created
 
-        load_po(id_po)
-
         BMark.Visible = True
 
         Dim query = "SELECT a.id_report_status,h.report_status,a.id_prod_order_wo,a.id_ovh_price,a.id_payment, "
@@ -45,6 +43,9 @@
         query += "INNER JOIN tb_m_ovh j ON b.id_ovh = j.id_ovh "
         query += "WHERE a.id_prod_order_wo='" & id_wo & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        '
+        id_po = data.Rows(0)("id_prod_order").ToString
+        load_po(id_po)
         '
         id_ovh_price = data.Rows(0)("id_ovh_price").ToString
         '
