@@ -35,11 +35,11 @@
             date_search = " = '" + SLEYearSum.EditValue.ToString + "'"
         End If
         '
-        Dim query As String = "SELECT DAYNAME(emp.emp_holiday_date) as dow, emp.emp_holiday_date as hol_date,MONTHNAME(STR_TO_DATE((MONTH(emp.emp_holiday_date)), '%m')) as hol_month,emp.emp_holiday_desc
-                                ,IF(emp.id_religion='0','Libur',IF(ISNULL(emp_hindu.id_emp_holiday),'Masuk','Libur')) AS hindu
-                                ,IF(emp.id_religion='0','Libur',IF(ISNULL(emp_islam.id_emp_holiday),'Masuk','Libur')) AS islam  
-                                ,IF(emp.id_religion='0','Libur',IF(ISNULL(emp_kristen.id_emp_holiday),'Masuk','Libur')) AS kristen  
-                                ,IF(emp.id_religion='0','Libur',IF(ISNULL(emp_budha.id_emp_holiday),'Masuk','Libur')) AS budha  
+        Dim query As String = "SELECT DAYNAME(emp.emp_holiday_date) AS dow, emp.emp_holiday_date AS hol_date,MONTHNAME(STR_TO_DATE((MONTH(emp.emp_holiday_date)), '%m')) AS hol_month,MONTH(emp.emp_holiday_date) AS id_month,emp.emp_holiday_desc
+                                ,IF(emp.id_religion='0',CONCAT(DATE_FORMAT(emp.emp_holiday_date,'%e'),' (',emp.emp_holiday_desc,')'),IF(ISNULL(emp_hindu.id_emp_holiday),'Masuk',CONCAT(DATE_FORMAT(emp.emp_holiday_date,'%e'),' (',emp.emp_holiday_desc,')'))) AS hindu
+                                ,IF(emp.id_religion='0',CONCAT(DATE_FORMAT(emp.emp_holiday_date,'%e'),' (',emp.emp_holiday_desc,')'),IF(ISNULL(emp_islam.id_emp_holiday),'Masuk',CONCAT(DATE_FORMAT(emp.emp_holiday_date,'%e'),' (',emp.emp_holiday_desc,')'))) AS islam  
+                                ,IF(emp.id_religion='0',CONCAT(DATE_FORMAT(emp.emp_holiday_date,'%e'),' (',emp.emp_holiday_desc,')'),IF(ISNULL(emp_kristen.id_emp_holiday),'Masuk',CONCAT(DATE_FORMAT(emp.emp_holiday_date,'%e'),' (',emp.emp_holiday_desc,')'))) AS kristen  
+                                ,IF(emp.id_religion='0',CONCAT(DATE_FORMAT(emp.emp_holiday_date,'%e'),' (',emp.emp_holiday_desc,')'),IF(ISNULL(emp_budha.id_emp_holiday),'Masuk',CONCAT(DATE_FORMAT(emp.emp_holiday_date,'%e'),' (',emp.emp_holiday_desc,')'))) AS budha  
                                 FROM tb_emp_holiday emp
                                 LEFT JOIN tb_emp_holiday emp_hindu ON emp_hindu.emp_holiday_date=emp.emp_holiday_date AND emp.id_religion='4' 
                                 LEFT JOIN tb_emp_holiday emp_islam ON emp_islam.emp_holiday_date=emp.emp_holiday_date AND emp.id_religion='1'
@@ -49,6 +49,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSum.DataSource = data
         GVSum.BestFitColumns()
+        GVSum.ExpandAllGroups()
     End Sub
     Sub view_holiday()
         Dim date_search, religion_search As String

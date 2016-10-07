@@ -1420,7 +1420,34 @@ Public Class FormImportExcel
             GVData.Columns("IdReligion").Visible = False
             GVData.Columns("Date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
             GVData.Columns("Date").DisplayFormat.FormatString = "{0:dd MMM yyyy}"
+        ElseIf id_pop_up = "28" Then
+            'vendor code 
+            Dim queryx As String = "SELECT id_product,product_full_code,product_name FROM tb_m_product"
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
 
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("pr_code").ToString Equals table_tmp("product_full_code").ToString
+                            Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                            {
+                                .IdProduct = If(y1 Is Nothing, "0", y1("id_product")),
+                                .Code = If(y1 Is Nothing, "0", y1("product_full_code")),
+                                .Description = If(y1 Is Nothing, "0", y1("product_name")),
+                                .Size = table1("pr_oldsize"),
+                                .Color = table1("pr_colnm"),
+                                .UPC = table1("pr_upc")
+                            }
+
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("IdProduct").Visible = False
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2581,6 +2608,26 @@ Public Class FormImportExcel
                         '
                         Dim query_exec As String = "INSERT INTO tb_emp_holiday(id_religion,emp_holiday_date,emp_holiday_desc) VALUES('" & GVData.GetRowCellValue(i, "IdReligion").ToString & "','" & Date.Parse(date_var.ToString).ToString("yyyy-MM-dd") & "','" & GVData.GetRowCellValue(i, "Description").ToString & "')"
                         execute_non_query(query_exec, True, "", "", "", "")
+                        '
+                        PBC.PerformStep()
+                        PBC.Update()
+                    Next
+                    Close()
+                Else
+                    stopCustom("No data available.")
+                End If
+            ElseIf id_pop_up = "28" Then 'import UPC
+                If GVData.RowCount > 0 Then
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+                    '
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        If Not GVData.GetRowCellValue(i, "IdProduct").ToString = "0" Then
+                            Dim query_exec As String = "UPDATE tb_m_product SET product_ean_code='" & GVData.GetRowCellValue(i, "UPC").ToString & "' WHERE id_product='" & GVData.GetRowCellValue(i, "IdProduct").ToString & "'"
+                            execute_non_query(query_exec, True, "", "", "", "")
+                        End If
                         '
                         PBC.PerformStep()
                         PBC.Update()

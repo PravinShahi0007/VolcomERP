@@ -45,6 +45,7 @@ Partial Class FormEmpHoliday
         Me.GCSum = New DevExpress.XtraGrid.GridControl()
         Me.GVSum = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -289,7 +290,7 @@ Partial Class FormEmpHoliday
         '
         'GVSum
         '
-        Me.GVSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn8, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn9, Me.GridColumn8, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
         Me.GVSum.GridControl = Me.GCSum
         Me.GVSum.Name = "GVSum"
         Me.GVSum.OptionsBehavior.Editable = False
@@ -304,11 +305,18 @@ Partial Class FormEmpHoliday
         Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn1.Caption = "Month"
         Me.GridColumn1.FieldName = "hol_month"
+        Me.GridColumn1.FieldNameSortGroup = "id_month"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
         Me.GridColumn1.Width = 82
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "IDMonth"
+        Me.GridColumn9.FieldName = "id_month"
+        Me.GridColumn9.Name = "GridColumn9"
         '
         'GridColumn8
         '
@@ -316,14 +324,14 @@ Partial Class FormEmpHoliday
         Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn8.Caption = "DOW"
+        Me.GridColumn8.Caption = "*"
         Me.GridColumn8.DisplayFormat.FormatString = "dddd"
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn8.FieldName = "dow"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
+        Me.GridColumn8.VisibleIndex = 5
         '
         'GridColumn2
         '
@@ -333,8 +341,6 @@ Partial Class FormEmpHoliday
         Me.GridColumn2.FieldName = "hol_date"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
         Me.GridColumn2.Width = 102
         '
         'GridColumn3
@@ -348,7 +354,7 @@ Partial Class FormEmpHoliday
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.VisibleIndex = 1
         Me.GridColumn3.Width = 105
         '
         'GridColumn4
@@ -363,7 +369,7 @@ Partial Class FormEmpHoliday
         Me.GridColumn4.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn4.OptionsFilter.AllowFilter = False
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 5
+        Me.GridColumn4.VisibleIndex = 2
         Me.GridColumn4.Width = 105
         '
         'GridColumn5
@@ -377,7 +383,7 @@ Partial Class FormEmpHoliday
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.VisibleIndex = 3
         Me.GridColumn5.Width = 105
         '
         'GridColumn6
@@ -391,7 +397,7 @@ Partial Class FormEmpHoliday
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.VisibleIndex = 4
         Me.GridColumn6.Width = 112
         '
         'GridColumn7
@@ -400,8 +406,6 @@ Partial Class FormEmpHoliday
         Me.GridColumn7.FieldName = "emp_holiday_desc"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.OptionsColumn.AllowMerge = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 3
         Me.GridColumn7.Width = 93
         '
         'RepositoryItemPictureEdit1
@@ -539,4 +543,5 @@ Partial Class FormEmpHoliday
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
