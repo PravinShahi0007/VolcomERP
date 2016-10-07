@@ -6252,7 +6252,11 @@ Public Class FormMain
         ElseIf formName = "FormEmpAttnInd" Then
             print(FormEmpAttnInd.GCEmployee, "Employee List")
         ElseIf formName = "FormEmpHoliday" Then
-            print(FormEmpAttnInd.GCEmployee, "Holiday List")
+            If FormEmpHoliday.XTCHoliday.SelectedTabPageIndex = 0 Then
+                print(FormEmpHoliday.GCHoliday, "Holiday List")
+            Else
+                print(FormEmpHoliday.GCSum, "Holiday List")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
