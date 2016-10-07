@@ -3809,6 +3809,12 @@
     <Compile Include="ReportFGRepairDet.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFGRepairRec.Designer.vb">
+      <DependentUpon>ReportFGRepairRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGRepairRec.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGSalesOrderReff.Designer.vb">
       <DependentUpon>ReportFGSalesOrderReff.vb</DependentUpon>
     </Compile>
@@ -6621,6 +6627,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGRepairDet.resx">
       <DependentUpon>ReportFGRepairDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGRepairRec.resx">
+      <DependentUpon>ReportFGRepairRec.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGSalesOrderReff.resx">
       <DependentUpon>ReportFGSalesOrderReff.vb</DependentUpon>
