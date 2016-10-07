@@ -152,4 +152,18 @@
     Private Sub XTCRepairRec_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCRepairRec.SelectedPageChanged
         check_menu()
     End Sub
+
+    Private Sub SMPrePrint_Click(sender As Object, e As EventArgs) Handles SMPrePrint.Click
+        Cursor = Cursors.WaitCursor
+        FormFGRepairRecDet.id_pre = "1"
+        FormMain.but_edit()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SMPrint_Click(sender As Object, e As EventArgs) Handles SMPrint.Click
+        Cursor = Cursors.WaitCursor
+        FormFGRepairRecDet.id_pre = "2"
+        FormMain.but_edit()
+        Cursor = Cursors.Default
+    End Sub
 End Class

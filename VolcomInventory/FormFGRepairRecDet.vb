@@ -70,7 +70,7 @@
                 prePrinting()
                 Close()
             ElseIf id_pre = "2" Then
-                Printing()
+                printing()
                 Close()
             End If
         End If
@@ -204,7 +204,7 @@
     Sub prePrinting()
         Cursor = Cursors.WaitCursor
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
-            ReportFGRepairDet.id_pre = "1"
+            ReportFGRepairRecDet.id_pre = "1"
         Else
             ReportFGRepairRec.id_pre = "1"
         End If
@@ -215,7 +215,7 @@
     Sub printing()
         Cursor = Cursors.WaitCursor
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
-            ReportFGRepairDet.id_pre = "-1"
+            ReportFGRepairRecDet.id_pre = "-1"
         Else
             ReportFGRepairRec.id_pre = "-1"
         End If
@@ -226,37 +226,37 @@
     Sub getReport()
         Cursor = Cursors.WaitCursor
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
-            '    GridColumnStatus.Visible = False
-            '    ReportFGRepairRecDet.id_fg_repair_rec = id_fg_repair_rec
-            '    ReportFGRepairRecDet.id_type = id_type
-            '    ReportFGRepairRecDet.dt = GCScan.DataSource
-            '    Dim Report As New ReportFGRepairRecDet()
+            GridColumnStatus.Visible = False
+            ReportFGRepairRecDet.id_fg_repair_rec = id_fg_repair_rec
+            ReportFGRepairRecDet.id_type = id_type
+            ReportFGRepairRecDet.dt = GCScan.DataSource
+            Dim Report As New ReportFGRepairRecDet()
 
-            '    ' '... 
-            '    ' ' creating and saving the view's layout to a new memory stream 
-            '    Dim str As System.IO.Stream
-            '    str = New System.IO.MemoryStream()
-            '    GVScanSum.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            '    str.Seek(0, System.IO.SeekOrigin.Begin)
-            '    Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            '    str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVScan.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVScan.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-            '    'Grid Detail
-            '    ReportStyleGridview(Report.GVScan)
+            'Grid Detail
+            ReportStyleGridview(Report.GVScan)
 
-            '    'Parse val
-            '    Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
-            '    Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
-            '    Report.LRecNumber.Text = TxtNumber.Text
-            '    Report.LRecDate.Text = DEForm.Text
-            '    Report.LabelNote.Text = MENote.Text
-            '    If id_type = "1" Then
-            '        Report.XrPanel2.Visible = False
-            '    End If
+            'Parse val
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+            Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
+            Report.LRecNumber.Text = TxtNumber.Text
+            Report.LRecDate.Text = DEForm.Text
+            Report.LabelNote.Text = MENote.Text
+            If id_type = "1" Then
+                Report.XrPanel2.Visible = False
+            End If
 
-            '    ' Show the report's preview. 
-            '    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            '    Tool.ShowPreview()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreview()
         Else
             GridColumnStatus.Visible = False
             ReportFGRepairRec.id_fg_repair_rec = id_fg_repair_rec

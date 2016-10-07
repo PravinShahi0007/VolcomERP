@@ -19,6 +19,7 @@ Partial Class FormFGRepair
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
@@ -36,6 +37,9 @@ Partial Class FormFGRepair
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCompFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCompTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -44,6 +48,7 @@ Partial Class FormFGRepair
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCRepair, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRepair, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -207,6 +212,24 @@ Partial Class FormFGRepair
         Me.GridColumnCompTo.Visible = True
         Me.GridColumnCompTo.VisibleIndex = 2
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMPrePrint, Me.SMPrint})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 70)
+        '
+        'SMPrePrint
+        '
+        Me.SMPrePrint.Name = "SMPrePrint"
+        Me.SMPrePrint.Size = New System.Drawing.Size(152, 22)
+        Me.SMPrePrint.Text = "Pre Printing"
+        '
+        'SMPrint
+        '
+        Me.SMPrint.Name = "SMPrint"
+        Me.SMPrint.Size = New System.Drawing.Size(152, 22)
+        Me.SMPrint.Text = "Print"
+        '
         'FormFGRepair
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -227,6 +250,7 @@ Partial Class FormFGRepair
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCRepair, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRepair, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -248,4 +272,7 @@ Partial Class FormFGRepair
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCompFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCompTo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents SMPrePrint As ToolStripMenuItem
+    Friend WithEvents SMPrint As ToolStripMenuItem
 End Class
