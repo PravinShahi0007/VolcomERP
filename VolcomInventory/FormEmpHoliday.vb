@@ -9,11 +9,16 @@
 
     Private Sub FormEmpHoliday_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_year()
+        load_year_sum()
         load_religion()
     End Sub
     Sub load_year()
         Dim query As String = "SELECT 'ALL' AS `year` UNION SELECT YEAR(emp_holiday_date) AS `year` FROM tb_emp_holiday GROUP BY YEAR(emp_holiday_date) ORDER BY `year` DESC"
         viewSearchLookupQuery(SLEYear, query, "year", "year", "year")
+    End Sub
+    Sub load_year_sum()
+        Dim query As String = "SELECT YEAR(emp_holiday_date) AS `year` FROM tb_emp_holiday GROUP BY YEAR(emp_holiday_date) ORDER BY `year` DESC"
+        viewSearchLookupQuery(SLEYearSum, query, "year", "year", "year")
     End Sub
     Sub load_religion()
         Dim query As String = "SELECT '0' AS id_religion,'ALL' AS religion UNION SELECT id_religion,religion FROM tb_lookup_religion"
@@ -21,6 +26,29 @@
     End Sub
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
         view_holiday()
+    End Sub
+    Sub view_holiday_sum()
+        Dim date_search As String
+        If SLEYear.EditValue.ToString = "ALL" Then
+            date_search = " LIKE '%%' "
+        Else
+            date_search = " = '" + SLEYearSum.EditValue.ToString + "'"
+        End If
+        '
+        Dim query As String = "SELECT DAYNAME(emp.emp_holiday_date) as dow, emp.emp_holiday_date as hol_date,MONTHNAME(STR_TO_DATE((MONTH(emp.emp_holiday_date)), '%m')) as hol_month,emp.emp_holiday_desc
+                                ,IF(emp.id_religion='0','Libur',IF(ISNULL(emp_hindu.id_emp_holiday),'Masuk','Libur')) AS hindu
+                                ,IF(emp.id_religion='0','Libur',IF(ISNULL(emp_islam.id_emp_holiday),'Masuk','Libur')) AS islam  
+                                ,IF(emp.id_religion='0','Libur',IF(ISNULL(emp_kristen.id_emp_holiday),'Masuk','Libur')) AS kristen  
+                                ,IF(emp.id_religion='0','Libur',IF(ISNULL(emp_budha.id_emp_holiday),'Masuk','Libur')) AS budha  
+                                FROM tb_emp_holiday emp
+                                LEFT JOIN tb_emp_holiday emp_hindu ON emp_hindu.emp_holiday_date=emp.emp_holiday_date AND emp.id_religion='4' 
+                                LEFT JOIN tb_emp_holiday emp_islam ON emp_islam.emp_holiday_date=emp.emp_holiday_date AND emp.id_religion='1'
+                                LEFT JOIN tb_emp_holiday emp_kristen ON emp_kristen.emp_holiday_date=emp.emp_holiday_date AND emp.id_religion='3'
+                                LEFT JOIN tb_emp_holiday emp_budha ON emp_budha.emp_holiday_date=emp.emp_holiday_date AND emp.id_religion='5'
+                                WHERE YEAR(emp.emp_holiday_date) " & date_search & " GROUP BY emp.emp_holiday_date ORDER BY emp.emp_holiday_date ASC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSum.DataSource = data
+        GVSum.BestFitColumns()
     End Sub
     Sub view_holiday()
         Dim date_search, religion_search As String
@@ -30,7 +58,7 @@
             date_search = " = '" + SLEYear.EditValue.ToString + "'"
         End If
         '
-        If SLEReligion.EditValue.ToString = "ALL" Then
+        If SLEReligion.EditValue.ToString = "0" Then
             religion_search = " LIKE '%%' "
         Else
             religion_search = " = '" + SLEReligion.EditValue.ToString + "'"
@@ -55,5 +83,9 @@
     Private Sub BImport_Click(sender As Object, e As EventArgs) Handles BImport.Click
         FormImportExcel.id_pop_up = "27"
         FormImportExcel.ShowDialog()
+    End Sub
+
+    Private Sub BSearchSum_Click(sender As Object, e As EventArgs) Handles BSearchSum.Click
+        view_holiday_sum()
     End Sub
 End Class

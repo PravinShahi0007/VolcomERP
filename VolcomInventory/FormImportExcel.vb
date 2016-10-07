@@ -95,7 +95,6 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "26" Then
             MyCommand = New OleDbDataAdapter("select no_faktur, nama_toko, npwp, alamat, id_keterangan_tambahan, kode_barang, ket_barang, jumlah_barang, harga_satuan, harga_total, diskon, ppn, dpp, jumlah_ppn, jumlah_dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
         Else
-            MsgBox("tes")
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
 
@@ -1394,7 +1393,7 @@ Public Class FormImportExcel
                 stopCustom("Incorrect format on table.")
             End Try
         ElseIf id_pop_up = "27" Then
-            'sample planning
+            'holiday list
             Dim queryx As String = "SELECT id_religion,religion FROM tb_lookup_religion"
             Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
             Dim tb1 = data_temp.AsEnumerable()
@@ -1407,7 +1406,7 @@ Public Class FormImportExcel
                         Select New With
                             {
                                 .Date = table1("date"),
-                                .IdReligion = If(y1 Is Nothing, "", y1("id_religion")),
+                                .IdReligion = If(y1 Is Nothing, "0", y1("id_religion")),
                                 .Religion = table1("religion"),
                                 .Description = table1("nama_libur")
                             }
@@ -2569,8 +2568,22 @@ Public Class FormImportExcel
                 End If
             ElseIf id_pop_up = "27" Then 'import holiday
                 If GVData.RowCount > 0 Then
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+                    '
                     For i As Integer = 0 To GVData.RowCount - 1
-
+                        Dim date_var As Date = GVData.GetRowCellValue(i, "Date")
+                        '
+                        Dim query_del As String = "DELETE FROM tb_emp_holiday WHERE emp_holiday_date='" & Date.Parse(date_var.ToString).ToString("yyyy-MM-dd") & "' AND id_religion='" & GVData.GetRowCellValue(i, "IdReligion").ToString & "'"
+                        execute_non_query(query_del, True, "", "", "", "")
+                        '
+                        Dim query_exec As String = "INSERT INTO tb_emp_holiday(id_religion,emp_holiday_date,emp_holiday_desc) VALUES('" & GVData.GetRowCellValue(i, "IdReligion").ToString & "','" & Date.Parse(date_var.ToString).ToString("yyyy-MM-dd") & "','" & GVData.GetRowCellValue(i, "Description").ToString & "')"
+                        execute_non_query(query_exec, True, "", "", "", "")
+                        '
+                        PBC.PerformStep()
+                        PBC.Update()
                     Next
                     Close()
                 Else
