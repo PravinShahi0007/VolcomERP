@@ -21,7 +21,7 @@
         Dim query As String = ""
         query = "SELECT tb.*,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present FROM"
         query += " ("
-        query += " SELECT sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,sch.date, "
+        query += " SELECT active.employee_active,active.id_employee_active,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,sch.date, "
         query += " sch.in,sch.in_tolerance,MIN(at_in.datetime) As `att_in`, "
         query += " sch.out,MAX(at_out.datetime) AS `att_out`, "
         query += " sch.break_out,MIN(at_brout.datetime) As start_break, "
@@ -38,6 +38,7 @@
         query += " INNER JOIN tb_m_employee emp On emp.id_employee=sch.id_employee "
         query += " INNER JOIN tb_m_departement dept On dept.id_departement=emp.id_departement "
         query += " INNER JOIN tb_lookup_schedule_type scht On scht.id_schedule_type=sch.id_schedule_type "
+        query += " INNER JOIN tb_lookup_employee_active active on emp.id_employee_active=active.id_employee_active"
         'query attendance old
         'query += " LEFT JOIN tb_emp_attn at_in On at_in.id_employee=sch.id_employee And Date(at_in.datetime) = sch.Date And at_in.type_log = 1 "
         'query += " LEFT JOIN tb_emp_attn at_out On at_out.id_employee=sch.id_employee And Date(at_out.datetime) = sch.Date And at_out.type_log = 2 "
@@ -103,10 +104,10 @@
         End If
 
         Dim query As String = ""
-        query = "SELECT tb.id_employee,tb.employee_name,tb.employee_code,tb.id_departement,dep.departement,SUM(tb.late) AS late,SUM(tb.over) AS over,SUM(tb.over_break) AS over_break,SUM(tb.work_hour) AS work_hour,SUM(tb.actual_work_hour) AS actual_work_hour,SUM((tb.over-tb.late-tb.over_break)) AS balance,SUM(IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0)) AS present,SUM(IF(tb.id_schedule_type=1,1,0)) AS workday "
+        query = "SELECT tb.employee_active,tb.id_employee_active,tb.id_employee,tb.employee_name,tb.employee_code,tb.id_departement,dep.departement,SUM(tb.late) AS late,SUM(tb.over) AS over,SUM(tb.over_break) AS over_break,SUM(tb.work_hour) AS work_hour,SUM(tb.actual_work_hour) AS actual_work_hour,SUM((tb.over-tb.late-tb.over_break)) AS balance,SUM(IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0)) AS present,SUM(IF(tb.id_schedule_type=1,1,0)) AS workday "
         query += " FROM "
         query += " ("
-        query += " SELECT sch.id_schedule_type,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,sch.date, "
+        query += " SELECT active.employee_active,active.id_employee_active,sch.id_schedule_type,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,sch.date, "
         query += " sch.in,sch.in_tolerance,MIN(at_in.datetime) As `att_in`, "
         query += " sch.out,MAX(at_out.datetime) AS `att_out`, "
         query += " sch.break_out,MIN(at_brout.datetime) As start_break, "
@@ -122,6 +123,7 @@
         query += " FROM tb_emp_schedule sch "
         query += " INNER JOIN tb_m_employee emp On emp.id_employee=sch.id_employee "
         query += " INNER JOIN tb_lookup_schedule_type scht On scht.id_schedule_type=sch.id_schedule_type "
+        query += " INNER JOIN tb_lookup_employee_active active on emp.id_employee_active=active.id_employee_active"
         'query attendance old
         'query += " LEFT JOIN tb_emp_attn at_in On at_in.id_employee=sch.id_employee And Date(at_in.datetime) = sch.Date And at_in.type_log = 1 "
         'query += " LEFT JOIN tb_emp_attn at_out On at_out.id_employee=sch.id_employee And Date(at_out.datetime) = sch.Date And at_out.type_log = 2 "

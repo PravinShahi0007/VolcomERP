@@ -117,4 +117,9 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BUPCImport_Click(sender As Object, e As EventArgs) Handles BUPCImport.Click
+        FormImportExcel.id_pop_up = "28"
+        FormImportExcel.ShowDialog()
+    End Sub
 End Class

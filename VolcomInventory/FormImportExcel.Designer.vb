@@ -212,7 +212,6 @@ Partial Class FormImportExcel
         Me.MinimizeBox = False
         Me.Name = "FormImportExcel"
         Me.ShowInTaskbar = False
-        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Import Data From Excel"
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
