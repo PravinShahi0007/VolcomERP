@@ -453,7 +453,7 @@ Partial Class FormViewFGRepairRec
         '
         Me.XTPSummary.Controls.Add(Me.GCScanSum)
         Me.XTPSummary.Name = "XTPSummary"
-        Me.XTPSummary.Size = New System.Drawing.Size(831, 226)
+        Me.XTPSummary.Size = New System.Drawing.Size(831, 207)
         Me.XTPSummary.Text = "Summary"
         '
         'GCScanSum
@@ -462,7 +462,7 @@ Partial Class FormViewFGRepairRec
         Me.GCScanSum.Location = New System.Drawing.Point(0, 0)
         Me.GCScanSum.MainView = Me.GVScanSum
         Me.GCScanSum.Name = "GCScanSum"
-        Me.GCScanSum.Size = New System.Drawing.Size(831, 226)
+        Me.GCScanSum.Size = New System.Drawing.Size(831, 207)
         Me.GCScanSum.TabIndex = 4
         Me.GCScanSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScanSum})
         '
@@ -588,7 +588,7 @@ Partial Class FormViewFGRepairRec
         Me.MinimizeBox = False
         Me.Name = "FormViewFGRepairRec"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FormViewFGRepairRec"
+        Me.Text = "Receive Repair Product"
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()

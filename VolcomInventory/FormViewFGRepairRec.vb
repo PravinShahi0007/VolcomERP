@@ -266,6 +266,7 @@
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.report_mark_type = "92"
+        FormDocumentUpload.is_view = "1"
         FormDocumentUpload.id_report = id_fg_repair_rec
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
@@ -274,6 +275,7 @@
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
         FormReportMark.report_mark_type = "92"
+        FormReportMark.is_view = "1"
         FormReportMark.id_report = id_fg_repair_rec
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()

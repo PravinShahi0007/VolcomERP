@@ -754,7 +754,7 @@ Partial Class FormFGRepairRecDet
         '
         'GridColumnQtyAvail
         '
-        Me.GridColumnQtyAvail.Caption = "Available"
+        Me.GridColumnQtyAvail.Caption = "Scanned Qty"
         Me.GridColumnQtyAvail.DisplayFormat.FormatString = "{0:n0}"
         Me.GridColumnQtyAvail.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQtyAvail.FieldName = "available_qty"
