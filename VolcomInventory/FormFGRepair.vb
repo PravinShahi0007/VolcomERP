@@ -91,4 +91,18 @@
     Private Sub FormFGRepair_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
+
+    Private Sub SMPrePrint_Click(sender As Object, e As EventArgs) Handles SMPrePrint.Click
+        Cursor = Cursors.WaitCursor
+        FormFGRepairDet.id_pre = "1"
+        FormMain.but_edit()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SMPrint_Click(sender As Object, e As EventArgs) Handles SMPrint.Click
+        Cursor = Cursors.WaitCursor
+        FormFGRepairDet.id_pre = "2"
+        FormMain.but_edit()
+        Cursor = Cursors.Default
+    End Sub
 End Class

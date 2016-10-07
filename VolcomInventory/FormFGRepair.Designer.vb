@@ -140,6 +140,7 @@ Partial Class FormFGRepair
         '
         'GCRepair
         '
+        Me.GCRepair.ContextMenuStrip = Me.ViewMenu
         Me.GCRepair.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCRepair.Location = New System.Drawing.Point(0, 39)
         Me.GCRepair.MainView = Me.GVRepair
@@ -216,7 +217,7 @@ Partial Class FormFGRepair
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMPrePrint, Me.SMPrint})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 70)
+        Me.ViewMenu.Size = New System.Drawing.Size(137, 48)
         '
         'SMPrePrint
         '

@@ -166,4 +166,10 @@
         FormMain.but_edit()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVRepairRec_DoubleClick(sender As Object, e As EventArgs) Handles GVRepairRec.DoubleClick
+        If GVRepairRec.FocusedRowHandle >= 0 And GVRepairRec.RowCount > 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
 End Class

@@ -23,6 +23,9 @@ Partial Class FormFGRepairRec
         Me.XTCRepairRec = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPTransList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCRepairRec = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVRepairRec = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -50,13 +53,11 @@ Partial Class FormFGRepairRec
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCRepairRec, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCRepairRec.SuspendLayout()
         Me.XTPTransList.SuspendLayout()
         CType(Me.GCRepairRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVRepairRec, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
@@ -67,7 +68,6 @@ Partial Class FormFGRepairRec
         Me.XTPWaitingList.SuspendLayout()
         CType(Me.GCRepairList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRepairList, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCRepairRec
@@ -99,6 +99,24 @@ Partial Class FormFGRepairRec
         Me.GCRepairRec.Size = New System.Drawing.Size(610, 238)
         Me.GCRepairRec.TabIndex = 7
         Me.GCRepairRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRepairRec})
+        '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMPrePrint, Me.SMPrint})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(137, 48)
+        '
+        'SMPrePrint
+        '
+        Me.SMPrePrint.Name = "SMPrePrint"
+        Me.SMPrePrint.Size = New System.Drawing.Size(136, 22)
+        Me.SMPrePrint.Text = "Pre Printing"
+        '
+        'SMPrint
+        '
+        Me.SMPrint.Name = "SMPrint"
+        Me.SMPrint.Size = New System.Drawing.Size(136, 22)
+        Me.SMPrint.Text = "Print"
         '
         'GVRepairRec
         '
@@ -340,24 +358,6 @@ Partial Class FormFGRepairRec
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 2
         '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMPrePrint, Me.SMPrint})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(137, 48)
-        '
-        'SMPrePrint
-        '
-        Me.SMPrePrint.Name = "SMPrePrint"
-        Me.SMPrePrint.Size = New System.Drawing.Size(152, 22)
-        Me.SMPrePrint.Text = "Pre Printing"
-        '
-        'SMPrint
-        '
-        Me.SMPrint.Name = "SMPrint"
-        Me.SMPrint.Size = New System.Drawing.Size(152, 22)
-        Me.SMPrint.Text = "Print"
-        '
         'FormFGRepairRec
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -371,6 +371,7 @@ Partial Class FormFGRepairRec
         Me.XTCRepairRec.ResumeLayout(False)
         Me.XTPTransList.ResumeLayout(False)
         CType(Me.GCRepairRec, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVRepairRec, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
@@ -382,7 +383,6 @@ Partial Class FormFGRepairRec
         Me.XTPWaitingList.ResumeLayout(False)
         CType(Me.GCRepairList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRepairList, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
