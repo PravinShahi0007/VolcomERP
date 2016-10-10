@@ -187,6 +187,7 @@
     <Compile Include="ClassFGProposePrice.vb" />
     <Compile Include="ClassFGRepair.vb" />
     <Compile Include="ClassFGRepairRec.vb" />
+    <Compile Include="ClassFGRepairReturn.vb" />
     <Compile Include="ClassFGSalesOrderReff.vb" />
     <Compile Include="ClassFGTrf.vb" />
     <Compile Include="ClassFGWHAlloc.vb" />
@@ -741,6 +742,18 @@
       <DependentUpon>FormFGRepairRecDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGRepairRecDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGRepairReturn.Designer.vb">
+      <DependentUpon>FormFGRepairReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepairReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGRepairReturnDet.Designer.vb">
+      <DependentUpon>FormFGRepairReturnDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepairReturnDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGStock.designer.vb">
@@ -4666,6 +4679,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGRepairRecDet.resx">
       <DependentUpon>FormFGRepairRecDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepairReturn.resx">
+      <DependentUpon>FormFGRepairReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepairReturnDet.resx">
+      <DependentUpon>FormFGRepairReturnDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGStock.resx">
       <DependentUpon>FormFGStock.vb</DependentUpon>
