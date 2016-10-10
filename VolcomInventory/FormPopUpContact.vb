@@ -768,6 +768,23 @@
             FormFGRepairDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
             FormFGRepairDet.setDefaultDrawerTo()
             Close()
+        ElseIf id_pop_up = "71" Then
+            'RETURN REPAIR FROM
+            FormFGRepairReturnDet.id_comp_from = GVCompany.GetFocusedRowCellValue("id_comp").ToString
+            FormFGRepairReturnDet.TxtNameCompFrom.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
+            FormFGRepairReturnDet.TxtCodeCompFrom.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
+            FormFGRepairReturnDet.setDefaultDrawerFrom()
+            FormFGRepairReturnDet.viewDetail()
+            FormFGRepairReturnDet.codeAvailableIns()
+            FormFGRepairReturnDet.TxtCodeCompTo.Focus()
+            Close()
+        ElseIf id_pop_up = "72" Then
+            'RETURN REPAIR TO
+            FormFGRepairReturnDet.id_comp_to = GVCompany.GetFocusedRowCellValue("id_comp").ToString
+            FormFGRepairReturnDet.TxtNameCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
+            FormFGRepairReturnDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
+            FormFGRepairReturnDet.setDefaultDrawerTo()
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub

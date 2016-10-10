@@ -1438,6 +1438,10 @@ Public Class FormMain
                 FormFGRepairRecDet.action = "ins"
                 FormFGRepairRecDet.ShowDialog()
             End If
+        ElseIf formName = "FormFGRepairReturn" Then
+            'Return Repair
+            FormFGRepairReturnDet.action = "ins"
+            FormFGRepairReturnDet.ShowDialog()
         ElseIf formName = "FormEmpInitialize" Then
             FormEmpInitialize.addUser()
         Else
@@ -2236,6 +2240,11 @@ Public Class FormMain
                 FormFGRepairRecDet.action = "upd"
                 FormFGRepairRecDet.id_fg_repair_rec = FormFGRepairRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_rec").ToString
                 FormFGRepairRecDet.ShowDialog()
+            ElseIf formName = "FormFGRepairReturn" Then
+                'Return Repair
+                FormFGRepairReturnDet.action = "upd"
+                FormFGRepairReturnDet.id_fg_repair_return = FormFGRepairReturn.GVRepairReturn.GetFocusedRowCellValue("id_fg_repair_return").ToString
+                FormFGRepairReturnDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5128,6 +5137,25 @@ Public Class FormMain
                     errorDelete()
                 End Try
             End If
+        ElseIf formName = "FormFGRepairReturn" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim id_fg_repair_return As String = FormFGRepairReturn.GVRepairReturn.GetFocusedRowCellValue("id_fg_repair_return").ToString
+
+                    'cancel reserve
+                    Dim cancel As New ClassFGRepairReturn()
+                    cancel.cancelReservedStock(id_fg_repair_return)
+
+                    query = String.Format("DELETE FROM tb_fg_repair_return WHERE id_fg_repair_return='{0}'", id_fg_repair_return)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormFGRepairReturn.viewData()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
+
+
         Else
             RPSubMenu.Visible = False
         End If
@@ -6746,6 +6774,9 @@ Public Class FormMain
         ElseIf formName = "FormFGRepairRec" Then
             FormFGRepairRec.Close()
             FormFGRepairRec.Dispose()
+        ElseIf formName = "FormFGRepairReturn" Then
+            FormFGRepairReturn.Close()
+            FormFGRepairReturn.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7367,6 +7398,8 @@ Public Class FormMain
             Else
                 FormFGRepairRec.viewRepairList()
             End If
+        ElseIf formName = "FormFGRepairReturn" Then
+            FormFGRepairReturn.viewData()
         End If
     End Sub
     'Switch
