@@ -20,68 +20,70 @@ Partial Class FormEmpScheduleTable
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BSetSchedule = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCSchedule = New DevExpress.XtraGrid.GridControl()
+        Me.GVSchedule = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BSetSchedule)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 240)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(734, 36)
         Me.PanelControl1.TabIndex = 0
         '
-        'SimpleButton1
+        'BSetSchedule
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Location = New System.Drawing.Point(623, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(109, 32)
-        Me.SimpleButton1.TabIndex = 0
-        Me.SimpleButton1.Text = "SimpleButton1"
+        Me.BSetSchedule.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSetSchedule.Location = New System.Drawing.Point(623, 2)
+        Me.BSetSchedule.Name = "BSetSchedule"
+        Me.BSetSchedule.Size = New System.Drawing.Size(109, 32)
+        Me.BSetSchedule.TabIndex = 0
+        Me.BSetSchedule.Text = "Set Schedule"
         '
-        'GridControl1
+        'GCSchedule
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(734, 240)
-        Me.GridControl1.TabIndex = 1
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GCSchedule.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSchedule.Location = New System.Drawing.Point(0, 0)
+        Me.GCSchedule.MainView = Me.GVSchedule
+        Me.GCSchedule.Name = "GCSchedule"
+        Me.GCSchedule.Size = New System.Drawing.Size(734, 240)
+        Me.GCSchedule.TabIndex = 1
+        Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
         '
-        'GridView1
+        'GVSchedule
         '
-        Me.GridView1.GridControl = Me.GridControl1
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GVSchedule.GridControl = Me.GCSchedule
+        Me.GVSchedule.Name = "GVSchedule"
+        Me.GVSchedule.OptionsView.ShowGroupPanel = False
         '
         'FormEmpScheduleTable
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(734, 276)
-        Me.Controls.Add(Me.GridControl1)
+        Me.Controls.Add(Me.GCSchedule)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormEmpScheduleTable"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Fast Schedule"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents BSetSchedule As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCSchedule As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSchedule As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

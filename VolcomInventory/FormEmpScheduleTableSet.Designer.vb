@@ -31,12 +31,12 @@ Partial Class FormEmpScheduleTableSet
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BChoose = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.BChoose = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEEmp, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,6 +171,15 @@ Partial Class FormEmpScheduleTableSet
         Me.PanelControl1.Size = New System.Drawing.Size(728, 32)
         Me.PanelControl1.TabIndex = 2
         '
+        'BChoose
+        '
+        Me.BChoose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BChoose.Location = New System.Drawing.Point(651, 2)
+        Me.BChoose.Name = "BChoose"
+        Me.BChoose.Size = New System.Drawing.Size(75, 28)
+        Me.BChoose.TabIndex = 8
+        Me.BChoose.Text = "Choose"
+        '
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
@@ -220,15 +229,6 @@ Partial Class FormEmpScheduleTableSet
         Me.Label1.Size = New System.Drawing.Size(85, 13)
         Me.Label1.TabIndex = 4
         Me.Label1.Text = "Schedule from : "
-        '
-        'BChoose
-        '
-        Me.BChoose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BChoose.Location = New System.Drawing.Point(651, 2)
-        Me.BChoose.Name = "BChoose"
-        Me.BChoose.Size = New System.Drawing.Size(75, 28)
-        Me.BChoose.TabIndex = 8
-        Me.BChoose.Text = "Choose"
         '
         'FormEmpScheduleTableSet
         '

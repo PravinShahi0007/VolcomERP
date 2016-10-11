@@ -29,4 +29,58 @@
         Catch ex As Exception
         End Try
     End Sub
+
+    Private Sub BChoose_Click(sender As Object, e As EventArgs) Handles BChoose.Click
+        Dim startP As Date = Date.Parse(DEStart.EditValue.ToString)
+        Dim endP As Date = Date.Parse(DEUntil.EditValue.ToString)
+        Dim curD As Date = startP
+        Dim string_date As String = ""
+
+        GVEmployee.ActiveFilterString = "[is_select]='yes' "
+        If GVEmployee.RowCount > 0 Then
+            '
+            FormEmpScheduleTable.GVSchedule.Columns.AddVisible("id_employee", "ID")
+            FormEmpScheduleTable.GVSchedule.Columns("id_employee").Visible = False
+
+            FormEmpScheduleTable.GVSchedule.Columns.AddVisible("employee_code", "NIP")
+            FormEmpScheduleTable.GVSchedule.Columns.AddVisible("employee_name", "Name")
+            While (curD <= endP)
+                FormEmpScheduleTable.GVSchedule.Columns.AddVisible(curD.ToString("yyyy-MM-dd"), curD.ToString("dd MMM yyyy"))
+                string_date += ",'" & curD.ToString("yyyy-MM-dd") & "'"
+                curD = curD.AddDays(1)
+            End While
+            '
+            Dim query As String = "SELECT '' as id_employee,'' as employee_code,'' as employee_name" & string_date
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            FormEmpScheduleTable.GCSchedule.DataSource = data
+            FormEmpScheduleTable.GVSchedule.DeleteRow(0)
+            '
+            For i As Integer = 0 To GVEmployee.RowCount - 1
+                Dim query_emp As String = "SELECT emp.date,emp.shift_name FROM tb_emp_schedule emp WHERE emp.id_employee='" & GVEmployee.GetRowCellValue(i, "id_employee").ToString & "' AND emp.date >= '" & startP.ToString("yyyy-MM-dd") & "' AND emp.date <= '" & endP.ToString("yyyy-MM-dd") & "'"
+                Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
+
+                Dim newRow As DataRow = (TryCast(FormEmpScheduleTable.GCSchedule.DataSource, DataTable)).NewRow()
+                newRow("id_employee") = GVEmployee.GetRowCellValue(i, "id_employee").ToString
+                newRow("employee_code") = GVEmployee.GetRowCellValue(i, "employee_code").ToString
+                newRow("employee_name") = GVEmployee.GetRowCellValue(i, "employee_name").ToString
+                If data_emp.Rows.Count > 0 Then
+                    For j As Integer = 0 To data_emp.Rows.Count - 1
+                        newRow(Date.Parse(data_emp.Rows(j)("date").ToString).ToString("yyyy-MM-dd")) = data_emp.Rows(j)("shift_name").ToString
+                    Next
+                End If
+
+                TryCast(FormEmpScheduleTable.GCSchedule.DataSource, DataTable).Rows.Add(newRow)
+                FormEmpScheduleTable.GCSchedule.RefreshDataSource()
+            Next
+
+            '
+            Close()
+        Else
+            stopCustom("Please select employee first.")
+        End If
+    End Sub
+
+    Private Sub FormEmpScheduleTableSet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
 End Class
