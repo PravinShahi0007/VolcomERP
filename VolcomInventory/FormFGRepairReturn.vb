@@ -104,4 +104,10 @@
         FormMain.but_edit()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVRepairReturn_DoubleClick(sender As Object, e As EventArgs) Handles GVRepairReturn.DoubleClick
+        If GVRepairReturn.RowCount > 0 And GVRepairReturn.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
 End Class

@@ -488,4 +488,155 @@
     Private Sub BtnPrint_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnPrint.ItemClick
         printing()
     End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        makeSafeGV(GVScan)
+        Dim cond_stc As Boolean = True
+
+        If action = "ins" And GVScan.RowCount > 0 Then
+            'insert to temporary
+            XTPSummary.PageVisible = True
+            XtraTabControl1.SelectedTabPageIndex = 1
+
+            Dim data_temp As DataTable = GCScan.DataSource
+            Dim connection_string As String = String.Format("Data Source={0};User Id={1};Password={2};Database={3};Convert Zero Datetime=True", app_host, app_username, app_password, app_database)
+            Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
+            connection.Open()
+            Dim command As MySql.Data.MySqlClient.MySqlCommand = connection.CreateCommand()
+            Dim qry As String = "DROP TABLE IF EXISTS tb_fg_repair_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_fg_repair_temp AS ( SELECT * FROM ("
+            For d As Integer = 0 To data_temp.Rows.Count - 1
+                Dim id_product As String = data_temp.Rows(d)("id_product").ToString
+                Dim id_pl_prod_order_rec_det_unique As String = data_temp.Rows(d)("id_pl_prod_order_rec_det_unique").ToString
+                Dim code As String = data_temp.Rows(d)("code").ToString
+                Dim name As String = data_temp.Rows(d)("name").ToString
+                Dim size As String = data_temp.Rows(d)("size").ToString
+                If d > 0 Then
+                    qry += "UNION ALL "
+                End If
+                qry += "SELECT '" + id_product + "' AS `id_product`, '" + id_pl_prod_order_rec_det_unique + "' AS `id_pl_prod_order_rec_det_unique`, '" + code + "' AS `code`, '" + name + "' AS `name`, '" + size + "' AS `size`  "
+            Next
+            qry += ") a ); ALTER TABLE tb_fg_repair_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+            command.CommandText = qry
+            command.ExecuteNonQuery()
+            command.Dispose()
+            'Console.WriteLine(qry)
+
+            Dim data_view As New DataTable
+            Dim qry_view As String = "SELECT a.id_product, a.code, a.name, a.size, COUNT(a.id_product) AS `qty` 
+                                FROM tb_fg_repair_temp a 
+                                GROUP BY a.id_product"
+            Dim adapter As New MySql.Data.MySqlClient.MySqlDataAdapter(qry_view, connection)
+            adapter.SelectCommand.CommandTimeout = 300
+            adapter.Fill(data_view)
+            adapter.Dispose()
+
+            connection.Close()
+            connection.Dispose()
+
+            'get data stock
+            Dim query_stock As String = "call view_stock_fg('" + id_comp_from + "', '" + id_wh_locator_from + "', '" + id_wh_rack_from + "', '" + id_wh_drawer_from + "', '0', '4', '9999-01-01')"
+            Dim data_stock As DataTable = execute_query(query_stock, -1, True, "", "", "", "")
+            Dim tb1 = data_view.AsEnumerable()
+            Dim tb2 = data_stock.AsEnumerable()
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("id_product").ToString Equals table_tmp("id_product").ToString
+                        Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                        {
+                            .code = table1.Field(Of String)("code").ToString,
+                            .name = table1.Field(Of String)("name").ToString,
+                            .size = table1.Field(Of String)("size").ToString,
+                            .qty = table1("qty"),
+                            .available_qty = If(y1 Is Nothing, 0, y1("qty_all_product")),
+                            .design_price_retail = If(y1 Is Nothing, 0, y1("design_price_retail")),
+                            .id_product = If(y1 Is Nothing, 0, y1("id_product")),
+                            .status = If(table1("qty") <= If(y1 Is Nothing, 0, y1("qty_all_product")), "OK", "Can't exceed " + If(y1 Is Nothing, 0, y1("qty_all_product").ToString))
+                        }
+            GCScanSum.DataSource = Nothing
+            GCScanSum.DataSource = query.ToList()
+            GCScanSum.RefreshDataSource()
+
+
+            'find not ok
+            GVScanSum.ActiveFilterString = "[status]<>'OK'"
+            If GVScanSum.RowCount > 0 Then
+                cond_stc = False
+            Else
+                cond_stc = True
+            End If
+            GVScanSum.ActiveFilterString = ""
+        End If
+
+        If id_wh_drawer_from = "-1" Or id_wh_drawer_to = "-1" Then
+            stopCustom("Account can't blank!")
+        ElseIf GVScan.RowCount <= 0
+            stopCustom("Data can't blank!")
+        ElseIf Not cond_stc Then
+            stopCustom("Some item can't exceed qty limit, please see error in column status!")
+        Else
+            Dim fg_repair_return_note As String = MENote.Text.ToString
+            If action = "ins" Then 'insert
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Stock qty will be updated after this process. Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    'main query
+                    Dim query As String = "INSERT INTO tb_fg_repair_return(id_wh_drawer_from, id_wh_drawer_to, fg_repair_return_number, fg_repair_return_date, fg_repair_return_note, id_report_status) 
+                                           VALUES('" + id_wh_drawer_from + "', '" + id_wh_drawer_to + "','" + header_number_sales("29") + "', NOW(), '" + fg_repair_return_note + "', '1'); SELECT LAST_INSERT_ID(); "
+                    id_fg_repair_return = execute_query(query, 0, True, "", "", "", "")
+                    increase_inc_sales("29")
+
+                    'insert who prepared
+                    insert_who_prepared("93", id_fg_repair_return, id_user)
+
+                    'Detail 
+                    Dim jum_ins_j As Integer = 0
+                    Dim query_detail As String = ""
+                    If GVScan.RowCount > 0 Then
+                        query_detail = "INSERT tb_fg_repair_return_det(id_fg_repair_return, id_product, id_pl_prod_order_rec_det_unique, fg_repair_return_det_counting) VALUES "
+                    End If
+                    For j As Integer = 0 To ((GVScan.RowCount - 1) - GetGroupRowCount(GVScan))
+                        Dim id_product = GVScan.GetRowCellValue(j, "id_product").ToString
+                        Dim id_pl_prod_order_rec_det_unique = GVScan.GetRowCellValue(j, "id_pl_prod_order_rec_det_unique").ToString
+                        Dim fg_repair_return_det_counting As String = GVScan.GetRowCellValue(j, "fg_repair_return_det_counting").ToString
+
+                        If jum_ins_j > 0 Then
+                            query_detail += ", "
+                        End If
+                        query_detail += "('" + id_fg_repair_return + "', '" + id_product + "', '" + id_pl_prod_order_rec_det_unique + "', '" + fg_repair_return_det_counting + "') "
+                        jum_ins_j = jum_ins_j + 1
+                    Next
+                    If jum_ins_j > 0 Then
+                        execute_non_query(query_detail, True, "", "", "", "")
+                    End If
+
+                    'reserved stock
+                    Dim rsv_stock As ClassFGRepairReturn = New ClassFGRepairReturn()
+                    rsv_stock.reservedStock(id_fg_repair_return)
+
+                    'refresh data
+                    FormFGRepairReturn.viewData()
+                    FormFGRepairReturn.GVRepairReturn.FocusedRowHandle = find_row(FormFGRepairReturn.GVRepairReturn, "id_fg_repair_return", id_fg_repair_return)
+                    action = "upd"
+                    actionLoad()
+                    infoCustom("Document #" + TxtNumber.Text + " was created successfully.")
+                    Cursor = Cursors.Default
+                End If
+            Else 'update
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim query As String = "UPDATE tb_fg_repair_return SET fg_repair_return_note='" + fg_repair_return_note + "' WHERE id_fg_repair_return='" + id_fg_repair_return + "' "
+                    execute_non_query(query, True, "", "", "", "")
+
+                    'refresh data
+                    FormFGRepairReturn.viewData()
+                    FormFGRepairReturn.GVRepairReturn.FocusedRowHandle = find_row(FormFGRepairReturn.GVRepairReturn, "id_fg_repair_return", id_fg_repair_return)
+                    action = "upd"
+                    actionLoad()
+                    infoCustom("Document #" + TxtNumber.Text + " was updated successfully.")
+                    Cursor = Cursors.Default
+                End If
+            End If
+        End If
+    End Sub
 End Class
