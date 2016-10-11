@@ -3216,6 +3216,12 @@
     <Compile Include="FormViewFGRepairRec.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormViewFGRepairReturn.Designer.vb">
+      <DependentUpon>FormViewFGRepairReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormViewFGRepairReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormViewFGSalesOrderReff.Designer.vb">
       <DependentUpon>FormViewFGSalesOrderReff.vb</DependentUpon>
     </Compile>
@@ -6276,6 +6282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormViewFGRepairRec.resx">
       <DependentUpon>FormViewFGRepairRec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormViewFGRepairReturn.resx">
+      <DependentUpon>FormViewFGRepairReturn.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormViewFGSalesOrderReff.resx">
       <DependentUpon>FormViewFGSalesOrderReff.vb</DependentUpon>
