@@ -220,14 +220,14 @@
     Sub codeAvailableIns()
         SplashScreenManager1.ShowWaitForm()
         dt.Clear()
-        Dim query As String = "CALL view_stock_fg_unique_del(0) "
+        Dim query As String = "CALL view_stock_fg_unique_repair() "
         dt = execute_query(query, -1, True, "", "", "", "")
         SplashScreenManager1.CloseWaitForm()
     End Sub
 
     Private Sub BtnBrowseFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseFrom.Click
         Cursor = Cursors.WaitCursor
-        FormPopUpContact.id_pop_up = "69"
+        FormPopUpContact.id_pop_up = "71"
         FormPopUpContact.id_departement = id_departement_user
         FormPopUpContact.ShowDialog()
         Cursor = Cursors.Default
@@ -235,7 +235,7 @@
 
     Private Sub BtnBrowseTo_Click(sender As Object, e As EventArgs) Handles BtnBrowseTo.Click
         Cursor = Cursors.WaitCursor
-        FormPopUpContact.id_pop_up = "70"
+        FormPopUpContact.id_pop_up = "72"
         FormPopUpContact.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -331,18 +331,18 @@
             stopCustom("Duplicate code")
         Else
             GVScan.ActiveFilterString = ""
-            Dim dt_filter As DataRow() = dt.Select("[product_full_code]='" + code_par + "' ")
+            Dim dt_filter As DataRow() = dt.Select("[code]='" + code_par + "' ")
             If dt_filter.Length > 0 Then
                 Dim newRow As DataRow = (TryCast(GCScan.DataSource, DataTable)).NewRow()
                 newRow("id_fg_repair_return_det") = "0"
                 newRow("id_fg_repair_return") = 0
                 newRow("id_product") = dt_filter(0)("id_product").ToString
-                newRow("code") = dt_filter(0)("product_full_code").ToString
+                newRow("code") = dt_filter(0)("code").ToString
                 newRow("product_code") = dt_filter(0)("product_code").ToString
                 newRow("name") = dt_filter(0)("name").ToString
                 newRow("size") = dt_filter(0)("size").ToString
                 newRow("id_pl_prod_order_rec_det_unique") = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
-                newRow("fg_repair_det_counting") = dt_filter(0)("product_counting_code").ToString
+                newRow("fg_repair_return_det_counting") = dt_filter(0)("product_counting_code").ToString
                 TryCast(GCScan.DataSource, DataTable).Rows.Add(newRow)
                 GCScan.RefreshDataSource()
                 GVScan.RefreshData()
