@@ -216,7 +216,7 @@ Partial Class FormFGRepairReturnDet
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(859, 37)
-        Me.PanelControl3.TabIndex = 204
+        Me.PanelControl3.TabIndex = 304
         '
         'BtnAttachment
         '
@@ -285,7 +285,7 @@ Partial Class FormFGRepairReturnDet
         Me.GroupControl3.Location = New System.Drawing.Point(0, 351)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(859, 81)
-        Me.GroupControl3.TabIndex = 205
+        Me.GroupControl3.TabIndex = 303
         '
         'PanelBottomRight
         '
@@ -352,7 +352,7 @@ Partial Class FormFGRepairReturnDet
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(859, 74)
-        Me.GroupGeneralHeader.TabIndex = 206
+        Me.GroupGeneralHeader.TabIndex = 301
         '
         'TxtNameCompTo
         '
@@ -511,7 +511,7 @@ Partial Class FormFGRepairReturnDet
         Me.GroupControlItemList.Location = New System.Drawing.Point(0, 74)
         Me.GroupControlItemList.Name = "GroupControlItemList"
         Me.GroupControlItemList.Size = New System.Drawing.Size(859, 277)
-        Me.GroupControlItemList.TabIndex = 207
+        Me.GroupControlItemList.TabIndex = 302
         '
         'XtraTabControl1
         '

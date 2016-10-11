@@ -315,6 +315,9 @@
         ElseIf report_mark_type = "92" Then
             'REPAIR REC
             query = String.Format("SELECT id_report_status FROM tb_fg_repair_rec WHERE id_fg_repair_rec = '{0}'", id_report)
+        ElseIf report_mark_type = "93" Then
+            'REPAIR RETURN
+            query = String.Format("SELECT id_report_status FROM tb_fg_repair_return WHERE id_fg_repair_return = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -2997,6 +3000,26 @@
                 FormFGRepairRec.viewData()
                 FormFGRepairRec.viewRepairList()
                 FormFGRepairRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairRec.GVRepairRec, "id_fg_repair_rec", id_report)
+            End If
+        ElseIf report_mark_type = "93" Then
+            'FG REPAIR RETURN
+            If id_status_reportx = "5" Then
+                Dim cancel As New ClassFGRepairReturn()
+                cancel.cancelReservedStock(id_report)
+            ElseIf id_status_reportx = "6" Then
+                Dim compl As New ClassFGRepairReturn()
+                compl.completedStock(id_report)
+            End If
+
+            query = String.Format("UPDATE tb_fg_repair_return SET id_report_status='{0}' WHERE id_fg_repair_return ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+
+            If form_origin = "FormFGRepairReturnDet" Then
+                FormFGRepairReturnDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormFGRepairReturnDet.actionLoad()
+                FormFGRepairReturn.viewData()
+                FormFGRepairReturn.GVRepairReturn.FocusedRowHandle = find_row(FormFGRepairReturn.GVRepairReturn, "id_fg_repair_return", id_report)
             End If
         End If
 
