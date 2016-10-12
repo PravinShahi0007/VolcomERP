@@ -342,7 +342,7 @@
             Dim connection As New MySql.Data.MySqlClient.MySqlConnection(connection_string)
             connection.Open()
             Dim command As MySql.Data.MySqlClient.MySqlCommand = connection.CreateCommand()
-            Dim qry As String = "DROP TABLE IF EXISTS tb_fg_repair_return_rec_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_fg_repair_rec_temp AS ( SELECT * FROM ("
+            Dim qry As String = "DROP TABLE IF EXISTS tb_fg_repair_return_rec_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_fg_repair_return_rec_temp AS ( SELECT * FROM ("
             For d As Integer = 0 To data_temp.Rows.Count - 1
                 Dim id_fg_repair_return_det As String = data_temp.Rows(d)("id_fg_repair_return_det").ToString
                 Dim id_product As String = data_temp.Rows(d)("id_product").ToString
