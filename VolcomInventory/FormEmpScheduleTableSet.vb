@@ -40,10 +40,15 @@
         If GVEmployee.RowCount > 0 Then
             '
             FormEmpScheduleTable.GVSchedule.Columns.AddVisible("id_employee", "ID")
+            FormEmpScheduleTable.GVSchedule.Columns("id_employee").OptionsColumn.AllowEdit = False
             FormEmpScheduleTable.GVSchedule.Columns("id_employee").Visible = False
 
             FormEmpScheduleTable.GVSchedule.Columns.AddVisible("employee_code", "NIP")
+            FormEmpScheduleTable.GVSchedule.Columns("employee_code").OptionsColumn.AllowEdit = False
+
             FormEmpScheduleTable.GVSchedule.Columns.AddVisible("employee_name", "Name")
+            FormEmpScheduleTable.GVSchedule.Columns("employee_name").OptionsColumn.AllowEdit = False
+
             While (curD <= endP)
                 FormEmpScheduleTable.GVSchedule.Columns.AddVisible(curD.ToString("yyyy-MM-dd"), curD.ToString("dd MMM yyyy"))
                 string_date += ",'" & curD.ToString("yyyy-MM-dd") & "'"
@@ -56,7 +61,7 @@
             FormEmpScheduleTable.GVSchedule.DeleteRow(0)
             '
             For i As Integer = 0 To GVEmployee.RowCount - 1
-                Dim query_emp As String = "SELECT emp.date,emp.shift_name FROM tb_emp_schedule emp WHERE emp.id_employee='" & GVEmployee.GetRowCellValue(i, "id_employee").ToString & "' AND emp.date >= '" & startP.ToString("yyyy-MM-dd") & "' AND emp.date <= '" & endP.ToString("yyyy-MM-dd") & "'"
+                Dim query_emp As String = "SELECT emp.date,emp.shift_code FROM tb_emp_schedule emp WHERE emp.id_employee='" & GVEmployee.GetRowCellValue(i, "id_employee").ToString & "' AND emp.date >= '" & startP.ToString("yyyy-MM-dd") & "' AND emp.date <= '" & endP.ToString("yyyy-MM-dd") & "'"
                 Dim data_emp As DataTable = execute_query(query_emp, -1, True, "", "", "", "")
 
                 Dim newRow As DataRow = (TryCast(FormEmpScheduleTable.GCSchedule.DataSource, DataTable)).NewRow()
@@ -65,14 +70,14 @@
                 newRow("employee_name") = GVEmployee.GetRowCellValue(i, "employee_name").ToString
                 If data_emp.Rows.Count > 0 Then
                     For j As Integer = 0 To data_emp.Rows.Count - 1
-                        newRow(Date.Parse(data_emp.Rows(j)("date").ToString).ToString("yyyy-MM-dd")) = data_emp.Rows(j)("shift_name").ToString
+                        newRow(Date.Parse(data_emp.Rows(j)("date").ToString).ToString("yyyy-MM-dd")) = data_emp.Rows(j)("shift_code").ToString
                     Next
                 End If
 
                 TryCast(FormEmpScheduleTable.GCSchedule.DataSource, DataTable).Rows.Add(newRow)
                 FormEmpScheduleTable.GCSchedule.RefreshDataSource()
             Next
-
+            FormEmpScheduleTable.GVSchedule.BestFitColumns()
             '
             Close()
         Else

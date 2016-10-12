@@ -61,6 +61,7 @@ Partial Class FormEmpScheduleTable
         '
         Me.GVSchedule.GridControl = Me.GCSchedule
         Me.GVSchedule.Name = "GVSchedule"
+        Me.GVSchedule.OptionsView.ColumnAutoWidth = False
         Me.GVSchedule.OptionsView.ShowGroupPanel = False
         '
         'FormEmpScheduleTable
