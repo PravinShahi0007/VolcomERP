@@ -1442,6 +1442,13 @@ Public Class FormMain
             'Return Repair
             FormFGRepairReturnDet.action = "ins"
             FormFGRepairReturnDet.ShowDialog()
+        ElseIf formName = "FormFGRepairReturnRec" Then
+            ''Repair return receive
+            If FormFGRepairReturnRec.XTCRepairRec.SelectedTabPageIndex = 1 Then
+                FormFGRepairReturnRecDet.id_fg_repair_return_select = FormFGRepairReturnRec.GVRepairList.GetFocusedRowCellValue("id_fg_repair_return").ToString
+                FormFGRepairReturnRecDet.action = "ins"
+                FormFGRepairReturnRecDet.ShowDialog()
+            End If
         ElseIf formName = "FormEmpInitialize" Then
             FormEmpInitialize.addUser()
         Else
@@ -2245,6 +2252,11 @@ Public Class FormMain
                 FormFGRepairReturnDet.action = "upd"
                 FormFGRepairReturnDet.id_fg_repair_return = FormFGRepairReturn.GVRepairReturn.GetFocusedRowCellValue("id_fg_repair_return").ToString
                 FormFGRepairReturnDet.ShowDialog()
+            ElseIf formName = "FormFGRepairReturnRec" Then
+                'Repair return rec
+                FormFGRepairReturnRecDet.action = "upd"
+                FormFGRepairReturnRecDet.id_fg_repair_return_rec = FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString
+                FormFGRepairReturnRecDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5137,6 +5149,20 @@ Public Class FormMain
                     errorDelete()
                 End Try
             End If
+        ElseIf formName = "FormFGRepairReturnRec" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim id_fg_repair_return_rec As String = FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString
+
+                    query = String.Format("DELETE FROM tb_fg_repair_return_rec WHERE id_fg_repair_return_rec='{0}'", id_fg_repair_return_rec)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormFGRepairReturnRec.viewData()
+                    FormFGRepairReturnRec.viewRepairList()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
         ElseIf formName = "FormFGRepairReturn" Then
             confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -6272,7 +6298,11 @@ Public Class FormMain
         ElseIf formName = "FormFGRepair" Then
             print(FormFGRepair.GCRepair, "Repair Product")
         ElseIf formName = "FormFGRepairRec" Then
-            print(FormFGRepairRec.GCRepairRec, "Repair Product")
+            print(FormFGRepairRec.GCRepairRec, "Receive Repair Product")
+        ElseIf formName = "FormFGRepairReturn" Then
+            print(FormFGRepairReturn.GCRepairReturn, "Return Repair Product")
+        ElseIf formName = "FormFGRepairReturnRec" Then
+            print(FormFGRepairReturnRec.GCRepairRec, "Receive Repair Product (WH)")
         Else
             RPSubMenu.Visible = False
         End If
@@ -6777,6 +6807,9 @@ Public Class FormMain
         ElseIf formName = "FormFGRepairReturn" Then
             FormFGRepairReturn.Close()
             FormFGRepairReturn.Dispose()
+        ElseIf formName = "FormFGRepairReturnRec" Then
+            FormFGRepairReturnRec.Close()
+            FormFGRepairReturnRec.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7400,6 +7433,12 @@ Public Class FormMain
             End If
         ElseIf formName = "FormFGRepairReturn" Then
             FormFGRepairReturn.viewData()
+        ElseIf formName = "FormFGRepairReturnRec" Then
+            If FormFGRepairReturnRec.XTCRepairRec.SelectedTabPageIndex = 0 Then
+                FormFGRepairReturnRec.viewData()
+            Else
+                FormFGRepairReturnRec.viewRepairList()
+            End If
         End If
     End Sub
     'Switch
