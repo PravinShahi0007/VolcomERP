@@ -544,6 +544,7 @@ Module Common
         '27 = repair FG
         '28 = receive repair FG
         '29 = return repair FG
+        '30 = rec return repair FG
 
         Dim header_number_x As String
         header_number_x = ""
@@ -608,6 +609,8 @@ Module Common
             header_number_x = combine_header_number(get_opt_sales_field("fg_repair_rec_head"), Integer.Parse(get_opt_sales_field("fg_repair_rec_inc")), Integer.Parse(get_opt_sales_field("fg_repair_rec_digit")))
         ElseIf opt = "29" Then
             header_number_x = combine_header_number(get_opt_sales_field("fg_repair_return_head"), Integer.Parse(get_opt_sales_field("fg_repair_return_inc")), Integer.Parse(get_opt_sales_field("fg_repair_return_digit")))
+        ElseIf opt = "30" Then
+            header_number_x = combine_header_number(get_opt_sales_field("fg_repair_return_rec_head"), Integer.Parse(get_opt_sales_field("fg_repair_return_rec_inc")), Integer.Parse(get_opt_sales_field("fg_repair_return_rec_digit")))
         End If
         Return header_number_x
     End Function
@@ -640,6 +643,7 @@ Module Common
         '27 = repair FG
         '28 = receive repair FG
         '29 = return repair FG
+        '30 = rec return repair FG
 
         Dim query As String
         query = ""
@@ -730,6 +734,9 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "29" Then
             query = "UPDATE tb_opt_sales SET fg_repair_return_inc  = (tb_opt_sales.fg_repair_return_inc +1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "30" Then
+            query = "UPDATE tb_opt_sales SET fg_repair_return_rec_inc  = (tb_opt_sales.fg_repair_return_rec_inc +1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub

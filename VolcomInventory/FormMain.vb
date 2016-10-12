@@ -9724,4 +9724,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBFGRepairReturnRec_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFGRepairReturnRec.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGRepairReturnRec.MdiParent = Me
+            FormFGRepairReturnRec.Show()
+            FormFGRepairReturnRec.WindowState = FormWindowState.Maximized
+            FormFGRepairReturnRec.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
