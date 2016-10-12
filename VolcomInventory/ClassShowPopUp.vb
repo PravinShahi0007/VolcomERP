@@ -355,6 +355,10 @@
             'repair return FG
             FormViewFGRepairReturn.id_fg_repair_return = id_report
             FormViewFGRepairReturn.ShowDialog()
+        ElseIf report_mark_type = "94" Then
+            'repair return rec FG
+            FormViewFGRepairReturnRec.id_fg_repair_return_rec = id_report
+            FormViewFGRepairReturnRec.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -861,6 +865,12 @@
             field_id = "id_fg_repair_return"
             field_number = "fg_repair_return_number"
             field_date = "fg_repair_return_date"
+        ElseIf report_mark_type = "94" Then
+            'Repair return rec fg
+            table_name = "tb_fg_repair_return_rec"
+            field_id = "id_fg_repair_return_rec"
+            field_number = "fg_repair_return_rec_number"
+            field_date = "fg_repair_return_rec_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

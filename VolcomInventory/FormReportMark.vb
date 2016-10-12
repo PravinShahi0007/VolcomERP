@@ -311,13 +311,16 @@
             query = String.Format("SELECT id_report_status, sample_pl_ret_number as report_number FROM tb_sample_pl_ret WHERE id_sample_pl_ret = '{0}'", id_report)
         ElseIf report_mark_type = "91" Then
             'REPAIR
-            query = String.Format("SELECT id_report_status FROM tb_fg_repair WHERE id_fg_repair = '{0}'", id_report)
+            query = String.Format("SELECT id_report_status, fg_repair_number as report_number FROM tb_fg_repair WHERE id_fg_repair = '{0}'", id_report)
         ElseIf report_mark_type = "92" Then
             'REPAIR REC
-            query = String.Format("SELECT id_report_status FROM tb_fg_repair_rec WHERE id_fg_repair_rec = '{0}'", id_report)
+            query = String.Format("SELECT id_report_status, fg_repair_number_rec as report_number FROM tb_fg_repair_rec WHERE id_fg_repair_rec = '{0}'", id_report)
         ElseIf report_mark_type = "93" Then
             'REPAIR RETURN
-            query = String.Format("SELECT id_report_status FROM tb_fg_repair_return WHERE id_fg_repair_return = '{0}'", id_report)
+            query = String.Format("SELECT id_report_status, fg_repair_return_number as report_number FROM tb_fg_repair_return WHERE id_fg_repair_return = '{0}'", id_report)
+        ElseIf report_mark_type = "94" Then
+            'REPAIR RETURN REC
+            query = String.Format("SELECT id_report_status, fg_repair_return_rec_number as report_number FROM tb_fg_repair_return_rec WHERE id_fg_repair_return_rec = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3020,6 +3023,24 @@
                 FormFGRepairReturnDet.actionLoad()
                 FormFGRepairReturn.viewData()
                 FormFGRepairReturn.GVRepairReturn.FocusedRowHandle = find_row(FormFGRepairReturn.GVRepairReturn, "id_fg_repair_return", id_report)
+            End If
+        ElseIf report_mark_type = "94" Then
+            'FG REPAIR RETURN REC
+            If id_status_reportx = "6" Then
+                Dim compl As New ClassFGRepairReturnRec()
+                compl.completedStock(id_report)
+            End If
+
+            query = String.Format("UPDATE tb_fg_repair_return_rec SET id_report_status='{0}' WHERE id_fg_repair_return_rec ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+
+            If form_origin = "FormFGRepairReturnRecDet" Then
+                FormFGRepairReturnRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormFGRepairReturnRecDet.actionLoad()
+                FormFGRepairReturnRec.viewData()
+                FormFGRepairReturnRec.viewRepairList()
+                FormFGRepairReturnRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairReturnRec.GVRepairRec, "id_fg_repair_return_rec", id_report)
             End If
         End If
 

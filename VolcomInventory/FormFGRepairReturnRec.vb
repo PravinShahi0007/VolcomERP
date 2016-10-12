@@ -129,7 +129,7 @@
         End Try
 
         Dim query_c As New ClassFGRepairReturnRec()
-        Dim query As String = query_c.queryMain("AND (rec.fg_repair_return_rec_date>='" + date_from_selected + "' AND rec.fg_repair_rec_date<='" + date_until_selected + "') ", "2")
+        Dim query As String = query_c.queryMain("AND (rec.fg_repair_return_rec_date>='" + date_from_selected + "' AND rec.fg_repair_return_rec_date<='" + date_until_selected + "') ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRepairRec.DataSource = data
         check_menu()
