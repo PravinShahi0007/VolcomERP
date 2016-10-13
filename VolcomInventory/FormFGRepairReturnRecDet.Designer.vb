@@ -232,9 +232,9 @@ Partial Class FormFGRepairReturnRecDet
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl3.Location = New System.Drawing.Point(28, 13)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(41, 13)
         Me.LabelControl3.TabIndex = 164
-        Me.LabelControl3.Text = "Repair#"
+        Me.LabelControl3.Text = "Return#"
         '
         'TxtNameCompTo
         '

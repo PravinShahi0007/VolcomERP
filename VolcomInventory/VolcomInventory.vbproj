@@ -3871,6 +3871,18 @@
     <Compile Include="ReportFGRepairReturnDet.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFGRepairReturnRec.Designer.vb">
+      <DependentUpon>ReportFGRepairReturnRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGRepairReturnRec.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFGRepairReturnRecDet.Designer.vb">
+      <DependentUpon>ReportFGRepairReturnRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGRepairReturnRecDet.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGSalesOrderReff.Designer.vb">
       <DependentUpon>ReportFGSalesOrderReff.vb</DependentUpon>
     </Compile>
@@ -6713,6 +6725,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGRepairReturnDet.resx">
       <DependentUpon>ReportFGRepairReturnDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGRepairReturnRec.resx">
+      <DependentUpon>ReportFGRepairReturnRec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGRepairReturnRecDet.resx">
+      <DependentUpon>ReportFGRepairReturnRecDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGSalesOrderReff.resx">
       <DependentUpon>ReportFGSalesOrderReff.vb</DependentUpon>
