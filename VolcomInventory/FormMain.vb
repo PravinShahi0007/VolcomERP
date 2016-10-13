@@ -5119,69 +5119,83 @@ Public Class FormMain
                 End Try
             End If
         ElseIf formName = "FormFGRepair" Then
-            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Try
-                    Dim id_fg_repair As String = FormFGRepair.GVRepair.GetFocusedRowCellValue("id_fg_repair").ToString
+            If check_edit_report_status(FormFGRepair.GVRepair.GetFocusedRowCellValue("id_fg_repair").ToString, "91", FormFGRepair.GVRepair.GetFocusedRowCellValue("id_fg_repair")) Then
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Try
+                        Dim id_fg_repair As String = FormFGRepair.GVRepair.GetFocusedRowCellValue("id_fg_repair").ToString
 
-                    'cancel reserve
-                    Dim cancel As New ClassFGRepair()
-                    cancel.cancelReservedStock(id_fg_repair)
+                        'cancel reserve
+                        Dim cancel As New ClassFGRepair()
+                        cancel.cancelReservedStock(id_fg_repair)
 
-                    query = String.Format("DELETE FROM tb_fg_repair WHERE id_fg_repair='{0}'", id_fg_repair)
-                    execute_non_query(query, True, "", "", "", "")
-                    FormFGRepair.viewData()
-                Catch ex As Exception
-                    errorDelete()
-                End Try
+                        query = String.Format("DELETE FROM tb_fg_repair WHERE id_fg_repair='{0}'", id_fg_repair)
+                        execute_non_query(query, True, "", "", "", "")
+                        FormFGRepair.viewData()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                End If
+            Else
+                stopCustom("This data already marked")
             End If
         ElseIf formName = "FormFGRepairRec" Then
-            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Try
-                    Dim id_fg_repair_rec As String = FormFGRepairRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_rec").ToString
+            If check_edit_report_status(FormFGRepairRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_rec").ToString, "92", FormFGRepairRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_rec")) Then
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Try
+                        Dim id_fg_repair_rec As String = FormFGRepairRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_rec").ToString
 
-                    query = String.Format("DELETE FROM tb_fg_repair_rec WHERE id_fg_repair_rec='{0}'", id_fg_repair_rec)
-                    execute_non_query(query, True, "", "", "", "")
-                    FormFGRepairRec.viewData()
-                    FormFGRepairRec.viewRepairList()
-                Catch ex As Exception
-                    errorDelete()
-                End Try
+                        query = String.Format("DELETE FROM tb_fg_repair_rec WHERE id_fg_repair_rec='{0}'", id_fg_repair_rec)
+                        execute_non_query(query, True, "", "", "", "")
+                        FormFGRepairRec.viewData()
+                        FormFGRepairRec.viewRepairList()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                End If
+            Else
+                stopCustom("This data already marked")
             End If
         ElseIf formName = "FormFGRepairReturnRec" Then
-            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Try
-                    Dim id_fg_repair_return_rec As String = FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString
+            If check_edit_report_status(FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString, "94", FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec")) Then
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Try
+                        Dim id_fg_repair_return_rec As String = FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString
 
-                    query = String.Format("DELETE FROM tb_fg_repair_return_rec WHERE id_fg_repair_return_rec='{0}'", id_fg_repair_return_rec)
-                    execute_non_query(query, True, "", "", "", "")
-                    FormFGRepairReturnRec.viewData()
-                    FormFGRepairReturnRec.viewRepairList()
-                Catch ex As Exception
-                    errorDelete()
-                End Try
+                        query = String.Format("DELETE FROM tb_fg_repair_return_rec WHERE id_fg_repair_return_rec='{0}'", id_fg_repair_return_rec)
+                        execute_non_query(query, True, "", "", "", "")
+                        FormFGRepairReturnRec.viewData()
+                        FormFGRepairReturnRec.viewRepairList()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                End If
+            Else
+                stopCustom("This data already marked")
             End If
         ElseIf formName = "FormFGRepairReturn" Then
-            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-            If confirm = Windows.Forms.DialogResult.Yes Then
-                Try
-                    Dim id_fg_repair_return As String = FormFGRepairReturn.GVRepairReturn.GetFocusedRowCellValue("id_fg_repair_return").ToString
+            If check_edit_report_status(FormFGRepairReturn.GVRepairReturn.GetFocusedRowCellValue("id_fg_repair_return").ToString, "93", FormFGRepairReturn.GVRepairReturn.GetFocusedRowCellValue("id_fg_repair_return")) Then
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Try
+                        Dim id_fg_repair_return As String = FormFGRepairReturn.GVRepairReturn.GetFocusedRowCellValue("id_fg_repair_return").ToString
 
-                    'cancel reserve
-                    Dim cancel As New ClassFGRepairReturn()
-                    cancel.cancelReservedStock(id_fg_repair_return)
+                        'cancel reserve
+                        Dim cancel As New ClassFGRepairReturn()
+                        cancel.cancelReservedStock(id_fg_repair_return)
 
-                    query = String.Format("DELETE FROM tb_fg_repair_return WHERE id_fg_repair_return='{0}'", id_fg_repair_return)
-                    execute_non_query(query, True, "", "", "", "")
-                    FormFGRepairReturn.viewData()
-                Catch ex As Exception
-                    errorDelete()
-                End Try
+                        query = String.Format("DELETE FROM tb_fg_repair_return WHERE id_fg_repair_return='{0}'", id_fg_repair_return)
+                        execute_non_query(query, True, "", "", "", "")
+                        FormFGRepairReturn.viewData()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                End If
+            Else
+                stopCustom("This data already marked")
             End If
-
-
         Else
             RPSubMenu.Visible = False
         End If
