@@ -2257,6 +2257,14 @@ Public Class FormMain
                 FormFGRepairReturnRecDet.action = "upd"
                 FormFGRepairReturnRecDet.id_fg_repair_return_rec = FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString
                 FormFGRepairReturnRecDet.ShowDialog()
+            ElseIf formName = "FormEmpShift" Then
+                'Template Shift Employee
+                FormEmpShiftDet.id_shift = FormEmpShift.GVShift.GetFocusedRowCellValue("id_shift").ToString
+                FormEmpShiftDet.ShowDialog()
+            ElseIf formName = "FormEmpHoliday" Then
+                'Template Shift Employee
+                FormEmpHolidayDet.id_holiday = FormEmpHoliday.GVHoliday.GetFocusedRowCellValue("id_emp_holiday").ToString
+                FormEmpHolidayDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5196,6 +5204,18 @@ Public Class FormMain
             Else
                 stopCustom("This data already marked")
             End If
+        ElseIf formName = "FormEmpHoliday" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Try
+                    Dim id_holiday As String = FormEmpHoliday.GVHoliday.GetFocusedRowCellValue("id_emp_holiday").ToString
+                    query = String.Format("DELETE FROM tb_emp_holiday WHERE id_emp_holiday='{0}'", id_holiday)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormEmpHoliday.view_holiday()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -6317,6 +6337,16 @@ Public Class FormMain
             print(FormFGRepairReturn.GCRepairReturn, "Return Repair Product")
         ElseIf formName = "FormFGRepairReturnRec" Then
             print(FormFGRepairReturnRec.GCRepairRec, "Receive Repair Product (WH)")
+        ElseIf formName = "FormEmpShift" Then
+            print(FormEmpShift.GCShift, "Template Shift")
+        ElseIf formName = "FormEmpAttnInd" Then
+            print(FormEmpAttnInd.GCEmployee, "Employee List")
+        ElseIf formName = "FormEmpHoliday" Then
+            If FormEmpHoliday.XTCHoliday.SelectedTabPageIndex = 0 Then
+                print(FormEmpHoliday.GCHoliday, "Holiday List")
+            Else
+                print(FormEmpHoliday.GCSum, "Holiday List")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -6824,6 +6854,29 @@ Public Class FormMain
         ElseIf formName = "FormFGRepairReturnRec" Then
             FormFGRepairReturnRec.Close()
             FormFGRepairReturnRec.Dispose()
+        ElseIf formName = "FormEmpShift" Then
+            'Employee Shift
+            FormEmpShift.Close()
+            FormEmpShift.Dispose()
+        ElseIf formName = "FormEmpSchedule" Then
+            'Employee Shift
+            FormEmpSchedule.Close()
+            FormEmpSchedule.Dispose()
+        ElseIf formName = "FormEmpAttnInd" Then
+            'Employee Attn Report Individual
+            FormEmpAttnInd.Close()
+            FormEmpAttnInd.Dispose()
+        ElseIf formName = "FormEmpAttnSum" Then
+            'Employee Attn Report Summary
+            FormEmpAttnSum.Close()
+            FormEmpAttnSum.Dispose()
+        ElseIf formName = "FormEmpReview" Then
+            FormEmpReview.Close()
+            FormEmpReview.Dispose()
+        ElseIf formName = "FormEmpHoliday" Then
+            'Employee Holiday
+            FormEmpHoliday.Close()
+            FormEmpHoliday.Dispose()
         Else
             RPSubMenu.Visible = False
         End If

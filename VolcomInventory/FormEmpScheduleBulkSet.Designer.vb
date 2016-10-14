@@ -23,6 +23,7 @@ Partial Class FormEmpScheduleBulkSet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpScheduleBulkSet))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BDayOff = New DevExpress.XtraEditors.SimpleButton()
         Me.BTempSchedule = New DevExpress.XtraEditors.SimpleButton()
         Me.PGBBulk = New DevExpress.XtraEditors.ProgressBarControl()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
@@ -46,13 +47,13 @@ Partial Class FormEmpScheduleBulkSet
         Me.RICEEmp = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -100,6 +101,7 @@ Partial Class FormEmpScheduleBulkSet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.BDayOff)
         Me.PanelControl2.Controls.Add(Me.BTempSchedule)
         Me.PanelControl2.Controls.Add(Me.PGBBulk)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -107,6 +109,17 @@ Partial Class FormEmpScheduleBulkSet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(787, 37)
         Me.PanelControl2.TabIndex = 3
+        '
+        'BDayOff
+        '
+        Me.BDayOff.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDayOff.ImageIndex = 10
+        Me.BDayOff.ImageList = Me.LargeImageCollection
+        Me.BDayOff.Location = New System.Drawing.Point(561, 2)
+        Me.BDayOff.Name = "BDayOff"
+        Me.BDayOff.Size = New System.Drawing.Size(112, 33)
+        Me.BDayOff.TabIndex = 4
+        Me.BDayOff.Text = "Set Dayoff"
         '
         'BTempSchedule
         '
@@ -323,6 +336,18 @@ Partial Class FormEmpScheduleBulkSet
         Me.GridColumn9.VisibleIndex = 1
         Me.GridColumn9.Width = 139
         '
+        'GridColumn15
+        '
+        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn15.Caption = "Level"
+        Me.GridColumn15.FieldName = "employee_level"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 4
+        '
         'GridColumn10
         '
         Me.GridColumn10.Caption = "Employee Name"
@@ -383,18 +408,6 @@ Partial Class FormEmpScheduleBulkSet
         Me.CESelectAll.Properties.Caption = "Select All"
         Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
         Me.CESelectAll.TabIndex = 0
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn15.Caption = "Level"
-        Me.GridColumn15.FieldName = "employee_level"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 4
         '
         'FormEmpScheduleBulkSet
         '
@@ -464,4 +477,5 @@ Partial Class FormEmpScheduleBulkSet
     Friend WithEvents RICEEmp As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents PGBBulk As DevExpress.XtraEditors.ProgressBarControl
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BDayOff As DevExpress.XtraEditors.SimpleButton
 End Class

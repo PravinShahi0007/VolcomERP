@@ -41,6 +41,7 @@ Partial Class FormFGProdList
         Me.GridColumnColod = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCProdList = New DevExpress.XtraGrid.GridControl()
         Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.BUPCImport = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavLineList.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,6 +56,7 @@ Partial Class FormFGProdList
         '
         Me.PanelControlNavLineList.Controls.Add(Me.PCNavLineList)
         Me.PanelControlNavLineList.Controls.Add(Me.BtnView)
+        Me.PanelControlNavLineList.Controls.Add(Me.BUPCImport)
         Me.PanelControlNavLineList.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNavLineList.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNavLineList.Name = "PanelControlNavLineList"
@@ -69,7 +71,7 @@ Partial Class FormFGProdList
         Me.PCNavLineList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PCNavLineList.Location = New System.Drawing.Point(2, 2)
         Me.PCNavLineList.Name = "PCNavLineList"
-        Me.PCNavLineList.Size = New System.Drawing.Size(625, 35)
+        Me.PCNavLineList.Size = New System.Drawing.Size(489, 35)
         Me.PCNavLineList.TabIndex = 105
         '
         'SLESeason
@@ -82,7 +84,7 @@ Partial Class FormFGProdList
         Me.SLESeason.Properties.Appearance.Options.UseFont = True
         Me.SLESeason.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLESeason.Properties.View = Me.SearchLookUpEdit1View
-        Me.SLESeason.Size = New System.Drawing.Size(558, 20)
+        Me.SLESeason.Size = New System.Drawing.Size(422, 20)
         Me.SLESeason.TabIndex = 95
         '
         'SearchLookUpEdit1View
@@ -127,9 +129,9 @@ Partial Class FormFGProdList
         '
         Me.BtnView.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnView.ImageIndex = 15
-        Me.BtnView.Location = New System.Drawing.Point(627, 2)
+        Me.BtnView.Location = New System.Drawing.Point(491, 2)
         Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(104, 35)
+        Me.BtnView.Size = New System.Drawing.Size(120, 35)
         Me.BtnView.TabIndex = 94
         Me.BtnView.Text = "View List"
         '
@@ -237,6 +239,16 @@ Partial Class FormFGProdList
         Me.GCProdList.TabIndex = 2
         Me.GCProdList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdList})
         '
+        'BUPCImport
+        '
+        Me.BUPCImport.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BUPCImport.ImageIndex = 15
+        Me.BUPCImport.Location = New System.Drawing.Point(611, 2)
+        Me.BUPCImport.Name = "BUPCImport"
+        Me.BUPCImport.Size = New System.Drawing.Size(120, 35)
+        Me.BUPCImport.TabIndex = 106
+        Me.BUPCImport.Text = "Import Excel UPC"
+        '
         'FormFGProdList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -285,4 +297,5 @@ Partial Class FormFGProdList
     Friend WithEvents GridColumnDivision As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnColod As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents BUPCImport As DevExpress.XtraEditors.SimpleButton
 End Class
