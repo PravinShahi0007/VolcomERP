@@ -343,6 +343,22 @@
             'return Internal Sale
             FormViewSampleReturnPL.id_sample_pl = id_report
             FormViewSampleReturnPL.ShowDialog()
+        ElseIf report_mark_type = "91" Then
+            'repair FG
+            FormViewFGRepair.id_fg_repair = id_report
+            FormViewFGRepair.ShowDialog()
+        ElseIf report_mark_type = "92" Then
+            'repair rec FG
+            FormViewFGRepairRec.id_fg_repair_rec = id_report
+            FormViewFGRepairRec.ShowDialog()
+        ElseIf report_mark_type = "93" Then
+            'repair return FG
+            FormViewFGRepairReturn.id_fg_repair_return = id_report
+            FormViewFGRepairReturn.ShowDialog()
+        ElseIf report_mark_type = "94" Then
+            'repair return rec FG
+            FormViewFGRepairReturnRec.id_fg_repair_return_rec = id_report
+            FormViewFGRepairReturnRec.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -831,6 +847,30 @@
             field_id = "id_sample_pl_ret"
             field_number = "sample_pl_ret_number"
             field_date = "sample_pl_ret_date"
+        ElseIf report_mark_type = "91" Then
+            'Repair fg
+            table_name = "tb_fg_repair"
+            field_id = "id_fg_repair"
+            field_number = "fg_repair_number"
+            field_date = "fg_repair_date"
+        ElseIf report_mark_type = "92" Then
+            'Repair rec fg
+            table_name = "tb_fg_repair_rec"
+            field_id = "id_fg_repair_rec"
+            field_number = "fg_repair_rec_number"
+            field_date = "fg_repair_rec_date"
+        ElseIf report_mark_type = "93" Then
+            'Repair return fg
+            table_name = "tb_fg_repair_return"
+            field_id = "id_fg_repair_return"
+            field_number = "fg_repair_return_number"
+            field_date = "fg_repair_return_date"
+        ElseIf report_mark_type = "94" Then
+            'Repair return rec fg
+            table_name = "tb_fg_repair_return_rec"
+            field_id = "id_fg_repair_return_rec"
+            field_number = "fg_repair_return_rec_number"
+            field_date = "fg_repair_return_rec_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

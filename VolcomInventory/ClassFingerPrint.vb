@@ -477,7 +477,7 @@
     End Sub
 
     Sub sync_all()
-        FormMain.SplashScreenManager1.ShowWaitForm()
+        'FormMain.SplashScreenManager1.ShowWaitForm()
         'class declare
         Dim fp_off As New List(Of String)
         Dim fp_off_label As New List(Of String)
@@ -511,7 +511,7 @@
             fp.download_face_tmp()
             fp.upload_fp_temp(fp_off)
             fp.upload_face_tmp(fp_off)
-            FormMain.SplashScreenManager1.CloseWaitForm()
+            'FormMain.SplashScreenManager1.CloseWaitForm()
             If fp_off_label.Count > 0 Then
                 Dim fp_info As String = ""
                 For j As Integer = 0 To fp_off_label.Count - 1

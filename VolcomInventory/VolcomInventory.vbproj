@@ -185,6 +185,10 @@
     <Compile Include="ClassFGCodeReplace.vb" />
     <Compile Include="ClassFGMissingInv.vb" />
     <Compile Include="ClassFGProposePrice.vb" />
+    <Compile Include="ClassFGRepair.vb" />
+    <Compile Include="ClassFGRepairRec.vb" />
+    <Compile Include="ClassFGRepairReturn.vb" />
+    <Compile Include="ClassFGRepairReturnRec.vb" />
     <Compile Include="ClassFGSalesOrderReff.vb" />
     <Compile Include="ClassFGTrf.vb" />
     <Compile Include="ClassFGWHAlloc.vb" />
@@ -715,6 +719,54 @@
       <DependentUpon>FormFGMissingWHDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGMissingWHDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGRepair.Designer.vb">
+      <DependentUpon>FormFGRepair.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepair.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGRepairDet.Designer.vb">
+      <DependentUpon>FormFGRepairDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepairDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGRepairRec.Designer.vb">
+      <DependentUpon>FormFGRepairRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepairRec.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGRepairRecDet.Designer.vb">
+      <DependentUpon>FormFGRepairRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepairRecDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGRepairReturn.Designer.vb">
+      <DependentUpon>FormFGRepairReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepairReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGRepairReturnDet.Designer.vb">
+      <DependentUpon>FormFGRepairReturnDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepairReturnDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGRepairReturnRec.Designer.vb">
+      <DependentUpon>FormFGRepairReturnRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepairReturnRec.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGRepairReturnRecDet.Designer.vb">
+      <DependentUpon>FormFGRepairReturnRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGRepairReturnRecDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGStock.designer.vb">
@@ -3165,6 +3217,30 @@
     <Compile Include="FormViewFGProposePrice.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormViewFGRepair.Designer.vb">
+      <DependentUpon>FormViewFGRepair.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormViewFGRepair.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormViewFGRepairRec.Designer.vb">
+      <DependentUpon>FormViewFGRepairRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormViewFGRepairRec.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormViewFGRepairReturn.Designer.vb">
+      <DependentUpon>FormViewFGRepairReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormViewFGRepairReturn.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormViewFGRepairReturnRec.Designer.vb">
+      <DependentUpon>FormViewFGRepairReturnRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormViewFGRepairReturnRec.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormViewFGSalesOrderReff.Designer.vb">
       <DependentUpon>FormViewFGSalesOrderReff.vb</DependentUpon>
     </Compile>
@@ -3757,6 +3833,54 @@
       <DependentUpon>ReportFGProposePrice.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportFGProposePrice.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFGRepair.Designer.vb">
+      <DependentUpon>ReportFGRepair.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGRepair.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFGRepairDet.Designer.vb">
+      <DependentUpon>ReportFGRepairDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGRepairDet.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFGRepairRec.Designer.vb">
+      <DependentUpon>ReportFGRepairRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGRepairRec.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFGRepairRecDet.Designer.vb">
+      <DependentUpon>ReportFGRepairRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGRepairRecDet.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFGRepairReturn.Designer.vb">
+      <DependentUpon>ReportFGRepairReturn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGRepairReturn.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFGRepairReturnDet.Designer.vb">
+      <DependentUpon>ReportFGRepairReturnDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGRepairReturnDet.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFGRepairReturnRec.Designer.vb">
+      <DependentUpon>ReportFGRepairReturnRec.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGRepairReturnRec.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportFGRepairReturnRecDet.Designer.vb">
+      <DependentUpon>ReportFGRepairReturnRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGRepairReturnRecDet.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportFGSalesOrderReff.Designer.vb">
@@ -4592,6 +4716,30 @@
     <EmbeddedResource Include="FormFGMissingWHDet.resx">
       <DependentUpon>FormFGMissingWHDet.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepair.resx">
+      <DependentUpon>FormFGRepair.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepairDet.resx">
+      <DependentUpon>FormFGRepairDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepairRec.resx">
+      <DependentUpon>FormFGRepairRec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepairRecDet.resx">
+      <DependentUpon>FormFGRepairRecDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepairReturn.resx">
+      <DependentUpon>FormFGRepairReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepairReturnDet.resx">
+      <DependentUpon>FormFGRepairReturnDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepairReturnRec.resx">
+      <DependentUpon>FormFGRepairReturnRec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGRepairReturnRecDet.resx">
+      <DependentUpon>FormFGRepairReturnRecDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGStock.resx">
       <DependentUpon>FormFGStock.vb</DependentUpon>
@@ -6178,6 +6326,18 @@
       <DependentUpon>FormViewFGProposePrice.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormViewFGRepair.resx">
+      <DependentUpon>FormViewFGRepair.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormViewFGRepairRec.resx">
+      <DependentUpon>FormViewFGRepairRec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormViewFGRepairReturn.resx">
+      <DependentUpon>FormViewFGRepairReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormViewFGRepairReturnRec.resx">
+      <DependentUpon>FormViewFGRepairReturnRec.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormViewFGSalesOrderReff.resx">
       <DependentUpon>FormViewFGSalesOrderReff.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -6547,6 +6707,30 @@
     <EmbeddedResource Include="ReportFGProposePrice.resx">
       <DependentUpon>ReportFGProposePrice.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGRepair.resx">
+      <DependentUpon>ReportFGRepair.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGRepairDet.resx">
+      <DependentUpon>ReportFGRepairDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGRepairRec.resx">
+      <DependentUpon>ReportFGRepairRec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGRepairRecDet.resx">
+      <DependentUpon>ReportFGRepairRecDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGRepairReturn.resx">
+      <DependentUpon>ReportFGRepairReturn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGRepairReturnDet.resx">
+      <DependentUpon>ReportFGRepairReturnDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGRepairReturnRec.resx">
+      <DependentUpon>ReportFGRepairReturnRec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGRepairReturnRecDet.resx">
+      <DependentUpon>ReportFGRepairReturnRecDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGSalesOrderReff.resx">
       <DependentUpon>ReportFGSalesOrderReff.vb</DependentUpon>
