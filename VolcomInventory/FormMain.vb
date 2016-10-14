@@ -5917,6 +5917,36 @@ Public Class FormMain
                     Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                     Tool.ShowPreview()
                 End If
+            ElseIf FormMatStock.XTCFGStock.SelectedTabPageIndex = 3 Then 'BOM
+                If FormMatStock.GCStockBOM.Enabled = False Then 'not yet
+                    stopCustom("Data not found.")
+                Else
+                    'modify period
+                    Dim period_from As String = ""
+                    Dim period_until As String = ""
+                    period_from = Date.Parse(FormMatStock.DEFromBOM.EditValue.ToString).ToString("dd MMM yyyy")
+                    period_until = Date.Parse(FormMatStock.DEUntilBOM.EditValue.ToString).ToString("dd MMM yyyy")
+
+                    '... 
+                    ' creating and saving the view's layout to a new memory stream 
+                    Dim str As System.IO.Stream
+                    str = New System.IO.MemoryStream()
+                    FormMatStock.BGVStockBOM.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    ReportMatStockCard.str_param = str
+                    ReportMatStockCard.dt = FormMatStock.GCStockBOM.DataSource
+                    Dim Report As New ReportMatStockCard()
+                    Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    Report.LabelWH.Text = "ALL"
+                    Report.LabelProduct.Text = FormMatStock.SLEMatBOM.Text
+                    Report.LabelPeriod.Text = period_from + " / " + period_until
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    ReportStyleBanded(Report.BandedGridView1)
+
+                    ' Show the report's preview. 
+                    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                    Tool.ShowPreview()
+                End If
             End If
             Cursor = Cursors.Default
         ElseIf formName = "FormAccountingSummary" Then
