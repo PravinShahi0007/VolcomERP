@@ -168,28 +168,10 @@ Partial Class FormMatStock
         Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl26 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnViewStockVendor = New DevExpress.XtraEditors.SimpleButton()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ViewMenuWO = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ViewPackingListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ViewMaterialRequestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.WorkOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XTPStockCardBOM = New DevExpress.XtraTab.XtraTabPage()
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.BandedGridView1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GCBOMTracking = New DevExpress.XtraEditors.GroupControl()
+        Me.GCStockBOM = New DevExpress.XtraGrid.GridControl()
+        Me.BGVStockBOM = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.BandedGridColumn22 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControl5 = New DevExpress.XtraEditors.GroupControl()
         Me.SLEMatBOM = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -208,6 +190,24 @@ Partial Class FormMatStock
         Me.LabelControl47 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl48 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl49 = New DevExpress.XtraEditors.LabelControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewMenuWO = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDocumentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewPackingListToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewMaterialRequestToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WorkOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGStock.SuspendLayout()
         Me.XTPFGStockWHSum.SuspendLayout()
@@ -262,13 +262,11 @@ Partial Class FormMatStock
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewMenu.SuspendLayout()
-        Me.ViewMenuWO.SuspendLayout()
         Me.XTPStockCardBOM.SuspendLayout()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl1.SuspendLayout()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCBOMTracking, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GCBOMTracking.SuspendLayout()
+        CType(Me.GCStockBOM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BGVStockBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl5.SuspendLayout()
         CType(Me.SLEMatBOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -277,6 +275,8 @@ Partial Class FormMatStock
         CType(Me.DEUntilBOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromBOM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromBOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
+        Me.ViewMenuWO.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCFGStock
@@ -1662,177 +1662,50 @@ Partial Class FormMatStock
         Me.BtnViewStockVendor.TabIndex = 6
         Me.BtnViewStockVendor.Text = "View"
         '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewDel})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(159, 26)
-        '
-        'SMViewDel
-        '
-        Me.SMViewDel.Name = "SMViewDel"
-        Me.SMViewDel.Size = New System.Drawing.Size(158, 22)
-        Me.SMViewDel.Text = "View Document"
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.Caption = "ID Rack"
-        Me.GridColumn30.FieldName = "id_wh_rack"
-        Me.GridColumn30.Name = "GridColumn30"
-        '
-        'GridColumn31
-        '
-        Me.GridColumn31.Caption = "Code"
-        Me.GridColumn31.FieldName = "wh_rack_code"
-        Me.GridColumn31.Name = "GridColumn31"
-        Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 1
-        '
-        'GridColumn32
-        '
-        Me.GridColumn32.Caption = "Rack"
-        Me.GridColumn32.FieldName = "wh_rack"
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.Visible = True
-        Me.GridColumn32.VisibleIndex = 2
-        '
-        'GridColumn33
-        '
-        Me.GridColumn33.Caption = "Description"
-        Me.GridColumn33.FieldName = "wh_rack_description"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 3
-        '
-        'GridColumn34
-        '
-        Me.GridColumn34.Caption = "Id Drawer"
-        Me.GridColumn34.FieldName = "id_wh_drawer"
-        Me.GridColumn34.Name = "GridColumn34"
-        Me.GridColumn34.Visible = True
-        Me.GridColumn34.VisibleIndex = 0
-        '
-        'GridColumn35
-        '
-        Me.GridColumn35.Caption = "Code"
-        Me.GridColumn35.FieldName = "wh_drawer_code"
-        Me.GridColumn35.Name = "GridColumn35"
-        Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 1
-        '
-        'GridColumn36
-        '
-        Me.GridColumn36.Caption = "Drawer"
-        Me.GridColumn36.FieldName = "wh_drawer"
-        Me.GridColumn36.Name = "GridColumn36"
-        Me.GridColumn36.Visible = True
-        Me.GridColumn36.VisibleIndex = 2
-        '
-        'GridColumn37
-        '
-        Me.GridColumn37.Caption = "Description"
-        Me.GridColumn37.FieldName = "wh_drawer_description"
-        Me.GridColumn37.Name = "GridColumn37"
-        Me.GridColumn37.Visible = True
-        Me.GridColumn37.VisibleIndex = 3
-        '
-        'GridColumn49
-        '
-        Me.GridColumn49.Caption = "Id Vendor"
-        Me.GridColumn49.FieldName = "id_comp"
-        Me.GridColumn49.Name = "GridColumn49"
-        '
-        'GridColumn50
-        '
-        Me.GridColumn50.Caption = "Code"
-        Me.GridColumn50.FieldName = "comp_number"
-        Me.GridColumn50.Name = "GridColumn50"
-        Me.GridColumn50.Visible = True
-        Me.GridColumn50.VisibleIndex = 0
-        '
-        'GridColumn51
-        '
-        Me.GridColumn51.Caption = "Vendor"
-        Me.GridColumn51.FieldName = "comp_name"
-        Me.GridColumn51.Name = "GridColumn51"
-        Me.GridColumn51.Visible = True
-        Me.GridColumn51.VisibleIndex = 1
-        '
-        'ViewMenuWO
-        '
-        Me.ViewMenuWO.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem})
-        Me.ViewMenuWO.Name = "ContextMenuStripYM"
-        Me.ViewMenuWO.Size = New System.Drawing.Size(159, 26)
-        '
-        'ViewDocumentToolStripMenuItem
-        '
-        Me.ViewDocumentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewPackingListToolStripMenuItem, Me.ViewMaterialRequestToolStripMenuItem, Me.WorkOrderToolStripMenuItem})
-        Me.ViewDocumentToolStripMenuItem.Name = "ViewDocumentToolStripMenuItem"
-        Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
-        Me.ViewDocumentToolStripMenuItem.Text = "View Document"
-        '
-        'ViewPackingListToolStripMenuItem
-        '
-        Me.ViewPackingListToolStripMenuItem.Name = "ViewPackingListToolStripMenuItem"
-        Me.ViewPackingListToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
-        Me.ViewPackingListToolStripMenuItem.Text = "Packing List"
-        '
-        'ViewMaterialRequestToolStripMenuItem
-        '
-        Me.ViewMaterialRequestToolStripMenuItem.Name = "ViewMaterialRequestToolStripMenuItem"
-        Me.ViewMaterialRequestToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
-        Me.ViewMaterialRequestToolStripMenuItem.Text = "Material Request"
-        '
-        'WorkOrderToolStripMenuItem
-        '
-        Me.WorkOrderToolStripMenuItem.Name = "WorkOrderToolStripMenuItem"
-        Me.WorkOrderToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
-        Me.WorkOrderToolStripMenuItem.Text = "Work Order"
-        '
         'XTPStockCardBOM
         '
-        Me.XTPStockCardBOM.Controls.Add(Me.GroupControl1)
+        Me.XTPStockCardBOM.Controls.Add(Me.GCBOMTracking)
         Me.XTPStockCardBOM.Controls.Add(Me.GroupControl5)
         Me.XTPStockCardBOM.Name = "XTPStockCardBOM"
         Me.XTPStockCardBOM.Size = New System.Drawing.Size(1154, 460)
         Me.XTPStockCardBOM.Text = "Stock Card BOM"
         '
-        'GroupControl1
+        'GCBOMTracking
         '
-        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.GridControl1)
-        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl1.Enabled = False
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 60)
-        Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1154, 400)
-        Me.GroupControl1.TabIndex = 6
-        Me.GroupControl1.Text = "Movement"
+        Me.GCBOMTracking.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCBOMTracking.Controls.Add(Me.GCStockBOM)
+        Me.GCBOMTracking.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBOMTracking.Enabled = False
+        Me.GCBOMTracking.Location = New System.Drawing.Point(0, 60)
+        Me.GCBOMTracking.Name = "GCBOMTracking"
+        Me.GCBOMTracking.Size = New System.Drawing.Size(1154, 400)
+        Me.GCBOMTracking.TabIndex = 6
+        Me.GCBOMTracking.Text = "Movement"
         '
-        'GridControl1
+        'GCStockBOM
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(20, 2)
-        Me.GridControl1.MainView = Me.BandedGridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1132, 396)
-        Me.GridControl1.TabIndex = 0
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BandedGridView1})
+        Me.GCStockBOM.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCStockBOM.Location = New System.Drawing.Point(20, 2)
+        Me.GCStockBOM.MainView = Me.BGVStockBOM
+        Me.GCStockBOM.Name = "GCStockBOM"
+        Me.GCStockBOM.Size = New System.Drawing.Size(1132, 396)
+        Me.GCStockBOM.TabIndex = 0
+        Me.GCStockBOM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVStockBOM})
         '
-        'BandedGridView1
+        'BGVStockBOM
         '
-        Me.BandedGridView1.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn22})
-        Me.BandedGridView1.GridControl = Me.GridControl1
-        Me.BandedGridView1.Name = "BandedGridView1"
-        Me.BandedGridView1.OptionsBehavior.Editable = False
-        Me.BandedGridView1.OptionsBehavior.ReadOnly = True
-        Me.BandedGridView1.OptionsLayout.Columns.RemoveOldColumns = False
-        Me.BandedGridView1.OptionsLayout.Columns.StoreAllOptions = True
-        Me.BandedGridView1.OptionsLayout.Columns.StoreAppearance = True
-        Me.BandedGridView1.OptionsLayout.StoreAllOptions = True
-        Me.BandedGridView1.OptionsLayout.StoreAppearance = True
-        Me.BandedGridView1.OptionsView.ShowFooter = True
-        Me.BandedGridView1.OptionsView.ShowGroupPanel = False
+        Me.BGVStockBOM.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn22})
+        Me.BGVStockBOM.GridControl = Me.GCStockBOM
+        Me.BGVStockBOM.Name = "BGVStockBOM"
+        Me.BGVStockBOM.OptionsBehavior.Editable = False
+        Me.BGVStockBOM.OptionsBehavior.ReadOnly = True
+        Me.BGVStockBOM.OptionsLayout.Columns.RemoveOldColumns = False
+        Me.BGVStockBOM.OptionsLayout.Columns.StoreAllOptions = True
+        Me.BGVStockBOM.OptionsLayout.Columns.StoreAppearance = True
+        Me.BGVStockBOM.OptionsLayout.StoreAllOptions = True
+        Me.BGVStockBOM.OptionsLayout.StoreAppearance = True
+        Me.BGVStockBOM.OptionsView.ShowFooter = True
+        Me.BGVStockBOM.OptionsView.ShowGroupPanel = False
         '
         'BandedGridColumn22
         '
@@ -1998,6 +1871,133 @@ Partial Class FormMatStock
         Me.LabelControl49.TabIndex = 2
         Me.LabelControl49.Text = "From"
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewDel})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(159, 26)
+        '
+        'SMViewDel
+        '
+        Me.SMViewDel.Name = "SMViewDel"
+        Me.SMViewDel.Size = New System.Drawing.Size(158, 22)
+        Me.SMViewDel.Text = "View Document"
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "ID Rack"
+        Me.GridColumn30.FieldName = "id_wh_rack"
+        Me.GridColumn30.Name = "GridColumn30"
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Code"
+        Me.GridColumn31.FieldName = "wh_rack_code"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 1
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Rack"
+        Me.GridColumn32.FieldName = "wh_rack"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 2
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Description"
+        Me.GridColumn33.FieldName = "wh_rack_description"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 3
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Id Drawer"
+        Me.GridColumn34.FieldName = "id_wh_drawer"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 0
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Code"
+        Me.GridColumn35.FieldName = "wh_drawer_code"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 1
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Drawer"
+        Me.GridColumn36.FieldName = "wh_drawer"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 2
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Description"
+        Me.GridColumn37.FieldName = "wh_drawer_description"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.Visible = True
+        Me.GridColumn37.VisibleIndex = 3
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.Caption = "Id Vendor"
+        Me.GridColumn49.FieldName = "id_comp"
+        Me.GridColumn49.Name = "GridColumn49"
+        '
+        'GridColumn50
+        '
+        Me.GridColumn50.Caption = "Code"
+        Me.GridColumn50.FieldName = "comp_number"
+        Me.GridColumn50.Name = "GridColumn50"
+        Me.GridColumn50.Visible = True
+        Me.GridColumn50.VisibleIndex = 0
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.Caption = "Vendor"
+        Me.GridColumn51.FieldName = "comp_name"
+        Me.GridColumn51.Name = "GridColumn51"
+        Me.GridColumn51.Visible = True
+        Me.GridColumn51.VisibleIndex = 1
+        '
+        'ViewMenuWO
+        '
+        Me.ViewMenuWO.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDocumentToolStripMenuItem})
+        Me.ViewMenuWO.Name = "ContextMenuStripYM"
+        Me.ViewMenuWO.Size = New System.Drawing.Size(159, 26)
+        '
+        'ViewDocumentToolStripMenuItem
+        '
+        Me.ViewDocumentToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewPackingListToolStripMenuItem, Me.ViewMaterialRequestToolStripMenuItem, Me.WorkOrderToolStripMenuItem})
+        Me.ViewDocumentToolStripMenuItem.Name = "ViewDocumentToolStripMenuItem"
+        Me.ViewDocumentToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.ViewDocumentToolStripMenuItem.Text = "View Document"
+        '
+        'ViewPackingListToolStripMenuItem
+        '
+        Me.ViewPackingListToolStripMenuItem.Name = "ViewPackingListToolStripMenuItem"
+        Me.ViewPackingListToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.ViewPackingListToolStripMenuItem.Text = "Packing List"
+        '
+        'ViewMaterialRequestToolStripMenuItem
+        '
+        Me.ViewMaterialRequestToolStripMenuItem.Name = "ViewMaterialRequestToolStripMenuItem"
+        Me.ViewMaterialRequestToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.ViewMaterialRequestToolStripMenuItem.Text = "Material Request"
+        '
+        'WorkOrderToolStripMenuItem
+        '
+        Me.WorkOrderToolStripMenuItem.Name = "WorkOrderToolStripMenuItem"
+        Me.WorkOrderToolStripMenuItem.Size = New System.Drawing.Size(162, 22)
+        Me.WorkOrderToolStripMenuItem.Text = "Work Order"
+        '
         'FormMatStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2069,13 +2069,11 @@ Partial Class FormMatStock
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewMenu.ResumeLayout(False)
-        Me.ViewMenuWO.ResumeLayout(False)
         Me.XTPStockCardBOM.ResumeLayout(False)
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl1.ResumeLayout(False)
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BandedGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCBOMTracking, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GCBOMTracking.ResumeLayout(False)
+        CType(Me.GCStockBOM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BGVStockBOM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl5.ResumeLayout(False)
         Me.GroupControl5.PerformLayout()
@@ -2085,6 +2083,8 @@ Partial Class FormMatStock
         CType(Me.DEUntilBOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromBOM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromBOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
+        Me.ViewMenuWO.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -2255,9 +2255,9 @@ Partial Class FormMatStock
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnUOM As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents XTPStockCardBOM As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents BandedGridView1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents GCBOMTracking As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GCStockBOM As DevExpress.XtraGrid.GridControl
+    Friend WithEvents BGVStockBOM As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents BandedGridColumn22 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GroupControl5 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents SLEMatBOM As DevExpress.XtraEditors.SearchLookUpEdit

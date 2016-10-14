@@ -42,18 +42,23 @@
     Public label_drawer_selected_stock_sum As String = "-1"
     Public date_from_selected_stock_sum As String = "-1"
     Public date_until_selected_stock_sum As String = "-1"
-    'Dim special_code_list As New List(Of String)
 
     'Datatalbe-Tab Stock Sum
     Public dt_sum As DataTable
 
     Private Sub FormFGStock_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        DEFrom.EditValue = Now
+        DEUntil.EditValue = Now
+        '
+        DEFromBOM.EditValue = Now
+        DEUntilBOM.EditValue = Now
+        '
         viewProduct()
         viewWHStockCard()
-
+        '
         viewWHStockSum()
         viewProductStockSum()
-
+        '
         viewWOStockStore()
         viewProductStockStore()
     End Sub
@@ -117,11 +122,22 @@
         SLEProduct.Properties.DataSource = data
         SLEProduct.Properties.DisplayMember = "name"
         SLEProduct.Properties.ValueMember = "id_mat_det"
+        '
+        SLEMatBOM.Properties.DataSource = Nothing
+        SLEMatBOM.Properties.DataSource = data
+        SLEMatBOM.Properties.DisplayMember = "name"
+        SLEMatBOM.Properties.ValueMember = "id_mat_det"
+        '
         If data.Rows.Count.ToString >= 1 Then
             SLEProduct.EditValue = data.Rows(0)("id_mat_det").ToString
             BestFit(SLEProduct)
+            '
+            SLEMatBOM.EditValue = data.Rows(0)("id_mat_det").ToString
+            BestFit(SLEMatBOM)
         Else
             SLEProduct.EditValue = Nothing
+            '
+            SLEMatBOM.EditValue = Nothing
         End If
     End Sub
     Private Sub SLEProduct_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLEProduct.EditValueChanged
@@ -799,5 +815,95 @@
                 ViewMenuWO.Show(view.GridControl, e.Point)
             End If
         End If
+    End Sub
+
+    Private Sub BViewBOM_Click(sender As Object, e As EventArgs) Handles BViewBOM.Click
+        Cursor = Cursors.WaitCursor
+        BGVStockBOM.Columns.Clear()
+        BGVStockBOM.Bands.Clear()
+        BGVStockBOM.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        id_mat_selected = "-1"
+        label_mat_selected = ""
+        comp_name_label_selected = ""
+        date_from_selected = "0000-01-01"
+        date_until_selected = "9999-01-01"
+        Try
+            id_mat_selected = SLEMatBOM.EditValue.ToString
+            date_from_selected = Date.Parse(DEFromBOM.EditValue.ToString).ToString("yyyy-MM-dd")
+            date_until_selected = Date.Parse(DEUntilBOM.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        id_mat_image = "0"
+
+        Dim band_ref As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVStockBOM.Bands.AddBand("Reff")
+        Dim band_qty As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVStockBOM.Bands.AddBand("Quantity")
+        Dim band_bal As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVStockBOM.Bands.AddBand("Balance")
+        Dim band_amount As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVStockBOM.Bands.AddBand("Amount")
+        Dim band_stat As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVStockBOM.Bands.AddBand("")
+
+        BGVStockBOM.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+
+        band_stat.AutoFillDown = True
+        Dim query As String = "CALL view_mat_stock_card_bom('" + id_mat_selected + "','" + date_from_selected + "', '" + date_until_selected + "') "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        For i As Integer = 0 To data.Columns.Count - 1
+            If data.Columns(i).ColumnName.ToString = "design_display_name" Or data.Columns(i).ColumnName.ToString = "design_code" Or data.Columns(i).ColumnName.ToString = "note" Or data.Columns(i).ColumnName.ToString = "id_mat_det" Or data.Columns(i).ColumnName.ToString = "id_report" Or data.Columns(i).ColumnName.ToString = "report_mark_type" Or data.Columns(i).ColumnName.ToString = "id_storage_category" Or data.Columns(i).ColumnName.ToString = "date" Or data.Columns(i).ColumnName.ToString = "Transaction" Then
+                If data.Columns(i).ColumnName.ToString = "date" Then
+                    band_ref.Columns.Add(BGVStockBOM.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Time"))
+                    BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                    BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss"
+                ElseIf data.Columns(i).ColumnName.ToString = "design_display_name" Then
+                    band_ref.Columns.Add(BGVStockBOM.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Design"))
+                ElseIf data.Columns(i).ColumnName.ToString = "design_code" Then
+                    band_ref.Columns.Add(BGVStockBOM.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Design Code"))
+                ElseIf data.Columns(i).ColumnName.ToString = "note" Then
+                    band_ref.Columns.Add(BGVStockBOM.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Note"))
+                Else
+                    band_ref.Columns.Add(BGVStockBOM.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
+                End If
+            ElseIf data.Columns(i).ColumnName.ToString = "Status" Then
+                band_stat.Columns.Add(BGVStockBOM.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Status"))
+                BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+            ElseIf data.Columns(i).ColumnName.ToString = "qty" Then
+                band_qty.Columns.Add(BGVStockBOM.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Quantity"))
+                BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
+            ElseIf data.Columns(i).ColumnName.ToString = "balance" Then
+                band_bal.Columns.Add(BGVStockBOM.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Balance"))
+                BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
+            Else
+                If data.Columns(i).ColumnName.ToString = "amount" Then
+                    band_amount.Columns.Add(BGVStockBOM.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Amount"))
+                Else
+                    band_amount.Columns.Add(BGVStockBOM.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
+                End If
+                BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BGVStockBOM.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
+            End If
+        Next
+
+        GCStockBOM.DataSource = data
+        dt = data
+
+        'hide column
+        'BGVStockBOM.Columns("id_report").Visible = False
+        BGVStockBOM.Columns("id_mat_det").Visible = False
+        BGVStockBOM.Columns("id_storage_category").Visible = False
+
+        'enable group
+        GCBOMTracking.Enabled = True
+
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = SLEMatBOM.Properties.View
+        Dim row_handle As Integer = view.FocusedRowHandle
+
+        BGVStockBOM.BestFitColumns()
+
+        Cursor = Cursors.Default
     End Sub
 End Class
