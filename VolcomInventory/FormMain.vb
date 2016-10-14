@@ -1437,6 +1437,28 @@ Public Class FormMain
             'DESIGN LIST
             FormEmpHolidayDet.id_holiday = "-1"
             FormEmpHolidayDet.ShowDialog()
+        ElseIf formName = "FormFGRepair" Then
+            'Repair
+            FormFGRepairDet.action = "ins"
+            FormFGRepairDet.ShowDialog()
+        ElseIf formName = "FormFGRepairRec" Then
+            'Repair receive
+            If FormFGRepairRec.XTCRepairRec.SelectedTabPageIndex = 1 Then
+                FormFGRepairRecDet.id_fg_repair_select = FormFGRepairRec.GVRepairList.GetFocusedRowCellValue("id_fg_repair").ToString
+                FormFGRepairRecDet.action = "ins"
+                FormFGRepairRecDet.ShowDialog()
+            End If
+        ElseIf formName = "FormFGRepairReturn" Then
+            'Return Repair
+            FormFGRepairReturnDet.action = "ins"
+            FormFGRepairReturnDet.ShowDialog()
+        ElseIf formName = "FormFGRepairReturnRec" Then
+            ''Repair return receive
+            If FormFGRepairReturnRec.XTCRepairRec.SelectedTabPageIndex = 1 Then
+                FormFGRepairReturnRecDet.id_fg_repair_return_select = FormFGRepairReturnRec.GVRepairList.GetFocusedRowCellValue("id_fg_repair_return").ToString
+                FormFGRepairReturnRecDet.action = "ins"
+                FormFGRepairReturnRecDet.ShowDialog()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -2231,6 +2253,26 @@ Public Class FormMain
                 'Template Shift Employee
                 FormEmpHolidayDet.id_holiday = FormEmpHoliday.GVHoliday.GetFocusedRowCellValue("id_emp_holiday").ToString
                 FormEmpHolidayDet.ShowDialog()
+            ElseIf formName = "FormFGRepair" Then
+                'Repair
+                FormFGRepairDet.action = "upd"
+                FormFGRepairDet.id_fg_repair = FormFGRepair.GVRepair.GetFocusedRowCellValue("id_fg_repair").ToString
+                FormFGRepairDet.ShowDialog()
+            ElseIf formName = "FormFGRepairRec" Then
+                'Repair rec
+                FormFGRepairRecDet.action = "upd"
+                FormFGRepairRecDet.id_fg_repair_rec = FormFGRepairRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_rec").ToString
+                FormFGRepairRecDet.ShowDialog()
+            ElseIf formName = "FormFGRepairReturn" Then
+                'Return Repair
+                FormFGRepairReturnDet.action = "upd"
+                FormFGRepairReturnDet.id_fg_repair_return = FormFGRepairReturn.GVRepairReturn.GetFocusedRowCellValue("id_fg_repair_return").ToString
+                FormFGRepairReturnDet.ShowDialog()
+            ElseIf formName = "FormFGRepairReturnRec" Then
+                'Repair return rec
+                FormFGRepairReturnRecDet.action = "upd"
+                FormFGRepairReturnRecDet.id_fg_repair_return_rec = FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString
+                FormFGRepairReturnRecDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5134,6 +5176,84 @@ Public Class FormMain
                     errorDelete()
                 End Try
             End If
+        ElseIf formName = "FormFGRepair" Then
+            If check_edit_report_status(FormFGRepair.GVRepair.GetFocusedRowCellValue("id_fg_repair").ToString, "91", FormFGRepair.GVRepair.GetFocusedRowCellValue("id_fg_repair")) Then
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Try
+                        Dim id_fg_repair As String = FormFGRepair.GVRepair.GetFocusedRowCellValue("id_fg_repair").ToString
+
+                        'cancel reserve
+                        Dim cancel As New ClassFGRepair()
+                        cancel.cancelReservedStock(id_fg_repair)
+
+                        query = String.Format("DELETE FROM tb_fg_repair WHERE id_fg_repair='{0}'", id_fg_repair)
+                        execute_non_query(query, True, "", "", "", "")
+                        FormFGRepair.viewData()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                End If
+            Else
+                stopCustom("This data already marked")
+            End If
+        ElseIf formName = "FormFGRepairRec" Then
+            If check_edit_report_status(FormFGRepairRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_rec").ToString, "92", FormFGRepairRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_rec")) Then
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Try
+                        Dim id_fg_repair_rec As String = FormFGRepairRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_rec").ToString
+
+                        query = String.Format("DELETE FROM tb_fg_repair_rec WHERE id_fg_repair_rec='{0}'", id_fg_repair_rec)
+                        execute_non_query(query, True, "", "", "", "")
+                        FormFGRepairRec.viewData()
+                        FormFGRepairRec.viewRepairList()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                End If
+            Else
+                stopCustom("This data already marked")
+            End If
+        ElseIf formName = "FormFGRepairReturnRec" Then
+            If check_edit_report_status(FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString, "94", FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec")) Then
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Try
+                        Dim id_fg_repair_return_rec As String = FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString
+
+                        query = String.Format("DELETE FROM tb_fg_repair_return_rec WHERE id_fg_repair_return_rec='{0}'", id_fg_repair_return_rec)
+                        execute_non_query(query, True, "", "", "", "")
+                        FormFGRepairReturnRec.viewData()
+                        FormFGRepairReturnRec.viewRepairList()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                End If
+            Else
+                stopCustom("This data already marked")
+            End If
+        ElseIf formName = "FormFGRepairReturn" Then
+            If check_edit_report_status(FormFGRepairReturn.GVRepairReturn.GetFocusedRowCellValue("id_fg_repair_return").ToString, "93", FormFGRepairReturn.GVRepairReturn.GetFocusedRowCellValue("id_fg_repair_return")) Then
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Try
+                        Dim id_fg_repair_return As String = FormFGRepairReturn.GVRepairReturn.GetFocusedRowCellValue("id_fg_repair_return").ToString
+
+                        'cancel reserve
+                        Dim cancel As New ClassFGRepairReturn()
+                        cancel.cancelReservedStock(id_fg_repair_return)
+
+                        query = String.Format("DELETE FROM tb_fg_repair_return WHERE id_fg_repair_return='{0}'", id_fg_repair_return)
+                        execute_non_query(query, True, "", "", "", "")
+                        FormFGRepairReturn.viewData()
+                    Catch ex As Exception
+                        errorDelete()
+                    End Try
+                End If
+            Else
+                stopCustom("This data already marked")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -6257,6 +6377,14 @@ Public Class FormMain
             Else
                 print(FormEmpHoliday.GCSum, "Holiday List")
             End If
+        ElseIf formName = "FormFGRepair" Then
+            print(FormFGRepair.GCRepair, "Repair Product")
+        ElseIf formName = "FormFGRepairRec" Then
+            print(FormFGRepairRec.GCRepairRec, "Receive Repair Product")
+        ElseIf formName = "FormFGRepairReturn" Then
+            print(FormFGRepairReturn.GCRepairReturn, "Return Repair Product")
+        ElseIf formName = "FormFGRepairReturnRec" Then
+            print(FormFGRepairReturnRec.GCRepairRec, "Receive Repair Product (WH)")
         Else
             RPSubMenu.Visible = False
         End If
@@ -6775,6 +6903,18 @@ Public Class FormMain
             'Employee Holiday
             FormEmpHoliday.Close()
             FormEmpHoliday.Dispose()
+        ElseIf formName = "FormFGRepair" Then
+            FormFGRepair.Close()
+            FormFGRepair.Dispose()
+        ElseIf formName = "FormFGRepairRec" Then
+            FormFGRepairRec.Close()
+            FormFGRepairRec.Dispose()
+        ElseIf formName = "FormFGRepairReturn" Then
+            FormFGRepairReturn.Close()
+            FormFGRepairReturn.Dispose()
+        ElseIf formName = "FormFGRepairReturnRec" Then
+            FormFGRepairReturnRec.Close()
+            FormFGRepairReturnRec.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7391,6 +7531,22 @@ Public Class FormMain
         ElseIf formName = "FormEmpShift" Then
             'Shift employee
             FormEmpShift.load_schedule()
+        ElseIf formName = "FormFGRepair" Then
+            FormFGRepair.viewData()
+        ElseIf formName = "FormFGRepairRec" Then
+            If FormFGRepairRec.XTCRepairRec.SelectedTabPageIndex = 0 Then
+                FormFGRepairRec.viewData()
+            Else
+                FormFGRepairRec.viewRepairList()
+            End If
+        ElseIf formName = "FormFGRepairReturn" Then
+            FormFGRepairReturn.viewData()
+        ElseIf formName = "FormFGRepairReturnRec" Then
+            If FormFGRepairReturnRec.XTCRepairRec.SelectedTabPageIndex = 0 Then
+                FormFGRepairReturnRec.viewData()
+            Else
+                FormFGRepairReturnRec.viewRepairList()
+            End If
         End If
     End Sub
     'Switch
