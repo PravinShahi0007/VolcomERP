@@ -4,7 +4,9 @@
     Dim bdel_active As String = "1"
 
     Private Sub BViewSchedule_Click(sender As Object, e As EventArgs) Handles BViewSchedule.Click
+        Cursor = Cursors.WaitCursor
         load_report()
+        Cursor = Cursors.Default
     End Sub
     Sub load_report()
         Dim date_start, date_until, dept As String
@@ -88,7 +90,9 @@
     End Sub
 
     Private Sub BViewSum_Click(sender As Object, e As EventArgs) Handles BViewSum.Click
+        Cursor = Cursors.WaitCursor
         load_report_sum()
+        Cursor = Cursors.Default
     End Sub
 
     Sub load_report_sum()

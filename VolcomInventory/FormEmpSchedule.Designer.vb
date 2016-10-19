@@ -33,6 +33,7 @@ Partial Class FormEmpSchedule
         Me.BSetSchedule = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BViewSchedule = New DevExpress.XtraEditors.SimpleButton()
+        Me.BTableInsert = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,6 +113,7 @@ Partial Class FormEmpSchedule
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BTableInsert)
         Me.PanelControl1.Controls.Add(Me.BSetSchedule)
         Me.PanelControl1.Controls.Add(Me.BViewSchedule)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -167,6 +169,17 @@ Partial Class FormEmpSchedule
         Me.BViewSchedule.TabIndex = 1
         Me.BViewSchedule.Text = "View Schedule"
         '
+        'BTableInsert
+        '
+        Me.BTableInsert.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BTableInsert.ImageIndex = 19
+        Me.BTableInsert.ImageList = Me.LargeImageCollection
+        Me.BTableInsert.Location = New System.Drawing.Point(129, 2)
+        Me.BTableInsert.Name = "BTableInsert"
+        Me.BTableInsert.Size = New System.Drawing.Size(117, 34)
+        Me.BTableInsert.TabIndex = 3
+        Me.BTableInsert.Text = "Schedule Table"
+        '
         'FormEmpSchedule
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -201,4 +214,5 @@ Partial Class FormEmpSchedule
     Friend WithEvents BSetSchedule As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BViewSchedule As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents BTableInsert As DevExpress.XtraEditors.SimpleButton
 End Class

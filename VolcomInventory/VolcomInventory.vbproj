@@ -515,6 +515,10 @@
       <DependentUpon>FormEmpFPFinger.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpFPFinger.vb">
+    <Compile Include="FormEmpCuti.Designer.vb">
+      <DependentUpon>FormEmpCuti.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpCuti.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpHoliday.Designer.vb">
@@ -557,6 +561,18 @@
       <DependentUpon>FormEmpScheduleBulkSet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpScheduleBulkSet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpScheduleTable.Designer.vb">
+      <DependentUpon>FormEmpScheduleTable.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpScheduleTable.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpScheduleTableSet.Designer.vb">
+      <DependentUpon>FormEmpScheduleTableSet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpScheduleTableSet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpScheduleView.Designer.vb">
@@ -4618,6 +4634,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpScheduleBulkSet.resx">
       <DependentUpon>FormEmpScheduleBulkSet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpScheduleTable.resx">
+      <DependentUpon>FormEmpScheduleTable.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpScheduleTableSet.resx">
+      <DependentUpon>FormEmpScheduleTableSet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpScheduleView.resx">
       <DependentUpon>FormEmpScheduleView.vb</DependentUpon>
