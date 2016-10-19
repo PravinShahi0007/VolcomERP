@@ -483,6 +483,12 @@
     <Compile Include="FormEmpCalendar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpCuti.Designer.vb">
+      <DependentUpon>FormEmpCuti.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpCuti.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpHoliday.Designer.vb">
       <DependentUpon>FormEmpHoliday.vb</DependentUpon>
     </Compile>
