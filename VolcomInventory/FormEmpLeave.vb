@@ -1,3 +1,5 @@
-﻿Public Class FormEmpDayoff
+﻿Public Class FormEmpLeave
+    Private Sub FormEmpLeave_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
 End Class
