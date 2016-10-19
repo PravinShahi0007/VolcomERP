@@ -197,7 +197,7 @@ Partial Class FormMasterEmployee
         Me.GridBandGeneral.Columns.Add(Me.BandedGridColumnMrgStatus)
         Me.GridBandGeneral.Name = "GridBandGeneral"
         Me.GridBandGeneral.VisibleIndex = 1
-        Me.GridBandGeneral.Width = 1711
+        Me.GridBandGeneral.Width = 1636
         '
         'GridColumn3
         '
@@ -322,7 +322,6 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnAgeUnb.Name = "BandedGridColumnAgeUnb"
         Me.BandedGridColumnAgeUnb.UnboundExpression = "Floor(DateDiffMonth([employee_dob], LocalDateTimeNow()) / 12)"
         Me.BandedGridColumnAgeUnb.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.BandedGridColumnAgeUnb.Visible = True
         '
         'BandedGridColumnAddress
         '

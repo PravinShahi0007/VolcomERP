@@ -45,4 +45,8 @@
     Private Sub BSetSchedule_Click(sender As Object, e As EventArgs) Handles BSetSchedule.Click
         FormEmpScheduleBulkSet.ShowDialog()
     End Sub
+
+    Private Sub BTableInsert_Click(sender As Object, e As EventArgs) Handles BTableInsert.Click
+        FormEmpScheduleTable.ShowDialog()
+    End Sub
 End Class

@@ -9,6 +9,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
             TEShiftName.Text = data.Rows(0)("shift_name").ToString
+            TEShiftCode.Text = data.Rows(0)("shift_code").ToString
             TEWorkStart.EditValue = data.Rows(0)("start_work")
             TEWorkEnd.EditValue = data.Rows(0)("end_work")
             TEBreakStart.EditValue = data.Rows(0)("start_break")
@@ -94,9 +95,10 @@
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
-        Dim shift_name, start_work, end_work, start_break, end_break, start_tolerance, minutes_work, sun, mon, tues, wed, thurs, fri, sat, is_start_daybefore, is_start_tol_daybefore, is_end_dayafter, ignore_holiday As String
+        Dim shift_name, shift_code, start_work, end_work, start_break, end_break, start_tolerance, minutes_work, sun, mon, tues, wed, thurs, fri, sat, is_start_daybefore, is_start_tol_daybefore, is_end_dayafter, ignore_holiday As String
 
         shift_name = TEShiftName.Text
+        shift_code = TEShiftCode.Text
         start_work = Date.Parse(TEWorkStart.EditValue.ToString).ToString("HH:mm:ss")
         end_work = Date.Parse(TEWorkEnd.EditValue.ToString).ToString("HH:mm:ss")
         start_break = Date.Parse(TEBreakStart.EditValue.ToString).ToString("HH:mm:ss")
@@ -138,8 +140,8 @@
         '
         If id_shift = "-1" Then 'new
             Dim query As String = ""
-            query = "INSERT INTO tb_emp_shift(shift_name,start_work,late_start_tolerance,end_work,start_break,end_break,minutes_work,monday,tuesday,wednesday,thursday,friday,saturday,sunday,is_start_daybefore,is_start_tol_daybefore,is_end_dayafter,is_ignore_holiday)"
-            query += "VALUES('" + shift_name + "','" + start_work + "','" + start_tolerance + "','" + end_work + "','" + start_break + "','" + end_break + "','" + minutes_work + "','" + mon + "','" + tues + "','" + wed + "','" + thurs + "','" + fri + "','" + sat + "','" + sun + "','" & is_start_daybefore & "','" & is_start_tol_daybefore & "','" & is_end_dayafter & "','" & ignore_holiday & "')"
+            query = "INSERT INTO tb_emp_shift(shift_name,shift_code,start_work,late_start_tolerance,end_work,start_break,end_break,minutes_work,monday,tuesday,wednesday,thursday,friday,saturday,sunday,is_start_daybefore,is_start_tol_daybefore,is_end_dayafter,is_ignore_holiday)"
+            query += "VALUES('" + shift_name + "','" + shift_code + "','" + start_work + "','" + start_tolerance + "','" + end_work + "','" + start_break + "','" + end_break + "','" + minutes_work + "','" + mon + "','" + tues + "','" + wed + "','" + thurs + "','" + fri + "','" + sat + "','" + sun + "','" & is_start_daybefore & "','" & is_start_tol_daybefore & "','" & is_end_dayafter & "','" & ignore_holiday & "')"
             execute_non_query(query, True, "", "", "", "")
 
             FormEmpShift.load_schedule()
@@ -147,7 +149,7 @@
             Close()
         Else
             Dim query As String = ""
-            query = "UPDATE tb_emp_shift SET shift_name='" + shift_name + "',start_work='" + start_work + "',late_start_tolerance='" + start_tolerance + "',end_work='" + end_work + "',start_break='" + start_break + "',end_break='" + end_break + "',minutes_work='" + minutes_work + "',monday='" + mon + "',tuesday='" + tues + "',wednesday='" + wed + "',thursday='" + thurs + "',friday='" + fri + "',saturday='" + sat + "',sunday='" + sun + "',is_start_daybefore='" & is_start_daybefore & "',is_start_tol_daybefore='" & is_start_tol_daybefore & "',is_end_dayafter='" & is_end_dayafter & "',is_ignore_holiday='" & ignore_holiday & "' WHERE id_shift='" + id_shift + "'"
+            query = "UPDATE tb_emp_shift SET shift_name='" + shift_name + "',shift_code='" + shift_code + "',start_work='" + start_work + "',late_start_tolerance='" + start_tolerance + "',end_work='" + end_work + "',start_break='" + start_break + "',end_break='" + end_break + "',minutes_work='" + minutes_work + "',monday='" + mon + "',tuesday='" + tues + "',wednesday='" + wed + "',thursday='" + thurs + "',friday='" + fri + "',saturday='" + sat + "',sunday='" + sun + "',is_start_daybefore='" & is_start_daybefore & "',is_start_tol_daybefore='" & is_start_tol_daybefore & "',is_end_dayafter='" & is_end_dayafter & "',is_ignore_holiday='" & ignore_holiday & "' WHERE id_shift='" + id_shift + "'"
             execute_non_query(query, True, "", "", "", "")
 
             FormEmpShift.load_schedule()

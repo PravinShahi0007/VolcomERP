@@ -33,6 +33,10 @@ Partial Class FormEmpShiftDet
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TEMinutes = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.CEHoliday = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEEndNext = New DevExpress.XtraEditors.CheckEdit()
+        Me.CETolNext = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEStartNext = New DevExpress.XtraEditors.CheckEdit()
         Me.TEWorkStartTol = New DevExpress.XtraEditors.TimeEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.CESaturday = New DevExpress.XtraEditors.CheckEdit()
@@ -45,10 +49,8 @@ Partial Class FormEmpShiftDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.CEStartNext = New DevExpress.XtraEditors.CheckEdit()
-        Me.CETolNext = New DevExpress.XtraEditors.CheckEdit()
-        Me.CEEndNext = New DevExpress.XtraEditors.CheckEdit()
-        Me.CEHoliday = New DevExpress.XtraEditors.CheckEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEShiftCode = New DevExpress.XtraEditors.TextEdit()
         CType(Me.TEShiftName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -59,6 +61,10 @@ Partial Class FormEmpShiftDet
         CType(Me.TEMinutes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.CEHoliday.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEEndNext.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CETolNext.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEStartNext.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWorkStartTol.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CESaturday.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEFriday.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,10 +75,7 @@ Partial Class FormEmpShiftDet
         CType(Me.CESunday.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.CEStartNext.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CETolNext.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEEndNext.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEHoliday.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEShiftCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TEShiftName
@@ -95,12 +98,14 @@ Partial Class FormEmpShiftDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.LabelControl8)
+        Me.PanelControl1.Controls.Add(Me.TEShiftCode)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.TEShiftName)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(492, 52)
+        Me.PanelControl1.Size = New System.Drawing.Size(492, 73)
         Me.PanelControl1.TabIndex = 2
         '
         'TEWorkStart
@@ -111,7 +116,7 @@ Partial Class FormEmpShiftDet
         Me.TEWorkStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEWorkStart.Properties.Mask.EditMask = "HH:mm:ss"
         Me.TEWorkStart.Size = New System.Drawing.Size(100, 20)
-        Me.TEWorkStart.TabIndex = 3
+        Me.TEWorkStart.TabIndex = 2
         '
         'LabelControl2
         '
@@ -137,7 +142,7 @@ Partial Class FormEmpShiftDet
         Me.TEWorkEnd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEWorkEnd.Properties.Mask.EditMask = "HH:mm:ss"
         Me.TEWorkEnd.Size = New System.Drawing.Size(100, 20)
-        Me.TEWorkEnd.TabIndex = 5
+        Me.TEWorkEnd.TabIndex = 6
         '
         'LabelControl4
         '
@@ -173,7 +178,7 @@ Partial Class FormEmpShiftDet
         Me.TEBreakStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEBreakStart.Properties.Mask.EditMask = "HH:mm:ss"
         Me.TEBreakStart.Size = New System.Drawing.Size(100, 20)
-        Me.TEBreakStart.TabIndex = 7
+        Me.TEBreakStart.TabIndex = 8
         '
         'LabelControl6
         '
@@ -190,7 +195,7 @@ Partial Class FormEmpShiftDet
         Me.TEMinutes.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
         Me.TEMinutes.Properties.Appearance.Options.UseFont = True
         Me.TEMinutes.Size = New System.Drawing.Size(268, 22)
-        Me.TEMinutes.TabIndex = 12
+        Me.TEMinutes.TabIndex = 10
         '
         'PanelControl2
         '
@@ -218,10 +223,42 @@ Partial Class FormEmpShiftDet
         Me.PanelControl2.Controls.Add(Me.TEBreakStart)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 52)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 73)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(492, 219)
+        Me.PanelControl2.Size = New System.Drawing.Size(492, 218)
         Me.PanelControl2.TabIndex = 13
+        '
+        'CEHoliday
+        '
+        Me.CEHoliday.Location = New System.Drawing.Point(383, 186)
+        Me.CEHoliday.Name = "CEHoliday"
+        Me.CEHoliday.Properties.Caption = "Ignore Holiday"
+        Me.CEHoliday.Size = New System.Drawing.Size(97, 19)
+        Me.CEHoliday.TabIndex = 18
+        '
+        'CEEndNext
+        '
+        Me.CEEndNext.Location = New System.Drawing.Point(203, 69)
+        Me.CEEndNext.Name = "CEEndNext"
+        Me.CEEndNext.Properties.Caption = "Day After"
+        Me.CEEndNext.Size = New System.Drawing.Size(75, 19)
+        Me.CEEndNext.TabIndex = 7
+        '
+        'CETolNext
+        '
+        Me.CETolNext.Location = New System.Drawing.Point(203, 37)
+        Me.CETolNext.Name = "CETolNext"
+        Me.CETolNext.Properties.Caption = "Day Before"
+        Me.CETolNext.Size = New System.Drawing.Size(75, 19)
+        Me.CETolNext.TabIndex = 5
+        '
+        'CEStartNext
+        '
+        Me.CEStartNext.Location = New System.Drawing.Point(203, 11)
+        Me.CEStartNext.Name = "CEStartNext"
+        Me.CEStartNext.Properties.Caption = "Day Before"
+        Me.CEStartNext.Size = New System.Drawing.Size(75, 19)
+        Me.CEStartNext.TabIndex = 3
         '
         'TEWorkStartTol
         '
@@ -231,7 +268,7 @@ Partial Class FormEmpShiftDet
         Me.TEWorkStartTol.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEWorkStartTol.Properties.Mask.EditMask = "HH:mm:ss"
         Me.TEWorkStartTol.Size = New System.Drawing.Size(100, 20)
-        Me.TEWorkStartTol.TabIndex = 20
+        Me.TEWorkStartTol.TabIndex = 4
         '
         'LabelControl7
         '
@@ -247,7 +284,7 @@ Partial Class FormEmpShiftDet
         Me.CESaturday.Name = "CESaturday"
         Me.CESaturday.Properties.Caption = "Saturday"
         Me.CESaturday.Size = New System.Drawing.Size(75, 19)
-        Me.CESaturday.TabIndex = 19
+        Me.CESaturday.TabIndex = 17
         '
         'CEFriday
         '
@@ -255,7 +292,7 @@ Partial Class FormEmpShiftDet
         Me.CEFriday.Name = "CEFriday"
         Me.CEFriday.Properties.Caption = "Friday"
         Me.CEFriday.Size = New System.Drawing.Size(75, 19)
-        Me.CEFriday.TabIndex = 18
+        Me.CEFriday.TabIndex = 16
         '
         'CEThursday
         '
@@ -263,7 +300,7 @@ Partial Class FormEmpShiftDet
         Me.CEThursday.Name = "CEThursday"
         Me.CEThursday.Properties.Caption = "Thursday"
         Me.CEThursday.Size = New System.Drawing.Size(75, 19)
-        Me.CEThursday.TabIndex = 17
+        Me.CEThursday.TabIndex = 15
         '
         'CEWednesday
         '
@@ -271,7 +308,7 @@ Partial Class FormEmpShiftDet
         Me.CEWednesday.Name = "CEWednesday"
         Me.CEWednesday.Properties.Caption = "Wednesday"
         Me.CEWednesday.Size = New System.Drawing.Size(84, 19)
-        Me.CEWednesday.TabIndex = 16
+        Me.CEWednesday.TabIndex = 14
         '
         'CETuesday
         '
@@ -279,7 +316,7 @@ Partial Class FormEmpShiftDet
         Me.CETuesday.Name = "CETuesday"
         Me.CETuesday.Properties.Caption = "Tuesday"
         Me.CETuesday.Size = New System.Drawing.Size(75, 19)
-        Me.CETuesday.TabIndex = 15
+        Me.CETuesday.TabIndex = 13
         '
         'CEMonday
         '
@@ -287,7 +324,7 @@ Partial Class FormEmpShiftDet
         Me.CEMonday.Name = "CEMonday"
         Me.CEMonday.Properties.Caption = "Monday"
         Me.CEMonday.Size = New System.Drawing.Size(75, 19)
-        Me.CEMonday.TabIndex = 14
+        Me.CEMonday.TabIndex = 12
         '
         'CESunday
         '
@@ -295,14 +332,14 @@ Partial Class FormEmpShiftDet
         Me.CESunday.Name = "CESunday"
         Me.CESunday.Properties.Caption = "Sunday"
         Me.CESunday.Size = New System.Drawing.Size(75, 19)
-        Me.CESunday.TabIndex = 13
+        Me.CESunday.TabIndex = 11
         '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 271)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 291)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(492, 41)
         Me.PanelControl3.TabIndex = 14
@@ -313,7 +350,7 @@ Partial Class FormEmpShiftDet
         Me.BCancel.Location = New System.Drawing.Point(340, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(75, 37)
-        Me.BCancel.TabIndex = 1
+        Me.BCancel.TabIndex = 20
         Me.BCancel.Text = "Cancel"
         '
         'BSave
@@ -322,46 +359,32 @@ Partial Class FormEmpShiftDet
         Me.BSave.Location = New System.Drawing.Point(415, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(75, 37)
-        Me.BSave.TabIndex = 0
+        Me.BSave.TabIndex = 19
         Me.BSave.Text = "Save"
         '
-        'CEStartNext
+        'LabelControl8
         '
-        Me.CEStartNext.Location = New System.Drawing.Point(203, 11)
-        Me.CEStartNext.Name = "CEStartNext"
-        Me.CEStartNext.Properties.Caption = "Day Before"
-        Me.CEStartNext.Size = New System.Drawing.Size(75, 19)
-        Me.CEStartNext.TabIndex = 22
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.LabelControl8.Location = New System.Drawing.Point(12, 45)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(59, 16)
+        Me.LabelControl8.TabIndex = 3
+        Me.LabelControl8.Text = "Shift Code"
         '
-        'CETolNext
+        'TEShiftCode
         '
-        Me.CETolNext.Location = New System.Drawing.Point(203, 37)
-        Me.CETolNext.Name = "CETolNext"
-        Me.CETolNext.Properties.Caption = "Day Before"
-        Me.CETolNext.Size = New System.Drawing.Size(75, 19)
-        Me.CETolNext.TabIndex = 23
-        '
-        'CEEndNext
-        '
-        Me.CEEndNext.Location = New System.Drawing.Point(203, 69)
-        Me.CEEndNext.Name = "CEEndNext"
-        Me.CEEndNext.Properties.Caption = "Day After"
-        Me.CEEndNext.Size = New System.Drawing.Size(75, 19)
-        Me.CEEndNext.TabIndex = 24
-        '
-        'CEHoliday
-        '
-        Me.CEHoliday.Location = New System.Drawing.Point(383, 186)
-        Me.CEHoliday.Name = "CEHoliday"
-        Me.CEHoliday.Properties.Caption = "Ignore Holiday"
-        Me.CEHoliday.Size = New System.Drawing.Size(97, 19)
-        Me.CEHoliday.TabIndex = 25
+        Me.TEShiftCode.Location = New System.Drawing.Point(97, 42)
+        Me.TEShiftCode.Name = "TEShiftCode"
+        Me.TEShiftCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!)
+        Me.TEShiftCode.Properties.Appearance.Options.UseFont = True
+        Me.TEShiftCode.Size = New System.Drawing.Size(268, 22)
+        Me.TEShiftCode.TabIndex = 1
         '
         'FormEmpShiftDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(492, 312)
+        Me.ClientSize = New System.Drawing.Size(492, 332)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.PanelControl1)
@@ -382,6 +405,10 @@ Partial Class FormEmpShiftDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.CEHoliday.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEEndNext.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CETolNext.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEStartNext.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWorkStartTol.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CESaturday.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEFriday.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -392,10 +419,7 @@ Partial Class FormEmpShiftDet
         CType(Me.CESunday.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.CEStartNext.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CETolNext.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEEndNext.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEHoliday.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEShiftCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -430,4 +454,6 @@ Partial Class FormEmpShiftDet
     Friend WithEvents CEStartNext As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents CEEndNext As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents CEHoliday As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEShiftCode As DevExpress.XtraEditors.TextEdit
 End Class
