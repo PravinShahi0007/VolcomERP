@@ -45,6 +45,9 @@
     End Sub
     'Form Load
     Private Sub FormProdDemandSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        'initial role super admin
+        id_role_super_admin = get_setup_field("id_role_super_admin")
+
         viewCategory()
         viewSeason()
         viewKind()
@@ -75,8 +78,7 @@
             LESampleDivision.Enabled = False
         End If
 
-        'initial role super admin
-        id_role_super_admin = get_setup_field("id_role_super_admin")
+
 
         'custom column template inisialisasi
         'initialisation datatable edit
@@ -91,7 +93,11 @@
 
     'type
     Sub viewKind()
-        Dim query As String = "SELECT * FROM tb_lookup_pd_kind WHERE id_departement='" + id_departement_user + "' ORDER BY id_pd_kind ASC "
+        Dim query As String = "SELECT * FROM tb_lookup_pd_kind "
+        If id_role_login <> id_role_super_admin Then
+            query += "WHERE id_departement='" + id_departement_user + "' "
+        End If
+        query += "ORDER BY id_pd_kind ASC "
         viewSearchLookupQuery(SLEKind, query, "id_pd_kind", "pd_kind", "id_pd_kind")
     End Sub
 
