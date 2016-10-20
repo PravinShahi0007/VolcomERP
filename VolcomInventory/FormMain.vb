@@ -1459,6 +1459,10 @@ Public Class FormMain
                 FormFGRepairReturnRecDet.action = "ins"
                 FormFGRepairReturnRecDet.ShowDialog()
             End If
+        ElseIf formName = "FormEmpLeave" Then
+            'Leave
+            FormEmpLeaveDet.id_emp_leave = "-1"
+            FormEmpLeaveDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10037,6 +10041,19 @@ Public Class FormMain
             FormEmpEmail.Show()
             FormEmpEmail.WindowState = FormWindowState.Maximized
             FormEmpEmail.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpLeave_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpLeave.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpLeave.MdiParent = Me
+            FormEmpLeave.Show()
+            FormEmpLeave.WindowState = FormWindowState.Maximized
+            FormEmpLeave.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
