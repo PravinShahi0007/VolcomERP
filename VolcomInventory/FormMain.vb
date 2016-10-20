@@ -1459,6 +1459,10 @@ Public Class FormMain
                 FormFGRepairReturnRecDet.action = "ins"
                 FormFGRepairReturnRecDet.ShowDialog()
             End If
+        ElseIf formName = "FormEmpLeave" Then
+            'Leave
+            FormEmpLeaveDet.id_emp_leave = "-1"
+            FormEmpLeaveDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2273,6 +2277,9 @@ Public Class FormMain
                 FormFGRepairReturnRecDet.action = "upd"
                 FormFGRepairReturnRecDet.id_fg_repair_return_rec = FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString
                 FormFGRepairReturnRecDet.ShowDialog()
+            ElseIf formName = "FormEmpEmail" Then
+                FormEmpEmailDet.id = FormEmpEmail.GVEmail.GetFocusedRowCellValue("id_employee").ToString
+                FormEmpEmailDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6415,6 +6422,8 @@ Public Class FormMain
             print(FormFGRepairReturn.GCRepairReturn, "Return Repair Product")
         ElseIf formName = "FormFGRepairReturnRec" Then
             print(FormFGRepairReturnRec.GCRepairRec, "Receive Repair Product (WH)")
+        ElseIf formName = "FormEmpEmail" Then
+            print(FormEmpEmail.GCEmail, "Email List")
         Else
             RPSubMenu.Visible = False
         End If
@@ -6945,6 +6954,9 @@ Public Class FormMain
         ElseIf formName = "FormFGRepairReturnRec" Then
             FormFGRepairReturnRec.Close()
             FormFGRepairReturnRec.Dispose()
+        ElseIf formName = "FormEmpEmail" Then
+            FormEmpEmail.Close()
+            FormEmpEmail.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7571,6 +7583,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormFGRepairReturn" Then
             FormFGRepairReturn.viewData()
+        ElseIf formName = "FormEmpEmail" Then
+            FormEmpEmail.viewEmployee("-1")
         ElseIf formName = "FormFGRepairReturnRec" Then
             If FormFGRepairReturnRec.XTCRepairRec.SelectedTabPageIndex = 0 Then
                 FormFGRepairReturnRec.viewData()
@@ -10000,6 +10014,46 @@ Public Class FormMain
             FormFGRepairReturnRec.Show()
             FormFGRepairReturnRec.WindowState = FormWindowState.Maximized
             FormFGRepairReturnRec.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAttnSumDept_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnSumDept.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttnSum.MdiParent = Me
+            FormEmpAttnSum.view_one_dept = True
+            FormEmpAttnSum.Show()
+            FormEmpAttnSum.WindowState = FormWindowState.Maximized
+            FormEmpAttnSum.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpEmail_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpEmail.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpEmail.MdiParent = Me
+            FormEmpEmail.Show()
+            FormEmpEmail.WindowState = FormWindowState.Maximized
+            FormEmpEmail.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpLeave_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpLeave.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpLeave.MdiParent = Me
+            FormEmpLeave.Show()
+            FormEmpLeave.WindowState = FormWindowState.Maximized
+            FormEmpLeave.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
