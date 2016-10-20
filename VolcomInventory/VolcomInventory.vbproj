@@ -949,6 +949,12 @@
     <Compile Include="FormPopUpDesign.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPopUpEmployee.Designer.vb">
+      <DependentUpon>FormPopUpEmployee.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpEmployee.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpInvoiceMissing.designer.vb">
       <DependentUpon>FormPopUpInvoiceMissing.vb</DependentUpon>
     </Compile>
@@ -4848,6 +4854,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpDesign.resx">
       <DependentUpon>FormPopUpDesign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpEmployee.resx">
+      <DependentUpon>FormPopUpEmployee.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpInvoiceMissing.resx">
       <DependentUpon>FormPopUpInvoiceMissing.vb</DependentUpon>
