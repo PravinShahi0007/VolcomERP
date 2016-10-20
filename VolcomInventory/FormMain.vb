@@ -6431,7 +6431,9 @@ Public Class FormMain
         ElseIf formName = "FormFGRepairReturnRec" Then
             print(FormFGRepairReturnRec.GCRepairRec, "Receive Repair Product (WH)")
         ElseIf formName = "FormEmpEmail" Then
+            FormEmpEmail.GVEmail.ActiveFilterString = "Not IsNullOrEmpty([email_lokal]) Or Not IsNullOrEmpty([email_external]) OR Not IsNullOrEmpty([email_other])"
             print(FormEmpEmail.GCEmail, "Email List")
+            FormEmpEmail.GVEmail.ActiveFilterString = ""
         Else
             RPSubMenu.Visible = False
         End If

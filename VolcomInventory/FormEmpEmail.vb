@@ -21,8 +21,6 @@
         ORDER BY departement ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmail.DataSource = data
-        'GVEmail.ActiveFilterString = "[email_lokal]<>''"
-        'Or Not [email_external]='' OR Not [email_other]=''
     End Sub
 
     Private Sub FormEmpEmail_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -76,6 +74,7 @@
 
     Private Sub GVEmail_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVEmail.FocusedRowChanged
         noManipulating()
+        ' MsgBox(GVEmail.ActiveFilterString.ToString)
     End Sub
 
     Private Sub GVEmail_DoubleClick(sender As Object, e As EventArgs) Handles GVEmail.DoubleClick
