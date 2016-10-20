@@ -651,7 +651,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.LEDegree.Location = New System.Drawing.Point(107, 90)
         Me.LEDegree.Name = "LEDegree"
         Me.LEDegree.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEDegree.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_religion", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("religion", "Religion")})
+        Me.LEDegree.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_education", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("education", "Religion")})
         Me.LEDegree.Size = New System.Drawing.Size(674, 20)
         Me.LEDegree.TabIndex = 7
         '
