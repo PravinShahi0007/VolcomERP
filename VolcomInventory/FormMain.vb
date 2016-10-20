@@ -1459,6 +1459,10 @@ Public Class FormMain
                 FormFGRepairReturnRecDet.action = "ins"
                 FormFGRepairReturnRecDet.ShowDialog()
             End If
+        ElseIf formName = "FormEmpEmail" Then
+            'Email List
+            FormEmpEmailDet.type = "2"
+            FormEmpEmailDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2274,7 +2278,15 @@ Public Class FormMain
                 FormFGRepairReturnRecDet.id_fg_repair_return_rec = FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString
                 FormFGRepairReturnRecDet.ShowDialog()
             ElseIf formName = "FormEmpEmail" Then
-                FormEmpEmailDet.id = FormEmpEmail.GVEmail.GetFocusedRowCellValue("id_employee").ToString
+                Dim type As String = FormEmpEmail.GVEmail.GetFocusedRowCellValue("type").ToString
+                If type = "1" Then
+                    FormEmpEmailDet.id = FormEmpEmail.GVEmail.GetFocusedRowCellValue("id_employee").ToString
+                Else
+                    FormEmpEmailDet.id = FormEmpEmail.GVEmail.GetFocusedRowCellValue("id_other_email").ToString
+                End If
+
+                FormEmpEmailDet.type = type
+
                 FormEmpEmailDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
