@@ -116,19 +116,6 @@ Partial Class FormMain
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotifyIconVI = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.NBProdRet = New DevExpress.XtraNavBar.NavBarControl()
-        Me.NBGHRD = New DevExpress.XtraNavBar.NavBarGroup()
-        Me.NBEmployee = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBShift = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBSchedule = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAttnLog = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBInitializeFP = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBFPSetup = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBHoliday = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAttnInd = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAttnSum = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBEmpReview = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAttnSumDept = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBEmpLeave = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGGeneral = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBWork = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBCompany_category = New DevExpress.XtraNavBar.NavBarItem()
@@ -143,6 +130,20 @@ Partial Class FormMain
         Me.NBComputer = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBTestBC = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBEmpEmail = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBGHRD = New DevExpress.XtraNavBar.NavBarGroup()
+        Me.NBEmployee = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBShift = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSchedule = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAttnLog = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBInitializeFP = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFPSetup = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBHoliday = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAttnInd = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAttnSum = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBEmpReview = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAttnSumDept = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBEmpLeave = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBScheduleSecurity = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGMaster = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBSeason = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSeasonNonMerch = New DevExpress.XtraNavBar.NavBarItem()
@@ -293,7 +294,6 @@ Partial Class FormMain
         Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBScheduleSecurity = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1198,87 +1198,6 @@ Partial Class FormMain
         Me.NBProdRet.Text = "NavBarControl1"
         Me.NBProdRet.View = New DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator()
         '
-        'NBGHRD
-        '
-        Me.NBGHRD.Caption = "Human Resource"
-        Me.NBGHRD.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmployee), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBShift), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSchedule), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnLog), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInitializeFP), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFPSetup), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBHoliday), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnInd), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpReview), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnSumDept), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpLeave), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScheduleSecurity)})
-        Me.NBGHRD.LargeImage = CType(resources.GetObject("NBGHRD.LargeImage"), System.Drawing.Image)
-        Me.NBGHRD.Name = "NBGHRD"
-        Me.NBGHRD.TopVisibleLinkIndex = 1
-        '
-        'NBEmployee
-        '
-        Me.NBEmployee.Caption = "Employee"
-        Me.NBEmployee.LargeImageIndex = 5
-        Me.NBEmployee.Name = "NBEmployee"
-        Me.NBEmployee.SmallImageIndex = 6
-        '
-        'NBShift
-        '
-        Me.NBShift.Caption = "Template Shift"
-        Me.NBShift.Name = "NBShift"
-        Me.NBShift.SmallImageIndex = 23
-        '
-        'NBSchedule
-        '
-        Me.NBSchedule.Caption = "Schedule Shift"
-        Me.NBSchedule.Name = "NBSchedule"
-        Me.NBSchedule.SmallImageIndex = 39
-        '
-        'NBAttnLog
-        '
-        Me.NBAttnLog.Caption = "Attendance Record"
-        Me.NBAttnLog.Name = "NBAttnLog"
-        Me.NBAttnLog.SmallImageIndex = 34
-        '
-        'NBInitializeFP
-        '
-        Me.NBInitializeFP.Caption = "Initialize Fingerprint"
-        Me.NBInitializeFP.Name = "NBInitializeFP"
-        Me.NBInitializeFP.SmallImage = CType(resources.GetObject("NBInitializeFP.SmallImage"), System.Drawing.Image)
-        '
-        'NBFPSetup
-        '
-        Me.NBFPSetup.Caption = "Fingerprint Setup"
-        Me.NBFPSetup.Name = "NBFPSetup"
-        Me.NBFPSetup.SmallImage = CType(resources.GetObject("NBFPSetup.SmallImage"), System.Drawing.Image)
-        '
-        'NBHoliday
-        '
-        Me.NBHoliday.Caption = "Holiday List"
-        Me.NBHoliday.Name = "NBHoliday"
-        Me.NBHoliday.SmallImageIndex = 11
-        '
-        'NBAttnInd
-        '
-        Me.NBAttnInd.Caption = "Attendance Report (Individual)"
-        Me.NBAttnInd.Name = "NBAttnInd"
-        Me.NBAttnInd.SmallImageIndex = 38
-        '
-        'NBAttnSum
-        '
-        Me.NBAttnSum.Caption = "Attendance Report (Summary)"
-        Me.NBAttnSum.Name = "NBAttnSum"
-        Me.NBAttnSum.SmallImageIndex = 38
-        '
-        'NBEmpReview
-        '
-        Me.NBEmpReview.Caption = "Employee Review"
-        Me.NBEmpReview.Name = "NBEmpReview"
-        Me.NBEmpReview.SmallImage = CType(resources.GetObject("NBEmpReview.SmallImage"), System.Drawing.Image)
-        '
-        'NBAttnSumDept
-        '
-        Me.NBAttnSumDept.Caption = "Attendance Report"
-        Me.NBAttnSumDept.Name = "NBAttnSumDept"
-        Me.NBAttnSumDept.SmallImageIndex = 38
-        '
-        'NBEmpLeave
-        '
-        Me.NBEmpLeave.Caption = "Leave Management"
-        Me.NBEmpLeave.Name = "NBEmpLeave"
-        Me.NBEmpLeave.SmallImageIndex = 22
-        '
         'NBGGeneral
         '
         Me.NBGGeneral.Caption = "General"
@@ -1374,6 +1293,92 @@ Partial Class FormMain
         Me.NBEmpEmail.Caption = "Email List"
         Me.NBEmpEmail.Name = "NBEmpEmail"
         Me.NBEmpEmail.SmallImage = CType(resources.GetObject("NBEmpEmail.SmallImage"), System.Drawing.Image)
+        '
+        'NBGHRD
+        '
+        Me.NBGHRD.Caption = "Human Resource"
+        Me.NBGHRD.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmployee), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBShift), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSchedule), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnLog), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInitializeFP), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFPSetup), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBHoliday), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnInd), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpReview), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnSumDept), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpLeave), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScheduleSecurity)})
+        Me.NBGHRD.LargeImage = CType(resources.GetObject("NBGHRD.LargeImage"), System.Drawing.Image)
+        Me.NBGHRD.Name = "NBGHRD"
+        '
+        'NBEmployee
+        '
+        Me.NBEmployee.Caption = "Employee"
+        Me.NBEmployee.LargeImageIndex = 5
+        Me.NBEmployee.Name = "NBEmployee"
+        Me.NBEmployee.SmallImageIndex = 6
+        '
+        'NBShift
+        '
+        Me.NBShift.Caption = "Template Shift"
+        Me.NBShift.Name = "NBShift"
+        Me.NBShift.SmallImageIndex = 23
+        '
+        'NBSchedule
+        '
+        Me.NBSchedule.Caption = "Schedule Shift"
+        Me.NBSchedule.Name = "NBSchedule"
+        Me.NBSchedule.SmallImageIndex = 39
+        '
+        'NBAttnLog
+        '
+        Me.NBAttnLog.Caption = "Attendance Record"
+        Me.NBAttnLog.Name = "NBAttnLog"
+        Me.NBAttnLog.SmallImageIndex = 34
+        '
+        'NBInitializeFP
+        '
+        Me.NBInitializeFP.Caption = "Initialize Fingerprint"
+        Me.NBInitializeFP.Name = "NBInitializeFP"
+        Me.NBInitializeFP.SmallImage = CType(resources.GetObject("NBInitializeFP.SmallImage"), System.Drawing.Image)
+        '
+        'NBFPSetup
+        '
+        Me.NBFPSetup.Caption = "Fingerprint Setup"
+        Me.NBFPSetup.Name = "NBFPSetup"
+        Me.NBFPSetup.SmallImage = CType(resources.GetObject("NBFPSetup.SmallImage"), System.Drawing.Image)
+        '
+        'NBHoliday
+        '
+        Me.NBHoliday.Caption = "Holiday List"
+        Me.NBHoliday.Name = "NBHoliday"
+        Me.NBHoliday.SmallImageIndex = 11
+        '
+        'NBAttnInd
+        '
+        Me.NBAttnInd.Caption = "Attendance Report (Individual)"
+        Me.NBAttnInd.Name = "NBAttnInd"
+        Me.NBAttnInd.SmallImageIndex = 38
+        '
+        'NBAttnSum
+        '
+        Me.NBAttnSum.Caption = "Attendance Report (Summary)"
+        Me.NBAttnSum.Name = "NBAttnSum"
+        Me.NBAttnSum.SmallImageIndex = 38
+        '
+        'NBEmpReview
+        '
+        Me.NBEmpReview.Caption = "Employee Review"
+        Me.NBEmpReview.Name = "NBEmpReview"
+        Me.NBEmpReview.SmallImage = CType(resources.GetObject("NBEmpReview.SmallImage"), System.Drawing.Image)
+        '
+        'NBAttnSumDept
+        '
+        Me.NBAttnSumDept.Caption = "Attendance Report"
+        Me.NBAttnSumDept.Name = "NBAttnSumDept"
+        Me.NBAttnSumDept.SmallImageIndex = 38
+        '
+        'NBEmpLeave
+        '
+        Me.NBEmpLeave.Caption = "Leave Management"
+        Me.NBEmpLeave.Name = "NBEmpLeave"
+        Me.NBEmpLeave.SmallImageIndex = 22
+        '
+        'NBScheduleSecurity
+        '
+        Me.NBScheduleSecurity.Caption = "Schedule Security"
+        Me.NBScheduleSecurity.Name = "NBScheduleSecurity"
+        Me.NBScheduleSecurity.SmallImageIndex = 43
         '
         'NBGMaster
         '
@@ -2424,12 +2429,6 @@ Partial Class FormMain
         'SplashScreenManager1
         '
         Me.SplashScreenManager1.ClosingDelay = 500
-        '
-        'NBScheduleSecurity
-        '
-        Me.NBScheduleSecurity.Caption = "Schedule Security"
-        Me.NBScheduleSecurity.Name = "NBScheduleSecurity"
-        Me.NBScheduleSecurity.SmallImageIndex = 43
         '
         'FormMain
         '
