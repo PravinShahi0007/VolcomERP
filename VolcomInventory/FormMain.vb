@@ -5269,6 +5269,19 @@ Public Class FormMain
             Else
                 stopCustom("This data already marked")
             End If
+        ElseIf formName = "FormEmpEmail" Then
+            Dim type As String = FormEmpEmail.GVEmail.GetFocusedRowCellValue("type").ToString
+            If type = "1" Then
+                stopCustom("You don't have permission to delete this data")
+            Else
+                Dim id As String = FormEmpEmail.GVEmail.GetFocusedRowCellValue("id_other_email").ToString
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim query_del As String = "DELETE FROM tb_m_other_email WHERE id_other_email='" + id + "'"
+                    execute_non_query(query_del, True, "", "", "", "")
+                    FormEmpEmail.viewEmployee("-1")
+                End If
+            End If
         Else
             RPSubMenu.Visible = False
         End If
