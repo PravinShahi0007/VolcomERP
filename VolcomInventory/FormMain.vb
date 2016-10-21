@@ -10022,4 +10022,18 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBScheduleSecurity_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBScheduleSecurity.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpSchedule.is_security = "1"
+            FormEmpSchedule.MdiParent = Me
+            FormEmpSchedule.Show()
+            FormEmpSchedule.WindowState = FormWindowState.Maximized
+            FormEmpSchedule.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

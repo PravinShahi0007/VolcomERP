@@ -9,7 +9,7 @@
         date_start = Date.Parse(DEStart.EditValue).ToString("yyyy-MM-dd")
         date_until = Date.Parse(DEUntil.EditValue).ToString("yyyy-MM-dd")
         '
-        Dim query As String = "CALL add_shift(" & id_employee & "," & GVShift.GetFocusedRowCellValue("id_shift").ToString & ",'" & date_start & "','" & date_until & "')"
+        Dim query As String = "CALL add_shift(" & id_employee & "," & GVShift.GetFocusedRowCellValue("id_shift").ToString & ",'" & date_start & "','" & date_until & "',1)"
         execute_non_query(query, True, "", "", "", "")
         infoCustom("Schedule success.")
         '

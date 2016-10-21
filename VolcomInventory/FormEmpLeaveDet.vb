@@ -15,8 +15,18 @@
             BEditLeave.Visible = True
             BDelLeave.Visible = True
         Else
-            BEditLeave.Visible = True
-            BDelLeave.Visible = True
+            BEditLeave.Visible = False
+            BDelLeave.Visible = False
+        End If
+    End Sub
+
+    Private Sub BAddLeave_Click(sender As Object, e As EventArgs) Handles BAddLeave.Click
+
+    End Sub
+
+    Private Sub TEEmployeeCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TEEmployeeCode.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim query As String = ""
         End If
     End Sub
 End Class
