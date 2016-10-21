@@ -37,10 +37,10 @@ Partial Class FormEmpEmailDet
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtDepartement = New System.Windows.Forms.TextBox()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.TxtName = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
+        Me.LEDepartement = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -51,6 +51,7 @@ Partial Class FormEmpEmailDet
         Me.GroupControl3.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BtnSave
@@ -232,7 +233,7 @@ Partial Class FormEmpEmailDet
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.TxtDepartement)
+        Me.PanelControl2.Controls.Add(Me.LEDepartement)
         Me.PanelControl2.Controls.Add(Me.Label8)
         Me.PanelControl2.Controls.Add(Me.TxtName)
         Me.PanelControl2.Controls.Add(Me.Label7)
@@ -241,15 +242,6 @@ Partial Class FormEmpEmailDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(650, 42)
         Me.PanelControl2.TabIndex = 0
-        '
-        'TxtDepartement
-        '
-        Me.TxtDepartement.Enabled = False
-        Me.TxtDepartement.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDepartement.Location = New System.Drawing.Point(417, 11)
-        Me.TxtDepartement.Name = "TxtDepartement"
-        Me.TxtDepartement.Size = New System.Drawing.Size(221, 22)
-        Me.TxtDepartement.TabIndex = 6
         '
         'Label8
         '
@@ -279,6 +271,19 @@ Partial Class FormEmpEmailDet
         Me.Label7.Size = New System.Drawing.Size(36, 13)
         Me.Label7.TabIndex = 4
         Me.Label7.Text = "Name"
+        '
+        'LEDepartement
+        '
+        Me.LEDepartement.Enabled = False
+        Me.LEDepartement.Location = New System.Drawing.Point(417, 11)
+        Me.LEDepartement.Name = "LEDepartement"
+        Me.LEDepartement.Properties.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEDepartement.Properties.Appearance.Options.UseFont = True
+        Me.LEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEDepartement.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departement")})
+        Me.LEDepartement.Properties.NullText = "-"
+        Me.LEDepartement.Size = New System.Drawing.Size(221, 20)
+        Me.LEDepartement.TabIndex = 6
         '
         'FormEmpEmailDet
         '
@@ -313,6 +318,7 @@ Partial Class FormEmpEmailDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -337,6 +343,6 @@ Partial Class FormEmpEmailDet
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtName As TextBox
     Friend WithEvents Label7 As Label
-    Friend WithEvents TxtDepartement As TextBox
     Friend WithEvents Label8 As Label
+    Friend WithEvents LEDepartement As DevExpress.XtraEditors.LookUpEdit
 End Class
