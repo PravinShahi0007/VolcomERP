@@ -8,6 +8,9 @@
         query += " INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement"
         query += " INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level"
         query += " INNER JOIN tb_lookup_employee_active active On active.id_employee_active=emp.id_employee_active"
+        If FormEmpSchedule.is_security = "1" Then
+            query += " WHERE emp.employee_position LIKE '%security%'"
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmployee.DataSource = data
         GVEmployee.BestFitColumns()

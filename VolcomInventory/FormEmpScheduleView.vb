@@ -4,6 +4,9 @@
     Private Sub FormEmpScheduleView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_date_edit()
         load_schedule()
+        If FormEmpSchedule.is_security = "1" Then
+            BTempSchedule.Visible = False
+        End If
     End Sub
 
     Sub load_date_edit()
