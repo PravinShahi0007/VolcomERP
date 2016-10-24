@@ -48,8 +48,12 @@ Partial Class FormEmpLeaveDet
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.TextEdit6 = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
+        Me.TextEdit6 = New DevExpress.XtraEditors.TextEdit()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -78,6 +82,9 @@ Partial Class FormEmpLeaveDet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -319,7 +326,7 @@ Partial Class FormEmpLeaveDet
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(174, 21)
+        Me.Label3.Location = New System.Drawing.Point(169, 12)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(45, 13)
         Me.Label3.TabIndex = 5
@@ -328,7 +335,7 @@ Partial Class FormEmpLeaveDet
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(17, 21)
+        Me.Label1.Location = New System.Drawing.Point(12, 12)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(73, 13)
         Me.Label1.TabIndex = 3
@@ -336,40 +343,80 @@ Partial Class FormEmpLeaveDet
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.TextEdit6)
-        Me.PanelControl1.Controls.Add(Me.Label5)
-        Me.PanelControl1.Controls.Add(Me.Label6)
+        Me.PanelControl1.Controls.Add(Me.PanelControl4)
         Me.PanelControl1.Controls.Add(Me.TextEdit4)
         Me.PanelControl1.Controls.Add(Me.Label3)
         Me.PanelControl1.Controls.Add(Me.Label1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 349)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(703, 51)
+        Me.PanelControl1.Size = New System.Drawing.Size(703, 63)
         Me.PanelControl1.TabIndex = 2
         '
-        'TextEdit6
+        'PanelControl4
         '
-        Me.TextEdit6.EditValue = ""
-        Me.TextEdit6.Location = New System.Drawing.Point(571, 18)
-        Me.TextEdit6.Name = "TextEdit6"
-        Me.TextEdit6.Properties.EditValueChangedDelay = 1
-        Me.TextEdit6.Size = New System.Drawing.Size(72, 20)
-        Me.TextEdit6.TabIndex = 96
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.Label2)
+        Me.PanelControl4.Controls.Add(Me.TextEdit1)
+        Me.PanelControl4.Controls.Add(Me.Label4)
+        Me.PanelControl4.Controls.Add(Me.Label5)
+        Me.PanelControl4.Controls.Add(Me.TextEdit6)
+        Me.PanelControl4.Controls.Add(Me.Label6)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl4.Location = New System.Drawing.Point(448, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(253, 59)
+        Me.PanelControl4.TabIndex = 97
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(189, 36)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(45, 13)
+        Me.Label2.TabIndex = 98
+        Me.Label2.Text = "hour(s) "
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.EditValue = ""
+        Me.TextEdit1.Location = New System.Drawing.Point(111, 33)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.EditValueChangedDelay = 1
+        Me.TextEdit1.Size = New System.Drawing.Size(72, 20)
+        Me.TextEdit1.TabIndex = 99
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(5, 36)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(93, 13)
+        Me.Label4.TabIndex = 97
+        Me.Label4.Text = "Remaining after : "
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(649, 21)
+        Me.Label5.Location = New System.Drawing.Point(189, 10)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(45, 13)
         Me.Label5.TabIndex = 95
         Me.Label5.Text = "hour(s) "
         '
+        'TextEdit6
+        '
+        Me.TextEdit6.EditValue = ""
+        Me.TextEdit6.Location = New System.Drawing.Point(111, 7)
+        Me.TextEdit6.Name = "TextEdit6"
+        Me.TextEdit6.Properties.EditValueChangedDelay = 1
+        Me.TextEdit6.Size = New System.Drawing.Size(72, 20)
+        Me.TextEdit6.TabIndex = 96
+        '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(492, 21)
+        Me.Label6.Location = New System.Drawing.Point(32, 10)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(66, 13)
         Me.Label6.TabIndex = 94
@@ -378,7 +425,7 @@ Partial Class FormEmpLeaveDet
         'TextEdit4
         '
         Me.TextEdit4.EditValue = ""
-        Me.TextEdit4.Location = New System.Drawing.Point(96, 18)
+        Me.TextEdit4.Location = New System.Drawing.Point(91, 9)
         Me.TextEdit4.Name = "TextEdit4"
         Me.TextEdit4.Properties.EditValueChangedDelay = 1
         Me.TextEdit4.Size = New System.Drawing.Size(72, 20)
@@ -389,7 +436,7 @@ Partial Class FormEmpLeaveDet
         Me.PanelControl3.Controls.Add(Me.SimpleButton6)
         Me.PanelControl3.Controls.Add(Me.SimpleButton7)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 400)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 412)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(703, 37)
         Me.PanelControl3.TabIndex = 3
@@ -416,7 +463,7 @@ Partial Class FormEmpLeaveDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(703, 437)
+        Me.ClientSize = New System.Drawing.Size(703, 449)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl3)
@@ -451,6 +498,10 @@ Partial Class FormEmpLeaveDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -493,4 +544,8 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents Label2 As Label
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label4 As Label
 End Class

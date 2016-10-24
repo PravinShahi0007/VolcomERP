@@ -553,6 +553,12 @@
     <Compile Include="FormEmpLeaveDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpLeavePick.Designer.vb">
+      <DependentUpon>FormEmpLeavePick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpLeavePick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpSchedule.Designer.vb">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
     </Compile>
@@ -4636,6 +4642,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeaveDet.resx">
       <DependentUpon>FormEmpLeaveDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpLeavePick.resx">
+      <DependentUpon>FormEmpLeavePick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpSchedule.resx">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
