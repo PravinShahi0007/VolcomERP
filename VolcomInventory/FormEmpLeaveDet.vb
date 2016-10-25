@@ -21,7 +21,13 @@
     End Sub
 
     Private Sub BAddLeave_Click(sender As Object, e As EventArgs) Handles BAddLeave.Click
-
+        If id_employee = "-1" Then
+            stopCustom("Please choose employee first.")
+        Else
+            FormEmpLeavePick.id_schedule = "-1"
+            FormEmpLeavePick.id_employee = id_employee
+            FormEmpLeavePick.ShowDialog()
+        End If
     End Sub
 
     Private Sub TEEmployeeCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TEEmployeeCode.KeyDown
