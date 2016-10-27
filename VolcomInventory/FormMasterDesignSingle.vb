@@ -1087,6 +1087,11 @@
                             End Try
                         Next
 
+                        'default price for Non MD
+                        If id_pop_up = "3" Then
+                            setDefaultPrice(id_design_tersimpan, 0)
+                        End If
+
                         'new line list
                         NewLineList(id_design_tersimpan, id_season, id_delivery)
 
@@ -1291,6 +1296,11 @@
                         End Try
                     Next
 
+                    'default price for Non MD
+                    If id_pop_up = "3" Then
+                        setDefaultPrice(id_design_tersimpan, 0)
+                    End If
+
                     'new line list
                     NewLineList(id_design_tersimpan, id_season, id_delivery)
 
@@ -1320,6 +1330,12 @@
             End If
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Sub setDefaultPrice(ByVal id_design_set As String, price As Decimal)
+        Dim query As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                               VALUES('" + id_design_set + "', '1', 'Normal', '1', '" + decimalSQL(price) + "', NOW(), NOW(), '1', '" + id_user + "') "
+        execute_non_query(query, True, "", "", "", "")
     End Sub
 
     Sub updProductCode(ByVal id_dsg_param As String)
