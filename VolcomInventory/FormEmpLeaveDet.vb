@@ -3,8 +3,7 @@
     Public id_employee As String = "-1"
     Private Sub FormEmpLeaveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_emp_leave()
-
-        laod_but_calc()
+        load_but_calc()
     End Sub
 
     Private Sub BPickEmployee_Click(sender As Object, e As EventArgs) Handles BPickEmployee.Click
@@ -12,11 +11,19 @@
         FormPopUpEmployee.ShowDialog()
     End Sub
 
-    Sub laod_but_calc()
+    Sub load_but_calc()
         If GVLeaveDet.RowCount > 0 Then
             BDelLeave.Visible = True
         Else
             BDelLeave.Visible = False
+        End If
+        'calc
+        If GVLeaveDet.RowCount > 0 Then
+            TETotLeave.EditValue = GVLeaveDet.Columns("minutes_total").SummaryItem.SummaryValue
+            TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue - TETotLeave.EditValue
+        Else
+            TETotLeave.EditValue = 0
+            TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue
         End If
     End Sub
 
@@ -58,7 +65,7 @@
 
         If confirm = DialogResult.Yes Then
             GVLeaveDet.DeleteSelectedRows()
-            laod_but_calc()
+            load_but_calc()
         End If
     End Sub
 End Class

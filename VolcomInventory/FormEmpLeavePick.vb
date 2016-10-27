@@ -93,7 +93,7 @@
 
                 TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
                 FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
-                FormEmpLeaveDet.laod_but_calc()
+                FormEmpLeaveDet.load_but_calc()
                 FormEmpLeaveDet.GVLeaveDet.FocusedRowHandle = 0
                 Close()
             End If
