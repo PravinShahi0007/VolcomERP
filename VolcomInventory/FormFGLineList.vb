@@ -135,6 +135,30 @@ Public Class FormFGLineList
             query_c.viewLineListFinal(id_season_par, id_type, BGVLineList, GCLineList, data_band_break_par, data_band_break_plan_par, data_band_alloc_par, data_band_alloc_plan_par, show_breakdown)
         End If
 
+        If id_pop_up = "3" Then
+            nonMDCustomView()
+        End If
+    End Sub
+
+    Sub nonMDCustomView()
+        'hide band
+        For i As Integer = 0 To BGVLineList.Bands.Count - 1
+            If BGVLineList.Bands(i).Caption.Contains("QTY") Then
+                If BGVLineList.Bands(i).Caption.ToString <> "TOTAL QTY DESIGN" Then
+                    Console.WriteLine(BGVLineList.Bands(i).Caption.ToString)
+                    BGVLineList.Bands(i).Visible = False
+                End If
+            End If
+        Next
+
+        'hide column
+        For j As Integer = 0 To BGVLineList.Columns.Count - 1
+            If BGVLineList.Columns(j).FieldName.Contains("Prc") Then
+                If BGVLineList.Columns(j).FieldName.ToString <> "COST_Prc" And BGVLineList.Columns(j).FieldName.ToString <> "TOTAL COST_Prc" Then
+                    BGVLineList.Columns(j).Visible = False
+                End If
+            End If
+        Next
     End Sub
 
     Sub nothingLineList()
