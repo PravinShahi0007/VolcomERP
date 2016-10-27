@@ -23,6 +23,7 @@ Partial Class FormEmpLeavePick
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpLeavePick))
         Me.GCSchedule = New DevExpress.XtraGrid.GridControl()
         Me.GVSchedule = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,7 +49,6 @@ Partial Class FormEmpLeavePick
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEStartLeave = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,9 +82,16 @@ Partial Class FormEmpLeavePick
         Me.GVSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
         Me.GVSchedule.GridControl = Me.GCSchedule
         Me.GVSchedule.Name = "GVSchedule"
+        Me.GVSchedule.OptionsBehavior.ReadOnly = True
         Me.GVSchedule.OptionsView.ColumnAutoWidth = False
         Me.GVSchedule.OptionsView.ShowGroupPanel = False
         Me.GVSchedule.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'GridColumnID
+        '
+        Me.GridColumnID.Caption = "ID"
+        Me.GridColumnID.FieldName = "id_schedule"
+        Me.GridColumnID.Name = "GridColumnID"
         '
         'GridColumn1
         '
@@ -358,12 +365,6 @@ Partial Class FormEmpLeavePick
         Me.Label1.Size = New System.Drawing.Size(88, 13)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "Propose Leave : "
-        '
-        'GridColumnID
-        '
-        Me.GridColumnID.Caption = "ID"
-        Me.GridColumnID.FieldName = "id_schedule"
-        Me.GridColumnID.Name = "GridColumnID"
         '
         'FormEmpLeavePick
         '

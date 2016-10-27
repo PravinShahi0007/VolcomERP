@@ -56,8 +56,9 @@
         Dim confirm As DialogResult
         confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
-        If confirm = Windows.Forms.DialogResult.Yes Then
+        If confirm = DialogResult.Yes Then
             GVLeaveDet.DeleteSelectedRows()
+            laod_but_calc()
         End If
     End Sub
 End Class

@@ -6,11 +6,14 @@
     End Sub
 
     Private Sub FormEmpLeavePick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        DEStart.EditValue = Now
+        DEUntil.EditValue = Now
     End Sub
 
     Private Sub BViewSchedule_Click(sender As Object, e As EventArgs) Handles BViewSchedule.Click
         load_schedule()
+        load_total()
+        load_date()
         GVSchedule.BestFitColumns()
     End Sub
 
@@ -30,18 +33,102 @@
     End Sub
 
     Private Sub GVSchedule_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVSchedule.FocusedRowChanged
-        If GVSchedule.RowCount > 0 Then
-            DEStartLeave.Properties.MinValue = GVSchedule.GetFocusedRowCellValue("in")
-            DEStartLeave.Properties.MaxValue = GVSchedule.GetFocusedRowCellValue("out")
-            DEStartLeave.EditValue = GVSchedule.GetFocusedRowCellValue("in")
+        load_total()
+    End Sub
 
-            DEUntilLeave.Properties.MinValue = GVSchedule.GetFocusedRowCellValue("in")
-            DEUntilLeave.Properties.MaxValue = GVSchedule.GetFocusedRowCellValue("out")
-            DEUntilLeave.EditValue = GVSchedule.GetFocusedRowCellValue("out")
-        End If
+    Sub load_total()
+        Try
+            If GVSchedule.RowCount > 0 Then
+                DEStartLeave.Properties.MinValue = GVSchedule.GetFocusedRowCellValue("in")
+                DEStartLeave.Properties.MaxValue = GVSchedule.GetFocusedRowCellValue("out")
+                DEStartLeave.EditValue = GVSchedule.GetFocusedRowCellValue("in")
+
+                DEUntilLeave.Properties.MinValue = GVSchedule.GetFocusedRowCellValue("in")
+                DEUntilLeave.Properties.MaxValue = GVSchedule.GetFocusedRowCellValue("out")
+                DEUntilLeave.EditValue = GVSchedule.GetFocusedRowCellValue("out")
+            End If
+        Catch ex As Exception
+        End Try
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        If DEStartLeave.Text = "" Then
+            stopCustom("Please select schedule first.")
+        Else
+            Dim check As Boolean = True
 
+            For i As Integer = 0 To FormEmpLeaveDet.GVLeaveDet.RowCount - 1
+                If FormEmpLeaveDet.GVLeaveDet.GetRowCellValue(0, "id_schedule") = GVSchedule.GetFocusedRowCellDisplayText("id_schedule").ToString Then
+                    check = False
+                End If
+            Next
+
+            If check = False Then
+                stopCustom("This schedule already proposed.")
+            Else
+                Dim total_min As Integer = 0
+
+                Dim is_full_day As String = "no"
+                Dim minute_total As TimeSpan
+                Dim date_from, date_until As Date
+
+                date_from = Date.Parse(DEStartLeave.EditValue.ToString)
+                date_until = Date.Parse(DEUntilLeave.EditValue.ToString)
+
+                If CEFullDay.Checked = False Then
+                    is_full_day = "no"
+                    minute_total = Date.Parse(date_until.ToString).Subtract(Date.Parse(date_from.ToString))
+                    total_min = minute_total.TotalMinutes
+                Else
+                    is_full_day = "yes"
+                    total_min = GVSchedule.GetFocusedRowCellValue("minutes_work")
+                End If
+
+                Dim newRow As DataRow = (TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable)).NewRow()
+                newRow("id_schedule") = GVSchedule.GetFocusedRowCellDisplayText("id_schedule").ToString
+                newRow("datetime_start") = date_from
+                newRow("datetime_until") = date_until
+                newRow("is_full_day") = is_full_day
+                newRow("minutes_total") = total_min
+
+                TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
+                FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
+                FormEmpLeaveDet.laod_but_calc()
+                FormEmpLeaveDet.GVLeaveDet.FocusedRowHandle = 0
+                Close()
+            End If
+        End If
+    End Sub
+
+    Private Sub CEFullDay_CheckedChanged(sender As Object, e As EventArgs) Handles CEFullDay.CheckedChanged
+        load_date()
+    End Sub
+
+    Sub load_date()
+        Try
+            If CEFullDay.Checked = True Then
+                If GVSchedule.RowCount > 0 Then
+                    DEStartLeave.Properties.MinValue = GVSchedule.GetFocusedRowCellValue("in")
+                    DEStartLeave.Properties.MaxValue = GVSchedule.GetFocusedRowCellValue("out")
+                    DEStartLeave.EditValue = GVSchedule.GetFocusedRowCellValue("in")
+                    '
+                    DEUntilLeave.Properties.MinValue = GVSchedule.GetFocusedRowCellValue("in")
+                    DEUntilLeave.Properties.MaxValue = GVSchedule.GetFocusedRowCellValue("out")
+                    DEUntilLeave.EditValue = GVSchedule.GetFocusedRowCellValue("out")
+                    '
+                    DEStartLeave.Properties.ReadOnly = True
+                    DEUntilLeave.Properties.ReadOnly = True
+                    '
+                End If
+            Else
+                DEStartLeave.Properties.ReadOnly = False
+                DEUntilLeave.Properties.ReadOnly = False
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub FormEmpLeavePick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
