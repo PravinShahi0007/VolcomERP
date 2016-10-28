@@ -2,6 +2,10 @@
     Public id_emp_leave As String = "-1"
     Public id_employee As String = "-1"
     Private Sub FormEmpLeaveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TERemainingLeave.EditValue = 0
+        TETotLeave.EditValue = 0
+        TERemainingLeaveAfter.EditValue = 0
+
         load_emp_leave()
         load_but_calc()
     End Sub
