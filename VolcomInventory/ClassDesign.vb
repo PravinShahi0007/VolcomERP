@@ -490,10 +490,10 @@
         BGVParam.Columns("LAST UPDATED_sct").ColumnEdit = riTE
 
         'pic repo
-        Dim unb_PE As DevExpress.XtraGrid.Columns.GridColumn = BGVParam.Columns.AddVisible("img", "Image")
+        Dim unb_PE As DevExpress.XtraGrid.Columns.GridColumn = BGVParam.Columns.AddVisible("img", "IMAGE")
         unb_PE.UnboundType = DevExpress.Data.UnboundColumnType.Object
         BGVParam.Columns.Add(unb_PE)
-        band_desc_freeze.Columns.Add(BGVParam.Columns.AddVisible("img", "IMAGE"))
+        band_desc_freeze.Columns.Add(BGVParam.Columns("img"))
         band_desc_freeze.Columns.MoveTo(1, BGVParam.Columns("img"))
         BGVParam.Columns("img").AppearanceHeader.Font = New Font(BGVParam.Appearance.Row.Font.FontFamily, BGVParam.Appearance.Row.Font.Size, FontStyle.Bold)
         Dim PE As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit
@@ -1304,10 +1304,10 @@
         BGVParam.Columns("LAST UPDATED_sct").ColumnEdit = riTE
 
         'pic repo
-        Dim unb_PE As DevExpress.XtraGrid.Columns.GridColumn = BGVParam.Columns.AddVisible("img", "Image")
+        Dim unb_PE As DevExpress.XtraGrid.Columns.GridColumn = BGVParam.Columns.AddVisible("img", "IMAGE")
         unb_PE.UnboundType = DevExpress.Data.UnboundColumnType.Object
         BGVParam.Columns.Add(unb_PE)
-        band_desc_freeze.Columns.Add(BGVParam.Columns.AddVisible("img", "IMAGE"))
+        band_desc_freeze.Columns.Add(BGVParam.Columns("img"))
         band_desc_freeze.Columns.MoveTo(1, BGVParam.Columns("img"))
         BGVParam.Columns("img").AppearanceHeader.Font = New Font(BGVParam.Appearance.Row.Font.FontFamily, BGVParam.Appearance.Row.Font.Size, FontStyle.Bold)
         Dim PE As DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit

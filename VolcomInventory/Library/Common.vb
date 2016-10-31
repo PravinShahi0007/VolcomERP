@@ -4599,6 +4599,7 @@ Module Common
             For i As Integer = 0 To data.Rows.Count - 1
                 Dim options_view_det_visible As Boolean = Boolean.Parse(data.Rows(i)("options_view_det_visible").ToString)
                 Dim options_view_det_column As String = data.Rows(i)("options_view_det_column").ToString
+                Console.WriteLine(options_view_det_column)
                 gv.Columns(options_view_det_column).Visible = options_view_det_visible
                 If options_view_det_visible = False Then
                     gv.Columns(options_view_det_column).OptionsColumn.ShowInCustomizationForm = False
