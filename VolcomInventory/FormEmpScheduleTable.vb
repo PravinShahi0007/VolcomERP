@@ -12,7 +12,7 @@
             For i As Integer = 0 To GVSchedule.RowCount - 1
                 For j As Integer = 0 To GVSchedule.Columns.Count - 1
                     If Not (GVSchedule.Columns(j).FieldName = "id_employee" Or GVSchedule.Columns(j).FieldName = "employee_code" Or GVSchedule.Columns(j).FieldName = "employee_name") Then
-                        get_schedule(GVSchedule.GetRowCellValue(i, GVSchedule.Columns(j).FieldName.ToString), GVSchedule.Columns(j).FieldName.ToString, GVSchedule.GetRowCellValue(i, "id_employee").ToString)
+                        get_schedule(GVSchedule.GetRowCellValue(i, GVSchedule.Columns(j).FieldName.ToString).ToString, GVSchedule.Columns(j).FieldName.ToString, GVSchedule.GetRowCellValue(i, "id_employee").ToString)
                     End If
                 Next
             Next

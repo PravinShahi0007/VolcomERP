@@ -50,6 +50,7 @@ Partial Class FormEmpEmail
         Me.GVEmail.GroupCount = 1
         Me.GVEmail.Name = "GVEmail"
         Me.GVEmail.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVEmail.OptionsBehavior.Editable = False
         Me.GVEmail.OptionsView.ShowGroupPanel = False
         Me.GVEmail.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn2, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -79,7 +80,7 @@ Partial Class FormEmpEmail
         '
         'GridColumnExtEmailPass
         '
-        Me.GridColumnExtEmailPass.Caption = "Password"
+        Me.GridColumnExtEmailPass.Caption = "External Password"
         Me.GridColumnExtEmailPass.FieldName = "email_external_pass"
         Me.GridColumnExtEmailPass.Name = "GridColumnExtEmailPass"
         Me.GridColumnExtEmailPass.Visible = True
@@ -95,7 +96,7 @@ Partial Class FormEmpEmail
         '
         'GridColumnLocEmailPass
         '
-        Me.GridColumnLocEmailPass.Caption = "Password"
+        Me.GridColumnLocEmailPass.Caption = "Local Password"
         Me.GridColumnLocEmailPass.FieldName = "email_lokal_pass"
         Me.GridColumnLocEmailPass.Name = "GridColumnLocEmailPass"
         Me.GridColumnLocEmailPass.Visible = True
@@ -111,7 +112,7 @@ Partial Class FormEmpEmail
         '
         'GridColumnOtherPass
         '
-        Me.GridColumnOtherPass.Caption = "Password"
+        Me.GridColumnOtherPass.Caption = "Other Password"
         Me.GridColumnOtherPass.FieldName = "email_other_pass"
         Me.GridColumnOtherPass.Name = "GridColumnOtherPass"
         Me.GridColumnOtherPass.Visible = True
