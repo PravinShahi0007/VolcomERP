@@ -1390,6 +1390,9 @@ Module Common
         If opt = "1" Then
             query = String.Format("SELECT id_prod_demand_design FROM tb_prod_order WHERE id_prod_order='{0}'", id_prod_order)
             result = execute_query(query, 0, True, "", "", "", "")
+        ElseIf opt = "2" Then
+            query = String.Format("SELECT prod_order_number FROM tb_prod_order WHERE id_prod_order='{0}'", id_prod_order)
+            result = execute_query(query, 0, True, "", "", "", "")
         End If
 
         Return result
