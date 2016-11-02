@@ -23,7 +23,7 @@
         Dim query As String = ""
         query = "SELECT tb.*,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present FROM"
         query += " ("
-        query += " SELECT active.employee_active,active.id_employee_active,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,sch.date, "
+        query += " SELECT sch.id_schedule,lvl.employee_level,emp.employee_position,ket.id_emp_schedule_ket,ket.ket,sch.info_ket,active.employee_active,active.id_employee_active,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,sch.date, "
         query += " sch.in,sch.in_tolerance,MIN(at_in.datetime) As `att_in`, "
         query += " sch.out,MAX(at_out.datetime) AS `att_out`, "
         query += " sch.break_out,MIN(at_brout.datetime) As start_break, "
@@ -37,7 +37,9 @@
         query += " TIMESTAMPDIFF(MINUTE,MIN(at_in.datetime),MAX(at_out.datetime)) AS actual_work_hour ,"
         query += " TIMESTAMPDIFF(MINUTE,If(MIN(at_in.datetime)<sch.In,sch.In,If(MIN(at_in.datetime)<sch.in_tolerance,sch.In,MIN(at_in.datetime))),If(MAX(at_out.datetime)>sch.out,sch.out,MAX(at_out.datetime))) As work_hour "
         query += " FROM tb_emp_schedule sch "
+        query += " LEFT JOIN tb_emp_schedule_ket ket ON ket.id_emp_schedule_ket=sch.id_emp_schedule_ket "
         query += " INNER JOIN tb_m_employee emp On emp.id_employee=sch.id_employee "
+        query += " INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level "
         query += " INNER JOIN tb_m_departement dept On dept.id_departement=emp.id_departement "
         query += " INNER JOIN tb_lookup_schedule_type scht On scht.id_schedule_type=sch.id_schedule_type "
         query += " INNER JOIN tb_lookup_employee_active active on emp.id_employee_active=active.id_employee_active"
@@ -108,10 +110,10 @@
         End If
 
         Dim query As String = ""
-        query = "SELECT tb.employee_active,tb.id_employee_active,tb.id_employee,tb.employee_name,tb.employee_code,tb.id_departement,dep.departement,SUM(tb.late) AS late,SUM(tb.over) AS over,SUM(tb.over_break) AS over_break,SUM(tb.work_hour) AS work_hour,SUM(tb.actual_work_hour) AS actual_work_hour,SUM((tb.over-tb.late-tb.over_break)) AS balance,SUM(IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0)) AS present,SUM(IF(tb.id_schedule_type=1,1,0)) AS workday "
+        query = "SELECT tb.id_schedule,tb.employee_level,tb.employee_position,tb.id_emp_schedule_ket,tb.ket,tb.info_ket,tb.employee_active,tb.id_employee_active,tb.id_employee,tb.employee_name,tb.employee_code,tb.id_departement,dep.departement,SUM(tb.late) AS late,SUM(tb.over) AS over,SUM(tb.over_break) AS over_break,SUM(tb.work_hour) AS work_hour,SUM(tb.actual_work_hour) AS actual_work_hour,SUM((tb.over-tb.late-tb.over_break)) AS balance,SUM(IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0)) AS present,SUM(IF(tb.id_schedule_type=1,1,0)) AS workday "
         query += " FROM "
         query += " ("
-        query += " SELECT active.employee_active,active.id_employee_active,sch.id_schedule_type,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,sch.date, "
+        query += " SELECT sch.id_schedule,lvl.employee_level,emp.employee_position,ket.id_emp_schedule_ket,ket.ket,sch.info_ket,active.employee_active,active.id_employee_active,sch.id_schedule_type,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,sch.date, "
         query += " sch.in,sch.in_tolerance,MIN(at_in.datetime) As `att_in`, "
         query += " sch.out,MAX(at_out.datetime) AS `att_out`, "
         query += " sch.break_out,MIN(at_brout.datetime) As start_break, "
@@ -125,7 +127,9 @@
         query += " TIMESTAMPDIFF(MINUTE,MIN(at_in.datetime),MAX(at_out.datetime)) AS actual_work_hour ,"
         query += " TIMESTAMPDIFF(MINUTE,If(MIN(at_in.datetime)<sch.In,sch.In,If(MIN(at_in.datetime)<sch.in_tolerance,sch.In,MIN(at_in.datetime))),If(MAX(at_out.datetime)>sch.out,sch.out,MAX(at_out.datetime))) As work_hour "
         query += " FROM tb_emp_schedule sch "
+        query += " LEFT JOIN tb_emp_schedule_ket ket ON ket.id_emp_schedule_ket=sch.id_emp_schedule_ket "
         query += " INNER JOIN tb_m_employee emp On emp.id_employee=sch.id_employee "
+        query += " INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level "
         query += " INNER JOIN tb_lookup_schedule_type scht On scht.id_schedule_type=sch.id_schedule_type "
         query += " INNER JOIN tb_lookup_employee_active active on emp.id_employee_active=active.id_employee_active"
         'query attendance old
@@ -226,5 +230,18 @@
             DEUntil.Properties.MinValue = DEStart.EditValue
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub SMEditKet_Click(sender As Object, e As EventArgs) Handles SMEditKet.Click
+        If GVSchedule.RowCount > 0 And Not GVSchedule.IsGroupRow(GVSchedule.FocusedRowHandle) Then
+            FormEmpScheduleKet.id_schedule = GVSchedule.GetFocusedRowCellValue("id_schedule").ToString
+            Try
+                FormEmpScheduleKet.id_emp_schedule_ket = GVSchedule.GetFocusedRowCellValue("id_emp_schedule_ket").ToString
+                FormEmpScheduleKet.MEInfo.Text = GVSchedule.GetFocusedRowCellValue("info_ket").ToString
+            Catch ex As Exception
+            End Try
+
+            FormEmpScheduleKet.ShowDialog()
+        End If
     End Sub
 End Class

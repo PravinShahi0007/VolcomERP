@@ -571,6 +571,12 @@
     <Compile Include="FormEmpScheduleBulkSet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpScheduleKet.Designer.vb">
+      <DependentUpon>FormEmpScheduleKet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpScheduleKet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpScheduleTable.Designer.vb">
       <DependentUpon>FormEmpScheduleTable.vb</DependentUpon>
     </Compile>
@@ -4651,6 +4657,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpScheduleBulkSet.resx">
       <DependentUpon>FormEmpScheduleBulkSet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpScheduleKet.resx">
+      <DependentUpon>FormEmpScheduleKet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpScheduleTable.resx">
       <DependentUpon>FormEmpScheduleTable.vb</DependentUpon>
