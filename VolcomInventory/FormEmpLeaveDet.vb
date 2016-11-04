@@ -10,6 +10,18 @@
         load_but_calc()
     End Sub
 
+    Sub load_remaining()
+        Dim query As String = "SELECT id_emp,SUM(IF(plus_minus=1,qty,-qty))/60 AS qty,`type`,IF(`type`=1,'Leave','DP') as type_ket FROM tb_emp_stock_leave
+                                WHERE id_emp='" & id_employee & "'
+                                GROUP BY id_emp,date_expired,`type`
+                                HAVING SUM(IF(plus_minus=1,qty,-qty)) > 0"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCLeaveRemaining.DataSource = data
+        If data.Rows.Count > 0 Then
+            TERemainingLeave.EditValue = GVLeaveRemaining.Columns("qty").SummaryItem.SummaryValue
+        End If
+    End Sub
+
     Private Sub BPickEmployee_Click(sender As Object, e As EventArgs) Handles BPickEmployee.Click
         FormPopUpEmployee.id_popup = "1"
         FormPopUpEmployee.ShowDialog()
@@ -23,8 +35,10 @@
         End If
         'calc
         If GVLeaveDet.RowCount > 0 Then
-            TETotLeave.EditValue = GVLeaveDet.Columns("minutes_total").SummaryItem.SummaryValue
+            TETotLeave.EditValue = GVLeaveDet.Columns("hours_total").SummaryItem.SummaryValue
             TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue - TETotLeave.EditValue
+            'calculate fifo
+
         Else
             TETotLeave.EditValue = 0
             TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue
@@ -52,12 +66,15 @@
                 TEPosition.Text = data.Rows(0)("employee_position").ToString
                 id_employee = data.Rows(0)("id_employee").ToString
                 DEJoinDate.EditValue = data.Rows(0)("employee_join_date")
+                load_remaining()
+                load_emp_leave()
+                load_but_calc()
             End If
         End If
     End Sub
 
     Sub load_emp_leave()
-        Dim query As String = "SELECT id_emp_leave_det,id_schedule,datetime_start,datetime_until,IF(is_full_day=1,'yes','no') as is_full_day,minutes_total FROM tb_emp_leave_det where id_emp_leave='" + id_emp_leave + "'"
+        Dim query As String = "SELECT id_emp_leave_det,id_schedule,datetime_start,datetime_until,IF(is_full_day=1,'yes','no') as is_full_day,minutes_total,(minutes_total/60) as hours_total FROM tb_emp_leave_det where id_emp_leave='" + id_emp_leave + "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCLeaveDet.DataSource = data
@@ -70,6 +87,22 @@
         If confirm = DialogResult.Yes Then
             GVLeaveDet.DeleteSelectedRows()
             load_but_calc()
+        End If
+    End Sub
+
+    Private Sub FormEmpLeaveDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
+        Dim query As String = ""
+
+        If id_employee = "-1" Or TETotLeave.EditValue <= 0 Then
+            stopCustom("Please check your input !")
+        ElseIf TERemainingLeaveAfter.EditValue < 0
+            stopCustom("Remaining Leave not sufficient.")
+        Else
+
         End If
     End Sub
 End Class

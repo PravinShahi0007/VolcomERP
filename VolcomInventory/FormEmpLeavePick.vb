@@ -89,6 +89,7 @@
                 newRow("datetime_start") = date_from
                 newRow("datetime_until") = date_until
                 newRow("is_full_day") = is_full_day
+                newRow("hours_total") = total_min / 60
                 newRow("minutes_total") = total_min
 
                 TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
