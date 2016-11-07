@@ -23,6 +23,14 @@
             BMark.Visible = False
             BAttach.Visible = False
             sample_purc_rec_det_qty_inp = 0.0
+            'static
+            Try
+                SLEStorage.EditValue = get_opt_mat_field("id_wh_def")
+                SLELocator.EditValue = get_opt_mat_field("id_loc_def")
+                SLERack.EditValue = get_opt_mat_field("id_rack_def")
+                SLEDrawer.EditValue = get_opt_mat_field("id_drawer_def")
+            Catch ex As Exception
+            End Try
         Else
             'edit
             Dim order_created As String
