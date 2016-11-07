@@ -81,6 +81,7 @@ Partial Class FormSeason
         Me.DeleteOrigin = New DevExpress.XtraEditors.SimpleButton()
         Me.EditOrigin = New DevExpress.XtraEditors.SimpleButton()
         Me.AddOrigin = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnEstWHDate = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCMainSeason, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMainSeason.SuspendLayout()
         Me.XTPSeasonTrans.SuspendLayout()
@@ -481,7 +482,7 @@ Partial Class FormSeason
         '
         'GVDelivery
         '
-        Me.GVDelivery.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdDelivery, Me.ColumnDelivery, Me.GridColumnDelDate})
+        Me.GVDelivery.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdDelivery, Me.ColumnDelivery, Me.GridColumnDelDate, Me.GridColumnEstWHDate})
         Me.GVDelivery.GridControl = Me.GCDelivery
         Me.GVDelivery.Name = "GVDelivery"
         Me.GVDelivery.OptionsBehavior.Editable = False
@@ -725,6 +726,16 @@ Partial Class FormSeason
         Me.AddOrigin.TabIndex = 0
         Me.AddOrigin.Text = "Add"
         '
+        'GridColumnEstWHDate
+        '
+        Me.GridColumnEstWHDate.Caption = "Estimate Receive in WH"
+        Me.GridColumnEstWHDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnEstWHDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnEstWHDate.FieldName = "est_wh_date"
+        Me.GridColumnEstWHDate.Name = "GridColumnEstWHDate"
+        Me.GridColumnEstWHDate.Visible = True
+        Me.GridColumnEstWHDate.VisibleIndex = 2
+        '
         'FormSeason
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -837,4 +848,5 @@ Partial Class FormSeason
     Friend WithEvents DeleteOrigin As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents EditOrigin As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents AddOrigin As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnEstWHDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class
