@@ -11,7 +11,7 @@
     End Sub
 
     Sub load_remaining()
-        Dim query As String = "SELECT id_emp,SUM(IF(plus_minus=1,qty,-qty))/60 AS qty,`type`,IF(`type`=1,'Leave','DP') as type_ket FROM tb_emp_stock_leave
+        Dim query As String = "SELECT id_emp,SUM(IF(plus_minus=1,qty,-qty))/60 AS qty,`type`,IF(`type`=1,'Leave','DP') as type_ket,date_expired FROM tb_emp_stock_leave
                                 WHERE id_emp='" & id_employee & "'
                                 GROUP BY id_emp,date_expired,`type`
                                 HAVING SUM(IF(plus_minus=1,qty,-qty)) > 0"
@@ -37,8 +37,19 @@
         If GVLeaveDet.RowCount > 0 Then
             TETotLeave.EditValue = GVLeaveDet.Columns("hours_total").SummaryItem.SummaryValue
             TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue - TETotLeave.EditValue
-            'calculate fifo
+            'calculate fifo new only
+            If id_emp_leave = "-1" And TERemainingLeaveAfter.EditValue > 0 And GVLeaveDet.RowCount > 0 And GVLeaveRemaining.RowCount > 0 Then
+                Dim j As Integer = 0
+                Dim jum_leave As Integer = GVLeaveDet.RowCount
+                '
+                For i As Integer = 0 To GVLeaveRemaining.RowCount - 1
+                    Dim leave_remaining As Integer = 0
+                    leave_remaining = GVLeaveRemaining.GetRowCellValue(i, "qty")
+                    While leave_remaining > 0
 
+                    End While
+                Next
+            End If
         Else
             TETotLeave.EditValue = 0
             TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue

@@ -56,6 +56,13 @@ Partial Class FormEmpLeaveDet
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPLeaveUsed = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCLeaveUsage = New DevExpress.XtraGrid.GridControl()
+        Me.GVLeaveUsage = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -92,6 +99,9 @@ Partial Class FormEmpLeaveDet
         Me.XTPLeaveRemaining.SuspendLayout()
         CType(Me.GCLeaveRemaining, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVLeaveRemaining, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPLeaveUsed.SuspendLayout()
+        CType(Me.GCLeaveUsage, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVLeaveUsage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -234,7 +244,7 @@ Partial Class FormEmpLeaveDet
         Me.XTCDet.SelectedTabPage = Me.XTPDetLeave
         Me.XTCDet.Size = New System.Drawing.Size(681, 245)
         Me.XTCDet.TabIndex = 2
-        Me.XTCDet.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetLeave, Me.XTPLeaveRemaining})
+        Me.XTCDet.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetLeave, Me.XTPLeaveRemaining, Me.XTPLeaveUsed})
         '
         'XTPDetLeave
         '
@@ -443,6 +453,82 @@ Partial Class FormEmpLeaveDet
         Me.GridColumn7.VisibleIndex = 2
         Me.GridColumn7.Width = 179
         '
+        'XTPLeaveUsed
+        '
+        Me.XTPLeaveUsed.Controls.Add(Me.GCLeaveUsage)
+        Me.XTPLeaveUsed.Name = "XTPLeaveUsed"
+        Me.XTPLeaveUsed.Size = New System.Drawing.Size(675, 217)
+        Me.XTPLeaveUsed.Text = "Leave Usage"
+        '
+        'GCLeaveUsage
+        '
+        Me.GCLeaveUsage.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCLeaveUsage.Location = New System.Drawing.Point(0, 0)
+        Me.GCLeaveUsage.MainView = Me.GVLeaveUsage
+        Me.GCLeaveUsage.Name = "GCLeaveUsage"
+        Me.GCLeaveUsage.Size = New System.Drawing.Size(675, 217)
+        Me.GCLeaveUsage.TabIndex = 4
+        Me.GCLeaveUsage.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLeaveUsage})
+        '
+        'GVLeaveUsage
+        '
+        Me.GVLeaveUsage.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+        Me.GVLeaveUsage.GridControl = Me.GCLeaveUsage
+        Me.GVLeaveUsage.Name = "GVLeaveUsage"
+        Me.GVLeaveUsage.OptionsView.ShowGroupPanel = False
+        Me.GVLeaveUsage.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn12, DevExpress.Data.ColumnSortOrder.Descending)})
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn12.Caption = "Type"
+        Me.GridColumn12.FieldName = "type_ket"
+        Me.GridColumn12.FieldNameSortGroup = "type"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 0
+        Me.GridColumn12.Width = 109
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "ID Type"
+        Me.GridColumn13.FieldName = "type"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Date Expired"
+        Me.GridColumn14.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn14.FieldName = "date_expired"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 1
+        Me.GridColumn14.Width = 243
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn15.Caption = "Leave Usage (hour)"
+        Me.GridColumn15.DisplayFormat.FormatString = "N0"
+        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn15.FieldName = "qty"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0}")})
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 2
+        Me.GridColumn15.Width = 179
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
@@ -621,6 +707,9 @@ Partial Class FormEmpLeaveDet
         Me.XTPLeaveRemaining.ResumeLayout(False)
         CType(Me.GCLeaveRemaining, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVLeaveRemaining, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPLeaveUsed.ResumeLayout(False)
+        CType(Me.GCLeaveUsage, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVLeaveUsage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -685,4 +774,11 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPLeaveUsed As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCLeaveUsage As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVLeaveUsage As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
