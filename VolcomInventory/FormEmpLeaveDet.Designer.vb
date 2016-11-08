@@ -59,10 +59,12 @@ Partial Class FormEmpLeaveDet
         Me.XTPLeaveUsed = New DevExpress.XtraTab.XtraTabPage()
         Me.GCLeaveUsage = New DevExpress.XtraGrid.GridControl()
         Me.GVLeaveUsage = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BRecalculate = New DevExpress.XtraEditors.SimpleButton()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -456,6 +458,7 @@ Partial Class FormEmpLeaveDet
         'XTPLeaveUsed
         '
         Me.XTPLeaveUsed.Controls.Add(Me.GCLeaveUsage)
+        Me.XTPLeaveUsed.Controls.Add(Me.BRecalculate)
         Me.XTPLeaveUsed.Name = "XTPLeaveUsed"
         Me.XTPLeaveUsed.Size = New System.Drawing.Size(675, 217)
         Me.XTPLeaveUsed.Text = "Leave Usage"
@@ -466,17 +469,23 @@ Partial Class FormEmpLeaveDet
         Me.GCLeaveUsage.Location = New System.Drawing.Point(0, 0)
         Me.GCLeaveUsage.MainView = Me.GVLeaveUsage
         Me.GCLeaveUsage.Name = "GCLeaveUsage"
-        Me.GCLeaveUsage.Size = New System.Drawing.Size(675, 217)
+        Me.GCLeaveUsage.Size = New System.Drawing.Size(675, 190)
         Me.GCLeaveUsage.TabIndex = 4
         Me.GCLeaveUsage.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLeaveUsage})
         '
         'GVLeaveUsage
         '
-        Me.GVLeaveUsage.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
+        Me.GVLeaveUsage.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn16, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15})
         Me.GVLeaveUsage.GridControl = Me.GCLeaveUsage
         Me.GVLeaveUsage.Name = "GVLeaveUsage"
         Me.GVLeaveUsage.OptionsView.ShowGroupPanel = False
         Me.GVLeaveUsage.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn12, DevExpress.Data.ColumnSortOrder.Descending)})
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "ID Usage"
+        Me.GridColumn16.FieldName = "id_emp_leave_usage"
+        Me.GridColumn16.Name = "GridColumn16"
         '
         'GridColumn12
         '
@@ -528,6 +537,16 @@ Partial Class FormEmpLeaveDet
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 2
         Me.GridColumn15.Width = 179
+        '
+        'BRecalculate
+        '
+        Me.BRecalculate.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BRecalculate.ImageList = Me.LargeImageCollection
+        Me.BRecalculate.Location = New System.Drawing.Point(0, 190)
+        Me.BRecalculate.Name = "BRecalculate"
+        Me.BRecalculate.Size = New System.Drawing.Size(675, 27)
+        Me.BRecalculate.TabIndex = 5
+        Me.BRecalculate.Text = "Re-Calculate"
         '
         'Label3
         '
@@ -781,4 +800,6 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BRecalculate As DevExpress.XtraEditors.SimpleButton
 End Class

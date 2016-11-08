@@ -8,6 +8,7 @@
     Private Sub FormEmpLeavePick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
+        '
     End Sub
 
     Private Sub BViewSchedule_Click(sender As Object, e As EventArgs) Handles BViewSchedule.Click
@@ -15,6 +16,7 @@
         load_total()
         load_date()
         GVSchedule.BestFitColumns()
+        GVSchedule.Focus()
     End Sub
 
     Sub load_schedule()
@@ -131,5 +133,53 @@
 
     Private Sub FormEmpLeavePick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub FormEmpLeavePick_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        DEStart.Focus()
+    End Sub
+
+    Private Sub DEStart_KeyDown(sender As Object, e As KeyEventArgs) Handles DEStart.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            DEUntil.Focus()
+        End If
+    End Sub
+
+    Private Sub DEUntil_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntil.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BViewSchedule.Focus()
+        End If
+    End Sub
+
+    Private Sub GVSchedule_KeyDown(sender As Object, e As KeyEventArgs) Handles GVSchedule.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            CEFullDay.Focus()
+        End If
+    End Sub
+
+    Private Sub CEFullDay_KeyDown(sender As Object, e As KeyEventArgs) Handles CEFullDay.KeyDown
+        If e.KeyCode = Keys.NumPad1 Then
+            CEFullDay.Checked = True
+        ElseIf e.KeyCode = Keys.NumPad0 Then
+            CEFullDay.Checked = False
+        ElseIf e.KeyCode = Keys.Enter Then
+            If CEFullDay.Checked = True Then
+                BAdd.Focus()
+            Else
+                DEStartLeave.Focus()
+            End If
+        End If
+    End Sub
+
+    Private Sub DEStartLeave_KeyDown(sender As Object, e As KeyEventArgs) Handles DEStartLeave.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            DEUntilLeave.Focus()
+        End If
+    End Sub
+
+    Private Sub DEUntilLeave_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntilLeave.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BAdd.Focus()
+        End If
     End Sub
 End Class

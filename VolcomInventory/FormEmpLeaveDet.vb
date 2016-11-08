@@ -8,6 +8,8 @@
 
         load_emp_leave()
         load_but_calc()
+        load_emp_leave_usage()
+        '
     End Sub
 
     Sub load_remaining()
@@ -40,20 +42,51 @@
             'calculate fifo new only
             If id_emp_leave = "-1" And TERemainingLeaveAfter.EditValue > 0 And GVLeaveDet.RowCount > 0 And GVLeaveRemaining.RowCount > 0 Then
                 Dim j As Integer = 0
-                Dim jum_leave As Integer = GVLeaveDet.RowCount
+                Dim total_leave As Integer = TETotLeave.EditValue
+                '
+                clear_grid()
                 '
                 For i As Integer = 0 To GVLeaveRemaining.RowCount - 1
                     Dim leave_remaining As Integer = 0
                     leave_remaining = GVLeaveRemaining.GetRowCellValue(i, "qty")
-                    While leave_remaining > 0
+                    If total_leave - leave_remaining > 0 Then
+                        'use row qty = leave_remaining
+                        Dim newRow As DataRow = (TryCast(GCLeaveUsage.DataSource, DataTable)).NewRow()
+                        newRow("type") = GVLeaveRemaining.GetRowCellValue(i, "type").ToString
+                        newRow("type_ket") = GVLeaveRemaining.GetRowCellValue(i, "type_ket").ToString
+                        newRow("date_expired") = GVLeaveRemaining.GetRowCellValue(i, "date_expired")
+                        newRow("qty") = GVLeaveRemaining.GetRowCellValue(i, "qty")
 
-                    End While
+                        TryCast(GCLeaveUsage.DataSource, DataTable).Rows.Add(newRow)
+                        GCLeaveUsage.RefreshDataSource()
+                        '
+                        total_leave = total_leave - leave_remaining
+                    Else
+                        'use row with qty = total leave
+                        Dim newRow As DataRow = (TryCast(GCLeaveUsage.DataSource, DataTable)).NewRow()
+                        newRow("type") = GVLeaveRemaining.GetRowCellValue(i, "type").ToString
+                        newRow("type_ket") = GVLeaveRemaining.GetRowCellValue(i, "type_ket").ToString
+                        newRow("date_expired") = GVLeaveRemaining.GetRowCellValue(i, "date_expired")
+                        newRow("qty") = total_leave
+
+                        TryCast(GCLeaveUsage.DataSource, DataTable).Rows.Add(newRow)
+                        GCLeaveUsage.RefreshDataSource()
+                        '
+                        total_leave = 0
+                        Exit For
+                    End If
                 Next
             End If
         Else
             TETotLeave.EditValue = 0
             TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue
         End If
+    End Sub
+
+    Sub clear_grid()
+        For i As Integer = GVLeaveUsage.RowCount - 1 To 0 Step -1
+            GVLeaveUsage.DeleteRow(i)
+        Next
     End Sub
 
     Private Sub BAddLeave_Click(sender As Object, e As EventArgs) Handles BAddLeave.Click
@@ -80,6 +113,13 @@
                 load_remaining()
                 load_emp_leave()
                 load_but_calc()
+                '
+                If Not XTCDet.SelectedTabPageIndex = 1 Then
+                    XTCDet.SelectedTabPageIndex = 1
+                Else
+                    XTCDet.SelectedTabPageIndex = 0
+                    BAddLeave.Focus()
+                End If
             End If
         End If
     End Sub
@@ -89,6 +129,13 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GCLeaveDet.DataSource = data
+    End Sub
+
+    Sub load_emp_leave_usage()
+        Dim query As String = "SELECT id_emp_leave_usage,type,IF(`type`=1,'Leave','DP') as type_ket,date_expired,(qty/60) as qty FROM tb_emp_leave_usage where id_emp_leave='" + id_emp_leave + "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCLeaveUsage.DataSource = data
     End Sub
 
     Private Sub BDelLeave_Click(sender As Object, e As EventArgs) Handles BDelLeave.Click
@@ -115,5 +162,17 @@
         Else
 
         End If
+    End Sub
+
+    Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
+        Close()
+    End Sub
+
+    Private Sub BRecalculate_Click(sender As Object, e As EventArgs) Handles BRecalculate.Click
+        load_but_calc()
+    End Sub
+
+    Private Sub FormEmpLeaveDet_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
+        TEEmployeeCode.Focus()
     End Sub
 End Class
