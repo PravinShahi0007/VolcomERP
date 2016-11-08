@@ -740,7 +740,47 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
+    '============= Employee code ===========================
+    Function get_opt_emp_field(ByVal field As String)
+        'opt as var choose field
+        Dim ret_var, query As String
+        ret_var = ""
 
+        Try
+            query = "SELECT " & field & " FROM tb_opt_emp LIMIT 1"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
+        Catch ex As Exception
+            ret_var = ""
+        End Try
+
+        Return ret_var
+    End Function
+    Function header_number_emp(ByVal opt As String)
+        'opt
+        '1 = leave
+
+        Dim header_number_x As String
+        header_number_x = ""
+
+
+        If opt = "1" Then
+            header_number_x = combine_header_number(get_opt_emp_field("emp_leave_code_head"), Integer.Parse(get_opt_emp_field("emp_leave_code_inc")), Integer.Parse(get_opt_emp_field("emp_leave_code_digit")))
+        End If
+
+        Return header_number_x
+    End Function
+    Sub increase_inc_emp(ByVal opt As String)
+        'opt
+        '1 = leave
+
+        Dim query As String
+        query = ""
+
+        If opt = "1" Then
+            query = "UPDATE tb_opt_emp SET emp_leave_code_inc=(tb_opt_emp.emp_leave_code_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        End If
+    End Sub
     '============= end of opt code head ====================
     Sub apply_skin()
         DevExpress.Skins.SkinManager.EnableFormSkins()

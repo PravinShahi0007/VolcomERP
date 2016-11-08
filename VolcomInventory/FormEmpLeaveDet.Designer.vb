@@ -22,6 +22,8 @@ Partial Class FormEmpLeaveDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpLeaveDet))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TEEmployeeCode = New DevExpress.XtraEditors.TextEdit()
         Me.BPickEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.DEJoinDate = New DevExpress.XtraEditors.DateEdit()
@@ -68,19 +70,26 @@ Partial Class FormEmpLeaveDet
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.MELeavePurpose = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEEMployeeChange = New DevExpress.XtraEditors.TextEdit()
+        Me.TEEmployeeChangeName = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.TETotLeave = New DevExpress.XtraEditors.TextEdit()
         Me.TERemainingLeaveAfter = New DevExpress.XtraEditors.TextEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.TERemainingLeave = New DevExpress.XtraEditors.TextEdit()
         Me.Label6 = New System.Windows.Forms.Label()
-        Me.TETotLeave = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEJoinDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,11 +115,14 @@ Partial Class FormEmpLeaveDet
         CType(Me.GVLeaveUsage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.MELeavePurpose.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEEMployeeChange.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEEmployeeChangeName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.TETotLeave.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERemainingLeaveAfter.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TETotLeave.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
@@ -118,6 +130,8 @@ Partial Class FormEmpLeaveDet
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.TENumber)
+        Me.GroupControl1.Controls.Add(Me.LabelControl7)
         Me.GroupControl1.Controls.Add(Me.TEEmployeeCode)
         Me.GroupControl1.Controls.Add(Me.BPickEmployee)
         Me.GroupControl1.Controls.Add(Me.DEJoinDate)
@@ -131,22 +145,40 @@ Partial Class FormEmpLeaveDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(703, 100)
+        Me.GroupControl1.Size = New System.Drawing.Size(718, 118)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Employee"
+        '
+        'TENumber
+        '
+        Me.TENumber.EditValue = ""
+        Me.TENumber.Location = New System.Drawing.Point(128, 10)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.EditValueChangedDelay = 1
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(196, 20)
+        Me.TENumber.TabIndex = 95
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Location = New System.Drawing.Point(34, 13)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl7.TabIndex = 96
+        Me.LabelControl7.Text = "Number"
         '
         'TEEmployeeCode
         '
         Me.TEEmployeeCode.EditValue = ""
-        Me.TEEmployeeCode.Location = New System.Drawing.Point(128, 14)
+        Me.TEEmployeeCode.Location = New System.Drawing.Point(128, 36)
         Me.TEEmployeeCode.Name = "TEEmployeeCode"
         Me.TEEmployeeCode.Properties.EditValueChangedDelay = 1
-        Me.TEEmployeeCode.Size = New System.Drawing.Size(150, 20)
+        Me.TEEmployeeCode.Size = New System.Drawing.Size(119, 20)
         Me.TEEmployeeCode.TabIndex = 1
         '
         'BPickEmployee
         '
-        Me.BPickEmployee.Location = New System.Drawing.Point(649, 12)
+        Me.BPickEmployee.Location = New System.Drawing.Point(580, 34)
         Me.BPickEmployee.Name = "BPickEmployee"
         Me.BPickEmployee.Size = New System.Drawing.Size(29, 23)
         Me.BPickEmployee.TabIndex = 0
@@ -155,7 +187,7 @@ Partial Class FormEmpLeaveDet
         'DEJoinDate
         '
         Me.DEJoinDate.EditValue = Nothing
-        Me.DEJoinDate.Location = New System.Drawing.Point(128, 66)
+        Me.DEJoinDate.Location = New System.Drawing.Point(128, 88)
         Me.DEJoinDate.Name = "DEJoinDate"
         Me.DEJoinDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEJoinDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -167,7 +199,7 @@ Partial Class FormEmpLeaveDet
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(35, 69)
+        Me.LabelControl4.Location = New System.Drawing.Point(35, 91)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl4.TabIndex = 94
@@ -176,16 +208,16 @@ Partial Class FormEmpLeaveDet
         'TEDept
         '
         Me.TEDept.EditValue = ""
-        Me.TEDept.Location = New System.Drawing.Point(128, 40)
+        Me.TEDept.Location = New System.Drawing.Point(128, 62)
         Me.TEDept.Name = "TEDept"
         Me.TEDept.Properties.EditValueChangedDelay = 1
         Me.TEDept.Properties.ReadOnly = True
-        Me.TEDept.Size = New System.Drawing.Size(283, 20)
+        Me.TEDept.Size = New System.Drawing.Size(217, 20)
         Me.TEDept.TabIndex = 3
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(34, 43)
+        Me.LabelControl2.Location = New System.Drawing.Point(34, 65)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl2.TabIndex = 92
@@ -194,7 +226,7 @@ Partial Class FormEmpLeaveDet
         'TEPosition
         '
         Me.TEPosition.EditValue = ""
-        Me.TEPosition.Location = New System.Drawing.Point(460, 40)
+        Me.TEPosition.Location = New System.Drawing.Point(394, 62)
         Me.TEPosition.Name = "TEPosition"
         Me.TEPosition.Properties.EditValueChangedDelay = 1
         Me.TEPosition.Properties.ReadOnly = True
@@ -203,7 +235,7 @@ Partial Class FormEmpLeaveDet
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(417, 43)
+        Me.LabelControl1.Location = New System.Drawing.Point(351, 65)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl1.TabIndex = 90
@@ -212,16 +244,16 @@ Partial Class FormEmpLeaveDet
         'TEEmployeeName
         '
         Me.TEEmployeeName.EditValue = ""
-        Me.TEEmployeeName.Location = New System.Drawing.Point(284, 14)
+        Me.TEEmployeeName.Location = New System.Drawing.Point(253, 36)
         Me.TEEmployeeName.Name = "TEEmployeeName"
         Me.TEEmployeeName.Properties.EditValueChangedDelay = 1
         Me.TEEmployeeName.Properties.ReadOnly = True
-        Me.TEEmployeeName.Size = New System.Drawing.Size(359, 20)
+        Me.TEEmployeeName.Size = New System.Drawing.Size(321, 20)
         Me.TEEmployeeName.TabIndex = 2
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(35, 17)
+        Me.LabelControl3.Location = New System.Drawing.Point(35, 39)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(46, 13)
         Me.LabelControl3.TabIndex = 88
@@ -232,9 +264,9 @@ Partial Class FormEmpLeaveDet
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl2.Controls.Add(Me.XTCDet)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 100)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 118)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(703, 249)
+        Me.GroupControl2.Size = New System.Drawing.Size(718, 274)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Leave"
         '
@@ -244,7 +276,7 @@ Partial Class FormEmpLeaveDet
         Me.XTCDet.Location = New System.Drawing.Point(20, 2)
         Me.XTCDet.Name = "XTCDet"
         Me.XTCDet.SelectedTabPage = Me.XTPDetLeave
-        Me.XTCDet.Size = New System.Drawing.Size(681, 245)
+        Me.XTCDet.Size = New System.Drawing.Size(696, 270)
         Me.XTCDet.TabIndex = 2
         Me.XTCDet.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetLeave, Me.XTPLeaveRemaining, Me.XTPLeaveUsed})
         '
@@ -253,7 +285,7 @@ Partial Class FormEmpLeaveDet
         Me.XTPDetLeave.Controls.Add(Me.GCLeaveDet)
         Me.XTPDetLeave.Controls.Add(Me.PanelControl2)
         Me.XTPDetLeave.Name = "XTPDetLeave"
-        Me.XTPDetLeave.Size = New System.Drawing.Size(675, 217)
+        Me.XTPDetLeave.Size = New System.Drawing.Size(690, 242)
         Me.XTPDetLeave.Text = "Leave propose"
         '
         'GCLeaveDet
@@ -263,7 +295,7 @@ Partial Class FormEmpLeaveDet
         Me.GCLeaveDet.MainView = Me.GVLeaveDet
         Me.GCLeaveDet.Name = "GCLeaveDet"
         Me.GCLeaveDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICEFullDay})
-        Me.GCLeaveDet.Size = New System.Drawing.Size(675, 180)
+        Me.GCLeaveDet.Size = New System.Drawing.Size(690, 205)
         Me.GCLeaveDet.TabIndex = 2
         Me.GCLeaveDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLeaveDet})
         '
@@ -346,7 +378,7 @@ Partial Class FormEmpLeaveDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(675, 37)
+        Me.PanelControl2.Size = New System.Drawing.Size(690, 37)
         Me.PanelControl2.TabIndex = 1
         '
         'BDelLeave
@@ -354,7 +386,7 @@ Partial Class FormEmpLeaveDet
         Me.BDelLeave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelLeave.ImageIndex = 1
         Me.BDelLeave.ImageList = Me.LargeImageCollection
-        Me.BDelLeave.Location = New System.Drawing.Point(520, 2)
+        Me.BDelLeave.Location = New System.Drawing.Point(535, 2)
         Me.BDelLeave.Name = "BDelLeave"
         Me.BDelLeave.Size = New System.Drawing.Size(78, 33)
         Me.BDelLeave.TabIndex = 2
@@ -367,13 +399,30 @@ Partial Class FormEmpLeaveDet
         Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
+        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
+        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
         'BAddLeave
         '
         Me.BAddLeave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddLeave.ImageIndex = 0
         Me.BAddLeave.ImageList = Me.LargeImageCollection
-        Me.BAddLeave.Location = New System.Drawing.Point(598, 2)
+        Me.BAddLeave.Location = New System.Drawing.Point(613, 2)
         Me.BAddLeave.Name = "BAddLeave"
         Me.BAddLeave.Size = New System.Drawing.Size(75, 33)
         Me.BAddLeave.TabIndex = 0
@@ -383,7 +432,7 @@ Partial Class FormEmpLeaveDet
         '
         Me.XTPLeaveRemaining.Controls.Add(Me.GCLeaveRemaining)
         Me.XTPLeaveRemaining.Name = "XTPLeaveRemaining"
-        Me.XTPLeaveRemaining.Size = New System.Drawing.Size(675, 217)
+        Me.XTPLeaveRemaining.Size = New System.Drawing.Size(690, 242)
         Me.XTPLeaveRemaining.Text = "Leave Remaining"
         '
         'GCLeaveRemaining
@@ -392,7 +441,7 @@ Partial Class FormEmpLeaveDet
         Me.GCLeaveRemaining.Location = New System.Drawing.Point(0, 0)
         Me.GCLeaveRemaining.MainView = Me.GVLeaveRemaining
         Me.GCLeaveRemaining.Name = "GCLeaveRemaining"
-        Me.GCLeaveRemaining.Size = New System.Drawing.Size(675, 217)
+        Me.GCLeaveRemaining.Size = New System.Drawing.Size(690, 242)
         Me.GCLeaveRemaining.TabIndex = 3
         Me.GCLeaveRemaining.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLeaveRemaining})
         '
@@ -460,7 +509,7 @@ Partial Class FormEmpLeaveDet
         Me.XTPLeaveUsed.Controls.Add(Me.GCLeaveUsage)
         Me.XTPLeaveUsed.Controls.Add(Me.BRecalculate)
         Me.XTPLeaveUsed.Name = "XTPLeaveUsed"
-        Me.XTPLeaveUsed.Size = New System.Drawing.Size(675, 217)
+        Me.XTPLeaveUsed.Size = New System.Drawing.Size(690, 242)
         Me.XTPLeaveUsed.Text = "Leave Usage"
         '
         'GCLeaveUsage
@@ -469,7 +518,7 @@ Partial Class FormEmpLeaveDet
         Me.GCLeaveUsage.Location = New System.Drawing.Point(0, 0)
         Me.GCLeaveUsage.MainView = Me.GVLeaveUsage
         Me.GCLeaveUsage.Name = "GCLeaveUsage"
-        Me.GCLeaveUsage.Size = New System.Drawing.Size(675, 190)
+        Me.GCLeaveUsage.Size = New System.Drawing.Size(690, 215)
         Me.GCLeaveUsage.TabIndex = 4
         Me.GCLeaveUsage.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLeaveUsage})
         '
@@ -541,17 +590,16 @@ Partial Class FormEmpLeaveDet
         'BRecalculate
         '
         Me.BRecalculate.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BRecalculate.ImageList = Me.LargeImageCollection
-        Me.BRecalculate.Location = New System.Drawing.Point(0, 190)
+        Me.BRecalculate.Location = New System.Drawing.Point(0, 215)
         Me.BRecalculate.Name = "BRecalculate"
-        Me.BRecalculate.Size = New System.Drawing.Size(675, 27)
+        Me.BRecalculate.Size = New System.Drawing.Size(690, 27)
         Me.BRecalculate.TabIndex = 5
         Me.BRecalculate.Text = "Re-Calculate"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(169, 12)
+        Me.Label3.Location = New System.Drawing.Point(187, 39)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(45, 13)
         Me.Label3.TabIndex = 5
@@ -560,7 +608,7 @@ Partial Class FormEmpLeaveDet
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 12)
+        Me.Label1.Location = New System.Drawing.Point(30, 39)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(73, 13)
         Me.Label1.TabIndex = 3
@@ -568,44 +616,101 @@ Partial Class FormEmpLeaveDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.MELeavePurpose)
+        Me.PanelControl1.Controls.Add(Me.LabelControl6)
+        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.TEEMployeeChange)
+        Me.PanelControl1.Controls.Add(Me.TEEmployeeChangeName)
         Me.PanelControl1.Controls.Add(Me.PanelControl4)
-        Me.PanelControl1.Controls.Add(Me.TETotLeave)
-        Me.PanelControl1.Controls.Add(Me.Label3)
-        Me.PanelControl1.Controls.Add(Me.Label1)
+        Me.PanelControl1.Controls.Add(Me.LabelControl5)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 349)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 392)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(703, 63)
+        Me.PanelControl1.Size = New System.Drawing.Size(718, 103)
         Me.PanelControl1.TabIndex = 2
+        '
+        'MELeavePurpose
+        '
+        Me.MELeavePurpose.Location = New System.Drawing.Point(89, 42)
+        Me.MELeavePurpose.Name = "MELeavePurpose"
+        Me.MELeavePurpose.Size = New System.Drawing.Size(357, 46)
+        Me.MELeavePurpose.TabIndex = 101
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 44)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl6.TabIndex = 99
+        Me.LabelControl6.Text = "Leave Purpose"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Location = New System.Drawing.Point(417, 10)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(29, 23)
+        Me.SimpleButton1.TabIndex = 95
+        Me.SimpleButton1.Text = "..."
+        '
+        'TEEMployeeChange
+        '
+        Me.TEEMployeeChange.EditValue = ""
+        Me.TEEMployeeChange.Location = New System.Drawing.Point(89, 12)
+        Me.TEEMployeeChange.Name = "TEEMployeeChange"
+        Me.TEEMployeeChange.Properties.EditValueChangedDelay = 1
+        Me.TEEMployeeChange.Size = New System.Drawing.Size(111, 20)
+        Me.TEEMployeeChange.TabIndex = 96
+        '
+        'TEEmployeeChangeName
+        '
+        Me.TEEmployeeChangeName.EditValue = ""
+        Me.TEEmployeeChangeName.Location = New System.Drawing.Point(206, 12)
+        Me.TEEmployeeChangeName.Name = "TEEmployeeChangeName"
+        Me.TEEmployeeChangeName.Properties.EditValueChangedDelay = 1
+        Me.TEEmployeeChangeName.Properties.ReadOnly = True
+        Me.TEEmployeeChangeName.Size = New System.Drawing.Size(205, 20)
+        Me.TEEmployeeChangeName.TabIndex = 97
         '
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl4.Controls.Add(Me.Label2)
+        Me.PanelControl4.Controls.Add(Me.TETotLeave)
+        Me.PanelControl4.Controls.Add(Me.Label3)
         Me.PanelControl4.Controls.Add(Me.TERemainingLeaveAfter)
+        Me.PanelControl4.Controls.Add(Me.Label1)
         Me.PanelControl4.Controls.Add(Me.Label4)
         Me.PanelControl4.Controls.Add(Me.Label5)
         Me.PanelControl4.Controls.Add(Me.TERemainingLeave)
         Me.PanelControl4.Controls.Add(Me.Label6)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl4.Location = New System.Drawing.Point(448, 2)
+        Me.PanelControl4.Location = New System.Drawing.Point(475, 2)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(253, 59)
+        Me.PanelControl4.Size = New System.Drawing.Size(241, 99)
         Me.PanelControl4.TabIndex = 97
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(189, 36)
+        Me.Label2.Location = New System.Drawing.Point(187, 65)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(45, 13)
         Me.Label2.TabIndex = 98
         Me.Label2.Text = "hour(s) "
         '
+        'TETotLeave
+        '
+        Me.TETotLeave.EditValue = ""
+        Me.TETotLeave.Location = New System.Drawing.Point(109, 36)
+        Me.TETotLeave.Name = "TETotLeave"
+        Me.TETotLeave.Properties.EditValueChangedDelay = 1
+        Me.TETotLeave.Size = New System.Drawing.Size(72, 20)
+        Me.TETotLeave.TabIndex = 90
+        '
         'TERemainingLeaveAfter
         '
         Me.TERemainingLeaveAfter.EditValue = ""
-        Me.TERemainingLeaveAfter.Location = New System.Drawing.Point(111, 33)
+        Me.TERemainingLeaveAfter.Location = New System.Drawing.Point(109, 62)
         Me.TERemainingLeaveAfter.Name = "TERemainingLeaveAfter"
         Me.TERemainingLeaveAfter.Properties.DisplayFormat.FormatString = "N0"
         Me.TERemainingLeaveAfter.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -616,7 +721,7 @@ Partial Class FormEmpLeaveDet
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(5, 36)
+        Me.Label4.Location = New System.Drawing.Point(10, 65)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(93, 13)
         Me.Label4.TabIndex = 97
@@ -625,7 +730,7 @@ Partial Class FormEmpLeaveDet
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(189, 10)
+        Me.Label5.Location = New System.Drawing.Point(187, 13)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(45, 13)
         Me.Label5.TabIndex = 95
@@ -634,7 +739,7 @@ Partial Class FormEmpLeaveDet
         'TERemainingLeave
         '
         Me.TERemainingLeave.EditValue = ""
-        Me.TERemainingLeave.Location = New System.Drawing.Point(111, 7)
+        Me.TERemainingLeave.Location = New System.Drawing.Point(109, 10)
         Me.TERemainingLeave.Name = "TERemainingLeave"
         Me.TERemainingLeave.Properties.DisplayFormat.FormatString = "N0"
         Me.TERemainingLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -645,35 +750,36 @@ Partial Class FormEmpLeaveDet
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(32, 10)
+        Me.Label6.Location = New System.Drawing.Point(37, 13)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(66, 13)
         Me.Label6.TabIndex = 94
         Me.Label6.Text = "Remaining : "
         '
-        'TETotLeave
+        'LabelControl5
         '
-        Me.TETotLeave.EditValue = ""
-        Me.TETotLeave.Location = New System.Drawing.Point(91, 9)
-        Me.TETotLeave.Name = "TETotLeave"
-        Me.TETotLeave.Properties.EditValueChangedDelay = 1
-        Me.TETotLeave.Size = New System.Drawing.Size(72, 20)
-        Me.TETotLeave.TabIndex = 90
+        Me.LabelControl5.Location = New System.Drawing.Point(12, 15)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl5.TabIndex = 98
+        Me.LabelControl5.Text = "Replace By"
         '
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 412)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 495)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(703, 37)
+        Me.PanelControl3.Size = New System.Drawing.Size(718, 37)
         Me.PanelControl3.TabIndex = 3
         '
         'BCancel
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCancel.Location = New System.Drawing.Point(553, 2)
+        Me.BCancel.ImageIndex = 5
+        Me.BCancel.ImageList = Me.LargeImageCollection
+        Me.BCancel.Location = New System.Drawing.Point(568, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 33)
         Me.BCancel.TabIndex = 1
@@ -682,8 +788,9 @@ Partial Class FormEmpLeaveDet
         'BSave
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSave.ImageIndex = 7
         Me.BSave.ImageList = Me.LargeImageCollection
-        Me.BSave.Location = New System.Drawing.Point(626, 2)
+        Me.BSave.Location = New System.Drawing.Point(641, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(75, 33)
         Me.BSave.TabIndex = 0
@@ -693,7 +800,7 @@ Partial Class FormEmpLeaveDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(703, 449)
+        Me.ClientSize = New System.Drawing.Size(718, 532)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControl3)
@@ -706,6 +813,7 @@ Partial Class FormEmpLeaveDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEJoinDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -732,12 +840,15 @@ Partial Class FormEmpLeaveDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.MELeavePurpose.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEEMployeeChange.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEEmployeeChangeName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.TETotLeave.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TERemainingLeaveAfter.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TETotLeave.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -747,7 +858,6 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEDept As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
@@ -802,4 +912,13 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BRecalculate As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEEMployeeChange As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEEmployeeChangeName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents MELeavePurpose As DevExpress.XtraEditors.MemoEdit
+    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
 End Class

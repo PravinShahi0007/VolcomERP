@@ -1,11 +1,15 @@
 ﻿Public Class FormEmpLeaveDet
     Public id_emp_leave As String = "-1"
     Public id_employee As String = "-1"
+    Public id_employee_change As String = "-1"
+
     Private Sub FormEmpLeaveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TERemainingLeave.EditValue = 0
         TETotLeave.EditValue = 0
         TERemainingLeaveAfter.EditValue = 0
-
+        '
+        TENumber.Text = header_number_emp("1")
+        '
         load_emp_leave()
         load_but_calc()
         load_emp_leave_usage()
@@ -90,6 +94,10 @@
     End Sub
 
     Private Sub BAddLeave_Click(sender As Object, e As EventArgs) Handles BAddLeave.Click
+        pick_load()
+    End Sub
+
+    Sub pick_load()
         If id_employee = "-1" Then
             stopCustom("Please choose employee first.")
         Else
@@ -160,7 +168,11 @@
         ElseIf TERemainingLeaveAfter.EditValue < 0
             stopCustom("Remaining Leave not sufficient.")
         Else
-
+            ' add parent
+            Dim number As String = header_number_emp("1")
+            query = "INSERT INTO tb_emp_stock_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose) VALUES('" & number & "','" & id_employee & "',NOW(),1,'')"
+            'add detail
+            'add usage
         End If
     End Sub
 
@@ -174,5 +186,28 @@
 
     Private Sub FormEmpLeaveDet_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
         TEEmployeeCode.Focus()
+    End Sub
+
+    Private Sub BAddLeave_KeyDown(sender As Object, e As KeyEventArgs) Handles BAddLeave.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            e.SuppressKeyPress = True
+            TEEMployeeChange.Focus()
+        ElseIf e.KeyCode = Keys.Add
+            pick_load()
+        End If
+    End Sub
+
+    Private Sub TEEMployeeChange_KeyDown(sender As Object, e As KeyEventArgs) Handles TEEMployeeChange.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim query As String = "SELECT emp.*,dep.departement FROM tb_m_employee emp INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE employee_code='" & TEEmployeeCode.Text & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            If data.Rows.Count > 0 Then
+                TEEMployeeChange.Text = data.Rows(0)("employee_code")
+                TEEmployeeChangeName.Text = data.Rows(0)("employee_name").ToString
+                id_employee_change = data.Rows(0)("id_employee").ToString
+                '
+            End If
+        End If
     End Sub
 End Class
