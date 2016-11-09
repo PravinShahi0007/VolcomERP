@@ -20,7 +20,8 @@
         Dim query As String = "SELECT id_emp,SUM(IF(plus_minus=1,qty,-qty))/60 AS qty,`type`,IF(`type`=1,'Leave','DP') as type_ket,date_expired FROM tb_emp_stock_leave
                                 WHERE id_emp='" & id_employee & "'
                                 GROUP BY id_emp,date_expired,`type`
-                                HAVING SUM(IF(plus_minus=1,qty,-qty)) > 0"
+                                HAVING SUM(IF(plus_minus=1,qty,-qty)) > 0
+                                ORDER BY `type` DESC,date_expired ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCLeaveRemaining.DataSource = data
         If data.Rows.Count > 0 Then
@@ -170,9 +171,40 @@
         Else
             ' add parent
             Dim number As String = header_number_emp("1")
-            query = "INSERT INTO tb_emp_stock_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose) VALUES('" & number & "','" & id_employee & "',NOW(),1,'')"
+            query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose) VALUES('" & number & "','" & id_employee & "',NOW(),1,'" & id_employee_change & "','" & MELeavePurpose.Text & "');SELECT LAST_INSERT_ID(); "
+            id_emp_leave = execute_query(query, 0, True, "", "", "", "")
             'add detail
+            query = "INSERT INTO tb_emp_leave_det(id_emp_leave,id_schedule,datetime_start,datetime_until,is_full_day,minutes_total) VALUES"
+            For i As Integer = 0 To GVLeaveDet.RowCount - 1
+                If Not i = 0 Then
+                    query += ","
+                End If
+                query += "('" & id_emp_leave & "','" & GVLeaveDet.GetRowCellValue(i, "id_schedule").ToString & "','" & Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_start").ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_until").ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & GVLeaveDet.GetRowCellValue(i, "is_full_day").ToString & "','" & GVLeaveDet.GetRowCellValue(i, "minutes_total").ToString & "')"
+            Next
+            execute_non_query(query, True, "", "", "", "")
             'add usage
+            query = "INSERT INTO tb_emp_leave_usage(id_emp_leave,`type`,date_expired,qty) VALUES"
+            For i As Integer = 0 To GVLeaveUsage.RowCount - 1
+                If Not i = 0 Then
+                    query += ","
+                End If
+                query += "('" & id_emp_leave & "','" & GVLeaveUsage.GetRowCellValue(i, "type").ToString & "','" & Date.Parse(GVLeaveUsage.GetRowCellValue(i, "date_expired").ToString).ToString("yyyy-MM-dd") & "','" & (GVLeaveUsage.GetRowCellValue(i, "qty") * 60).ToString & "')"
+            Next
+            execute_non_query(query, True, "", "", "", "")
+            'add to stock leave
+            query = "INSERT INTO tb_emp_stock_leave(id_emp_leave,id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,note,`type`) VALUES"
+            For i As Integer = 0 To GVLeaveUsage.RowCount - 1
+                If Not i = 0 Then
+                    query += ","
+                End If
+                query += "('" & id_emp_leave & "','" & id_employee & "','" & (GVLeaveUsage.GetRowCellValue(i, "qty") * 60).ToString & "',2,NOW(),'" & Date.Parse(GVLeaveUsage.GetRowCellValue(i, "date_expired").ToString).ToString("yyyy-MM-dd") & "',2,'" & number & "','" & GVLeaveUsage.GetRowCellValue(i, "type").ToString & "')"
+            Next
+            execute_non_query(query, True, "", "", "", "")
+            '
+            increase_inc_emp("1")
+            infoCustom("Leave proposed")
+            '
+            Close()
         End If
     End Sub
 
@@ -189,17 +221,14 @@
     End Sub
 
     Private Sub BAddLeave_KeyDown(sender As Object, e As KeyEventArgs) Handles BAddLeave.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            e.SuppressKeyPress = True
+        If e.KeyCode = Keys.Multiply Then
             TEEMployeeChange.Focus()
-        ElseIf e.KeyCode = Keys.Add
-            pick_load()
         End If
     End Sub
 
     Private Sub TEEMployeeChange_KeyDown(sender As Object, e As KeyEventArgs) Handles TEEMployeeChange.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query As String = "SELECT emp.*,dep.departement FROM tb_m_employee emp INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE employee_code='" & TEEmployeeCode.Text & "'"
+            Dim query As String = "SELECT emp.*,dep.departement FROM tb_m_employee emp INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE employee_code='" & TEEMployeeChange.Text & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             If data.Rows.Count > 0 Then
@@ -207,7 +236,21 @@
                 TEEmployeeChangeName.Text = data.Rows(0)("employee_name").ToString
                 id_employee_change = data.Rows(0)("id_employee").ToString
                 '
+                MELeavePurpose.Focus()
             End If
+        End If
+    End Sub
+
+    Private Sub BDelLeave_KeyDown(sender As Object, e As KeyEventArgs) Handles BDelLeave.KeyDown
+        If e.KeyCode = Keys.Multiply Then
+            TEEMployeeChange.Focus()
+        End If
+    End Sub
+
+    Private Sub MELeavePurpose_KeyDown(sender As Object, e As KeyEventArgs) Handles MELeavePurpose.KeyDown
+        If e.KeyCode = Keys.Multiply Then
+            e.SuppressKeyPress = True
+            BSave.Focus()
         End If
     End Sub
 End Class

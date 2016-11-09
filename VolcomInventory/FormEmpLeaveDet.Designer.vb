@@ -451,7 +451,6 @@ Partial Class FormEmpLeaveDet
         Me.GVLeaveRemaining.GridControl = Me.GCLeaveRemaining
         Me.GVLeaveRemaining.Name = "GVLeaveRemaining"
         Me.GVLeaveRemaining.OptionsView.ShowGroupPanel = False
-        Me.GVLeaveRemaining.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn8, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridColumn8
         '
@@ -704,6 +703,7 @@ Partial Class FormEmpLeaveDet
         Me.TETotLeave.Location = New System.Drawing.Point(109, 36)
         Me.TETotLeave.Name = "TETotLeave"
         Me.TETotLeave.Properties.EditValueChangedDelay = 1
+        Me.TETotLeave.Properties.ReadOnly = True
         Me.TETotLeave.Size = New System.Drawing.Size(72, 20)
         Me.TETotLeave.TabIndex = 90
         '
@@ -715,6 +715,7 @@ Partial Class FormEmpLeaveDet
         Me.TERemainingLeaveAfter.Properties.DisplayFormat.FormatString = "N0"
         Me.TERemainingLeaveAfter.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TERemainingLeaveAfter.Properties.EditValueChangedDelay = 1
+        Me.TERemainingLeaveAfter.Properties.ReadOnly = True
         Me.TERemainingLeaveAfter.Size = New System.Drawing.Size(72, 20)
         Me.TERemainingLeaveAfter.TabIndex = 99
         '
@@ -744,6 +745,7 @@ Partial Class FormEmpLeaveDet
         Me.TERemainingLeave.Properties.DisplayFormat.FormatString = "N0"
         Me.TERemainingLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TERemainingLeave.Properties.EditValueChangedDelay = 1
+        Me.TERemainingLeave.Properties.ReadOnly = True
         Me.TERemainingLeave.Size = New System.Drawing.Size(72, 20)
         Me.TERemainingLeave.TabIndex = 96
         '

@@ -7,7 +7,6 @@
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
         '
-
     End Sub
 
     Private Sub FormEmpLeave_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -29,5 +28,9 @@
             DEUntil.Properties.MinValue = DEStart.EditValue
         Catch ex As Exception
         End Try
+    End Sub
+
+    Private Sub BViewSum_Click(sender As Object, e As EventArgs) Handles BViewSum.Click
+        Dim query As String = "SELECT * FROM tb_emp"
     End Sub
 End Class

@@ -98,6 +98,7 @@
                 FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
                 FormEmpLeaveDet.load_but_calc()
                 FormEmpLeaveDet.GVLeaveDet.FocusedRowHandle = 0
+                '
                 Close()
             End If
         End If
