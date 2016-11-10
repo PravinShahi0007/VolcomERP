@@ -31,7 +31,7 @@ Partial Class FormEmpLeave
         Me.GridColumnTotHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BViewOnLeave = New DevExpress.XtraEditors.SimpleButton()
         Me.BViewSum = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -152,7 +152,7 @@ Partial Class FormEmpLeave
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BViewOnLeave)
         Me.PanelControl1.Controls.Add(Me.BViewSum)
         Me.PanelControl1.Controls.Add(Me.DEUntil)
         Me.PanelControl1.Controls.Add(Me.Label2)
@@ -164,13 +164,13 @@ Partial Class FormEmpLeave
         Me.PanelControl1.Size = New System.Drawing.Size(728, 38)
         Me.PanelControl1.TabIndex = 2
         '
-        'SimpleButton1
+        'BViewOnLeave
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(519, 6)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(124, 25)
-        Me.SimpleButton1.TabIndex = 13
-        Me.SimpleButton1.Text = "view (leave proposed)"
+        Me.BViewOnLeave.Location = New System.Drawing.Point(519, 6)
+        Me.BViewOnLeave.Name = "BViewOnLeave"
+        Me.BViewOnLeave.Size = New System.Drawing.Size(124, 25)
+        Me.BViewOnLeave.TabIndex = 13
+        Me.BViewOnLeave.Text = "view (leave proposed)"
         '
         'BViewSum
         '
@@ -254,7 +254,7 @@ Partial Class FormEmpLeave
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label1 As Label
     Friend WithEvents BViewSum As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BViewOnLeave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnIDLeave As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn

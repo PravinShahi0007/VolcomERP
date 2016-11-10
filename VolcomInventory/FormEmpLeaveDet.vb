@@ -10,10 +10,34 @@
         '
         TENumber.Text = header_number_emp("1")
         '
+        If id_emp_leave = "-1" Then
+            If FormEmpLeave.is_propose = "1" Then
+                TEEmployeeCode.Text = code_user
+                load_emp_detail()
+
+                TEEmployeeCode.Properties.ReadOnly = True
+                BPickEmployee.Visible = False
+            Else
+                TEEmployeeCode.Properties.ReadOnly = False
+                BPickEmployee.Visible = True
+            End If
+        End If
+        '
         load_emp_leave()
         load_but_calc()
         load_emp_leave_usage()
-        '
+    End Sub
+
+    Sub load_leave_type(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
+        Dim query As String = "SELECT id_leave_type,po_type FROM tb_lookup_po_type ORDER BY id_po_type DESC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        lookup.Properties.DataSource = Nothing
+        lookup.Properties.DataSource = data
+
+        lookup.Properties.DisplayMember = "po_type"
+        lookup.Properties.ValueMember = "id_po_type"
+        lookup.EditValue = data.Rows(0)("id_po_type").ToString
     End Sub
 
     Sub load_remaining()
@@ -110,25 +134,29 @@
 
     Private Sub TEEmployeeCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TEEmployeeCode.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query As String = "SELECT emp.*,dep.departement FROM tb_m_employee emp INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE employee_code='" & TEEmployeeCode.Text & "'"
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            load_emp_detail()
+        End If
+    End Sub
 
-            If data.Rows.Count > 0 Then
-                TEEmployeeName.Text = data.Rows(0)("employee_name").ToString
-                TEDept.Text = data.Rows(0)("departement").ToString
-                TEPosition.Text = data.Rows(0)("employee_position").ToString
-                id_employee = data.Rows(0)("id_employee").ToString
-                DEJoinDate.EditValue = data.Rows(0)("employee_join_date")
-                load_remaining()
-                load_emp_leave()
-                load_but_calc()
-                '
-                If Not XTCDet.SelectedTabPageIndex = 1 Then
-                    XTCDet.SelectedTabPageIndex = 1
-                Else
-                    XTCDet.SelectedTabPageIndex = 0
-                    BAddLeave.Focus()
-                End If
+    Sub load_emp_detail()
+        Dim query As String = "SELECT emp.*,dep.departement FROM tb_m_employee emp INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE employee_code='" & TEEmployeeCode.Text & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        If data.Rows.Count > 0 Then
+            TEEmployeeName.Text = data.Rows(0)("employee_name").ToString
+            TEDept.Text = data.Rows(0)("departement").ToString
+            TEPosition.Text = data.Rows(0)("employee_position").ToString
+            id_employee = data.Rows(0)("id_employee").ToString
+            DEJoinDate.EditValue = data.Rows(0)("employee_join_date")
+            load_remaining()
+            load_emp_leave()
+            load_but_calc()
+            '
+            If Not XTCDet.SelectedTabPageIndex = 1 Then
+                XTCDet.SelectedTabPageIndex = 1
+            Else
+                XTCDet.SelectedTabPageIndex = 0
+                BAddLeave.Focus()
             End If
         End If
     End Sub
@@ -171,7 +199,7 @@
         Else
             ' add parent
             Dim number As String = header_number_emp("1")
-            query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose) VALUES('" & number & "','" & id_employee & "',NOW(),1,'" & id_employee_change & "','" & MELeavePurpose.Text & "');SELECT LAST_INSERT_ID(); "
+            query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose,leave_remaining,leave_total) VALUES('" & number & "','" & id_employee & "',NOW(),1,'" & id_employee_change & "','" & MELeavePurpose.Text & "','" & (TERemainingLeave.EditValue * 60) & "','" & (TETotLeave.EditValue * 60) & "');SELECT LAST_INSERT_ID(); "
             id_emp_leave = execute_query(query, 0, True, "", "", "", "")
             'add detail
             query = "INSERT INTO tb_emp_leave_det(id_emp_leave,id_schedule,datetime_start,datetime_until,is_full_day,minutes_total) VALUES"
@@ -252,5 +280,13 @@
             e.SuppressKeyPress = True
             BSave.Focus()
         End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+
     End Sub
 End Class

@@ -16,6 +16,7 @@ Module Common
     Public id_departement_user As String
     Public username_user As String
     Public name_user As String
+    Public code_user As String
     Public product_image_path As String = ""
     Public emp_image_path As String = ""
     Public is_change_pass_user As String = ""

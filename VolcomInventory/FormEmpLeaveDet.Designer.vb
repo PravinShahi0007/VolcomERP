@@ -85,8 +85,12 @@ Partial Class FormEmpLeaveDet
         Me.Label6 = New System.Windows.Forms.Label()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.LEpayment = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,11 +129,14 @@ Partial Class FormEmpLeaveDet
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.LEpayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.LEpayment)
+        Me.GroupControl1.Controls.Add(Me.LabelControl9)
         Me.GroupControl1.Controls.Add(Me.TENumber)
         Me.GroupControl1.Controls.Add(Me.LabelControl7)
         Me.GroupControl1.Controls.Add(Me.TEEmployeeCode)
@@ -156,7 +163,7 @@ Partial Class FormEmpLeaveDet
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.EditValueChangedDelay = 1
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(196, 20)
+        Me.TENumber.Size = New System.Drawing.Size(209, 20)
         Me.TENumber.TabIndex = 95
         '
         'LabelControl7
@@ -173,16 +180,18 @@ Partial Class FormEmpLeaveDet
         Me.TEEmployeeCode.Location = New System.Drawing.Point(128, 36)
         Me.TEEmployeeCode.Name = "TEEmployeeCode"
         Me.TEEmployeeCode.Properties.EditValueChangedDelay = 1
+        Me.TEEmployeeCode.Properties.ReadOnly = True
         Me.TEEmployeeCode.Size = New System.Drawing.Size(119, 20)
         Me.TEEmployeeCode.TabIndex = 1
         '
         'BPickEmployee
         '
-        Me.BPickEmployee.Location = New System.Drawing.Point(580, 34)
+        Me.BPickEmployee.Location = New System.Drawing.Point(583, 34)
         Me.BPickEmployee.Name = "BPickEmployee"
         Me.BPickEmployee.Size = New System.Drawing.Size(29, 23)
         Me.BPickEmployee.TabIndex = 0
         Me.BPickEmployee.Text = "..."
+        Me.BPickEmployee.Visible = False
         '
         'DEJoinDate
         '
@@ -194,7 +203,7 @@ Partial Class FormEmpLeaveDet
         Me.DEJoinDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEJoinDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEJoinDate.Properties.ReadOnly = True
-        Me.DEJoinDate.Size = New System.Drawing.Size(205, 20)
+        Me.DEJoinDate.Size = New System.Drawing.Size(217, 20)
         Me.DEJoinDate.TabIndex = 5
         '
         'LabelControl4
@@ -248,7 +257,7 @@ Partial Class FormEmpLeaveDet
         Me.TEEmployeeName.Name = "TEEmployeeName"
         Me.TEEmployeeName.Properties.EditValueChangedDelay = 1
         Me.TEEmployeeName.Properties.ReadOnly = True
-        Me.TEEmployeeName.Size = New System.Drawing.Size(321, 20)
+        Me.TEEmployeeName.Size = New System.Drawing.Size(324, 20)
         Me.TEEmployeeName.TabIndex = 2
         '
         'LabelControl3
@@ -768,6 +777,8 @@ Partial Class FormEmpLeaveDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BPrint)
+        Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -775,6 +786,28 @@ Partial Class FormEmpLeaveDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(718, 37)
         Me.PanelControl3.TabIndex = 3
+        '
+        'BPrint
+        '
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrint.ImageIndex = 6
+        Me.BPrint.ImageList = Me.LargeImageCollection
+        Me.BPrint.Location = New System.Drawing.Point(495, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(73, 33)
+        Me.BPrint.TabIndex = 3
+        Me.BPrint.Text = "Print"
+        '
+        'BMark
+        '
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.LargeImageCollection
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(73, 33)
+        Me.BMark.TabIndex = 2
+        Me.BMark.Text = "Mark"
         '
         'BCancel
         '
@@ -797,6 +830,31 @@ Partial Class FormEmpLeaveDet
         Me.BSave.Size = New System.Drawing.Size(75, 33)
         Me.BSave.TabIndex = 0
         Me.BSave.Text = "Save"
+        '
+        'LEpayment
+        '
+        Me.LEpayment.Location = New System.Drawing.Point(405, 10)
+        Me.LEpayment.Name = "LEpayment"
+        Me.LEpayment.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEpayment.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEpayment.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.LEpayment.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.LEpayment.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LEpayment.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.LEpayment.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEpayment.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payment", "Id payment", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payment", "Payment")})
+        Me.LEpayment.Properties.NullText = ""
+        Me.LEpayment.Properties.ShowFooter = False
+        Me.LEpayment.Size = New System.Drawing.Size(207, 20)
+        Me.LEpayment.TabIndex = 144
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(343, 13)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl9.TabIndex = 143
+        Me.LabelControl9.Text = "Leave Type"
         '
         'FormEmpLeaveDet
         '
@@ -853,6 +911,7 @@ Partial Class FormEmpLeaveDet
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.LEpayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -923,4 +982,8 @@ Partial Class FormEmpLeaveDet
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LEpayment As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -10036,4 +10036,18 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBLeavePropose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLeavePropose.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpLeave.is_propose = "1"
+            FormEmpLeave.MdiParent = Me
+            FormEmpLeave.Show()
+            FormEmpLeave.WindowState = FormWindowState.Maximized
+            FormEmpLeave.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

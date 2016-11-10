@@ -100,6 +100,7 @@
     <Reference Include="DevExpress.BonusSkins.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Mvvm.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -3817,6 +3818,12 @@
     <Compile Include="ReportEmpAttnInd.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpLeave.Designer.vb">
+      <DependentUpon>ReportEmpLeave.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpLeave.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGAdjIn.Designer.vb">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
     </Compile>
@@ -6722,6 +6729,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpAttnInd.resx">
       <DependentUpon>ReportEmpAttnInd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpLeave.resx">
+      <DependentUpon>ReportEmpLeave.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGAdjIn.resx">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
