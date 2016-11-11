@@ -10,7 +10,7 @@
 
     Public report_number As String = ""
     Public is_view_finalize As String = "-1"
-
+    '
     ' report_mark_type
     ' WARNING : if want to add new report type, also add on the tb_lookup_report_mark_type ^_-
     ' is_view = "1" only for workplace (FormView*)
@@ -29,6 +29,7 @@
 
             If confirm = Windows.Forms.DialogResult.Yes Then
                 submit_who_prepared(report_mark_type, id_report, id_user)
+
                 infoCustom("Form submitted.")
                 act_load()
             Else
@@ -321,6 +322,9 @@
         ElseIf report_mark_type = "94" Then
             'REPAIR RETURN REC
             query = String.Format("SELECT id_report_status, fg_repair_return_rec_number as report_number FROM tb_fg_repair_return_rec WHERE id_fg_repair_return_rec = '{0}'", id_report)
+        ElseIf report_mark_type = "95" Then
+            'Leave Propose
+            query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3042,6 +3046,14 @@
                 FormFGRepairReturnRec.viewRepairList()
                 FormFGRepairReturnRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairReturnRec.GVRepairRec, "id_fg_repair_return_rec", id_report)
             End If
+        ElseIf report_mark_type = "95" Then
+            'LEAVE PROPOSE
+            If id_status_reportx = "4" Then
+                MsgBox("ha")
+            End If
+            query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
         End If
 
         'adding lead time

@@ -22,6 +22,8 @@ Partial Class FormEmpLeaveDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpLeaveDet))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.LELeaveType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TEEmployeeCode = New DevExpress.XtraEditors.TextEdit()
@@ -47,7 +49,7 @@ Partial Class FormEmpLeaveDet
         Me.RICEFullDay = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCAddDelLeave = New DevExpress.XtraEditors.PanelControl()
         Me.BDelLeave = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BAddLeave = New DevExpress.XtraEditors.SimpleButton()
@@ -72,7 +74,7 @@ Partial Class FormEmpLeaveDet
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.MELeavePurpose = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPickChange = New DevExpress.XtraEditors.SimpleButton()
         Me.TEEMployeeChange = New DevExpress.XtraEditors.TextEdit()
         Me.TEEmployeeChangeName = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
@@ -89,10 +91,9 @@ Partial Class FormEmpLeaveDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.LEpayment = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.LELeaveType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,8 +109,8 @@ Partial Class FormEmpLeaveDet
         CType(Me.GCLeaveDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVLeaveDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICEFullDay, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
+        CType(Me.PCAddDelLeave, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCAddDelLeave.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPLeaveRemaining.SuspendLayout()
         CType(Me.GCLeaveRemaining, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,13 +130,12 @@ Partial Class FormEmpLeaveDet
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.LEpayment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.LEpayment)
+        Me.GroupControl1.Controls.Add(Me.LELeaveType)
         Me.GroupControl1.Controls.Add(Me.LabelControl9)
         Me.GroupControl1.Controls.Add(Me.TENumber)
         Me.GroupControl1.Controls.Add(Me.LabelControl7)
@@ -155,6 +155,31 @@ Partial Class FormEmpLeaveDet
         Me.GroupControl1.Size = New System.Drawing.Size(718, 118)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Employee"
+        '
+        'LELeaveType
+        '
+        Me.LELeaveType.Location = New System.Drawing.Point(405, 10)
+        Me.LELeaveType.Name = "LELeaveType"
+        Me.LELeaveType.Properties.Appearance.Options.UseTextOptions = True
+        Me.LELeaveType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LELeaveType.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.LELeaveType.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.LELeaveType.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LELeaveType.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.LELeaveType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LELeaveType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_leave_type", "ID Leave", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("leave_type", "Leave")})
+        Me.LELeaveType.Properties.NullText = ""
+        Me.LELeaveType.Properties.ShowFooter = False
+        Me.LELeaveType.Size = New System.Drawing.Size(207, 20)
+        Me.LELeaveType.TabIndex = 144
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(343, 13)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl9.TabIndex = 143
+        Me.LabelControl9.Text = "Leave Type"
         '
         'TENumber
         '
@@ -292,7 +317,7 @@ Partial Class FormEmpLeaveDet
         'XTPDetLeave
         '
         Me.XTPDetLeave.Controls.Add(Me.GCLeaveDet)
-        Me.XTPDetLeave.Controls.Add(Me.PanelControl2)
+        Me.XTPDetLeave.Controls.Add(Me.PCAddDelLeave)
         Me.XTPDetLeave.Name = "XTPDetLeave"
         Me.XTPDetLeave.Size = New System.Drawing.Size(690, 242)
         Me.XTPDetLeave.Text = "Leave propose"
@@ -374,21 +399,23 @@ Partial Class FormEmpLeaveDet
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Sub total (hours)"
+        Me.GridColumn11.DisplayFormat.FormatString = "N0"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "hours_total"
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "hours_total", "{0}")})
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 3
         '
-        'PanelControl2
+        'PCAddDelLeave
         '
-        Me.PanelControl2.Controls.Add(Me.BDelLeave)
-        Me.PanelControl2.Controls.Add(Me.BAddLeave)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(690, 37)
-        Me.PanelControl2.TabIndex = 1
+        Me.PCAddDelLeave.Controls.Add(Me.BDelLeave)
+        Me.PCAddDelLeave.Controls.Add(Me.BAddLeave)
+        Me.PCAddDelLeave.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCAddDelLeave.Location = New System.Drawing.Point(0, 0)
+        Me.PCAddDelLeave.Name = "PCAddDelLeave"
+        Me.PCAddDelLeave.Size = New System.Drawing.Size(690, 37)
+        Me.PCAddDelLeave.TabIndex = 1
         '
         'BDelLeave
         '
@@ -626,7 +653,7 @@ Partial Class FormEmpLeaveDet
         '
         Me.PanelControl1.Controls.Add(Me.MELeavePurpose)
         Me.PanelControl1.Controls.Add(Me.LabelControl6)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BPickChange)
         Me.PanelControl1.Controls.Add(Me.TEEMployeeChange)
         Me.PanelControl1.Controls.Add(Me.TEEmployeeChangeName)
         Me.PanelControl1.Controls.Add(Me.PanelControl4)
@@ -652,13 +679,13 @@ Partial Class FormEmpLeaveDet
         Me.LabelControl6.TabIndex = 99
         Me.LabelControl6.Text = "Leave Purpose"
         '
-        'SimpleButton1
+        'BPickChange
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(417, 10)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(29, 23)
-        Me.SimpleButton1.TabIndex = 95
-        Me.SimpleButton1.Text = "..."
+        Me.BPickChange.Location = New System.Drawing.Point(417, 10)
+        Me.BPickChange.Name = "BPickChange"
+        Me.BPickChange.Size = New System.Drawing.Size(29, 23)
+        Me.BPickChange.TabIndex = 95
+        Me.BPickChange.Text = "..."
         '
         'TEEMployeeChange
         '
@@ -711,6 +738,12 @@ Partial Class FormEmpLeaveDet
         Me.TETotLeave.EditValue = ""
         Me.TETotLeave.Location = New System.Drawing.Point(109, 36)
         Me.TETotLeave.Name = "TETotLeave"
+        Me.TETotLeave.Properties.Appearance.Options.UseTextOptions = True
+        Me.TETotLeave.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TETotLeave.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TETotLeave.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TETotLeave.Properties.DisplayFormat.FormatString = "N0"
+        Me.TETotLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TETotLeave.Properties.EditValueChangedDelay = 1
         Me.TETotLeave.Properties.ReadOnly = True
         Me.TETotLeave.Size = New System.Drawing.Size(72, 20)
@@ -721,6 +754,10 @@ Partial Class FormEmpLeaveDet
         Me.TERemainingLeaveAfter.EditValue = ""
         Me.TERemainingLeaveAfter.Location = New System.Drawing.Point(109, 62)
         Me.TERemainingLeaveAfter.Name = "TERemainingLeaveAfter"
+        Me.TERemainingLeaveAfter.Properties.Appearance.Options.UseTextOptions = True
+        Me.TERemainingLeaveAfter.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TERemainingLeaveAfter.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TERemainingLeaveAfter.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TERemainingLeaveAfter.Properties.DisplayFormat.FormatString = "N0"
         Me.TERemainingLeaveAfter.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TERemainingLeaveAfter.Properties.EditValueChangedDelay = 1
@@ -751,6 +788,10 @@ Partial Class FormEmpLeaveDet
         Me.TERemainingLeave.EditValue = ""
         Me.TERemainingLeave.Location = New System.Drawing.Point(109, 10)
         Me.TERemainingLeave.Name = "TERemainingLeave"
+        Me.TERemainingLeave.Properties.Appearance.Options.UseTextOptions = True
+        Me.TERemainingLeave.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TERemainingLeave.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TERemainingLeave.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TERemainingLeave.Properties.DisplayFormat.FormatString = "N0"
         Me.TERemainingLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TERemainingLeave.Properties.EditValueChangedDelay = 1
@@ -831,31 +872,6 @@ Partial Class FormEmpLeaveDet
         Me.BSave.TabIndex = 0
         Me.BSave.Text = "Save"
         '
-        'LEpayment
-        '
-        Me.LEpayment.Location = New System.Drawing.Point(405, 10)
-        Me.LEpayment.Name = "LEpayment"
-        Me.LEpayment.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEpayment.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEpayment.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.LEpayment.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.LEpayment.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.LEpayment.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.LEpayment.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEpayment.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payment", "Id payment", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payment", "Payment")})
-        Me.LEpayment.Properties.NullText = ""
-        Me.LEpayment.Properties.ShowFooter = False
-        Me.LEpayment.Size = New System.Drawing.Size(207, 20)
-        Me.LEpayment.TabIndex = 144
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Location = New System.Drawing.Point(343, 13)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(56, 13)
-        Me.LabelControl9.TabIndex = 143
-        Me.LabelControl9.Text = "Leave Type"
-        '
         'FormEmpLeaveDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -873,6 +889,7 @@ Partial Class FormEmpLeaveDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.LELeaveType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -888,8 +905,8 @@ Partial Class FormEmpLeaveDet
         CType(Me.GCLeaveDet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVLeaveDet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICEFullDay, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PCAddDelLeave, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCAddDelLeave.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPLeaveRemaining.ResumeLayout(False)
         CType(Me.GCLeaveRemaining, System.ComponentModel.ISupportInitialize).EndInit()
@@ -911,7 +928,6 @@ Partial Class FormEmpLeaveDet
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.LEpayment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -933,7 +949,7 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents XTPDetLeave As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCLeaveDet As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVLeaveDet As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCAddDelLeave As DevExpress.XtraEditors.PanelControl
     Friend WithEvents Label3 As Label
     Friend WithEvents Label1 As Label
     Friend WithEvents BDelLeave As DevExpress.XtraEditors.SimpleButton
@@ -973,7 +989,7 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BRecalculate As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPickChange As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEEMployeeChange As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEEmployeeChangeName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
@@ -984,6 +1000,6 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents LEpayment As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LELeaveType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
 End Class

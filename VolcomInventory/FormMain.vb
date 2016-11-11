@@ -2277,6 +2277,12 @@ Public Class FormMain
                 FormFGRepairReturnRecDet.action = "upd"
                 FormFGRepairReturnRecDet.id_fg_repair_return_rec = FormFGRepairReturnRec.GVRepairRec.GetFocusedRowCellValue("id_fg_repair_return_rec").ToString
                 FormFGRepairReturnRecDet.ShowDialog()
+            ElseIf formName = "FormEmpLeave" Then
+                'Leave employee
+                If FormEmpLeave.GVLeave.RowCount > 0 Then
+                    FormEmpLeaveDet.id_emp_leave = FormEmpLeave.GVLeave.GetFocusedRowCellValue("id_emp_leave").ToString
+                    FormEmpLeaveDet.ShowDialog()
+                End If
             Else
                 RPSubMenu.Visible = False
             End If
@@ -10013,6 +10019,7 @@ Public Class FormMain
     Private Sub NBEmpLeave_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpLeave.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormEmpLeave.is_propose = "-1"
             FormEmpLeave.MdiParent = Me
             FormEmpLeave.Show()
             FormEmpLeave.WindowState = FormWindowState.Maximized

@@ -359,6 +359,11 @@
             'repair return rec FG
             FormViewFGRepairReturnRec.id_fg_repair_return_rec = id_report
             FormViewFGRepairReturnRec.ShowDialog()
+        ElseIf report_mark_type = "95" Then
+            'propose leave
+            FormEmpLeaveDet.id_emp_leave = id_report
+            FormEmpLeaveDet.is_view = "1"
+            FormEmpLeaveDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -871,6 +876,12 @@
             field_id = "id_fg_repair_return_rec"
             field_number = "fg_repair_return_rec_number"
             field_date = "fg_repair_return_rec_date"
+        ElseIf report_mark_type = "95" Then
+            'Propose leave
+            table_name = "tb_emp_leave"
+            field_id = "id_emp_leave"
+            field_number = "emp_leave_number"
+            field_date = "emp_leave_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

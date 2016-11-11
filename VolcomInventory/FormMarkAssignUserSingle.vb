@@ -27,7 +27,16 @@
         time_fix = TEHour.Text & ":" & TEMin.Text & ":" & TESec.Text
         If GVUser.RowCount > 0 Then
             Try
-                Dim query As String = String.Format("INSERT tb_mark_asg_user(id_mark_asg,id_user,level,lead_time) VALUES('{0}','{1}',((SELECT COUNT(a.id_mark_asg_user) FROM tb_mark_asg_user a WHERE a.id_mark_asg='{0}')+1),'{2}')", id_mark_asg, GVUser.GetFocusedRowCellDisplayText("id_user").ToString, time_fix)
+                Dim id_user As String = ""
+                Dim is_head_dept As String = ""
+                If CEHeadDept.Checked = True Then
+                    id_user = "NULL"
+                    is_head_dept = "1"
+                Else
+                    id_user = "'" & GVUser.GetFocusedRowCellDisplayText("id_user").ToString & "'"
+                    is_head_dept = "2"
+                End If
+                Dim query As String = String.Format("INSERT tb_mark_asg_user(id_mark_asg,id_user,level,lead_time,is_head_dept) VALUES('{0}',{1},((SELECT COUNT(a.id_mark_asg_user) FROM tb_mark_asg_user a WHERE a.id_mark_asg='{0}')+1),'{2}','{3}')", id_mark_asg, id_user, time_fix, is_head_dept)
                 execute_non_query(query, True, "", "", "", "")
                 FormMarkAssignUser.view_user()
                 Close()
@@ -41,5 +50,13 @@
 
     Private Sub FormMarkAssignUserSingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub CEHeadDept_CheckedChanged(sender As Object, e As EventArgs) Handles CEHeadDept.CheckedChanged
+        If CEHeadDept.Checked = True Then
+            GCUser.Enabled = False
+        Else
+            GCUser.Enabled = True
+        End If
     End Sub
 End Class

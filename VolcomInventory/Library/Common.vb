@@ -2363,28 +2363,36 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         End If
 
-
-        Dim query_cek As String = "SELECT HOUR(a.lead_time) AS hourx,MINUTE(a.lead_time) AS minutex,SECOND(a.lead_time) AS secondx,a.lead_time,a.level,b.id_mark_asg,b.report_mark_type,b.id_report_status,a.id_user "
+        Dim query_cek As String = "SELECT HOUR(a.lead_time) AS hourx,MINUTE(a.lead_time) AS minutex,SECOND(a.lead_time) AS secondx,a.lead_time,a.level,b.id_mark_asg,b.report_mark_type,b.id_report_status,a.id_user,a.is_head_dept "
         query_cek += "FROM tb_mark_asg_user a INNER JOIN tb_mark_asg b ON a.id_mark_asg=b.id_mark_asg "
         query_cek += "WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,a.level"
         Dim data As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
 
         For i As Integer = 0 To (data.Rows.Count - 1)
+            Dim id_user_mark As String = "-1"
+            If data.Rows(i)("is_head_dept").ToString = "1" Then 'search head dept
+                Dim query_dept As String = "SELECT dept.id_user_head FROM tb_m_departement dept
+                                                WHERE dept.id_departement='" & id_departement_user & "'"
+                id_user_mark = execute_query(query_dept, 0, True, "", "", "", "")
+            Else
+                id_user_mark = data.Rows(i)("id_user").ToString
+            End If
+            '
             If data.Rows(i)("id_report_status").ToString() = data.Rows(0)("id_report_status").ToString() Then
                 'set lead time
                 If data.Rows(i)("level").ToString() = "1" Then
                     'yang bos paling atas kasi dulu
-                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & data.Rows(i)("id_user").ToString() & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','1',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
+                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','1',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
                 Else
                     'baru selanjutnya
-                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,report_mark_start_datetime,report_mark_lead_time,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & data.Rows(i)("id_user").ToString() & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "',"
+                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,report_mark_start_datetime,report_mark_lead_time,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "',"
                     query += "(SELECT ADDTIME(MAX(z.report_mark_start_datetime),z.report_mark_lead_time) AS report_mark_start_datetime_end FROM tb_report_mark z WHERE z.id_mark_asg='" & data.Rows(i)("id_mark_asg").ToString() & "' AND z.id_report='" & id_report & "' AND z.level=" & data.Rows(i)("level").ToString() & "-1),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
                 End If
             Else
                 If data.Rows(i)("level").ToString() = "1" Then
-                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,is_use,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & data.Rows(i)("id_user").ToString() & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','1','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
+                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,is_use,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','1','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
                 Else
-                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & data.Rows(i)("id_user").ToString() & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
+                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
                 End If
             End If
             execute_non_query(query, True, "", "", "", "")
