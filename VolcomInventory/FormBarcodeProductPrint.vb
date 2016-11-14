@@ -123,9 +123,9 @@ Public Class FormBarcodeProductPrint
                         '
                         print_command += "<ESC>A"
                         print_command += "<ESC>#E5"
-                        print_command += "<ESC>H580<ESC>V0015<ESC>L0201<ESC>S" & TEProdCode.Text & vbNewLine
+                        print_command += "<ESC>H580<ESC>V0010<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
                         print_command += "<ESC>H580<ESC>V0030<ESC>D202160" & TEProdCode.Text & vbNewLine
-                        print_command += "<ESC>H580<ESC>V0200<ESC>L0101<ESC>S" & TEDesignName.Text & vbNewLine
+                        print_command += "<ESC>H580<ESC>V0200<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
                         print_command += "<ESC>H650<ESC>V0220<ESC>L0200<ESC>XUsize" & vbNewLine
                         print_command += "<ESC>H740<ESC>V0220<ESC>L0200<ESC>XUcolor" & vbNewLine
                         print_command += "<ESC>H580<ESC>V0240<ESC>L0202<ESC>S" & TERetCode.Text & vbNewLine
@@ -140,9 +140,9 @@ Public Class FormBarcodeProductPrint
                         'baru
                         print_command += "<ESC>A"
                         print_command += "<ESC>#E5"
-                        print_command += "<ESC>H580<ESC>V0015<ESC>L0201<ESC>S" & TEProdCode.Text & vbNewLine
+                        print_command += "<ESC>H580<ESC>V0010<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
                         print_command += "<ESC>H580<ESC>V0030<ESC>D202100" & TEProdCode.Text & vbNewLine
-                        print_command += "<ESC>H580<ESC>V0140<ESC>L0101<ESC>S" & TEDesignName.Text & vbNewLine
+                        print_command += "<ESC>H580<ESC>V0140<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
                         print_command += "<ESC>H650<ESC>V0160<ESC>L0200<ESC>XUsize" & vbNewLine
                         print_command += "<ESC>H740<ESC>V0160<ESC>L0200<ESC>XUcolor" & vbNewLine
                         print_command += "<ESC>H580<ESC>V0180<ESC>L0202<ESC>S" & TERetCode.Text & vbNewLine
@@ -175,7 +175,7 @@ Public Class FormBarcodeProductPrint
                         print_command += "^FT3,355^A0N,39,38^FH\^FD" & TECurPrice.Text & " " & TEPrice.Text & "^FS" & vbNewLine
                         print_command += "^FT3,307^A0N,34,33^FH\^FD" & TERetCode.Text & "^FS" & vbNewLine
                         print_command += "^FT1,237^A0N,17,16^FH\^FD" & TEDesignName.Text & "^FS" & vbNewLine
-                        print_command += "^FT2,47^A0N,24,40^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
+                        print_command += "^FT2,47^A0N,17,16^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
                         print_command += "^BY2,2,162^FT3,216^B2N,,N,N" & vbNewLine
                         print_command += "^FD" & TEProdCode.Text & "^FS" & vbNewLine
                         print_command += "^FT159,269^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
@@ -197,7 +197,7 @@ Public Class FormBarcodeProductPrint
                         print_command += "^FT3,247^A0N,34,33^FH\^FD" & TERetCode.Text & "^FS" & vbNewLine
                         print_command += "^FT2,183^A0N,17,16^FH\^FD" & TEDesignName.Text & "^FS" & vbNewLine
                         print_command += "^FT3,329^A0N,17,16^FH\^FD" & i.ToString(format_string) & " ^FS" & vbNewLine
-                        print_command += "^FT3,50^A0N,24,40^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
+                        print_command += "^FT3,50^A0N,17,16^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
                         print_command += "^BY2,2,111^FT3,165^B2N,,N,N" & vbNewLine
                         print_command += "^FD" & TEProdCode.Text & "^FS" & vbNewLine
                         print_command += "^FT159,209^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
@@ -207,6 +207,7 @@ Public Class FormBarcodeProductPrint
                         print_command += "^PQ1,0,1,Y^XZ" & vbNewLine
                     Next
                 Next
+
                 print_command = print_command.ToString()
             End If
             '
@@ -251,9 +252,9 @@ Public Class FormBarcodeProductPrint
                     'baru
                     print_command += "<ESC>A"
                     print_command += "<ESC>#E5"
-                    print_command += "<ESC>H580<ESC>V0015<ESC>L0201<ESC>S" & TEProdCode.Text & vbNewLine
+                    print_command += "<ESC>H580<ESC>V0010<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
                     print_command += "<ESC>H580<ESC>V0030<ESC>D202100" & TEProdCode.Text & vbNewLine
-                    print_command += "<ESC>H580<ESC>V0140<ESC>L0101<ESC>S" & TEDesignName.Text & vbNewLine
+                    print_command += "<ESC>H580<ESC>V0140<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
                     print_command += "<ESC>H650<ESC>V0160<ESC>L0200<ESC>XUsize" & vbNewLine
                     print_command += "<ESC>H740<ESC>V0160<ESC>L0200<ESC>XUcolor" & vbNewLine
                     print_command += "<ESC>H580<ESC>V0180<ESC>L0202<ESC>S" & TERetCode.Text & vbNewLine
@@ -286,7 +287,7 @@ Public Class FormBarcodeProductPrint
                     print_command += "^FT3,247^A0N,34,33^FH\^FD" & TERetCode.Text & "^FS" & vbNewLine
                     print_command += "^FT2,183^A0N,17,16^FH\^FD" & TEDesignName.Text & "^FS" & vbNewLine
                     print_command += "^FT3,329^A0N,17,16^FH\^FD" & i.ToString(format_string) & " ^FS" & vbNewLine
-                    print_command += "^FT3,50^A0N,24,40^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
+                    print_command += "^FT3,50^A0N,17,16^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
                     print_command += "^BY2,2,111^FT3,165^B2N,,N,N" & vbNewLine
                     print_command += "^FD" & TEProdCode.Text & "^FS" & vbNewLine
                     print_command += "^FT159,209^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
@@ -317,9 +318,9 @@ Public Class FormBarcodeProductPrint
             If LEPrinter.EditValue.ToString = "1" Then
                 print_command += "<ESC>A"
                 print_command += "<ESC>#E5"
-                print_command += "<ESC>H615<ESC>V0015<ESC>L0201<ESC>S" & TEProdCode.Text & vbNewLine
+                print_command += "<ESC>H615<ESC>V0010<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
                 print_command += "<ESC>H615<ESC>V0030<ESC>D202160" & TEProdCode.Text & vbNewLine
-                print_command += "<ESC>H615<ESC>V0200<ESC>L0101<ESC>S" & TEDesignName.Text & vbNewLine
+                print_command += "<ESC>H615<ESC>V0200<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
                 print_command += "<ESC>H685<ESC>V0220<ESC>L0200<ESC>XUsize" & vbNewLine
                 print_command += "<ESC>H775<ESC>V0220<ESC>L0200<ESC>XUcolor" & vbNewLine
                 print_command += "<ESC>H615<ESC>V0240<ESC>L0202<ESC>S" & TERetCode.Text & vbNewLine
@@ -347,7 +348,7 @@ Public Class FormBarcodeProductPrint
                 print_command += "^FT3,355^A0N,39,38^FH\^FD" & TECurPrice.Text & " " & TEPrice.Text & "^FS" & vbNewLine
                 print_command += "^FT3,307^A0N,34,33^FH\^FD" & TERetCode.Text & "^FS" & vbNewLine
                 print_command += "^FT1,237^A0N,17,16^FH\^FD" & TEDesignName.Text & "^FS" & vbNewLine
-                print_command += "^FT2,47^A0N,24,40^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
+                print_command += "^FT2,47^A0N,17,16^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
                 print_command += "^BY2,2,162^FT3,216^B2N,,N,N" & vbNewLine
                 print_command += "^FD" & TEProdCode.Text & "^FS" & vbNewLine
                 print_command += "^FT159,269^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
