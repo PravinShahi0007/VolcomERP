@@ -10057,4 +10057,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBEmpLeaveRemaining_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpLeaveRemaining.LinkClicked
+        Cursor = Cursors.WaitCursor
+        'Try
+        FormEmpLeaveStock.MdiParent = Me
+            FormEmpLeaveStock.Show()
+            FormEmpLeaveStock.WindowState = FormWindowState.Maximized
+            FormEmpLeaveStock.Focus()
+        'Catch ex As Exception
+        'errorProcess()
+        'End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
