@@ -4,9 +4,9 @@
     Dim bdel_active As String = "1"
     Private Sub FormSOH_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'view_soh()
-        view_soh_periode(LESOHPeriode)
+        view_soh_periode_le(LESOHPeriode)
     End Sub
-    Sub view_soh_periode(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
+    Sub view_soh_periode_le(ByVal lookup As DevExpress.XtraEditors.SearchLookUpEdit)
         Dim query As String = "SELECT id_soh_periode,soh_periode FROM tb_soh_periode ORDER BY id_soh_periode DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
