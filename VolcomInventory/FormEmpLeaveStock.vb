@@ -76,5 +76,38 @@
                                 " & emp_search & "
                                 GROUP BY id_emp"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSum.DataSource = data
+        GVSum.BestFitColumns()
+        GVSum.ExpandAllGroups()
+    End Sub
+
+    Private Sub BViewSchedule_Click(sender As Object, e As EventArgs) Handles BViewSchedule.Click
+        Dim dep_search As String = ""
+        Dim emp_search As String = ""
+
+        If Not LEDept.EditValue.ToString = "0" Then
+            dep_search = " AND emp.id_departement='" & LEDept.EditValue.ToString & "' "
+        End If
+
+        If Not LEEmp.EditValue.ToString = "0" Then
+            emp_search = " AND emp.id_employee='" & LEEmp.EditValue.ToString & "' "
+        End If
+
+        Dim query As String = "SELECT emp.id_employee,emp.employee_position,emp.employee_code,emp.employee_name,emp.id_departement,dep.departement,lvl.employee_level,active.employee_active
+                                ,IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty) AS qty_leave
+                                ,emp_sl.type,IF(emp_sl.type='1','Leave','DP') AS type_ket,emp_sl.date_expired
+                                FROM tb_emp_stock_leave emp_sl
+                                INNER JOIN tb_m_employee emp ON emp.id_employee=emp_sl.id_emp
+                                INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level
+                                INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
+                                WHERE emp_sl.is_process_exp = '2'
+                                " & dep_search & "
+                                " & emp_search & "
+                                GROUP BY emp_sl.id_emp,emp_sl.type,emp_sl.date_expired"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSchedule.DataSource = data
+        GVSchedule.BestFitColumns()
+        GVSchedule.ExpandAllGroups()
     End Sub
 End Class
