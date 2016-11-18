@@ -9,6 +9,9 @@
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
         '
+        If FormEmpLeaveDet.LELeaveType.EditValue.ToString = "1" Then
+            BPickAll.Visible = False
+        End If
     End Sub
 
     Private Sub BViewSchedule_Click(sender As Object, e As EventArgs) Handles BViewSchedule.Click
@@ -182,5 +185,39 @@
         If e.KeyCode = Keys.Enter Then
             BAdd.Focus()
         End If
+    End Sub
+
+    Private Sub BPickAll_Click(sender As Object, e As EventArgs) Handles BPickAll.Click
+        FormEmpLeaveDet.clear_grid()
+
+        For i As Integer = 0 To GVSchedule.RowCount - 1
+            If GVSchedule.GetRowCellValue(i, "id_schedule_type").ToString = "1" Then
+                Dim total_min As Integer = 0
+
+                Dim is_full_day As String = "no"
+                Dim date_from, date_until As Date
+
+                date_from = Date.Parse(GVSchedule.GetRowCellValue(i, "in").ToString)
+                date_until = Date.Parse(GVSchedule.GetRowCellValue(i, "out").ToString)
+
+                is_full_day = "yes"
+                total_min = GVSchedule.GetRowCellValue(i, "minutes_work")
+
+                Dim newRow As DataRow = (TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable)).NewRow()
+                newRow("id_schedule") = GVSchedule.GetRowCellValue(i, "id_schedule").ToString
+                newRow("datetime_start") = date_from
+                newRow("datetime_until") = date_until
+                newRow("is_full_day") = is_full_day
+                newRow("hours_total") = total_min / 60
+                newRow("minutes_total") = total_min
+
+                TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
+                FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
+                FormEmpLeaveDet.load_but_calc()
+                FormEmpLeaveDet.GVLeaveDet.FocusedRowHandle = 0
+            End If
+        Next
+
+        Close()
     End Sub
 End Class

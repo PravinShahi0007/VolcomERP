@@ -18,6 +18,11 @@
     End Sub
 
     Private Sub FormEmpLeaveStock_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        For Each t As DevExpress.XtraTab.XtraTabPage In XTCLeaveRemaining.TabPages
+            XTCLeaveRemaining.SelectedTabPage = t
+        Next t
+        XTCLeaveRemaining.SelectedTabPage = XTCLeaveRemaining.TabPages(0)
+
         viewDept()
     End Sub
 
@@ -64,8 +69,8 @@
         End If
 
         Dim query As String = "SELECT emp.id_employee,emp.employee_position,emp.employee_code,emp.employee_name,emp.id_departement,dep.departement,lvl.employee_level,active.employee_active
-                                ,IF(emp_sl.type='1',IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty),0) AS qty_leave
-                                ,IF(emp_sl.type='2',IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty),0) AS qty_dp
+                                ,SUM(IF(emp_sl.type='1',IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty),0)) AS qty_leave
+                                ,SUM(IF(emp_sl.type='2',IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty),0)) AS qty_dp
                                 FROM tb_emp_stock_leave emp_sl
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=emp_sl.id_emp
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level
@@ -94,7 +99,7 @@
         End If
 
         Dim query As String = "SELECT emp.id_employee,emp.employee_position,emp.employee_code,emp.employee_name,emp.id_departement,dep.departement,lvl.employee_level,active.employee_active
-                                ,IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty) AS qty_leave
+                                ,SUM(IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty)) AS qty_leave
                                 ,emp_sl.type,IF(emp_sl.type='1','Leave','DP') AS type_ket,emp_sl.date_expired
                                 FROM tb_emp_stock_leave emp_sl
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=emp_sl.id_emp

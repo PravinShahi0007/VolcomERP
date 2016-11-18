@@ -96,8 +96,11 @@
         End If
     End Sub
     Sub load_user()
-        Dim query As String = "SELECT * FROM tb_m_user usr INNER JOIN tb_m_employee emp ON usr.id_employee=emp.id_employee AND emp.id_departement='" + id_departement + "'"
+        Dim query As String = "SELECT usr.*,emp.*,dep.departement FROM tb_m_user usr INNER JOIN tb_m_employee emp ON usr.id_employee=emp.id_employee INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement"
+        'AND emp.id_departement='" + id_departement + "'
         viewSearchLookupQuery(SLEHeadDept, query, "id_user", "employee_name", "id_user")
+        SLEHeadDept.Properties.View.ActiveFilterString = "[id_departement]='" & id_departement & "'"
+        SLEViewEmp.RefreshData()
     End Sub
     Private Sub FormMasterDepartementSingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()

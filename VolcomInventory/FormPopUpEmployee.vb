@@ -8,6 +8,9 @@
         query += " FROM tb_m_employee emp"
         query += " INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement"
         query += " INNER JOIN tb_lookup_employee_active active On active.id_employee_active=emp.id_employee_active"
+        If FormEmpLeave.is_propose = "1" Then
+            query += " WHERE dep.id_user_head='" & id_user & "'"
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmployee.DataSource = data
         GVEmployee.BestFitColumns()

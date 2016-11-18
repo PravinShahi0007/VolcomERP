@@ -4,6 +4,7 @@
     Public id_employee_change As String = "-1"
     '
     Public is_view As String = "-1"
+    Public report_mark_type As String = "-1"
 
     Private Sub FormEmpLeaveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TERemainingLeave.EditValue = 0
@@ -14,16 +15,16 @@
         TENumber.Text = header_number_emp("1")
         '
         If id_emp_leave = "-1" Then 'new
-            If FormEmpLeave.is_propose = "1" Then
-                TEEmployeeCode.Text = code_user
-                load_emp_detail()
+            'If FormEmpLeave.is_propose = "1" Then
+            'TEEmployeeCode.Text = code_user
+            'load_emp_detail()
 
-                TEEmployeeCode.Properties.ReadOnly = True
-                BPickEmployee.Visible = False
-            Else
-                TEEmployeeCode.Properties.ReadOnly = False
-                BPickEmployee.Visible = True
-            End If
+            'TEEmployeeCode.Properties.ReadOnly = True
+            'BPickEmployee.Visible = False
+            'Else
+            TEEmployeeCode.Properties.ReadOnly = False
+            BPickEmployee.Visible = True
+            'End If
             BMark.Visible = False
             BPrint.Visible = False
             '
@@ -186,6 +187,9 @@
 
     Sub load_emp_detail()
         Dim query As String = "SELECT emp.*,dep.departement FROM tb_m_employee emp INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE employee_code='" & TEEmployeeCode.Text & "'"
+        If FormEmpLeave.is_propose = "1" Then
+            query += " AND dep.id_user_head='" & id_user & "'"
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         If data.Rows.Count > 0 Then
@@ -204,6 +208,8 @@
                 XTCDet.SelectedTabPageIndex = 0
                 BAddLeave.Focus()
             End If
+        Else
+            stopCustom("No employee found.")
         End If
     End Sub
 
@@ -282,8 +288,17 @@
                 Next
                 execute_non_query(query, True, "", "", "", "")
             End If
-            '
-            submit_who_prepared("95", id_emp_leave, id_user)
+            'search jika head dept to management
+            Dim jum_check As String = ""
+            query = "SELECT COUNT(id_departement) as count_check FROM tb_m_departement WHERE id_user_head='" & id_employee & "' AND is_office_dept='1'"
+            jum_check = execute_query(query, 0, True, "", "", "", "")
+
+            If jum_check = "0" Then ' dept head
+                submit_who_prepared("96", id_emp_leave, id_user)
+            Else
+                submit_who_prepared("95", id_emp_leave, id_user)
+            End If
+
             increase_inc_emp("1")
             infoCustom("Leave proposed")
             '
@@ -312,6 +327,9 @@
     Private Sub TEEMployeeChange_KeyDown(sender As Object, e As KeyEventArgs) Handles TEEMployeeChange.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim query As String = "SELECT emp.*,dep.departement FROM tb_m_employee emp INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE employee_code='" & TEEMployeeChange.Text & "'"
+            If FormEmpLeave.is_propose = "1" Then
+                query += " AND dep.id_user_head='" & id_user & "'"
+            End If
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             If data.Rows.Count > 0 Then
@@ -320,6 +338,8 @@
                 id_employee_change = data.Rows(0)("id_employee").ToString
                 '
                 MELeavePurpose.Focus()
+            Else
+                stopCustom("No employee found.")
             End If
         End If
     End Sub
@@ -338,7 +358,7 @@
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-        FormReportMark.report_mark_type = "95"
+        FormReportMark.report_mark_type = report_mark_type
         FormReportMark.is_view = is_view
         FormReportMark.id_report = id_emp_leave
         FormReportMark.ShowDialog()

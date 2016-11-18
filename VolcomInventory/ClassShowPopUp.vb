@@ -362,6 +362,13 @@
         ElseIf report_mark_type = "95" Then
             'propose leave
             FormEmpLeaveDet.id_emp_leave = id_report
+            FormEmpLeaveDet.report_mark_type = "95"
+            FormEmpLeaveDet.is_view = "1"
+            FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "96" Then
+            'propose leave need management approval
+            FormEmpLeaveDet.id_emp_leave = id_report
+            FormEmpLeaveDet.report_mark_type = "96"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
         Else
@@ -878,6 +885,12 @@
             field_date = "fg_repair_return_rec_date"
         ElseIf report_mark_type = "95" Then
             'Propose leave
+            table_name = "tb_emp_leave"
+            field_id = "id_emp_leave"
+            field_number = "emp_leave_number"
+            field_date = "emp_leave_date"
+        ElseIf report_mark_type = "96" Then
+            'Propose leave need management approval
             table_name = "tb_emp_leave"
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"

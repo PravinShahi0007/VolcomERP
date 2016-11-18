@@ -325,6 +325,9 @@
         ElseIf report_mark_type = "95" Then
             'Leave Propose
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
+        ElseIf report_mark_type = "96" Then
+            'Leave Propose need management approval
+            query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3049,7 +3052,17 @@
         ElseIf report_mark_type = "95" Then
             'LEAVE PROPOSE
             If id_status_reportx = "4" Then
-                MsgBox("ha")
+                'update schedule to cuti
+
+            End If
+            query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+        ElseIf report_mark_type = "96" Then
+            'LEAVE PROPOSE
+            If id_status_reportx = "4" Then
+                'update schedule to cuti
+
             End If
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
