@@ -1,15 +1,15 @@
 ﻿Public Class FormEmpScheduleKet
     Public id_schedule As String = ""
-    Public id_emp_schedule_ket As String = "1"
+    Public id_leave_type As String = "1"
 
     Private Sub FormEmpScheduleKet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_ket()
-        LETypeKet.ItemIndex = LETypeKet.Properties.GetDataSourceRowIndex("id_emp_schedule_ket", id_emp_schedule_ket)
+        LETypeKet.ItemIndex = LETypeKet.Properties.GetDataSourceRowIndex("id_leave_type", id_leave_type)
     End Sub
 
     Sub load_ket()
-        Dim query As String = "SELECT id_emp_schedule_ket,ket FROM tb_emp_schedule_ket"
-        viewLookupQuery(LETypeKet, query, 0, "ket", "id_emp_schedule_ket")
+        Dim query As String = "SELECT id_leave_type,leave_type FROM tb_lookup_leave_type"
+        viewLookupQuery(LETypeKet, query, 0, "leave_type", "id_leave_type")
     End Sub
 
     Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
@@ -23,10 +23,10 @@
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         Dim query As String = ""
         If LETypeKet.Text = "" Then
-            query = "UPDATE tb_emp_schedule SET id_emp_schedule_ket=NULL,info_ket='" & MEInfo.Text & "' WHERE id_schedule='" & id_schedule & "'"
+            query = "UPDATE tb_emp_schedule SET id_leave_type=NULL,info_leave='" & MEInfo.Text & "' WHERE id_schedule='" & id_schedule & "'"
             execute_non_query(query, True, "", "", "", "")
         Else
-            query = "UPDATE tb_emp_schedule SET id_emp_schedule_ket='" & LETypeKet.EditValue.ToString & "',info_ket='" & MEInfo.Text & "' WHERE id_schedule='" & id_schedule & "'"
+            query = "UPDATE tb_emp_schedule SET id_leave_type='" & LETypeKet.EditValue.ToString & "',info_leave='" & MEInfo.Text & "' WHERE id_schedule='" & id_schedule & "'"
             execute_non_query(query, True, "", "", "", "")
         End If
 
@@ -37,7 +37,7 @@
 
     Private Sub BReset_Click(sender As Object, e As EventArgs) Handles BReset.Click
         Dim query As String = ""
-        query = "UPDATE tb_emp_schedule SET id_emp_schedule_ket=NULL,info_ket='' WHERE id_schedule='" & id_schedule & "'"
+        query = "UPDATE tb_emp_schedule SET id_leave_type=NULL,info_leave='' WHERE id_schedule='" & id_schedule & "'"
         execute_non_query(query, True, "", "", "", "")
         FormEmpAttnSum.load_report()
         FormEmpAttnSum.GVSum.FocusedRowHandle = find_row(FormEmpAttnSum.GVSum, "id_schedule", id_schedule)

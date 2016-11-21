@@ -23,13 +23,13 @@ Partial Class FormEmpScheduleKet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpScheduleKet))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BReset = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.LETypeKet = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.MEInfo = New DevExpress.XtraEditors.MemoEdit()
-        Me.BReset = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -73,6 +73,17 @@ Partial Class FormEmpScheduleKet
         Me.PanelControl1.Size = New System.Drawing.Size(423, 38)
         Me.PanelControl1.TabIndex = 3
         '
+        'BReset
+        '
+        Me.BReset.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BReset.ImageIndex = 3
+        Me.BReset.ImageList = Me.LargeImageCollection
+        Me.BReset.Location = New System.Drawing.Point(2, 2)
+        Me.BReset.Name = "BReset"
+        Me.BReset.Size = New System.Drawing.Size(87, 34)
+        Me.BReset.TabIndex = 3
+        Me.BReset.Text = "Reset"
+        '
         'BCancel
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
@@ -102,7 +113,7 @@ Partial Class FormEmpScheduleKet
         Me.LETypeKet.Properties.Appearance.Options.UseTextOptions = True
         Me.LETypeKet.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
         Me.LETypeKet.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LETypeKet.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_emp_schedule_ket", "ID Ket", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ket", "Ket")})
+        Me.LETypeKet.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_leave_type", "ID Leave", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("leave_type", "Leave Type")})
         Me.LETypeKet.Properties.NullText = ""
         Me.LETypeKet.Properties.ShowFooter = False
         Me.LETypeKet.Size = New System.Drawing.Size(237, 20)
@@ -132,17 +143,6 @@ Partial Class FormEmpScheduleKet
         Me.MEInfo.Name = "MEInfo"
         Me.MEInfo.Size = New System.Drawing.Size(335, 55)
         Me.MEInfo.TabIndex = 8897
-        '
-        'BReset
-        '
-        Me.BReset.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BReset.ImageIndex = 3
-        Me.BReset.ImageList = Me.LargeImageCollection
-        Me.BReset.Location = New System.Drawing.Point(2, 2)
-        Me.BReset.Name = "BReset"
-        Me.BReset.Size = New System.Drawing.Size(87, 34)
-        Me.BReset.TabIndex = 3
-        Me.BReset.Text = "Reset"
         '
         'FormEmpScheduleKet
         '

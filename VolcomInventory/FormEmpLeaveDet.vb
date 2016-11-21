@@ -47,6 +47,7 @@
                                     WHERE empl.id_emp_leave='" & id_emp_leave & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
+            report_mark_type = data.Rows(0)("report_mark_type").ToString
             LELeaveType.ItemIndex = LELeaveType.Properties.GetDataSourceRowIndex("id_leave_type", data.Rows(0)("id_leave_type").ToString)
             '
             TEEmployeeCode.Text = data.Rows(0)("employee_code").ToString
@@ -295,8 +296,12 @@
 
             If jum_check = "0" Then ' dept head
                 submit_who_prepared("96", id_emp_leave, id_user)
+                query = "UPDATE tb_emp_leave SET report_mark_type='96' WHERE id_emp_leave='" & id_emp_leave & "'"
+                execute_non_query(query, True, "", "", "", "")
             Else
                 submit_who_prepared("95", id_emp_leave, id_user)
+                query = "UPDATE tb_emp_leave SET report_mark_type='95' WHERE id_emp_leave='" & id_emp_leave & "'"
+                execute_non_query(query, True, "", "", "", "")
             End If
 
             increase_inc_emp("1")

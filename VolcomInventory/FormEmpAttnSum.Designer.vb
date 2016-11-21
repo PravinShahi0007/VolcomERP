@@ -158,6 +158,7 @@ Partial Class FormEmpAttnSum
         Me.GVSum.GroupCount = 1
         Me.GVSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "work_hour", Me.GridColumn33, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "actual_work_hour", Me.GridColumn34, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "late", Me.GridColumn35, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over", Me.GridColumn36, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", Me.GridColumn37, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over_break", Me.GridColumn40, "{0:0.##}")})
         Me.GVSum.Name = "GVSum"
+        Me.GVSum.OptionsBehavior.Editable = False
         Me.GVSum.OptionsView.ColumnAutoWidth = False
         Me.GVSum.OptionsView.ShowFooter = True
         Me.GVSum.OptionsView.ShowGroupPanel = False
@@ -468,6 +469,7 @@ Partial Class FormEmpAttnSum
         Me.GVSchedule.GroupCount = 2
         Me.GVSchedule.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "work_hour", Me.GCWorkMin, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "actual_work_hour", Me.GCWorkMinActual, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "late", Me.GCLate, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over", Me.GCOver, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", Me.GCBalance, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over_break", Me.GCOverBreak, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "present", Me.GridColumnPresent, "{0:0.##}")})
         Me.GVSchedule.Name = "GVSchedule"
+        Me.GVSchedule.OptionsBehavior.Editable = False
         Me.GVSchedule.OptionsView.ColumnAutoWidth = False
         Me.GVSchedule.OptionsView.ShowFooter = True
         Me.GVSchedule.OptionsView.ShowGroupPanel = False
@@ -720,22 +722,22 @@ Partial Class FormEmpAttnSum
         '
         'GridColumn24
         '
-        Me.GridColumn24.Caption = "ID Ket"
-        Me.GridColumn24.FieldName = "id_emp_schedule_ket"
+        Me.GridColumn24.Caption = "ID Leave Type"
+        Me.GridColumn24.FieldName = "id_leave_type"
         Me.GridColumn24.Name = "GridColumn24"
         '
         'GridColumn25
         '
-        Me.GridColumn25.Caption = "Ket"
-        Me.GridColumn25.FieldName = "ket"
+        Me.GridColumn25.Caption = "Type Leave"
+        Me.GridColumn25.FieldName = "leave_type"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 18
         '
         'GridColumn26
         '
-        Me.GridColumn26.Caption = "Ket Info"
-        Me.GridColumn26.FieldName = "info_ket"
+        Me.GridColumn26.Caption = "Leave Purpose"
+        Me.GridColumn26.FieldName = "info_leave"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 19
