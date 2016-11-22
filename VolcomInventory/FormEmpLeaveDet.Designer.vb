@@ -668,6 +668,7 @@ Partial Class FormEmpLeaveDet
         '
         Me.MELeavePurpose.Location = New System.Drawing.Point(89, 42)
         Me.MELeavePurpose.Name = "MELeavePurpose"
+        Me.MELeavePurpose.Properties.MaxLength = 200
         Me.MELeavePurpose.Size = New System.Drawing.Size(357, 46)
         Me.MELeavePurpose.TabIndex = 101
         '

@@ -212,6 +212,7 @@
     <Compile Include="ClassSampleOrdered.vb" />
     <Compile Include="ClassSamplePLtoWH.vb" />
     <Compile Include="ClassSampleReturnPL.vb" />
+    <Compile Include="ClassSendEmail.vb" />
     <Compile Include="ClassSendingMail.vb" />
     <Compile Include="ClassShowPopUp.vb" />
     <Compile Include="ClassStock.vb" />
