@@ -1,23 +1,41 @@
-﻿Imports System.Net.Mail
+﻿Imports System.IO
+Imports System.Net.Mail
 
 Public Class ClassSendEmail
-    Private id_report As String = "-1"
-    Private report_mark_type As String = "-1"
-
-
+    Public id_report As String = "-1"
+    Public report_mark_type As String = "-1"
 
     Sub send_email_html(ByVal send_to As String, ByVal email_to As String, ByVal subject As String, ByVal number As String, ByVal body As String)
-        Dim mail As MailMessage = New MailMessage("septian@volcom.mail", email_to)
-        Dim client As SmtpClient = New SmtpClient()
-        client.Port = 25
-        client.DeliveryMethod = SmtpDeliveryMethod.Network
-        client.UseDefaultCredentials = False
-        client.Host = "192.168.1.4"
-        client.Credentials = New System.Net.NetworkCredential("septian@volcom.mail", "septian")
-        mail.Subject = subject
-        mail.IsBodyHtml = True
-        mail.Body = email_body(send_to, subject, number, "Catur")
-        client.Send(mail)
+        If report_mark_type = "95" Then
+            ' Create a new report. 
+
+            ReportEmpLeave.id_report = id_report
+            ReportEmpLeave.report_mark_type = report_mark_type
+
+            Dim Report As New ReportEmpLeave()
+
+            ' Create a new memory stream and export the report into it as PDF.
+            Dim Mem As New MemoryStream()
+            Report.ExportToPdf(Mem)
+
+            ' Create a new attachment and put the PDF report into it.
+            Mem.Seek(0, System.IO.SeekOrigin.Begin)
+            '
+            Dim Att = New Attachment(Mem, "TestReport.pdf", "application/pdf")
+            '
+            Dim mail As MailMessage = New MailMessage("septian@volcom.mail", email_to)
+            mail.Attachments.Add(Att)
+            Dim client As SmtpClient = New SmtpClient()
+            client.Port = 25
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = "192.168.1.4"
+            client.Credentials = New System.Net.NetworkCredential("septian@volcom.mail", "septian")
+            mail.Subject = subject
+            mail.IsBodyHtml = True
+            mail.Body = email_body(send_to, subject, number, "Catur")
+            client.Send(mail)
+        End If
     End Sub
     Function email_body(ByVal employee As String, ByVal mark_type As String, ByVal mark_number As String, ByVal mark_sender As String)
         If report_mark_type = "95" Then

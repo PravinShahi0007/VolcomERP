@@ -39,7 +39,8 @@
             LLeaveUsage.Text = data.Rows(0)("leave_total").ToString & "(0) hour(s)"
             LRemainingAfter.Text = data.Rows(0)("leave_remaining").ToString & " hour(s)"
         End If
-
+        '
+        report_mark_type = data.Rows(0)("report_mark_type").ToString
     End Sub
     Private Sub ReportLeave_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
         load_detail()
