@@ -273,7 +273,7 @@
                 disable_fp()
 
                 For j As Integer = 0 To data_fp.Rows.Count - 1
-                    sdwEnrollNumber = Convert.ToInt32(data_fp.Rows(j)("user_id").ToString.Trim())
+                    sdwEnrollNumber = data_fp.Rows(j)("user_id").ToString.Trim()
                     sName = data_fp.Rows(j)("name").ToString.Trim()
                     idwFingerIndex = Convert.ToInt32(data_fp.Rows(j)("finger_index").ToString.Trim())
                     sTmpData = data_fp.Rows(j)("tmp_data").ToString.Trim()
@@ -380,7 +380,7 @@
         disable_fp()
 
         For j As Integer = 0 To data_fp.Rows.Count - 1
-            sdwEnrollNumber = Convert.ToInt32(data_fp.Rows(j)("user_id").ToString.Trim())
+            sdwEnrollNumber = data_fp.Rows(j)("user_id").ToString.Trim()
             sName = data_fp.Rows(j)("name").ToString.Trim()
             idwFingerIndex = Convert.ToInt32(data_fp.Rows(j)("finger_index").ToString.Trim())
             sTmpData = data_fp.Rows(j)("tmp_data").ToString.Trim()
