@@ -36,6 +36,7 @@ Public Class FormLogin
                     id_user = data.Rows(0)("id_user").ToString
                     id_role_login = data.Rows(0)("id_role").ToString
                     name_user = data.Rows(0)("employee_name").ToString
+                    code_user = data.Rows(0)("employee_code").ToString
                     username_user = data.Rows(0)("username").ToString
                     id_employee_user = data.Rows(0)("id_employee").ToString
                     id_departement_user = data.Rows(0)("id_departement").ToString

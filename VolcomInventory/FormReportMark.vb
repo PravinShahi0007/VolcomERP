@@ -10,7 +10,7 @@
 
     Public report_number As String = ""
     Public is_view_finalize As String = "-1"
-
+    '
     ' report_mark_type
     ' WARNING : if want to add new report type, also add on the tb_lookup_report_mark_type ^_-
     ' is_view = "1" only for workplace (FormView*)
@@ -29,6 +29,7 @@
 
             If confirm = Windows.Forms.DialogResult.Yes Then
                 submit_who_prepared(report_mark_type, id_report, id_user)
+
                 infoCustom("Form submitted.")
                 act_load()
             Else
@@ -321,6 +322,12 @@
         ElseIf report_mark_type = "94" Then
             'REPAIR RETURN REC
             query = String.Format("SELECT id_report_status, fg_repair_return_rec_number as report_number FROM tb_fg_repair_return_rec WHERE id_fg_repair_return_rec = '{0}'", id_report)
+        ElseIf report_mark_type = "95" Then
+            'Leave Propose
+            query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
+        ElseIf report_mark_type = "96" Then
+            'Leave Propose need management approval
+            query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -840,7 +847,7 @@
                 'FormWork.view_sample_purc()
             Catch ex As Exception
             End Try
-        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
+        ElseIf report_mark_type = "6" Or report_mark_type = "80" Or report_mark_type = "81" Then
             'PROD DEMAND
             'posting ke master price disini
             '--------------------------
@@ -3042,6 +3049,50 @@
                 FormFGRepairReturnRec.viewRepairList()
                 FormFGRepairReturnRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairReturnRec.GVRepairRec, "id_fg_repair_return_rec", id_report)
             End If
+        ElseIf report_mark_type = "95" Then
+            'LEAVE PROPOSE
+            If id_status_reportx = "3" Then
+                'update schedule to cuti
+                Dim query_upd As String = ""
+                query_upd = "UPDATE tb_emp_schedule emps
+                                INNER JOIN
+                                (SELECT empld.id_schedule,empl.leave_purpose,empl.id_leave_type FROM tb_emp_leave_det empld
+                                INNER JOIN tb_emp_leave empl ON empld.id_emp_leave=empl.id_emp_leave
+                                WHERE empld.id_emp_leave='" & id_report & "')
+                                a ON a.id_schedule=emps.id_schedule
+                                SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
+                execute_non_query(query_upd, True, "", "", "", "")
+                'complete 
+                id_status_reportx = "6"
+            ElseIf id_status_reportx = "5" Then 'cancel
+                Dim query_del As String = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
+                execute_non_query(query_del, True, "", "", "", "")
+            End If
+            query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+        ElseIf report_mark_type = "96" Then
+            'LEAVE PROPOSE
+            If id_status_reportx = "3" Then
+                'update schedule to cuti
+                Dim query_upd As String = ""
+                query_upd = "UPDATE tb_emp_schedule emps
+                                INNER JOIN
+                                (SELECT empld.id_schedule,empl.leave_purpose,empl.id_leave_type FROM tb_emp_leave_det empld
+                                INNER JOIN tb_emp_leave empl ON empld.id_emp_leave=empl.id_emp_leave
+                                WHERE empld.id_emp_leave='" & id_report & "')
+                                a ON a.id_schedule=emps.id_schedule
+                                SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
+                execute_non_query(query_upd, True, "", "", "", "")
+                'complete 
+                id_status_reportx = "6"
+            ElseIf id_status_reportx = "5" Then 'cancel
+                Dim query_del As String = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
+                execute_non_query(query_del, True, "", "", "", "")
+            End If
+            query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
         End If
 
         'adding lead time

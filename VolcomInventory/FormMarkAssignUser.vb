@@ -17,10 +17,10 @@
         re_order()
     End Sub
     Sub view_user()
-        Dim query As String = "SELECT a.lead_time,a.id_mark_asg_user,a.id_user,a.level,c.employee_name "
+        Dim query As String = "SELECT a.lead_time,a.id_mark_asg_user,a.id_user,a.level,iF(a.is_head_dept=1,'Head Dept',c.employee_name) as employee_name "
         query += "FROM tb_mark_asg_user a "
-        query += "INNER JOIN tb_m_user b ON a.id_user=b.id_user "
-        query += "INNER JOIN tb_m_employee c ON c.id_employee=b.id_employee "
+        query += "LEFT JOIN tb_m_user b ON a.id_user=b.id_user "
+        query += "LEFT JOIN tb_m_employee c ON c.id_employee=b.id_employee "
         query += "WHERE a.id_mark_asg='" & id_mark_asg & "' "
         query += "ORDER BY a.level"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -38,7 +38,7 @@
         Dim query As String
         confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this user on list?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         Dim id_mark_asg_user As String = GVUser.GetFocusedRowCellDisplayText("id_mark_asg_user").ToString
-        If confirm = Windows.Forms.DialogResult.Yes Then
+        If confirm = DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
             Try
                 query = String.Format("DELETE FROM tb_mark_asg_user WHERE id_mark_asg_user = '{0}'", id_mark_asg_user)

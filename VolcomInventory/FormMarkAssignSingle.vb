@@ -51,9 +51,11 @@
 
         If id_mark_asg = "-1" Then
             'new
-            query = "INSERT INTO tb_mark_asg(report_mark_type,id_report_status) VALUES('" & mark_type & "','" & id_report_status & "')"
-            execute_non_query(query, True, "", "", "", "")
+            query = "INSERT INTO tb_mark_asg(report_mark_type,id_report_status) VALUES('" & mark_type & "','" & id_report_status & "'); SELECT LAST_INSERT_ID(); "
+            id_mark_asg = execute_query(query, 0, True, "", "", "", "")
+            '
             FormMarkAssign.view_asg()
+            FormMarkAssign.GVMarkAssign.FocusedRowHandle = find_row(FormMarkAssign.GVMarkAssign, "id_mark_asg", id_mark_asg)
             Close()
         Else
             'edit

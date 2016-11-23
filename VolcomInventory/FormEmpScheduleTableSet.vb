@@ -73,7 +73,7 @@
                 newRow("employee_name") = GVEmployee.GetRowCellValue(i, "employee_name").ToString
                 If data_emp.Rows.Count > 0 Then
                     For j As Integer = 0 To data_emp.Rows.Count - 1
-                        newRow(Date.Parse(data_emp.Rows(j)("date").ToString).ToString("yyyy-MM-dd")) = data_emp.Rows(j)("shift_code").ToString
+                        newRow(Date.Parse(data_emp.Rows(j)("date").ToString).ToString("yyyy-MM-dd")) = data_emp.Rows(j)("shift_code").ToString.ToUpper
                     Next
                 End If
 
