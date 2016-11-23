@@ -13,8 +13,10 @@
             LERole.ItemIndex = LERole.Properties.GetDataSourceRowIndex("id_role", id_role)
             TEUsername.Text = username
             SLEEmployee.EditValue = data.Rows(0)("id_employee").ToString
+            BtnUpdateRole.Enabled = True
         Else
             getEmp()
+            BtnUpdateRole.Enabled = False
         End If
     End Sub
 
@@ -128,5 +130,12 @@
 
     Private Sub BtnReset_Click(sender As Object, e As EventArgs) Handles BtnReset.Click
         getEmp()
+    End Sub
+
+    Private Sub BtnUpdateRole_Click(sender As Object, e As EventArgs) Handles BtnUpdateRole.Click
+        Dim query As String = "update tb_m_user set id_role='" + LERole.EditValue.ToString + "' WHERE id_user=" + id_user + ""
+        execute_non_query(query, True, "", "", "", "")
+        FormMasterUser.view_user()
+        Close()
     End Sub
 End Class

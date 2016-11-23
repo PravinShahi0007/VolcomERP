@@ -35,13 +35,14 @@ Partial Class FormMasterUserSingle
         Me.LERole = New DevExpress.XtraEditors.LookUpEdit()
         Me.SLEEmployee = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SLEEmployeeView = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PictureEditIcon = New DevExpress.XtraEditors.PictureEdit()
+        Me.BtnReset = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnUpdateRole = New DevExpress.XtraEditors.SimpleButton()
         Me.GridColumnIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmployeeCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmployeeName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSex = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PictureEditIcon = New DevExpress.XtraEditors.PictureEdit()
-        Me.BtnReset = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPUser, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERepeatPassword.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPassword.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,7 +80,7 @@ Partial Class FormMasterUserSingle
         'BCancel
         '
         Me.BCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BCancel.Location = New System.Drawing.Point(187, 249)
+        Me.BCancel.Location = New System.Drawing.Point(105, 249)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(72, 23)
         Me.BCancel.TabIndex = 7
@@ -181,6 +182,34 @@ Partial Class FormMasterUserSingle
         Me.SLEEmployeeView.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SLEEmployeeView.OptionsView.ShowGroupPanel = False
         '
+        'PictureEditIcon
+        '
+        Me.PictureEditIcon.EditValue = CType(resources.GetObject("PictureEditIcon.EditValue"), Object)
+        Me.PictureEditIcon.Location = New System.Drawing.Point(12, 120)
+        Me.PictureEditIcon.Name = "PictureEditIcon"
+        Me.PictureEditIcon.Properties.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.PictureEditIcon.Properties.Appearance.Options.UseBackColor = True
+        Me.PictureEditIcon.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PictureEditIcon.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom
+        Me.PictureEditIcon.Size = New System.Drawing.Size(122, 113)
+        Me.PictureEditIcon.TabIndex = 36
+        '
+        'BtnReset
+        '
+        Me.BtnReset.Location = New System.Drawing.Point(265, 249)
+        Me.BtnReset.Name = "BtnReset"
+        Me.BtnReset.Size = New System.Drawing.Size(76, 23)
+        Me.BtnReset.TabIndex = 6
+        Me.BtnReset.Text = "Reset"
+        '
+        'BtnUpdateRole
+        '
+        Me.BtnUpdateRole.Location = New System.Drawing.Point(183, 249)
+        Me.BtnUpdateRole.Name = "BtnUpdateRole"
+        Me.BtnUpdateRole.Size = New System.Drawing.Size(76, 23)
+        Me.BtnUpdateRole.TabIndex = 39
+        Me.BtnUpdateRole.Text = "Update Role"
+        '
         'GridColumnIdEmployee
         '
         Me.GridColumnIdEmployee.Caption = "Id Employee"
@@ -219,26 +248,6 @@ Partial Class FormMasterUserSingle
         Me.GridColumnSex.Visible = True
         Me.GridColumnSex.VisibleIndex = 3
         '
-        'PictureEditIcon
-        '
-        Me.PictureEditIcon.EditValue = CType(resources.GetObject("PictureEditIcon.EditValue"), Object)
-        Me.PictureEditIcon.Location = New System.Drawing.Point(12, 120)
-        Me.PictureEditIcon.Name = "PictureEditIcon"
-        Me.PictureEditIcon.Properties.Appearance.BackColor = System.Drawing.Color.Transparent
-        Me.PictureEditIcon.Properties.Appearance.Options.UseBackColor = True
-        Me.PictureEditIcon.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PictureEditIcon.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom
-        Me.PictureEditIcon.Size = New System.Drawing.Size(122, 113)
-        Me.PictureEditIcon.TabIndex = 36
-        '
-        'BtnReset
-        '
-        Me.BtnReset.Location = New System.Drawing.Point(265, 249)
-        Me.BtnReset.Name = "BtnReset"
-        Me.BtnReset.Size = New System.Drawing.Size(76, 23)
-        Me.BtnReset.TabIndex = 6
-        Me.BtnReset.Text = "Reset"
-        '
         'FormMasterUserSingle
         '
         Me.AcceptButton = Me.BSave
@@ -246,6 +255,7 @@ Partial Class FormMasterUserSingle
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BCancel
         Me.ClientSize = New System.Drawing.Size(449, 291)
+        Me.Controls.Add(Me.BtnUpdateRole)
         Me.Controls.Add(Me.BtnReset)
         Me.Controls.Add(Me.SLEEmployee)
         Me.Controls.Add(Me.TERepeatPassword)
@@ -264,7 +274,6 @@ Partial Class FormMasterUserSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterUserSingle"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "User"
@@ -301,4 +310,5 @@ Partial Class FormMasterUserSingle
     Friend WithEvents GridColumnDepartement As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSex As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnReset As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnUpdateRole As DevExpress.XtraEditors.SimpleButton
 End Class

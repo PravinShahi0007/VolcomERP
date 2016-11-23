@@ -273,7 +273,7 @@
                 disable_fp()
 
                 For j As Integer = 0 To data_fp.Rows.Count - 1
-                    sdwEnrollNumber = Convert.ToInt32(data_fp.Rows(j)("user_id").ToString.Trim())
+                    sdwEnrollNumber = data_fp.Rows(j)("user_id").ToString.Trim()
                     sName = data_fp.Rows(j)("name").ToString.Trim()
                     idwFingerIndex = Convert.ToInt32(data_fp.Rows(j)("finger_index").ToString.Trim())
                     sTmpData = data_fp.Rows(j)("tmp_data").ToString.Trim()
@@ -380,7 +380,7 @@
         disable_fp()
 
         For j As Integer = 0 To data_fp.Rows.Count - 1
-            sdwEnrollNumber = Convert.ToInt32(data_fp.Rows(j)("user_id").ToString.Trim())
+            sdwEnrollNumber = data_fp.Rows(j)("user_id").ToString.Trim()
             sName = data_fp.Rows(j)("name").ToString.Trim()
             idwFingerIndex = Convert.ToInt32(data_fp.Rows(j)("finger_index").ToString.Trim())
             sTmpData = data_fp.Rows(j)("tmp_data").ToString.Trim()
@@ -504,9 +504,12 @@
         Next
 
 
+        fp.ip = data_fp.Rows(0)("ip").ToString
+        fp.port = data_fp.Rows(0)("port").ToString
+        fp.connect()
+        conn = fp.bIsConnected
+        fp.disconnect()
         If conn Then
-            fp.ip = data_fp.Rows(0)("ip").ToString
-            fp.port = data_fp.Rows(0)("port").ToString
             fp.download_fp_tmp()
             fp.download_face_tmp()
             fp.upload_fp_temp(fp_off)
@@ -521,6 +524,9 @@
             Else
                 infoCustom("Synchronize completed")
             End If
+        Else
+            FormMain.SplashScreenManager1.CloseWaitForm()
+            infoCustom("Fingerprint register is turned off")
         End If
     End Sub
 End Class

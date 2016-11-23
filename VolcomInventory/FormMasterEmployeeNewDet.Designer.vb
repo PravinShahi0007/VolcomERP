@@ -777,6 +777,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtEmailExternal
         '
+        Me.TxtEmailExternal.Enabled = False
         Me.TxtEmailExternal.Location = New System.Drawing.Point(353, 272)
         Me.TxtEmailExternal.Name = "TxtEmailExternal"
         Me.TxtEmailExternal.Size = New System.Drawing.Size(203, 20)
@@ -793,6 +794,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'TxtEmailLocal
         '
+        Me.TxtEmailLocal.Enabled = False
         Me.TxtEmailLocal.Location = New System.Drawing.Point(107, 272)
         Me.TxtEmailLocal.Name = "TxtEmailLocal"
         Me.TxtEmailLocal.Size = New System.Drawing.Size(168, 20)

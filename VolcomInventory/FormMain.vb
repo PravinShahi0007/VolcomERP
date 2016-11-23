@@ -1459,8 +1459,12 @@ Public Class FormMain
                 FormFGRepairReturnRecDet.action = "ins"
                 FormFGRepairReturnRecDet.ShowDialog()
             End If
+        ElseIf formName = "FormEmpEmail" Then
+            'Email List
+            FormEmpEmailDet.type = "2"
+            FormEmpEmailDet.ShowDialog()
         ElseIf formName = "FormEmpLeave" Then
-            'Leave Management
+            'Leave
             FormEmpLeaveDet.id_emp_leave = "-1"
             FormEmpLeaveDet.ShowDialog()
         Else
@@ -2283,6 +2287,17 @@ Public Class FormMain
                     FormEmpLeaveDet.id_emp_leave = FormEmpLeave.GVLeave.GetFocusedRowCellValue("id_emp_leave").ToString
                     FormEmpLeaveDet.ShowDialog()
                 End If
+            ElseIf formName = "FormEmpEmail" Then
+                Dim type As String = FormEmpEmail.GVEmail.GetFocusedRowCellValue("type").ToString
+                If type = "1" Then
+                    FormEmpEmailDet.id = FormEmpEmail.GVEmail.GetFocusedRowCellValue("id_employee").ToString
+                Else
+                    FormEmpEmailDet.id = FormEmpEmail.GVEmail.GetFocusedRowCellValue("id_other_email").ToString
+                End If
+
+                FormEmpEmailDet.type = type
+
+                FormEmpEmailDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5264,6 +5279,19 @@ Public Class FormMain
             Else
                 stopCustom("This data already marked")
             End If
+        ElseIf formName = "FormEmpEmail" Then
+            Dim type As String = FormEmpEmail.GVEmail.GetFocusedRowCellValue("type").ToString
+            If type = "1" Then
+                stopCustom("You don't have permission to delete this data")
+            Else
+                Dim id As String = FormEmpEmail.GVEmail.GetFocusedRowCellValue("id_other_email").ToString
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim query_del As String = "DELETE FROM tb_m_other_email WHERE id_other_email='" + id + "'"
+                    execute_non_query(query_del, True, "", "", "", "")
+                    FormEmpEmail.viewEmployee("-1")
+                End If
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -6425,6 +6453,10 @@ Public Class FormMain
             print(FormFGRepairReturn.GCRepairReturn, "Return Repair Product")
         ElseIf formName = "FormFGRepairReturnRec" Then
             print(FormFGRepairReturnRec.GCRepairRec, "Receive Repair Product (WH)")
+        ElseIf formName = "FormEmpEmail" Then
+            FormEmpEmail.GVEmail.ActiveFilterString = "Not IsNullOrEmpty([email_lokal]) Or Not IsNullOrEmpty([email_external]) OR Not IsNullOrEmpty([email_other])"
+            print(FormEmpEmail.GCEmail, "Email List")
+            FormEmpEmail.GVEmail.ActiveFilterString = ""
         Else
             RPSubMenu.Visible = False
         End If
@@ -6955,6 +6987,9 @@ Public Class FormMain
         ElseIf formName = "FormFGRepairReturnRec" Then
             FormFGRepairReturnRec.Close()
             FormFGRepairReturnRec.Dispose()
+        ElseIf formName = "FormEmpEmail" Then
+            FormEmpEmail.Close()
+            FormEmpEmail.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7581,6 +7616,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormFGRepairReturn" Then
             FormFGRepairReturn.viewData()
+        ElseIf formName = "FormEmpEmail" Then
+            FormEmpEmail.viewEmployee("-1")
         ElseIf formName = "FormFGRepairReturnRec" Then
             If FormFGRepairReturnRec.XTCRepairRec.SelectedTabPageIndex = 0 Then
                 FormFGRepairReturnRec.viewData()
@@ -10010,6 +10047,33 @@ Public Class FormMain
             FormFGRepairReturnRec.Show()
             FormFGRepairReturnRec.WindowState = FormWindowState.Maximized
             FormFGRepairReturnRec.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAttnSumDept_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAttnSumDept.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttnSum.MdiParent = Me
+            FormEmpAttnSum.view_one_dept = True
+            FormEmpAttnSum.Show()
+            FormEmpAttnSum.WindowState = FormWindowState.Maximized
+            FormEmpAttnSum.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpEmail_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpEmail.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpEmail.MdiParent = Me
+            FormEmpEmail.Show()
+            FormEmpEmail.WindowState = FormWindowState.Maximized
+            FormEmpEmail.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

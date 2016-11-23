@@ -102,7 +102,6 @@
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         Dim query As String = ""
-
         If id_soh = "-1" Then 'new
             query = "INSERT INTO tb_soh(id_soh_periode,id_comp_contact,id_status_soh,date_created,date_updated) "
             query += "VALUES('" + SLEPeriode.EditValue.ToString + "','" + id_comp_contact + "','1',NOW(),NOW());SELECT LAST_INSERT_ID() "

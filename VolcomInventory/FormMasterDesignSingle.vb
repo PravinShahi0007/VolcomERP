@@ -917,7 +917,7 @@
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
         ValidateChildren()
-        Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active, design_detail, code_import, id_season_orign As String
+        Dim id_lookup_status_order, id_design_tersimpan, query, namex, display_name, code, id_uom, id_season, sample_orign, id_design_type, design_ret_code, id_delivery, id_delivery_act, design_eos, design_fabrication, id_design_ref, id_active, design_detail, code_import, id_season_orign, is_old_design As String
         namex = addSlashes(TEName.Text.TrimStart(" ").TrimEnd(" "))
 
         'code & display name
@@ -939,7 +939,13 @@
         id_season = LESeason.EditValue
         id_season_orign = SLESeasonOrigin.EditValue
         design_ret_code = LERetCode.EditValue.ToString
-        id_design_type = "1"
+        If id_pop_up = "3" Then 'non merch
+            id_design_type = "2"
+            is_old_design = "1"
+        Else
+            id_design_type = "1"
+            is_old_design = "2"
+        End If
         id_delivery = myCoalesce(SLEDel.EditValue.ToString, "0")
         id_delivery_act = myCoalesce(SLEDel.EditValue.ToString, "0")
         id_active = SLEActive.EditValue.ToString
@@ -1016,7 +1022,7 @@
                 Else
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                     If confirm = Windows.Forms.DialogResult.Yes Then
-                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail) "
+                        query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_old_design) "
                         query += "VALUES('" + namex + "','" + display_name + "','" + code + "', " + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                         If design_eos = "-1" Then
                             query += "NULL, "
@@ -1040,7 +1046,7 @@
                             query += "'" + id_design_ref + "', "
                         End If
                         query += "'" + id_lookup_status_order + "', '" + design_detail + "' "
-                        query += ");SELECT LAST_INSERT_ID(); "
+                        query += ", '" + is_old_design + "');SELECT LAST_INSERT_ID(); "
                         id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 
                         'cek image
@@ -1080,6 +1086,11 @@
                             Catch ex As Exception
                             End Try
                         Next
+
+                        'default price for Non MD
+                        If id_pop_up = "3" Then
+                            setDefaultPrice(id_design_tersimpan, 0)
+                        End If
 
                         'new line list
                         NewLineList(id_design_tersimpan, id_season, id_delivery)
@@ -1219,7 +1230,7 @@
                         approved = "1"
                     End If
 
-                    query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_approved) "
+                    query = "INSERT INTO tb_m_design(design_name,design_display_name,design_code, design_code_import,id_uom,id_season, id_season_orign,id_ret_code,id_design_type, id_delivery, id_delivery_act, design_eos, design_fabrication, id_sample, id_design_ref, id_lookup_status_order, design_detail, is_approved, is_old_design) "
                     query += "VALUES('" + namex + "','" + display_name + "','" + code + "'," + code_import + ",'" + id_uom + "','" + id_season + "', '" + id_season_orign + "','" + design_ret_code + "','" + id_design_type + "', '" + id_delivery + "', '" + id_delivery_act + "', "
                     If design_eos = "-1" Then
                         query += "NULL, "
@@ -1242,7 +1253,7 @@
                     Else
                         query += "'" + id_design_ref + "', "
                     End If
-                    query += "'" + id_lookup_status_order + "', '" + design_detail + "', '" + approved + "' "
+                    query += "'" + id_lookup_status_order + "', '" + design_detail + "', '" + approved + "' , '" + is_old_design + "' "
                     query += ");SELECT LAST_INSERT_ID(); "
                     id_design_tersimpan = execute_query(query, 0, True, "", "", "", "")
 
@@ -1285,6 +1296,11 @@
                         End Try
                     Next
 
+                    'default price for Non MD
+                    If id_pop_up = "3" Then
+                        setDefaultPrice(id_design_tersimpan, 0)
+                    End If
+
                     'new line list
                     NewLineList(id_design_tersimpan, id_season, id_delivery)
 
@@ -1314,6 +1330,12 @@
             End If
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Sub setDefaultPrice(ByVal id_design_set As String, price As Decimal)
+        Dim query As String = "INSERT INTO tb_m_design_price(id_design, id_design_price_type, design_price_name, id_currency, design_price, design_price_date, design_price_start_date, is_print, id_user) 
+                               VALUES('" + id_design_set + "', '1', 'Normal', '1', '" + decimalSQL(price) + "', NOW(), NOW(), '1', '" + id_user + "') "
+        execute_non_query(query, True, "", "", "", "")
     End Sub
 
     Sub updProductCode(ByVal id_dsg_param As String)
@@ -1727,6 +1749,11 @@
         End Try
         FormSeason.quick_edit = "1"
         FormSeason.id_pop_up = "1"
+        If id_pop_up = "3" Then
+            FormSeason.is_md = "2"
+        Else
+            FormSeason.is_md = "1"
+        End If
         FormSeason.ShowDialog()
         Cursor = Cursors.Default
     End Sub

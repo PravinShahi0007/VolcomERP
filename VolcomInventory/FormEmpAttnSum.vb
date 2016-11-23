@@ -2,6 +2,7 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Public view_one_dept As Boolean = False
 
     Private Sub BViewSchedule_Click(sender As Object, e As EventArgs) Handles BViewSchedule.Click
         Cursor = Cursors.WaitCursor
@@ -77,6 +78,11 @@
     End Sub
 
     Private Sub FormEmpAttnSum_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        For Each t As DevExpress.XtraTab.XtraTabPage In XtraTabControl1.TabPages
+            XtraTabControl1.SelectedTabPage = t
+        Next t
+        XtraTabControl1.SelectedTabPage = XtraTabControl1.TabPages(0)
+
         viewDept()
         DEStart.EditValue = Now
         DEStartSum.EditValue = Now
@@ -86,9 +92,16 @@
     End Sub
 
     Sub viewDept()
-        Dim query As String = "SELECT 0 as id_departement, 'All departement' as departement UNION (SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
-        viewLookupQuery(LEDept, query, 0, "departement", "id_departement")
+        Dim query As String = ""
+        If Not view_one_dept Then
+            query += "SELECT 0 as id_departement, 'All departement' as departement UNION  "
+            query += "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
+        Else
+            query += "(SELECT id_departement,departement FROM tb_m_departement a WHERE id_departement='" + id_departement_user + "' ORDER BY a.departement ASC) "
+        End If
         viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
+        viewLookupQuery(LEDept, query, 0, "departement", "id_departement")
+        LEDept.ItemIndex = 0
     End Sub
 
     Private Sub BViewSum_Click(sender As Object, e As EventArgs) Handles BViewSum.Click

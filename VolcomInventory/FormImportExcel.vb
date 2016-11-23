@@ -1436,7 +1436,6 @@ Public Class FormImportExcel
                                 .IdProduct = If(y1 Is Nothing, "0", y1("id_product")),
                                 .Code = If(y1 Is Nothing, "0", y1("product_full_code")),
                                 .Description = If(y1 Is Nothing, "0", y1("product_name")),
-                                .Size = table1("pr_oldsize"),
                                 .Color = table1("pr_colnm"),
                                 .UPC = table1("pr_upc")
                             }
@@ -2616,6 +2615,7 @@ Public Class FormImportExcel
                     stopCustom("No data available.")
                 End If
             ElseIf id_pop_up = "28" Then 'import UPC
+                GVData.ActiveFilterString = "[IdProduct] <> '0' AND [UPC] <> ''"
                 If GVData.RowCount > 0 Then
                     PBC.Properties.Minimum = 0
                     PBC.Properties.Maximum = GVData.RowCount - 1
@@ -2623,7 +2623,7 @@ Public Class FormImportExcel
                     PBC.Properties.PercentView = True
                     '
                     For i As Integer = 0 To GVData.RowCount - 1
-                        If Not GVData.GetRowCellValue(i, "IdProduct").ToString = "0" Then
+                        If Not GVData.GetRowCellValue(i, "IdProduct").ToString = "0" And Not GVData.GetRowCellValue(i, "UPC").ToString = "" Then
                             Dim query_exec As String = "UPDATE tb_m_product SET product_ean_code='" & GVData.GetRowCellValue(i, "UPC").ToString & "' WHERE id_product='" & GVData.GetRowCellValue(i, "IdProduct").ToString & "'"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
