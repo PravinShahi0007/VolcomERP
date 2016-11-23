@@ -3062,6 +3062,11 @@
                                 a ON a.id_schedule=emps.id_schedule
                                 SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
                 execute_non_query(query_upd, True, "", "", "", "")
+                'complete 
+                id_status_reportx = "6"
+            ElseIf id_status_reportx = "5" Then 'cancel
+                Dim query_del As String = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
+                execute_non_query(query_del, True, "", "", "", "")
             End If
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
@@ -3079,6 +3084,11 @@
                                 a ON a.id_schedule=emps.id_schedule
                                 SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
                 execute_non_query(query_upd, True, "", "", "", "")
+                'complete 
+                id_status_reportx = "6"
+            ElseIf id_status_reportx = "5" Then 'cancel
+                Dim query_del As String = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
+                execute_non_query(query_del, True, "", "", "", "")
             End If
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
