@@ -36,6 +36,9 @@
             PCAddDelLeave.Visible = False
             ' 
             TEEmployeeCode.Properties.ReadOnly = True
+            TEEMployeeChange.Properties.ReadOnly = True
+            '
+            MELeavePurpose.ReadOnly = True
             BPickEmployee.Visible = False
             LELeaveType.Enabled = False
             BSave.Visible = False
@@ -71,6 +74,9 @@
                 TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue
             End If
 
+            If data.Rows(0)("id_report_status").ToString = "5" Or data.Rows(0)("id_report_status").ToString = "6" Then
+                BMark.Visible = False
+            End If
         End If
         '
     End Sub
