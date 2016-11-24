@@ -141,7 +141,7 @@
                     Else
                         enabled_fp = "false"
                     End If
-                    query += "('" + sdwEnrollNumber + "', '" + sName + "', '" + idwFingerIndex.ToString + "', '" + sTmpData + "', '" + iPrivilege.ToString() + "', '" + sPassword + "', '" + enabled_fp + "', '" + iFlag.ToString() + "') "
+                    query += "('" + sdwEnrollNumber + "', '" + addSlashes(sName) + "', '" + idwFingerIndex.ToString + "', '" + sTmpData + "', '" + iPrivilege.ToString() + "', '" + sPassword + "', '" + enabled_fp + "', '" + iFlag.ToString() + "') "
                     jum += 1
                 End If
             Next
@@ -153,6 +153,7 @@
                 Dim query_trunc As String = "TRUNCATE `tb_m_employee_finger`"
                 execute_non_query(query_trunc, True, "", "", "", "")
                 execute_non_query(query, True, "", "", "", "")
+
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
@@ -236,7 +237,7 @@
                     enabled_fp = "false"
                 End If
                 Dim query As String = "INSERT INTO tb_m_employee_face(user_id, name, face_index, tmp_data, privilege, password, enabled) VALUES "
-                query += "('" + sUserID + "', '" + sName + "', '" + iFaceIndex.ToString + "', '" + sTmpData + "', '" + iPrivilege.ToString() + "', '" + sPassword + "', '" + enabled_fp + "') "
+                query += "('" + sUserID + "', '" + addSlashes(sName) + "', '" + iFaceIndex.ToString + "', '" + sTmpData + "', '" + iPrivilege.ToString() + "', '" + sPassword + "', '" + enabled_fp + "') "
                 execute_non_query(query, True, "", "", "", "")
                 jum += 1
             End If

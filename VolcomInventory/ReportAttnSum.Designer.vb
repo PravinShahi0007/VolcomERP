@@ -20,18 +20,18 @@ Partial Public Class ReportAttnSum
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
+        Me.GCSchedule = New DevExpress.XtraGrid.GridControl()
+        Me.GVSchedule = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
-        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LDept = New DevExpress.XtraReports.UI.XRLabel()
         Me.LDateRange = New DevExpress.XtraReports.UI.XRLabel()
-        Me.GCSchedule = New DevExpress.XtraGrid.GridControl()
-        Me.GVSchedule = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
+        Me.LTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,6 +45,29 @@ Partial Public Class ReportAttnSum
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'WinControlContainer1
+        '
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.WinControlContainer1.Name = "WinControlContainer1"
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(968.9998!, 135.4167!)
+        Me.WinControlContainer1.WinControl = Me.GCSchedule
+        '
+        'GCSchedule
+        '
+        Me.GCSchedule.Location = New System.Drawing.Point(0, 109)
+        Me.GCSchedule.MainView = Me.GVSchedule
+        Me.GCSchedule.Name = "GCSchedule"
+        Me.GCSchedule.Size = New System.Drawing.Size(930, 130)
+        Me.GCSchedule.TabIndex = 6
+        Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
+        '
+        'GVSchedule
+        '
+        Me.GVSchedule.GridControl = Me.GCSchedule
+        Me.GVSchedule.Name = "GVSchedule"
+        Me.GVSchedule.OptionsView.ShowFooter = True
+        Me.GVSchedule.OptionsView.ShowGroupPanel = False
+        '
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel2, Me.XrLabel5, Me.XrLabel8, Me.XrLabel10, Me.LDept, Me.LDateRange, Me.LTitle})
@@ -52,26 +75,6 @@ Partial Public Class ReportAttnSum
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'BottomMargin
-        '
-        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
-        Me.BottomMargin.HeightF = 18.71793!
-        Me.BottomMargin.Name = "BottomMargin"
-        Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'LTitle
-        '
-        Me.LTitle.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.LTitle.Name = "LTitle"
-        Me.LTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.LTitle.SizeF = New System.Drawing.SizeF(969.0!, 32.37501!)
-        Me.LTitle.StylePriority.UseFont = False
-        Me.LTitle.StylePriority.UseTextAlignment = False
-        Me.LTitle.Text = "ATTENDANCE REPORT"
-        Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrLabel2
         '
@@ -143,28 +146,25 @@ Partial Public Class ReportAttnSum
         Me.LDateRange.StylePriority.UseTextAlignment = False
         Me.LDateRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
-        'GCSchedule
+        'LTitle
         '
-        Me.GCSchedule.Location = New System.Drawing.Point(0, 109)
-        Me.GCSchedule.MainView = Me.GVSchedule
-        Me.GCSchedule.Name = "GCSchedule"
-        Me.GCSchedule.Size = New System.Drawing.Size(930, 130)
-        Me.GCSchedule.TabIndex = 6
-        Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
+        Me.LTitle.Font = New System.Drawing.Font("Times New Roman", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LTitle.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.LTitle.Name = "LTitle"
+        Me.LTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LTitle.SizeF = New System.Drawing.SizeF(969.0!, 32.37501!)
+        Me.LTitle.StylePriority.UseFont = False
+        Me.LTitle.StylePriority.UseTextAlignment = False
+        Me.LTitle.Text = "ATTENDANCE REPORT"
+        Me.LTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
-        'GVSchedule
+        'BottomMargin
         '
-        Me.GVSchedule.GridControl = Me.GCSchedule
-        Me.GVSchedule.Name = "GVSchedule"
-        Me.GVSchedule.OptionsView.ShowFooter = True
-        Me.GVSchedule.OptionsView.ShowGroupPanel = False
-        '
-        'WinControlContainer1
-        '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.WinControlContainer1.Name = "WinControlContainer1"
-        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(968.9998!, 135.4167!)
-        Me.WinControlContainer1.WinControl = Me.GCSchedule
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPageInfo1})
+        Me.BottomMargin.HeightF = 18.71793!
+        Me.BottomMargin.Name = "BottomMargin"
+        Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrPageInfo1
         '
