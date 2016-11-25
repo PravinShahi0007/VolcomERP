@@ -3849,6 +3849,12 @@
     <Compile Include="ReportEmpLeave.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpLeaveStock.Designer.vb">
+      <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpLeaveStock.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGAdjIn.Designer.vb">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
     </Compile>
@@ -6769,6 +6775,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpLeave.resx">
       <DependentUpon>ReportEmpLeave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpLeaveStock.resx">
+      <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGAdjIn.resx">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
