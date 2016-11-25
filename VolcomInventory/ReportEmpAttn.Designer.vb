@@ -95,6 +95,8 @@ Partial Public Class ReportEmpAttn
         '
         'GVSchedule
         '
+        Me.GVSchedule.AppearancePrint.Row.Font = New System.Drawing.Font("Tahoma", 7.0!)
+        Me.GVSchedule.AppearancePrint.Row.Options.UseFont = True
         Me.GVSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumnIDSchedule, Me.GridColumn18, Me.GridColumn20, Me.GridColumnLevel, Me.GridColumnEmpPosition, Me.GridColumn23, Me.GridColumn38, Me.GridColumn39, Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GCWorkMin, Me.GCWorkMinActual, Me.GCLate, Me.GCOver, Me.GCBalance, Me.GCOverBreak, Me.GridColumnPresent, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26})
         Me.GVSchedule.GridControl = Me.GCSchedule
         Me.GVSchedule.GroupCount = 1
@@ -167,7 +169,7 @@ Partial Public Class ReportEmpAttn
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Date"
-        Me.GridColumn1.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn1.DisplayFormat.FormatString = "dd-MM-yy"
         Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn1.FieldName = "date"
         Me.GridColumn1.Name = "GridColumn1"

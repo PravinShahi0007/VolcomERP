@@ -14,7 +14,7 @@
         End If
 
         Dim query As String = ""
-        query = "SELECT tb.*,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present FROM"
+        query = "SELECT tb.*,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),'Yes','No') AS present FROM"
         query += " ("
         query += " SELECT sch.id_schedule,lvl.employee_level,emp.employee_position,ket.id_leave_type,ket.leave_type,sch.info_leave,active.employee_active,active.id_employee_active,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,sch.date, "
         query += " sch.in,sch.in_tolerance,MIN(at_in.datetime) As `att_in`, "
@@ -39,7 +39,7 @@
         query += " LEFT JOIN tb_emp_attn at_out ON at_out.id_employee = sch.id_employee AND (at_out.datetime>=sch.in AND at_out.datetime<=(sch.in + INTERVAL 1 DAY)) AND at_out.type_log = 2 "
         query += " LEFT JOIN tb_emp_attn at_brout On at_brout.id_employee=sch.id_employee And Date(at_brout.datetime) = sch.Date And at_brout.type_log = 3 "
         query += " LEFT JOIN tb_emp_attn at_brin On at_brin.id_employee=sch.id_employee And Date(at_brin.datetime) = sch.Date And at_brin.type_log = 4 "
-        query += " WHERE emp.id_departement Like '" & dept & "'"
+        query += " WHERE emp.id_departement Like '" & dept & "' AND emp.id_employee_active='1'"
         'this is last week from monday till sunday
         query += " AND YEARWEEK(sch.`date`,1) = YEARWEEK(NOW(),1) - 1"
         '
