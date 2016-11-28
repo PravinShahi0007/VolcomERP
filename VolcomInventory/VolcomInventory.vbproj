@@ -495,6 +495,18 @@
     <Compile Include="FormEmpCalendar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpDP.Designer.vb">
+      <DependentUpon>FormEmpDP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpDP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpDPDet.Designer.vb">
+      <DependentUpon>FormEmpDPDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpDPDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpEmail.Designer.vb">
       <DependentUpon>FormEmpEmail.vb</DependentUpon>
     </Compile>
@@ -4659,6 +4671,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpDP.resx">
+      <DependentUpon>FormEmpDP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpDPDet.resx">
+      <DependentUpon>FormEmpDPDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpEmail.resx">
       <DependentUpon>FormEmpEmail.vb</DependentUpon>
