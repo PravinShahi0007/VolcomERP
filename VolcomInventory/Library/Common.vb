@@ -759,6 +759,7 @@ Module Common
     Function header_number_emp(ByVal opt As String)
         'opt
         '1 = leave
+        '2 = DP
 
         Dim header_number_x As String
         header_number_x = ""
@@ -766,6 +767,8 @@ Module Common
 
         If opt = "1" Then
             header_number_x = combine_header_number(get_opt_emp_field("emp_leave_code_head"), Integer.Parse(get_opt_emp_field("emp_leave_code_inc")), Integer.Parse(get_opt_emp_field("emp_leave_code_digit")))
+        ElseIf opt = "2" Then
+            header_number_x = combine_header_number(get_opt_emp_field("emp_dp_code_head"), Integer.Parse(get_opt_emp_field("emp_dp_code_inc")), Integer.Parse(get_opt_emp_field("emp_dp_code_digit")))
         End If
 
         Return header_number_x
@@ -773,12 +776,16 @@ Module Common
     Sub increase_inc_emp(ByVal opt As String)
         'opt
         '1 = leave
+        '2 = DP
 
         Dim query As String
         query = ""
 
         If opt = "1" Then
             query = "UPDATE tb_opt_emp SET emp_leave_code_inc=(tb_opt_emp.emp_leave_code_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "2" Then
+            query = "UPDATE tb_opt_emp SET emp_dp_code_inc=(tb_opt_emp.emp_dp_code_inc+1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
