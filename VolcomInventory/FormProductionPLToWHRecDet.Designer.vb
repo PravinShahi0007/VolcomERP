@@ -66,7 +66,6 @@ Partial Class FormProductionPLToWHRecDet
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnInfoSrs = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnBrowsePO = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControlTopRight2 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEStorage = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -98,6 +97,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.GridColumnDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControlLocator = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnBrowsePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtSeason = New DevExpress.XtraEditors.TextEdit()
@@ -147,6 +147,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
         Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -210,6 +211,7 @@ Partial Class FormProductionPLToWHRecDet
         'PanelControl3
         '
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
+        Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.DDBPrint)
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
@@ -227,7 +229,7 @@ Partial Class FormProductionPLToWHRecDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(644, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(538, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(107, 32)
         Me.BtnAttachment.TabIndex = 14
@@ -696,18 +698,6 @@ Partial Class FormProductionPLToWHRecDet
         Me.LabelControl4.TabIndex = 88
         Me.LabelControl4.Text = "PL Number"
         '
-        'BtnBrowsePO
-        '
-        Me.BtnBrowsePO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnBrowsePO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnBrowsePO.Appearance.Options.UseFont = True
-        Me.BtnBrowsePO.Location = New System.Drawing.Point(7, 109)
-        Me.BtnBrowsePO.Name = "BtnBrowsePO"
-        Me.BtnBrowsePO.Size = New System.Drawing.Size(23, 20)
-        Me.BtnBrowsePO.TabIndex = 0
-        Me.BtnBrowsePO.Text = "..."
-        Me.BtnBrowsePO.Visible = False
-        '
         'TxtOrderNumber
         '
         Me.TxtOrderNumber.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
@@ -989,6 +979,18 @@ Partial Class FormProductionPLToWHRecDet
         Me.LabelControl2.Size = New System.Drawing.Size(38, 13)
         Me.LabelControl2.TabIndex = 149
         Me.LabelControl2.Text = "Storage"
+        '
+        'BtnBrowsePO
+        '
+        Me.BtnBrowsePO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnBrowsePO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnBrowsePO.Appearance.Options.UseFont = True
+        Me.BtnBrowsePO.Location = New System.Drawing.Point(7, 109)
+        Me.BtnBrowsePO.Name = "BtnBrowsePO"
+        Me.BtnBrowsePO.Size = New System.Drawing.Size(23, 20)
+        Me.BtnBrowsePO.TabIndex = 0
+        Me.BtnBrowsePO.Text = "..."
+        Me.BtnBrowsePO.Visible = False
         '
         'PanelControlTopRight
         '
@@ -1520,6 +1522,19 @@ Partial Class FormProductionPLToWHRecDet
         '
         Me.EPRet.ContainerControl = Me
         '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(645, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(106, 32)
+        Me.BtnXlsBOF.TabIndex = 16
+        Me.BtnXlsBOF.Text = "XLS for BOF"
+        Me.BtnXlsBOF.Visible = False
+        '
         'FormProductionPLToWHRecDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1732,4 +1747,5 @@ Partial Class FormProductionPLToWHRecDet
     Friend WithEvents BtnPrePrinting As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents PUDD As DevExpress.XtraBars.PopupMenu
     Friend WithEvents DDBPrint As DevExpress.XtraEditors.DropDownButton
+    Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
 End Class
