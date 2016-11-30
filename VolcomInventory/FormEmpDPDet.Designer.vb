@@ -315,6 +315,7 @@ Partial Class FormEmpDPDet
         Me.DEUntilDP.Location = New System.Drawing.Point(402, 74)
         Me.DEUntilDP.Name = "DEUntilDP"
         Me.DEUntilDP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilDP.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
         Me.DEUntilDP.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilDP.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
         Me.DEUntilDP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime

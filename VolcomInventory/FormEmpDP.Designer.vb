@@ -69,13 +69,13 @@ Partial Class FormEmpDP
         'GridColumnIDLeave
         '
         Me.GridColumnIDLeave.Caption = "ID DP"
-        Me.GridColumnIDLeave.FieldName = "id_emp_leave"
+        Me.GridColumnIDLeave.FieldName = "id_emp_dp"
         Me.GridColumnIDLeave.Name = "GridColumnIDLeave"
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Number"
-        Me.GridColumn2.FieldName = "emp_leave_number"
+        Me.GridColumn2.FieldName = "dp_number"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
@@ -86,7 +86,7 @@ Partial Class FormEmpDP
         Me.GridColumn7.Caption = "Date Created"
         Me.GridColumn7.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn7.FieldName = "emp_leave_date"
+        Me.GridColumn7.FieldName = "dp_date_created"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 1
@@ -115,7 +115,7 @@ Partial Class FormEmpDP
         Me.GridColumn1.Caption = "Leave From"
         Me.GridColumn1.DisplayFormat.FormatString = "dd MMM yyyy H:mm:ss"
         Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn1.FieldName = "min_date"
+        Me.GridColumn1.FieldName = "dp_time_start"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 4
@@ -126,7 +126,7 @@ Partial Class FormEmpDP
         Me.GridColumn5.Caption = "Until"
         Me.GridColumn5.DisplayFormat.FormatString = "dd MMM yyyy H:mm:ss"
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn5.FieldName = "max_date"
+        Me.GridColumn5.FieldName = "dp_time_end"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 5
@@ -135,7 +135,7 @@ Partial Class FormEmpDP
         'GridColumnTotHours
         '
         Me.GridColumnTotHours.Caption = "Total (hours)"
-        Me.GridColumnTotHours.FieldName = "hours_total"
+        Me.GridColumnTotHours.FieldName = "dp_total"
         Me.GridColumnTotHours.Name = "GridColumnTotHours"
         Me.GridColumnTotHours.Visible = True
         Me.GridColumnTotHours.VisibleIndex = 6

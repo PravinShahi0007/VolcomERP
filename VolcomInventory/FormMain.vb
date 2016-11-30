@@ -2305,7 +2305,7 @@ Public Class FormMain
             ElseIf formName = "FormEmpDP" Then
                 'Leave employee
                 If FormEmpDP.GVLeave.RowCount > 0 Then
-                    FormEmpDPDet.id_emp_dp = FormEmpDP.GVLeave.GetFocusedRowCellValue("id_emp_dp").ToString
+                    FormEmpDPDet.id_emp_dp = FormEmpDP.GVLeave.GetFocusedRowCellValue("id_dp").ToString
                     FormEmpDPDet.ShowDialog()
                 End If
             Else
