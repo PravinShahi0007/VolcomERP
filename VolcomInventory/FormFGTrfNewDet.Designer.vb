@@ -1212,7 +1212,6 @@ Partial Class FormFGTrfNewDet
     Friend WithEvents GVItemList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnColor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
@@ -1265,4 +1264,5 @@ Partial Class FormFGTrfNewDet
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TxtDeleteScan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
 End Class

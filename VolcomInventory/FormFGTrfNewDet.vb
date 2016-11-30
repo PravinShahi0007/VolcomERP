@@ -1,4 +1,6 @@
-﻿Public Class FormFGTrfNewDet 
+﻿Imports Microsoft.Office.Interop
+
+Public Class FormFGTrfNewDet
     Public action As String = ""
     Public id_fg_trf As String = "-1"
     Public id_sales_order As String = "-1"
@@ -18,6 +20,8 @@
     Dim is_new_rec As Boolean = False
     Public id_wh_drawer_to As String = "-1"
     Public id_pre As String = "-1"
+    Public bof_column As String = get_setup_field("bof_column")
+    Public bof_xls_so As String = get_setup_field("bof_xls_trf")
 
     Private Sub FormFGTrfNewDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'get default store category for pick company
@@ -207,7 +211,7 @@
 
             For j As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                 Dim data_stc_filter As DataRow() = data_stc.Select("[id_product]='" + GVItemList.GetRowCellValue(j, "id_product").ToString + "' ")
-                Dim id_product As String = GVItemList.GetRowCellValue(j, "id_product").ToString 
+                Dim id_product As String = GVItemList.GetRowCellValue(j, "id_product").ToString
                 Dim code As String = GVItemList.GetRowCellValue(j, "code").ToString
                 Dim name As String = GVItemList.GetRowCellValue(j, "name").ToString
                 Dim size As String = GVItemList.GetRowCellValue(j, "size").ToString
@@ -1057,7 +1061,7 @@
                         execute_non_query(query_counting, True, "", "", "", "")
                     End If
 
-
+                    exportToBOF(False)
                     FormFGTrfNew.viewFGTrf()
                     FormFGTrfNew.GVFGTrf.FocusedRowHandle = find_row(FormFGTrfNew.GVFGTrf, "id_fg_trf", id_fg_trf)
                     action = "upd"
@@ -1149,6 +1153,7 @@
                         execute_non_query(query_counting, True, "", "", "", "")
                     End If
 
+                    exportToBOF(False)
                     FormFGTrfNew.viewFGTrf()
                     FormFGTrfNew.GVFGTrf.FocusedRowHandle = find_row(FormFGTrfNew.GVFGTrf, "id_fg_trf", id_fg_trf)
                     action = "upd"
@@ -1369,5 +1374,116 @@
                 End If
             End If
         End If
+    End Sub
+
+    Sub exportToBOF(ByVal show_msg As Boolean)
+        If bof_column = "1" Then
+            Cursor = Cursors.WaitCursor
+
+            'hide column
+            For c As Integer = 0 To GVItemList.Columns.Count - 1
+                GVItemList.Columns(c).Visible = False
+            Next
+            GridColumnCode.VisibleIndex = 0
+            GridColumnQty.VisibleIndex = 1
+            GVItemList.OptionsPrint.PrintFooter = False
+            GVItemList.OptionsPrint.PrintHeader = False
+
+
+            'export excel
+            Dim path_root As String = ""
+            Try
+                ' Open the file using a stream reader.
+                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                    ' Read the stream to a string and write the string to the console.
+                    path_root = sr.ReadToEnd()
+                End Using
+            Catch ex As Exception
+            End Try
+
+            Dim fileName As String = bof_xls_so + ".xls"
+            Dim exp As String = IO.Path.Combine(path_root, fileName)
+            Try
+                ExportToExcel(GVItemList, exp, show_msg)
+            Catch ex As Exception
+                stopCustom("Please close your excel file first then try again later")
+            End Try
+
+            'show column
+            GridColumnNo.VisibleIndex = 0
+            GridColumnCode.VisibleIndex = 1
+            GridColumnName.VisibleIndex = 2
+            GridColumnSize.VisibleIndex = 3
+            GridColumnColor.VisibleIndex = 4
+            GridColumnQty.VisibleIndex = 5
+            GridColumnRemark.VisibleIndex = 6
+            GridColumnStatus.VisibleIndex = 7
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Public Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
+        Dim strFileName As String = filepath
+        If System.IO.File.Exists(strFileName) Then
+            System.IO.File.Delete(strFileName)
+        End If
+        Dim _excel As New Excel.Application
+        Dim wBook As Excel.Workbook
+        Dim wSheet As Excel.Worksheet
+
+        wBook = _excel.Workbooks.Add()
+        wSheet = wBook.ActiveSheet()
+
+
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = -1
+
+        ' export the Columns 
+        'If CheckBox1.Checked Then
+        '    For Each dc In dt.Columns
+        '        colIndex = colIndex + 1
+        '        wSheet.Cells(1, colIndex) = dc.ColumnName
+        '    Next
+        'End If
+
+        'export the rows 
+        For i As Integer = 0 To dtTemp.RowCount - 1
+            rowIndex = rowIndex + 1
+            colIndex = 0
+            For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
+                colIndex = colIndex + 1
+                If j = 0 Then
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
+                Else
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "fg_trf_det_qty")
+                End If
+            Next
+        Next
+
+        wSheet.Columns.AutoFit()
+        wBook.SaveAs(strFileName, Excel.XlFileFormat.xlExcel5)
+
+        'release the objects
+        ReleaseObject(wSheet)
+        wBook.Close(False)
+        ReleaseObject(wBook)
+        _excel.Quit()
+        ReleaseObject(_excel)
+        ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+        GC.Collect()
+
+        If show_msg Then
+            infoCustom("File exported successfully")
+        End If
+    End Sub
+
+    Private Sub ReleaseObject(ByVal o As Object)
+        Try
+            While (System.Runtime.InteropServices.Marshal.ReleaseComObject(o) > 0)
+            End While
+        Catch
+        Finally
+            o = Nothing
+        End Try
     End Sub
 End Class
