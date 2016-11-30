@@ -7,9 +7,15 @@
 
     Private Sub FormEmpDP_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_date()
+        load_dp()
     End Sub
     Sub load_dp()
-        Dim query As String = "SELET * FROM tb_emp_dp"
+        Dim query As String = "SELECT emp.employee_name,emp.employee_position,dep.departement,rpt.report_status,emp.employee_code,dp.* FROM tb_emp_dp dp
+                                INNER JOIN tb_m_employee emp ON emp.id_employee=dp.id_employee
+                                INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                INNER JOIN tb_lookup_report_status rpt ON rpt.id_report_status=dp.id_report_status"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCLeave.DataSource = data
     End Sub
     Sub load_date()
         DEStart.EditValue = Now

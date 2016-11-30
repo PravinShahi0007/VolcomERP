@@ -22,6 +22,8 @@ Partial Class FormEmpDPDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpDPDet))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TEEmployeeCode = New DevExpress.XtraEditors.TextEdit()
@@ -39,19 +41,19 @@ Partial Class FormEmpDPDet
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.DEUntilDP = New DevExpress.XtraEditors.DateEdit()
+        Me.DEStartDP = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TETotHour = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
+        Me.MEDPNote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,14 +64,12 @@ Partial Class FormEmpDPDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.DEUntilDP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilDP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartDP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartDP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotHour.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEDPNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -94,6 +94,28 @@ Partial Class FormEmpDPDet
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Employee"
         '
+        'DEDateCreated
+        '
+        Me.DEDateCreated.EditValue = Nothing
+        Me.DEDateCreated.Location = New System.Drawing.Point(394, 10)
+        Me.DEDateCreated.Name = "DEDateCreated"
+        Me.DEDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDateCreated.Properties.ReadOnly = True
+        Me.DEDateCreated.Size = New System.Drawing.Size(218, 20)
+        Me.DEDateCreated.TabIndex = 98
+        Me.DEDateCreated.TabStop = False
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(351, 13)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl6.TabIndex = 97
+        Me.LabelControl6.Text = "Date"
+        '
         'TENumber
         '
         Me.TENumber.EditValue = ""
@@ -103,6 +125,7 @@ Partial Class FormEmpDPDet
         Me.TENumber.Properties.ReadOnly = True
         Me.TENumber.Size = New System.Drawing.Size(209, 20)
         Me.TENumber.TabIndex = 95
+        Me.TENumber.TabStop = False
         '
         'LabelControl7
         '
@@ -138,6 +161,7 @@ Partial Class FormEmpDPDet
         Me.TEDept.Properties.ReadOnly = True
         Me.TEDept.Size = New System.Drawing.Size(217, 20)
         Me.TEDept.TabIndex = 3
+        Me.TEDept.TabStop = False
         '
         'LabelControl2
         '
@@ -156,6 +180,7 @@ Partial Class FormEmpDPDet
         Me.TEPosition.Properties.ReadOnly = True
         Me.TEPosition.Size = New System.Drawing.Size(218, 20)
         Me.TEPosition.TabIndex = 4
+        Me.TEPosition.TabStop = False
         '
         'LabelControl1
         '
@@ -174,6 +199,7 @@ Partial Class FormEmpDPDet
         Me.TEEmployeeName.Properties.ReadOnly = True
         Me.TEEmployeeName.Size = New System.Drawing.Size(324, 20)
         Me.TEEmployeeName.TabIndex = 2
+        Me.TEEmployeeName.TabStop = False
         '
         'LabelControl3
         '
@@ -267,14 +293,14 @@ Partial Class FormEmpDPDet
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.DEUntilDP)
+        Me.GroupControl2.Controls.Add(Me.DEStartDP)
         Me.GroupControl2.Controls.Add(Me.LabelControl8)
         Me.GroupControl2.Controls.Add(Me.TETotHour)
         Me.GroupControl2.Controls.Add(Me.LabelControl4)
-        Me.GroupControl2.Controls.Add(Me.DEUntil)
         Me.GroupControl2.Controls.Add(Me.Label3)
-        Me.GroupControl2.Controls.Add(Me.DEStart)
         Me.GroupControl2.Controls.Add(Me.Label4)
-        Me.GroupControl2.Controls.Add(Me.MemoEdit1)
+        Me.GroupControl2.Controls.Add(Me.MEDPNote)
         Me.GroupControl2.Controls.Add(Me.LabelControl5)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 96)
@@ -282,6 +308,41 @@ Partial Class FormEmpDPDet
         Me.GroupControl2.Size = New System.Drawing.Size(640, 145)
         Me.GroupControl2.TabIndex = 6
         Me.GroupControl2.Text = "DP"
+        '
+        'DEUntilDP
+        '
+        Me.DEUntilDP.EditValue = Nothing
+        Me.DEUntilDP.Location = New System.Drawing.Point(402, 74)
+        Me.DEUntilDP.Name = "DEUntilDP"
+        Me.DEUntilDP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilDP.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilDP.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
+        Me.DEUntilDP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilDP.Properties.Mask.EditMask = "dd-MM-yyyy/H-mm-ss"
+        Me.DEUntilDP.Size = New System.Drawing.Size(210, 20)
+        Me.DEUntilDP.TabIndex = 3
+        '
+        'DEStartDP
+        '
+        Me.DEStartDP.EditValue = Nothing
+        Me.DEStartDP.Location = New System.Drawing.Point(128, 74)
+        Me.DEStartDP.Name = "DEStartDP"
+        Me.DEStartDP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartDP.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
+        Me.DEStartDP.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartDP.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
+        Me.DEStartDP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStartDP.Properties.Mask.EditMask = "dd-MM-yyyy/H-mm-ss"
+        Me.DEStartDP.Size = New System.Drawing.Size(217, 20)
+        Me.DEStartDP.TabIndex = 2
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(287, 110)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl8.TabIndex = 108
+        Me.LabelControl8.Text = "Hour(s)"
         '
         'TETotHour
         '
@@ -292,6 +353,7 @@ Partial Class FormEmpDPDet
         Me.TETotHour.Properties.ReadOnly = True
         Me.TETotHour.Size = New System.Drawing.Size(153, 20)
         Me.TETotHour.TabIndex = 106
+        Me.TETotHour.TabStop = False
         '
         'LabelControl4
         '
@@ -300,19 +362,6 @@ Partial Class FormEmpDPDet
         Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl4.TabIndex = 107
         Me.LabelControl4.Text = "Total"
-        '
-        'DEUntil
-        '
-        Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(402, 74)
-        Me.DEUntil.Name = "DEUntil"
-        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
-        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Properties.Mask.EditMask = "dd-MM-yyyy/H"
-        Me.DEUntil.Size = New System.Drawing.Size(210, 20)
-        Me.DEUntil.TabIndex = 105
         '
         'Label3
         '
@@ -323,20 +372,6 @@ Partial Class FormEmpDPDet
         Me.Label3.TabIndex = 104
         Me.Label3.Text = "Until : "
         '
-        'DEStart
-        '
-        Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(128, 74)
-        Me.DEStart.Name = "DEStart"
-        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
-        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
-        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Properties.Mask.EditMask = "dd-MM-yyyy/H"
-        Me.DEStart.Size = New System.Drawing.Size(224, 20)
-        Me.DEStart.TabIndex = 103
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -346,13 +381,13 @@ Partial Class FormEmpDPDet
         Me.Label4.TabIndex = 102
         Me.Label4.Text = "Periode"
         '
-        'MemoEdit1
+        'MEDPNote
         '
-        Me.MemoEdit1.Location = New System.Drawing.Point(128, 16)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Properties.MaxLength = 200
-        Me.MemoEdit1.Size = New System.Drawing.Size(484, 46)
-        Me.MemoEdit1.TabIndex = 101
+        Me.MEDPNote.Location = New System.Drawing.Point(128, 16)
+        Me.MEDPNote.Name = "MEDPNote"
+        Me.MEDPNote.Properties.MaxLength = 200
+        Me.MEDPNote.Size = New System.Drawing.Size(484, 46)
+        Me.MEDPNote.TabIndex = 1
         '
         'LabelControl5
         '
@@ -361,34 +396,6 @@ Partial Class FormEmpDPDet
         Me.LabelControl5.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl5.TabIndex = 99
         Me.LabelControl5.Text = "DP Note"
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(351, 13)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl6.TabIndex = 97
-        Me.LabelControl6.Text = "Date"
-        '
-        'DEDateCreated
-        '
-        Me.DEDateCreated.EditValue = Nothing
-        Me.DEDateCreated.Location = New System.Drawing.Point(394, 10)
-        Me.DEDateCreated.Name = "DEDateCreated"
-        Me.DEDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDateCreated.Size = New System.Drawing.Size(218, 20)
-        Me.DEDateCreated.TabIndex = 98
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Location = New System.Drawing.Point(287, 110)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(36, 13)
-        Me.LabelControl8.TabIndex = 108
-        Me.LabelControl8.Text = "Hour(s)"
         '
         'FormEmpDPDet
         '
@@ -407,6 +414,8 @@ Partial Class FormEmpDPDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -418,14 +427,12 @@ Partial Class FormEmpDPDet
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.DEUntilDP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilDP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartDP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartDP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotHour.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEDPNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -448,15 +455,15 @@ Partial Class FormEmpDPDet
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label3 As Label
-    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label4 As Label
-    Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MEDPNote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TETotHour As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEDateCreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEUntilDP As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEStartDP As DevExpress.XtraEditors.DateEdit
 End Class

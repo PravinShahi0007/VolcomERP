@@ -44,6 +44,7 @@
             FormEmpDPDet.TEEmployeeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
             FormEmpDPDet.TEDept.Text = GVEmployee.GetFocusedRowCellValue("departement").ToString
             FormEmpDPDet.TEPosition.Text = GVEmployee.GetFocusedRowCellValue("employee_position").ToString
+            FormEmpDPDet.MEDPNote.Focus()
             Close()
         End If
     End Sub
