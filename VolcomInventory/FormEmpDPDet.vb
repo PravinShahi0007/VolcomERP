@@ -1,20 +1,22 @@
 ﻿Public Class FormEmpDPDet
     Public id_employee As String = "-1"
     Public id_emp_dp As String = "-1"
-
+    '
+    Public is_view As String = "-1"
+    '
     Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
         Close()
     End Sub
-
+    '
     Private Sub FormEmpDPDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
-
+    '
     Private Sub BPickEmployee_Click(sender As Object, e As EventArgs) Handles BPickEmployee.Click
         FormPopUpEmployee.id_popup = "3"
         FormPopUpEmployee.ShowDialog()
     End Sub
-
+    '
     Private Sub FormEmpDPDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TENumber.Text = header_number_emp("2")
         DEDateCreated.EditValue = Now
@@ -116,12 +118,31 @@
             Dim query As String = "INSERT INTO tb_emp_dp(dp_number,id_employee,dp_date_created,dp_time_start,dp_time_end,dp_total,dp_note)
                                     VALUES('" & header_number_emp("2") & "','" & id_employee & "',NOW(),'" & Date.Parse(DEStartDP.EditValue.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(DEUntilDP.EditValue.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & TETotHour.EditValue.ToString & "','" & MEDPNote.Text & "');SELECT LAST_INSERT_ID();"
             id_emp_dp = execute_query(query, 0, True, "", "", "", "")
+            '
+            query = "INSERT INTO tb_emp_stock_leave(id_emp_dp,id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,note,`type`) VALUES
+                        ('','','','','','" & Date.Parse(DEUntilDP.EditValue.ToString).AddMonths(6).ToString("yyyy-MM-dd") & "','2','" & MEDPNote.Text & "','2')"
+            execute_non_query(query, True, "", "", "", "")
+            '
             FormEmpDP.load_dp()
             increase_inc_emp("2")
             infoCustom("DP registered, waiting approval.")
             Close()
         Else 'edit
-
+            Dim query As String = "UDPATE tb_emp_dp SET id_employee='" & id_employee & "',dp_time_start='" & Date.Parse(DEStartDP.EditValue.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',dp_time_end='" & Date.Parse(DEUntilDP.EditValue.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',dp_total='" & TETotHour.EditValue.ToString & "',dp_note='" & MEDPNote.Text & "' WHERE id_emp_dp='" & id_emp_dp & "'"
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("DP updated")
+            Close()
         End If
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.report_mark_type = "97"
+        FormReportMark.is_view = is_view
+        FormReportMark.id_report = id_emp_dp
+        FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+
     End Sub
 End Class
