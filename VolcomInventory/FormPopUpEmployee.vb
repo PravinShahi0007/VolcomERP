@@ -38,6 +38,14 @@
             FormEmpLeaveDet.TEEMployeeChange.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
             FormEmpLeaveDet.TEEmployeeChangeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
             Close()
+        ElseIf id_popup = "3" Then
+            FormEmpDPDet.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpDPDet.TEEmployeeCode.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
+            FormEmpDPDet.TEEmployeeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            FormEmpDPDet.TEDept.Text = GVEmployee.GetFocusedRowCellValue("departement").ToString
+            FormEmpDPDet.TEPosition.Text = GVEmployee.GetFocusedRowCellValue("employee_position").ToString
+            FormEmpDPDet.MEDPNote.Focus()
+            Close()
         End If
     End Sub
 End Class

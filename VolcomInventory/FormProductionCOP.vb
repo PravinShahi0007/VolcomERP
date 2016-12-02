@@ -67,6 +67,9 @@
             calculate_pd()
             calculate_man()
             '
+            If Not FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("design_cop") = 0 Then
+                TEUnitPrice.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("design_cop")
+            End If
         End If
     End Sub
     Sub view_list_prod(ByVal id_designx As String)

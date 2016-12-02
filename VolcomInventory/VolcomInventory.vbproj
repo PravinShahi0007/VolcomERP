@@ -495,6 +495,18 @@
     <Compile Include="FormEmpCalendar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpDP.Designer.vb">
+      <DependentUpon>FormEmpDP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpDP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpDPDet.Designer.vb">
+      <DependentUpon>FormEmpDPDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpDPDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpEmail.Designer.vb">
       <DependentUpon>FormEmpEmail.vb</DependentUpon>
     </Compile>
@@ -3831,6 +3843,12 @@
     <Compile Include="FormMasterCompany.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportEmpAttn.Designer.vb">
+      <DependentUpon>ReportEmpAttn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpAttn.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpAttnInd.Designer.vb">
       <DependentUpon>ReportEmpAttnInd.vb</DependentUpon>
     </Compile>
@@ -3841,6 +3859,12 @@
       <DependentUpon>ReportEmpLeave.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportEmpLeave.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpLeaveStock.Designer.vb">
+      <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpLeaveStock.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportFGAdjIn.Designer.vb">
@@ -4647,6 +4671,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpDP.resx">
+      <DependentUpon>FormEmpDP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpDPDet.resx">
+      <DependentUpon>FormEmpDPDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpEmail.resx">
       <DependentUpon>FormEmpEmail.vb</DependentUpon>
@@ -6755,11 +6785,17 @@
       <DependentUpon>FormMasterCompany.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpAttn.resx">
+      <DependentUpon>ReportEmpAttn.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpAttnInd.resx">
       <DependentUpon>ReportEmpAttnInd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpLeave.resx">
       <DependentUpon>ReportEmpLeave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpLeaveStock.resx">
+      <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGAdjIn.resx">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
