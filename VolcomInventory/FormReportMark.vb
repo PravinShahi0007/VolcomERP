@@ -328,6 +328,9 @@
         ElseIf report_mark_type = "96" Then
             'Leave Propose need management approval
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
+        ElseIf report_mark_type = "97" Then
+            'DP propose
+            query = String.Format("SELECT id_report_status, dp_number as report_number FROM tb_emp_dp WHERE id_dp = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3091,6 +3094,26 @@
                 execute_non_query(query_del, True, "", "", "", "")
             End If
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+        ElseIf report_mark_type = "97" Then
+            'DP
+            If id_status_reportx = "3" Then
+                'complete 
+                Dim query_det As String = "SELECT id_dp,id_employee,dp_total,dp_time_end,dp_note FROM tb_emp_dp WHERE id_dp='" & id_report & "'"
+                Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                If data_det.Rows.Count > 0 Then
+                    query = "INSERT INTO tb_emp_stock_leave(id_emp_dp,id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,note,`type`) VALUES
+                        ('" & id_report & "','" & data_det.Rows(0)("id_employee").ToString & "','" & (data_det.Rows(0)("dp_total") * 60).ToString & "','1',NOW(),'" & Date.Parse(data_det.Rows(0)("dp_time_end").ToString).AddMonths(6).ToString("yyyy-MM-dd") & "','2','" & data_det.Rows(0)("dp_note").ToString & "','2')"
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+                '
+                id_status_reportx = "6"
+            ElseIf id_status_reportx = "5" Then 'cancel
+                Dim query_del As String = "DELETE FROM tb_emp_stock_leave WHERE id_emp_dp='" & id_report & "'"
+                execute_non_query(query_del, True, "", "", "", "")
+            End If
+            query = String.Format("UPDATE tb_emp_dp SET id_report_status='{0}' WHERE id_dp ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             infoCustom("Status changed.")
         End If
