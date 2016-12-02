@@ -51,7 +51,16 @@
             DEUntilDP.EditValue = data.Rows(0)("dp_time_end")
             '
             calc()
-            '
+            'If check_edit_report_status(FormEmpDP.GVLeave.GetFocusedRowCellValue("id_emp_dp").ToString, "97", FormEmpDP.GVLeave.GetFocusedRowCellValue("id_emp_dp")) Then
+            If is_view = "1" Or check_edit_report_status(id_emp_dp, "97", id_emp_dp) Then
+                BPickEmployee.Visible = False
+                TEEmployeeCode.Properties.ReadOnly = True
+                MEDPNote.ReadOnly = True
+                DEStartDP.Properties.ReadOnly = True
+                DEUntilDP.Properties.ReadOnly = True
+                BSave.Visible = False
+                BPrint.Visible = False
+            End If
         End If
     End Sub
 
@@ -119,16 +128,14 @@
                                     VALUES('" & header_number_emp("2") & "','" & id_employee & "',NOW(),'" & Date.Parse(DEStartDP.EditValue.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(DEUntilDP.EditValue.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & TETotHour.EditValue.ToString & "','" & MEDPNote.Text & "');SELECT LAST_INSERT_ID();"
             id_emp_dp = execute_query(query, 0, True, "", "", "", "")
             '
-            query = "INSERT INTO tb_emp_stock_leave(id_emp_dp,id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,note,`type`) VALUES
-                        ('','','','','','" & Date.Parse(DEUntilDP.EditValue.ToString).AddMonths(6).ToString("yyyy-MM-dd") & "','2','" & MEDPNote.Text & "','2')"
-            execute_non_query(query, True, "", "", "", "")
+            submit_who_prepared("97", id_emp_dp, id_user)
             '
             FormEmpDP.load_dp()
             increase_inc_emp("2")
             infoCustom("DP registered, waiting approval.")
             Close()
         Else 'edit
-            Dim query As String = "UDPATE tb_emp_dp SET id_employee='" & id_employee & "',dp_time_start='" & Date.Parse(DEStartDP.EditValue.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',dp_time_end='" & Date.Parse(DEUntilDP.EditValue.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',dp_total='" & TETotHour.EditValue.ToString & "',dp_note='" & MEDPNote.Text & "' WHERE id_emp_dp='" & id_emp_dp & "'"
+            Dim query As String = "UDPATE tb_emp_dp SET id_employee='" & id_employee & "',dp_time_start='" & Date.Parse(DEStartDP.EditValue.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',dp_time_end='" & Date.Parse(DEUntilDP.EditValue.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',dp_total='" & TETotHour.EditValue.ToString & "',dp_note='" & MEDPNote.Text & "' WHERE id_dp='" & id_emp_dp & "'"
             execute_non_query(query, True, "", "", "", "")
             infoCustom("DP updated")
             Close()

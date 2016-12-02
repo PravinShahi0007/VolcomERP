@@ -37,6 +37,7 @@ Partial Class FormEmpDP
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCLeave, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVLeave, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,7 +60,7 @@ Partial Class FormEmpDP
         '
         'GVLeave
         '
-        Me.GVLeave.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDLeave, Me.GridColumn2, Me.GridColumn7, Me.GridColumn3, Me.GridColumn4, Me.GridColumn1, Me.GridColumn5, Me.GridColumnTotHours, Me.GridColumn6})
+        Me.GVLeave.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDLeave, Me.GridColumn2, Me.GridColumn7, Me.GridColumn3, Me.GridColumn4, Me.GridColumn1, Me.GridColumn5, Me.GridColumnTotHours, Me.GridColumn6, Me.GridColumn8})
         Me.GVLeave.GridControl = Me.GCLeave
         Me.GVLeave.Name = "GVLeave"
         Me.GVLeave.OptionsBehavior.Editable = False
@@ -112,7 +113,7 @@ Partial Class FormEmpDP
         '
         'GridColumn1
         '
-        Me.GridColumn1.Caption = "Leave From"
+        Me.GridColumn1.Caption = "DP From"
         Me.GridColumn1.DisplayFormat.FormatString = "dd MMM yyyy H:mm:ss"
         Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn1.FieldName = "dp_time_start"
@@ -222,6 +223,12 @@ Partial Class FormEmpDP
         Me.Label1.TabIndex = 8
         Me.Label1.Text = "From : "
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID Report Status"
+        Me.GridColumn8.FieldName = "id_report_status"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
         'FormEmpDP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -262,4 +269,5 @@ Partial Class FormEmpDP
     Friend WithEvents Label2 As Label
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label1 As Label
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
