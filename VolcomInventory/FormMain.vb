@@ -328,6 +328,9 @@ Public Class FormMain
             RGAreaPrint.Visible = False
         End If
 
+        If formName = "FormEmpLeave" Then
+            BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
+        End If
         ''mapping COA
         'If formName = "FormSamplePurchase" _
         'Or formName = "FormSampleReceive" _
@@ -444,6 +447,9 @@ Public Class FormMain
             RGAreaPrint.Visible = True
         End If
 
+        If formName = "FormEmpLeave" Then
+            BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
+        End If
         ''mapping COA
         'If formName = "FormSamplePurchase" _
         'Or formName = "FormSampleReceive" _
@@ -5302,6 +5308,8 @@ Public Class FormMain
                     FormEmpEmail.viewEmployee("-1")
                 End If
             End If
+        ElseIf formName = "FormEmpLeave" Then
+            '
         ElseIf formName = "FormEmpDP" Then
             If check_edit_report_status(FormEmpDP.GVLeave.GetFocusedRowCellValue("id_report_status").ToString, "97", FormEmpDP.GVLeave.GetFocusedRowCellValue("id_emp_dp")) Then
                 Dim id As String = FormEmpDP.GVLeave.GetFocusedRowCellValue("id_emp_dp").ToString
@@ -6477,6 +6485,8 @@ Public Class FormMain
             FormEmpEmail.GVEmail.ActiveFilterString = "Not IsNullOrEmpty([email_lokal]) Or Not IsNullOrEmpty([email_external]) OR Not IsNullOrEmpty([email_other])"
             print(FormEmpEmail.GCEmail, "Email List")
             FormEmpEmail.GVEmail.ActiveFilterString = ""
+        ElseIf formName = "FormEmpLeave" Then
+            print(FormEmpLeave.GCLeave, "List Cuti")
         ElseIf formName = "FormEmpDP" Then
             print(FormEmpDP.GCLeave, "List DP")
         Else
@@ -7652,6 +7662,8 @@ Public Class FormMain
             Else
                 FormFGRepairReturnRec.viewRepairList()
             End If
+        ElseIf formName = "FormEmpLeave" Then
+            FormEmpLeave.load_sum()
         ElseIf formName = "FormEmpDP" Then
             FormEmpDP.load_dp()
         End If

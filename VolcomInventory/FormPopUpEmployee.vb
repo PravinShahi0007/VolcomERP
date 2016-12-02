@@ -32,6 +32,7 @@
             FormEmpLeaveDet.TEDept.Text = GVEmployee.GetFocusedRowCellValue("departement").ToString
             FormEmpLeaveDet.TEPosition.Text = GVEmployee.GetFocusedRowCellValue("employee_position").ToString
             FormEmpLeaveDet.DEJoinDate.EditValue = GVEmployee.GetFocusedRowCellValue("employee_join_date")
+            FormEmpLeaveDet.load_emp_detail()
             Close()
         ElseIf id_popup = "2" Then
             FormEmpLeaveDet.id_employee_change = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
