@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormProductionCOP
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,8 +17,9 @@ Partial Class FormProductionCOP
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.LEStatus = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -137,6 +138,8 @@ Partial Class FormProductionCOP
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BUpdateCOP = New DevExpress.XtraEditors.SimpleButton()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMEditCost = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -188,6 +191,7 @@ Partial Class FormProductionCOP
         CType(Me.TEKursPD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -1612,6 +1616,18 @@ Partial Class FormProductionCOP
         Me.BUpdateCOP.TabIndex = 5
         Me.BUpdateCOP.Text = "Update COP"
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditCost})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        '
+        'SMEditCost
+        '
+        Me.SMEditCost.Name = "SMEditCost"
+        Me.SMEditCost.Size = New System.Drawing.Size(152, 22)
+        Me.SMEditCost.Text = "Edit Cost"
+        '
         'FormProductionCOP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1685,6 +1701,7 @@ Partial Class FormProductionCOP
         CType(Me.TEKursPD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1806,4 +1823,6 @@ Partial Class FormProductionCOP
     Friend WithEvents GridColumn42 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn43 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BKursMan As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents SMEditCost As ToolStripMenuItem
 End Class

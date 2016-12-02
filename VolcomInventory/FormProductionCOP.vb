@@ -330,4 +330,21 @@
     Private Sub BKursMan_Click(sender As Object, e As EventArgs) Handles BKursMan.Click
         TEKursMan.EditValue = get_setup_field("rate_management")
     End Sub
+
+    Private Sub GVCostMan_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVCostMan.PopupMenuShowing
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
+        If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
+            view.FocusedRowHandle = hitInfo.RowHandle
+            ViewMenu.Show(view.GridControl, e.Point)
+        End If
+    End Sub
+
+    Private Sub SMEditCost_Click(sender As Object, e As EventArgs) Handles SMEditCost.Click
+        If GVCostMan.RowCount > 0 Then
+            If GVCostMan.GetFocusedRowCellValue("id_category").ToString = "2" Then
+                MsgBox(GVCostMan.GetFocusedRowCellValue("id_report").ToString)
+            End If
+        End If
+    End Sub
 End Class
