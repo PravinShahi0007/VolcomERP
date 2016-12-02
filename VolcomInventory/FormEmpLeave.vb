@@ -33,6 +33,9 @@
     End Sub
 
     Private Sub BViewSum_Click(sender As Object, e As EventArgs) Handles BViewSum.Click
+        load_sum()
+    End Sub
+    Sub load_sum()
         Dim date_from As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_end As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim query As String = "SELECT empl.*,empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total  FROM tb_emp_leave empl
@@ -47,7 +50,6 @@
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
         GCLeave.DataSource = data
     End Sub
-
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BViewOnLeave.Click
         Dim date_from As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim date_end As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
