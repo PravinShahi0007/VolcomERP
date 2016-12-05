@@ -83,6 +83,8 @@
         execute_non_query(query, True, "", "", "", "")
         '
         FormProductionCOP.view_list_cost(FormProductionCOP.id_design)
+        FormProductionCOP.calculate_cost_management()
+        FormProductionCOP.calculate_man()
         Close()
     End Sub
 End Class
