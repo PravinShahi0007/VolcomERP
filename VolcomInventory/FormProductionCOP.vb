@@ -11,13 +11,13 @@
         view_status(LEStatus)
 
         If Not id_design = "-1" Then
-            Dim query As String = String.Format("SELECT rate_management,design_name,design_display_name,design_code,id_cop_status FROM tb_m_design WHERE id_design = '{0}'", id_design)
+            Dim query As String = String.Format("SELECT rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,design_name,design_display_name,design_code,id_cop_status FROM tb_m_design WHERE id_design = '{0}'", id_design)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
             TEDesign.Text = data.Rows(0)("design_display_name").ToString
             TEDesignCode.Text = data.Rows(0)("design_code").ToString
             LEStatus.EditValue = data.Rows(0)("id_cop_status").ToString
-            TEKursMan.EditValue = data.Rows(0)("rate_management")
+            TEKursMan.EditValue = data.Rows(0)("prod_order_cop_kurs_mng")
             '
             If data.Rows(0)("id_cop_status").ToString = "2" Then
                 BUpdateCOP.Visible = False
@@ -30,11 +30,14 @@
                 TEUnitPrice.EditValue = True
                 TEUnitCostBOM.EditValue = True
                 TEUnitCostPD.EditValue = True
+                '
+                TEUnitPrice.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("design_cop")
             Else
                 TEUnitPrice.Properties.ReadOnly = False
                 TEUnitCostBOM.Properties.ReadOnly = False
                 TEUnitCostPD.Properties.ReadOnly = False
                 '
+                TEUnitPrice.EditValue = data.Rows(0)("prod_order_cop_mng").ToString
             End If
             '
             query = "SELECT prod.id_design,bom.id_currency,bom.kurs,bom.is_default,bom.id_bom FROM tb_bom bom"
@@ -68,9 +71,6 @@
             calculate_pd()
             calculate_man()
             '
-            If Not FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("design_cop") = 0 Then
-                TEUnitPrice.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("design_cop")
-            End If
         End If
     End Sub
     Sub view_list_prod(ByVal id_designx As String)
@@ -159,6 +159,7 @@
             qty = GVListProd.Columns("receive_created_qty").SummaryItem.SummaryValue
             total = GVCostMan.Columns("total_price").SummaryItem.SummaryValue
             TEQty.EditValue = qty
+
             TETotal.EditValue = total
         Catch ex As Exception
         End Try
@@ -169,7 +170,8 @@
             unit_price = total / qty
         End If
 
-        TEUnitPrice.EditValue = unit_price
+        'TEUnitPrice.EditValue = unit_price
+        TEUnitCostActual.EditValue = unit_price
     End Sub
     Private Sub BUpdateCOP_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BUpdateCOP.Click
         Cursor = Cursors.WaitCursor
@@ -372,5 +374,9 @@
         calculate_man()
         calculate()
         calculate_pd()
+    End Sub
+
+    Private Sub BSameCost_Click(sender As Object, e As EventArgs) Handles BSameCost.Click
+        TEUnitPrice.EditValue = TEUnitCostActual.EditValue
     End Sub
 End Class

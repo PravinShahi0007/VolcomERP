@@ -69,8 +69,9 @@ Partial Class FormProductionCOP
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BSameCost = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEUnitCostActual = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.TEQty = New DevExpress.XtraEditors.TextEdit()
         Me.TETotal = New DevExpress.XtraEditors.TextEdit()
@@ -163,7 +164,7 @@ Partial Class FormProductionCOP
         CType(Me.GVCostMan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEUnitCostActual.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUnitPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -735,8 +736,9 @@ Partial Class FormProductionCOP
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.BSameCost)
         Me.PanelControl4.Controls.Add(Me.LabelControl3)
-        Me.PanelControl4.Controls.Add(Me.TextEdit1)
+        Me.PanelControl4.Controls.Add(Me.TEUnitCostActual)
         Me.PanelControl4.Controls.Add(Me.LabelControl17)
         Me.PanelControl4.Controls.Add(Me.TEQty)
         Me.PanelControl4.Controls.Add(Me.TETotal)
@@ -749,6 +751,14 @@ Partial Class FormProductionCOP
         Me.PanelControl4.Size = New System.Drawing.Size(911, 118)
         Me.PanelControl4.TabIndex = 8
         '
+        'BSameCost
+        '
+        Me.BSameCost.Location = New System.Drawing.Point(695, 86)
+        Me.BSameCost.Name = "BSameCost"
+        Me.BSameCost.Size = New System.Drawing.Size(24, 21)
+        Me.BSameCost.TabIndex = 153
+        Me.BSameCost.Text = "="
+        '
         'LabelControl3
         '
         Me.LabelControl3.Location = New System.Drawing.Point(607, 63)
@@ -757,21 +767,21 @@ Partial Class FormProductionCOP
         Me.LabelControl3.TabIndex = 152
         Me.LabelControl3.Text = "Actual Unit Cost"
         '
-        'TextEdit1
+        'TEUnitCostActual
         '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(695, 60)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Appearance.Options.UseTextOptions = True
-        Me.TextEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.Mask.EditMask = "N2"
-        Me.TextEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TextEdit1.Properties.Mask.SaveLiteral = False
-        Me.TextEdit1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(203, 20)
-        Me.TextEdit1.TabIndex = 151
+        Me.TEUnitCostActual.EditValue = ""
+        Me.TEUnitCostActual.Location = New System.Drawing.Point(695, 60)
+        Me.TEUnitCostActual.Name = "TEUnitCostActual"
+        Me.TEUnitCostActual.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEUnitCostActual.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEUnitCostActual.Properties.EditValueChangedDelay = 1
+        Me.TEUnitCostActual.Properties.Mask.EditMask = "N2"
+        Me.TEUnitCostActual.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEUnitCostActual.Properties.Mask.SaveLiteral = False
+        Me.TEUnitCostActual.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEUnitCostActual.Properties.ReadOnly = True
+        Me.TEUnitCostActual.Size = New System.Drawing.Size(203, 20)
+        Me.TEUnitCostActual.TabIndex = 151
         '
         'LabelControl17
         '
@@ -816,7 +826,7 @@ Partial Class FormProductionCOP
         'TEUnitPrice
         '
         Me.TEUnitPrice.EditValue = ""
-        Me.TEUnitPrice.Location = New System.Drawing.Point(695, 87)
+        Me.TEUnitPrice.Location = New System.Drawing.Point(725, 87)
         Me.TEUnitPrice.Name = "TEUnitPrice"
         Me.TEUnitPrice.Properties.Appearance.Options.UseTextOptions = True
         Me.TEUnitPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -825,7 +835,7 @@ Partial Class FormProductionCOP
         Me.TEUnitPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEUnitPrice.Properties.Mask.SaveLiteral = False
         Me.TEUnitPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEUnitPrice.Size = New System.Drawing.Size(203, 20)
+        Me.TEUnitPrice.Size = New System.Drawing.Size(173, 20)
         Me.TEUnitPrice.TabIndex = 146
         '
         'LabelControl15
@@ -1695,7 +1705,7 @@ Partial Class FormProductionCOP
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEUnitCostActual.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUnitPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1856,5 +1866,6 @@ Partial Class FormProductionCOP
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents SMEditCost As ToolStripMenuItem
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEUnitCostActual As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BSameCost As DevExpress.XtraEditors.SimpleButton
 End Class
