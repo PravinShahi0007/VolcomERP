@@ -88,6 +88,8 @@ Partial Class FormProductionCOPDet
         Me.TEEcop.Name = "TEEcop"
         Me.TEEcop.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEEcop.Properties.Appearance.Options.UseFont = True
+        Me.TEEcop.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEEcop.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEEcop.Properties.DisplayFormat.FormatString = "N2"
         Me.TEEcop.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEEcop.Properties.EditFormat.FormatString = "N2"
@@ -115,6 +117,8 @@ Partial Class FormProductionCOPDet
         Me.TEKurs.Name = "TEKurs"
         Me.TEKurs.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEKurs.Properties.Appearance.Options.UseFont = True
+        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEKurs.Properties.EditValueChangedDelay = 1
         Me.TEKurs.Properties.Mask.EditMask = "N2"
         Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -170,13 +174,13 @@ Partial Class FormProductionCOPDet
         Me.TEDesc.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TEDesc.EditValue = ""
-        Me.TEDesc.Location = New System.Drawing.Point(275, 11)
+        Me.TEDesc.Location = New System.Drawing.Point(251, 11)
         Me.TEDesc.Name = "TEDesc"
         Me.TEDesc.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEDesc.Properties.Appearance.Options.UseFont = True
         Me.TEDesc.Properties.EditValueChangedDelay = 1
         Me.TEDesc.Properties.ReadOnly = True
-        Me.TEDesc.Size = New System.Drawing.Size(244, 20)
+        Me.TEDesc.Size = New System.Drawing.Size(268, 20)
         Me.TEDesc.TabIndex = 8915
         Me.TEDesc.TabStop = False
         '
@@ -232,6 +236,7 @@ Partial Class FormProductionCOPDet
         Me.TEVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEVendor.Properties.Appearance.Options.UseFont = True
         Me.TEVendor.Properties.EditValueChangedDelay = 1
+        Me.TEVendor.Properties.ReadOnly = True
         Me.TEVendor.Size = New System.Drawing.Size(130, 20)
         Me.TEVendor.TabIndex = 8905
         '
@@ -255,9 +260,9 @@ Partial Class FormProductionCOPDet
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl5.Location = New System.Drawing.Point(221, 14)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl5.TabIndex = 8919
-        Me.LabelControl5.Text = "Overhead"
+        Me.LabelControl5.Text = "Type"
         '
         'FormProductionCOPDet
         '

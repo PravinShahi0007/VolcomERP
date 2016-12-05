@@ -17,6 +17,7 @@
             TEDesign.Text = data.Rows(0)("design_display_name").ToString
             TEDesignCode.Text = data.Rows(0)("design_code").ToString
             LEStatus.EditValue = data.Rows(0)("id_cop_status").ToString
+            TEKursMan.EditValue = data.Rows(0)("rate_management")
             '
             If data.Rows(0)("id_cop_status").ToString = "2" Then
                 BUpdateCOP.Visible = False
@@ -82,8 +83,10 @@
         Dim query = "CALL view_cop_design('" & id_designx & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCostBOM.DataSource = data
-        GCCostMan.DataSource = data
-        GCCostPD.DataSource = data
+        Dim data_man As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCostMan.DataSource = data_man
+        Dim data_pd As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCCostPD.DataSource = data_pd
     End Sub
     Private Sub GVListProduct_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVListProd.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
@@ -154,7 +157,7 @@
         unit_price = 0.0
         Try
             qty = GVListProd.Columns("receive_created_qty").SummaryItem.SummaryValue
-            total = GVCostBOM.Columns("total_price").SummaryItem.SummaryValue
+            total = GVCostMan.Columns("total_price").SummaryItem.SummaryValue
             TEQty.EditValue = qty
             TETotal.EditValue = total
         Catch ex As Exception
@@ -211,7 +214,16 @@
         view_list_prod(id_design)
         view_list_cost(id_design)
         '
-        calculate()
+        If XTCCOP.SelectedTabPageIndex = 1 Then
+            calculate_cost_management()
+            calculate_man()
+        ElseIf XTCCOP.SelectedTabPageIndex = 2 Then
+            calculate_cost_bom()
+            calculate()
+        ElseIf XTCCOP.SelectedTabPageIndex = 3 Then
+            calculate_cost_pd()
+            calculate_pd()
+        End If
     End Sub
 
     'Private Sub BPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPrint.Click
@@ -261,7 +273,7 @@
         End If
     End Sub
     Sub calculate_cost_management()
-        If GVCostBOM.RowCount > 0 Then
+        If GVCostMan.RowCount > 0 And LEStatus.EditValue.ToString = "1" Then
             Dim kurs As Decimal = TEKursMan.EditValue
             Dim actual_price As Decimal = 0
             Dim price As Decimal = 0
@@ -343,8 +355,22 @@
     Private Sub SMEditCost_Click(sender As Object, e As EventArgs) Handles SMEditCost.Click
         If GVCostMan.RowCount > 0 Then
             If GVCostMan.GetFocusedRowCellValue("id_category").ToString = "2" Then
-                MsgBox(GVCostMan.GetFocusedRowCellValue("id_report").ToString)
+                FormProductionCOPDet.id_wo = GVCostMan.GetFocusedRowCellValue("id_report").ToString
+                FormProductionCOPDet.ShowDialog()
             End If
         End If
+    End Sub
+
+    Private Sub LEStatus_EditValueChanged(sender As Object, e As EventArgs) Handles LEStatus.EditValueChanged
+        view_list_prod(id_design)
+        view_list_cost(id_design)
+        '
+        calculate_cost_management()
+        calculate_cost_bom()
+        calculate_cost_pd()
+        '
+        calculate_man()
+        calculate()
+        calculate_pd()
     End Sub
 End Class

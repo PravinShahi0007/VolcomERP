@@ -69,6 +69,8 @@ Partial Class FormProductionCOP
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.TEQty = New DevExpress.XtraEditors.TextEdit()
         Me.TETotal = New DevExpress.XtraEditors.TextEdit()
@@ -161,6 +163,7 @@ Partial Class FormProductionCOP
         CType(Me.GVCostMan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUnitPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -292,7 +295,7 @@ Partial Class FormProductionCOP
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 69)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(939, 473)
+        Me.GroupControl2.Size = New System.Drawing.Size(939, 492)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Detail"
         '
@@ -302,7 +305,7 @@ Partial Class FormProductionCOP
         Me.XTCCOP.Location = New System.Drawing.Point(20, 2)
         Me.XTCCOP.Name = "XTCCOP"
         Me.XTCCOP.SelectedTabPage = Me.XPRec
-        Me.XTCCOP.Size = New System.Drawing.Size(917, 438)
+        Me.XTCCOP.Size = New System.Drawing.Size(917, 457)
         Me.XTCCOP.TabIndex = 0
         Me.XTCCOP.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XPRec, Me.XTPCostManagement, Me.XTPCostBOM, Me.XTPCostPD})
         '
@@ -310,7 +313,7 @@ Partial Class FormProductionCOP
         '
         Me.XPRec.Controls.Add(Me.GCListProd)
         Me.XPRec.Name = "XPRec"
-        Me.XPRec.Size = New System.Drawing.Size(911, 410)
+        Me.XPRec.Size = New System.Drawing.Size(911, 429)
         Me.XPRec.Text = "Receiving"
         '
         'GCListProd
@@ -320,7 +323,7 @@ Partial Class FormProductionCOP
         Me.GCListProd.MainView = Me.GVListProd
         Me.GCListProd.Name = "GCListProd"
         Me.GCListProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit1})
-        Me.GCListProd.Size = New System.Drawing.Size(911, 410)
+        Me.GCListProd.Size = New System.Drawing.Size(911, 429)
         Me.GCListProd.TabIndex = 3
         Me.GCListProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProd, Me.GridView1})
         '
@@ -509,7 +512,7 @@ Partial Class FormProductionCOP
         Me.XTPCostManagement.Controls.Add(Me.PanelControl4)
         Me.XTPCostManagement.Controls.Add(Me.PanelControl3)
         Me.XTPCostManagement.Name = "XTPCostManagement"
-        Me.XTPCostManagement.Size = New System.Drawing.Size(911, 410)
+        Me.XTPCostManagement.Size = New System.Drawing.Size(911, 429)
         Me.XTPCostManagement.Text = "Cost Calculation"
         '
         'GCCostMan
@@ -518,7 +521,7 @@ Partial Class FormProductionCOP
         Me.GCCostMan.Location = New System.Drawing.Point(0, 45)
         Me.GCCostMan.MainView = Me.GVCostMan
         Me.GCCostMan.Name = "GCCostMan"
-        Me.GCCostMan.Size = New System.Drawing.Size(911, 275)
+        Me.GCCostMan.Size = New System.Drawing.Size(911, 266)
         Me.GCCostMan.TabIndex = 6
         Me.GCCostMan.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCostMan})
         '
@@ -732,6 +735,8 @@ Partial Class FormProductionCOP
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.LabelControl3)
+        Me.PanelControl4.Controls.Add(Me.TextEdit1)
         Me.PanelControl4.Controls.Add(Me.LabelControl17)
         Me.PanelControl4.Controls.Add(Me.TEQty)
         Me.PanelControl4.Controls.Add(Me.TETotal)
@@ -739,18 +744,42 @@ Partial Class FormProductionCOP
         Me.PanelControl4.Controls.Add(Me.LabelControl15)
         Me.PanelControl4.Controls.Add(Me.LabelControl14)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 320)
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 311)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(911, 90)
+        Me.PanelControl4.Size = New System.Drawing.Size(911, 118)
         Me.PanelControl4.TabIndex = 8
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(607, 63)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(77, 13)
+        Me.LabelControl3.TabIndex = 152
+        Me.LabelControl3.Text = "Actual Unit Cost"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.EditValue = ""
+        Me.TextEdit1.Location = New System.Drawing.Point(695, 60)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.Appearance.Options.UseTextOptions = True
+        Me.TextEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TextEdit1.Properties.EditValueChangedDelay = 1
+        Me.TextEdit1.Properties.Mask.EditMask = "N2"
+        Me.TextEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TextEdit1.Properties.Mask.SaveLiteral = False
+        Me.TextEdit1.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TextEdit1.Properties.ReadOnly = True
+        Me.TextEdit1.Size = New System.Drawing.Size(203, 20)
+        Me.TextEdit1.TabIndex = 151
         '
         'LabelControl17
         '
-        Me.LabelControl17.Location = New System.Drawing.Point(626, 11)
+        Me.LabelControl17.Location = New System.Drawing.Point(607, 11)
         Me.LabelControl17.Name = "LabelControl17"
-        Me.LabelControl17.Size = New System.Drawing.Size(49, 13)
+        Me.LabelControl17.Size = New System.Drawing.Size(82, 13)
         Me.LabelControl17.TabIndex = 150
-        Me.LabelControl17.Text = "Total Cost"
+        Me.LabelControl17.Text = "Actual Total Cost"
         '
         'TEQty
         '
@@ -787,7 +816,7 @@ Partial Class FormProductionCOP
         'TEUnitPrice
         '
         Me.TEUnitPrice.EditValue = ""
-        Me.TEUnitPrice.Location = New System.Drawing.Point(695, 61)
+        Me.TEUnitPrice.Location = New System.Drawing.Point(695, 87)
         Me.TEUnitPrice.Name = "TEUnitPrice"
         Me.TEUnitPrice.Properties.Appearance.Options.UseTextOptions = True
         Me.TEUnitPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -801,7 +830,7 @@ Partial Class FormProductionCOP
         '
         'LabelControl15
         '
-        Me.LabelControl15.Location = New System.Drawing.Point(626, 64)
+        Me.LabelControl15.Location = New System.Drawing.Point(607, 90)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl15.TabIndex = 148
@@ -809,7 +838,7 @@ Partial Class FormProductionCOP
         '
         'LabelControl14
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(626, 37)
+        Me.LabelControl14.Location = New System.Drawing.Point(607, 37)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(59, 13)
         Me.LabelControl14.TabIndex = 147
@@ -873,7 +902,7 @@ Partial Class FormProductionCOP
         Me.XTPCostBOM.Controls.Add(Me.PanelControl1)
         Me.XTPCostBOM.Name = "XTPCostBOM"
         Me.XTPCostBOM.PageVisible = False
-        Me.XTPCostBOM.Size = New System.Drawing.Size(911, 410)
+        Me.XTPCostBOM.Size = New System.Drawing.Size(911, 429)
         Me.XTPCostBOM.Text = "Cost Kurs BOM"
         '
         'GCCostBOM
@@ -882,7 +911,7 @@ Partial Class FormProductionCOP
         Me.GCCostBOM.Location = New System.Drawing.Point(0, 45)
         Me.GCCostBOM.MainView = Me.GVCostBOM
         Me.GCCostBOM.Name = "GCCostBOM"
-        Me.GCCostBOM.Size = New System.Drawing.Size(911, 275)
+        Me.GCCostBOM.Size = New System.Drawing.Size(911, 294)
         Me.GCCostBOM.TabIndex = 4
         Me.GCCostBOM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCostBOM})
         '
@@ -1103,7 +1132,7 @@ Partial Class FormProductionCOP
         Me.PanelControl5.Controls.Add(Me.LabelControl7)
         Me.PanelControl5.Controls.Add(Me.LabelControl8)
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 320)
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 339)
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(911, 90)
         Me.PanelControl5.TabIndex = 9
@@ -1229,7 +1258,7 @@ Partial Class FormProductionCOP
         Me.XTPCostPD.Controls.Add(Me.PanelControl2)
         Me.XTPCostPD.Name = "XTPCostPD"
         Me.XTPCostPD.PageVisible = False
-        Me.XTPCostPD.Size = New System.Drawing.Size(911, 410)
+        Me.XTPCostPD.Size = New System.Drawing.Size(911, 429)
         Me.XTPCostPD.Text = "Cost Kurs PD"
         '
         'GCCostPD
@@ -1238,7 +1267,7 @@ Partial Class FormProductionCOP
         Me.GCCostPD.Location = New System.Drawing.Point(0, 45)
         Me.GCCostPD.MainView = Me.GVCostPD
         Me.GCCostPD.Name = "GCCostPD"
-        Me.GCCostPD.Size = New System.Drawing.Size(911, 275)
+        Me.GCCostPD.Size = New System.Drawing.Size(911, 294)
         Me.GCCostPD.TabIndex = 6
         Me.GCCostPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCostPD})
         '
@@ -1459,7 +1488,7 @@ Partial Class FormProductionCOP
         Me.PanelControl6.Controls.Add(Me.LabelControl10)
         Me.PanelControl6.Controls.Add(Me.LabelControl11)
         Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl6.Location = New System.Drawing.Point(0, 320)
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 339)
         Me.PanelControl6.Name = "PanelControl6"
         Me.PanelControl6.Size = New System.Drawing.Size(911, 90)
         Me.PanelControl6.TabIndex = 9
@@ -1581,7 +1610,7 @@ Partial Class FormProductionCOP
         'BRefresh
         '
         Me.BRefresh.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BRefresh.Location = New System.Drawing.Point(20, 440)
+        Me.BRefresh.Location = New System.Drawing.Point(20, 459)
         Me.BRefresh.Name = "BRefresh"
         Me.BRefresh.Size = New System.Drawing.Size(917, 31)
         Me.BRefresh.TabIndex = 151
@@ -1593,7 +1622,7 @@ Partial Class FormProductionCOP
         Me.GroupControl4.Controls.Add(Me.BClose)
         Me.GroupControl4.Controls.Add(Me.BUpdateCOP)
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl4.Location = New System.Drawing.Point(0, 542)
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 561)
         Me.GroupControl4.Name = "GroupControl4"
         Me.GroupControl4.Size = New System.Drawing.Size(939, 38)
         Me.GroupControl4.TabIndex = 3
@@ -1620,19 +1649,19 @@ Partial Class FormProductionCOP
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditCost})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(122, 26)
         '
         'SMEditCost
         '
         Me.SMEditCost.Name = "SMEditCost"
-        Me.SMEditCost.Size = New System.Drawing.Size(152, 22)
+        Me.SMEditCost.Size = New System.Drawing.Size(121, 22)
         Me.SMEditCost.Text = "Edit Cost"
         '
         'FormProductionCOP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(939, 580)
+        Me.ClientSize = New System.Drawing.Size(939, 599)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.GroupControl4)
         Me.Controls.Add(Me.GroupControl1)
@@ -1666,6 +1695,7 @@ Partial Class FormProductionCOP
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUnitPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1825,4 +1855,6 @@ Partial Class FormProductionCOP
     Friend WithEvents BKursMan As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents SMEditCost As ToolStripMenuItem
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
 End Class
