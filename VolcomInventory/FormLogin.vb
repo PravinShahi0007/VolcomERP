@@ -42,6 +42,11 @@ Public Class FormLogin
                     id_departement_user = data.Rows(0)("id_departement").ToString
                     is_change_pass_user = data.Rows(0)("is_change").ToString
                     checkMenu() 'check menu based on role
+
+                    'log
+                    Dim u As New ClassUser()
+                    u.logLogin("1")
+
                     Close()
                     FormMain.Visible = True
                     FormMain.Opacity = 100
