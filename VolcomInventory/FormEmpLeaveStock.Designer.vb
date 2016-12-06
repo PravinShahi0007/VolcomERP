@@ -38,10 +38,13 @@ Partial Class FormEmpLeaveStock
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLeaveRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDPRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAdvanceLeave = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnHLeaveRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnHDPRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnHAdvLeaveRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnHTotLeave = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCLeaveRemaining = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPSum = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
@@ -100,7 +103,7 @@ Partial Class FormEmpLeaveStock
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(676, 38)
+        Me.PanelControl1.Size = New System.Drawing.Size(627, 38)
         Me.PanelControl1.TabIndex = 3
         '
         'LEDeptSum
@@ -184,15 +187,16 @@ Partial Class FormEmpLeaveStock
         Me.GCSum.Location = New System.Drawing.Point(0, 38)
         Me.GCSum.MainView = Me.GVSum
         Me.GCSum.Name = "GCSum"
-        Me.GCSum.Size = New System.Drawing.Size(676, 230)
+        Me.GCSum.Size = New System.Drawing.Size(627, 230)
         Me.GCSum.TabIndex = 9
         Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
         '
         'GVSum
         '
-        Me.GVSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumnPositiion, Me.GridColumnLevels, Me.GridColumn22, Me.GridColumn16, Me.GridColumn17, Me.GridColumn1, Me.GridColumn2, Me.GridColumn8, Me.GridColumn9})
+        Me.GVSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn15, Me.GridColumnPositiion, Me.GridColumnLevels, Me.GridColumn22, Me.GridColumn16, Me.GridColumn17, Me.GridColumnLeaveRemaining, Me.GridColumnDPRemaining, Me.GridColumnAdvanceLeave, Me.GridColumnHLeaveRemaining, Me.GridColumnHDPRemaining, Me.GridColumnHAdvLeaveRemaining, Me.GridColumnHTotLeave})
         Me.GVSum.GridControl = Me.GCSum
         Me.GVSum.GroupCount = 1
+        Me.GVSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_leave", Me.GridColumnLeaveRemaining, "{0:0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_dp", Me.GridColumnDPRemaining, "{0:0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adv_leave", Me.GridColumnAdvanceLeave, "{0:0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_leave_h", Me.GridColumnHLeaveRemaining, "{0:0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_dp_h", Me.GridColumnHDPRemaining, "{0:0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_adv_h", Me.GridColumnHAdvLeaveRemaining, "{0:0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_leave_tot", Me.GridColumnHTotLeave, "{0:0}")})
         Me.GVSum.Name = "GVSum"
         Me.GVSum.OptionsView.ColumnAutoWidth = False
         Me.GVSum.OptionsView.ShowFooter = True
@@ -254,55 +258,102 @@ Partial Class FormEmpLeaveStock
         Me.GridColumn17.FieldName = "id_departement"
         Me.GridColumn17.Name = "GridColumn17"
         '
-        'GridColumn1
+        'GridColumnLeaveRemaining
         '
-        Me.GridColumn1.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn1.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn1.Caption = "Leave Remaining"
-        Me.GridColumn1.FieldName = "qty_leave"
-        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumnLeaveRemaining.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnLeaveRemaining.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnLeaveRemaining.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnLeaveRemaining.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnLeaveRemaining.Caption = "Leave Remaining"
+        Me.GridColumnLeaveRemaining.FieldName = "qty_leave"
+        Me.GridColumnLeaveRemaining.Name = "GridColumnLeaveRemaining"
+        Me.GridColumnLeaveRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_leave", "{0:0}")})
         '
-        'GridColumn2
+        'GridColumnDPRemaining
         '
-        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn2.Caption = "DP Remaining"
-        Me.GridColumn2.FieldName = "qty_dp"
-        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumnDPRemaining.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnDPRemaining.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnDPRemaining.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnDPRemaining.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnDPRemaining.Caption = "DP Remaining"
+        Me.GridColumnDPRemaining.FieldName = "qty_dp"
+        Me.GridColumnDPRemaining.Name = "GridColumnDPRemaining"
+        Me.GridColumnDPRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_dp", "{0:0}")})
         '
-        'GridColumn8
+        'GridColumnAdvanceLeave
         '
-        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn8.Caption = "Leave Remaining (hours)"
-        Me.GridColumn8.FieldName = "qty_leave_h"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.UnboundExpression = "[qty_leave] / 60"
-        Me.GridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 4
-        Me.GridColumn8.Width = 132
+        Me.GridColumnAdvanceLeave.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnAdvanceLeave.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAdvanceLeave.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnAdvanceLeave.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnAdvanceLeave.Caption = "Advance Leave"
+        Me.GridColumnAdvanceLeave.FieldName = "adv_leave"
+        Me.GridColumnAdvanceLeave.Name = "GridColumnAdvanceLeave"
+        Me.GridColumnAdvanceLeave.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "adv_leave", "{0:0}")})
         '
-        'GridColumn9
+        'GridColumnHLeaveRemaining
         '
-        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn9.Caption = "DP Remaining (hours)"
-        Me.GridColumn9.FieldName = "qty_dp_h"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.UnboundExpression = "[qty_dp] / 60"
-        Me.GridColumn9.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 5
-        Me.GridColumn9.Width = 110
+        Me.GridColumnHLeaveRemaining.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnHLeaveRemaining.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnHLeaveRemaining.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnHLeaveRemaining.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnHLeaveRemaining.Caption = "Leave Remaining Actual (hours)"
+        Me.GridColumnHLeaveRemaining.FieldName = "qty_leave_h"
+        Me.GridColumnHLeaveRemaining.Name = "GridColumnHLeaveRemaining"
+        Me.GridColumnHLeaveRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_leave_h", "{0:0}")})
+        Me.GridColumnHLeaveRemaining.UnboundExpression = "[qty_leave] / 60"
+        Me.GridColumnHLeaveRemaining.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumnHLeaveRemaining.Visible = True
+        Me.GridColumnHLeaveRemaining.VisibleIndex = 4
+        Me.GridColumnHLeaveRemaining.Width = 181
+        '
+        'GridColumnHDPRemaining
+        '
+        Me.GridColumnHDPRemaining.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnHDPRemaining.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnHDPRemaining.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnHDPRemaining.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnHDPRemaining.Caption = "DP Remaining (hours)"
+        Me.GridColumnHDPRemaining.FieldName = "qty_dp_h"
+        Me.GridColumnHDPRemaining.Name = "GridColumnHDPRemaining"
+        Me.GridColumnHDPRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_dp_h", "{0:0}")})
+        Me.GridColumnHDPRemaining.UnboundExpression = "[qty_dp] / 60"
+        Me.GridColumnHDPRemaining.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumnHDPRemaining.Visible = True
+        Me.GridColumnHDPRemaining.VisibleIndex = 7
+        Me.GridColumnHDPRemaining.Width = 110
+        '
+        'GridColumnHAdvLeaveRemaining
+        '
+        Me.GridColumnHAdvLeaveRemaining.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnHAdvLeaveRemaining.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnHAdvLeaveRemaining.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnHAdvLeaveRemaining.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnHAdvLeaveRemaining.Caption = "Advance Leave Remaining (hours)"
+        Me.GridColumnHAdvLeaveRemaining.FieldName = "qty_adv_h"
+        Me.GridColumnHAdvLeaveRemaining.Name = "GridColumnHAdvLeaveRemaining"
+        Me.GridColumnHAdvLeaveRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_adv_h", "{0:0}")})
+        Me.GridColumnHAdvLeaveRemaining.UnboundExpression = "[adv_leave] / 60"
+        Me.GridColumnHAdvLeaveRemaining.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumnHAdvLeaveRemaining.Visible = True
+        Me.GridColumnHAdvLeaveRemaining.VisibleIndex = 5
+        Me.GridColumnHAdvLeaveRemaining.Width = 134
+        '
+        'GridColumnHTotLeave
+        '
+        Me.GridColumnHTotLeave.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnHTotLeave.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnHTotLeave.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnHTotLeave.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnHTotLeave.Caption = "Leave Remaining Total (hours)"
+        Me.GridColumnHTotLeave.FieldName = "qty_leave_tot"
+        Me.GridColumnHTotLeave.Name = "GridColumnHTotLeave"
+        Me.GridColumnHTotLeave.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_leave_tot", "{0:0}")})
+        Me.GridColumnHTotLeave.UnboundExpression = "[qty_leave_h] - [qty_adv_h]"
+        Me.GridColumnHTotLeave.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumnHTotLeave.Visible = True
+        Me.GridColumnHTotLeave.VisibleIndex = 6
+        Me.GridColumnHTotLeave.Width = 125
         '
         'XTCLeaveRemaining
         '
@@ -320,7 +371,7 @@ Partial Class FormEmpLeaveStock
         Me.XTPSum.Controls.Add(Me.GCSum)
         Me.XTPSum.Controls.Add(Me.PanelControl1)
         Me.XTPSum.Name = "XTPSum"
-        Me.XTPSum.Size = New System.Drawing.Size(676, 268)
+        Me.XTPSum.Size = New System.Drawing.Size(627, 268)
         Me.XTPSum.Text = "Summary"
         '
         'XTPDetail
@@ -346,6 +397,7 @@ Partial Class FormEmpLeaveStock
         Me.GVSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn21, Me.GridColumnIDSchedule, Me.GridColumn18, Me.GridColumn20, Me.GridColumnLevel, Me.GridColumnEmpPosition, Me.GridColumn23, Me.GridColumn38, Me.GridColumn39, Me.GridColumnDateExpired, Me.GridColumnType, Me.GridColumnQty, Me.GridColumn10})
         Me.GVSchedule.GridControl = Me.GCSchedule
         Me.GVSchedule.GroupCount = 2
+        Me.GVSchedule.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_leave_h", Me.GridColumnQty, "{0:0}")})
         Me.GVSchedule.Name = "GVSchedule"
         Me.GVSchedule.OptionsView.ColumnAutoWidth = False
         Me.GVSchedule.OptionsView.ShowFooter = True
@@ -602,8 +654,8 @@ Partial Class FormEmpLeaveStock
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnLeaveRemaining As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDPRemaining As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTCLeaveRemaining As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPSum As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPDetail As DevExpress.XtraTab.XtraTabPage
@@ -629,10 +681,13 @@ Partial Class FormEmpLeaveStock
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnHLeaveRemaining As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnHDPRemaining As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDateExpired As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAdvanceLeave As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnHAdvLeaveRemaining As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnHTotLeave As DevExpress.XtraGrid.Columns.GridColumn
 End Class
