@@ -1011,6 +1011,12 @@
     <Compile Include="FormPopUpSalesDel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionCOPDet.Designer.vb">
+      <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionCOPDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionWOList.designer.vb">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
     </Compile>
@@ -4947,6 +4953,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpSalesDel.resx">
       <DependentUpon>FormPopUpSalesDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionCOPDet.resx">
+      <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
