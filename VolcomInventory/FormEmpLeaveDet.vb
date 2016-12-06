@@ -300,13 +300,13 @@
             query = "SELECT COUNT(id_departement) as count_check FROM tb_m_departement WHERE id_user_head='" & id_employee & "' AND is_office_dept='1'"
             jum_check = execute_query(query, 0, True, "", "", "", "")
 
-            If jum_check = "0" Then ' dept head
-                submit_who_prepared("96", id_emp_leave, id_user)
-                query = "UPDATE tb_emp_leave SET report_mark_type='96' WHERE id_emp_leave='" & id_emp_leave & "'"
-                execute_non_query(query, True, "", "", "", "")
-            Else
+            If jum_check = "0" Then
                 submit_who_prepared("95", id_emp_leave, id_user)
                 query = "UPDATE tb_emp_leave SET report_mark_type='95' WHERE id_emp_leave='" & id_emp_leave & "'"
+                execute_non_query(query, True, "", "", "", "")
+            Else ' dept head
+                submit_who_prepared("96", id_emp_leave, id_user)
+                query = "UPDATE tb_emp_leave SET report_mark_type='96' WHERE id_emp_leave='" & id_emp_leave & "'"
                 execute_non_query(query, True, "", "", "", "")
             End If
 
