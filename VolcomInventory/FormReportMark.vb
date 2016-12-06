@@ -3065,6 +3065,14 @@
                                 a ON a.id_schedule=emps.id_schedule
                                 SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
                 execute_non_query(query_upd, True, "", "", "", "")
+                'add if advance
+                query_upd = "INSERT INTO tb_emp_stock_leave_adv(id_emp,id_emp_leave,qty,adv_datetime)
+                                SELECT lve.id_emp,ld.id_emp_leave,SUM(ld.minutes_total) AS qty,NOW()
+                                FROM tb_emp_leave_det ld
+                                INNER JOIN tb_emp_leave lve ON lve.id_emp_leave=ld.id_emp_leave
+                                WHERE ld.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'
+                                GROUP BY ld.id_emp_leave"
+                execute_non_query(query_upd, True, "", "", "", "")
                 'complete 
                 id_status_reportx = "6"
             ElseIf id_status_reportx = "5" Then 'cancel
@@ -3086,6 +3094,14 @@
                                 WHERE empld.id_emp_leave='" & id_report & "')
                                 a ON a.id_schedule=emps.id_schedule
                                 SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
+                execute_non_query(query_upd, True, "", "", "", "")
+                'add if advance
+                query_upd = "INSERT INTO tb_emp_stock_leave_adv(id_emp,id_emp_leave,qty,adv_datetime)
+                                SELECT lve.id_emp,ld.id_emp_leave,SUM(ld.minutes_total) AS qty,NOW()
+                                FROM tb_emp_leave_det ld
+                                INNER JOIN tb_emp_leave lve ON lve.id_emp_leave=ld.id_emp_leave
+                                WHERE ld.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'
+                                GROUP BY ld.id_emp_leave"
                 execute_non_query(query_upd, True, "", "", "", "")
                 'complete 
                 id_status_reportx = "6"

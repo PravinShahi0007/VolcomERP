@@ -71,11 +71,28 @@
         Dim query As String = "SELECT emp.id_employee,emp.employee_position,emp.employee_code,emp.employee_name,emp.id_departement,dep.departement,lvl.employee_level,active.employee_active
                                 ,SUM(IF(emp_sl.type='1',IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty),0)) AS qty_leave
                                 ,SUM(IF(emp_sl.type='2',IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty),0)) AS qty_dp
+                                ,IFNULL(adv.qty_leave,0) as adv_leave
                                 FROM tb_emp_stock_leave emp_sl
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=emp_sl.id_emp
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                                 INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
+                                LEFT JOIN
+                                (
+                                    SELECT emp.id_employee,emp.employee_position,emp.employee_code,emp.employee_name,emp.id_departement,dep.departement,lvl.employee_level,active.employee_active
+                                    ,(SUM(adv.qty)) AS qty_leave
+                                    ,3 AS `type`,'Advance Leave' AS type_ket,NULL AS date_expired
+                                    FROM tb_emp_stock_leave_adv adv
+                                    INNER JOIN tb_m_employee emp ON emp.id_employee=adv.id_emp
+                                    INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level
+                                    INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                    INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
+                                    WHERE 1=1
+                                    " & dep_search & "
+                                    " & emp_search & "
+                                    GROUP BY id_emp
+                                    HAVING -(SUM(adv.qty)) < 0   
+                                ) adv ON adv.id_employee = emp.id_employee
                                 WHERE emp_sl.is_process_exp = '2' 
                                 " & dep_search & "
                                 " & emp_search & "
@@ -109,7 +126,22 @@
                                 WHERE emp_sl.is_process_exp = '2'
                                 " & dep_search & "
                                 " & emp_search & "
-                                GROUP BY emp_sl.id_emp,emp_sl.type,emp_sl.date_expired"
+                                GROUP BY emp_sl.id_emp,emp_sl.type,emp_sl.date_expired
+                                HAVING SUM(IF(emp_sl.plus_minus=1,emp_sl.qty,-emp_sl.qty)) > 0
+                                UNION
+                                SELECT emp.id_employee,emp.employee_position,emp.employee_code,emp.employee_name,emp.id_departement,dep.departement,lvl.employee_level,active.employee_active
+                                ,-(SUM(adv.qty)) AS qty_leave
+                                ,3 AS `type`,'Advance Leave' AS type_ket,NULL AS date_expired
+                                FROM tb_emp_stock_leave_adv adv
+                                INNER JOIN tb_m_employee emp ON emp.id_employee=adv.id_emp
+                                INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level
+                                INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
+                                WHERE 1=1
+                                " & dep_search & "
+                                " & emp_search & "
+                                GROUP BY id_emp
+                                HAVING -(SUM(adv.qty)) < 0"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSchedule.DataSource = data
         GVSchedule.BestFitColumns()
