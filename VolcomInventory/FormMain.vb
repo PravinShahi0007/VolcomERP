@@ -514,6 +514,10 @@ Public Class FormMain
                 End If
             Next
 
+            'log
+            Dim u As New ClassUser()
+            u.logLogin("2")
+
             id_user = Nothing
             id_role_login = Nothing
             username_user = Nothing
@@ -10188,5 +10192,11 @@ Public Class FormMain
             errorProcess()
         End Try
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub FormMain_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        'log
+        Dim u As New ClassUser()
+        u.logLogin("2")
     End Sub
 End Class
