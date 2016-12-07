@@ -1,9 +1,13 @@
 ﻿Public Class FormAccessFrmSingle 
     Public action As String
-    Public id_form As String
+    Public id_form As String = "-1"
     'Form Load
     Private Sub FormAccessFrmSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-       
+        If id_form <> "-1" Then
+            Dim query As String = "SELECT * FROM tb_menu_form a WHERE a.id_form=" + id_form + ""
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            MENote.Text = data.Rows(0)("form_note").ToString
+        End If
     End Sub
     'Validating
     Private Sub TxtFormName_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TxtFormName.Validating
@@ -92,7 +96,7 @@
                 End Try
             ElseIf action = "upd" Then
                 Try
-                    query = "UPDATE tb_menu_form SET form_name = '" + form_name + "' WHERE id_form = '" + id_form + "'"
+                    query = "UPDATE tb_menu_form SET form_name = '" + form_name + "', form_note='" + form_note + "' WHERE id_form = '" + id_form + "'"
                     execute_non_query(query, True, "", "", "", "")
                     FormAccess.viewForm()
                     Close()
