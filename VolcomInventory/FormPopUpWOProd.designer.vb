@@ -19,42 +19,42 @@ Partial Class FormPopUpWOProd
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton
-        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl
-        Me.GroupGeneral = New DevExpress.XtraEditors.GroupControl
-        Me.GCProdWO = New DevExpress.XtraGrid.GridControl
-        Me.GVProdWO = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdMatPurchase = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPONumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColShipFrom = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColShipTo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSamplePurcDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPayment = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIDStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIdWoType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColWoType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnProgress = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.PGBProg = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
-        Me.GridColumnIDCompTo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPONumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl
-        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIdMat = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSubtotal = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColColor = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupGeneral = New DevExpress.XtraEditors.GroupControl()
+        Me.GCProdWO = New DevExpress.XtraGrid.GridControl()
+        Me.GVProdWO = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdMatPurchase = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColShipFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColShipTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSamplePurcDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPayment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIDStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdWoType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColWoType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnProgress = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PGBProg = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.GridColumnIDCompTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
+        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdMat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSubtotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColColor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,11 +125,11 @@ Partial Class FormPopUpWOProd
         'GCProdWO
         '
         Me.GCProdWO.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProdWO.Location = New System.Drawing.Point(2, 22)
+        Me.GCProdWO.Location = New System.Drawing.Point(2, 20)
         Me.GCProdWO.MainView = Me.GVProdWO
         Me.GCProdWO.Name = "GCProdWO"
         Me.GCProdWO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.PGBProg})
-        Me.GCProdWO.Size = New System.Drawing.Size(810, 188)
+        Me.GCProdWO.Size = New System.Drawing.Size(810, 190)
         Me.GCProdWO.TabIndex = 8
         Me.GCProdWO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdWO})
         '
@@ -272,7 +272,7 @@ Partial Class FormPopUpWOProd
         '
         'GridColumnIDCompTo
         '
-        Me.GridColumnIDCompTo.Caption = "ID Companyu"
+        Me.GridColumnIDCompTo.Caption = "ID Company"
         Me.GridColumnIDCompTo.FieldName = "id_comp_contact"
         Me.GridColumnIDCompTo.Name = "GridColumnIDCompTo"
         Me.GridColumnIDCompTo.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
