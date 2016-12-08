@@ -6,7 +6,6 @@
     Public id_comp_contact_pay_to As String = "-1"
     Public id_report_status As String = "-1"
     Private Sub FormSamplePRDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'checkFormAccess(Name)
         TEKurs.EditValue = 0.0
         If id_prod_order_wo = "-1" Then 'there is wo
             view_currency(LECurrency)
@@ -25,7 +24,7 @@
         view_report_status(LEReportStatus)
 
         If id_pr = "-1" Then 'new
-            TEPRDate.Text = view_date(0)
+            DEPRDate.EditValue = Now
             TEPRNumber.Text = header_number_prod("9")
             BPrint.Visible = False
             BMark.Visible = False
@@ -34,9 +33,9 @@
             TEVatTot.EditValue = 0.0
             TETot.EditValue = 0.0
             id_report_status = 1
-        Else 'edit
-            Dim query As String = "SELECT z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,po.id_prod_order,po.prod_order_number,IFNULL(z.id_prod_order_rec,0) as id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,DATE_FORMAT(z.pr_prod_order_date,'%Y-%m-%d') as pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,DATE_FORMAT(rec.delivery_order_date,'%Y-%m-%d') AS delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,DATE_FORMAT(rec.prod_order_rec_date,'%Y-%m-%d') AS prod_order_rec_date, d.comp_name AS comp_to, "
-            query += "DATE_FORMAT(DATE_ADD(wo.prod_order_wo_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY),'%Y-%m-%d') AS prod_order_wo_top "
+        Else 'editpr_prod_order_date
+            Dim query As String = "SELECT z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,po.id_prod_order,po.prod_order_number,IFNULL(z.id_prod_order_rec,0) as id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,DATE_FORMAT(rec.delivery_order_date,'%Y-%m-%d') AS delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,DATE_FORMAT(rec.prod_order_rec_date,'%Y-%m-%d') AS prod_order_rec_date, d.comp_name AS comp_to, "
+            query += "DATE_FORMAT(DATE_ADD(wo.prod_order_wo_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY),'%Y-%m-%d') AS prod_order_wo_top,z.pr_prod_order_due_date "
             query += "FROM tb_pr_prod_order z "
             query += "INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo = z.id_prod_order_wo "
             query += "INNER JOIN tb_prod_order po ON po.id_prod_order = wo.id_prod_order "
@@ -46,13 +45,13 @@
             query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=z.id_comp_contact_to "
             query += "INNER JOIN tb_m_comp d ON d.id_comp=c.id_comp "
             query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status=z.id_report_status "
-            query += "WHERE z.id_pr_prod_order ='" & id_pr & "' "
+            query += "WHERE z.id_pr_prod_order ='" & id_pr & "'"
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
             TEPRNumber.Text = data.Rows(0)("pr_prod_order_number").ToString
-            TEPRDate.Text = view_date_from(data.Rows(0)("pr_prod_order_date").ToString, 0)
+            DEPRDate.EditValue = data.Rows(0)("pr_prod_order_date")
             MENote.Text = data.Rows(0)("pr_prod_order_note").ToString
             '
             LEReportStatus.EditValue = Nothing
@@ -84,6 +83,9 @@
             TEPIB.Text = data.Rows(0)("pr_prod_order_pib").ToString
             TEAju.Text = data.Rows(0)("pr_prod_order_aju").ToString
 
+            'add due date
+            DEDueDate.EditValue = data.Rows(0)("pr_prod_order_due_date")
+            '
             calculate()
 
             If Not Decimal.Parse(data.Rows(0)("pr_prod_order_dp").ToString) <= 0 And Not Decimal.Parse(TEGrossTot.EditValue) <= 0 Then
@@ -150,7 +152,10 @@
         TECompTo.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact").ToString), "1")
         MECompAddress.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact").ToString), "3")
 
-        TEDueDate.Text = view_date_from(data.Rows(0)("prod_order_wo_datex").ToString, (Integer.Parse(data.Rows(0)("prod_order_wo_lead_time").ToString) + Integer.Parse(data.Rows(0)("prod_order_wo_top").ToString)))
+        'TEDueDate.Text = view_date_from(data.Rows(0)("prod_order_wo_datex").ToString, (Integer.Parse(data.Rows(0)("prod_order_wo_lead_time").ToString) + Integer.Parse(data.Rows(0)("prod_order_wo_top").ToString)))
+
+        DEDueDate.EditValue = Date.Parse(data.Rows(0)("prod_order_wo_datex")).AddDays(Integer.Parse(data.Rows(0)("prod_order_wo_lead_time").ToString) + Integer.Parse(data.Rows(0)("prod_order_wo_top").ToString))
+
         TEVat.EditValue = data.Rows(0)("prod_order_wo_vat")
     End Sub
 
@@ -342,11 +347,10 @@
         Cursor = Cursors.WaitCursor
         Dim query As String = ""
         Dim err_txt As String = ""
-        Dim pr_number, pr_date, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, id_dc, pib, aju As String
+        Dim pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, id_dc, pib, aju As String
         Dim id_pr_new As String = ""
-
+        Dim due_date As Date
         pr_number = ""
-        pr_date = ""
         pr_note = ""
         pr_stats = ""
         pr_vat = ""
@@ -354,10 +358,10 @@
         pr_tot = ""
         pib = ""
         aju = ""
+        due_date = Now
         'validasi
         Try
             pr_number = TEPRNumber.Text
-            pr_date = TEPRDate.Text
             pr_note = MENote.Text
             pr_stats = LEReportStatus.EditValue.ToString
             pr_vat = decimalSQL(TEVat.EditValue)
@@ -365,6 +369,7 @@
             pr_tot = decimalSQL(TETot.EditValue)
             pib = TEPIB.Text
             aju = TEAju.Text
+            due_date = DEDueDate.EditValue
         Catch ex As Exception
             err_txt = "1"
         End Try
@@ -387,7 +392,7 @@
                 Try
                     'insert pr
                     If id_rec = "-1" Then
-                        query = String.Format("INSERT INTO tb_pr_prod_order(id_prod_order_wo, pr_prod_order_number, pr_prod_order_date, pr_prod_order_note, id_report_status, pr_prod_order_vat, pr_prod_order_dp, pr_prod_order_total, id_currency,id_comp_contact_to,pr_prod_order_pib,pr_prod_order_aju) VALUES('{0}','{1}',DATE(NOW()),'{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}');SELECT LAST_INSERT_ID(); ", id_prod_order_wo, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, LECurrency.EditValue, id_comp_contact_pay_to, pib, aju)
+                        query = String.Format("INSERT INTO tb_pr_prod_order(id_prod_order_wo, pr_prod_order_number, pr_prod_order_date, pr_prod_order_note, id_report_status, pr_prod_order_vat, pr_prod_order_dp, pr_prod_order_total, id_currency,id_comp_contact_to,pr_prod_order_pib,pr_prod_order_aju,pr_prod_order_due_date) VALUES('{0}','{1}',DATE(NOW()),'{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}');SELECT LAST_INSERT_ID(); ", id_prod_order_wo, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, LECurrency.EditValue, id_comp_contact_pay_to, pib, aju, Date.Parse(due_date.ToString).ToString("yyyy-MM-dd"))
                     Else
                         query = String.Format("INSERT INTO tb_pr_prod_order(id_prod_order_wo, id_prod_order_rec, pr_prod_order_number, pr_prod_order_date, pr_prod_order_note, id_report_status, pr_prod_order_vat, pr_prod_order_dp, pr_prod_order_total, id_currency,id_comp_contact_to,pr_prod_order_pib,pr_prod_order_aju) VALUES('{0}','{1}','{2}',DATE(NOW()),'{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}');SELECT LAST_INSERT_ID(); ", id_prod_order_wo, id_rec, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, LECurrency.EditValue, id_comp_contact_pay_to, pib, aju)
                     End If
@@ -441,8 +446,8 @@
             Else
                 'Try
                 'update pr
-                query = String.Format("UPDATE tb_pr_prod_order SET pr_prod_order_number='{0}',pr_prod_order_note='{1}',id_report_status='{2}',pr_prod_order_vat='{4}',pr_prod_order_dp='{5}',pr_prod_order_total='{6}',id_comp_contact_to='{7}',pr_prod_order_pib='{8}',pr_prod_order_aju='{9}' WHERE id_pr_prod_order='{3}'", pr_number, pr_note, pr_stats, id_pr, pr_vat, pr_dp, pr_tot, id_comp_contact_pay_to, pib, aju)
-                    execute_non_query(query, True, "", "", "", "")
+                query = String.Format("UPDATE tb_pr_prod_order SET pr_prod_order_number='{0}',pr_prod_order_note='{1}',id_report_status='{2}',pr_prod_order_vat='{4}',pr_prod_order_dp='{5}',pr_prod_order_total='{6}',id_comp_contact_to='{7}',pr_prod_order_pib='{8}',pr_prod_order_aju='{9}',pr_prod_order_due_date='{10}' WHERE id_pr_prod_order='{3}'", pr_number, pr_note, pr_stats, id_pr, pr_vat, pr_dp, pr_tot, id_comp_contact_pay_to, pib, aju, Date.Parse(due_date.ToString).ToString("yyyy-MM-dd"))
+                execute_non_query(query, True, "", "", "", "")
                     'pr detail
                     'delete first
                     Dim sp_check As Boolean = False
@@ -593,4 +598,5 @@
             BPrint.Enabled = False
         End If
     End Sub
+
 End Class

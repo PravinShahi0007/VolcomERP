@@ -172,7 +172,7 @@ Partial Class FormProdPRWO
         Me.ColDueDate.Caption = "Due Date"
         Me.ColDueDate.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.ColDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.ColDueDate.FieldName = "prod_order_wo_top"
+        Me.ColDueDate.FieldName = "pr_prod_order_due_date"
         Me.ColDueDate.Name = "ColDueDate"
         Me.ColDueDate.Visible = True
         Me.ColDueDate.VisibleIndex = 6
@@ -250,7 +250,7 @@ Partial Class FormProdPRWO
         '
         Me.XTPListPO.Controls.Add(Me.SplitContainerControl1)
         Me.XTPListPO.Name = "XTPListPO"
-        Me.XTPListPO.Size = New System.Drawing.Size(791, 419)
+        Me.XTPListPO.Size = New System.Drawing.Size(885, 297)
         Me.XTPListPO.Text = "List Production Work Order"
         '
         'SplitContainerControl1
@@ -263,7 +263,7 @@ Partial Class FormProdPRWO
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl2)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(791, 419)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(885, 297)
         Me.SplitContainerControl1.SplitterPosition = 226
         Me.SplitContainerControl1.TabIndex = 28
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -274,7 +274,7 @@ Partial Class FormProdPRWO
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(791, 226)
+        Me.GroupControl1.Size = New System.Drawing.Size(885, 226)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Need Payment Requisition"
         '
@@ -285,7 +285,7 @@ Partial Class FormProdPRWO
         Me.GCProdWO.MainView = Me.GVProdWO
         Me.GCProdWO.Name = "GCProdWO"
         Me.GCProdWO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.PGBProg})
-        Me.GCProdWO.Size = New System.Drawing.Size(787, 204)
+        Me.GCProdWO.Size = New System.Drawing.Size(881, 204)
         Me.GCProdWO.TabIndex = 9
         Me.GCProdWO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdWO})
         '
@@ -464,7 +464,7 @@ Partial Class FormProdPRWO
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(791, 188)
+        Me.GroupControl2.Size = New System.Drawing.Size(885, 66)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Detail"
         '
@@ -475,7 +475,7 @@ Partial Class FormProdPRWO
         Me.GCListPurchase.MainView = Me.GVListPurchase
         Me.GCListPurchase.Margin = New System.Windows.Forms.Padding(0)
         Me.GCListPurchase.Name = "GCListPurchase"
-        Me.GCListPurchase.Size = New System.Drawing.Size(787, 166)
+        Me.GCListPurchase.Size = New System.Drawing.Size(881, 44)
         Me.GCListPurchase.TabIndex = 2
         Me.GCListPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPurchase})
         '
