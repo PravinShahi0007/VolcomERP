@@ -850,7 +850,7 @@
                 'FormWork.view_sample_purc()
             Catch ex As Exception
             End Try
-        ElseIf report_mark_type = "6" Or report_mark_type = "80" Or report_mark_type = "81" Then
+        ElseIf report_mark_type = "9" Or report_mark_type = "80" Or report_mark_type = "81" Then
             'PROD DEMAND
             'posting ke master price disini
             '--------------------------
