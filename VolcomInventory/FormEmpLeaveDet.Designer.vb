@@ -699,7 +699,7 @@ Partial Class FormEmpLeaveDet
         Me.MELeavePurpose.Location = New System.Drawing.Point(89, 42)
         Me.MELeavePurpose.Name = "MELeavePurpose"
         Me.MELeavePurpose.Properties.MaxLength = 200
-        Me.MELeavePurpose.Size = New System.Drawing.Size(357, 46)
+        Me.MELeavePurpose.Size = New System.Drawing.Size(361, 46)
         Me.MELeavePurpose.TabIndex = 101
         '
         'LabelControl6
@@ -712,7 +712,7 @@ Partial Class FormEmpLeaveDet
         '
         'BPickChange
         '
-        Me.BPickChange.Location = New System.Drawing.Point(417, 10)
+        Me.BPickChange.Location = New System.Drawing.Point(421, 10)
         Me.BPickChange.Name = "BPickChange"
         Me.BPickChange.Size = New System.Drawing.Size(29, 23)
         Me.BPickChange.TabIndex = 95
@@ -734,7 +734,7 @@ Partial Class FormEmpLeaveDet
         Me.TEEmployeeChangeName.Name = "TEEmployeeChangeName"
         Me.TEEmployeeChangeName.Properties.EditValueChangedDelay = 1
         Me.TEEmployeeChangeName.Properties.ReadOnly = True
-        Me.TEEmployeeChangeName.Size = New System.Drawing.Size(205, 20)
+        Me.TEEmployeeChangeName.Size = New System.Drawing.Size(209, 20)
         Me.TEEmployeeChangeName.TabIndex = 97
         '
         'PanelControl4

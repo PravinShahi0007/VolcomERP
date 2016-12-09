@@ -3,7 +3,7 @@
     Public Shared id_report As String = "-1"
 
     Sub load_detail()
-        Dim query As String = "SELECT empl.emp_leave_number,empl.leave_purpose,lt.leave_type,empl.report_mark_type, empl.id_leave_type,
+        Dim query As String = "SELECT formdc.form_dc,empl.emp_leave_number,empl.leave_purpose,lt.leave_type,empl.report_mark_type, empl.id_leave_type,
                                 emp.employee_name, emp.employee_code, emp.employee_position, dep.departement, 
                                 emp_ch.employee_name AS name_ch, emp_ch.employee_code AS code_ch,emp.employee_join_date,
                                 ROUND(empl.leave_remaining/60) AS leave_remaining,ROUND(empl.leave_total/60) AS leave_total,
@@ -13,6 +13,7 @@
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=empl.id_emp
                                 INNER JOIN tb_m_employee emp_ch ON emp_ch.id_employee=empl.id_emp_change
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                LEFT JOIN tb_lookup_form_dc formdc ON formdc.id_form_dc=empl.id_form_dc
                                 LEFT JOIN (SELECT id_emp_leave,MIN(datetime_start) AS start_periode,MAX(datetime_until) AS end_periode FROM tb_emp_leave_det GROUP BY id_emp_leave)
                                 periode ON periode.id_emp_leave=empl.id_emp_leave
                                 WHERE empl.id_emp_leave='" & id_report & "'"
@@ -24,6 +25,7 @@
         LPosition.Text = data.Rows(0)("employee_position").ToString
         LDept.Text = data.Rows(0)("departement").ToString
         LJoinDate.Text = Date.Parse(data.Rows(0)("employee_join_date").ToString).ToString("dd MMMM yyyy")
+        LFormDC.Text = data.Rows(0)("form_dc").ToString
         '
         LLeaveType.Text = data.Rows(0)("leave_type").ToString
         LLeavePeriode.Text = Date.Parse(data.Rows(0)("start_periode").ToString).ToString("dd MMMM yyyy HH:mm") & " until " & Date.Parse(data.Rows(0)("end_periode").ToString).ToString("dd MMMM yyyy HH:mm")
