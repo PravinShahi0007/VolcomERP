@@ -5,7 +5,11 @@
     '
     Public is_view As String = "-1"
     Public report_mark_type As String = "-1"
-
+    '
+    Dim file_address As String = ""
+    Dim file_name As String = ""
+    Dim file_ext As String = ""
+    '
     Private Sub FormEmpLeaveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TERemainingLeave.EditValue = 0
         TETotLeave.EditValue = 0
@@ -16,16 +20,9 @@
         TENumber.Text = header_number_emp("1")
         '
         If id_emp_leave = "-1" Then 'new
-            'If FormEmpLeave.is_propose = "1" Then
-            'TEEmployeeCode.Text = code_user
-            'load_emp_detail()
-
-            'TEEmployeeCode.Properties.ReadOnly = True
-            'BPickEmployee.Visible = False
-            'Else
             TEEmployeeCode.Properties.ReadOnly = False
             BPickEmployee.Visible = True
-            'End If
+
             BMark.Visible = False
             BPrint.Visible = False
             '
@@ -53,6 +50,7 @@
             '
             report_mark_type = data.Rows(0)("report_mark_type").ToString
             LELeaveType.ItemIndex = LELeaveType.Properties.GetDataSourceRowIndex("id_leave_type", data.Rows(0)("id_leave_type").ToString)
+            LEFormDC.ItemIndex = LEFormDC.Properties.GetDataSourceRowIndex("id_form_dc", data.Rows(0)("id_form_dc").ToString)
             '
             TEEmployeeCode.Text = data.Rows(0)("employee_code").ToString
             load_emp_detail()
@@ -256,70 +254,88 @@
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         Dim query As String = ""
-
+        Dim problem As Boolean = False
         If id_employee = "-1" Or TETotLeave.EditValue <= 0 Then
             stopCustom("Please check your input !")
         ElseIf TERemainingLeaveAfter.EditValue < 0
             stopCustom("Remaining Leave not sufficient.")
         Else
-            ' add parent
-            Dim number As String = header_number_emp("1")
-            query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose,leave_remaining,leave_total,id_leave_type) VALUES('" & number & "','" & id_employee & "',NOW(),1,'" & id_employee_change & "','" & MELeavePurpose.Text & "','" & (TERemainingLeave.EditValue * 60) & "','" & (TETotLeave.EditValue * 60) & "','" & LELeaveType.EditValue.ToString & "');SELECT LAST_INSERT_ID(); "
-            id_emp_leave = execute_query(query, 0, True, "", "", "", "")
-            'add detail
-            query = "INSERT INTO tb_emp_leave_det(id_emp_leave,id_schedule,datetime_start,datetime_until,is_full_day,minutes_total) VALUES"
-            For i As Integer = 0 To GVLeaveDet.RowCount - 1
-                Dim is_full_day As String = "1"
-                If GVLeaveDet.GetRowCellValue(i, "is_full_day").ToString = "yes" Then
-                    is_full_day = "1"
-                Else
-                    is_full_day = "2"
+            If LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "2" Then
+                'check if sudah form sekali dalam sebulan.
+                Dim query_cek As String = "SELECT COUNT(lvd.id_emp_leave) FROM tb_emp_leave_det lvd
+                                        INNER JOIN tb_emp_leave lv ON lv.id_emp_leave=lvd.id_emp_leave
+                                        WHERE DATE_FORMAT(lvd.datetime_start, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m') AND lv.id_emp='" & id_employee & "' AND lv.id_form_dc='2' AND lv.id_leave_type='2' AND lv.id_report_status!='5' "
+                Dim cek As String = execute_query(query_cek, 0, True, "", "", "", "")
+                If Not cek.ToString = "0" Then
+                    stopCustom("Only can use form only once per month for sick leave." & vbNewLine & "Please provide DC for sick leave.")
+                    problem = True
                 End If
-                If Not i = 0 Then
-                    query += ","
-                End If
-                query += "('" & id_emp_leave & "','" & GVLeaveDet.GetRowCellValue(i, "id_schedule").ToString & "','" & Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_start").ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_until").ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & is_full_day & "','" & GVLeaveDet.GetRowCellValue(i, "minutes_total").ToString & "')"
-            Next
-            execute_non_query(query, True, "", "", "", "")
-            If LELeaveType.EditValue.ToString = "1" Then
-                'add usage
-                query = "INSERT INTO tb_emp_leave_usage(id_emp_leave,`type`,date_expired,qty) VALUES"
-                For i As Integer = 0 To GVLeaveUsage.RowCount - 1
+            End If
+            If problem = False Then
+                ' add parent
+                Dim number As String = header_number_emp("1")
+                query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose,leave_remaining,leave_total,id_leave_type,id_form_dc) VALUES('" & number & "','" & id_employee & "',NOW(),1,'" & id_employee_change & "','" & MELeavePurpose.Text & "','" & (TERemainingLeave.EditValue * 60) & "','" & (TETotLeave.EditValue * 60) & "','" & LELeaveType.EditValue.ToString & "','" & LEFormDC.EditValue.ToString & "');SELECT LAST_INSERT_ID(); "
+                id_emp_leave = execute_query(query, 0, True, "", "", "", "")
+                'add detail
+                query = "INSERT INTO tb_emp_leave_det(id_emp_leave,id_schedule,datetime_start,datetime_until,is_full_day,minutes_total) VALUES"
+                For i As Integer = 0 To GVLeaveDet.RowCount - 1
+                    Dim is_full_day As String = "1"
+                    If GVLeaveDet.GetRowCellValue(i, "is_full_day").ToString = "yes" Then
+                        is_full_day = "1"
+                    Else
+                        is_full_day = "2"
+                    End If
                     If Not i = 0 Then
                         query += ","
                     End If
-                    query += "('" & id_emp_leave & "','" & GVLeaveUsage.GetRowCellValue(i, "type").ToString & "','" & Date.Parse(GVLeaveUsage.GetRowCellValue(i, "date_expired").ToString).ToString("yyyy-MM-dd") & "','" & (GVLeaveUsage.GetRowCellValue(i, "qty") * 60).ToString & "')"
+                    query += "('" & id_emp_leave & "','" & GVLeaveDet.GetRowCellValue(i, "id_schedule").ToString & "','" & Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_start").ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(GVLeaveDet.GetRowCellValue(i, "datetime_until").ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & is_full_day & "','" & GVLeaveDet.GetRowCellValue(i, "minutes_total").ToString & "')"
                 Next
                 execute_non_query(query, True, "", "", "", "")
-                'add to stock leave
-                query = "INSERT INTO tb_emp_stock_leave(id_emp_leave,id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,note,`type`) VALUES"
-                For i As Integer = 0 To GVLeaveUsage.RowCount - 1
-                    If Not i = 0 Then
-                        query += ","
-                    End If
-                    query += "('" & id_emp_leave & "','" & id_employee & "','" & (GVLeaveUsage.GetRowCellValue(i, "qty") * 60).ToString & "',2,NOW(),'" & Date.Parse(GVLeaveUsage.GetRowCellValue(i, "date_expired").ToString).ToString("yyyy-MM-dd") & "',2,'" & number & "','" & GVLeaveUsage.GetRowCellValue(i, "type").ToString & "')"
-                Next
-                execute_non_query(query, True, "", "", "", "")
-            End If
-            'search jika head dept to management
-            Dim jum_check As String = ""
-            query = "SELECT COUNT(id_departement) as count_check FROM tb_m_departement WHERE id_user_head='" & id_employee & "' AND is_office_dept='1'"
-            jum_check = execute_query(query, 0, True, "", "", "", "")
+                If LELeaveType.EditValue.ToString = "1" Then
+                    'add usage
+                    query = "INSERT INTO tb_emp_leave_usage(id_emp_leave,`type`,date_expired,qty) VALUES"
+                    For i As Integer = 0 To GVLeaveUsage.RowCount - 1
+                        If Not i = 0 Then
+                            query += ","
+                        End If
+                        query += "('" & id_emp_leave & "','" & GVLeaveUsage.GetRowCellValue(i, "type").ToString & "','" & Date.Parse(GVLeaveUsage.GetRowCellValue(i, "date_expired").ToString).ToString("yyyy-MM-dd") & "','" & (GVLeaveUsage.GetRowCellValue(i, "qty") * 60).ToString & "')"
+                    Next
+                    execute_non_query(query, True, "", "", "", "")
+                    'add to stock leave
+                    query = "INSERT INTO tb_emp_stock_leave(id_emp_leave,id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,note,`type`) VALUES"
+                    For i As Integer = 0 To GVLeaveUsage.RowCount - 1
+                        If Not i = 0 Then
+                            query += ","
+                        End If
+                        query += "('" & id_emp_leave & "','" & id_employee & "','" & (GVLeaveUsage.GetRowCellValue(i, "qty") * 60).ToString & "',2,NOW(),'" & Date.Parse(GVLeaveUsage.GetRowCellValue(i, "date_expired").ToString).ToString("yyyy-MM-dd") & "',2,'" & number & "','" & GVLeaveUsage.GetRowCellValue(i, "type").ToString & "')"
+                    Next
+                    execute_non_query(query, True, "", "", "", "")
+                End If
+                'search jika head dept to management
+                Dim jum_check As String = ""
+                query = "SELECT COUNT(id_departement) as count_check FROM tb_m_departement WHERE id_user_head='" & id_employee & "' AND is_office_dept='1'"
+                jum_check = execute_query(query, 0, True, "", "", "", "")
 
-            If jum_check = "0" Then
-                submit_who_prepared("95", id_emp_leave, id_user)
-                query = "UPDATE tb_emp_leave SET report_mark_type='95' WHERE id_emp_leave='" & id_emp_leave & "'"
-                execute_non_query(query, True, "", "", "", "")
-            Else ' dept head
-                submit_who_prepared("96", id_emp_leave, id_user)
-                query = "UPDATE tb_emp_leave SET report_mark_type='96' WHERE id_emp_leave='" & id_emp_leave & "'"
-                execute_non_query(query, True, "", "", "", "")
-            End If
+                If jum_check = "0" Then
+                    submit_who_prepared("95", id_emp_leave, id_user)
+                    query = "UPDATE tb_emp_leave SET report_mark_type='95' WHERE id_emp_leave='" & id_emp_leave & "'"
+                    execute_non_query(query, True, "", "", "", "")
+                Else ' dept head
+                    submit_who_prepared("96", id_emp_leave, id_user)
+                    query = "UPDATE tb_emp_leave SET report_mark_type='96' WHERE id_emp_leave='" & id_emp_leave & "'"
+                    execute_non_query(query, True, "", "", "", "")
+                End If
 
-            increase_inc_emp("1")
-            infoCustom("Leave proposed")
-            '
-            Close()
+                increase_inc_emp("1")
+                infoCustom("Leave proposed")
+                '
+                FormEmpLeave.DEStart.EditValue = Now
+                FormEmpLeave.DEUntil.EditValue = Now
+                FormEmpLeave.load_sum()
+                FormEmpLeave.GVLeave.FocusedRowHandle = find_row(FormEmpLeave.GVLeave, "id_emp_leave", id_emp_leave)
+                '
+                Close()
+            End If
         End If
     End Sub
 
@@ -370,7 +386,7 @@
     Private Sub MELeavePurpose_KeyDown(sender As Object, e As KeyEventArgs) Handles MELeavePurpose.KeyDown
         If e.KeyCode = Keys.Multiply Then
             e.SuppressKeyPress = True
-            BSave.Focus()
+            LEFormDC.Focus()
         End If
     End Sub
 
@@ -404,5 +420,30 @@
     Private Sub BPickChange_Click(sender As Object, e As EventArgs) Handles BPickChange.Click
         FormPopUpEmployee.id_popup = "2"
         FormPopUpEmployee.ShowDialog()
+    End Sub
+
+
+    Sub path_file(ByVal TextEdit As DevExpress.XtraEditors.TextEdit)
+        Dim fd As OpenFileDialog = New OpenFileDialog()
+
+        fd.Title = "Upload file"
+        fd.InitialDirectory = "C:\"
+        fd.Filter = "All files (*.*)|*.*|All files (*.*)|*.*"
+        fd.FilterIndex = 2
+        fd.RestoreDirectory = True
+
+        If fd.ShowDialog() = DialogResult.OK Then
+            file_name = IO.Path.GetFileNameWithoutExtension(fd.SafeFileName)
+            file_address = fd.FileName
+            file_ext = IO.Path.GetExtension(fd.SafeFileName)
+        End If
+
+        TextEdit.Text = file_address
+    End Sub
+
+    Private Sub LEFormDC_KeyDown(sender As Object, e As KeyEventArgs) Handles LEFormDC.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BSave.Focus()
+        End If
     End Sub
 End Class
