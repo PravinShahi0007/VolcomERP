@@ -10199,4 +10199,17 @@ Public Class FormMain
         Dim u As New ClassUser()
         u.logLogin("2")
     End Sub
+
+    Private Sub NBChSchedule_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBChSchedule.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpChSchedule.MdiParent = Me
+            FormEmpChSchedule.Show()
+            FormEmpChSchedule.WindowState = FormWindowState.Maximized
+            FormEmpChSchedule.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
