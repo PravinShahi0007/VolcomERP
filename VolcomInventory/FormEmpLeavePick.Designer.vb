@@ -32,6 +32,7 @@ Partial Class FormEmpLeavePick
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIDScheduleType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PCDate = New DevExpress.XtraEditors.PanelControl()
@@ -47,10 +48,9 @@ Partial Class FormEmpLeavePick
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.CEFullDay = New DevExpress.XtraEditors.CheckEdit()
         Me.DEUntilLeave = New DevExpress.XtraEditors.DateEdit()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Luntil = New System.Windows.Forms.Label()
         Me.DEStartLeave = New DevExpress.XtraEditors.DateEdit()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.GridColumnIDScheduleType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LPropose = New System.Windows.Forms.Label()
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCDate, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -171,6 +171,11 @@ Partial Class FormEmpLeavePick
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 7
+        '
+        'GridColumnIDScheduleType
+        '
+        Me.GridColumnIDScheduleType.Caption = "ID Schedule Type"
+        Me.GridColumnIDScheduleType.Name = "GridColumnIDScheduleType"
         '
         'GridColumn9
         '
@@ -316,9 +321,9 @@ Partial Class FormEmpLeavePick
         Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.CEFullDay)
         Me.PanelControl1.Controls.Add(Me.DEUntilLeave)
-        Me.PanelControl1.Controls.Add(Me.Label2)
+        Me.PanelControl1.Controls.Add(Me.Luntil)
         Me.PanelControl1.Controls.Add(Me.DEStartLeave)
-        Me.PanelControl1.Controls.Add(Me.Label1)
+        Me.PanelControl1.Controls.Add(Me.LPropose)
         Me.PanelControl1.Controls.Add(Me.BAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 250)
@@ -347,14 +352,14 @@ Partial Class FormEmpLeavePick
         Me.DEUntilLeave.Size = New System.Drawing.Size(153, 20)
         Me.DEUntilLeave.TabIndex = 17
         '
-        'Label2
+        'Luntil
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(338, 12)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 13)
-        Me.Label2.TabIndex = 16
-        Me.Label2.Text = "Until : "
+        Me.Luntil.AutoSize = True
+        Me.Luntil.Location = New System.Drawing.Point(338, 12)
+        Me.Luntil.Name = "Luntil"
+        Me.Luntil.Size = New System.Drawing.Size(38, 13)
+        Me.Luntil.TabIndex = 16
+        Me.Luntil.Text = "Until : "
         '
         'DEStartLeave
         '
@@ -370,19 +375,14 @@ Partial Class FormEmpLeavePick
         Me.DEStartLeave.Size = New System.Drawing.Size(153, 20)
         Me.DEStartLeave.TabIndex = 15
         '
-        'Label1
+        'LPropose
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 12)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(88, 13)
-        Me.Label1.TabIndex = 11
-        Me.Label1.Text = "Propose Leave : "
-        '
-        'GridColumnIDScheduleType
-        '
-        Me.GridColumnIDScheduleType.Caption = "ID Schedule Type"
-        Me.GridColumnIDScheduleType.Name = "GridColumnIDScheduleType"
+        Me.LPropose.AutoSize = True
+        Me.LPropose.Location = New System.Drawing.Point(12, 12)
+        Me.LPropose.Name = "LPropose"
+        Me.LPropose.Size = New System.Drawing.Size(88, 13)
+        Me.LPropose.TabIndex = 11
+        Me.LPropose.Text = "Propose Leave : "
         '
         'FormEmpLeavePick
         '
@@ -442,9 +442,9 @@ Partial Class FormEmpLeavePick
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DEUntilLeave As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents Label2 As Label
+    Friend WithEvents Luntil As Label
     Friend WithEvents DEStartLeave As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents Label1 As Label
+    Friend WithEvents LPropose As Label
     Friend WithEvents CEFullDay As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnID As DevExpress.XtraGrid.Columns.GridColumn

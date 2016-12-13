@@ -1,6 +1,9 @@
 ﻿Public Class FormEmpLeavePick
     Public id_schedule As String = "-1"
     Public id_employee As String = "-1"
+
+    Public opt As String = "-1"
+
     Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
         Close()
     End Sub
@@ -9,8 +12,17 @@
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
         '
-        If FormEmpLeaveDet.LELeaveType.EditValue.ToString = "1" Then
+        If opt = "1" Or opt = "2" Then 'change schedule
             BPickAll.Visible = False
+            LPropose.Visible = False
+            CEFullDay.Visible = False
+            DEStartLeave.Visible = False
+            DEUntilLeave.Visible = False
+            Luntil.Visible = False
+        Else 'leave
+            If FormEmpLeaveDet.LELeaveType.EditValue.ToString = "1" Then
+                BPickAll.Visible = False
+            End If
         End If
     End Sub
 
@@ -60,49 +72,61 @@
         If DEStartLeave.Text = "" Then
             stopCustom("Please select schedule first.")
         Else
-            Dim check As Boolean = True
-
-            For i As Integer = 0 To FormEmpLeaveDet.GVLeaveDet.RowCount - 1
-                If FormEmpLeaveDet.GVLeaveDet.GetRowCellValue(0, "id_schedule") = GVSchedule.GetFocusedRowCellDisplayText("id_schedule").ToString Then
-                    check = False
-                End If
-            Next
-
-            If check = False Then
-                stopCustom("This schedule already proposed.")
-            Else
-                Dim total_min As Integer = 0
-
-                Dim is_full_day As String = "no"
-                Dim minute_total As TimeSpan
-                Dim date_from, date_until As Date
-
-                date_from = Date.Parse(DEStartLeave.EditValue.ToString)
-                date_until = Date.Parse(DEUntilLeave.EditValue.ToString)
-
-                If CEFullDay.Checked = False Then
-                    is_full_day = "no"
-                    minute_total = Date.Parse(date_until.ToString).Subtract(Date.Parse(date_from.ToString))
-                    total_min = minute_total.TotalMinutes
-                Else
-                    is_full_day = "yes"
-                    total_min = GVSchedule.GetFocusedRowCellValue("minutes_work")
-                End If
-
-                Dim newRow As DataRow = (TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable)).NewRow()
-                newRow("id_schedule") = GVSchedule.GetFocusedRowCellDisplayText("id_schedule").ToString
-                newRow("datetime_start") = date_from
-                newRow("datetime_until") = date_until
-                newRow("is_full_day") = is_full_day
-                newRow("hours_total") = total_min / 60
-                newRow("minutes_total") = total_min
-
-                TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
-                FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
-                FormEmpLeaveDet.load_but_calc()
-                FormEmpLeaveDet.GVLeaveDet.FocusedRowHandle = 0
-                '
+            If opt = "1" Then ' change schedule from
+                FormEmpChScheduleDet.id_sch_from = GVSchedule.GetFocusedRowCellDisplayText("id_schedule").ToString
+                FormEmpChScheduleDet.load_sch("1")
+                FormEmpChScheduleDet.BPickScheduleTo.Focus()
                 Close()
+            ElseIf opt = "2" Then ' change schedule to
+                FormEmpChScheduleDet.id_sch_to = GVSchedule.GetFocusedRowCellDisplayText("id_schedule").ToString
+                FormEmpChScheduleDet.load_sch("2")
+                FormEmpChScheduleDet.MEChNote.Focus()
+                Close()
+            Else 'leave
+                Dim check As Boolean = True
+
+                For i As Integer = 0 To FormEmpLeaveDet.GVLeaveDet.RowCount - 1
+                    If FormEmpLeaveDet.GVLeaveDet.GetRowCellValue(0, "id_schedule") = GVSchedule.GetFocusedRowCellDisplayText("id_schedule").ToString Then
+                        check = False
+                    End If
+                Next
+
+                If check = False Then
+                    stopCustom("This schedule already proposed.")
+                Else
+                    Dim total_min As Integer = 0
+
+                    Dim is_full_day As String = "no"
+                    Dim minute_total As TimeSpan
+                    Dim date_from, date_until As Date
+
+                    date_from = Date.Parse(DEStartLeave.EditValue.ToString)
+                    date_until = Date.Parse(DEUntilLeave.EditValue.ToString)
+
+                    If CEFullDay.Checked = False Then
+                        is_full_day = "no"
+                        minute_total = Date.Parse(date_until.ToString).Subtract(Date.Parse(date_from.ToString))
+                        total_min = minute_total.TotalMinutes
+                    Else
+                        is_full_day = "yes"
+                        total_min = GVSchedule.GetFocusedRowCellValue("minutes_work")
+                    End If
+
+                    Dim newRow As DataRow = (TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable)).NewRow()
+                    newRow("id_schedule") = GVSchedule.GetFocusedRowCellDisplayText("id_schedule").ToString
+                    newRow("datetime_start") = date_from
+                    newRow("datetime_until") = date_until
+                    newRow("is_full_day") = is_full_day
+                    newRow("hours_total") = total_min / 60
+                    newRow("minutes_total") = total_min
+
+                    TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
+                    FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
+                    FormEmpLeaveDet.load_but_calc()
+                    FormEmpLeaveDet.GVLeaveDet.FocusedRowHandle = 0
+                    '
+                    Close()
+                End If
             End If
         End If
     End Sub
@@ -157,7 +181,11 @@
 
     Private Sub GVSchedule_KeyDown(sender As Object, e As KeyEventArgs) Handles GVSchedule.KeyDown
         If e.KeyCode = Keys.Enter Then
-            CEFullDay.Focus()
+            If opt = "1" Or opt = "2" Then
+                BAdd.Focus()
+            Else
+                CEFullDay.Focus()
+            End If
         End If
     End Sub
 

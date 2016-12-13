@@ -47,6 +47,14 @@
             FormEmpDPDet.TEPosition.Text = GVEmployee.GetFocusedRowCellValue("employee_position").ToString
             FormEmpDPDet.MEDPNote.Focus()
             Close()
+        ElseIf id_popup = "4" Then
+            FormEmpChScheduleDet.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpChScheduleDet.TEEmployeeCode.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
+            FormEmpChScheduleDet.TEEmployeeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            FormEmpChScheduleDet.TEDept.Text = GVEmployee.GetFocusedRowCellValue("departement").ToString
+            FormEmpChScheduleDet.TEPosition.Text = GVEmployee.GetFocusedRowCellValue("employee_position").ToString
+            FormEmpChScheduleDet.MEChNote.Focus()
+            Close()
         End If
     End Sub
 End Class
