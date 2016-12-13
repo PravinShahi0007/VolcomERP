@@ -36,6 +36,6 @@
     End Sub
 
     Private Sub BViewSum_Click(sender As Object, e As EventArgs) Handles BViewSum.Click
-
+        load_chschedule()
     End Sub
 End Class

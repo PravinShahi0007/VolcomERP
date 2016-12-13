@@ -1481,6 +1481,10 @@ Public Class FormMain
             'Leave
             FormEmpDPDet.id_emp_dp = "-1"
             FormEmpDPDet.ShowDialog()
+        ElseIf formName = "FormEmpChSchedule" Then
+            'Leave
+            FormEmpChScheduleDet.id_ch_sch = "-1"
+            FormEmpChScheduleDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If

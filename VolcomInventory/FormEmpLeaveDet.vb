@@ -120,7 +120,7 @@
             If LELeaveType.EditValue.ToString = "1" Then 'leave
                 TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue - TETotLeave.EditValue
                 'calculate fifo new only
-                If id_emp_leave = "-1" And TERemainingLeaveAfter.EditValue > 0 And GVLeaveDet.RowCount > 0 And GVLeaveRemaining.RowCount > 0 Then
+                If id_emp_leave = "-1" And TERemainingLeaveAfter.EditValue >= 0 And GVLeaveDet.RowCount > 0 And GVLeaveRemaining.RowCount > 0 Then
                     Dim j As Integer = 0
                     Dim total_leave As Integer = TETotLeave.EditValue
                     '
@@ -129,7 +129,7 @@
                     For i As Integer = 0 To GVLeaveRemaining.RowCount - 1
                         Dim leave_remaining As Integer = 0
                         leave_remaining = GVLeaveRemaining.GetRowCellValue(i, "qty")
-                        If total_leave - leave_remaining > 0 Then
+                        If total_leave - leave_remaining >= 0 Then
                             'use row qty = leave_remaining
                             Dim newRow As DataRow = (TryCast(GCLeaveUsage.DataSource, DataTable)).NewRow()
                             newRow("type") = GVLeaveRemaining.GetRowCellValue(i, "type").ToString

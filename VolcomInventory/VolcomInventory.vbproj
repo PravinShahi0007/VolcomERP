@@ -502,6 +502,12 @@
     <Compile Include="FormEmpChSchedule.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpChScheduleDet.Designer.vb">
+      <DependentUpon>FormEmpChScheduleDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpChScheduleDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpDP.Designer.vb">
       <DependentUpon>FormEmpDP.vb</DependentUpon>
     </Compile>
@@ -4687,6 +4693,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpChSchedule.resx">
       <DependentUpon>FormEmpChSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpChScheduleDet.resx">
+      <DependentUpon>FormEmpChScheduleDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpDP.resx">
       <DependentUpon>FormEmpDP.vb</DependentUpon>
