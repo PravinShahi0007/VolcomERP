@@ -1481,6 +1481,10 @@ Public Class FormMain
             'Leave
             FormEmpDPDet.id_emp_dp = "-1"
             FormEmpDPDet.ShowDialog()
+        ElseIf formName = "FormEmpChSchedule" Then
+            'Leave
+            FormEmpChScheduleDet.id_ch_sch = "-1"
+            FormEmpChScheduleDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10198,5 +10202,18 @@ Public Class FormMain
         'log
         Dim u As New ClassUser()
         u.logLogin("2")
+    End Sub
+
+    Private Sub NBChSchedule_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBChSchedule.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpChSchedule.MdiParent = Me
+            FormEmpChSchedule.Show()
+            FormEmpChSchedule.WindowState = FormWindowState.Maximized
+            FormEmpChSchedule.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
