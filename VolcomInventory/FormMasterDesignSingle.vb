@@ -922,10 +922,10 @@
 
         'code & display name
         If id_pop_up = "3" Then
-            display_name = TEDisplayNameNonMD.Text
+            display_name = addSlashes(TEDisplayNameNonMD.Text)
             code = TECodeNonMD.Text
         Else
-            display_name = TEDisplayName.Text
+            display_name = addSlashes(TEDisplayName.Text)
             code = TECode.Text
         End If
         code_import = TxtCodeImport.Text
