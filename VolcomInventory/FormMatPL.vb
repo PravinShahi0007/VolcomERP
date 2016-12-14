@@ -41,7 +41,7 @@
         query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
         query += "INNER JOIN tb_prod_order_mrs i ON a.id_prod_order_mrs = i.id_prod_order_mrs "
         query += "INNER JOIN tb_prod_order k ON i.id_prod_order = k.id_prod_order "
-        query += "INNER JOIN tb_prod_order_wo j ON i.id_prod_order_wo = j.id_prod_order_wo "
+        query += "LEFT JOIN tb_prod_order_wo j ON i.id_prod_order_wo = j.id_prod_order_wo "
         query += "INNER JOIN tb_prod_demand_design l ON k.id_prod_demand_design = l.id_prod_demand_design "
         query += "INNER JOIN tb_m_design m ON m.id_design = l.id_design "
         query += "WHERE NOT ISNULL(i.id_prod_order) "

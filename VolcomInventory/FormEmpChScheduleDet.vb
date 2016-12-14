@@ -6,7 +6,32 @@
     Public id_sch_from As String = "-1"
 
     Private Sub FormEmpChScheduleDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TENumber.Text = header_number_emp("3")
+        If id_ch_sch = "-1" Then ' new
+            TENumber.Text = header_number_emp("3")
+            DEDate.EditValue = Now()
+            '
+            BPickEmployee.Visible = True
+            BPickScheduleFrom.Visible = True
+            BPickScheduleTo.Visible = True
+            '
+            BMark.Visible = False
+            BPrint.Visible = False
+            BSave.Visible = False
+        Else 'edit
+            Dim query As String = "SELECT * FROM tb_emp_ch_schedule"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            '
+            TENumber.Text = data.Rows(0)("emp_ch_schedule_number").ToString
+            DEDate.EditValue = data.Rows(0)("emp_ch_schedule_date")
+            '
+            BPickEmployee.Visible = False
+            BPickScheduleFrom.Visible = False
+            BPickScheduleTo.Visible = False
+            '
+            BMark.Visible = True
+            BPrint.Visible = True
+            BSave.Visible = False
+        End If
     End Sub
 
     Private Sub BPickEmployee_Click(sender As Object, e As EventArgs) Handles BPickEmployee.Click
@@ -105,5 +130,11 @@
 
     Private Sub FormEmpChScheduleDet_Shown(sender As Object, e As EventArgs) Handles MyBase.Shown
         TEEmployeeCode.Focus()
+    End Sub
+
+    Private Sub MEChNote_KeyDown(sender As Object, e As KeyEventArgs) Handles MEChNote.KeyDown
+        If e.KeyCode = Keys.Multiply Or e.KeyCode = Keys.Tab Then
+            BSave.Focus()
+        End If
     End Sub
 End Class
