@@ -2324,7 +2324,7 @@ Public Class FormMain
                 End If
             ElseIf formName = "FormEmpChSchedule" Then
                 'Leave
-                FormEmpChScheduleDet.id_ch_sch = FormEmpChSchedule.GVChangeSch.GetFocusedRowCellValue("id_emp_ch_schedule").ToString
+                FormEmpChScheduleDet.id_ch_sch = FormEmpChSchedule.BGVChangeSch.GetFocusedRowCellValue("id_emp_ch_schedule").ToString
                 FormEmpChScheduleDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
