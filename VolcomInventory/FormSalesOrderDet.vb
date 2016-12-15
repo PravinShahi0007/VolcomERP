@@ -229,12 +229,16 @@ Public Class FormSalesOrderDet
                     Dim rsv As New ClassSalesOrder()
                     rsv.reservedStock(id_sales_order)
 
-                    infoCustom("Prepare order : " + sales_order_number.ToString + " was created successfully. ")
                     FormSalesOrder.viewSalesOrder()
                     FormSalesOrder.viewDet()
                     FormSalesOrder.GVSalesOrder.FocusedRowHandle = find_row(FormSalesOrder.GVSalesOrder, "id_sales_order", id_sales_order)
                     action = "upd"
                     actionLoad()
+
+                    'gen xls
+                    exportToBOF(False)
+
+                    infoCustom("Prepare order : " + sales_order_number.ToString + " was created successfully. ")
                     Cursor = Cursors.Default
                 End If
             ElseIf action = "upd" Then
@@ -288,12 +292,16 @@ Public Class FormSalesOrderDet
                         End Try
                     Next
 
-                    infoCustom("Prepare order : " + sales_order_number.ToString + " was edited successfully. ")
                     FormSalesOrder.viewSalesOrder()
                     FormSalesOrder.viewDet()
                     FormSalesOrder.GVSalesOrder.FocusedRowHandle = find_row(FormSalesOrder.GVSalesOrder, "id_sales_order", id_sales_order)
                     action = "upd"
                     actionLoad()
+
+                    'gen xls
+                    exportToBOF(False)
+
+                    infoCustom("Prepare order : " + sales_order_number.ToString + " was edited successfully. ")
                     Cursor = Cursors.Default
                 End If
             End If
@@ -363,8 +371,10 @@ Public Class FormSalesOrderDet
             BtnPrint.Enabled = False
         End If
 
-        If id_report_status = "6" And bof_column = "1" Then
+        If id_report_status <> "5" And bof_column = "1" Then
             BtnXlsBOF.Visible = True
+        Else
+            BtnXlsBOF.Visible = False
         End If
         TxtSalesOrderNumber.Focus()
     End Sub

@@ -236,7 +236,10 @@ Public Class FormProductionPLToWHRecDet
             BtnPrint.Enabled = False
         End If
 
-        If id_report_status = "6" And bof_column = "1" Then
+        'bof column
+        If bof_column = "1" And id_report_status <> "5" Then
+            BtnXlsBOF.Visible = True
+        Else
             BtnXlsBOF.Visible = False
         End If
 

@@ -324,6 +324,12 @@ Public Class FormFGTrfNewDet
         Else
             BtnPrint.Enabled = False
         End If
+
+        If id_report_status <> "5" And bof_column = "1" Then
+            BtnXlsBOF.Visible = True
+        Else
+            BtnXlsBOF.Visible = False
+        End If
         TxtNumber.Focus()
     End Sub
 
@@ -1485,5 +1491,9 @@ Public Class FormFGTrfNewDet
         Finally
             o = Nothing
         End Try
+    End Sub
+
+    Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        exportToBOF(True)
     End Sub
 End Class

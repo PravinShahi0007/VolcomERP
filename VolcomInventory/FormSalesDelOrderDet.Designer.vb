@@ -49,8 +49,9 @@ Partial Class FormSalesDelOrderDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.DEForm = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnTest = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
@@ -111,6 +112,8 @@ Partial Class FormSalesDelOrderDet
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
@@ -121,8 +124,6 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTest = New DevExpress.XtraGrid.GridControl()
         Me.GVTest = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -174,6 +175,7 @@ Partial Class FormSalesDelOrderDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
+        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCDO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDO.SuspendLayout()
@@ -181,7 +183,6 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.GCTest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVTest, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -514,6 +515,7 @@ Partial Class FormSalesDelOrderDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnTest)
         Me.PanelControl3.Controls.Add(Me.BMark)
@@ -528,16 +530,18 @@ Partial Class FormSalesDelOrderDet
         Me.PanelControl3.Size = New System.Drawing.Size(954, 40)
         Me.PanelControl3.TabIndex = 185
         '
-        'BtnAttachment
+        'BtnXlsBOF
         '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.ImageIndex = 10
-        Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(628, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(95, 36)
-        Me.BtnAttachment.TabIndex = 21
-        Me.BtnAttachment.Text = "Attachment"
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(512, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 36)
+        Me.BtnXlsBOF.TabIndex = 23
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
         '
         'LargeImageCollection
         '
@@ -554,6 +558,17 @@ Partial Class FormSalesDelOrderDet
         Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 10
+        Me.BtnAttachment.ImageList = Me.LargeImageCollection
+        Me.BtnAttachment.Location = New System.Drawing.Point(628, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(95, 36)
+        Me.BtnAttachment.TabIndex = 21
+        Me.BtnAttachment.Text = "Attachment"
         '
         'BtnTest
         '
@@ -1168,6 +1183,24 @@ Partial Class FormSalesDelOrderDet
         Me.PanelNavBarcode.Size = New System.Drawing.Size(919, 33)
         Me.PanelNavBarcode.TabIndex = 1
         '
+        'TxtDeleteScan
+        '
+        Me.TxtDeleteScan.Location = New System.Drawing.Point(70, 7)
+        Me.TxtDeleteScan.MenuManager = Me.BMDD
+        Me.TxtDeleteScan.Name = "TxtDeleteScan"
+        Me.TxtDeleteScan.Size = New System.Drawing.Size(248, 20)
+        Me.TxtDeleteScan.TabIndex = 19
+        Me.TxtDeleteScan.Visible = False
+        '
+        'LabelDelScan
+        '
+        Me.LabelDelScan.Location = New System.Drawing.Point(8, 10)
+        Me.LabelDelScan.Name = "LabelDelScan"
+        Me.LabelDelScan.Size = New System.Drawing.Size(56, 13)
+        Me.LabelDelScan.TabIndex = 18
+        Me.LabelDelScan.Text = "Delete scan"
+        Me.LabelDelScan.Visible = False
+        '
         'BDelete
         '
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
@@ -1255,24 +1288,6 @@ Partial Class FormSalesDelOrderDet
         Me.GVTest.GridControl = Me.GCTest
         Me.GVTest.Name = "GVTest"
         '
-        'LabelDelScan
-        '
-        Me.LabelDelScan.Location = New System.Drawing.Point(8, 10)
-        Me.LabelDelScan.Name = "LabelDelScan"
-        Me.LabelDelScan.Size = New System.Drawing.Size(56, 13)
-        Me.LabelDelScan.TabIndex = 18
-        Me.LabelDelScan.Text = "Delete scan"
-        Me.LabelDelScan.Visible = False
-        '
-        'TxtDeleteScan
-        '
-        Me.TxtDeleteScan.Location = New System.Drawing.Point(70, 7)
-        Me.TxtDeleteScan.MenuManager = Me.BMDD
-        Me.TxtDeleteScan.Name = "TxtDeleteScan"
-        Me.TxtDeleteScan.Size = New System.Drawing.Size(248, 20)
-        Me.TxtDeleteScan.TabIndex = 19
-        Me.TxtDeleteScan.Visible = False
-        '
         'FormSalesDelOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1350,6 +1365,7 @@ Partial Class FormSalesDelOrderDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
         Me.PanelNavBarcode.PerformLayout()
+        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCDO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCDO.ResumeLayout(False)
@@ -1357,7 +1373,6 @@ Partial Class FormSalesDelOrderDet
         Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.GCTest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVTest, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1464,4 +1479,5 @@ Partial Class FormSalesDelOrderDet
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TxtDeleteScan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
 End Class
