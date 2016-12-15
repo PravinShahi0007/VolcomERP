@@ -16,7 +16,7 @@
             '
             BMark.Visible = False
             BPrint.Visible = False
-            BSave.Visible = False
+            BSave.Visible = True
         Else 'edit
             Dim query As String = "SELECT * FROM tb_emp_ch_schedule"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -135,6 +135,33 @@
     Private Sub MEChNote_KeyDown(sender As Object, e As KeyEventArgs) Handles MEChNote.KeyDown
         If e.KeyCode = Keys.Multiply Or e.KeyCode = Keys.Tab Then
             BSave.Focus()
+        End If
+    End Sub
+
+    Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
+        Close()
+    End Sub
+
+    Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
+        If id_ch_sch = "-1" Then 'new
+            If id_employee = "-1" Or id_sch_from = "-1" Or id_sch_to = "-1" Then
+                stopCustom("Please check your input.")
+            Else
+                ' add parent
+                Dim query As String = "INSERT INTo tb_emp_ch_schedule(id_employee,emp_ch_schedule_number,emp_ch_schedule_date,id_schedule_from,id_schedule_to,note) VALUES('" & id_employee & "','" & TENumber.Text & "',NOW(),'" & id_sch_from & "','" & id_sch_to & "','" & MEChNote.Text & "'); SELECT LAST_INSERT_ID(); "
+                id_ch_sch = execute_query(query, 0, True, "", "", "", "")
+                ' add detail
+                query = "INSERT INTO tb_emp_ch_schedule_det(id_emp_ch_schedule,from_to,id_schedule,`date`,`in`,`out`,in_tolerance,break_out,break_in,minutes_work,id_schedule_type,note,shift_code)
+                            SELECT '" & id_ch_sch & "' AS id_emp_ch_schedule,'1' AS from_to,id_schedule,`date`,`in`,`out`,in_tolerance,break_out,break_in,minutes_work,id_schedule_type,note,shift_code FROM tb_emp_schedule WHERE id_schedule='" & id_sch_from & "'
+                            UNION
+                            SELECT '" & id_ch_sch & "' AS id_emp_ch_schedule,'2' AS from_to,id_schedule,`date`,`in`,`out`,in_tolerance,break_out,break_in,minutes_work,id_schedule_type,note,shift_code FROM tb_emp_schedule WHERE id_schedule='" & id_sch_to & "'"
+                execute_non_query(query, True, "", "", "", "")
+                '
+
+                Close()
+            End If
+        Else
+
         End If
     End Sub
 End Class
