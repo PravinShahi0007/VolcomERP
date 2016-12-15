@@ -285,6 +285,8 @@ Public Class FormProductionRecDet
         'bof column
         If bof_column = "1" And LEReportStatus.EditValue.ToString <> "5" Then
             BtnXlsBOF.Visible = True
+        Else
+            BtnXlsBOF.Visible = False
         End If
     End Sub
 
