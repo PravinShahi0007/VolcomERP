@@ -110,6 +110,7 @@ Partial Class FormFGTrfNewDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -183,6 +184,7 @@ Partial Class FormFGTrfNewDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnTest)
         Me.PanelControl3.Controls.Add(Me.BMark)
@@ -190,11 +192,11 @@ Partial Class FormFGTrfNewDet
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 615)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 608)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(951, 31)
+        Me.PanelControl3.Size = New System.Drawing.Size(951, 38)
         Me.PanelControl3.TabIndex = 187
         '
         'BtnAttachment
@@ -204,7 +206,7 @@ Partial Class FormFGTrfNewDet
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
         Me.BtnAttachment.Location = New System.Drawing.Point(620, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(100, 27)
+        Me.BtnAttachment.Size = New System.Drawing.Size(100, 34)
         Me.BtnAttachment.TabIndex = 11
         Me.BtnAttachment.Text = "Attachment"
         '
@@ -213,7 +215,7 @@ Partial Class FormFGTrfNewDet
         Me.BtnTest.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnTest.Location = New System.Drawing.Point(77, 2)
         Me.BtnTest.Name = "BtnTest"
-        Me.BtnTest.Size = New System.Drawing.Size(75, 27)
+        Me.BtnTest.Size = New System.Drawing.Size(75, 34)
         Me.BtnTest.TabIndex = 12
         Me.BtnTest.Text = "Test"
         Me.BtnTest.Visible = False
@@ -225,7 +227,7 @@ Partial Class FormFGTrfNewDet
         Me.BMark.ImageList = Me.LargeImageCollection
         Me.BMark.Location = New System.Drawing.Point(2, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 27)
+        Me.BMark.Size = New System.Drawing.Size(75, 34)
         Me.BMark.TabIndex = 12
         Me.BMark.Text = "Mark"
         '
@@ -238,7 +240,7 @@ Partial Class FormFGTrfNewDet
         Me.DDBPrint.ImageList = Me.LargeImageCollection
         Me.DDBPrint.Location = New System.Drawing.Point(720, 2)
         Me.DDBPrint.Name = "DDBPrint"
-        Me.DDBPrint.Size = New System.Drawing.Size(79, 27)
+        Me.DDBPrint.Size = New System.Drawing.Size(79, 34)
         Me.DDBPrint.TabIndex = 10
         Me.DDBPrint.Text = "Print"
         '
@@ -310,7 +312,7 @@ Partial Class FormFGTrfNewDet
         Me.BtnCancel.ImageList = Me.LargeImageCollection
         Me.BtnCancel.Location = New System.Drawing.Point(799, 2)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 27)
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
         Me.BtnCancel.TabIndex = 9
         Me.BtnCancel.Text = "Close"
         '
@@ -321,7 +323,7 @@ Partial Class FormFGTrfNewDet
         Me.BtnSave.ImageList = Me.LargeImageCollection
         Me.BtnSave.Location = New System.Drawing.Point(874, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(75, 27)
+        Me.BtnSave.Size = New System.Drawing.Size(75, 34)
         Me.BtnSave.TabIndex = 8
         Me.BtnSave.Text = "Save"
         '
@@ -332,7 +334,7 @@ Partial Class FormFGTrfNewDet
         Me.GroupControl3.Controls.Add(Me.MENote)
         Me.GroupControl3.Controls.Add(Me.LabelControl18)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 547)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 540)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(951, 68)
         Me.GroupControl3.TabIndex = 189
@@ -617,7 +619,7 @@ Partial Class FormFGTrfNewDet
         Me.SCCTrf.Panel1.Text = "Panel1"
         Me.SCCTrf.Panel2.Controls.Add(Me.XTCDONew)
         Me.SCCTrf.Panel2.Text = "Panel2"
-        Me.SCCTrf.Size = New System.Drawing.Size(951, 431)
+        Me.SCCTrf.Size = New System.Drawing.Size(951, 424)
         Me.SCCTrf.SplitterPosition = 223
         Me.SCCTrf.TabIndex = 191
         Me.SCCTrf.Text = "SplitContainerControl1"
@@ -910,7 +912,7 @@ Partial Class FormFGTrfNewDet
         Me.XTCDONew.Location = New System.Drawing.Point(0, 0)
         Me.XTCDONew.Name = "XTCDONew"
         Me.XTCDONew.SelectedTabPage = Me.XTPOutboundScanNew
-        Me.XTCDONew.Size = New System.Drawing.Size(951, 203)
+        Me.XTCDONew.Size = New System.Drawing.Size(951, 196)
         Me.XTCDONew.TabIndex = 1
         Me.XTCDONew.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOutboundScanNew})
         '
@@ -918,7 +920,7 @@ Partial Class FormFGTrfNewDet
         '
         Me.XTPOutboundScanNew.Controls.Add(Me.GroupControlScannedItem)
         Me.XTPOutboundScanNew.Name = "XTPOutboundScanNew"
-        Me.XTPOutboundScanNew.Size = New System.Drawing.Size(945, 175)
+        Me.XTPOutboundScanNew.Size = New System.Drawing.Size(945, 168)
         Me.XTPOutboundScanNew.Text = "Outbound Scan"
         '
         'GroupControlScannedItem
@@ -930,7 +932,7 @@ Partial Class FormFGTrfNewDet
         Me.GroupControlScannedItem.Enabled = False
         Me.GroupControlScannedItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlScannedItem.Name = "GroupControlScannedItem"
-        Me.GroupControlScannedItem.Size = New System.Drawing.Size(945, 175)
+        Me.GroupControlScannedItem.Size = New System.Drawing.Size(945, 168)
         Me.GroupControlScannedItem.TabIndex = 1
         Me.GroupControlScannedItem.Text = "Scanned Code"
         '
@@ -941,7 +943,7 @@ Partial Class FormFGTrfNewDet
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(923, 138)
+        Me.GCBarcode.Size = New System.Drawing.Size(923, 131)
         Me.GCBarcode.TabIndex = 5
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -1104,6 +1106,19 @@ Partial Class FormFGTrfNewDet
         Me.BScan.TabIndex = 7
         Me.BScan.Text = "Start Scan"
         '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(504, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
+        Me.BtnXlsBOF.TabIndex = 25
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
+        '
         'FormFGTrfNewDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1212,7 +1227,6 @@ Partial Class FormFGTrfNewDet
     Friend WithEvents GVItemList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnColor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
@@ -1265,4 +1279,6 @@ Partial Class FormFGTrfNewDet
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TxtDeleteScan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
 End Class
