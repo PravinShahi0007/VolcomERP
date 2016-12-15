@@ -28,6 +28,8 @@ Partial Class FormEmpChScheduleDet
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDate = New DevExpress.XtraEditors.DateEdit()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.TEEmployeeCode = New DevExpress.XtraEditors.TextEdit()
@@ -61,13 +63,13 @@ Partial Class FormEmpChScheduleDet
         Me.BPickScheduleFrom = New DevExpress.XtraEditors.SimpleButton()
         Me.TESchFCode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEDate = New DevExpress.XtraEditors.DateEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -92,8 +94,6 @@ Partial Class FormEmpChScheduleDet
         CType(Me.DESchFDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DESchFDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TESchFCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -198,6 +198,27 @@ Partial Class FormEmpChScheduleDet
         Me.GroupControl1.Size = New System.Drawing.Size(647, 94)
         Me.GroupControl1.TabIndex = 5
         Me.GroupControl1.Text = "Header"
+        '
+        'LabelControl14
+        '
+        Me.LabelControl14.Location = New System.Drawing.Point(431, 13)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl14.TabIndex = 98
+        Me.LabelControl14.Text = "Date"
+        '
+        'DEDate
+        '
+        Me.DEDate.EditValue = Nothing
+        Me.DEDate.Location = New System.Drawing.Point(460, 10)
+        Me.DEDate.Name = "DEDate"
+        Me.DEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDate.Properties.ReadOnly = True
+        Me.DEDate.Size = New System.Drawing.Size(152, 20)
+        Me.DEDate.TabIndex = 97
         '
         'TENumber
         '
@@ -537,27 +558,6 @@ Partial Class FormEmpChScheduleDet
         Me.LabelControl6.TabIndex = 90
         Me.LabelControl6.Text = "Change Schedule : "
         '
-        'LabelControl14
-        '
-        Me.LabelControl14.Location = New System.Drawing.Point(431, 13)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl14.TabIndex = 98
-        Me.LabelControl14.Text = "Date"
-        '
-        'DEDate
-        '
-        Me.DEDate.EditValue = Nothing
-        Me.DEDate.Location = New System.Drawing.Point(460, 10)
-        Me.DEDate.Name = "DEDate"
-        Me.DEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDate.Properties.ReadOnly = True
-        Me.DEDate.Size = New System.Drawing.Size(152, 20)
-        Me.DEDate.TabIndex = 97
-        '
         'FormEmpChScheduleDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -578,6 +578,8 @@ Partial Class FormEmpChScheduleDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -603,8 +605,6 @@ Partial Class FormEmpChScheduleDet
         CType(Me.DESchFDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DESchFDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TESchFCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
