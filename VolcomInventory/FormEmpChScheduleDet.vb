@@ -4,6 +4,8 @@
 
     Public id_sch_to As String = "-1"
     Public id_sch_from As String = "-1"
+    '
+    Public is_view As String = "-1"
 
     Private Sub FormEmpChScheduleDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_ch_sch = "-1" Then ' new
@@ -18,11 +20,14 @@
             BPrint.Visible = False
             BSave.Visible = True
         Else 'edit
-            Dim query As String = "SELECT * FROM tb_emp_ch_schedule"
+            Dim query As String = "SELECT * FROM tb_emp_ch_schedule WHERE id_emp_ch_schedule='" & id_ch_sch & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
             TENumber.Text = data.Rows(0)("emp_ch_schedule_number").ToString
             DEDate.EditValue = data.Rows(0)("emp_ch_schedule_date")
+            '
+            load_det_ch_sch("1")
+            load_det_ch_sch("2")
             '
             BPickEmployee.Visible = False
             BPickScheduleFrom.Visible = False
@@ -31,6 +36,28 @@
             BMark.Visible = True
             BPrint.Visible = True
             BSave.Visible = False
+        End If
+    End Sub
+
+    Sub load_det_ch_sch(ByVal opt As String)
+        'opt : 1=from; 2=to
+        Dim query_det As String = "SELECT * FROM tb_empch_schedule_det WHERE id_emp_ch_schedule AND from_to='" & opt & "'"
+        Dim data As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+
+        If opt = "1" Then
+            id_sch_from = data.Rows(0)("id_schedule").ToString
+            TESchFCode.Text = data.Rows(0)("shift_code").ToString
+            TESchFNote.Text = data.Rows(0)("note").ToString
+            DESchFDate.EditValue = data.Rows(0)("date").ToString
+            DESchFIn.EditValue = data.Rows(0)("in").ToString
+            DESchFOut.EditValue = data.Rows(0)("out").ToString
+        ElseIf opt = "2" Then
+            id_sch_to = data.Rows(0)("id_schedule").ToString
+            TESchTCode.Text = data.Rows(0)("shift_code").ToString
+            TESchTNote.Text = data.Rows(0)("note").ToString
+            DESchTDate.EditValue = data.Rows(0)("date").ToString
+            DESchTIn.EditValue = data.Rows(0)("in").ToString
+            DESchTOut.EditValue = data.Rows(0)("out").ToString
         End If
     End Sub
 
@@ -157,11 +184,12 @@
                             SELECT '" & id_ch_sch & "' AS id_emp_ch_schedule,'2' AS from_to,id_schedule,`date`,`in`,`out`,in_tolerance,break_out,break_in,minutes_work,id_schedule_type,note,shift_code FROM tb_emp_schedule WHERE id_schedule='" & id_sch_to & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
-
+                FormEmpChSchedule.load_chschedule()
+                FormEmpChSchedule.GVChangeSch.FocusedRowHandle = find_row(FormEmpChSchedule.GVChangeSch, "id_emp_ch_schedule", id_ch_sch)
+                infoCustom("Change schedule created, waiting approval.")
+                '
                 Close()
             End If
-        Else
-
         End If
     End Sub
 End Class

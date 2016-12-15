@@ -2322,6 +2322,10 @@ Public Class FormMain
                     FormEmpDPDet.id_emp_dp = FormEmpDP.GVLeave.GetFocusedRowCellValue("id_dp").ToString
                     FormEmpDPDet.ShowDialog()
                 End If
+            ElseIf formName = "FormEmpChSchedule" Then
+                'Leave
+                FormEmpChScheduleDet.id_ch_sch = FormEmpChSchedule.GVChangeSch.GetFocusedRowCellValue("id_emp_ch_schedule").ToString
+                FormEmpChScheduleDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
