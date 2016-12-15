@@ -711,7 +711,7 @@ Public Class FormProductionRetInSingle
             For c As Integer = 0 To GVRetDetail.Columns.Count - 1
                 GVRetDetail.Columns(c).Visible = False
             Next
-            GridColumnEanCode.VisibleIndex = 0
+            GridColumnCode.VisibleIndex = 0
             GridColumnQty.VisibleIndex = 1
             GVRetDetail.OptionsPrint.PrintFooter = False
             GVRetDetail.OptionsPrint.PrintHeader = False
@@ -779,7 +779,7 @@ Public Class FormProductionRetInSingle
             For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
                 colIndex = colIndex + 1
                 If j = 0 Then
-                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "ean_code").ToString
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
                 Else
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "prod_order_ret_in_det_qty")
                 End If
