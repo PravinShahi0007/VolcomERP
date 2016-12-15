@@ -1,4 +1,5 @@
-﻿Public Class FormProductionRecDet 
+﻿Imports Microsoft.Office.Interop
+Public Class FormProductionRecDet
     Public id_order As String = "-1"
     Public id_receive As String = "-1"
     Public id_comp_from As String = "-1"
@@ -7,6 +8,8 @@
     Dim sample_purc_rec_det_qty_inp As Decimal
     Dim myList(,) As String
     Dim is_start As Boolean = False
+    Public bof_column As String = get_setup_field("bof_column")
+    Public bof_xls As String = get_setup_field("bof_xls_rcvqc")
 
 
     Private Sub FormProductionRecDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -278,6 +281,13 @@
         Else
             BPrint.Enabled = False
         End If
+
+        'bof column
+        If bof_column = "1" And LEReportStatus.EditValue.ToString <> "5" Then
+            BtnXlsBOF.Visible = True
+        Else
+            BtnXlsBOF.Visible = False
+        End If
     End Sub
 
     Private Sub BCancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BCancel.Click
@@ -417,6 +427,10 @@
                         id_receive = id_rec_new
                         TERecNumber.Text = rec_number
                         actionLoad()
+
+                        'export to bof
+                        exportToBOF(False)
+
                         infoCustom("Document #" + rec_number + " was created successfully.")
                     Catch ex As Exception
                         errorConnection()
@@ -454,6 +468,10 @@
                         FormProductionRec.GVProdRec.FocusedRowHandle = find_row(FormProductionRec.GVProdRec, "id_prod_order_rec", id_receive)
                         FormProductionRec.XTCTabReceive.SelectedTabPageIndex = 0
                         actionLoad()
+
+                        'export to bof
+                        exportToBOF(False)
+
                         infoCustom("Document #" + rec_number + " was edited successfully.")
                     Catch ex As Exception
                         errorConnection()
@@ -725,5 +743,119 @@
 
     Private Sub TEDODate_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEDODate.Validating
         EP_DE_cant_blank(EPSampleRec, TEDODate)
+    End Sub
+
+    Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        exportToBOF(True)
+    End Sub
+
+    Sub exportToBOF(ByVal show_msg As Boolean)
+        If bof_column = "1" Then
+            Cursor = Cursors.WaitCursor
+
+            'hide column
+            For c As Integer = 0 To GVListPurchase.Columns.Count - 1
+                GVListPurchase.Columns(c).Visible = False
+            Next
+            ColCode.VisibleIndex = 0
+            ColQtyRec.VisibleIndex = 1
+            GVListPurchase.OptionsPrint.PrintFooter = False
+            GVListPurchase.OptionsPrint.PrintHeader = False
+
+
+            'export excel
+            Dim path_root As String = ""
+            Try
+                ' Open the file using a stream reader.
+                Using sr As New IO.StreamReader(Application.StartupPath & "\pro_path.txt")
+                    ' Read the stream to a string and write the string to the console.
+                    path_root = sr.ReadToEnd()
+                End Using
+            Catch ex As Exception
+            End Try
+
+            Dim fileName As String = bof_xls + ".xls"
+            Dim exp As String = IO.Path.Combine(path_root, fileName)
+            Try
+                ExportToExcel(GVListPurchase, exp, show_msg)
+            Catch ex As Exception
+                stopCustom("Please close your excel file first then try again later")
+            End Try
+
+            'show column
+            ColNo.VisibleIndex = 0
+            ColCode.VisibleIndex = 1
+            GridColumnEANCode.VisibleIndex = 2
+            ColName.VisibleIndex = 3
+            ColSize.VisibleIndex = 4
+            ColQtyRec.VisibleIndex = 5
+            ColNote.VisibleIndex = 6
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
+        Dim strFileName As String = filepath
+        If System.IO.File.Exists(strFileName) Then
+            System.IO.File.Delete(strFileName)
+        End If
+        Dim _excel As New Excel.Application
+        Dim wBook As Excel.Workbook
+        Dim wSheet As Excel.Worksheet
+
+        wBook = _excel.Workbooks.Add()
+        wSheet = wBook.ActiveSheet()
+
+
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = -1
+
+        ' export the Columns 
+        'If CheckBox1.Checked Then
+        '    For Each dc In dt.Columns
+        '        colIndex = colIndex + 1
+        '        wSheet.Cells(1, colIndex) = dc.ColumnName
+        '    Next
+        'End If
+
+        'export the rows 
+        For i As Integer = 0 To dtTemp.RowCount - 1
+            rowIndex = rowIndex + 1
+            colIndex = 0
+            For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
+                colIndex = colIndex + 1
+                If j = 0 Then
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
+                Else
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "prod_order_rec_det_qty")
+                End If
+            Next
+        Next
+
+        wSheet.Columns.AutoFit()
+        wBook.SaveAs(strFileName, Excel.XlFileFormat.xlExcel5)
+
+        'release the objects
+        ReleaseObject(wSheet)
+        wBook.Close(False)
+        ReleaseObject(wBook)
+        _excel.Quit()
+        ReleaseObject(_excel)
+        ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+        GC.Collect()
+
+        If show_msg Then
+            infoCustom("File exported successfully")
+        End If
+    End Sub
+
+    Private Sub ReleaseObject(ByVal o As Object)
+        Try
+            While (System.Runtime.InteropServices.Marshal.ReleaseComObject(o) > 0)
+            End While
+        Catch
+        Finally
+            o = Nothing
+        End Try
     End Sub
 End Class
