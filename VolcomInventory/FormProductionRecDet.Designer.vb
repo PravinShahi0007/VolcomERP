@@ -76,9 +76,9 @@ Partial Class FormProductionRecDet
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GroupControlListBarcode = New DevExpress.XtraEditors.GroupControl()
         Me.GCBarcode = New DevExpress.XtraGrid.GridControl()
         Me.GVBarcode = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -92,6 +92,7 @@ Partial Class FormProductionRecDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtPOType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,8 +123,8 @@ Partial Class FormProductionRecDet
         Me.GConListPurchase.SuspendLayout()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlListBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlListBarcode.SuspendLayout()
         CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -483,6 +484,7 @@ Partial Class FormProductionRecDet
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.BtnXlsBOF)
         Me.GroupControl1.Controls.Add(Me.BtnAttachment)
         Me.GroupControl1.Controls.Add(Me.BPrint)
         Me.GroupControl1.Controls.Add(Me.BCancel)
@@ -723,18 +725,6 @@ Partial Class FormProductionRecDet
         Me.ColQtyRec.VisibleIndex = 5
         Me.ColQtyRec.Width = 134
         '
-        'RepositoryItemSpinEdit1
-        '
-        Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemSpinEdit1.EditValueChangedDelay = 50
-        Me.RepositoryItemSpinEdit1.IsFloatValue = False
-        Me.RepositoryItemSpinEdit1.Mask.EditMask = "n0"
-        Me.RepositoryItemSpinEdit1.Mask.SaveLiteral = False
-        Me.RepositoryItemSpinEdit1.Mask.UseMaskAsDisplayFormat = True
-        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-469762049, -590869294, 5421010, 131072})
-        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
         'ColNote
         '
         Me.ColNote.Caption = "Note"
@@ -748,6 +738,18 @@ Partial Class FormProductionRecDet
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
         Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        '
+        'RepositoryItemSpinEdit1
+        '
+        Me.RepositoryItemSpinEdit1.AutoHeight = False
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit1.EditValueChangedDelay = 50
+        Me.RepositoryItemSpinEdit1.IsFloatValue = False
+        Me.RepositoryItemSpinEdit1.Mask.EditMask = "n0"
+        Me.RepositoryItemSpinEdit1.Mask.SaveLiteral = False
+        Me.RepositoryItemSpinEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-469762049, -590869294, 5421010, 131072})
+        Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
         'GroupControlListBarcode
         '
@@ -881,6 +883,19 @@ Partial Class FormProductionRecDet
         Me.BScan.TabIndex = 6
         Me.BScan.Text = "Start Scan"
         '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(470, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(115, 32)
+        Me.BtnXlsBOF.TabIndex = 16
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
+        '
         'FormProductionRecDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -931,8 +946,8 @@ Partial Class FormProductionRecDet
         Me.GConListPurchase.ResumeLayout(False)
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlListBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlListBarcode.ResumeLayout(False)
         CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1015,4 +1030,5 @@ Partial Class FormProductionRecDet
     Friend WithEvents BtnInfoSrs As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtPOType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
 End Class
