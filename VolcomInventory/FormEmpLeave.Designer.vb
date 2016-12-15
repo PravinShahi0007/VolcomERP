@@ -21,7 +21,17 @@ Partial Class FormEmpLeave
     Private Sub InitializeComponent()
         Me.GCLeave = New DevExpress.XtraGrid.GridControl()
         Me.GVLeave = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIDLeave = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotHours = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BViewOnLeave = New DevExpress.XtraEditors.SimpleButton()
         Me.BViewSum = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
@@ -49,14 +59,100 @@ Partial Class FormEmpLeave
         '
         'GVLeave
         '
+        Me.GVLeave.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDLeave, Me.GridColumn2, Me.GridColumn7, Me.GridColumn3, Me.GridColumn4, Me.GridColumn1, Me.GridColumn5, Me.GridColumnTotHours, Me.GridColumn6})
         Me.GVLeave.GridControl = Me.GCLeave
         Me.GVLeave.Name = "GVLeave"
         Me.GVLeave.OptionsBehavior.Editable = False
         Me.GVLeave.OptionsFind.AlwaysVisible = True
         Me.GVLeave.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnIDLeave
+        '
+        Me.GridColumnIDLeave.Caption = "ID Leave"
+        Me.GridColumnIDLeave.FieldName = "id_emp_leave"
+        Me.GridColumnIDLeave.Name = "GridColumnIDLeave"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Number"
+        Me.GridColumn2.FieldName = "emp_leave_number"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.Width = 90
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Date Created"
+        Me.GridColumn7.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn7.FieldName = "emp_leave_date"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 1
+        Me.GridColumn7.Width = 96
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Employee"
+        Me.GridColumn3.FieldName = "employee_name"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.Width = 160
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "NIK"
+        Me.GridColumn4.FieldName = "employee_code"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.Width = 88
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Leave From"
+        Me.GridColumn1.DisplayFormat.FormatString = "dd MMM yyyy H:mm:ss"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn1.FieldName = "min_date"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 4
+        Me.GridColumn1.Width = 77
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Until"
+        Me.GridColumn5.DisplayFormat.FormatString = "dd MMM yyyy H:mm:ss"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn5.FieldName = "max_date"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.Width = 66
+        '
+        'GridColumnTotHours
+        '
+        Me.GridColumnTotHours.Caption = "Total (hours)"
+        Me.GridColumnTotHours.FieldName = "hours_total"
+        Me.GridColumnTotHours.Name = "GridColumnTotHours"
+        Me.GridColumnTotHours.Visible = True
+        Me.GridColumnTotHours.VisibleIndex = 6
+        Me.GridColumnTotHours.Width = 73
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Status"
+        Me.GridColumn6.FieldName = "report_status"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 7
+        Me.GridColumn6.Width = 60
+        '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BViewOnLeave)
         Me.PanelControl1.Controls.Add(Me.BViewSum)
         Me.PanelControl1.Controls.Add(Me.DEUntil)
         Me.PanelControl1.Controls.Add(Me.Label2)
@@ -68,13 +164,21 @@ Partial Class FormEmpLeave
         Me.PanelControl1.Size = New System.Drawing.Size(728, 38)
         Me.PanelControl1.TabIndex = 2
         '
+        'BViewOnLeave
+        '
+        Me.BViewOnLeave.Location = New System.Drawing.Point(519, 6)
+        Me.BViewOnLeave.Name = "BViewOnLeave"
+        Me.BViewOnLeave.Size = New System.Drawing.Size(124, 25)
+        Me.BViewOnLeave.TabIndex = 13
+        Me.BViewOnLeave.Text = "view (leave proposed)"
+        '
         'BViewSum
         '
         Me.BViewSum.Location = New System.Drawing.Point(388, 6)
         Me.BViewSum.Name = "BViewSum"
-        Me.BViewSum.Size = New System.Drawing.Size(86, 25)
+        Me.BViewSum.Size = New System.Drawing.Size(125, 25)
         Me.BViewSum.TabIndex = 12
-        Me.BViewSum.Text = "view"
+        Me.BViewSum.Text = "view (date created)"
         '
         'DEUntil
         '
@@ -150,4 +254,14 @@ Partial Class FormEmpLeave
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label1 As Label
     Friend WithEvents BViewSum As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BViewOnLeave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnIDLeave As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotHours As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

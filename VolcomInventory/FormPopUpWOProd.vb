@@ -86,7 +86,7 @@
                 FormProdPRWODet.TECompTo.Text = get_company_x(get_id_company(GVProdWO.GetFocusedRowCellValue("id_comp_contact").ToString), "1")
                 FormProdPRWODet.MECompAddress.Text = get_company_x(get_id_company(GVProdWO.GetFocusedRowCellValue("id_comp_contact").ToString), "3")
                 FormProdPRWODet.TEPONumber.Text = GVProdWO.GetFocusedRowCellValue("prod_order_number").ToString
-                FormProdPRWODet.TEDueDate.Text = GVProdWO.GetFocusedRowCellValue("prod_order_wo_top").ToString
+                FormProdPRWODet.DEDueDate.EditValue = GVProdWO.GetFocusedRowCellValue("prod_order_wo_top")
                 FormProdPRWODet.TEKurs.EditValue = GVProdWO.GetFocusedRowCellValue("prod_order_wo_kurs")
 
                 FormProdPRWODet.LECurrency.EditValue = Nothing

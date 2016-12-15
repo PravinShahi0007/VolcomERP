@@ -16,6 +16,7 @@ Module Common
     Public id_departement_user As String
     Public username_user As String
     Public name_user As String
+    Public code_user As String
     Public product_image_path As String = ""
     Public emp_image_path As String = ""
     Public is_change_pass_user As String = ""
@@ -740,7 +741,61 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
+    '============= Employee code ===========================
+    Function get_opt_emp_field(ByVal field As String)
+        'opt as var choose field
+        Dim ret_var, query As String
+        ret_var = ""
 
+        Try
+            query = "SELECT " & field & " FROM tb_opt_emp LIMIT 1"
+            ret_var = execute_query(query, 0, True, "", "", "", "")
+        Catch ex As Exception
+            ret_var = ""
+        End Try
+
+        Return ret_var
+    End Function
+    Function header_number_emp(ByVal opt As String)
+        'opt
+        '1 = leave
+        '2 = DP
+        '3 = Change Schedule
+
+        Dim header_number_x As String
+        header_number_x = ""
+
+
+        If opt = "1" Then
+            header_number_x = combine_header_number(get_opt_emp_field("emp_leave_code_head"), Integer.Parse(get_opt_emp_field("emp_leave_code_inc")), Integer.Parse(get_opt_emp_field("emp_leave_code_digit")))
+        ElseIf opt = "2" Then
+            header_number_x = combine_header_number(get_opt_emp_field("emp_dp_code_head"), Integer.Parse(get_opt_emp_field("emp_dp_code_inc")), Integer.Parse(get_opt_emp_field("emp_dp_code_digit")))
+        ElseIf opt = "3" Then
+            header_number_x = combine_header_number(get_opt_emp_field("emp_chsch_code_head"), Integer.Parse(get_opt_emp_field("emp_chsch_code_inc")), Integer.Parse(get_opt_emp_field("emp_chsch_code_digit")))
+        End If
+
+        Return header_number_x
+    End Function
+    Sub increase_inc_emp(ByVal opt As String)
+        'opt
+        '1 = leave
+        '2 = DP
+        '3 = Chagne Schedule
+
+        Dim query As String
+        query = ""
+
+        If opt = "1" Then
+            query = "UPDATE tb_opt_emp SET emp_leave_code_inc=(tb_opt_emp.emp_leave_code_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "2" Then
+            query = "UPDATE tb_opt_emp SET emp_dp_code_inc=(tb_opt_emp.emp_dp_code_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "3" Then
+            query = "UPDATE tb_opt_emp SET emp_chsch_code_inc=(tb_opt_emp.emp_chsch_code_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        End If
+    End Sub
     '============= end of opt code head ====================
     Sub apply_skin()
         DevExpress.Skins.SkinManager.EnableFormSkins()
@@ -2325,28 +2380,36 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         End If
 
-
-        Dim query_cek As String = "SELECT HOUR(a.lead_time) AS hourx,MINUTE(a.lead_time) AS minutex,SECOND(a.lead_time) AS secondx,a.lead_time,a.level,b.id_mark_asg,b.report_mark_type,b.id_report_status,a.id_user "
+        Dim query_cek As String = "SELECT HOUR(a.lead_time) AS hourx,MINUTE(a.lead_time) AS minutex,SECOND(a.lead_time) AS secondx,a.lead_time,a.level,b.id_mark_asg,b.report_mark_type,b.id_report_status,a.id_user,a.is_head_dept "
         query_cek += "FROM tb_mark_asg_user a INNER JOIN tb_mark_asg b ON a.id_mark_asg=b.id_mark_asg "
         query_cek += "WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,a.level"
         Dim data As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
 
         For i As Integer = 0 To (data.Rows.Count - 1)
+            Dim id_user_mark As String = "-1"
+            If data.Rows(i)("is_head_dept").ToString = "1" Then 'search head dept
+                Dim query_dept As String = "SELECT dept.id_user_head FROM tb_m_departement dept
+                                                WHERE dept.id_departement='" & id_departement_user & "'"
+                id_user_mark = execute_query(query_dept, 0, True, "", "", "", "")
+            Else
+                id_user_mark = data.Rows(i)("id_user").ToString
+            End If
+            '
             If data.Rows(i)("id_report_status").ToString() = data.Rows(0)("id_report_status").ToString() Then
                 'set lead time
                 If data.Rows(i)("level").ToString() = "1" Then
                     'yang bos paling atas kasi dulu
-                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & data.Rows(i)("id_user").ToString() & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','1',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
+                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,is_use,report_mark_start_datetime,report_mark_lead_time,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','1',NOW(),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
                 Else
                     'baru selanjutnya
-                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,report_mark_start_datetime,report_mark_lead_time,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & data.Rows(i)("id_user").ToString() & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "',"
+                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,report_mark_start_datetime,report_mark_lead_time,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "',"
                     query += "(SELECT ADDTIME(MAX(z.report_mark_start_datetime),z.report_mark_lead_time) AS report_mark_start_datetime_end FROM tb_report_mark z WHERE z.id_mark_asg='" & data.Rows(i)("id_mark_asg").ToString() & "' AND z.id_report='" & id_report & "' AND z.level=" & data.Rows(i)("level").ToString() & "-1),'" & data.Rows(i)("hourx").ToString() & ":" & data.Rows(i)("minutex").ToString() & ":" & data.Rows(i)("secondx").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
                 End If
             Else
                 If data.Rows(i)("level").ToString() = "1" Then
-                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,is_use,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & data.Rows(i)("id_user").ToString() & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','1','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
+                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,is_use,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','1','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
                 Else
-                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & data.Rows(i)("id_user").ToString() & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
+                    query = "INSERT INTO tb_report_mark(info,id_mark_asg,id_report_status,report_mark_type,id_report,id_user,id_mark,report_mark_datetime,level,report_number,report_date) VALUES('" & report_detail.info_col & "','" & data.Rows(i)("id_mark_asg").ToString() & "','" & data.Rows(i)("id_report_status").ToString() & "','" & report_mark_type & "','" & id_report & "','" & id_user_mark & "','1',NOW(),'" & data.Rows(i)("level").ToString() & "','" & report_detail.report_number & "','" & report_detail.report_date.ToString("yyyy-MM-dd") & "')"
                 End If
             End If
             execute_non_query(query, True, "", "", "", "")
@@ -2580,6 +2643,191 @@ Module Common
         End If
     End Sub
     Sub load_mark_horz(ByVal report_mark_type As String, ByVal id_report As String, ByVal opt As String, ByVal include_time As String, ByVal xrtable As DevExpress.XtraReports.UI.XRTable)
+        'opt
+        'X = include received by <-- old --> else than 1 -> name
+        '2 = not include
+        'include time
+        '1 = true
+        '2 = false
+
+        xrtable.Borders = DevExpress.XtraPrinting.BorderSide.None
+        xrtable.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        'XrTableCell1.Visible = False
+
+        Dim query As String = "SELECT b.report_status_display,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,role.role "
+        query += "FROM tb_report_mark a "
+        query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status "
+        query += "INNER JOIN tb_m_user c ON a.id_user=c.id_user "
+        query += "INNER JOIN tb_m_employee d ON d.id_employee=c.id_employee "
+        query += "INNER JOIN tb_m_role role ON role.id_role=c.id_role "
+        query += "INNER JOIN tb_lookup_mark e ON e.id_mark=a.id_mark "
+        query += "WHERE a.report_mark_type='" & report_mark_type & "' AND a.id_report='" & id_report & "' AND a.is_use='1' AND a.id_mark='2' "
+        query += "ORDER BY a.id_report_status,a.id_mark_asg"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        Dim cellsInRow As Integer = data.Rows.Count
+        Dim rowHeight As Single = 25.0F
+
+        'header
+        Dim row_head As New XRTableRow()
+        row_head.HeightF = rowHeight
+        For j As Integer = 0 To cellsInRow - 1
+            Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
+
+            'position
+            'cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+            If j < cellsInRow - 1 Then
+                If data.Rows(j)("report_status").ToString = data.Rows(j + 1)("report_status").ToString Then
+                    cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+                Else
+                    cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+                End If
+            Else
+                cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+            End If
+
+            'merge or not
+            If j > 0 Then
+                If data.Rows(j)("report_status").ToString = data.Rows(j - 1)("report_status").ToString Then
+                    cell.Text = ""
+                Else
+                    cell.Text = data.Rows(j)("report_status_display").ToString
+                End If
+            Else
+                cell.Text = data.Rows(j)("report_status_display").ToString
+            End If
+
+            row_head.Cells.Add(cell)
+        Next j
+
+        Dim query_ceo As String = "SELECT rmt.is_need_ceo_appr,rmt.id_user_ceo,emp.employee_name FROM tb_lookup_report_mark_type rmt"
+        query_ceo += " Left JOIN tb_m_user us ON us.id_user=rmt.id_user_ceo"
+        query_ceo += " LEFT JOIN tb_m_employee emp On emp.id_employee=us.id_employee"
+        query_ceo += " WHERE rmt.report_mark_type='" + report_mark_type + "'"
+        Dim data_ceo As DataTable = execute_query(query_ceo, -1, True, "", "", "", "")
+
+        'Approved by CEO
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
+            cell.Text = ""
+            row_head.Cells.Add(cell)
+        End If
+
+        'opt
+        If Not opt = "2" Then
+            Dim cell As New XRTableCell()
+            cell.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size + 1, FontStyle.Bold)
+            cell.Text = get_report_mark_status("7", "1")
+            row_head.Cells.Add(cell)
+        End If
+        xrtable.Rows.Add(row_head)
+
+        'insert row blank 3 times
+        For i As Integer = 0 To 1
+            Dim row_blank As New XRTableRow()
+            row_blank.HeightF = 10.0F
+            For j As Integer = 0 To cellsInRow - 1
+                Dim cell_blank As New XRTableCell()
+                cell_blank.Text = " "
+                row_blank.Cells.Add(cell_blank)
+            Next j
+            If Not opt = "2" Then
+                Dim cell_blank As New XRTableCell()
+                cell_blank.Text = " "
+                row_blank.Cells.Add(cell_blank)
+            End If
+            xrtable.Rows.Add(row_blank)
+        Next
+        '
+
+        'who name
+        Dim row_name As New XRTableRow()
+        row_name.HeightF = rowHeight
+
+        For j As Integer = 0 To cellsInRow - 1
+            Dim cell As New XRTableCell()
+
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = data.Rows(j)("employee_name").ToString
+
+            row_name.Cells.Add(cell)
+        Next j
+
+        'Approved by CEO
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = data_ceo.Rows(0)("employee_name").ToString
+            row_name.Cells.Add(cell)
+        End If
+
+        'opt
+        If Not opt = "2" Then
+            Dim cell As New XRTableCell()
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = opt.ToString
+            row_name.Cells.Add(cell)
+        End If
+
+        xrtable.Rows.Add(row_name)
+
+        'role
+        Dim row_role As New XRTableRow()
+        row_role.HeightF = rowHeight
+
+        For j As Integer = 0 To cellsInRow - 1
+            Dim cell As New XRTableCell()
+
+            cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size, FontStyle.Bold)
+            cell.Text = data.Rows(j)("role").ToString
+
+            row_role.Cells.Add(cell)
+        Next j
+        'Approved by CEO
+        If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+            Dim cell As New XRTableCell()
+            cell.Text = ""
+            row_role.Cells.Add(cell)
+        End If
+        If Not opt = "2" Then 'opt
+            Dim cell As New XRTableCell()
+            cell.Text = ""
+            row_role.Cells.Add(cell)
+        End If
+        xrtable.Rows.Add(row_role)
+
+        If include_time = "1" Then 'time included
+            Dim row_time As New XRTableRow()
+            row_time.HeightF = rowHeight
+
+            For j As Integer = 0 To cellsInRow - 1
+                Dim cell As New XRTableCell()
+
+                cell.Font = New Font(xrtable.Font.FontFamily, xrtable.Font.Size - 1, FontStyle.Italic)
+                cell.Text = data.Rows(j)("date_time").ToString
+
+                row_time.Cells.Add(cell)
+            Next j
+            'Approved by CEO
+            If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
+                Dim cell As New XRTableCell()
+                cell.Text = ""
+                row_time.Cells.Add(cell)
+            End If
+            'opt
+            If Not opt = "2" Then
+                Dim cell As New XRTableCell()
+                cell.Text = ""
+                row_time.Cells.Add(cell)
+            End If
+            xrtable.Rows.Add(row_time)
+        End If
+    End Sub
+    Sub load_mark_horz_side(ByVal report_mark_type As String, ByVal id_report As String, ByVal opt As String, ByVal include_time As String, ByVal xrtable As DevExpress.XtraReports.UI.XRTable)
         'opt
         'X = include received by <-- old --> else than 1 -> name
         '2 = not include

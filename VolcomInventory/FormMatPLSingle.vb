@@ -266,7 +266,7 @@
         Next
 
         For i As Integer = 0 To GVDrawer.RowCount - 1
-            If GVDrawer.GetRowCellValue(i, "qty_all_mat") < GVDrawer.GetRowCellValue(i, "pl_mrs_det_qty") Then
+            If Decimal.Parse(GVDrawer.GetRowCellValue(i, "qty_all_mat").ToString) < Decimal.Parse(GVDrawer.GetRowCellValue(i, "pl_mrs_det_qty").ToString) Then
                 is_over_qty = True
                 Exit For
             End If
@@ -592,7 +592,7 @@
             Dim current_uom As String = GVDrawer.GetFocusedRowCellDisplayText("uom").ToString
             If qty_rec > qty_limit Then
                 DevExpress.XtraEditors.XtraMessageBox.Show("Material : '" + current_name + "', cannot exceed " + qty_limit.ToString + " " + current_uom + " ! ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GVDrawer.SetFocusedRowCellValue("pl_mrs_det_qty", "0")
+                GVDrawer.SetFocusedRowCellValue("pl_mrs_det_qty", 0.0)
             End If
         Catch ex As Exception
 
@@ -613,12 +613,12 @@
         Next
         GVDetail.FocusedRowHandle = find_row(GVDetail, "id_prod_order_mrs_det", id_prod_order_mrs_det)
         If Not is_sum_req Then
-            GVDetail.SetFocusedRowCellValue("qty_real_mat", qty_sum.ToString("N2"))
+            GVDetail.SetFocusedRowCellValue("qty_real_mat", qty_sum)
         Else
             Dim qty_requisition As Decimal = Decimal.Parse(GVDetail.GetFocusedRowCellDisplayText("prod_order_mrs_det_qty").ToString)
             Dim tot As Decimal = qty_requisition + qty_sum
-            GVDetail.SetFocusedRowCellValue("qty_real_mat", qty_sum.ToString("N2"))
-            GVDetail.SetFocusedRowCellValue("prod_order_mrs_det_qty", tot.ToString("N2"))
+            GVDetail.SetFocusedRowCellValue("qty_real_mat", qty_sum)
+            GVDetail.SetFocusedRowCellValue("prod_order_mrs_det_qty", tot)
         End If
     End Sub
 
@@ -640,7 +640,7 @@
             Dim uom As String = GVDrawer.GetFocusedRowCellDisplayText("uom").ToString
             If qty_rec > qty_requisition Or qty_rec > qty_available Then
                 DevExpress.XtraEditors.XtraMessageBox.Show("Error : " + vbNewLine + "- Qty cannot exceed qty requisition " + vbNewLine + "- Qty cannot exceed qty available ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                GVDrawer.SetFocusedRowCellValue("pl_mrs_det_qty", "0")
+                GVDrawer.SetFocusedRowCellValue("pl_mrs_det_qty", 0.0)
             End If
         Catch ex As Exception
 

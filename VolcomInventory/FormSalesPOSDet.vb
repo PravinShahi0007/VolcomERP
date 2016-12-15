@@ -56,7 +56,6 @@
             '
             BtnAttachment.Enabled = True
             BMark.Enabled = True
-            '
 
             'query view based on edit id's
             Dim query As String = ""

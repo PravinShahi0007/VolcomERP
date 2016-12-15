@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormEmpLeavePick
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormEmpLeavePick
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpLeavePick))
@@ -32,9 +32,11 @@ Partial Class FormEmpLeavePick
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIDScheduleType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCDate = New DevExpress.XtraEditors.PanelControl()
+        Me.BPickAll = New DevExpress.XtraEditors.SimpleButton()
         Me.BViewSchedule = New DevExpress.XtraEditors.SimpleButton()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
@@ -46,13 +48,13 @@ Partial Class FormEmpLeavePick
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.CEFullDay = New DevExpress.XtraEditors.CheckEdit()
         Me.DEUntilLeave = New DevExpress.XtraEditors.DateEdit()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Luntil = New System.Windows.Forms.Label()
         Me.DEStartLeave = New DevExpress.XtraEditors.DateEdit()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.LPropose = New System.Windows.Forms.Label()
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        CType(Me.PCDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCDate.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,15 +75,16 @@ Partial Class FormEmpLeavePick
         Me.GCSchedule.Location = New System.Drawing.Point(0, 39)
         Me.GCSchedule.MainView = Me.GVSchedule
         Me.GCSchedule.Name = "GCSchedule"
-        Me.GCSchedule.Size = New System.Drawing.Size(701, 211)
+        Me.GCSchedule.Size = New System.Drawing.Size(697, 211)
         Me.GCSchedule.TabIndex = 4
         Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
         '
         'GVSchedule
         '
-        Me.GVSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10})
+        Me.GVSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumn1, Me.GridColumn2, Me.GridColumn4, Me.GridColumn3, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumnIDScheduleType, Me.GridColumn9, Me.GridColumn10})
         Me.GVSchedule.GridControl = Me.GCSchedule
         Me.GVSchedule.Name = "GVSchedule"
+        Me.GVSchedule.OptionsBehavior.Editable = False
         Me.GVSchedule.OptionsBehavior.ReadOnly = True
         Me.GVSchedule.OptionsView.ColumnAutoWidth = False
         Me.GVSchedule.OptionsView.ShowGroupPanel = False
@@ -169,6 +172,11 @@ Partial Class FormEmpLeavePick
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 7
         '
+        'GridColumnIDScheduleType
+        '
+        Me.GridColumnIDScheduleType.Caption = "ID Schedule Type"
+        Me.GridColumnIDScheduleType.Name = "GridColumnIDScheduleType"
+        '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Weekday"
@@ -187,18 +195,27 @@ Partial Class FormEmpLeavePick
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 9
         '
-        'PanelControl3
+        'PCDate
         '
-        Me.PanelControl3.Controls.Add(Me.BViewSchedule)
-        Me.PanelControl3.Controls.Add(Me.Label6)
-        Me.PanelControl3.Controls.Add(Me.DEUntil)
-        Me.PanelControl3.Controls.Add(Me.Label5)
-        Me.PanelControl3.Controls.Add(Me.DEStart)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(701, 39)
-        Me.PanelControl3.TabIndex = 5
+        Me.PCDate.Controls.Add(Me.BPickAll)
+        Me.PCDate.Controls.Add(Me.BViewSchedule)
+        Me.PCDate.Controls.Add(Me.Label6)
+        Me.PCDate.Controls.Add(Me.DEUntil)
+        Me.PCDate.Controls.Add(Me.Label5)
+        Me.PCDate.Controls.Add(Me.DEStart)
+        Me.PCDate.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCDate.Location = New System.Drawing.Point(0, 0)
+        Me.PCDate.Name = "PCDate"
+        Me.PCDate.Size = New System.Drawing.Size(697, 39)
+        Me.PCDate.TabIndex = 5
+        '
+        'BPickAll
+        '
+        Me.BPickAll.Location = New System.Drawing.Point(434, 7)
+        Me.BPickAll.Name = "BPickAll"
+        Me.BPickAll.Size = New System.Drawing.Size(59, 23)
+        Me.BPickAll.TabIndex = 13
+        Me.BPickAll.Text = "Pick All"
         '
         'BViewSchedule
         '
@@ -206,7 +223,7 @@ Partial Class FormEmpLeavePick
         Me.BViewSchedule.Name = "BViewSchedule"
         Me.BViewSchedule.Size = New System.Drawing.Size(59, 23)
         Me.BViewSchedule.TabIndex = 12
-        Me.BViewSchedule.Text = "view"
+        Me.BViewSchedule.Text = "View"
         '
         'Label6
         '
@@ -226,6 +243,7 @@ Partial Class FormEmpLeavePick
         Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Properties.Mask.EditMask = "dd-MM-yyyy"
         Me.DEUntil.Size = New System.Drawing.Size(127, 20)
         Me.DEUntil.TabIndex = 10
         '
@@ -247,6 +265,7 @@ Partial Class FormEmpLeavePick
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Properties.Mask.EditMask = "dd-MM-yyyy"
         Me.DEStart.Size = New System.Drawing.Size(127, 20)
         Me.DEStart.TabIndex = 8
         '
@@ -255,7 +274,7 @@ Partial Class FormEmpLeavePick
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(541, 2)
+        Me.BCancel.Location = New System.Drawing.Point(543, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 37)
         Me.BCancel.TabIndex = 14
@@ -291,25 +310,25 @@ Partial Class FormEmpLeavePick
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAdd.ImageIndex = 19
         Me.BAdd.ImageList = Me.LargeImageCollection
-        Me.BAdd.Location = New System.Drawing.Point(614, 2)
+        Me.BAdd.Location = New System.Drawing.Point(616, 2)
         Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(85, 37)
+        Me.BAdd.Size = New System.Drawing.Size(79, 37)
         Me.BAdd.TabIndex = 13
         Me.BAdd.Text = "Add"
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BCancel)
         Me.PanelControl1.Controls.Add(Me.CEFullDay)
         Me.PanelControl1.Controls.Add(Me.DEUntilLeave)
-        Me.PanelControl1.Controls.Add(Me.Label2)
+        Me.PanelControl1.Controls.Add(Me.Luntil)
         Me.PanelControl1.Controls.Add(Me.DEStartLeave)
-        Me.PanelControl1.Controls.Add(Me.BCancel)
-        Me.PanelControl1.Controls.Add(Me.Label1)
+        Me.PanelControl1.Controls.Add(Me.LPropose)
         Me.PanelControl1.Controls.Add(Me.BAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 250)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(701, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(697, 41)
         Me.PanelControl1.TabIndex = 6
         '
         'CEFullDay
@@ -317,63 +336,62 @@ Partial Class FormEmpLeavePick
         Me.CEFullDay.Location = New System.Drawing.Point(106, 11)
         Me.CEFullDay.Name = "CEFullDay"
         Me.CEFullDay.Properties.Caption = "Full day"
-        Me.CEFullDay.Size = New System.Drawing.Size(75, 19)
+        Me.CEFullDay.Size = New System.Drawing.Size(67, 19)
         Me.CEFullDay.TabIndex = 18
         '
         'DEUntilLeave
         '
         Me.DEUntilLeave.EditValue = Nothing
-        Me.DEUntilLeave.Location = New System.Drawing.Point(364, 9)
+        Me.DEUntilLeave.Location = New System.Drawing.Point(382, 9)
         Me.DEUntilLeave.Name = "DEUntilLeave"
         Me.DEUntilLeave.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilLeave.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilLeave.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilLeave.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
         Me.DEUntilLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilLeave.Properties.Mask.EditMask = "g"
-        Me.DEUntilLeave.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEUntilLeave.Size = New System.Drawing.Size(127, 20)
+        Me.DEUntilLeave.Properties.Mask.EditMask = "dd-MM-yyyy/H"
+        Me.DEUntilLeave.Size = New System.Drawing.Size(153, 20)
         Me.DEUntilLeave.TabIndex = 17
         '
-        'Label2
+        'Luntil
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(320, 12)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(38, 13)
-        Me.Label2.TabIndex = 16
-        Me.Label2.Text = "Until : "
+        Me.Luntil.AutoSize = True
+        Me.Luntil.Location = New System.Drawing.Point(338, 12)
+        Me.Luntil.Name = "Luntil"
+        Me.Luntil.Size = New System.Drawing.Size(38, 13)
+        Me.Luntil.TabIndex = 16
+        Me.Luntil.Text = "Until : "
         '
         'DEStartLeave
         '
         Me.DEStartLeave.EditValue = Nothing
-        Me.DEStartLeave.Location = New System.Drawing.Point(187, 9)
+        Me.DEStartLeave.Location = New System.Drawing.Point(179, 9)
         Me.DEStartLeave.Name = "DEStartLeave"
         Me.DEStartLeave.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartLeave.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
         Me.DEStartLeave.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartLeave.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStartLeave.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
         Me.DEStartLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStartLeave.Properties.Mask.EditMask = "g"
-        Me.DEStartLeave.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.DEStartLeave.Size = New System.Drawing.Size(127, 20)
+        Me.DEStartLeave.Properties.Mask.EditMask = "dd-MM-yyyy/H"
+        Me.DEStartLeave.Size = New System.Drawing.Size(153, 20)
         Me.DEStartLeave.TabIndex = 15
         '
-        'Label1
+        'LPropose
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 12)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(88, 13)
-        Me.Label1.TabIndex = 11
-        Me.Label1.Text = "Propose Leave : "
+        Me.LPropose.AutoSize = True
+        Me.LPropose.Location = New System.Drawing.Point(12, 12)
+        Me.LPropose.Name = "LPropose"
+        Me.LPropose.Size = New System.Drawing.Size(88, 13)
+        Me.LPropose.TabIndex = 11
+        Me.LPropose.Text = "Propose Leave : "
         '
         'FormEmpLeavePick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(701, 291)
+        Me.ClientSize = New System.Drawing.Size(697, 291)
         Me.Controls.Add(Me.GCSchedule)
         Me.Controls.Add(Me.PanelControl1)
-        Me.Controls.Add(Me.PanelControl3)
+        Me.Controls.Add(Me.PCDate)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -382,9 +400,9 @@ Partial Class FormEmpLeavePick
         Me.Text = "Pick Schedule"
         CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
+        CType(Me.PCDate, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCDate.ResumeLayout(False)
+        Me.PCDate.PerformLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -413,7 +431,7 @@ Partial Class FormEmpLeavePick
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCDate As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BViewSchedule As DevExpress.XtraEditors.SimpleButton
@@ -424,10 +442,12 @@ Partial Class FormEmpLeavePick
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents DEUntilLeave As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents Label2 As Label
+    Friend WithEvents Luntil As Label
     Friend WithEvents DEStartLeave As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents Label1 As Label
+    Friend WithEvents LPropose As Label
     Friend WithEvents CEFullDay As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BPickAll As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnIDScheduleType As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -7,8 +7,8 @@
     Private Sub FormViewPRProdWO_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         view_report_status(LEReportStatus)
 
-        Dim query As String = "SELECT z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,po.id_prod_order,po.prod_order_number,IFNULL(z.id_prod_order_rec,0) as id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,DATE_FORMAT(z.pr_prod_order_date,'%Y-%m-%d') as pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,DATE_FORMAT(rec.delivery_order_date,'%Y-%m-%d') AS delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,DATE_FORMAT(rec.prod_order_rec_date,'%Y-%m-%d') AS prod_order_rec_date, d.comp_name AS comp_to, "
-        query += "DATE_FORMAT(DATE_ADD(wo.prod_order_wo_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY),'%Y-%m-%d') AS prod_order_wo_top "
+        Dim query As String = "SELECT z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,po.id_prod_order,po.prod_order_number,IFNULL(z.id_prod_order_rec,0) as id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,DATE_FORMAT(rec.delivery_order_date,'%Y-%m-%d') AS delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,DATE_FORMAT(rec.prod_order_rec_date,'%Y-%m-%d') AS prod_order_rec_date, d.comp_name AS comp_to, "
+        query += "DATE_FORMAT(DATE_ADD(wo.prod_order_wo_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY),'%Y-%m-%d') AS prod_order_wo_top,z.pr_prod_order_due_date "
         query += "FROM tb_pr_prod_order z "
         query += "INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo = z.id_prod_order_wo "
         query += "INNER JOIN tb_prod_order po ON po.id_prod_order = wo.id_prod_order "
@@ -19,12 +19,12 @@
         query += "INNER JOIN tb_m_comp d ON d.id_comp=c.id_comp "
         query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status=z.id_report_status "
         query += "WHERE z.id_pr_prod_order ='" & id_pr & "' "
-
+        '
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
+        '
         TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
         TEPRNumber.Text = data.Rows(0)("pr_prod_order_number").ToString
-        TEPRDate.Text = view_date_from(data.Rows(0)("pr_prod_order_date").ToString, 0)
+        DEPRDate.EditValue = data.Rows(0)("pr_prod_order_date")
         MENote.Text = data.Rows(0)("pr_prod_order_note").ToString
         '
         LEReportStatus.EditValue = Nothing
@@ -57,6 +57,8 @@
         TEAju.Text = data.Rows(0)("pr_prod_order_aju").ToString
 
         calculate()
+
+        DEDueDate.EditValue = data.Rows(0)("pr_prod_order_due_date")
 
         If Not Decimal.Parse(data.Rows(0)("pr_prod_order_dp").ToString) <= 0 And Not Decimal.Parse(TEGrossTot.EditValue) <= 0 Then
             TEDP.EditValue = ((Decimal.Parse(data.Rows(0)("pr_prod_order_dp").ToString) / Decimal.Parse(TEGrossTot.EditValue)) * 100).ToString("0")
@@ -107,7 +109,7 @@
         TECompTo.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact").ToString), "1")
         MECompAddress.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact").ToString), "3")
 
-        TEDueDate.Text = view_date_from(data.Rows(0)("prod_order_wo_datex").ToString, (Integer.Parse(data.Rows(0)("prod_order_wo_lead_time").ToString) + Integer.Parse(data.Rows(0)("prod_order_wo_top").ToString)))
+        'TEDueDate.Text = view_date_from(data.Rows(0)("prod_order_wo_datex").ToString, (Integer.Parse(data.Rows(0)("prod_order_wo_lead_time").ToString) + Integer.Parse(data.Rows(0)("prod_order_wo_top").ToString)))
         TEVat.EditValue = data.Rows(0)("prod_order_wo_vat")
     End Sub
 

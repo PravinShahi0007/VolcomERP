@@ -100,6 +100,7 @@
     <Reference Include="DevExpress.BonusSkins.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Mvvm.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Office.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -211,9 +212,11 @@
     <Compile Include="ClassSampleOrdered.vb" />
     <Compile Include="ClassSamplePLtoWH.vb" />
     <Compile Include="ClassSampleReturnPL.vb" />
+    <Compile Include="ClassSendEmail.vb" />
     <Compile Include="ClassSendingMail.vb" />
     <Compile Include="ClassShowPopUp.vb" />
     <Compile Include="ClassStock.vb" />
+    <Compile Include="ClassUser.vb" />
     <Compile Include="FindPanel.vb">
       <SubType>Component</SubType>
     </Compile>
@@ -493,6 +496,30 @@
     <Compile Include="FormEmpCalendar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpChSchedule.Designer.vb">
+      <DependentUpon>FormEmpChSchedule.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpChSchedule.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpChScheduleDet.Designer.vb">
+      <DependentUpon>FormEmpChScheduleDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpChScheduleDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpDP.Designer.vb">
+      <DependentUpon>FormEmpDP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpDP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpDPDet.Designer.vb">
+      <DependentUpon>FormEmpDPDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpDPDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpEmail.Designer.vb">
       <DependentUpon>FormEmpEmail.vb</DependentUpon>
     </Compile>
@@ -571,6 +598,12 @@
     <Compile Include="FormEmpLeavePick.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpLeaveStock.Designer.vb">
+      <DependentUpon>FormEmpLeaveStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpLeaveStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpSchedule.Designer.vb">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
     </Compile>
@@ -581,6 +614,12 @@
       <DependentUpon>FormEmpScheduleBulkSet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpScheduleBulkSet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpScheduleKet.Designer.vb">
+      <DependentUpon>FormEmpScheduleKet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpScheduleKet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpScheduleTable.Designer.vb">
@@ -983,6 +1022,12 @@
       <DependentUpon>FormPopUpSalesDel.vb</DependentUpon>
     </Compile>
     <Compile Include="FormPopUpSalesDel.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionCOPDet.Designer.vb">
+      <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionCOPDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionWOList.designer.vb">
@@ -3817,10 +3862,28 @@
     <Compile Include="FormMasterCompany.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportEmpAttn.Designer.vb">
+      <DependentUpon>ReportEmpAttn.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpAttn.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpAttnInd.Designer.vb">
       <DependentUpon>ReportEmpAttnInd.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportEmpAttnInd.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpLeave.Designer.vb">
+      <DependentUpon>ReportEmpLeave.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpLeave.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpLeaveStock.Designer.vb">
+      <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpLeaveStock.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportFGAdjIn.Designer.vb">
@@ -4628,6 +4691,18 @@
     <EmbeddedResource Include="FormEmpCalendar.resx">
       <DependentUpon>FormEmpCalendar.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpChSchedule.resx">
+      <DependentUpon>FormEmpChSchedule.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpChScheduleDet.resx">
+      <DependentUpon>FormEmpChScheduleDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpDP.resx">
+      <DependentUpon>FormEmpDP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpDPDet.resx">
+      <DependentUpon>FormEmpDPDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpEmail.resx">
       <DependentUpon>FormEmpEmail.vb</DependentUpon>
     </EmbeddedResource>
@@ -4664,11 +4739,17 @@
     <EmbeddedResource Include="FormEmpLeavePick.resx">
       <DependentUpon>FormEmpLeavePick.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpLeaveStock.resx">
+      <DependentUpon>FormEmpLeaveStock.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpSchedule.resx">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpScheduleBulkSet.resx">
       <DependentUpon>FormEmpScheduleBulkSet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpScheduleKet.resx">
+      <DependentUpon>FormEmpScheduleKet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpScheduleTable.resx">
       <DependentUpon>FormEmpScheduleTable.vb</DependentUpon>
@@ -4891,6 +4972,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpSalesDel.resx">
       <DependentUpon>FormPopUpSalesDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionCOPDet.resx">
+      <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
@@ -6729,8 +6813,17 @@
       <DependentUpon>FormMasterCompany.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpAttn.resx">
+      <DependentUpon>ReportEmpAttn.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpAttnInd.resx">
       <DependentUpon>ReportEmpAttnInd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpLeave.resx">
+      <DependentUpon>ReportEmpLeave.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpLeaveStock.resx">
+      <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGAdjIn.resx">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>

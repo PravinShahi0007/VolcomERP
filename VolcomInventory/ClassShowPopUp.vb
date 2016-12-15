@@ -359,6 +359,23 @@
             'repair return rec FG
             FormViewFGRepairReturnRec.id_fg_repair_return_rec = id_report
             FormViewFGRepairReturnRec.ShowDialog()
+        ElseIf report_mark_type = "95" Then
+            'propose leave
+            FormEmpLeaveDet.id_emp_leave = id_report
+            FormEmpLeaveDet.report_mark_type = "95"
+            FormEmpLeaveDet.is_view = "1"
+            FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "96" Then
+            'propose leave need management approval
+            FormEmpLeaveDet.id_emp_leave = id_report
+            FormEmpLeaveDet.report_mark_type = "96"
+            FormEmpLeaveDet.is_view = "1"
+            FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "97" Then
+            'DP propose
+            FormEmpDPDet.id_emp_dp = id_report
+            FormEmpDPDet.is_view = "1"
+            FormEmpDPDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -871,6 +888,24 @@
             field_id = "id_fg_repair_return_rec"
             field_number = "fg_repair_return_rec_number"
             field_date = "fg_repair_return_rec_date"
+        ElseIf report_mark_type = "95" Then
+            'Propose leave
+            table_name = "tb_emp_leave"
+            field_id = "id_emp_leave"
+            field_number = "emp_leave_number"
+            field_date = "emp_leave_date"
+        ElseIf report_mark_type = "96" Then
+            'Propose leave need management approval
+            table_name = "tb_emp_leave"
+            field_id = "id_emp_leave"
+            field_number = "emp_leave_number"
+            field_date = "emp_leave_date"
+        ElseIf report_mark_type = "97" Then
+            'DP
+            table_name = "tb_emp_dp"
+            field_id = "id_dp"
+            field_number = "dp_number"
+            field_date = "dp_date_created"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

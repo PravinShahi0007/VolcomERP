@@ -19,6 +19,8 @@
         viewForm()
         viewMenu()
         viewRole()
+        DEFrom.EditValue = getTimeDB()
+        DEUntil.EditValue = getTimeDB()
     End Sub
     'Form Closed
     Private Sub FormAccess_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
@@ -229,5 +231,22 @@
         viewFormControl()
         checkFormAccess(Name)
         button_main(bnew_active01, bedit_active01, bdel_active01)
+    End Sub
+
+    Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim log As New ClassUser
+        Dim query As String = log.queryMain("AND (DATE(l.`time`)>='" + date_from_selected + "' AND DATE(l.`time`)<='" + date_until_selected + "')", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCLog.DataSource = data
     End Sub
 End Class

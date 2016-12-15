@@ -30,17 +30,19 @@ Partial Class FormMasterDepartementSingle
         Me.TEDepartement = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SLEHeadDept = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEViewEmp = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdUser = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNIK = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPDepartement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDepartementCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEHeadDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEViewEmp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPDepartement
@@ -123,17 +125,39 @@ Partial Class FormMasterDepartementSingle
         Me.SLEHeadDept.Location = New System.Drawing.Point(14, 237)
         Me.SLEHeadDept.Name = "SLEHeadDept"
         Me.SLEHeadDept.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEHeadDept.Properties.View = Me.SearchLookUpEdit1View
+        Me.SLEHeadDept.Properties.View = Me.SLEViewEmp
         Me.SLEHeadDept.Size = New System.Drawing.Size(337, 20)
         Me.SLEHeadDept.TabIndex = 34
         '
-        'SearchLookUpEdit1View
+        'SLEViewEmp
         '
-        Me.SearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdUser, Me.GridColumnNIK, Me.GridColumnName})
-        Me.SearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.SearchLookUpEdit1View.Name = "SearchLookUpEdit1View"
-        Me.SearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.SearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        Me.SLEViewEmp.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdUser, Me.GridColumn1, Me.GridColumn2, Me.GridColumnNIK, Me.GridColumnName})
+        Me.SLEViewEmp.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.SLEViewEmp.Name = "SLEViewEmp"
+        Me.SLEViewEmp.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.SLEViewEmp.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIdUser
+        '
+        Me.GridColumnIdUser.Caption = "Id User"
+        Me.GridColumnIdUser.FieldName = "id_user"
+        Me.GridColumnIdUser.Name = "GridColumnIdUser"
+        '
+        'GridColumnNIK
+        '
+        Me.GridColumnNIK.Caption = "NIK"
+        Me.GridColumnNIK.FieldName = "employee_code"
+        Me.GridColumnNIK.Name = "GridColumnNIK"
+        Me.GridColumnNIK.Visible = True
+        Me.GridColumnNIK.VisibleIndex = 0
+        '
+        'GridColumnName
+        '
+        Me.GridColumnName.Caption = "Name"
+        Me.GridColumnName.FieldName = "employee_name"
+        Me.GridColumnName.Name = "GridColumnName"
+        Me.GridColumnName.Visible = True
+        Me.GridColumnName.VisibleIndex = 1
         '
         'LabelControl4
         '
@@ -144,27 +168,20 @@ Partial Class FormMasterDepartementSingle
         Me.LabelControl4.TabIndex = 35
         Me.LabelControl4.Text = "Head Departement"
         '
-        'GridColumnIdUser
+        'GridColumn1
         '
-        Me.GridColumnIdUser.Caption = "Id User"
-        Me.GridColumnIdUser.FieldName = "id_user"
-        Me.GridColumnIdUser.Name = "GridColumnIdUser"
+        Me.GridColumn1.Caption = "ID Departement"
+        Me.GridColumn1.FieldName = "id_departement"
+        Me.GridColumn1.Name = "GridColumn1"
         '
-        'GridColumnName
+        'GridColumn2
         '
-        Me.GridColumnName.Caption = "Name"
-        Me.GridColumnName.FieldName = "employee_name"
-        Me.GridColumnName.Name = "GridColumnName"
-        Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 1
-        '
-        'GridColumnNIK
-        '
-        Me.GridColumnNIK.Caption = "NIK"
-        Me.GridColumnNIK.FieldName = "employee_code"
-        Me.GridColumnNIK.Name = "GridColumnNIK"
-        Me.GridColumnNIK.Visible = True
-        Me.GridColumnNIK.VisibleIndex = 0
+        Me.GridColumn2.Caption = "Departement"
+        Me.GridColumn2.FieldName = "departement"
+        Me.GridColumn2.FieldNameSortGroup = "id_departement"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
         '
         'FormMasterDepartementSingle
         '
@@ -195,7 +212,7 @@ Partial Class FormMasterDepartementSingle
         CType(Me.TEDepartementCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEHeadDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEViewEmp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -211,8 +228,10 @@ Partial Class FormMasterDepartementSingle
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents SLEHeadDept As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents SearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents SLEViewEmp As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnIdUser As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNIK As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -8,6 +8,9 @@
         query += " FROM tb_m_employee emp"
         query += " INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement"
         query += " INNER JOIN tb_lookup_employee_active active On active.id_employee_active=emp.id_employee_active"
+        If FormEmpLeave.is_propose = "1" Then
+            query += " WHERE dep.id_user_head='" & id_user & "'"
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmployee.DataSource = data
         GVEmployee.BestFitColumns()
@@ -29,6 +32,28 @@
             FormEmpLeaveDet.TEDept.Text = GVEmployee.GetFocusedRowCellValue("departement").ToString
             FormEmpLeaveDet.TEPosition.Text = GVEmployee.GetFocusedRowCellValue("employee_position").ToString
             FormEmpLeaveDet.DEJoinDate.EditValue = GVEmployee.GetFocusedRowCellValue("employee_join_date")
+            FormEmpLeaveDet.load_emp_detail()
+            Close()
+        ElseIf id_popup = "2" Then
+            FormEmpLeaveDet.id_employee_change = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpLeaveDet.TEEMployeeChange.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
+            FormEmpLeaveDet.TEEmployeeChangeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            Close()
+        ElseIf id_popup = "3" Then
+            FormEmpDPDet.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpDPDet.TEEmployeeCode.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
+            FormEmpDPDet.TEEmployeeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            FormEmpDPDet.TEDept.Text = GVEmployee.GetFocusedRowCellValue("departement").ToString
+            FormEmpDPDet.TEPosition.Text = GVEmployee.GetFocusedRowCellValue("employee_position").ToString
+            FormEmpDPDet.MEDPNote.Focus()
+            Close()
+        ElseIf id_popup = "4" Then
+            FormEmpChScheduleDet.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpChScheduleDet.TEEmployeeCode.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
+            FormEmpChScheduleDet.TEEmployeeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            FormEmpChScheduleDet.TEDept.Text = GVEmployee.GetFocusedRowCellValue("departement").ToString
+            FormEmpChScheduleDet.TEPosition.Text = GVEmployee.GetFocusedRowCellValue("employee_position").ToString
+            FormEmpChScheduleDet.MEChNote.Focus()
             Close()
         End If
     End Sub
