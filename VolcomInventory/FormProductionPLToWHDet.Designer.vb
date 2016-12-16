@@ -42,7 +42,6 @@ Partial Class FormProductionPLToWHDet
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
         Me.BtnBrowseContactFrom = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnBrowsePO = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
@@ -52,6 +51,7 @@ Partial Class FormProductionPLToWHDet
         Me.TxtRetOutNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.DERet = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnBrowsePO = New DevExpress.XtraEditors.SimpleButton()
         Me.PEView = New DevExpress.XtraEditors.PictureEdit()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
@@ -108,6 +108,7 @@ Partial Class FormProductionPLToWHDet
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
         Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -433,18 +434,6 @@ Partial Class FormProductionPLToWHDet
         Me.BtnBrowseContactFrom.TabIndex = 0
         Me.BtnBrowseContactFrom.Text = "..."
         '
-        'BtnBrowsePO
-        '
-        Me.BtnBrowsePO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BtnBrowsePO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnBrowsePO.Appearance.Options.UseFont = True
-        Me.BtnBrowsePO.Location = New System.Drawing.Point(6, 84)
-        Me.BtnBrowsePO.Name = "BtnBrowsePO"
-        Me.BtnBrowsePO.Size = New System.Drawing.Size(23, 20)
-        Me.BtnBrowsePO.TabIndex = 2
-        Me.BtnBrowsePO.Text = "..."
-        Me.BtnBrowsePO.Visible = False
-        '
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -541,6 +530,18 @@ Partial Class FormProductionPLToWHDet
         Me.DERet.TabIndex = 162
         Me.DERet.TabStop = False
         '
+        'BtnBrowsePO
+        '
+        Me.BtnBrowsePO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnBrowsePO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnBrowsePO.Appearance.Options.UseFont = True
+        Me.BtnBrowsePO.Location = New System.Drawing.Point(6, 84)
+        Me.BtnBrowsePO.Name = "BtnBrowsePO"
+        Me.BtnBrowsePO.Size = New System.Drawing.Size(23, 20)
+        Me.BtnBrowsePO.TabIndex = 2
+        Me.BtnBrowsePO.Text = "..."
+        Me.BtnBrowsePO.Visible = False
+        '
         'PEView
         '
         Me.PEView.Dock = System.Windows.Forms.DockStyle.Left
@@ -555,6 +556,7 @@ Partial Class FormProductionPLToWHDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.BMark)
@@ -1146,6 +1148,19 @@ Partial Class FormProductionPLToWHDet
         '
         Me.EPRet.ContainerControl = Me
         '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(483, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(115, 32)
+        Me.BtnXlsBOF.TabIndex = 19
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
+        '
         'FormProductionPLToWHDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1302,4 +1317,5 @@ Partial Class FormProductionPLToWHDet
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtVendorCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtVendor As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
 End Class

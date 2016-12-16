@@ -116,6 +116,8 @@ Partial Class FormSalesReturnDet
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
@@ -150,8 +152,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -201,6 +202,7 @@ Partial Class FormSalesReturnDet
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
+        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPStorage.SuspendLayout()
         CType(Me.SCCStorage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCStorage.SuspendLayout()
@@ -216,7 +218,6 @@ Partial Class FormSalesReturnDet
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -505,6 +506,7 @@ Partial Class FormSalesReturnDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnTest)
         Me.PanelControl3.Controls.Add(Me.BMark)
@@ -884,14 +886,14 @@ Partial Class FormSalesReturnDet
         Me.GridColumnQty.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnQty.Caption = "Return Qty"
-        Me.GridColumnQty.DisplayFormat.FormatString = "F2"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "sales_return_det_qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
-        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", "{0:f2}")})
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 4
         Me.GridColumnQty.Width = 82
@@ -1231,6 +1233,24 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcode.Size = New System.Drawing.Size(883, 33)
         Me.PanelNavBarcode.TabIndex = 2
         '
+        'TxtDeleteScan
+        '
+        Me.TxtDeleteScan.Location = New System.Drawing.Point(71, 7)
+        Me.TxtDeleteScan.MenuManager = Me.BMDD
+        Me.TxtDeleteScan.Name = "TxtDeleteScan"
+        Me.TxtDeleteScan.Size = New System.Drawing.Size(248, 20)
+        Me.TxtDeleteScan.TabIndex = 21
+        Me.TxtDeleteScan.Visible = False
+        '
+        'LabelDelScan
+        '
+        Me.LabelDelScan.Location = New System.Drawing.Point(9, 10)
+        Me.LabelDelScan.Name = "LabelDelScan"
+        Me.LabelDelScan.Size = New System.Drawing.Size(56, 13)
+        Me.LabelDelScan.TabIndex = 20
+        Me.LabelDelScan.Text = "Delete scan"
+        Me.LabelDelScan.Visible = False
+        '
         'BDelete
         '
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
@@ -1517,23 +1537,18 @@ Partial Class FormSalesReturnDet
         '
         Me.EPForm.ContainerControl = Me
         '
-        'TxtDeleteScan
+        'BtnXlsBOF
         '
-        Me.TxtDeleteScan.Location = New System.Drawing.Point(71, 7)
-        Me.TxtDeleteScan.MenuManager = Me.BMDD
-        Me.TxtDeleteScan.Name = "TxtDeleteScan"
-        Me.TxtDeleteScan.Size = New System.Drawing.Size(248, 20)
-        Me.TxtDeleteScan.TabIndex = 21
-        Me.TxtDeleteScan.Visible = False
-        '
-        'LabelDelScan
-        '
-        Me.LabelDelScan.Location = New System.Drawing.Point(9, 10)
-        Me.LabelDelScan.Name = "LabelDelScan"
-        Me.LabelDelScan.Size = New System.Drawing.Size(56, 13)
-        Me.LabelDelScan.TabIndex = 20
-        Me.LabelDelScan.Text = "Delete scan"
-        Me.LabelDelScan.Visible = False
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(467, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
+        Me.BtnXlsBOF.TabIndex = 24
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
         '
         'FormSalesReturnDet
         '
@@ -1607,6 +1622,7 @@ Partial Class FormSalesReturnDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
         Me.PanelNavBarcode.PerformLayout()
+        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPStorage.ResumeLayout(False)
         CType(Me.SCCStorage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SCCStorage.ResumeLayout(False)
@@ -1622,7 +1638,6 @@ Partial Class FormSalesReturnDet
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1758,4 +1773,5 @@ Partial Class FormSalesReturnDet
     Friend WithEvents DDBPrint As DevExpress.XtraEditors.DropDownButton
     Friend WithEvents TxtDeleteScan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
 End Class
