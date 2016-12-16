@@ -5329,7 +5329,10 @@ Public Class FormMain
                 If confirm = DialogResult.Yes Then
                     Dim query_del As String = "DELETE FROM tb_emp_dp WHERE id_dp='" + id + "'"
                     execute_non_query(query_del, True, "", "", "", "")
+                    FormEmpDP.load_dp()
                 End If
+            Else
+                stopCustom("This report already appoved.")
             End If
         Else
             RPSubMenu.Visible = False
