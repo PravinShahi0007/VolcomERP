@@ -69,7 +69,7 @@
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
-        If DEStartLeave.Text = "" Then
+        If DEStartLeave.Text = "" And opt = "-1" Then
             stopCustom("Please select schedule first.")
         Else
             If opt = "1" Then ' change schedule from

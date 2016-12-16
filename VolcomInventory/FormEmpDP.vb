@@ -10,10 +10,13 @@
         load_dp()
     End Sub
     Sub load_dp()
+        Dim date_from As String = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim date_end As String = Date.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
         Dim query As String = "SELECT emp.employee_name,emp.employee_position,dep.departement,rpt.report_status,emp.employee_code,dp.* FROM tb_emp_dp dp
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=dp.id_employee
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
-                                INNER JOIN tb_lookup_report_status rpt ON rpt.id_report_status=dp.id_report_status"
+                                INNER JOIN tb_lookup_report_status rpt ON rpt.id_report_status=dp.id_report_status
+                                WHERE DATE(dp.dp_date_created) >= DATE('" & date_from & "') AND DATE(dp.dp_date_created) <= DATE('" & date_end & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCLeave.DataSource = data
     End Sub
@@ -30,5 +33,9 @@
 
     Private Sub FormEmpDP_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
+    End Sub
+
+    Private Sub BViewSum_Click(sender As Object, e As EventArgs) Handles BViewSum.Click
+        load_dp()
     End Sub
 End Class

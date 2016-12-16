@@ -26,9 +26,11 @@
         If id_emp_dp = "-1" Then 'new
             BMark.Visible = False
             BPrint.Visible = False
+            BSave.Visible = True
         Else 'edit
             BMark.Visible = True
             BPrint.Visible = True
+            BSave.Visible = False
             '
             Dim query As String = "SELECT dp.dp_note,emp.employee_name,emp.employee_position,dep.departement,rpt.report_status,emp.employee_code,dp.* FROM tb_emp_dp dp
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=dp.id_employee
@@ -51,7 +53,7 @@
             DEUntilDP.EditValue = data.Rows(0)("dp_time_end")
             '
             calc()
-            'If check_edit_report_status(FormEmpDP.GVLeave.GetFocusedRowCellValue("id_emp_dp").ToString, "97", FormEmpDP.GVLeave.GetFocusedRowCellValue("id_emp_dp")) Then
+            '
             If is_view = "1" Or check_edit_report_status(id_emp_dp, "97", id_emp_dp) Then
                 BPickEmployee.Visible = False
                 TEEmployeeCode.Properties.ReadOnly = True
@@ -69,8 +71,10 @@
             '
             Dim date_start As Date = DEStartDP.EditValue
             Dim date_until As Date = DEUntilDP.EditValue
+            Dim time_diff As TimeSpan
             Dim diff As Integer
-            diff = Math.Floor((date_until - date_start).Hours)
+            time_diff = date_until - date_start
+            diff = Math.Floor(time_diff.TotalHours)
             TETotHour.EditValue = diff
         Else
             '
@@ -150,6 +154,11 @@
     End Sub
 
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        ReportEmpDP.id_report = id_emp_dp
 
+        Dim Report As New ReportEmpDP()
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 End Class
