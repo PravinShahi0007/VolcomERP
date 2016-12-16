@@ -220,4 +220,13 @@
         FormReportMark.id_report = id_ch_sch
         FormReportMark.ShowDialog()
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        ReportEmpChSchedule.id_report = id_ch_sch
+
+        Dim Report As New ReportEmpChSchedule()
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+    End Sub
 End Class

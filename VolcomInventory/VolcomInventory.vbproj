@@ -3874,6 +3874,12 @@
     <Compile Include="ReportEmpAttnInd.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpChSchedule.Designer.vb">
+      <DependentUpon>ReportEmpChSchedule.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpChSchedule.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpLeave.Designer.vb">
       <DependentUpon>ReportEmpLeave.vb</DependentUpon>
     </Compile>
@@ -6818,6 +6824,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpAttnInd.resx">
       <DependentUpon>ReportEmpAttnInd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpChSchedule.resx">
+      <DependentUpon>ReportEmpChSchedule.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpLeave.resx">
       <DependentUpon>ReportEmpLeave.vb</DependentUpon>
