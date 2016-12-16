@@ -2322,6 +2322,10 @@ Public Class FormMain
                     FormEmpDPDet.id_emp_dp = FormEmpDP.GVLeave.GetFocusedRowCellValue("id_dp").ToString
                     FormEmpDPDet.ShowDialog()
                 End If
+            ElseIf formName = "FormEmpChSchedule" Then
+                'Leave
+                FormEmpChScheduleDet.id_ch_sch = FormEmpChSchedule.BGVChangeSch.GetFocusedRowCellValue("id_emp_ch_schedule").ToString
+                FormEmpChScheduleDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5319,14 +5323,16 @@ Public Class FormMain
         ElseIf formName = "FormEmpLeave" Then
             '
         ElseIf formName = "FormEmpDP" Then
-            If check_edit_report_status(FormEmpDP.GVLeave.GetFocusedRowCellValue("id_report_status").ToString, "97", FormEmpDP.GVLeave.GetFocusedRowCellValue("id_emp_dp")) Then
-                Dim id As String = FormEmpDP.GVLeave.GetFocusedRowCellValue("id_emp_dp").ToString
+            If check_edit_report_status(FormEmpDP.GVLeave.GetFocusedRowCellValue("id_report_status").ToString, "97", FormEmpDP.GVLeave.GetFocusedRowCellValue("id_dp")) Then
+                Dim id As String = FormEmpDP.GVLeave.GetFocusedRowCellValue("id_dp").ToString
                 confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = DialogResult.Yes Then
-                    Dim query_del As String = "DELETE FROM tb_emp_dp WHERE id_emp_dp='" + id + "'"
+                    Dim query_del As String = "DELETE FROM tb_emp_dp WHERE id_dp='" + id + "'"
                     execute_non_query(query_del, True, "", "", "", "")
-                    FormEmpEmail.viewEmployee("-1")
+                    FormEmpDP.load_dp()
                 End If
+            Else
+                stopCustom("This report already appoved.")
             End If
         Else
             RPSubMenu.Visible = False

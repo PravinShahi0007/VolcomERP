@@ -331,6 +331,9 @@
         ElseIf report_mark_type = "97" Then
             'DP propose
             query = String.Format("SELECT id_report_status, dp_number as report_number FROM tb_emp_dp WHERE id_dp = '{0}'", id_report)
+        ElseIf report_mark_type = "98" Then
+            'Employee Change Schedule
+            query = String.Format("SELECT id_report_status, emp_ch_schedule_number as report_number FROM tb_emp_ch_schedule WHERE id_emp_ch_schedule = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3130,6 +3133,71 @@
                 execute_non_query(query_del, True, "", "", "", "")
             End If
             query = String.Format("UPDATE tb_emp_dp SET id_report_status='{0}' WHERE id_dp ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+        ElseIf report_mark_type = "98" Then
+            'Employee change schedule
+            If id_status_reportx = "3" Then
+                'complete 
+                query = "UPDATE tb_emp_schedule sch
+                            INNER JOIN(
+                            SELECT schdf.id_schedule
+                            ,IF(ISNULL(schdt.in),NULL,CONCAT(schdf.date,' ',TIME(schdt.in))) AS `in` 
+                            ,IF(ISNULL(schdt.in),NULL,CONCAT(schdf.date,' ',TIME(schdt.out))) AS `out` 
+                            ,IF(ISNULL(schdt.in),NULL,CONCAT(schdf.date,' ',TIME(schdt.in_tolerance))) AS `in_tolerance` 
+                            ,IF(ISNULL(schdt.in),NULL,CONCAT(schdf.date,' ',TIME(schdt.break_out))) AS `break_out` 
+                            ,IF(ISNULL(schdt.in),NULL,CONCAT(schdf.date,' ',TIME(schdt.break_in))) AS `break_in` 
+                            ,schdt.minutes_work AS `minutes_work` 
+                            ,schdt.id_schedule_type AS `id_schedule_type` 
+                            ,schdt.note AS `note` 
+                            ,schdt.shift_code AS `shift_code` 
+                            FROM tb_emp_ch_schedule_det schdf
+                            INNER JOIN tb_emp_ch_schedule_det schdt ON schdt.id_emp_ch_schedule=schdf.id_emp_ch_schedule 
+                            AND schdt.from_to='2'
+                            WHERE schdf.from_to = '1'
+                            AND schdf.id_emp_ch_schedule='" & id_report & "'
+                            ) switch ON switch.id_schedule=sch.id_schedule
+                            SET sch.in=switch.in
+                            ,sch.out=switch.out
+                            ,sch.in_tolerance=switch.in_tolerance
+                            ,sch.break_out=switch.break_out
+                            ,sch.break_in=switch.break_in
+                            ,sch.minutes_work=switch.minutes_work
+                            ,sch.id_schedule_type=switch.id_schedule_type
+                            ,sch.note=switch.note
+                            ,sch.shift_code=switch.shift_code"
+                execute_non_query(query, True, "", "", "", "")
+                query = "UPDATE tb_emp_schedule sch
+                            INNER JOIN(
+                            SELECT schdf.id_schedule
+                            ,IF(ISNULL(schdt.in),NULL,CONCAT(schdf.date,' ',TIME(schdt.in))) AS `in` 
+                            ,IF(ISNULL(schdt.in),NULL,CONCAT(schdf.date,' ',TIME(schdt.out))) AS `out` 
+                            ,IF(ISNULL(schdt.in),NULL,CONCAT(schdf.date,' ',TIME(schdt.in_tolerance))) AS `in_tolerance` 
+                            ,IF(ISNULL(schdt.in),NULL,CONCAT(schdf.date,' ',TIME(schdt.break_out))) AS `break_out` 
+                            ,IF(ISNULL(schdt.in),NULL,CONCAT(schdf.date,' ',TIME(schdt.break_in))) AS `break_in` 
+                            ,schdt.minutes_work AS `minutes_work` 
+                            ,schdt.id_schedule_type AS `id_schedule_type` 
+                            ,schdt.note AS `note` 
+                            ,schdt.shift_code AS `shift_code` 
+                            FROM tb_emp_ch_schedule_det schdf
+                            INNER JOIN tb_emp_ch_schedule_det schdt ON schdt.id_emp_ch_schedule=schdf.id_emp_ch_schedule 
+                            AND schdt.from_to='1'
+                            WHERE schdf.from_to ='2'
+                            AND schdf.id_emp_ch_schedule='" & id_report & "'
+                            ) switch ON switch.id_schedule=sch.id_schedule
+                            SET sch.in=switch.in
+                            ,sch.out=switch.out
+                            ,sch.in_tolerance=switch.in_tolerance
+                            ,sch.break_out=switch.break_out
+                            ,sch.break_in=switch.break_in
+                            ,sch.minutes_work=switch.minutes_work
+                            ,sch.id_schedule_type=switch.id_schedule_type
+                            ,sch.note=switch.note
+                            ,sch.shift_code=switch.shift_code"
+                execute_non_query(query, True, "", "", "", "")
+                id_status_reportx = "6"
+            End If
+            query = String.Format("UPDATE tb_emp_ch_schedule SET id_report_status='{0}' WHERE id_emp_ch_schedule ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             infoCustom("Status changed.")
         End If

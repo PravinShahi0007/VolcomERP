@@ -376,6 +376,11 @@
             FormEmpDPDet.id_emp_dp = id_report
             FormEmpDPDet.is_view = "1"
             FormEmpDPDet.ShowDialog()
+        ElseIf report_mark_type = "98" Then
+            'Employee change schedule
+            FormEmpChScheduleDet.id_ch_sch = id_report
+            FormEmpChScheduleDet.is_view = "1"
+            FormEmpChScheduleDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -906,6 +911,12 @@
             field_id = "id_dp"
             field_number = "dp_number"
             field_date = "dp_date_created"
+        ElseIf report_mark_type = "98" Then
+            'DP
+            table_name = "tb_emp_ch_schedule"
+            field_id = "id_emp_ch_schedule"
+            field_number = "emp_ch_schedule_number"
+            field_date = "emp_ch_schedule_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If

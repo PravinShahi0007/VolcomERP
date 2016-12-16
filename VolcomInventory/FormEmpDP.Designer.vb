@@ -30,14 +30,13 @@ Partial Class FormEmpDP
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotHours = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BViewOnLeave = New DevExpress.XtraEditors.SimpleButton()
         Me.BViewSum = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCLeave, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVLeave, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,9 +150,14 @@ Partial Class FormEmpDP
         Me.GridColumn6.VisibleIndex = 7
         Me.GridColumn6.Width = 60
         '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "ID Report Status"
+        Me.GridColumn8.FieldName = "id_report_status"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BViewOnLeave)
         Me.PanelControl1.Controls.Add(Me.BViewSum)
         Me.PanelControl1.Controls.Add(Me.DEUntil)
         Me.PanelControl1.Controls.Add(Me.Label2)
@@ -165,21 +169,13 @@ Partial Class FormEmpDP
         Me.PanelControl1.Size = New System.Drawing.Size(692, 38)
         Me.PanelControl1.TabIndex = 4
         '
-        'BViewOnLeave
-        '
-        Me.BViewOnLeave.Location = New System.Drawing.Point(519, 6)
-        Me.BViewOnLeave.Name = "BViewOnLeave"
-        Me.BViewOnLeave.Size = New System.Drawing.Size(124, 25)
-        Me.BViewOnLeave.TabIndex = 13
-        Me.BViewOnLeave.Text = "view (leave proposed)"
-        '
         'BViewSum
         '
         Me.BViewSum.Location = New System.Drawing.Point(388, 6)
         Me.BViewSum.Name = "BViewSum"
-        Me.BViewSum.Size = New System.Drawing.Size(125, 25)
+        Me.BViewSum.Size = New System.Drawing.Size(69, 25)
         Me.BViewSum.TabIndex = 12
-        Me.BViewSum.Text = "view (date created)"
+        Me.BViewSum.Text = "view"
         '
         'DEUntil
         '
@@ -223,12 +219,6 @@ Partial Class FormEmpDP
         Me.Label1.TabIndex = 8
         Me.Label1.Text = "From : "
         '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "ID Report Status"
-        Me.GridColumn8.FieldName = "id_report_status"
-        Me.GridColumn8.Name = "GridColumn8"
-        '
         'FormEmpDP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -263,7 +253,6 @@ Partial Class FormEmpDP
     Friend WithEvents GridColumnTotHours As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BViewOnLeave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BViewSum As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label2 As Label
