@@ -56,7 +56,29 @@
         'Fetch db detail
         viewFillEmptyData()
         view_list_pcs()
+        '
+        get_po_desg()
     End Sub
+
+    Sub get_po_desg()
+        Dim query As String = "SELECT po.prod_order_number,desg.design_code,desg.design_display_name FROM tb_pl_mrs plm
+                                INNER JOIN tb_prod_order_mrs mrs ON mrs.id_prod_order_mrs=plm.id_prod_order_mrs
+                                LEFT JOIN tb_prod_order po ON po.id_prod_order=mrs.id_prod_order
+                                LEFT JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+                                LEFT JOIN tb_m_design desg ON desg.id_design=pdd.id_design
+                                WHERE plm.id_pl_mrs='" & id_pl_mrs & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
+            TEDesignCode.Text = data.Rows(0)("design_code").ToString
+            TEDesignName.Text = data.Rows(0)("design_display_name").ToString
+        Else
+            TEPONumber.Text = "-"
+            TEDesignCode.Text = "-"
+            TEDesignName.Text = "-"
+        End If
+    End Sub
+
     Sub viewFillEmptyData()
         Dim query As String = "CALL view_prod_order_mrs('" + id_mrs + "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
