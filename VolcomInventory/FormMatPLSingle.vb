@@ -348,7 +348,7 @@
 
                         'INSERT TB PL mat pcs
                         query = "INSERT INTO tb_pl_mrs_pcs(id_pl_mrs,piece,id_mat_det_price,id_wh_drawer,qty) "
-                        query += "VALUES('" + id_pl_mrs + "','" + pl_mrs_pcs + "','" + id_mat_det_pricex + "','" + id_wh_drawer + "','" + pl_mrs_pcs_qty + "') "
+                        query += "VALUES('" + id_pl_mrs + "','" + pl_mrs_pcs + "','" + id_mat_det_pricex + "','" + id_wh_drawer + "','" + decimalSQL(pl_mrs_pcs_qty.ToString) + "') "
                         execute_non_query(query, True, "", "", "", "")
                     Catch ex As Exception
                     End Try
