@@ -19,12 +19,14 @@
     End Sub
 
     Sub view_pr()
-        Dim query As String = "SELECT po.id_prod_order,po.prod_order_number,rec.id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,rec.delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,rec.prod_order_rec_date, d.comp_name AS comp_to, "
+        Dim query As String = "SELECT desg.design_code,desg.design_display_name,po.id_prod_order,po.prod_order_number,rec.id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,rec.delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,rec.prod_order_rec_date, d.comp_name AS comp_to, "
         query += "z.pr_prod_order_due_date "
         query += " ,wo.id_currency,wo.prod_order_wo_kurs "
         query += "FROM tb_pr_prod_order z "
         query += "INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo = z.id_prod_order_wo "
         query += "INNER JOIN tb_prod_order po ON po.id_prod_order = wo.id_prod_order "
+        query += "INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design "
+        query += "INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design "
         query += "LEFT JOIN tb_prod_order_rec rec ON z.id_prod_order_rec = rec.id_prod_order_rec "
         query += "INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price "
         query += "INNER JOIN tb_m_ovh l ON ovh_p.id_ovh = l.id_ovh "
@@ -34,6 +36,7 @@
         query += "ORDER BY z.id_pr_prod_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCMatPR.DataSource = data
+        GVMatPR.BestFitColumns()
     End Sub
 
     Sub check_but()
@@ -96,7 +99,7 @@
         End If
     End Sub
     Sub view_wo()
-        Dim query = "SELECT po.prod_order_number,a.id_report_status,h.report_status,a.id_prod_order_wo,a.id_ovh_price,a.id_prod_order "
+        Dim query = "SELECT desg.design_display_name,desg.design_code,po.prod_order_number,a.id_report_status,h.report_status,a.id_prod_order_wo,a.id_ovh_price,a.id_prod_order "
         query += ",(SELECT IFNULL(MAX(prod_order_wo_prog_percent),0) FROM tb_prod_order_wo_prog WHERE id_prod_order_wo = a.id_prod_order_wo) as progress,"
         query += "g.payment,COUNT(pr.id_pr_prod_order) AS qty_pr, "
         query += "b.id_comp_contact,d.comp_name AS comp_name_to, "
@@ -108,6 +111,8 @@
         query += "DATE_ADD(a.prod_order_wo_date,INTERVAL (a.prod_order_wo_top+a.prod_order_wo_lead_time) DAY) AS prod_order_wo_top "
         query += "FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price "
         query += "INNER JOIN tb_prod_order po ON po.id_prod_order=a.id_prod_order "
+        query += "INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design "
+        query += "INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design "
         query += "INNER JOIN tb_m_comp_contact c ON b.id_comp_contact = c.id_comp_contact "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
         query += "INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_ship_to = e.id_comp_contact "
@@ -124,6 +129,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProdWO.DataSource = data
         If data.Rows.Count > 0 Then
+            GVProdWO.BestFitColumns()
             GVProdWO.FocusedRowHandle = 0
             view_wo(GVProdWO.GetFocusedRowCellValue("id_prod_order_wo").ToString)
         End If

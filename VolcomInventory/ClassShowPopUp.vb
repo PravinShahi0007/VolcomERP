@@ -7,6 +7,11 @@
     Public report_number As String = ""
     Public report_date As Date = Now
     Public info_col As String = ""
+    '
+    Public info_report As String = ""
+    Public info_design As String = ""
+    Public info_design_code As String = ""
+    '
 
     Sub show()
         If report_mark_type = "1" Then
@@ -941,6 +946,21 @@
                         INNER JOIN tb_prod_order po ON po.id_prod_order=wo.id_prod_order
                         INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type WHERE wo.id_prod_order_wo='" & id_report & "'"
                 info_col = execute_query(query, 0, True, "", "", "", "")
+            ElseIf report_mark_type = "30" Then
+                'PL MRS production
+                query = "SELECT desg.design_code,desg.design_display_name,po.prod_order_number FROM tb_pl_mrs plm
+                        INNER JOIN tb_prod_order_mrs pom ON pom.id_prod_order_mrs=plm.id_prod_order_mrs
+                        INNER JOIN tb_prod_order po ON po.id_prod_order=pom.id_prod_order
+                        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+                        INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design 
+                        WHERE plm.id_pl_mrs='" & id_report & "'"
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = ""
+                    info_report = datax.Rows(0)("prod_order_number").ToString
+                    info_design_code = datax.Rows(0)("design_code").ToString
+                    info_design = datax.Rows(0)("design_display_name").ToString
+                End If
             End If
         End If
     End Sub

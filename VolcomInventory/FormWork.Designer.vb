@@ -19,9 +19,9 @@ Partial Class FormWork
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode3 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-        Dim GridLevelNode4 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode3 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn711 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn712 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -611,6 +611,9 @@ Partial Class FormWork
         Me.ColLeadTime = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColRawLeadTime = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTimeMiss = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn329 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn894 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn895 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl10 = New DevExpress.XtraEditors.PanelControl()
         Me.BViewApproval = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPMarkHistory = New DevExpress.XtraTab.XtraTabPage()
@@ -623,11 +626,16 @@ Partial Class FormWork
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMarkDatetime = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridCol33 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GColMHYear = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn328 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl11 = New DevExpress.XtraEditors.PanelControl()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.BViewHistory = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPMaterial = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCMaterial = New DevExpress.XtraTab.XtraTabControl()
@@ -1756,11 +1764,9 @@ Partial Class FormWork
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnMarkDatetime = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
-        Me.Label16 = New System.Windows.Forms.Label()
+        Me.GridColumn896 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn897 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn898 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesCreditNote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesCreditNote, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1943,6 +1949,10 @@ Partial Class FormWork
         CType(Me.GVMarkHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl11, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl11.SuspendLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPMaterial.SuspendLayout()
         CType(Me.XTCMaterial, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCMaterial.SuspendLayout()
@@ -2355,10 +2365,6 @@ Partial Class FormWork
         CType(Me.RepositoryItemSpinEdit32, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlFGWoff, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlFGWoff.SuspendLayout()
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GVSalesPOSDet
@@ -2560,9 +2566,9 @@ Partial Class FormWork
         'GCSalesCreditNote
         '
         Me.GCSalesCreditNote.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode3.LevelTemplate = Me.GVSalesPOSDet
-        GridLevelNode3.RelationName = "Detail Transaction"
-        Me.GCSalesCreditNote.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode3})
+        GridLevelNode1.LevelTemplate = Me.GVSalesPOSDet
+        GridLevelNode1.RelationName = "Detail Transaction"
+        Me.GCSalesCreditNote.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.GCSalesCreditNote.Location = New System.Drawing.Point(2, 20)
         Me.GCSalesCreditNote.MainView = Me.GVSalesCreditNote
         Me.GCSalesCreditNote.Name = "GCSalesCreditNote"
@@ -2945,9 +2951,9 @@ Partial Class FormWork
         'GCFGMissing
         '
         Me.GCFGMissing.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode4.LevelTemplate = Me.GridView16
-        GridLevelNode4.RelationName = "Detail Transaction"
-        Me.GCFGMissing.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode4})
+        GridLevelNode2.LevelTemplate = Me.GridView16
+        GridLevelNode2.RelationName = "Detail Transaction"
+        Me.GCFGMissing.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
         Me.GCFGMissing.Location = New System.Drawing.Point(2, 20)
         Me.GCFGMissing.MainView = Me.GVFGMissing
         Me.GCFGMissing.Name = "GCFGMissing"
@@ -3313,9 +3319,9 @@ Partial Class FormWork
         'GCFGMissingCNStore
         '
         Me.GCFGMissingCNStore.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode1.LevelTemplate = Me.GridView17
-        GridLevelNode1.RelationName = "Detail Transaction"
-        Me.GCFGMissingCNStore.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        GridLevelNode3.LevelTemplate = Me.GridView17
+        GridLevelNode3.RelationName = "Detail Transaction"
+        Me.GCFGMissingCNStore.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode3})
         Me.GCFGMissingCNStore.Location = New System.Drawing.Point(2, 20)
         Me.GCFGMissingCNStore.MainView = Me.GVFGMissingCNStore
         Me.GCFGMissingCNStore.Name = "GCFGMissingCNStore"
@@ -7935,7 +7941,7 @@ Partial Class FormWork
         '
         'GVMarkNeed
         '
-        Me.GVMarkNeed.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMarkNeed, Me.ColMarkNeedIdReportType, Me.ColMarkNeedReportType, Me.ColMarkIdReport, Me.ColMarkNeedReportNumber, Me.GridColumn327, Me.ColMarkNeedIdStatus, Me.ColMarkNeedStatus, Me.ColMarkNeedCan, Me.ColMarkNeedReportDate, Me.ColLeadTime, Me.ColRawLeadTime, Me.GridColumnTimeMiss})
+        Me.GVMarkNeed.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMarkNeed, Me.ColMarkNeedIdReportType, Me.ColMarkNeedReportType, Me.ColMarkIdReport, Me.ColMarkNeedReportNumber, Me.GridColumn327, Me.ColMarkNeedIdStatus, Me.ColMarkNeedStatus, Me.ColMarkNeedCan, Me.ColMarkNeedReportDate, Me.ColLeadTime, Me.ColRawLeadTime, Me.GridColumnTimeMiss, Me.GridColumn329, Me.GridColumn894, Me.GridColumn895})
         Me.GVMarkNeed.GridControl = Me.GCMarkNeed
         Me.GVMarkNeed.Name = "GVMarkNeed"
         Me.GVMarkNeed.OptionsBehavior.Editable = False
@@ -8046,6 +8052,30 @@ Partial Class FormWork
         Me.GridColumnTimeMiss.FieldName = "time_miss"
         Me.GridColumnTimeMiss.Name = "GridColumnTimeMiss"
         '
+        'GridColumn329
+        '
+        Me.GridColumn329.Caption = "Reff#"
+        Me.GridColumn329.FieldName = "info_report"
+        Me.GridColumn329.Name = "GridColumn329"
+        Me.GridColumn329.Visible = True
+        Me.GridColumn329.VisibleIndex = 6
+        '
+        'GridColumn894
+        '
+        Me.GridColumn894.Caption = "Design Code"
+        Me.GridColumn894.FieldName = "info_design_code"
+        Me.GridColumn894.Name = "GridColumn894"
+        Me.GridColumn894.Visible = True
+        Me.GridColumn894.VisibleIndex = 7
+        '
+        'GridColumn895
+        '
+        Me.GridColumn895.Caption = "Description"
+        Me.GridColumn895.FieldName = "info_design"
+        Me.GridColumn895.Name = "GridColumn895"
+        Me.GridColumn895.Visible = True
+        Me.GridColumn895.VisibleIndex = 8
+        '
         'PanelControl10
         '
         Me.PanelControl10.Controls.Add(Me.BViewApproval)
@@ -8084,7 +8114,7 @@ Partial Class FormWork
         '
         'GVMarkHistory
         '
-        Me.GVMarkHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn35, Me.GridColumnMarkDatetime, Me.GridCol33, Me.GColMHYear, Me.GridColumn34, Me.GridColumn328})
+        Me.GVMarkHistory.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn35, Me.GridColumnMarkDatetime, Me.GridCol33, Me.GColMHYear, Me.GridColumn34, Me.GridColumn328, Me.GridColumn896, Me.GridColumn897, Me.GridColumn898})
         Me.GVMarkHistory.GridControl = Me.GCMarkHistory
         Me.GVMarkHistory.GroupCount = 2
         Me.GVMarkHistory.Name = "GVMarkHistory"
@@ -8147,6 +8177,16 @@ Partial Class FormWork
         Me.GridColumn35.VisibleIndex = 3
         Me.GridColumn35.Width = 150
         '
+        'GridColumnMarkDatetime
+        '
+        Me.GridColumnMarkDatetime.Caption = "Approval Datetime"
+        Me.GridColumnMarkDatetime.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
+        Me.GridColumnMarkDatetime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnMarkDatetime.FieldName = "report_mark_datetime"
+        Me.GridColumnMarkDatetime.Name = "GridColumnMarkDatetime"
+        Me.GridColumnMarkDatetime.Visible = True
+        Me.GridColumnMarkDatetime.VisibleIndex = 5
+        '
         'GridCol33
         '
         Me.GridCol33.Caption = "Mark"
@@ -8195,6 +8235,49 @@ Partial Class FormWork
         Me.PanelControl11.Name = "PanelControl11"
         Me.PanelControl11.Size = New System.Drawing.Size(939, 36)
         Me.PanelControl11.TabIndex = 4
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(184, 8)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Size = New System.Drawing.Size(116, 20)
+        Me.DEUntil.TabIndex = 113
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(167, 11)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(11, 13)
+        Me.Label3.TabIndex = 112
+        Me.Label3.Text = "-"
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(45, 8)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Size = New System.Drawing.Size(116, 20)
+        Me.DEStart.TabIndex = 111
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(9, 11)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(30, 13)
+        Me.Label16.TabIndex = 110
+        Me.Label16.Text = "Date"
+        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'BViewHistory
         '
@@ -19558,58 +19641,29 @@ Partial Class FormWork
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = -1
         '
-        'GridColumnMarkDatetime
+        'GridColumn896
         '
-        Me.GridColumnMarkDatetime.Caption = "Approval Datetime"
-        Me.GridColumnMarkDatetime.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
-        Me.GridColumnMarkDatetime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnMarkDatetime.FieldName = "report_mark_datetime"
-        Me.GridColumnMarkDatetime.Name = "GridColumnMarkDatetime"
-        Me.GridColumnMarkDatetime.Visible = True
-        Me.GridColumnMarkDatetime.VisibleIndex = 5
+        Me.GridColumn896.Caption = "Reff#"
+        Me.GridColumn896.FieldName = "info_report"
+        Me.GridColumn896.Name = "GridColumn896"
+        Me.GridColumn896.Visible = True
+        Me.GridColumn896.VisibleIndex = 6
         '
-        'DEUntil
+        'GridColumn897
         '
-        Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(184, 8)
-        Me.DEUntil.Name = "DEUntil"
-        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Size = New System.Drawing.Size(116, 20)
-        Me.DEUntil.TabIndex = 113
+        Me.GridColumn897.Caption = "Design Code"
+        Me.GridColumn897.FieldName = "info_design_code"
+        Me.GridColumn897.Name = "GridColumn897"
+        Me.GridColumn897.Visible = True
+        Me.GridColumn897.VisibleIndex = 7
         '
-        'Label3
+        'GridColumn898
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(167, 11)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(11, 13)
-        Me.Label3.TabIndex = 112
-        Me.Label3.Text = "-"
-        '
-        'DEStart
-        '
-        Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(45, 8)
-        Me.DEStart.Name = "DEStart"
-        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Size = New System.Drawing.Size(116, 20)
-        Me.DEStart.TabIndex = 111
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(9, 11)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(30, 13)
-        Me.Label16.TabIndex = 110
-        Me.Label16.Text = "Date"
-        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.GridColumn898.Caption = "Description"
+        Me.GridColumn898.FieldName = "info_design"
+        Me.GridColumn898.Name = "GridColumn898"
+        Me.GridColumn898.Visible = True
+        Me.GridColumn898.VisibleIndex = 8
         '
         'FormWork
         '
@@ -19807,6 +19861,10 @@ Partial Class FormWork
         CType(Me.PanelControl11, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl11.ResumeLayout(False)
         Me.PanelControl11.PerformLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPMaterial.ResumeLayout(False)
         CType(Me.XTCMaterial, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCMaterial.ResumeLayout(False)
@@ -20219,10 +20277,6 @@ Partial Class FormWork
         CType(Me.RepositoryItemSpinEdit32, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlFGWoff, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlFGWoff.ResumeLayout(False)
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -21965,4 +22019,10 @@ Partial Class FormWork
     Friend WithEvents Label3 As Label
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label16 As Label
+    Friend WithEvents GridColumn329 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn894 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn895 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn896 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn897 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn898 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
