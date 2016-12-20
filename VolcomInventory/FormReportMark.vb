@@ -1617,6 +1617,10 @@
             End Try
         ElseIf report_mark_type = "30" Then
             'PL MRS Production
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+            '
             If id_status_reportx = 5 Then 'Cancel
                 'stock
                 Dim query_cancel As String = "SELECT * FROM tb_pl_mrs a "
