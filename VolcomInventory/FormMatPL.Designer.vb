@@ -285,7 +285,7 @@ Partial Class FormMatPL
         'GridColumnPLDesign
         '
         Me.GridColumnPLDesign.Caption = "Design"
-        Me.GridColumnPLDesign.FieldName = "design_name"
+        Me.GridColumnPLDesign.FieldName = "design_display_name"
         Me.GridColumnPLDesign.Name = "GridColumnPLDesign"
         Me.GridColumnPLDesign.Visible = True
         Me.GridColumnPLDesign.VisibleIndex = 4
@@ -435,7 +435,7 @@ Partial Class FormMatPL
         'GridColumnMRSDesign
         '
         Me.GridColumnMRSDesign.Caption = "Design"
-        Me.GridColumnMRSDesign.FieldName = "design_name"
+        Me.GridColumnMRSDesign.FieldName = "design_display_name"
         Me.GridColumnMRSDesign.Name = "GridColumnMRSDesign"
         Me.GridColumnMRSDesign.Visible = True
         Me.GridColumnMRSDesign.VisibleIndex = 2
