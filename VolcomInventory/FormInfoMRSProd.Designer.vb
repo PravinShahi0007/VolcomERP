@@ -19,55 +19,55 @@ Partial Class FormInfoMRSPord
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.SplitContainerControl2 = New DevExpress.XtraEditors.SplitContainerControl
-        Me.GroupControlDetailSRS = New DevExpress.XtraEditors.GroupControl
-        Me.GCRetDetail = New DevExpress.XtraGrid.GridControl
-        Me.GVRetDetail = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdReq = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSamplePurcDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWHLocator = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWHRack = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCompWHName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHLOcator = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHRack = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.GridColumnQtyAllow = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdMatDetPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GroupControlDetailPL = New DevExpress.XtraEditors.GroupControl
-        Me.GCCreatedPLDetail = New DevExpress.XtraGrid.GridControl
-        Me.GVCreatedPLDetail = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.PCClose = New DevExpress.XtraEditors.PanelControl
-        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl
-        Me.LabelSubTitle = New DevExpress.XtraEditors.LabelControl
-        Me.LabelTitle = New DevExpress.XtraEditors.LabelControl
+        Me.SplitContainerControl2 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupControlDetailSRS = New DevExpress.XtraEditors.GroupControl()
+        Me.GCRetDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVRetDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdReq = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSamplePurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWHLocator = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWHRack = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompWHName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHLOcator = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHRack = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHDrawer = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumnQtyAllow = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdMatDetPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControlDetailPL = New DevExpress.XtraEditors.GroupControl()
+        Me.GCCreatedPLDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVCreatedPLDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.PCClose = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelSubTitle = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelTitle = New DevExpress.XtraEditors.LabelControl()
         CType(Me.SplitContainerControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl2.SuspendLayout()
         CType(Me.GroupControlDetailSRS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -115,13 +115,13 @@ Partial Class FormInfoMRSPord
         'GCRetDetail
         '
         Me.GCRetDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCRetDetail.Location = New System.Drawing.Point(22, 2)
+        Me.GCRetDetail.Location = New System.Drawing.Point(20, 2)
         Me.GCRetDetail.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.GCRetDetail.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GCRetDetail.MainView = Me.GVRetDetail
         Me.GCRetDetail.Name = "GCRetDetail"
         Me.GCRetDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCRetDetail.Size = New System.Drawing.Size(740, 157)
+        Me.GCRetDetail.Size = New System.Drawing.Size(742, 157)
         Me.GCRetDetail.TabIndex = 2
         Me.GCRetDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetDetail})
         '
@@ -285,7 +285,7 @@ Partial Class FormInfoMRSPord
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit1.EditValueChangedDelay = 50
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
@@ -320,13 +320,13 @@ Partial Class FormInfoMRSPord
         'GCCreatedPLDetail
         '
         Me.GCCreatedPLDetail.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCCreatedPLDetail.Location = New System.Drawing.Point(22, 2)
+        Me.GCCreatedPLDetail.Location = New System.Drawing.Point(20, 2)
         Me.GCCreatedPLDetail.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.GCCreatedPLDetail.LookAndFeel.UseDefaultLookAndFeel = False
         Me.GCCreatedPLDetail.MainView = Me.GVCreatedPLDetail
         Me.GCCreatedPLDetail.Name = "GCCreatedPLDetail"
         Me.GCCreatedPLDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2})
-        Me.GCCreatedPLDetail.Size = New System.Drawing.Size(740, 218)
+        Me.GCCreatedPLDetail.Size = New System.Drawing.Size(742, 218)
         Me.GCCreatedPLDetail.TabIndex = 3
         Me.GCCreatedPLDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCreatedPLDetail})
         '
@@ -491,7 +491,7 @@ Partial Class FormInfoMRSPord
         'RepositoryItemSpinEdit2
         '
         Me.RepositoryItemSpinEdit2.AutoHeight = False
-        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit2.EditValueChangedDelay = 50
         Me.RepositoryItemSpinEdit2.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit2.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
