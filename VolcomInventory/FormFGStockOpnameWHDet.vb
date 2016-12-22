@@ -135,7 +135,7 @@
     Sub viewDetail()
         If action = "ins" Then
             'action
-            Dim query As String = "SELECT ('0') AS code, ('') AS name, ('') AS size, ('') AS color, CAST('0' AS DECIMAL(13,2)) AS qty, CAST('0' AS DECIMAL(13,2)) AS bom_unit_price,0 as id_design_price,CAST('0' AS DECIMAL(13,2)) AS design_price, CAST('0' AS DECIMAL(13,2)) AS amount, ('') AS note, ('0') AS id_product, ('0') AS id_design,('0') AS id_sample , ('0') AS id_det "
+            Dim query As String = "SELECT ('0') AS code, ('') AS name, ('') AS size, ('') AS color, CAST('0' AS DECIMAL(13,2)) AS qty, CAST('0' AS DECIMAL(13,2)) AS bom_unit_price,'0' as id_design_price,CAST('0' AS DECIMAL(13,2)) AS design_price, CAST('0' AS DECIMAL(13,2)) AS amount, ('') AS note, ('0') AS id_product, ('0') AS id_design,('0') AS id_sample , ('0') AS id_det "
             Dim datax As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = datax
             GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
