@@ -11,4 +11,11 @@
         FormPopUpContact.id_pop_up = "73"
         FormPopUpContact.ShowDialog()
     End Sub
+
+    Private Sub CloneEmployeeToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CloneEmployeeToolStripMenuItem.Click
+        FormMasterEmployee.BAccept.Visible = False
+        FormMasterEmployee.PanelControl1.Visible = False
+        FormMasterEmployee.BClone.Visible = True
+        FormMasterEmployee.ShowDialog()
+    End Sub
 End Class

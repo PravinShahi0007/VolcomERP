@@ -31,6 +31,7 @@ Partial Class FormOutlet
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CloneEmployeeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCOutlet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVOutlet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -49,14 +50,14 @@ Partial Class FormOutlet
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloneCompanyToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CloneCompanyToolStripMenuItem, Me.CloneEmployeeToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(159, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(161, 70)
         '
         'CloneCompanyToolStripMenuItem
         '
         Me.CloneCompanyToolStripMenuItem.Name = "CloneCompanyToolStripMenuItem"
-        Me.CloneCompanyToolStripMenuItem.Size = New System.Drawing.Size(158, 22)
+        Me.CloneCompanyToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.CloneCompanyToolStripMenuItem.Text = "Clone company"
         '
         'GVOutlet
@@ -119,6 +120,12 @@ Partial Class FormOutlet
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 4
         '
+        'CloneEmployeeToolStripMenuItem
+        '
+        Me.CloneEmployeeToolStripMenuItem.Name = "CloneEmployeeToolStripMenuItem"
+        Me.CloneEmployeeToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.CloneEmployeeToolStripMenuItem.Text = "Clone employee"
+        '
         'FormOutlet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -149,4 +156,5 @@ Partial Class FormOutlet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CloneEmployeeToolStripMenuItem As ToolStripMenuItem
 End Class

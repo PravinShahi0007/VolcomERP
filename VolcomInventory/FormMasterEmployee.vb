@@ -124,4 +124,32 @@
     Private Sub SimpleButton1_Click_1(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         FormMasterEmployeeCustom.ShowDialog()
     End Sub
+
+    Private Sub BClone_Click(sender As Object, e As EventArgs) Handles BClone.Click
+        SplashScreenManager1.ShowWaitForm()
+        Dim host As String = FormOutlet.GVOutlet.GetFocusedRowCellValue("host").ToString
+        Dim username As String = FormOutlet.GVOutlet.GetFocusedRowCellValue("username").ToString
+        Dim pass As String = FormOutlet.GVOutlet.GetFocusedRowCellValue("pass").ToString
+        Dim db As String = FormOutlet.GVOutlet.GetFocusedRowCellValue("db").ToString
+
+        Try
+            'emp
+            Dim id_employee As String = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+            Dim dtemp As DataTable = execute_query("SELECT * FROM tb_m_employee WHERE id_employee=" + id_employee + "", -1, True, "", "", "", "")
+            Dim qinsemp As String = "INSERT INTO tb_m_employee(id_employee, id_sex, id_departement, id_blood_type, id_religion, id_country, id_education, id_employee_status, start_period, end_period, id_employee_active, employee_code, employee_name, employee_nick_name, employee_initial_name, employee_pob, employee_dob, employee_ethnic, employee_join_date, employee_last_date, employee_position, id_employee_level, email_lokal, email_lokal_pass, email_external, email_external_pass, email_other, email_other_pass, phone, phone_mobile, phone_ext, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, address_primary, address_additional, id_marriage_status, husband, wife, child1, child2, child3, basic_salary, allow_job, allow_meal, allow_trans, allow_house, allow_car) "
+            qinsemp += "SELECT '" + dtemp.Rows(0)("id_employee").ToString + "', '" + dtemp.Rows(0)("id_sex").ToString + "', '" + dtemp.Rows(0)("id_departement").ToString + "', '" + dtemp.Rows(0)("id_blood_type").ToString + "', '" + dtemp.Rows(0)("id_religion").ToString + "', '" + dtemp.Rows(0)("id_country").ToString + "', '" + dtemp.Rows(0)("id_education").ToString + "', '" + dtemp.Rows(0)("id_employee_status").ToString + "', '" + dtemp.Rows(0)("start_period").ToString + "', '" + dtemp.Rows(0)("end_period").ToString + "', '" + dtemp.Rows(0)("id_employee_active").ToString + "', '" + dtemp.Rows(0)("employee_code").ToString + "', '" + dtemp.Rows(0)("employee_name").ToString + "', '" + dtemp.Rows(0)("employee_nick_name").ToString + "', '" + dtemp.Rows(0)("employee_initial_name").ToString + "', '" + dtemp.Rows(0)("employee_pob").ToString + "', '" + dtemp.Rows(0)("employee_dob").ToString + "', '" + dtemp.Rows(0)("employee_ethnic").ToString + "', '" + dtemp.Rows(0)("employee_join_date").ToString + "', '" + dtemp.Rows(0)("employee_last_date").ToString + "', '" + dtemp.Rows(0)("employee_position").ToString + "', '" + dtemp.Rows(0)("id_employee_level").ToString + "', '" + dtemp.Rows(0)("email_lokal").ToString + "', '" + dtemp.Rows(0)("email_lokal_pass").ToString + "', '" + dtemp.Rows(0)("email_external").ToString + "', '" + dtemp.Rows(0)("email_external_pass").ToString + "', '" + dtemp.Rows(0)("email_other").ToString + "', '" + dtemp.Rows(0)("email_other_pass").ToString + "', '" + dtemp.Rows(0)("phone").ToString + "', '" + dtemp.Rows(0)("phone_mobile").ToString + "', '" + dtemp.Rows(0)("phone_ext").ToString + "', '" + dtemp.Rows(0)("employee_ktp").ToString + "', '" + dtemp.Rows(0)("employee_ktp_period").ToString + "', '" + dtemp.Rows(0)("employee_passport").ToString + "', '" + dtemp.Rows(0)("employee_passport_period").ToString + "', '" + dtemp.Rows(0)("employee_bpjs_tk").ToString + "', '" + dtemp.Rows(0)("employee_bpjs_tk_date").ToString + "', '" + dtemp.Rows(0)("employee_bpjs_kesehatan").ToString + "', '" + dtemp.Rows(0)("employee_bpjs_kesehatan_date").ToString + "', '" + dtemp.Rows(0)("employee_npwp").ToString + "', '" + dtemp.Rows(0)("address_primary").ToString + "', '" + dtemp.Rows(0)("address_additional").ToString + "', '" + dtemp.Rows(0)("id_marriage_status").ToString + "', '" + dtemp.Rows(0)("husband").ToString + "', '" + dtemp.Rows(0)("wife").ToString + "', '" + dtemp.Rows(0)("child1").ToString + "', '" + dtemp.Rows(0)("child2").ToString + "', '" + dtemp.Rows(0)("child3").ToString + "', '" + dtemp.Rows(0)("basic_salary").ToString + "', '" + dtemp.Rows(0)("allow_job").ToString + "', '" + dtemp.Rows(0)("allow_meal").ToString + "', '" + dtemp.Rows(0)("allow_trans").ToString + "', '" + dtemp.Rows(0)("allow_house").ToString + "', '" + dtemp.Rows(0)("allow_car").ToString + "'"
+            execute_non_query(qinsemp, False, host, username, pass, db)
+            SplashScreenManager1.CloseWaitForm()
+            infoCustom("Clone data success")
+            Close()
+        Catch ex As Exception
+            SplashScreenManager1.CloseWaitForm()
+            stopCustom(ex.ToString)
+            Close()
+        End Try
+    End Sub
+
+    Private Sub FormMasterEmployee_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
 End Class
