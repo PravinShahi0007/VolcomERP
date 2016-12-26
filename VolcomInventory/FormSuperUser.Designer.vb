@@ -32,13 +32,14 @@ Partial Class FormSuperUser
         Me.TxtHost = New DevExpress.XtraEditors.LabelControl()
         Me.TxtDB = New DevExpress.XtraEditors.LabelControl()
         Me.BSendMessage = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnOutlet = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SimpleButton1
         '
         Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.SimpleButton1.Location = New System.Drawing.Point(0, 220)
+        Me.SimpleButton1.Location = New System.Drawing.Point(0, 197)
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(430, 23)
         Me.SimpleButton1.TabIndex = 0
@@ -47,7 +48,7 @@ Partial Class FormSuperUser
         'BtnConn
         '
         Me.BtnConn.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnConn.Location = New System.Drawing.Point(0, 174)
+        Me.BtnConn.Location = New System.Drawing.Point(0, 151)
         Me.BtnConn.Name = "BtnConn"
         Me.BtnConn.Size = New System.Drawing.Size(430, 23)
         Me.BtnConn.TabIndex = 1
@@ -56,7 +57,7 @@ Partial Class FormSuperUser
         'BtnDepartement
         '
         Me.BtnDepartement.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnDepartement.Location = New System.Drawing.Point(0, 197)
+        Me.BtnDepartement.Location = New System.Drawing.Point(0, 174)
         Me.BtnDepartement.Name = "BtnDepartement"
         Me.BtnDepartement.Size = New System.Drawing.Size(430, 23)
         Me.BtnDepartement.TabIndex = 2
@@ -134,11 +135,20 @@ Partial Class FormSuperUser
         'BSendMessage
         '
         Me.BSendMessage.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BSendMessage.Location = New System.Drawing.Point(0, 243)
+        Me.BSendMessage.Location = New System.Drawing.Point(0, 220)
         Me.BSendMessage.Name = "BSendMessage"
         Me.BSendMessage.Size = New System.Drawing.Size(430, 23)
         Me.BSendMessage.TabIndex = 15
         Me.BSendMessage.Text = "Send Message"
+        '
+        'BtnOutlet
+        '
+        Me.BtnOutlet.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnOutlet.Location = New System.Drawing.Point(0, 243)
+        Me.BtnOutlet.Name = "BtnOutlet"
+        Me.BtnOutlet.Size = New System.Drawing.Size(430, 23)
+        Me.BtnOutlet.TabIndex = 16
+        Me.BtnOutlet.Text = "Outlet Setup"
         '
         'FormSuperUser
         '
@@ -156,6 +166,7 @@ Partial Class FormSuperUser
         Me.Controls.Add(Me.BtnDepartement)
         Me.Controls.Add(Me.SimpleButton1)
         Me.Controls.Add(Me.BSendMessage)
+        Me.Controls.Add(Me.BtnOutlet)
         Me.Controls.Add(Me.BtnOther)
         Me.MaximizeBox = False
         Me.Name = "FormSuperUser"
@@ -180,4 +191,5 @@ Partial Class FormSuperUser
     Friend WithEvents TxtHost As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtDB As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BSendMessage As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnOutlet As DevExpress.XtraEditors.SimpleButton
 End Class
