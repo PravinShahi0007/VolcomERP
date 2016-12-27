@@ -785,6 +785,32 @@
             FormFGRepairReturnDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
             FormFGRepairReturnDet.setDefaultDrawerTo()
             Close()
+        ElseIf id_pop_up = "73" Then
+            'CVLONE COMPAY
+            Dim host As String = FormOutlet.GVOutlet.GetFocusedRowCellValue("host").ToString
+            Dim username As String = FormOutlet.GVOutlet.GetFocusedRowCellValue("username").ToString
+            Dim pass As String = FormOutlet.GVOutlet.GetFocusedRowCellValue("pass").ToString
+            Dim db As String = FormOutlet.GVOutlet.GetFocusedRowCellValue("db").ToString
+
+            Try
+                'comp
+                Dim id_comp As String = GVCompany.GetFocusedRowCellValue("id_comp").ToString
+                Dim dtcomp As DataTable = execute_query("SELECT * FROM tb_m_comp WHERE id_comp=" + id_comp + "", -1, True, "", "", "", "")
+                Dim qinscomp As String = "INSERT INTO tb_m_comp(id_comp, id_comp_cat, comp_number, id_city, comp_name, comp_display_name, address_primary, address_other, fax, postal_code, email, website, id_tax, npwp, is_active, id_departement, comp_commission, id_store_type, id_area, id_employee_rep, id_comp_group, id_pd_alloc, id_wh_type, id_wh, id_acc_sale_ar, id_acc_sale_fg, id_so_type, id_drawer_def, awb_destination, awb_zone, awb_cargo_code, awb_rank, is_own_store) "
+                qinscomp += "SELECT '" + dtcomp.Rows(0)("id_comp").ToString + "', '" + dtcomp.Rows(0)("id_comp_cat").ToString + "', '" + dtcomp.Rows(0)("comp_number").ToString + "', '" + dtcomp.Rows(0)("id_city").ToString + "', '" + dtcomp.Rows(0)("comp_name").ToString + "', '" + dtcomp.Rows(0)("comp_display_name").ToString + "', '" + dtcomp.Rows(0)("address_primary").ToString + "', '" + dtcomp.Rows(0)("address_other").ToString + "', '" + dtcomp.Rows(0)("fax").ToString + "', '" + dtcomp.Rows(0)("postal_code").ToString + "', '" + dtcomp.Rows(0)("email").ToString + "', '" + dtcomp.Rows(0)("website").ToString + "', '" + dtcomp.Rows(0)("id_tax").ToString + "', '" + dtcomp.Rows(0)("npwp").ToString + "', '" + dtcomp.Rows(0)("is_active").ToString + "', " + checkNullInput(dtcomp.Rows(0)("id_departement").ToString) + ", '" + decimalSQL(dtcomp.Rows(0)("comp_commission").ToString) + "', '" + dtcomp.Rows(0)("id_store_type").ToString + "', '" + dtcomp.Rows(0)("id_area").ToString + "', '" + dtcomp.Rows(0)("id_employee_rep").ToString + "', '" + dtcomp.Rows(0)("id_comp_group").ToString + "', '" + dtcomp.Rows(0)("id_pd_alloc").ToString + "', " + checkNullInput(dtcomp.Rows(0)("id_wh_type").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_wh").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_acc_sale_ar").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("id_acc_sale_fg").ToString) + ", '" + dtcomp.Rows(0)("id_so_type").ToString + "', '" + dtcomp.Rows(0)("id_drawer_def").ToString + "', " + checkNullInput(dtcomp.Rows(0)("awb_destination").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_zone").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_cargo_code").ToString) + ", " + checkNullInput(dtcomp.Rows(0)("awb_rank").ToString) + ", '" + dtcomp.Rows(0)("is_own_store").ToString + "'; SELECT LAST_INSERT_ID() "
+                execute_non_query(qinscomp, False, host, username, pass, db)
+
+                'contact
+                Dim dtconn As DataTable = execute_query("SELECT a.id_comp_contact, a.id_comp,a.contact_person, a.contact_number, a.is_default FROM tb_m_comp_contact a WHERE a.id_comp=" + dtcomp.Rows(0)("id_comp").ToString + " AND a.is_default=1", -1, True, "", "", "", "")
+                Dim qcon As String = "INSERT INTO tb_m_comp_contact(id_comp_contact, id_comp, contact_person, contact_number, is_default) 
+                SELECT '" + dtconn.Rows(0)("id_comp_contact").ToString + "', '" + dtconn.Rows(0)("id_comp").ToString + "', '" + dtconn.Rows(0)("contact_person").ToString + "', '" + dtconn.Rows(0)("contact_number").ToString + "','1' "
+                execute_non_query(qcon, False, host, username, pass, db)
+                infoCustom("Clone data success")
+                Close()
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+                Close()
+            End Try
         End If
         Cursor = Cursors.Default
     End Sub

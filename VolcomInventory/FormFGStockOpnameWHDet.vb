@@ -135,7 +135,7 @@
     Sub viewDetail()
         If action = "ins" Then
             'action
-            Dim query As String = "SELECT ('0') AS code, ('') AS name, ('') AS size, ('') AS color, CAST('0' AS DECIMAL(13,2)) AS qty, CAST('0' AS DECIMAL(13,2)) AS bom_unit_price,0 as id_design_price,CAST('0' AS DECIMAL(13,2)) AS design_price, CAST('0' AS DECIMAL(13,2)) AS amount, ('') AS note, ('0') AS id_product, ('0') AS id_design,('0') AS id_sample , ('0') AS id_det "
+            Dim query As String = "SELECT ('0') AS code, ('') AS name, ('') AS size, ('') AS color, CAST('0' AS DECIMAL(13,2)) AS qty, CAST('0' AS DECIMAL(13,2)) AS bom_unit_price,'0' as id_design_price,CAST('0' AS DECIMAL(13,2)) AS design_price, CAST('0' AS DECIMAL(13,2)) AS amount, ('') AS note, ('0') AS id_product, ('0') AS id_design,('0') AS id_sample , ('0') AS id_det "
             Dim datax As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = datax
             GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
@@ -950,6 +950,44 @@
             FormPopUpDrawer.id_pop_up = 5
             FormPopUpDrawer.id_comp = id_comp_from
             FormPopUpDrawer.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub TxtCodeCompFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompFrom.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            load_store_detail()
+        End If
+    End Sub
+
+    Sub load_store_detail()
+        'get default store category for pick company
+        Dim id_comp_cat_store As String = "-1"
+        id_comp_cat_store = execute_query("SELECT id_comp_cat_store FROM tb_opt", 0, True, "", "", "", "")
+
+        Dim query As String = "select cc.id_comp_contact,cc.id_comp,c.npwp,c.comp_number,c.comp_name,c.comp_commission,c.address_primary,c.id_so_type "
+        query += " From tb_m_comp_contact cc "
+        query += " inner join tb_m_comp c On c.id_comp=cc.id_comp"
+        query += " where cc.is_default=1 and (c.id_comp_cat = '5' OR c.id_comp_cat = '6') AND c.comp_number='" + TxtCodeCompFrom.Text + "'"
+        Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+
+        If data.Rows.Count <= 0 Then
+            stopCustom("Store not found.")
+            TxtCodeCompFrom.Focus()
+        ElseIf data.Rows.Count > 1 Then
+            FormPopUpContact.id_pop_up = "47"
+            FormPopUpContact.id_cat = id_comp_cat_store
+            FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + TxtCodeCompFrom.Text + "'"
+            FormPopUpContact.ShowDialog()
+        Else
+            id_comp_contact_from = data.Rows(0)("id_comp_contact").ToString
+            TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
+            TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
+            id_comp_from = data.Rows(0)("id_comp").ToString
+            GroupControlItem.Enabled = True
+            viewDetail()
+            view_barcode_list()
+            dt.Clear()
+            setDefaultDrawer()
         End If
     End Sub
 End Class

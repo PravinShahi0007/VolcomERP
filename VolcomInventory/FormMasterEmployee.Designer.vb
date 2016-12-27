@@ -76,6 +76,7 @@ Partial Class FormMasterEmployee
         Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
+        Me.BClone = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -96,7 +97,7 @@ Partial Class FormMasterEmployee
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
         Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemPictureEdit1})
-        Me.GCEmployee.Size = New System.Drawing.Size(734, 436)
+        Me.GCEmployee.Size = New System.Drawing.Size(734, 408)
         Me.GCEmployee.TabIndex = 0
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
@@ -613,7 +614,7 @@ Partial Class FormMasterEmployee
         Me.BAccept.Appearance.Options.UseForeColor = True
         Me.BAccept.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.BAccept.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BAccept.Location = New System.Drawing.Point(0, 471)
+        Me.BAccept.Location = New System.Drawing.Point(0, 443)
         Me.BAccept.LookAndFeel.SkinName = "Metropolis"
         Me.BAccept.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BAccept.LookAndFeel.UseDefaultLookAndFeel = False
@@ -621,6 +622,26 @@ Partial Class FormMasterEmployee
         Me.BAccept.Size = New System.Drawing.Size(734, 28)
         Me.BAccept.TabIndex = 138
         Me.BAccept.Text = "Syncronize Fingerprint Machine"
+        '
+        'BClone
+        '
+        Me.BClone.Appearance.BackColor = System.Drawing.Color.LightSeaGreen
+        Me.BClone.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BClone.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BClone.Appearance.Options.UseBackColor = True
+        Me.BClone.Appearance.Options.UseFont = True
+        Me.BClone.Appearance.Options.UseForeColor = True
+        Me.BClone.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BClone.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BClone.Location = New System.Drawing.Point(0, 471)
+        Me.BClone.LookAndFeel.SkinName = "Metropolis"
+        Me.BClone.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BClone.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BClone.Name = "BClone"
+        Me.BClone.Size = New System.Drawing.Size(734, 28)
+        Me.BClone.TabIndex = 139
+        Me.BClone.Text = "Clone"
+        Me.BClone.Visible = False
         '
         'FormMasterEmployee
         '
@@ -630,6 +651,7 @@ Partial Class FormMasterEmployee
         Me.Controls.Add(Me.GCEmployee)
         Me.Controls.Add(Me.BAccept)
         Me.Controls.Add(Me.PanelControl1)
+        Me.Controls.Add(Me.BClone)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -707,4 +729,5 @@ Partial Class FormMasterEmployee
     Friend WithEvents gridBandDependent As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandContact As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BClone As DevExpress.XtraEditors.SimpleButton
 End Class

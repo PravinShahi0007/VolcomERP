@@ -107,7 +107,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Sub insertDt(ByVal code_param As String, ByVal name_param As String, ByVal size_param As String, ByVal color_param As String, ByVal cost_param As Decimal, ByVal id_design_price_param As Integer, ByVal design_price_param As Decimal, ByVal id_product_param As String, ByVal id_design_param As String, ByVal id_sample_param As String)
+    Sub insertDt(ByVal code_param As String, ByVal name_param As String, ByVal size_param As String, ByVal color_param As String, ByVal cost_param As Decimal, ByVal id_design_price_param As String, ByVal design_price_param As Decimal, ByVal id_product_param As String, ByVal id_design_param As String, ByVal id_sample_param As String)
         Dim R As DataRow = dt.NewRow
         R("code") = code_param
         R("name") = name_param
@@ -128,6 +128,9 @@
 
     Private Sub BtnChoose_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnChoose.Click
         Cursor = Cursors.WaitCursor
+        '
+        GridColumnDesign.GroupIndex = -1
+        '
         Dim cond_check As Boolean = True
         Dim cond_general As Boolean = False
         Dim alert_check As String = ""
@@ -142,7 +145,7 @@
             Dim color As String = GVProduct.GetRowCellValue(i, "color").ToString
             Dim bom_unit_price As String = Decimal.Parse(GVProduct.GetRowCellValue(i, "bom_unit_price").ToString)
             Dim id_design_price As String = GVProduct.GetRowCellValue(i, "id_design_price").ToString
-            Dim design_price As Decimal = GVProduct.GetRowCellValue(i, "design_price")
+            Dim design_price As Decimal = Decimal.Parse(GVProduct.GetRowCellValue(i, "design_price").ToString)
             Dim id_product As String = GVProduct.GetRowCellValue(i, "id_product").ToString
             Dim id_design As String = GVProduct.GetRowCellValue(i, "id_design").ToString
             Dim id_sample As String = GVProduct.GetRowCellValue(i, "id_sample").ToString
@@ -190,7 +193,7 @@
                         newRow("color") = dt.Rows(ls)("color").ToString
                         newRow("qty") = Decimal.Parse(dt.Rows(ls)("qty").ToString)
                         newRow("bom_unit_price") = Decimal.Parse(dt.Rows(ls)("bom_unit_price").ToString)
-                        newRow("id_design_price") = Decimal.Parse(dt.Rows(ls)("id_design_price").ToString)
+                        newRow("id_design_price") = dt.Rows(ls)("id_design_price").ToString
                         newRow("design_price") = Decimal.Parse(dt.Rows(ls)("design_price").ToString)
                         newRow("amount") = Decimal.Parse(dt.Rows(ls)("amount").ToString)
                         newRow("note") = dt.Rows(ls)("note").ToString
@@ -265,6 +268,7 @@
         Else
             errorCustom("No item selected")
         End If
+        GridColumnDesign.GroupIndex = 0
         Cursor = Cursors.Default
     End Sub
 End Class

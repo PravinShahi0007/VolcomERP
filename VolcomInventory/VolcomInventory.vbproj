@@ -1000,6 +1000,12 @@
     <Compile Include="FormOptViewSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOutlet.Designer.vb">
+      <DependentUpon>FormOutlet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOutlet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpDesign.Designer.vb">
       <DependentUpon>FormPopUpDesign.vb</DependentUpon>
     </Compile>
@@ -4971,6 +4977,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOptViewSingle.resx">
       <DependentUpon>FormOptViewSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOutlet.resx">
+      <DependentUpon>FormOutlet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpDesign.resx">
       <DependentUpon>FormPopUpDesign.vb</DependentUpon>

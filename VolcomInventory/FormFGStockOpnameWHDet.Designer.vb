@@ -207,9 +207,9 @@ Partial Class FormFGStockOpnameWHDet
         Me.PanelControlLeft.Controls.Add(Me.LabelControl3)
         Me.PanelControlLeft.Controls.Add(Me.DEForm)
         Me.PanelControlLeft.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlLeft.Location = New System.Drawing.Point(506, 2)
+        Me.PanelControlLeft.Location = New System.Drawing.Point(499, 2)
         Me.PanelControlLeft.Name = "PanelControlLeft"
-        Me.PanelControlLeft.Size = New System.Drawing.Size(420, 101)
+        Me.PanelControlLeft.Size = New System.Drawing.Size(427, 101)
         Me.PanelControlLeft.TabIndex = 8892
         '
         'TxtLastUpdate
