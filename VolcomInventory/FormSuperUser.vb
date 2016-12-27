@@ -57,4 +57,8 @@
     Private Sub BCalendar_Click(sender As Object, e As EventArgs)
         FormEmpCalendar.ShowDialog()
     End Sub
+
+    Private Sub BtnOutlet_Click(sender As Object, e As EventArgs) Handles BtnOutlet.Click
+        FormOutlet.ShowDialog()
+    End Sub
 End Class
