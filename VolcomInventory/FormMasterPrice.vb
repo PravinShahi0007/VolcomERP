@@ -2,6 +2,7 @@
     Dim bnew_active As String = "1"
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
+    Dim super_user As String = get_setup_field("id_role_super_admin")
 
     Private Sub FormMasterPrice_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewPrice()
@@ -63,7 +64,11 @@
 
     Sub viewPrice()
         Dim query_c As ClassDesign = New ClassDesign()
-        Dim query As String = query_c.queryPriceExcelMain("-1", "2")
+        Dim cond As String = "-1"
+        If id_role_login <> super_user Then
+            cond = "AND rm.id_user='" + id_user + "' "
+        End If
+        Dim query As String = query_c.queryPriceExcelMain(cond, "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPrice.DataSource = data
         check_menu()
