@@ -108,11 +108,13 @@ Partial Class FormMasterDesignCOP
         Me.BGVDesign.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.Picture, Me.ColID, Me.ColDisplayName, Me.ColName, Me.ColUOM, Me.ColSampleSeason, Me.ColSampleCode, Me.Orign, Me.ColIdSeason, Me.GridColumnColor, Me.GridColumnOrign, Me.GridColumnClass, Me.GridColumnBreakSize, Me.GridColumnFabrication, Me.GridColumnIdCurrECOPPD, Me.GridColumnCurrECOPPD, Me.GridColumnKursECOPPD, Me.GridColumnECOPPD, Me.GridColumnECOPPDIdVendor, Me.GridColumnCompECOPPD, Me.GridColumnCompCECOPPD, Me.IdCurrECOPBOM, Me.CurrECOPBOM, Me.KursECOPBOM, Me.ECOPBOM, Me.ECOPBOMIdVendor, Me.CompECOPBOM, Me.CompCECOPBOM, Me.KursECOPPP, Me.ECOPPP, Me.COPFinal})
         Me.BGVDesign.GridControl = Me.GCDesign
         Me.BGVDesign.GroupCount = 1
+        Me.BGVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_cop", Me.COPFinal, "{0:N2}")})
         Me.BGVDesign.Name = "BGVDesign"
         Me.BGVDesign.OptionsBehavior.Editable = False
         Me.BGVDesign.OptionsFind.AlwaysVisible = True
         Me.BGVDesign.OptionsView.ColumnAutoWidth = False
         Me.BGVDesign.OptionsView.RowAutoHeight = True
+        Me.BGVDesign.OptionsView.ShowFooter = True
         Me.BGVDesign.OptionsView.ShowGroupPanel = False
         Me.BGVDesign.RowHeight = 10
         Me.BGVDesign.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColSampleSeason, DevExpress.Data.ColumnSortOrder.Descending)})
@@ -421,6 +423,7 @@ Partial Class FormMasterDesignCOP
         Me.COPFinal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.COPFinal.FieldName = "design_cop"
         Me.COPFinal.Name = "COPFinal"
+        Me.COPFinal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_cop", "{0:N2}")})
         Me.COPFinal.Visible = True
         '
         'IdCurrECOPBOM
