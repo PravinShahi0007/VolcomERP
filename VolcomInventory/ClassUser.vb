@@ -1,8 +1,10 @@
 ﻿Public Class ClassUser
     Sub logLogin(ByVal type As String)
-        Dim query As String = "INSERT INTO tb_log_login(id_user, time,type) 
-        VALUES('" + id_user + "', NOW(), '" + type + "') "
-        execute_non_query(query, True, "", "", "", "")
+        If id_user > "0" And id_user <> "" Then
+            Dim query As String = "INSERT INTO tb_log_login(id_user, time,type) 
+            VALUES('" + id_user + "', NOW(), '" + type + "') "
+            execute_non_query(query, True, "", "", "", "")
+        End If
     End Sub
 
     Public Function queryMain(ByVal condition As String, ByVal order_type As String) As String
