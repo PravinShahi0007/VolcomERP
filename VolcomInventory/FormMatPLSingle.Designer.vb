@@ -43,6 +43,7 @@ Partial Class FormMatPLSingle
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCurr = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDrawer = New DevExpress.XtraGrid.GridControl()
         Me.GVDrawer = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -120,7 +121,6 @@ Partial Class FormMatPLSingle
         Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.ErrorProviderPL, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -407,6 +407,19 @@ Partial Class FormMatPLSingle
         Me.GridColumn27.Visible = True
         Me.GridColumn27.VisibleIndex = 8
         Me.GridColumn27.Width = 64
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn28.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn28.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn28.Caption = "Qty MRS"
+        Me.GridColumn28.FieldName = "prod_order_mrs_det_qty"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 3
+        Me.GridColumn28.Width = 69
         '
         'XtraTabPage2
         '
@@ -1220,19 +1233,6 @@ Partial Class FormMatPLSingle
         Me.TxtNameCompTo.Size = New System.Drawing.Size(207, 20)
         Me.TxtNameCompTo.TabIndex = 5
         Me.TxtNameCompTo.TabStop = False
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn28.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn28.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn28.Caption = "Qty MRS"
-        Me.GridColumn28.FieldName = "qty_mrs"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 3
-        Me.GridColumn28.Width = 69
         '
         'FormMatPLSingle
         '
