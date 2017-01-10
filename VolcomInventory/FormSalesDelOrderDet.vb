@@ -1067,6 +1067,8 @@ Public Class FormSalesDelOrderDet
 
     Sub getReport()
         GridColumnStatus.Visible = False
+        GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
+        GVItemList.RefreshData()
         ReportSalesDelOrderDet.dt = GCItemList.DataSource
         ReportSalesDelOrderDet.id_pl_sales_order_del = id_pl_sales_order_del
         Dim Report As New ReportSalesDelOrderDet()
@@ -1097,6 +1099,8 @@ Public Class FormSalesDelOrderDet
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+        GVItemList.ActiveFilterString = ""
+        GVItemList.RefreshData()
     End Sub
 
     'Color Cell
