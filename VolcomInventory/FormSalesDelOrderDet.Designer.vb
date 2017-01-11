@@ -125,6 +125,8 @@ Partial Class FormSalesDelOrderDet
         Me.GCTest = New DevExpress.XtraGrid.GridControl()
         Me.GVTest = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BtnVerify = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnBarcodeName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBarcodeSize = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1089,7 +1091,7 @@ Partial Class FormSalesDelOrderDet
         '
         'GVBarcode
         '
-        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix, Me.GridColumnIdUniqueReceiving, Me.GridColumnIdProductScan})
+        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumnBarcode, Me.GridColumnCountingCode, Me.GridColumnIdPLCounting, Me.GridColumnIsFix, Me.GridColumnIdUniqueReceiving, Me.GridColumnIdProductScan, Me.GridColumnBarcodeName, Me.GridColumnBarcodeSize})
         Me.GVBarcode.GridControl = Me.GCBarcode
         Me.GVBarcode.Name = "GVBarcode"
         Me.GVBarcode.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -1111,7 +1113,7 @@ Partial Class FormSalesDelOrderDet
         Me.GridColumn5.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 0
-        Me.GridColumn5.Width = 53
+        Me.GridColumn5.Width = 56
         '
         'GridColumnBarcode
         '
@@ -1120,7 +1122,7 @@ Partial Class FormSalesDelOrderDet
         Me.GridColumnBarcode.Name = "GridColumnBarcode"
         Me.GridColumnBarcode.Visible = True
         Me.GridColumnBarcode.VisibleIndex = 1
-        Me.GridColumnBarcode.Width = 816
+        Me.GridColumnBarcode.Width = 268
         '
         'GridColumnCountingCode
         '
@@ -1310,6 +1312,26 @@ Partial Class FormSalesDelOrderDet
         Me.BtnVerify.Size = New System.Drawing.Size(82, 36)
         Me.BtnVerify.TabIndex = 20
         Me.BtnVerify.Text = "Verify"
+        '
+        'GridColumnBarcodeName
+        '
+        Me.GridColumnBarcodeName.Caption = "Description"
+        Me.GridColumnBarcodeName.FieldName = "name"
+        Me.GridColumnBarcodeName.Name = "GridColumnBarcodeName"
+        Me.GridColumnBarcodeName.OptionsColumn.AllowEdit = False
+        Me.GridColumnBarcodeName.Visible = True
+        Me.GridColumnBarcodeName.VisibleIndex = 2
+        Me.GridColumnBarcodeName.Width = 674
+        '
+        'GridColumnBarcodeSize
+        '
+        Me.GridColumnBarcodeSize.Caption = "Size"
+        Me.GridColumnBarcodeSize.FieldName = "size"
+        Me.GridColumnBarcodeSize.Name = "GridColumnBarcodeSize"
+        Me.GridColumnBarcodeSize.OptionsColumn.AllowEdit = False
+        Me.GridColumnBarcodeSize.Visible = True
+        Me.GridColumnBarcodeSize.VisibleIndex = 3
+        Me.GridColumnBarcodeSize.Width = 80
         '
         'FormSalesDelOrderDet
         '
@@ -1504,4 +1526,6 @@ Partial Class FormSalesDelOrderDet
     Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnVerify As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnBarcodeName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnBarcodeSize As DevExpress.XtraGrid.Columns.GridColumn
 End Class

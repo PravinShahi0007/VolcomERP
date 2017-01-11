@@ -48,6 +48,9 @@ Public Class FormSalesDelOrderDet
 
         End Try
 
+        'hide diff status
+        GridColumnStatus.Visible = False
+
         If action = "ins" Then
             'TxtSalesDelOrderNumber.Text = header_number_sales("3")
             BtnPrint.Enabled = False
@@ -200,7 +203,7 @@ Public Class FormSalesDelOrderDet
 
     Sub view_barcode_list()
         If action = "ins" Then
-            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('0') AS id_pl_sales_order_del_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_pl_sales_order_del_det_counting "
+            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('') AS `name`, ('') AS `size`,('0') AS id_pl_sales_order_del_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_pl_sales_order_del_det_counting "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBarcode.DataSource = data
             deleteRowsBc()
@@ -209,12 +212,15 @@ Public Class FormSalesDelOrderDet
             id_pl_sales_order_del_det_counting_list.Clear()
             Dim query As String = ""
             query += "SELECT ('') AS no, CONCAT(c.product_full_code, a.pl_sales_order_del_det_counting) AS code, "
-            query += "(a.pl_sales_order_del_det_counting) AS counting_code, "
+            query += "c.product_display_name AS `name`, cod.display_name AS `size`,(a.pl_sales_order_del_det_counting) AS counting_code, "
             query += "a.id_pl_sales_order_del_det_counting, ('2') AS is_fix, "
             query += "a.id_pl_prod_order_rec_det_unique, b.id_product "
             query += "FROM tb_pl_sales_order_del_det_counting a "
             query += "INNER JOIN tb_pl_sales_order_del_det b ON a.id_pl_sales_order_del_det = b.id_pl_sales_order_del_det "
+            query += "JOIN tb_opt o "
             query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product "
+            query += "INNER JOIN tb_m_product_code cc ON cc.id_product = c.id_product "
+            query += "INNER JOIN tb_m_code_detail cod ON cod.id_code_detail = cc.id_code_detail AND cod.id_code = o.id_code_product_size "
             query += "WHERE b.id_pl_sales_order_del = '" + id_pl_sales_order_del + "' AND a.id_counting_type='1' "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To (data.Rows.Count - 1)
@@ -349,6 +355,7 @@ Public Class FormSalesDelOrderDet
             BtnVerify.Enabled = True
             GVItemList.OptionsCustomization.AllowQuickHideColumns = False
             GVItemList.OptionsCustomization.AllowGroup = False
+            GridColumnQtyLimit.Visible = True
         Else
             PanelNavBarcode.Enabled = False
             MENote.Properties.ReadOnly = True
@@ -357,6 +364,7 @@ Public Class FormSalesDelOrderDet
             GVItemList.OptionsCustomization.AllowQuickHideColumns = True
             GVItemList.Columns("sales_order_det_qty_limit").Visible = False
             GVItemList.OptionsCustomization.AllowGroup = True
+            GridColumnQtyLimit.Visible = False
         End If
 
         'attachment
@@ -491,6 +499,7 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Function verifyTrans() As Boolean
+        GridColumnStatus.Visible = True
         Dim cond_check_data As Boolean = True
         Dim dt_cek As DataTable
         If action = "ins" Then
@@ -904,6 +913,8 @@ Public Class FormSalesDelOrderDet
         Dim counting_code As String = ""
         Dim id_pl_prod_order_rec_det_unique As String = "0"
         Dim id_product As String = ""
+        Dim product_name As String = ""
+        Dim size As String = ""
         Dim jum_scan As Integer = 0
         Dim jum_limit As Integer = 0
         Dim is_old As String = "0"
@@ -914,6 +925,8 @@ Public Class FormSalesDelOrderDet
             counting_code = dt_filter(0)("product_counting_code").ToString
             id_pl_prod_order_rec_det_unique = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
             id_product = dt_filter(0)("id_product").ToString
+            product_name = dt_filter(0)("name").ToString
+            size = dt_filter(0)("size").ToString
             is_old = dt_filter(0)("is_old_design").ToString
             code_found = True
         End If
@@ -947,6 +960,8 @@ Public Class FormSalesDelOrderDet
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_fix", "2")
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "counting_code", counting_code)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
+                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
+                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", Size)
                 countQty(id_product)
                 newRowsBc()
                 GCItemList.RefreshDataSource()
@@ -983,6 +998,8 @@ Public Class FormSalesDelOrderDet
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_fix", "2")
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "counting_code", counting_code)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", Size)
                     countQty(id_product)
                     newRowsBc()
                     GCItemList.RefreshDataSource()
@@ -1075,6 +1092,7 @@ Public Class FormSalesDelOrderDet
     Sub getReport()
         GridColumnNo.VisibleIndex = 0
         GridColumnStatus.Visible = False
+        GridColumnQtyLimit.Visible = False
         GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
         For i As Integer = 0 To GVItemList.RowCount - 1
             GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
@@ -1113,6 +1131,7 @@ Public Class FormSalesDelOrderDet
         Tool.ShowPreview()
         GVItemList.ActiveFilterString = ""
         GridColumnNo.Visible = False
+        GridColumnQtyLimit.Visible = True
     End Sub
 
     'Color Cell
@@ -1305,16 +1324,17 @@ Public Class FormSalesDelOrderDet
             End Try
 
             'show column
-            GridColumnNo.VisibleIndex = 0
-            GridColumnCode.VisibleIndex = 1
-            GridColumnName.VisibleIndex = 2
-            GridColumnSize.VisibleIndex = 3
-            GridColumnQtyLimit.VisibleIndex = 4
-            GridColumnQty.VisibleIndex = 5
-            GridColumnPrice.VisibleIndex = 6
-            GridColumnAmount.VisibleIndex = 7
-            GridColumnRemark.VisibleIndex = 8
-            GridColumnStatus.VisibleIndex = 9
+            GridColumnCode.VisibleIndex = 0
+            GridColumnName.VisibleIndex = 1
+            GridColumnSize.VisibleIndex = 2
+            GridColumnQtyLimit.VisibleIndex = 3
+            GridColumnQty.VisibleIndex = 4
+            GridColumnPrice.VisibleIndex = 5
+            GridColumnAmount.VisibleIndex = 6
+            GridColumnRemark.VisibleIndex = 7
+            GridColumnStatus.VisibleIndex = 8
+            GVItemList.OptionsPrint.PrintFooter = True
+            GVItemList.OptionsPrint.PrintHeader = True
             Cursor = Cursors.Default
         End If
     End Sub
