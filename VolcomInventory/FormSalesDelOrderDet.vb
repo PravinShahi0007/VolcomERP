@@ -346,12 +346,14 @@ Public Class FormSalesDelOrderDet
             PanelNavBarcode.Enabled = True
             MENote.Properties.ReadOnly = False
             BtnSave.Enabled = True
+            BtnVerify.Enabled = True
             GVItemList.OptionsCustomization.AllowQuickHideColumns = False
             GVItemList.OptionsCustomization.AllowGroup = False
         Else
             PanelNavBarcode.Enabled = False
             MENote.Properties.ReadOnly = True
             BtnSave.Enabled = False
+            BtnVerify.Enabled = False
             GVItemList.OptionsCustomization.AllowQuickHideColumns = True
             GVItemList.Columns("sales_order_det_qty_limit").Visible = False
             GVItemList.OptionsCustomization.AllowGroup = True
@@ -488,13 +490,7 @@ Public Class FormSalesDelOrderDet
         Dispose()
     End Sub
 
-    Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
-        Cursor = Cursors.WaitCursor
-        makeSafeGV(GVItemList)
-        makeSafeGV(GVBarcode)
-        ValidateChildren()
-
-        'cek qty limit SO di DB
+    Function verifyTrans() As Boolean
         Dim cond_check_data As Boolean = True
         Dim dt_cek As DataTable
         If action = "ins" Then
@@ -527,13 +523,24 @@ Public Class FormSalesDelOrderDet
         Next
         GCItemList.RefreshDataSource()
         GVItemList.RefreshData()
+        Return cond_check_data
+    End Function
+
+    Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVItemList)
+        makeSafeGV(GVBarcode)
+        ValidateChildren()
+
+        'cek qty limit SO di DB
+        Dim cond_check_dt As Boolean = verifyTrans()
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMiddle) Then
             errorInput()
         ElseIf GVItemList.RowCount = 0 Or GVBarcode.RowCount = 0 Then
             errorCustom("Delivery item or scanned item data can't blank")
-        ElseIf Not cond_check_data Then
-            stopCustom("Please see error in column status.")
+        ElseIf Not cond_check_dt Then
+            stopCustom("Please see different in column status.")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -1302,11 +1309,12 @@ Public Class FormSalesDelOrderDet
             GridColumnCode.VisibleIndex = 1
             GridColumnName.VisibleIndex = 2
             GridColumnSize.VisibleIndex = 3
-            GridColumnQty.VisibleIndex = 4
-            GridColumnPrice.VisibleIndex = 5
-            GridColumnAmount.VisibleIndex = 6
-            GridColumnRemark.VisibleIndex = 7
-            GridColumnStatus.VisibleIndex = 8
+            GridColumnQtyLimit.VisibleIndex = 4
+            GridColumnQty.VisibleIndex = 5
+            GridColumnPrice.VisibleIndex = 6
+            GridColumnAmount.VisibleIndex = 7
+            GridColumnRemark.VisibleIndex = 8
+            GridColumnStatus.VisibleIndex = 9
             Cursor = Cursors.Default
         End If
     End Sub
@@ -1384,5 +1392,12 @@ Public Class FormSalesDelOrderDet
         If e.RowHandle >= 0 Then
             e.Info.DisplayText = (e.RowHandle + 1).ToString
         End If
+    End Sub
+
+    Private Sub BtnVerify_Click(sender As Object, e As EventArgs) Handles BtnVerify.Click
+        Cursor = Cursors.WaitCursor
+        'cek qty limit SO di DB
+        verifyTrans()
+        Cursor = Cursors.Default
     End Sub
 End Class
