@@ -411,9 +411,9 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Private Sub GVBarcode_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
-        If e.Column.FieldName = "no" Then
-            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
-        End If
+        'If e.Column.FieldName = "no" Then
+        '    e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        'End If
     End Sub
 
     Sub allowDelete()
@@ -885,9 +885,9 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Private Sub GVItemList_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
-        If e.Column.FieldName = "no" Then
-            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
-        End If
+        'If e.Column.FieldName = "no" Then
+        '    e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        'End If
     End Sub
 
     Private Sub GVBarcode_HiddenEditor(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVBarcode.HiddenEditor
@@ -1066,8 +1066,13 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Sub getReport()
+        GridColumnNo.VisibleIndex = 0
         GridColumnStatus.Visible = False
         GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
+        For i As Integer = 0 To GVItemList.RowCount - 1
+            GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
+        Next
+        GCItemList.RefreshDataSource()
         GVItemList.RefreshData()
         ReportSalesDelOrderDet.dt = GCItemList.DataSource
         ReportSalesDelOrderDet.id_pl_sales_order_del = id_pl_sales_order_del
@@ -1100,7 +1105,7 @@ Public Class FormSalesDelOrderDet
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
         GVItemList.ActiveFilterString = ""
-        GVItemList.RefreshData()
+        GridColumnNo.Visible = False
     End Sub
 
     'Color Cell
@@ -1373,5 +1378,11 @@ Public Class FormSalesDelOrderDet
 
     Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
         exportToBOF(True)
+    End Sub
+
+    Private Sub GVItemList_CustomDrawRowIndicator(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs) Handles GVItemList.CustomDrawRowIndicator
+        If e.RowHandle >= 0 Then
+            e.Info.DisplayText = (e.RowHandle + 1).ToString
+        End If
     End Sub
 End Class
