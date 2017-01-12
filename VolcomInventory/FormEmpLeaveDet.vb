@@ -323,7 +323,7 @@
                 'search jika admin management
                 Dim id_user_admin_management As String = get_opt_emp_field("id_user_admin_mng").ToString
                 If id_user_admin_management = id_employee Then
-                    submit_who_prepared("99", id_emp_leave, id_employee)
+                    submit_who_prepared_no_user("99", id_emp_leave, id_employee)
                     query = "UPDATE tb_emp_leave SET report_mark_type='99' WHERE id_emp_leave='" & id_emp_leave & "'"
                     execute_non_query(query, True, "", "", "", "")
                     '
@@ -334,14 +334,14 @@
                     jum_check = execute_query(query, 0, True, "", "", "", "")
 
                     If jum_check = "0" Then
-                        submit_who_prepared("95", id_emp_leave, id_employee)
+                        submit_who_prepared_no_user("95", id_emp_leave, id_employee)
                         query = "UPDATE tb_emp_leave SET report_mark_type='95' WHERE id_emp_leave='" & id_emp_leave & "'"
                         execute_non_query(query, True, "", "", "", "")
                         '
-                        query = "UPDATE tb_report_mark SET id_user='" & id_user & "' WHERE report_mark_type='95' AND id_report_status='2' AND id_report='" & id_emp_leave & "'"
+                        query = "UPDATE tb_report_mark SET id_user='" & id_user & "',id_employee='" & id_employee_user & "' WHERE report_mark_type='95' AND id_report_status='2' AND id_report='" & id_emp_leave & "'"
                         execute_non_query(query, True, "", "", "", "")
                     Else ' manager only
-                        submit_who_prepared("96", id_emp_leave, id_employee)
+                        submit_who_prepared_no_user("96", id_emp_leave, id_employee)
                         query = "UPDATE tb_emp_leave SET report_mark_type='96' WHERE id_emp_leave='" & id_emp_leave & "'"
                         execute_non_query(query, True, "", "", "", "")
                     End If

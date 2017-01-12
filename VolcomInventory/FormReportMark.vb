@@ -368,7 +368,7 @@
         End If
     End Sub
     Sub view_mark()
-        Dim query As String = "SELECT a.id_mark_asg,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,d.employee_name,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,a.is_use "
+        Dim query As String = "SELECT emp.employee_name,a.id_mark_asg,a.id_report_status,a.report_mark_note,a.id_report_mark,b.report_status,a.id_user,e.mark,CONCAT_WS(' ',DATE_FORMAT(a.report_mark_datetime,'%d %M %Y'),TIME(a.report_mark_datetime)) AS date_time,a.report_mark_note,a.is_use "
         query += ",CONCAT_WS(' ',DATE_FORMAT(a.report_mark_start_datetime,'%d %M %Y'),TIME(a.report_mark_start_datetime)) AS date_time_start "
         query += ",CONCAT_WS(' ',DATE_FORMAT((ADDTIME(report_mark_start_datetime,report_mark_lead_time)),'%d %M %Y'),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS lead_time "
         query += ",CONCAT_WS(' ',DATE(ADDTIME(report_mark_start_datetime,report_mark_lead_time)),TIME((ADDTIME(report_mark_start_datetime,report_mark_lead_time)))) AS raw_lead_time "
@@ -376,6 +376,7 @@
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status "
         query += "LEFT JOIN tb_m_user c ON a.id_user=c.id_user "
         query += "LEFT JOIN tb_m_employee d ON d.id_employee=c.id_employee "
+        query += "LEFT JOIN tb_m_employee emp ON emp.id_employee=a.id_employee "
         query += "INNER JOIN tb_lookup_mark e ON e.id_mark=a.id_mark "
         query += "WHERE a.report_mark_type='" & report_mark_type & "' AND a.id_report='" & id_report & "' "
         query += "ORDER BY a.id_report_status,a.level"

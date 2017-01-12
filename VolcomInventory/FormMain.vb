@@ -5614,6 +5614,12 @@ Public Class FormMain
         ElseIf formName = "FormProduction" Then
             If FormProduction.XTCTabProduction.SelectedTabPageIndex = 0 Then
                 print(FormProduction.GCProd, "Production Order")
+            ElseIf FormProduction.XTCTabProduction.SelectedTabPageIndex = 1 Then
+
+            ElseIf FormProduction.XTCTabProduction.SelectedTabPageIndex = 2 Then
+                print(FormProduction.GCProdWO, "Production Order WO")
+            ElseIf FormProduction.XTCTabProduction.SelectedTabPageIndex = 3 Then
+                print(FormProduction.GCMRS, "Production Order MRS")
             End If
         ElseIf formName = "FormMatPL" Then
             'Packing list material
@@ -7321,6 +7327,10 @@ Public Class FormMain
                 FormProduction.view_production_order()
             ElseIf FormProduction.XTCTabProduction.SelectedTabPageIndex = 1 Then ' prod demand
                 FormProduction.viewProdDemand()
+            ElseIf FormProduction.XTCTabProduction.SelectedTabPageIndex = 2 Then ' prod WO
+                FormProduction.view_wo()
+            ElseIf FormProduction.XTCTabProduction.SelectedTabPageIndex = 3 Then ' prod MRS
+                FormProduction.view_mrs()
             End If
         ElseIf formName = "FormMatPL" Then
             If FormMatPL.XTCPL.SelectedTabPageIndex = 0 Then
