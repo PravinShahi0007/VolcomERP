@@ -787,8 +787,10 @@ Public Class FormSalesDelOrderDet
             DDBPrint.Enabled = False
             BMark.Enabled = False
             BtnAttachment.Enabled = False
+            BtnXlsBOF.Enabled = False
         End If
         BtnSave.Enabled = False
+        BtnVerify.Enabled = False
         BScan.Enabled = False
         BStop.Enabled = True
         BDelete.Enabled = False
@@ -828,8 +830,10 @@ Public Class FormSalesDelOrderDet
             DDBPrint.Enabled = True
             BMark.Enabled = True
             BtnAttachment.Enabled = True
+            BtnXlsBOF.Enabled = True
         End If
         BtnSave.Enabled = True
+        BtnVerify.Enabled = True
         BScan.Enabled = True
         BStop.Enabled = False
         BtnCancel.Enabled = True
