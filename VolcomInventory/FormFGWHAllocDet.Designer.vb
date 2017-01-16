@@ -82,6 +82,7 @@ Partial Class FormFGWHAllocDet
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPSummary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSummary = New DevExpress.XtraGrid.GridControl()
         Me.GVSummary = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -91,7 +92,7 @@ Partial Class FormFGWHAllocDet
         Me.GridColumnQtySum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNoteSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProductSum = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnSizeSum = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -732,6 +733,17 @@ Partial Class FormFGWHAllocDet
         Me.BtnImport.TabIndex = 6
         Me.BtnImport.Text = "Import Excel Per Size"
         '
+        'BtnImportExcelNew
+        '
+        Me.BtnImportExcelNew.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnImportExcelNew.ImageIndex = 3
+        Me.BtnImportExcelNew.ImageList = Me.LargeImageCollection
+        Me.BtnImportExcelNew.Location = New System.Drawing.Point(725, 0)
+        Me.BtnImportExcelNew.Name = "BtnImportExcelNew"
+        Me.BtnImportExcelNew.Size = New System.Drawing.Size(106, 33)
+        Me.BtnImportExcelNew.TabIndex = 7
+        Me.BtnImportExcelNew.Text = "Import Excel"
+        '
         'XTPSummary
         '
         Me.XTPSummary.Controls.Add(Me.GCSummary)
@@ -752,7 +764,7 @@ Partial Class FormFGWHAllocDet
         '
         'GVSummary
         '
-        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumnStyleSum, Me.GridColumnQtySum, Me.GridColumnNoteSum, Me.GridColumnIdProductSum})
+        Me.GVSummary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumnStyleSum, Me.GridColumnQtySum, Me.GridColumnNoteSum, Me.GridColumnIdProductSum, Me.GridColumnSizeSum})
         Me.GVSummary.GridControl = Me.GCSummary
         Me.GVSummary.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "fg_wh_alloc_det_qty", Nothing, "{0:n0}")})
         Me.GVSummary.Name = "GVSummary"
@@ -796,7 +808,7 @@ Partial Class FormFGWHAllocDet
         Me.GridColumnQtySum.Name = "GridColumnQtySum"
         Me.GridColumnQtySum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "fg_wh_alloc_det_qty", "{0:n0}")})
         Me.GridColumnQtySum.Visible = True
-        Me.GridColumnQtySum.VisibleIndex = 3
+        Me.GridColumnQtySum.VisibleIndex = 4
         Me.GridColumnQtySum.Width = 79
         '
         'GridColumnNoteSum
@@ -805,7 +817,7 @@ Partial Class FormFGWHAllocDet
         Me.GridColumnNoteSum.FieldName = "note"
         Me.GridColumnNoteSum.Name = "GridColumnNoteSum"
         Me.GridColumnNoteSum.Visible = True
-        Me.GridColumnNoteSum.VisibleIndex = 4
+        Me.GridColumnNoteSum.VisibleIndex = 5
         Me.GridColumnNoteSum.Width = 342
         '
         'GridColumnIdProductSum
@@ -815,16 +827,13 @@ Partial Class FormFGWHAllocDet
         Me.GridColumnIdProductSum.Name = "GridColumnIdProductSum"
         Me.GridColumnIdProductSum.OptionsColumn.AllowEdit = False
         '
-        'BtnImportExcelNew
+        'GridColumnSizeSum
         '
-        Me.BtnImportExcelNew.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnImportExcelNew.ImageIndex = 3
-        Me.BtnImportExcelNew.ImageList = Me.LargeImageCollection
-        Me.BtnImportExcelNew.Location = New System.Drawing.Point(725, 0)
-        Me.BtnImportExcelNew.Name = "BtnImportExcelNew"
-        Me.BtnImportExcelNew.Size = New System.Drawing.Size(106, 33)
-        Me.BtnImportExcelNew.TabIndex = 7
-        Me.BtnImportExcelNew.Text = "Import Excel"
+        Me.GridColumnSizeSum.Caption = "Size"
+        Me.GridColumnSizeSum.FieldName = "size"
+        Me.GridColumnSizeSum.Name = "GridColumnSizeSum"
+        Me.GridColumnSizeSum.Visible = True
+        Me.GridColumnSizeSum.VisibleIndex = 3
         '
         'FormFGWHAllocDet
         '
@@ -959,4 +968,5 @@ Partial Class FormFGWHAllocDet
     Friend WithEvents GridColumnNoteSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdProductSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnImportExcelNew As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnSizeSum As DevExpress.XtraGrid.Columns.GridColumn
 End Class
