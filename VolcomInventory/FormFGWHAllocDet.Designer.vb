@@ -94,6 +94,22 @@ Partial Class FormFGWHAllocDet
         Me.GridColumnIdProductSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSizeSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPDetailAlloc = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSum2 = New DevExpress.XtraGrid.GridControl()
+        Me.GVSum2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,6 +145,9 @@ Partial Class FormFGWHAllocDet
         Me.XTPSummary.SuspendLayout()
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPDetailAlloc.SuspendLayout()
+        CType(Me.GCSum2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSum2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -838,9 +857,127 @@ Partial Class FormFGWHAllocDet
         '
         'XTPDetailAlloc
         '
+        Me.XTPDetailAlloc.Controls.Add(Me.GCSum2)
         Me.XTPDetailAlloc.Name = "XTPDetailAlloc"
         Me.XTPDetailAlloc.Size = New System.Drawing.Size(831, 245)
         Me.XTPDetailAlloc.Text = "Detail Allocation"
+        '
+        'GCSum2
+        '
+        Me.GCSum2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSum2.Location = New System.Drawing.Point(0, 0)
+        Me.GCSum2.MainView = Me.GVSum2
+        Me.GCSum2.MenuManager = Me.BarManager1
+        Me.GCSum2.Name = "GCSum2"
+        Me.GCSum2.Size = New System.Drawing.Size(831, 245)
+        Me.GCSum2.TabIndex = 0
+        Me.GCSum2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum2})
+        '
+        'GVSum2
+        '
+        Me.GVSum2.ColumnPanelRowHeight = 40
+        Me.GVSum2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.GVSum2.GridControl = Me.GCSum2
+        Me.GVSum2.Name = "GVSum2"
+        Me.GVSum2.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.FieldName = "CODE"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.FieldName = "STYLE"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.FieldName = "SIZETYPE"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.FieldName = "1"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.FieldName = "2"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.FieldName = "3"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.FieldName = "4"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 6
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.FieldName = "5"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.FieldName = "6"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 8
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.FieldName = "7"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 9
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.FieldName = "8"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 10
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.FieldName = "9"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 11
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.FieldName = "0"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 12
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.FieldName = "TTL"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 13
         '
         'FormFGWHAllocDet
         '
@@ -899,6 +1036,9 @@ Partial Class FormFGWHAllocDet
         Me.XTPSummary.ResumeLayout(False)
         CType(Me.GCSummary, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPDetailAlloc.ResumeLayout(False)
+        CType(Me.GCSum2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSum2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -977,4 +1117,20 @@ Partial Class FormFGWHAllocDet
     Friend WithEvents BtnImportExcelNew As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnSizeSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPDetailAlloc As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCSum2 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSum2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

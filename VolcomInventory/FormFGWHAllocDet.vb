@@ -91,10 +91,46 @@
         Dim query_sum As String = "CALL view_fg_wh_alloc_sum(" + id_fg_wh_alloc + ")"
         Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
         GCSummary.DataSource = data_sum
+
+        If is_submit = "1" Then
+            Dim qs As String = "SELECT d.design_code AS `CODE`,d.design_display_name AS `STYLE`, 
+            SUBSTRING(p.product_full_code, 10, 1) AS `SIZETYPE`,
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='1') THEN ad.fg_wh_alloc_det_qty END) AS '1',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='2') THEN ad.fg_wh_alloc_det_qty END) AS '2',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='3') THEN ad.fg_wh_alloc_det_qty END) AS '3',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='4') THEN ad.fg_wh_alloc_det_qty END) AS '4',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='5') THEN ad.fg_wh_alloc_det_qty END) AS '5',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='6') THEN ad.fg_wh_alloc_det_qty END) AS '6',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='7') THEN ad.fg_wh_alloc_det_qty END) AS '7',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='8') THEN ad.fg_wh_alloc_det_qty END) AS '8',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='9') THEN ad.fg_wh_alloc_det_qty END) AS '9',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='0') THEN ad.fg_wh_alloc_det_qty END) AS '0',
+            SUM(ad.fg_wh_alloc_det_qty) AS `TTL`
+            FROM tb_fg_wh_alloc_det ad
+            INNER JOIN tb_m_product p ON p.id_product = ad.id_product
+            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+            INNER JOIN tb_m_design d ON d.id_design = p.id_design
+            WHERE ad.id_fg_wh_alloc=15
+            GROUP BY p.id_design ,ad.id_wh_drawer_to "
+            Dim ds As DataTable = execute_query(qs, -1, True, "", "", "", "")
+            GCSum2.DataSource = ds
+            GVSum2.Columns("1").Caption = "1" + System.Environment.NewLine + "XXS"
+            GVSum2.Columns("2").Caption = "2" + System.Environment.NewLine + "XS"
+            GVSum2.Columns("3").Caption = "3" + System.Environment.NewLine + "S"
+            GVSum2.Columns("4").Caption = "4" + System.Environment.NewLine + "M"
+            GVSum2.Columns("5").Caption = "5" + System.Environment.NewLine + "ML"
+            GVSum2.Columns("6").Caption = "6" + System.Environment.NewLine + "L"
+            GVSum2.Columns("7").Caption = "7" + System.Environment.NewLine + "XL"
+            GVSum2.Columns("8").Caption = "8" + System.Environment.NewLine + "XXL"
+            GVSum2.Columns("9").Caption = "9" + System.Environment.NewLine + "ALL"
+            GVSum2.Columns("0").Caption = "0" + System.Environment.NewLine + "SM"
+            GVSum2.RefreshData()
+        End If
     End Sub
 
     Sub viewReportStatus()
-        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim query As String = " Select * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
@@ -152,7 +188,7 @@
 
     Private Sub TxtCodeCompFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompFrom.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query_cond As String = "AND comp.id_comp_cat = '" + get_setup_field("id_comp_cat_wh") + "' "
+            Dim query_cond As String = "And comp.id_comp_cat = '" + get_setup_field("id_comp_cat_wh") + "' "
             Dim data As DataTable = get_company_by_code(TxtCodeCompFrom.Text, "-1")
             If data.Rows.Count = 0 Then
                 stopCustom("Account not found!")
