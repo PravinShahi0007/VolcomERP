@@ -82,9 +82,11 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_fg_wh_alloc(" + id_fg_wh_alloc + ")"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCItemList.DataSource = data
+        If is_submit = "2" Then 'saat masi bole edit
+            Dim query As String = "CALL view_fg_wh_alloc(" + id_fg_wh_alloc + ")"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCItemList.DataSource = data
+        End If
 
         Dim query_sum As String = "CALL view_fg_wh_alloc_sum(" + id_fg_wh_alloc + ")"
         Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")

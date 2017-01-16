@@ -93,6 +93,7 @@ Partial Class FormFGWHAllocDet
         Me.GridColumnNoteSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProductSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSizeSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPDetailAlloc = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -548,7 +549,7 @@ Partial Class FormFGWHAllocDet
         Me.XtraTabControl1.SelectedTabPage = Me.XTPDetail
         Me.XtraTabControl1.Size = New System.Drawing.Size(837, 273)
         Me.XtraTabControl1.TabIndex = 8905
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPSummary})
+        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetail, Me.XTPSummary, Me.XTPDetailAlloc})
         '
         'XTPDetail
         '
@@ -835,6 +836,12 @@ Partial Class FormFGWHAllocDet
         Me.GridColumnSizeSum.Visible = True
         Me.GridColumnSizeSum.VisibleIndex = 3
         '
+        'XTPDetailAlloc
+        '
+        Me.XTPDetailAlloc.Name = "XTPDetailAlloc"
+        Me.XTPDetailAlloc.Size = New System.Drawing.Size(831, 245)
+        Me.XTPDetailAlloc.Text = "Detail Allocation"
+        '
         'FormFGWHAllocDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -969,4 +976,5 @@ Partial Class FormFGWHAllocDet
     Friend WithEvents GridColumnIdProductSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnImportExcelNew As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnSizeSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPDetailAlloc As DevExpress.XtraTab.XtraTabPage
 End Class
