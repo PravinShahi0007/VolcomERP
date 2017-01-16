@@ -320,33 +320,34 @@
                     Next
                     execute_non_query(query, True, "", "", "", "")
                 End If
-                'search jika admin management
-                Dim id_user_admin_management As String = get_opt_emp_field("id_user_admin_mng").ToString
-                If id_user_admin_management = id_employee Then
+
+                'filter by level
+                Dim jum_check As String = ""
+                query = "SELECT IF(id_employee_level > " & get_opt_emp_field("leave_asst_mng_level").ToString & ",1,IF(id_employee_level <= " & get_opt_emp_field("leave_asst_mng_level").ToString & " AND id_employee_level > " & get_opt_emp_field("leave_spv_level").ToString & ",2,3)) as jum_cek FROM tb_m_employee WHERE id_employee='" & id_employee & "'"
+                jum_check = execute_query(query, 0, True, "", "", "", "")
+                '1 = mgr up
+                '2 = coordinator - asst mgr
+                '3 = staff - spv
+                If jum_check = "1" Then
                     submit_who_prepared_no_user("99", id_emp_leave, id_employee)
                     query = "UPDATE tb_emp_leave SET report_mark_type='99' WHERE id_emp_leave='" & id_emp_leave & "'"
                     execute_non_query(query, True, "", "", "", "")
+                ElseIf jum_check = "2" Then
+                    submit_who_prepared_no_user("96", id_emp_leave, id_employee)
+                    query = "UPDATE tb_emp_leave SET report_mark_type='96' WHERE id_emp_leave='" & id_emp_leave & "'"
+                    execute_non_query(query, True, "", "", "", "")
                     '
+                    query = "UPDATE tb_report_mark SET id_user='" & id_user & "',id_employee='" & id_employee_user & "' WHERE report_mark_type='96' AND id_report_status='2' AND id_report='" & id_emp_leave & "'"
+                    execute_non_query(query, True, "", "", "", "")
                 Else
-                    'search jika head dept to management
-                    Dim jum_check As String = ""
-                    query = "SELECT IF(id_employee_level <= " & get_opt_emp_field("leave_mng_min_level").ToString & " AND id_employee_level > 0,1,0) FROM tb_m_employee WHERE id_employee='" & id_employee & "'"
-                    jum_check = execute_query(query, 0, True, "", "", "", "")
-
-                    If jum_check = "0" Then
-                        submit_who_prepared_no_user("95", id_emp_leave, id_employee)
-                        query = "UPDATE tb_emp_leave SET report_mark_type='95' WHERE id_emp_leave='" & id_emp_leave & "'"
-                        execute_non_query(query, True, "", "", "", "")
-                        '
-                        query = "UPDATE tb_report_mark SET id_user='" & id_user & "',id_employee='" & id_employee_user & "' WHERE report_mark_type='95' AND id_report_status='2' AND id_report='" & id_emp_leave & "'"
-                        execute_non_query(query, True, "", "", "", "")
-                    Else ' manager only
-                        submit_who_prepared_no_user("96", id_emp_leave, id_employee)
-                        query = "UPDATE tb_emp_leave SET report_mark_type='96' WHERE id_emp_leave='" & id_emp_leave & "'"
-                        execute_non_query(query, True, "", "", "", "")
-                    End If
+                    submit_who_prepared_no_user("95", id_emp_leave, id_employee)
+                    query = "UPDATE tb_emp_leave SET report_mark_type='95' WHERE id_emp_leave='" & id_emp_leave & "'"
+                    execute_non_query(query, True, "", "", "", "")
+                    '
+                    query = "UPDATE tb_report_mark SET id_user='" & id_user & "',id_employee='" & id_employee_user & "' WHERE report_mark_type='95' AND id_report_status='2' AND id_report='" & id_emp_leave & "'"
+                    execute_non_query(query, True, "", "", "", "")
                 End If
-
+                '
                 increase_inc_emp("1")
                 infoCustom("Leave proposed")
                 '
