@@ -63,9 +63,31 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
 
-        Dim query_sum As String = "CALL view_fg_wh_alloc_sum(" + id_fg_wh_alloc + ")"
-        Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
-        GCSummary.DataSource = data_sum
+        If is_submit = "1" Then
+            GridColumnCompTo.GroupIndex = 0
+            XTPSummary.PageVisible = False
+            XTPDetailAlloc.PageVisible = True
+            Dim ac As New ClassFGWHAlloc()
+            Dim qs As String = ac.queryAllocReport(id_fg_wh_alloc)
+            Dim ds As DataTable = execute_query(qs, -1, True, "", "", "", "")
+            GCSum2.DataSource = ds
+            GVSum2.Columns("1").Caption = "1" + System.Environment.NewLine + "XXS"
+            GVSum2.Columns("2").Caption = "2" + System.Environment.NewLine + "XS"
+            GVSum2.Columns("3").Caption = "3" + System.Environment.NewLine + "S"
+            GVSum2.Columns("4").Caption = "4" + System.Environment.NewLine + "M"
+            GVSum2.Columns("5").Caption = "5" + System.Environment.NewLine + "ML"
+            GVSum2.Columns("6").Caption = "6" + System.Environment.NewLine + "L"
+            GVSum2.Columns("7").Caption = "7" + System.Environment.NewLine + "XL"
+            GVSum2.Columns("8").Caption = "8" + System.Environment.NewLine + "XXL"
+            GVSum2.Columns("9").Caption = "9" + System.Environment.NewLine + "ALL"
+            GVSum2.Columns("0").Caption = "0" + System.Environment.NewLine + "SM"
+            GVSum2.GroupFormat = "{1}{2}"
+            GVSum2.RefreshData()
+        Else
+            Dim query_sum As String = "CALL view_fg_wh_alloc_sum(" + id_fg_wh_alloc + ")"
+            Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
+            GCSummary.DataSource = data_sum
+        End If
     End Sub
 
     Sub viewReportStatus()
@@ -123,16 +145,6 @@
         End If
     End Sub
 
-
-    Sub printing()
-
-    End Sub
-
-    Sub prePrinting()
-
-    End Sub
-
-
     Private Sub FormFGWHAllocDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -172,5 +184,89 @@
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+
+    Sub getReport()
+        Cursor = Cursors.WaitCursor
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            ReportFGWHAlloc.id_fg_wh_alloc = id_fg_wh_alloc
+            ReportFGWHAlloc.dt = GCItemList.DataSource
+            Dim Report As New ReportFGWHAlloc()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVItemList)
+
+            'Parse val
+            Report.LabelNumber.Text = TxtNumber.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+            Report.LabelCreated.Text = DEForm.Text
+            Report.LabelNote.Text = MENote.Text
+
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        ElseIf XtraTabControl1.SelectedTabPageIndex = 2 Then
+            ReportFGWHAllocRpt.id_fg_wh_alloc = id_fg_wh_alloc
+            ReportFGWHAllocRpt.dt = GCSum2.DataSource
+            Dim Report As New ReportFGWHAllocRpt()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVSum2.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVSum2.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVSum2)
+
+            'Parse val
+            Report.LabelNumber.Text = TxtNumber.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+            Report.LabelCreated.Text = DEForm.Text
+            Report.LabelNote.Text = MENote.Text
+
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub prePrinting()
+        Cursor = Cursors.WaitCursor
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            ReportFGWHAlloc.id_pre = "1"
+        ElseIf XtraTabControl1.SelectedTabPageIndex = 2 Then
+            ReportFGWHAllocRpt.id_pre = "1"
+        End If
+        getReport()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub printing()
+        Cursor = Cursors.WaitCursor
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            ReportFGWHAlloc.id_pre = "-1"
+        ElseIf XtraTabControl1.SelectedTabPageIndex = 2 Then
+            ReportFGWHAllocRpt.id_pre = "-1"
+        End If
+        getReport()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        prePrinting()
     End Sub
 End Class
