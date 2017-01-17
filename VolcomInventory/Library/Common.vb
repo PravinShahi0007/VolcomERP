@@ -3097,7 +3097,7 @@ Module Common
         query += "FROM tb_report_mark a "
         query += "INNER JOIN tb_lookup_report_status b ON a.id_report_status=b.id_report_status "
         query += "LEFT JOIN tb_m_user c ON a.id_user=c.id_user "
-        query += "LEFT JOIN tb_m_employee d ON d.id_employee=c.id_employee "
+        query += "LEFT JOIN tb_m_employee d ON d.id_employee=a.id_employee "
         query += "LEFT JOIN tb_lookup_mark e ON e.id_mark=a.id_mark "
         query += "INNER JOIN tb_m_role role ON role.id_role=c.id_role "
         query += "WHERE a.report_mark_type='" & report_mark_type & "' AND a.id_report='" & id_report & "' AND a.is_use='1' "

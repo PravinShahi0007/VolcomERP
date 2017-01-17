@@ -204,10 +204,10 @@
         If FormEmpLeave.is_propose = "1" Then
             Dim id_user_admin_management As String = get_opt_emp_field("id_user_admin_mng").ToString
             If id_user_admin_management = id_user Then
-                Dim id_min_lvl As String = get_opt_emp_field("leave_mng_min_level").ToString
-                query += " AND lvl.id_employee_level>0 AND lvl.id_employee_level <='" & id_min_lvl & "' "
+                Dim id_min_lvl As String = get_opt_emp_field("leave_asst_mgr_level").ToString
+                query += " AND lvl.id_employee_level>0 AND lvl.id_employee_level <'" & id_min_lvl & "' "
             Else
-                query += " AND dep.id_departement='" & id_departement_user & "'"
+                query += " AND (dep.id_user_admin='" & id_user & "' OR dep.id_user_admin_backup='" & id_user & "')"
             End If
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -383,7 +383,7 @@
         If e.KeyCode = Keys.Enter Then
             Dim query As String = "SELECT emp.*,dep.departement FROM tb_m_employee emp INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement WHERE employee_code='" & TEEMployeeChange.Text & "'"
             If FormEmpLeave.is_propose = "1" Then
-                query += " AND dep.id_departement='" & id_departement_user & "'"
+                query += " AND (dep.id_user_admin='" & id_user & "' OR dep.id_user_admin_backup='" & id_user & "')"
             End If
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 

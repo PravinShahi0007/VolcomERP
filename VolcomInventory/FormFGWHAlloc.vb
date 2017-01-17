@@ -64,4 +64,8 @@
             FormMain.but_edit()
         End If
     End Sub
+
+    Private Sub FormFGWHAlloc_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
 End Class
