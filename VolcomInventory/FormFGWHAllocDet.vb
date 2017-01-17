@@ -86,13 +86,57 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
 
-        Dim query_sum As String = "CALL view_fg_wh_alloc_sum(" + id_fg_wh_alloc + ")"
-        Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
-        GCSummary.DataSource = data_sum
+        If is_submit = "1" Then
+            GridColumnCompTo.GroupIndex = 0
+            XTPSummary.PageVisible = False
+            XTPDetailAlloc.PageVisible = True
+            Dim qs As String = "SELECT d.design_code AS `CODE`, d.design_display_name AS `STYLE`, CONCAT(comp.comp_number,' - ',comp.comp_name) AS `TO`, 
+            SUBSTRING(p.product_full_code, 10, 1) AS `SIZETYPE`,
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='1') THEN ad.fg_wh_alloc_det_qty END) AS '1',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='2') THEN ad.fg_wh_alloc_det_qty END) AS '2',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='3') THEN ad.fg_wh_alloc_det_qty END) AS '3',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='4') THEN ad.fg_wh_alloc_det_qty END) AS '4',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='5') THEN ad.fg_wh_alloc_det_qty END) AS '5',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='6') THEN ad.fg_wh_alloc_det_qty END) AS '6',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='7') THEN ad.fg_wh_alloc_det_qty END) AS '7',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='8') THEN ad.fg_wh_alloc_det_qty END) AS '8',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='9') THEN ad.fg_wh_alloc_det_qty END) AS '9',
+            SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='0') THEN ad.fg_wh_alloc_det_qty END) AS '0',
+            SUM(ad.fg_wh_alloc_det_qty) AS `TTL`
+            FROM tb_fg_wh_alloc_det ad
+            INNER JOIN tb_m_product p ON p.id_product = ad.id_product
+            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+            INNER JOIN tb_m_design d ON d.id_design = p.id_design
+            INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = ad.id_wh_drawer_to
+            INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack
+            INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator
+            INNER JOIN tb_m_comp comp ON comp.id_comp = loc.id_comp
+            WHERE ad.id_fg_wh_alloc=" + id_fg_wh_alloc + "
+            GROUP BY p.id_design ,ad.id_wh_drawer_to "
+            Dim ds As DataTable = execute_query(qs, -1, True, "", "", "", "")
+            GCSum2.DataSource = ds
+            GVSum2.Columns("1").Caption = "1" + System.Environment.NewLine + "XXS"
+            GVSum2.Columns("2").Caption = "2" + System.Environment.NewLine + "XS"
+            GVSum2.Columns("3").Caption = "3" + System.Environment.NewLine + "S"
+            GVSum2.Columns("4").Caption = "4" + System.Environment.NewLine + "M"
+            GVSum2.Columns("5").Caption = "5" + System.Environment.NewLine + "ML"
+            GVSum2.Columns("6").Caption = "6" + System.Environment.NewLine + "L"
+            GVSum2.Columns("7").Caption = "7" + System.Environment.NewLine + "XL"
+            GVSum2.Columns("8").Caption = "8" + System.Environment.NewLine + "XXL"
+            GVSum2.Columns("9").Caption = "9" + System.Environment.NewLine + "ALL"
+            GVSum2.Columns("0").Caption = "0" + System.Environment.NewLine + "SM"
+            GVSum2.GroupFormat = "{1}{2}"
+            GVSum2.RefreshData()
+        Else
+            Dim query_sum As String = "CALL view_fg_wh_alloc_sum(" + id_fg_wh_alloc + ")"
+            Dim data_sum As DataTable = execute_query(query_sum, -1, True, "", "", "", "")
+            GCSummary.DataSource = data_sum
+        End If
     End Sub
 
     Sub viewReportStatus()
-        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim query As String = " Select * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
@@ -150,7 +194,7 @@
 
     Private Sub TxtCodeCompFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompFrom.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query_cond As String = "AND comp.id_comp_cat = '" + get_setup_field("id_comp_cat_wh") + "' "
+            Dim query_cond As String = "And comp.id_comp_cat = '" + get_setup_field("id_comp_cat_wh") + "' "
             Dim data As DataTable = get_company_by_code(TxtCodeCompFrom.Text, "-1")
             If data.Rows.Count = 0 Then
                 stopCustom("Account not found!")
@@ -325,45 +369,80 @@
 
     Sub getReport()
         Cursor = Cursors.WaitCursor
-        ReportFGWHAlloc.id_fg_wh_alloc = id_fg_wh_alloc
-        ReportFGWHAlloc.dt = GCItemList.DataSource
-        Dim Report As New ReportFGWHAlloc()
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            ReportFGWHAlloc.id_fg_wh_alloc = id_fg_wh_alloc
+            ReportFGWHAlloc.dt = GCItemList.DataSource
+            Dim Report As New ReportFGWHAlloc()
 
-        ' '... 
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        'Grid Detail
-        ReportStyleGridview(Report.GVItemList)
+            'Grid Detail
+            ReportStyleGridview(Report.GVItemList)
 
-        'Parse val
-        Report.LabelNumber.Text = TxtNumber.Text
-        Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
-        Report.LabelSeason.Text = SLESeason.Text
-        Report.LabelCreated.Text = DEForm.Text
-        Report.LabelNote.Text = MENote.Text
+            'Parse val
+            Report.LabelNumber.Text = TxtNumber.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+            Report.LabelCreated.Text = DEForm.Text
+            Report.LabelNote.Text = MENote.Text
 
-        ' Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        ElseIf XtraTabControl1.SelectedTabPageIndex = 2 Then
+            ReportFGWHAllocRpt.id_fg_wh_alloc = id_fg_wh_alloc
+            ReportFGWHAllocRpt.dt = GCSum2.DataSource
+            Dim Report As New ReportFGWHAllocRpt()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVSum2.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVSum2.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVSum2)
+
+            'Parse val
+            Report.LabelNumber.Text = TxtNumber.Text
+            Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+            Report.LabelCreated.Text = DEForm.Text
+            Report.LabelNote.Text = MENote.Text
+
+            ' Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        End If
         Cursor = Cursors.Default
     End Sub
 
     Sub prePrinting()
         Cursor = Cursors.WaitCursor
-        ReportFGWHAlloc.id_pre = "1"
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            ReportFGWHAlloc.id_pre = "1"
+        ElseIf XtraTabControl1.SelectedTabPageIndex = 2 Then
+            ReportFGWHAllocRpt.id_pre = "1"
+        End If
         getReport()
         Cursor = Cursors.Default
     End Sub
 
     Sub printing()
         Cursor = Cursors.WaitCursor
-        ReportFGWHAlloc.id_pre = "-1"
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            ReportFGWHAlloc.id_pre = "-1"
+        ElseIf XtraTabControl1.SelectedTabPageIndex = 2 Then
+            ReportFGWHAllocRpt.id_pre = "-1"
+        End If
         getReport()
         Cursor = Cursors.Default
     End Sub
