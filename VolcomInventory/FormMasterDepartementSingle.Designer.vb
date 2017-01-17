@@ -45,6 +45,22 @@ Partial Class FormMasterDepartementSingle
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEAdminDept = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEAdminDeptBU = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPDepartement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MEDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDepartementCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,6 +69,10 @@ Partial Class FormMasterDepartementSingle
         CType(Me.SLEViewEmp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEAsstHeadDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEAdminDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEAdminDeptBU.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPDepartement
@@ -65,7 +85,7 @@ Partial Class FormMasterDepartementSingle
         Me.MEDescription.Name = "MEDescription"
         Me.MEDescription.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEDescription.Properties.Appearance.Options.UseFont = True
-        Me.MEDescription.Size = New System.Drawing.Size(337, 74)
+        Me.MEDescription.Size = New System.Drawing.Size(464, 74)
         Me.MEDescription.TabIndex = 2
         '
         'LabelControl3
@@ -83,7 +103,7 @@ Partial Class FormMasterDepartementSingle
         Me.TEDepartementCode.Name = "TEDepartementCode"
         Me.TEDepartementCode.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.TEDepartementCode.Properties.Appearance.Options.UseFont = True
-        Me.TEDepartementCode.Size = New System.Drawing.Size(337, 22)
+        Me.TEDepartementCode.Size = New System.Drawing.Size(464, 22)
         Me.TEDepartementCode.TabIndex = 1
         '
         'LabelControl2
@@ -98,7 +118,7 @@ Partial Class FormMasterDepartementSingle
         'BCancel
         '
         Me.BCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BCancel.Location = New System.Drawing.Point(197, 322)
+        Me.BCancel.Location = New System.Drawing.Point(324, 310)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(74, 28)
         Me.BCancel.TabIndex = 4
@@ -106,7 +126,7 @@ Partial Class FormMasterDepartementSingle
         '
         'BSave
         '
-        Me.BSave.Location = New System.Drawing.Point(277, 322)
+        Me.BSave.Location = New System.Drawing.Point(404, 310)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(74, 28)
         Me.BSave.TabIndex = 3
@@ -118,7 +138,7 @@ Partial Class FormMasterDepartementSingle
         Me.TEDepartement.Name = "TEDepartement"
         Me.TEDepartement.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.TEDepartement.Properties.Appearance.Options.UseFont = True
-        Me.TEDepartement.Size = New System.Drawing.Size(337, 22)
+        Me.TEDepartement.Size = New System.Drawing.Size(464, 22)
         Me.TEDepartement.TabIndex = 0
         '
         'LabelControl1
@@ -136,7 +156,7 @@ Partial Class FormMasterDepartementSingle
         Me.SLEHeadDept.Name = "SLEHeadDept"
         Me.SLEHeadDept.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEHeadDept.Properties.View = Me.SLEViewEmp
-        Me.SLEHeadDept.Size = New System.Drawing.Size(337, 20)
+        Me.SLEHeadDept.Size = New System.Drawing.Size(222, 20)
         Me.SLEHeadDept.TabIndex = 34
         '
         'SLEViewEmp
@@ -196,7 +216,7 @@ Partial Class FormMasterDepartementSingle
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
-        Me.LabelControl5.Location = New System.Drawing.Point(14, 263)
+        Me.LabelControl5.Location = New System.Drawing.Point(256, 216)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(127, 15)
         Me.LabelControl5.TabIndex = 37
@@ -204,11 +224,11 @@ Partial Class FormMasterDepartementSingle
         '
         'SLEAsstHeadDept
         '
-        Me.SLEAsstHeadDept.Location = New System.Drawing.Point(14, 284)
+        Me.SLEAsstHeadDept.Location = New System.Drawing.Point(256, 237)
         Me.SLEAsstHeadDept.Name = "SLEAsstHeadDept"
         Me.SLEAsstHeadDept.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.SLEAsstHeadDept.Properties.View = Me.GridView1
-        Me.SLEAsstHeadDept.Size = New System.Drawing.Size(337, 20)
+        Me.SLEAsstHeadDept.Size = New System.Drawing.Size(222, 20)
         Me.SLEAsstHeadDept.TabIndex = 36
         '
         'GridView1
@@ -256,13 +276,143 @@ Partial Class FormMasterDepartementSingle
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 2
         '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.LabelControl6.Location = New System.Drawing.Point(14, 263)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(108, 15)
+        Me.LabelControl6.TabIndex = 39
+        Me.LabelControl6.Text = "Admin Departement"
+        '
+        'SLEAdminDept
+        '
+        Me.SLEAdminDept.Location = New System.Drawing.Point(14, 284)
+        Me.SLEAdminDept.Name = "SLEAdminDept"
+        Me.SLEAdminDept.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAdminDept.Properties.View = Me.GridView2
+        Me.SLEAdminDept.Size = New System.Drawing.Size(222, 20)
+        Me.SLEAdminDept.TabIndex = 38
+        '
+        'GridView2
+        '
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Id User"
+        Me.GridColumn8.FieldName = "id_user"
+        Me.GridColumn8.Name = "GridColumn8"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "ID Departement"
+        Me.GridColumn9.FieldName = "id_departement"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Departement"
+        Me.GridColumn10.FieldName = "departement"
+        Me.GridColumn10.FieldNameSortGroup = "id_departement"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 1
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "NIK"
+        Me.GridColumn11.FieldName = "employee_code"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Name"
+        Me.GridColumn12.FieldName = "employee_name"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 2
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
+        Me.LabelControl7.Location = New System.Drawing.Point(256, 263)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(151, 15)
+        Me.LabelControl7.TabIndex = 41
+        Me.LabelControl7.Text = "Admin Departement Backup"
+        '
+        'SLEAdminDeptBU
+        '
+        Me.SLEAdminDeptBU.Location = New System.Drawing.Point(256, 284)
+        Me.SLEAdminDeptBU.Name = "SLEAdminDeptBU"
+        Me.SLEAdminDeptBU.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEAdminDeptBU.Properties.View = Me.GridView3
+        Me.SLEAdminDeptBU.Size = New System.Drawing.Size(222, 20)
+        Me.SLEAdminDeptBU.TabIndex = 40
+        '
+        'GridView3
+        '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn17})
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Id User"
+        Me.GridColumn13.FieldName = "id_user"
+        Me.GridColumn13.Name = "GridColumn13"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "ID Departement"
+        Me.GridColumn14.FieldName = "id_departement"
+        Me.GridColumn14.Name = "GridColumn14"
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "Departement"
+        Me.GridColumn15.FieldName = "departement"
+        Me.GridColumn15.FieldNameSortGroup = "id_departement"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 1
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "NIK"
+        Me.GridColumn16.FieldName = "employee_code"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 0
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Name"
+        Me.GridColumn17.FieldName = "employee_name"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 2
+        '
         'FormMasterDepartementSingle
         '
         Me.AcceptButton = Me.BSave
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BCancel
-        Me.ClientSize = New System.Drawing.Size(363, 362)
+        Me.ClientSize = New System.Drawing.Size(490, 346)
+        Me.Controls.Add(Me.LabelControl7)
+        Me.Controls.Add(Me.SLEAdminDeptBU)
+        Me.Controls.Add(Me.LabelControl6)
+        Me.Controls.Add(Me.SLEAdminDept)
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.SLEAsstHeadDept)
         Me.Controls.Add(Me.LabelControl4)
@@ -290,6 +440,10 @@ Partial Class FormMasterDepartementSingle
         CType(Me.SLEViewEmp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEAsstHeadDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEAdminDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEAdminDeptBU.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -319,4 +473,20 @@ Partial Class FormMasterDepartementSingle
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEAdminDept As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEAdminDeptBU As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

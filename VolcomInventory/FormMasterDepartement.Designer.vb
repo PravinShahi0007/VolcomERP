@@ -27,6 +27,8 @@ Partial Class FormMasterDepartement
         Me.description = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDeptHead = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCDepartement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDepartment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -37,13 +39,13 @@ Partial Class FormMasterDepartement
         Me.GCDepartement.Location = New System.Drawing.Point(0, 0)
         Me.GCDepartement.MainView = Me.GVDepartment
         Me.GCDepartement.Name = "GCDepartement"
-        Me.GCDepartement.Size = New System.Drawing.Size(619, 318)
+        Me.GCDepartement.Size = New System.Drawing.Size(693, 318)
         Me.GCDepartement.TabIndex = 1
         Me.GCDepartement.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDepartment})
         '
         'GVDepartment
         '
-        Me.GVDepartment.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_departement, Me.departement, Me.departement_code, Me.description, Me.GridColumnDeptHead, Me.GridColumn1})
+        Me.GVDepartment.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.id_departement, Me.departement, Me.departement_code, Me.description, Me.GridColumnDeptHead, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
         Me.GVDepartment.GridControl = Me.GCDepartement
         Me.GVDepartment.Name = "GVDepartment"
         Me.GVDepartment.OptionsBehavior.Editable = False
@@ -98,11 +100,27 @@ Partial Class FormMasterDepartement
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 4
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Departement Admin"
+        Me.GridColumn2.FieldName = "employee_name_adm"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 5
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Departement Admin Backup"
+        Me.GridColumn3.FieldName = "employee_name_admbu"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 6
+        '
         'FormMasterDepartement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(619, 318)
+        Me.ClientSize = New System.Drawing.Size(693, 318)
         Me.Controls.Add(Me.GCDepartement)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -124,4 +142,6 @@ Partial Class FormMasterDepartement
     Friend WithEvents description As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDeptHead As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
