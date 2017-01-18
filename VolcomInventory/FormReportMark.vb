@@ -3092,6 +3092,7 @@
             End If
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+            FormEmpLeave.load_sum()
             infoCustom("Status changed.")
         ElseIf report_mark_type = "96" Then
             'LEAVE PROPOSE
@@ -3122,6 +3123,7 @@
             End If
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+            FormEmpLeave.load_sum()
             infoCustom("Status changed.")
         ElseIf report_mark_type = "97" Then
             'DP
@@ -3237,6 +3239,7 @@
             End If
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+            FormEmpLeave.load_sum()
             infoCustom("Status changed.")
         End If
 
