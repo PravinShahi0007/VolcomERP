@@ -323,7 +323,7 @@
 
                 'filter by level
                 Dim jum_check As String = ""
-                query = "SELECT IF(id_employee_level > " & get_opt_emp_field("leave_asst_mng_level").ToString & ",1,IF(id_employee_level <= " & get_opt_emp_field("leave_asst_mng_level").ToString & " AND id_employee_level > " & get_opt_emp_field("leave_spv_level").ToString & ",2,3)) as jum_cek FROM tb_m_employee WHERE id_employee='" & id_employee & "'"
+                query = "SELECT IF(id_employee_level >= " & get_opt_emp_field("leave_spv_level").ToString & ",3,IF(id_employee_level < " & get_opt_emp_field("leave_spv_level").ToString & " AND id_employee_level >= " & get_opt_emp_field("leave_asst_mgr_level").ToString & ",2,1)) as jum_cek FROM tb_m_employee WHERE id_employee='" & id_employee & "'"
                 jum_check = execute_query(query, 0, True, "", "", "", "")
                 '1 = mgr up
                 '2 = coordinator - asst mgr
