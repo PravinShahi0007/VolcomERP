@@ -4204,6 +4204,12 @@
     <Compile Include="ReportMatWO.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportOutboundManifest.Designer.vb">
+      <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportOutboundManifest.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPLMat.designer.vb">
       <DependentUpon>ReportPLMat.vb</DependentUpon>
     </Compile>
@@ -7045,6 +7051,9 @@
     <EmbeddedResource Include="ReportMatWO.resx">
       <DependentUpon>ReportMatWO.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportOutboundManifest.resx">
+      <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPLMat.resx">
       <DependentUpon>ReportPLMat.vb</DependentUpon>
