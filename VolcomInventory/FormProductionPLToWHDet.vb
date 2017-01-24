@@ -322,16 +322,17 @@ Public Class FormProductionPLToWHDet
                 id_prod_order_det_list.Add(data.Rows(i)("id_prod_order_det").ToString)
                 id_pl_prod_order_det_list.Add(data.Rows(i)("id_pl_prod_order_det").ToString)
                 Dim id_prod_order_det As String = data.Rows(i)("id_prod_order_det").ToString
-                Dim queryx As String = "SELECT a.id_product, a.range_awal, a.range_akhir, a.digit_code, b.product_full_code, dsg.is_old_design "
+                Dim queryx As String = "SELECT a.id_product, a.range_awal, a.range_akhir, a.digit_code, b.product_full_code, dsg.is_old_design, b.last_print_unique "
                 queryx += "FROM tb_m_product_range a INNER JOIN tb_m_product b ON a.id_product = b.id_product  "
                 queryx += "INNER JOIN tb_m_design dsg ON dsg.id_design = b.id_design "
-                queryx += "WHERE a.id_prod_order_det = '" + id_prod_order_det + "' "
+                queryx += "WHERE a.id_prod_order_det = '" + id_prod_order_det + "' GROUP BY b.id_product "
                 Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
                 For k As Integer = 0 To (datax.Rows.Count - 1)
                     'data.Rows(0)("id_product").ToString
                     Dim id_product As String = datax.Rows(k)("id_product").ToString
                     Dim range_awal As Integer = Integer.Parse(datax.Rows(k)("range_awal").ToString)
-                    Dim range_akhir As Integer = Integer.Parse(datax.Rows(k)("range_akhir").ToString)
+                    'Dim range_akhir As Integer = Integer.Parse(datax.Rows(k)("range_akhir").ToString)
+                    Dim range_akhir As Integer = Integer.Parse(datax.Rows(k)("last_print_unique").ToString)
                     Dim digit_code As Integer = Integer.Parse(datax.Rows(k)("digit_code").ToString)
                     Dim product_code As String = datax.Rows(k)("product_full_code").ToString
                     Dim is_old_design As String = datax.Rows(k)("is_old_design").ToString
