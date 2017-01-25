@@ -75,6 +75,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnRemarkDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnManifest = New DevExpress.XtraEditors.SimpleButton()
         Me.CEDO = New DevExpress.XtraEditors.CheckEdit()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.CECompare = New DevExpress.XtraEditors.CheckEdit()
@@ -150,7 +151,6 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
-        Me.BtnManifest = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RCICOD, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -773,6 +773,15 @@ Partial Class FormWHAWBill
         Me.PanelControl1.Size = New System.Drawing.Size(1038, 39)
         Me.PanelControl1.TabIndex = 1
         '
+        'BtnManifest
+        '
+        Me.BtnManifest.Location = New System.Drawing.Point(903, 8)
+        Me.BtnManifest.Name = "BtnManifest"
+        Me.BtnManifest.Size = New System.Drawing.Size(97, 23)
+        Me.BtnManifest.TabIndex = 107
+        Me.BtnManifest.Text = "Delivery Manifest"
+        Me.BtnManifest.Visible = False
+        '
         'CEDO
         '
         Me.CEDO.Location = New System.Drawing.Point(733, 10)
@@ -904,7 +913,7 @@ Partial Class FormWHAWBill
         Me.XTPInbound.Controls.Add(Me.GCAwbillIn)
         Me.XTPInbound.Controls.Add(Me.PanelControl2)
         Me.XTPInbound.Name = "XTPInbound"
-        Me.XTPInbound.Size = New System.Drawing.Size(931, 273)
+        Me.XTPInbound.Size = New System.Drawing.Size(1038, 273)
         Me.XTPInbound.Text = "Inbound"
         '
         'GCAwbillIn
@@ -913,7 +922,7 @@ Partial Class FormWHAWBill
         Me.GCAwbillIn.Location = New System.Drawing.Point(0, 39)
         Me.GCAwbillIn.MainView = Me.GVAwbillIn
         Me.GCAwbillIn.Name = "GCAwbillIn"
-        Me.GCAwbillIn.Size = New System.Drawing.Size(931, 234)
+        Me.GCAwbillIn.Size = New System.Drawing.Size(1038, 234)
         Me.GCAwbillIn.TabIndex = 2
         Me.GCAwbillIn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAwbillIn})
         '
@@ -1429,7 +1438,7 @@ Partial Class FormWHAWBill
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(931, 39)
+        Me.PanelControl2.Size = New System.Drawing.Size(1038, 39)
         Me.PanelControl2.TabIndex = 3
         '
         'CERO
@@ -1538,15 +1547,6 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
-        '
-        'BtnManifest
-        '
-        Me.BtnManifest.Location = New System.Drawing.Point(903, 8)
-        Me.BtnManifest.Name = "BtnManifest"
-        Me.BtnManifest.Size = New System.Drawing.Size(97, 23)
-        Me.BtnManifest.TabIndex = 107
-        Me.BtnManifest.Text = "Delivery Manifest"
-        Me.BtnManifest.Visible = False
         '
         'FormWHAWBill
         '

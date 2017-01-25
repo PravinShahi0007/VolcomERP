@@ -410,4 +410,10 @@
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
+
+    Private Sub BtnManifest_Click(sender As Object, e As EventArgs) Handles BtnManifest.Click
+        Cursor = Cursors.WaitCursor
+        FormOutboundManifest.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
