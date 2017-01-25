@@ -153,7 +153,7 @@
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
                 query += " (IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time=0, 'ON TIME', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time>0, 'LATE', IF(DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time<0, 'EARLY', 'ON DELIVERY')))) AS time_remark,"
-                query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff"
+                query += " (awb.c_weight-awb.a_weight) as weight_diff,(awb.c_tot_price-awb.a_tot_price) as amount_diff, ('') AS `rmk`, ('') AS `no`"
                 query += " FROM tb_wh_awbill awb"
                 query += " inner join tb_m_comp comp_store On comp_store.id_comp=awb.id_store"
                 query += " inner join tb_m_comp comp_cargo On comp_cargo.id_comp=awb.id_cargo"
@@ -186,7 +186,7 @@
         End If
 
         'show manifest button
-        If CEDO.Checked = True Then
+        If CEDO.Checked = True And CECompare.Checked = False Then
             BtnManifest.Visible = True
         Else
             BtnManifest.Visible = False
@@ -413,6 +413,14 @@
 
     Private Sub BtnManifest_Click(sender As Object, e As EventArgs) Handles BtnManifest.Click
         Cursor = Cursors.WaitCursor
+        FormOutboundManifest.dt = GCAWBill.DataSource
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVAWBill.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        FormOutboundManifest.GVManifest.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
         FormOutboundManifest.ShowDialog()
         Cursor = Cursors.Default
     End Sub
