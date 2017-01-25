@@ -184,6 +184,13 @@
 
             GVAWBill.BestFitColumns()
         End If
+
+        'show manifest button
+        If CEDO.Checked = True Then
+            BtnManifest.Visible = True
+        Else
+            BtnManifest.Visible = False
+        End If
         check_but()
     End Sub
     Sub load_inbound()

@@ -150,6 +150,7 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
+        Me.BtnManifest = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RCICOD, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -190,7 +191,7 @@ Partial Class FormWHAWBill
         Me.GCAWBill.MainView = Me.GVAWBill
         Me.GCAWBill.Name = "GCAWBill"
         Me.GCAWBill.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RCICOD, Me.RIDERecStoreDate})
-        Me.GCAWBill.Size = New System.Drawing.Size(931, 234)
+        Me.GCAWBill.Size = New System.Drawing.Size(1038, 234)
         Me.GCAWBill.TabIndex = 0
         Me.GCAWBill.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAWBill})
         '
@@ -754,6 +755,7 @@ Partial Class FormWHAWBill
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnManifest)
         Me.PanelControl1.Controls.Add(Me.CEDO)
         Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Controls.Add(Me.CECompare)
@@ -768,7 +770,7 @@ Partial Class FormWHAWBill
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(931, 39)
+        Me.PanelControl1.Size = New System.Drawing.Size(1038, 39)
         Me.PanelControl1.TabIndex = 1
         '
         'CEDO
@@ -885,7 +887,7 @@ Partial Class FormWHAWBill
         Me.XTCAwb.Location = New System.Drawing.Point(0, 0)
         Me.XTCAwb.Name = "XTCAwb"
         Me.XTCAwb.SelectedTabPage = Me.XTPOutbound
-        Me.XTCAwb.Size = New System.Drawing.Size(937, 301)
+        Me.XTCAwb.Size = New System.Drawing.Size(1044, 301)
         Me.XTCAwb.TabIndex = 2
         Me.XTCAwb.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOutbound, Me.XTPInbound})
         '
@@ -894,7 +896,7 @@ Partial Class FormWHAWBill
         Me.XTPOutbound.Controls.Add(Me.GCAWBill)
         Me.XTPOutbound.Controls.Add(Me.PanelControl1)
         Me.XTPOutbound.Name = "XTPOutbound"
-        Me.XTPOutbound.Size = New System.Drawing.Size(931, 273)
+        Me.XTPOutbound.Size = New System.Drawing.Size(1038, 273)
         Me.XTPOutbound.Text = "Outbound"
         '
         'XTPInbound
@@ -1537,11 +1539,20 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
         '
+        'BtnManifest
+        '
+        Me.BtnManifest.Location = New System.Drawing.Point(903, 8)
+        Me.BtnManifest.Name = "BtnManifest"
+        Me.BtnManifest.Size = New System.Drawing.Size(97, 23)
+        Me.BtnManifest.TabIndex = 107
+        Me.BtnManifest.Text = "Delivery Manifest"
+        Me.BtnManifest.Visible = False
+        '
         'FormWHAWBill
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(937, 301)
+        Me.ClientSize = New System.Drawing.Size(1044, 301)
         Me.Controls.Add(Me.XTCAwb)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -1718,4 +1729,5 @@ Partial Class FormWHAWBill
     Friend WithEvents BandedGridColumnRecByStorePerson As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gbAirport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gbETALT As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BtnManifest As DevExpress.XtraEditors.SimpleButton
 End Class
