@@ -190,6 +190,24 @@ Partial Class FormMatStock
         Me.LabelControl47 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl48 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl49 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPStockCardReserved = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCRes = New DevExpress.XtraEditors.GroupControl()
+        Me.BGCStockRes = New DevExpress.XtraGrid.GridControl()
+        Me.BGVStockRes = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.BandedGridColumn24 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.SLEResMat = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn53 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn54 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn63 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn64 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn65 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BViewMatRes = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl27 = New DevExpress.XtraEditors.LabelControl()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -275,6 +293,15 @@ Partial Class FormMatStock
         CType(Me.DEUntilBOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromBOM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromBOM.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPStockCardReserved.SuspendLayout()
+        CType(Me.GCRes, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GCRes.SuspendLayout()
+        CType(Me.BGCStockRes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BGVStockRes, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl3.SuspendLayout()
+        CType(Me.SLEResMat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         Me.ViewMenuWO.SuspendLayout()
         Me.SuspendLayout()
@@ -288,7 +315,7 @@ Partial Class FormMatStock
         Me.XTCFGStock.SelectedTabPage = Me.XTPFGStockWHSum
         Me.XTCFGStock.Size = New System.Drawing.Size(1160, 488)
         Me.XTCFGStock.TabIndex = 1
-        Me.XTCFGStock.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGStockWHSum, Me.XTPFGStockCardWH, Me.XTPStockMatWO, Me.XTPStockCardBOM})
+        Me.XTCFGStock.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPFGStockWHSum, Me.XTPFGStockCardWH, Me.XTPStockMatWO, Me.XTPStockCardBOM, Me.XTPStockCardReserved})
         '
         'XTPFGStockWHSum
         '
@@ -1871,6 +1898,171 @@ Partial Class FormMatStock
         Me.LabelControl49.TabIndex = 2
         Me.LabelControl49.Text = "From"
         '
+        'XTPStockCardReserved
+        '
+        Me.XTPStockCardReserved.Controls.Add(Me.GCRes)
+        Me.XTPStockCardReserved.Controls.Add(Me.GroupControl3)
+        Me.XTPStockCardReserved.Name = "XTPStockCardReserved"
+        Me.XTPStockCardReserved.Size = New System.Drawing.Size(1154, 460)
+        Me.XTPStockCardReserved.Text = "Reserved Stock"
+        '
+        'GCRes
+        '
+        Me.GCRes.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GCRes.Controls.Add(Me.BGCStockRes)
+        Me.GCRes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRes.Enabled = False
+        Me.GCRes.Location = New System.Drawing.Point(0, 60)
+        Me.GCRes.Name = "GCRes"
+        Me.GCRes.Size = New System.Drawing.Size(1154, 400)
+        Me.GCRes.TabIndex = 8
+        Me.GCRes.Text = "Movement"
+        '
+        'BGCStockRes
+        '
+        Me.BGCStockRes.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BGCStockRes.Location = New System.Drawing.Point(20, 2)
+        Me.BGCStockRes.MainView = Me.BGVStockRes
+        Me.BGCStockRes.Name = "BGCStockRes"
+        Me.BGCStockRes.Size = New System.Drawing.Size(1132, 396)
+        Me.BGCStockRes.TabIndex = 0
+        Me.BGCStockRes.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVStockRes})
+        '
+        'BGVStockRes
+        '
+        Me.BGVStockRes.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn24})
+        Me.BGVStockRes.GridControl = Me.BGCStockRes
+        Me.BGVStockRes.Name = "BGVStockRes"
+        Me.BGVStockRes.OptionsBehavior.Editable = False
+        Me.BGVStockRes.OptionsBehavior.ReadOnly = True
+        Me.BGVStockRes.OptionsLayout.Columns.RemoveOldColumns = False
+        Me.BGVStockRes.OptionsLayout.Columns.StoreAllOptions = True
+        Me.BGVStockRes.OptionsLayout.Columns.StoreAppearance = True
+        Me.BGVStockRes.OptionsLayout.StoreAllOptions = True
+        Me.BGVStockRes.OptionsLayout.StoreAppearance = True
+        Me.BGVStockRes.OptionsView.ShowFooter = True
+        Me.BGVStockRes.OptionsView.ShowGroupPanel = False
+        '
+        'BandedGridColumn24
+        '
+        Me.BandedGridColumn24.Caption = "BandedGridColumn1"
+        Me.BandedGridColumn24.Name = "BandedGridColumn24"
+        Me.BandedGridColumn24.Visible = True
+        '
+        'GroupControl3
+        '
+        Me.GroupControl3.Controls.Add(Me.SLEResMat)
+        Me.GroupControl3.Controls.Add(Me.BViewMatRes)
+        Me.GroupControl3.Controls.Add(Me.LabelControl27)
+        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl3.Name = "GroupControl3"
+        Me.GroupControl3.Size = New System.Drawing.Size(1154, 60)
+        Me.GroupControl3.TabIndex = 7
+        Me.GroupControl3.Text = "Filter"
+        '
+        'SLEResMat
+        '
+        Me.SLEResMat.Location = New System.Drawing.Point(66, 30)
+        Me.SLEResMat.Name = "SLEResMat"
+        Me.SLEResMat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEResMat.Properties.View = Me.GridView4
+        Me.SLEResMat.Size = New System.Drawing.Size(205, 20)
+        Me.SLEResMat.TabIndex = 8892
+        '
+        'GridView4
+        '
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn52, Me.GridColumn53, Me.GridColumn54, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67})
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn52
+        '
+        Me.GridColumn52.Caption = "Material"
+        Me.GridColumn52.FieldName = "mat_name"
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.Visible = True
+        Me.GridColumn52.VisibleIndex = 1
+        Me.GridColumn52.Width = 133
+        '
+        'GridColumn53
+        '
+        Me.GridColumn53.Caption = "Description"
+        Me.GridColumn53.FieldName = "label_mat"
+        Me.GridColumn53.Name = "GridColumn53"
+        Me.GridColumn53.Visible = True
+        Me.GridColumn53.VisibleIndex = 2
+        Me.GridColumn53.Width = 151
+        '
+        'GridColumn54
+        '
+        Me.GridColumn54.Caption = "Size"
+        Me.GridColumn54.FieldName = "size"
+        Me.GridColumn54.Name = "GridColumn54"
+        Me.GridColumn54.Visible = True
+        Me.GridColumn54.VisibleIndex = 3
+        Me.GridColumn54.Width = 53
+        '
+        'GridColumn63
+        '
+        Me.GridColumn63.Caption = "Color"
+        Me.GridColumn63.FieldName = "color"
+        Me.GridColumn63.Name = "GridColumn63"
+        Me.GridColumn63.Visible = True
+        Me.GridColumn63.VisibleIndex = 4
+        Me.GridColumn63.Width = 53
+        '
+        'GridColumn64
+        '
+        Me.GridColumn64.Caption = "Category"
+        Me.GridColumn64.FieldName = "mat_category"
+        Me.GridColumn64.Name = "GridColumn64"
+        Me.GridColumn64.Visible = True
+        Me.GridColumn64.VisibleIndex = 0
+        Me.GridColumn64.Width = 89
+        '
+        'GridColumn65
+        '
+        Me.GridColumn65.Caption = "Year"
+        Me.GridColumn65.FieldName = "year"
+        Me.GridColumn65.Name = "GridColumn65"
+        Me.GridColumn65.Visible = True
+        Me.GridColumn65.VisibleIndex = 5
+        Me.GridColumn65.Width = 53
+        '
+        'GridColumn66
+        '
+        Me.GridColumn66.Caption = "Lot"
+        Me.GridColumn66.FieldName = "lot"
+        Me.GridColumn66.Name = "GridColumn66"
+        Me.GridColumn66.Visible = True
+        Me.GridColumn66.VisibleIndex = 6
+        Me.GridColumn66.Width = 71
+        '
+        'GridColumn67
+        '
+        Me.GridColumn67.Caption = "ID Mat Det"
+        Me.GridColumn67.FieldName = "id_mat_det"
+        Me.GridColumn67.Name = "GridColumn67"
+        '
+        'BViewMatRes
+        '
+        Me.BViewMatRes.Location = New System.Drawing.Point(277, 28)
+        Me.BViewMatRes.Name = "BViewMatRes"
+        Me.BViewMatRes.Size = New System.Drawing.Size(63, 23)
+        Me.BViewMatRes.TabIndex = 2
+        Me.BViewMatRes.Text = "View"
+        '
+        'LabelControl27
+        '
+        Me.LabelControl27.Location = New System.Drawing.Point(12, 33)
+        Me.LabelControl27.Name = "LabelControl27"
+        Me.LabelControl27.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl27.TabIndex = 5
+        Me.LabelControl27.Text = "Material"
+        '
         'ViewMenu
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewDel})
@@ -2083,6 +2275,16 @@ Partial Class FormMatStock
         CType(Me.DEUntilBOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromBOM.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromBOM.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPStockCardReserved.ResumeLayout(False)
+        CType(Me.GCRes, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GCRes.ResumeLayout(False)
+        CType(Me.BGCStockRes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BGVStockRes, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl3.ResumeLayout(False)
+        Me.GroupControl3.PerformLayout()
+        CType(Me.SLEResMat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
         Me.ViewMenuWO.ResumeLayout(False)
         Me.ResumeLayout(False)
@@ -2276,4 +2478,22 @@ Partial Class FormMatStock
     Friend WithEvents LabelControl47 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl48 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl49 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTPStockCardReserved As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCRes As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents BGCStockRes As DevExpress.XtraGrid.GridControl
+    Friend WithEvents BGVStockRes As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents BandedGridColumn24 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents SLEResMat As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn52 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn53 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn54 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn63 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn64 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn65 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn66 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn67 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BViewMatRes As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl27 As DevExpress.XtraEditors.LabelControl
 End Class
