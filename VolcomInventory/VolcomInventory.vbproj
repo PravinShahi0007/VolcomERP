@@ -4060,6 +4060,12 @@
     <Compile Include="ReportFGWHAlloc.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFGWHAllocRpt.Designer.vb">
+      <DependentUpon>ReportFGWHAllocRpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGWHAllocRpt.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGWoff.Designer.vb">
       <DependentUpon>ReportFGWoff.vb</DependentUpon>
     </Compile>
@@ -6946,6 +6952,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGWHAlloc.resx">
       <DependentUpon>ReportFGWHAlloc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGWHAllocRpt.resx">
+      <DependentUpon>ReportFGWHAllocRpt.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGWoff.resx">
       <DependentUpon>ReportFGWoff.vb</DependentUpon>
