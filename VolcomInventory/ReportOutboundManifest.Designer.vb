@@ -20,6 +20,26 @@ Partial Public Class ReportOutboundManifest
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
+        Me.GCManifest = New DevExpress.XtraGrid.GridControl()
+        Me.GVManifest = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
@@ -29,6 +49,11 @@ Partial Public Class ReportOutboundManifest
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow5 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -62,21 +87,203 @@ Partial Public Class ReportOutboundManifest
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
+        CType(Me.GCManifest, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVManifest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
         '
+        Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.WinControlContainer1})
         Me.Detail.HeightF = 273.1771!
         Me.Detail.Name = "Detail"
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'WinControlContainer1
+        '
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.WinControlContainer1.Name = "WinControlContainer1"
+        Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1110.0!, 273.1771!)
+        Me.WinControlContainer1.WinControl = Me.GCManifest
+        '
+        'GCManifest
+        '
+        Me.GCManifest.Location = New System.Drawing.Point(0, 0)
+        Me.GCManifest.LookAndFeel.SkinName = "Office 2013 Dark Gray"
+        Me.GCManifest.MainView = Me.GVManifest
+        Me.GCManifest.Name = "GCManifest"
+        Me.GCManifest.Size = New System.Drawing.Size(1066, 262)
+        Me.GCManifest.TabIndex = 140
+        Me.GCManifest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVManifest})
+        '
+        'GVManifest
+        '
+        Me.GVManifest.Appearance.HeaderPanel.Options.UseTextOptions = True
+        Me.GVManifest.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVManifest.Appearance.Row.Options.UseTextOptions = True
+        Me.GVManifest.Appearance.Row.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.GVManifest.ColumnPanelRowHeight = 50
+        Me.GVManifest.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn18})
+        Me.GVManifest.GridControl = Me.GCManifest
+        Me.GVManifest.IndicatorWidth = 50
+        Me.GVManifest.Name = "GVManifest"
+        Me.GVManifest.OptionsBehavior.Editable = False
+        Me.GVManifest.OptionsPrint.AllowMultilineHeaders = True
+        Me.GVManifest.OptionsView.AllowCellMerge = True
+        Me.GVManifest.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVManifest.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.Caption = "NO"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.Width = 43
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "DELIVERY SLIP"
+        Me.GridColumn2.FieldName = "do_no"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 0
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "SCANNED DATE"
+        Me.GridColumn3.FieldName = "scan_date"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "STORE ACCOUNT"
+        Me.GridColumn4.FieldName = "account"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        Me.GridColumn4.Width = 73
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "REFF"
+        Me.GridColumn5.FieldName = "reff"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "STORE NAME"
+        Me.GridColumn6.FieldName = "account_name"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 2
+        Me.GridColumn6.Width = 196
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "QTY"
+        Me.GridColumn7.FieldName = "qty"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 3
+        Me.GridColumn7.Width = 57
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "GROUP STORE"
+        Me.GridColumn8.FieldName = "comp_group"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 4
+        Me.GridColumn8.Width = 63
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "WEIGHT"
+        Me.GridColumn9.DisplayFormat.FormatString = "N0"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "weight"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 5
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "P"
+        Me.GridColumn10.DisplayFormat.FormatString = "N0"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn10.FieldName = "length"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 6
+        Me.GridColumn10.Width = 46
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "L"
+        Me.GridColumn11.DisplayFormat.FormatString = "N0"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn11.FieldName = "width"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 7
+        Me.GridColumn11.Width = 36
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "T"
+        Me.GridColumn12.DisplayFormat.FormatString = "N0"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn12.FieldName = "height"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 8
+        Me.GridColumn12.Width = 39
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "DIM"
+        Me.GridColumn13.DisplayFormat.FormatString = "N2"
+        Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn13.FieldName = "volume"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 9
+        Me.GridColumn13.Width = 48
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "FINAL WEIGHT"
+        Me.GridColumn14.FieldName = "c_weight"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 10
+        Me.GridColumn14.Width = 62
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "BPL"
+        Me.GridColumn15.FieldName = "cargo"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 11
+        Me.GridColumn15.Width = 88
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "REMARK"
+        Me.GridColumn16.FieldName = "rmk"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 12
+        Me.GridColumn16.Width = 120
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "ID"
+        Me.GridColumn18.FieldName = "id_awbill"
+        Me.GridColumn18.Name = "GridColumn18"
         '
         'TopMargin
         '
@@ -111,7 +318,7 @@ Partial Public Class ReportOutboundManifest
         '
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel2, Me.XrLabel1})
         Me.ReportHeader.Font = New System.Drawing.Font("Times New Roman", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ReportHeader.HeightF = 76.04166!
+        Me.ReportHeader.HeightF = 63.54167!
         Me.ReportHeader.Name = "ReportHeader"
         Me.ReportHeader.StylePriority.UseFont = False
         '
@@ -167,6 +374,85 @@ Partial Public Class ReportOutboundManifest
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPanel1, Me.XrTable2, Me.XrTable1, Me.XrLabel7, Me.XrLabel8, Me.XrLabel5, Me.XrLabel6, Me.XrLabel4, Me.XrLabel3})
         Me.ReportFooter.HeightF = 374.7396!
         Me.ReportFooter.Name = "ReportFooter"
+        '
+        'XrPanel1
+        '
+        Me.XrPanel1.BorderColor = System.Drawing.Color.Gray
+        Me.XrPanel1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
+        Me.XrPanel1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+            Or DevExpress.XtraPrinting.BorderSide.Right) _
+            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
+        Me.XrPanel1.BorderWidth = 2.0!
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel12})
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 248.073!)
+        Me.XrPanel1.Name = "XrPanel1"
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(478.5108!, 101.0416!)
+        Me.XrPanel1.StylePriority.UseBorderColor = False
+        Me.XrPanel1.StylePriority.UseBorderDashStyle = False
+        Me.XrPanel1.StylePriority.UseBorders = False
+        Me.XrPanel1.StylePriority.UseBorderWidth = False
+        '
+        'XrLabel11
+        '
+        Me.XrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(9.999991!, 33.53127!)
+        Me.XrLabel11.Multiline = True
+        Me.XrLabel11.Name = "XrLabel11"
+        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(288.0!, 16.90616!)
+        Me.XrLabel11.StylePriority.UseBorders = False
+        Me.XrLabel11.StylePriority.UseFont = False
+        Me.XrLabel11.StylePriority.UseTextAlignment = False
+        Me.XrLabel11.Text = "Mohon agar barang yang tidak sesuai dengan dokumen"
+        Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel10
+        '
+        Me.XrLabel10.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(9.375016!, 50.43741!)
+        Me.XrLabel10.Multiline = True
+        Me.XrLabel10.Name = "XrLabel10"
+        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(447.2793!, 37.7395!)
+        Me.XrLabel10.StylePriority.UseBorders = False
+        Me.XrLabel10.StylePriority.UseFont = False
+        Me.XrLabel10.StylePriority.UseTextAlignment = False
+        Me.XrLabel10.Text = "Penerimaan barang yang tidak sesuai dengan dokumen akan menjadi tanggung jawab pe" &
+    "nerima"
+        Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel9.ForeColor = System.Drawing.Color.Gray
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(9.375!, 7.0!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(97.01888!, 18.95833!)
+        Me.XrLabel9.StylePriority.UseBorders = False
+        Me.XrLabel9.StylePriority.UseFont = False
+        Me.XrLabel9.StylePriority.UseForeColor = False
+        Me.XrLabel9.StylePriority.UseTextAlignment = False
+        Me.XrLabel9.Text = "PERHATIAN !"
+        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
+        '
+        'XrLabel12
+        '
+        Me.XrLabel12.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel12.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(298.0!, 33.53127!)
+        Me.XrLabel12.Multiline = True
+        Me.XrLabel12.Name = "XrLabel12"
+        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel12.SizeF = New System.Drawing.SizeF(61.23773!, 16.90616!)
+        Me.XrLabel12.StylePriority.UseBorders = False
+        Me.XrLabel12.StylePriority.UseFont = False
+        Me.XrLabel12.StylePriority.UseTextAlignment = False
+        Me.XrLabel12.Text = "DITOLAK."
+        Me.XrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'XrTable2
         '
@@ -437,85 +723,6 @@ Partial Public Class ReportOutboundManifest
         Me.XrLabel6.SizeF = New System.Drawing.SizeF(260.4166!, 40.0!)
         Me.XrLabel6.StylePriority.UseBorders = False
         '
-        'XrPanel1
-        '
-        Me.XrPanel1.BorderColor = System.Drawing.Color.Gray
-        Me.XrPanel1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
-        Me.XrPanel1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
-            Or DevExpress.XtraPrinting.BorderSide.Right) _
-            Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrPanel1.BorderWidth = 2.0!
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel12})
-        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 248.073!)
-        Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(478.5108!, 101.0416!)
-        Me.XrPanel1.StylePriority.UseBorderColor = False
-        Me.XrPanel1.StylePriority.UseBorderDashStyle = False
-        Me.XrPanel1.StylePriority.UseBorders = False
-        Me.XrPanel1.StylePriority.UseBorderWidth = False
-        '
-        'XrLabel9
-        '
-        Me.XrLabel9.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.ForeColor = System.Drawing.Color.Gray
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(9.375!, 7.0!)
-        Me.XrLabel9.Name = "XrLabel9"
-        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(97.01888!, 18.95833!)
-        Me.XrLabel9.StylePriority.UseBorders = False
-        Me.XrLabel9.StylePriority.UseFont = False
-        Me.XrLabel9.StylePriority.UseForeColor = False
-        Me.XrLabel9.StylePriority.UseTextAlignment = False
-        Me.XrLabel9.Text = "PERHATIAN !"
-        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
-        '
-        'XrLabel10
-        '
-        Me.XrLabel10.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(9.375016!, 50.43741!)
-        Me.XrLabel10.Multiline = True
-        Me.XrLabel10.Name = "XrLabel10"
-        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(447.2793!, 37.7395!)
-        Me.XrLabel10.StylePriority.UseBorders = False
-        Me.XrLabel10.StylePriority.UseFont = False
-        Me.XrLabel10.StylePriority.UseTextAlignment = False
-        Me.XrLabel10.Text = "Penerimaan barang yang tidak sesuai dengan dokumen akan menjadi tanggung jawab pe" &
-    "nerima"
-        Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrLabel11
-        '
-        Me.XrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(9.999991!, 33.53127!)
-        Me.XrLabel11.Multiline = True
-        Me.XrLabel11.Name = "XrLabel11"
-        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(288.0!, 16.90616!)
-        Me.XrLabel11.StylePriority.UseBorders = False
-        Me.XrLabel11.StylePriority.UseFont = False
-        Me.XrLabel11.StylePriority.UseTextAlignment = False
-        Me.XrLabel11.Text = "Mohon agar barang yang tidak sesuai dengan dokumen"
-        Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrLabel12
-        '
-        Me.XrLabel12.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel12.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(298.0!, 33.53127!)
-        Me.XrLabel12.Multiline = True
-        Me.XrLabel12.Name = "XrLabel12"
-        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel12.SizeF = New System.Drawing.SizeF(61.23773!, 16.90616!)
-        Me.XrLabel12.StylePriority.UseBorders = False
-        Me.XrLabel12.StylePriority.UseFont = False
-        Me.XrLabel12.StylePriority.UseTextAlignment = False
-        Me.XrLabel12.Text = "DITOLAK."
-        Me.XrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
         'ReportOutboundManifest
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.ReportFooter})
@@ -526,6 +733,8 @@ Partial Public Class ReportOutboundManifest
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "15.1"
+        CType(Me.GCManifest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVManifest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
@@ -579,4 +788,24 @@ Partial Public Class ReportOutboundManifest
     Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
+    Friend WithEvents GCManifest As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVManifest As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

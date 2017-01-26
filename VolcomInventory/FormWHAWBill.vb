@@ -414,13 +414,14 @@
     Private Sub BtnManifest_Click(sender As Object, e As EventArgs) Handles BtnManifest.Click
         Cursor = Cursors.WaitCursor
         FormOutboundManifest.dt = GCAWBill.DataSource
-        ' ' creating and saving the view's layout to a new memory stream 
-        Dim str As System.IO.Stream
-        str = New System.IO.MemoryStream()
-        GVAWBill.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
-        FormOutboundManifest.GVManifest.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        str.Seek(0, System.IO.SeekOrigin.Begin)
+        FormOutboundManifest.ftr = GVAWBill.ActiveFilterString
+        ''creating and saving the view's layout to a new memory stream 
+        'Dim str As System.IO.Stream
+        'str = New System.IO.MemoryStream()
+        'GVAWBill.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        'FormOutboundManifest.GVManifest.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
         FormOutboundManifest.ShowDialog()
         Cursor = Cursors.Default
     End Sub
