@@ -21,18 +21,17 @@
             dept = LEDept.EditValue.ToString
         End If
 
-        Dim query As String = "SELECT tb.*,(tb.minutes_work-tb.over-tb.late+IF(tb.over<0,tb.over,0)) AS work_hour,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present FROM
+        Dim query As String = "SELECT tb.*,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0) AS work_hour,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present FROM
                                 (
                                  SELECT sch.id_schedule,lvl.employee_level,emp.employee_position,ket.id_leave_type,ket.leave_type,sch.info_leave,active.employee_active,active.id_employee_active,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,sch.date, 
-                                sch.in,sch.in_tolerance,MIN(at_in.datetime) AS `att_in`, 
+                                 sch.in,sch.in_tolerance,MIN(at_in.datetime) AS `att_in`, 
                                  sch.out,MAX(at_out.datetime) AS `att_out`, 
                                  sch.break_out,MIN(at_brout.datetime) AS start_break, 
                                  sch.break_in,MAX(at_brin.datetime) AS end_break, 
                                  scht.schedule_type,note ,
                                  sch.minutes_work,
                                  IF(MIN(at_in.datetime)>sch.in_tolerance,TIMESTAMPDIFF(MINUTE,sch.in_tolerance,MIN(at_in.datetime)),0) AS late ,
-                                TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) AS over ,
-
+                                 TIMESTAMPDIFF(MINUTE,sch.out,MAX(at_out.datetime)) AS over ,
                                 IF(TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))>TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),
                                 TIMESTAMPDIFF(MINUTE,MIN(at_brout.datetime),MAX(at_brin.datetime))-TIMESTAMPDIFF(MINUTE,sch.break_out,sch.break_in),0) AS over_break ,
                                 TIMESTAMPDIFF(MINUTE,MIN(at_in.datetime),MAX(at_out.datetime)) AS actual_work_hour 
@@ -124,7 +123,7 @@
 
         Dim query As String = ""
         query = "SELECT tb.id_schedule,tb.employee_level,tb.employee_position,tb.id_leave_type,tb.leave_type,tb.info_leave,tb.employee_active,tb.id_employee_active,tb.id_employee,tb.employee_name,tb.employee_code,tb.id_departement,dep.departement,SUM(tb.late) AS late,SUM(tb.over) AS over,SUM(tb.over_break) AS over_break,
-                    SUM(tb.minutes_work-tb.over-tb.late+IF(tb.over<0,tb.over,0)) AS work_hour,
+                    SUM(IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0)) AS work_hour,
                     SUM(tb.actual_work_hour) AS actual_work_hour,SUM((tb.over-tb.late-tb.over_break)) AS balance,SUM(IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0)) AS present,SUM(IF(tb.id_schedule_type=1,1,0)) AS workday "
         query += " FROM "
         query += " ("
