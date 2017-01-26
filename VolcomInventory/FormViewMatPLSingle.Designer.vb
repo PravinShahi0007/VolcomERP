@@ -76,6 +76,11 @@ Partial Class FormViewMatPLSingle
         Me.BAttach = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.TEDesignName = New DevExpress.XtraEditors.TextEdit()
+        Me.TEDesignCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.BtnInfoSrs = New DevExpress.XtraEditors.SimpleButton()
         Me.DEPL = New DevExpress.XtraEditors.TextEdit()
         Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
@@ -93,11 +98,7 @@ Partial Class FormViewMatPLSingle
         Me.TxtCodeCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEDesignCode = New DevExpress.XtraEditors.TextEdit()
-        Me.TEDesignName = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupControlDetailSingle, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,6 +127,9 @@ Partial Class FormViewMatPLSingle
         Me.PanelNav.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TEDesignName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSRSNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,9 +137,6 @@ Partial Class FormViewMatPLSingle
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEDesignName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SplitContainerControl1
@@ -196,7 +197,7 @@ Partial Class FormViewMatPLSingle
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCodeSample, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQtyNeed, Me.GridColumnQty, Me.GridColumnNote, Me.GridColumnName, Me.GridColumn10, Me.GridColumn17})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCodeSample, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQtyNeed, Me.GridColumn27, Me.GridColumnQty, Me.GridColumnNote, Me.GridColumnName, Me.GridColumn10, Me.GridColumn17})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -215,7 +216,7 @@ Partial Class FormViewMatPLSingle
         Me.GridColumnCodeSample.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnCodeSample.Visible = True
         Me.GridColumnCodeSample.VisibleIndex = 0
-        Me.GridColumnCodeSample.Width = 219
+        Me.GridColumnCodeSample.Width = 146
         '
         'GridColumnSize
         '
@@ -230,7 +231,7 @@ Partial Class FormViewMatPLSingle
         Me.GridColumnSize.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 105
+        Me.GridColumnSize.Width = 70
         '
         'GridColumnUOM
         '
@@ -246,7 +247,7 @@ Partial Class FormViewMatPLSingle
         Me.GridColumnUOM.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnUOM.Visible = True
         Me.GridColumnUOM.VisibleIndex = 4
-        Me.GridColumnUOM.Width = 105
+        Me.GridColumnUOM.Width = 70
         '
         'GridColumnQtyNeed
         '
@@ -270,13 +271,15 @@ Partial Class FormViewMatPLSingle
         Me.GridColumnQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnQty.Caption = "Qty PL"
         Me.GridColumnQty.ColumnEdit = Me.RepositoryItemSpinEdit1
+        Me.GridColumnQty.DisplayFormat.FormatString = "N2"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "qty_real_mat"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
-        Me.GridColumnQty.Width = 253
+        Me.GridColumnQty.VisibleIndex = 6
+        Me.GridColumnQty.Width = 113
         '
         'RepositoryItemSpinEdit1
         '
@@ -305,7 +308,7 @@ Partial Class FormViewMatPLSingle
         Me.GridColumnName.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 1
-        Me.GridColumnName.Width = 411
+        Me.GridColumnName.Width = 274
         '
         'GridColumn10
         '
@@ -326,7 +329,7 @@ Partial Class FormViewMatPLSingle
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 2
-        Me.GridColumn17.Width = 87
+        Me.GridColumn17.Width = 58
         '
         'XtraTabPage2
         '
@@ -719,6 +722,54 @@ Partial Class FormViewMatPLSingle
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(884, 92)
         Me.GroupGeneralHeader.TabIndex = 51
         '
+        'TEDesignName
+        '
+        Me.TEDesignName.EditValue = ""
+        Me.TEDesignName.Location = New System.Drawing.Point(222, 65)
+        Me.TEDesignName.Name = "TEDesignName"
+        Me.TEDesignName.Properties.EditValueChangedDelay = 1
+        Me.TEDesignName.Properties.ReadOnly = True
+        Me.TEDesignName.Size = New System.Drawing.Size(204, 20)
+        Me.TEDesignName.TabIndex = 175
+        '
+        'TEDesignCode
+        '
+        Me.TEDesignCode.EditValue = ""
+        Me.TEDesignCode.Location = New System.Drawing.Point(111, 65)
+        Me.TEDesignCode.Name = "TEDesignCode"
+        Me.TEDesignCode.Properties.EditValueChangedDelay = 1
+        Me.TEDesignCode.Properties.ReadOnly = True
+        Me.TEDesignCode.Size = New System.Drawing.Size(105, 20)
+        Me.TEDesignCode.TabIndex = 174
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(30, 68)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(32, 13)
+        Me.LabelControl6.TabIndex = 173
+        Me.LabelControl6.Text = "Design"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(30, 42)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl4.TabIndex = 172
+        Me.LabelControl4.Text = "PO Number"
+        '
+        'TEPONumber
+        '
+        Me.TEPONumber.EditValue = ""
+        Me.TEPONumber.Location = New System.Drawing.Point(111, 39)
+        Me.TEPONumber.Name = "TEPONumber"
+        Me.TEPONumber.Properties.EditValueChangedDelay = 1
+        Me.TEPONumber.Properties.ReadOnly = True
+        Me.TEPONumber.Size = New System.Drawing.Size(315, 20)
+        Me.TEPONumber.TabIndex = 171
+        '
         'BtnInfoSrs
         '
         Me.BtnInfoSrs.Appearance.Font = New System.Drawing.Font("Monotype Corsiva", 11.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -904,53 +955,20 @@ Partial Class FormViewMatPLSingle
         Me.TxtNameCompTo.TabIndex = 5
         Me.TxtNameCompTo.TabStop = False
         '
-        'LabelControl4
+        'GridColumn27
         '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(30, 42)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(54, 13)
-        Me.LabelControl4.TabIndex = 172
-        Me.LabelControl4.Text = "PO Number"
-        '
-        'TEPONumber
-        '
-        Me.TEPONumber.EditValue = ""
-        Me.TEPONumber.Location = New System.Drawing.Point(111, 39)
-        Me.TEPONumber.Name = "TEPONumber"
-        Me.TEPONumber.Properties.EditValueChangedDelay = 1
-        Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(315, 20)
-        Me.TEPONumber.TabIndex = 171
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(30, 68)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(32, 13)
-        Me.LabelControl6.TabIndex = 173
-        Me.LabelControl6.Text = "Design"
-        '
-        'TEDesignCode
-        '
-        Me.TEDesignCode.EditValue = ""
-        Me.TEDesignCode.Location = New System.Drawing.Point(111, 65)
-        Me.TEDesignCode.Name = "TEDesignCode"
-        Me.TEDesignCode.Properties.EditValueChangedDelay = 1
-        Me.TEDesignCode.Properties.ReadOnly = True
-        Me.TEDesignCode.Size = New System.Drawing.Size(105, 20)
-        Me.TEDesignCode.TabIndex = 174
-        '
-        'TEDesignName
-        '
-        Me.TEDesignName.EditValue = ""
-        Me.TEDesignName.Location = New System.Drawing.Point(222, 65)
-        Me.TEDesignName.Name = "TEDesignName"
-        Me.TEDesignName.Properties.EditValueChangedDelay = 1
-        Me.TEDesignName.Properties.ReadOnly = True
-        Me.TEDesignName.Size = New System.Drawing.Size(204, 20)
-        Me.TEDesignName.TabIndex = 175
+        Me.GridColumn27.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn27.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn27.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn27.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn27.Caption = "Qty MRS"
+        Me.GridColumn27.DisplayFormat.FormatString = "N2"
+        Me.GridColumn27.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn27.FieldName = "prod_order_mrs_det_qty"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 5
+        Me.GridColumn27.Width = 107
         '
         'FormViewMatPLSingle
         '
@@ -998,6 +1016,9 @@ Partial Class FormViewMatPLSingle
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TEDesignName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSRSNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1005,9 +1026,6 @@ Partial Class FormViewMatPLSingle
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEDesignName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1090,4 +1108,5 @@ Partial Class FormViewMatPLSingle
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPONumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

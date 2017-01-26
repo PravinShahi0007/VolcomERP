@@ -129,7 +129,6 @@
                     MENote.Properties.ReadOnly = True
                 End If
             End If
-
             'Fetch db detail
             viewFillEmptyData()
         End If

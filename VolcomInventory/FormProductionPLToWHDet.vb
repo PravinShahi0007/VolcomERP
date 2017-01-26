@@ -30,7 +30,6 @@ Public Class FormProductionPLToWHDet
     Dim myListOfDogs As New List(Of String)
     Public dt As New DataTable
 
-
     Public Class FileRecord
         Public Id As String
         Public Code As String
