@@ -85,12 +85,17 @@ Partial Class FormOutboundManifest
         Me.GVManifest.IndicatorWidth = 50
         Me.GVManifest.Name = "GVManifest"
         Me.GVManifest.OptionsBehavior.Editable = False
+        Me.GVManifest.OptionsPrint.AllowMultilineHeaders = True
         Me.GVManifest.OptionsView.AllowCellMerge = True
         Me.GVManifest.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVManifest.OptionsView.ShowGroupPanel = False
         '
         'GridColumnNo
         '
+        Me.GridColumnNo.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnNo.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnNo.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnNo.Caption = "NO"
         Me.GridColumnNo.FieldName = "no"
         Me.GridColumnNo.Name = "GridColumnNo"
@@ -103,6 +108,7 @@ Partial Class FormOutboundManifest
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.Width = 55
         '
         'GridColumn3
         '
@@ -117,7 +123,7 @@ Partial Class FormOutboundManifest
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 1
-        Me.GridColumn4.Width = 73
+        Me.GridColumn4.Width = 60
         '
         'GridColumn5
         '
@@ -132,7 +138,7 @@ Partial Class FormOutboundManifest
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 2
-        Me.GridColumn6.Width = 196
+        Me.GridColumn6.Width = 166
         '
         'GridColumn7
         '
@@ -141,7 +147,7 @@ Partial Class FormOutboundManifest
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 3
-        Me.GridColumn7.Width = 57
+        Me.GridColumn7.Width = 35
         '
         'GridColumn8
         '
@@ -150,7 +156,7 @@ Partial Class FormOutboundManifest
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 4
-        Me.GridColumn8.Width = 63
+        Me.GridColumn8.Width = 44
         '
         'GridColumn9
         '
@@ -161,6 +167,7 @@ Partial Class FormOutboundManifest
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 5
+        Me.GridColumn9.Width = 35
         '
         'GridColumn10
         '
@@ -171,7 +178,7 @@ Partial Class FormOutboundManifest
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 6
-        Me.GridColumn10.Width = 46
+        Me.GridColumn10.Width = 35
         '
         'GridColumn11
         '
@@ -182,7 +189,7 @@ Partial Class FormOutboundManifest
         Me.GridColumn11.Name = "GridColumn11"
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 7
-        Me.GridColumn11.Width = 36
+        Me.GridColumn11.Width = 35
         '
         'GridColumn12
         '
@@ -193,7 +200,7 @@ Partial Class FormOutboundManifest
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 8
-        Me.GridColumn12.Width = 39
+        Me.GridColumn12.Width = 35
         '
         'GridColumn13
         '
@@ -204,7 +211,7 @@ Partial Class FormOutboundManifest
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 9
-        Me.GridColumn13.Width = 48
+        Me.GridColumn13.Width = 35
         '
         'GridColumn14
         '
@@ -213,16 +220,16 @@ Partial Class FormOutboundManifest
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 10
-        Me.GridColumn14.Width = 62
+        Me.GridColumn14.Width = 35
         '
         'GridColumn15
         '
-        Me.GridColumn15.Caption = "BPL"
+        Me.GridColumn15.Caption = "3PL"
         Me.GridColumn15.FieldName = "cargo"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 11
-        Me.GridColumn15.Width = 88
+        Me.GridColumn15.Width = 51
         '
         'GridColumn16
         '
@@ -231,7 +238,7 @@ Partial Class FormOutboundManifest
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 12
-        Me.GridColumn16.Width = 120
+        Me.GridColumn16.Width = 111
         '
         'GridColumn18
         '

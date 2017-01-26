@@ -38,6 +38,8 @@
         'GVManifest.Columns("c_weight").VisibleIndex = 10
         'GVManifest.Columns("cargo").VisibleIndex = 11
         'GVManifest.Columns("rmk").VisibleIndex = 12
+        printManifest()
+        Close()
     End Sub
 
     Private Sub FormOutboundManifest_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -70,6 +72,11 @@
     End Sub
 
     Private Sub BAccept_Click(sender As Object, e As EventArgs) Handles BAccept.Click
+        printManifest()
+    End Sub
+
+    Sub printManifest()
+        Cursor = Cursors.WaitCursor
         GridColumnNo.VisibleIndex = 0
         For i As Integer = 0 To GVManifest.RowCount - 1
             GVManifest.SetRowCellValue(i, "no", (i + 1).ToString)
@@ -106,6 +113,7 @@
         Report.GVManifest.AppearancePrint.HeaderPanel.BackColor = Color.Transparent
         Report.GVManifest.AppearancePrint.HeaderPanel.ForeColor = Color.Black
         Report.GVManifest.AppearancePrint.HeaderPanel.Font = New Font("Segoe UI", 8, FontStyle.Bold)
+        Report.GVManifest.AppearancePrint.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
 
         Report.GVManifest.AppearancePrint.FooterPanel.BackColor = Color.Transparent
         Report.GVManifest.AppearancePrint.FooterPanel.ForeColor = Color.Black
@@ -118,5 +126,6 @@
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
         GridColumnNo.Visible = False
+        Cursor = Cursors.Default
     End Sub
 End Class

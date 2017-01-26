@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Public Class ReportOutboundManifest
     Inherits DevExpress.XtraReports.UI.XtraReport
 
     'XtraReport overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Public Class ReportOutboundManifest
     'NOTE: The following procedure is required by the Designer
     'It can be modified using the Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.WinControlContainer1 = New DevExpress.XtraReports.UI.WinControlContainer()
@@ -49,11 +49,7 @@ Partial Public Class ReportOutboundManifest
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
-        Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel10 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel12 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow5 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -86,11 +82,19 @@ Partial Public Class ReportOutboundManifest
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.XrTable3 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow9 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell20 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableRow10 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell18 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCManifest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVManifest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'Detail
@@ -103,7 +107,7 @@ Partial Public Class ReportOutboundManifest
         '
         'WinControlContainer1
         '
-        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.WinControlContainer1.LocationFloat = New DevExpress.Utils.PointFloat(0.00004541306!, 0!)
         Me.WinControlContainer1.Name = "WinControlContainer1"
         Me.WinControlContainer1.SizeF = New System.Drawing.SizeF(1110.0!, 273.1771!)
         Me.WinControlContainer1.WinControl = Me.GCManifest
@@ -349,7 +353,7 @@ Partial Public Class ReportOutboundManifest
         'XrLabel3
         '
         Me.XrLabel3.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(92.70834!, 18.66664!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(95.68456!, 18.6666!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel3.SizeF = New System.Drawing.SizeF(77.48763!, 18.95834!)
@@ -363,7 +367,7 @@ Partial Public Class ReportOutboundManifest
         Me.XrLabel4.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(170.196!, 10.00002!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(173.1723!, 9.999962!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel4.SizeF = New System.Drawing.SizeF(161.4583!, 40.0!)
@@ -371,95 +375,28 @@ Partial Public Class ReportOutboundManifest
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPanel1, Me.XrTable2, Me.XrTable1, Me.XrLabel7, Me.XrLabel8, Me.XrLabel5, Me.XrLabel6, Me.XrLabel4, Me.XrLabel3})
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.XrTable2, Me.XrTable1, Me.XrLabel7, Me.XrLabel8, Me.XrLabel5, Me.XrLabel3, Me.XrLabel4, Me.XrPanel1})
         Me.ReportFooter.HeightF = 374.7396!
         Me.ReportFooter.Name = "ReportFooter"
+        Me.ReportFooter.PageBreak = DevExpress.XtraReports.UI.PageBreak.BeforeBand
         '
-        'XrPanel1
+        'XrLabel6
         '
-        Me.XrPanel1.BorderColor = System.Drawing.Color.Gray
-        Me.XrPanel1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
-        Me.XrPanel1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+        Me.XrLabel6.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrPanel1.BorderWidth = 2.0!
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel12})
-        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 248.073!)
-        Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(478.5108!, 101.0416!)
-        Me.XrPanel1.StylePriority.UseBorderColor = False
-        Me.XrPanel1.StylePriority.UseBorderDashStyle = False
-        Me.XrPanel1.StylePriority.UseBorders = False
-        Me.XrPanel1.StylePriority.UseBorderWidth = False
-        '
-        'XrLabel11
-        '
-        Me.XrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel11.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(9.999991!, 33.53127!)
-        Me.XrLabel11.Multiline = True
-        Me.XrLabel11.Name = "XrLabel11"
-        Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(288.0!, 16.90616!)
-        Me.XrLabel11.StylePriority.UseBorders = False
-        Me.XrLabel11.StylePriority.UseFont = False
-        Me.XrLabel11.StylePriority.UseTextAlignment = False
-        Me.XrLabel11.Text = "Mohon agar barang yang tidak sesuai dengan dokumen"
-        Me.XrLabel11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrLabel10
-        '
-        Me.XrLabel10.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel10.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(9.375016!, 50.43741!)
-        Me.XrLabel10.Multiline = True
-        Me.XrLabel10.Name = "XrLabel10"
-        Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(447.2793!, 37.7395!)
-        Me.XrLabel10.StylePriority.UseBorders = False
-        Me.XrLabel10.StylePriority.UseFont = False
-        Me.XrLabel10.StylePriority.UseTextAlignment = False
-        Me.XrLabel10.Text = "Penerimaan barang yang tidak sesuai dengan dokumen akan menjadi tanggung jawab pe" &
-    "nerima"
-        Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        '
-        'XrLabel9
-        '
-        Me.XrLabel9.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel9.ForeColor = System.Drawing.Color.Gray
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(9.375!, 7.0!)
-        Me.XrLabel9.Name = "XrLabel9"
-        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(97.01888!, 18.95833!)
-        Me.XrLabel9.StylePriority.UseBorders = False
-        Me.XrLabel9.StylePriority.UseFont = False
-        Me.XrLabel9.StylePriority.UseForeColor = False
-        Me.XrLabel9.StylePriority.UseTextAlignment = False
-        Me.XrLabel9.Text = "PERHATIAN !"
-        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
-        '
-        'XrLabel12
-        '
-        Me.XrLabel12.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel12.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(298.0!, 33.53127!)
-        Me.XrLabel12.Multiline = True
-        Me.XrLabel12.Name = "XrLabel12"
-        Me.XrLabel12.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel12.SizeF = New System.Drawing.SizeF(61.23773!, 16.90616!)
-        Me.XrLabel12.StylePriority.UseBorders = False
-        Me.XrLabel12.StylePriority.UseFont = False
-        Me.XrLabel12.StylePriority.UseTextAlignment = False
-        Me.XrLabel12.Text = "DITOLAK."
-        Me.XrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(463.9074!, 9.999962!)
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(260.4166!, 40.0!)
+        Me.XrLabel6.StylePriority.UseBorders = False
         '
         'XrTable2
         '
         Me.XrTable2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(909.6447!, 80.20831!)
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(909.6447!, 80.20832!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow5, Me.XrTableRow6, Me.XrTableRow7, Me.XrTableRow8})
         Me.XrTable2.SizeF = New System.Drawing.SizeF(200.3553!, 133.3334!)
@@ -529,7 +466,7 @@ Partial Public Class ReportOutboundManifest
         Me.XrTable1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 80.20834!)
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 80.20832!)
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1, Me.XrTableRow4, Me.XrTableRow3, Me.XrTableRow2})
         Me.XrTable1.SizeF = New System.Drawing.SizeF(638.0145!, 133.3333!)
@@ -568,7 +505,7 @@ Partial Public Class ReportOutboundManifest
         Me.XrTableCell4.Name = "XrTableCell4"
         Me.XrTableCell4.StylePriority.UseFont = False
         Me.XrTableCell4.StylePriority.UseTextAlignment = False
-        Me.XrTableCell4.Text = "BPL,"
+        Me.XrTableCell4.Text = "3PL,"
         Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell4.Weight = 1.0R
         '
@@ -680,7 +617,7 @@ Partial Public Class ReportOutboundManifest
         'XrLabel7
         '
         Me.XrLabel7.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(797.8718!, 18.66664!)
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(800.8481!, 18.6666!)
         Me.XrLabel7.Name = "XrLabel7"
         Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel7.SizeF = New System.Drawing.SizeF(83.73761!, 18.95834!)
@@ -694,7 +631,7 @@ Partial Public Class ReportOutboundManifest
         Me.XrLabel8.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(881.609!, 10.00002!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(884.5859!, 9.999962!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel8.SizeF = New System.Drawing.SizeF(101.0416!, 40.0!)
@@ -703,7 +640,7 @@ Partial Public Class ReportOutboundManifest
         'XrLabel5
         '
         Me.XrLabel5.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(395.9436!, 18.66664!)
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(398.9198!, 18.6666!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel5.SizeF = New System.Drawing.SizeF(64.98764!, 18.95834!)
@@ -712,16 +649,86 @@ Partial Public Class ReportOutboundManifest
         Me.XrLabel5.Text = "NO POLISI"
         Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
         '
-        'XrLabel6
+        'XrPanel1
         '
-        Me.XrLabel6.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
+        Me.XrPanel1.BorderColor = System.Drawing.Color.Gray
+        Me.XrPanel1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid
+        Me.XrPanel1.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(460.9312!, 10.00002!)
-        Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(260.4166!, 40.0!)
-        Me.XrLabel6.StylePriority.UseBorders = False
+        Me.XrPanel1.BorderWidth = 2.0!
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable3, Me.XrLabel9})
+        Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 248.073!)
+        Me.XrPanel1.Name = "XrPanel1"
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(478.5108!, 101.0416!)
+        Me.XrPanel1.StylePriority.UseBorderColor = False
+        Me.XrPanel1.StylePriority.UseBorderDashStyle = False
+        Me.XrPanel1.StylePriority.UseBorders = False
+        Me.XrPanel1.StylePriority.UseBorderWidth = False
+        '
+        'XrTable3
+        '
+        Me.XrTable3.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(10.0!, 27.99998!)
+        Me.XrTable3.Name = "XrTable3"
+        Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow9, Me.XrTableRow10})
+        Me.XrTable3.SizeF = New System.Drawing.SizeF(450.9313!, 63.04156!)
+        Me.XrTable3.StylePriority.UseBorders = False
+        Me.XrTable3.StylePriority.UsePadding = False
+        '
+        'XrTableRow9
+        '
+        Me.XrTableRow9.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell17, Me.XrTableCell20})
+        Me.XrTableRow9.Name = "XrTableRow9"
+        Me.XrTableRow9.Weight = 0.619432125048674R
+        '
+        'XrTableCell17
+        '
+        Me.XrTableCell17.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell17.Name = "XrTableCell17"
+        Me.XrTableCell17.StylePriority.UseFont = False
+        Me.XrTableCell17.Text = "Mohon agar barang yang tidak sesuai dengan dokumen"
+        Me.XrTableCell17.Weight = 1.27735659880828R
+        '
+        'XrTableCell20
+        '
+        Me.XrTableCell20.Font = New System.Drawing.Font("Segoe UI", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell20.Name = "XrTableCell20"
+        Me.XrTableCell20.StylePriority.UseFont = False
+        Me.XrTableCell20.Text = "DITOLAK."
+        Me.XrTableCell20.Weight = 0.72264340119172R
+        '
+        'XrTableRow10
+        '
+        Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell18})
+        Me.XrTableRow10.Name = "XrTableRow10"
+        Me.XrTableRow10.Weight = 1.98389917377945R
+        '
+        'XrTableCell18
+        '
+        Me.XrTableCell18.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrTableCell18.Name = "XrTableCell18"
+        Me.XrTableCell18.StylePriority.UseFont = False
+        Me.XrTableCell18.Text = "Penerimaan barang yang tidak sesuai dengan dokumen akan menjadi tanggung jawab pe" &
+    "nerima"
+        Me.XrTableCell18.Weight = 2.0R
+        '
+        'XrLabel9
+        '
+        Me.XrLabel9.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel9.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel9.ForeColor = System.Drawing.Color.Gray
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(9.375!, 7.0!)
+        Me.XrLabel9.Name = "XrLabel9"
+        Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(97.01888!, 18.95833!)
+        Me.XrLabel9.StylePriority.UseBorders = False
+        Me.XrLabel9.StylePriority.UseFont = False
+        Me.XrLabel9.StylePriority.UseForeColor = False
+        Me.XrLabel9.StylePriority.UsePadding = False
+        Me.XrLabel9.StylePriority.UseTextAlignment = False
+        Me.XrLabel9.Text = "PERHATIAN !"
+        Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
         '
         'ReportOutboundManifest
         '
@@ -737,6 +744,7 @@ Partial Public Class ReportOutboundManifest
         CType(Me.GVManifest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -784,10 +792,7 @@ Partial Public Class ReportOutboundManifest
     Friend WithEvents XrTableRow8 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell27 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrPanel1 As DevExpress.XtraReports.UI.XRPanel
-    Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel9 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents WinControlContainer1 As DevExpress.XtraReports.UI.WinControlContainer
     Friend WithEvents GCManifest As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVManifest As DevExpress.XtraGrid.Views.Grid.GridView
@@ -808,4 +813,10 @@ Partial Public Class ReportOutboundManifest
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XrTable3 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow9 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell17 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell20 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableRow10 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell18 As DevExpress.XtraReports.UI.XRTableCell
 End Class
