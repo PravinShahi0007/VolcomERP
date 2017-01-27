@@ -61,6 +61,8 @@
         '
         viewWOStockStore()
         viewProductStockStore()
+        '
+
     End Sub
 
     '==============FUNCTION==========================='
@@ -128,16 +130,26 @@
         SLEMatBOM.Properties.DisplayMember = "name"
         SLEMatBOM.Properties.ValueMember = "id_mat_det"
         '
+        SLEResMat.Properties.DataSource = Nothing
+        SLEResMat.Properties.DataSource = data
+        SLEResMat.Properties.DisplayMember = "name"
+        SLEResMat.Properties.ValueMember = "id_mat_det"
+        '
         If data.Rows.Count.ToString >= 1 Then
             SLEProduct.EditValue = data.Rows(0)("id_mat_det").ToString
             BestFit(SLEProduct)
             '
             SLEMatBOM.EditValue = data.Rows(0)("id_mat_det").ToString
             BestFit(SLEMatBOM)
+            '
+            SLEResMat.EditValue = data.Rows(0)("id_mat_det").ToString
+            BestFit(SLEResMat)
         Else
             SLEProduct.EditValue = Nothing
             '
             SLEMatBOM.EditValue = Nothing
+            '
+            SLEResMat.EditValue = Nothing
         End If
     End Sub
     Private Sub SLEProduct_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SLEProduct.EditValueChanged
@@ -903,6 +915,83 @@
         Dim row_handle As Integer = view.FocusedRowHandle
 
         BGVStockBOM.BestFitColumns()
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BViewMatRes_Click(sender As Object, e As EventArgs) Handles BViewMatRes.Click
+        Cursor = Cursors.WaitCursor
+        BGVStockRes.Columns.Clear()
+        BGVStockRes.Bands.Clear()
+        BGVStockRes.Appearance.BandPanel.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        id_mat_selected = "-1"
+        Try
+            id_mat_selected = SLEResMat.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+        id_mat_image = "0"
+
+        Dim band_ref As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVStockRes.Bands.AddBand("Reff")
+        Dim band_qty As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVStockRes.Bands.AddBand("Quantity")
+        Dim band_amount As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVStockRes.Bands.AddBand("Amount")
+        Dim band_stat As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVStockRes.Bands.AddBand("")
+
+        BGVStockRes.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+
+        band_stat.AutoFillDown = True
+        Dim query As String = "CALL view_mat_stock_res('" + id_mat_selected + "') "
+        Console.WriteLine(query)
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        For i As Integer = 0 To data.Columns.Count - 1
+            If data.Columns(i).ColumnName.ToString = "design_display_name" Or data.Columns(i).ColumnName.ToString = "design_code" Or data.Columns(i).ColumnName.ToString = "note" Or data.Columns(i).ColumnName.ToString = "id_mat_det" Or data.Columns(i).ColumnName.ToString = "id_report" Or data.Columns(i).ColumnName.ToString = "report_mark_type" Or data.Columns(i).ColumnName.ToString = "id_storage_category" Or data.Columns(i).ColumnName.ToString = "date" Then
+                If data.Columns(i).ColumnName.ToString = "design_display_name" Then
+                    band_ref.Columns.Add(BGVStockRes.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Design"))
+                ElseIf data.Columns(i).ColumnName.ToString = "design_code" Then
+                    band_ref.Columns.Add(BGVStockRes.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Design Code"))
+                ElseIf data.Columns(i).ColumnName.ToString = "note" Then
+                    band_ref.Columns.Add(BGVStockRes.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Note"))
+                Else
+                    band_ref.Columns.Add(BGVStockRes.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
+                End If
+            ElseIf data.Columns(i).ColumnName.ToString = "Status" Then
+                band_stat.Columns.Add(BGVStockRes.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Status"))
+                BGVStockRes.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+                BGVStockRes.Columns(data.Columns(i).ColumnName.ToString).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+            ElseIf data.Columns(i).ColumnName.ToString = "qty" Then
+                band_qty.Columns.Add(BGVStockRes.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Quantity"))
+                BGVStockRes.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BGVStockRes.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BGVStockRes.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
+            Else
+                If data.Columns(i).ColumnName.ToString = "amount" Then
+                    band_amount.Columns.Add(BGVStockRes.Columns.AddVisible(data.Columns(i).ColumnName.ToString, "Amount"))
+                Else
+                    band_amount.Columns.Add(BGVStockRes.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
+                End If
+                BGVStockRes.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                BGVStockRes.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                BGVStockRes.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
+            End If
+        Next
+
+        BGCStockRes.DataSource = data
+        dt = data
+
+        'hide column
+        BGVStockRes.Columns("id_report").Visible = False
+        BGVStockRes.Columns("report_mark_type").Visible = False
+        BGVStockRes.Columns("id_mat_det").Visible = False
+        BGVStockRes.Columns("id_storage_category").Visible = False
+
+        'enable group
+        BGCStockRes.Enabled = True
+        GCRes.Enabled = True
+
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = SLEResMat.Properties.View
+        Dim row_handle As Integer = view.FocusedRowHandle
+
+        BGVStockRes.BestFitColumns()
 
         Cursor = Cursors.Default
     End Sub

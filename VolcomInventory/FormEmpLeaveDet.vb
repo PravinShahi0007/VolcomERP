@@ -285,6 +285,7 @@
                 Dim number As String = header_number_emp("1")
                 query = "INSERT INTO tb_emp_leave(emp_leave_number,id_emp,emp_leave_date,id_report_status,id_emp_change,leave_purpose,leave_remaining,leave_total,id_leave_type,id_form_dc,id_user_who_create) VALUES('" & number & "','" & id_employee & "',NOW(),1,'" & id_employee_change & "','" & MELeavePurpose.Text & "','" & (TERemainingLeave.EditValue * 60) & "','" & (TETotLeave.EditValue * 60) & "','" & LELeaveType.EditValue.ToString & "','" & LEFormDC.EditValue.ToString & "','" & id_user & "');SELECT LAST_INSERT_ID(); "
                 id_emp_leave = execute_query(query, 0, True, "", "", "", "")
+                increase_inc_emp("1")
                 'add detail
                 query = "INSERT INTO tb_emp_leave_det(id_emp_leave,id_schedule,datetime_start,datetime_until,is_full_day,minutes_total) VALUES"
                 For i As Integer = 0 To GVLeaveDet.RowCount - 1
@@ -348,7 +349,6 @@
                     execute_non_query(query, True, "", "", "", "")
                 End If
                 '
-                increase_inc_emp("1")
                 infoCustom("Leave proposed")
                 '
                 FormEmpLeave.DEStart.EditValue = Now
