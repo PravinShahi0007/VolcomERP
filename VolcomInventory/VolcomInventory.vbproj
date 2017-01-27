@@ -472,6 +472,18 @@
     <Compile Include="FormEmpAttn.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpAttnAssign.Designer.vb">
+      <DependentUpon>FormEmpAttnAssign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttnAssign.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpAttnAssignDet.Designer.vb">
+      <DependentUpon>FormEmpAttnAssignDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpAttnAssignDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpAttnInd.Designer.vb">
       <DependentUpon>FormEmpAttnInd.vb</DependentUpon>
     </Compile>
@@ -4702,6 +4714,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttn.resx">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttnAssign.resx">
+      <DependentUpon>FormEmpAttnAssign.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpAttnAssignDet.resx">
+      <DependentUpon>FormEmpAttnAssignDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttnInd.resx">
       <DependentUpon>FormEmpAttnInd.vb</DependentUpon>
