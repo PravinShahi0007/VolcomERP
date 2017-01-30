@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormProductionSummary
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormProductionSummary
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.XTCSum = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
@@ -69,12 +69,20 @@ Partial Class FormProductionSummary
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPPD = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPD = New DevExpress.XtraGrid.GridControl()
+        Me.GVPD = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnViewPD = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
-        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
+        Me.DEUntilPD = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromPD = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCSum, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,12 +97,14 @@ Partial Class FormProductionSummary
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPD.SuspendLayout()
+        CType(Me.GCPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilPD.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilPD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromPD.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromPD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSum
@@ -558,19 +568,102 @@ Partial Class FormProductionSummary
         '
         'XTPPD
         '
+        Me.XTPPD.Controls.Add(Me.GCPD)
         Me.XTPPD.Controls.Add(Me.GroupControl1)
         Me.XTPPD.Name = "XTPPD"
         Me.XTPPD.Size = New System.Drawing.Size(766, 416)
         Me.XTPPD.Text = "Demand List"
         '
+        'GCPD
+        '
+        Me.GCPD.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPD.Location = New System.Drawing.Point(0, 39)
+        Me.GCPD.MainView = Me.GVPD
+        Me.GCPD.Name = "GCPD"
+        Me.GCPD.Size = New System.Drawing.Size(766, 377)
+        Me.GCPD.TabIndex = 6
+        Me.GCPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPD})
+        '
+        'GVPD
+        '
+        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVPD.GridControl = Me.GCPD
+        Me.GVPD.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Me.GridColumn3, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_price", Me.GridColumn4, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", Me.GridColumn5, "{0:n0}")})
+        Me.GVPD.Name = "GVPD"
+        Me.GVPD.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPD.OptionsBehavior.Editable = False
+        Me.GVPD.OptionsView.ShowFooter = True
+        Me.GVPD.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "PD#"
+        Me.GridColumn1.FieldName = "prod_demand_number"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "SEASON"
+        Me.GridColumn2.FieldName = "season"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "TOTAL EST. COST"
+        Me.GridColumn3.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn3.FieldName = "total_cost"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:n2}")})
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "TOTAL ACT. COST"
+        Me.GridColumn4.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "total_price"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_price", "{0:n2}")})
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 3
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "QTY"
+        Me.GridColumn5.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "total_qty"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:n0}")})
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "MARKUP"
+        Me.GridColumn6.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "markup"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.UnboundExpression = "[total_price]/[total_cost]"
+        Me.GridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 5
+        '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.SimpleButton1)
+        Me.GroupControl1.Controls.Add(Me.BtnViewPD)
         Me.GroupControl1.Controls.Add(Me.SimpleButton2)
         Me.GroupControl1.Controls.Add(Me.SimpleButton3)
-        Me.GroupControl1.Controls.Add(Me.DateEdit1)
-        Me.GroupControl1.Controls.Add(Me.DateEdit2)
+        Me.GroupControl1.Controls.Add(Me.DEUntilPD)
+        Me.GroupControl1.Controls.Add(Me.DEFromPD)
         Me.GroupControl1.Controls.Add(Me.LabelControl1)
         Me.GroupControl1.Controls.Add(Me.LabelControl4)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -579,14 +672,14 @@ Partial Class FormProductionSummary
         Me.GroupControl1.Size = New System.Drawing.Size(766, 39)
         Me.GroupControl1.TabIndex = 5
         '
-        'SimpleButton1
+        'BtnViewPD
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(317, 9)
-        Me.SimpleButton1.LookAndFeel.SkinName = "Blue"
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(75, 20)
-        Me.SimpleButton1.TabIndex = 8896
-        Me.SimpleButton1.Text = "View"
+        Me.BtnViewPD.Location = New System.Drawing.Point(317, 9)
+        Me.BtnViewPD.LookAndFeel.SkinName = "Blue"
+        Me.BtnViewPD.Name = "BtnViewPD"
+        Me.BtnViewPD.Size = New System.Drawing.Size(75, 20)
+        Me.BtnViewPD.TabIndex = 8896
+        Me.BtnViewPD.Text = "View"
         '
         'SimpleButton2
         '
@@ -608,31 +701,31 @@ Partial Class FormProductionSummary
         Me.SimpleButton3.Text = "Expand All Detail"
         Me.SimpleButton3.Visible = False
         '
-        'DateEdit1
+        'DEUntilPD
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(202, 9)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DateEdit1.Size = New System.Drawing.Size(111, 20)
-        Me.DateEdit1.TabIndex = 8895
+        Me.DEUntilPD.EditValue = Nothing
+        Me.DEUntilPD.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntilPD.Name = "DEUntilPD"
+        Me.DEUntilPD.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilPD.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilPD.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilPD.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilPD.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilPD.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilPD.TabIndex = 8895
         '
-        'DateEdit2
+        'DEFromPD
         '
-        Me.DateEdit2.EditValue = Nothing
-        Me.DateEdit2.Location = New System.Drawing.Point(58, 9)
-        Me.DateEdit2.Name = "DateEdit2"
-        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DateEdit2.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit2.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DateEdit2.Size = New System.Drawing.Size(111, 20)
-        Me.DateEdit2.TabIndex = 8894
+        Me.DEFromPD.EditValue = Nothing
+        Me.DEFromPD.Location = New System.Drawing.Point(58, 9)
+        Me.DEFromPD.Name = "DEFromPD"
+        Me.DEFromPD.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromPD.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromPD.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromPD.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromPD.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFromPD.Size = New System.Drawing.Size(111, 20)
+        Me.DEFromPD.TabIndex = 8894
         '
         'LabelControl1
         '
@@ -674,13 +767,15 @@ Partial Class FormProductionSummary
         CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPD.ResumeLayout(False)
+        CType(Me.GCPD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilPD.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilPD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromPD.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromPD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -697,11 +792,11 @@ Partial Class FormProductionSummary
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnViewPD As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEUntilPD As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEFromPD As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GCDesign As DevExpress.XtraGrid.GridControl
@@ -743,4 +838,12 @@ Partial Class FormProductionSummary
     Friend WithEvents gridBand14 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand19 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumnRs As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents GCPD As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPD As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
