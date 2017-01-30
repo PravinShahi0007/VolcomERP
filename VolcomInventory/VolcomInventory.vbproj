@@ -1042,6 +1042,12 @@
     <Compile Include="FormProductionCOPDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionSummary.Designer.vb">
+      <DependentUpon>FormProductionSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionWOList.designer.vb">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
     </Compile>
@@ -5017,6 +5023,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionCOPDet.resx">
       <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionSummary.resx">
+      <DependentUpon>FormProductionSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionWOList.resx">
       <DependentUpon>FormProductionWOList.vb</DependentUpon>
