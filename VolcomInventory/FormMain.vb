@@ -10252,4 +10252,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBProdReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProdReport.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            'FormProductionSummary.MdiParent = Me
+            'FormProductionSummary.Show()
+            'FormProductionSummary.WindowState = FormWindowState.Maximized
+            'FormProductionSummary.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
