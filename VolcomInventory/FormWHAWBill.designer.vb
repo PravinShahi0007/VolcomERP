@@ -74,7 +74,10 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDelTime = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnRemarkDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn38 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn39 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnManifest = New DevExpress.XtraEditors.SimpleButton()
         Me.CEDO = New DevExpress.XtraEditors.CheckEdit()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
         Me.CECompare = New DevExpress.XtraEditors.CheckEdit()
@@ -190,14 +193,14 @@ Partial Class FormWHAWBill
         Me.GCAWBill.MainView = Me.GVAWBill
         Me.GCAWBill.Name = "GCAWBill"
         Me.GCAWBill.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RCICOD, Me.RIDERecStoreDate})
-        Me.GCAWBill.Size = New System.Drawing.Size(931, 234)
+        Me.GCAWBill.Size = New System.Drawing.Size(1038, 234)
         Me.GCAWBill.TabIndex = 0
         Me.GCAWBill.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAWBill})
         '
         'GVAWBill
         '
         Me.GVAWBill.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBandAWB, Me.gridBandCalcDetail, Me.gridBandAwbDetail})
-        Me.GVAWBill.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnDONo, Me.BandedGridColumnPBS, Me.BandedGridColumnQty, Me.BandedGridColumnReff, Me.GridColumnAccountCode, Me.BandedGridColumnZone, Me.BandedGridColumnCargoCode, Me.BandedGridColumnDestination, Me.GridColumnStoreName, Me.GridColumnID, Me.GridColumnNumber, Me.BandedGridColumnLaedTime, Me.GridColumnCargo, Me.GridColumnWeight, Me.GridColumnCargoRate, Me.GridColumnTotalAmount, Me.GridColumndate, Me.GridColumnAWBNumber, Me.BandedGridColumnAirportWeight, Me.BandedGridColumnAirportAmount, Me.BandedGridColumnPickUpDate, Me.BandedGridColumnRecByStoreDate, Me.BandedGridColumnRecByStorePerson, Me.BandedGridColumnDiffweight, Me.BandedGridColumnDiffAmount, Me.BandedGridColumnETA, Me.BandedGridColumnDelTime, Me.BandedGridColumnDiff, Me.BandedGridColumnRemarkDiff, Me.BandedGridColumn25, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn35, Me.BandedGridColumn36})
+        Me.GVAWBill.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnDONo, Me.BandedGridColumnPBS, Me.BandedGridColumnQty, Me.BandedGridColumnReff, Me.GridColumnAccountCode, Me.BandedGridColumnZone, Me.BandedGridColumnCargoCode, Me.BandedGridColumnDestination, Me.GridColumnStoreName, Me.GridColumnID, Me.GridColumnNumber, Me.BandedGridColumnLaedTime, Me.GridColumnCargo, Me.GridColumnWeight, Me.GridColumnCargoRate, Me.GridColumnTotalAmount, Me.GridColumndate, Me.GridColumnAWBNumber, Me.BandedGridColumnAirportWeight, Me.BandedGridColumnAirportAmount, Me.BandedGridColumnPickUpDate, Me.BandedGridColumnRecByStoreDate, Me.BandedGridColumnRecByStorePerson, Me.BandedGridColumnDiffweight, Me.BandedGridColumnDiffAmount, Me.BandedGridColumnETA, Me.BandedGridColumnDelTime, Me.BandedGridColumnDiff, Me.BandedGridColumnRemarkDiff, Me.BandedGridColumn25, Me.BandedGridColumn26, Me.BandedGridColumn27, Me.BandedGridColumn28, Me.BandedGridColumn29, Me.BandedGridColumn35, Me.BandedGridColumn36, Me.BandedGridColumn38, Me.BandedGridColumn39})
         Me.GVAWBill.GridControl = Me.GCAWBill
         Me.GVAWBill.Name = "GVAWBill"
         Me.GVAWBill.OptionsView.AllowCellMerge = True
@@ -212,7 +215,7 @@ Partial Class FormWHAWBill
         Me.GridBandAWB.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandDO, Me.GBNo, Me.gridBand1, Me.GBResult})
         Me.GridBandAWB.Name = "GridBandAWB"
         Me.GridBandAWB.VisibleIndex = 0
-        Me.GridBandAWB.Width = 1711
+        Me.GridBandAWB.Width = 873
         '
         'gridBandDO
         '
@@ -223,7 +226,7 @@ Partial Class FormWHAWBill
         Me.gridBandDO.Columns.Add(Me.BandedGridColumnQty)
         Me.gridBandDO.Name = "gridBandDO"
         Me.gridBandDO.VisibleIndex = 0
-        Me.gridBandDO.Width = 300
+        Me.gridBandDO.Width = 133
         '
         'BandedGridColumnDONo
         '
@@ -232,6 +235,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDONo.Name = "BandedGridColumnDONo"
         Me.BandedGridColumnDONo.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDONo.Visible = True
+        Me.BandedGridColumnDONo.Width = 31
         '
         'BandedGridColumn35
         '
@@ -240,7 +244,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn35.Name = "BandedGridColumn35"
         Me.BandedGridColumn35.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn35.Visible = True
-        Me.BandedGridColumn35.Width = 97
+        Me.BandedGridColumn35.Width = 41
         '
         'BandedGridColumnReff
         '
@@ -249,6 +253,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnReff.Name = "BandedGridColumnReff"
         Me.BandedGridColumnReff.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnReff.Visible = True
+        Me.BandedGridColumnReff.Width = 31
         '
         'BandedGridColumnQty
         '
@@ -257,7 +262,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnQty.Name = "BandedGridColumnQty"
         Me.BandedGridColumnQty.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnQty.Visible = True
-        Me.BandedGridColumnQty.Width = 53
+        Me.BandedGridColumnQty.Width = 30
         '
         'GBNo
         '
@@ -267,7 +272,7 @@ Partial Class FormWHAWBill
         Me.GBNo.Columns.Add(Me.GridColumnNumber)
         Me.GBNo.Name = "GBNo"
         Me.GBNo.VisibleIndex = 1
-        Me.GBNo.Width = 54
+        Me.GBNo.Width = 22
         '
         'GridColumnNumber
         '
@@ -276,7 +281,7 @@ Partial Class FormWHAWBill
         Me.GridColumnNumber.Name = "GridColumnNumber"
         Me.GridColumnNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.Width = 54
+        Me.GridColumnNumber.Width = 22
         '
         'gridBand1
         '
@@ -292,7 +297,7 @@ Partial Class FormWHAWBill
         Me.gridBand1.Columns.Add(Me.GridColumnID)
         Me.gridBand1.Name = "gridBand1"
         Me.gridBand1.VisibleIndex = 2
-        Me.gridBand1.Width = 403
+        Me.gridBand1.Width = 178
         '
         'BandedGridColumnCargoCode
         '
@@ -301,7 +306,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnCargoCode.Name = "BandedGridColumnCargoCode"
         Me.BandedGridColumnCargoCode.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnCargoCode.Visible = True
-        Me.BandedGridColumnCargoCode.Width = 78
+        Me.BandedGridColumnCargoCode.Width = 32
         '
         'BandedGridColumnDestination
         '
@@ -310,7 +315,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDestination.Name = "BandedGridColumnDestination"
         Me.BandedGridColumnDestination.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDestination.Visible = True
-        Me.BandedGridColumnDestination.Width = 78
+        Me.BandedGridColumnDestination.Width = 32
         '
         'BandedGridColumnZone
         '
@@ -326,7 +331,7 @@ Partial Class FormWHAWBill
         Me.GridColumnAccountCode.Name = "GridColumnAccountCode"
         Me.GridColumnAccountCode.OptionsColumn.AllowEdit = False
         Me.GridColumnAccountCode.Visible = True
-        Me.GridColumnAccountCode.Width = 73
+        Me.GridColumnAccountCode.Width = 30
         '
         'GridColumnStoreName
         '
@@ -335,7 +340,7 @@ Partial Class FormWHAWBill
         Me.GridColumnStoreName.Name = "GridColumnStoreName"
         Me.GridColumnStoreName.OptionsColumn.AllowEdit = False
         Me.GridColumnStoreName.Visible = True
-        Me.GridColumnStoreName.Width = 90
+        Me.GridColumnStoreName.Width = 38
         '
         'BandedGridColumn36
         '
@@ -344,7 +349,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn36.Name = "BandedGridColumn36"
         Me.BandedGridColumn36.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn36.Visible = True
-        Me.BandedGridColumn36.Width = 84
+        Me.BandedGridColumn36.Width = 46
         '
         'GridColumnID
         '
@@ -373,7 +378,7 @@ Partial Class FormWHAWBill
         Me.GBResult.Columns.Add(Me.GridColumndate)
         Me.GBResult.Name = "GBResult"
         Me.GBResult.VisibleIndex = 3
-        Me.GBResult.Width = 954
+        Me.GBResult.Width = 540
         '
         'GridColumnWeight
         '
@@ -388,7 +393,7 @@ Partial Class FormWHAWBill
         Me.GridColumnWeight.Name = "GridColumnWeight"
         Me.GridColumnWeight.OptionsColumn.AllowEdit = False
         Me.GridColumnWeight.Visible = True
-        Me.GridColumnWeight.Width = 59
+        Me.GridColumnWeight.Width = 24
         '
         'BandedGridColumn25
         '
@@ -397,6 +402,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn25.Name = "BandedGridColumn25"
         Me.BandedGridColumn25.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn25.Visible = True
+        Me.BandedGridColumn25.Width = 31
         '
         'BandedGridColumn26
         '
@@ -405,6 +411,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn26.Name = "BandedGridColumn26"
         Me.BandedGridColumn26.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn26.Visible = True
+        Me.BandedGridColumn26.Width = 31
         '
         'BandedGridColumn27
         '
@@ -413,6 +420,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn27.Name = "BandedGridColumn27"
         Me.BandedGridColumn27.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn27.Visible = True
+        Me.BandedGridColumn27.Width = 31
         '
         'BandedGridColumn28
         '
@@ -423,6 +431,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn28.Name = "BandedGridColumn28"
         Me.BandedGridColumn28.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn28.Visible = True
+        Me.BandedGridColumn28.Width = 31
         '
         'BandedGridColumn29
         '
@@ -431,6 +440,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn29.Name = "BandedGridColumn29"
         Me.BandedGridColumn29.OptionsColumn.AllowEdit = False
         Me.BandedGridColumn29.Visible = True
+        Me.BandedGridColumn29.Width = 88
         '
         'GridColumnCargo
         '
@@ -439,7 +449,7 @@ Partial Class FormWHAWBill
         Me.GridColumnCargo.Name = "GridColumnCargo"
         Me.GridColumnCargo.OptionsColumn.AllowEdit = False
         Me.GridColumnCargo.Visible = True
-        Me.GridColumnCargo.Width = 84
+        Me.GridColumnCargo.Width = 88
         '
         'BandedGridColumnPBS
         '
@@ -453,7 +463,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnPBS.Name = "BandedGridColumnPBS"
         Me.BandedGridColumnPBS.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnPBS.Visible = True
-        Me.BandedGridColumnPBS.Width = 62
+        Me.BandedGridColumnPBS.Width = 26
         '
         'RCICOD
         '
@@ -473,6 +483,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnLaedTime.Name = "BandedGridColumnLaedTime"
         Me.BandedGridColumnLaedTime.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnLaedTime.Visible = True
+        Me.BandedGridColumnLaedTime.Width = 31
         '
         'GridColumnCargoRate
         '
@@ -487,7 +498,7 @@ Partial Class FormWHAWBill
         Me.GridColumnCargoRate.Name = "GridColumnCargoRate"
         Me.GridColumnCargoRate.OptionsColumn.AllowEdit = False
         Me.GridColumnCargoRate.Visible = True
-        Me.GridColumnCargoRate.Width = 93
+        Me.GridColumnCargoRate.Width = 40
         '
         'GridColumnTotalAmount
         '
@@ -502,7 +513,7 @@ Partial Class FormWHAWBill
         Me.GridColumnTotalAmount.Name = "GridColumnTotalAmount"
         Me.GridColumnTotalAmount.OptionsColumn.AllowEdit = False
         Me.GridColumnTotalAmount.Visible = True
-        Me.GridColumnTotalAmount.Width = 79
+        Me.GridColumnTotalAmount.Width = 34
         '
         'GridColumndate
         '
@@ -512,7 +523,7 @@ Partial Class FormWHAWBill
         Me.GridColumndate.FieldName = "awbill_date"
         Me.GridColumndate.Name = "GridColumndate"
         Me.GridColumndate.Visible = True
-        Me.GridColumndate.Width = 127
+        Me.GridColumndate.Width = 85
         '
         'gridBandCalcDetail
         '
@@ -575,7 +586,7 @@ Partial Class FormWHAWBill
         Me.gridBandAwbDetail.Children.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBandInvoice, Me.gbAirport, Me.gbETALT})
         Me.gridBandAwbDetail.Name = "gridBandAwbDetail"
         Me.gridBandAwbDetail.VisibleIndex = 1
-        Me.gridBandAwbDetail.Width = 1054
+        Me.gridBandAwbDetail.Width = 240
         '
         'gridBandInvoice
         '
@@ -588,7 +599,7 @@ Partial Class FormWHAWBill
         Me.gridBandInvoice.Columns.Add(Me.BandedGridColumnRecByStorePerson)
         Me.gridBandInvoice.Name = "gridBandInvoice"
         Me.gridBandInvoice.VisibleIndex = 0
-        Me.gridBandInvoice.Width = 403
+        Me.gridBandInvoice.Width = 80
         '
         'GridColumnAWBNumber
         '
@@ -597,7 +608,7 @@ Partial Class FormWHAWBill
         Me.GridColumnAWBNumber.Name = "GridColumnAWBNumber"
         Me.GridColumnAWBNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnAWBNumber.Visible = True
-        Me.GridColumnAWBNumber.Width = 109
+        Me.GridColumnAWBNumber.Width = 20
         '
         'BandedGridColumnPickUpDate
         '
@@ -608,7 +619,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnPickUpDate.Name = "BandedGridColumnPickUpDate"
         Me.BandedGridColumnPickUpDate.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnPickUpDate.Visible = True
-        Me.BandedGridColumnPickUpDate.Width = 95
+        Me.BandedGridColumnPickUpDate.Width = 20
         '
         'BandedGridColumnRecByStoreDate
         '
@@ -619,7 +630,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnRecByStoreDate.FieldName = "rec_by_store_date"
         Me.BandedGridColumnRecByStoreDate.Name = "BandedGridColumnRecByStoreDate"
         Me.BandedGridColumnRecByStoreDate.Visible = True
-        Me.BandedGridColumnRecByStoreDate.Width = 124
+        Me.BandedGridColumnRecByStoreDate.Width = 20
         '
         'RIDERecStoreDate
         '
@@ -635,6 +646,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnRecByStorePerson.FieldName = "rec_by_store_person"
         Me.BandedGridColumnRecByStorePerson.Name = "BandedGridColumnRecByStorePerson"
         Me.BandedGridColumnRecByStorePerson.Visible = True
+        Me.BandedGridColumnRecByStorePerson.Width = 20
         '
         'gbAirport
         '
@@ -647,7 +659,7 @@ Partial Class FormWHAWBill
         Me.gbAirport.Columns.Add(Me.BandedGridColumnDiffAmount)
         Me.gbAirport.Name = "gbAirport"
         Me.gbAirport.VisibleIndex = 1
-        Me.gbAirport.Width = 351
+        Me.gbAirport.Width = 80
         '
         'BandedGridColumnAirportWeight
         '
@@ -662,7 +674,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnAirportWeight.Name = "BandedGridColumnAirportWeight"
         Me.BandedGridColumnAirportWeight.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnAirportWeight.Visible = True
-        Me.BandedGridColumnAirportWeight.Width = 101
+        Me.BandedGridColumnAirportWeight.Width = 20
         '
         'BandedGridColumnAirportAmount
         '
@@ -677,7 +689,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnAirportAmount.Name = "BandedGridColumnAirportAmount"
         Me.BandedGridColumnAirportAmount.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnAirportAmount.Visible = True
-        Me.BandedGridColumnAirportAmount.Width = 91
+        Me.BandedGridColumnAirportAmount.Width = 20
         '
         'BandedGridColumnDiffweight
         '
@@ -688,7 +700,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDiffweight.Name = "BandedGridColumnDiffweight"
         Me.BandedGridColumnDiffweight.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDiffweight.Visible = True
-        Me.BandedGridColumnDiffweight.Width = 79
+        Me.BandedGridColumnDiffweight.Width = 20
         '
         'BandedGridColumnDiffAmount
         '
@@ -699,7 +711,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDiffAmount.Name = "BandedGridColumnDiffAmount"
         Me.BandedGridColumnDiffAmount.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDiffAmount.Visible = True
-        Me.BandedGridColumnDiffAmount.Width = 80
+        Me.BandedGridColumnDiffAmount.Width = 20
         '
         'gbETALT
         '
@@ -712,7 +724,7 @@ Partial Class FormWHAWBill
         Me.gbETALT.Columns.Add(Me.BandedGridColumnRemarkDiff)
         Me.gbETALT.Name = "gbETALT"
         Me.gbETALT.VisibleIndex = 2
-        Me.gbETALT.Width = 300
+        Me.gbETALT.Width = 80
         '
         'BandedGridColumnETA
         '
@@ -723,6 +735,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnETA.Name = "BandedGridColumnETA"
         Me.BandedGridColumnETA.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnETA.Visible = True
+        Me.BandedGridColumnETA.Width = 20
         '
         'BandedGridColumnDelTime
         '
@@ -733,6 +746,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDelTime.Name = "BandedGridColumnDelTime"
         Me.BandedGridColumnDelTime.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDelTime.Visible = True
+        Me.BandedGridColumnDelTime.Width = 20
         '
         'BandedGridColumnDiff
         '
@@ -743,6 +757,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnDiff.Name = "BandedGridColumnDiff"
         Me.BandedGridColumnDiff.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnDiff.Visible = True
+        Me.BandedGridColumnDiff.Width = 20
         '
         'BandedGridColumnRemarkDiff
         '
@@ -751,9 +766,28 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnRemarkDiff.Name = "BandedGridColumnRemarkDiff"
         Me.BandedGridColumnRemarkDiff.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnRemarkDiff.Visible = True
+        Me.BandedGridColumnRemarkDiff.Width = 20
+        '
+        'BandedGridColumn38
+        '
+        Me.BandedGridColumn38.Caption = "REMARK"
+        Me.BandedGridColumn38.FieldName = "rmk"
+        Me.BandedGridColumn38.Name = "BandedGridColumn38"
+        '
+        'BandedGridColumn39
+        '
+        Me.BandedGridColumn39.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn39.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn39.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn39.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.BandedGridColumn39.Caption = "NO"
+        Me.BandedGridColumn39.FieldName = "no"
+        Me.BandedGridColumn39.Name = "BandedGridColumn39"
+        Me.BandedGridColumn39.Width = 50
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnManifest)
         Me.PanelControl1.Controls.Add(Me.CEDO)
         Me.PanelControl1.Controls.Add(Me.BView)
         Me.PanelControl1.Controls.Add(Me.CECompare)
@@ -768,8 +802,17 @@ Partial Class FormWHAWBill
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(931, 39)
+        Me.PanelControl1.Size = New System.Drawing.Size(1038, 39)
         Me.PanelControl1.TabIndex = 1
+        '
+        'BtnManifest
+        '
+        Me.BtnManifest.Location = New System.Drawing.Point(903, 8)
+        Me.BtnManifest.Name = "BtnManifest"
+        Me.BtnManifest.Size = New System.Drawing.Size(97, 23)
+        Me.BtnManifest.TabIndex = 107
+        Me.BtnManifest.Text = "Delivery Manifest"
+        Me.BtnManifest.Visible = False
         '
         'CEDO
         '
@@ -885,7 +928,7 @@ Partial Class FormWHAWBill
         Me.XTCAwb.Location = New System.Drawing.Point(0, 0)
         Me.XTCAwb.Name = "XTCAwb"
         Me.XTCAwb.SelectedTabPage = Me.XTPOutbound
-        Me.XTCAwb.Size = New System.Drawing.Size(937, 301)
+        Me.XTCAwb.Size = New System.Drawing.Size(1044, 301)
         Me.XTCAwb.TabIndex = 2
         Me.XTCAwb.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPOutbound, Me.XTPInbound})
         '
@@ -894,7 +937,7 @@ Partial Class FormWHAWBill
         Me.XTPOutbound.Controls.Add(Me.GCAWBill)
         Me.XTPOutbound.Controls.Add(Me.PanelControl1)
         Me.XTPOutbound.Name = "XTPOutbound"
-        Me.XTPOutbound.Size = New System.Drawing.Size(931, 273)
+        Me.XTPOutbound.Size = New System.Drawing.Size(1038, 273)
         Me.XTPOutbound.Text = "Outbound"
         '
         'XTPInbound
@@ -902,7 +945,7 @@ Partial Class FormWHAWBill
         Me.XTPInbound.Controls.Add(Me.GCAwbillIn)
         Me.XTPInbound.Controls.Add(Me.PanelControl2)
         Me.XTPInbound.Name = "XTPInbound"
-        Me.XTPInbound.Size = New System.Drawing.Size(931, 273)
+        Me.XTPInbound.Size = New System.Drawing.Size(1038, 273)
         Me.XTPInbound.Text = "Inbound"
         '
         'GCAwbillIn
@@ -911,7 +954,7 @@ Partial Class FormWHAWBill
         Me.GCAwbillIn.Location = New System.Drawing.Point(0, 39)
         Me.GCAwbillIn.MainView = Me.GVAwbillIn
         Me.GCAwbillIn.Name = "GCAwbillIn"
-        Me.GCAwbillIn.Size = New System.Drawing.Size(931, 234)
+        Me.GCAwbillIn.Size = New System.Drawing.Size(1038, 234)
         Me.GCAwbillIn.TabIndex = 2
         Me.GCAwbillIn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAwbillIn})
         '
@@ -1427,7 +1470,7 @@ Partial Class FormWHAWBill
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(931, 39)
+        Me.PanelControl2.Size = New System.Drawing.Size(1038, 39)
         Me.PanelControl2.TabIndex = 3
         '
         'CERO
@@ -1541,7 +1584,7 @@ Partial Class FormWHAWBill
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(937, 301)
+        Me.ClientSize = New System.Drawing.Size(1044, 301)
         Me.Controls.Add(Me.XTCAwb)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -1702,6 +1745,10 @@ Partial Class FormWHAWBill
     Friend WithEvents BandedGridColumnROQty As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents CERO As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents RIDERecStoreDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents BandedGridColumnRecByStorePerson As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BtnManifest As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BandedGridColumn38 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn39 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridBandAWB As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandDO As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GBNo As DevExpress.XtraGrid.Views.BandedGrid.GridBand
@@ -1715,7 +1762,6 @@ Partial Class FormWHAWBill
     Friend WithEvents GBCalcLeadTime As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandAwbDetail As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandInvoice As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents BandedGridColumnRecByStorePerson As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gbAirport As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gbETALT As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

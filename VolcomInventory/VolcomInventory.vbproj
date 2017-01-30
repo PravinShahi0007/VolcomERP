@@ -1000,6 +1000,12 @@
     <Compile Include="FormOptViewSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOutboundManifest.Designer.vb">
+      <DependentUpon>FormOutboundManifest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOutboundManifest.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOutlet.Designer.vb">
       <DependentUpon>FormOutlet.vb</DependentUpon>
     </Compile>
@@ -4066,6 +4072,12 @@
     <Compile Include="ReportFGWHAlloc.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportFGWHAllocRpt.Designer.vb">
+      <DependentUpon>ReportFGWHAllocRpt.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportFGWHAllocRpt.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGWoff.Designer.vb">
       <DependentUpon>ReportFGWoff.vb</DependentUpon>
     </Compile>
@@ -4202,6 +4214,12 @@
       <DependentUpon>ReportMatWO.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportMatWO.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportOutboundManifest.Designer.vb">
+      <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportOutboundManifest.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ReportPLMat.designer.vb">
@@ -4983,6 +5001,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormOptViewSingle.resx">
       <DependentUpon>FormOptViewSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOutboundManifest.resx">
+      <DependentUpon>FormOutboundManifest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOutlet.resx">
       <DependentUpon>FormOutlet.vb</DependentUpon>
@@ -6956,6 +6977,9 @@
     <EmbeddedResource Include="ReportFGWHAlloc.resx">
       <DependentUpon>ReportFGWHAlloc.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportFGWHAllocRpt.resx">
+      <DependentUpon>ReportFGWHAllocRpt.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportFGWoff.resx">
       <DependentUpon>ReportFGWoff.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -7045,6 +7069,9 @@
     <EmbeddedResource Include="ReportMatWO.resx">
       <DependentUpon>ReportMatWO.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportOutboundManifest.resx">
+      <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPLMat.resx">
       <DependentUpon>ReportPLMat.vb</DependentUpon>

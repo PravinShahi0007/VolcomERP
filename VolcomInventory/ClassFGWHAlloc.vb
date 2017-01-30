@@ -30,6 +30,34 @@
         Return query
     End Function
 
+    Public Function queryAllocReport(ByVal id_report As String) As String
+        Dim qs As String = "SELECT d.design_code AS `CODE`, d.design_display_name AS `STYLE`, CONCAT(comp.comp_number,' - ',comp.comp_name) AS `TO`, 
+        SUBSTRING(p.product_full_code, 10, 1) AS `SIZETYPE`,
+        SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='1') THEN ad.fg_wh_alloc_det_qty END) AS '1',
+        SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='2') THEN ad.fg_wh_alloc_det_qty END) AS '2',
+        SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='3') THEN ad.fg_wh_alloc_det_qty END) AS '3',
+        SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='4') THEN ad.fg_wh_alloc_det_qty END) AS '4',
+        SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='5') THEN ad.fg_wh_alloc_det_qty END) AS '5',
+        SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='6') THEN ad.fg_wh_alloc_det_qty END) AS '6',
+        SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='7') THEN ad.fg_wh_alloc_det_qty END) AS '7',
+        SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='8') THEN ad.fg_wh_alloc_det_qty END) AS '8',
+        SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='9') THEN ad.fg_wh_alloc_det_qty END) AS '9',
+        SUM(CASE WHEN (SUBSTRING(cd.code,2,1)='0') THEN ad.fg_wh_alloc_det_qty END) AS '0',
+        SUM(ad.fg_wh_alloc_det_qty) AS `TTL`
+        FROM tb_fg_wh_alloc_det ad
+        INNER JOIN tb_m_product p ON p.id_product = ad.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = ad.id_wh_drawer_to
+        INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack
+        INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator
+        INNER JOIN tb_m_comp comp ON comp.id_comp = loc.id_comp
+        WHERE ad.id_fg_wh_alloc=" + id_report + "
+        GROUP BY p.id_design, SUBSTRING(p.product_full_code, 10, 1), ad.id_wh_drawer_to "
+        Return qs
+    End Function
+
     '-----------
     'STOCK OUT
     '--------------

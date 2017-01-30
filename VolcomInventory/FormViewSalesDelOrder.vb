@@ -148,10 +148,10 @@
     Sub viewDetail()
         Dim query As String = "CALL view_pl_sales_order_del('" + id_pl_sales_order_del + "')"
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-        For i As Integer = 0 To (data.Rows.Count - 1)
-            id_pl_sales_order_del_det_list.Add(data.Rows(i)("id_pl_sales_order_del_det").ToString)
-            codeAvailableIns(data.Rows(i)("id_product").ToString)
-        Next
+        'For i As Integer = 0 To (data.Rows.Count - 1)
+        '    id_pl_sales_order_del_det_list.Add(data.Rows(i)("id_pl_sales_order_del_det").ToString)
+        '    codeAvailableIns(data.Rows(i)("id_product").ToString)
+        'Next
         GCItemList.DataSource = data
     End Sub
 

@@ -244,10 +244,12 @@ Partial Class FormFGStock
         '
         Me.BGVFGStock.Appearance.HeaderPanel.Options.UseTextOptions = True
         Me.BGVFGStock.Appearance.HeaderPanel.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+        Me.BGVFGStock.ColumnPanelRowHeight = 40
         Me.BGVFGStock.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumn2})
         Me.BGVFGStock.GridControl = Me.GCFGStock
         Me.BGVFGStock.Name = "BGVFGStock"
         Me.BGVFGStock.OptionsBehavior.ReadOnly = True
+        Me.BGVFGStock.OptionsPrint.AllowMultilineHeaders = True
         Me.BGVFGStock.OptionsView.ColumnAutoWidth = False
         Me.BGVFGStock.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.BGVFGStock.OptionsView.ShowFooter = True
