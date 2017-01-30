@@ -22,11 +22,12 @@ Partial Class FormEmpAttnAssignDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpAttnAssignDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.BSetSchedule = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
         Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
@@ -45,6 +46,7 @@ Partial Class FormEmpAttnAssignDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,25 +63,25 @@ Partial Class FormEmpAttnAssignDet
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
-        Me.PanelControl1.Controls.Add(Me.BSetSchedule)
+        Me.PanelControl1.Controls.Add(Me.BMark)
+        Me.PanelControl1.Controls.Add(Me.BCancel)
+        Me.PanelControl1.Controls.Add(Me.BPropose)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 275)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(714, 36)
         Me.PanelControl1.TabIndex = 2
         '
-        'SimpleButton2
+        'BMark
         '
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton2.ImageIndex = 4
-        Me.SimpleButton2.ImageList = Me.LargeImageCollection
-        Me.SimpleButton2.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(71, 32)
-        Me.SimpleButton2.TabIndex = 2
-        Me.SimpleButton2.Text = "Mark"
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.LargeImageCollection
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(71, 32)
+        Me.BMark.TabIndex = 2
+        Me.BMark.Text = "Mark"
         '
         'LargeImageCollection
         '
@@ -106,31 +108,32 @@ Partial Class FormEmpAttnAssignDet
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
-        'SimpleButton1
+        'BCancel
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.ImageIndex = 5
-        Me.SimpleButton1.ImageList = Me.LargeImageCollection
-        Me.SimpleButton1.Location = New System.Drawing.Point(492, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(81, 32)
-        Me.SimpleButton1.TabIndex = 1
-        Me.SimpleButton1.Text = "Cancel"
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.ImageIndex = 5
+        Me.BCancel.ImageList = Me.LargeImageCollection
+        Me.BCancel.Location = New System.Drawing.Point(492, 2)
+        Me.BCancel.Name = "BCancel"
+        Me.BCancel.Size = New System.Drawing.Size(81, 32)
+        Me.BCancel.TabIndex = 1
+        Me.BCancel.Text = "Cancel"
         '
-        'BSetSchedule
+        'BPropose
         '
-        Me.BSetSchedule.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BSetSchedule.ImageIndex = 19
-        Me.BSetSchedule.ImageList = Me.LargeImageCollection
-        Me.BSetSchedule.Location = New System.Drawing.Point(573, 2)
-        Me.BSetSchedule.Name = "BSetSchedule"
-        Me.BSetSchedule.Size = New System.Drawing.Size(139, 32)
-        Me.BSetSchedule.TabIndex = 0
-        Me.BSetSchedule.Text = "Propose Schedule"
+        Me.BPropose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPropose.ImageIndex = 19
+        Me.BPropose.ImageList = Me.LargeImageCollection
+        Me.BPropose.Location = New System.Drawing.Point(573, 2)
+        Me.BPropose.Name = "BPropose"
+        Me.BPropose.Size = New System.Drawing.Size(139, 32)
+        Me.BPropose.TabIndex = 0
+        Me.BPropose.Text = "Propose Schedule"
         '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.TextEdit2)
         Me.GroupControl1.Controls.Add(Me.TextEdit1)
         Me.GroupControl1.Controls.Add(Me.LabelControl1)
         Me.GroupControl1.Controls.Add(Me.TENumber)
@@ -142,6 +145,16 @@ Partial Class FormEmpAttnAssignDet
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(714, 75)
         Me.GroupControl1.TabIndex = 3
+        '
+        'TextEdit2
+        '
+        Me.TextEdit2.EditValue = ""
+        Me.TextEdit2.Location = New System.Drawing.Point(478, 38)
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Properties.EditValueChangedDelay = 1
+        Me.TextEdit2.Properties.ReadOnly = True
+        Me.TextEdit2.Size = New System.Drawing.Size(224, 20)
+        Me.TextEdit2.TabIndex = 99
         '
         'TextEdit1
         '
@@ -168,7 +181,7 @@ Partial Class FormEmpAttnAssignDet
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.EditValueChangedDelay = 1
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(189, 20)
+        Me.TENumber.Size = New System.Drawing.Size(217, 20)
         Me.TENumber.TabIndex = 95
         '
         'LabelControl7
@@ -274,6 +287,7 @@ Partial Class FormEmpAttnAssignDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -291,9 +305,9 @@ Partial Class FormEmpAttnAssignDet
     End Sub
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BSetSchedule As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPropose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
@@ -308,4 +322,5 @@ Partial Class FormEmpAttnAssignDet
     Friend WithEvents GVScheduleAfter As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
 End Class

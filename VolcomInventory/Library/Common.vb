@@ -827,7 +827,7 @@ Module Common
             Return .GetValue(ApplicationName)
         End With
     End Function
-    '--------------USER MANAGE----------------------------
+    '--------------USER MANAGE---------------
     Private Sub hideGroupMenu()
         For Each group As DevExpress.XtraNavBar.NavBarGroup In FormMain.NBProdRet.Groups
             Dim jum As Integer = 0
