@@ -6525,6 +6525,12 @@ Public Class FormMain
             print(FormEmpLeave.GCLeave, "List Cuti")
         ElseIf formName = "FormEmpDP" Then
             print(FormEmpDP.GCLeave, "List DP")
+        ElseIf formName = "FormProductionSummary" Then
+            If FormProductionSummary.XTCSum.SelectedTabPageIndex = 0 Then
+                print(FormProductionSummary.GCDesign, "APPROVED ORDER")
+            ElseIf FormProductionSummary.XTCSum.SelectedTabPageIndex = 1 Then
+                print(FormProductionSummary.GCDesign, "APPROVED ORDER")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7064,6 +7070,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpLeave" Then
             FormEmpLeave.Close()
             FormEmpLeave.Dispose()
+        ElseIf formName = "FormProductionSummary" Then
+            FormProductionSummary.Close()
+            FormProductionSummary.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10256,10 +10265,10 @@ Public Class FormMain
     Private Sub NBProdReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProdReport.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
-            'FormProductionSummary.MdiParent = Me
-            'FormProductionSummary.Show()
-            'FormProductionSummary.WindowState = FormWindowState.Maximized
-            'FormProductionSummary.Focus()
+            FormProductionSummary.MdiParent = Me
+            FormProductionSummary.Show()
+            FormProductionSummary.WindowState = FormWindowState.Maximized
+            FormProductionSummary.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
