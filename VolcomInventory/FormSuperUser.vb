@@ -33,8 +33,6 @@
         'Dim t As ClassDepartement = New ClassDepartement("3")
         't.test()
         'FormFingerPrint.ShowDialog()
-
-        FormProductionSummary.ShowDialog()
     End Sub
 
     Private Sub BtnDepartement_Click(sender As Object, e As EventArgs) Handles BtnDepartement.Click
