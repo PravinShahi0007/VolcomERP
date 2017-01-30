@@ -34,7 +34,7 @@
         't.test()
         'FormFingerPrint.ShowDialog()
 
-        infoCustom("OK")
+        FormProductionSummary.ShowDialog()
     End Sub
 
     Private Sub BtnDepartement_Click(sender As Object, e As EventArgs) Handles BtnDepartement.Click
