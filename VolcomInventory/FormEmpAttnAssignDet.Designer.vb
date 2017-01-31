@@ -41,6 +41,7 @@ Partial Class FormEmpAttnAssignDet
         Me.XTPAfter = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScheduleAfter = New DevExpress.XtraGrid.GridControl()
         Me.GVScheduleAfter = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BViewShift = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,7 +70,7 @@ Partial Class FormEmpAttnAssignDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 275)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(714, 36)
+        Me.PanelControl1.Size = New System.Drawing.Size(689, 36)
         Me.PanelControl1.TabIndex = 2
         '
         'BMark
@@ -113,7 +114,7 @@ Partial Class FormEmpAttnAssignDet
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(492, 2)
+        Me.BCancel.Location = New System.Drawing.Point(467, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(81, 32)
         Me.BCancel.TabIndex = 1
@@ -124,7 +125,7 @@ Partial Class FormEmpAttnAssignDet
         Me.BPropose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPropose.ImageIndex = 19
         Me.BPropose.ImageList = Me.LargeImageCollection
-        Me.BPropose.Location = New System.Drawing.Point(573, 2)
+        Me.BPropose.Location = New System.Drawing.Point(548, 2)
         Me.BPropose.Name = "BPropose"
         Me.BPropose.Size = New System.Drawing.Size(139, 32)
         Me.BPropose.TabIndex = 0
@@ -143,13 +144,13 @@ Partial Class FormEmpAttnAssignDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(714, 75)
+        Me.GroupControl1.Size = New System.Drawing.Size(689, 75)
         Me.GroupControl1.TabIndex = 3
         '
         'TextEdit2
         '
         Me.TextEdit2.EditValue = ""
-        Me.TextEdit2.Location = New System.Drawing.Point(478, 38)
+        Me.TextEdit2.Location = New System.Drawing.Point(448, 38)
         Me.TextEdit2.Name = "TextEdit2"
         Me.TextEdit2.Properties.EditValueChangedDelay = 1
         Me.TextEdit2.Properties.ReadOnly = True
@@ -159,7 +160,7 @@ Partial Class FormEmpAttnAssignDet
         'TextEdit1
         '
         Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(478, 12)
+        Me.TextEdit1.Location = New System.Drawing.Point(448, 12)
         Me.TextEdit1.Name = "TextEdit1"
         Me.TextEdit1.Properties.EditValueChangedDelay = 1
         Me.TextEdit1.Properties.ReadOnly = True
@@ -168,7 +169,7 @@ Partial Class FormEmpAttnAssignDet
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(412, 15)
+        Me.LabelControl1.Location = New System.Drawing.Point(382, 15)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(60, 13)
         Me.LabelControl1.TabIndex = 98
@@ -219,7 +220,7 @@ Partial Class FormEmpAttnAssignDet
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 75)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPBefore
-        Me.XtraTabControl1.Size = New System.Drawing.Size(714, 200)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(689, 177)
         Me.XtraTabControl1.TabIndex = 4
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBefore, Me.XTPAfter})
         '
@@ -227,7 +228,7 @@ Partial Class FormEmpAttnAssignDet
         '
         Me.XTPBefore.Controls.Add(Me.GCScheduleBefore)
         Me.XTPBefore.Name = "XTPBefore"
-        Me.XTPBefore.Size = New System.Drawing.Size(708, 172)
+        Me.XTPBefore.Size = New System.Drawing.Size(683, 149)
         Me.XTPBefore.Text = "Before"
         '
         'GCScheduleBefore
@@ -236,7 +237,7 @@ Partial Class FormEmpAttnAssignDet
         Me.GCScheduleBefore.Location = New System.Drawing.Point(0, 0)
         Me.GCScheduleBefore.MainView = Me.GVScheduleBefore
         Me.GCScheduleBefore.Name = "GCScheduleBefore"
-        Me.GCScheduleBefore.Size = New System.Drawing.Size(708, 172)
+        Me.GCScheduleBefore.Size = New System.Drawing.Size(683, 149)
         Me.GCScheduleBefore.TabIndex = 3
         Me.GCScheduleBefore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScheduleBefore})
         '
@@ -251,7 +252,7 @@ Partial Class FormEmpAttnAssignDet
         '
         Me.XTPAfter.Controls.Add(Me.GCScheduleAfter)
         Me.XTPAfter.Name = "XTPAfter"
-        Me.XTPAfter.Size = New System.Drawing.Size(708, 172)
+        Me.XTPAfter.Size = New System.Drawing.Size(683, 149)
         Me.XTPAfter.Text = "After"
         '
         'GCScheduleAfter
@@ -260,7 +261,7 @@ Partial Class FormEmpAttnAssignDet
         Me.GCScheduleAfter.Location = New System.Drawing.Point(0, 0)
         Me.GCScheduleAfter.MainView = Me.GVScheduleAfter
         Me.GCScheduleAfter.Name = "GCScheduleAfter"
-        Me.GCScheduleAfter.Size = New System.Drawing.Size(708, 172)
+        Me.GCScheduleAfter.Size = New System.Drawing.Size(683, 149)
         Me.GCScheduleAfter.TabIndex = 3
         Me.GCScheduleAfter.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScheduleAfter})
         '
@@ -271,16 +272,30 @@ Partial Class FormEmpAttnAssignDet
         Me.GVScheduleAfter.OptionsView.ColumnAutoWidth = False
         Me.GVScheduleAfter.OptionsView.ShowGroupPanel = False
         '
+        'BViewShift
+        '
+        Me.BViewShift.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BViewShift.Location = New System.Drawing.Point(0, 252)
+        Me.BViewShift.Name = "BViewShift"
+        Me.BViewShift.Size = New System.Drawing.Size(689, 23)
+        Me.BViewShift.TabIndex = 5
+        Me.BViewShift.Text = "View Shift List"
+        '
         'FormEmpAttnAssignDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(714, 311)
+        Me.ClientSize = New System.Drawing.Size(689, 311)
         Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.BViewShift)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.MinimizeBox = False
         Me.Name = "FormEmpAttnAssignDet"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Propose New Schedule"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
@@ -323,4 +338,5 @@ Partial Class FormEmpAttnAssignDet
     Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BViewShift As DevExpress.XtraEditors.SimpleButton
 End Class
