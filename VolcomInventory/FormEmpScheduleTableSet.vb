@@ -3,6 +3,13 @@
     '1 = schedule table
     '2 = attnassigndet
     Private Sub FormEmpScheduleTableSet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim dayOfWeek = CInt(Date.Today.DayOfWeek)
+        Dim startOfWeek = Date.Today.AddDays(-1 * dayOfWeek)
+        Dim endOfWeek = Date.Today.AddDays(7 - dayOfWeek).AddSeconds(-1)
+        '
+        DEStart.EditValue = startOfWeek
+        DEUntil.EditValue = endOfWeek
+        '
         load_emp()
     End Sub
     Sub load_emp()

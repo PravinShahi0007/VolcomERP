@@ -27,12 +27,13 @@ Partial Class FormEmpAttnAssignDet
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEEmpCode = New DevExpress.XtraEditors.TextEdit()
+        Me.TEDepartement = New DevExpress.XtraEditors.TextEdit()
+        Me.TEEmpName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEJoinDate = New DevExpress.XtraEditors.DateEdit()
+        Me.DEDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPBefore = New DevExpress.XtraTab.XtraTabPage()
@@ -47,11 +48,12 @@ Partial Class FormEmpAttnAssignDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEEmpCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEEmpName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEJoinDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPBefore.SuspendLayout()
@@ -134,12 +136,13 @@ Partial Class FormEmpAttnAssignDet
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.TextEdit2)
-        Me.GroupControl1.Controls.Add(Me.TextEdit1)
+        Me.GroupControl1.Controls.Add(Me.TEEmpCode)
+        Me.GroupControl1.Controls.Add(Me.TEDepartement)
+        Me.GroupControl1.Controls.Add(Me.TEEmpName)
         Me.GroupControl1.Controls.Add(Me.LabelControl1)
         Me.GroupControl1.Controls.Add(Me.TENumber)
         Me.GroupControl1.Controls.Add(Me.LabelControl7)
-        Me.GroupControl1.Controls.Add(Me.DEJoinDate)
+        Me.GroupControl1.Controls.Add(Me.DEDate)
         Me.GroupControl1.Controls.Add(Me.LabelControl4)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
@@ -147,29 +150,39 @@ Partial Class FormEmpAttnAssignDet
         Me.GroupControl1.Size = New System.Drawing.Size(689, 75)
         Me.GroupControl1.TabIndex = 3
         '
-        'TextEdit2
+        'TEEmpCode
         '
-        Me.TextEdit2.EditValue = ""
-        Me.TextEdit2.Location = New System.Drawing.Point(448, 38)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.EditValueChangedDelay = 1
-        Me.TextEdit2.Properties.ReadOnly = True
-        Me.TextEdit2.Size = New System.Drawing.Size(224, 20)
-        Me.TextEdit2.TabIndex = 99
+        Me.TEEmpCode.EditValue = ""
+        Me.TEEmpCode.Location = New System.Drawing.Point(419, 12)
+        Me.TEEmpCode.Name = "TEEmpCode"
+        Me.TEEmpCode.Properties.EditValueChangedDelay = 1
+        Me.TEEmpCode.Properties.ReadOnly = True
+        Me.TEEmpCode.Size = New System.Drawing.Size(100, 20)
+        Me.TEEmpCode.TabIndex = 100
         '
-        'TextEdit1
+        'TEDepartement
         '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(448, 12)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(224, 20)
-        Me.TextEdit1.TabIndex = 97
+        Me.TEDepartement.EditValue = ""
+        Me.TEDepartement.Location = New System.Drawing.Point(419, 38)
+        Me.TEDepartement.Name = "TEDepartement"
+        Me.TEDepartement.Properties.EditValueChangedDelay = 1
+        Me.TEDepartement.Properties.ReadOnly = True
+        Me.TEDepartement.Size = New System.Drawing.Size(258, 20)
+        Me.TEDepartement.TabIndex = 99
+        '
+        'TEEmpName
+        '
+        Me.TEEmpName.EditValue = ""
+        Me.TEEmpName.Location = New System.Drawing.Point(525, 12)
+        Me.TEEmpName.Name = "TEEmpName"
+        Me.TEEmpName.Properties.EditValueChangedDelay = 1
+        Me.TEEmpName.Properties.ReadOnly = True
+        Me.TEEmpName.Size = New System.Drawing.Size(152, 20)
+        Me.TEEmpName.TabIndex = 97
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(382, 15)
+        Me.LabelControl1.Location = New System.Drawing.Point(353, 15)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(60, 13)
         Me.LabelControl1.TabIndex = 98
@@ -193,18 +206,18 @@ Partial Class FormEmpAttnAssignDet
         Me.LabelControl7.TabIndex = 96
         Me.LabelControl7.Text = "Number"
         '
-        'DEJoinDate
+        'DEDate
         '
-        Me.DEJoinDate.EditValue = Nothing
-        Me.DEJoinDate.Location = New System.Drawing.Point(111, 41)
-        Me.DEJoinDate.Name = "DEJoinDate"
-        Me.DEJoinDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEJoinDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEJoinDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEJoinDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEJoinDate.Properties.ReadOnly = True
-        Me.DEJoinDate.Size = New System.Drawing.Size(217, 20)
-        Me.DEJoinDate.TabIndex = 5
+        Me.DEDate.EditValue = Nothing
+        Me.DEDate.Location = New System.Drawing.Point(111, 41)
+        Me.DEDate.Name = "DEDate"
+        Me.DEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDate.Properties.ReadOnly = True
+        Me.DEDate.Size = New System.Drawing.Size(217, 20)
+        Me.DEDate.TabIndex = 5
         '
         'LabelControl4
         '
@@ -302,11 +315,12 @@ Partial Class FormEmpAttnAssignDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEEmpCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEEmpName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEJoinDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEJoinDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPBefore.ResumeLayout(False)
@@ -326,7 +340,7 @@ Partial Class FormEmpAttnAssignDet
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DEJoinDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPBefore As DevExpress.XtraTab.XtraTabPage
@@ -335,8 +349,9 @@ Partial Class FormEmpAttnAssignDet
     Friend WithEvents GVScheduleBefore As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GCScheduleAfter As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVScheduleAfter As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEEmpName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEDepartement As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BViewShift As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEEmpCode As DevExpress.XtraEditors.TextEdit
 End Class

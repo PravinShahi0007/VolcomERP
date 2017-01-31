@@ -761,6 +761,7 @@ Module Common
         '1 = leave
         '2 = DP
         '3 = Change Schedule
+        '4 = Propose Schedule
 
         Dim header_number_x As String
         header_number_x = ""
@@ -772,6 +773,8 @@ Module Common
             header_number_x = combine_header_number(get_opt_emp_field("emp_dp_code_head"), Integer.Parse(get_opt_emp_field("emp_dp_code_inc")), Integer.Parse(get_opt_emp_field("emp_dp_code_digit")))
         ElseIf opt = "3" Then
             header_number_x = combine_header_number(get_opt_emp_field("emp_chsch_code_head"), Integer.Parse(get_opt_emp_field("emp_chsch_code_inc")), Integer.Parse(get_opt_emp_field("emp_chsch_code_digit")))
+        ElseIf opt = "4" Then
+            header_number_x = combine_header_number(get_opt_emp_field("emp_schass_code_head"), Integer.Parse(get_opt_emp_field("emp_schass_code_inc")), Integer.Parse(get_opt_emp_field("emp_schass_code_digit")))
         End If
 
         Return header_number_x
@@ -780,7 +783,8 @@ Module Common
         'opt
         '1 = leave
         '2 = DP
-        '3 = Chagne Schedule
+        '3 = Change Schedule
+        '4 = Propose Schedule
 
         Dim query As String
         query = ""
@@ -793,6 +797,9 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "3" Then
             query = "UPDATE tb_opt_emp SET emp_chsch_code_inc=(tb_opt_emp.emp_chsch_code_inc+1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "4" Then
+            query = "UPDATE tb_opt_emp SET emp_schass_code_inc=(tb_opt_emp.emp_schass_code_inc+1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub
