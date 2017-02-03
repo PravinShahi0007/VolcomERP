@@ -54,6 +54,9 @@ Public Class FormFGTrfNewDet
         Catch ex As Exception
         End Try
 
+        'hide diff status
+        GridColumnStatus.Visible = False
+
         If action = "ins" Then
             XTPOutboundScanNew.PageEnabled = True
             BtnPrint.Enabled = False
@@ -293,6 +296,7 @@ Public Class FormFGTrfNewDet
             GVItemList.OptionsCustomization.AllowGroup = False
             BtnSave.Enabled = True
             BPickDrawer.Enabled = True
+            BtnVerify.Enabled = True
         Else
             BtnAdd.Enabled = False
             BtnEdit.Enabled = False
@@ -304,6 +308,7 @@ Public Class FormFGTrfNewDet
             GridColumnQtyLimit.Visible = False
             GridColumnQtyWH.Visible = False
             BPickDrawer.Enabled = False
+            BtnVerify.Enabled = False
         End If
 
         'ATTACH
@@ -538,6 +543,7 @@ Public Class FormFGTrfNewDet
         GVItemList.OptionsBehavior.Editable = False
         ControlBox = False
         TxtNumber.Enabled = False
+        BtnVerify.Enabled = False
         If action = "upd" Then
             BMark.Enabled = False
             BtnAttachment.Enabled = False
@@ -584,6 +590,7 @@ Public Class FormFGTrfNewDet
         TxtNumber.Enabled = True
         TxtDeleteScan.Visible = False
         LabelDelScan.Visible = False
+        BtnVerify.Enabled = True
         If action = "upd" Then
             BMark.Enabled = True
             BtnAttachment.Enabled = True
@@ -942,13 +949,8 @@ Public Class FormFGTrfNewDet
         check_but()
     End Sub
 
-    Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
-        makeSafeGV(GVBarcode)
-        makeSafeGV(GVItemList)
-        Cursor = Cursors.WaitCursor
-        ValidateChildren()
-
-        'cek qty limit SO di DB
+    Function verifyTrans() As Boolean
+        GridColumnStatus.Visible = True
         Dim cond_check_data As Boolean = True
         Dim dt_cek As DataTable
         If action = "ins" Then
@@ -979,7 +981,20 @@ Public Class FormFGTrfNewDet
                 End If
             End If
         Next
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
+        Return cond_check_data
+    End Function
 
+
+    Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
+        makeSafeGV(GVBarcode)
+        makeSafeGV(GVItemList)
+        Cursor = Cursors.WaitCursor
+        ValidateChildren()
+
+        'cek qty limit SO di DB
+        Dim cond_check_data As Boolean = verifyTrans()
 
         If Not formIsValidInGroup(EPForm, GroupGeneralHeader) Then
             errorInput()
@@ -1495,5 +1510,12 @@ Public Class FormFGTrfNewDet
 
     Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
         exportToBOF(True)
+    End Sub
+
+    Private Sub BtnVerify_Click(sender As Object, e As EventArgs) Handles BtnVerify.Click
+        Cursor = Cursors.WaitCursor
+        'cek qty limit SO di DB
+        verifyTrans()
+        Cursor = Cursors.Default
     End Sub
 End Class
