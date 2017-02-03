@@ -42,8 +42,12 @@
                                 LEFT JOIN tb_m_user usr ON usr.id_user=sch.id_user_propose
                                 INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=sch.id_departement
+                                INNER JOIN tb_lookup_report_status s ON s.id_report_status=sch.id_report_status
                                 WHERE sch.id_departement='" & LEDeptSum.EditValue.ToString & "'
-                                ORDER BY id_emp_assign_sch DESC"
+                                ORDER BY id_assign_sch DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCAttnAssign.DataSource = data
+
+        GVAttnAssign.BestFitColumns()
     End Sub
 End Class

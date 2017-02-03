@@ -2342,8 +2342,8 @@ Public Class FormMain
                 FormEmpChScheduleDet.id_ch_sch = FormEmpChSchedule.BGVChangeSch.GetFocusedRowCellValue("id_emp_ch_schedule").ToString
                 FormEmpChScheduleDet.ShowDialog()
             ElseIf formName = "FormEmpAttnAssign" Then
-                'Leave
-                FormEmpAttnAssignDet.id_emp_assign_sch = FormEmpAttnAssign.GVAttnAssign.GetFocusedRowCellValue("id_emp_assign_sch").ToString
+                'Propose schedule with approval
+                FormEmpAttnAssignDet.id_emp_assign_sch = FormEmpAttnAssign.GVAttnAssign.GetFocusedRowCellValue("id_assign_sch").ToString
                 FormEmpAttnAssignDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False

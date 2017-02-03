@@ -337,6 +337,9 @@
         ElseIf report_mark_type = "99" Then
             'Leave Propose Admin Management
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
+        ElseIf report_mark_type = "100" Then
+            'Schedule Propose With Approval
+            query = String.Format("SELECT id_report_status, assign_sch_number as report_number FROM tb_emp_assign_sch WHERE id_assign_sch = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3240,6 +3243,37 @@
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             FormEmpLeave.load_sum()
+            infoCustom("Status changed.")
+        ElseIf report_mark_type = "100" Then
+            'Schedule PROPOSE with approval
+            If id_status_reportx = "3" Then
+                'update schedule 
+                Dim query_after As String = "SELECT sch.id_employee,IFNULL(s.id_shift,0) as id_shift,sch.date FROM tb_emp_assign_sch_det sch
+                                                LEFT JOIN tb_emp_shift s ON sch.shift_code=s.shift_code
+                                                WHERE id_emp_assign_sch='" & id_report & "' AND `type`='2'"
+                Dim data_after As DataTable = execute_query(query_after, -1, True, "", "", "", "")
+                For j As Integer = 0 To data_after.Rows.Count - 1
+                    Dim id_shift, id_empployee_varx, date_var As String
+                    id_shift = data_after(j)("id_shift").ToString
+                    id_empployee_varx = data_after(j)("id_employee").ToString
+                    date_var = Date.Parse(data_after(j)("date").ToString).ToString("yyy-MM-dd")
+
+                    If Not id_shift = "" Then
+                        If id_shift = "0" Then
+                            Dim query_shift As String = "CALL add_shift(" & id_empployee_varx & ",1,'" & date_var & "','" & date_var & "',2)"
+                            execute_non_query(query_shift, True, "", "", "", "")
+                        Else
+                            Dim query_shift As String = "CALL add_shift(" & id_empployee_varx & "," & id_shift & ",'" & date_var & "','" & date_var & "',1)"
+                            execute_non_query(query_shift, True, "", "", "", "")
+                        End If
+                    End If
+                Next
+
+                'complete 
+                id_status_reportx = "6"
+            End If
+            query = String.Format("UPDATE tb_emp_assign_sch SET id_report_status='{0}' WHERE id_assign_sch ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
             infoCustom("Status changed.")
         End If
 

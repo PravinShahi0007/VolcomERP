@@ -26,11 +26,12 @@ Partial Class FormEmpAttnAssign
         Me.BViewSum = New DevExpress.XtraEditors.SimpleButton()
         Me.GCAttnAssign = New DevExpress.XtraGrid.GridControl()
         Me.GVAttnAssign = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNomor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnProposeBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,45 +96,58 @@ Partial Class FormEmpAttnAssign
         '
         'GVAttnAssign
         '
-        Me.GVAttnAssign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
+        Me.GVAttnAssign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnNomor, Me.GridColumnDate, Me.GridColumnDepartement, Me.GridColumnProposeBy, Me.GridColumnReportStatus})
         Me.GVAttnAssign.GridControl = Me.GCAttnAssign
         Me.GVAttnAssign.Name = "GVAttnAssign"
         Me.GVAttnAssign.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn1
+        'GridColumnID
         '
-        Me.GridColumn1.Caption = "GridColumn1"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumnID.Caption = "ID"
+        Me.GridColumnID.FieldName = "id_assign_sch"
+        Me.GridColumnID.Name = "GridColumnID"
         '
-        'GridColumn2
+        'GridColumnNomor
         '
-        Me.GridColumn2.Caption = "GridColumn2"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumnNomor.Caption = "Number"
+        Me.GridColumnNomor.FieldName = "assign_sch_number"
+        Me.GridColumnNomor.Name = "GridColumnNomor"
+        Me.GridColumnNomor.Visible = True
+        Me.GridColumnNomor.VisibleIndex = 0
         '
-        'GridColumn3
+        'GridColumnDate
         '
-        Me.GridColumn3.Caption = "GridColumn3"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumnDate.Caption = "Date"
+        Me.GridColumnDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumnDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnDate.FieldName = "assign_sch_date"
+        Me.GridColumnDate.Name = "GridColumnDate"
+        Me.GridColumnDate.Visible = True
+        Me.GridColumnDate.VisibleIndex = 1
         '
-        'GridColumn4
+        'GridColumnDepartement
         '
-        Me.GridColumn4.Caption = "GridColumn4"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumnDepartement.Caption = "Department"
+        Me.GridColumnDepartement.FieldName = "departement"
+        Me.GridColumnDepartement.Name = "GridColumnDepartement"
+        Me.GridColumnDepartement.Visible = True
+        Me.GridColumnDepartement.VisibleIndex = 2
         '
-        'GridColumn5
+        'GridColumnProposeBy
         '
-        Me.GridColumn5.Caption = "GridColumn5"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumnProposeBy.Caption = "Proposed By"
+        Me.GridColumnProposeBy.FieldName = "employee_name"
+        Me.GridColumnProposeBy.Name = "GridColumnProposeBy"
+        Me.GridColumnProposeBy.Visible = True
+        Me.GridColumnProposeBy.VisibleIndex = 3
+        '
+        'GridColumnReportStatus
+        '
+        Me.GridColumnReportStatus.Caption = "Status"
+        Me.GridColumnReportStatus.FieldName = "report_status"
+        Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
+        Me.GridColumnReportStatus.Visible = True
+        Me.GridColumnReportStatus.VisibleIndex = 4
         '
         'FormEmpAttnAssign
         '
@@ -165,9 +179,10 @@ Partial Class FormEmpAttnAssign
     Friend WithEvents BViewSum As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCAttnAssign As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVAttnAssign As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNomor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDepartement As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnProposeBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnReportStatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class
