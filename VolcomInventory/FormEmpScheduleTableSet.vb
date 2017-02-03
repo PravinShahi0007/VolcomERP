@@ -20,9 +20,9 @@
                                 INNER JOIN tb_lookup_employee_active active On active.id_employee_active=emp.id_employee_active"
 
         If FormEmpSchedule.is_security = "1" And opt = "1" Then
-            query += " WHERE emp.employee_position LIKE '%security%'"
+            query += " WHERE emp.employee_position LIKE '%security%' AND emp.id_employee_active='1'"
         ElseIf opt = "2" Then
-            query += " WHERE emp.id_departement='" & id_departement_user & "'"
+            query += " WHERE emp.id_departement='" & id_departement_user & "' AND emp.id_employee_active='1'"
         End If
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -196,6 +196,8 @@
                     FormEmpAttnAssignDet.GCScheduleAfter.RefreshDataSource()
                 Next
                 FormEmpAttnAssignDet.GVScheduleAfter.BestFitColumns()
+                FormEmpAttnAssignDet.date_from = DEStart.EditValue
+                FormEmpAttnAssignDet.date_until = DEUntil.EditValue
                 '
                 Close()
             Else

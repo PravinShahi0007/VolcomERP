@@ -2491,6 +2491,7 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         Next
     End Sub
+
     Sub insert_who_prepared(ByVal report_mark_type As String, ByVal id_report As String, ByVal id_userx As String)
         ' moved to submit
     End Sub
