@@ -19,6 +19,7 @@ Public Class FormFGTrfNewDet
     Public id_type As String = "-1"
     Dim is_new_rec As Boolean = False
     Public id_wh_drawer_to As String = "-1"
+    Public is_only_for_alloc As String = "-1"
     Public id_pre As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_trf")
@@ -104,6 +105,7 @@ Public Class FormFGTrfNewDet
             TEDrawer.Text = data.Rows(0)("wh_drawer").ToString
             TxtSalesOrder.Text = data.Rows(0)("sales_order_number").ToString
             id_sales_order = data.Rows(0)("id_sales_order").ToString
+            is_only_for_alloc = data.Rows(0)("is_only_for_alloc").ToString
 
             'detail2
             viewDetail()
@@ -334,6 +336,13 @@ Public Class FormFGTrfNewDet
             BtnXlsBOF.Visible = True
         Else
             BtnXlsBOF.Visible = False
+        End If
+
+        'mark visible
+        If is_only_for_alloc = "1" Then
+            BMark.Visible = False
+        Else
+            BMark.Visible = True
         End If
         TxtNumber.Focus()
     End Sub
