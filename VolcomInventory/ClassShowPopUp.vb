@@ -392,6 +392,11 @@
             FormEmpLeaveDet.report_mark_type = "99"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "100" Then
+            'propose schedule with approval
+            FormEmpAttnAssignDet.id_emp_assign_sch = id_report
+            FormEmpAttnAssignDet.is_view = "1"
+            FormEmpAttnAssignDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -934,6 +939,12 @@
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
+        ElseIf report_mark_type = "100" Then
+            'Propose schedule with approval
+            table_name = "tb_emp_assign_sch"
+            field_id = "id_assign_sch"
+            field_number = "assign_sch_number"
+            field_date = "assign_sch_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
