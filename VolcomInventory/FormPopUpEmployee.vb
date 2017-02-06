@@ -12,10 +12,10 @@
         If FormEmpLeave.is_propose = "1" Then
             Dim id_user_admin_management As String = get_opt_emp_field("id_user_admin_mng").ToString
             If id_user_admin_management = id_user Then
-                Dim id_min_lvl As String = get_opt_emp_field("leave_mng_min_level").ToString
-                query += " WHERE lvl.id_employee_level>0 AND lvl.id_employee_level <='" & id_min_lvl & "' "
+                Dim id_min_lvl As String = get_opt_emp_field("leave_asst_mgr_level").ToString
+                query += " AND lvl.id_employee_level>0 AND lvl.id_employee_level <'" & id_min_lvl & "' "
             Else
-                query += " WHERE emp.id_departement='" & id_departement_user & "'"
+                query += " AND (dep.id_user_admin='" & id_user & "' OR dep.id_user_admin_backup='" & id_user & "')"
             End If
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

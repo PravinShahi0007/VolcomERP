@@ -104,6 +104,7 @@
 
     Private Sub submitProcess()
         ' makeSafeGV(GVProdList)
+        GVProdList.ExpandAllGroups()
         GVProdList.ActiveFilterString = "[total_order]>0 "
         If GVProdList.RowCount > 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to choose these item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)

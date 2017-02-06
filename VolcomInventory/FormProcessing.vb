@@ -134,19 +134,20 @@
                 dtx = execute_query(query, -1, True, "", "", "", "")
             ElseIf is_old_design = "2"
                 Dim query As String = ""
-                query += "Select a.id_product, a.id_prod_order_det, a.range_awal, a.range_akhir, a.digit_code, b.product_full_code, dsg.is_old_design "
+                query += "Select a.id_product, a.id_prod_order_det, a.range_awal, a.range_akhir, a.digit_code, b.product_full_code, dsg.is_old_design,b.last_print_unique "
                 query += "FROM tb_m_product_range a "
                 query += "INNER JOIN tb_m_product b On a.id_product = b.id_product "
                 query += "INNER JOIN tb_m_design dsg ON dsg.id_design = b.id_design "
                 query += "INNER JOIN tb_prod_order_det c On c.id_prod_order_det = a.id_prod_order_det "
                 query += "INNER JOIN tb_prod_order d On d.id_prod_order = c.id_prod_order "
-                query += "WHERE d.id_prod_order = '" + idx_main + "' "
+                query += "WHERE d.id_prod_order = '" + idx_main + "' GROUP BY a.id_product "
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 For i As Integer = 0 To (data.Rows.Count - 1)
                     Dim id_product As String = data.Rows(i)("id_product").ToString
                     Dim id_prod_order_det As String = data.Rows(i)("id_prod_order_det").ToString
                     Dim range_awal As Integer = Integer.Parse(data.Rows(i)("range_awal").ToString)
-                    Dim range_akhir As Integer = Integer.Parse(data.Rows(i)("range_akhir").ToString)
+                    'Dim range_akhir As Integer = Integer.Parse(data.Rows(i)("range_akhir").ToString)
+                    Dim range_akhir As Integer = Integer.Parse(data.Rows(i)("last_print_unique").ToString)
                     Dim digit_code As Integer = Integer.Parse(data.Rows(i)("digit_code").ToString)
                     Dim product_code As String = data.Rows(i)("product_full_code").ToString
                     Dim is_old_design As String = data.Rows(i)("is_old_design").ToString

@@ -280,7 +280,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Then
+        If formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Then
             RGAreaManage.Visible = False
         End If
 
@@ -398,7 +398,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Then
+        If formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Then
             RGAreaManage.Visible = True
         End If
 
@@ -1485,6 +1485,10 @@ Public Class FormMain
             'Leave
             FormEmpChScheduleDet.id_ch_sch = "-1"
             FormEmpChScheduleDet.ShowDialog()
+        ElseIf formName = "FormEmpAttnAssign" Then
+            'assign schedule with approval
+            FormEmpAttnAssignDet.id_emp_assign_sch = "-1"
+            FormEmpAttnAssignDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2337,6 +2341,10 @@ Public Class FormMain
                 'Leave
                 FormEmpChScheduleDet.id_ch_sch = FormEmpChSchedule.BGVChangeSch.GetFocusedRowCellValue("id_emp_ch_schedule").ToString
                 FormEmpChScheduleDet.ShowDialog()
+            ElseIf formName = "FormEmpAttnAssign" Then
+                'Propose schedule with approval
+                FormEmpAttnAssignDet.id_emp_assign_sch = FormEmpAttnAssign.GVAttnAssign.GetFocusedRowCellValue("id_assign_sch").ToString
+                FormEmpAttnAssignDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6525,6 +6533,12 @@ Public Class FormMain
             print(FormEmpLeave.GCLeave, "List Cuti")
         ElseIf formName = "FormEmpDP" Then
             print(FormEmpDP.GCLeave, "List DP")
+        ElseIf formName = "FormProductionSummary" Then
+            If FormProductionSummary.XTCSum.SelectedTabPageIndex = 0 Then
+                print(FormProductionSummary.GCDesign, "APPROVED ORDER")
+            ElseIf FormProductionSummary.XTCSum.SelectedTabPageIndex = 1 Then
+                print(FormProductionSummary.GCDesign, "APPROVED ORDER")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7064,6 +7078,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpLeave" Then
             FormEmpLeave.Close()
             FormEmpLeave.Dispose()
+        ElseIf formName = "FormProductionSummary" Then
+            FormProductionSummary.Close()
+            FormProductionSummary.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10247,6 +10264,32 @@ Public Class FormMain
             FormEmpChSchedule.Show()
             FormEmpChSchedule.WindowState = FormWindowState.Maximized
             FormEmpChSchedule.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSchedulePropose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSchedulePropose.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttnAssign.MdiParent = Me
+            FormEmpAttnAssign.Show()
+            FormEmpAttnAssign.WindowState = FormWindowState.Maximized
+            FormEmpAttnAssign.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProdReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProdReport.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductionSummary.MdiParent = Me
+            FormProductionSummary.Show()
+            FormProductionSummary.WindowState = FormWindowState.Maximized
+            FormProductionSummary.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

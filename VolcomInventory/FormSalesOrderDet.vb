@@ -479,7 +479,6 @@ Public Class FormSalesOrderDet
         Report.LabelNote.Text = MENote.Text
         Report.LabelType.Text = LETypeSO.Text
 
-
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()

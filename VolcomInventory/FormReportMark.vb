@@ -337,6 +337,9 @@
         ElseIf report_mark_type = "99" Then
             'Leave Propose Admin Management
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
+        ElseIf report_mark_type = "100" Then
+            'Schedule Propose With Approval
+            query = String.Format("SELECT id_report_status, assign_sch_number as report_number FROM tb_emp_assign_sch WHERE id_assign_sch = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -1802,6 +1805,30 @@
             If id_status_reportx = "5" Then
                 Dim cancel As New ClassSalesOrder()
                 cancel.cancelReservedStock(id_report)
+            ElseIf id_status_reportx = "6" Then
+                'created transfer
+                Dim qv As String = "SELECT so.id_warehouse_contact_to, so.id_store_contact_to, so.id_sales_order, c.id_drawer_def 
+                FROM tb_sales_order so 
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+                INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                WHERE so.id_sales_order=" + id_report + " AND so.id_so_status=5 AND c.is_only_for_alloc=1 "
+                Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
+                If dtv.Rows.Count > 0 Then
+                    For m As Integer = 0 To dtv.Rows.Count - 1
+                        'main
+                        Dim qm As String = "INSERT INTO tb_fg_trf(id_comp_contact_from, id_comp_contact_to, id_sales_order, fg_trf_number, fg_trf_date, fg_trf_date_rec, fg_trf_note, id_report_status, id_report_status_rec, id_wh_drawer, last_update, last_update_by) 
+                        VALUES('" + dtv.Rows(m)("id_warehouse_contact_to").ToString + "', '" + dtv.Rows(m)("id_store_contact_to").ToString + "', '" + dtv.Rows(m)("id_sales_order").ToString + "', '" + header_number_sales("15") + "', NOW(), NOW(), '', '3', '3', '" + dtv.Rows(m)("id_drawer_def").ToString + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID(); "
+                        Dim id_so As String = execute_query(qm, 0, True, "", "", "", "")
+                        increase_inc_sales("15")
+
+                        'detail
+                        Dim qd As String = "INSERT INTO tb_fg_trf_det(id_fg_trf, id_product, id_sales_order_det, fg_trf_det_qty, fg_trf_det_qty_rec, fg_trf_det_qty_stored, fg_trf_det_note)
+                        SELECT '" + id_so + "', sd.id_product, sd.id_sales_order_det, sd.sales_order_det_qty, sd.sales_order_det_qty, sd.sales_order_det_qty,'' 
+                        FROM tb_sales_order_det sd 
+                        WHERE sd.id_sales_order=" + dtv.Rows(m)("id_sales_order").ToString + " "
+                        execute_non_query(qd, -1, True, "", "", "")
+                    Next
+                End If
             End If
 
             query = String.Format("UPDATE tb_sales_order SET id_report_status='{0}' WHERE id_sales_order ='{1}'", id_status_reportx, id_report)
@@ -2950,7 +2977,32 @@
             If id_status_reportx = "5" Then
                 Dim cancel As New ClassSalesOrder()
                 cancel.cancelReservedStockGen(id_report)
+            ElseIf id_status_reportx = "6" Then
+                'created transfer
+                Dim qv As String = "SELECT so.id_warehouse_contact_to, so.id_store_contact_to, so.id_sales_order, c.id_drawer_def 
+                FROM tb_sales_order so 
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+                INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                WHERE so.id_sales_order_gen=" + id_report + " AND so.id_so_status=5 AND c.is_only_for_alloc=1 "
+                Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
+                If dtv.Rows.Count > 0 Then
+                    For m As Integer = 0 To dtv.Rows.Count - 1
+                        'main
+                        Dim qm As String = "INSERT INTO tb_fg_trf(id_comp_contact_from, id_comp_contact_to, id_sales_order, fg_trf_number, fg_trf_date, fg_trf_date_rec, fg_trf_note, id_report_status, id_report_status_rec, id_wh_drawer, last_update, last_update_by) 
+                        VALUES('" + dtv.Rows(m)("id_warehouse_contact_to").ToString + "', '" + dtv.Rows(m)("id_store_contact_to").ToString + "', '" + dtv.Rows(m)("id_sales_order").ToString + "', '" + header_number_sales("15") + "', NOW(), NOW(), '', '3', '3', '" + dtv.Rows(m)("id_drawer_def").ToString + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID(); "
+                        Dim id_so As String = execute_query(qm, 0, True, "", "", "", "")
+                        increase_inc_sales("15")
+
+                        'detail
+                        Dim qd As String = "INSERT INTO tb_fg_trf_det(id_fg_trf, id_product, id_sales_order_det, fg_trf_det_qty, fg_trf_det_qty_rec, fg_trf_det_qty_stored, fg_trf_det_note)
+                        SELECT '" + id_so + "', sd.id_product, sd.id_sales_order_det, sd.sales_order_det_qty, sd.sales_order_det_qty, sd.sales_order_det_qty,'' 
+                        FROM tb_sales_order_det sd 
+                        WHERE sd.id_sales_order=" + dtv.Rows(m)("id_sales_order").ToString + " "
+                        execute_non_query(qd, -1, True, "", "", "")
+                    Next
+                End If
             End If
+
 
             Dim query_update_so As String = "UPDATE tb_sales_order SET id_report_status='" + id_status_reportx + "' WHERE id_sales_order_gen='" + id_report + "' "
             execute_non_query(query_update_so, True, "", "", "", "")
@@ -3092,6 +3144,7 @@
             End If
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+            FormEmpLeave.load_sum()
             infoCustom("Status changed.")
         ElseIf report_mark_type = "96" Then
             'LEAVE PROPOSE
@@ -3122,6 +3175,7 @@
             End If
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+            FormEmpLeave.load_sum()
             infoCustom("Status changed.")
         ElseIf report_mark_type = "97" Then
             'DP
@@ -3236,6 +3290,38 @@
                 execute_non_query(query_del, True, "", "", "", "")
             End If
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            FormEmpLeave.load_sum()
+            infoCustom("Status changed.")
+        ElseIf report_mark_type = "100" Then
+            'Schedule PROPOSE with approval
+            If id_status_reportx = "3" Then
+                'update schedule 
+                Dim query_after As String = "SELECT sch.id_employee,IFNULL(s.id_shift,0) as id_shift,sch.date FROM tb_emp_assign_sch_det sch
+                                                LEFT JOIN tb_emp_shift s ON sch.shift_code=s.shift_code
+                                                WHERE id_emp_assign_sch='" & id_report & "' AND `type`='2'"
+                Dim data_after As DataTable = execute_query(query_after, -1, True, "", "", "", "")
+                For j As Integer = 0 To data_after.Rows.Count - 1
+                    Dim id_shift, id_empployee_varx, date_var As String
+                    id_shift = data_after(j)("id_shift").ToString
+                    id_empployee_varx = data_after(j)("id_employee").ToString
+                    date_var = Date.Parse(data_after(j)("date").ToString).ToString("yyy-MM-dd")
+
+                    If Not id_shift = "" Then
+                        If id_shift = "0" Then
+                            Dim query_shift As String = "CALL add_shift(" & id_empployee_varx & ",1,'" & date_var & "','" & date_var & "',2)"
+                            execute_non_query(query_shift, True, "", "", "", "")
+                        Else
+                            Dim query_shift As String = "CALL add_shift(" & id_empployee_varx & "," & id_shift & ",'" & date_var & "','" & date_var & "',1)"
+                            execute_non_query(query_shift, True, "", "", "", "")
+                        End If
+                    End If
+                Next
+
+                'complete 
+                id_status_reportx = "6"
+            End If
+            query = String.Format("UPDATE tb_emp_assign_sch SET id_report_status='{0}' WHERE id_assign_sch ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             infoCustom("Status changed.")
         End If

@@ -136,10 +136,11 @@
     End Sub
 
     Sub view_wo()
-        Dim query As String = String.Format("SELECT a.id_report_status, a.prod_order_wo_vat, a.prod_order_wo_number, b.id_comp_contact, DATE_FORMAT(a.prod_order_wo_date,'%Y-%m-%d') as prod_order_wo_datex, a.prod_order_wo_lead_time, a.prod_order_wo_top, a.id_currency, a.prod_order_wo_note, a.prod_order_wo_kurs FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price WHERE a.id_prod_order_wo = '{0}'", id_prod_order_wo)
+        Dim query As String = String.Format("SELECT a.id_prod_order,a.id_report_status, a.prod_order_wo_vat, a.prod_order_wo_number, b.id_comp_contact, DATE_FORMAT(a.prod_order_wo_date,'%Y-%m-%d') as prod_order_wo_datex, a.prod_order_wo_lead_time, a.prod_order_wo_top, a.id_currency, a.prod_order_wo_note, a.prod_order_wo_kurs FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price WHERE a.id_prod_order_wo = '{0}'", id_prod_order_wo)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         TEWONumber.Text = data.Rows(0)("prod_order_wo_number").ToString
+        id_prod_order = data.Rows(0)("id_prod_order").ToString
 
         view_currency(LECurrency)
         LECurrency.EditValue = Nothing
