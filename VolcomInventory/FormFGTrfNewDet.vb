@@ -349,7 +349,7 @@ Public Class FormFGTrfNewDet
 
     Sub view_barcode_list()
         If action = "ins" Then
-            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('0') AS id_fg_trf_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_fg_trf_det_counting "
+            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('') AS name, ('') AS size, ('0') AS id_fg_trf_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_fg_trf_det_counting "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBarcode.DataSource = data
             deleteRowsBc()
@@ -358,12 +358,15 @@ Public Class FormFGTrfNewDet
             id_fg_trf_det_counting_list.Clear()
             Dim query As String = ""
             query += "SELECT ('') AS no, CONCAT(c.product_full_code, a.fg_trf_det_counting) AS code, "
-            query += "(a.fg_trf_det_counting) AS counting_code, "
+            query += "c.product_display_name AS `name`, cod.display_name AS `size`, (a.fg_trf_det_counting) AS counting_code, "
             query += "a.id_fg_trf_det_counting, ('2') AS is_fix, "
             query += "a.id_pl_prod_order_rec_det_unique, b.id_product "
             query += "FROM tb_fg_trf_det_counting a "
             query += "INNER JOIN tb_fg_trf_det b ON a.id_fg_trf_det = b.id_fg_trf_det "
+            query += "JOIN tb_opt o "
             query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product "
+            query += "INNER JOIN tb_m_product_code cc ON cc.id_product = c.id_product "
+            query += "INNER JOIN tb_m_code_detail cod ON cod.id_code_detail = cc.id_code_detail AND cod.id_code = o.id_code_product_size "
             query += "WHERE b.id_fg_trf = '" + id_fg_trf + "' "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To (data.Rows.Count - 1)
@@ -416,9 +419,10 @@ Public Class FormFGTrfNewDet
         Dim query As String = ""
         query = "CALL view_stock_fg_unique_del('" + id_product_param + "')"
         Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
-        For k As Integer = 0 To (datax.Rows.Count - 1)
-            insertDt(datax.Rows(k)("id_product").ToString, datax.Rows(k)("id_pl_prod_order_rec_det_unique").ToString, datax.Rows(k)("product_code").ToString, datax.Rows(k)("product_counting_code").ToString, datax.Rows(k)("product_full_code").ToString, Decimal.Parse(datax.Rows(k)("bom_unit_price").ToString))
-        Next
+        dt = datax
+        'For k As Integer = 0 To (datax.Rows.Count - 1)
+        '    insertDt(datax.Rows(k)("id_product").ToString, datax.Rows(k)("id_pl_prod_order_rec_det_unique").ToString, datax.Rows(k)("product_code").ToString, datax.Rows(k)("product_counting_code").ToString, datax.Rows(k)("product_full_code").ToString, Decimal.Parse(datax.Rows(k)("bom_unit_price").ToString))
+        'Next
 
         'not unique 
         Dim query_c As ClassDesign = New ClassDesign()
@@ -522,6 +526,7 @@ Public Class FormFGTrfNewDet
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
         FormReportMark.report_mark_type = "57"
+        FormReportMark.is_disabled_set_stt = "1"
         FormReportMark.id_report = id_fg_trf
         FormReportMark.form_origin = Name
         FormReportMark.not_allow_complete = "1"
@@ -688,6 +693,8 @@ Public Class FormFGTrfNewDet
         Dim counting_code As String = ""
         Dim id_pl_prod_order_rec_det_unique As String = ""
         Dim id_product As String = ""
+        Dim product_name As String = ""
+        Dim size As String = ""
         Dim bom_unit_price As Decimal = 0.0
         Dim id_design_price As String = ""
         Dim design_price As Decimal = 0.0
@@ -701,6 +708,8 @@ Public Class FormFGTrfNewDet
             counting_code = dt_filter(0)("product_counting_code").ToString
             id_pl_prod_order_rec_det_unique = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
             id_product = dt_filter(0)("id_product").ToString
+            product_name = dt_filter(0)("name").ToString
+            size = dt_filter(0)("size").ToString
             bom_unit_price = Decimal.Parse(dt_filter(0)("bom_unit_price").ToString)
             is_old = dt_filter(0)("is_old_design").ToString
             code_found = True
@@ -741,6 +750,8 @@ Public Class FormFGTrfNewDet
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_fix", "2")
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "counting_code", counting_code)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
                     countQty(id_product)
                     newRowsBc()
@@ -779,6 +790,8 @@ Public Class FormFGTrfNewDet
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_fix", "2")
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "counting_code", counting_code)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
                     countQty(id_product)
                     newRowsBc()
@@ -1092,6 +1105,7 @@ Public Class FormFGTrfNewDet
                     End If
 
                     exportToBOF(False)
+                    FormFGTrfNew.viewSalesOrder()
                     FormFGTrfNew.viewFGTrf()
                     FormFGTrfNew.GVFGTrf.FocusedRowHandle = find_row(FormFGTrfNew.GVFGTrf, "id_fg_trf", id_fg_trf)
                     action = "upd"
@@ -1184,6 +1198,7 @@ Public Class FormFGTrfNewDet
                     End If
 
                     exportToBOF(False)
+                    FormFGTrfNew.viewSalesOrder()
                     FormFGTrfNew.viewFGTrf()
                     FormFGTrfNew.GVFGTrf.FocusedRowHandle = find_row(FormFGTrfNew.GVFGTrf, "id_fg_trf", id_fg_trf)
                     action = "upd"
