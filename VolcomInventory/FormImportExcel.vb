@@ -1263,7 +1263,7 @@ Public Class FormImportExcel
             command.Dispose()
 
             Dim data As New DataTable
-            Dim adapter As New MySqlDataAdapter("CALL view_sales_order_tempx(" + id_sales_order_gen + ")", connection)
+            Dim adapter As New MySqlDataAdapter("CALL view_sales_order_temp(" + id_sales_order_gen + ")", connection)
             adapter.SelectCommand.CommandTimeout = 300
             adapter.Fill(data)
             adapter.Dispose()
