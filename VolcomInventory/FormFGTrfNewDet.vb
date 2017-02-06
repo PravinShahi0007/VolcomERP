@@ -19,6 +19,7 @@ Public Class FormFGTrfNewDet
     Public id_type As String = "-1"
     Dim is_new_rec As Boolean = False
     Public id_wh_drawer_to As String = "-1"
+    Public is_only_for_alloc As String = "-1"
     Public id_pre As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_trf")
@@ -53,6 +54,9 @@ Public Class FormFGTrfNewDet
             dt.Columns.Add("is_old_design")
         Catch ex As Exception
         End Try
+
+        'hide diff status
+        GridColumnStatus.Visible = False
 
         If action = "ins" Then
             XTPOutboundScanNew.PageEnabled = True
@@ -101,6 +105,7 @@ Public Class FormFGTrfNewDet
             TEDrawer.Text = data.Rows(0)("wh_drawer").ToString
             TxtSalesOrder.Text = data.Rows(0)("sales_order_number").ToString
             id_sales_order = data.Rows(0)("id_sales_order").ToString
+            is_only_for_alloc = data.Rows(0)("is_only_for_alloc").ToString
 
             'detail2
             viewDetail()
@@ -293,6 +298,7 @@ Public Class FormFGTrfNewDet
             GVItemList.OptionsCustomization.AllowGroup = False
             BtnSave.Enabled = True
             BPickDrawer.Enabled = True
+            BtnVerify.Enabled = True
         Else
             BtnAdd.Enabled = False
             BtnEdit.Enabled = False
@@ -304,6 +310,7 @@ Public Class FormFGTrfNewDet
             GridColumnQtyLimit.Visible = False
             GridColumnQtyWH.Visible = False
             BPickDrawer.Enabled = False
+            BtnVerify.Enabled = False
         End If
 
         'ATTACH
@@ -329,6 +336,13 @@ Public Class FormFGTrfNewDet
             BtnXlsBOF.Visible = True
         Else
             BtnXlsBOF.Visible = False
+        End If
+
+        'mark visible
+        If is_only_for_alloc = "1" Then
+            BMark.Visible = False
+        Else
+            BMark.Visible = True
         End If
         TxtNumber.Focus()
     End Sub
@@ -538,6 +552,7 @@ Public Class FormFGTrfNewDet
         GVItemList.OptionsBehavior.Editable = False
         ControlBox = False
         TxtNumber.Enabled = False
+        BtnVerify.Enabled = False
         If action = "upd" Then
             BMark.Enabled = False
             BtnAttachment.Enabled = False
@@ -584,6 +599,7 @@ Public Class FormFGTrfNewDet
         TxtNumber.Enabled = True
         TxtDeleteScan.Visible = False
         LabelDelScan.Visible = False
+        BtnVerify.Enabled = True
         If action = "upd" Then
             BMark.Enabled = True
             BtnAttachment.Enabled = True
@@ -942,13 +958,8 @@ Public Class FormFGTrfNewDet
         check_but()
     End Sub
 
-    Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
-        makeSafeGV(GVBarcode)
-        makeSafeGV(GVItemList)
-        Cursor = Cursors.WaitCursor
-        ValidateChildren()
-
-        'cek qty limit SO di DB
+    Function verifyTrans() As Boolean
+        GridColumnStatus.Visible = True
         Dim cond_check_data As Boolean = True
         Dim dt_cek As DataTable
         If action = "ins" Then
@@ -979,7 +990,20 @@ Public Class FormFGTrfNewDet
                 End If
             End If
         Next
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
+        Return cond_check_data
+    End Function
 
+
+    Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
+        makeSafeGV(GVBarcode)
+        makeSafeGV(GVItemList)
+        Cursor = Cursors.WaitCursor
+        ValidateChildren()
+
+        'cek qty limit SO di DB
+        Dim cond_check_data As Boolean = verifyTrans()
 
         If Not formIsValidInGroup(EPForm, GroupGeneralHeader) Then
             errorInput()
@@ -1495,5 +1519,12 @@ Public Class FormFGTrfNewDet
 
     Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
         exportToBOF(True)
+    End Sub
+
+    Private Sub BtnVerify_Click(sender As Object, e As EventArgs) Handles BtnVerify.Click
+        Cursor = Cursors.WaitCursor
+        'cek qty limit SO di DB
+        verifyTrans()
+        Cursor = Cursors.Default
     End Sub
 End Class

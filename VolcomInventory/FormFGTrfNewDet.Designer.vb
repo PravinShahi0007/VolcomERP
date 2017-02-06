@@ -24,6 +24,7 @@ Partial Class FormFGTrfNewDet
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnTest = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
@@ -110,7 +111,7 @@ Partial Class FormFGTrfNewDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
         Me.BScan = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnVerify = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,6 +190,7 @@ Partial Class FormFGTrfNewDet
         Me.PanelControl3.Controls.Add(Me.BtnTest)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.DDBPrint)
+        Me.PanelControl3.Controls.Add(Me.BtnVerify)
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -199,12 +201,25 @@ Partial Class FormFGTrfNewDet
         Me.PanelControl3.Size = New System.Drawing.Size(951, 38)
         Me.PanelControl3.TabIndex = 187
         '
+        'BtnXlsBOF
+        '
+        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
+        Me.BtnXlsBOF.ImageIndex = 11
+        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(422, 2)
+        Me.BtnXlsBOF.Name = "BtnXlsBOF"
+        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
+        Me.BtnXlsBOF.TabIndex = 25
+        Me.BtnXlsBOF.Text = "Generate XLS"
+        Me.BtnXlsBOF.Visible = False
+        '
         'BtnAttachment
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 13
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(620, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(538, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(100, 34)
         Me.BtnAttachment.TabIndex = 11
@@ -238,7 +253,7 @@ Partial Class FormFGTrfNewDet
         Me.DDBPrint.DropDownControl = Me.PUDD
         Me.DDBPrint.ImageIndex = 6
         Me.DDBPrint.ImageList = Me.LargeImageCollection
-        Me.DDBPrint.Location = New System.Drawing.Point(720, 2)
+        Me.DDBPrint.Location = New System.Drawing.Point(638, 2)
         Me.DDBPrint.Name = "DDBPrint"
         Me.DDBPrint.Size = New System.Drawing.Size(79, 34)
         Me.DDBPrint.TabIndex = 10
@@ -1106,18 +1121,17 @@ Partial Class FormFGTrfNewDet
         Me.BScan.TabIndex = 7
         Me.BScan.Text = "Start Scan"
         '
-        'BtnXlsBOF
+        'BtnVerify
         '
-        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
-        Me.BtnXlsBOF.ImageIndex = 11
-        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(504, 2)
-        Me.BtnXlsBOF.Name = "BtnXlsBOF"
-        Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 34)
-        Me.BtnXlsBOF.TabIndex = 25
-        Me.BtnXlsBOF.Text = "Generate XLS"
-        Me.BtnXlsBOF.Visible = False
+        Me.BtnVerify.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnVerify.Image = CType(resources.GetObject("BtnVerify.Image"), System.Drawing.Image)
+        Me.BtnVerify.ImageIndex = 5
+        Me.BtnVerify.ImageList = Me.LargeImageCollection
+        Me.BtnVerify.Location = New System.Drawing.Point(717, 2)
+        Me.BtnVerify.Name = "BtnVerify"
+        Me.BtnVerify.Size = New System.Drawing.Size(82, 34)
+        Me.BtnVerify.TabIndex = 26
+        Me.BtnVerify.Text = "Verify"
         '
         'FormFGTrfNewDet
         '
@@ -1281,4 +1295,5 @@ Partial Class FormFGTrfNewDet
     Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnVerify As DevExpress.XtraEditors.SimpleButton
 End Class
