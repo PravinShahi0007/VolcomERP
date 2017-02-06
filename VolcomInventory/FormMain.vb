@@ -1485,6 +1485,10 @@ Public Class FormMain
             'Leave
             FormEmpChScheduleDet.id_ch_sch = "-1"
             FormEmpChScheduleDet.ShowDialog()
+        ElseIf formName = "FormEmpAttnAssign" Then
+            'assign schedule with approval
+            FormEmpAttnAssignDet.id_emp_assign_sch = "-1"
+            FormEmpAttnAssignDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2337,6 +2341,10 @@ Public Class FormMain
                 'Leave
                 FormEmpChScheduleDet.id_ch_sch = FormEmpChSchedule.BGVChangeSch.GetFocusedRowCellValue("id_emp_ch_schedule").ToString
                 FormEmpChScheduleDet.ShowDialog()
+            ElseIf formName = "FormEmpAttnAssign" Then
+                'Propose schedule with approval
+                FormEmpAttnAssignDet.id_emp_assign_sch = FormEmpAttnAssign.GVAttnAssign.GetFocusedRowCellValue("id_assign_sch").ToString
+                FormEmpAttnAssignDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -10256,6 +10264,19 @@ Public Class FormMain
             FormEmpChSchedule.Show()
             FormEmpChSchedule.WindowState = FormWindowState.Maximized
             FormEmpChSchedule.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSchedulePropose_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSchedulePropose.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpAttnAssign.MdiParent = Me
+            FormEmpAttnAssign.Show()
+            FormEmpAttnAssign.WindowState = FormWindowState.Maximized
+            FormEmpAttnAssign.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
