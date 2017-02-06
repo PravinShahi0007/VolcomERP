@@ -1805,6 +1805,30 @@
             If id_status_reportx = "5" Then
                 Dim cancel As New ClassSalesOrder()
                 cancel.cancelReservedStock(id_report)
+            ElseIf id_status_reportx = "6" Then
+                'created transfer
+                Dim qv As String = "SELECT so.id_warehouse_contact_to, so.id_store_contact_to, so.id_sales_order, c.id_drawer_def 
+                FROM tb_sales_order so 
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = so.id_store_contact_to
+                INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+                WHERE so.id_sales_order=" + id_report + " AND so.id_so_status=5 AND c.is_only_for_alloc=1 "
+                Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
+                If dtv.Rows.Count > 0 Then
+                    For m As Integer = 0 To dtv.Rows.Count - 1
+                        'main
+                        Dim qm As String = "INSERT INTO tb_fg_trf(id_comp_contact_from, id_comp_contact_to, id_sales_order, fg_trf_number, fg_trf_date, fg_trf_date_rec, fg_trf_note, id_report_status, id_report_status_rec, id_wh_drawer, last_update, last_update_by) 
+                        VALUES('" + dtv.Rows(m)("id_warehouse_contact_to").ToString + "', '" + dtv.Rows(m)("id_store_contact_to").ToString + "', '" + dtv.Rows(m)("id_sales_order").ToString + "', '" + header_number_sales("15") + "', NOW(), NOW(), '', '3', '3', '" + dtv.Rows(m)("id_drawer_def").ToString + "', NOW(), " + id_user + "); SELECT LAST_INSERT_ID(); "
+                        Dim id_so As String = execute_query(qm, 0, True, "", "", "", "")
+                        increase_inc_sales("15")
+
+                        'detail
+                        Dim qd As String = "INSERT INTO tb_fg_trf_det(id_fg_trf, id_product, id_sales_order_det, fg_trf_det_qty, fg_trf_det_qty_rec, fg_trf_det_qty_stored, fg_trf_det_note)
+                        SELECT '" + id_so + "', sd.id_product, sd.id_sales_order_det, sd.sales_order_det_qty, sd.sales_order_det_qty, sd.sales_order_det_qty,'' 
+                        FROM tb_sales_order_det sd 
+                        WHERE sd.id_sales_order=" + dtv.Rows(m)("id_sales_order").ToString + " "
+                        execute_non_query(qd, -1, True, "", "", "")
+                    Next
+                End If
             End If
 
             query = String.Format("UPDATE tb_sales_order SET id_report_status='{0}' WHERE id_sales_order ='{1}'", id_status_reportx, id_report)
