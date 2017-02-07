@@ -340,6 +340,9 @@
         ElseIf report_mark_type = "100" Then
             'Schedule Propose With Approval
             query = String.Format("SELECT id_report_status, assign_sch_number as report_number FROM tb_emp_assign_sch WHERE id_assign_sch = '{0}'", id_report)
+        ElseIf report_mark_type = "101" Then
+            'Air Ways Bill
+            query = String.Format("SELECT id_report_status, id_awbill as report_number FROM tb_wh_awbill WHERE id_awbill = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3322,6 +3325,15 @@
                 id_status_reportx = "6"
             End If
             query = String.Format("UPDATE tb_emp_assign_sch SET id_report_status='{0}' WHERE id_assign_sch ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+        ElseIf report_mark_type = "101" Then
+            'Air Ways Bill
+            If id_status_reportx = "3" Then
+                'complete 
+                id_status_reportx = "6"
+            End If
+            query = String.Format("UPDATE tb_wh_awbill SET id_report_status='{0}' WHERE id_awbill ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             infoCustom("Status changed.")
         End If
