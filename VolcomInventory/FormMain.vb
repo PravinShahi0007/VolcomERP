@@ -10187,6 +10187,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormEmpLeave.is_propose = "-1"
+            FormEmpLeave.is_hrd = "1"
             FormEmpLeave.MdiParent = Me
             FormEmpLeave.Show()
             FormEmpLeave.WindowState = FormWindowState.Maximized
