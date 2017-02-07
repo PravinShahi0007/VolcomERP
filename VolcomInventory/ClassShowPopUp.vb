@@ -397,6 +397,11 @@
             FormEmpAttnAssignDet.id_emp_assign_sch = id_report
             FormEmpAttnAssignDet.is_view = "1"
             FormEmpAttnAssignDet.ShowDialog()
+        ElseIf report_mark_type = "101" Then
+            'air ways bill
+            FormWHAWBillDet.id_awb = id_report
+            FormWHAWBillDet.is_view = "1"
+            FormWHAWBillDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -945,6 +950,12 @@
             field_id = "id_assign_sch"
             field_number = "assign_sch_number"
             field_date = "assign_sch_date"
+        ElseIf report_mark_type = "101" Then
+            'Air Ways Bill
+            table_name = "tb_wh_awbill"
+            field_id = "id_awbill"
+            field_number = "id_awbill"
+            field_date = "awbill_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
