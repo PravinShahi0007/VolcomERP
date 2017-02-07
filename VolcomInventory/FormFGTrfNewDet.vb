@@ -1104,12 +1104,12 @@ Public Class FormFGTrfNewDet
                         execute_non_query(query_counting, True, "", "", "", "")
                     End If
 
-                    exportToBOF(False)
                     FormFGTrfNew.viewSalesOrder()
                     FormFGTrfNew.viewFGTrf()
                     FormFGTrfNew.GVFGTrf.FocusedRowHandle = find_row(FormFGTrfNew.GVFGTrf, "id_fg_trf", id_fg_trf)
                     action = "upd"
                     actionLoad()
+                    exportToBOF(False)
                     infoCustom("Transfer : " + fg_trf_number + " was created successfully.")
                 ElseIf action = "upd" Then
                     'update main table
@@ -1197,12 +1197,12 @@ Public Class FormFGTrfNewDet
                         execute_non_query(query_counting, True, "", "", "", "")
                     End If
 
-                    exportToBOF(False)
                     FormFGTrfNew.viewSalesOrder()
                     FormFGTrfNew.viewFGTrf()
                     FormFGTrfNew.GVFGTrf.FocusedRowHandle = find_row(FormFGTrfNew.GVFGTrf, "id_fg_trf", id_fg_trf)
                     action = "upd"
                     actionLoad()
+                    exportToBOF(False)
                     infoCustom("Transfer : " + fg_trf_number + " was edited successfully.")
                 End If
                 Cursor = Cursors.Default
@@ -1425,12 +1425,18 @@ Public Class FormFGTrfNewDet
         If bof_column = "1" Then
             Cursor = Cursors.WaitCursor
 
+            'fill remark
+            For r As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                GVItemList.SetRowCellValue(r, "fg_trf_det_note", TxtNumber.Text)
+            Next
+
             'hide column
             For c As Integer = 0 To GVItemList.Columns.Count - 1
                 GVItemList.Columns(c).Visible = False
             Next
             GridColumnCode.VisibleIndex = 0
             GridColumnQty.VisibleIndex = 1
+            GridColumnRemark.VisibleIndex = 2
             GVItemList.OptionsPrint.PrintFooter = False
             GVItemList.OptionsPrint.PrintHeader = False
 
@@ -1454,6 +1460,11 @@ Public Class FormFGTrfNewDet
                 stopCustom("Please close your excel file first then try again later")
             End Try
 
+            'fill remark
+            For r As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                GVItemList.SetRowCellValue(r, "fg_trf_det_note", "")
+            Next
+
             'show column
             GridColumnNo.VisibleIndex = 0
             GridColumnCode.VisibleIndex = 1
@@ -1463,6 +1474,7 @@ Public Class FormFGTrfNewDet
             GridColumnQty.VisibleIndex = 5
             GridColumnRemark.VisibleIndex = 6
             GridColumnStatus.VisibleIndex = 7
+            GridColumnStatus.Visible = False
             Cursor = Cursors.Default
         End If
     End Sub
@@ -1499,8 +1511,10 @@ Public Class FormFGTrfNewDet
                 colIndex = colIndex + 1
                 If j = 0 Then
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
-                Else
+                ElseIf j = 1 Then
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "fg_trf_det_qty")
+                Else
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "fg_trf_det_note")
                 End If
             Next
         Next
