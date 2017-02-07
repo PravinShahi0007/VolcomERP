@@ -52,6 +52,8 @@
 
             TEBeratTerpakai.EditValue = data.Rows(0)("weight_calc").ToString
 
+            TEMarkDifferent.Text = data.Rows(0)("mark_different").ToString
+
             rate_table()
 
             SLECargo.EditValue = data.Rows(0)("id_cargo").ToString
@@ -502,7 +504,11 @@
         If id_awb_type = "1" Then 'outbound
             If (e.KeyData = Keys.Enter) Then
                 e.SuppressKeyPress = True
-                CEPaid.Focus()
+                If TEMarkDifferent.Visible = True Then
+                    TEMarkDifferent.Focus()
+                Else
+                    CEPaid.Focus()
+                End If
             End If
         Else
             If (e.KeyData = Keys.Enter) Then
@@ -565,5 +571,20 @@
         FormReportMark.report_mark_type = "101"
         FormReportMark.is_view = is_view
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub TEMarkDifferent_KeyDown(sender As Object, e As KeyEventArgs) Handles TEMarkDifferent.KeyDown
+        If id_awb_type = "1" Then 'outbound
+            If (e.KeyData = Keys.Enter) Then
+                e.SuppressKeyPress = True
+                CEPaid.Focus()
+            End If
+        Else
+            If (e.KeyData = Keys.Enter) Then
+                e.SuppressKeyPress = True
+                XTCDetail.SelectedTabPageIndex = 1
+                TEInvNo.Focus()
+            End If
+        End If
     End Sub
 End Class
