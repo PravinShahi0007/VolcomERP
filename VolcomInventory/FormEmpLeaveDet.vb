@@ -330,8 +330,8 @@
                 End If
 
                 If is_hrd = "1" Then
-                    submit_who_prepared("101", id_emp_leave, id_user)
-                    query = "UPDATE tb_emp_leave SET report_mark_type='101' WHERE id_emp_leave='" & id_emp_leave & "'"
+                    submit_who_prepared("102", id_emp_leave, id_user)
+                    query = "UPDATE tb_emp_leave SET report_mark_type='102' WHERE id_emp_leave='" & id_emp_leave & "'"
                     execute_non_query(query, True, "", "", "", "")
                 Else
                     'filter by level
