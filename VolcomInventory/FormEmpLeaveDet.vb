@@ -12,6 +12,10 @@
     '
     Public is_hrd As String = "-1"
     Private Sub FormEmpLeaveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
+    End Sub
+
+    Sub load_form()
         '
         is_hrd = FormEmpLeave.is_hrd
         '
@@ -45,6 +49,9 @@
             LELeaveType.Enabled = False
             BSave.Visible = False
             BCancel.Text = "Close"
+            '
+            BMark.Visible = True
+            BPrint.Visible = True
             '
             Dim query As String = "SELECT empl.*,emp.*,empx.employee_code as change_code,empx.employee_name as change_name FROM tb_emp_leave empl
                                     INNER JOIN tb_m_employee emp ON emp.id_employee=empl.id_emp
@@ -330,8 +337,8 @@
                 End If
 
                 If is_hrd = "1" Then
-                    submit_who_prepared("101", id_emp_leave, id_user)
-                    query = "UPDATE tb_emp_leave SET report_mark_type='101' WHERE id_emp_leave='" & id_emp_leave & "'"
+                    submit_who_prepared("102", id_emp_leave, id_user)
+                    query = "UPDATE tb_emp_leave SET report_mark_type='102' WHERE id_emp_leave='" & id_emp_leave & "'"
                     execute_non_query(query, True, "", "", "", "")
                 Else
                     'filter by level
@@ -369,7 +376,12 @@
                 FormEmpLeave.load_sum()
                 FormEmpLeave.GVLeave.FocusedRowHandle = find_row(FormEmpLeave.GVLeave, "id_emp_leave", id_emp_leave)
                 '
-                Close()
+                '
+                If is_hrd = "1" Then
+                    load_form()
+                Else
+                    Close()
+                End If
             End If
         End If
     End Sub
