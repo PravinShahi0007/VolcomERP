@@ -3,6 +3,7 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
     Public view_one_dept As Boolean = False
+    Public view_store As Boolean = False
 
     Private Sub BViewSchedule_Click(sender As Object, e As EventArgs) Handles BViewSchedule.Click
         Cursor = Cursors.WaitCursor
@@ -92,11 +93,13 @@
 
     Sub viewDept()
         Dim query As String = ""
-        If Not view_one_dept Then
+        If view_one_dept Then
+            query += "(SELECT id_departement,departement FROM tb_m_departement a WHERE id_departement='" + id_departement_user + "' ORDER BY a.departement ASC) "
+        ElseIf view_store Then
+            query += "(SELECT id_departement,departement FROM tb_m_departement a WHERE is_store='1' ORDER BY a.departement ASC) "
+        Else
             query += "SELECT 0 as id_departement, 'All departement' as departement UNION  "
             query += "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
-        Else
-            query += "(SELECT id_departement,departement FROM tb_m_departement a WHERE id_departement='" + id_departement_user + "' ORDER BY a.departement ASC) "
         End If
         viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
         viewLookupQuery(LEDept, query, 0, "departement", "id_departement")
