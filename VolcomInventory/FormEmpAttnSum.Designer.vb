@@ -113,6 +113,8 @@ Partial Class FormEmpAttnSum
         Me.GridColumn66 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn67 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPScheduleTable = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCScheduleTable = New DevExpress.XtraGrid.GridControl()
+        Me.GVScheduleTable = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
@@ -123,8 +125,6 @@ Partial Class FormEmpAttnSum
         Me.DEStartSum = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BViewSum = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCScheduleTable = New DevExpress.XtraGrid.GridControl()
-        Me.GVScheduleTable = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.XTCReportAttendance, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReportAttendance.SuspendLayout()
         Me.XTPMonthly.SuspendLayout()
@@ -138,6 +138,8 @@ Partial Class FormEmpAttnSum
         CType(Me.GCListSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPScheduleTable.SuspendLayout()
+        CType(Me.GCScheduleTable, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVScheduleTable, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -146,8 +148,6 @@ Partial Class FormEmpAttnSum
         CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStartSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCScheduleTable, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVScheduleTable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCReportAttendance
@@ -939,6 +939,23 @@ Partial Class FormEmpAttnSum
         Me.XTPScheduleTable.Size = New System.Drawing.Size(1000, 262)
         Me.XTPScheduleTable.Text = "Schedule Table"
         '
+        'GCScheduleTable
+        '
+        Me.GCScheduleTable.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCScheduleTable.Location = New System.Drawing.Point(0, 0)
+        Me.GCScheduleTable.MainView = Me.GVScheduleTable
+        Me.GCScheduleTable.Name = "GCScheduleTable"
+        Me.GCScheduleTable.Size = New System.Drawing.Size(1000, 262)
+        Me.GCScheduleTable.TabIndex = 4
+        Me.GCScheduleTable.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScheduleTable})
+        '
+        'GVScheduleTable
+        '
+        Me.GVScheduleTable.GridControl = Me.GCScheduleTable
+        Me.GVScheduleTable.Name = "GVScheduleTable"
+        Me.GVScheduleTable.OptionsView.ColumnAutoWidth = False
+        Me.GVScheduleTable.OptionsView.ShowGroupPanel = False
+        '
         'LargeImageCollection
         '
         Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
@@ -1057,23 +1074,6 @@ Partial Class FormEmpAttnSum
         Me.BViewSum.TabIndex = 1
         Me.BViewSum.Text = "view"
         '
-        'GCScheduleTable
-        '
-        Me.GCScheduleTable.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCScheduleTable.Location = New System.Drawing.Point(0, 0)
-        Me.GCScheduleTable.MainView = Me.GVScheduleTable
-        Me.GCScheduleTable.Name = "GCScheduleTable"
-        Me.GCScheduleTable.Size = New System.Drawing.Size(1000, 262)
-        Me.GCScheduleTable.TabIndex = 4
-        Me.GCScheduleTable.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScheduleTable})
-        '
-        'GVScheduleTable
-        '
-        Me.GVScheduleTable.GridControl = Me.GCScheduleTable
-        Me.GVScheduleTable.Name = "GVScheduleTable"
-        Me.GVScheduleTable.OptionsView.ColumnAutoWidth = False
-        Me.GVScheduleTable.OptionsView.ShowGroupPanel = False
-        '
         'FormEmpAttnSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1099,6 +1099,8 @@ Partial Class FormEmpAttnSum
         CType(Me.GCListSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListSchedule, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPScheduleTable.ResumeLayout(False)
+        CType(Me.GCScheduleTable, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVScheduleTable, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -1108,8 +1110,6 @@ Partial Class FormEmpAttnSum
         CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStartSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCScheduleTable, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVScheduleTable, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
