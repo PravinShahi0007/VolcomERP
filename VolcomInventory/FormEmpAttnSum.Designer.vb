@@ -936,6 +936,7 @@ Partial Class FormEmpAttnSum
         '
         Me.XTPScheduleTable.Controls.Add(Me.GCScheduleTable)
         Me.XTPScheduleTable.Name = "XTPScheduleTable"
+        Me.XTPScheduleTable.PageVisible = False
         Me.XTPScheduleTable.Size = New System.Drawing.Size(1000, 262)
         Me.XTPScheduleTable.Text = "Schedule Table"
         '
