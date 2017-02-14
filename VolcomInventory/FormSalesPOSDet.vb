@@ -621,9 +621,9 @@
                 FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + TxtCodeCompFrom.Text + "'"
                 FormPopUpContact.ShowDialog()
             Else
-                If check_acc(data.Rows(0)("id_comp").ToString) Then
-                    SPDiscount.EditValue = data.Rows(0)("comp_commission")
-                    id_comp = data.Rows(0)("id_comp").ToString
+                'If check_acc(data.Rows(0)("id_comp").ToString) Then
+                SPDiscount.EditValue = data.Rows(0)("comp_commission")
+                id_comp = data.Rows(0)("id_comp").ToString
                     id_store_contact_from = data.Rows(0)("id_comp_contact").ToString
                     TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
                     TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
@@ -640,10 +640,10 @@
                     check_do()
                     '
                     LETypeSO.Focus()
-                Else
-                    stopCustom("Store not registered for auto posting journal.")
+                    'Else
+                    '    stopCustom("Store not registered for auto posting journal.")
+                    'End If
                 End If
-            End If
         End If
     End Sub
     Function check_acc(ByVal id_cc As String)
