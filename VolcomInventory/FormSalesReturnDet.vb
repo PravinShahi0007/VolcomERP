@@ -59,6 +59,9 @@ Public Class FormSalesReturnDet
         Catch ex As Exception
         End Try
 
+        'hide diff status
+        GridColumnStt.Visible = False
+
         If action = "ins" Then
             XTPStorage.PageEnabled = False
             TxtSalesReturnNumber.Text = ""
@@ -377,6 +380,7 @@ Public Class FormSalesReturnDet
             BtnBrowseContactTo.Enabled = False
             BPickDrawer.Enabled = False
         End If
+        BtnVerify.Enabled = False
 
         'attachment
         If check_attach_report_status(id_report_status, "46", id_sales_return) Then
@@ -667,6 +671,39 @@ Public Class FormSalesReturnDet
         EPForm.SetIconPadding(TxtNameCompTo, 30)
     End Sub
 
+    Function verifyTrans() As Boolean
+        GridColumnStt.Visible = True
+        Dim cond_list As Boolean = True
+        Dim query_cek_stok As String = "CALL view_stock_fg('" + id_store + "', '" + id_wh_locator_store + "', '" + id_wh_rack_store + "', '" + id_wh_drawer_store + "', '0', 4, '9999-01-01') "
+        Dim dt_cek As DataTable = execute_query(query_cek_stok, -1, True, "", "", "", "")
+
+        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+            Dim id_product_cek As String = GVItemList.GetRowCellValue(i, "id_product").ToString
+            Dim name_cek As String = GVItemList.GetRowCellValue(i, "name").ToString
+            Dim size_cek As String = GVItemList.GetRowCellValue(i, "size").ToString
+            Dim qty_cek As Integer = GVItemList.GetRowCellValue(i, "sales_return_det_qty")
+            Dim qty_soh As Integer = 0
+            Dim dt_filter_cek As DataRow() = dt_cek.Select("[id_product]='" + id_product_cek + "' ")
+            If dt_filter_cek.Length > 0 Then
+                qty_soh = dt_filter_cek(0)("qty_all_product")
+            Else
+                qty_soh = 0
+            End If
+
+            If qty_cek > qty_soh Then
+                Dim diff As Integer = qty_cek - qty_soh
+                GVItemList.SetRowCellValue(i, "status", "+" + diff.ToString)
+                cond_list = False
+            ElseIf qty_cek < qty_soh
+                Dim diff As Integer = qty_cek - qty_soh
+                GVItemList.SetRowCellValue(i, "status", diff.ToString)
+            Else
+                GVItemList.SetRowCellValue(i, "status", "0")
+            End If
+        Next
+        Return cond_list
+    End Function
+
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
         ValidateChildren()
         makeSafeGV(GVItemList)
@@ -676,28 +713,7 @@ Public Class FormSalesReturnDet
         Dim error_list As String = ""
         Dim cond_list As Boolean = True
         If action = "ins" Then
-            For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
-                Dim id_product_cek As String = GVItemList.GetRowCellValue(i, "id_product").ToString
-                Dim name_cek As String = GVItemList.GetRowCellValue(i, "name").ToString
-                Dim size_cek As String = GVItemList.GetRowCellValue(i, "size").ToString
-                Dim qty_cek As Decimal = Decimal.Parse(GVItemList.GetRowCellValue(i, "sales_return_det_qty").ToString)
-                If qty_cek > 0.0 Then
-                    Dim query_cek_stok As String = "CALL view_stock_fg('" + id_store + "', '" + id_wh_locator_store + "', '" + id_wh_rack_store + "', '" + id_wh_drawer_store + "', '" + id_product_cek + "', 4, '9999-01-01') "
-                    Dim dt_filter_cek As DataTable = execute_query(query_cek_stok, -1, True, "", "", "", "")
-                    Dim qty_soh As Decimal = 0
-                    If dt_filter_cek.Rows.Count > 0 Then
-                        qty_soh = dt_filter_cek.Rows(0)("qty_all_product")
-                    Else
-                        qty_soh = 0
-                    End If
-
-                    If qty_cek > qty_soh Then
-                        error_list = name_cek + "/Size : " + size_cek + ", cannot exceed " + qty_soh.ToString("N0")
-                        cond_list = False
-                        Exit For
-                    End If
-                End If
-            Next
+            cond_list = verifyTrans()
         End If
 
 
@@ -706,7 +722,7 @@ Public Class FormSalesReturnDet
         ElseIf GVItemList.RowCount = 0 Or GVBarcode.RowCount = 0 Then
             errorCustom("Return item and scanned item data can't blank")
         ElseIf Not cond_list Then
-            errorCustom(error_list.ToString)
+            stopCustom("Please see different in column status.")
         Else
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -792,12 +808,12 @@ Public Class FormSalesReturnDet
                     Dim stc_rev As ClassSalesReturn = New ClassSalesReturn()
                     stc_rev.reservedStock(id_sales_return, "46")
 
-                    exportToBOF(False)
                     FormSalesReturn.viewSalesReturn()
                     FormSalesReturn.viewSalesReturnOrder()
                     FormSalesReturn.GVSalesReturn.FocusedRowHandle = find_row(FormSalesReturn.GVSalesReturn, "id_sales_return", id_sales_return)
                     action = "upd"
                     actionLoad()
+                    exportToBOF(False)
                     infoCustom("Return #" + sales_return_number + " was created successfully ")
                 ElseIf action = "upd" Then
                     'update main table
@@ -906,6 +922,7 @@ Public Class FormSalesReturnDet
                     FormSalesReturn.GVSalesReturn.FocusedRowHandle = find_row(FormSalesReturn.GVSalesReturn, "id_sales_return", id_sales_return)
                     action = "upd"
                     actionLoad()
+                    exportToBOF(False)
                     infoCustom("Return #" + sales_return_number + " was edited successfully ")
                 End If
                 Cursor = Cursors.Default
@@ -916,6 +933,7 @@ Public Class FormSalesReturnDet
     Sub disableControl()
         MENote.Enabled = False
         BtnSave.Enabled = False
+        BtnVerify.Enabled = False
         BScan.Enabled = False
         BStop.Enabled = True
         BDelete.Enabled = False
@@ -952,6 +970,7 @@ Public Class FormSalesReturnDet
 
         MENote.Enabled = True
         BtnSave.Enabled = True
+        BtnVerify.Enabled = True
         BScan.Enabled = True
         BStop.Enabled = False
         BDelete.Enabled = True
@@ -1457,12 +1476,18 @@ Public Class FormSalesReturnDet
         If bof_column = "1" Then
             Cursor = Cursors.WaitCursor
 
+            'fill remark
+            For r As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                GVItemList.SetRowCellValue(r, "sales_return_det_note", TxtSalesReturnNumber.Text)
+            Next
+
             'hide column
             For c As Integer = 0 To GVItemList.Columns.Count - 1
                 GVItemList.Columns(c).Visible = False
             Next
             GridColumnCode.VisibleIndex = 0
             GridColumnQty.VisibleIndex = 1
+            GridColumnRemark.VisibleIndex = 2
             GVItemList.OptionsPrint.PrintFooter = False
             GVItemList.OptionsPrint.PrintHeader = False
 
@@ -1486,6 +1511,11 @@ Public Class FormSalesReturnDet
                 stopCustom("Please close your excel file first then try again later")
             End Try
 
+            'clear remark
+            For r As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                GVItemList.SetRowCellValue(r, "sales_return_det_note", "")
+            Next
+
             'show column
             GridColumnNo.VisibleIndex = 0
             GridColumnCode.VisibleIndex = 1
@@ -1495,6 +1525,8 @@ Public Class FormSalesReturnDet
             GridColumnPrice.VisibleIndex = 5
             GridColumnAmount.VisibleIndex = 6
             GridColumnRemark.VisibleIndex = 7
+            GridColumnStt.VisibleIndex = 8
+            GridColumnStt.Visible = False
             Cursor = Cursors.Default
         End If
     End Sub
@@ -1531,8 +1563,10 @@ Public Class FormSalesReturnDet
                 colIndex = colIndex + 1
                 If j = 0 Then
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
-                Else
+                ElseIf j = 1 Then
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "sales_return_det_qty")
+                Else
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "sales_return_det_note")
                 End If
             Next
         Next
@@ -1566,5 +1600,34 @@ Public Class FormSalesReturnDet
 
     Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
         exportToBOF(True)
+    End Sub
+
+    Private Sub GVItemList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVItemList.RowCellStyle
+        If e.RowHandle >= 0 Then
+            If (e.Column.FieldName = "status") Then
+                Dim val As Integer = 0
+                Try
+                    val = CType(sender.GetRowCellValue(e.RowHandle, sender.Columns("status")), Integer)
+                Catch ex As Exception
+
+                End Try
+                If val > 0 Then
+                    e.Appearance.BackColor = Color.Salmon
+                    e.Appearance.BackColor2 = Color.Salmon
+                ElseIf val < 0 Then
+                    e.Appearance.BackColor = Color.Yellow
+                    e.Appearance.BackColor2 = Color.Yellow
+                Else
+                    e.Appearance.BackColor = Color.Green
+                    e.Appearance.BackColor2 = Color.Green
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnVerify_Click(sender As Object, e As EventArgs) Handles BtnVerify.Click
+        Cursor = Cursors.WaitCursor
+        verifyTrans()
+        Cursor = Cursors.Default
     End Sub
 End Class
