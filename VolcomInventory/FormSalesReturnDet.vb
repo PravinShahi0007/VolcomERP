@@ -255,7 +255,7 @@ Public Class FormSalesReturnDet
 
     Sub view_barcode_list()
         If action = "ins" Then
-            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('0') AS id_sales_return_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_sales_return_det_counting, CAST('0' AS DECIMAL(13,2)) AS bom_unit_price, CAST('0' AS DECIMAL(13,2)) AS design_price, ('0') AS id_design_price "
+            Dim query As String = "SELECT ('0') AS no, ('') AS code, ('') AS name, ('') AS size, ('0') AS id_sales_return_det, ('0') AS id_pl_prod_order_rec_det_unique, ('0') AS id_product,('1') AS is_fix, ('') AS counting_code, ('0') AS id_sales_return_det_counting, CAST('0' AS DECIMAL(13,2)) AS bom_unit_price, CAST('0' AS DECIMAL(13,2)) AS design_price, ('0') AS id_design_price "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCBarcode.DataSource = data
             deleteRowsBc()
@@ -263,13 +263,16 @@ Public Class FormSalesReturnDet
         ElseIf action = "upd" Then
             Dim query As String = ""
             query += "SELECT ('') AS no, CONCAT(c.product_full_code, a.sales_return_det_counting) AS code, (c.product_full_code) AS product_code, "
-            query += "(a.sales_return_det_counting) AS counting_code, "
+            query += "c.product_display_name AS `name`, cod.display_name AS `size`, (a.sales_return_det_counting) AS counting_code, "
             query += "a.id_sales_return_det_counting, ('2') AS is_fix, "
             query += "IFNULL(a.id_pl_prod_order_rec_det_unique,'0') AS `id_pl_prod_order_rec_det_unique`, b.id_product, "
             query += "d.bom_unit_price, b.id_design_price, b.design_price "
             query += "FROM tb_sales_return_det_counting a "
             query += "INNER JOIN tb_sales_return_det b ON a.id_sales_return_det = b.id_sales_return_det "
+            query += "JOIN tb_opt o "
             query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product "
+            query += "INNER JOIN tb_m_product_code cc ON cc.id_product = c.id_product "
+            query += "INNER JOIN tb_m_code_detail cod ON cod.id_code_detail = cc.id_code_detail AND cod.id_code = o.id_code_product_size "
             query += "LEFT JOIN tb_pl_prod_order_rec_det_counting d ON d.id_pl_prod_order_rec_det_unique = a.id_pl_prod_order_rec_det_unique "
             query += "WHERE b.id_sales_return = '" + id_sales_return + "' "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -1068,6 +1071,8 @@ Public Class FormSalesReturnDet
         Dim counting_code As String = ""
         Dim id_pl_prod_order_rec_det_unique As String = ""
         Dim id_product As String = ""
+        Dim product_name As String = ""
+        Dim size As String = ""
         Dim bom_unit_price As Decimal = 0.0
         Dim id_design_price As String = ""
         Dim design_price As Decimal = 0.0
@@ -1080,6 +1085,8 @@ Public Class FormSalesReturnDet
             counting_code = dt_filter(0)("product_counting_code").ToString
             id_pl_prod_order_rec_det_unique = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
             id_product = dt_filter(0)("id_product").ToString
+            product_name = dt_filter(0)("name").ToString
+            size = dt_filter(0)("size").ToString
             bom_unit_price = Decimal.Parse(dt_filter(0)("bom_unit_price").ToString)
             id_design_price = dt_filter(0)("id_design_price").ToString
             design_price = Decimal.Parse(dt_filter(0)("design_price").ToString)
@@ -1094,6 +1101,8 @@ Public Class FormSalesReturnDet
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_fix", "2")
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "counting_code", counting_code)
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
+            GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
+            GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_design_price", id_design_price)
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "design_price", design_price)
@@ -1124,6 +1133,8 @@ Public Class FormSalesReturnDet
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_fix", "2")
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "counting_code", counting_code)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
+                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
+                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_design_price", id_design_price)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "design_price", design_price)
