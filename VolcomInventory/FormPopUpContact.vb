@@ -439,28 +439,28 @@
             'per 25 Feb
             'cek account 
             'cek account 
-            If FormSalesPOSDet.check_acc(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString) Then
-                FormSalesPOSDet.SPDiscount.EditValue = Decimal.Parse(GVCompany.GetFocusedRowCellValue("comp_commission").ToString)
-                FormSalesPOSDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
-                FormSalesPOSDet.id_store_contact_from = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
-                FormSalesPOSDet.TxtNameCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "1")
-                FormSalesPOSDet.TxtCodeCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
-                FormSalesPOSDet.MEAdrressCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "3")
-                FormSalesPOSDet.TENPWP.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "5")
-                FormSalesPOSDet.LETypeSO.ItemIndex = FormSalesPOSDet.LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "8"))
-                FormSalesPOSDet.viewDetail()
-                FormSalesPOSDet.viewStockStore()
-                FormSalesPOSDet.check_but()
-                FormSalesPOSDet.GroupControlList.Enabled = True
-                FormSalesPOSDet.getDiscount()
-                FormSalesPOSDet.getNetto()
-                FormSalesPOSDet.getVat()
-                FormSalesPOSDet.getTaxBase()
-                FormSalesPOSDet.check_do()
-                Close()
-            Else
-                stopCustom("Store not registered for auto posting journal.")
-            End If
+            'If FormSalesPOSDet.check_acc(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString) Then
+            FormSalesPOSDet.SPDiscount.EditValue = Decimal.Parse(GVCompany.GetFocusedRowCellValue("comp_commission").ToString)
+            FormSalesPOSDet.id_comp = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
+            FormSalesPOSDet.id_store_contact_from = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+            FormSalesPOSDet.TxtNameCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "1")
+            FormSalesPOSDet.TxtCodeCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
+            FormSalesPOSDet.MEAdrressCompFrom.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "3")
+            FormSalesPOSDet.TENPWP.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "5")
+            FormSalesPOSDet.LETypeSO.ItemIndex = FormSalesPOSDet.LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "8"))
+            FormSalesPOSDet.viewDetail()
+            FormSalesPOSDet.viewStockStore()
+            FormSalesPOSDet.check_but()
+            FormSalesPOSDet.GroupControlList.Enabled = True
+            FormSalesPOSDet.getDiscount()
+            FormSalesPOSDet.getNetto()
+            FormSalesPOSDet.getVat()
+            FormSalesPOSDet.getTaxBase()
+            FormSalesPOSDet.check_do()
+            Close()
+            'Else
+            '    stopCustom("Store not registered for auto posting journal.")
+            'End If
         ElseIf id_pop_up = "43" Then
             'Sales Return QC
             FormSalesReturnQCDet.id_comp_contact_to = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
