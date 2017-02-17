@@ -1336,20 +1336,37 @@ Public Class FormImportExcel
 
             Dim command As MySqlCommand = connection.CreateCommand()
             Dim qry As String = "DROP TABLE IF EXISTS tb_so_single_temp; CREATE TEMPORARY TABLE IF NOT EXISTS tb_so_single_temp AS ( SELECT * FROM ("
+            Dim qry_det As String = ""
             For d As Integer = 0 To data_temp.Rows.Count - 1
-                If d > 0 Then
-                    qry += "UNION ALL "
-                End If
-                qry += "SELECT '" + FormSalesOrderDet.id_comp_par + "' AS `id_wh`,'" + id_user + "' AS `id_user`, '" + data_temp.Rows(d)("KODE").ToString + "' AS `code`, '" + data_temp.Rows(d)("SIZETYP").ToString + "' AS `sizetype`,  '" + data_temp.Rows(d)("xxs/1").ToString + "' AS `1`, '" + data_temp.Rows(d)("xs/2").ToString + "' AS `2`, '" + data_temp.Rows(d)("s/3").ToString + "' AS `3`, '" + data_temp.Rows(d)("m/4").ToString + "' AS `4`, '" + data_temp.Rows(d)("ml/5").ToString + "' AS `5`, '" + data_temp.Rows(d)("l/6").ToString + "' AS `6`, '" + data_temp.Rows(d)("xl/7").ToString + "' AS `7`, '" + data_temp.Rows(d)("xxl/8").ToString + "' AS `8`, '" + data_temp.Rows(d)("all/9").ToString + "' AS `9`, '" + data_temp.Rows(d)("~/0").ToString + "' AS `0` "
+                For c As Integer = 3 To 12
+                    If data_temp.Rows(d)(c).ToString <> "" And data_temp.Rows(d)(c).ToString <> "-" Then
+                        If qry_det <> "" Then
+                            qry_det += "UNION ALL "
+                        End If
+                        Dim size As String = 0
+                        If c < 12 Then
+                            size = c - 2
+                        End If
+                        qry_det += "SELECT '" + FormSalesOrderDet.id_comp_par + "' AS `id_wh`,'" + id_user + "' AS `id_user`, '" + data_temp.Rows(d)("KODE").ToString + data_temp.Rows(d)("SIZETYP").ToString + size + "1" + "' AS `code`, '" + data_temp.Rows(d)(c).ToString + "' AS `qty` "
+                    End If
+                Next
             Next
-            qry += ") a ); ALTER TABLE tb_so_single_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+            qry += qry_det + ") a ); ALTER TABLE tb_so_single_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
+
+            'For d As Integer = 0 To data_temp.Rows.Count - 1
+            '    If d > 0 Then
+            '        qry += "UNION ALL "
+            '    End If
+            '    qry += "SELECT '" + FormSalesOrderDet.id_comp_par + "' AS `id_wh`,'" + id_user + "' AS `id_user`, '" + data_temp.Rows(d)("KODE").ToString + "' AS `code`, '" + data_temp.Rows(d)("SIZETYP").ToString + "' AS `sizetype`,  '" + data_temp.Rows(d)("xxs/1").ToString + "' AS `1`, '" + data_temp.Rows(d)("xs/2").ToString + "' AS `2`, '" + data_temp.Rows(d)("s/3").ToString + "' AS `3`, '" + data_temp.Rows(d)("m/4").ToString + "' AS `4`, '" + data_temp.Rows(d)("ml/5").ToString + "' AS `5`, '" + data_temp.Rows(d)("l/6").ToString + "' AS `6`, '" + data_temp.Rows(d)("xl/7").ToString + "' AS `7`, '" + data_temp.Rows(d)("xxl/8").ToString + "' AS `8`, '" + data_temp.Rows(d)("all/9").ToString + "' AS `9`, '" + data_temp.Rows(d)("~/0").ToString + "' AS `0` "
+            'Next
+            'qry += ") a ); ALTER TABLE tb_so_single_temp CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci; "
             command.CommandText = qry
             command.ExecuteNonQuery()
             command.Dispose()
             'Console.WriteLine(qry)
 
             Dim data As New DataTable
-            Dim adapter As New MySqlDataAdapter("CALL view_sales_order_single_temp(" + FormSalesOrderDet.id_comp_par + ", '" + id_user + "')", connection)
+            Dim adapter As New MySqlDataAdapter("CALL view_sales_order_single_tempx(" + FormSalesOrderDet.id_comp_par + ", '" + id_user + "')", connection)
             adapter.SelectCommand.CommandTimeout = 300
             adapter.Fill(data)
             adapter.Dispose()
