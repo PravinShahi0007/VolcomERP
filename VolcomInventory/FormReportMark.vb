@@ -670,7 +670,7 @@
             Dim data_acc As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             If data_acc.Rows.Count > 0 Then 'id_coa_map = 1
-                no_journal = header_number_acc("3") ' journal number
+                no_journal = header_number_acc("3") 'journal number
                 'insert journal header
                 query = String.Format("INSERT INTO tb_a_acc_trans(acc_trans_number,date_created,id_user,acc_trans_note,id_bill_type,report_mark_type,id_report,report_number,id_cc) VALUES('{0}',NOW(),'{1}','{2}','{3}','{4}','{5}','{6}','{7}'); SELECT LAST_INSERT_ID()", no_journal, id_user, "Auto posting sales finish goods.", 1, report_mark_type, id_ref, report_number, id_cc)
                 id_trans = execute_query(query, 0, True, "", "", "", "")
@@ -3389,7 +3389,7 @@
             Next
         End If
 
-        auto_journal()
+        'auto_journal()
 
         view_report_status(LEReportStatus)
     End Sub
