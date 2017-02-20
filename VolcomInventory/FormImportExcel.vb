@@ -1245,7 +1245,7 @@ Public Class FormImportExcel
             Dim qry_det As String = ""
             For d As Integer = 0 To data_temp.Rows.Count - 1
                 For c As Integer = 4 To 13
-                    If data_temp.Rows(d)(c).ToString <> "" And data_temp.Rows(d)(c).ToString <> "-" Then
+                    If data_temp.Rows(d)(c).ToString <> "" And data_temp.Rows(d)(c).ToString <> "-" And data_temp.Rows(d)(c).ToString <> "0" Then
                         If qry_det <> "" Then
                             qry_det += "UNION ALL "
                         End If
@@ -1339,7 +1339,7 @@ Public Class FormImportExcel
             Dim qry_det As String = ""
             For d As Integer = 0 To data_temp.Rows.Count - 1
                 For c As Integer = 3 To 12
-                    If data_temp.Rows(d)(c).ToString <> "" And data_temp.Rows(d)(c).ToString <> "-" Then
+                    If data_temp.Rows(d)(c).ToString <> "" And data_temp.Rows(d)(c).ToString <> "-" And data_temp.Rows(d)(c).ToString <> "0" Then
                         If qry_det <> "" Then
                             qry_det += "UNION ALL "
                         End If
