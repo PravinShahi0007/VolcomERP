@@ -35,11 +35,11 @@
         If id_status_reportx_par = "5" Then
             'cancel reserved stock store
             Dim stc_cancel As ClassSalesReturn = New ClassSalesReturn()
-            stc_cancel.cancelReservedStock(id_report_par, "46")
+            stc_cancel.cancelReservedStock(id_report_par)
         ElseIf id_status_reportx_par = "6" Then
             ' jika complete
             Dim stc_compl As ClassSalesReturn = New ClassSalesReturn()
-            stc_compl.completeReservedStock(id_report_par, "46")
+            stc_compl.completeReservedStock(id_report_par)
         End If
 
         Dim query As String = String.Format("UPDATE tb_sales_return SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_sales_return ='{1}'", id_status_reportx_par, id_report_par)
@@ -49,45 +49,88 @@
     ' ----------------------
     'for stock out
     ' ----------------------
-    Public Sub reservedStock(ByVal id_report_param As String, ByVal report_mark_type_param As String)
-        'reserved stock
-        Dim query_res As String = "CALL view_sales_return('" + id_report_param + "') "
-        Dim dt_rsv As DataTable = execute_query(query_res, -1, True, "", "", "", "")
-        Dim stc_rsv As ClassStock = New ClassStock()
-        For s As Integer = 0 To dt_rsv.Rows.Count - 1
-            stc_rsv.prepInsStockFG(dt_rsv.Rows(s)("id_wh_drawer_store").ToString, "2", dt_rsv.Rows(s)("id_product").ToString, decimalSQL(dt_rsv.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_rsv.Rows(s)("sales_return_det_qty").ToString), "", "2")
-        Next
-        stc_rsv.insStockFG()
+    Public Sub reservedStock(ByVal id_report_param As String)
+        Dim query As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+        SELECT getCompByContact(r.id_store_contact_from, 4), '2', rd.id_product, IFNULL(dsg.design_cop,0), '46', '" + id_report_param + "', rd.sales_return_det_qty, NOW(), '', '2' 
+        FROM tb_sales_return r 
+        INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return 
+        INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
+        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
+        WHERE r.id_sales_return=" + id_report_param + " AND rd.sales_return_det_qty>0 "
+        execute_non_query(query, True, "", "", "", "")
+
+        'reserved stock old
+        'Dim query_res As String = "CALL view_sales_return('" + id_report_param + "') "
+        'Dim dt_rsv As DataTable = execute_query(query_res, -1, True, "", "", "", "")
+        'Dim stc_rsv As ClassStock = New ClassStock()
+        'For s As Integer = 0 To dt_rsv.Rows.Count - 1
+        '    If dt_rsv.Rows(s)("sales_return_det_qty") > 0 Then
+        '        stc_rsv.prepInsStockFG(dt_rsv.Rows(s)("id_wh_drawer_store").ToString, "2", dt_rsv.Rows(s)("id_product").ToString, decimalSQL(dt_rsv.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_rsv.Rows(s)("sales_return_det_qty").ToString), "", "2")
+        '    End If
+        'Next
+        'stc_rsv.insStockFG()
     End Sub
 
-    Public Sub cancelReservedStock(ByVal id_report_param As String, ByVal report_mark_type_param As String)
-        'cancelled reserved stock
-        Dim query_compl As String = "CALL view_sales_return('" + id_report_param + "') "
-        Dim dt_cancel As DataTable = execute_query(query_compl, -1, True, "", "", "", "")
+    Public Sub cancelReservedStock(ByVal id_report_param As String)
+        Dim query As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+        SELECT getCompByContact(r.id_store_contact_from, 4), '1', rd.id_product, IFNULL(dsg.design_cop,0), '46', '" + id_report_param + "', rd.sales_return_det_qty, NOW(), '', '2' 
+        FROM tb_sales_return r 
+        INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return 
+        INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
+        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
+        WHERE r.id_sales_return=" + id_report_param + " AND rd.sales_return_det_qty>0 "
+        execute_non_query(query, True, "", "", "", "")
 
-        Dim stc_remove_rsv As ClassStock = New ClassStock()
-        For s As Integer = 0 To dt_cancel.Rows.Count - 1
-            stc_remove_rsv.prepInsStockFG(dt_cancel.Rows(s)("id_wh_drawer_store").ToString, "1", dt_cancel.Rows(s)("id_product").ToString, decimalSQL(dt_cancel.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_cancel.Rows(s)("sales_return_det_qty").ToString), "", "2")
-        Next
-        stc_remove_rsv.insStockFG()
+        'cancelled reserved stock old
+        'Dim query_compl As String = "CALL view_sales_return('" + id_report_param + "') "
+        'Dim dt_cancel As DataTable = execute_query(query_compl, -1, True, "", "", "", "")
+
+        'Dim stc_remove_rsv As ClassStock = New ClassStock()
+        'For s As Integer = 0 To dt_cancel.Rows.Count - 1
+        '    stc_remove_rsv.prepInsStockFG(dt_cancel.Rows(s)("id_wh_drawer_store").ToString, "1", dt_cancel.Rows(s)("id_product").ToString, decimalSQL(dt_cancel.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_cancel.Rows(s)("sales_return_det_qty").ToString), "", "2")
+        'Next
+        'stc_remove_rsv.insStockFG()
     End Sub
 
-    Public Sub completeReservedStock(ByVal id_report_param As String, ByVal report_mark_type_param As String)
-        'complete
-        Dim query_compl As String = "CALL view_sales_return('" + id_report_param + "') "
-        Dim dt_compl As DataTable = execute_query(query_compl, -1, True, "", "", "", "")
+    Public Sub completeReservedStock(ByVal id_report_param As String)
+        Dim query As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+        SELECT getCompByContact(r.id_store_contact_from, 4), '1', rd.id_product, IFNULL(dsg.design_cop,0), '46', '" + id_report_param + "', rd.sales_return_det_qty, NOW(), '', '2' 
+        FROM tb_sales_return r 
+        INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return 
+        INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
+        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
+        WHERE r.id_sales_return=" + id_report_param + " AND rd.sales_return_det_qty>0 
+        UNION ALL 
+        SELECT getCompByContact(r.id_store_contact_from, 4), '2', rd.id_product, IFNULL(dsg.design_cop,0), '46', '" + id_report_param + "', rd.sales_return_det_qty, NOW(), '', '1' 
+        FROM tb_sales_return r 
+        INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return 
+        INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
+        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
+        WHERE r.id_sales_return=" + id_report_param + " AND rd.sales_return_det_qty>0 
+        UNION ALL 
+        SELECT getCompByContact(r.id_comp_contact_to, 4), '1', rd.id_product, IFNULL(dsg.design_cop,0), '46', '" + id_report_param + "', rd.sales_return_det_qty, NOW(), '', '1' 
+        FROM tb_sales_return r 
+        INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return 
+        INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
+        INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
+        WHERE r.id_sales_return=" + id_report_param + " AND rd.sales_return_det_qty>0 "
+        execute_non_query(query, True, "", "", "", "")
 
-        Dim stc_remove_rsv As ClassStock = New ClassStock()
-        Dim stc_compl As ClassStock = New ClassStock()
-        Dim stc_in As ClassStock = New ClassStock()
-        For s As Integer = 0 To dt_compl.Rows.Count - 1
-            stc_remove_rsv.prepInsStockFG(dt_compl.Rows(s)("id_wh_drawer_store").ToString, "1", dt_compl.Rows(s)("id_product").ToString, decimalSQL(dt_compl.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_compl.Rows(s)("sales_return_det_qty").ToString), "", "2")
-            stc_compl.prepInsStockFG(dt_compl.Rows(s)("id_wh_drawer_store").ToString, "2", dt_compl.Rows(s)("id_product").ToString, decimalSQL(dt_compl.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_compl.Rows(s)("sales_return_det_qty").ToString), "", "1")
-            stc_in.prepInsStockFG(dt_compl.Rows(s)("id_wh_drawer").ToString, "1", dt_compl.Rows(s)("id_product").ToString, decimalSQL(dt_compl.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_compl.Rows(s)("sales_return_det_qty").ToString), "", "1")
-        Next
-        stc_remove_rsv.insStockFG()
-        stc_compl.insStockFG()
-        stc_in.insStockFG()
+        'complete old
+        'Dim query_compl As String = "CALL view_sales_return('" + id_report_param + "') "
+        'Dim dt_compl As DataTable = execute_query(query_compl, -1, True, "", "", "", "")
+
+        'Dim stc_remove_rsv As ClassStock = New ClassStock()
+        'Dim stc_compl As ClassStock = New ClassStock()
+        'Dim stc_in As ClassStock = New ClassStock()
+        'For s As Integer = 0 To dt_compl.Rows.Count - 1
+        '    stc_remove_rsv.prepInsStockFG(dt_compl.Rows(s)("id_wh_drawer_store").ToString, "1", dt_compl.Rows(s)("id_product").ToString, decimalSQL(dt_compl.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_compl.Rows(s)("sales_return_det_qty").ToString), "", "2")
+        '    stc_compl.prepInsStockFG(dt_compl.Rows(s)("id_wh_drawer_store").ToString, "2", dt_compl.Rows(s)("id_product").ToString, decimalSQL(dt_compl.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_compl.Rows(s)("sales_return_det_qty").ToString), "", "1")
+        '    stc_in.prepInsStockFG(dt_compl.Rows(s)("id_wh_drawer").ToString, "1", dt_compl.Rows(s)("id_product").ToString, decimalSQL(dt_compl.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_compl.Rows(s)("sales_return_det_qty").ToString), "", "1")
+        'Next
+        'stc_remove_rsv.insStockFG()
+        'stc_compl.insStockFG()
+        'stc_in.insStockFG()
     End Sub
 
 End Class
