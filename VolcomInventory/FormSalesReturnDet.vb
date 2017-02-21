@@ -809,7 +809,7 @@ Public Class FormSalesReturnDet
 
                     'reserved stock
                     Dim stc_rev As ClassSalesReturn = New ClassSalesReturn()
-                    stc_rev.reservedStock(id_sales_return, "46")
+                    stc_rev.reservedStock(id_sales_return)
 
                     FormSalesReturn.viewSalesReturn()
                     FormSalesReturn.viewSalesReturnOrder()
@@ -1210,7 +1210,7 @@ Public Class FormSalesReturnDet
     Private Sub BtnTest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnTest.Click
         ' jika complete
         Dim stc_compl As ClassSalesReturn = New ClassSalesReturn()
-        stc_compl.completeReservedStock(id_sales_return, "46")
+        stc_compl.completeReservedStock(id_sales_return)
         MsgBox("Done")
     End Sub
 
