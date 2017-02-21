@@ -1366,7 +1366,7 @@ Public Class FormImportExcel
             'Console.WriteLine(qry)
 
             Dim data As New DataTable
-            Dim adapter As New MySqlDataAdapter("CALL view_sales_order_single_tempx(" + FormSalesOrderDet.id_comp_par + ", '" + id_user + "')", connection)
+            Dim adapter As New MySqlDataAdapter("CALL view_sales_order_single_temp(" + FormSalesOrderDet.id_comp_par + ", '" + id_user + "')", connection)
             adapter.SelectCommand.CommandTimeout = 300
             adapter.Fill(data)
             adapter.Dispose()
