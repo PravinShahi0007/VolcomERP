@@ -811,6 +811,12 @@
                 stopCustom(ex.ToString)
                 Close()
             End Try
+        ElseIf id_pop_up = "74" Then
+            'RETURN Mat In Prod
+            FormMatRetInProd.id_comp_contact_from = GVCompany.GetFocusedRowCellValue("id_comp").ToString
+            FormMatRetInProd.TxtNameCompFrom.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
+            FormMatRetInProd.TxtCodeCompFrom.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub
