@@ -1392,6 +1392,13 @@ Module Common
         id_company = execute_query(query, 0, True, "", "", "", "")
         Return id_company
     End Function
+    'get id_employee
+    Function get_id_employee(ByVal id_user As String)
+        Dim query, id_employee As String
+        query = String.Format("SELECT id_employee FROM tb_m_user WHERE id_user='{0}'", id_user)
+        id_employee = execute_query(query, 0, True, "", "", "", "")
+        Return id_employee
+    End Function
     'get term production
     Function get_term_production_x(ByVal id_term_production As String)
         Dim query, term_production As String

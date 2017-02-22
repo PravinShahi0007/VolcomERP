@@ -408,6 +408,12 @@
             FormEmpLeaveDet.report_mark_type = "102"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "104" Then
+            'propose leave HRD
+            FormEmpLeaveDet.id_emp_leave = id_report
+            FormEmpLeaveDet.report_mark_type = "104"
+            FormEmpLeaveDet.is_view = "1"
+            FormEmpLeaveDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -963,6 +969,12 @@
             field_number = "id_awbill"
             field_date = "awbill_date"
         ElseIf report_mark_type = "102" Then
+            'Propose leave
+            table_name = "tb_emp_leave"
+            field_id = "id_emp_leave"
+            field_number = "emp_leave_number"
+            field_date = "emp_leave_date"
+        ElseIf report_mark_type = "104" Then
             'Propose leave
             table_name = "tb_emp_leave"
             field_id = "id_emp_leave"
