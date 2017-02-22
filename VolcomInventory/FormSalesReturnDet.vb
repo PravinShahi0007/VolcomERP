@@ -1215,6 +1215,14 @@ Public Class FormSalesReturnDet
     End Sub
 
     Sub getReport()
+        GridColumnNo.VisibleIndex = 0
+        GridColumnStt.Visible = False
+        GVItemList.ActiveFilterString = "[sales_return_det_qty]>0"
+        For i As Integer = 0 To GVItemList.RowCount - 1
+            GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
+        Next
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
         ReportSalesReturn.dt = GCItemList.DataSource
         ReportSalesReturn.id_sales_return = id_sales_return
         Dim Report As New ReportSalesReturn()
@@ -1247,6 +1255,8 @@ Public Class FormSalesReturnDet
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
+        GVItemList.ActiveFilterString = ""
+        GridColumnNo.Visible = False
     End Sub
 
     Sub checkUnitCost(ByVal id_product_param As String, ByVal bom_unit_price_param As Decimal)
@@ -1528,15 +1538,14 @@ Public Class FormSalesReturnDet
             Next
 
             'show column
-            GridColumnNo.VisibleIndex = 0
-            GridColumnCode.VisibleIndex = 1
-            GridColumnName.VisibleIndex = 2
-            GridColumnSize.VisibleIndex = 3
-            GridColumnQty.VisibleIndex = 4
-            GridColumnPrice.VisibleIndex = 5
-            GridColumnAmount.VisibleIndex = 6
-            GridColumnRemark.VisibleIndex = 7
-            GridColumnStt.VisibleIndex = 8
+            GridColumnCode.VisibleIndex = 0
+            GridColumnName.VisibleIndex = 1
+            GridColumnSize.VisibleIndex = 2
+            GridColumnQty.VisibleIndex = 3
+            GridColumnPrice.VisibleIndex = 4
+            GridColumnAmount.VisibleIndex = 5
+            GridColumnRemark.VisibleIndex = 6
+            GridColumnStt.VisibleIndex = 7
             GridColumnStt.Visible = False
             Cursor = Cursors.Default
         End If
@@ -1640,5 +1649,11 @@ Public Class FormSalesReturnDet
         Cursor = Cursors.WaitCursor
         verifyTrans()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVItemList_CustomDrawRowIndicator(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs) Handles GVItemList.CustomDrawRowIndicator
+        If e.RowHandle >= 0 Then
+            e.Info.DisplayText = (e.RowHandle + 1).ToString
+        End If
     End Sub
 End Class
