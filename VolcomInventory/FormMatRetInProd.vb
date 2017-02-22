@@ -199,6 +199,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRetDetail.DataSource = data
     End Sub
+
     'Button
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
         ValidateChildren()
@@ -316,7 +317,9 @@
     End Sub
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
         FormPopUpMatRetProd.id_pop_up = "1"
-        FormPopUpMatRetProd.id_prod_order_wo = id_prod_order_wo
+        '
+        FormPopUpMatRetProd.id_prod_order = id_prod_order
+        FormPopUpMatRetProd.id_comp_contact = id_comp_contact_from
         FormPopUpMatRetProd.ShowDialog()
     End Sub
     Private Sub BtnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDel.Click
@@ -326,8 +329,11 @@
     End Sub
     Private Sub BtnEdit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEdit.Click
         FormPopUpMatRetProd.id_pop_up = "1"
+
         FormPopUpMatRetProd.id_pl_mrs_det = GVRetDetail.GetFocusedRowCellValue("id_pl_mrs_det").ToString
-        FormPopUpMatRetProd.id_prod_order_wo = id_prod_order_wo
+        FormPopUpMatRetProd.id_prod_order = id_prod_order
+        FormPopUpMatRetProd.id_comp_contact = id_comp_contact_from
+        '
         FormPopUpMatRetProd.ShowDialog()
     End Sub
     Private Sub BtnPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrint.Click
@@ -369,7 +375,8 @@
     End Sub
 
     Private Sub BtnBrowseComp_Click(sender As Object, e As EventArgs) Handles BtnBrowseComp.Click
-
+        FormPopUpContact.id_pop_up = "74"
+        FormPopUpContact.ShowDialog()
     End Sub
 
     Private Sub BAttach_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAttach.Click
