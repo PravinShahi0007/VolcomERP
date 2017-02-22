@@ -116,6 +116,8 @@ Partial Class FormSalesReturnDet
         Me.GridColumnBomUnitPricex = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNameBC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSizeBC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
@@ -155,8 +157,6 @@ Partial Class FormSalesReturnDet
         Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnNameBC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSizeBC = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -810,6 +810,7 @@ Partial Class FormSalesReturnDet
         '
         Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnUOM, Me.GridColumnQtyWH, Me.GridColumnQty, Me.GridColumnQtyLimit, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesOrderDet, Me.GridColumn2, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnStt})
         Me.GVItemList.GridControl = Me.GCItemList
+        Me.GVItemList.IndicatorWidth = 30
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -824,8 +825,6 @@ Partial Class FormSalesReturnDet
         Me.GridColumnNo.Name = "GridColumnNo"
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.OptionsColumn.ReadOnly = True
-        Me.GridColumnNo.Visible = True
-        Me.GridColumnNo.VisibleIndex = 0
         Me.GridColumnNo.Width = 38
         '
         'GridColumnCode
@@ -1238,6 +1237,26 @@ Partial Class FormSalesReturnDet
         Me.GridColumnDesignPriceBc.FieldName = "design_price"
         Me.GridColumnDesignPriceBc.Name = "GridColumnDesignPriceBc"
         '
+        'GridColumnNameBC
+        '
+        Me.GridColumnNameBC.Caption = "Description"
+        Me.GridColumnNameBC.FieldName = "name"
+        Me.GridColumnNameBC.Name = "GridColumnNameBC"
+        Me.GridColumnNameBC.OptionsColumn.AllowEdit = False
+        Me.GridColumnNameBC.Visible = True
+        Me.GridColumnNameBC.VisibleIndex = 2
+        Me.GridColumnNameBC.Width = 626
+        '
+        'GridColumnSizeBC
+        '
+        Me.GridColumnSizeBC.Caption = "Size"
+        Me.GridColumnSizeBC.FieldName = "size"
+        Me.GridColumnSizeBC.Name = "GridColumnSizeBC"
+        Me.GridColumnSizeBC.OptionsColumn.AllowEdit = False
+        Me.GridColumnSizeBC.Visible = True
+        Me.GridColumnSizeBC.VisibleIndex = 3
+        Me.GridColumnSizeBC.Width = 59
+        '
         'RepositoryItemCheckEdit2
         '
         Me.RepositoryItemCheckEdit2.AutoHeight = False
@@ -1572,26 +1591,6 @@ Partial Class FormSalesReturnDet
         'EPForm
         '
         Me.EPForm.ContainerControl = Me
-        '
-        'GridColumnNameBC
-        '
-        Me.GridColumnNameBC.Caption = "Description"
-        Me.GridColumnNameBC.FieldName = "name"
-        Me.GridColumnNameBC.Name = "GridColumnNameBC"
-        Me.GridColumnNameBC.OptionsColumn.AllowEdit = False
-        Me.GridColumnNameBC.Visible = True
-        Me.GridColumnNameBC.VisibleIndex = 2
-        Me.GridColumnNameBC.Width = 626
-        '
-        'GridColumnSizeBC
-        '
-        Me.GridColumnSizeBC.Caption = "Size"
-        Me.GridColumnSizeBC.FieldName = "size"
-        Me.GridColumnSizeBC.Name = "GridColumnSizeBC"
-        Me.GridColumnSizeBC.OptionsColumn.AllowEdit = False
-        Me.GridColumnSizeBC.Visible = True
-        Me.GridColumnSizeBC.VisibleIndex = 3
-        Me.GridColumnSizeBC.Width = 59
         '
         'FormSalesReturnDet
         '
