@@ -75,6 +75,8 @@
                 FormReportMark.GVMark.ExpandAllGroups()
                 '...
                 FormWork.view_mark_need()
+                'cancel dan email nolak
+
                 'FormWork.view_mark_history()
                 Close()
             Catch ex As Exception
