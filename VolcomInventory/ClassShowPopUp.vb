@@ -1045,6 +1045,19 @@
                 INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = r.id_store_contact_from
                 INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp WHERE r.id_sales_return=" + id_report + " "
                 info_col = execute_query(query, 0, True, "", "", "", "")
+            ElseIf report_mark_type = "49" Then
+                'return transfer
+                query = "SELECT r.sales_return_number AS `info_report`, CONCAT(c.comp_number,' - ', c.comp_name) AS `info_col` 
+                FROM tb_sales_return_qc rt
+                INNER JOIN tb_sales_return r ON r.id_sales_return = rt.id_sales_return
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = rt.id_store_contact_from
+                INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp 
+                WHERE rt.id_sales_return_qc=" + id_report + " "
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("info_col").ToString
+                    info_report = datax.Rows(0)("info_report").ToString
+                End If
             End If
         End If
     End Sub
