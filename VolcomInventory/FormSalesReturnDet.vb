@@ -747,6 +747,7 @@ Public Class FormSalesReturnDet
                     'Detail return
                     Dim jum_ins_j As Integer = 0
                     Dim query_detail As String = ""
+                    GVItemList.ActiveFilterString = "[sales_return_det_qty]>0 "
                     If GVItemList.RowCount > 0 Then
                         query_detail = "INSERT tb_sales_return_det(id_sales_return, id_sales_return_order_det, id_product, id_design_price, design_price, sales_return_det_qty, sales_return_det_note) VALUES "
                     End If
@@ -770,6 +771,7 @@ Public Class FormSalesReturnDet
                     If jum_ins_j > 0 Then
                         execute_non_query(query_detail, True, "", "", "", "")
                     End If
+                    GVItemList.ActiveFilterString = ""
 
                     'get all detail id
                     Dim query_get_detail_id As String = "SELECT a.id_sales_return_det, a.id_product, a.id_design_price, a.design_price "
@@ -847,7 +849,8 @@ Public Class FormSalesReturnDet
                                 query_detail += "('" + id_sales_return + "', '" + id_sales_return_order_det + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_return_det_qty + "', '" + sales_return_det_note + "') "
                                 jum_ins_j = jum_ins_j + 1
                             Else
-                                Dim query_detail_upd As String = "UPDATE tb_sales_return_det SET id_product = '" + id_product + "', id_design_price = '" + id_design_price + "', design_price='" + design_price + "', sales_return_det_qty = '" + sales_return_det_qty + "', sales_return_det_note = '" + sales_return_det_note + "' WHERE id_sales_return_det = '" + id_sales_return_det + "'"
+                                'Dim query_detail_upd As String = "UPDATE tb_sales_return_det SET id_product = '" + id_product + "', id_design_price = '" + id_design_price + "', design_price='" + design_price + "', sales_return_det_qty = '" + sales_return_det_qty + "', sales_return_det_note = '" + sales_return_det_note + "' WHERE id_sales_return_det = '" + id_sales_return_det + "'"
+                                Dim query_detail_upd As String = "UPDATE tb_sales_return_det SET sales_return_det_note = '" + sales_return_det_note + "' WHERE id_sales_return_det = '" + id_sales_return_det + "'"
                                 execute_non_query(query_detail_upd, True, "", "", "", "")
                                 id_sales_return_det_list.Remove(id_sales_return_det)
                             End If
@@ -858,14 +861,14 @@ Public Class FormSalesReturnDet
                         execute_non_query(query_detail, True, "", "", "", "")
                     End If
 
-                    For j_del As Integer = 0 To (id_sales_return_det_list.Count - 1)
-                        Try
-                            Dim query_detail_del As String = "DELETE FROM tb_sales_return_det WHERE id_sales_return_det = '" + id_sales_return_det_list(j_del) + "'"
-                            execute_non_query(query_detail_del, True, "", "", "", "")
-                        Catch ex As Exception
+                    'For j_del As Integer = 0 To (id_sales_return_det_list.Count - 1)
+                    '    Try
+                    '        Dim query_detail_del As String = "DELETE FROM tb_sales_return_det WHERE id_sales_return_det = '" + id_sales_return_det_list(j_del) + "'"
+                    '        execute_non_query(query_detail_del, True, "", "", "", "")
+                    '    Catch ex As Exception
 
-                        End Try
-                    Next
+                    '    End Try
+                    'Next
 
                     'get all detail id
                     'Dim query_get_detail_id As String = "SELECT a.id_sales_return_det, a.id_product, a.id_design_price, a.design_price "
@@ -1547,6 +1550,8 @@ Public Class FormSalesReturnDet
             GridColumnRemark.VisibleIndex = 6
             GridColumnStt.VisibleIndex = 7
             GridColumnStt.Visible = False
+            GVItemList.OptionsPrint.PrintFooter = True
+            GVItemList.OptionsPrint.PrintHeader = True
             Cursor = Cursors.Default
         End If
     End Sub

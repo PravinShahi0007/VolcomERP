@@ -220,10 +220,21 @@ Public Class FormSalesReturnQCDet
         If action = "ins" Then
             Dim query As String = "CALL view_sales_return_limit('" + id_sales_return + "', '0', '0') "
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-            For i As Integer = 0 To (data.Rows.Count - 1)
-                codeAvailableIns(data.Rows(i)("id_product").ToString, id_store, data.Rows(i)("id_design_price").ToString)
-            Next
             GCItemList.DataSource = data
+            GVItemList.ActiveFilterString = "[sales_return_det_qty]>0 "
+            Dim id_product_str As String = ""
+            For i As Integer = 0 To (Me.GVItemList.RowCount - 1)
+                If i > 0 Then
+                    id_product_str += ";"
+                End If
+                Dim id_product_param As String = "-1"
+                Try
+                    id_product_param = Me.GVItemList.GetRowCellValue(i, "id_product").ToString
+                Catch ex As Exception
+                End Try
+                id_product_str += id_product_param
+            Next
+            codeAvailableIns(id_product_str, id_store, 0)
         ElseIf action = "upd" Then
             Dim query As String = "CALL view_sales_return_qc('" + id_sales_return_qc + "')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
