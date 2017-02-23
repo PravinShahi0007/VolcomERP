@@ -235,6 +235,7 @@ Public Class FormSalesReturnQCDet
                 id_product_str += id_product_param
             Next
             codeAvailableIns(id_product_str, id_store, 0)
+            GVItemList.ActiveFilterString = ""
         ElseIf action = "upd" Then
             Dim query As String = "CALL view_sales_return_qc('" + id_sales_return_qc + "')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
