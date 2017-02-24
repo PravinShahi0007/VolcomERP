@@ -3147,6 +3147,10 @@
                 execute_non_query(query_upd, True, "", "", "", "")
                 'complete 
                 id_status_reportx = "6"
+                'mail
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = report_mark_type
+                mail.send_email_appr(report_mark_type, id_report, True)
             ElseIf id_status_reportx = "5" Then 'cancel
                 Dim query_del As String = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
                 execute_non_query(query_del, True, "", "", "", "")
@@ -3178,6 +3182,10 @@
                 execute_non_query(query_upd, True, "", "", "", "")
                 'complete 
                 id_status_reportx = "6"
+                'mail
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = report_mark_type
+                mail.send_email_appr(report_mark_type, id_report, True)
             ElseIf id_status_reportx = "5" Then 'cancel
                 Dim query_del As String = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
                 execute_non_query(query_del, True, "", "", "", "")
@@ -3294,6 +3302,10 @@
                 execute_non_query(query_upd, True, "", "", "", "")
                 'complete 
                 id_status_reportx = "6"
+                'mail
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = report_mark_type
+                mail.send_email_appr(report_mark_type, id_report, True)
             ElseIf id_status_reportx = "5" Then 'cancel
                 Dim query_del As String = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
                 execute_non_query(query_del, True, "", "", "", "")
@@ -3365,6 +3377,10 @@
                 execute_non_query(query_upd, True, "", "", "", "")
                 'complete 
                 id_status_reportx = "6"
+                'mail
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = report_mark_type
+                mail.send_email_appr(report_mark_type, id_report, True)
             ElseIf id_status_reportx = "5" Then 'cancel
                 Dim query_del As String = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
                 execute_non_query(query_del, True, "", "", "", "")
@@ -3397,6 +3413,10 @@
                 execute_non_query(query_upd, True, "", "", "", "")
                 'complete 
                 id_status_reportx = "6"
+                'mail
+                Dim mail As ClassSendEmail = New ClassSendEmail()
+                mail.report_mark_type = report_mark_type
+                mail.send_email_appr(report_mark_type, id_report, True)
             ElseIf id_status_reportx = "5" Then 'cancel
                 Dim query_del As String = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
                 execute_non_query(query_del, True, "", "", "", "")

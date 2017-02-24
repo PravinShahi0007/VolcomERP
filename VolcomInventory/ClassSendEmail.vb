@@ -104,34 +104,83 @@ Public Class ClassSendEmail
         End If
     End Sub
     Sub send_email_appr(ByVal report_mark_type As String, ByVal id_leave As String, ByVal is_appr As Boolean)
-        Dim mail As MailMessage = New MailMessage("septian@volcom.mail", "catur@volcom.mail")
-        '-- start attachment 
-        'Create a New report. 
-        'ReportEmpLeave.id_report = id_report
-        'ReportEmpLeave.report_mark_type = report_mark_type
-        'Dim Report As New ReportEmpLeave()
-        ' Create a new memory stream and export the report into it as PDF.
-        'Dim Mem As New MemoryStream()
-        'Report.ExportToPdf(Mem)
-        ' Create a new attachment and put the PDF report into it.
-        'Mem.Seek(0, System.IO.SeekOrigin.Begin)
-        'Dim Att = New Attachment(Mem, "TestReport.pdf", "application/pdf")
-        'mail.Attachments.Add(Att)
-        '-- end attachment
+        '
+        Dim query As String = ""
+        query = "SELECT empl.*,lt.leave_type,empl.leave_purpose,empx.email_lokal as dept_head_email,empx.id_employee as id_dep_head,empx.employee_name as dep_head,empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total,empl.report_mark_type 
+                FROM tb_emp_leave empl
+                INNER JOIN tb_lookup_leave_type lt ON lt.id_leave_type=empl.id_leave_type
+                INNER JOIN tb_lookup_report_status STATUS ON status.id_report_status=empl.id_report_status
+                INNER JOIN tb_m_employee emp ON emp.id_employee=empl.id_emp
+                INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level  
+                INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                LEFT JOIN tb_m_user usrx ON usrx.id_user=dep.id_user_head
+                LEFT JOIN tb_m_employee empx ON empx.id_employee=usrx.id_employee
+                INNER JOIN 
+                (SELECT id_emp_leave,MIN(datetime_start) AS min_date,MAX(datetime_until) AS max_date,ROUND(SUM(minutes_total)/60) AS hours_total FROM tb_emp_leave_det GROUP BY id_emp_leave) empld ON empld.id_emp_leave=empl.id_emp_leave
+                WHERE empl.id_emp_leave='" & id_leave & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim emp_leave_type As String = data.Rows(0)("leave_type").ToString
+        Dim dep_head As String = data.Rows(0)("dep_head").ToString
+        Dim dep_head_email As String = data.Rows(0)("dept_head_email").ToString
+        Dim emp_name As String = data.Rows(0)("employee_name").ToString
+        Dim leave_no As String = data.Rows(0)("emp_leave_number").ToString
+        'to list : dep head ; cc list : yg ada di mark semua
+        Dim to_mail As MailAddress = New MailAddress(dep_head_email, dep_head)
+        Dim from_mail As MailAddress = New MailAddress(get_setup_field("system_email").ToString, get_setup_field("app_name").ToString)
+        Dim mail As MailMessage = New MailMessage(from_mail, to_mail)
+
+        Dim querycc As String = "SELECT emp.email_lokal,emp.employee_name,rm.* FROM tb_report_mark rm 
+                                    INNER JOIN tb_m_user usr ON usr.id_user=rm.id_user
+                                    INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+                                    WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_leave & "' AND id_report_status='3'"
+        Dim datacc As DataTable = execute_query(querycc, -1, True, "", "", "", "")
+        If datacc.Rows.Count > 0 Then
+            For i As Integer = 0 To datacc.Rows.Count - 1
+                Dim cc As MailAddress = New MailAddress(datacc.Rows(i)("email_lokal").ToString, datacc.Rows(i)("employee_name").ToString)
+                mail.CC.Add(cc)
+            Next
+        End If
+        '
+        'Dim to_mail As MailAddress = New MailAddress("septian@volcom.mail", "Septian Primadewa")
+        'Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Volcom ERP")
+        'Dim mail As MailMessage = New MailMessage(from_mail, to_mail)
+        'Dim copy As MailAddress = New MailAddress("catur@volcom.mail", "Triya")
+        'mail.CC.Add(copy)
+        If is_appr = True Then
+            '-- start attachment 
+            'Create a New report. 
+            ReportEmpLeave.id_report = id_leave
+            ReportEmpLeave.report_mark_type = report_mark_type
+            Dim Report As New ReportEmpLeave()
+            ' Create a new memory stream and export the report into it as PDF.
+            Dim Mem As New MemoryStream()
+            Report.ExportToPdf(Mem)
+            ' Create a new attachment and put the PDF report into it.
+            Mem.Seek(0, System.IO.SeekOrigin.Begin)
+            Dim Att = New Attachment(Mem, leave_no & " - Request " & emp_leave_type & " - " & emp_name & ".pdf", "application/pdf")
+            mail.Attachments.Add(Att)
+            '-- end attachment
+        End If
         Dim client As SmtpClient = New SmtpClient()
         client.Port = 25
         client.DeliveryMethod = SmtpDeliveryMethod.Network
         client.UseDefaultCredentials = False
-        client.Host = "192.168.1.4"
-        client.Credentials = New System.Net.NetworkCredential("septian@volcom.mail", "septian")
-        mail.Subject = "Leave Approved"
+        client.Host = get_setup_field("system_email_server").ToString
+        client.Credentials = New System.Net.NetworkCredential(get_setup_field("system_email").ToString, get_setup_field("system_email_pass").ToString)
+        If is_appr Then
+            mail.Subject = "Request " & emp_leave_type & " " & emp_name & " Approved"
+        Else
+            mail.Subject = "Request " & emp_leave_type & " " & emp_name & " Not Approved"
+        End If
+
         mail.IsBodyHtml = True
         mail.Body = email_appr_body(id_leave, is_appr)
         client.Send(mail)
     End Sub
     Function email_appr_body(ByVal id_leave As String, ByVal is_appr As Boolean)
         Dim query As String = ""
-        query = "SELECT empl.*,lt.leave_type,empl.leave_purpose,empx.email_lokal as dept_head_email,empx.id_employee as id_dep_head,empx.employee_name as dep_head,empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total,empl.report_mark_type FROM tb_emp_leave empl
+        query = "SELECT empl.*,lt.leave_type,empl.leave_purpose,empx.email_lokal as dept_head_email,empx.id_employee as id_dep_head,empx.employee_name as dep_head,empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total,empl.report_mark_type 
+                FROM tb_emp_leave empl
                 INNER JOIN tb_lookup_leave_type lt ON lt.id_leave_type=empl.id_leave_type
                 INNER JOIN tb_lookup_report_status STATUS ON status.id_report_status=empl.id_report_status
                 INNER JOIN tb_m_employee emp ON emp.id_employee=empl.id_emp
@@ -231,7 +280,7 @@ Public Class ClassSendEmail
                           <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
                           <div>
                           <p class='MsoNormal' style='line-height:14.25pt'>
-                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & leave_type & "
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & leave_no & "
                               
                             </span>
                           </p>
@@ -318,39 +367,38 @@ Public Class ClassSendEmail
                           <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>The request has been <b><u>approved</u></b>.</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
                           </div>
                           </td>
-                         </tr>
-                         <tr>
-                          <td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
-                          <div>
-                          <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>The request <b><u>not approved</u></b>.</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
-                          </div>
-                          </td>
                          </tr>"
         Else
             body_temp += "<tr>
-                          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
-                        
-                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>By
-                            </span>
-                          </td>
-                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
-                          <div>
-                          <p class='MsoNormal' style='line-height:14.25pt'>
-                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+                              <td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
+                              <div>
+                              <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>The request <b><u>not approved</u></b>.</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+                              </div>
+                              </td>
+                         </tr>
+                         <tr>
+                             <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+                                <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>By
+                                </span>
+                              </td>
+                              <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                              <div>
+                              <p class='MsoNormal' style='line-height:14.25pt'>
+                                <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
                               
-                            </span>
-                          </p>
+                                </span>
+                              </p>
 
-                          </div>
-                          </td>
-                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
-                          <div>
-                          <p class='MsoNormal' style='line-height:14.25pt'>
-                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & reject_by_user & "
-                            </span>
-                          </p>
-                          </div>
-                          </td>
+                              </div>
+                              </td>
+                              <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                              <div>
+                              <p class='MsoNormal' style='line-height:14.25pt'>
+                                <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & reject_by_user & "
+                                </span>
+                              </p>
+                              </div>
+                             </td>
                          </tr>
                          <tr>
                           <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
