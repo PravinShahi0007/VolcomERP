@@ -372,6 +372,7 @@
                     Cursor = Cursors.WaitCursor
                     FormSalesOrderDet.viewDetail("-1")
                     FormSalesOrderDet.id_store = GVCompany.GetFocusedRowCellValue("id_comp").ToString
+                    FormSalesOrderDet.id_store_cat = GVCompany.GetFocusedRowCellValue("id_comp_cat").ToString
                     FormSalesOrderDet.id_store_contact_to = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
                     FormSalesOrderDet.TxtNameCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
                     FormSalesOrderDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
