@@ -208,6 +208,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnTotalRetTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateReturnQC = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusReturnQC = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -252,7 +253,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromTrf = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnTotalRetTrf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PrintPrepareOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -690,26 +691,26 @@ Partial Class FormSalesOrderSvcLevel
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView, Me.ViewDetailOrderToolStripMenuItem, Me.UpdatePackingStatusToolStripMenuItem})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView, Me.ViewDetailOrderToolStripMenuItem, Me.PrintPrepareOrderToolStripMenuItem, Me.UpdatePackingStatusToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(166, 70)
+        Me.ViewMenu.Size = New System.Drawing.Size(166, 114)
         '
         'SMView
         '
         Me.SMView.Name = "SMView"
-        Me.SMView.Size = New System.Drawing.Size(165, 22)
+        Me.SMView.Size = New System.Drawing.Size(175, 22)
         Me.SMView.Text = "View Detail"
         '
         'ViewDetailOrderToolStripMenuItem
         '
         Me.ViewDetailOrderToolStripMenuItem.Name = "ViewDetailOrderToolStripMenuItem"
-        Me.ViewDetailOrderToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.ViewDetailOrderToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.ViewDetailOrderToolStripMenuItem.Text = "View Detail Order"
         '
         'UpdatePackingStatusToolStripMenuItem
         '
         Me.UpdatePackingStatusToolStripMenuItem.Name = "UpdatePackingStatusToolStripMenuItem"
-        Me.UpdatePackingStatusToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.UpdatePackingStatusToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.UpdatePackingStatusToolStripMenuItem.Text = "Update Status"
         '
         'XTCSvcLevel
@@ -2163,6 +2164,18 @@ Partial Class FormSalesOrderSvcLevel
         Me.RepositoryItemCheckEdit4.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit4.ValueUnchecked = "No"
         '
+        'GridColumnTotalRetTrf
+        '
+        Me.GridColumnTotalRetTrf.Caption = "Total"
+        Me.GridColumnTotalRetTrf.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnTotalRetTrf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalRetTrf.FieldName = "total"
+        Me.GridColumnTotalRetTrf.Name = "GridColumnTotalRetTrf"
+        Me.GridColumnTotalRetTrf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:n0}")})
+        Me.GridColumnTotalRetTrf.Visible = True
+        Me.GridColumnTotalRetTrf.VisibleIndex = 5
+        Me.GridColumnTotalRetTrf.Width = 63
+        '
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -2587,17 +2600,11 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl21.TabIndex = 8892
         Me.LabelControl21.Text = "From"
         '
-        'GridColumnTotalRetTrf
+        'PrintPrepareOrderToolStripMenuItem
         '
-        Me.GridColumnTotalRetTrf.Caption = "Total"
-        Me.GridColumnTotalRetTrf.DisplayFormat.FormatString = "{0:n0}"
-        Me.GridColumnTotalRetTrf.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotalRetTrf.FieldName = "total"
-        Me.GridColumnTotalRetTrf.Name = "GridColumnTotalRetTrf"
-        Me.GridColumnTotalRetTrf.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:n0}")})
-        Me.GridColumnTotalRetTrf.Visible = True
-        Me.GridColumnTotalRetTrf.VisibleIndex = 5
-        Me.GridColumnTotalRetTrf.Width = 63
+        Me.PrintPrepareOrderToolStripMenuItem.Name = "PrintPrepareOrderToolStripMenuItem"
+        Me.PrintPrepareOrderToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.PrintPrepareOrderToolStripMenuItem.Text = "Print Detail Order"
         '
         'FormSalesOrderSvcLevel
         '
@@ -2948,4 +2955,5 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalRet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalRetTrf As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PrintPrepareOrderToolStripMenuItem As ToolStripMenuItem
 End Class
