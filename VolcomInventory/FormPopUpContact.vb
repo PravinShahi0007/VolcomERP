@@ -169,6 +169,11 @@
             FormSamplePLSingle.TxtNameCompTo.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
             FormSamplePLSingle.MEAdrressCompTo.Text = GVCompany.GetFocusedRowCellDisplayText("address_primary").ToString
             Close()
+        ElseIf id_pop_up = "6" Then
+            FormSamplePRDet.id_comp_contact_pay_to = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+            FormSamplePRDet.TECompTo.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
+            FormSamplePRDet.MECompAddress.Text = GVCompany.GetFocusedRowCellDisplayText("address_primary").ToString
+            Close()
         ElseIf id_pop_up = "7" Then
             FormSampleRetOutSingle.id_comp_contact_from = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
             FormSampleRetOutSingle.TxtCodeCompFrom.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
