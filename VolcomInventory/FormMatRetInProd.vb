@@ -199,7 +199,6 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRetDetail.DataSource = data
     End Sub
-
     'Button
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
         ValidateChildren()
@@ -244,11 +243,11 @@
                         'Try
                         id_pl_mrs_det = GVRetDetail.GetRowCellValue(j, "id_pl_mrs_det").ToString
                         mat_purc_ret_in_det_qty = GVRetDetail.GetRowCellValue(j, "mat_prod_ret_in_det_qty")
-                        mat_purc_ret_in_det_price = GVRetDetail.GetRowCellValue(j, "pl_mrs_det_price")
-                        mat_purc_ret_in_det_note = GVRetDetail.GetRowCellValue(j, "mat_prod_ret_in_det_note").ToString
-                        query = "INSERT tb_mat_prod_ret_in_det(id_mat_prod_ret_in, id_pl_mrs_det, mat_prod_ret_in_det_qty,mat_prod_ret_in_det_price, mat_prod_ret_in_det_note) "
-                        query += "VALUES('" + id_mat_prod_ret_in + "', '" + id_pl_mrs_det + "', '" + decimalSQL(mat_purc_ret_in_det_qty.ToString) + "','" + decimalSQL(mat_purc_ret_in_det_price.ToString) + "', '" + mat_purc_ret_in_det_note + "') "
-                        execute_non_query(query, True, "", "", "", "")
+                            mat_purc_ret_in_det_price = GVRetDetail.GetRowCellValue(j, "pl_mrs_det_price")
+                            mat_purc_ret_in_det_note = GVRetDetail.GetRowCellValue(j, "mat_prod_ret_in_det_note").ToString
+                            query = "INSERT tb_mat_prod_ret_in_det(id_mat_prod_ret_in, id_pl_mrs_det, mat_prod_ret_in_det_qty,mat_prod_ret_in_det_price, mat_prod_ret_in_det_note) "
+                            query += "VALUES('" + id_mat_prod_ret_in + "', '" + id_pl_mrs_det + "', '" + decimalSQL(mat_purc_ret_in_det_qty.ToString) + "','" + decimalSQL(mat_purc_ret_in_det_price.ToString) + "', '" + mat_purc_ret_in_det_note + "') "
+                            execute_non_query(query, True, "", "", "", "")
                         'Catch ex As Exception
 
                         'End Try
