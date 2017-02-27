@@ -50,12 +50,16 @@ Partial Class FormViewProduction
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEUnitCost = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
@@ -86,10 +90,6 @@ Partial Class FormViewProduction
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEUnitCost = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GConListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GConListPurchase.SuspendLayout()
         CType(Me.XTCDetailPO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,6 +100,9 @@ Partial Class FormViewProduction
         Me.XTPBOM.SuspendLayout()
         CType(Me.GCBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBOM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.TEUnitCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralFooter.SuspendLayout()
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,9 +124,6 @@ Partial Class FormViewProduction
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
-        CType(Me.TEUnitCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GConListPurchase
@@ -151,7 +151,7 @@ Partial Class FormViewProduction
         '
         Me.XTPListItem.Controls.Add(Me.GCListProduct)
         Me.XTPListItem.Name = "XTPListItem"
-        Me.XTPListItem.Size = New System.Drawing.Size(949, 359)
+        Me.XTPListItem.Size = New System.Drawing.Size(949, 356)
         Me.XTPListItem.Text = "List Item"
         '
         'GCListProduct
@@ -161,7 +161,7 @@ Partial Class FormViewProduction
         Me.GCListProduct.MainView = Me.GVListProduct
         Me.GCListProduct.Margin = New System.Windows.Forms.Padding(0)
         Me.GCListProduct.Name = "GCListProduct"
-        Me.GCListProduct.Size = New System.Drawing.Size(949, 359)
+        Me.GCListProduct.Size = New System.Drawing.Size(949, 356)
         Me.GCListProduct.TabIndex = 0
         Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
         '
@@ -513,6 +513,40 @@ Partial Class FormViewProduction
         Me.GridColumnIsCost.FieldName = "is_cost"
         Me.GridColumnIsCost.Name = "GridColumnIsCost"
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.TEUnitCost)
+        Me.PanelControl1.Controls.Add(Me.LabelControl11)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 326)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(949, 30)
+        Me.PanelControl1.TabIndex = 5
+        '
+        'TEUnitCost
+        '
+        Me.TEUnitCost.EditValue = ""
+        Me.TEUnitCost.Location = New System.Drawing.Point(790, 5)
+        Me.TEUnitCost.Name = "TEUnitCost"
+        Me.TEUnitCost.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEUnitCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEUnitCost.Properties.EditValueChangedDelay = 1
+        Me.TEUnitCost.Properties.Mask.EditMask = "N2"
+        Me.TEUnitCost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEUnitCost.Properties.Mask.SaveLiteral = False
+        Me.TEUnitCost.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEUnitCost.Properties.ReadOnly = True
+        Me.TEUnitCost.Size = New System.Drawing.Size(156, 20)
+        Me.TEUnitCost.TabIndex = 152
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(740, 8)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(44, 13)
+        Me.LabelControl11.TabIndex = 151
+        Me.LabelControl11.Text = "Unit Cost"
+        '
         'GroupGeneralFooter
         '
         Me.GroupGeneralFooter.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -569,6 +603,15 @@ Partial Class FormViewProduction
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(977, 67)
         Me.GroupControl3.TabIndex = 60
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.SimpleButton1.Location = New System.Drawing.Point(20, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(955, 31)
+        Me.SimpleButton1.TabIndex = 5
+        Me.SimpleButton1.Text = "Attachment"
         '
         'BMark
         '
@@ -866,49 +909,6 @@ Partial Class FormViewProduction
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
         '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SimpleButton1.Location = New System.Drawing.Point(20, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(955, 31)
-        Me.SimpleButton1.TabIndex = 5
-        Me.SimpleButton1.Text = "Attachment"
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.TEUnitCost)
-        Me.PanelControl1.Controls.Add(Me.LabelControl11)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 326)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(949, 30)
-        Me.PanelControl1.TabIndex = 5
-        '
-        'LabelControl11
-        '
-        Me.LabelControl11.Location = New System.Drawing.Point(740, 8)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(44, 13)
-        Me.LabelControl11.TabIndex = 151
-        Me.LabelControl11.Text = "Unit Cost"
-        '
-        'TEUnitCost
-        '
-        Me.TEUnitCost.EditValue = ""
-        Me.TEUnitCost.Location = New System.Drawing.Point(790, 5)
-        Me.TEUnitCost.Name = "TEUnitCost"
-        Me.TEUnitCost.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEUnitCost.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEUnitCost.Properties.EditValueChangedDelay = 1
-        Me.TEUnitCost.Properties.Mask.EditMask = "N2"
-        Me.TEUnitCost.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEUnitCost.Properties.Mask.SaveLiteral = False
-        Me.TEUnitCost.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEUnitCost.Properties.ReadOnly = True
-        Me.TEUnitCost.Size = New System.Drawing.Size(156, 20)
-        Me.TEUnitCost.TabIndex = 152
-        '
         'FormViewProduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -924,7 +924,7 @@ Partial Class FormViewProduction
         Me.Name = "FormViewProduction"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "View Production"
+        Me.Text = "View F. G. Purchase Order"
         CType(Me.GConListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GConListPurchase.ResumeLayout(False)
         CType(Me.XTCDetailPO, System.ComponentModel.ISupportInitialize).EndInit()
@@ -935,6 +935,10 @@ Partial Class FormViewProduction
         Me.XTPBOM.ResumeLayout(False)
         CType(Me.GCBOM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBOM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.TEUnitCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralFooter.ResumeLayout(False)
         Me.GroupGeneralFooter.PerformLayout()
@@ -958,10 +962,6 @@ Partial Class FormViewProduction
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
-        CType(Me.TEUnitCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
