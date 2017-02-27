@@ -258,7 +258,7 @@ Partial Class FormProductionDet
         Me.XTPProdOrder.Controls.Add(Me.GroupGeneralHeader)
         Me.XTPProdOrder.Name = "XTPProdOrder"
         Me.XTPProdOrder.Size = New System.Drawing.Size(971, 531)
-        Me.XTPProdOrder.Text = "Production Order"
+        Me.XTPProdOrder.Text = "F. G. Purchase Order"
         '
         'GConListPurchase
         '
@@ -823,7 +823,7 @@ Partial Class FormProductionDet
         '
         'BarLargeButtonItem1
         '
-        Me.BarLargeButtonItem1.Caption = "Print Production Order"
+        Me.BarLargeButtonItem1.Caption = "Print F. G. Purchase Order"
         Me.BarLargeButtonItem1.Id = 1
         Me.BarLargeButtonItem1.Name = "BarLargeButtonItem1"
         '
@@ -1706,7 +1706,7 @@ Partial Class FormProductionDet
         Me.Name = "FormProductionDet"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Production Order Detail"
+        Me.Text = "F. G. Purchase Order"
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).EndInit()
