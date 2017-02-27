@@ -21,6 +21,7 @@
         GCSample.DataSource = data
 
         If Not data.Rows.Count < 1 Then
+            MsgBox(data.Rows.Count.ToString)
             If id_sample_price <> "-1" Then
                 '
                 Dim id_sample As String
