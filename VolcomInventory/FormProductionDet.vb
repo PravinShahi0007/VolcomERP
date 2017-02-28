@@ -239,7 +239,7 @@
                 FormProduction.GVProd.FocusedRowHandle = find_row(FormProduction.GVProd, "id_prod_order", id_prod_order)
 
                 For i As Integer = 0 To GVListProduct.RowCount - 1
-                    query = String.Format("UPDATE tb_prod_order_det SET prod_order_det_note='{1}' WHERE id_prod_order_det='{0]'", GVListProduct.GetRowCellValue(i, "id_prod_order_det").ToString(), GVListProduct.GetRowCellValue(i, "note").ToString())
+                    query = String.Format("UPDATE tb_prod_order_det SET prod_order_det_note='{1}' WHERE id_prod_order_det='{0}'", GVListProduct.GetRowCellValue(i, "id_prod_order_det").ToString(), GVListProduct.GetRowCellValue(i, "note").ToString())
                     execute_non_query(query, True, "", "", "", "")
                 Next
 
