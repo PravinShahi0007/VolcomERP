@@ -30,15 +30,18 @@ Partial Class FormSamplePurchaseDet
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl26 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEComm = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl25 = New DevExpress.XtraEditors.LabelControl()
+        Me.BPickCourier = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.TECourier = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECourierCode = New DevExpress.XtraEditors.TextEdit()
         Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -112,18 +115,16 @@ Partial Class FormSamplePurchaseDet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl25 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl26 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.EPSamplePurc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralFooter.SuspendLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEComm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECourier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECourierCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -160,7 +161,6 @@ Partial Class FormSamplePurchaseDet
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPSamplePurc
@@ -264,14 +264,14 @@ Partial Class FormSamplePurchaseDet
         '
         Me.GroupGeneralFooter.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupGeneralFooter.Controls.Add(Me.LabelControl26)
-        Me.GroupGeneralFooter.Controls.Add(Me.TextEdit3)
+        Me.GroupGeneralFooter.Controls.Add(Me.TEComm)
         Me.GroupGeneralFooter.Controls.Add(Me.LabelControl25)
-        Me.GroupGeneralFooter.Controls.Add(Me.SimpleButton1)
+        Me.GroupGeneralFooter.Controls.Add(Me.BPickCourier)
         Me.GroupGeneralFooter.Controls.Add(Me.LabelControl21)
         Me.GroupGeneralFooter.Controls.Add(Me.TEKurs)
-        Me.GroupGeneralFooter.Controls.Add(Me.TextEdit1)
+        Me.GroupGeneralFooter.Controls.Add(Me.TECourier)
         Me.GroupGeneralFooter.Controls.Add(Me.LabelControl22)
-        Me.GroupGeneralFooter.Controls.Add(Me.TextEdit2)
+        Me.GroupGeneralFooter.Controls.Add(Me.TECourierCode)
         Me.GroupGeneralFooter.Controls.Add(Me.LECurrency)
         Me.GroupGeneralFooter.Controls.Add(Me.LabelControl19)
         Me.GroupGeneralFooter.Controls.Add(Me.LabelControl24)
@@ -300,41 +300,44 @@ Partial Class FormSamplePurchaseDet
         Me.GroupGeneralFooter.Size = New System.Drawing.Size(909, 159)
         Me.GroupGeneralFooter.TabIndex = 35
         '
-        'SimpleButton1
+        'LabelControl26
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(365, 13)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(23, 20)
-        Me.SimpleButton1.TabIndex = 148
-        Me.SimpleButton1.Text = "..."
+        Me.LabelControl26.Location = New System.Drawing.Point(626, 13)
+        Me.LabelControl26.Name = "LabelControl26"
+        Me.LabelControl26.Size = New System.Drawing.Size(11, 13)
+        Me.LabelControl26.TabIndex = 153
+        Me.LabelControl26.Text = "%"
         '
-        'TextEdit1
+        'TEComm
         '
-        Me.TextEdit1.EditValue = ""
-        Me.TextEdit1.Location = New System.Drawing.Point(151, 13)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.EditValueChangedDelay = 1
-        Me.TextEdit1.Properties.ReadOnly = True
-        Me.TextEdit1.Size = New System.Drawing.Size(208, 20)
-        Me.TextEdit1.TabIndex = 150
+        Me.TEComm.EditValue = "0"
+        Me.TEComm.Location = New System.Drawing.Point(516, 10)
+        Me.TEComm.Name = "TEComm"
+        Me.TEComm.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEComm.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEComm.Properties.EditValueChangedDelay = 1
+        Me.TEComm.Properties.Mask.EditMask = "N2"
+        Me.TEComm.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEComm.Properties.Mask.SaveLiteral = False
+        Me.TEComm.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEComm.Size = New System.Drawing.Size(104, 20)
+        Me.TEComm.TabIndex = 151
         '
-        'TextEdit2
+        'LabelControl25
         '
-        Me.TextEdit2.EditValue = ""
-        Me.TextEdit2.Location = New System.Drawing.Point(72, 13)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.EditValueChangedDelay = 1
-        Me.TextEdit2.Properties.ReadOnly = True
-        Me.TextEdit2.Size = New System.Drawing.Size(73, 20)
-        Me.TextEdit2.TabIndex = 149
+        Me.LabelControl25.Location = New System.Drawing.Point(422, 13)
+        Me.LabelControl25.Name = "LabelControl25"
+        Me.LabelControl25.Size = New System.Drawing.Size(88, 13)
+        Me.LabelControl25.TabIndex = 152
+        Me.LabelControl25.Text = "Courier Commision"
         '
-        'LabelControl24
+        'BPickCourier
         '
-        Me.LabelControl24.Location = New System.Drawing.Point(25, 16)
-        Me.LabelControl24.Name = "LabelControl24"
-        Me.LabelControl24.Size = New System.Drawing.Size(35, 13)
-        Me.LabelControl24.TabIndex = 147
-        Me.LabelControl24.Text = "Courier"
+        Me.BPickCourier.Location = New System.Drawing.Point(365, 13)
+        Me.BPickCourier.Name = "BPickCourier"
+        Me.BPickCourier.Size = New System.Drawing.Size(23, 20)
+        Me.BPickCourier.TabIndex = 148
+        Me.BPickCourier.Text = "..."
         '
         'LabelControl21
         '
@@ -359,6 +362,16 @@ Partial Class FormSamplePurchaseDet
         Me.TEKurs.Size = New System.Drawing.Size(121, 20)
         Me.TEKurs.TabIndex = 4
         '
+        'TECourier
+        '
+        Me.TECourier.EditValue = ""
+        Me.TECourier.Location = New System.Drawing.Point(151, 13)
+        Me.TECourier.Name = "TECourier"
+        Me.TECourier.Properties.EditValueChangedDelay = 1
+        Me.TECourier.Properties.ReadOnly = True
+        Me.TECourier.Size = New System.Drawing.Size(208, 20)
+        Me.TECourier.TabIndex = 150
+        '
         'LabelControl22
         '
         Me.LabelControl22.Location = New System.Drawing.Point(765, 53)
@@ -366,6 +379,16 @@ Partial Class FormSamplePurchaseDet
         Me.LabelControl22.Size = New System.Drawing.Size(11, 13)
         Me.LabelControl22.TabIndex = 144
         Me.LabelControl22.Text = "%"
+        '
+        'TECourierCode
+        '
+        Me.TECourierCode.EditValue = ""
+        Me.TECourierCode.Location = New System.Drawing.Point(72, 13)
+        Me.TECourierCode.Name = "TECourierCode"
+        Me.TECourierCode.Properties.EditValueChangedDelay = 1
+        Me.TECourierCode.Properties.ReadOnly = True
+        Me.TECourierCode.Size = New System.Drawing.Size(73, 20)
+        Me.TECourierCode.TabIndex = 149
         '
         'LECurrency
         '
@@ -387,6 +410,14 @@ Partial Class FormSamplePurchaseDet
         Me.LabelControl19.Size = New System.Drawing.Size(18, 13)
         Me.LabelControl19.TabIndex = 140
         Me.LabelControl19.Text = "Say"
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(25, 16)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(35, 13)
+        Me.LabelControl24.TabIndex = 147
+        Me.LabelControl24.Text = "Courier"
         '
         'METotSay
         '
@@ -1153,37 +1184,6 @@ Partial Class FormSamplePurchaseDet
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
         '
-        'TextEdit3
-        '
-        Me.TextEdit3.EditValue = "1.00"
-        Me.TextEdit3.Location = New System.Drawing.Point(516, 10)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Properties.Appearance.Options.UseTextOptions = True
-        Me.TextEdit3.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TextEdit3.Properties.EditValueChangedDelay = 1
-        Me.TextEdit3.Properties.Mask.EditMask = "N2"
-        Me.TextEdit3.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TextEdit3.Properties.Mask.SaveLiteral = False
-        Me.TextEdit3.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit3.Size = New System.Drawing.Size(104, 20)
-        Me.TextEdit3.TabIndex = 151
-        '
-        'LabelControl25
-        '
-        Me.LabelControl25.Location = New System.Drawing.Point(422, 13)
-        Me.LabelControl25.Name = "LabelControl25"
-        Me.LabelControl25.Size = New System.Drawing.Size(88, 13)
-        Me.LabelControl25.TabIndex = 152
-        Me.LabelControl25.Text = "Courier Commision"
-        '
-        'LabelControl26
-        '
-        Me.LabelControl26.Location = New System.Drawing.Point(626, 13)
-        Me.LabelControl26.Name = "LabelControl26"
-        Me.LabelControl26.Size = New System.Drawing.Size(11, 13)
-        Me.LabelControl26.TabIndex = 153
-        Me.LabelControl26.Text = "%"
-        '
         'FormSamplePurchaseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1207,9 +1207,10 @@ Partial Class FormSamplePurchaseDet
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralFooter.ResumeLayout(False)
         Me.GroupGeneralFooter.PerformLayout()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEComm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECourier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECourierCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1247,7 +1248,6 @@ Partial Class FormSamplePurchaseDet
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1339,10 +1339,10 @@ Partial Class FormSamplePurchaseDet
     Friend WithEvents GridColumnColor As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BPickCourier As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TECourier As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TECourierCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl26 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEComm As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl25 As DevExpress.XtraEditors.LabelControl
 End Class

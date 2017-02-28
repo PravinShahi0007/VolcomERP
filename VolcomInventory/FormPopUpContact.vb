@@ -148,6 +148,11 @@
             FormSamplePurchaseDet.TECompAttn.Text = GVCompanyContactList.GetFocusedRowCellDisplayText("contact_person").ToString
             FormSamplePurchaseDet.MECompAddress.Text = GVCompany.GetFocusedRowCellDisplayText("address_primary").ToString
             Close()
+        ElseIf id_pop_up = "1c" Then
+            FormSamplePurchaseDet.id_comp_contact_courier = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+            FormSamplePurchaseDet.TECourierCode.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
+            FormSamplePurchaseDet.TECourier.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
+            Close()
         ElseIf id_pop_up = "2" Then
             FormSamplePurchaseDet.id_comp_ship_to = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
             FormSamplePurchaseDet.TECompShipTo.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
