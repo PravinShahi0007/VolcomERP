@@ -349,23 +349,20 @@ Public Class FormSalesDelOrderDet
 
     Sub allow_status()
         If check_edit_report_status(id_report_status, "43", id_pl_sales_order_del) Then
-            PanelNavBarcode.Enabled = True
             MENote.Properties.ReadOnly = False
-            BtnSave.Enabled = True
-            BtnVerify.Enabled = True
             GVItemList.OptionsCustomization.AllowQuickHideColumns = False
             GVItemList.OptionsCustomization.AllowGroup = False
             GridColumnQtyLimit.Visible = True
         Else
-            PanelNavBarcode.Enabled = False
             MENote.Properties.ReadOnly = True
-            BtnSave.Enabled = False
-            BtnVerify.Enabled = False
             GVItemList.OptionsCustomization.AllowQuickHideColumns = True
             GVItemList.Columns("sales_order_det_qty_limit").Visible = False
             GVItemList.OptionsCustomization.AllowGroup = True
             GridColumnQtyLimit.Visible = False
         End If
+        PanelNavBarcode.Enabled = False
+        BtnSave.Enabled = False
+        BtnVerify.Enabled = False
 
         'attachment
         If check_attach_report_status(id_report_status, "43", id_pl_sales_order_del) Then
@@ -626,6 +623,9 @@ Public Class FormSalesDelOrderDet
                     If GVBarcode.RowCount > 0 Then
                         execute_non_query(query_counting, True, "", "", "", "")
                     End If
+
+                    'submit who prepared
+                    submit_who_prepared("43", id_pl_sales_order_del, id_user)
 
                     FormSalesDelOrder.viewSalesDelOrder()
                     FormSalesDelOrder.GVSalesDelOrder.FocusedRowHandle = find_row(FormSalesDelOrder.GVSalesDelOrder, "id_pl_sales_order_del", id_pl_sales_order_del)
