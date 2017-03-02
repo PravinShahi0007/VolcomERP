@@ -366,7 +366,7 @@ Public Class FormSalesReturnDet
             PanelControlNav.Enabled = True
             PanelNavBarcode.Enabled = False
             MENote.Properties.ReadOnly = False
-            BtnSave.Enabled = True
+            BtnSave.Enabled = False
             TxtStoreReturnNumber.Properties.ReadOnly = False
             BtnInfoSrs.Enabled = True
             GridColumnQtyLimit.Visible = False
@@ -812,6 +812,9 @@ Public Class FormSalesReturnDet
                     'reserved stock
                     Dim stc_rev As ClassSalesReturn = New ClassSalesReturn()
                     stc_rev.reservedStock(id_sales_return)
+
+                    'submit who prepared
+                    submit_who_prepared("46", id_sales_return, id_user)
 
                     FormSalesReturn.viewSalesReturn()
                     FormSalesReturn.viewSalesReturnOrder()
