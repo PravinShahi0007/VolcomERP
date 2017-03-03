@@ -1067,6 +1067,12 @@
     <Compile Include="FormProductionFinalClear.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionFinalClearDet.Designer.vb">
+      <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionFinalClearDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionSpecialRec.Designer.vb">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
     </Compile>
@@ -5072,6 +5078,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionFinalClear.resx">
       <DependentUpon>FormProductionFinalClear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionFinalClearDet.resx">
+      <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionSpecialRec.resx">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
