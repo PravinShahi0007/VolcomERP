@@ -10323,4 +10323,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBFinalClear_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFinalClear.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductionFinalClear.MdiParent = Me
+            FormProductionFinalClear.Show()
+            FormProductionFinalClear.WindowState = FormWindowState.Maximized
+            FormProductionFinalClear.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

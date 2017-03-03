@@ -19,7 +19,6 @@ Partial Class FormMain
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMain))
         Me.RibbonControl = New DevExpress.XtraBars.Ribbon.RibbonControl()
         Me.BarButtonItemAddMasterItemCategory = New DevExpress.XtraBars.BarButtonItem()
@@ -97,7 +96,7 @@ Partial Class FormMain
         Me.BBToggleMenu = New DevExpress.XtraBars.BarButtonItem()
         Me.BBGuide = New DevExpress.XtraBars.BarButtonItem()
         Me.BBNotif = New DevExpress.XtraBars.BarButtonItem()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.RPSubMenu = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RGAreaManage = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RGAreaPrint = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -107,14 +106,14 @@ Partial Class FormMain
         Me.RPGManageUser = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RPGAbout = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonStatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
-        Me.ImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.ContextMenuStripYM = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ImageCollection = New DevExpress.Utils.ImageCollection()
+        Me.ContextMenuStripYM = New System.Windows.Forms.ContextMenuStrip()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoginToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DashboardToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NotifyIconVI = New System.Windows.Forms.NotifyIcon(Me.components)
+        Me.NotifyIconVI = New System.Windows.Forms.NotifyIcon()
         Me.NBProdRet = New DevExpress.XtraNavBar.NavBarControl()
         Me.NBGGeneral = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBWork = New DevExpress.XtraNavBar.NavBarItem()
@@ -215,6 +214,7 @@ Partial Class FormMain
         Me.NBProdWOPR = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdWO = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdReport = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBSpecialReceiving = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGSales = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBSalesTarget = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBFGLineList = New DevExpress.XtraNavBar.NavBarItem()
@@ -289,19 +289,19 @@ Partial Class FormMain
         Me.NBSampleStorage = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBSampleTrf = New DevExpress.XtraNavBar.NavBarItem()
         Me.NavBarItem2 = New DevExpress.XtraNavBar.NavBarItem()
-        Me.MenuImages = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.XTMDI = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
+        Me.MenuImages = New DevExpress.Utils.ImageCollection()
+        Me.XTMDI = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager()
         Me.BBCompanyContact = New DevExpress.XtraBars.BarButtonItem()
-        Me.AlertControlNotif = New DevExpress.XtraBars.Alerter.AlertControl(Me.components)
-        Me.TimerNotif = New System.Windows.Forms.Timer(Me.components)
+        Me.AlertControlNotif = New DevExpress.XtraBars.Alerter.AlertControl()
+        Me.TimerNotif = New System.Windows.Forms.Timer()
         Me.PCMenu = New DevExpress.XtraEditors.PanelControl()
         Me.PCSearch = New DevExpress.XtraEditors.PanelControl()
         Me.TESearchNavbar = New DevExpress.XtraEditors.TextEdit()
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
-        Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager(Me.components)
+        Me.AdornerUIManager1 = New DevExpress.Utils.VisualEffects.AdornerUIManager()
         Me.Badge1 = New DevExpress.Utils.VisualEffects.Badge()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm1), True, True)
-        Me.NBSpecialReceiving = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBFinalClear = New DevExpress.XtraNavBar.NavBarItem()
         CType(Me.RibbonControl, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1192,7 +1192,7 @@ Partial Class FormMain
         Me.NBProdRet.ActiveGroup = Me.NBGGeneral
         Me.NBProdRet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.NBProdRet.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NBGGeneral, Me.NBGHRD, Me.NBGMaster, Me.NBGTransaction, Me.NBGMat, Me.NBGProduction, Me.NBGSales, Me.NBGAccounting, Me.NBQC, Me.NBGSetup})
-        Me.NBProdRet.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItemItemCategory, Me.NBArea, Me.NBCompany_category, Me.NBUom, Me.NBSeason, Me.NBDepartement, Me.NBUser, Me.NBCompany, Me.NBRawMaterial, Me.NBRawMatCode, Me.NBAccess, Me.NBAccessUser, Me.NBOVH, Me.NBProdDemand, Me.NBCode, Me.NBCodeTemplate, Me.NBSample, Me.NBProduct, Me.NBBom, Me.NBPicLocation, Me.NBRawMatCat, Me.NBPLSample, Me.NBHeadNumber, Me.NBSamplePurchase, Me.NBSampleReceive, Me.NBSamplePR, Me.NBWH, Me.NBReceiptSample, Me.NBSampleStorage, Me.NBPLDelivery, Me.NBROSample, Me.NBWork, Me.NBPLDel, Me.NBReqSample, Me.NBSamplePlan, Me.NBMarkAssign, Me.NBMatPurchase, Me.NBReturnSample, Me.NBMatWO, Me.NBMatRecPurc, Me.NBMatRecWO, Me.NBMatRet, Me.NBAdjSample, Me.NBProdOrder, Me.NBMatPR, Me.NBMatPRWO, Me.NBAdjMat, Me.NBProdRec, Me.NBProdReturn, Me.NBMatPL, Me.NBMatMRS, Me.NBProdPLToWH, Me.NBMatInvoice, Me.NBAcc, Me.NBAccJournal, Me.NBProdRecWH, Me.NBSalesTarget, Me.NBSalesOrder, Me.NBSalesDelOrder, Me.NBSalesReturnOrder, Me.NBSalesReturn, Me.NBSalesPOS, Me.NBSalesReturnQC, Me.NBSalesInvoice, Me.NBJournalAdj, Me.NBProdWOPR, Me.NBFGSoStore, Me.NBFGMissing, Me.NBFGMissingInvoice, Me.NBFGSOWH, Me.NBMatSO, Me.NBFGAdj, Me.NBFGTrf, Me.NBFGTrfRec, Me.NBFGTracking, Me.NBFGStock, Me.NBAccSum, Me.NBAccFY, Me.NBMatStock, Me.NBSampleStock, Me.NBEmployee, Me.NBSampleTrf, Me.NBSampleDelivery, Me.NBSampleDelRec, Me.NBSampleBarcode, Me.NBSampleOrder, Me.NBSampleDelOrder, Me.NBSampleStockOpname, Me.NBFGCodeReplace, Me.NBPayment, Me.NBSalesWeekly, Me.NBSalesCreditNote, Me.NBFGMissingCreditNote, Me.NBSOHPeriode, Me.NBSOHPrice, Me.NBSOH, Me.NBSOHSum, Me.NBFGWoff, Me.NavBarItem2, Me.NBFGWoffList, Me.NBProposePrice, Me.NBFGLineList, Me.NBDistSchemaSetup, Me.NBFGLineListDsg, Me.NBRetCode, Me.NBFGProdList, Me.NBPrintBarcode, Me.NBDesignList, Me.NBSampleOrdered, Me.NBFGDS, Me.NBRateStore, Me.NBAdjQC, Me.NBFGSOReff, Me.NBSalesOrderList, Me.NBFGTrfNew, Me.NBSalesPromo, Me.NBComputer, Me.NBScanEFactur, Me.NBBorrowQCRec, Me.NBSeasonNonMerch, Me.NBLineListNonMerch, Me.NBSalesOrderCat, Me.NBAWB, Me.NBCargoRate, Me.NBSalesOrderSvcLevel, Me.NBMasterPrice, Me.NBImportDO, Me.NBDesignLineList, Me.NBWHSvcLevel, Me.NBTestBC, Me.NBSamplePL, Me.NBMasterSamplePrice, Me.NBSamplePriceRet, Me.NBFGWHAlloc, Me.NBProdWO, Me.NBFGWHAllocLog, Me.NBStockQC, Me.NBSamplePLRet, Me.NBDesignListApp, Me.NBLeavePropose, Me.NBInitializeFP, Me.NBFPSetup, Me.NBAttnLog, Me.NBShift, Me.NBHoliday, Me.NBSchedule, Me.NBAttnInd, Me.NBAttnSum, Me.NBEmpReview, Me.NBFGRepair, Me.NBFGRepairRec, Me.NBFGRepairReturn, Me.NBFGRepairReturnRec, Me.NBEmpLeave, Me.NBAttnSumDept, Me.NBEmpEmail, Me.NBScheduleSecurity, Me.NBEmpLeaveRemaining, Me.NBDP, Me.NBChSchedule, Me.NBSchedulePropose, Me.NBProdReport, Me.NBAttnStore, Me.NBSpecialReceiving})
+        Me.NBProdRet.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItemItemCategory, Me.NBArea, Me.NBCompany_category, Me.NBUom, Me.NBSeason, Me.NBDepartement, Me.NBUser, Me.NBCompany, Me.NBRawMaterial, Me.NBRawMatCode, Me.NBAccess, Me.NBAccessUser, Me.NBOVH, Me.NBProdDemand, Me.NBCode, Me.NBCodeTemplate, Me.NBSample, Me.NBProduct, Me.NBBom, Me.NBPicLocation, Me.NBRawMatCat, Me.NBPLSample, Me.NBHeadNumber, Me.NBSamplePurchase, Me.NBSampleReceive, Me.NBSamplePR, Me.NBWH, Me.NBReceiptSample, Me.NBSampleStorage, Me.NBPLDelivery, Me.NBROSample, Me.NBWork, Me.NBPLDel, Me.NBReqSample, Me.NBSamplePlan, Me.NBMarkAssign, Me.NBMatPurchase, Me.NBReturnSample, Me.NBMatWO, Me.NBMatRecPurc, Me.NBMatRecWO, Me.NBMatRet, Me.NBAdjSample, Me.NBProdOrder, Me.NBMatPR, Me.NBMatPRWO, Me.NBAdjMat, Me.NBProdRec, Me.NBProdReturn, Me.NBMatPL, Me.NBMatMRS, Me.NBProdPLToWH, Me.NBMatInvoice, Me.NBAcc, Me.NBAccJournal, Me.NBProdRecWH, Me.NBSalesTarget, Me.NBSalesOrder, Me.NBSalesDelOrder, Me.NBSalesReturnOrder, Me.NBSalesReturn, Me.NBSalesPOS, Me.NBSalesReturnQC, Me.NBSalesInvoice, Me.NBJournalAdj, Me.NBProdWOPR, Me.NBFGSoStore, Me.NBFGMissing, Me.NBFGMissingInvoice, Me.NBFGSOWH, Me.NBMatSO, Me.NBFGAdj, Me.NBFGTrf, Me.NBFGTrfRec, Me.NBFGTracking, Me.NBFGStock, Me.NBAccSum, Me.NBAccFY, Me.NBMatStock, Me.NBSampleStock, Me.NBEmployee, Me.NBSampleTrf, Me.NBSampleDelivery, Me.NBSampleDelRec, Me.NBSampleBarcode, Me.NBSampleOrder, Me.NBSampleDelOrder, Me.NBSampleStockOpname, Me.NBFGCodeReplace, Me.NBPayment, Me.NBSalesWeekly, Me.NBSalesCreditNote, Me.NBFGMissingCreditNote, Me.NBSOHPeriode, Me.NBSOHPrice, Me.NBSOH, Me.NBSOHSum, Me.NBFGWoff, Me.NavBarItem2, Me.NBFGWoffList, Me.NBProposePrice, Me.NBFGLineList, Me.NBDistSchemaSetup, Me.NBFGLineListDsg, Me.NBRetCode, Me.NBFGProdList, Me.NBPrintBarcode, Me.NBDesignList, Me.NBSampleOrdered, Me.NBFGDS, Me.NBRateStore, Me.NBAdjQC, Me.NBFGSOReff, Me.NBSalesOrderList, Me.NBFGTrfNew, Me.NBSalesPromo, Me.NBComputer, Me.NBScanEFactur, Me.NBBorrowQCRec, Me.NBSeasonNonMerch, Me.NBLineListNonMerch, Me.NBSalesOrderCat, Me.NBAWB, Me.NBCargoRate, Me.NBSalesOrderSvcLevel, Me.NBMasterPrice, Me.NBImportDO, Me.NBDesignLineList, Me.NBWHSvcLevel, Me.NBTestBC, Me.NBSamplePL, Me.NBMasterSamplePrice, Me.NBSamplePriceRet, Me.NBFGWHAlloc, Me.NBProdWO, Me.NBFGWHAllocLog, Me.NBStockQC, Me.NBSamplePLRet, Me.NBDesignListApp, Me.NBLeavePropose, Me.NBInitializeFP, Me.NBFPSetup, Me.NBAttnLog, Me.NBShift, Me.NBHoliday, Me.NBSchedule, Me.NBAttnInd, Me.NBAttnSum, Me.NBEmpReview, Me.NBFGRepair, Me.NBFGRepairRec, Me.NBFGRepairReturn, Me.NBFGRepairReturnRec, Me.NBEmpLeave, Me.NBAttnSumDept, Me.NBEmpEmail, Me.NBScheduleSecurity, Me.NBEmpLeaveRemaining, Me.NBDP, Me.NBChSchedule, Me.NBSchedulePropose, Me.NBProdReport, Me.NBAttnStore, Me.NBSpecialReceiving, Me.NBFinalClear})
         Me.NBProdRet.LargeImages = Me.MenuImages
         Me.NBProdRet.Location = New System.Drawing.Point(2, 26)
         Me.NBProdRet.LookAndFeel.SkinName = "Office 2010 Silver"
@@ -1314,7 +1314,6 @@ Partial Class FormMain
         Me.NBGHRD.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmployee), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBShift), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSchedule), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnLog), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBInitializeFP), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFPSetup), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBHoliday), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnInd), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpReview), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpLeave), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScheduleSecurity), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBEmpLeaveRemaining), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnSumDept), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDP), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBChSchedule), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSchedulePropose), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAttnStore)})
         Me.NBGHRD.LargeImage = CType(resources.GetObject("NBGHRD.LargeImage"), System.Drawing.Image)
         Me.NBGHRD.Name = "NBGHRD"
-        Me.NBGHRD.TopVisibleLinkIndex = 1
         '
         'NBEmployee
         '
@@ -1815,14 +1814,12 @@ Partial Class FormMain
         'NBGProduction
         '
         Me.NBGProduction.Caption = "Production"
-        Me.NBGProduction.Expanded = True
         Me.NBGProduction.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
         Me.NBGProduction.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBom), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdDemand), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdOrder), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBDesignList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFGProdList), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdRecWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdWOPR), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdWO), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdReport), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBSpecialReceiving)})
         Me.NBGProduction.LargeImage = CType(resources.GetObject("NBGProduction.LargeImage"), System.Drawing.Image)
         Me.NBGProduction.LargeImageIndex = 32
         Me.NBGProduction.Name = "NBGProduction"
         Me.NBGProduction.SmallImage = CType(resources.GetObject("NBGProduction.SmallImage"), System.Drawing.Image)
-        Me.NBGProduction.TopVisibleLinkIndex = 1
         '
         'NBBom
         '
@@ -1884,6 +1881,12 @@ Partial Class FormMain
         Me.NBProdReport.Caption = "Production Summary"
         Me.NBProdReport.Name = "NBProdReport"
         Me.NBProdReport.SmallImageIndex = 38
+        '
+        'NBSpecialReceiving
+        '
+        Me.NBSpecialReceiving.Caption = "Open Lock Receiving QC"
+        Me.NBSpecialReceiving.Name = "NBSpecialReceiving"
+        Me.NBSpecialReceiving.SmallImageIndex = 50
         '
         'NBGSales
         '
@@ -2258,12 +2261,14 @@ Partial Class FormMain
         'NBQC
         '
         Me.NBQC.Caption = "Quality Control"
+        Me.NBQC.Expanded = True
         Me.NBQC.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBQC.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdPLToWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAdjQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBorrowQCRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockQC)})
+        Me.NBQC.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdPLToWH), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBProdReturn), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAdjQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBBorrowQCRec), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBStockQC), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBFinalClear)})
         Me.NBQC.LargeImage = CType(resources.GetObject("NBQC.LargeImage"), System.Drawing.Image)
         Me.NBQC.LargeImageIndex = 19
         Me.NBQC.Name = "NBQC"
         Me.NBQC.SmallImage = CType(resources.GetObject("NBQC.SmallImage"), System.Drawing.Image)
+        Me.NBQC.TopVisibleLinkIndex = 1
         '
         'NBProdRec
         '
@@ -2483,11 +2488,11 @@ Partial Class FormMain
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
-        'NBSpecialReceiving
+        'NBFinalClear
         '
-        Me.NBSpecialReceiving.Caption = "Open Lock Receiving QC"
-        Me.NBSpecialReceiving.Name = "NBSpecialReceiving"
-        Me.NBSpecialReceiving.SmallImageIndex = 50
+        Me.NBFinalClear.Caption = "Final Clearance"
+        Me.NBFinalClear.Name = "NBFinalClear"
+        Me.NBFinalClear.SmallImage = CType(resources.GetObject("NBFinalClear.SmallImage"), System.Drawing.Image)
         '
         'FormMain
         '
@@ -2808,4 +2813,5 @@ Partial Class FormMain
     Friend WithEvents NBProdReport As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBAttnStore As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBSpecialReceiving As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents NBFinalClear As DevExpress.XtraNavBar.NavBarItem
 End Class
