@@ -1060,6 +1060,12 @@
     <Compile Include="FormProductionCOPDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionFinalClear.Designer.vb">
+      <DependentUpon>FormProductionFinalClear.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionFinalClear.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionSpecialRec.Designer.vb">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>
     </Compile>
