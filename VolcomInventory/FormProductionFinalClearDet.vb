@@ -39,22 +39,22 @@
             BtnSave.Text = "Save Changes"
 
             'query view based on edit id's
-            Dim query_c As ClassFGWHAlloc = New ClassFGWHAlloc()
-            Dim query As String = query_c.queryMain("AND allc.id_fg_wh_alloc='" + id_fg_wh_alloc + "' ", "2")
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            id_fg_wh_alloc = data.Rows(0)("id_fg_wh_alloc").ToString
-            id_report_status = data.Rows(0)("id_report_status").ToString
-            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
-            TxtNumber.Text = data.Rows(0)("fg_wh_alloc_number").ToString
-            DEForm.Text = view_date_from(data.Rows(0)("fg_wh_alloc_datex").ToString, 0)
-            MENote.Text = data.Rows(0)("fg_wh_alloc_note").ToString
-            id_comp_from = data.Rows(0)("id_comp").ToString
-            TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
-            TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
-            id_wh_drawer_from = data.Rows(0)("id_wh_drawer").ToString
-            id_wh_rack_from = data.Rows(0)("id_wh_rack").ToString
-            id_wh_locator_from = data.Rows(0)("id_wh_locator").ToString
-            is_submit = data.Rows(0)("is_submit").ToString
+            'Dim query_c As ClassFGWHAlloc = New ClassFGWHAlloc()
+            'Dim query As String = query_c.queryMain("AND allc.id_fg_wh_alloc='" + id_fg_wh_alloc + "' ", "2")
+            'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            'id_fg_wh_alloc = data.Rows(0)("id_fg_wh_alloc").ToString
+            'id_report_status = data.Rows(0)("id_report_status").ToString
+            'LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            'TxtNumber.Text = data.Rows(0)("fg_wh_alloc_number").ToString
+            'DEForm.Text = view_date_from(data.Rows(0)("fg_wh_alloc_datex").ToString, 0)
+            'MENote.Text = data.Rows(0)("fg_wh_alloc_note").ToString
+            'id_comp_from = data.Rows(0)("id_comp").ToString
+            'TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
+            'TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
+            'id_wh_drawer_from = data.Rows(0)("id_wh_drawer").ToString
+            'id_wh_rack_from = data.Rows(0)("id_wh_rack").ToString
+            'id_wh_locator_from = data.Rows(0)("id_wh_locator").ToString
+            'is_submit = data.Rows(0)("is_submit").ToString
 
 
             'detail2
