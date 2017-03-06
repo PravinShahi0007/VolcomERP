@@ -197,6 +197,7 @@
     <Compile Include="ClassFingerPrint.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassProdDemand.vb" />
+    <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
     <Compile Include="ClassReturn.vb" />
     <Compile Include="ClassSalesDelOrder.vb" />
@@ -1058,6 +1059,18 @@
       <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionCOPDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionFinalClear.Designer.vb">
+      <DependentUpon>FormProductionFinalClear.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionFinalClear.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionFinalClearDet.Designer.vb">
+      <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionFinalClearDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionSpecialRec.Designer.vb">
@@ -5062,6 +5075,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionCOPDet.resx">
       <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionFinalClear.resx">
+      <DependentUpon>FormProductionFinalClear.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionFinalClearDet.resx">
+      <DependentUpon>FormProductionFinalClearDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionSpecialRec.resx">
       <DependentUpon>FormProductionSpecialRec.vb</DependentUpon>

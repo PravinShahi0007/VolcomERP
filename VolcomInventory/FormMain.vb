@@ -1489,6 +1489,10 @@ Public Class FormMain
             'assign schedule with approval
             FormEmpAttnAssignDet.id_emp_assign_sch = "-1"
             FormEmpAttnAssignDet.ShowDialog()
+        ElseIf formName = "FormProductionFinalClear" Then
+            'assign schedule with approval
+            FormProductionFinalClearDet.action = "ins"
+            FormProductionFinalClearDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2345,6 +2349,9 @@ Public Class FormMain
                 'Propose schedule with approval
                 FormEmpAttnAssignDet.id_emp_assign_sch = FormEmpAttnAssign.GVAttnAssign.GetFocusedRowCellValue("id_assign_sch").ToString
                 FormEmpAttnAssignDet.ShowDialog()
+            ElseIf formName = "FormProductionFinalClear" Then
+                FormProductionFinalClearDet.id_prod_fc = FormProductionFinalClear.GVFinalClear.GetFocusedRowCellValue("id_prod_fc").ToString
+                FormProductionFinalClearDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6539,6 +6546,16 @@ Public Class FormMain
             ElseIf FormProductionSummary.XTCSum.SelectedTabPageIndex = 1 Then
                 print(FormProductionSummary.GCDesign, "APPROVED ORDER")
             End If
+        ElseIf formName = "FormProductionFinalClear" Then
+            FormProductionFinalClear.BtnView.Focus()
+            print(FormProductionFinalClear.GCFinalClear, "FINAL CLEARANCE LIST" + System.Environment.NewLine + FormProductionFinalClear.DEFrom.Text + " - " + FormProductionFinalClear.DEUntil.Text)
+            FormProductionFinalClear.DEFrom.Focus()
+        ElseIf formName = "FormEmpLeaveStock" Then
+            If FormEmpLeaveStock.XTCLeaveRemaining.SelectedTabPageIndex = 0 Then
+                print(FormEmpLeaveStock.GCSum, "Remaining Leave Summary " & FormEmpLeaveStock.LEDeptSum.Text)
+            ElseIf FormEmpLeaveStock.XTCLeaveRemaining.SelectedTabPageIndex = 1 Then
+                print(FormEmpLeaveStock.GCSchedule, "Remaining Leave Detail " & FormEmpLeaveStock.LEDept.Text)
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -7081,6 +7098,9 @@ Public Class FormMain
         ElseIf formName = "FormProductionSummary" Then
             FormProductionSummary.Close()
             FormProductionSummary.Dispose()
+        ElseIf formName = "FormProductionFinalClear" Then
+            FormProductionFinalClear.Close()
+            FormProductionFinalClear.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7727,6 +7747,8 @@ Public Class FormMain
             FormEmpLeave.load_sum()
         ElseIf formName = "FormEmpDP" Then
             FormEmpDP.load_dp()
+        ElseIf formName = "FormProductionFinalClear" Then
+            FormProductionFinalClear.viewFinalClear()
         End If
     End Sub
     'Switch
@@ -10318,6 +10340,19 @@ Public Class FormMain
             FormProductionSpecialRec.Show()
             FormProductionSpecialRec.WindowState = FormWindowState.Maximized
             FormProductionSpecialRec.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBFinalClear_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFinalClear.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductionFinalClear.MdiParent = Me
+            FormProductionFinalClear.Show()
+            FormProductionFinalClear.WindowState = FormWindowState.Maximized
+            FormProductionFinalClear.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
