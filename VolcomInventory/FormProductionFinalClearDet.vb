@@ -358,33 +358,95 @@ Public Class FormProductionFinalClearDet
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
         Cursor = Cursors.WaitCursor
-        'ReportFGTrf.id_fg_trf = id_fg_trf
-        'ReportFGTrf.id_type = id_type
-        'ReportFGTrf.dt = GCItemList.DataSource
-        'Dim Report As New ReportFGTrf()
+        ReportProductionFinalClear.id_prod_fc = id_prod_fc
+        ReportProductionFinalClear.dt = GCItemList.DataSource
+        Dim Report As New ReportProductionFinalClear()
 
-        '' '... 
-        '' ' creating and saving the view's layout to a new memory stream 
-        'Dim str As System.IO.Stream
-        'str = New System.IO.MemoryStream()
-        'GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
-        'Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        ''Grid Detail
-        'ReportStyleGridview(Report.GVItemList)
+        'Grid Detail
+        ReportStyleGridview(Report.GVItemList)
 
-        ''Parse val
-        'Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
-        'Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
-        'Report.LRecNumber.Text = TxtNumber.Text
-        'Report.LRecDate.Text = DEForm.Text
-        'Report.LabelNote.Text = MENote.Text
+        'Parse val
+        Report.LFromName.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+        Report.LToName.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
+        Report.LRecNumber.Text = TxtNumber.Text
+        Report.LRecDate.Text = DEForm.Text
+        Report.LNote.Text = MENote.Text
+        Report.LPONumber.Text = TxtOrder.Text
+        Report.LSeason.Text = TxtSeason.Text + " / " + TxtDel.Text
+        Report.LVendor.Text = TxtVendorCode.Text + " - " + TxtVendorName.Text
+        Report.LDesign.Text = TxtStyleCode.Text + " - " + TxtStyle.Text
+        Report.Lcat.Text = LEPLCategory.Text
 
-        '' Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreview()
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        Cursor = Cursors.WaitCursor
+        If id_comp_from = "-1" Or id_comp_to = "-1" Or id_prod_order = "-1" Or GVItemList.RowCount <= 0 Then
+            stopCustom("Data can't blank")
+        Else
+            If action = "ins" Then
+                Dim id_pl_category As String = LEPLCategory.EditValue.ToString
+                Dim prod_fc_note As String = addSlashes(MENote.Text.ToString)
+
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    Dim query As String = "INSERT INTO tb_prod_fc(id_prod_order, id_comp_from, id_comp_to, id_pl_category, prod_fc_number, prod_fc_date, prod_fc_note, id_report_status) "
+                    query += "VALUES('" + id_prod_order + "','" + id_comp_from + "', '" + id_comp_to + "', '" + id_pl_category + "', '" + header_number_prod("12") + "' , NOW(), '" + prod_fc_note + "', '1'); SELECT LAST_INSERT_ID(); "
+                    id_prod_fc = execute_query(query, 0, True, "", "", "", "")
+                    increase_inc_prod("12")
+
+                    Dim jum_ins_j As Integer = 0
+                    Dim query_detail As String = ""
+                    If GVItemList.RowCount > 0 Then
+                        query_detail = "INSERT tb_prod_fc_det(id_prod_fc, id_prod_order_det, id_product, prod_fc_det_qty, prod_fc_det_note) VALUES "
+                    End If
+                    For j As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                        Try
+                            Dim id_prod_order_det As String = GVItemList.GetRowCellValue(j, "id_prod_order_det").ToString
+                            Dim id_product As String = GVItemList.GetRowCellValue(j, "id_product").ToString
+                            Dim prod_fc_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(j, "prod_fc_det_qty").ToString)
+                            Dim prod_fc_det_note As String = GVItemList.GetRowCellValue(j, "prod_fc_det_note").ToString
+
+                            If jum_ins_j > 0 Then
+                                query_detail += ", "
+                            End If
+                            query_detail += "('" + id_prod_fc + "', '" + id_prod_order_det + "', '" + id_product + "', '" + prod_fc_det_qty + "', '" + prod_fc_det_note + "') "
+                            jum_ins_j = jum_ins_j + 1
+                        Catch ex As Exception
+                        End Try
+                    Next
+                    If GVItemList.RowCount > 0 Then
+                        execute_non_query(query_detail, True, "", "", "", "")
+                    End If
+
+                    'submit who prepared
+                    submit_who_prepared("105", id_prod_fc, id_user)
+
+
+                    FormProductionFinalClear.viewFinalClear()
+                    FormProductionFinalClear.GVFinalClear.FocusedRowHandle = find_row(FormProductionFinalClear.GVFinalClear, "id_prod_fc", id_prod_fc)
+                    action = "upd"
+                    actionLoad()
+                    exportToBOF(False)
+                    infoCustom("Final Clearance : " + TxtNumber.Text + " was created successfully.")
+                    Cursor = Cursors.Default
+                End If
+            End If
+        End If
         Cursor = Cursors.Default
     End Sub
 End Class
