@@ -6550,6 +6550,12 @@ Public Class FormMain
             FormProductionFinalClear.BtnView.Focus()
             print(FormProductionFinalClear.GCFinalClear, "FINAL CLEARANCE LIST" + System.Environment.NewLine + FormProductionFinalClear.DEFrom.Text + " - " + FormProductionFinalClear.DEUntil.Text)
             FormProductionFinalClear.DEFrom.Focus()
+        ElseIf formName = "FormEmpLeaveStock" Then
+            If FormEmpLeaveStock.XTCLeaveRemaining.SelectedTabPageIndex = 0 Then
+                print(FormEmpLeaveStock.GCSum, "Remaining Leave Summary " & FormEmpLeaveStock.LEDeptSum.Text)
+            ElseIf FormEmpLeaveStock.XTCLeaveRemaining.SelectedTabPageIndex = 1 Then
+                print(FormEmpLeaveStock.GCSchedule, "Remaining Leave Detail " & FormEmpLeaveStock.LEDept.Text)
+            End If
         Else
             RPSubMenu.Visible = False
         End If
