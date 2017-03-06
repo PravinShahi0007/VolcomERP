@@ -617,7 +617,6 @@ Partial Class FormProductionFinalClearDet
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_fc_det_qty", Me.GridColumnQtySum, "{0:n0}")})
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVItemList.OptionsBehavior.Editable = False
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
@@ -626,6 +625,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnNoSum.Caption = "No"
         Me.GridColumnNoSum.FieldName = "no"
         Me.GridColumnNoSum.Name = "GridColumnNoSum"
+        Me.GridColumnNoSum.OptionsColumn.AllowEdit = False
         Me.GridColumnNoSum.Visible = True
         Me.GridColumnNoSum.VisibleIndex = 0
         Me.GridColumnNoSum.Width = 49
@@ -635,6 +635,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnCodeSum.Caption = "Code"
         Me.GridColumnCodeSum.FieldName = "code"
         Me.GridColumnCodeSum.Name = "GridColumnCodeSum"
+        Me.GridColumnCodeSum.OptionsColumn.AllowEdit = False
         Me.GridColumnCodeSum.Visible = True
         Me.GridColumnCodeSum.VisibleIndex = 1
         Me.GridColumnCodeSum.Width = 207
@@ -644,6 +645,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnStyleSum.Caption = "Description"
         Me.GridColumnStyleSum.FieldName = "name"
         Me.GridColumnStyleSum.Name = "GridColumnStyleSum"
+        Me.GridColumnStyleSum.OptionsColumn.AllowEdit = False
         Me.GridColumnStyleSum.Visible = True
         Me.GridColumnStyleSum.VisibleIndex = 2
         Me.GridColumnStyleSum.Width = 415
@@ -674,6 +676,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnSizeSum.Caption = "Size"
         Me.GridColumnSizeSum.FieldName = "size"
         Me.GridColumnSizeSum.Name = "GridColumnSizeSum"
+        Me.GridColumnSizeSum.OptionsColumn.AllowEdit = False
         Me.GridColumnSizeSum.Visible = True
         Me.GridColumnSizeSum.VisibleIndex = 3
         Me.GridColumnSizeSum.Width = 56

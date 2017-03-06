@@ -28,7 +28,6 @@
 
     Sub actionLoad()
         If action = "ins" Then
-            GroupControlItemList.Enabled = False
             BMark.Enabled = False
             BtnPrint.Enabled = False
             BtnAttachment.Enabled = False
@@ -65,19 +64,25 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = ""
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCItemList.DataSource = data
+        If action = "ins" Then
+            Dim query As String = "CALL view_prod_order_det(" + id_prod_order + ", 1)"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCItemList.DataSource = data
+        ElseIf action = "upd" Then
+
+        End If
+
     End Sub
 
     Sub allow_status()
         If check_edit_report_status(id_report_status, "105", id_prod_fc) Then
             MENote.Enabled = True
-            BtnSave.Enabled = True
         Else
             MENote.Enabled = False
-            BtnSave.Enabled = False
         End If
+        BtnSave.Enabled = False
+        GVItemList.OptionsBehavior.Editable = False
+
 
 
         'ATTACH
@@ -118,7 +123,7 @@
     Private Sub TxtCodeCompTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompTo.KeyDown
         If e.KeyCode = Keys.Enter Then
             Cursor = Cursors.WaitCursor
-            Dim data As DataTable = get_company_by_code(addSlashes(TxtCodeCompFrom.Text), "AND comp.id_departement=" + id_departement_user + "")
+            Dim data As DataTable = get_company_by_code(addSlashes(TxtCodeCompTo.Text), "AND comp.id_departement=" + id_departement_user + "")
             If data.Rows.Count = 0 Then
                 stopCustom("Account not found!")
                 id_comp_to = "-1"
@@ -151,9 +156,9 @@
             INNER JOIN tb_season_delivery d ON d.id_delivery = po.id_delivery
             INNER JOIN tb_season s ON s.id_season = d.id_season
             WHERE (po.id_report_status=3 OR po.id_report_status=4 OR po.id_report_status=6) AND po.prod_order_number='" + order + "' "
-            Dim data As DataTable = execute_non_query(query, -1, True, "", "", "")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count = 0 Then
-                stopCustom("Account Not found!")
+                stopCustom("Order not found!")
                 id_prod_order = "-1"
                 TxtOrder.Text = ""
                 TxtSeason.Text = ""
@@ -163,6 +168,7 @@
                 TxtStyleCode.Text = ""
                 TxtStyle.Text = ""
                 TxtOrder.Text = ""
+                viewDetail()
                 TxtOrder.Focus()
             Else
                 id_prod_order = data.Rows(0)("id_prod_order").ToString
@@ -173,9 +179,22 @@
                 TxtVendorName.Text = data.Rows(0)("vendor").ToString
                 TxtStyleCode.Text = data.Rows(0)("code").ToString
                 TxtStyle.Text = data.Rows(0)("name").ToString
+                viewDetail()
                 LEPLCategory.Focus()
             End If
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub LEPLCategory_KeyDown(sender As Object, e As KeyEventArgs) Handles LEPLCategory.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            GCItemList.Focus()
+        End If
+    End Sub
+
+    Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 End Class
