@@ -22,6 +22,8 @@ Partial Class FormProductionFinalClearDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionFinalClearDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtStyle = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtStyleCode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtVendorName = New DevExpress.XtraEditors.TextEdit()
         Me.TxtVendorCode = New DevExpress.XtraEditors.TextEdit()
@@ -39,14 +41,12 @@ Partial Class FormProductionFinalClearDet
         Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.DEForm = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtStyleCode = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtStyle = New DevExpress.XtraEditors.TextEdit()
-        Me.LEPLCategory = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -70,10 +70,12 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnStyleSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtySum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNoteSum = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdProductSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSizeSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProductSum = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TxtStyle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtStyleCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,11 +87,9 @@ Partial Class FormProductionFinalClearDet
         CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelHeaderLeft.SuspendLayout()
+        CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtStyleCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtStyle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,6 +133,34 @@ Partial Class FormProductionFinalClearDet
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(818, 150)
         Me.GroupGeneralHeader.TabIndex = 201
+        '
+        'TxtStyle
+        '
+        Me.TxtStyle.EditValue = ""
+        Me.TxtStyle.Location = New System.Drawing.Point(194, 109)
+        Me.TxtStyle.Name = "TxtStyle"
+        Me.TxtStyle.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtStyle.Properties.Appearance.Options.UseFont = True
+        Me.TxtStyle.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtStyle.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtStyle.Properties.EditValueChangedDelay = 1
+        Me.TxtStyle.Size = New System.Drawing.Size(354, 20)
+        Me.TxtStyle.TabIndex = 8924
+        Me.TxtStyle.TabStop = False
+        '
+        'TxtStyleCode
+        '
+        Me.TxtStyleCode.EditValue = ""
+        Me.TxtStyleCode.Location = New System.Drawing.Point(86, 109)
+        Me.TxtStyleCode.Name = "TxtStyleCode"
+        Me.TxtStyleCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtStyleCode.Properties.Appearance.Options.UseFont = True
+        Me.TxtStyleCode.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtStyleCode.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtStyleCode.Properties.EditValueChangedDelay = 1
+        Me.TxtStyleCode.Size = New System.Drawing.Size(104, 20)
+        Me.TxtStyleCode.TabIndex = 8923
+        Me.TxtStyleCode.TabStop = False
         '
         'LabelControl10
         '
@@ -335,6 +363,28 @@ Partial Class FormProductionFinalClearDet
         Me.PanelHeaderLeft.Size = New System.Drawing.Size(251, 146)
         Me.PanelHeaderLeft.TabIndex = 8899
         '
+        'LEPLCategory
+        '
+        Me.LEPLCategory.Location = New System.Drawing.Point(73, 56)
+        Me.LEPLCategory.Name = "LEPLCategory"
+        Me.LEPLCategory.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPLCategory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPLCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPLCategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_category", "Id  PL Category", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_category", "PL Category")})
+        Me.LEPLCategory.Properties.NullText = ""
+        Me.LEPLCategory.Properties.ShowFooter = False
+        Me.LEPLCategory.Size = New System.Drawing.Size(172, 20)
+        Me.LEPLCategory.TabIndex = 10006
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(21, 59)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl2.TabIndex = 10007
+        Me.LabelControl2.Text = "Category"
+        '
         'TxtNumber
         '
         Me.TxtNumber.EditValue = ""
@@ -374,56 +424,6 @@ Partial Class FormProductionFinalClearDet
         Me.DEForm.Properties.ReadOnly = True
         Me.DEForm.Size = New System.Drawing.Size(172, 20)
         Me.DEForm.TabIndex = 162
-        '
-        'TxtStyleCode
-        '
-        Me.TxtStyleCode.EditValue = ""
-        Me.TxtStyleCode.Location = New System.Drawing.Point(86, 109)
-        Me.TxtStyleCode.Name = "TxtStyleCode"
-        Me.TxtStyleCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtStyleCode.Properties.Appearance.Options.UseFont = True
-        Me.TxtStyleCode.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtStyleCode.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TxtStyleCode.Properties.EditValueChangedDelay = 1
-        Me.TxtStyleCode.Size = New System.Drawing.Size(104, 20)
-        Me.TxtStyleCode.TabIndex = 8923
-        Me.TxtStyleCode.TabStop = False
-        '
-        'TxtStyle
-        '
-        Me.TxtStyle.EditValue = ""
-        Me.TxtStyle.Location = New System.Drawing.Point(194, 109)
-        Me.TxtStyle.Name = "TxtStyle"
-        Me.TxtStyle.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtStyle.Properties.Appearance.Options.UseFont = True
-        Me.TxtStyle.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtStyle.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TxtStyle.Properties.EditValueChangedDelay = 1
-        Me.TxtStyle.Size = New System.Drawing.Size(354, 20)
-        Me.TxtStyle.TabIndex = 8924
-        Me.TxtStyle.TabStop = False
-        '
-        'LEPLCategory
-        '
-        Me.LEPLCategory.Location = New System.Drawing.Point(73, 56)
-        Me.LEPLCategory.Name = "LEPLCategory"
-        Me.LEPLCategory.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEPLCategory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEPLCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPLCategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_category", "Id  PL Category", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_category", "PL Category")})
-        Me.LEPLCategory.Properties.NullText = ""
-        Me.LEPLCategory.Properties.ShowFooter = False
-        Me.LEPLCategory.Size = New System.Drawing.Size(172, 20)
-        Me.LEPLCategory.TabIndex = 10006
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(21, 59)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(45, 13)
-        Me.LabelControl2.TabIndex = 10007
-        Me.LabelControl2.Text = "Category"
         '
         'LargeImageCollection
         '
@@ -669,13 +669,6 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnNoteSum.VisibleIndex = 5
         Me.GridColumnNoteSum.Width = 274
         '
-        'GridColumnIdProductSum
-        '
-        Me.GridColumnIdProductSum.Caption = "Id"
-        Me.GridColumnIdProductSum.FieldName = "id_product"
-        Me.GridColumnIdProductSum.Name = "GridColumnIdProductSum"
-        Me.GridColumnIdProductSum.OptionsColumn.AllowEdit = False
-        '
         'GridColumnSizeSum
         '
         Me.GridColumnSizeSum.Caption = "Size"
@@ -684,6 +677,13 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnSizeSum.Visible = True
         Me.GridColumnSizeSum.VisibleIndex = 3
         Me.GridColumnSizeSum.Width = 56
+        '
+        'GridColumnIdProductSum
+        '
+        Me.GridColumnIdProductSum.Caption = "Id"
+        Me.GridColumnIdProductSum.FieldName = "id_product"
+        Me.GridColumnIdProductSum.Name = "GridColumnIdProductSum"
+        Me.GridColumnIdProductSum.OptionsColumn.AllowEdit = False
         '
         'FormProductionFinalClearDet
         '
@@ -702,6 +702,8 @@ Partial Class FormProductionFinalClearDet
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TxtStyle.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtStyleCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -714,11 +716,9 @@ Partial Class FormProductionFinalClearDet
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelHeaderLeft.ResumeLayout(False)
         Me.PanelHeaderLeft.PerformLayout()
+        CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtStyleCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtStyle.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEPLCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
