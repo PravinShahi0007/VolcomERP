@@ -1489,6 +1489,10 @@ Public Class FormMain
             'assign schedule with approval
             FormEmpAttnAssignDet.id_emp_assign_sch = "-1"
             FormEmpAttnAssignDet.ShowDialog()
+        ElseIf formName = "FormProductionFinalClear" Then
+            'assign schedule with approval
+            FormProductionFinalClearDet.action = "ins"
+            FormProductionFinalClearDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2345,6 +2349,9 @@ Public Class FormMain
                 'Propose schedule with approval
                 FormEmpAttnAssignDet.id_emp_assign_sch = FormEmpAttnAssign.GVAttnAssign.GetFocusedRowCellValue("id_assign_sch").ToString
                 FormEmpAttnAssignDet.ShowDialog()
+            ElseIf formName = "FormProductionFinalClear" Then
+                FormProductionFinalClearDet.id_prod_fc = FormProductionFinalClear.GVFinalClear.GetFocusedRowCellValue("id_prod_fc").ToString
+                FormProductionFinalClearDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6539,6 +6546,10 @@ Public Class FormMain
             ElseIf FormProductionSummary.XTCSum.SelectedTabPageIndex = 1 Then
                 print(FormProductionSummary.GCDesign, "APPROVED ORDER")
             End If
+        ElseIf formName = "FormProductionFinalClear" Then
+            FormProductionFinalClear.BtnView.Focus()
+            print(FormProductionFinalClear.GCFinalClear, "FINAL CLEARANCE LIST" + System.Environment.NewLine + FormProductionFinalClear.DEFrom.Text + " - " + FormProductionFinalClear.DEUntil.Text)
+            FormProductionFinalClear.DEFrom.Focus()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7081,6 +7092,9 @@ Public Class FormMain
         ElseIf formName = "FormProductionSummary" Then
             FormProductionSummary.Close()
             FormProductionSummary.Dispose()
+        ElseIf formName = "FormProductionFinalClear" Then
+            FormProductionFinalClear.Close()
+            FormProductionFinalClear.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7727,6 +7741,8 @@ Public Class FormMain
             FormEmpLeave.load_sum()
         ElseIf formName = "FormEmpDP" Then
             FormEmpDP.load_dp()
+        ElseIf formName = "FormProductionFinalClear" Then
+            FormProductionFinalClear.viewFinalClear()
         End If
     End Sub
     'Switch
