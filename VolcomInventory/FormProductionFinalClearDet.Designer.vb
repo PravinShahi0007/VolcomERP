@@ -69,6 +69,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnCodeSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStyleSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtySum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnNoteSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSizeSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProductSum = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -104,6 +105,7 @@ Partial Class FormProductionFinalClearDet
         Me.GroupControlItemList.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -606,6 +608,7 @@ Partial Class FormProductionFinalClearDet
         Me.GCItemList.Location = New System.Drawing.Point(20, 2)
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
         Me.GCItemList.Size = New System.Drawing.Size(796, 247)
         Me.GCItemList.TabIndex = 8906
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
@@ -653,6 +656,7 @@ Partial Class FormProductionFinalClearDet
         'GridColumnQtySum
         '
         Me.GridColumnQtySum.Caption = "Qty"
+        Me.GridColumnQtySum.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnQtySum.DisplayFormat.FormatString = "{0:n0}"
         Me.GridColumnQtySum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQtySum.FieldName = "prod_fc_det_qty"
@@ -661,6 +665,13 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnQtySum.Visible = True
         Me.GridColumnQtySum.VisibleIndex = 4
         Me.GridColumnQtySum.Width = 61
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N0"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'GridColumnNoteSum
         '
@@ -738,6 +749,7 @@ Partial Class FormProductionFinalClearDet
         Me.GroupControlItemList.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -793,4 +805,5 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents GridColumnNoteSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSizeSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdProductSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

@@ -1,10 +1,14 @@
-﻿Public Class FormProductionFinalClearDet
+﻿Imports Microsoft.Office.Interop
+
+Public Class FormProductionFinalClearDet
     Public id_prod_fc As String = "-1"
     Public action As String = "-1"
     Public id_comp_from As String = "-1"
     Public id_comp_to As String = "-1"
     Public id_report_status As String = "-1"
     Dim id_prod_order As String = "-1"
+    Public bof_column As String = get_setup_field("bof_column")
+    Public bof_xls_so As String = get_setup_field("bof_xls_fcl")
 
     Private Sub FormProductionFinalClearDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -39,23 +43,28 @@
             BtnSave.Text = "Save Changes"
 
             'query view based on edit id's
-            'Dim query_c As ClassFGWHAlloc = New ClassFGWHAlloc()
-            'Dim query As String = query_c.queryMain("AND allc.id_fg_wh_alloc='" + id_fg_wh_alloc + "' ", "2")
-            'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            'id_fg_wh_alloc = data.Rows(0)("id_fg_wh_alloc").ToString
-            'id_report_status = data.Rows(0)("id_report_status").ToString
-            'LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
-            'TxtNumber.Text = data.Rows(0)("fg_wh_alloc_number").ToString
-            'DEForm.Text = view_date_from(data.Rows(0)("fg_wh_alloc_datex").ToString, 0)
-            'MENote.Text = data.Rows(0)("fg_wh_alloc_note").ToString
-            'id_comp_from = data.Rows(0)("id_comp").ToString
-            'TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
-            'TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
-            'id_wh_drawer_from = data.Rows(0)("id_wh_drawer").ToString
-            'id_wh_rack_from = data.Rows(0)("id_wh_rack").ToString
-            'id_wh_locator_from = data.Rows(0)("id_wh_locator").ToString
-            'is_submit = data.Rows(0)("is_submit").ToString
-
+            Dim query_c As ClassProductionFinalClear = New ClassProductionFinalClear()
+            Dim query As String = query_c.queryMain("AND f.id_prod_fc='" + id_prod_fc + "' ", "2")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            id_prod_fc = data.Rows(0)("id_prod_fc").ToString
+            id_report_status = data.Rows(0)("id_report_status").ToString
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            TxtNumber.Text = data.Rows(0)("prod_fc_number").ToString
+            DEForm.Text = view_date_from(data.Rows(0)("prod_fc_datex").ToString, 0)
+            MENote.Text = data.Rows(0)("prod_fc_note").ToString
+            id_comp_from = data.Rows(0)("id_comp_from").ToString
+            TxtCodeCompFrom.Text = data.Rows(0)("comp_from_number").ToString
+            TxtNameCompFrom.Text = data.Rows(0)("comp_from_name").ToString
+            id_comp_to = data.Rows(0)("id_comp_to").ToString
+            TxtCodeCompTo.Text = data.Rows(0)("comp_to_number").ToString
+            TxtNameCompTo.Text = data.Rows(0)("comp_to_name").ToString
+            TxtOrder.Text = data.Rows(0)("prod_order_number").ToString
+            TxtSeason.Text = data.Rows(0)("season").ToString
+            TxtDel.Text = data.Rows(0)("delivery").ToString
+            TxtVendorCode.Text = data.Rows(0)("vendor_number").ToString
+            TxtVendorName.Text = data.Rows(0)("vendor_name").ToString
+            TxtStyleCode.Text = data.Rows(0)("code").ToString
+            TxtStyle.Text = data.Rows(0)("name").ToString
 
             'detail2
             viewDetail()
@@ -69,7 +78,9 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCItemList.DataSource = data
         ElseIf action = "upd" Then
-
+            Dim query As String = "CALL view_prod_fc(" + id_prod_fc + ")"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCItemList.DataSource = data
         End If
 
     End Sub
@@ -97,6 +108,13 @@
         Else
             BtnPrint.Enabled = False
         End If
+
+        If id_report_status <> "5" And bof_column = "1" Then
+            BtnXlsBOF.Visible = True
+        Else
+            BtnXlsBOF.Visible = False
+        End If
+
         TxtNumber.Focus()
     End Sub
 
@@ -189,6 +207,7 @@
     Private Sub LEPLCategory_KeyDown(sender As Object, e As KeyEventArgs) Handles LEPLCategory.KeyDown
         If e.KeyCode = Keys.Enter Then
             GCItemList.Focus()
+            GVItemList.FocusedColumn = GridColumnQtySum
         End If
     End Sub
 
@@ -196,5 +215,176 @@
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+
+    Private Sub FormProductionFinalClearDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Close()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "105"
+        FormReportMark.id_report = id_prod_fc
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "105"
+        FormDocumentUpload.id_report = id_prod_fc
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        exportToBOF(True)
+    End Sub
+
+    Sub exportToBOF(ByVal show_msg As Boolean)
+        If bof_column = "1" Then
+            Cursor = Cursors.WaitCursor
+
+            'hide column
+            For c As Integer = 0 To GVItemList.Columns.Count - 1
+                GVItemList.Columns(c).Visible = False
+            Next
+            GridColumnCodeSum.VisibleIndex = 0
+            GridColumnQtySum.VisibleIndex = 1
+            GVItemList.OptionsPrint.PrintFooter = False
+            GVItemList.OptionsPrint.PrintHeader = False
+
+
+            'export excel
+            Dim path_root As String = ""
+            Try
+                ' Open the file using a stream reader.
+                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                    ' Read the stream to a string and write the string to the console.
+                    path_root = sr.ReadToEnd()
+                End Using
+            Catch ex As Exception
+            End Try
+
+            Dim fileName As String = bof_xls_so + ".xls"
+            Dim exp As String = IO.Path.Combine(path_root, fileName)
+            Try
+                ExportToExcel(GVItemList, exp, show_msg)
+            Catch ex As Exception
+                stopCustom("Please close your excel file first then try again later")
+            End Try
+
+
+            'show column
+            GridColumnNoSum.VisibleIndex = 0
+            GridColumnCodeSum.VisibleIndex = 1
+            GridColumnStyleSum.VisibleIndex = 2
+            GridColumnSizeSum.VisibleIndex = 3
+            GridColumnQtySum.VisibleIndex = 4
+            GridColumnNoteSum.VisibleIndex = 5
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Public Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
+        Dim strFileName As String = filepath
+        If System.IO.File.Exists(strFileName) Then
+            System.IO.File.Delete(strFileName)
+        End If
+        Dim _excel As New Excel.Application
+        Dim wBook As Excel.Workbook
+        Dim wSheet As Excel.Worksheet
+
+        wBook = _excel.Workbooks.Add()
+        wSheet = wBook.ActiveSheet()
+
+
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = -1
+
+        ' export the Columns 
+        'If CheckBox1.Checked Then
+        '    For Each dc In dt.Columns
+        '        colIndex = colIndex + 1
+        '        wSheet.Cells(1, colIndex) = dc.ColumnName
+        '    Next
+        'End If
+
+        'export the rows 
+        For i As Integer = 0 To dtTemp.RowCount - 1
+            rowIndex = rowIndex + 1
+            colIndex = 0
+            For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
+                colIndex = colIndex + 1
+                If j = 0 Then
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
+                Else
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "prod_fc_det_qty")
+                End If
+            Next
+        Next
+
+        wSheet.Columns.AutoFit()
+        wBook.SaveAs(strFileName, Excel.XlFileFormat.xlExcel5)
+
+        'release the objects
+        ReleaseObject(wSheet)
+        wBook.Close(False)
+        ReleaseObject(wBook)
+        _excel.Quit()
+        ReleaseObject(_excel)
+        ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+        GC.Collect()
+
+        If show_msg Then
+            infoCustom("File exported successfully")
+        End If
+    End Sub
+
+    Private Sub ReleaseObject(ByVal o As Object)
+        Try
+            While (System.Runtime.InteropServices.Marshal.ReleaseComObject(o) > 0)
+            End While
+        Catch
+        Finally
+            o = Nothing
+        End Try
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        'ReportFGTrf.id_fg_trf = id_fg_trf
+        'ReportFGTrf.id_type = id_type
+        'ReportFGTrf.dt = GCItemList.DataSource
+        'Dim Report As New ReportFGTrf()
+
+        '' '... 
+        '' ' creating and saving the view's layout to a new memory stream 
+        'Dim str As System.IO.Stream
+        'str = New System.IO.MemoryStream()
+        'GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        'Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        'str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        ''Grid Detail
+        'ReportStyleGridview(Report.GVItemList)
+
+        ''Parse val
+        'Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+        'Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
+        'Report.LRecNumber.Text = TxtNumber.Text
+        'Report.LRecDate.Text = DEForm.Text
+        'Report.LabelNote.Text = MENote.Text
+
+        '' Show the report's preview. 
+        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        'Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 End Class
