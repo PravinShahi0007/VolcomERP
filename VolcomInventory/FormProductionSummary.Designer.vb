@@ -85,6 +85,7 @@ Partial Class FormProductionSummary
         Me.DEFromPD = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSum, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSum.SuspendLayout()
         Me.XTPDesign.SuspendLayout()
@@ -586,12 +587,13 @@ Partial Class FormProductionSummary
         '
         'GVPD
         '
-        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
+        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
         Me.GVPD.GridControl = Me.GCPD
         Me.GVPD.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Me.GridColumn3, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_price", Me.GridColumn4, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", Me.GridColumn5, "{0:n0}")})
         Me.GVPD.Name = "GVPD"
         Me.GVPD.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVPD.OptionsBehavior.Editable = False
+        Me.GVPD.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVPD.OptionsView.ShowFooter = True
         Me.GVPD.OptionsView.ShowGroupPanel = False
         '
@@ -602,14 +604,17 @@ Partial Class FormProductionSummary
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 151
         '
         'GridColumn2
         '
         Me.GridColumn2.Caption = "SEASON"
         Me.GridColumn2.FieldName = "season"
+        Me.GridColumn2.FieldNameSortGroup = "id_season"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
+        Me.GridColumn2.Width = 151
         '
         'GridColumn3
         '
@@ -620,18 +625,20 @@ Partial Class FormProductionSummary
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:n2}")})
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
+        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.Width = 164
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "TOTAL ACT. COST"
+        Me.GridColumn4.Caption = "TOTAL EST. RETAIL"
         Me.GridColumn4.DisplayFormat.FormatString = "{0:n2}"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "total_price"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_price", "{0:n2}")})
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.Width = 164
         '
         'GridColumn5
         '
@@ -642,7 +649,8 @@ Partial Class FormProductionSummary
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:n0}")})
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 4
+        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.Width = 164
         '
         'GridColumn6
         '
@@ -654,7 +662,8 @@ Partial Class FormProductionSummary
         Me.GridColumn6.UnboundExpression = "[total_price]/[total_cost]"
         Me.GridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.Width = 172
         '
         'GroupControl1
         '
@@ -742,6 +751,16 @@ Partial Class FormProductionSummary
         Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl4.TabIndex = 8892
         Me.LabelControl4.Text = "From"
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "ORIGIN"
+        Me.GridColumn7.FieldName = "source"
+        Me.GridColumn7.FieldNameSortGroup = "id_source"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 96
         '
         'FormProductionSummary
         '
@@ -846,4 +865,5 @@ Partial Class FormProductionSummary
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
