@@ -77,6 +77,9 @@ Partial Class FormProductionSummary
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnViewPD = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
@@ -85,7 +88,6 @@ Partial Class FormProductionSummary
         Me.DEFromPD = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSum, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSum.SuspendLayout()
         Me.XTPDesign.SuspendLayout()
@@ -100,6 +102,7 @@ Partial Class FormProductionSummary
         Me.XTPPD.SuspendLayout()
         CType(Me.GCPD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.DEUntilPD.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -581,18 +584,18 @@ Partial Class FormProductionSummary
         Me.GCPD.Location = New System.Drawing.Point(0, 39)
         Me.GCPD.MainView = Me.GVPD
         Me.GCPD.Name = "GCPD"
+        Me.GCPD.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1})
         Me.GCPD.Size = New System.Drawing.Size(766, 377)
         Me.GCPD.TabIndex = 6
         Me.GCPD.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPD})
         '
         'GVPD
         '
-        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
+        Me.GVPD.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8})
         Me.GVPD.GridControl = Me.GCPD
         Me.GVPD.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", Me.GridColumn3, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_price", Me.GridColumn4, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", Me.GridColumn5, "{0:n0}")})
         Me.GVPD.Name = "GVPD"
         Me.GVPD.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVPD.OptionsBehavior.Editable = False
         Me.GVPD.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVPD.OptionsView.ShowFooter = True
         Me.GVPD.OptionsView.ShowGroupPanel = False
@@ -602,9 +605,10 @@ Partial Class FormProductionSummary
         Me.GridColumn1.Caption = "PD#"
         Me.GridColumn1.FieldName = "prod_demand_number"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 151
+        Me.GridColumn1.Width = 141
         '
         'GridColumn2
         '
@@ -612,9 +616,10 @@ Partial Class FormProductionSummary
         Me.GridColumn2.FieldName = "season"
         Me.GridColumn2.FieldNameSortGroup = "id_season"
         Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 151
+        Me.GridColumn2.Width = 141
         '
         'GridColumn3
         '
@@ -623,10 +628,11 @@ Partial Class FormProductionSummary
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn3.FieldName = "total_cost"
         Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:n2}")})
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 3
-        Me.GridColumn3.Width = 164
+        Me.GridColumn3.Width = 153
         '
         'GridColumn4
         '
@@ -635,10 +641,11 @@ Partial Class FormProductionSummary
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn4.FieldName = "total_price"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_price", "{0:n2}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 4
-        Me.GridColumn4.Width = 164
+        Me.GridColumn4.Width = 153
         '
         'GridColumn5
         '
@@ -647,10 +654,11 @@ Partial Class FormProductionSummary
         Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn5.FieldName = "total_qty"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:n0}")})
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 5
-        Me.GridColumn5.Width = 164
+        Me.GridColumn5.Width = 153
         '
         'GridColumn6
         '
@@ -659,11 +667,41 @@ Partial Class FormProductionSummary
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "markup"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.UnboundExpression = "[total_price]/[total_cost]"
         Me.GridColumn6.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
-        Me.GridColumn6.Width = 172
+        Me.GridColumn6.Width = 191
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "ORIGIN"
+        Me.GridColumn7.FieldName = "source"
+        Me.GridColumn7.FieldNameSortGroup = "id_source"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 88
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "  "
+        Me.GridColumn8.ColumnEdit = Me.RepositoryItemCheckEdit1
+        Me.GridColumn8.FieldName = "is_select"
+        Me.GridColumn8.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Right
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 7
+        Me.GridColumn8.Width = 40
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        Me.RepositoryItemCheckEdit1.ValueChecked = "Yes"
+        Me.RepositoryItemCheckEdit1.ValueUnchecked = "No"
         '
         'GroupControl1
         '
@@ -752,16 +790,6 @@ Partial Class FormProductionSummary
         Me.LabelControl4.TabIndex = 8892
         Me.LabelControl4.Text = "From"
         '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "ORIGIN"
-        Me.GridColumn7.FieldName = "source"
-        Me.GridColumn7.FieldNameSortGroup = "id_source"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
-        Me.GridColumn7.Width = 96
-        '
         'FormProductionSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -788,6 +816,7 @@ Partial Class FormProductionSummary
         Me.XTPPD.ResumeLayout(False)
         CType(Me.GCPD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
@@ -866,4 +895,6 @@ Partial Class FormProductionSummary
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
