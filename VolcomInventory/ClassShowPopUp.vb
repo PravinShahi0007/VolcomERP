@@ -414,6 +414,12 @@
             FormEmpLeaveDet.report_mark_type = "104"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "105" Then
+            'final clear
+            FormProductionFinalClearDet.id_prod_fc = id_report
+            FormProductionFinalClearDet.action = "upd"
+            FormProductionFinalClearDet.is_view = "1"
+            FormProductionFinalClearDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -980,6 +986,12 @@
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
+        ElseIf report_mark_type = "105" Then
+            'FINAL CLEARANCE
+            table_name = "tb_prod_fc"
+            field_id = "id_prod_fc"
+            field_number = "prod_fc_number"
+            field_date = "prod_fc_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
