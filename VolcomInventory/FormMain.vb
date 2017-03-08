@@ -2350,6 +2350,7 @@ Public Class FormMain
                 FormEmpAttnAssignDet.id_emp_assign_sch = FormEmpAttnAssign.GVAttnAssign.GetFocusedRowCellValue("id_assign_sch").ToString
                 FormEmpAttnAssignDet.ShowDialog()
             ElseIf formName = "FormProductionFinalClear" Then
+                FormProductionFinalClearDet.action = "upd"
                 FormProductionFinalClearDet.id_prod_fc = FormProductionFinalClear.GVFinalClear.GetFocusedRowCellValue("id_prod_fc").ToString
                 FormProductionFinalClearDet.ShowDialog()
             Else
