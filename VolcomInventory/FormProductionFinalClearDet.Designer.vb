@@ -372,6 +372,8 @@ Partial Class FormProductionFinalClearDet
         Me.LEPLCategory.Name = "LEPLCategory"
         Me.LEPLCategory.Properties.Appearance.Options.UseTextOptions = True
         Me.LEPLCategory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPLCategory.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.LEPLCategory.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.LEPLCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEPLCategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_category", "Id  PL Category", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_category", "PL Category")})
         Me.LEPLCategory.Properties.NullText = ""
@@ -394,6 +396,10 @@ Partial Class FormProductionFinalClearDet
         Me.TxtNumber.Enabled = False
         Me.TxtNumber.Location = New System.Drawing.Point(73, 31)
         Me.TxtNumber.Name = "TxtNumber"
+        Me.TxtNumber.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.TxtNumber.Properties.Appearance.Options.UseBackColor = True
+        Me.TxtNumber.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtNumber.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtNumber.Properties.EditValueChangedDelay = 1
         Me.TxtNumber.Properties.ReadOnly = True
         Me.TxtNumber.Size = New System.Drawing.Size(172, 20)
@@ -423,6 +429,10 @@ Partial Class FormProductionFinalClearDet
         Me.DEForm.Enabled = False
         Me.DEForm.Location = New System.Drawing.Point(73, 7)
         Me.DEForm.Name = "DEForm"
+        Me.DEForm.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.DEForm.Properties.Appearance.Options.UseBackColor = True
+        Me.DEForm.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.DEForm.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.DEForm.Properties.EditValueChangedDelay = 1
         Me.DEForm.Properties.ReadOnly = True
         Me.DEForm.Size = New System.Drawing.Size(172, 20)
@@ -519,7 +529,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 36)
         Me.BtnCancel.TabIndex = 11
-        Me.BtnCancel.Text = "Cancel"
+        Me.BtnCancel.Text = "Exit"
         '
         'BtnSave
         '
@@ -562,6 +572,8 @@ Partial Class FormProductionFinalClearDet
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.LEReportStatus.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
@@ -581,6 +593,8 @@ Partial Class FormProductionFinalClearDet
         '
         Me.MENote.Location = New System.Drawing.Point(76, 8)
         Me.MENote.Name = "MENote"
+        Me.MENote.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.MENote.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.MENote.Properties.MaxLength = 100
         Me.MENote.Size = New System.Drawing.Size(355, 59)
         Me.MENote.TabIndex = 6

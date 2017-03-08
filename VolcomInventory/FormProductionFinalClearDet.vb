@@ -9,6 +9,7 @@ Public Class FormProductionFinalClearDet
     Dim id_prod_order As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_fcl")
+    Public is_view As String = "-1"
 
     Private Sub FormProductionFinalClearDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -25,7 +26,7 @@ Public Class FormProductionFinalClearDet
 
     'View PL Category
     Sub viewPLCat()
-        Dim query As String = "SELECT * FROM tb_lookup_pl_category a ORDER BY a.id_pl_category  "
+        Dim query As String = "SELECT * FROM tb_lookup_pl_category a WHERE a.id_pl_category>1 ORDER BY a.id_pl_category  "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupQuery(LEPLCategory, query, 0, "pl_category", "id_pl_category")
     End Sub
@@ -40,7 +41,7 @@ Public Class FormProductionFinalClearDet
         ElseIf action = "upd" Then
             GroupControlItemList.Enabled = True
             BtnAttachment.Enabled = True
-            BtnSave.Text = "Save Changes"
+            BMark.Enabled = True
 
             'query view based on edit id's
             Dim query_c As ClassProductionFinalClear = New ClassProductionFinalClear()
@@ -49,6 +50,7 @@ Public Class FormProductionFinalClearDet
             id_prod_fc = data.Rows(0)("id_prod_fc").ToString
             id_report_status = data.Rows(0)("id_report_status").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            LEPLCategory.ItemIndex = LEPLCategory.Properties.GetDataSourceRowIndex("id_pl_category", data.Rows(0)("id_pl_category").ToString)
             TxtNumber.Text = data.Rows(0)("prod_fc_number").ToString
             DEForm.Text = view_date_from(data.Rows(0)("prod_fc_datex").ToString, 0)
             MENote.Text = data.Rows(0)("prod_fc_note").ToString
@@ -93,6 +95,19 @@ Public Class FormProductionFinalClearDet
         End If
         BtnSave.Enabled = False
         GVItemList.OptionsBehavior.Editable = False
+        MENote.Enabled = False
+        TxtCodeCompFrom.Enabled = False
+        TxtNameCompFrom.Enabled = False
+        TxtCodeCompTo.Enabled = False
+        TxtNameCompTo.Enabled = False
+        TxtOrder.Enabled = False
+        TxtSeason.Enabled = False
+        TxtDel.Enabled = False
+        TxtVendorCode.Enabled = False
+        TxtVendorName.Enabled = False
+        TxtStyleCode.Enabled = False
+        TxtStyle.Enabled = False
+        LEPLCategory.Enabled = False
 
 
 
@@ -112,6 +127,11 @@ Public Class FormProductionFinalClearDet
         If id_report_status <> "5" And bof_column = "1" Then
             BtnXlsBOF.Visible = True
         Else
+            BtnXlsBOF.Visible = False
+        End If
+
+        If is_view = "1" Then
+            BtnSave.Visible = False
             BtnXlsBOF.Visible = False
         End If
 
@@ -229,6 +249,9 @@ Public Class FormProductionFinalClearDet
         Cursor = Cursors.WaitCursor
         FormReportMark.report_mark_type = "105"
         FormReportMark.id_report = id_prod_fc
+        If is_view = "1" Then
+            FormReportMark.is_view = "1"
+        End If
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
@@ -238,6 +261,9 @@ Public Class FormProductionFinalClearDet
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.report_mark_type = "105"
         FormDocumentUpload.id_report = id_prod_fc
+        If is_view = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -264,7 +290,7 @@ Public Class FormProductionFinalClearDet
             Dim path_root As String = ""
             Try
                 ' Open the file using a stream reader.
-                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                Using sr As New IO.StreamReader(Application.StartupPath & "\pro_path.txt")
                     ' Read the stream to a string and write the string to the console.
                     path_root = sr.ReadToEnd()
                 End Using

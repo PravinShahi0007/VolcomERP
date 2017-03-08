@@ -39,7 +39,6 @@ Partial Class FormProductionFinalClear
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
@@ -148,7 +147,7 @@ Partial Class FormProductionFinalClear
         '
         'GVFinalClear
         '
-        Me.GVFinalClear.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn11, Me.GridColumn12})
+        Me.GVFinalClear.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12})
         Me.GVFinalClear.GridControl = Me.GCFinalClear
         Me.GVFinalClear.GroupCount = 1
         Me.GVFinalClear.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn6, "{0:N0}")})
@@ -157,7 +156,7 @@ Partial Class FormProductionFinalClear
         Me.GVFinalClear.OptionsBehavior.Editable = False
         Me.GVFinalClear.OptionsView.ShowFooter = True
         Me.GVFinalClear.OptionsView.ShowGroupPanel = False
-        Me.GVFinalClear.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn9, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn11, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn12, DevExpress.Data.ColumnSortOrder.Descending)})
+        Me.GVFinalClear.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn9, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn12, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'GridColumn1
         '
@@ -249,16 +248,11 @@ Partial Class FormProductionFinalClear
         '
         Me.GridColumn9.Caption = "Season"
         Me.GridColumn9.FieldName = "season"
+        Me.GridColumn9.FieldNameSortGroup = "id_season"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 2
         Me.GridColumn9.Width = 106
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Id Season"
-        Me.GridColumn11.FieldName = "id_season"
-        Me.GridColumn11.Name = "GridColumn11"
         '
         'GridColumn12
         '
@@ -311,6 +305,5 @@ Partial Class FormProductionFinalClear
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
