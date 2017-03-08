@@ -995,15 +995,31 @@
             'info col
             If report_mark_type = "22" Then
                 'po production
-                query = "SELECT pot.po_type FROM tb_prod_order po
+                query = "SELECT desg.design_code,desg.design_display_name, pot.po_type FROM tb_prod_order po
+                        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+                        INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design 
                         INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type WHERE po.id_prod_order='" & id_report & "'"
-                info_col = execute_query(query, 0, True, "", "", "", "")
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("po_type").ToString
+                    info_report = ""
+                    info_design_code = datax.Rows(0)("design_code").ToString
+                    info_design = datax.Rows(0)("design_display_name").ToString
+                End If
             ElseIf report_mark_type = "23" Then
                 'wo production
-                query = "SELECT pot.po_type FROM tb_prod_order_wo wo
+                query = "SELECT desg.design_code,desg.design_display_name,pot.po_type,po.prod_order_number FROM tb_prod_order_wo wo
                         INNER JOIN tb_prod_order po ON po.id_prod_order=wo.id_prod_order
+                        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+                        INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design 
                         INNER JOIN tb_lookup_po_type pot ON pot.id_po_type=po.id_po_type WHERE wo.id_prod_order_wo='" & id_report & "'"
-                info_col = execute_query(query, 0, True, "", "", "", "")
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("po_type").ToString
+                    info_report = datax.Rows(0)("prod_order_number").ToString
+                    info_design_code = datax.Rows(0)("design_code").ToString
+                    info_design = datax.Rows(0)("design_display_name").ToString
+                End If
             ElseIf report_mark_type = "30" Then
                 'PL MRS production
                 query = "SELECT desg.design_code,desg.design_display_name,po.prod_order_number FROM tb_pl_mrs plm
