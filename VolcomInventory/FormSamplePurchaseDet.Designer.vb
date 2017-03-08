@@ -19,95 +19,97 @@ Partial Class FormSamplePurchaseDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSamplePurchaseDet))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.EPSamplePurc = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl
-        Me.BPrePrint = New DevExpress.XtraEditors.SimpleButton
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton
-        Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl
-        Me.TEKurs = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl
-        Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl
-        Me.METotSay = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit
-        Me.TEVat = New DevExpress.XtraEditors.SpinEdit
-        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl
-        Me.TEGrossTot = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl
-        Me.TETot = New DevExpress.XtraEditors.TextEdit
-        Me.TEVatTot = New DevExpress.XtraEditors.TextEdit
-        Me.TEDiscount = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl
-        Me.BSearchCompShipTo = New DevExpress.XtraEditors.SimpleButton
-        Me.MECompShipToAddress = New DevExpress.XtraEditors.MemoEdit
-        Me.TECompShipToName = New DevExpress.XtraEditors.TextEdit
-        Me.TECompShipTo = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl
-        Me.GConListPurchase = New DevExpress.XtraEditors.GroupControl
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl
-        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl
-        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDiscount = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSubtotal = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIdSamplePrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.BEdit = New DevExpress.XtraEditors.SimpleButton
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton
-        Me.Bdel = New DevExpress.XtraEditors.SimpleButton
-        Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl
-        Me.LEpayment = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl
-        Me.LESeason = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl
-        Me.TEDueDate = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl
-        Me.TERecDate = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl
-        Me.LEPOType = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdPOType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPOType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.TETOP = New DevExpress.XtraEditors.SpinEdit
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl
-        Me.TELeadTime = New DevExpress.XtraEditors.SpinEdit
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl
-        Me.TEDate = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.BSearchCompTo = New DevExpress.XtraEditors.SimpleButton
-        Me.TECompAttn = New DevExpress.XtraEditors.TextEdit
-        Me.MECompAddress = New DevExpress.XtraEditors.MemoEdit
-        Me.TECompName = New DevExpress.XtraEditors.TextEdit
-        Me.TECompCode = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.TEPONumber = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrePrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+        Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.TEVat = New DevExpress.XtraEditors.SpinEdit()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEGrossTot = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TETot = New DevExpress.XtraEditors.TextEdit()
+        Me.TEVatTot = New DevExpress.XtraEditors.TextEdit()
+        Me.TEDiscount = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.BSearchCompShipTo = New DevExpress.XtraEditors.SimpleButton()
+        Me.MECompShipToAddress = New DevExpress.XtraEditors.MemoEdit()
+        Me.TECompShipToName = New DevExpress.XtraEditors.TextEdit()
+        Me.TECompShipTo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.GConListPurchase = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
+        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDiscount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSubtotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdSamplePrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.LEpayment = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.LESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEDueDate = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TERecDate = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEPOType = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdPOType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPOType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TETOP = New DevExpress.XtraEditors.SpinEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TELeadTime = New DevExpress.XtraEditors.SpinEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEDate = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BSearchCompTo = New DevExpress.XtraEditors.SimpleButton()
+        Me.TECompAttn = New DevExpress.XtraEditors.TextEdit()
+        Me.MECompAddress = New DevExpress.XtraEditors.MemoEdit()
+        Me.TECompName = New DevExpress.XtraEditors.TextEdit()
+        Me.TECompCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPSamplePurc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -151,6 +153,7 @@ Partial Class FormSamplePurchaseDet
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -168,6 +171,7 @@ Partial Class FormSamplePurchaseDet
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.BtnAttachment)
         Me.GroupControl3.Controls.Add(Me.BPrePrint)
         Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Controls.Add(Me.BPrint)
@@ -179,19 +183,35 @@ Partial Class FormSamplePurchaseDet
         Me.GroupControl3.Size = New System.Drawing.Size(909, 38)
         Me.GroupControl3.TabIndex = 36
         '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 10
+        Me.BtnAttachment.ImageList = Me.ImgBut
+        Me.BtnAttachment.Location = New System.Drawing.Point(484, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(97, 34)
+        Me.BtnAttachment.TabIndex = 14
+        Me.BtnAttachment.Text = "Attachment"
+        Me.BtnAttachment.Visible = False
+        '
         'BPrePrint
         '
         Me.BPrePrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrePrint.Location = New System.Drawing.Point(593, 2)
+        Me.BPrePrint.ImageIndex = 6
+        Me.BPrePrint.ImageList = Me.ImgBut
+        Me.BPrePrint.Location = New System.Drawing.Point(581, 2)
         Me.BPrePrint.Name = "BPrePrint"
-        Me.BPrePrint.Size = New System.Drawing.Size(89, 34)
+        Me.BPrePrint.Size = New System.Drawing.Size(101, 34)
         Me.BPrePrint.TabIndex = 6
         Me.BPrePrint.Text = "Pre Printing"
         '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BMark.Location = New System.Drawing.Point(22, 2)
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.ImgBut
+        Me.BMark.Location = New System.Drawing.Point(20, 2)
         Me.BMark.Name = "BMark"
         Me.BMark.Size = New System.Drawing.Size(75, 34)
         Me.BMark.TabIndex = 4
@@ -201,6 +221,8 @@ Partial Class FormSamplePurchaseDet
         '
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.Enabled = False
+        Me.BPrint.ImageIndex = 6
+        Me.BPrint.ImageList = Me.ImgBut
         Me.BPrint.Location = New System.Drawing.Point(682, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(75, 34)
@@ -210,6 +232,8 @@ Partial Class FormSamplePurchaseDet
         'BCancel
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.ImageIndex = 5
+        Me.BCancel.ImageList = Me.ImgBut
         Me.BCancel.Location = New System.Drawing.Point(757, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(75, 34)
@@ -220,6 +244,8 @@ Partial Class FormSamplePurchaseDet
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Enabled = False
+        Me.BSave.ImageIndex = 7
+        Me.BSave.ImageList = Me.ImgBut
         Me.BSave.Location = New System.Drawing.Point(832, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(75, 34)
@@ -343,7 +369,7 @@ Partial Class FormSamplePurchaseDet
         Me.TEVat.Name = "TEVat"
         Me.TEVat.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEVat.Properties.Appearance.Options.UseFont = True
-        Me.TEVat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.TEVat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.TEVat.Properties.IsFloatValue = False
         Me.TEVat.Properties.Mask.EditMask = "N00"
         Me.TEVat.Properties.MaxValue = New Decimal(New Integer() {100, 0, 0, 0})
@@ -526,9 +552,9 @@ Partial Class FormSamplePurchaseDet
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl1.Controls.Add(Me.GCListPurchase)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl1.Location = New System.Drawing.Point(22, 46)
+        Me.PanelControl1.Location = New System.Drawing.Point(20, 40)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(885, 176)
+        Me.PanelControl1.Size = New System.Drawing.Size(887, 182)
         Me.PanelControl1.TabIndex = 19
         '
         'GCListPurchase
@@ -537,7 +563,7 @@ Partial Class FormSamplePurchaseDet
         Me.GCListPurchase.Location = New System.Drawing.Point(0, 0)
         Me.GCListPurchase.MainView = Me.GVListPurchase
         Me.GCListPurchase.Name = "GCListPurchase"
-        Me.GCListPurchase.Size = New System.Drawing.Size(885, 176)
+        Me.GCListPurchase.Size = New System.Drawing.Size(887, 182)
         Me.GCListPurchase.TabIndex = 0
         Me.GCListPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPurchase})
         '
@@ -582,7 +608,7 @@ Partial Class FormSamplePurchaseDet
         Me.ColName.FieldName = "name"
         Me.ColName.Name = "ColName"
         Me.ColName.Visible = True
-        Me.ColName.VisibleIndex = 3
+        Me.ColName.VisibleIndex = 2
         Me.ColName.Width = 125
         '
         'GridColumnSize
@@ -595,7 +621,7 @@ Partial Class FormSamplePurchaseDet
         Me.GridColumnSize.FieldName = "size"
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 4
+        Me.GridColumnSize.VisibleIndex = 3
         Me.GridColumnSize.Width = 40
         '
         'GridColumnColor
@@ -608,7 +634,7 @@ Partial Class FormSamplePurchaseDet
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 5
+        Me.GridColumnColor.VisibleIndex = 4
         Me.GridColumnColor.Width = 40
         '
         'ColPrice
@@ -623,7 +649,7 @@ Partial Class FormSamplePurchaseDet
         Me.ColPrice.FieldName = "price"
         Me.ColPrice.Name = "ColPrice"
         Me.ColPrice.Visible = True
-        Me.ColPrice.VisibleIndex = 6
+        Me.ColPrice.VisibleIndex = 5
         Me.ColPrice.Width = 74
         '
         'ColQty
@@ -638,7 +664,7 @@ Partial Class FormSamplePurchaseDet
         Me.ColQty.FieldName = "qty"
         Me.ColQty.Name = "ColQty"
         Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 8
+        Me.ColQty.VisibleIndex = 7
         Me.ColQty.Width = 36
         '
         'ColDiscount
@@ -654,7 +680,7 @@ Partial Class FormSamplePurchaseDet
         Me.ColDiscount.Name = "ColDiscount"
         Me.ColDiscount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "discount", "{0:N2}")})
         Me.ColDiscount.Visible = True
-        Me.ColDiscount.VisibleIndex = 7
+        Me.ColDiscount.VisibleIndex = 6
         Me.ColDiscount.Width = 51
         '
         'ColSubtotal
@@ -670,7 +696,7 @@ Partial Class FormSamplePurchaseDet
         Me.ColSubtotal.Name = "ColSubtotal"
         Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.ColSubtotal.Visible = True
-        Me.ColSubtotal.VisibleIndex = 9
+        Me.ColSubtotal.VisibleIndex = 8
         Me.ColSubtotal.Width = 88
         '
         'ColIdSamplePrice
@@ -685,7 +711,7 @@ Partial Class FormSamplePurchaseDet
         Me.ColNote.FieldName = "note"
         Me.ColNote.Name = "ColNote"
         Me.ColNote.Visible = True
-        Me.ColNote.VisibleIndex = 10
+        Me.ColNote.VisibleIndex = 9
         Me.ColNote.Width = 44
         '
         'GridColumn1
@@ -700,45 +726,48 @@ Partial Class FormSamplePurchaseDet
         Me.PanelControl2.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.PanelControl2.Appearance.Options.UseBackColor = True
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.Bdel)
         Me.PanelControl2.Controls.Add(Me.BEdit)
         Me.PanelControl2.Controls.Add(Me.BAdd)
-        Me.PanelControl2.Controls.Add(Me.Bdel)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(22, 2)
+        Me.PanelControl2.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(885, 44)
+        Me.PanelControl2.Size = New System.Drawing.Size(887, 38)
         Me.PanelControl2.TabIndex = 18
         '
         'BEdit
         '
+        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BEdit.Enabled = False
         Me.BEdit.ImageIndex = 2
         Me.BEdit.ImageList = Me.LargeImageCollection
-        Me.BEdit.Location = New System.Drawing.Point(688, 7)
+        Me.BEdit.Location = New System.Drawing.Point(705, 0)
         Me.BEdit.Name = "BEdit"
-        Me.BEdit.Size = New System.Drawing.Size(91, 29)
+        Me.BEdit.Size = New System.Drawing.Size(91, 38)
         Me.BEdit.TabIndex = 19
         Me.BEdit.Text = "Edit"
         '
         'BAdd
         '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAdd.Enabled = False
         Me.BAdd.ImageIndex = 0
         Me.BAdd.ImageList = Me.LargeImageCollection
-        Me.BAdd.Location = New System.Drawing.Point(785, 7)
+        Me.BAdd.Location = New System.Drawing.Point(796, 0)
         Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(91, 29)
+        Me.BAdd.Size = New System.Drawing.Size(91, 38)
         Me.BAdd.TabIndex = 18
         Me.BAdd.Text = "Add"
         '
         'Bdel
         '
+        Me.Bdel.Dock = System.Windows.Forms.DockStyle.Right
         Me.Bdel.Enabled = False
         Me.Bdel.ImageIndex = 1
         Me.Bdel.ImageList = Me.LargeImageCollection
-        Me.Bdel.Location = New System.Drawing.Point(591, 7)
+        Me.Bdel.Location = New System.Drawing.Point(614, 0)
         Me.Bdel.Name = "Bdel"
-        Me.Bdel.Size = New System.Drawing.Size(91, 29)
+        Me.Bdel.Size = New System.Drawing.Size(91, 38)
         Me.Bdel.TabIndex = 17
         Me.Bdel.Text = "Delete"
         '
@@ -917,7 +946,7 @@ Partial Class FormSamplePurchaseDet
         Me.TETOP.Name = "TETOP"
         Me.TETOP.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TETOP.Properties.Appearance.Options.UseFont = True
-        Me.TETOP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.TETOP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.TETOP.Properties.IsFloatValue = False
         Me.TETOP.Properties.Mask.EditMask = "N00"
         Me.TETOP.Properties.MaxValue = New Decimal(New Integer() {2147483647, 0, 0, 0})
@@ -939,7 +968,7 @@ Partial Class FormSamplePurchaseDet
         Me.TELeadTime.Name = "TELeadTime"
         Me.TELeadTime.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TELeadTime.Properties.Appearance.Options.UseFont = True
-        Me.TELeadTime.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.TELeadTime.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.TELeadTime.Properties.IsFloatValue = False
         Me.TELeadTime.Properties.Mask.EditMask = "N00"
         Me.TELeadTime.Properties.MaxValue = New Decimal(New Integer() {2147483647, 0, 0, 0})
@@ -1073,6 +1102,23 @@ Partial Class FormSamplePurchaseDet
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
         '
+        'ImgBut
+        '
+        Me.ImgBut.ImageSize = New System.Drawing.Size(24, 24)
+        Me.ImgBut.ImageStream = CType(resources.GetObject("ImgBut.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.ImgBut.Images.SetKeyName(0, "20_24x24.png")
+        Me.ImgBut.Images.SetKeyName(1, "8_24x24.png")
+        Me.ImgBut.Images.SetKeyName(2, "23_24x24.png")
+        Me.ImgBut.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.ImgBut.Images.SetKeyName(4, "check_mark.png")
+        Me.ImgBut.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.ImgBut.Images.SetKeyName(6, "printer_3.png")
+        Me.ImgBut.Images.SetKeyName(7, "save.png")
+        Me.ImgBut.Images.SetKeyName(8, "31_24x24.png")
+        Me.ImgBut.Images.SetKeyName(9, "18_24x24.png")
+        Me.ImgBut.Images.SetKeyName(10, "attachment-icon.png")
+        Me.ImgBut.Images.SetKeyName(11, "document_32.png")
+        '
         'FormSamplePurchaseDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1086,7 +1132,6 @@ Partial Class FormSamplePurchaseDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSamplePurchaseDet"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Sample Purchase Detail"
@@ -1135,6 +1180,7 @@ Partial Class FormSamplePurchaseDet
         CType(Me.TECompName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1225,4 +1271,6 @@ Partial Class FormSamplePurchaseDet
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnColor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
+    Public WithEvents ImgBut As DevExpress.Utils.ImageCollection
 End Class
