@@ -65,7 +65,7 @@
             Else
                 bnew_active = "1"
                 bedit_active = "1"
-                bdel_active = "1"
+                bdel_active = "0"
             End If
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
@@ -85,7 +85,7 @@
             'show all
             bnew_active = "1"
             bedit_active = "1"
-            bdel_active = "1"
+            bdel_active = "0"
             noManipulating()
         End If
     End Sub

@@ -69,9 +69,11 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnCodeSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStyleSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtySum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnNoteSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSizeSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProductSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtStyle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,6 +106,7 @@ Partial Class FormProductionFinalClearDet
         Me.GroupControlItemList.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -369,6 +372,8 @@ Partial Class FormProductionFinalClearDet
         Me.LEPLCategory.Name = "LEPLCategory"
         Me.LEPLCategory.Properties.Appearance.Options.UseTextOptions = True
         Me.LEPLCategory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPLCategory.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.LEPLCategory.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.LEPLCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEPLCategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pl_category", "Id  PL Category", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pl_category", "PL Category")})
         Me.LEPLCategory.Properties.NullText = ""
@@ -391,6 +396,10 @@ Partial Class FormProductionFinalClearDet
         Me.TxtNumber.Enabled = False
         Me.TxtNumber.Location = New System.Drawing.Point(73, 31)
         Me.TxtNumber.Name = "TxtNumber"
+        Me.TxtNumber.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.TxtNumber.Properties.Appearance.Options.UseBackColor = True
+        Me.TxtNumber.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtNumber.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtNumber.Properties.EditValueChangedDelay = 1
         Me.TxtNumber.Properties.ReadOnly = True
         Me.TxtNumber.Size = New System.Drawing.Size(172, 20)
@@ -420,6 +429,10 @@ Partial Class FormProductionFinalClearDet
         Me.DEForm.Enabled = False
         Me.DEForm.Location = New System.Drawing.Point(73, 7)
         Me.DEForm.Name = "DEForm"
+        Me.DEForm.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.DEForm.Properties.Appearance.Options.UseBackColor = True
+        Me.DEForm.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.DEForm.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.DEForm.Properties.EditValueChangedDelay = 1
         Me.DEForm.Properties.ReadOnly = True
         Me.DEForm.Size = New System.Drawing.Size(172, 20)
@@ -516,7 +529,7 @@ Partial Class FormProductionFinalClearDet
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 36)
         Me.BtnCancel.TabIndex = 11
-        Me.BtnCancel.Text = "Cancel"
+        Me.BtnCancel.Text = "Exit"
         '
         'BtnSave
         '
@@ -559,6 +572,8 @@ Partial Class FormProductionFinalClearDet
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.LEReportStatus.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
@@ -578,6 +593,8 @@ Partial Class FormProductionFinalClearDet
         '
         Me.MENote.Location = New System.Drawing.Point(76, 8)
         Me.MENote.Name = "MENote"
+        Me.MENote.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.MENote.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.MENote.Properties.MaxLength = 100
         Me.MENote.Size = New System.Drawing.Size(355, 59)
         Me.MENote.TabIndex = 6
@@ -606,18 +623,18 @@ Partial Class FormProductionFinalClearDet
         Me.GCItemList.Location = New System.Drawing.Point(20, 2)
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
         Me.GCItemList.Size = New System.Drawing.Size(796, 247)
         Me.GCItemList.TabIndex = 8906
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumnStyleSum, Me.GridColumnQtySum, Me.GridColumnNoteSum, Me.GridColumnSizeSum, Me.GridColumnIdProductSum})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoSum, Me.GridColumnCodeSum, Me.GridColumnStyleSum, Me.GridColumnQtySum, Me.GridColumnNoteSum, Me.GridColumnSizeSum, Me.GridColumnIdProductSum, Me.GridColumn1})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_fc_det_qty", Me.GridColumnQtySum, "{0:n0}")})
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVItemList.OptionsBehavior.Editable = False
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
@@ -626,6 +643,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnNoSum.Caption = "No"
         Me.GridColumnNoSum.FieldName = "no"
         Me.GridColumnNoSum.Name = "GridColumnNoSum"
+        Me.GridColumnNoSum.OptionsColumn.AllowEdit = False
         Me.GridColumnNoSum.Visible = True
         Me.GridColumnNoSum.VisibleIndex = 0
         Me.GridColumnNoSum.Width = 49
@@ -635,6 +653,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnCodeSum.Caption = "Code"
         Me.GridColumnCodeSum.FieldName = "code"
         Me.GridColumnCodeSum.Name = "GridColumnCodeSum"
+        Me.GridColumnCodeSum.OptionsColumn.AllowEdit = False
         Me.GridColumnCodeSum.Visible = True
         Me.GridColumnCodeSum.VisibleIndex = 1
         Me.GridColumnCodeSum.Width = 207
@@ -644,6 +663,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnStyleSum.Caption = "Description"
         Me.GridColumnStyleSum.FieldName = "name"
         Me.GridColumnStyleSum.Name = "GridColumnStyleSum"
+        Me.GridColumnStyleSum.OptionsColumn.AllowEdit = False
         Me.GridColumnStyleSum.Visible = True
         Me.GridColumnStyleSum.VisibleIndex = 2
         Me.GridColumnStyleSum.Width = 415
@@ -651,6 +671,7 @@ Partial Class FormProductionFinalClearDet
         'GridColumnQtySum
         '
         Me.GridColumnQtySum.Caption = "Qty"
+        Me.GridColumnQtySum.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnQtySum.DisplayFormat.FormatString = "{0:n0}"
         Me.GridColumnQtySum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQtySum.FieldName = "prod_fc_det_qty"
@@ -659,6 +680,13 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnQtySum.Visible = True
         Me.GridColumnQtySum.VisibleIndex = 4
         Me.GridColumnQtySum.Width = 61
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N0"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'GridColumnNoteSum
         '
@@ -674,6 +702,7 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnSizeSum.Caption = "Size"
         Me.GridColumnSizeSum.FieldName = "size"
         Me.GridColumnSizeSum.Name = "GridColumnSizeSum"
+        Me.GridColumnSizeSum.OptionsColumn.AllowEdit = False
         Me.GridColumnSizeSum.Visible = True
         Me.GridColumnSizeSum.VisibleIndex = 3
         Me.GridColumnSizeSum.Width = 56
@@ -684,6 +713,13 @@ Partial Class FormProductionFinalClearDet
         Me.GridColumnIdProductSum.FieldName = "id_product"
         Me.GridColumnIdProductSum.Name = "GridColumnIdProductSum"
         Me.GridColumnIdProductSum.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "ID PO Det"
+        Me.GridColumn1.FieldName = "id_prod_order_det"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
         '
         'FormProductionFinalClearDet
         '
@@ -735,6 +771,7 @@ Partial Class FormProductionFinalClearDet
         Me.GroupControlItemList.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -790,4 +827,6 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents GridColumnNoteSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSizeSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdProductSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
