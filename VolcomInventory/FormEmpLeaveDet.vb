@@ -278,7 +278,7 @@
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         Dim query As String = ""
         Dim problem As Boolean = False
-        If id_employee = "-1" Or TETotLeave.EditValue <= 0 Then
+        If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Then
             stopCustom("Please check your input !")
         ElseIf TERemainingLeaveAfter.EditValue < 0
             stopCustom("Remaining Leave not sufficient.")

@@ -2384,6 +2384,9 @@ Module Common
         report_detail.load_detail()
         'get id_employee
         Dim id_empx As String = id_employee
+        'get id_employee
+        Dim query_dep As String = "SELECT id_departement FROM tb_m_employee WHERE id_employee='" & id_employee & "' LIMIT 1"
+        Dim id_deptx As String = execute_query(query_dep, 0, True, "", "", "", "")
         '
         Dim query As String = ""
         If report_mark_is_bom = "1" Then
@@ -2409,11 +2412,11 @@ Module Common
             Dim id_user_mark As String = "-1"
             If data.Rows(i)("is_head_dept").ToString = "1" Then 'search head dept
                 Dim query_dept As String = "SELECT dept.id_user_head FROM tb_m_departement dept
-                                                WHERE dept.id_departement='" & id_departement_user & "'"
+                                                WHERE dept.id_departement='" & id_deptx & "'"
                 id_user_mark = execute_query(query_dept, 0, True, "", "", "", "")
             ElseIf data.Rows(i)("is_asst_head_dept").ToString = "1" Then 'search asst head dept
                 Dim query_dept As String = "SELECT dept.id_user_asst_head FROM tb_m_departement dept
-                                                WHERE dept.id_departement='" & id_departement_user & "'"
+                                                WHERE dept.id_departement='" & id_deptx & "'"
                 id_user_mark = execute_query(query_dept, 0, True, "", "", "", "")
             Else
                 id_user_mark = data.Rows(i)("id_user").ToString
