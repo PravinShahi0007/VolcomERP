@@ -21,12 +21,13 @@ Partial Class FormMasterDesignSingle
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterDesignSingle))
-        Me.RepositoryItemSearchLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RILEValueCode = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.EPMasterDesign = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.DNCode = New DevExpress.XtraEditors.DataNavigator()
         Me.GCCode = New DevExpress.XtraGrid.GridControl()
         Me.GVCode = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColCodeParam = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RILEParamCode = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.ColCodeValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.TECode = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -206,10 +207,12 @@ Partial Class FormMasterDesignSingle
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
-        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.RILEValueCodex = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        CType(Me.RILEValueCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RILEParamCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -304,13 +307,14 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanelRetailPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelRetailPrice.SuspendLayout()
         Me.ViewMenu.SuspendLayout()
+        CType(Me.RILEValueCodex, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'RepositoryItemSearchLookUpEdit1
+        'RILEValueCode
         '
-        Me.RepositoryItemSearchLookUpEdit1.AutoHeight = False
-        Me.RepositoryItemSearchLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemSearchLookUpEdit1.Name = "RepositoryItemSearchLookUpEdit1"
+        Me.RILEValueCode.AutoHeight = False
+        Me.RILEValueCode.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RILEValueCode.Name = "RILEValueCode"
         '
         'EPMasterDesign
         '
@@ -335,6 +339,7 @@ Partial Class FormMasterDesignSingle
         Me.GCCode.MainView = Me.GVCode
         Me.GCCode.Margin = New System.Windows.Forms.Padding(2, 3, 2, 3)
         Me.GCCode.Name = "GCCode"
+        Me.GCCode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RILEParamCode, Me.RILEValueCodex})
         Me.GCCode.Size = New System.Drawing.Size(499, 394)
         Me.GCCode.TabIndex = 16
         Me.GCCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCode})
@@ -358,16 +363,26 @@ Partial Class FormMasterDesignSingle
         'ColCodeParam
         '
         Me.ColCodeParam.Caption = "Category"
+        Me.ColCodeParam.ColumnEdit = Me.RILEParamCode
         Me.ColCodeParam.FieldName = "code"
         Me.ColCodeParam.Name = "ColCodeParam"
         Me.ColCodeParam.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.ColCodeParam.Visible = True
         Me.ColCodeParam.VisibleIndex = 0
         '
+        'RILEParamCode
+        '
+        Me.RILEParamCode.AutoHeight = False
+        Me.RILEParamCode.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RILEParamCode.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_code", "ID Code", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Code", "Code")})
+        Me.RILEParamCode.DisplayMember = "Code"
+        Me.RILEParamCode.Name = "RILEParamCode"
+        Me.RILEParamCode.ValueMember = "id_code"
+        '
         'ColCodeValue
         '
         Me.ColCodeValue.Caption = "Value"
-        Me.ColCodeValue.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
+        Me.ColCodeValue.ColumnEdit = Me.RILEValueCodex
         Me.ColCodeValue.FieldName = "value"
         Me.ColCodeValue.Name = "ColCodeValue"
         Me.ColCodeValue.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
@@ -1479,7 +1494,7 @@ Partial Class FormMasterDesignSingle
         'GridColumn25
         '
         Me.GridColumn25.Caption = "Value"
-        Me.GridColumn25.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
+        Me.GridColumn25.ColumnEdit = Me.RILEValueCode
         Me.GridColumn25.FieldName = "value"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
@@ -1694,7 +1709,7 @@ Partial Class FormMasterDesignSingle
         'GridColumn31
         '
         Me.GridColumn31.Caption = "Value"
-        Me.GridColumn31.ColumnEdit = Me.RepositoryItemSearchLookUpEdit1
+        Me.GridColumn31.ColumnEdit = Me.RILEValueCode
         Me.GridColumn31.FieldName = "value"
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
@@ -2223,6 +2238,15 @@ Partial Class FormMasterDesignSingle
         Me.SMViewDel.Size = New System.Drawing.Size(158, 22)
         Me.SMViewDel.Text = "View Document"
         '
+        'RILEValueCodex
+        '
+        Me.RILEValueCodex.AutoHeight = False
+        Me.RILEValueCodex.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RILEValueCodex.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_code_detail", "id_code_detail", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_code", "id_code", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("value", "value", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Printed Name", "Printed Name")})
+        Me.RILEValueCodex.DisplayMember = "value"
+        Me.RILEValueCodex.Name = "RILEValueCodex"
+        Me.RILEValueCodex.ValueMember = "id_code_detail"
+        '
         'FormMasterDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2237,10 +2261,11 @@ Partial Class FormMasterDesignSingle
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Design"
-        CType(Me.RepositoryItemSearchLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RILEValueCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RILEParamCode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -2343,6 +2368,7 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanelRetailPrice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelRetailPrice.ResumeLayout(False)
         Me.ViewMenu.ResumeLayout(False)
+        CType(Me.RILEValueCodex, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2410,7 +2436,7 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents LabelRetCode As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEDesignType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents RepositoryItemSearchLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RILEValueCode As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents LERetCode As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents BtnSetAsPrintedPrice As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnActive As DevExpress.XtraGrid.Columns.GridColumn
@@ -2531,4 +2557,6 @@ Partial Class FormMasterDesignSingle
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEDisplayNameNonMD As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents RILEParamCode As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents RILEValueCodex As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 End Class

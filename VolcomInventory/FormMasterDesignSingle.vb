@@ -207,8 +207,14 @@
             GCCode.DataSource = data_insert_parameter
             DNCode.DataSource = data_insert_parameter
             Try
-                add_combo_grid_val(GVCode, 0)
-                view_value_code(GVCode, 1)
+                Dim query As String = String.Format("SELECT id_code,code_name as Code,description as Description FROM tb_m_code")
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                RILEParamCode.DataSource = data
+                'add_combo_grid_val(GVCode, 0)
+                Dim queryx As String = String.Format("SELECT id_code,id_code_detail,CODE as Code,code_detail_name as Name,display_name as 'Printed Name',CONCAT(CODE,' - ',code_detail_name) AS value FROM tb_m_code_detail")
+                Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+                'view_value_code(GVCode, 1)
+                RILEValueCode.DataSource = datax
             Catch ex As Exception
             End Try
         ElseIf id_type = "2" Then
