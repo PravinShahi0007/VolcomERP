@@ -58,6 +58,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMView = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewDetailOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PrintPrepareOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdatePackingStatusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.XTCSvcLevel = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPrepareOrder = New DevExpress.XtraTab.XtraTabPage()
@@ -253,7 +254,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromTrf = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.PrintPrepareOrderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumnCodeRec = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -693,24 +694,30 @@ Partial Class FormSalesOrderSvcLevel
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMView, Me.ViewDetailOrderToolStripMenuItem, Me.PrintPrepareOrderToolStripMenuItem, Me.UpdatePackingStatusToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(166, 114)
+        Me.ViewMenu.Size = New System.Drawing.Size(166, 92)
         '
         'SMView
         '
         Me.SMView.Name = "SMView"
-        Me.SMView.Size = New System.Drawing.Size(175, 22)
+        Me.SMView.Size = New System.Drawing.Size(165, 22)
         Me.SMView.Text = "View Detail"
         '
         'ViewDetailOrderToolStripMenuItem
         '
         Me.ViewDetailOrderToolStripMenuItem.Name = "ViewDetailOrderToolStripMenuItem"
-        Me.ViewDetailOrderToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.ViewDetailOrderToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
         Me.ViewDetailOrderToolStripMenuItem.Text = "View Detail Order"
+        '
+        'PrintPrepareOrderToolStripMenuItem
+        '
+        Me.PrintPrepareOrderToolStripMenuItem.Name = "PrintPrepareOrderToolStripMenuItem"
+        Me.PrintPrepareOrderToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
+        Me.PrintPrepareOrderToolStripMenuItem.Text = "Print Detail Order"
         '
         'UpdatePackingStatusToolStripMenuItem
         '
         Me.UpdatePackingStatusToolStripMenuItem.Name = "UpdatePackingStatusToolStripMenuItem"
-        Me.UpdatePackingStatusToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.UpdatePackingStatusToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
         Me.UpdatePackingStatusToolStripMenuItem.Text = "Update Status"
         '
         'XTCSvcLevel
@@ -1022,7 +1029,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GVPL
         '
-        Me.GVPL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdPLSample, Me.GridColumnIdContactFrom, Me.GridColumnIdCompContactTo, Me.GridColumnIdReportStatus, Me.GridColumn15, Me.GridColumnPLNote, Me.GridColumnSeasno, Me.GridColumnPLNumber, Me.GridColumnSRNumber, Me.GridColumnFrom, Me.GridColumn16, Me.GridColumnPLDate, Me.GridColumnStatus, Me.GridColumnPLCategory, Me.GridColumnDesignMain, Me.GridColumnTotal, Me.GridColumnVendor, Me.GridColumn17, Me.GridColumnSelectRec, Me.GridColumnLastUpdate, Me.GridColumnLastUserRec})
+        Me.GVPL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdPLSample, Me.GridColumnIdContactFrom, Me.GridColumnIdCompContactTo, Me.GridColumnIdReportStatus, Me.GridColumn15, Me.GridColumnPLNote, Me.GridColumnSeasno, Me.GridColumnPLNumber, Me.GridColumnSRNumber, Me.GridColumnFrom, Me.GridColumn16, Me.GridColumnPLDate, Me.GridColumnStatus, Me.GridColumnPLCategory, Me.GridColumnDesignMain, Me.GridColumnTotal, Me.GridColumnVendor, Me.GridColumn17, Me.GridColumnSelectRec, Me.GridColumnLastUpdate, Me.GridColumnLastUserRec, Me.GridColumnCodeRec})
         Me.GVPL.GridControl = Me.GCPL
         Me.GVPL.GroupCount = 1
         Me.GVPL.Name = "GVPL"
@@ -1101,7 +1108,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnPLNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnPLNumber.Visible = True
         Me.GridColumnPLNumber.VisibleIndex = 0
-        Me.GridColumnPLNumber.Width = 69
+        Me.GridColumnPLNumber.Width = 79
         '
         'GridColumnSRNumber
         '
@@ -1111,7 +1118,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSRNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnSRNumber.Visible = True
         Me.GridColumnSRNumber.VisibleIndex = 1
-        Me.GridColumnSRNumber.Width = 54
+        Me.GridColumnSRNumber.Width = 62
         '
         'GridColumnFrom
         '
@@ -1120,8 +1127,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnFrom.Name = "GridColumnFrom"
         Me.GridColumnFrom.OptionsColumn.AllowEdit = False
         Me.GridColumnFrom.Visible = True
-        Me.GridColumnFrom.VisibleIndex = 5
-        Me.GridColumnFrom.Width = 69
+        Me.GridColumnFrom.VisibleIndex = 6
+        Me.GridColumnFrom.Width = 74
         '
         'GridColumn16
         '
@@ -1130,8 +1137,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.OptionsColumn.AllowEdit = False
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 6
-        Me.GridColumn16.Width = 69
+        Me.GridColumn16.VisibleIndex = 7
+        Me.GridColumn16.Width = 74
         '
         'GridColumnPLDate
         '
@@ -1142,8 +1149,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnPLDate.Name = "GridColumnPLDate"
         Me.GridColumnPLDate.OptionsColumn.AllowEdit = False
         Me.GridColumnPLDate.Visible = True
-        Me.GridColumnPLDate.VisibleIndex = 9
-        Me.GridColumnPLDate.Width = 69
+        Me.GridColumnPLDate.VisibleIndex = 10
+        Me.GridColumnPLDate.Width = 74
         '
         'GridColumnStatus
         '
@@ -1152,8 +1159,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.OptionsColumn.AllowEdit = False
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 12
-        Me.GridColumnStatus.Width = 70
+        Me.GridColumnStatus.VisibleIndex = 13
         '
         'GridColumnPLCategory
         '
@@ -1162,8 +1168,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnPLCategory.Name = "GridColumnPLCategory"
         Me.GridColumnPLCategory.OptionsColumn.AllowEdit = False
         Me.GridColumnPLCategory.Visible = True
-        Me.GridColumnPLCategory.VisibleIndex = 7
-        Me.GridColumnPLCategory.Width = 54
+        Me.GridColumnPLCategory.VisibleIndex = 8
+        Me.GridColumnPLCategory.Width = 58
         '
         'GridColumnDesignMain
         '
@@ -1173,8 +1179,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnDesignMain.Name = "GridColumnDesignMain"
         Me.GridColumnDesignMain.OptionsColumn.AllowEdit = False
         Me.GridColumnDesignMain.Visible = True
-        Me.GridColumnDesignMain.VisibleIndex = 3
-        Me.GridColumnDesignMain.Width = 54
+        Me.GridColumnDesignMain.VisibleIndex = 4
+        Me.GridColumnDesignMain.Width = 104
         '
         'GridColumnTotal
         '
@@ -1186,8 +1192,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTotal.OptionsColumn.AllowEdit = False
         Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:n0}")})
         Me.GridColumnTotal.Visible = True
-        Me.GridColumnTotal.VisibleIndex = 8
-        Me.GridColumnTotal.Width = 54
+        Me.GridColumnTotal.VisibleIndex = 9
+        Me.GridColumnTotal.Width = 58
         '
         'GridColumnVendor
         '
@@ -1196,8 +1202,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnVendor.Name = "GridColumnVendor"
         Me.GridColumnVendor.OptionsColumn.AllowEdit = False
         Me.GridColumnVendor.Visible = True
-        Me.GridColumnVendor.VisibleIndex = 4
-        Me.GridColumnVendor.Width = 54
+        Me.GridColumnVendor.VisibleIndex = 5
+        Me.GridColumnVendor.Width = 58
         '
         'GridColumn17
         '
@@ -1207,7 +1213,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.Visible = True
         Me.GridColumn17.VisibleIndex = 2
-        Me.GridColumn17.Width = 54
+        Me.GridColumn17.Width = 62
         '
         'GridColumnSelectRec
         '
@@ -1220,8 +1226,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSelectRec.FieldName = "is_select"
         Me.GridColumnSelectRec.Name = "GridColumnSelectRec"
         Me.GridColumnSelectRec.Visible = True
-        Me.GridColumnSelectRec.VisibleIndex = 13
-        Me.GridColumnSelectRec.Width = 54
+        Me.GridColumnSelectRec.VisibleIndex = 14
+        Me.GridColumnSelectRec.Width = 69
         '
         'RepositoryItemCheckEdit1
         '
@@ -1239,8 +1245,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
         Me.GridColumnLastUpdate.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 10
-        Me.GridColumnLastUpdate.Width = 71
+        Me.GridColumnLastUpdate.VisibleIndex = 11
+        Me.GridColumnLastUpdate.Width = 77
         '
         'GridColumnLastUserRec
         '
@@ -1249,8 +1255,8 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnLastUserRec.Name = "GridColumnLastUserRec"
         Me.GridColumnLastUserRec.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUserRec.Visible = True
-        Me.GridColumnLastUserRec.VisibleIndex = 11
-        Me.GridColumnLastUserRec.Width = 49
+        Me.GridColumnLastUserRec.VisibleIndex = 12
+        Me.GridColumnLastUserRec.Width = 52
         '
         'GCFilterRec
         '
@@ -2600,11 +2606,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl21.TabIndex = 8892
         Me.LabelControl21.Text = "From"
         '
-        'PrintPrepareOrderToolStripMenuItem
+        'GridColumnCodeRec
         '
-        Me.PrintPrepareOrderToolStripMenuItem.Name = "PrintPrepareOrderToolStripMenuItem"
-        Me.PrintPrepareOrderToolStripMenuItem.Size = New System.Drawing.Size(165, 22)
-        Me.PrintPrepareOrderToolStripMenuItem.Text = "Print Detail Order"
+        Me.GridColumnCodeRec.Caption = "Code"
+        Me.GridColumnCodeRec.FieldName = "code"
+        Me.GridColumnCodeRec.Name = "GridColumnCodeRec"
+        Me.GridColumnCodeRec.Visible = True
+        Me.GridColumnCodeRec.VisibleIndex = 3
+        Me.GridColumnCodeRec.Width = 86
         '
         'FormSalesOrderSvcLevel
         '
@@ -2956,4 +2965,5 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents GridColumnTotalRet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalRetTrf As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PrintPrepareOrderToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumnCodeRec As DevExpress.XtraGrid.Columns.GridColumn
 End Class
