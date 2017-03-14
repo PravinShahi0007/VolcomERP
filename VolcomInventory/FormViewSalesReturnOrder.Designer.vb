@@ -570,6 +570,7 @@ Partial Class FormViewSalesReturnOrder
         Me.GridColumnSOH.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnSOH.FieldName = "soh"
         Me.GridColumnSOH.Name = "GridColumnSOH"
+        Me.GridColumnSOH.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnSOH.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh", "{0:N0}")})
         '
         'BtnOrderStatus
