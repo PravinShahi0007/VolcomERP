@@ -8,7 +8,6 @@
     Public date_created As Date
     Public is_wo_view As String = "-1"
 
-
     Private Sub FormProductionDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         RCIMainVendor.ValueChecked = Convert.ToSByte(1)
         RCIMainVendor.ValueUnchecked = Convert.ToSByte(2)
@@ -106,6 +105,11 @@
             If GVBOM.RowCount > 0 Then
                 METotSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
             End If
+            'search note
+            If GVBOM.RowCount > 0 Then
+                MEBOMNote.Text = GVBOM.GetRowCellValue(0, "bom_note").ToString
+            End If
+            '
         Catch ex As Exception
             errorConnection()
         End Try
