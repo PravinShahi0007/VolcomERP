@@ -23,6 +23,10 @@
     Public date_from_selected As String = "-1"
     Public date_until_selected As String = "-1"
 
+    'selected view rsv stoick
+    Public id_design_rsv As String = "-1"
+    Public id_drw_rsv As String = "-1"
+
     'Datatalbe-Tab Stock Card
     Public dt As DataTable
 
@@ -1028,4 +1032,49 @@
         FormPopUpDesign.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnViewRsv.Click
+        viewRsv()
+    End Sub
+
+    Sub viewRsv()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "CALL view_stock_fg_rsv(393, 394)"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCRsv.DataSource = data
+        GVRsv.Columns("1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVRsv.Columns("2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVRsv.Columns("3").Caption = "3" + System.Environment.NewLine + "S"
+        GVRsv.Columns("4").Caption = "4" + System.Environment.NewLine + "M"
+        GVRsv.Columns("5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVRsv.Columns("6").Caption = "6" + System.Environment.NewLine + "L"
+        GVRsv.Columns("7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVRsv.Columns("8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVRsv.Columns("9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVRsv.Columns("0").Caption = "0" + System.Environment.NewLine + "SM"
+        GVRsv.RefreshData()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TxtCodeDsgRsv_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeDsgRsv.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "CALL view_all_design_param('AND design_code=''" + TxtCodeDsgSC.Text + "''')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count = 0 Then
+                stopCustom("Design not found !")
+                TxtCodeDsgRsv.Focus()
+            Else
+                id_design_selected = data.Rows(0)("id_design").ToString.ToUpper
+                TxtCodeDsgRsv.Text = data.Rows(0)("design_display_name").ToString.ToUpper
+                TxtCodeAccRsv.Focus()
+            End If
+            GCRsv.DataSource = Nothing
+            Cursor = Cursors.Default
+        Else
+            GCRsv.DataSource = Nothing
+            TxtCodeDsgRsv.Text = ""
+        End If
+    End Sub
+
 End Class
