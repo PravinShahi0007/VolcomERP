@@ -535,6 +535,7 @@
         Report.LPONo.Text = TEPONumber.Text
         Report.LDate.Text = DEDate.EditValue.ToString("dd MMM yyyy")
         Report.LBOMType.Text = LECategory.Text
+        Report.LNote.Text = MEBOMNote.Text
         ' cost here
         Report.LTotCost.Text = Decimal.Parse(GVBOM.Columns("total").SummaryItem.SummaryValue).ToString("N2")
         Report.LSay.Text = ConvertCurrencyToEnglish(GVBOM.Columns("total").SummaryItem.SummaryValue.ToString, get_setup_field("id_currency_default"))
@@ -553,7 +554,7 @@
         If data.Rows.Count > 0 Then
             Report.LCur.Text = get_currency(data.Rows(0)("id_currency").ToString)
             Report.LKurs.Text = Decimal.Parse(data.Rows(0)("kurs")).ToString("N2")
-            Report.LCPA.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue) * data.Rows(0)("kurs")).ToString("N2")
+            'Report.LNote.Text = Decimal.Parse((GVBOM.Columns("total").SummaryItem.SummaryValue / GVListProduct.Columns("prod_order_qty").SummaryItem.SummaryValue) * data.Rows(0)("kurs")).ToString("N2")
         End If
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
