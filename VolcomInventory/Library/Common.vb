@@ -1745,6 +1745,20 @@ Module Common
         Return data
     End Function
 
+    Public Function get_company_by_code_no_limit(ByVal code_par As String, ByVal cond_par As String)
+        code_par = addSlashes(code_par)
+        Dim query As String = "SELECT comp.*, cont.id_comp_contact, getCompByContact(cont.id_comp_contact,4) AS `id_wh_drawer`,getCompByContact(cont.id_comp_contact,6) AS `id_wh_rack`, getCompByContact(cont.id_comp_contact,7) AS `id_wh_locator`, cont.contact_person, cont.contact_number, cont.is_default "
+        query += "FROM tb_m_comp comp "
+        query += "INNER JOIN tb_m_comp_contact cont ON cont.id_comp = comp.id_comp AND cont.is_default='1' "
+        query += "WHERE comp.comp_number='" + code_par + "' "
+        If cond_par <> "-1" Then
+            query += cond_par + " "
+        End If
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
+
+
     Function get_range_x(ByVal id_range As String, ByVal opt As String)
         Dim result As String = ""
         Dim query As String = ""
