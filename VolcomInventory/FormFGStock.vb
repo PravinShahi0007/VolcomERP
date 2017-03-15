@@ -23,10 +23,6 @@
     Public date_from_selected As String = "-1"
     Public date_until_selected As String = "-1"
 
-    'selected view rsv stoick
-    Public id_design_rsv As String = "-1"
-    Public id_drw_rsv As String = "-1"
-
     'Datatalbe-Tab Stock Card
     Public dt As DataTable
 
@@ -86,6 +82,12 @@
     Public label_design_selected_stock_qc As String = "-1"
     Public date_from_selected_stock_qc As String = "-1"
     Public date_until_selected_stock_qc As String = "-1"
+
+    '-----------------------------
+    'RESERVED STOCK LIST
+    '-----------------------------
+    Public id_design_rsv As String = "-1"
+    Public id_drw_rsv As String = "-1"
 
     'Datatalbe-Tab Stock Store
     Public dt_qc As DataTable
@@ -1034,12 +1036,24 @@
     End Sub
 
     Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnViewRsv.Click
-        viewRsv()
+        If CheckEditAllDsgRsv.EditValue = True Then
+            If id_drw_rsv = "-1" Then
+                stopCustom("Account can't blank")
+            Else
+                viewRsv()
+            End If
+        Else
+            If id_drw_rsv = "-1" Or id_design_rsv = "-1" Then
+                stopCustom("Account & design can't blank")
+            Else
+                viewRsv()
+            End If
+        End If
     End Sub
 
     Sub viewRsv()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "CALL view_stock_fg_rsv(393, 394)"
+        Dim query As String = "CALL view_stock_fg_rsv(" + id_drw_rsv + ", " + id_design_rsv + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRsv.DataSource = data
         GVRsv.Columns("1").Caption = "1" + System.Environment.NewLine + "XXS"
@@ -1059,22 +1073,75 @@
     Private Sub TxtCodeDsgRsv_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeDsgRsv.KeyDown
         If e.KeyCode = Keys.Enter Then
             Cursor = Cursors.WaitCursor
-            Dim query As String = "CALL view_all_design_param('AND design_code=''" + TxtCodeDsgSC.Text + "''')"
+            Dim code As String = addSlashes(TxtCodeDsgRsv.Text)
+            Dim query As String = "CALL view_all_design_param('AND design_code=''" + code + "''')"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            If data.Rows.Count = 0 Then
+            If data.Rows.Count = 0 Or code = "" Then
                 stopCustom("Design not found !")
+                id_design_rsv = "-1"
+                TxtCodeDsgRsv.Text = ""
+                TxtNameDsgRsv.Text = ""
                 TxtCodeDsgRsv.Focus()
             Else
-                id_design_selected = data.Rows(0)("id_design").ToString.ToUpper
-                TxtCodeDsgRsv.Text = data.Rows(0)("design_display_name").ToString.ToUpper
+                id_design_rsv = data.Rows(0)("id_design").ToString.ToUpper
+                TxtNameDsgRsv.Text = data.Rows(0)("design_display_name").ToString.ToUpper
                 TxtCodeAccRsv.Focus()
             End If
             GCRsv.DataSource = Nothing
             Cursor = Cursors.Default
         Else
+            id_design_rsv = "-1"
+            TxtNameDsgRsv.Text = ""
             GCRsv.DataSource = Nothing
-            TxtCodeDsgRsv.Text = ""
         End If
     End Sub
 
+    Private Sub TxtCodeAccRsv_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeAccRsv.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Cursor = Cursors.WaitCursor
+            Dim code As String = addSlashes(TxtCodeAccRsv.Text)
+            Dim data As DataTable = get_company_by_code_no_limit(code, "AND !ISNULL(comp.id_drawer_def) ")
+            If data.Rows.Count = 0 Or code = "" Then
+                stopCustom("Account not found!")
+                id_drw_rsv = "-1"
+                TxtNameAccRsv.Text = ""
+                TxtCodeAccRsv.Text = ""
+                TxtCodeAccRsv.Focus()
+            Else
+                If data.Rows.Count = 1 Then
+                    id_drw_rsv = data.Rows(0)("id_drawer_def").ToString
+                    TxtNameAccRsv.Text = data.Rows(0)("comp_name").ToString
+                    BtnViewRsv.Focus()
+                Else
+                    FormMasterCompanyDouble.dt = data
+                    FormMasterCompanyDouble.ShowDialog()
+                    If id_drw_rsv <> "-1" Then
+                        BtnViewRsv.Focus()
+                    Else
+                        TxtCodeAccRsv.Focus()
+                    End If
+                End If
+            End If
+            Cursor = Cursors.Default
+        Else
+            id_drw_rsv = "-1"
+            TxtNameAccRsv.Text = ""
+            GCRsv.DataSource = Nothing
+        End If
+    End Sub
+
+    Private Sub CheckEditAllDsgRsv_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditAllDsgRsv.CheckedChanged
+        GCRsv.DataSource = Nothing
+        TxtCodeDsgRsv.Text = ""
+        TxtNameDsgRsv.Text = ""
+        If CheckEditAllDsgRsv.EditValue = True Then
+            id_design_rsv = "0"
+            TxtCodeDsgRsv.Properties.ReadOnly = True
+            TxtCodeAccRsv.Focus()
+        Else
+            id_design_rsv = "-1"
+            TxtCodeDsgRsv.Properties.ReadOnly = False
+            TxtCodeDsgRsv.Focus()
+        End If
+    End Sub
 End Class

@@ -1550,7 +1550,7 @@ Partial Class FormFGStock
         '
         'BtnViewRsv
         '
-        Me.BtnViewRsv.Location = New System.Drawing.Point(808, 28)
+        Me.BtnViewRsv.Location = New System.Drawing.Point(823, 29)
         Me.BtnViewRsv.Name = "BtnViewRsv"
         Me.BtnViewRsv.Size = New System.Drawing.Size(63, 20)
         Me.BtnViewRsv.TabIndex = 2
@@ -1558,15 +1558,17 @@ Partial Class FormFGStock
         '
         'CheckEditAllDsgRsv
         '
-        Me.CheckEditAllDsgRsv.Location = New System.Drawing.Point(735, 29)
+        Me.CheckEditAllDsgRsv.Location = New System.Drawing.Point(7, 28)
         Me.CheckEditAllDsgRsv.Name = "CheckEditAllDsgRsv"
-        Me.CheckEditAllDsgRsv.Properties.Caption = "All Design"
-        Me.CheckEditAllDsgRsv.Size = New System.Drawing.Size(67, 19)
+        Me.CheckEditAllDsgRsv.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckEditAllDsgRsv.Properties.Appearance.Options.UseFont = True
+        Me.CheckEditAllDsgRsv.Properties.Caption = "All Design | "
+        Me.CheckEditAllDsgRsv.Size = New System.Drawing.Size(83, 19)
         Me.CheckEditAllDsgRsv.TabIndex = 8897
         '
         'TxtNameAccRsv
         '
-        Me.TxtNameAccRsv.Location = New System.Drawing.Point(492, 28)
+        Me.TxtNameAccRsv.Location = New System.Drawing.Point(580, 29)
         Me.TxtNameAccRsv.Name = "TxtNameAccRsv"
         Me.TxtNameAccRsv.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TxtNameAccRsv.Properties.AppearanceReadOnly.Options.UseBackColor = True
@@ -1576,7 +1578,7 @@ Partial Class FormFGStock
         '
         'TxtCodeAccRsv
         '
-        Me.TxtCodeAccRsv.Location = New System.Drawing.Point(421, 28)
+        Me.TxtCodeAccRsv.Location = New System.Drawing.Point(509, 29)
         Me.TxtCodeAccRsv.Name = "TxtCodeAccRsv"
         Me.TxtCodeAccRsv.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TxtCodeAccRsv.Properties.AppearanceReadOnly.Options.UseBackColor = True
@@ -1585,7 +1587,7 @@ Partial Class FormFGStock
         '
         'LabelControl11
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(376, 31)
+        Me.LabelControl11.Location = New System.Drawing.Point(464, 32)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl11.TabIndex = 8899
@@ -1593,15 +1595,15 @@ Partial Class FormFGStock
         '
         'LabelControl28
         '
-        Me.LabelControl28.Location = New System.Drawing.Point(11, 31)
+        Me.LabelControl28.Location = New System.Drawing.Point(96, 32)
         Me.LabelControl28.Name = "LabelControl28"
-        Me.LabelControl28.Size = New System.Drawing.Size(25, 13)
+        Me.LabelControl28.Size = New System.Drawing.Size(32, 13)
         Me.LabelControl28.TabIndex = 8898
-        Me.LabelControl28.Text = "Code"
+        Me.LabelControl28.Text = "Design"
         '
         'TxtCodeDsgRsv
         '
-        Me.TxtCodeDsgRsv.Location = New System.Drawing.Point(42, 28)
+        Me.TxtCodeDsgRsv.Location = New System.Drawing.Point(132, 29)
         Me.TxtCodeDsgRsv.Name = "TxtCodeDsgRsv"
         Me.TxtCodeDsgRsv.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TxtCodeDsgRsv.Properties.AppearanceReadOnly.Options.UseBackColor = True
@@ -1610,7 +1612,7 @@ Partial Class FormFGStock
         '
         'TxtNameDsgRsv
         '
-        Me.TxtNameDsgRsv.Location = New System.Drawing.Point(143, 28)
+        Me.TxtNameDsgRsv.Location = New System.Drawing.Point(233, 29)
         Me.TxtNameDsgRsv.Name = "TxtNameDsgRsv"
         Me.TxtNameDsgRsv.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TxtNameDsgRsv.Properties.AppearanceReadOnly.Options.UseBackColor = True
