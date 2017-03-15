@@ -89,6 +89,7 @@ Partial Class FormEmpLeaveDet
         Me.Label6 = New System.Windows.Forms.Label()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancelPropose = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
@@ -849,6 +850,7 @@ Partial Class FormEmpLeaveDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BCancelPropose)
         Me.PanelControl3.Controls.Add(Me.BPrint)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.BCancel)
@@ -858,6 +860,18 @@ Partial Class FormEmpLeaveDet
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(718, 37)
         Me.PanelControl3.TabIndex = 3
+        '
+        'BCancelPropose
+        '
+        Me.BCancelPropose.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BCancelPropose.ImageIndex = 19
+        Me.BCancelPropose.ImageList = Me.LargeImageCollection
+        Me.BCancelPropose.Location = New System.Drawing.Point(75, 2)
+        Me.BCancelPropose.Name = "BCancelPropose"
+        Me.BCancelPropose.Size = New System.Drawing.Size(108, 33)
+        Me.BCancelPropose.TabIndex = 4
+        Me.BCancelPropose.Text = "Cancel Leave"
+        Me.BCancelPropose.Visible = False
         '
         'BPrint
         '
@@ -1036,4 +1050,5 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEFormDC As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BCancelPropose As DevExpress.XtraEditors.SimpleButton
 End Class
