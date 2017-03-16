@@ -167,19 +167,36 @@
 
     Private Sub SMViewDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SMViewDel.Click
         Cursor = Cursors.WaitCursor
-        If BandedGridViewFGStockCard.RowCount > 0 Then
-            Dim id_trans As String = "-1"
-            Dim report_mark_type As String = "-1"
-            Try
-                id_trans = BandedGridViewFGStockCard.GetFocusedRowCellValue("id_report").ToString
-                report_mark_type = BandedGridViewFGStockCard.GetFocusedRowCellValue("report_mark_type").ToString
-            Catch ex As Exception
-            End Try
+        If XTCFGStock.SelectedTabPageIndex = 1 Then
+            If BandedGridViewFGStockCard.RowCount > 0 Then
+                Dim id_trans As String = "-1"
+                Dim report_mark_type As String = "-1"
+                Try
+                    id_trans = BandedGridViewFGStockCard.GetFocusedRowCellValue("id_report").ToString
+                    report_mark_type = BandedGridViewFGStockCard.GetFocusedRowCellValue("report_mark_type").ToString
+                Catch ex As Exception
+                End Try
 
-            Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
-            showpopup.report_mark_type = report_mark_type
-            showpopup.id_report = id_trans
-            showpopup.show()
+                Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+                showpopup.report_mark_type = report_mark_type
+                showpopup.id_report = id_trans
+                showpopup.show()
+            End If
+        ElseIf XTCFGStock.SelectedTabPageIndex = 4 Then
+            If GVRsv.RowCount > 0 And GVRsv.FocusedRowHandle >= 0 Then
+                Dim id_trans As String = "-1"
+                Dim report_mark_type As String = "-1"
+                Try
+                    id_trans = GVRsv.GetFocusedRowCellValue("id_report").ToString
+                    report_mark_type = GVRsv.GetFocusedRowCellValue("report_mark_type").ToString
+                Catch ex As Exception
+                End Try
+
+                Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+                showpopup.report_mark_type = report_mark_type
+                showpopup.id_report = id_trans
+                showpopup.show()
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
