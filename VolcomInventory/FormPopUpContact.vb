@@ -829,6 +829,10 @@
             FormMatRetInProd.TxtCodeCompFrom.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
             FormMatRetInProd.MEAdrressCompFrom.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
             Close()
+        ElseIf id_pop_up = "75" Then
+
+        ElseIf id_pop_up = "76" Then
+
         End If
         Cursor = Cursors.Default
     End Sub
