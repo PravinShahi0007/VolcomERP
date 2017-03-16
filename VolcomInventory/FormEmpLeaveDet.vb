@@ -86,7 +86,16 @@
 
             If data.Rows(0)("id_report_status").ToString = "5" Or data.Rows(0)("id_report_status").ToString = "6" Then
                 BMark.Visible = False
+                If data.Rows(0)("id_report_status").ToString = "6" Then
+                    If FormEmpLeave.is_hrd = 1 Then
+                        BCancelPropose.Visible = True
+                    End If
+                End If
+            Else
+                BMark.Visible = True
+                BCancelPropose.Visible = False
             End If
+
         End If
         '
     End Sub
@@ -520,5 +529,29 @@
         If e.KeyCode = Keys.Enter Then
             BSave.Focus()
         End If
+    End Sub
+
+    Private Sub BCancelPropose_Click(sender As Object, e As EventArgs) Handles BCancelPropose.Click
+        Dim confirm As DialogResult
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Do you want to cancel this proposal ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            'update schedule
+            Dim query As String = "UPDATE tb_emp_schedule emp
+            INNER JOIN tb_emp_leave_det ld ON emp.id_schedule=ld.id_schedule
+            SET emp.id_leave_type=NULL,emp.info_leave=NULL
+            WHERE ld.id_emp_leave='" & id_emp_leave & "'"
+            execute_non_query(query, True, "", "", "", "")
+            query = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", report_mark_type, id_emp_leave, "5")
+            execute_non_query(query, True, "", "", "", "")
+            'set cancel
+            FormReportMark.report_mark_type = report_mark_type
+            FormReportMark.id_report = id_emp_leave
+            FormReportMark.change_status("5")
+            '
+            infoCustom("Propose canceled")
+            load_form()
+        End If
+
     End Sub
 End Class
