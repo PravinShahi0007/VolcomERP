@@ -1135,6 +1135,17 @@
                     info_col = datax.Rows(0)("total_qty").ToString
                     info_report = datax.Rows(0)("to").ToString
                 End If
+            ElseIf report_mark_type = "105" Then
+                'final clearance
+                Dim fcl As New ClassProductionFinalClear()
+                query = fcl.queryMain("AND f.id_prod_fc=" + id_report + " ", "1")
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("pl_category").ToString
+                    info_report = datax.Rows(0)("prod_order_number").ToString
+                    info_design_code = datax.Rows(0)("code").ToString
+                    info_design = datax.Rows(0)("name").ToString
+                End If
             End If
         End If
     End Sub
