@@ -1734,29 +1734,36 @@ Public Class FormMain
             ElseIf formName = "FormBOM" Then
                 '
                 If FormBOM.XTCBOMSelection.SelectedTabPageIndex = 1 Then
-                    FormBOMSingle.id_bom = FormBOM.GVBOM.GetFocusedRowCellDisplayText("id_bom").ToString
-                    FormBOMSingle.id_product = FormBOM.GVProduct.GetFocusedRowCellDisplayText("id_product").ToString
-                    FormBOMSingle.ShowDialog()
-                ElseIf FormBOM.XTCBOMSelection.SelectedTabPageIndex = 2 Then 'per design
-                    FormBOMSingle.id_pop_up = "1"
-                    FormBOMSingle.id_bom_approve = FormBOM.GVBOMPerDesign.GetFocusedRowCellValue("id_bom_approve").ToString
-                    FormBOMSingle.id_design = FormBOM.GVPerDesign.GetFocusedRowCellDisplayText("id_design").ToString
-                    FormBOMSingle.ShowDialog()
-                Else ' per PD
-                    'Try
-                    If FormBOM.GVDesign.FocusedRowHandle < 0 Then
-                        stopCustom("Please select proper design first!")
+                    If FormBOM.GVBOM.RowCount > 0 Then
+                        FormBOMSingle.id_bom = FormBOM.GVBOM.GetFocusedRowCellDisplayText("id_bom").ToString
+                        FormBOMSingle.id_product = FormBOM.GVProduct.GetFocusedRowCellDisplayText("id_product").ToString
+                        FormBOMSingle.ShowDialog()
                     Else
-                        FormBOMDesignSingle.id_pop_up = "1"
-                        FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
-                        FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
-                        FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-                        FormBOMDesignSingle.ShowDialog()
+                        stopCustom("No BOM selected")
                     End If
-
-                    'Catch ex As Exception
-                    'stopCustom("Please select proper design first!")
-                    'End Try
+                ElseIf FormBOM.XTCBOMSelection.SelectedTabPageIndex = 2 Then 'per design
+                    If FormBOM.GVBOMPerDesign.RowCount > 0 Then
+                        FormBOMSingle.id_pop_up = "1"
+                        FormBOMSingle.id_bom_approve = FormBOM.GVBOMPerDesign.GetFocusedRowCellValue("id_bom_approve").ToString
+                        FormBOMSingle.id_design = FormBOM.GVPerDesign.GetFocusedRowCellDisplayText("id_design").ToString
+                        FormBOMSingle.ShowDialog()
+                    Else
+                        stopCustom("No BOM selected.")
+                    End If
+                Else ' per PD
+                    Try
+                        If FormBOM.GVDesign.FocusedRowHandle < 0 Then
+                            stopCustom("Please select proper design first!")
+                        Else
+                            FormBOMDesignSingle.id_pop_up = "1"
+                            FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                            FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
+                            FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                            FormBOMDesignSingle.ShowDialog()
+                        End If
+                    Catch ex As Exception
+                        stopCustom("Please select proper design first!")
+                    End Try
                 End If
             ElseIf formName = "FormSamplePL" Then
                 'PACKING LIST SAMPLE
@@ -5927,6 +5934,8 @@ Public Class FormMain
                 ' Show the report's preview. 
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                 Tool.ShowPreview()
+            ElseIf FormFGStock.XTCFGStock.SelectedTabPageIndex = 4 Then 'RSV STOCK
+                print(FormFGStock.GCRsv, "RESERVED STOCK")
             End If
             Cursor = Cursors.Default
         ElseIf formName = "FormMatStock" Then
