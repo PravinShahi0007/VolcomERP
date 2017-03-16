@@ -147,6 +147,8 @@ Partial Class FormFGStock
         Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnViewRsv = New DevExpress.XtraEditors.SimpleButton()
         Me.CheckEditAllDsgRsv = New DevExpress.XtraEditors.CheckEdit()
@@ -556,7 +558,7 @@ Partial Class FormFGStock
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewDel})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(159, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(159, 48)
         '
         'SMViewDel
         '
@@ -1300,6 +1302,7 @@ Partial Class FormFGStock
         '
         'GCRsv
         '
+        Me.GCRsv.ContextMenuStrip = Me.ViewMenu
         Me.GCRsv.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCRsv.Location = New System.Drawing.Point(0, 60)
         Me.GCRsv.MainView = Me.GVRsv
@@ -1312,7 +1315,7 @@ Partial Class FormFGStock
         'GVRsv
         '
         Me.GVRsv.ColumnPanelRowHeight = 40
-        Me.GVRsv.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn8, Me.GridColumn14, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30})
+        Me.GVRsv.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn8, Me.GridColumn14, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumnType, Me.GridColumnNumber})
         Me.GVRsv.GridControl = Me.GCRsv
         Me.GVRsv.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", Me.GridColumn20, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", Me.GridColumn21, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", Me.GridColumn22, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", Me.GridColumn23, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", Me.GridColumn24, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", Me.GridColumn25, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", Me.GridColumn26, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", Me.GridColumn27, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", Me.GridColumn28, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "0", Me.GridColumn29, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", Me.GridColumn30, "{0:N0}")})
         Me.GVRsv.Name = "GVRsv"
@@ -1328,8 +1331,8 @@ Partial Class FormFGStock
         Me.GridColumn2.FieldName = "code"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
-        Me.GridColumn2.Width = 105
+        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumn2.Width = 87
         '
         'GridColumn8
         '
@@ -1337,8 +1340,8 @@ Partial Class FormFGStock
         Me.GridColumn8.FieldName = "name"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 1
-        Me.GridColumn8.Width = 135
+        Me.GridColumn8.VisibleIndex = 3
+        Me.GridColumn8.Width = 182
         '
         'GridColumn14
         '
@@ -1346,8 +1349,8 @@ Partial Class FormFGStock
         Me.GridColumn14.FieldName = "sizetype"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 2
-        Me.GridColumn14.Width = 55
+        Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.Width = 88
         '
         'GridColumn20
         '
@@ -1362,8 +1365,8 @@ Partial Class FormFGStock
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", "{0:N0}")})
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 3
-        Me.GridColumn20.Width = 66
+        Me.GridColumn20.VisibleIndex = 5
+        Me.GridColumn20.Width = 49
         '
         'RepositoryItemTextEdit2
         '
@@ -1384,8 +1387,8 @@ Partial Class FormFGStock
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", "{0:N0}")})
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 4
-        Me.GridColumn21.Width = 66
+        Me.GridColumn21.VisibleIndex = 6
+        Me.GridColumn21.Width = 47
         '
         'GridColumn22
         '
@@ -1400,8 +1403,8 @@ Partial Class FormFGStock
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", "{0:N0}")})
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 5
-        Me.GridColumn22.Width = 66
+        Me.GridColumn22.VisibleIndex = 7
+        Me.GridColumn22.Width = 44
         '
         'GridColumn23
         '
@@ -1416,8 +1419,8 @@ Partial Class FormFGStock
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", "{0:N0}")})
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 6
-        Me.GridColumn23.Width = 66
+        Me.GridColumn23.VisibleIndex = 8
+        Me.GridColumn23.Width = 43
         '
         'GridColumn24
         '
@@ -1432,8 +1435,8 @@ Partial Class FormFGStock
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", "{0:N0}")})
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 7
-        Me.GridColumn24.Width = 66
+        Me.GridColumn24.VisibleIndex = 9
+        Me.GridColumn24.Width = 46
         '
         'GridColumn25
         '
@@ -1448,8 +1451,8 @@ Partial Class FormFGStock
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", "{0:N0}")})
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 8
-        Me.GridColumn25.Width = 66
+        Me.GridColumn25.VisibleIndex = 10
+        Me.GridColumn25.Width = 42
         '
         'GridColumn26
         '
@@ -1464,8 +1467,8 @@ Partial Class FormFGStock
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", "{0:N0}")})
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 9
-        Me.GridColumn26.Width = 66
+        Me.GridColumn26.VisibleIndex = 11
+        Me.GridColumn26.Width = 47
         '
         'GridColumn27
         '
@@ -1480,8 +1483,8 @@ Partial Class FormFGStock
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", "{0:N0}")})
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 10
-        Me.GridColumn27.Width = 66
+        Me.GridColumn27.VisibleIndex = 12
+        Me.GridColumn27.Width = 54
         '
         'GridColumn28
         '
@@ -1496,8 +1499,8 @@ Partial Class FormFGStock
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", "{0:N0}")})
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 11
-        Me.GridColumn28.Width = 66
+        Me.GridColumn28.VisibleIndex = 13
+        Me.GridColumn28.Width = 52
         '
         'GridColumn29
         '
@@ -1512,8 +1515,8 @@ Partial Class FormFGStock
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "0", "{0:N0}")})
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 12
-        Me.GridColumn29.Width = 106
+        Me.GridColumn29.VisibleIndex = 14
+        Me.GridColumn29.Width = 57
         '
         'GridColumn30
         '
@@ -1528,8 +1531,26 @@ Partial Class FormFGStock
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 13
-        Me.GridColumn30.Width = 67
+        Me.GridColumn30.VisibleIndex = 15
+        Me.GridColumn30.Width = 46
+        '
+        'GridColumnType
+        '
+        Me.GridColumnType.Caption = "TYPE"
+        Me.GridColumnType.FieldName = "report_mark_type_name"
+        Me.GridColumnType.Name = "GridColumnType"
+        Me.GridColumnType.Visible = True
+        Me.GridColumnType.VisibleIndex = 0
+        Me.GridColumnType.Width = 97
+        '
+        'GridColumnNumber
+        '
+        Me.GridColumnNumber.Caption = "NUMBER"
+        Me.GridColumnNumber.FieldName = "report_number"
+        Me.GridColumnNumber.Name = "GridColumnNumber"
+        Me.GridColumnNumber.Visible = True
+        Me.GridColumnNumber.VisibleIndex = 1
+        Me.GridColumnNumber.Width = 81
         '
         'GroupControl3
         '
@@ -1868,4 +1889,6 @@ Partial Class FormFGStock
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
 End Class
