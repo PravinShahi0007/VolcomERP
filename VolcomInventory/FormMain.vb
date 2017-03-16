@@ -5934,6 +5934,8 @@ Public Class FormMain
                 ' Show the report's preview. 
                 Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
                 Tool.ShowPreview()
+            ElseIf FormFGStock.XTCFGStock.SelectedTabPageIndex = 4 Then 'RSV STOCK
+                print(FormFGStock.GCRsv, "RESERVED STOCK")
             End If
             Cursor = Cursors.Default
         ElseIf formName = "FormMatStock" Then
