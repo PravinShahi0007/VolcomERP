@@ -6,11 +6,11 @@ Public Class FormProductionFinalClearDet
     Public id_comp_from As String = "-1"
     Public id_comp_to As String = "-1"
     Public id_report_status As String = "-1"
-    Dim id_prod_order As String = "-1"
+    Public id_prod_order As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_fcl")
     Public is_view As String = "-1"
-    Dim id_design As String = "-1"
+    Public id_design As String = "-1"
 
     Private Sub FormProductionFinalClearDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -111,8 +111,9 @@ Public Class FormProductionFinalClearDet
         TxtStyleCode.Enabled = False
         TxtStyle.Enabled = False
         LEPLCategory.Enabled = False
-
-
+        BtnBrowseFrom.Enabled = False
+        BtnBrowseTo.Enabled = False
+        BtnBrowsePO.Enabled = False
 
         'ATTACH
         If check_attach_report_status(id_report_status, "105", id_prod_fc) Then
@@ -486,6 +487,38 @@ Public Class FormProductionFinalClearDet
     Private Sub PEView_DoubleClick(sender As Object, e As EventArgs) Handles PEView.DoubleClick
         Cursor = Cursors.WaitCursor
         pre_viewImages("2", PEView, id_design, True)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBrowseFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseFrom.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpContact.id_pop_up = "75"
+        FormPopUpContact.id_departement = id_departement_user
+        FormPopUpContact.ShowDialog()
+        If id_comp_from <> "-1" Then
+            TxtCodeCompTo.Focus()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBrowseTo_Click(sender As Object, e As EventArgs) Handles BtnBrowseTo.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpContact.id_pop_up = "76"
+        FormPopUpContact.id_departement = id_departement_user
+        FormPopUpContact.ShowDialog()
+        If id_comp_to <> "-1" Then
+            TxtOrder.Focus()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBrowsePO_Click(sender As Object, e As EventArgs) Handles BtnBrowsePO.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpProd.id_pop_up = "9"
+        FormPopUpProd.ShowDialog()
+        If id_prod_order <> "-1" Then
+            LEPLCategory.Focus()
+        End If
         Cursor = Cursors.Default
     End Sub
 End Class

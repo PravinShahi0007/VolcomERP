@@ -830,9 +830,19 @@
             FormMatRetInProd.MEAdrressCompFrom.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
             Close()
         ElseIf id_pop_up = "75" Then
-
+            'from final clearance
+            FormProductionFinalClearDet.id_comp_from = GVCompany.GetFocusedRowCellValue("id_comp").ToString
+            FormProductionFinalClearDet.TxtNameCompFrom.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
+            FormProductionFinalClearDet.TxtCodeCompFrom.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormProductionFinalClearDet.TxtCodeCompTo.Focus()
+            Close()
         ElseIf id_pop_up = "76" Then
-
+            'to final clearance
+            FormProductionFinalClearDet.id_comp_to = GVCompany.GetFocusedRowCellValue("id_comp").ToString
+            FormProductionFinalClearDet.TxtNameCompTo.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
+            FormProductionFinalClearDet.TxtCodeCompTo.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormProductionFinalClearDet.TxtOrder.Focus()
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub
