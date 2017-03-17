@@ -22,17 +22,20 @@ Partial Class FormProductionFinalClearDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionFinalClearDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnBrowsePO = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnBrowseTo = New DevExpress.XtraEditors.SimpleButton()
         Me.PEView = New DevExpress.XtraEditors.PictureEdit()
+        Me.BtnBrowseFrom = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtStyle = New DevExpress.XtraEditors.TextEdit()
         Me.TxtStyleCode = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtVendorName = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtVendorCode = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtDel = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtVendorName = New DevExpress.XtraEditors.TextEdit()
         Me.TxtSeason = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtVendorCode = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtOrder = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
@@ -80,10 +83,10 @@ Partial Class FormProductionFinalClearDet
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStyle.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStyleCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -114,17 +117,20 @@ Partial Class FormProductionFinalClearDet
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.BtnBrowsePO)
+        Me.GroupGeneralHeader.Controls.Add(Me.BtnBrowseTo)
         Me.GroupGeneralHeader.Controls.Add(Me.PEView)
+        Me.GroupGeneralHeader.Controls.Add(Me.BtnBrowseFrom)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtStyle)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtStyleCode)
-        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl10)
-        Me.GroupGeneralHeader.Controls.Add(Me.TxtVendorName)
-        Me.GroupGeneralHeader.Controls.Add(Me.TxtVendorCode)
-        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl9)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtDel)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl8)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl10)
+        Me.GroupGeneralHeader.Controls.Add(Me.TxtVendorName)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtSeason)
+        Me.GroupGeneralHeader.Controls.Add(Me.TxtVendorCode)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl6)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl9)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtOrder)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl4)
         Me.GroupGeneralHeader.Controls.Add(Me.TxtNameCompTo)
@@ -137,8 +143,26 @@ Partial Class FormProductionFinalClearDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(834, 150)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(834, 169)
         Me.GroupGeneralHeader.TabIndex = 201
+        '
+        'BtnBrowsePO
+        '
+        Me.BtnBrowsePO.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BtnBrowsePO.Location = New System.Drawing.Point(589, 58)
+        Me.BtnBrowsePO.Name = "BtnBrowsePO"
+        Me.BtnBrowsePO.Size = New System.Drawing.Size(24, 20)
+        Me.BtnBrowsePO.TabIndex = 10010
+        Me.BtnBrowsePO.Text = "..."
+        '
+        'BtnBrowseTo
+        '
+        Me.BtnBrowseTo.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BtnBrowseTo.Location = New System.Drawing.Point(589, 33)
+        Me.BtnBrowseTo.Name = "BtnBrowseTo"
+        Me.BtnBrowseTo.Size = New System.Drawing.Size(24, 20)
+        Me.BtnBrowseTo.TabIndex = 10009
+        Me.BtnBrowseTo.Text = "..."
         '
         'PEView
         '
@@ -149,13 +173,22 @@ Partial Class FormProductionFinalClearDet
         Me.PEView.Properties.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.PEView.Properties.ShowMenu = False
         Me.PEView.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.PEView.Size = New System.Drawing.Size(121, 146)
+        Me.PEView.Size = New System.Drawing.Size(121, 165)
         Me.PEView.TabIndex = 10003
+        '
+        'BtnBrowseFrom
+        '
+        Me.BtnBrowseFrom.ButtonStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
+        Me.BtnBrowseFrom.Location = New System.Drawing.Point(589, 9)
+        Me.BtnBrowseFrom.Name = "BtnBrowseFrom"
+        Me.BtnBrowseFrom.Size = New System.Drawing.Size(24, 20)
+        Me.BtnBrowseFrom.TabIndex = 10008
+        Me.BtnBrowseFrom.Text = "..."
         '
         'TxtStyle
         '
         Me.TxtStyle.EditValue = ""
-        Me.TxtStyle.Location = New System.Drawing.Point(304, 109)
+        Me.TxtStyle.Location = New System.Drawing.Point(304, 134)
         Me.TxtStyle.Name = "TxtStyle"
         Me.TxtStyle.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtStyle.Properties.Appearance.Options.UseFont = True
@@ -169,7 +202,7 @@ Partial Class FormProductionFinalClearDet
         'TxtStyleCode
         '
         Me.TxtStyleCode.EditValue = ""
-        Me.TxtStyleCode.Location = New System.Drawing.Point(196, 109)
+        Me.TxtStyleCode.Location = New System.Drawing.Point(196, 134)
         Me.TxtStyleCode.Name = "TxtStyleCode"
         Me.TxtStyleCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtStyleCode.Properties.Appearance.Options.UseFont = True
@@ -180,10 +213,33 @@ Partial Class FormProductionFinalClearDet
         Me.TxtStyleCode.TabIndex = 8923
         Me.TxtStyleCode.TabStop = False
         '
+        'TxtDel
+        '
+        Me.TxtDel.EditValue = ""
+        Me.TxtDel.Location = New System.Drawing.Point(571, 84)
+        Me.TxtDel.Name = "TxtDel"
+        Me.TxtDel.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDel.Properties.Appearance.Options.UseFont = True
+        Me.TxtDel.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDel.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDel.Properties.EditValueChangedDelay = 1
+        Me.TxtDel.Size = New System.Drawing.Size(42, 20)
+        Me.TxtDel.TabIndex = 8917
+        Me.TxtDel.TabStop = False
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(550, 87)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(15, 13)
+        Me.LabelControl8.TabIndex = 8916
+        Me.LabelControl8.Text = "Del"
+        '
         'LabelControl10
         '
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(152, 112)
+        Me.LabelControl10.Location = New System.Drawing.Point(152, 137)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(32, 13)
         Me.LabelControl10.TabIndex = 8922
@@ -192,7 +248,7 @@ Partial Class FormProductionFinalClearDet
         'TxtVendorName
         '
         Me.TxtVendorName.EditValue = ""
-        Me.TxtVendorName.Location = New System.Drawing.Point(304, 83)
+        Me.TxtVendorName.Location = New System.Drawing.Point(304, 110)
         Me.TxtVendorName.Name = "TxtVendorName"
         Me.TxtVendorName.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtVendorName.Properties.Appearance.Options.UseFont = True
@@ -203,10 +259,24 @@ Partial Class FormProductionFinalClearDet
         Me.TxtVendorName.TabIndex = 8921
         Me.TxtVendorName.TabStop = False
         '
+        'TxtSeason
+        '
+        Me.TxtSeason.EditValue = ""
+        Me.TxtSeason.Location = New System.Drawing.Point(196, 84)
+        Me.TxtSeason.Name = "TxtSeason"
+        Me.TxtSeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtSeason.Properties.Appearance.Options.UseFont = True
+        Me.TxtSeason.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtSeason.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtSeason.Properties.EditValueChangedDelay = 1
+        Me.TxtSeason.Size = New System.Drawing.Size(351, 20)
+        Me.TxtSeason.TabIndex = 8915
+        Me.TxtSeason.TabStop = False
+        '
         'TxtVendorCode
         '
         Me.TxtVendorCode.EditValue = ""
-        Me.TxtVendorCode.Location = New System.Drawing.Point(196, 83)
+        Me.TxtVendorCode.Location = New System.Drawing.Point(196, 110)
         Me.TxtVendorCode.Name = "TxtVendorCode"
         Me.TxtVendorCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtVendorCode.Properties.Appearance.Options.UseFont = True
@@ -217,60 +287,23 @@ Partial Class FormProductionFinalClearDet
         Me.TxtVendorCode.TabIndex = 8920
         Me.TxtVendorCode.TabStop = False
         '
-        'LabelControl9
-        '
-        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(152, 86)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(34, 13)
-        Me.LabelControl9.TabIndex = 8918
-        Me.LabelControl9.Text = "Vendor"
-        '
-        'TxtDel
-        '
-        Me.TxtDel.EditValue = ""
-        Me.TxtDel.Location = New System.Drawing.Point(574, 58)
-        Me.TxtDel.Name = "TxtDel"
-        Me.TxtDel.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDel.Properties.Appearance.Options.UseFont = True
-        Me.TxtDel.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtDel.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TxtDel.Properties.EditValueChangedDelay = 1
-        Me.TxtDel.Size = New System.Drawing.Size(39, 20)
-        Me.TxtDel.TabIndex = 8917
-        Me.TxtDel.TabStop = False
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(553, 61)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(15, 13)
-        Me.LabelControl8.TabIndex = 8916
-        Me.LabelControl8.Text = "Del"
-        '
-        'TxtSeason
-        '
-        Me.TxtSeason.EditValue = ""
-        Me.TxtSeason.Location = New System.Drawing.Point(346, 58)
-        Me.TxtSeason.Name = "TxtSeason"
-        Me.TxtSeason.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtSeason.Properties.Appearance.Options.UseFont = True
-        Me.TxtSeason.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtSeason.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TxtSeason.Properties.EditValueChangedDelay = 1
-        Me.TxtSeason.Size = New System.Drawing.Size(201, 20)
-        Me.TxtSeason.TabIndex = 8915
-        Me.TxtSeason.TabStop = False
-        '
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(306, 61)
+        Me.LabelControl6.Location = New System.Drawing.Point(152, 87)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl6.TabIndex = 8914
         Me.LabelControl6.Text = "Season"
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(152, 113)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl9.TabIndex = 8918
+        Me.LabelControl9.Text = "Vendor"
         '
         'TxtOrder
         '
@@ -282,7 +315,7 @@ Partial Class FormProductionFinalClearDet
         Me.TxtOrder.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtOrder.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtOrder.Properties.EditValueChangedDelay = 1
-        Me.TxtOrder.Size = New System.Drawing.Size(104, 20)
+        Me.TxtOrder.Size = New System.Drawing.Size(391, 20)
         Me.TxtOrder.TabIndex = 8913
         '
         'LabelControl4
@@ -304,7 +337,7 @@ Partial Class FormProductionFinalClearDet
         Me.TxtNameCompTo.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtNameCompTo.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtNameCompTo.Properties.EditValueChangedDelay = 1
-        Me.TxtNameCompTo.Size = New System.Drawing.Size(309, 20)
+        Me.TxtNameCompTo.Size = New System.Drawing.Size(283, 20)
         Me.TxtNameCompTo.TabIndex = 8911
         Me.TxtNameCompTo.TabStop = False
         '
@@ -340,7 +373,7 @@ Partial Class FormProductionFinalClearDet
         Me.TxtNameCompFrom.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtNameCompFrom.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtNameCompFrom.Properties.EditValueChangedDelay = 1
-        Me.TxtNameCompFrom.Size = New System.Drawing.Size(309, 20)
+        Me.TxtNameCompFrom.Size = New System.Drawing.Size(283, 20)
         Me.TxtNameCompFrom.TabIndex = 8907
         Me.TxtNameCompFrom.TabStop = False
         '
@@ -378,7 +411,7 @@ Partial Class FormProductionFinalClearDet
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelHeaderLeft.Location = New System.Drawing.Point(624, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
-        Me.PanelHeaderLeft.Size = New System.Drawing.Size(208, 146)
+        Me.PanelHeaderLeft.Size = New System.Drawing.Size(208, 165)
         Me.PanelHeaderLeft.TabIndex = 8899
         '
         'LEPLCategory
@@ -627,9 +660,9 @@ Partial Class FormProductionFinalClearDet
         Me.GroupControlItemList.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlItemList.Controls.Add(Me.GCItemList)
         Me.GroupControlItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 150)
+        Me.GroupControlItemList.Location = New System.Drawing.Point(0, 169)
         Me.GroupControlItemList.Name = "GroupControlItemList"
-        Me.GroupControlItemList.Size = New System.Drawing.Size(834, 251)
+        Me.GroupControlItemList.Size = New System.Drawing.Size(834, 232)
         Me.GroupControlItemList.TabIndex = 204
         '
         'GCItemList
@@ -639,7 +672,7 @@ Partial Class FormProductionFinalClearDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(812, 247)
+        Me.GCItemList.Size = New System.Drawing.Size(812, 228)
         Me.GCItemList.TabIndex = 8906
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -756,10 +789,10 @@ Partial Class FormProductionFinalClearDet
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStyle.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStyleCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtVendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtVendorCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -846,4 +879,7 @@ Partial Class FormProductionFinalClearDet
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PEView As DevExpress.XtraEditors.PictureEdit
+    Friend WithEvents BtnBrowseTo As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnBrowseFrom As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnBrowsePO As DevExpress.XtraEditors.SimpleButton
 End Class
