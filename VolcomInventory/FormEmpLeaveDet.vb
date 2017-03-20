@@ -204,7 +204,7 @@
 
     Sub pick_load()
         If id_employee = "-1" Then
-            stopCustom("Please choose employee first.")
+            stopCustom("Pilih karyawan terlebih dahulu.")
         Else
             FormEmpLeavePick.id_schedule = "-1"
             FormEmpLeavePick.id_employee = id_employee
@@ -252,7 +252,7 @@
                 BAddLeave.Focus()
             End If
         Else
-            stopCustom("No employee found.")
+            stopCustom("Karyawan tidak ditemukan.")
         End If
     End Sub
 
@@ -288,9 +288,9 @@
         Dim query As String = ""
         Dim problem As Boolean = False
         If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Then
-            stopCustom("Please check your input !")
+            stopCustom("Lengkapi isian dengan lengkap !")
         ElseIf TERemainingLeaveAfter.EditValue < 0
-            stopCustom("Remaining Leave not sufficient.")
+            stopCustom("Sisa cuti tidak mencukupi.")
         Else
             If LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "2" Then
                 'check if sudah form sekali dalam sebulan.
@@ -299,7 +299,7 @@
                                         WHERE DATE_FORMAT(lvd.datetime_start, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m') AND lv.id_emp='" & id_employee & "' AND lv.id_form_dc='2' AND lv.id_leave_type='2' AND lv.id_report_status!='5' "
                 Dim cek As String = execute_query(query_cek, 0, True, "", "", "", "")
                 If Not cek.ToString = "0" Then
-                    stopCustom("Only can use form only once per month for sick leave." & vbNewLine & "Please provide DC for sick leave.")
+                    stopCustom("Hanya dapat mengajukan sakit dengan form satu kali dalam satu bulan." & vbNewLine & "Please provide DC for sick leave.")
                     problem = True
                 End If
             End If
@@ -411,7 +411,7 @@
                     'End If
                 End If
                 '
-                infoCustom("Leave proposed")
+                infoCustom("Cuti diajukan. Menunggu persetujuan.")
                 '
                 FormEmpLeave.DEStart.EditValue = Now
                 FormEmpLeave.DEUntil.EditValue = Now
@@ -461,7 +461,7 @@
                 '
                 MELeavePurpose.Focus()
             Else
-                stopCustom("No employee found.")
+                stopCustom("Karyawan tidak ditemukan.")
             End If
         End If
     End Sub
@@ -554,7 +554,7 @@
             FormReportMark.id_report = id_emp_leave
             FormReportMark.change_status("5")
             '
-            infoCustom("Propose canceled")
+            infoCustom("Cuti dibatalkan")
             load_form()
         End If
 
