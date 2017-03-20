@@ -6562,7 +6562,7 @@ Public Class FormMain
             If FormEmpLeaveStock.XTCLeaveRemaining.SelectedTabPageIndex = 0 Then
                 print(FormEmpLeaveStock.GCSum, "Remaining Leave Summary " & FormEmpLeaveStock.LEDeptSum.Text)
             ElseIf FormEmpLeaveStock.XTCLeaveRemaining.SelectedTabPageIndex = 1 Then
-                print(FormEmpLeaveStock.GCSchedule, "Remaining Leave Detail " & FormEmpLeaveStock.LEDept.Text)
+                print(FormEmpLeaveStock.GCSchedule, "Remaining Leave Detail " & FormEmpLeaveStock.LEDeptSum.Text)
             End If
         Else
             RPSubMenu.Visible = False
