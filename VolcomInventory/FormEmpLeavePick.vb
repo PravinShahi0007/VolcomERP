@@ -20,9 +20,7 @@
             DEUntilLeave.Visible = False
             Luntil.Visible = False
         Else 'leave
-            'If FormEmpLeaveDet.LELeaveType.EditValue.ToString = "1" Then
-            BPickAll.Visible = False
-            'End If
+            BPickAll.Visible = True
         End If
     End Sub
 
