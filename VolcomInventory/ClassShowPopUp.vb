@@ -1032,6 +1032,31 @@
                     info_design_code = datax.Rows(0)("design_code").ToString
                     info_design = datax.Rows(0)("design_display_name").ToString
                 End If
+            ElseIf report_mark_type = "28" Then
+                'receiving QC
+                query = "SELECT a.id_report_status,h.report_status, g.id_season,g.season,a.id_prod_order_rec,a.prod_order_rec_number, "
+                query += "(a.delivery_order_date) AS delivery_order_date,a.delivery_order_number,b.prod_order_number, "
+                query += "(a.prod_order_rec_date) AS prod_order_rec_date, CONCAT(f.comp_number,' - ',f.comp_name) AS comp_from, CONCAT(d.comp_number,' - ',d.comp_name) AS comp_to, dsg.design_code,dsg.design_display_name, po_type.po_type "
+                query += "FROM tb_prod_order_rec a  "
+                query += "INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order "
+                query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_comp_contact_to "
+                query += "INNER JOIN tb_m_comp d ON d.id_comp = c.id_comp "
+                query += "INNER JOIN tb_m_comp_contact e ON e.id_comp_contact = a.id_comp_contact_from  "
+                query += "INNER JOIN tb_m_comp f ON f.id_comp = e.id_comp "
+                query += "INNER JOIN tb_season_delivery i ON b.id_delivery = i.id_delivery "
+                query += "INNER JOIN tb_season g ON g.id_season = i.id_season "
+                query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
+                query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
+                query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
+                query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
+                query += "WHERE a.id_prod_order_rec=" + id_report + " "
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("po_type").ToString
+                    info_report = datax.Rows(0)("prod_order_number").ToString
+                    info_design_code = datax.Rows(0)("design_code").ToString
+                    info_design = datax.Rows(0)("design_display_name").ToString
+                End If
             ElseIf report_mark_type = "30" Then
                 'PL MRS production
                 query = "SELECT desg.design_code,desg.design_display_name,po.prod_order_number FROM tb_pl_mrs plm
@@ -1043,6 +1068,60 @@
                 Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If datax.Rows.Count > 0 Then
                     info_col = ""
+                    info_report = datax.Rows(0)("prod_order_number").ToString
+                    info_design_code = datax.Rows(0)("design_code").ToString
+                    info_design = datax.Rows(0)("design_display_name").ToString
+                End If
+            ElseIf report_mark_type = "31" Then
+                'return out production
+                query = "SELECT a.id_prod_order_ret_out,a.prod_order_ret_out_number, "
+                query += "b.prod_order_number, "
+                query += "dsg.design_code,dsg.design_display_name, po_type.po_type "
+                query += "FROM tb_prod_order_ret_out a  "
+                query += "INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order "
+                query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
+                query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
+                query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
+                query += "WHERE a.id_prod_order_ret_out=" + id_report + " "
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("po_type").ToString
+                    info_report = datax.Rows(0)("prod_order_number").ToString
+                    info_design_code = datax.Rows(0)("design_code").ToString
+                    info_design = datax.Rows(0)("design_display_name").ToString
+                End If
+            ElseIf report_mark_type = "32" Then
+                'return in production
+                query = "SELECT a.id_prod_order_ret_in,a.prod_order_ret_in_number, "
+                query += "b.prod_order_number, "
+                query += "dsg.design_code,dsg.design_display_name, po_type.po_type "
+                query += "FROM tb_prod_order_ret_in a  "
+                query += "INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order "
+                query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
+                query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
+                query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
+                query += "WHERE a.id_prod_order_ret_in=" + id_report + " "
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("po_type").ToString
+                    info_report = datax.Rows(0)("prod_order_number").ToString
+                    info_design_code = datax.Rows(0)("design_code").ToString
+                    info_design = datax.Rows(0)("design_display_name").ToString
+                End If
+            ElseIf report_mark_type = "33" Then
+                'pl to wh
+                query = "SELECT a.id_pl_prod_order,a.pl_prod_order_number, "
+                query += "b.prod_order_number, "
+                query += "dsg.design_code,dsg.design_display_name, po_type.po_type "
+                query += "FROM tb_pl_prod_order a  "
+                query += "INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order "
+                query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
+                query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
+                query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
+                query += "WHERE a.id_pl_prod_order=" + id_report + " "
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("po_type").ToString
                     info_report = datax.Rows(0)("prod_order_number").ToString
                     info_design_code = datax.Rows(0)("design_code").ToString
                     info_design = datax.Rows(0)("design_display_name").ToString

@@ -158,11 +158,11 @@ Partial Class FormEmpLeaveDet
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(718, 118)
         Me.GroupControl1.TabIndex = 0
-        Me.GroupControl1.Text = "Employee"
+        Me.GroupControl1.Text = "Detail"
         '
         'LELeaveType
         '
-        Me.LELeaveType.Location = New System.Drawing.Point(405, 10)
+        Me.LELeaveType.Location = New System.Drawing.Point(399, 10)
         Me.LELeaveType.Name = "LELeaveType"
         Me.LELeaveType.Properties.Appearance.Options.UseTextOptions = True
         Me.LELeaveType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -174,16 +174,16 @@ Partial Class FormEmpLeaveDet
         Me.LELeaveType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_leave_type", "ID Leave", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("leave_type", "Leave")})
         Me.LELeaveType.Properties.NullText = ""
         Me.LELeaveType.Properties.ShowFooter = False
-        Me.LELeaveType.Size = New System.Drawing.Size(207, 20)
+        Me.LELeaveType.Size = New System.Drawing.Size(213, 20)
         Me.LELeaveType.TabIndex = 144
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(343, 13)
+        Me.LabelControl9.Location = New System.Drawing.Point(351, 12)
         Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl9.Size = New System.Drawing.Size(42, 13)
         Me.LabelControl9.TabIndex = 143
-        Me.LabelControl9.Text = "Leave Type"
+        Me.LabelControl9.Text = "Tipe Cuti"
         '
         'TENumber
         '
@@ -199,9 +199,9 @@ Partial Class FormEmpLeaveDet
         '
         Me.LabelControl7.Location = New System.Drawing.Point(34, 13)
         Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl7.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl7.TabIndex = 96
-        Me.LabelControl7.Text = "Number"
+        Me.LabelControl7.Text = "Nomor"
         '
         'TEEmployeeCode
         '
@@ -264,20 +264,20 @@ Partial Class FormEmpLeaveDet
         'TEPosition
         '
         Me.TEPosition.EditValue = ""
-        Me.TEPosition.Location = New System.Drawing.Point(394, 62)
+        Me.TEPosition.Location = New System.Drawing.Point(399, 62)
         Me.TEPosition.Name = "TEPosition"
         Me.TEPosition.Properties.EditValueChangedDelay = 1
         Me.TEPosition.Properties.ReadOnly = True
-        Me.TEPosition.Size = New System.Drawing.Size(218, 20)
+        Me.TEPosition.Size = New System.Drawing.Size(213, 20)
         Me.TEPosition.TabIndex = 4
         '
         'LabelControl1
         '
         Me.LabelControl1.Location = New System.Drawing.Point(351, 65)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(26, 13)
         Me.LabelControl1.TabIndex = 90
-        Me.LabelControl1.Text = "Position"
+        Me.LabelControl1.Text = "Posisi"
         '
         'TEEmployeeName
         '
@@ -293,9 +293,9 @@ Partial Class FormEmpLeaveDet
         '
         Me.LabelControl3.Location = New System.Drawing.Point(35, 39)
         Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl3.Size = New System.Drawing.Size(48, 13)
         Me.LabelControl3.TabIndex = 88
-        Me.LabelControl3.Text = "Employee"
+        Me.LabelControl3.Text = "Karyawan"
         '
         'GroupControl2
         '
@@ -306,7 +306,7 @@ Partial Class FormEmpLeaveDet
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.Size = New System.Drawing.Size(718, 257)
         Me.GroupControl2.TabIndex = 1
-        Me.GroupControl2.Text = "Leave"
+        Me.GroupControl2.Text = "Cuti"
         '
         'XTCDet
         '
@@ -324,7 +324,7 @@ Partial Class FormEmpLeaveDet
         Me.XTPDetLeave.Controls.Add(Me.PCAddDelLeave)
         Me.XTPDetLeave.Name = "XTPDetLeave"
         Me.XTPDetLeave.Size = New System.Drawing.Size(690, 225)
-        Me.XTPDetLeave.Text = "Leave propose"
+        Me.XTPDetLeave.Text = "Tanggal Pengajuan Cuti"
         '
         'GCLeaveDet
         '
@@ -359,7 +359,7 @@ Partial Class FormEmpLeaveDet
         '
         'GridColumn3
         '
-        Me.GridColumn3.Caption = "Start"
+        Me.GridColumn3.Caption = "Mulai Cuti"
         Me.GridColumn3.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn3.FieldName = "datetime_start"
@@ -369,7 +369,7 @@ Partial Class FormEmpLeaveDet
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "End"
+        Me.GridColumn4.Caption = "Berakhir Cuti"
         Me.GridColumn4.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
         Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn4.FieldName = "datetime_until"
@@ -379,7 +379,7 @@ Partial Class FormEmpLeaveDet
         '
         'GridColumn5
         '
-        Me.GridColumn5.Caption = "Full day leave"
+        Me.GridColumn5.Caption = "Satu Hari Penuh"
         Me.GridColumn5.ColumnEdit = Me.RICEFullDay
         Me.GridColumn5.FieldName = "is_full_day"
         Me.GridColumn5.Name = "GridColumn5"
@@ -402,7 +402,7 @@ Partial Class FormEmpLeaveDet
         '
         'GridColumn11
         '
-        Me.GridColumn11.Caption = "Sub total (hours)"
+        Me.GridColumn11.Caption = "Sub total (jam)"
         Me.GridColumn11.DisplayFormat.FormatString = "N0"
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "hours_total"
@@ -473,7 +473,7 @@ Partial Class FormEmpLeaveDet
         Me.XTPLeaveRemaining.Controls.Add(Me.GCLeaveRemaining)
         Me.XTPLeaveRemaining.Name = "XTPLeaveRemaining"
         Me.XTPLeaveRemaining.Size = New System.Drawing.Size(690, 225)
-        Me.XTPLeaveRemaining.Text = "Leave Remaining"
+        Me.XTPLeaveRemaining.Text = "Sisa Cuti"
         '
         'GCLeaveRemaining
         '
@@ -490,6 +490,10 @@ Partial Class FormEmpLeaveDet
         Me.GVLeaveRemaining.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn7})
         Me.GVLeaveRemaining.GridControl = Me.GCLeaveRemaining
         Me.GVLeaveRemaining.Name = "GVLeaveRemaining"
+        Me.GVLeaveRemaining.OptionsCustomization.AllowColumnMoving = False
+        Me.GVLeaveRemaining.OptionsCustomization.AllowFilter = False
+        Me.GVLeaveRemaining.OptionsCustomization.AllowSort = False
+        Me.GVLeaveRemaining.OptionsFind.AllowFindPanel = False
         Me.GVLeaveRemaining.OptionsView.ShowGroupPanel = False
         '
         'GridColumn8
@@ -498,7 +502,7 @@ Partial Class FormEmpLeaveDet
         Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn8.Caption = "Type"
+        Me.GridColumn8.Caption = "Tipe"
         Me.GridColumn8.FieldName = "type_ket"
         Me.GridColumn8.FieldNameSortGroup = "type"
         Me.GridColumn8.Name = "GridColumn8"
@@ -516,7 +520,7 @@ Partial Class FormEmpLeaveDet
         '
         'GridColumn10
         '
-        Me.GridColumn10.Caption = "Date Expired"
+        Me.GridColumn10.Caption = "Tanggal Hangus"
         Me.GridColumn10.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn10.FieldName = "date_expired"
@@ -532,7 +536,7 @@ Partial Class FormEmpLeaveDet
         Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn7.Caption = "Leave Remaining (hour)"
+        Me.GridColumn7.Caption = "Sisa Cuti (Jam)"
         Me.GridColumn7.DisplayFormat.FormatString = "N0"
         Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn7.FieldName = "qty"
@@ -549,7 +553,7 @@ Partial Class FormEmpLeaveDet
         Me.XTPLeaveUsed.Controls.Add(Me.BRecalculate)
         Me.XTPLeaveUsed.Name = "XTPLeaveUsed"
         Me.XTPLeaveUsed.Size = New System.Drawing.Size(690, 225)
-        Me.XTPLeaveUsed.Text = "Leave Usage"
+        Me.XTPLeaveUsed.Text = "Cuti Terpakai"
         '
         'GCLeaveUsage
         '
@@ -581,7 +585,7 @@ Partial Class FormEmpLeaveDet
         Me.GridColumn12.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumn12.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn12.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn12.Caption = "Type"
+        Me.GridColumn12.Caption = "Tipe"
         Me.GridColumn12.FieldName = "type_ket"
         Me.GridColumn12.FieldNameSortGroup = "type"
         Me.GridColumn12.Name = "GridColumn12"
@@ -599,7 +603,7 @@ Partial Class FormEmpLeaveDet
         '
         'GridColumn14
         '
-        Me.GridColumn14.Caption = "Date Expired"
+        Me.GridColumn14.Caption = "Tanggal Hangus"
         Me.GridColumn14.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.GridColumn14.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumn14.FieldName = "date_expired"
@@ -615,7 +619,7 @@ Partial Class FormEmpLeaveDet
         Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn15.Caption = "Leave Usage (hour)"
+        Me.GridColumn15.Caption = "Cuti Terpakai (Jam)"
         Me.GridColumn15.DisplayFormat.FormatString = "N0"
         Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn15.FieldName = "qty"
@@ -638,20 +642,20 @@ Partial Class FormEmpLeaveDet
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(187, 50)
+        Me.Label3.Location = New System.Drawing.Point(216, 50)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(45, 13)
+        Me.Label3.Size = New System.Drawing.Size(24, 13)
         Me.Label3.TabIndex = 5
-        Me.Label3.Text = "hour(s) "
+        Me.Label3.Text = "jam"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(30, 50)
+        Me.Label1.Location = New System.Drawing.Point(50, 50)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(73, 13)
+        Me.Label1.Size = New System.Drawing.Size(77, 13)
         Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Total Leave : "
+        Me.Label1.Text = "Cuti Terpakai :"
         '
         'PanelControl1
         '
@@ -672,7 +676,7 @@ Partial Class FormEmpLeaveDet
         '
         'LEFormDC
         '
-        Me.LEFormDC.Location = New System.Drawing.Point(89, 94)
+        Me.LEFormDC.Location = New System.Drawing.Point(92, 94)
         Me.LEFormDC.Name = "LEFormDC"
         Me.LEFormDC.Properties.Appearance.Options.UseTextOptions = True
         Me.LEFormDC.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -697,19 +701,19 @@ Partial Class FormEmpLeaveDet
         '
         'MELeavePurpose
         '
-        Me.MELeavePurpose.Location = New System.Drawing.Point(89, 42)
+        Me.MELeavePurpose.Location = New System.Drawing.Point(92, 42)
         Me.MELeavePurpose.Name = "MELeavePurpose"
         Me.MELeavePurpose.Properties.MaxLength = 200
-        Me.MELeavePurpose.Size = New System.Drawing.Size(361, 46)
+        Me.MELeavePurpose.Size = New System.Drawing.Size(358, 46)
         Me.MELeavePurpose.TabIndex = 101
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(12, 44)
+        Me.LabelControl6.Location = New System.Drawing.Point(11, 44)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl6.Size = New System.Drawing.Size(48, 13)
         Me.LabelControl6.TabIndex = 99
-        Me.LabelControl6.Text = "Leave Purpose"
+        Me.LabelControl6.Text = "Keperluan"
         '
         'BPickChange
         '
@@ -722,10 +726,10 @@ Partial Class FormEmpLeaveDet
         'TEEMployeeChange
         '
         Me.TEEMployeeChange.EditValue = ""
-        Me.TEEMployeeChange.Location = New System.Drawing.Point(89, 12)
+        Me.TEEMployeeChange.Location = New System.Drawing.Point(92, 12)
         Me.TEEMployeeChange.Name = "TEEMployeeChange"
         Me.TEEMployeeChange.Properties.EditValueChangedDelay = 1
-        Me.TEEMployeeChange.Size = New System.Drawing.Size(111, 20)
+        Me.TEEMployeeChange.Size = New System.Drawing.Size(108, 20)
         Me.TEEMployeeChange.TabIndex = 96
         '
         'TEEmployeeChangeName
@@ -751,24 +755,24 @@ Partial Class FormEmpLeaveDet
         Me.PanelControl4.Controls.Add(Me.TERemainingLeave)
         Me.PanelControl4.Controls.Add(Me.Label6)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl4.Location = New System.Drawing.Point(470, 2)
+        Me.PanelControl4.Location = New System.Drawing.Point(456, 2)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(246, 116)
+        Me.PanelControl4.Size = New System.Drawing.Size(260, 116)
         Me.PanelControl4.TabIndex = 97
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(187, 83)
+        Me.Label2.Location = New System.Drawing.Point(216, 83)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(45, 13)
+        Me.Label2.Size = New System.Drawing.Size(24, 13)
         Me.Label2.TabIndex = 98
-        Me.Label2.Text = "hour(s) "
+        Me.Label2.Text = "jam"
         '
         'TETotLeave
         '
         Me.TETotLeave.EditValue = ""
-        Me.TETotLeave.Location = New System.Drawing.Point(109, 47)
+        Me.TETotLeave.Location = New System.Drawing.Point(138, 47)
         Me.TETotLeave.Name = "TETotLeave"
         Me.TETotLeave.Properties.Appearance.Options.UseTextOptions = True
         Me.TETotLeave.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -784,7 +788,7 @@ Partial Class FormEmpLeaveDet
         'TERemainingLeaveAfter
         '
         Me.TERemainingLeaveAfter.EditValue = ""
-        Me.TERemainingLeaveAfter.Location = New System.Drawing.Point(109, 80)
+        Me.TERemainingLeaveAfter.Location = New System.Drawing.Point(138, 80)
         Me.TERemainingLeaveAfter.Name = "TERemainingLeaveAfter"
         Me.TERemainingLeaveAfter.Properties.Appearance.Options.UseTextOptions = True
         Me.TERemainingLeaveAfter.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -800,25 +804,25 @@ Partial Class FormEmpLeaveDet
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(10, 83)
+        Me.Label4.Location = New System.Drawing.Point(18, 83)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(93, 13)
+        Me.Label4.Size = New System.Drawing.Size(111, 13)
         Me.Label4.TabIndex = 97
-        Me.Label4.Text = "Remaining after : "
+        Me.Label4.Text = "Sisa Cuti setelahnya :"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(187, 17)
+        Me.Label5.Location = New System.Drawing.Point(216, 17)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(45, 13)
+        Me.Label5.Size = New System.Drawing.Size(24, 13)
         Me.Label5.TabIndex = 95
-        Me.Label5.Text = "hour(s) "
+        Me.Label5.Text = "jam"
         '
         'TERemainingLeave
         '
         Me.TERemainingLeave.EditValue = ""
-        Me.TERemainingLeave.Location = New System.Drawing.Point(109, 14)
+        Me.TERemainingLeave.Location = New System.Drawing.Point(138, 14)
         Me.TERemainingLeave.Name = "TERemainingLeave"
         Me.TERemainingLeave.Properties.Appearance.Options.UseTextOptions = True
         Me.TERemainingLeave.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -834,19 +838,19 @@ Partial Class FormEmpLeaveDet
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(37, 17)
+        Me.Label6.Location = New System.Drawing.Point(72, 17)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(66, 13)
+        Me.Label6.Size = New System.Drawing.Size(55, 13)
         Me.Label6.TabIndex = 94
-        Me.Label6.Text = "Remaining : "
+        Me.Label6.Text = "Sisa Cuti :"
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(12, 15)
+        Me.LabelControl5.Location = New System.Drawing.Point(11, 15)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl5.Size = New System.Drawing.Size(75, 13)
         Me.LabelControl5.TabIndex = 98
-        Me.LabelControl5.Text = "Replace By"
+        Me.LabelControl5.Text = "Digantikan Oleh"
         '
         'PanelControl3
         '
