@@ -37,6 +37,8 @@ Public Class FormSalesReturnQCDet
     Dim drawer_sel As String = "-1"
     Public id_pre As String = "-1"
     Public id_wh_type As String = "-1"
+    Dim id_comp_type As String = "-1"
+    Dim report_mark_type_loc As String = "-1"
 
     Private Sub FormSalesReturnQCDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -128,7 +130,9 @@ Public Class FormSalesReturnQCDet
             TEDrawer.Text = data.Rows(0)("wh_drawer_code").ToString
             id_wh_drawer_to = data.Rows(0)("id_wh_drawer_to").ToString
 
+
             'detail2
+            setReportMarkType()
             viewDetail()
             view_barcode_list()
             viewDetailDrawer()
@@ -148,7 +152,7 @@ Public Class FormSalesReturnQCDet
 
     Sub viewSalesReturn()
         Dim query As String = ""
-        query += "SELECT a.id_sales_return, getCompByContact(a.id_store_contact_from,'1') AS `id_comp_from`, a.id_store_contact_from, getCompByContact(a.id_comp_contact_to,'1') AS `id_comp_to`,a.id_comp_contact_to, (d.comp_number) AS store_code_from,(d.comp_name) AS store_name_from, (d1.comp_number) AS comp_code_to,(d1.comp_name) AS comp_name_to,a.id_report_status, f.report_status, "
+        query += "SELECT a.id_sales_return, getCompByContact(a.id_store_contact_from,'1') AS `id_comp_from`, a.id_store_contact_from, getCompByContact(a.id_comp_contact_to,'1') AS `id_comp_to`,a.id_comp_contact_to, (d.comp_number) AS store_code_from,(d.comp_name) AS store_name_from, (d1.comp_number) AS comp_code_to,(d1.comp_name) AS comp_name_to, IFNULL(d1.id_wh_type,0) AS `id_wh_type`,a.id_report_status, f.report_status, "
         query += "a.sales_return_note, a.sales_return_number, "
         query += "DATE_FORMAT(a.sales_return_date,'%d %M %Y') AS sales_return_date "
         query += "FROM tb_sales_return a "
@@ -190,9 +194,12 @@ Public Class FormSalesReturnQCDet
 
         Dim id_comp_to As String = data.Rows(0)("id_comp_to").ToString
         id_comp_contact_to_return = data.Rows(0)("id_comp_contact_to").ToString
+        id_wh_type = data.Rows(0)("id_wh_type").ToString
         TxtCodeFrom.Text = data.Rows(0)("comp_code_to").ToString
         TxtNameFrom.Text = data.Rows(0)("comp_name_to").ToString
 
+        'find report mark type
+        setReportMarkType()
 
         'general
         viewDetail()
@@ -203,6 +210,16 @@ Public Class FormSalesReturnQCDet
         GroupControlScannedItem.Enabled = True
         BtnInfoSrs.Enabled = True
         BtnBrowseRO.Enabled = False
+    End Sub
+
+    Sub setReportMarkType()
+        Dim query As String = "SELECT * FROM tb_wh_approve WHERE value='" + id_wh_type + "' LIMIT 1 "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            report_mark_type_loc = data.Rows(0)("report_mark_type").ToString
+        Else
+            report_mark_type_loc = "49"
+        End If
     End Sub
 
     Sub viewReportStatus()
@@ -378,7 +395,7 @@ Public Class FormSalesReturnQCDet
     End Sub
 
     Sub allow_status()
-        If check_edit_report_status(id_report_status, "49", id_sales_return_qc) Then
+        If check_edit_report_status(id_report_status, report_mark_type_loc, id_sales_return_qc) Then
             MENote.Properties.ReadOnly = False
             BtnSave.Enabled = False
             LEPLCategory.Enabled = True
@@ -397,7 +414,7 @@ Public Class FormSalesReturnQCDet
         BtnVerify.Enabled = False
 
         'attachment
-        If check_attach_report_status(id_report_status, "49", id_sales_return_qc) Then
+        If check_attach_report_status(id_report_status, report_mark_type_loc, id_sales_return_qc) Then
             BtnAttachment.Enabled = True
         Else
             BtnAttachment.Enabled = False
@@ -534,7 +551,7 @@ Public Class FormSalesReturnQCDet
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
         FormReportMark.id_report = id_sales_return_qc
-        FormReportMark.report_mark_type = "49"
+        FormReportMark.report_mark_type = report_mark_type_loc
         FormReportMark.is_view = "1"
         FormReportMark.form_origin = Name
         FormReportMark.is_view_finalize = "1"
@@ -689,7 +706,7 @@ Public Class FormSalesReturnQCDet
                     increase_inc_sales("7")
                     '
                     'insert who prepared
-                    insert_who_prepared("49", id_sales_return_qc, id_user)
+                    insert_who_prepared(report_mark_type_loc, id_sales_return_qc, id_user)
 
                     'Detail return
                     Dim jum_ins_j As Integer = 0
@@ -759,7 +776,7 @@ Public Class FormSalesReturnQCDet
                     End If
 
                     'submit who prepared
-                    submit_who_prepared("49", id_sales_return_qc, id_user)
+                    submit_who_prepared(report_mark_type_loc, id_sales_return_qc, id_user)
 
                     FormSalesReturnQC.viewSalesReturnQC()
                     FormSalesReturnQC.viewSalesReturn()
@@ -1343,7 +1360,7 @@ Public Class FormSalesReturnQCDet
             FormProductionStorageIn.colorku = GVItemList.GetFocusedRowCellValue("color").ToString
             FormProductionStorageIn.sizeku = GVItemList.GetFocusedRowCellValue("size").ToString
             FormProductionStorageIn.id_report = id_sales_return_qc
-            FormProductionStorageIn.report_mark_type = "49"
+            FormProductionStorageIn.report_mark_type = report_mark_type_loc
             FormProductionStorageIn.id_product = GVDrawer.GetFocusedRowCellValue("id_product").ToString
             FormProductionStorageIn.cost = Decimal.Parse(GVDrawer.GetFocusedRowCellValue("bom_unit_price").ToString)
             FormProductionStorageIn.id_pop_up = "4"
@@ -1427,7 +1444,7 @@ Public Class FormSalesReturnQCDet
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_sales_return_qc
-        FormDocumentUpload.report_mark_type = "49"
+        FormDocumentUpload.report_mark_type = report_mark_type_loc
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
