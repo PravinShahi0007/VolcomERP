@@ -89,7 +89,7 @@ Public Class FormSalesReturnQCDet
             BMark.Enabled = True
 
             'query view based on edit id's
-            Dim query As String = "SELECT drw.wh_drawer_code, (a.id_wh_drawer) AS id_wh_drawer_to,b.id_sales_return,b.id_wh_drawer, (c2.id_comp) AS id_comp_to_return,(b.id_comp_contact_to) AS id_comp_contact_to_return,a.id_store_contact_from, a.id_comp_contact_to, (d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to, (d2.comp_name) AS comp_name_to_return, (d.comp_number) AS store_number_from, (d1.comp_number) AS comp_number_to, (d2.comp_number) AS comp_number_to_return,(d.address_primary) AS store_address_from, a.id_report_status, f.report_status, "
+            Dim query As String = "SELECT drw.wh_drawer_code, (a.id_wh_drawer) AS id_wh_drawer_to,b.id_sales_return,b.id_wh_drawer, (c2.id_comp) AS id_comp_to_return,(b.id_comp_contact_to) AS id_comp_contact_to_return,a.id_store_contact_from, a.id_comp_contact_to, (d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to, (d2.comp_name) AS comp_name_to_return, (d.comp_number) AS store_number_from, IFNULL(d1.id_wh_type,0) AS `id_wh_type`,(d1.comp_number) AS comp_number_to, (d2.comp_number) AS comp_number_to_return,(d.address_primary) AS store_address_from, a.id_report_status, f.report_status, "
             query += "a.sales_return_qc_note,a.sales_return_qc_date, a.sales_return_qc_number, b.sales_return_number, "
             query += "DATE_FORMAT(a.sales_return_qc_date,'%Y-%m-%d') AS sales_return_qc_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, a.id_pl_category  "
             query += "FROM tb_sales_return_qc a "
@@ -129,7 +129,7 @@ Public Class FormSalesReturnQCDet
 
             TEDrawer.Text = data.Rows(0)("wh_drawer_code").ToString
             id_wh_drawer_to = data.Rows(0)("id_wh_drawer_to").ToString
-
+            id_wh_type = data.Rows(0)("id_wh_type").ToString
 
             'detail2
             setReportMarkType()
@@ -194,12 +194,8 @@ Public Class FormSalesReturnQCDet
 
         Dim id_comp_to As String = data.Rows(0)("id_comp_to").ToString
         id_comp_contact_to_return = data.Rows(0)("id_comp_contact_to").ToString
-        id_wh_type = data.Rows(0)("id_wh_type").ToString
         TxtCodeFrom.Text = data.Rows(0)("comp_code_to").ToString
         TxtNameFrom.Text = data.Rows(0)("comp_name_to").ToString
-
-        'find report mark type
-        setReportMarkType()
 
         'general
         viewDetail()
@@ -213,13 +209,9 @@ Public Class FormSalesReturnQCDet
     End Sub
 
     Sub setReportMarkType()
-        Dim query As String = "SELECT * FROM tb_wh_approve WHERE value='" + id_wh_type + "' LIMIT 1 "
+        Dim query As String = "SELECT get_custom_rmk('" + id_wh_type + "',49) AS `report_mark_type` "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
-            report_mark_type_loc = data.Rows(0)("report_mark_type").ToString
-        Else
-            report_mark_type_loc = "49"
-        End If
+        report_mark_type_loc = data.Rows(0)("report_mark_type").ToString
     End Sub
 
     Sub viewReportStatus()

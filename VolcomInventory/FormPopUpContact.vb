@@ -480,6 +480,7 @@
             FormSalesReturnQCDet.id_comp_user = GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString
             FormSalesReturnQCDet.id_wh_type = GVCompany.GetFocusedRowCellValue("id_wh_type").ToString
             FormSalesReturnQCDet.setDefDrawer()
+            FormSalesReturnQCDet.setReportMarkType()
             FormSalesReturnQCDet.viewDetail()
             FormSalesReturnQCDet.view_barcode_list()
             FormSalesReturnQCDet.id_reject_type = "-1"
