@@ -651,11 +651,11 @@ Partial Class FormEmpLeaveDet
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(50, 50)
+        Me.Label1.Location = New System.Drawing.Point(66, 50)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(77, 13)
+        Me.Label1.Size = New System.Drawing.Size(61, 13)
         Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Cuti Terpakai :"
+        Me.Label1.Text = "Lama Cuti :"
         '
         'PanelControl1
         '
@@ -804,7 +804,7 @@ Partial Class FormEmpLeaveDet
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(18, 83)
+        Me.Label4.Location = New System.Drawing.Point(16, 83)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(111, 13)
         Me.Label4.TabIndex = 97
