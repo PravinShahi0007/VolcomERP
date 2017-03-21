@@ -1298,18 +1298,16 @@ Public Class FormSalesDelOrderDet
         If bof_column = "1" Then
             Cursor = Cursors.WaitCursor
 
-            'fill remark
-            For r As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
-                GVItemList.SetRowCellValue(r, "pl_sales_order_del_det_note", TxtSalesDelOrderNumber.Text)
-            Next
-
             'hide column
             For c As Integer = 0 To GVItemList.Columns.Count - 1
                 GVItemList.Columns(c).Visible = False
             Next
             GridColumnCode.VisibleIndex = 0
             GridColumnQty.VisibleIndex = 1
-            GridColumnRemark.VisibleIndex = 2
+            GridColumnNumber.VisibleIndex = 2
+            GridColumnFrom.VisibleIndex = 3
+            GridColumnTo.VisibleIndex = 4
+            GridColumnRemark.VisibleIndex = 5
             GVItemList.OptionsPrint.PrintFooter = False
             GVItemList.OptionsPrint.PrintHeader = False
 
@@ -1334,11 +1332,6 @@ Public Class FormSalesDelOrderDet
             End Try
 
 
-            'clear remark
-            For r As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
-                GVItemList.SetRowCellValue(r, "pl_sales_order_del_det_note", "")
-            Next
-
             'show column
             GridColumnCode.VisibleIndex = 0
             GridColumnName.VisibleIndex = 1
@@ -1350,6 +1343,9 @@ Public Class FormSalesDelOrderDet
             GridColumnRemark.VisibleIndex = 7
             GridColumnStatus.VisibleIndex = 8
             GridColumnStatus.Visible = False
+            GridColumnNumber.Visible = False
+            GridColumnFrom.Visible = False
+            GridColumnTo.Visible = False
             GVItemList.OptionsPrint.PrintFooter = True
             GVItemList.OptionsPrint.PrintHeader = True
             Cursor = Cursors.Default
@@ -1386,12 +1382,18 @@ Public Class FormSalesDelOrderDet
             colIndex = 0
             For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
                 colIndex = colIndex + 1
-                If j = 0 Then
+                If j = 0 Then 'code
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
-                ElseIf j = 1 Then
+                ElseIf j = 1 Then 'qty
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "pl_sales_order_del_det_qty")
-                Else
-                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "pl_sales_order_del_det_note")
+                ElseIf j = 2 Then 'number
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "number").ToString
+                ElseIf j = 3 Then 'from
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "from").ToString
+                ElseIf j = 4 Then 'to
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "to").ToString
+                Else 'remark detil
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "pl_sales_order_del_det_note").ToString
                 End If
             Next
         Next
@@ -1438,5 +1440,16 @@ Public Class FormSalesDelOrderDet
         'cek qty limit SO di DB
         verifyTrans()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVItemList_CustomUnboundColumnData(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDataEventArgs) Handles GVItemList.CustomUnboundColumnData
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = TryCast(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        If e.Column.FieldName = "from" AndAlso e.IsGetData Then
+            e.Value = TxtCodeCompFrom.Text.ToString
+        ElseIf e.Column.FieldName = "to" AndAlso e.IsGetData Then
+            e.Value = TxtCodeCompTo.Text.ToString
+        ElseIf e.Column.FieldName = "number" AndAlso e.IsGetData Then
+            e.Value = TxtSalesDelOrderNumber.Text.ToString
+        End If
     End Sub
 End Class
