@@ -206,7 +206,7 @@
             'SALES POS
             FormViewSalesPOS.id_sales_pos = id_report
             FormViewSalesPOS.ShowDialog()
-        ElseIf report_mark_type = "49" Then
+        ElseIf report_mark_type = "49" Or report_mark_type="106" Then
             'SALES RETURN QC
             FormViewSalesReturnQC.id_sales_return_qc = id_report
             FormViewSalesReturnQC.ShowDialog()
@@ -714,7 +714,7 @@
             field_id = "id_sales_pos"
             field_number = "sales_pos_number"
             field_date = "sales_pos_date"
-        ElseIf report_mark_type = "49" Then
+        ElseIf report_mark_type = "49" Or report_mark_type = "106" Then
             'SALES RETURN QC
             table_name = "tb_sales_return_qc"
             field_id = "id_sales_return_qc"
@@ -1180,7 +1180,7 @@
                     info_col = datax.Rows(0)("total_qty").ToString
                     info_report = datax.Rows(0)("store").ToString
                 End If
-            ElseIf report_mark_type = "49" Then
+            ElseIf report_mark_type = "49" Or report_mark_type = "106" Then
                 'return transfer
                 query = "SELECT r.sales_return_number AS `return`, 
                 CONCAT(c.comp_number,' - ', c.comp_name) AS `store`,
