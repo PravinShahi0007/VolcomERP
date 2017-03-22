@@ -804,6 +804,8 @@ Public Class FormProductionRecDet
             GridColumnNumber.Visible = False
             GridColumnFrom.Visible = False
             GridColumnTo.Visible = False
+            GVListPurchase.OptionsPrint.PrintFooter = True
+            GVListPurchase.OptionsPrint.PrintHeader = True
             Cursor = Cursors.Default
         End If
     End Sub
