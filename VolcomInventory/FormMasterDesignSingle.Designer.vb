@@ -147,6 +147,11 @@ Partial Class FormMasterDesignSingle
         Me.GCCodeDsg = New DevExpress.XtraGrid.GridControl()
         Me.GVCodeDsg = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RILEParDesg = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView15 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RILEValDesg = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.GridView13 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -176,6 +181,11 @@ Partial Class FormMasterDesignSingle
         Me.GCCodeNonMD = New DevExpress.XtraGrid.GridControl()
         Me.GVCodeNonMD = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RILEParNon = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DNCodeNonMD = New DevExpress.XtraEditors.DataNavigator()
         Me.PanC5 = New DevExpress.XtraEditors.PanelControl()
@@ -230,16 +240,6 @@ Partial Class FormMasterDesignSingle
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMViewDel = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RILEParNon = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RILEParDesg = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
-        Me.GridView15 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn47 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn48 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn49 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn50 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn52 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.RILEValNon, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMasterDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -307,6 +307,8 @@ Partial Class FormMasterDesignSingle
         Me.XTPDesign.SuspendLayout()
         CType(Me.GCCodeDsg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCodeDsg, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RILEParDesg, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RILEValDesg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RILEDesgValue, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -324,6 +326,8 @@ Partial Class FormMasterDesignSingle
         Me.XTPNonMD.SuspendLayout()
         CType(Me.GCCodeNonMD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCodeNonMD, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RILEParNon, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanC5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanC5.SuspendLayout()
         CType(Me.TEDisplayNameNonMD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -347,10 +351,6 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanelRetailPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelRetailPrice.SuspendLayout()
         Me.ViewMenu.SuspendLayout()
-        CType(Me.RILEParNon, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RILEParDesg, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView15, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RILEValNon
@@ -359,6 +359,7 @@ Partial Class FormMasterDesignSingle
         Me.RILEValNon.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RILEValNon.DisplayMember = "value"
         Me.RILEValNon.Name = "RILEValNon"
+        Me.RILEValNon.NullText = ""
         Me.RILEValNon.ValueMember = "id_code_detail"
         '
         'EPMasterDesign
@@ -421,6 +422,7 @@ Partial Class FormMasterDesignSingle
         Me.RILEParCode.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RILEParCode.DisplayMember = "Code"
         Me.RILEParCode.Name = "RILEParCode"
+        Me.RILEParCode.NullText = ""
         Me.RILEParCode.ReadOnly = True
         Me.RILEParCode.ValueMember = "id_code"
         Me.RILEParCode.View = Me.GridView12
@@ -471,6 +473,7 @@ Partial Class FormMasterDesignSingle
         Me.RILEValCode.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RILEValCode.DisplayMember = "value"
         Me.RILEValCode.Name = "RILEValCode"
+        Me.RILEValCode.NullText = ""
         Me.RILEValCode.ValueMember = "id_code_detail"
         Me.RILEValCode.View = Me.RepositoryItemSearchLookUpEdit1View
         '
@@ -1647,6 +1650,47 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 0
         '
+        'RILEParDesg
+        '
+        Me.RILEParDesg.AutoHeight = False
+        Me.RILEParDesg.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RILEParDesg.DisplayMember = "Code"
+        Me.RILEParDesg.Name = "RILEParDesg"
+        Me.RILEParDesg.NullText = ""
+        Me.RILEParDesg.ReadOnly = True
+        Me.RILEParDesg.ValueMember = "id_code"
+        Me.RILEParDesg.View = Me.GridView15
+        '
+        'GridView15
+        '
+        Me.GridView15.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn47, Me.GridColumn48, Me.GridColumn49})
+        Me.GridView15.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView15.Name = "GridView15"
+        Me.GridView15.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView15.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn47
+        '
+        Me.GridColumn47.Caption = "Id Code"
+        Me.GridColumn47.FieldName = "id_code"
+        Me.GridColumn47.Name = "GridColumn47"
+        '
+        'GridColumn48
+        '
+        Me.GridColumn48.Caption = "Code"
+        Me.GridColumn48.FieldName = "Code"
+        Me.GridColumn48.Name = "GridColumn48"
+        Me.GridColumn48.Visible = True
+        Me.GridColumn48.VisibleIndex = 0
+        '
+        'GridColumn49
+        '
+        Me.GridColumn49.Caption = "Description"
+        Me.GridColumn49.FieldName = "Description"
+        Me.GridColumn49.Name = "GridColumn49"
+        Me.GridColumn49.Visible = True
+        Me.GridColumn49.VisibleIndex = 1
+        '
         'GridColumn25
         '
         Me.GridColumn25.Caption = "Value"
@@ -1663,6 +1707,7 @@ Partial Class FormMasterDesignSingle
         Me.RILEValDesg.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RILEValDesg.DisplayMember = "value"
         Me.RILEValDesg.Name = "RILEValDesg"
+        Me.RILEValDesg.NullText = ""
         Me.RILEValDesg.ValueMember = "id_code_detail"
         Me.RILEValDesg.View = Me.GridView13
         '
@@ -1928,6 +1973,46 @@ Partial Class FormMasterDesignSingle
         Me.GridColumn30.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 0
+        '
+        'RILEParNon
+        '
+        Me.RILEParNon.AutoHeight = False
+        Me.RILEParNon.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RILEParNon.DisplayMember = "Code"
+        Me.RILEParNon.Name = "RILEParNon"
+        Me.RILEParNon.NullText = ""
+        Me.RILEParNon.ValueMember = "id_code"
+        Me.RILEParNon.View = Me.GridView14
+        '
+        'GridView14
+        '
+        Me.GridView14.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn50, Me.GridColumn51, Me.GridColumn52})
+        Me.GridView14.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView14.Name = "GridView14"
+        Me.GridView14.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView14.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn50
+        '
+        Me.GridColumn50.Caption = "Id Code"
+        Me.GridColumn50.FieldName = "id_code"
+        Me.GridColumn50.Name = "GridColumn50"
+        '
+        'GridColumn51
+        '
+        Me.GridColumn51.Caption = "Code"
+        Me.GridColumn51.FieldName = "Code"
+        Me.GridColumn51.Name = "GridColumn51"
+        Me.GridColumn51.Visible = True
+        Me.GridColumn51.VisibleIndex = 0
+        '
+        'GridColumn52
+        '
+        Me.GridColumn52.Caption = "Description"
+        Me.GridColumn52.FieldName = "Description"
+        Me.GridColumn52.Name = "GridColumn52"
+        Me.GridColumn52.Visible = True
+        Me.GridColumn52.VisibleIndex = 1
         '
         'GridColumn31
         '
@@ -2461,85 +2546,6 @@ Partial Class FormMasterDesignSingle
         Me.SMViewDel.Size = New System.Drawing.Size(158, 22)
         Me.SMViewDel.Text = "View Document"
         '
-        'RILEParNon
-        '
-        Me.RILEParNon.AutoHeight = False
-        Me.RILEParNon.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RILEParNon.DisplayMember = "Code"
-        Me.RILEParNon.Name = "RILEParNon"
-        Me.RILEParNon.ValueMember = "id_code"
-        Me.RILEParNon.View = Me.GridView14
-        '
-        'GridView14
-        '
-        Me.GridView14.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn50, Me.GridColumn51, Me.GridColumn52})
-        Me.GridView14.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView14.Name = "GridView14"
-        Me.GridView14.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView14.OptionsView.ShowGroupPanel = False
-        '
-        'RILEParDesg
-        '
-        Me.RILEParDesg.AutoHeight = False
-        Me.RILEParDesg.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RILEParDesg.DisplayMember = "Code"
-        Me.RILEParDesg.Name = "RILEParDesg"
-        Me.RILEParDesg.ReadOnly = True
-        Me.RILEParDesg.ValueMember = "id_code"
-        Me.RILEParDesg.View = Me.GridView15
-        '
-        'GridView15
-        '
-        Me.GridView15.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn47, Me.GridColumn48, Me.GridColumn49})
-        Me.GridView15.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView15.Name = "GridView15"
-        Me.GridView15.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView15.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn47
-        '
-        Me.GridColumn47.Caption = "Id Code"
-        Me.GridColumn47.FieldName = "id_code"
-        Me.GridColumn47.Name = "GridColumn47"
-        '
-        'GridColumn48
-        '
-        Me.GridColumn48.Caption = "Code"
-        Me.GridColumn48.FieldName = "Code"
-        Me.GridColumn48.Name = "GridColumn48"
-        Me.GridColumn48.Visible = True
-        Me.GridColumn48.VisibleIndex = 0
-        '
-        'GridColumn49
-        '
-        Me.GridColumn49.Caption = "Description"
-        Me.GridColumn49.FieldName = "Description"
-        Me.GridColumn49.Name = "GridColumn49"
-        Me.GridColumn49.Visible = True
-        Me.GridColumn49.VisibleIndex = 1
-        '
-        'GridColumn50
-        '
-        Me.GridColumn50.Caption = "Id Code"
-        Me.GridColumn50.FieldName = "id_code"
-        Me.GridColumn50.Name = "GridColumn50"
-        '
-        'GridColumn51
-        '
-        Me.GridColumn51.Caption = "Code"
-        Me.GridColumn51.FieldName = "Code"
-        Me.GridColumn51.Name = "GridColumn51"
-        Me.GridColumn51.Visible = True
-        Me.GridColumn51.VisibleIndex = 0
-        '
-        'GridColumn52
-        '
-        Me.GridColumn52.Caption = "Description"
-        Me.GridColumn52.FieldName = "Description"
-        Me.GridColumn52.Name = "GridColumn52"
-        Me.GridColumn52.Visible = True
-        Me.GridColumn52.VisibleIndex = 1
-        '
         'FormMasterDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2624,6 +2630,8 @@ Partial Class FormMasterDesignSingle
         Me.XTPDesign.ResumeLayout(False)
         CType(Me.GCCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCodeDsg, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RILEParDesg, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RILEValDesg, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RILEDesgValue, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2644,6 +2652,8 @@ Partial Class FormMasterDesignSingle
         Me.XTPNonMD.ResumeLayout(False)
         CType(Me.GCCodeNonMD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCodeNonMD, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RILEParNon, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanC5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanC5.ResumeLayout(False)
         Me.PanC5.PerformLayout()
@@ -2669,10 +2679,6 @@ Partial Class FormMasterDesignSingle
         CType(Me.PanelRetailPrice, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelRetailPrice.ResumeLayout(False)
         Me.ViewMenu.ResumeLayout(False)
-        CType(Me.RILEParNon, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RILEParDesg, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView15, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
