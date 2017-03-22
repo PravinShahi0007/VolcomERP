@@ -6,10 +6,11 @@ Public Class FormProductionFinalClearDet
     Public id_comp_from As String = "-1"
     Public id_comp_to As String = "-1"
     Public id_report_status As String = "-1"
-    Dim id_prod_order As String = "-1"
+    Public id_prod_order As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_fcl")
     Public is_view As String = "-1"
+    Public id_design As String = "-1"
 
     Private Sub FormProductionFinalClearDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -67,6 +68,8 @@ Public Class FormProductionFinalClearDet
             TxtVendorName.Text = data.Rows(0)("vendor_name").ToString
             TxtStyleCode.Text = data.Rows(0)("code").ToString
             TxtStyle.Text = data.Rows(0)("name").ToString
+            id_design = data.Rows(0)("id_design").ToString
+            pre_viewImages("2", PEView, id_design, False)
 
             'detail2
             viewDetail()
@@ -108,8 +111,9 @@ Public Class FormProductionFinalClearDet
         TxtStyleCode.Enabled = False
         TxtStyle.Enabled = False
         LEPLCategory.Enabled = False
-
-
+        BtnBrowseFrom.Enabled = False
+        BtnBrowseTo.Enabled = False
+        BtnBrowsePO.Enabled = False
 
         'ATTACH
         If check_attach_report_status(id_report_status, "105", id_prod_fc) Then
@@ -183,7 +187,7 @@ Public Class FormProductionFinalClearDet
             Cursor = Cursors.WaitCursor
             Dim order As String = addSlashes(TxtOrder.Text.ToString)
             Dim query As String = "SELECT po.id_prod_order, po.prod_order_number, c.comp_number AS `vendor_code`, c.comp_name AS `vendor`,
-            dsg.design_code AS `code`, dsg.design_display_name AS `name`, s.id_season, s.season,d.delivery
+            dsg.id_design, dsg.design_code AS `code`, dsg.design_display_name AS `name`, s.id_season, s.season,d.delivery
             FROM tb_prod_order po 
             INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
             INNER JOIN tb_m_design dsg ON dsg.id_design = pdd.id_design
@@ -198,6 +202,7 @@ Public Class FormProductionFinalClearDet
             If data.Rows.Count = 0 Then
                 stopCustom("Order not found!")
                 id_prod_order = "-1"
+                id_design = "-1"
                 TxtOrder.Text = ""
                 TxtSeason.Text = ""
                 TxtDel.Text = ""
@@ -207,9 +212,11 @@ Public Class FormProductionFinalClearDet
                 TxtStyle.Text = ""
                 TxtOrder.Text = ""
                 viewDetail()
+                pre_viewImages("2", PEView, id_design, False)
                 TxtOrder.Focus()
             Else
                 id_prod_order = data.Rows(0)("id_prod_order").ToString
+                id_design = data.Rows(0)("id_design").ToString
                 TxtOrder.Text = data.Rows(0)("prod_order_number").ToString
                 TxtSeason.Text = data.Rows(0)("season").ToString
                 TxtDel.Text = data.Rows(0)("delivery").ToString
@@ -218,6 +225,7 @@ Public Class FormProductionFinalClearDet
                 TxtStyleCode.Text = data.Rows(0)("code").ToString
                 TxtStyle.Text = data.Rows(0)("name").ToString
                 viewDetail()
+                pre_viewImages("2", PEView, id_design, False)
                 LEPLCategory.Focus()
             End If
             Cursor = Cursors.Default
@@ -472,6 +480,44 @@ Public Class FormProductionFinalClearDet
                     Cursor = Cursors.Default
                 End If
             End If
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub PEView_DoubleClick(sender As Object, e As EventArgs) Handles PEView.DoubleClick
+        Cursor = Cursors.WaitCursor
+        pre_viewImages("2", PEView, id_design, True)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBrowseFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseFrom.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpContact.id_pop_up = "75"
+        FormPopUpContact.id_departement = id_departement_user
+        FormPopUpContact.ShowDialog()
+        If id_comp_from <> "-1" Then
+            TxtCodeCompTo.Focus()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBrowseTo_Click(sender As Object, e As EventArgs) Handles BtnBrowseTo.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpContact.id_pop_up = "76"
+        FormPopUpContact.id_departement = id_departement_user
+        FormPopUpContact.ShowDialog()
+        If id_comp_to <> "-1" Then
+            TxtOrder.Focus()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnBrowsePO_Click(sender As Object, e As EventArgs) Handles BtnBrowsePO.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpProd.id_pop_up = "9"
+        FormPopUpProd.ShowDialog()
+        If id_prod_order <> "-1" Then
+            LEPLCategory.Focus()
         End If
         Cursor = Cursors.Default
     End Sub
