@@ -6498,6 +6498,8 @@ Public Class FormMain
                 print(FormWHSvcLevel.GCByCode, "SERVICE LEVEL BY CODE" + System.Environment.NewLine + "PERIOD : " + FormWHSvcLevel.DEFromCode.Text + " - " + FormWHSvcLevel.DEUntilCode.Text)
             ElseIf FormWHSvcLevel.XTCSvcLelel.SelectedTabPageIndex = 2 Then
                 print(FormWHSvcLevel.GCByAcco, "SERVICE LEVEL BY ACCOUNT" + System.Environment.NewLine + "PERIOD : " + FormWHSvcLevel.DEFromAcc.Text + " - " + FormWHSvcLevel.DEUntilAcc.Text)
+            ElseIf FormWHSvcLevel.XTCSvcLelel.SelectedTabPageIndex = 3 Then
+                print(FormWHSvcLevel.GCByAcco, "RETURN" + System.Environment.NewLine + "PERIOD : " + FormWHSvcLevel.DEFromReturn.Text + " - " + FormWHSvcLevel.DEUntilReturn.Text)
             End If
         ElseIf formName = "FormSamplePLToWH" Then
             'PL SAMPLE
@@ -7713,6 +7715,8 @@ Public Class FormMain
                 FormWHSvcLevel.viewSvcByCode()
             ElseIf FormWHSvcLevel.XTCSvcLelel.SelectedTabPageIndex = 2 Then
                 FormWHSvcLevel.viewSvcByAcc()
+            ElseIf FormWHSvcLevel.XTCSvcLelel.SelectedTabPageIndex = 3 Then
+                FormWHSvcLevel.viewSvcReturn()
             End If
         ElseIf formName = "FormFGWHAlloc" Then
             'INVENTORY ALLOCATION
