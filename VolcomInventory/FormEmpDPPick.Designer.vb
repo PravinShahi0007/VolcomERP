@@ -25,11 +25,11 @@ Partial Class FormEmpDPPick
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEUntilLeave = New DevExpress.XtraEditors.DateEdit()
+        Me.DEUntilDP = New DevExpress.XtraEditors.DateEdit()
         Me.Luntil = New System.Windows.Forms.Label()
-        Me.DEStartLeave = New DevExpress.XtraEditors.DateEdit()
+        Me.DEStartDP = New DevExpress.XtraEditors.DateEdit()
         Me.LPropose = New System.Windows.Forms.Label()
-        Me.MELeavePurpose = New DevExpress.XtraEditors.MemoEdit()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -37,11 +37,11 @@ Partial Class FormEmpDPPick
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.DEUntilLeave.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntilLeave.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStartLeave.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStartLeave.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MELeavePurpose.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilDP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilDP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartDP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartDP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotHour.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -100,21 +100,21 @@ Partial Class FormEmpDPPick
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(75, 32)
         Me.BSave.TabIndex = 2
-        Me.BSave.Text = "Choose"
+        Me.BSave.Text = "Insert"
         '
-        'DEUntilLeave
+        'DEUntilDP
         '
-        Me.DEUntilLeave.EditValue = Nothing
-        Me.DEUntilLeave.Location = New System.Drawing.Point(242, 10)
-        Me.DEUntilLeave.Name = "DEUntilLeave"
-        Me.DEUntilLeave.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilLeave.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
-        Me.DEUntilLeave.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilLeave.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
-        Me.DEUntilLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilLeave.Properties.Mask.EditMask = "dd-MM-yyyy/H"
-        Me.DEUntilLeave.Size = New System.Drawing.Size(153, 20)
-        Me.DEUntilLeave.TabIndex = 21
+        Me.DEUntilDP.EditValue = Nothing
+        Me.DEUntilDP.Location = New System.Drawing.Point(242, 10)
+        Me.DEUntilDP.Name = "DEUntilDP"
+        Me.DEUntilDP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilDP.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
+        Me.DEUntilDP.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilDP.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
+        Me.DEUntilDP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilDP.Properties.Mask.EditMask = "dd-MM-yyyy/H"
+        Me.DEUntilDP.Size = New System.Drawing.Size(153, 20)
+        Me.DEUntilDP.TabIndex = 21
         '
         'Luntil
         '
@@ -125,19 +125,19 @@ Partial Class FormEmpDPPick
         Me.Luntil.TabIndex = 20
         Me.Luntil.Text = "-"
         '
-        'DEStartLeave
+        'DEStartDP
         '
-        Me.DEStartLeave.EditValue = Nothing
-        Me.DEStartLeave.Location = New System.Drawing.Point(68, 10)
-        Me.DEStartLeave.Name = "DEStartLeave"
-        Me.DEStartLeave.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartLeave.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
-        Me.DEStartLeave.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartLeave.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
-        Me.DEStartLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStartLeave.Properties.Mask.EditMask = "dd-MM-yyyy/H"
-        Me.DEStartLeave.Size = New System.Drawing.Size(151, 20)
-        Me.DEStartLeave.TabIndex = 19
+        Me.DEStartDP.EditValue = Nothing
+        Me.DEStartDP.Location = New System.Drawing.Point(68, 10)
+        Me.DEStartDP.Name = "DEStartDP"
+        Me.DEStartDP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartDP.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
+        Me.DEStartDP.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartDP.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
+        Me.DEStartDP.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStartDP.Properties.Mask.EditMask = "dd-MM-yyyy/H"
+        Me.DEStartDP.Size = New System.Drawing.Size(151, 20)
+        Me.DEStartDP.TabIndex = 19
         '
         'LPropose
         '
@@ -148,13 +148,13 @@ Partial Class FormEmpDPPick
         Me.LPropose.TabIndex = 18
         Me.LPropose.Text = "Date "
         '
-        'MELeavePurpose
+        'MENote
         '
-        Me.MELeavePurpose.Location = New System.Drawing.Point(68, 62)
-        Me.MELeavePurpose.Name = "MELeavePurpose"
-        Me.MELeavePurpose.Properties.MaxLength = 200
-        Me.MELeavePurpose.Size = New System.Drawing.Size(327, 46)
-        Me.MELeavePurpose.TabIndex = 103
+        Me.MENote.Location = New System.Drawing.Point(68, 62)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Properties.MaxLength = 200
+        Me.MENote.Size = New System.Drawing.Size(327, 46)
+        Me.MENote.TabIndex = 103
         '
         'LabelControl6
         '
@@ -206,11 +206,11 @@ Partial Class FormEmpDPPick
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.TETotHour)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.MELeavePurpose)
+        Me.Controls.Add(Me.MENote)
         Me.Controls.Add(Me.LabelControl6)
-        Me.Controls.Add(Me.DEUntilLeave)
+        Me.Controls.Add(Me.DEUntilDP)
         Me.Controls.Add(Me.Luntil)
-        Me.Controls.Add(Me.DEStartLeave)
+        Me.Controls.Add(Me.DEStartDP)
         Me.Controls.Add(Me.LPropose)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -222,11 +222,11 @@ Partial Class FormEmpDPPick
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.DEUntilLeave.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntilLeave.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStartLeave.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStartLeave.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MELeavePurpose.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilDP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilDP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartDP.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartDP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotHour.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -237,11 +237,11 @@ Partial Class FormEmpDPPick
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents DEUntilLeave As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEUntilDP As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Luntil As Label
-    Friend WithEvents DEStartLeave As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEStartDP As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LPropose As Label
-    Friend WithEvents MELeavePurpose As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents Label1 As Label
     Friend WithEvents Label5 As Label

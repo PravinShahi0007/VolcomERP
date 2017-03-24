@@ -6,31 +6,35 @@
     Private Sub FormEmpDPPick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
-    Private Sub DEStartDP_KeyDown(sender As Object, e As KeyEventArgs) Handles DEStartLeave.KeyDown
+    Private Sub DEStartDP_KeyDown(sender As Object, e As KeyEventArgs) Handles DEStartDP.KeyDown
         If e.KeyCode = Keys.Enter Then
-            DEUntilLeave.Focus()
+            DEUntilDP.Focus()
         End If
     End Sub
 
-    Private Sub DEUntilDP_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntilLeave.KeyDown
+    Private Sub DEUntilDP_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntilDP.KeyDown
         If e.KeyCode = Keys.Enter Then
-            BSave.Focus()
+            MENote.Focus()
         End If
     End Sub
 
-    Private Sub DEStartDP_EditValueChanged(sender As Object, e As EventArgs) Handles DEStartLeave.EditValueChanged
-        calc()
+    Private Sub DEStartDP_EditValueChanged(sender As Object, e As EventArgs) Handles DEStartDP.EditValueChanged
+        Try
+            DEUntilDP.Properties.MinValue = DEStartDP.EditValue
+            calc()
+        Catch ex As Exception
+        End Try
     End Sub
 
-    Private Sub DEUntilDP_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilLeave.EditValueChanged
+    Private Sub DEUntilDP_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntilDP.EditValueChanged
         calc()
     End Sub
 
     Sub calc()
-        If Not DEStartLeave.EditValue > DEUntilLeave.EditValue Then
+        If Not DEStartDP.EditValue > DEUntilDP.EditValue Then
             '
-            Dim date_start As Date = DEStartLeave.EditValue
-            Dim date_until As Date = DEUntilLeave.EditValue
+            Dim date_start As Date = DEStartDP.EditValue
+            Dim date_until As Date = DEUntilDP.EditValue
             Dim time_diff As TimeSpan
             Dim diff As Integer
             time_diff = date_until - date_start
@@ -43,21 +47,24 @@
     End Sub
 
     Private Sub FormEmpDPPick_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEStartLeave.EditValue = Now
-        DEUntilLeave.EditValue = Now
+        DEStartDP.EditValue = Now
+        DEUntilDP.EditValue = Now
         calc()
+        DEStartDP.Focus()
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         Try
             Dim newRow As DataRow = (TryCast(FormEmpDPDet.GCDP.DataSource, DataTable)).NewRow()
-            newRow("dp_time_start") = DEStartLeave.EditValue
-            newRow("dp_time_end") = DEUntilLeave.EditValue
+            newRow("dp_time_start") = DEStartDP.EditValue
+            newRow("dp_time_end") = DEUntilDP.EditValue
             newRow("subtotal_hour") = TETotHour.EditValue
+            newRow("remark") = MENote.Text
 
             TryCast(FormEmpDPDet.GCDP.DataSource, DataTable).Rows.Add(newRow)
             FormEmpDPDet.GCDP.RefreshDataSource()
             FormEmpDPDet.calc()
+            FormEmpDPDet.show_but()
             FormEmpDPDet.GVDP.FocusedRowHandle = 0
             Close()
         Catch ex As Exception

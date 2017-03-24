@@ -53,6 +53,7 @@ Partial Class FormEmpDPDet
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BDelDP = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddDP = New DevExpress.XtraEditors.SimpleButton()
@@ -380,9 +381,13 @@ Partial Class FormEmpDPDet
         '
         'GVDP
         '
-        Me.GVDP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVDP.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5})
         Me.GVDP.GridControl = Me.GCDP
         Me.GVDP.Name = "GVDP"
+        Me.GVDP.OptionsBehavior.Editable = False
+        Me.GVDP.OptionsCustomization.AllowFilter = False
+        Me.GVDP.OptionsCustomization.AllowGroup = False
+        Me.GVDP.OptionsCustomization.AllowSort = False
         Me.GVDP.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -416,8 +421,17 @@ Partial Class FormEmpDPDet
         Me.GridColumn4.Caption = "Sub Total (hour)"
         Me.GridColumn4.FieldName = "subtotal_hour"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "subtotal_hour", "{0}")})
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 2
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Note"
+        Me.GridColumn5.FieldName = "remark"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
         '
         'PanelControl1
         '
@@ -529,4 +543,5 @@ Partial Class FormEmpDPDet
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BDelDP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAddDP As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
