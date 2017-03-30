@@ -23,6 +23,7 @@ Public Class FormFGTrfNewDet
     Public id_pre As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_trf")
+    Dim id_wh_type As String = "-1"
 
     Private Sub FormFGTrfNewDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'get default store category for pick company
@@ -126,7 +127,7 @@ Public Class FormFGTrfNewDet
     End Sub
 
     Sub viewSalesOrder()
-        Dim query As String = "SELECT a.id_so_type, a.id_so_status, a.id_sales_order, a.id_store_contact_to, (d.comp_name) AS store_name_to,a.id_report_status, f.report_status, "
+        Dim query As String = "SELECT a.id_so_type, a.id_so_status, a.id_sales_order, a.id_store_contact_to, d.id_wh_type, (d.comp_name) AS store_name_to,a.id_report_status, f.report_status, "
         query += "a.sales_order_note,a.sales_order_date, a.sales_order_note, a.sales_order_number, "
         query += "DATE_FORMAT(a.sales_order_date,'%d %M %Y') AS sales_order_date, (SELECT COUNT(id_pl_sales_order_del) FROM tb_pl_sales_order_del WHERE tb_pl_sales_order_del.id_sales_order = a.id_sales_order) AS pl_created, "
         query += "a.id_warehouse_contact_to, (wh.comp_number) AS `wh_number`, (wh.comp_name) AS `wh_name` "
@@ -149,6 +150,8 @@ Public Class FormFGTrfNewDet
         id_comp_contact_to = data.Rows(0)("id_store_contact_to").ToString
         TxtCodeCompTo.Text = get_company_x(id_comp_to, 2)
         TxtNameCompTo.Text = get_company_x(id_comp_to, 1)
+        id_wh_type = data.Rows(0)("id_wh_type").ToString
+        MsgBox(id_wh_type)
 
         'wh
         Dim query_comp_from As String = "SELECT id_comp FROM tb_m_comp_contact WHERE id_comp_contact = '" + data.Rows(0)("id_warehouse_contact_to").ToString + "'"
