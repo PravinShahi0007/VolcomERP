@@ -151,7 +151,6 @@ Public Class FormFGTrfNewDet
         TxtCodeCompTo.Text = get_company_x(id_comp_to, 2)
         TxtNameCompTo.Text = get_company_x(id_comp_to, 1)
         id_wh_type = data.Rows(0)("id_wh_type").ToString
-        MsgBox(id_wh_type)
 
         'wh
         Dim query_comp_from As String = "SELECT id_comp FROM tb_m_comp_contact WHERE id_comp_contact = '" + data.Rows(0)("id_warehouse_contact_to").ToString + "'"
