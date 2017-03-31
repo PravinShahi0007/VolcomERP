@@ -693,6 +693,7 @@ Public Class FormFGTrfNewDet
         Dim id_pl_prod_order_rec_det_unique As String = ""
         Dim id_product As String = ""
         Dim product_name As String = ""
+        Dim id_design_cat As String = ""
         Dim size As String = ""
         Dim bom_unit_price As Decimal = 0.0
         Dim id_design_price As String = ""
@@ -708,10 +709,26 @@ Public Class FormFGTrfNewDet
             id_pl_prod_order_rec_det_unique = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
             id_product = dt_filter(0)("id_product").ToString
             product_name = dt_filter(0)("name").ToString
+            id_design_cat = dt_filter(0)("id_design_cat").ToString
             size = dt_filter(0)("size").ToString
             bom_unit_price = Decimal.Parse(dt_filter(0)("bom_unit_price").ToString)
             is_old = dt_filter(0)("is_old_design").ToString
             code_found = True
+        End If
+
+        'jika akun normal/sale
+        If id_wh_type = "1" Or id_wh_type = "2" Then
+            If id_wh_type <> id_design_cat Then
+                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                If id_wh_type = "1" Then
+                    stopCustom(TxtCodeCompTo.Text + " is only for normal product. ")
+                Else
+                    stopCustom(TxtCodeCompTo.Text + " is only for sale product. ")
+                End If
+                Cursor = Cursors.Default
+                Exit Sub
+            End If
         End If
 
         'get jum del & limit
