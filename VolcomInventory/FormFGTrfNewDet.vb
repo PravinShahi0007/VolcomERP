@@ -716,21 +716,6 @@ Public Class FormFGTrfNewDet
             code_found = True
         End If
 
-        'jika akun normal/sale
-        If id_wh_type = "1" Or id_wh_type = "2" Then
-            If id_wh_type <> id_design_cat Then
-                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
-                GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                If id_wh_type = "1" Then
-                    stopCustom(TxtCodeCompTo.Text + " is only for normal product. ")
-                Else
-                    stopCustom(TxtCodeCompTo.Text + " is only for sale product. ")
-                End If
-                Cursor = Cursors.Default
-                Exit Sub
-            End If
-        End If
-
         'get jum del & limit
         GVItemList.ActiveFilterString = "[id_product]='" + id_product + "' "
         GVItemList.FocusedRowHandle = 0
@@ -745,80 +730,100 @@ Public Class FormFGTrfNewDet
         End Try
         makeSafeGV(GVItemList)
 
-
-        If is_old = "1" Then 'old product
-            If Not code_found Then
-                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
-                GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                stopCustom("Data not found or duplicate!")
-            Else
-                If jum_limit <= 0 Then
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
-                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("This item cannot scan, because exceed the limit order.")
-                ElseIf jum_scan >= jum_limit Then
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
-                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Scanned qty exceed allowed qty")
-                Else
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_fg_trf_det_counting", "0")
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_fix", "2")
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "counting_code", counting_code)
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
-                    countQty(id_product)
-                    newRowsBc()
-                    GCItemList.RefreshDataSource()
-                    GVItemList.RefreshData()
-                End If
-            End If
-        ElseIf is_old = "2" Then ' new product
-            'check duplicate code
-            GVBarcode.ActiveFilterString = "[code]='" + code_check + "' AND [is_fix]='2' "
-            If GVBarcode.RowCount > 0 Then
-                code_duplicate = True
-            End If
-            GVBarcode.ActiveFilterString = ""
-
-            If Not code_found Then
-                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
-                GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                stopCustom("Data not found or duplicate!")
-            ElseIf code_duplicate Then
-                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
-                GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                stopCustom("Data duplicate !")
-            Else
-                If jum_limit <= 0 Then
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
-                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("This item cannot scan, because exceed the limit order.")
-                ElseIf jum_scan >= jum_limit Then
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
-                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Scanned qty exceed allowed qty")
-                Else
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_fg_trf_det_counting", "0")
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_fix", "2")
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "counting_code", counting_code)
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
-                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
-                    countQty(id_product)
-                    newRowsBc()
-                    GCItemList.RefreshDataSource()
-                    GVItemList.RefreshData()
-                End If
-            End If
-        Else
+        If Not code_found Then
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
             GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-            stopCustom("Data not found !")
+            stopCustom("Data not found or duplicate!")
+        Else
+            'jika akun normal/sale
+            If id_wh_type = "1" Or id_wh_type = "2" Then
+                If id_wh_type <> id_design_cat Then
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                    If id_wh_type = "1" Then
+                        stopCustom(TxtCodeCompTo.Text + " is only for normal product. ")
+                    Else
+                        stopCustom(TxtCodeCompTo.Text + " is only for sale product. ")
+                    End If
+                    Cursor = Cursors.Default
+                    Exit Sub
+                End If
+            End If
+
+            If is_old = "1" Then 'old product
+                If Not code_found Then
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                    stopCustom("Data not found or duplicate!")
+                Else
+                    If jum_limit <= 0 Then
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                        GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                        stopCustom("This item cannot scan, because exceed the limit order.")
+                    ElseIf jum_scan >= jum_limit Then
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                        GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                        stopCustom("Scanned qty exceed allowed qty")
+                    Else
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_fg_trf_det_counting", "0")
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_fix", "2")
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "counting_code", counting_code)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
+                        countQty(id_product)
+                        newRowsBc()
+                        GCItemList.RefreshDataSource()
+                        GVItemList.RefreshData()
+                    End If
+                End If
+            ElseIf is_old = "2" Then ' new product
+                'check duplicate code
+                GVBarcode.ActiveFilterString = "[code]='" + code_check + "' AND [is_fix]='2' "
+                If GVBarcode.RowCount > 0 Then
+                    code_duplicate = True
+                End If
+                GVBarcode.ActiveFilterString = ""
+
+                If Not code_found Then
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                    stopCustom("Data not found or duplicate!")
+                ElseIf code_duplicate Then
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                    stopCustom("Data duplicate !")
+                Else
+                    If jum_limit <= 0 Then
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                        GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                        stopCustom("This item cannot scan, because exceed the limit order.")
+                    ElseIf jum_scan >= jum_limit Then
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                        GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                        stopCustom("Scanned qty exceed allowed qty")
+                    Else
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_fg_trf_det_counting", "0")
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "is_fix", "2")
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "counting_code", counting_code)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_product", id_product)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
+                        GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
+                        countQty(id_product)
+                        newRowsBc()
+                        GCItemList.RefreshDataSource()
+                        GVItemList.RefreshData()
+                    End If
+                End If
+            Else
+                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                stopCustom("Data not found !")
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
