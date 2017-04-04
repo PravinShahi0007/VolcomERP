@@ -26,6 +26,7 @@ Public Class FormSalesDelOrderDet
     Public sample_check As String
     Public qty_pl As Decimal
     Public allow_sum As Decimal
+    Dim id_store_type As String = "-1"
 
     Private Sub FormSalesDelOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -128,6 +129,8 @@ Public Class FormSalesDelOrderDet
         TxtCodeCompTo.Text = data.Rows(0)("store_number").ToString
         TxtNameCompTo.Text = data.Rows(0)("store").ToString
         MEAdrressCompTo.Text = data.Rows(0)("store_address").ToString
+        id_store_type = data.Rows(0)("id_store_type").ToString
+        MsgBox(id_store_type)
 
         'wh
         id_comp_contact_from = data.Rows(0)("id_warehouse_contact_to").ToString
