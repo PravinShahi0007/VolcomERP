@@ -923,6 +923,12 @@
     <Compile Include="FormMasterComnputerDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterCompanyDouble.Designer.vb">
+      <DependentUpon>FormMasterCompanyDouble.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterCompanyDouble.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterComputer.Designer.vb">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>
     </Compile>
@@ -5017,6 +5023,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterComnputerDet.resx">
       <DependentUpon>FormMasterComnputerDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterCompanyDouble.resx">
+      <DependentUpon>FormMasterCompanyDouble.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterComputer.resx">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>
