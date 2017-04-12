@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormEmpStoreSchCompare
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,8 +17,9 @@ Partial Class FormEmpStoreSchCompare
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -31,6 +32,8 @@ Partial Class FormEmpStoreSchCompare
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPlan = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScheduleTable = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMViewHistoryPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVScheduleTable = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.XTPCurrent = New DevExpress.XtraTab.XtraTabPage()
         Me.GCScheduleAfter = New DevExpress.XtraGrid.GridControl()
@@ -46,6 +49,7 @@ Partial Class FormEmpStoreSchCompare
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPPlan.SuspendLayout()
         CType(Me.GCScheduleTable, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVScheduleTable, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPCurrent.SuspendLayout()
         CType(Me.GCScheduleAfter, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,6 +167,7 @@ Partial Class FormEmpStoreSchCompare
         '
         'GCScheduleTable
         '
+        Me.GCScheduleTable.ContextMenuStrip = Me.ViewMenu
         Me.GCScheduleTable.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCScheduleTable.Location = New System.Drawing.Point(0, 0)
         Me.GCScheduleTable.MainView = Me.GVScheduleTable
@@ -171,10 +176,23 @@ Partial Class FormEmpStoreSchCompare
         Me.GCScheduleTable.TabIndex = 5
         Me.GCScheduleTable.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVScheduleTable})
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewHistoryPD})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(141, 26)
+        '
+        'SMViewHistoryPD
+        '
+        Me.SMViewHistoryPD.Name = "SMViewHistoryPD"
+        Me.SMViewHistoryPD.Size = New System.Drawing.Size(140, 22)
+        Me.SMViewHistoryPD.Text = "View History"
+        '
         'GVScheduleTable
         '
         Me.GVScheduleTable.GridControl = Me.GCScheduleTable
         Me.GVScheduleTable.Name = "GVScheduleTable"
+        Me.GVScheduleTable.OptionsBehavior.Editable = False
         Me.GVScheduleTable.OptionsView.ColumnAutoWidth = False
         Me.GVScheduleTable.OptionsView.ShowGroupPanel = False
         '
@@ -187,6 +205,7 @@ Partial Class FormEmpStoreSchCompare
         '
         'GCScheduleAfter
         '
+        Me.GCScheduleAfter.ContextMenuStrip = Me.ViewMenu
         Me.GCScheduleAfter.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCScheduleAfter.Location = New System.Drawing.Point(0, 0)
         Me.GCScheduleAfter.MainView = Me.GVScheduleAfter
@@ -199,6 +218,7 @@ Partial Class FormEmpStoreSchCompare
         '
         Me.GVScheduleAfter.GridControl = Me.GCScheduleAfter
         Me.GVScheduleAfter.Name = "GVScheduleAfter"
+        Me.GVScheduleAfter.OptionsBehavior.Editable = False
         Me.GVScheduleAfter.OptionsView.ColumnAutoWidth = False
         Me.GVScheduleAfter.OptionsView.ShowGroupPanel = False
         '
@@ -227,6 +247,7 @@ Partial Class FormEmpStoreSchCompare
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPPlan.ResumeLayout(False)
         CType(Me.GCScheduleTable, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVScheduleTable, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPCurrent.ResumeLayout(False)
         CType(Me.GCScheduleAfter, System.ComponentModel.ISupportInitialize).EndInit()
@@ -251,4 +272,6 @@ Partial Class FormEmpStoreSchCompare
     Friend WithEvents GVScheduleTable As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GCScheduleAfter As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVScheduleAfter As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents SMViewHistoryPD As ToolStripMenuItem
 End Class
