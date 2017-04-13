@@ -50,6 +50,7 @@ Partial Class FormEmpStoreSchCompareHistory
         '
         'GCAttnAssign
         '
+        Me.GCAttnAssign.ContextMenuStrip = Me.ViewMenu
         Me.GCAttnAssign.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCAttnAssign.Location = New System.Drawing.Point(0, 58)
         Me.GCAttnAssign.MainView = Me.GVAttnAssign
@@ -198,7 +199,7 @@ Partial Class FormEmpStoreSchCompareHistory
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewHistoryPD})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(159, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(159, 26)
         '
         'SMViewHistoryPD
         '

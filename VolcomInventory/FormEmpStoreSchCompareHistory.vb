@@ -22,8 +22,10 @@
     End Sub
 
     Private Sub SMViewHistoryPD_Click(sender As Object, e As EventArgs) Handles SMViewHistoryPD.Click
-        FormEmpAttnAssignDet.id_emp_assign_sch = GVAttnAssign.GetFocusedRowCellValue("id_assign_sch").ToString
-        FormEmpAttnAssignDet.is_view = "1"
-        FormEmpAttnAssignDet.ShowDialog()
+        If GVAttnAssign.RowCount > 0 Then
+            FormEmpAttnAssignDet.id_emp_assign_sch = GVAttnAssign.GetFocusedRowCellValue("id_assign_sch").ToString
+            FormEmpAttnAssignDet.is_view = "1"
+            FormEmpAttnAssignDet.ShowDialog()
+        End If
     End Sub
 End Class
