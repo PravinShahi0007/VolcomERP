@@ -15,7 +15,7 @@
         Dim query As String = "SELECT a.id_sales_order, a.id_store_contact_to, d.id_comp AS `id_store`, d.id_store_type, d.comp_number AS `store_number`, d.comp_name AS `store`, d.address_primary as `store_address`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, a.id_warehouse_contact_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to,  (wh.comp_name) AS `warehouse`, wh.id_drawer_def AS `id_wh_drawer`, drw.wh_drawer_code, drw.wh_drawer, "
         query += "a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, "
         query += "(a.sales_order_date) AS sales_order_date, "
-        query += "ps.id_prepare_status, ps.prepare_status, ('No') AS `is_select`, cat.id_so_status, cat.so_status, del_cat.id_so_cat, del_cat.so_cat, "
+        query += "ps.id_prepare_status, ps.prepare_status, ('No') AS `is_select`, cat.id_so_status, cat.so_status, del_cat.id_so_cat, del_cat.so_cat, IFNULL(so_item.tot_so,0.00) AS `total_order`,IF(a.id_so_status!='5', IFNULL(ots.outstanding,0), IFNULL(otstrf.outstanding,0)) AS `outstanding`, "
         query += "IF(a.id_so_status!='5',CAST((IFNULL(dord_item.tot_do, 0.00)/IFNULL(so_item.tot_so,0.00)*100) AS DECIMAL(5,2)), CAST((IFNULL(trf_item.tot_trf, 0.00)/IFNULL(so_item.tot_so,0.00)*100) AS DECIMAL(5,2))) AS so_completness,  "
         query += "IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,a.id_so_type,prep.id_user, "
         query += "IFNULL(crt.created, 0) AS created_process, "
@@ -63,6 +63,16 @@
         query += ") crt On crt.id_sales_order = a.id_sales_order "
         query += "LEFT JOIN tb_sales_order_gen gen ON gen.id_sales_order_gen = a.id_sales_order_gen "
         query += "LEFT JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = wh.id_drawer_def "
+        query += "LEFT JOIN (
+        SELECT del.id_sales_order,COUNT(*) AS `outstanding` FROM tb_pl_sales_order_del del
+        WHERE del.id_report_status!=5 AND del.id_report_status!=6
+        GROUP BY del.id_sales_order
+        ) ots ON ots.id_sales_order = a.id_sales_order "
+        query += "LEFT JOIN (
+        SELECT trf.id_sales_order,COUNT(*) AS `outstanding` FROM tb_fg_trf trf
+        WHERE trf.id_report_status!=5 AND trf.id_report_status!=6
+        GROUP BY trf.id_sales_order
+        ) otstrf ON otstrf.id_sales_order = a.id_sales_order "
         query += "WHERE a.id_sales_order>0 "
         query += condition + " "
         query += "ORDER BY a.id_sales_order " + order_type
