@@ -193,4 +193,12 @@
         End If
 
     End Sub
+
+    Private Sub BPrintSum_Click(sender As Object, e As EventArgs) Handles BPrintSum.Click
+        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+            print(GCScheduleTable, "Planned Schedule")
+        Else
+            print(GCScheduleAfter, "Current Schedule")
+        End If
+    End Sub
 End Class
