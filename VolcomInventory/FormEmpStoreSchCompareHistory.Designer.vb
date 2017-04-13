@@ -21,6 +21,8 @@ Partial Class FormEmpStoreSchCompareHistory
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GCAttnAssign = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMViewHistoryPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVAttnAssign = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNomor = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -37,19 +39,18 @@ Partial Class FormEmpStoreSchCompareHistory
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMViewHistoryPD = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCAttnAssign, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVAttnAssign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCAttnAssign
         '
+        Me.GCAttnAssign.ContextMenuStrip = Me.ViewMenu
         Me.GCAttnAssign.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCAttnAssign.Location = New System.Drawing.Point(0, 58)
         Me.GCAttnAssign.MainView = Me.GVAttnAssign
@@ -57,6 +58,18 @@ Partial Class FormEmpStoreSchCompareHistory
         Me.GCAttnAssign.Size = New System.Drawing.Size(721, 138)
         Me.GCAttnAssign.TabIndex = 6
         Me.GCAttnAssign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAttnAssign})
+        '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewHistoryPD})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(159, 26)
+        '
+        'SMViewHistoryPD
+        '
+        Me.SMViewHistoryPD.Name = "SMViewHistoryPD"
+        Me.SMViewHistoryPD.Size = New System.Drawing.Size(158, 22)
+        Me.SMViewHistoryPD.Text = "View Document"
         '
         'GVAttnAssign
         '
@@ -194,18 +207,6 @@ Partial Class FormEmpStoreSchCompareHistory
         Me.BPrint.TabIndex = 0
         Me.BPrint.Text = "Print"
         '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewHistoryPD})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(159, 48)
-        '
-        'SMViewHistoryPD
-        '
-        Me.SMViewHistoryPD.Name = "SMViewHistoryPD"
-        Me.SMViewHistoryPD.Size = New System.Drawing.Size(158, 22)
-        Me.SMViewHistoryPD.Text = "View Document"
-        '
         'FormEmpStoreSchCompareHistory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -221,13 +222,13 @@ Partial Class FormEmpStoreSchCompareHistory
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "History Change Schedule"
         CType(Me.GCAttnAssign, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVAttnAssign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
