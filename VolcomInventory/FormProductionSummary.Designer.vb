@@ -138,6 +138,9 @@ Partial Class FormProductionSummary
         Me.GridColumnMatDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSattus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMatVat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVatTotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMatTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSum, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSum.SuspendLayout()
         Me.XTPDesign.SuspendLayout()
@@ -1109,9 +1112,9 @@ Partial Class FormProductionSummary
         '
         'GVListPurchase
         '
-        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMatDetPrice, Me.ColNo, Me.ColCode, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColDiscount, Me.ColSubtotal, Me.ColNote, Me.GridColumnSize, Me.GridColumn9, Me.GridColumnPOMatNo, Me.GridColumnPOMatRef, Me.GridColumnVendor, Me.GridColumnType, Me.GridColumnMatPaymentTyp, Me.GridColumnLeadTime, Me.GridColumnTOP, Me.GridColumnMatSeason, Me.GridColumnMatCreatedDate, Me.GridColumnMatEstRecDate, Me.GridColumnMatDueDate, Me.GridColumnSattus, Me.GridColumnUOM})
+        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMatDetPrice, Me.ColNo, Me.ColCode, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColDiscount, Me.ColSubtotal, Me.ColNote, Me.GridColumnSize, Me.GridColumn9, Me.GridColumnPOMatNo, Me.GridColumnPOMatRef, Me.GridColumnVendor, Me.GridColumnType, Me.GridColumnMatPaymentTyp, Me.GridColumnLeadTime, Me.GridColumnTOP, Me.GridColumnMatSeason, Me.GridColumnMatCreatedDate, Me.GridColumnMatEstRecDate, Me.GridColumnMatDueDate, Me.GridColumnSattus, Me.GridColumnUOM, Me.GridColumnMatVat, Me.GridColumnVatTotal, Me.GridColumnMatTotal})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
-        Me.GVListPurchase.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.ColQty, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.ColSubtotal, "{0:n2}")})
+        Me.GVListPurchase.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.ColQty, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.ColSubtotal, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnMatTotal, "{0:n2}")})
         Me.GVListPurchase.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
         Me.GVListPurchase.Name = "GVListPurchase"
         Me.GVListPurchase.OptionsBehavior.AutoExpandAllGroups = True
@@ -1296,7 +1299,7 @@ Partial Class FormProductionSummary
         Me.GridColumnMatPaymentTyp.FieldName = "payment"
         Me.GridColumnMatPaymentTyp.Name = "GridColumnMatPaymentTyp"
         Me.GridColumnMatPaymentTyp.Visible = True
-        Me.GridColumnMatPaymentTyp.VisibleIndex = 14
+        Me.GridColumnMatPaymentTyp.VisibleIndex = 17
         Me.GridColumnMatPaymentTyp.Width = 92
         '
         'GridColumnLeadTime
@@ -1307,7 +1310,7 @@ Partial Class FormProductionSummary
         Me.GridColumnLeadTime.FieldName = "mat_purc_lead_time"
         Me.GridColumnLeadTime.Name = "GridColumnLeadTime"
         Me.GridColumnLeadTime.Visible = True
-        Me.GridColumnLeadTime.VisibleIndex = 15
+        Me.GridColumnLeadTime.VisibleIndex = 18
         Me.GridColumnLeadTime.Width = 65
         '
         'GridColumnTOP
@@ -1318,7 +1321,7 @@ Partial Class FormProductionSummary
         Me.GridColumnTOP.FieldName = "mat_purc_top"
         Me.GridColumnTOP.Name = "GridColumnTOP"
         Me.GridColumnTOP.Visible = True
-        Me.GridColumnTOP.VisibleIndex = 16
+        Me.GridColumnTOP.VisibleIndex = 19
         Me.GridColumnTOP.Width = 35
         '
         'GridColumnMatSeason
@@ -1337,7 +1340,7 @@ Partial Class FormProductionSummary
         Me.GridColumnMatCreatedDate.FieldName = "mat_purc_date"
         Me.GridColumnMatCreatedDate.Name = "GridColumnMatCreatedDate"
         Me.GridColumnMatCreatedDate.Visible = True
-        Me.GridColumnMatCreatedDate.VisibleIndex = 17
+        Me.GridColumnMatCreatedDate.VisibleIndex = 20
         '
         'GridColumnMatEstRecDate
         '
@@ -1349,7 +1352,7 @@ Partial Class FormProductionSummary
         Me.GridColumnMatEstRecDate.UnboundExpression = "AddDays([mat_purc_date], [mat_purc_lead_time])"
         Me.GridColumnMatEstRecDate.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumnMatEstRecDate.Visible = True
-        Me.GridColumnMatEstRecDate.VisibleIndex = 18
+        Me.GridColumnMatEstRecDate.VisibleIndex = 21
         '
         'GridColumnMatDueDate
         '
@@ -1361,7 +1364,7 @@ Partial Class FormProductionSummary
         Me.GridColumnMatDueDate.UnboundExpression = "AddDays([mat_purc_date], [mat_purc_top])"
         Me.GridColumnMatDueDate.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumnMatDueDate.Visible = True
-        Me.GridColumnMatDueDate.VisibleIndex = 19
+        Me.GridColumnMatDueDate.VisibleIndex = 22
         '
         'GridColumnSattus
         '
@@ -1369,7 +1372,8 @@ Partial Class FormProductionSummary
         Me.GridColumnSattus.FieldName = "report_status"
         Me.GridColumnSattus.Name = "GridColumnSattus"
         Me.GridColumnSattus.Visible = True
-        Me.GridColumnSattus.VisibleIndex = 20
+        Me.GridColumnSattus.VisibleIndex = 23
+        Me.GridColumnSattus.Width = 108
         '
         'GridColumnUOM
         '
@@ -1379,6 +1383,43 @@ Partial Class FormProductionSummary
         Me.GridColumnUOM.Visible = True
         Me.GridColumnUOM.VisibleIndex = 10
         Me.GridColumnUOM.Width = 42
+        '
+        'GridColumnMatVat
+        '
+        Me.GridColumnMatVat.Caption = "Vat (%)"
+        Me.GridColumnMatVat.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnMatVat.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnMatVat.FieldName = "vat"
+        Me.GridColumnMatVat.Name = "GridColumnMatVat"
+        Me.GridColumnMatVat.Visible = True
+        Me.GridColumnMatVat.VisibleIndex = 14
+        Me.GridColumnMatVat.Width = 54
+        '
+        'GridColumnVatTotal
+        '
+        Me.GridColumnVatTotal.Caption = "Vat"
+        Me.GridColumnVatTotal.FieldName = "total_vat"
+        Me.GridColumnVatTotal.GroupFormat.FormatString = "{0:n2}"
+        Me.GridColumnVatTotal.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnVatTotal.Name = "GridColumnVatTotal"
+        Me.GridColumnVatTotal.UnboundExpression = "[vat] / 100 * [total]"
+        Me.GridColumnVatTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnVatTotal.Visible = True
+        Me.GridColumnVatTotal.VisibleIndex = 15
+        '
+        'GridColumnMatTotal
+        '
+        Me.GridColumnMatTotal.Caption = "Total"
+        Me.GridColumnMatTotal.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnMatTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnMatTotal.FieldName = "total"
+        Me.GridColumnMatTotal.Name = "GridColumnMatTotal"
+        Me.GridColumnMatTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:n2}")})
+        Me.GridColumnMatTotal.UnboundExpression = "[total] + [total_vat]"
+        Me.GridColumnMatTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnMatTotal.Visible = True
+        Me.GridColumnMatTotal.VisibleIndex = 16
+        Me.GridColumnMatTotal.Width = 79
         '
         'FormProductionSummary
         '
@@ -1548,4 +1589,7 @@ Partial Class FormProductionSummary
     Friend WithEvents GridColumnMatDueDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSattus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnUOM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMatVat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVatTotal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMatTotal As DevExpress.XtraGrid.Columns.GridColumn
 End Class
