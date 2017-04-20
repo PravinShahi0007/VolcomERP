@@ -103,14 +103,6 @@ Partial Class FormProductionSummary
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPPOMat = New DevExpress.XtraTab.XtraTabPage()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.BtnViewMat = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton5 = New DevExpress.XtraEditors.SimpleButton()
-        Me.DEUntilMat = New DevExpress.XtraEditors.DateEdit()
-        Me.DEFromMat = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
         Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -141,6 +133,16 @@ Partial Class FormProductionSummary
         Me.GridColumnMatVat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnVatTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMatTotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMatCur = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMatKurs = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnViewMat = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton5 = New DevExpress.XtraEditors.SimpleButton()
+        Me.DEUntilMat = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromMat = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCSum, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSum.SuspendLayout()
         Me.XTPDesign.SuspendLayout()
@@ -164,14 +166,14 @@ Partial Class FormProductionSummary
         CType(Me.DEFromPD.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromPD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPPOMat.SuspendLayout()
+        CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.DEUntilMat.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilMat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromMat.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromMat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSum
@@ -1012,6 +1014,349 @@ Partial Class FormProductionSummary
         Me.XTPPOMat.Size = New System.Drawing.Size(766, 416)
         Me.XTPPOMat.Text = "Purchase Material"
         '
+        'GCListPurchase
+        '
+        Me.GCListPurchase.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCListPurchase.Location = New System.Drawing.Point(0, 39)
+        Me.GCListPurchase.MainView = Me.GVListPurchase
+        Me.GCListPurchase.Margin = New System.Windows.Forms.Padding(0)
+        Me.GCListPurchase.Name = "GCListPurchase"
+        Me.GCListPurchase.Size = New System.Drawing.Size(766, 377)
+        Me.GCListPurchase.TabIndex = 6
+        Me.GCListPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPurchase})
+        '
+        'GVListPurchase
+        '
+        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMatDetPrice, Me.ColNo, Me.ColCode, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColDiscount, Me.ColSubtotal, Me.ColNote, Me.GridColumnSize, Me.GridColumn9, Me.GridColumnPOMatNo, Me.GridColumnPOMatRef, Me.GridColumnVendor, Me.GridColumnType, Me.GridColumnMatPaymentTyp, Me.GridColumnLeadTime, Me.GridColumnTOP, Me.GridColumnMatSeason, Me.GridColumnMatCreatedDate, Me.GridColumnMatEstRecDate, Me.GridColumnMatDueDate, Me.GridColumnSattus, Me.GridColumnUOM, Me.GridColumnMatVat, Me.GridColumnVatTotal, Me.GridColumnMatTotal, Me.GridColumnMatCur, Me.GridColumnMatKurs})
+        Me.GVListPurchase.GridControl = Me.GCListPurchase
+        Me.GVListPurchase.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.ColQty, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.ColSubtotal, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", Me.GridColumnMatTotal, "{0:n2}")})
+        Me.GVListPurchase.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
+        Me.GVListPurchase.Name = "GVListPurchase"
+        Me.GVListPurchase.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVListPurchase.OptionsBehavior.ReadOnly = True
+        Me.GVListPurchase.OptionsView.ColumnAutoWidth = False
+        Me.GVListPurchase.OptionsView.ShowFooter = True
+        Me.GVListPurchase.OptionsView.ShowGroupPanel = False
+        Me.GVListPurchase.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColIdPurcDet, DevExpress.Data.ColumnSortOrder.Ascending)})
+        '
+        'ColIdPurcDet
+        '
+        Me.ColIdPurcDet.Caption = "ID Purc Det"
+        Me.ColIdPurcDet.FieldName = "id_mat_purc_det"
+        Me.ColIdPurcDet.Name = "ColIdPurcDet"
+        '
+        'ColIdMatDetPrice
+        '
+        Me.ColIdMatDetPrice.Caption = "Id Mat Price"
+        Me.ColIdMatDetPrice.FieldName = "id_mat_det_price"
+        Me.ColIdMatDetPrice.Name = "ColIdMatDetPrice"
+        '
+        'ColNo
+        '
+        Me.ColNo.AppearanceCell.Options.UseTextOptions = True
+        Me.ColNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColNo.Caption = "No."
+        Me.ColNo.FieldName = "no"
+        Me.ColNo.Name = "ColNo"
+        Me.ColNo.Width = 35
+        '
+        'ColCode
+        '
+        Me.ColCode.Caption = "Code"
+        Me.ColCode.FieldName = "code"
+        Me.ColCode.Name = "ColCode"
+        Me.ColCode.Visible = True
+        Me.ColCode.VisibleIndex = 5
+        Me.ColCode.Width = 100
+        '
+        'ColName
+        '
+        Me.ColName.Caption = "Description"
+        Me.ColName.FieldName = "name"
+        Me.ColName.Name = "ColName"
+        Me.ColName.Visible = True
+        Me.ColName.VisibleIndex = 6
+        Me.ColName.Width = 225
+        '
+        'ColPrice
+        '
+        Me.ColPrice.AppearanceCell.Options.UseTextOptions = True
+        Me.ColPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
+        Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColPrice.Caption = "Price"
+        Me.ColPrice.DisplayFormat.FormatString = "N4"
+        Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.ColPrice.FieldName = "price"
+        Me.ColPrice.Name = "ColPrice"
+        Me.ColPrice.Visible = True
+        Me.ColPrice.VisibleIndex = 13
+        Me.ColPrice.Width = 68
+        '
+        'ColQty
+        '
+        Me.ColQty.AppearanceCell.Options.UseTextOptions = True
+        Me.ColQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColQty.AppearanceHeader.Options.UseTextOptions = True
+        Me.ColQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColQty.Caption = "Qty"
+        Me.ColQty.DisplayFormat.FormatString = "{0:n2}"
+        Me.ColQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.ColQty.FieldName = "qty"
+        Me.ColQty.Name = "ColQty"
+        Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n2}")})
+        Me.ColQty.Visible = True
+        Me.ColQty.VisibleIndex = 9
+        Me.ColQty.Width = 56
+        '
+        'ColDiscount
+        '
+        Me.ColDiscount.AppearanceCell.Options.UseTextOptions = True
+        Me.ColDiscount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColDiscount.AppearanceHeader.Options.UseTextOptions = True
+        Me.ColDiscount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColDiscount.Caption = "Discount"
+        Me.ColDiscount.DisplayFormat.FormatString = "N4"
+        Me.ColDiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.ColDiscount.FieldName = "discount"
+        Me.ColDiscount.Name = "ColDiscount"
+        Me.ColDiscount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "discount", "{0:N2}")})
+        Me.ColDiscount.Visible = True
+        Me.ColDiscount.VisibleIndex = 14
+        Me.ColDiscount.Width = 74
+        '
+        'ColSubtotal
+        '
+        Me.ColSubtotal.AppearanceCell.Options.UseTextOptions = True
+        Me.ColSubtotal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColSubtotal.AppearanceHeader.Options.UseTextOptions = True
+        Me.ColSubtotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.ColSubtotal.Caption = "Sub Total"
+        Me.ColSubtotal.DisplayFormat.FormatString = "N2"
+        Me.ColSubtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.ColSubtotal.FieldName = "total"
+        Me.ColSubtotal.Name = "ColSubtotal"
+        Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
+        Me.ColSubtotal.Visible = True
+        Me.ColSubtotal.VisibleIndex = 15
+        Me.ColSubtotal.Width = 103
+        '
+        'ColNote
+        '
+        Me.ColNote.Caption = "Note"
+        Me.ColNote.FieldName = "note"
+        Me.ColNote.Name = "ColNote"
+        Me.ColNote.Width = 80
+        '
+        'GridColumnSize
+        '
+        Me.GridColumnSize.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnSize.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnSize.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnSize.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnSize.Caption = "Size"
+        Me.GridColumnSize.FieldName = "size"
+        Me.GridColumnSize.Name = "GridColumnSize"
+        Me.GridColumnSize.Visible = True
+        Me.GridColumnSize.VisibleIndex = 8
+        Me.GridColumnSize.Width = 44
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn9.Caption = "Color"
+        Me.GridColumn9.FieldName = "color"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 7
+        Me.GridColumn9.Width = 71
+        '
+        'GridColumnPOMatNo
+        '
+        Me.GridColumnPOMatNo.Caption = "PO#"
+        Me.GridColumnPOMatNo.FieldName = "mat_purc_number"
+        Me.GridColumnPOMatNo.Name = "GridColumnPOMatNo"
+        Me.GridColumnPOMatNo.Visible = True
+        Me.GridColumnPOMatNo.VisibleIndex = 0
+        '
+        'GridColumnPOMatRef
+        '
+        Me.GridColumnPOMatRef.Caption = "Ref#"
+        Me.GridColumnPOMatRef.FieldName = "mat_purc_number_rev"
+        Me.GridColumnPOMatRef.Name = "GridColumnPOMatRef"
+        Me.GridColumnPOMatRef.Visible = True
+        Me.GridColumnPOMatRef.VisibleIndex = 1
+        Me.GridColumnPOMatRef.Width = 55
+        '
+        'GridColumnVendor
+        '
+        Me.GridColumnVendor.Caption = "Vendor"
+        Me.GridColumnVendor.FieldName = "vendor"
+        Me.GridColumnVendor.Name = "GridColumnVendor"
+        Me.GridColumnVendor.Visible = True
+        Me.GridColumnVendor.VisibleIndex = 2
+        Me.GridColumnVendor.Width = 116
+        '
+        'GridColumnType
+        '
+        Me.GridColumnType.Caption = "PO Type"
+        Me.GridColumnType.FieldName = "po_type"
+        Me.GridColumnType.Name = "GridColumnType"
+        Me.GridColumnType.Visible = True
+        Me.GridColumnType.VisibleIndex = 3
+        Me.GridColumnType.Width = 92
+        '
+        'GridColumnMatPaymentTyp
+        '
+        Me.GridColumnMatPaymentTyp.Caption = "Payment Type"
+        Me.GridColumnMatPaymentTyp.FieldName = "payment"
+        Me.GridColumnMatPaymentTyp.Name = "GridColumnMatPaymentTyp"
+        Me.GridColumnMatPaymentTyp.Visible = True
+        Me.GridColumnMatPaymentTyp.VisibleIndex = 19
+        Me.GridColumnMatPaymentTyp.Width = 92
+        '
+        'GridColumnLeadTime
+        '
+        Me.GridColumnLeadTime.Caption = "Lead Time"
+        Me.GridColumnLeadTime.DisplayFormat.FormatString = "N0"
+        Me.GridColumnLeadTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnLeadTime.FieldName = "mat_purc_lead_time"
+        Me.GridColumnLeadTime.Name = "GridColumnLeadTime"
+        Me.GridColumnLeadTime.Visible = True
+        Me.GridColumnLeadTime.VisibleIndex = 20
+        Me.GridColumnLeadTime.Width = 65
+        '
+        'GridColumnTOP
+        '
+        Me.GridColumnTOP.Caption = "TOP"
+        Me.GridColumnTOP.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTOP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTOP.FieldName = "mat_purc_top"
+        Me.GridColumnTOP.Name = "GridColumnTOP"
+        Me.GridColumnTOP.Visible = True
+        Me.GridColumnTOP.VisibleIndex = 21
+        Me.GridColumnTOP.Width = 35
+        '
+        'GridColumnMatSeason
+        '
+        Me.GridColumnMatSeason.Caption = "Season"
+        Me.GridColumnMatSeason.FieldName = "season"
+        Me.GridColumnMatSeason.Name = "GridColumnMatSeason"
+        Me.GridColumnMatSeason.Visible = True
+        Me.GridColumnMatSeason.VisibleIndex = 4
+        '
+        'GridColumnMatCreatedDate
+        '
+        Me.GridColumnMatCreatedDate.Caption = "Created Date"
+        Me.GridColumnMatCreatedDate.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.GridColumnMatCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnMatCreatedDate.FieldName = "mat_purc_date"
+        Me.GridColumnMatCreatedDate.Name = "GridColumnMatCreatedDate"
+        Me.GridColumnMatCreatedDate.Visible = True
+        Me.GridColumnMatCreatedDate.VisibleIndex = 22
+        '
+        'GridColumnMatEstRecDate
+        '
+        Me.GridColumnMatEstRecDate.Caption = "Est. Rec. Date"
+        Me.GridColumnMatEstRecDate.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.GridColumnMatEstRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnMatEstRecDate.FieldName = "rec_date"
+        Me.GridColumnMatEstRecDate.Name = "GridColumnMatEstRecDate"
+        Me.GridColumnMatEstRecDate.UnboundExpression = "AddDays([mat_purc_date], [mat_purc_lead_time])"
+        Me.GridColumnMatEstRecDate.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
+        Me.GridColumnMatEstRecDate.Visible = True
+        Me.GridColumnMatEstRecDate.VisibleIndex = 23
+        '
+        'GridColumnMatDueDate
+        '
+        Me.GridColumnMatDueDate.Caption = "Due Date"
+        Me.GridColumnMatDueDate.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.GridColumnMatDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnMatDueDate.FieldName = "due_date"
+        Me.GridColumnMatDueDate.Name = "GridColumnMatDueDate"
+        Me.GridColumnMatDueDate.UnboundExpression = "AddDays([mat_purc_date], [mat_purc_top])"
+        Me.GridColumnMatDueDate.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
+        Me.GridColumnMatDueDate.Visible = True
+        Me.GridColumnMatDueDate.VisibleIndex = 24
+        '
+        'GridColumnSattus
+        '
+        Me.GridColumnSattus.Caption = "Status"
+        Me.GridColumnSattus.FieldName = "report_status"
+        Me.GridColumnSattus.Name = "GridColumnSattus"
+        Me.GridColumnSattus.Visible = True
+        Me.GridColumnSattus.VisibleIndex = 25
+        Me.GridColumnSattus.Width = 108
+        '
+        'GridColumnUOM
+        '
+        Me.GridColumnUOM.Caption = "UOM"
+        Me.GridColumnUOM.FieldName = "uom"
+        Me.GridColumnUOM.Name = "GridColumnUOM"
+        Me.GridColumnUOM.Visible = True
+        Me.GridColumnUOM.VisibleIndex = 10
+        Me.GridColumnUOM.Width = 42
+        '
+        'GridColumnMatVat
+        '
+        Me.GridColumnMatVat.Caption = "Vat (%)"
+        Me.GridColumnMatVat.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnMatVat.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnMatVat.FieldName = "mat_purc_vat"
+        Me.GridColumnMatVat.Name = "GridColumnMatVat"
+        Me.GridColumnMatVat.Visible = True
+        Me.GridColumnMatVat.VisibleIndex = 16
+        Me.GridColumnMatVat.Width = 54
+        '
+        'GridColumnVatTotal
+        '
+        Me.GridColumnVatTotal.Caption = "Vat"
+        Me.GridColumnVatTotal.DisplayFormat.FormatString = "N2"
+        Me.GridColumnVatTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnVatTotal.FieldName = "total_vat"
+        Me.GridColumnVatTotal.Name = "GridColumnVatTotal"
+        Me.GridColumnVatTotal.UnboundExpression = "[mat_purc_vat] * [total] / 100"
+        Me.GridColumnVatTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnVatTotal.Visible = True
+        Me.GridColumnVatTotal.VisibleIndex = 17
+        '
+        'GridColumnMatTotal
+        '
+        Me.GridColumnMatTotal.Caption = "Total"
+        Me.GridColumnMatTotal.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnMatTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnMatTotal.FieldName = "grand_total"
+        Me.GridColumnMatTotal.Name = "GridColumnMatTotal"
+        Me.GridColumnMatTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:n2}")})
+        Me.GridColumnMatTotal.UnboundExpression = "[total] + [total_vat]"
+        Me.GridColumnMatTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnMatTotal.Visible = True
+        Me.GridColumnMatTotal.VisibleIndex = 18
+        Me.GridColumnMatTotal.Width = 79
+        '
+        'GridColumnMatCur
+        '
+        Me.GridColumnMatCur.Caption = "Currency"
+        Me.GridColumnMatCur.FieldName = "currency"
+        Me.GridColumnMatCur.Name = "GridColumnMatCur"
+        Me.GridColumnMatCur.Visible = True
+        Me.GridColumnMatCur.VisibleIndex = 11
+        Me.GridColumnMatCur.Width = 52
+        '
+        'GridColumnMatKurs
+        '
+        Me.GridColumnMatKurs.Caption = "Kurs"
+        Me.GridColumnMatKurs.DisplayFormat.FormatString = "N2"
+        Me.GridColumnMatKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnMatKurs.FieldName = "mat_purc_kurs"
+        Me.GridColumnMatKurs.Name = "GridColumnMatKurs"
+        Me.GridColumnMatKurs.Visible = True
+        Me.GridColumnMatKurs.VisibleIndex = 12
+        Me.GridColumnMatKurs.Width = 58
+        '
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -1099,328 +1444,6 @@ Partial Class FormProductionSummary
         Me.LabelControl6.TabIndex = 8892
         Me.LabelControl6.Text = "From"
         '
-        'GCListPurchase
-        '
-        Me.GCListPurchase.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCListPurchase.Location = New System.Drawing.Point(0, 39)
-        Me.GCListPurchase.MainView = Me.GVListPurchase
-        Me.GCListPurchase.Margin = New System.Windows.Forms.Padding(0)
-        Me.GCListPurchase.Name = "GCListPurchase"
-        Me.GCListPurchase.Size = New System.Drawing.Size(766, 377)
-        Me.GCListPurchase.TabIndex = 6
-        Me.GCListPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPurchase})
-        '
-        'GVListPurchase
-        '
-        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPurcDet, Me.ColIdMatDetPrice, Me.ColNo, Me.ColCode, Me.ColName, Me.ColPrice, Me.ColQty, Me.ColDiscount, Me.ColSubtotal, Me.ColNote, Me.GridColumnSize, Me.GridColumn9, Me.GridColumnPOMatNo, Me.GridColumnPOMatRef, Me.GridColumnVendor, Me.GridColumnType, Me.GridColumnMatPaymentTyp, Me.GridColumnLeadTime, Me.GridColumnTOP, Me.GridColumnMatSeason, Me.GridColumnMatCreatedDate, Me.GridColumnMatEstRecDate, Me.GridColumnMatDueDate, Me.GridColumnSattus, Me.GridColumnUOM, Me.GridColumnMatVat, Me.GridColumnVatTotal, Me.GridColumnMatTotal})
-        Me.GVListPurchase.GridControl = Me.GCListPurchase
-        Me.GVListPurchase.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.ColQty, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.ColSubtotal, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnMatTotal, "{0:n2}")})
-        Me.GVListPurchase.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
-        Me.GVListPurchase.Name = "GVListPurchase"
-        Me.GVListPurchase.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GVListPurchase.OptionsBehavior.ReadOnly = True
-        Me.GVListPurchase.OptionsView.ColumnAutoWidth = False
-        Me.GVListPurchase.OptionsView.ShowFooter = True
-        Me.GVListPurchase.OptionsView.ShowGroupPanel = False
-        '
-        'ColIdPurcDet
-        '
-        Me.ColIdPurcDet.Caption = "ID Purc Det"
-        Me.ColIdPurcDet.FieldName = "id_mat_purc_det"
-        Me.ColIdPurcDet.Name = "ColIdPurcDet"
-        '
-        'ColIdMatDetPrice
-        '
-        Me.ColIdMatDetPrice.Caption = "Id Mat Price"
-        Me.ColIdMatDetPrice.FieldName = "id_mat_det_price"
-        Me.ColIdMatDetPrice.Name = "ColIdMatDetPrice"
-        '
-        'ColNo
-        '
-        Me.ColNo.AppearanceCell.Options.UseTextOptions = True
-        Me.ColNo.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColNo.Caption = "No."
-        Me.ColNo.FieldName = "no"
-        Me.ColNo.Name = "ColNo"
-        Me.ColNo.Width = 35
-        '
-        'ColCode
-        '
-        Me.ColCode.Caption = "Code"
-        Me.ColCode.FieldName = "code"
-        Me.ColCode.Name = "ColCode"
-        Me.ColCode.Visible = True
-        Me.ColCode.VisibleIndex = 5
-        Me.ColCode.Width = 100
-        '
-        'ColName
-        '
-        Me.ColName.Caption = "Description"
-        Me.ColName.FieldName = "name"
-        Me.ColName.Name = "ColName"
-        Me.ColName.Visible = True
-        Me.ColName.VisibleIndex = 6
-        Me.ColName.Width = 225
-        '
-        'ColPrice
-        '
-        Me.ColPrice.AppearanceCell.Options.UseTextOptions = True
-        Me.ColPrice.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColPrice.Caption = "Price"
-        Me.ColPrice.DisplayFormat.FormatString = "N4"
-        Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.ColPrice.FieldName = "price"
-        Me.ColPrice.Name = "ColPrice"
-        Me.ColPrice.Visible = True
-        Me.ColPrice.VisibleIndex = 11
-        Me.ColPrice.Width = 68
-        '
-        'ColQty
-        '
-        Me.ColQty.AppearanceCell.Options.UseTextOptions = True
-        Me.ColQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColQty.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColQty.Caption = "Qty"
-        Me.ColQty.DisplayFormat.FormatString = "{0:n2}"
-        Me.ColQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.ColQty.FieldName = "qty"
-        Me.ColQty.Name = "ColQty"
-        Me.ColQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n2}")})
-        Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 9
-        Me.ColQty.Width = 56
-        '
-        'ColDiscount
-        '
-        Me.ColDiscount.AppearanceCell.Options.UseTextOptions = True
-        Me.ColDiscount.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColDiscount.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColDiscount.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColDiscount.Caption = "Discount"
-        Me.ColDiscount.DisplayFormat.FormatString = "N4"
-        Me.ColDiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.ColDiscount.FieldName = "discount"
-        Me.ColDiscount.Name = "ColDiscount"
-        Me.ColDiscount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "discount", "{0:N2}")})
-        Me.ColDiscount.Visible = True
-        Me.ColDiscount.VisibleIndex = 12
-        Me.ColDiscount.Width = 74
-        '
-        'ColSubtotal
-        '
-        Me.ColSubtotal.AppearanceCell.Options.UseTextOptions = True
-        Me.ColSubtotal.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColSubtotal.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColSubtotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.ColSubtotal.Caption = "Sub Total"
-        Me.ColSubtotal.DisplayFormat.FormatString = "N2"
-        Me.ColSubtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.ColSubtotal.FieldName = "total"
-        Me.ColSubtotal.Name = "ColSubtotal"
-        Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
-        Me.ColSubtotal.Visible = True
-        Me.ColSubtotal.VisibleIndex = 13
-        Me.ColSubtotal.Width = 103
-        '
-        'ColNote
-        '
-        Me.ColNote.Caption = "Note"
-        Me.ColNote.FieldName = "note"
-        Me.ColNote.Name = "ColNote"
-        Me.ColNote.Width = 80
-        '
-        'GridColumnSize
-        '
-        Me.GridColumnSize.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnSize.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnSize.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnSize.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnSize.Caption = "Size"
-        Me.GridColumnSize.FieldName = "size"
-        Me.GridColumnSize.Name = "GridColumnSize"
-        Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 8
-        Me.GridColumnSize.Width = 44
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn9.Caption = "Color"
-        Me.GridColumn9.FieldName = "color"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 7
-        Me.GridColumn9.Width = 71
-        '
-        'GridColumnPOMatNo
-        '
-        Me.GridColumnPOMatNo.Caption = "PO#"
-        Me.GridColumnPOMatNo.FieldName = "mat_purc_number"
-        Me.GridColumnPOMatNo.Name = "GridColumnPOMatNo"
-        Me.GridColumnPOMatNo.Visible = True
-        Me.GridColumnPOMatNo.VisibleIndex = 0
-        '
-        'GridColumnPOMatRef
-        '
-        Me.GridColumnPOMatRef.Caption = "Ref#"
-        Me.GridColumnPOMatRef.FieldName = "mat_purc_number_rev"
-        Me.GridColumnPOMatRef.Name = "GridColumnPOMatRef"
-        Me.GridColumnPOMatRef.Visible = True
-        Me.GridColumnPOMatRef.VisibleIndex = 1
-        Me.GridColumnPOMatRef.Width = 55
-        '
-        'GridColumnVendor
-        '
-        Me.GridColumnVendor.Caption = "Vendor"
-        Me.GridColumnVendor.FieldName = "vendor"
-        Me.GridColumnVendor.Name = "GridColumnVendor"
-        Me.GridColumnVendor.Visible = True
-        Me.GridColumnVendor.VisibleIndex = 2
-        Me.GridColumnVendor.Width = 116
-        '
-        'GridColumnType
-        '
-        Me.GridColumnType.Caption = "PO Type"
-        Me.GridColumnType.FieldName = "po_type"
-        Me.GridColumnType.Name = "GridColumnType"
-        Me.GridColumnType.Visible = True
-        Me.GridColumnType.VisibleIndex = 3
-        Me.GridColumnType.Width = 92
-        '
-        'GridColumnMatPaymentTyp
-        '
-        Me.GridColumnMatPaymentTyp.Caption = "Payment Type"
-        Me.GridColumnMatPaymentTyp.FieldName = "payment"
-        Me.GridColumnMatPaymentTyp.Name = "GridColumnMatPaymentTyp"
-        Me.GridColumnMatPaymentTyp.Visible = True
-        Me.GridColumnMatPaymentTyp.VisibleIndex = 17
-        Me.GridColumnMatPaymentTyp.Width = 92
-        '
-        'GridColumnLeadTime
-        '
-        Me.GridColumnLeadTime.Caption = "Lead Time"
-        Me.GridColumnLeadTime.DisplayFormat.FormatString = "N0"
-        Me.GridColumnLeadTime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnLeadTime.FieldName = "mat_purc_lead_time"
-        Me.GridColumnLeadTime.Name = "GridColumnLeadTime"
-        Me.GridColumnLeadTime.Visible = True
-        Me.GridColumnLeadTime.VisibleIndex = 18
-        Me.GridColumnLeadTime.Width = 65
-        '
-        'GridColumnTOP
-        '
-        Me.GridColumnTOP.Caption = "TOP"
-        Me.GridColumnTOP.DisplayFormat.FormatString = "N0"
-        Me.GridColumnTOP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTOP.FieldName = "mat_purc_top"
-        Me.GridColumnTOP.Name = "GridColumnTOP"
-        Me.GridColumnTOP.Visible = True
-        Me.GridColumnTOP.VisibleIndex = 19
-        Me.GridColumnTOP.Width = 35
-        '
-        'GridColumnMatSeason
-        '
-        Me.GridColumnMatSeason.Caption = "Season"
-        Me.GridColumnMatSeason.FieldName = "season"
-        Me.GridColumnMatSeason.Name = "GridColumnMatSeason"
-        Me.GridColumnMatSeason.Visible = True
-        Me.GridColumnMatSeason.VisibleIndex = 4
-        '
-        'GridColumnMatCreatedDate
-        '
-        Me.GridColumnMatCreatedDate.Caption = "Created Date"
-        Me.GridColumnMatCreatedDate.DisplayFormat.FormatString = "dd\/MM\/yyyy"
-        Me.GridColumnMatCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnMatCreatedDate.FieldName = "mat_purc_date"
-        Me.GridColumnMatCreatedDate.Name = "GridColumnMatCreatedDate"
-        Me.GridColumnMatCreatedDate.Visible = True
-        Me.GridColumnMatCreatedDate.VisibleIndex = 20
-        '
-        'GridColumnMatEstRecDate
-        '
-        Me.GridColumnMatEstRecDate.Caption = "Est. Rec. Date"
-        Me.GridColumnMatEstRecDate.DisplayFormat.FormatString = "dd\/MM\/yyyy"
-        Me.GridColumnMatEstRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnMatEstRecDate.FieldName = "rec_date"
-        Me.GridColumnMatEstRecDate.Name = "GridColumnMatEstRecDate"
-        Me.GridColumnMatEstRecDate.UnboundExpression = "AddDays([mat_purc_date], [mat_purc_lead_time])"
-        Me.GridColumnMatEstRecDate.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
-        Me.GridColumnMatEstRecDate.Visible = True
-        Me.GridColumnMatEstRecDate.VisibleIndex = 21
-        '
-        'GridColumnMatDueDate
-        '
-        Me.GridColumnMatDueDate.Caption = "Due Date"
-        Me.GridColumnMatDueDate.DisplayFormat.FormatString = "dd\/MM\/yyyy"
-        Me.GridColumnMatDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumnMatDueDate.FieldName = "due_date"
-        Me.GridColumnMatDueDate.Name = "GridColumnMatDueDate"
-        Me.GridColumnMatDueDate.UnboundExpression = "AddDays([mat_purc_date], [mat_purc_top])"
-        Me.GridColumnMatDueDate.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
-        Me.GridColumnMatDueDate.Visible = True
-        Me.GridColumnMatDueDate.VisibleIndex = 22
-        '
-        'GridColumnSattus
-        '
-        Me.GridColumnSattus.Caption = "Status"
-        Me.GridColumnSattus.FieldName = "report_status"
-        Me.GridColumnSattus.Name = "GridColumnSattus"
-        Me.GridColumnSattus.Visible = True
-        Me.GridColumnSattus.VisibleIndex = 23
-        Me.GridColumnSattus.Width = 108
-        '
-        'GridColumnUOM
-        '
-        Me.GridColumnUOM.Caption = "UOM"
-        Me.GridColumnUOM.FieldName = "uom"
-        Me.GridColumnUOM.Name = "GridColumnUOM"
-        Me.GridColumnUOM.Visible = True
-        Me.GridColumnUOM.VisibleIndex = 10
-        Me.GridColumnUOM.Width = 42
-        '
-        'GridColumnMatVat
-        '
-        Me.GridColumnMatVat.Caption = "Vat (%)"
-        Me.GridColumnMatVat.DisplayFormat.FormatString = "{0:n0}"
-        Me.GridColumnMatVat.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnMatVat.FieldName = "vat"
-        Me.GridColumnMatVat.Name = "GridColumnMatVat"
-        Me.GridColumnMatVat.Visible = True
-        Me.GridColumnMatVat.VisibleIndex = 14
-        Me.GridColumnMatVat.Width = 54
-        '
-        'GridColumnVatTotal
-        '
-        Me.GridColumnVatTotal.Caption = "Vat"
-        Me.GridColumnVatTotal.FieldName = "total_vat"
-        Me.GridColumnVatTotal.GroupFormat.FormatString = "{0:n2}"
-        Me.GridColumnVatTotal.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnVatTotal.Name = "GridColumnVatTotal"
-        Me.GridColumnVatTotal.UnboundExpression = "[vat] / 100 * [total]"
-        Me.GridColumnVatTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnVatTotal.Visible = True
-        Me.GridColumnVatTotal.VisibleIndex = 15
-        '
-        'GridColumnMatTotal
-        '
-        Me.GridColumnMatTotal.Caption = "Total"
-        Me.GridColumnMatTotal.DisplayFormat.FormatString = "{0:n2}"
-        Me.GridColumnMatTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnMatTotal.FieldName = "total"
-        Me.GridColumnMatTotal.Name = "GridColumnMatTotal"
-        Me.GridColumnMatTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:n2}")})
-        Me.GridColumnMatTotal.UnboundExpression = "[total] + [total_vat]"
-        Me.GridColumnMatTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnMatTotal.Visible = True
-        Me.GridColumnMatTotal.VisibleIndex = 16
-        Me.GridColumnMatTotal.Width = 79
-        '
         'FormProductionSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1457,6 +1480,8 @@ Partial Class FormProductionSummary
         CType(Me.DEFromPD.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromPD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPPOMat.ResumeLayout(False)
+        CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
@@ -1464,8 +1489,6 @@ Partial Class FormProductionSummary
         CType(Me.DEUntilMat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromMat.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromMat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1592,4 +1615,6 @@ Partial Class FormProductionSummary
     Friend WithEvents GridColumnMatVat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnVatTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMatTotal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMatCur As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMatKurs As DevExpress.XtraGrid.Columns.GridColumn
 End Class
