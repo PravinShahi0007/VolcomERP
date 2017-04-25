@@ -8,6 +8,8 @@
         DEFromMat.EditValue = data_dt.Rows(0)("dt")
         DEUntilMat.EditValue = data_dt.Rows(0)("dt")
         DEFrom.Focus()
+
+        viewVendor()
     End Sub
 
     Private Sub FormProductionSummary_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
@@ -198,5 +200,68 @@
 
     Private Sub BtnViewMat_Click(sender As Object, e As EventArgs) Handles BtnViewMat.Click
         viewPOMat()
+    End Sub
+
+    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        Cursor = Cursors.WaitCursor
+        view_prod_order_rec()
+        Cursor = Cursors.Default
+    End Sub
+    Sub view_prod_order_rec()
+        Dim query_where As String = ""
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            query_where += " AND f.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+
+        Try
+            date_from_selected = Date.Parse(DEFromRec.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Try
+            date_until_selected = Date.Parse(DEUntilRec.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim query = "SELECT dsg.design_display_name,dsg.design_code,a.id_report_status,h.report_status, g.id_season,g.season,a.id_prod_order_rec,a.prod_order_rec_number, 
+                    (a.delivery_order_date) AS delivery_order_date,a.delivery_order_number,b.prod_order_number, DATE_ADD(b.prod_order_date, INTERVAL b.prod_order_lead_time DAY) AS po_est_rec_date,
+                    (a.prod_order_rec_date) AS prod_order_rec_date, CONCAT(f.comp_number,' - ',f.comp_name) AS comp_from, CONCAT(d.comp_number,' - ',d.comp_name) AS comp_to, (dsg.design_display_name) AS NAME, po_type.po_type 
+                    ,DATEDIFF(a.prod_order_rec_date,DATE_ADD(b.prod_order_date, INTERVAL b.prod_order_lead_time DAY)) AS late_rec_qc,
+                    DATEDIFF(a.delivery_order_date,DATE_ADD(b.prod_order_date, INTERVAL b.prod_order_lead_time DAY)) AS late_vendor,
+                    DATE_ADD(b.prod_order_date, INTERVAL b.prod_order_lead_time DAY) AS est_po_rec
+                    FROM tb_prod_order_rec a  
+                    INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order 
+                    INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_comp_contact_to 
+                    INNER JOIN tb_m_comp d ON d.id_comp = c.id_comp 
+                    INNER JOIN tb_m_comp_contact e ON e.id_comp_contact = a.id_comp_contact_from  
+                    INNER JOIN tb_m_comp f ON f.id_comp = e.id_comp
+                    INNER JOIN tb_season_delivery i ON b.id_delivery = i.id_delivery 
+                    INNER JOIN tb_season g ON g.id_season = i.id_season 
+                    INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status 
+                    INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design 
+                    INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design 
+                    INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type 
+                    WHERE (a.prod_order_rec_date>='" + date_from_selected + "' AND a.prod_order_rec_date<='" + date_until_selected + "')
+                    " + query_where
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCProdRec.DataSource = data
+    End Sub
+    Sub viewVendor()
+        Dim query As String = ""
+        query += "SELECT ('0') AS id_comp, ('-') AS comp_number, ('All Vendor') AS comp_name, ('ALL Vendor') AS comp_name_label UNION ALL "
+        query += "SELECT comp.id_comp,comp.comp_number, comp.comp_name, CONCAT_WS(' - ', comp.comp_number,comp.comp_name) AS comp_name_label FROM tb_m_comp comp "
+        query += "WHERE comp.id_comp_cat='1'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        SLEVendor.Properties.DataSource = Nothing
+        SLEVendor.Properties.DataSource = data
+        SLEVendor.Properties.DisplayMember = "comp_name_label"
+        SLEVendor.Properties.ValueMember = "id_comp"
+        If data.Rows.Count.ToString >= 1 Then
+            SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
+        Else
+            SLEVendor.EditValue = Nothing
+        End If
     End Sub
 End Class
