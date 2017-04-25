@@ -126,10 +126,17 @@
         Catch ex As Exception
         End Try
     End Sub
-    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+
+    Private Sub BBPrintChecked_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPrintChecked.ItemClick
         Cursor = Cursors.WaitCursor
         GVMenu.ActiveFilterString = "[is_select]='Yes'"
-        print(GCMenu, "Access Menu")
+        print_no_footer(GCMenu, "Selected Menu Access")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BBPrintAll_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPrintAll.ItemClick
+        Cursor = Cursors.WaitCursor
+        print_no_footer(GCMenu, "Menu Access")
         Cursor = Cursors.Default
     End Sub
 End Class
