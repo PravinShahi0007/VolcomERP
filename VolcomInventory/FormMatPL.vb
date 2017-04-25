@@ -40,7 +40,7 @@
     End Sub
 
     Sub viewPL()
-        Dim query As String = "SELECT a.id_pl_mrs ,m.design_name,m.design_display_name,k.prod_order_number,a.id_comp_contact_from , a.id_comp_contact_to, a.pl_mrs_note, a.pl_mrs_number, "
+        Dim query As String = "SELECT a.id_pl_mrs,m.design_code,m.design_name,m.design_display_name,k.prod_order_number,a.id_comp_contact_from , a.id_comp_contact_to, a.pl_mrs_note, a.pl_mrs_number, "
         query += "(d.comp_name) AS comp_name_from, (f.comp_name) AS comp_name_to, h.report_status, a.id_report_status,j.prod_order_wo_number,i.prod_order_mrs_number, "
         query += "a.pl_mrs_date, a.id_report_status FROM tb_pl_mrs a "
         query += "INNER JOIN tb_m_comp_contact c ON a.id_comp_contact_from = c.id_comp_contact "
@@ -100,7 +100,7 @@
             query_status = "AND IFNULL(jum_pl.jum_pl,0)<=0 "
         End If
 
-        Dim query = "SELECT a.id_prod_order_mrs,m.design_name,m.design_display_name,k.prod_order_number,a.prod_order_mrs_number,a.id_report_status,h.report_status,a.id_prod_order_wo,b.prod_order_wo_number, 
+        Dim query = "SELECT a.id_prod_order_mrs,m.design_code,m.design_name,m.design_display_name,k.prod_order_number,a.prod_order_mrs_number,a.id_report_status,h.report_status,a.id_prod_order_wo,b.prod_order_wo_number, 
                     d.comp_name AS comp_name_req_from,c.id_comp_contact AS id_comp_name_req_from, 
                     f.comp_name AS comp_name_req_to,e.id_comp_contact AS id_comp_name_req_to, 
                     a.prod_order_mrs_date 
