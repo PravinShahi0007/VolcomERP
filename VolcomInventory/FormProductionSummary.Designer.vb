@@ -143,6 +143,40 @@ Partial Class FormProductionSummary
         Me.DEFromMat = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPFGPO = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCProdRec = New DevExpress.XtraGrid.GridControl()
+        Me.GVProdRec = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnRecVendor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdPRodOrderRecPurc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColRecNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.ColPSONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIDStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStyleCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEstRecDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.DEUntilRec = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromRec = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.SimpleButton6 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton7 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSum, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSum.SuspendLayout()
         Me.XTPDesign.SuspendLayout()
@@ -174,6 +208,21 @@ Partial Class FormProductionSummary
         CType(Me.DEUntilMat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromMat.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromMat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPFGPO.SuspendLayout()
+        CType(Me.GCProdRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProdRec, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl3.SuspendLayout()
+        CType(Me.DEUntilRec.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntilRec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromRec.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromRec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCSum
@@ -185,7 +234,7 @@ Partial Class FormProductionSummary
         Me.XTCSum.SelectedTabPage = Me.XTPDesign
         Me.XTCSum.Size = New System.Drawing.Size(772, 444)
         Me.XTCSum.TabIndex = 0
-        Me.XTCSum.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPPD, Me.XTPPOMat})
+        Me.XTCSum.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDesign, Me.XTPPD, Me.XTPPOMat, Me.XTPFGPO})
         '
         'XTPDesign
         '
@@ -1444,6 +1493,316 @@ Partial Class FormProductionSummary
         Me.LabelControl6.TabIndex = 8892
         Me.LabelControl6.Text = "From"
         '
+        'XTPFGPO
+        '
+        Me.XTPFGPO.Controls.Add(Me.GCProdRec)
+        Me.XTPFGPO.Controls.Add(Me.GroupControl3)
+        Me.XTPFGPO.Name = "XTPFGPO"
+        Me.XTPFGPO.Size = New System.Drawing.Size(766, 416)
+        Me.XTPFGPO.Text = "Receiving FG PO"
+        '
+        'GCProdRec
+        '
+        Me.GCProdRec.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCProdRec.Location = New System.Drawing.Point(0, 39)
+        Me.GCProdRec.MainView = Me.GVProdRec
+        Me.GCProdRec.Name = "GCProdRec"
+        Me.GCProdRec.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemTextEdit1})
+        Me.GCProdRec.Size = New System.Drawing.Size(766, 377)
+        Me.GCProdRec.TabIndex = 3
+        Me.GCProdRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdRec, Me.GridView3})
+        '
+        'GVProdRec
+        '
+        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnRecVendor, Me.ColIdPRodOrderRecPurc, Me.ColRecNumber, Me.ColRecDate, Me.ColDueDate, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.ColStatus, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnEstRecDate, Me.GridColumn13, Me.GridColumn14})
+        Me.GVProdRec.GridControl = Me.GCProdRec
+        Me.GVProdRec.Name = "GVProdRec"
+        Me.GVProdRec.OptionsBehavior.Editable = False
+        Me.GVProdRec.OptionsFind.AlwaysVisible = True
+        Me.GVProdRec.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnRecVendor
+        '
+        Me.GridColumnRecVendor.Caption = "Vendor"
+        Me.GridColumnRecVendor.FieldName = "comp_from"
+        Me.GridColumnRecVendor.Name = "GridColumnRecVendor"
+        Me.GridColumnRecVendor.Visible = True
+        Me.GridColumnRecVendor.VisibleIndex = 0
+        '
+        'ColIdPRodOrderRecPurc
+        '
+        Me.ColIdPRodOrderRecPurc.Caption = "ID Prod Order Rec"
+        Me.ColIdPRodOrderRecPurc.FieldName = "id_prod_order_rec"
+        Me.ColIdPRodOrderRecPurc.Name = "ColIdPRodOrderRecPurc"
+        '
+        'ColRecNumber
+        '
+        Me.ColRecNumber.Caption = "Number"
+        Me.ColRecNumber.FieldName = "prod_order_rec_number"
+        Me.ColRecNumber.Name = "ColRecNumber"
+        Me.ColRecNumber.Visible = True
+        Me.ColRecNumber.VisibleIndex = 1
+        Me.ColRecNumber.Width = 67
+        '
+        'ColRecDate
+        '
+        Me.ColRecDate.Caption = "Receive Date"
+        Me.ColRecDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.ColRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.ColRecDate.FieldName = "prod_order_rec_date"
+        Me.ColRecDate.Name = "ColRecDate"
+        Me.ColRecDate.Visible = True
+        Me.ColRecDate.VisibleIndex = 7
+        Me.ColRecDate.Width = 104
+        '
+        'ColDueDate
+        '
+        Me.ColDueDate.Caption = "Delivery Order Date"
+        Me.ColDueDate.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.ColDueDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.ColDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.ColDueDate.FieldName = "delivery_order_date"
+        Me.ColDueDate.Name = "ColDueDate"
+        Me.ColDueDate.Visible = True
+        Me.ColDueDate.VisibleIndex = 9
+        Me.ColDueDate.Width = 115
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        Me.RepositoryItemTextEdit1.NullText = "-"
+        '
+        'ColPSONumber
+        '
+        Me.ColPSONumber.Caption = "FG PO No"
+        Me.ColPSONumber.FieldName = "prod_order_number"
+        Me.ColPSONumber.Name = "ColPSONumber"
+        Me.ColPSONumber.Visible = True
+        Me.ColPSONumber.VisibleIndex = 2
+        Me.ColPSONumber.Width = 68
+        '
+        'ColDONumber
+        '
+        Me.ColDONumber.Caption = "DO Number"
+        Me.ColDONumber.FieldName = "delivery_order_number"
+        Me.ColDONumber.Name = "ColDONumber"
+        Me.ColDONumber.Visible = True
+        Me.ColDONumber.VisibleIndex = 5
+        Me.ColDONumber.Width = 81
+        '
+        'ColIDStatus
+        '
+        Me.ColIDStatus.Caption = "ID Status"
+        Me.ColIDStatus.FieldName = "id_report_status"
+        Me.ColIDStatus.Name = "ColIDStatus"
+        '
+        'ColStatus
+        '
+        Me.ColStatus.Caption = "Status"
+        Me.ColStatus.FieldName = "report_status"
+        Me.ColStatus.Name = "ColStatus"
+        Me.ColStatus.Visible = True
+        Me.ColStatus.VisibleIndex = 11
+        Me.ColStatus.Width = 76
+        '
+        'GridColumnName
+        '
+        Me.GridColumnName.Caption = "Style"
+        Me.GridColumnName.FieldName = "design_display_name"
+        Me.GridColumnName.Name = "GridColumnName"
+        Me.GridColumnName.Visible = True
+        Me.GridColumnName.VisibleIndex = 3
+        Me.GridColumnName.Width = 68
+        '
+        'GridColumnStyleCode
+        '
+        Me.GridColumnStyleCode.Caption = "Style Code"
+        Me.GridColumnStyleCode.FieldName = "design_code"
+        Me.GridColumnStyleCode.Name = "GridColumnStyleCode"
+        Me.GridColumnStyleCode.Visible = True
+        Me.GridColumnStyleCode.VisibleIndex = 4
+        '
+        'GridColumnEstRecDate
+        '
+        Me.GridColumnEstRecDate.Caption = "Est. Receive Date"
+        Me.GridColumnEstRecDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnEstRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnEstRecDate.FieldName = "est_po_rec"
+        Me.GridColumnEstRecDate.Name = "GridColumnEstRecDate"
+        Me.GridColumnEstRecDate.Visible = True
+        Me.GridColumnEstRecDate.VisibleIndex = 6
+        Me.GridColumnEstRecDate.Width = 94
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Different (Receiving Date)"
+        Me.GridColumn13.FieldName = "late_rec_qc"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 8
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Different (Delivery Date)"
+        Me.GridColumn14.FieldName = "late_vendor"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 10
+        '
+        'RepositoryItemDateEdit1
+        '
+        Me.RepositoryItemDateEdit1.AutoHeight = False
+        Me.RepositoryItemDateEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
+        Me.RepositoryItemDateEdit1.NullText = "-"
+        '
+        'GridView3
+        '
+        Me.GridView3.GridControl = Me.GCProdRec
+        Me.GridView3.Name = "GridView3"
+        '
+        'GroupControl3
+        '
+        Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.DEUntilRec)
+        Me.GroupControl3.Controls.Add(Me.DEFromRec)
+        Me.GroupControl3.Controls.Add(Me.LabelControl8)
+        Me.GroupControl3.Controls.Add(Me.LabelControl9)
+        Me.GroupControl3.Controls.Add(Me.SLEVendor)
+        Me.GroupControl3.Controls.Add(Me.BSearch)
+        Me.GroupControl3.Controls.Add(Me.LabelControl7)
+        Me.GroupControl3.Controls.Add(Me.SimpleButton6)
+        Me.GroupControl3.Controls.Add(Me.SimpleButton7)
+        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl3.Name = "GroupControl3"
+        Me.GroupControl3.Size = New System.Drawing.Size(766, 39)
+        Me.GroupControl3.TabIndex = 6
+        '
+        'DEUntilRec
+        '
+        Me.DEUntilRec.EditValue = Nothing
+        Me.DEUntilRec.Location = New System.Drawing.Point(442, 8)
+        Me.DEUntilRec.Name = "DEUntilRec"
+        Me.DEUntilRec.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntilRec.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEUntilRec.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntilRec.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilRec.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEUntilRec.Size = New System.Drawing.Size(111, 20)
+        Me.DEUntilRec.TabIndex = 8914
+        '
+        'DEFromRec
+        '
+        Me.DEFromRec.EditValue = Nothing
+        Me.DEFromRec.Location = New System.Drawing.Point(298, 8)
+        Me.DEFromRec.Name = "DEFromRec"
+        Me.DEFromRec.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromRec.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromRec.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromRec.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromRec.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFromRec.Size = New System.Drawing.Size(111, 20)
+        Me.DEFromRec.TabIndex = 8913
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(415, 11)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(21, 13)
+        Me.LabelControl8.TabIndex = 8912
+        Me.LabelControl8.Text = "Until"
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(266, 11)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl9.TabIndex = 8911
+        Me.LabelControl9.Text = "From"
+        '
+        'SLEVendor
+        '
+        Me.SLEVendor.Location = New System.Drawing.Point(63, 8)
+        Me.SLEVendor.Name = "SLEVendor"
+        Me.SLEVendor.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEVendor.Properties.Appearance.Options.UseFont = True
+        Me.SLEVendor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEVendor.Properties.View = Me.GridView14
+        Me.SLEVendor.Size = New System.Drawing.Size(197, 20)
+        Me.SLEVendor.TabIndex = 8910
+        '
+        'GridView14
+        '
+        Me.GridView14.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn10, Me.GridColumn11, Me.GridColumn12})
+        Me.GridView14.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView14.Name = "GridView14"
+        Me.GridView14.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView14.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Id Comp"
+        Me.GridColumn10.FieldName = "id_comp"
+        Me.GridColumn10.Name = "GridColumn10"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Comp Number"
+        Me.GridColumn11.FieldName = "comp_number"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 0
+        Me.GridColumn11.Width = 188
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Comp Name"
+        Me.GridColumn12.FieldName = "comp_name"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 1
+        Me.GridColumn12.Width = 504
+        '
+        'BSearch
+        '
+        Me.BSearch.Location = New System.Drawing.Point(559, 7)
+        Me.BSearch.Name = "BSearch"
+        Me.BSearch.Size = New System.Drawing.Size(59, 23)
+        Me.BSearch.TabIndex = 8908
+        Me.BSearch.Text = "Search"
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(23, 11)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl7.TabIndex = 8907
+        Me.LabelControl7.Text = "Vendor"
+        '
+        'SimpleButton6
+        '
+        Me.SimpleButton6.ImageIndex = 9
+        Me.SimpleButton6.Location = New System.Drawing.Point(938, 14)
+        Me.SimpleButton6.Name = "SimpleButton6"
+        Me.SimpleButton6.Size = New System.Drawing.Size(104, 20)
+        Me.SimpleButton6.TabIndex = 8898
+        Me.SimpleButton6.Text = "Hide All Detail"
+        Me.SimpleButton6.Visible = False
+        '
+        'SimpleButton7
+        '
+        Me.SimpleButton7.ImageIndex = 8
+        Me.SimpleButton7.Location = New System.Drawing.Point(835, 14)
+        Me.SimpleButton7.Name = "SimpleButton7"
+        Me.SimpleButton7.Size = New System.Drawing.Size(99, 20)
+        Me.SimpleButton7.TabIndex = 8897
+        Me.SimpleButton7.Text = "Expand All Detail"
+        Me.SimpleButton7.Visible = False
+        '
         'FormProductionSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1489,6 +1848,22 @@ Partial Class FormProductionSummary
         CType(Me.DEUntilMat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromMat.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromMat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPFGPO.ResumeLayout(False)
+        CType(Me.GCProdRec, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProdRec, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl3.ResumeLayout(False)
+        Me.GroupControl3.PerformLayout()
+        CType(Me.DEUntilRec.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntilRec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromRec.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromRec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1617,4 +1992,38 @@ Partial Class FormProductionSummary
     Friend WithEvents GridColumnMatTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMatCur As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMatKurs As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPFGPO As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCProdRec As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVProdRec As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents ColIdPRodOrderRecPurc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColRecNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColRecDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColDueDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents ColPSONumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColDONumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColIDStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ColStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents SimpleButton6 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton7 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SLEVendor As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView14 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEUntilRec As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DEFromRec As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnStyleCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEstRecDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRecVendor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
