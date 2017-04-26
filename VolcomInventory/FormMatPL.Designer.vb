@@ -55,6 +55,7 @@ Partial Class FormMatPL
         Me.GridColumnWONumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMRSNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMRSDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMRSDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn42 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RCIPLCreated = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -126,7 +127,6 @@ Partial Class FormMatPL
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar2 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
-        Me.GridColumnMRSDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPL.SuspendLayout()
         Me.XTPProduction.SuspendLayout()
@@ -302,6 +302,7 @@ Partial Class FormMatPL
         'GridColumnDesignCode
         '
         Me.GridColumnDesignCode.Caption = "Design Code"
+        Me.GridColumnDesignCode.FieldName = "design_code"
         Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
         Me.GridColumnDesignCode.Visible = True
         Me.GridColumnDesignCode.VisibleIndex = 4
@@ -456,6 +457,15 @@ Partial Class FormMatPL
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 74
+        '
+        'GridColumnMRSDesignCode
+        '
+        Me.GridColumnMRSDesignCode.Caption = "Design Code"
+        Me.GridColumnMRSDesignCode.FieldName = "design_code"
+        Me.GridColumnMRSDesignCode.Name = "GridColumnMRSDesignCode"
+        Me.GridColumnMRSDesignCode.Visible = True
+        Me.GridColumnMRSDesignCode.VisibleIndex = 2
+        Me.GridColumnMRSDesignCode.Width = 76
         '
         'GridColumnMRSDesign
         '
@@ -1043,15 +1053,6 @@ Partial Class FormMatPL
         Me.RepositoryItemProgressBar2.ShowTitle = True
         Me.RepositoryItemProgressBar2.StartColor = System.Drawing.Color.Green
         Me.RepositoryItemProgressBar2.Step = 1
-        '
-        'GridColumnMRSDesignCode
-        '
-        Me.GridColumnMRSDesignCode.Caption = "Design Code"
-        Me.GridColumnMRSDesignCode.FieldName = "design_code"
-        Me.GridColumnMRSDesignCode.Name = "GridColumnMRSDesignCode"
-        Me.GridColumnMRSDesignCode.Visible = True
-        Me.GridColumnMRSDesignCode.VisibleIndex = 2
-        Me.GridColumnMRSDesignCode.Width = 76
         '
         'FormMatPL
         '
