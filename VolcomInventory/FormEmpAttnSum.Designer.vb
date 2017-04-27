@@ -125,6 +125,7 @@ Partial Class FormEmpAttnSum
         Me.DEStartSum = New DevExpress.XtraEditors.DateEdit()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BViewSum = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn68 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCReportAttendance, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReportAttendance.SuspendLayout()
         Me.XTPMonthly.SuspendLayout()
@@ -670,7 +671,7 @@ Partial Class FormEmpAttnSum
         '
         'GVListSchedule
         '
-        Me.GVListSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67})
+        Me.GVListSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.GridColumn32, Me.GridColumn42, Me.GridColumn43, Me.GridColumn44, Me.GridColumn45, Me.GridColumn46, Me.GridColumn47, Me.GridColumn48, Me.GridColumn68, Me.GridColumn49, Me.GridColumn50, Me.GridColumn51, Me.GridColumn52, Me.GridColumn53, Me.GridColumn54, Me.GridColumn55, Me.GridColumn56, Me.GridColumn57, Me.GridColumn58, Me.GridColumn59, Me.GridColumn60, Me.GridColumn61, Me.GridColumn62, Me.GridColumn63, Me.GridColumn64, Me.GridColumn65, Me.GridColumn66, Me.GridColumn67})
         Me.GVListSchedule.GridControl = Me.GCListSchedule
         Me.GVListSchedule.GroupCount = 2
         Me.GVListSchedule.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "work_hour", Me.GridColumn58, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "actual_work_hour", Me.GridColumn59, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "late", Me.GridColumn60, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over", Me.GridColumn61, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", Me.GridColumn62, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over_break", Me.GridColumn63, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "present", Me.GridColumn64, "{0:0.##}")})
@@ -730,7 +731,7 @@ Partial Class FormEmpAttnSum
         Me.GridColumn42.FieldName = "employee_active"
         Me.GridColumn42.Name = "GridColumn42"
         Me.GridColumn42.Visible = True
-        Me.GridColumn42.VisibleIndex = 11
+        Me.GridColumn42.VisibleIndex = 12
         '
         'GridColumn43
         '
@@ -795,7 +796,7 @@ Partial Class FormEmpAttnSum
         Me.GridColumn49.FieldName = "break_out"
         Me.GridColumn49.Name = "GridColumn49"
         Me.GridColumn49.Visible = True
-        Me.GridColumn49.VisibleIndex = 6
+        Me.GridColumn49.VisibleIndex = 7
         '
         'GridColumn50
         '
@@ -805,7 +806,7 @@ Partial Class FormEmpAttnSum
         Me.GridColumn50.FieldName = "break_in"
         Me.GridColumn50.Name = "GridColumn50"
         Me.GridColumn50.Visible = True
-        Me.GridColumn50.VisibleIndex = 7
+        Me.GridColumn50.VisibleIndex = 8
         '
         'GridColumn51
         '
@@ -813,7 +814,7 @@ Partial Class FormEmpAttnSum
         Me.GridColumn51.FieldName = "note"
         Me.GridColumn51.Name = "GridColumn51"
         Me.GridColumn51.Visible = True
-        Me.GridColumn51.VisibleIndex = 8
+        Me.GridColumn51.VisibleIndex = 9
         '
         'GridColumn52
         '
@@ -821,7 +822,7 @@ Partial Class FormEmpAttnSum
         Me.GridColumn52.FieldName = "schedule_type"
         Me.GridColumn52.Name = "GridColumn52"
         Me.GridColumn52.Visible = True
-        Me.GridColumn52.VisibleIndex = 9
+        Me.GridColumn52.VisibleIndex = 10
         '
         'GridColumn53
         '
@@ -831,7 +832,7 @@ Partial Class FormEmpAttnSum
         Me.GridColumn53.FieldName = "date"
         Me.GridColumn53.Name = "GridColumn53"
         Me.GridColumn53.Visible = True
-        Me.GridColumn53.VisibleIndex = 10
+        Me.GridColumn53.VisibleIndex = 11
         '
         'GridColumn54
         '
@@ -1074,6 +1075,15 @@ Partial Class FormEmpAttnSum
         Me.BViewSum.TabIndex = 1
         Me.BViewSum.Text = "view"
         '
+        'GridColumn68
+        '
+        Me.GridColumn68.Caption = "Early Out Tolerance"
+        Me.GridColumn68.FieldName = "out_tolerance"
+        Me.GridColumn68.Name = "GridColumn68"
+        Me.GridColumn68.Visible = True
+        Me.GridColumn68.VisibleIndex = 6
+        Me.GridColumn68.Width = 117
+        '
         'FormEmpAttnSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1218,4 +1228,5 @@ Partial Class FormEmpAttnSum
     Friend WithEvents GridColumn67 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCScheduleTable As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVScheduleTable As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
