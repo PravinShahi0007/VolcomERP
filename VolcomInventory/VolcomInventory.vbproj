@@ -1085,6 +1085,18 @@
     <Compile Include="FormPopUpSalesDel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdDuty.Designer.vb">
+      <DependentUpon>FormProdDuty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDuty.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdDutyVar.Designer.vb">
+      <DependentUpon>FormProdDutyVar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDutyVar.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionCOPDet.Designer.vb">
       <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
     </Compile>
@@ -5129,6 +5141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpSalesDel.resx">
       <DependentUpon>FormPopUpSalesDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDuty.resx">
+      <DependentUpon>FormProdDuty.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDutyVar.resx">
+      <DependentUpon>FormProdDutyVar.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionCOPDet.resx">
       <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
