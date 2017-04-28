@@ -81,4 +81,11 @@
             GVProd.ExpandAllGroups()
         End If
     End Sub
+
+    Private Sub SMEdit_Click(sender As Object, e As EventArgs) Handles SMEdit.Click
+        If GVProd.RowCount > 0 Then
+            FormProdDutyVar.id_prod_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+            FormProdDutyVar.ShowDialog()
+        End If
+    End Sub
 End Class
