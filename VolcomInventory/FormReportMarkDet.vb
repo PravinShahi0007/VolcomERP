@@ -20,7 +20,7 @@
                 'update all to 2
                 reset_is_use_mark(id_report_mark, "2")
                 'set accept or refuse is use to 1
-                query = String.Format("UPDATE tb_report_mark SET id_mark='2',is_use='1',report_mark_note='{1}',report_mark_datetime=NOW() WHERE id_report_mark='{0}'", FormReportMark.GVMark.GetFocusedRowCellDisplayText("id_report_mark").ToString, MEComment.Text)
+                query = String.Format("UPDATE tb_report_mark SET id_mark='2',is_use='1',report_mark_note='{1}',report_mark_datetime=NOW() WHERE id_report_mark='{0}'", FormReportMark.GVMark.GetFocusedRowCellDisplayText("id_report_mark").ToString, addSlashes(MEComment.Text))
                 execute_non_query(query, True, "", "", "", "")
                 ' here auto approve
                 Dim id_status_reportx As String = FormReportMark.GVMark.GetFocusedRowCellValue("id_report_status").ToString
@@ -67,7 +67,7 @@
             'update all to 2
             reset_is_use_mark(id_report_mark, "2")
             'set accept or refuse is use to 1
-            query = String.Format("UPDATE tb_report_mark SET id_mark='3',is_use='1',report_mark_note='{1}',report_mark_datetime=NOW() WHERE id_report_mark='{0}'", FormReportMark.GVMark.GetFocusedRowCellDisplayText("id_report_mark").ToString, MEComment.Text)
+            query = String.Format("UPDATE tb_report_mark SET id_mark='3',is_use='1',report_mark_note='{1}',report_mark_datetime=NOW() WHERE id_report_mark='{0}'", FormReportMark.GVMark.GetFocusedRowCellDisplayText("id_report_mark").ToString, addSlashes(MEComment.Text))
             execute_non_query(query, True, "", "", "", "")
             FormReportMark.view_mark()
             FormReportMark.sendNotif("2")
