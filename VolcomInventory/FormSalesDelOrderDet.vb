@@ -181,15 +181,7 @@ Public Class FormSalesDelOrderDet
             'action
             Dim query As String = "CALL view_sales_order_limit('" + id_sales_order + "', '0', '0')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-            Dim id_product_param As String = ""
-            For i As Integer = 0 To (data.Rows.Count - 1)
-                id_product_param += data.Rows(i)("id_product").ToString
-                If i < (data.Rows.Count - 1) Then
-                    id_product_param += ";"
-                End If
-            Next
             GCItemList.DataSource = data
-            codeAvailableIns(id_product_param)
         ElseIf action = "upd" Then
             id_pl_sales_order_del_det_list.Clear()
             Dim query As String = "CALL view_pl_sales_order_del('" + id_pl_sales_order_del + "')"
@@ -324,7 +316,7 @@ Public Class FormSalesDelOrderDet
         Dim query_not As String = query_c.queryOldDesignCode(id_product_param)
         Dim data_not As DataTable = execute_query(query_not, -1, True, "", "", "", "")
 
-        'merge
+        'merge with not unique
         If data_not.Rows.Count > 0 Then
             If dt.Rows.Count = 0 Then
                 dt = data_not
@@ -332,6 +324,8 @@ Public Class FormSalesDelOrderDet
                 dt.Merge(data_not)
             End If
         End If
+
+        'merge with unique unregistered
     End Sub
 
     Sub codeAvailableDel(ByVal id_product_param As String)
@@ -806,9 +800,23 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
+        loadCodeDetail()
         disableControl()
         newRowsBc()
         'allowDelete()
+    End Sub
+
+    Sub loadCodeDetail()
+        Cursor = Cursors.WaitCursor
+        Dim id_product_param As String = ""
+        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+            id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
+            If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
+                id_product_param += ";"
+            End If
+        Next
+        codeAvailableIns(id_product_param)
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BStop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BStop.Click
