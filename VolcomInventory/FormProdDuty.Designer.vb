@@ -45,6 +45,8 @@ Partial Class FormProdDuty
         Me.BandedGridColumnFOB = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPIBNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPIBDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnPIBDueDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnPIBPRDueDate = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDutyP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSDP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSVATP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -66,6 +68,10 @@ Partial Class FormProdDuty
         Me.BandedGridColumnDiffRoyD = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiffAmoRoyS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiffAmoRoyD = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnDutyPaid = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RICEDutyPaid = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.BandedGridColumnPRProposed = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.RICEPRProposed = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -97,6 +103,8 @@ Partial Class FormProdDuty
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEDutyPaid, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICEPRProposed, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -115,7 +123,7 @@ Partial Class FormProdDuty
         Me.GCProd.Location = New System.Drawing.Point(0, 38)
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
-        Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit})
+        Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit, Me.RICEPRProposed, Me.RICEDutyPaid})
         Me.GCProd.Size = New System.Drawing.Size(889, 294)
         Me.GCProd.TabIndex = 4
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
@@ -135,7 +143,7 @@ Partial Class FormProdDuty
         'GVProd
         '
         Me.GVProd.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7})
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnVendorCode, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnDesign, Me.BandedGridColumnColor, Me.BandedGridColumnFOB, Me.BandedGridColumnPIBNo, Me.BandedGridColumnPIBDate, Me.BandedGridColumnDutyP, Me.BandedGridColumnSDP, Me.BandedGridColumnSVATP, Me.BandedGridColumnSRP, Me.BandedGridColumnSTP, Me.GridColumnOrderQty, Me.BandedGridColumn1, Me.BandedGridColumnEst, Me.BandedGridColumnEstRoyS, Me.BandedGridColumnEstRoyD, Me.BandedGridColumnEstRoySA, Me.BandedGridColumnEstRoyDA, Me.BandedGridColumnFinal, Me.BandedGridColumnFinalRoyS, Me.BandedGridColumnFinalRoyD, Me.BandedGridColumnFinalRoySA, Me.BandedGridColumnFinalRoyDA, Me.BandedGridColumnDiffPrice, Me.BandedGridColumnDiffRoyS, Me.BandedGridColumnDiffRoyD, Me.BandedGridColumnDiffAmoRoyS, Me.BandedGridColumnDiffAmoRoyD, Me.GridColumnCode, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnVendorCode, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnDesign, Me.BandedGridColumnColor, Me.BandedGridColumnFOB, Me.BandedGridColumnPIBNo, Me.BandedGridColumnPIBDate, Me.BandedGridColumnPIBDueDate, Me.BandedGridColumnPIBPRDueDate, Me.BandedGridColumnDutyPaid, Me.BandedGridColumnPRProposed, Me.BandedGridColumnDutyP, Me.BandedGridColumnSDP, Me.BandedGridColumnSVATP, Me.BandedGridColumnSRP, Me.BandedGridColumnSTP, Me.GridColumnOrderQty, Me.BandedGridColumn1, Me.BandedGridColumnEst, Me.BandedGridColumnEstRoyS, Me.BandedGridColumnEstRoyD, Me.BandedGridColumnEstRoySA, Me.BandedGridColumnEstRoyDA, Me.BandedGridColumnFinal, Me.BandedGridColumnFinalRoyS, Me.BandedGridColumnFinalRoyD, Me.BandedGridColumnFinalRoySA, Me.BandedGridColumnFinalRoyDA, Me.BandedGridColumnDiffPrice, Me.BandedGridColumnDiffRoyS, Me.BandedGridColumnDiffRoyD, Me.BandedGridColumnDiffAmoRoyS, Me.BandedGridColumnDiffAmoRoyD, Me.GridColumnCode, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 2
         Me.GVProd.Name = "GVProd"
@@ -305,6 +313,7 @@ Partial Class FormProdDuty
         Me.BandedGridColumnPIBNo.FieldName = "pib_no"
         Me.BandedGridColumnPIBNo.Name = "BandedGridColumnPIBNo"
         Me.BandedGridColumnPIBNo.Visible = True
+        Me.BandedGridColumnPIBNo.Width = 85
         '
         'BandedGridColumnPIBDate
         '
@@ -314,6 +323,27 @@ Partial Class FormProdDuty
         Me.BandedGridColumnPIBDate.FieldName = "pib_date"
         Me.BandedGridColumnPIBDate.Name = "BandedGridColumnPIBDate"
         Me.BandedGridColumnPIBDate.Visible = True
+        Me.BandedGridColumnPIBDate.Width = 85
+        '
+        'BandedGridColumnPIBDueDate
+        '
+        Me.BandedGridColumnPIBDueDate.Caption = "PIB Due Date"
+        Me.BandedGridColumnPIBDueDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumnPIBDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumnPIBDueDate.FieldName = "pib_due_date"
+        Me.BandedGridColumnPIBDueDate.Name = "BandedGridColumnPIBDueDate"
+        Me.BandedGridColumnPIBDueDate.Visible = True
+        Me.BandedGridColumnPIBDueDate.Width = 85
+        '
+        'BandedGridColumnPIBPRDueDate
+        '
+        Me.BandedGridColumnPIBPRDueDate.Caption = "PIB PR Due Date"
+        Me.BandedGridColumnPIBPRDueDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.BandedGridColumnPIBPRDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.BandedGridColumnPIBPRDueDate.FieldName = "pib_pr_due_date"
+        Me.BandedGridColumnPIBPRDueDate.Name = "BandedGridColumnPIBPRDueDate"
+        Me.BandedGridColumnPIBPRDueDate.Visible = True
+        Me.BandedGridColumnPIBPRDueDate.Width = 102
         '
         'BandedGridColumnDutyP
         '
@@ -590,6 +620,38 @@ Partial Class FormProdDuty
         Me.BandedGridColumnDiffAmoRoyD.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnDiffAmoRoyD.Visible = True
         '
+        'BandedGridColumnDutyPaid
+        '
+        Me.BandedGridColumnDutyPaid.Caption = "Payment Completed"
+        Me.BandedGridColumnDutyPaid.ColumnEdit = Me.RICEDutyPaid
+        Me.BandedGridColumnDutyPaid.FieldName = "duty_is_pay"
+        Me.BandedGridColumnDutyPaid.Name = "BandedGridColumnDutyPaid"
+        Me.BandedGridColumnDutyPaid.Visible = True
+        Me.BandedGridColumnDutyPaid.Width = 104
+        '
+        'RICEDutyPaid
+        '
+        Me.RICEDutyPaid.AutoHeight = False
+        Me.RICEDutyPaid.Name = "RICEDutyPaid"
+        Me.RICEDutyPaid.ValueChecked = "yes"
+        Me.RICEDutyPaid.ValueUnchecked = "no"
+        '
+        'BandedGridColumnPRProposed
+        '
+        Me.BandedGridColumnPRProposed.Caption = "PR Proposed"
+        Me.BandedGridColumnPRProposed.ColumnEdit = Me.RICEPRProposed
+        Me.BandedGridColumnPRProposed.FieldName = "duty_is_pr_proposed"
+        Me.BandedGridColumnPRProposed.Name = "BandedGridColumnPRProposed"
+        Me.BandedGridColumnPRProposed.Visible = True
+        Me.BandedGridColumnPRProposed.Width = 85
+        '
+        'RICEPRProposed
+        '
+        Me.RICEPRProposed.AutoHeight = False
+        Me.RICEPRProposed.Name = "RICEPRProposed"
+        Me.RICEPRProposed.ValueChecked = "yes"
+        Me.RICEPRProposed.ValueUnchecked = "no"
+        '
         'RIPictureEdit
         '
         Me.RIPictureEdit.Name = "RIPictureEdit"
@@ -822,9 +884,13 @@ Partial Class FormProdDuty
         Me.gridBand3.Caption = "PIB"
         Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBNo)
         Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBDate)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBPRDueDate)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPRProposed)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBDueDate)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnDutyPaid)
         Me.gridBand3.Name = "gridBand3"
         Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 150
+        Me.gridBand3.Width = 546
         '
         'gridBand4
         '
@@ -894,6 +960,8 @@ Partial Class FormProdDuty
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEDutyPaid, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICEPRProposed, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIPictureEdit, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
@@ -975,6 +1043,12 @@ Partial Class FormProdDuty
     Friend WithEvents BandedGridColumnDiffRoyD As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnDiffAmoRoyS As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnDiffAmoRoyD As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnPIBDueDate As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnPIBPRDueDate As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnDutyPaid As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumnPRProposed As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents RICEDutyPaid As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RICEPRProposed As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand

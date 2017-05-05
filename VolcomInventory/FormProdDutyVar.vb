@@ -22,6 +22,18 @@
             TESalesVAT.EditValue = data.Rows(0)("duty_sales_vat")
             TESalesThrough.EditValue = data.Rows(0)("duty_sales_thru")
             TEStoreDisc.EditValue = data.Rows(0)("duty_store_disc")
+            '
+            If data.Rows(0)("duty_is_pr_proposed").ToString = "1" Then
+                CEPayCreated.Checked = True
+            Else
+                CEPayCreated.Checked = False
+            End If
+            '
+            If data.Rows(0)("duty_is_pay").ToString = "1" Then
+                CEPaid.Checked = True
+            Else
+                CEPaid.Checked = False
+            End If
         End If
     End Sub
 
@@ -36,13 +48,28 @@
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         Dim pib_date As String = ""
 
+        Dim is_pr As String = ""
+        Dim is_paid As String = ""
+
         If DEDate.Text = "" Then
             pib_date = ",pib_date=NULL"
         Else
             pib_date = ",pib_date='" & Date.Parse(DEDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         End If
 
-        Dim query_upd As String = "UPDATE tb_prod_order SET pib_no='" & TEPIBNo.Text & "'" & pib_date & ",duty_percent='" & TEDuty.EditValue.ToString & "',duty_royalty='" & TERoyalty.EditValue.ToString & "',duty_sales_vat='" & TESalesVAT.EditValue.ToString & "',duty_sales_thru='" & TESalesThrough.EditValue.ToString & "',duty_store_disc='" & TEStoreDisc.EditValue.ToString & "' WHERE id_prod_order='" & id_prod_order & "'"
+        If CEPaid.Checked = True Then
+            is_paid = "1"
+        Else
+            is_paid = "2"
+        End If
+
+        If CEPayCreated.Checked = True Then
+            is_pr = "1"
+        Else
+            is_pr = "2"
+        End If
+
+        Dim query_upd As String = "UPDATE tb_prod_order SET pib_no='" & TEPIBNo.Text & "'" & pib_date & ",duty_percent='" & TEDuty.EditValue.ToString & "',duty_royalty='" & TERoyalty.EditValue.ToString & "',duty_sales_vat='" & TESalesVAT.EditValue.ToString & "',duty_sales_thru='" & TESalesThrough.EditValue.ToString & "',duty_store_disc='" & TEStoreDisc.EditValue.ToString & "',duty_is_pr_proposed='" & is_pr & "',duty_is_pay='" & is_paid & "' WHERE id_prod_order='" & id_prod_order & "'"
         execute_non_query(query_upd, True, "", "", "", "")
         '
         infoCustom("Variable set !")

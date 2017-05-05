@@ -264,4 +264,87 @@
             SLEVendor.EditValue = Nothing
         End If
     End Sub
+
+    Dim tot_cop_pd As Decimal = 0
+    Dim tot_cop_po As Decimal = 0
+    Dim tot_cop_final As Decimal = 0
+    Dim tot_retail_est As Decimal = 0
+    Dim tot_retail_act As Decimal = 0
+    Private Sub GVDesign_CustomSummaryCalculate(sender As Object, e As DevExpress.Data.CustomSummaryEventArgs) Handles GVDesign.CustomSummaryCalculate
+        Dim summaryID As Integer = Convert.ToInt32(CType(e.Item, DevExpress.XtraGrid.GridSummaryItem).Tag)
+        Dim View As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+
+        ' Initialization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Start Then
+            tot_cop_pd = 0.0
+            tot_cop_po = 0.0
+            tot_cop_final = 0.0
+
+            tot_retail_est = 0.0
+            tot_retail_act = 0.0
+        End If
+
+        ' Calculation 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
+            Dim cop_pd As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "cop_pd"))
+            Dim cop_po As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "cop_po"))
+            Dim cop_final As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "cop_final"))
+            Dim retail_est As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "retail_price"))
+            Dim retail_act As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "normal_price"))
+
+            tot_cop_pd += cop_pd
+            tot_cop_po += cop_po
+            tot_cop_final += cop_final
+            tot_retail_est += retail_est
+            tot_retail_act += retail_act
+        End If
+
+        ' Finalization 
+        If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Finalize Then
+            Select Case summaryID
+                Case 1 'total summary markup_pd
+                    Dim sum_markup_pd As Decimal = 0.0
+                    Try
+                        sum_markup_pd = tot_retail_est / tot_cop_pd
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_markup_pd
+                Case 2 'total summary markup_po
+                    Dim sum_markup_po As Decimal = 0.0
+                    Try
+                        sum_markup_po = tot_retail_est / tot_cop_po
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_markup_po
+                Case 3 'total summary markup_final
+                    Dim sum_markup_final As Decimal = 0.0
+                    Try
+                        sum_markup_final = tot_retail_act / tot_cop_final
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_markup_final
+                Case 4 'total group markup_pd
+                    Dim sum_markup_pd As Decimal = 0.0
+                    Try
+                        sum_markup_pd = tot_retail_est / tot_cop_pd
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_markup_pd
+                Case 5 'total group markup_po
+                    Dim sum_markup_po As Decimal = 0.0
+                    Try
+                        sum_markup_po = tot_retail_est / tot_cop_po
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_markup_po
+                Case 6 'total group markup_final
+                    Dim sum_markup_final As Decimal = 0.0
+                    Try
+                        sum_markup_final = tot_retail_act / tot_cop_final
+                    Catch ex As Exception
+                    End Try
+                    e.TotalValue = sum_markup_final
+            End Select
+        End If
+    End Sub
 End Class
