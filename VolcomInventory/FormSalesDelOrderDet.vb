@@ -326,6 +326,14 @@ Public Class FormSalesDelOrderDet
         End If
 
         'merge with unique unregistered
+        Dim data_unreg = query_c.dataUnregisteredCode(id_product_param)
+        If data_unreg.Rows.Count > 0 Then
+            If dt.Rows.Count = 0 Then
+                dt = data_unreg
+            Else
+                dt.Merge(data_unreg, True, MissingSchemaAction.Ignore)
+            End If
+        End If
     End Sub
 
     Sub codeAvailableDel(ByVal id_product_param As String)
@@ -1007,7 +1015,7 @@ Public Class FormSalesDelOrderDet
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()
                 End If
-            ElseIf is_old = "2" 'unique code
+            ElseIf is_old = "2" Or is_old = "3" 'unique code
                 'check duplicate code
                 GVBarcode.ActiveFilterString = "[code]='" + code_check + "' AND [is_fix]='2' "
                 If GVBarcode.RowCount > 0 Then
