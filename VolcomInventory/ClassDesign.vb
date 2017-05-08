@@ -74,6 +74,7 @@
             dt.Columns.Add("size")
             dt.Columns.Add("product_counting_code")
             dt.Columns.Add("product_full_code")
+            dt.Columns.Add("bom_unit_price")
             dt.Columns.Add("is_old_design")
         Catch ex As Exception
         End Try
@@ -89,6 +90,7 @@
                 R("size") = data.Rows(i)("size").ToString
                 R("product_counting_code") = combine_header_number("", j, 4)
                 R("product_full_code") = combine_header_number(data.Rows(i)("product_code").ToString, j, 4)
+                R("bom_unit_price") = data.Rows(i)("bom_unit_price")
                 R("is_old_design") = 3
                 dt.Rows.Add(R)
             Next
