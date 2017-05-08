@@ -19,6 +19,7 @@ Public Class FormSalesDelOrderDet
     'Dim is_scan As Boolean = False
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_do")
+    Dim is_save_unreg_unique As String = "-1"
 
 
     'var check qty
@@ -66,6 +67,8 @@ Public Class FormSalesDelOrderDet
                 viewSalesOrder()
             End If
 
+            'check is_save_unreg_unique (unique tdk teregister)
+            is_save_unreg_unique = get_setup_field("is_save_unreg_unique")
         ElseIf action = "upd" Then
             GroupControlListItem.Enabled = True
             GroupControlScannedItem.Enabled = True
@@ -210,7 +213,7 @@ Public Class FormSalesDelOrderDet
             query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product "
             query += "INNER JOIN tb_m_product_code cc ON cc.id_product = c.id_product "
             query += "INNER JOIN tb_m_code_detail cod ON cod.id_code_detail = cc.id_code_detail AND cod.id_code = o.id_code_product_size "
-            query += "WHERE b.id_pl_sales_order_del = '" + id_pl_sales_order_del + "' AND a.id_counting_type='1' "
+            query += "WHERE b.id_pl_sales_order_del = '" + id_pl_sales_order_del + "' "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To (data.Rows.Count - 1)
                 id_pl_sales_order_del_det_counting_list.Add(data.Rows(i)("id_pl_sales_order_del_det_counting").ToString)
@@ -316,13 +319,15 @@ Public Class FormSalesDelOrderDet
             End If
         End If
 
-        'merge with unique unregistered
-        Dim data_unreg = query_c.dataUnregisteredCode(id_product_param)
-        If data_unreg.Rows.Count > 0 Then
-            If dt.Rows.Count = 0 Then
-                dt = data_unreg
-            Else
-                dt.Merge(data_unreg, True, MissingSchemaAction.Ignore)
+        If is_save_unreg_unique = "1" Then
+            'merge with unique unregistered
+            Dim data_unreg = query_c.dataUnregisteredCode(id_product_param)
+            If data_unreg.Rows.Count > 0 Then
+                If dt.Rows.Count = 0 Then
+                    dt = data_unreg
+                Else
+                    dt.Merge(data_unreg, True, MissingSchemaAction.Ignore)
+                End If
             End If
         End If
     End Sub
