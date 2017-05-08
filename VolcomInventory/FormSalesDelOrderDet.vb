@@ -186,16 +186,7 @@ Public Class FormSalesDelOrderDet
             id_pl_sales_order_del_det_list.Clear()
             Dim query As String = "CALL view_pl_sales_order_del('" + id_pl_sales_order_del + "')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-            Dim id_product_param As String = ""
-            For i As Integer = 0 To (data.Rows.Count - 1)
-                id_pl_sales_order_del_det_list.Add(data.Rows(i)("id_pl_sales_order_del_det").ToString)
-                id_product_param += data.Rows(i)("id_product").ToString
-                If i < (data.Rows.Count - 1) Then
-                    id_product_param += ";"
-                End If
-            Next
             GCItemList.DataSource = data
-            codeAvailableIns(id_product_param)
         End If
     End Sub
 
