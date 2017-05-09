@@ -1085,6 +1085,12 @@
     <Compile Include="FormPopUpSalesDel.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdClosing.Designer.vb">
+      <DependentUpon>FormProdClosing.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdClosing.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdDuty.Designer.vb">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
     </Compile>
@@ -5141,6 +5147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpSalesDel.resx">
       <DependentUpon>FormPopUpSalesDel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdClosing.resx">
+      <DependentUpon>FormProdClosing.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDuty.resx">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
