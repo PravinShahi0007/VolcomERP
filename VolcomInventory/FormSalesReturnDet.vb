@@ -788,8 +788,6 @@ Public Class FormSalesReturnDet
                     End If
                     For p As Integer = 0 To (GVBarcode.RowCount - 1)
                         Dim id_product_counting As String = GVBarcode.GetRowCellValue(p, "id_product").ToString
-                        Dim id_design_price_counting As String = GVBarcode.GetRowCellValue(p, "id_design_price").ToString
-                        Dim design_price_counting As Decimal = Decimal.Parse(GVBarcode.GetRowCellValue(p, "design_price").ToString)
                         Dim id_pl_prod_order_rec_det_unique As String = GVBarcode.GetRowCellValue(p, "id_pl_prod_order_rec_det_unique").ToString
                         If id_pl_prod_order_rec_det_unique = "0" Then
                             id_pl_prod_order_rec_det_unique = "NULL "
@@ -1095,8 +1093,6 @@ Public Class FormSalesReturnDet
         Dim product_name As String = ""
         Dim size As String = ""
         Dim bom_unit_price As Decimal = 0.0
-        Dim id_design_price As String = ""
-        Dim design_price As Decimal = 0.0
         Dim index_atas As Integer = -100
         Dim is_old As String = "0"
 
@@ -1109,8 +1105,6 @@ Public Class FormSalesReturnDet
             product_name = dt_filter(0)("name").ToString
             size = dt_filter(0)("size").ToString
             bom_unit_price = Decimal.Parse(dt_filter(0)("bom_unit_price").ToString)
-            id_design_price = dt_filter(0)("id_design_price").ToString
-            design_price = Decimal.Parse(dt_filter(0)("design_price").ToString)
             is_old = dt_filter(0)("is_old_design").ToString
             code_found = True
         End If
@@ -1125,8 +1119,6 @@ Public Class FormSalesReturnDet
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
-            GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_design_price", id_design_price)
-            GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "design_price", design_price)
             countQty(id_product)
             checkUnitCost(id_product, bom_unit_price)
             newRowsBc()
@@ -1157,8 +1149,6 @@ Public Class FormSalesReturnDet
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
-                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_design_price", id_design_price)
-                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "design_price", design_price)
                 countQty(id_product)
                 checkUnitCost(id_product, bom_unit_price)
                 newRowsBc()

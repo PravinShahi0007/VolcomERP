@@ -46,6 +46,9 @@
             ' jika complete
             Dim stc_compl As ClassSalesReturn = New ClassSalesReturn()
             stc_compl.completeReservedStock(id_report_par)
+
+            'save unreg unique
+            execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",3)", True, "", "", "", "")
         End If
 
         Dim query As String = String.Format("UPDATE tb_sales_return SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_sales_return ='{1}'", id_status_reportx_par, id_report_par)
