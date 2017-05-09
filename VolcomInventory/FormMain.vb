@@ -10390,4 +10390,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBSampleSum_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSampleSum.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSampleSummary.MdiParent = Me
+            FormSampleSummary.Show()
+            FormSampleSummary.WindowState = FormWindowState.Maximized
+            FormSampleSummary.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

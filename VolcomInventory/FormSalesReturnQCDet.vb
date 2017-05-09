@@ -231,28 +231,9 @@ Public Class FormSalesReturnQCDet
             Dim query As String = "CALL view_sales_return_limit('" + id_sales_return + "', '0', '0') "
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = data
-            GVItemList.ActiveFilterString = "[sales_return_det_qty]>0 "
-            Dim id_product_str As String = ""
-            For i As Integer = 0 To (Me.GVItemList.RowCount - 1)
-                If i > 0 Then
-                    id_product_str += ";"
-                End If
-                Dim id_product_param As String = "-1"
-                Try
-                    id_product_param = Me.GVItemList.GetRowCellValue(i, "id_product").ToString
-                Catch ex As Exception
-                End Try
-                id_product_str += id_product_param
-            Next
-            codeAvailableIns(id_product_str, id_store, 0)
-            GVItemList.ActiveFilterString = ""
         ElseIf action = "upd" Then
             Dim query As String = "CALL view_sales_return_qc('" + id_sales_return_qc + "')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-            'For i As Integer = 0 To (data.Rows.Count - 1)
-            'id_sales_return_qc_det_list.Add(data.Rows(i)("id_sales_return_qc_det").ToString)
-            'codeAvailableIns(data.Rows(i)("id_product").ToString, id_store, data.Rows(i)("id_design_price").ToString)
-            'Next
             GCItemList.DataSource = data
         End If
     End Sub
@@ -907,9 +888,31 @@ Public Class FormSalesReturnQCDet
         TEDrawer.Enabled = False
         BPickDrawer.Enabled = False
     End Sub
+
+    Sub loadCodeDetail()
+        Cursor = Cursors.WaitCursor
+        GVItemList.ActiveFilterString = "[sales_return_det_qty]>0 "
+        Dim id_product_str As String = ""
+        For i As Integer = 0 To (Me.GVItemList.RowCount - 1)
+            If i > 0 Then
+                id_product_str += ";"
+            End If
+            Dim id_product_param As String = "-1"
+            Try
+                id_product_param = Me.GVItemList.GetRowCellValue(i, "id_product").ToString
+            Catch ex As Exception
+            End Try
+            id_product_str += id_product_param
+        Next
+        codeAvailableIns(id_product_str, id_store, 0)
+        GVItemList.ActiveFilterString = ""
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
         'FormRejectType.ShowDialog()
         If GVItemList.RowCount > 0 And id_wh_type <> "-1" Then
+            loadCodeDetail()
             disableControl()
             newRowsBc()
         Else
@@ -1128,7 +1131,7 @@ Public Class FormSalesReturnQCDet
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()
                 End If
-            ElseIf is_old = "2" Then 'new design system
+            ElseIf is_old = "2" Or is_old = "3" Then 'new design system
                 'check duplicate code
                 GVBarcode.ActiveFilterString = "[code]='" + code_check + "' AND [is_fix]='2' "
                 If GVBarcode.RowCount > 0 Then

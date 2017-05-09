@@ -141,6 +141,9 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPDelOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesDelOrder = New DevExpress.XtraGrid.GridControl()
+        Me.ViewPreDel = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PrintUniqueCodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesDelOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -260,9 +263,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromTrf = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.ViewPreDel = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PrintUniqueCodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -311,6 +311,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEFromRec.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPDelOrder.SuspendLayout()
         CType(Me.GCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewPreDel.SuspendLayout()
         CType(Me.GVSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -359,7 +360,6 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilTrf.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromTrf.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromTrf.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewPreDel.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -1498,6 +1498,24 @@ Partial Class FormSalesOrderSvcLevel
         Me.GCSalesDelOrder.TabIndex = 5
         Me.GCSalesDelOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesDelOrder, Me.GridView6})
         '
+        'ViewPreDel
+        '
+        Me.ViewPreDel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.PrintUniqueCodeToolStripMenuItem})
+        Me.ViewPreDel.Name = "ViewPreDel"
+        Me.ViewPreDel.Size = New System.Drawing.Size(172, 48)
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View Detail"
+        '
+        'PrintUniqueCodeToolStripMenuItem
+        '
+        Me.PrintUniqueCodeToolStripMenuItem.Name = "PrintUniqueCodeToolStripMenuItem"
+        Me.PrintUniqueCodeToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.PrintUniqueCodeToolStripMenuItem.Text = "Print Unique Code"
+        '
         'GVSalesDelOrder
         '
         Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumn26, Me.GridColumnUpdBy, Me.GridColumnSelect, Me.GridColumnTotalDel, Me.GridColumnSORemainign})
@@ -2116,7 +2134,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.XTPReturnQC.Controls.Add(Me.GroupControl3)
         Me.XTPReturnQC.Name = "XTPReturnQC"
         Me.XTPReturnQC.Size = New System.Drawing.Size(783, 388)
-        Me.XTPReturnQC.Text = "Return QC"
+        Me.XTPReturnQC.Text = "Return Transfer"
         '
         'GCSalesReturnQC
         '
@@ -2689,24 +2707,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl21.TabIndex = 8892
         Me.LabelControl21.Text = "From"
         '
-        'ViewPreDel
-        '
-        Me.ViewPreDel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.PrintUniqueCodeToolStripMenuItem})
-        Me.ViewPreDel.Name = "ViewPreDel"
-        Me.ViewPreDel.Size = New System.Drawing.Size(172, 48)
-        '
-        'ViewDetailToolStripMenuItem
-        '
-        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.ViewDetailToolStripMenuItem.Text = "View Detail"
-        '
-        'PrintUniqueCodeToolStripMenuItem
-        '
-        Me.PrintUniqueCodeToolStripMenuItem.Name = "PrintUniqueCodeToolStripMenuItem"
-        Me.PrintUniqueCodeToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.PrintUniqueCodeToolStripMenuItem.Text = "Print Unique Code"
-        '
         'FormSalesOrderSvcLevel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2768,6 +2768,7 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEFromRec.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPDelOrder.ResumeLayout(False)
         CType(Me.GCSalesDelOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewPreDel.ResumeLayout(False)
         CType(Me.GVSalesDelOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2820,7 +2821,6 @@ Partial Class FormSalesOrderSvcLevel
         CType(Me.DEUntilTrf.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromTrf.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromTrf.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewPreDel.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
