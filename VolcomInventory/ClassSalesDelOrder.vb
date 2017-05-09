@@ -106,6 +106,9 @@
             query_complete += "INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design "
             query_complete += "WHERE del.id_pl_sales_order_del=" + id_report_par + " AND del_det.pl_sales_order_del_det_qty>0 "
             execute_non_query(query_complete, True, "", "", "", "")
+
+            'save unreg unique
+            execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",1)", True, "", "", "", "")
         End If
         Dim query As String = String.Format("UPDATE tb_pl_sales_order_del SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_pl_sales_order_del ='{1}'", id_status_reportx_par, id_report_par)
         execute_non_query(query, True, "", "", "", "")

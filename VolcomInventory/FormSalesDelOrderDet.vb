@@ -19,6 +19,7 @@ Public Class FormSalesDelOrderDet
     'Dim is_scan As Boolean = False
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_do")
+    Dim is_save_unreg_unique As String = "-1"
 
 
     'var check qty
@@ -66,6 +67,8 @@ Public Class FormSalesDelOrderDet
                 viewSalesOrder()
             End If
 
+            'check is_save_unreg_unique (unique tdk teregister)
+            is_save_unreg_unique = get_setup_field("is_save_unreg_unique")
         ElseIf action = "upd" Then
             GroupControlListItem.Enabled = True
             GroupControlScannedItem.Enabled = True
@@ -181,29 +184,12 @@ Public Class FormSalesDelOrderDet
             'action
             Dim query As String = "CALL view_sales_order_limit('" + id_sales_order + "', '0', '0')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-            Dim id_product_param As String = ""
-            For i As Integer = 0 To (data.Rows.Count - 1)
-                id_product_param += data.Rows(i)("id_product").ToString
-                If i < (data.Rows.Count - 1) Then
-                    id_product_param += ";"
-                End If
-            Next
             GCItemList.DataSource = data
-            codeAvailableIns(id_product_param)
         ElseIf action = "upd" Then
             id_pl_sales_order_del_det_list.Clear()
             Dim query As String = "CALL view_pl_sales_order_del('" + id_pl_sales_order_del + "')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-            Dim id_product_param As String = ""
-            For i As Integer = 0 To (data.Rows.Count - 1)
-                id_pl_sales_order_del_det_list.Add(data.Rows(i)("id_pl_sales_order_del_det").ToString)
-                id_product_param += data.Rows(i)("id_product").ToString
-                If i < (data.Rows.Count - 1) Then
-                    id_product_param += ";"
-                End If
-            Next
             GCItemList.DataSource = data
-            codeAvailableIns(id_product_param)
         End If
     End Sub
 
@@ -227,7 +213,7 @@ Public Class FormSalesDelOrderDet
             query += "INNER JOIN tb_m_product c ON c.id_product = b.id_product "
             query += "INNER JOIN tb_m_product_code cc ON cc.id_product = c.id_product "
             query += "INNER JOIN tb_m_code_detail cod ON cod.id_code_detail = cc.id_code_detail AND cod.id_code = o.id_code_product_size "
-            query += "WHERE b.id_pl_sales_order_del = '" + id_pl_sales_order_del + "' AND a.id_counting_type='1' "
+            query += "WHERE b.id_pl_sales_order_del = '" + id_pl_sales_order_del + "' "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             For i As Integer = 0 To (data.Rows.Count - 1)
                 id_pl_sales_order_del_det_counting_list.Add(data.Rows(i)("id_pl_sales_order_del_det_counting").ToString)
@@ -324,12 +310,24 @@ Public Class FormSalesDelOrderDet
         Dim query_not As String = query_c.queryOldDesignCode(id_product_param)
         Dim data_not As DataTable = execute_query(query_not, -1, True, "", "", "", "")
 
-        'merge
+        'merge with not unique
         If data_not.Rows.Count > 0 Then
             If dt.Rows.Count = 0 Then
                 dt = data_not
             Else
                 dt.Merge(data_not)
+            End If
+        End If
+
+        If is_save_unreg_unique = "1" Then
+            'merge with unique unregistered
+            Dim data_unreg = query_c.dataUnregisteredCode(id_product_param)
+            If data_unreg.Rows.Count > 0 Then
+                If dt.Rows.Count = 0 Then
+                    dt = data_unreg
+                Else
+                    dt.Merge(data_unreg, True, MissingSchemaAction.Ignore)
+                End If
             End If
         End If
     End Sub
@@ -806,9 +804,23 @@ Public Class FormSalesDelOrderDet
     End Sub
 
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
+        loadCodeDetail()
         disableControl()
         newRowsBc()
         'allowDelete()
+    End Sub
+
+    Sub loadCodeDetail()
+        Cursor = Cursors.WaitCursor
+        Dim id_product_param As String = ""
+        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+            id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
+            If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
+                id_product_param += ";"
+            End If
+        Next
+        codeAvailableIns(id_product_param)
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BStop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BStop.Click
@@ -999,7 +1011,7 @@ Public Class FormSalesDelOrderDet
                     GCItemList.RefreshDataSource()
                     GVItemList.RefreshData()
                 End If
-            ElseIf is_old = "2" 'unique code
+            ElseIf is_old = "2" Or is_old = "3" 'unique code
                 'check duplicate code
                 GVBarcode.ActiveFilterString = "[code]='" + code_check + "' AND [is_fix]='2' "
                 If GVBarcode.RowCount > 0 Then

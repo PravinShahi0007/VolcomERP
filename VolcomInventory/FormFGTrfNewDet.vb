@@ -24,6 +24,7 @@ Public Class FormFGTrfNewDet
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_trf")
     Dim id_wh_type As String = "-1"
+    Dim is_save_unreg_unique As String = "-1"
 
     Private Sub FormFGTrfNewDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'get default store category for pick company
@@ -73,6 +74,9 @@ Public Class FormFGTrfNewDet
             If id_sales_order <> "-1" Then
                 viewSalesOrder()
             End If
+
+            'check is_save_unreg_unique (unique tdk teregister)
+            is_save_unreg_unique = get_setup_field("is_save_unreg_unique")
         ElseIf action = "upd" Then
             GroupControlListItem.Enabled = True
             GroupControlScannedItem.Enabled = True
@@ -380,29 +384,12 @@ Public Class FormFGTrfNewDet
             'action
             Dim query As String = "CALL view_sales_order_limit_for_trf('" + id_sales_order + "', '0', '0')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-            Dim id_product_param As String = ""
-            For i As Integer = 0 To (data.Rows.Count - 1)
-                id_product_param += data.Rows(i)("id_product").ToString
-                If i < (data.Rows.Count - 1) Then
-                    id_product_param += ";"
-                End If
-            Next
             GCItemList.DataSource = data
-            codeAvailableIns(id_product_param)
         ElseIf action = "upd" Then
             id_fg_trf_det_list.Clear()
-            Dim id_param As String = ""
             Dim query As String = "CALL view_fg_trf('" + id_fg_trf + "')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-            For i As Integer = 0 To (data.Rows.Count - 1)
-                id_fg_trf_det_list.Add(data.Rows(i)("id_fg_trf_det").ToString)
-                id_param = id_param + data.Rows(i)("id_product").ToString
-                If i < (data.Rows.Count - 1) Then
-                    id_param = id_param + ";"
-                End If
-            Next
             GCItemList.DataSource = data
-            Me.codeAvailableIns(id_param)
         End If
     End Sub
 
@@ -434,6 +421,18 @@ Public Class FormFGTrfNewDet
                 dt = data_not
             Else
                 dt.Merge(data_not, True, MissingSchemaAction.Ignore)
+            End If
+        End If
+
+        If is_save_unreg_unique = "1" Then
+            'merge with unique unregistered
+            Dim data_unreg = query_c.dataUnregisteredCode(id_product_param)
+            If data_unreg.Rows.Count > 0 Then
+                If dt.Rows.Count = 0 Then
+                    dt = data_unreg
+                Else
+                    dt.Merge(data_unreg, True, MissingSchemaAction.Ignore)
+                End If
             End If
         End If
     End Sub
@@ -564,7 +563,21 @@ Public Class FormFGTrfNewDet
         End If
     End Sub
 
+    Sub loadCodeDetail()
+        Cursor = Cursors.WaitCursor
+        Dim id_product_param As String = ""
+        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+            id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
+            If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
+                id_product_param += ";"
+            End If
+        Next
+        codeAvailableIns(id_product_param)
+        Cursor = Cursors.Default
+    End Sub
+
     Sub startScan()
+        loadCodeDetail()
         disableControl()
         newRowsBc()
         'allowDelete()
@@ -711,6 +724,7 @@ Public Class FormFGTrfNewDet
             product_name = dt_filter(0)("name").ToString
             id_design_cat = dt_filter(0)("id_design_cat").ToString
             size = dt_filter(0)("size").ToString
+            'MsgBox(dt_filter(0)("bom_unit_price").ToString)
             bom_unit_price = Decimal.Parse(dt_filter(0)("bom_unit_price").ToString)
             is_old = dt_filter(0)("is_old_design").ToString
             code_found = True
@@ -779,7 +793,7 @@ Public Class FormFGTrfNewDet
                         GVItemList.RefreshData()
                     End If
                 End If
-            ElseIf is_old = "2" Then ' new product
+            ElseIf is_old = "2" Or is_old = "3" Then ' new product
                 'check duplicate code
                 GVBarcode.ActiveFilterString = "[code]='" + code_check + "' AND [is_fix]='2' "
                 If GVBarcode.RowCount > 0 Then
