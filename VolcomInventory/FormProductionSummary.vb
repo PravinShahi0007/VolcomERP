@@ -286,11 +286,11 @@
 
         ' Calculation 
         If e.SummaryProcess = DevExpress.Data.CustomSummaryProcess.Calculate Then
-            Dim cop_pd As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "cop_pd"))
-            Dim cop_po As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "cop_po"))
-            Dim cop_final As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "cop_final"))
-            Dim retail_est As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "retail_price"))
-            Dim retail_act As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "normal_price"))
+            Dim cop_pd As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "cop_pd_amo"))
+            Dim cop_po As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "cop_po_amo"))
+            Dim cop_final As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "cop_final_amo"))
+            Dim retail_est As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "retail_price_amo"))
+            Dim retail_act As Decimal = CDec(View.GetRowCellValue(e.RowHandle, "normal_price_amo"))
 
             tot_cop_pd += cop_pd
             tot_cop_po += cop_po

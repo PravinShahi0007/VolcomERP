@@ -3191,6 +3191,12 @@
     <Compile Include="FormSampleStorageIn.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSampleSummary.Designer.vb">
+      <DependentUpon>FormSampleSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSampleSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSampleTrf.Designer.vb">
       <DependentUpon>FormSampleTrf.vb</DependentUpon>
     </Compile>
@@ -6528,6 +6534,9 @@
     <EmbeddedResource Include="FormSampleStorageIn.resx">
       <DependentUpon>FormSampleStorageIn.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSampleSummary.resx">
+      <DependentUpon>FormSampleSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSampleTrf.resx">
       <DependentUpon>FormSampleTrf.vb</DependentUpon>

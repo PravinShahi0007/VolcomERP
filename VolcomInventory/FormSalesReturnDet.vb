@@ -34,6 +34,7 @@ Public Class FormSalesReturnDet
     Dim locator_sel As String = "-1"
     Dim rack_sel As String = "-1"
     Dim drawer_sel As String = "-1"
+    Dim is_save_unreg_unique As String = "-1"
 
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -77,6 +78,9 @@ Public Class FormSalesReturnDet
                 BtnBrowseRO.Enabled = False
             End If
             check_but()
+
+            'check is_save_unreg_unique (unique tdk teregister)
+            is_save_unreg_unique = get_setup_field("is_save_unreg_unique")
         ElseIf action = "upd" Then
             GroupControlListItem.Enabled = True
             GroupControlScannedItem.Enabled = True
@@ -224,23 +228,6 @@ Public Class FormSalesReturnDet
             Dim query As String = "CALL view_sales_return_order_limit('" + id_sales_return_order + "', '0', '0')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCItemList.DataSource = data
-
-            'generate unique
-            Dim id_product_str As String = ""
-            For i As Integer = 0 To (Me.GVItemList.RowCount - 1)
-                If i > 0 Then
-                    id_product_str += ";"
-                End If
-                Dim id_product_param As String = "-1"
-                Dim id_design_price_param As String = "-1"
-                Try
-                    id_product_param = Me.GVItemList.GetRowCellValue(i, "id_product").ToString
-                    id_design_price_param = Me.GVItemList.GetRowCellValue(i, "id_design_price").ToString
-                Catch ex As Exception
-                End Try
-                id_product_str += id_product_param
-            Next
-            Me.codeAvailableIns(id_product_str, id_store, "0")
         ElseIf action = "upd" Then
             Dim query As String = "CALL view_sales_return('" + id_sales_return + "')"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
@@ -305,6 +292,18 @@ Public Class FormSalesReturnDet
                 dt = data_not
             Else
                 dt.Merge(data_not, True, MissingSchemaAction.Ignore)
+            End If
+        End If
+
+        If is_save_unreg_unique = "1" Then
+            'merge with unique unregistered
+            Dim data_unreg = query_c.dataUnregisteredCode(id_product_param)
+            If data_unreg.Rows.Count > 0 Then
+                If dt.Rows.Count = 0 Then
+                    dt = data_unreg
+                Else
+                    dt.Merge(data_unreg, True, MissingSchemaAction.Ignore)
+                End If
             End If
         End If
     End Sub
@@ -789,8 +788,6 @@ Public Class FormSalesReturnDet
                     End If
                     For p As Integer = 0 To (GVBarcode.RowCount - 1)
                         Dim id_product_counting As String = GVBarcode.GetRowCellValue(p, "id_product").ToString
-                        Dim id_design_price_counting As String = GVBarcode.GetRowCellValue(p, "id_design_price").ToString
-                        Dim design_price_counting As Decimal = Decimal.Parse(GVBarcode.GetRowCellValue(p, "design_price").ToString)
                         Dim id_pl_prod_order_rec_det_unique As String = GVBarcode.GetRowCellValue(p, "id_pl_prod_order_rec_det_unique").ToString
                         If id_pl_prod_order_rec_det_unique = "0" Then
                             id_pl_prod_order_rec_det_unique = "NULL "
@@ -957,8 +954,22 @@ Public Class FormSalesReturnDet
         TxtStoreReturnNumber.Enabled = False
     End Sub
 
+    Sub loadCodeDetail()
+        Cursor = Cursors.WaitCursor
+        Dim id_product_param As String = ""
+        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+            id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
+            If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
+                id_product_param += ";"
+            End If
+        Next
+        codeAvailableIns(id_product_param, id_store, "0")
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
         If GVItemList.RowCount > 0 Then
+            loadCodeDetail()
             disableControl()
             newRowsBc()
         Else
@@ -1082,8 +1093,6 @@ Public Class FormSalesReturnDet
         Dim product_name As String = ""
         Dim size As String = ""
         Dim bom_unit_price As Decimal = 0.0
-        Dim id_design_price As String = ""
-        Dim design_price As Decimal = 0.0
         Dim index_atas As Integer = -100
         Dim is_old As String = "0"
 
@@ -1096,8 +1105,6 @@ Public Class FormSalesReturnDet
             product_name = dt_filter(0)("name").ToString
             size = dt_filter(0)("size").ToString
             bom_unit_price = Decimal.Parse(dt_filter(0)("bom_unit_price").ToString)
-            id_design_price = dt_filter(0)("id_design_price").ToString
-            design_price = Decimal.Parse(dt_filter(0)("design_price").ToString)
             is_old = dt_filter(0)("is_old_design").ToString
             code_found = True
         End If
@@ -1112,14 +1119,12 @@ Public Class FormSalesReturnDet
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
             GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
-            GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_design_price", id_design_price)
-            GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "design_price", design_price)
             countQty(id_product)
             checkUnitCost(id_product, bom_unit_price)
             newRowsBc()
             GCItemList.RefreshDataSource()
             GVItemList.RefreshData()
-        ElseIf is_old = "2" Then 'new product
+        ElseIf is_old = "2" Or is_old = "3" Then 'new product
             'check duplicate code
             GVBarcode.ActiveFilterString = "[code]='" + code_check + "' AND [is_fix]='2' "
             If GVBarcode.RowCount > 0 Then
@@ -1144,8 +1149,6 @@ Public Class FormSalesReturnDet
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "name", product_name)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "size", size)
                 GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "bom_unit_price", bom_unit_price)
-                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_design_price", id_design_price)
-                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "design_price", design_price)
                 countQty(id_product)
                 checkUnitCost(id_product, bom_unit_price)
                 newRowsBc()
