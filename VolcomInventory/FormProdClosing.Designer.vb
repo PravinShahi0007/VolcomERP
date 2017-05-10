@@ -39,6 +39,8 @@ Partial Class FormProdClosing
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BClosingFGPO = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.PBCLineList = New DevExpress.XtraEditors.ProgressBarControl()
@@ -66,6 +68,7 @@ Partial Class FormProdClosing
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GridColumnDiff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnidProdOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,6 +79,8 @@ Partial Class FormProdClosing
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCSelAll.SuspendLayout()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -262,6 +267,7 @@ Partial Class FormProdClosing
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.PanelControl3)
         Me.PanelControl2.Controls.Add(Me.PCSelAll)
         Me.PanelControl2.Controls.Add(Me.PBCLineList)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -270,22 +276,40 @@ Partial Class FormProdClosing
         Me.PanelControl2.Size = New System.Drawing.Size(788, 37)
         Me.PanelControl2.TabIndex = 1
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.BClosingFGPO)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl3.Location = New System.Drawing.Point(231, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(114, 33)
+        Me.PanelControl3.TabIndex = 106
+        '
+        'BClosingFGPO
+        '
+        Me.BClosingFGPO.Location = New System.Drawing.Point(6, 5)
+        Me.BClosingFGPO.Name = "BClosingFGPO"
+        Me.BClosingFGPO.Size = New System.Drawing.Size(98, 23)
+        Me.BClosingFGPO.TabIndex = 0
+        Me.BClosingFGPO.Text = "Closing FG PO"
+        '
         'PCSelAll
         '
         Me.PCSelAll.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PCSelAll.Controls.Add(Me.CheckEditSelAll)
         Me.PCSelAll.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PCSelAll.Location = New System.Drawing.Point(150, 2)
+        Me.PCSelAll.Location = New System.Drawing.Point(123, 2)
         Me.PCSelAll.Name = "PCSelAll"
-        Me.PCSelAll.Size = New System.Drawing.Size(99, 33)
+        Me.PCSelAll.Size = New System.Drawing.Size(108, 33)
         Me.PCSelAll.TabIndex = 105
         '
         'CheckEditSelAll
         '
-        Me.CheckEditSelAll.Location = New System.Drawing.Point(5, 7)
+        Me.CheckEditSelAll.Location = New System.Drawing.Point(6, 7)
         Me.CheckEditSelAll.Name = "CheckEditSelAll"
         Me.CheckEditSelAll.Properties.Caption = "Select All Item"
-        Me.CheckEditSelAll.Size = New System.Drawing.Size(92, 19)
+        Me.CheckEditSelAll.Size = New System.Drawing.Size(99, 19)
         Me.CheckEditSelAll.TabIndex = 102
         '
         'PBCLineList
@@ -294,9 +318,8 @@ Partial Class FormProdClosing
         Me.PBCLineList.Location = New System.Drawing.Point(2, 2)
         Me.PBCLineList.Name = "PBCLineList"
         Me.PBCLineList.Properties.ShowTitle = True
-        Me.PBCLineList.Size = New System.Drawing.Size(148, 33)
+        Me.PBCLineList.Size = New System.Drawing.Size(121, 33)
         Me.PBCLineList.TabIndex = 104
-        Me.PBCLineList.Visible = False
         '
         'GCProd
         '
@@ -311,7 +334,7 @@ Partial Class FormProdClosing
         '
         'GVProd
         '
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCE, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn4, Me.GridColumnDiff})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnidProdOrder, Me.GridColumnCE, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumn4, Me.GridColumnDiff})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 2
         Me.GVProd.Name = "GVProd"
@@ -544,6 +567,12 @@ Partial Class FormProdClosing
         Me.GridColumnDiff.Visible = True
         Me.GridColumnDiff.VisibleIndex = 11
         '
+        'GridColumnidProdOrder
+        '
+        Me.GridColumnidProdOrder.Caption = "ID Prod Order"
+        Me.GridColumnidProdOrder.FieldName = "id_prod_order"
+        Me.GridColumnidProdOrder.Name = "GridColumnidProdOrder"
+        '
         'FormProdClosing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -569,6 +598,8 @@ Partial Class FormProdClosing
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCSelAll.ResumeLayout(False)
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -628,4 +659,7 @@ Partial Class FormProdClosing
     Friend WithEvents PBCLineList As DevExpress.XtraEditors.ProgressBarControl
     Friend WithEvents GridColumnCE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICESelect As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BClosingFGPO As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnidProdOrder As DevExpress.XtraGrid.Columns.GridColumn
 End Class

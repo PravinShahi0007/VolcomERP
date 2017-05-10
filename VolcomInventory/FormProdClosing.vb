@@ -100,4 +100,42 @@
             GVProd.ExpandAllGroups()
         End If
     End Sub
+
+    Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
+        If GVProd.RowCount > 0 Then
+            Dim cek As String = CheckEditSelAll.EditValue.ToString
+            For i As Integer = 0 To ((GVProd.RowCount - 1) - GetGroupRowCount(GVProd))
+                If cek Then
+                    GVProd.SetRowCellValue(i, "check", "yes")
+                Else
+                    GVProd.SetRowCellValue(i, "check", "no")
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub BClosingFGPO_Click(sender As Object, e As EventArgs) Handles BClosingFGPO.Click
+        Cursor = Cursors.WaitCursor
+        GVProd.ActiveFilterString = ""
+        GVProd.ActiveFilterString = "[check]='yes' "
+        If GVProd.RowCount = 0 Then
+            stopCustom("Please select FG PO first.")
+            GVProd.ActiveFilterString = ""
+        Else
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to close this FG PO?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                For i As Integer = 0 To (GVProd.RowCount - 1) - GetGroupRowCount(GVProd)
+                    Dim query As String = "UPDATE tb_prod_order SET id_report_status='6' WHERE id_prod_order='" & GVProd.GetRowCellValue(i, "id_prod_order").ToString & "'"
+
+                    execute_non_query(query, True, "", "", "", "")
+                Next
+                infoCustom("FG PO Closed.")
+            End If
+        End If
+
+        GVProd.ActiveFilterString = ""
+        view_production_order()
+        Cursor = Cursors.Default
+    End Sub
 End Class
