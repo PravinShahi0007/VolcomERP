@@ -197,6 +197,7 @@
     <Compile Include="ClassFingerPrint.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassProdDemand.vb" />
+    <Compile Include="ClassProductionAssembly.vb" />
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
     <Compile Include="ClassReturn.vb" />
@@ -5168,6 +5169,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDutyVar.resx">
       <DependentUpon>FormProdDutyVar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionAssembly.resx">
+      <DependentUpon>FormProductionAssembly.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionCOPDet.resx">
       <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
