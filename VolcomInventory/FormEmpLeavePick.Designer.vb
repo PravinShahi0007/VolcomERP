@@ -75,7 +75,7 @@ Partial Class FormEmpLeavePick
         Me.GCSchedule.Location = New System.Drawing.Point(0, 39)
         Me.GCSchedule.MainView = Me.GVSchedule
         Me.GCSchedule.Name = "GCSchedule"
-        Me.GCSchedule.Size = New System.Drawing.Size(697, 211)
+        Me.GCSchedule.Size = New System.Drawing.Size(707, 211)
         Me.GCSchedule.TabIndex = 4
         Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
         '
@@ -198,7 +198,7 @@ Partial Class FormEmpLeavePick
         Me.PCDate.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCDate.Location = New System.Drawing.Point(0, 0)
         Me.PCDate.Name = "PCDate"
-        Me.PCDate.Size = New System.Drawing.Size(697, 39)
+        Me.PCDate.Size = New System.Drawing.Size(707, 39)
         Me.PCDate.TabIndex = 5
         '
         'BPickAll
@@ -266,7 +266,7 @@ Partial Class FormEmpLeavePick
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(543, 2)
+        Me.BCancel.Location = New System.Drawing.Point(553, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 37)
         Me.BCancel.TabIndex = 14
@@ -302,7 +302,7 @@ Partial Class FormEmpLeavePick
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAdd.ImageIndex = 19
         Me.BAdd.ImageList = Me.LargeImageCollection
-        Me.BAdd.Location = New System.Drawing.Point(616, 2)
+        Me.BAdd.Location = New System.Drawing.Point(626, 2)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(79, 37)
         Me.BAdd.TabIndex = 13
@@ -320,7 +320,7 @@ Partial Class FormEmpLeavePick
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 250)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(697, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(707, 41)
         Me.PanelControl1.TabIndex = 6
         '
         'CEFullDay
@@ -342,6 +342,7 @@ Partial Class FormEmpLeavePick
         Me.DEUntilLeave.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
         Me.DEUntilLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEUntilLeave.Properties.Mask.EditMask = "dd-MM-yyyy/H"
+        Me.DEUntilLeave.Properties.ReadOnly = True
         Me.DEUntilLeave.Size = New System.Drawing.Size(153, 20)
         Me.DEUntilLeave.TabIndex = 17
         '
@@ -381,7 +382,7 @@ Partial Class FormEmpLeavePick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(697, 291)
+        Me.ClientSize = New System.Drawing.Size(707, 291)
         Me.Controls.Add(Me.GCSchedule)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PCDate)

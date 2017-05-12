@@ -48,6 +48,7 @@
     End Sub
 
     Private Sub GVSchedule_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVSchedule.FocusedRowChanged
+        CEFullDay.Checked = True
         load_total()
     End Sub
 
@@ -143,10 +144,10 @@
                     '
                     DEUntilLeave.Properties.MinValue = GVSchedule.GetFocusedRowCellValue("in")
                     DEUntilLeave.Properties.MaxValue = GVSchedule.GetFocusedRowCellValue("out")
-                    DEUntilLeave.EditValue = GVSchedule.GetFocusedRowCellValue("out")
+                    DEUntilLeave.EditValue = Date.Parse(GVSchedule.GetFocusedRowCellValue("in")).AddHours(4)
                     '
                     DEStartLeave.Properties.ReadOnly = True
-                    DEUntilLeave.Properties.ReadOnly = True
+                    DEUntilLeave.Properties.ReadOnly = False
                     '
                 End If
             Else
@@ -253,4 +254,15 @@
         Catch ex As Exception
         End Try
     End Sub
+
+    Private Sub DEStartLeave_EditValueChanged(sender As Object, e As EventArgs) Handles DEStartLeave.EditValueChanged
+        Try
+            If CEFullDay.Checked = True Then
+                DEUntilLeave.EditValue = Date.Parse(DEStartLeave.EditValue).AddHours(4)
+            End If
+        Catch ex As Exception
+            Console.WriteLine(ex.ToString)
+        End Try
+    End Sub
+
 End Class
