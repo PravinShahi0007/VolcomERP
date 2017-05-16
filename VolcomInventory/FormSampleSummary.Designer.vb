@@ -47,6 +47,7 @@ Partial Class FormSampleSummary
         Me.GridColumnTOP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEstRecDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
@@ -55,7 +56,7 @@ Partial Class FormSampleSummary
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSamnple, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSamnple.SuspendLayout()
         Me.XTPPO.SuspendLayout()
@@ -100,7 +101,7 @@ Partial Class FormSampleSummary
         '
         'GVListPurchase
         '
-        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPrice, Me.ColNo, Me.ColCode, Me.ColName, Me.GridColumnSize, Me.GridColumnColor, Me.ColPrice, Me.ColQty, Me.ColDiscount, Me.ColSubtotal, Me.ColIdSamplePrice, Me.ColNote, Me.GridColumn1, Me.GridColumnType, Me.GridColumnPayment, Me.GridColumnTo, Me.GridColumnShipTo, Me.GridColumnCourier, Me.GridColumnCreatedDate, Me.GridColumnCurr, Me.GridColumnLeadTime, Me.GridColumnTOP, Me.GridColumnEstRecDate, Me.GridColumnDueDate, Me.GridColumnReportStatus})
+        Me.GVListPurchase.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPrice, Me.ColNo, Me.ColCode, Me.ColName, Me.GridColumnSize, Me.GridColumnColor, Me.ColPrice, Me.ColQty, Me.ColDiscount, Me.ColSubtotal, Me.ColIdSamplePrice, Me.ColNote, Me.GridColumn1, Me.GridColumnType, Me.GridColumnPayment, Me.GridColumnTo, Me.GridColumnShipTo, Me.GridColumnCourier, Me.GridColumnCreatedDate, Me.GridColumnCurr, Me.GridColumnLeadTime, Me.GridColumnTOP, Me.GridColumnEstRecDate, Me.GridColumnDueDate, Me.GridColumnReportStatus, Me.GridColumnSeason})
         Me.GVListPurchase.GridControl = Me.GCListPurchase
         Me.GVListPurchase.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.ColSubtotal, "{0:n2}")})
         Me.GVListPurchase.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
@@ -134,7 +135,7 @@ Partial Class FormSampleSummary
         Me.ColCode.FieldName = "code"
         Me.ColCode.Name = "ColCode"
         Me.ColCode.Visible = True
-        Me.ColCode.VisibleIndex = 5
+        Me.ColCode.VisibleIndex = 6
         Me.ColCode.Width = 74
         '
         'ColName
@@ -143,7 +144,7 @@ Partial Class FormSampleSummary
         Me.ColName.FieldName = "name"
         Me.ColName.Name = "ColName"
         Me.ColName.Visible = True
-        Me.ColName.VisibleIndex = 6
+        Me.ColName.VisibleIndex = 7
         Me.ColName.Width = 125
         '
         'GridColumnSize
@@ -156,7 +157,7 @@ Partial Class FormSampleSummary
         Me.GridColumnSize.FieldName = "size"
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 7
+        Me.GridColumnSize.VisibleIndex = 8
         Me.GridColumnSize.Width = 40
         '
         'GridColumnColor
@@ -169,7 +170,7 @@ Partial Class FormSampleSummary
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 8
+        Me.GridColumnColor.VisibleIndex = 9
         Me.GridColumnColor.Width = 40
         '
         'ColPrice
@@ -184,7 +185,7 @@ Partial Class FormSampleSummary
         Me.ColPrice.FieldName = "price"
         Me.ColPrice.Name = "ColPrice"
         Me.ColPrice.Visible = True
-        Me.ColPrice.VisibleIndex = 10
+        Me.ColPrice.VisibleIndex = 11
         Me.ColPrice.Width = 74
         '
         'ColQty
@@ -199,7 +200,7 @@ Partial Class FormSampleSummary
         Me.ColQty.FieldName = "qty"
         Me.ColQty.Name = "ColQty"
         Me.ColQty.Visible = True
-        Me.ColQty.VisibleIndex = 12
+        Me.ColQty.VisibleIndex = 13
         Me.ColQty.Width = 36
         '
         'ColDiscount
@@ -215,7 +216,7 @@ Partial Class FormSampleSummary
         Me.ColDiscount.Name = "ColDiscount"
         Me.ColDiscount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "discount", "{0:N2}")})
         Me.ColDiscount.Visible = True
-        Me.ColDiscount.VisibleIndex = 11
+        Me.ColDiscount.VisibleIndex = 12
         Me.ColDiscount.Width = 51
         '
         'ColSubtotal
@@ -231,7 +232,7 @@ Partial Class FormSampleSummary
         Me.ColSubtotal.Name = "ColSubtotal"
         Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.ColSubtotal.Visible = True
-        Me.ColSubtotal.VisibleIndex = 13
+        Me.ColSubtotal.VisibleIndex = 14
         Me.ColSubtotal.Width = 88
         '
         'ColIdSamplePrice
@@ -260,7 +261,7 @@ Partial Class FormSampleSummary
         Me.GridColumnType.FieldName = "po_type"
         Me.GridColumnType.Name = "GridColumnType"
         Me.GridColumnType.Visible = True
-        Me.GridColumnType.VisibleIndex = 1
+        Me.GridColumnType.VisibleIndex = 2
         '
         'GridColumnPayment
         '
@@ -268,7 +269,7 @@ Partial Class FormSampleSummary
         Me.GridColumnPayment.FieldName = "payment"
         Me.GridColumnPayment.Name = "GridColumnPayment"
         Me.GridColumnPayment.Visible = True
-        Me.GridColumnPayment.VisibleIndex = 14
+        Me.GridColumnPayment.VisibleIndex = 15
         '
         'GridColumnTo
         '
@@ -276,7 +277,7 @@ Partial Class FormSampleSummary
         Me.GridColumnTo.FieldName = "comp_to"
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.Visible = True
-        Me.GridColumnTo.VisibleIndex = 2
+        Me.GridColumnTo.VisibleIndex = 3
         '
         'GridColumnShipTo
         '
@@ -284,7 +285,7 @@ Partial Class FormSampleSummary
         Me.GridColumnShipTo.FieldName = "comp_ship_to"
         Me.GridColumnShipTo.Name = "GridColumnShipTo"
         Me.GridColumnShipTo.Visible = True
-        Me.GridColumnShipTo.VisibleIndex = 3
+        Me.GridColumnShipTo.VisibleIndex = 4
         '
         'GridColumnCourier
         '
@@ -292,7 +293,7 @@ Partial Class FormSampleSummary
         Me.GridColumnCourier.FieldName = "courier"
         Me.GridColumnCourier.Name = "GridColumnCourier"
         Me.GridColumnCourier.Visible = True
-        Me.GridColumnCourier.VisibleIndex = 4
+        Me.GridColumnCourier.VisibleIndex = 5
         '
         'GridColumnCreatedDate
         '
@@ -302,7 +303,7 @@ Partial Class FormSampleSummary
         Me.GridColumnCreatedDate.FieldName = "sample_purc_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 15
+        Me.GridColumnCreatedDate.VisibleIndex = 16
         '
         'GridColumnCurr
         '
@@ -310,7 +311,7 @@ Partial Class FormSampleSummary
         Me.GridColumnCurr.FieldName = "currency"
         Me.GridColumnCurr.Name = "GridColumnCurr"
         Me.GridColumnCurr.Visible = True
-        Me.GridColumnCurr.VisibleIndex = 9
+        Me.GridColumnCurr.VisibleIndex = 10
         '
         'GridColumnLeadTime
         '
@@ -318,7 +319,7 @@ Partial Class FormSampleSummary
         Me.GridColumnLeadTime.FieldName = "sample_purc_lead_time"
         Me.GridColumnLeadTime.Name = "GridColumnLeadTime"
         Me.GridColumnLeadTime.Visible = True
-        Me.GridColumnLeadTime.VisibleIndex = 16
+        Me.GridColumnLeadTime.VisibleIndex = 17
         '
         'GridColumnTOP
         '
@@ -326,7 +327,7 @@ Partial Class FormSampleSummary
         Me.GridColumnTOP.FieldName = "sample_purc_top"
         Me.GridColumnTOP.Name = "GridColumnTOP"
         Me.GridColumnTOP.Visible = True
-        Me.GridColumnTOP.VisibleIndex = 18
+        Me.GridColumnTOP.VisibleIndex = 19
         '
         'GridColumnEstRecDate
         '
@@ -338,7 +339,7 @@ Partial Class FormSampleSummary
         Me.GridColumnEstRecDate.UnboundExpression = "AddDays([sample_purc_date], [sample_purc_lead_time])"
         Me.GridColumnEstRecDate.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumnEstRecDate.Visible = True
-        Me.GridColumnEstRecDate.VisibleIndex = 17
+        Me.GridColumnEstRecDate.VisibleIndex = 18
         '
         'GridColumnDueDate
         '
@@ -350,7 +351,15 @@ Partial Class FormSampleSummary
         Me.GridColumnDueDate.UnboundExpression = "AddDays([sample_purc_date], [sample_purc_top])"
         Me.GridColumnDueDate.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumnDueDate.Visible = True
-        Me.GridColumnDueDate.VisibleIndex = 19
+        Me.GridColumnDueDate.VisibleIndex = 20
+        '
+        'GridColumnReportStatus
+        '
+        Me.GridColumnReportStatus.Caption = "Status"
+        Me.GridColumnReportStatus.FieldName = "report_status"
+        Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
+        Me.GridColumnReportStatus.Visible = True
+        Me.GridColumnReportStatus.VisibleIndex = 21
         '
         'GroupControl2
         '
@@ -439,13 +448,13 @@ Partial Class FormSampleSummary
         Me.LabelControl6.TabIndex = 8892
         Me.LabelControl6.Text = "From"
         '
-        'GridColumnReportStatus
+        'GridColumnSeason
         '
-        Me.GridColumnReportStatus.Caption = "Status"
-        Me.GridColumnReportStatus.FieldName = "report_status"
-        Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
-        Me.GridColumnReportStatus.Visible = True
-        Me.GridColumnReportStatus.VisibleIndex = 20
+        Me.GridColumnSeason.Caption = "Season Origin"
+        Me.GridColumnSeason.FieldName = "season_orign"
+        Me.GridColumnSeason.Name = "GridColumnSeason"
+        Me.GridColumnSeason.Visible = True
+        Me.GridColumnSeason.VisibleIndex = 1
         '
         'FormSampleSummary
         '
@@ -509,4 +518,5 @@ Partial Class FormSampleSummary
     Friend WithEvents GridColumnEstRecDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDueDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReportStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSeason As DevExpress.XtraGrid.Columns.GridColumn
 End Class
