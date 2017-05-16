@@ -6560,6 +6560,8 @@ Public Class FormMain
             ElseIf FormEmpLeaveStock.XTCLeaveRemaining.SelectedTabPageIndex = 1 Then
                 print(FormEmpLeaveStock.GCSchedule, "Remaining Leave Detail " & FormEmpLeaveStock.LEDeptSum.Text)
             End If
+        ElseIf formName = "FormSampleSummary" Then
+            print(FormSampleSummary.GCListPurchase, "Sample Summary")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7105,6 +7107,9 @@ Public Class FormMain
         ElseIf formName = "FormProductionFinalClear" Then
             FormProductionFinalClear.Close()
             FormProductionFinalClear.Dispose()
+        ElseIf formName = "FormSampleSummary" Then
+            FormSampleSummary.Close()
+            FormSampleSummary.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
