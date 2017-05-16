@@ -140,7 +140,8 @@ Partial Class FormProductionAssembly
         Me.ClientSize = New System.Drawing.Size(567, 262)
         Me.Controls.Add(Me.GCData)
         Me.Name = "FormProductionAssembly"
-        Me.Text = "FormProductionAssembly"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Assembly"
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

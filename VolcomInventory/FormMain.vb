@@ -1485,6 +1485,9 @@ Public Class FormMain
             'assign schedule with approval
             FormProductionFinalClearDet.action = "ins"
             FormProductionFinalClearDet.ShowDialog()
+        ElseIf formName = "FormProductionAssembly" Then
+            FormProductionAssemblySingle.action = "ins"
+            FormProductionAssemblySingle.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2352,6 +2355,10 @@ Public Class FormMain
                 FormProductionFinalClearDet.action = "upd"
                 FormProductionFinalClearDet.id_prod_fc = FormProductionFinalClear.GVFinalClear.GetFocusedRowCellValue("id_prod_fc").ToString
                 FormProductionFinalClearDet.ShowDialog()
+            ElseIf formName = "FormProductionAssembly" Then
+                FormProductionAssemblySingle.action = "upd"
+                FormProductionAssemblySingle.id_prod_ass = FormProductionAssembly.GVData.GetFocusedRowCellValue("id_prod_ass").ToString
+                FormProductionAssemblySingle.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6554,6 +6561,8 @@ Public Class FormMain
             FormProductionFinalClear.BtnView.Focus()
             print(FormProductionFinalClear.GCFinalClear, "FINAL CLEARANCE LIST" + System.Environment.NewLine + FormProductionFinalClear.DEFrom.Text + " - " + FormProductionFinalClear.DEUntil.Text)
             FormProductionFinalClear.DEFrom.Focus()
+        ElseIf formName = "FormProductionAssembly" Then
+            print(FormProductionAssembly.GCData, "Assembly")
         ElseIf formName = "FormEmpLeaveStock" Then
             If FormEmpLeaveStock.XTCLeaveRemaining.SelectedTabPageIndex = 0 Then
                 print(FormEmpLeaveStock.GCSum, "Remaining Leave Summary " & FormEmpLeaveStock.LEDeptSum.Text)
@@ -7107,6 +7116,9 @@ Public Class FormMain
         ElseIf formName = "FormProductionFinalClear" Then
             FormProductionFinalClear.Close()
             FormProductionFinalClear.Dispose()
+        ElseIf formName = "FormProductionAssembly" Then
+            FormProductionAssembly.Close()
+            FormProductionAssembly.Dispose()
         ElseIf formName = "FormSampleSummary" Then
             FormSampleSummary.Close()
             FormSampleSummary.Dispose()
@@ -7760,6 +7772,8 @@ Public Class FormMain
             FormEmpDP.load_dp()
         ElseIf formName = "FormProductionFinalClear" Then
             FormProductionFinalClear.viewFinalClear()
+        ElseIf formName = "FormProductionAssembly" Then
+            FormProductionAssembly.viewData()
         End If
     End Sub
     'Switch
