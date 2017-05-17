@@ -324,7 +324,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDelQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", "{0:n0}")})
         Me.GridColumnDelQty.Visible = True
         Me.GridColumnDelQty.VisibleIndex = 13
-        Me.GridColumnDelQty.Width = 56
+        Me.GridColumnDelQty.Width = 64
         '
         'GridColumnDiffSc
         '
@@ -343,7 +343,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDiffSc.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffSc.Visible = True
         Me.GridColumnDiffSc.VisibleIndex = 14
-        Me.GridColumnDiffSc.Width = 38
+        Me.GridColumnDiffSc.Width = 50
         '
         'GridColumnDiff
         '
@@ -361,7 +361,7 @@ Partial Class FormWHSvcLevel
         Me.GridColumnDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiff.Visible = True
         Me.GridColumnDiff.VisibleIndex = 15
-        Me.GridColumnDiff.Width = 35
+        Me.GridColumnDiff.Width = 43
         '
         'GridColumnCat
         '
