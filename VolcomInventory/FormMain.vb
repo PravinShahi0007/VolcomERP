@@ -1486,8 +1486,7 @@ Public Class FormMain
             FormProductionFinalClearDet.action = "ins"
             FormProductionFinalClearDet.ShowDialog()
         ElseIf formName = "FormProductionAssembly" Then
-            FormProductionAssemblySingle.action = "ins"
-            FormProductionAssemblySingle.ShowDialog()
+            FormProductionAssemblyNew.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
