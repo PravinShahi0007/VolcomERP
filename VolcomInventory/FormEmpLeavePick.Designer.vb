@@ -339,10 +339,10 @@ Partial Class FormEmpLeavePick
         Me.DEUntilLeave.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilLeave.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
         Me.DEUntilLeave.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntilLeave.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
+        Me.DEUntilLeave.Properties.CalendarTimeProperties.Mask.EditMask = "HH:mm"
+        Me.DEUntilLeave.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
         Me.DEUntilLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilLeave.Properties.Mask.EditMask = "dd-MM-yyyy/H"
-        Me.DEUntilLeave.Properties.ReadOnly = True
+        Me.DEUntilLeave.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
         Me.DEUntilLeave.Size = New System.Drawing.Size(153, 20)
         Me.DEUntilLeave.TabIndex = 17
         '
@@ -363,9 +363,10 @@ Partial Class FormEmpLeavePick
         Me.DEStartLeave.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStartLeave.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
         Me.DEStartLeave.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartLeave.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
+        Me.DEStartLeave.Properties.CalendarTimeProperties.Mask.EditMask = "HH:mm"
+        Me.DEStartLeave.Properties.DisplayFormat.FormatString = "dd MMM yyyy HH:mm"
         Me.DEStartLeave.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStartLeave.Properties.Mask.EditMask = "dd-MM-yyyy/H"
+        Me.DEStartLeave.Properties.Mask.EditMask = "dd-MM-yyyy/HH:mm"
         Me.DEStartLeave.Size = New System.Drawing.Size(164, 20)
         Me.DEStartLeave.TabIndex = 15
         '
