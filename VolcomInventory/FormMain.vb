@@ -1485,6 +1485,8 @@ Public Class FormMain
             'assign schedule with approval
             FormProductionFinalClearDet.action = "ins"
             FormProductionFinalClearDet.ShowDialog()
+        ElseIf formName = "FormProductionAssembly" Then
+            FormProductionAssemblyNew.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2352,6 +2354,10 @@ Public Class FormMain
                 FormProductionFinalClearDet.action = "upd"
                 FormProductionFinalClearDet.id_prod_fc = FormProductionFinalClear.GVFinalClear.GetFocusedRowCellValue("id_prod_fc").ToString
                 FormProductionFinalClearDet.ShowDialog()
+            ElseIf formName = "FormProductionAssembly" Then
+                FormProductionAssemblySingle.action = "upd"
+                FormProductionAssemblySingle.id_prod_ass = FormProductionAssembly.GVData.GetFocusedRowCellValue("id_prod_ass").ToString
+                FormProductionAssemblySingle.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6554,12 +6560,16 @@ Public Class FormMain
             FormProductionFinalClear.BtnView.Focus()
             print(FormProductionFinalClear.GCFinalClear, "FINAL CLEARANCE LIST" + System.Environment.NewLine + FormProductionFinalClear.DEFrom.Text + " - " + FormProductionFinalClear.DEUntil.Text)
             FormProductionFinalClear.DEFrom.Focus()
+        ElseIf formName = "FormProductionAssembly" Then
+            print(FormProductionAssembly.GCData, "Assembly")
         ElseIf formName = "FormEmpLeaveStock" Then
             If FormEmpLeaveStock.XTCLeaveRemaining.SelectedTabPageIndex = 0 Then
                 print(FormEmpLeaveStock.GCSum, "Remaining Leave Summary " & FormEmpLeaveStock.LEDeptSum.Text)
             ElseIf FormEmpLeaveStock.XTCLeaveRemaining.SelectedTabPageIndex = 1 Then
                 print(FormEmpLeaveStock.GCSchedule, "Remaining Leave Detail " & FormEmpLeaveStock.LEDeptSum.Text)
             End If
+        ElseIf formName = "FormSampleSummary" Then
+            print(FormSampleSummary.GCListPurchase, "Sample Summary")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7105,6 +7115,12 @@ Public Class FormMain
         ElseIf formName = "FormProductionFinalClear" Then
             FormProductionFinalClear.Close()
             FormProductionFinalClear.Dispose()
+        ElseIf formName = "FormProductionAssembly" Then
+            FormProductionAssembly.Close()
+            FormProductionAssembly.Dispose()
+        ElseIf formName = "FormSampleSummary" Then
+            FormSampleSummary.Close()
+            FormSampleSummary.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7755,6 +7771,8 @@ Public Class FormMain
             FormEmpDP.load_dp()
         ElseIf formName = "FormProductionFinalClear" Then
             FormProductionFinalClear.viewFinalClear()
+        ElseIf formName = "FormProductionAssembly" Then
+            FormProductionAssembly.viewData()
         End If
     End Sub
     'Switch
@@ -10411,6 +10429,19 @@ Public Class FormMain
             FormSampleSummary.Show()
             FormSampleSummary.WindowState = FormWindowState.Maximized
             FormSampleSummary.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBProdAss_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProdAss.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProductionAssembly.MdiParent = Me
+            FormProductionAssembly.Show()
+            FormProductionAssembly.WindowState = FormWindowState.Maximized
+            FormProductionAssembly.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

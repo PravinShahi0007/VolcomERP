@@ -197,6 +197,7 @@
     <Compile Include="ClassFingerPrint.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassProdDemand.vb" />
+    <Compile Include="ClassProductionAssembly.vb" />
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
     <Compile Include="ClassReturn.vb" />
@@ -1101,6 +1102,24 @@
       <DependentUpon>FormProdDutyVar.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProdDutyVar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionAssembly.Designer.vb">
+      <DependentUpon>FormProductionAssembly.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionAssembly.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionAssemblyNew.Designer.vb">
+      <DependentUpon>FormProductionAssemblyNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionAssemblyNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionAssemblySingle.Designer.vb">
+      <DependentUpon>FormProductionAssemblySingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionAssemblySingle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionCOPDet.Designer.vb">
@@ -5162,6 +5181,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDutyVar.resx">
       <DependentUpon>FormProdDutyVar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionAssembly.resx">
+      <DependentUpon>FormProductionAssembly.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionAssemblyNew.resx">
+      <DependentUpon>FormProductionAssemblyNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionAssemblySingle.resx">
+      <DependentUpon>FormProductionAssemblySingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionCOPDet.resx">
       <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
