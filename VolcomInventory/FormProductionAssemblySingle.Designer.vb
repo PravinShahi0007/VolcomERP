@@ -22,11 +22,14 @@ Partial Class FormProductionAssemblySingle
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionAssemblySingle))
         Me.GroupControHead = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDesignCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEForm = New DevExpress.XtraEditors.TextEdit()
         Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
@@ -44,24 +47,27 @@ Partial Class FormProductionAssemblySingle
         Me.XTCDetail = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPDetail = New DevExpress.XtraTab.XtraTabPage()
         Me.SCCDetail = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStripRes = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddComponentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCComponent = New DevExpress.XtraGrid.GridControl()
-        Me.GVComponent = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.GCResult = New DevExpress.XtraGrid.GridControl()
-        Me.GVResult = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.XTPBOM = New DevExpress.XtraTab.XtraTabPage()
-        Me.ContextMenuStripRes = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ContextMenuStripComp = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.AddComponentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GVComponent = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.XTPBOM = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GroupControHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControHead.SuspendLayout()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelHeaderLeft.SuspendLayout()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,21 +83,24 @@ Partial Class FormProductionAssemblySingle
         Me.XTPDetail.SuspendLayout()
         CType(Me.SCCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SCCDetail.SuspendLayout()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
+        CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStripRes.SuspendLayout()
+        CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCComponent, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVComponent, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
-        CType(Me.GCResult, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVResult, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ContextMenuStripRes.SuspendLayout()
         Me.ContextMenuStripComp.SuspendLayout()
+        CType(Me.GVComponent, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControHead
         '
         Me.GroupControHead.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControHead.Controls.Add(Me.TxtDesign)
+        Me.GroupControHead.Controls.Add(Me.TxtDesignCode)
+        Me.GroupControHead.Controls.Add(Me.LabelControl1)
         Me.GroupControHead.Controls.Add(Me.PanelHeaderLeft)
         Me.GroupControHead.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControHead.Location = New System.Drawing.Point(0, 0)
@@ -99,24 +108,78 @@ Partial Class FormProductionAssemblySingle
         Me.GroupControHead.Size = New System.Drawing.Size(794, 40)
         Me.GroupControHead.TabIndex = 0
         '
+        'TxtDesign
+        '
+        Me.TxtDesign.EditValue = ""
+        Me.TxtDesign.Enabled = False
+        Me.TxtDesign.Location = New System.Drawing.Point(159, 10)
+        Me.TxtDesign.Name = "TxtDesign"
+        Me.TxtDesign.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.TxtDesign.Properties.Appearance.Options.UseBackColor = True
+        Me.TxtDesign.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDesign.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDesign.Properties.EditValueChangedDelay = 1
+        Me.TxtDesign.Properties.ReadOnly = True
+        Me.TxtDesign.Size = New System.Drawing.Size(237, 20)
+        Me.TxtDesign.TabIndex = 8903
+        '
+        'TxtDesignCode
+        '
+        Me.TxtDesignCode.EditValue = ""
+        Me.TxtDesignCode.Enabled = False
+        Me.TxtDesignCode.Location = New System.Drawing.Point(63, 10)
+        Me.TxtDesignCode.Name = "TxtDesignCode"
+        Me.TxtDesignCode.Properties.Appearance.BackColor = System.Drawing.Color.White
+        Me.TxtDesignCode.Properties.Appearance.Options.UseBackColor = True
+        Me.TxtDesignCode.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDesignCode.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDesignCode.Properties.EditValueChangedDelay = 1
+        Me.TxtDesignCode.Properties.ReadOnly = True
+        Me.TxtDesignCode.Size = New System.Drawing.Size(93, 20)
+        Me.TxtDesignCode.TabIndex = 8902
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl1.Location = New System.Drawing.Point(25, 13)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(32, 13)
+        Me.LabelControl1.TabIndex = 8901
+        Me.LabelControl1.Text = "Design"
+        '
         'PanelHeaderLeft
         '
         Me.PanelHeaderLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelHeaderLeft.Controls.Add(Me.DEFrom)
         Me.PanelHeaderLeft.Controls.Add(Me.TxtNumber)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl5)
         Me.PanelHeaderLeft.Controls.Add(Me.LabelControl7)
-        Me.PanelHeaderLeft.Controls.Add(Me.DEForm)
         Me.PanelHeaderLeft.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelHeaderLeft.Location = New System.Drawing.Point(291, 2)
+        Me.PanelHeaderLeft.Location = New System.Drawing.Point(413, 2)
         Me.PanelHeaderLeft.Name = "PanelHeaderLeft"
-        Me.PanelHeaderLeft.Size = New System.Drawing.Size(501, 36)
+        Me.PanelHeaderLeft.Size = New System.Drawing.Size(379, 36)
         Me.PanelHeaderLeft.TabIndex = 8900
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Enabled = False
+        Me.DEFrom.Location = New System.Drawing.Point(40, 8)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.DEFrom.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Size = New System.Drawing.Size(173, 20)
+        Me.DEFrom.TabIndex = 8901
         '
         'TxtNumber
         '
         Me.TxtNumber.EditValue = ""
         Me.TxtNumber.Enabled = False
-        Me.TxtNumber.Location = New System.Drawing.Point(349, 8)
+        Me.TxtNumber.Location = New System.Drawing.Point(262, 8)
         Me.TxtNumber.Name = "TxtNumber"
         Me.TxtNumber.Properties.Appearance.BackColor = System.Drawing.Color.White
         Me.TxtNumber.Properties.Appearance.Options.UseBackColor = True
@@ -124,13 +187,13 @@ Partial Class FormProductionAssemblySingle
         Me.TxtNumber.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtNumber.Properties.EditValueChangedDelay = 1
         Me.TxtNumber.Properties.ReadOnly = True
-        Me.TxtNumber.Size = New System.Drawing.Size(142, 20)
+        Me.TxtNumber.Size = New System.Drawing.Size(107, 20)
         Me.TxtNumber.TabIndex = 8
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(306, 11)
+        Me.LabelControl5.Location = New System.Drawing.Point(219, 11)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl5.TabIndex = 155
@@ -139,26 +202,11 @@ Partial Class FormProductionAssemblySingle
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(129, 11)
+        Me.LabelControl7.Location = New System.Drawing.Point(11, 11)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 159
         Me.LabelControl7.Text = "Date"
-        '
-        'DEForm
-        '
-        Me.DEForm.EditValue = ""
-        Me.DEForm.Enabled = False
-        Me.DEForm.Location = New System.Drawing.Point(158, 8)
-        Me.DEForm.Name = "DEForm"
-        Me.DEForm.Properties.Appearance.BackColor = System.Drawing.Color.White
-        Me.DEForm.Properties.Appearance.Options.UseBackColor = True
-        Me.DEForm.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.DEForm.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.DEForm.Properties.EditValueChangedDelay = 1
-        Me.DEForm.Properties.ReadOnly = True
-        Me.DEForm.Size = New System.Drawing.Size(142, 20)
-        Me.DEForm.TabIndex = 162
         '
         'EPRet
         '
@@ -249,7 +297,6 @@ Partial Class FormProductionAssemblySingle
         Me.BtnSave.Size = New System.Drawing.Size(75, 31)
         Me.BtnSave.TabIndex = 10
         Me.BtnSave.Text = "Save"
-        Me.BtnSave.Visible = False
         '
         'GroupControl3
         '
@@ -348,6 +395,46 @@ Partial Class FormProductionAssemblySingle
         Me.SCCDetail.TabIndex = 0
         Me.SCCDetail.Text = "SplitContainerControl1"
         '
+        'GroupControl2
+        '
+        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.GCItemList)
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(788, 178)
+        Me.GroupControl2.TabIndex = 1
+        Me.GroupControl2.Text = "Result"
+        '
+        'GCItemList
+        '
+        Me.GCItemList.ContextMenuStrip = Me.ContextMenuStripRes
+        Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCItemList.Location = New System.Drawing.Point(20, 2)
+        Me.GCItemList.MainView = Me.GVItemList
+        Me.GCItemList.Name = "GCItemList"
+        Me.GCItemList.Size = New System.Drawing.Size(766, 174)
+        Me.GCItemList.TabIndex = 2
+        Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
+        '
+        'ContextMenuStripRes
+        '
+        Me.ContextMenuStripRes.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddComponentToolStripMenuItem})
+        Me.ContextMenuStripRes.Name = "ContextMenuStripRes"
+        Me.ContextMenuStripRes.Size = New System.Drawing.Size(164, 26)
+        '
+        'AddComponentToolStripMenuItem
+        '
+        Me.AddComponentToolStripMenuItem.Name = "AddComponentToolStripMenuItem"
+        Me.AddComponentToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.AddComponentToolStripMenuItem.Text = "Add Component"
+        '
+        'GVItemList
+        '
+        Me.GVItemList.GridControl = Me.GCItemList
+        Me.GVItemList.Name = "GVItemList"
+        Me.GVItemList.OptionsView.ShowGroupPanel = False
+        '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -370,63 +457,11 @@ Partial Class FormProductionAssemblySingle
         Me.GCComponent.TabIndex = 1
         Me.GCComponent.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVComponent})
         '
-        'GVComponent
-        '
-        Me.GVComponent.GridControl = Me.GCComponent
-        Me.GVComponent.Name = "GVComponent"
-        Me.GVComponent.OptionsView.ShowGroupPanel = False
-        '
-        'GroupControl2
-        '
-        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl2.Controls.Add(Me.GCResult)
-        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(788, 178)
-        Me.GroupControl2.TabIndex = 1
-        Me.GroupControl2.Text = "Result"
-        '
-        'GCResult
-        '
-        Me.GCResult.ContextMenuStrip = Me.ContextMenuStripRes
-        Me.GCResult.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCResult.Location = New System.Drawing.Point(20, 2)
-        Me.GCResult.MainView = Me.GVResult
-        Me.GCResult.Name = "GCResult"
-        Me.GCResult.Size = New System.Drawing.Size(766, 174)
-        Me.GCResult.TabIndex = 2
-        Me.GCResult.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVResult})
-        '
-        'GVResult
-        '
-        Me.GVResult.GridControl = Me.GCResult
-        Me.GVResult.Name = "GVResult"
-        Me.GVResult.OptionsView.ShowGroupPanel = False
-        '
-        'XTPBOM
-        '
-        Me.XTPBOM.Name = "XTPBOM"
-        Me.XTPBOM.Size = New System.Drawing.Size(788, 351)
-        Me.XTPBOM.Text = "Bill Of Material"
-        '
-        'ContextMenuStripRes
-        '
-        Me.ContextMenuStripRes.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddComponentToolStripMenuItem})
-        Me.ContextMenuStripRes.Name = "ContextMenuStripRes"
-        Me.ContextMenuStripRes.Size = New System.Drawing.Size(164, 26)
-        '
         'ContextMenuStripComp
         '
         Me.ContextMenuStripComp.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.ContextMenuStripComp.Name = "ContextMenuStripComp"
         Me.ContextMenuStripComp.Size = New System.Drawing.Size(108, 48)
-        '
-        'AddComponentToolStripMenuItem
-        '
-        Me.AddComponentToolStripMenuItem.Name = "AddComponentToolStripMenuItem"
-        Me.AddComponentToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
-        Me.AddComponentToolStripMenuItem.Text = "Add Component"
         '
         'AddToolStripMenuItem
         '
@@ -439,6 +474,18 @@ Partial Class FormProductionAssemblySingle
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
         Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
+        '
+        'GVComponent
+        '
+        Me.GVComponent.GridControl = Me.GCComponent
+        Me.GVComponent.Name = "GVComponent"
+        Me.GVComponent.OptionsView.ShowGroupPanel = False
+        '
+        'XTPBOM
+        '
+        Me.XTPBOM.Name = "XTPBOM"
+        Me.XTPBOM.Size = New System.Drawing.Size(788, 351)
+        Me.XTPBOM.Text = "Bill Of Material"
         '
         'FormProductionAssemblySingle
         '
@@ -456,11 +503,15 @@ Partial Class FormProductionAssemblySingle
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupControHead, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControHead.ResumeLayout(False)
+        Me.GroupControHead.PerformLayout()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelHeaderLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelHeaderLeft.ResumeLayout(False)
         Me.PanelHeaderLeft.PerformLayout()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -478,16 +529,16 @@ Partial Class FormProductionAssemblySingle
         Me.XTPDetail.ResumeLayout(False)
         CType(Me.SCCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SCCDetail.ResumeLayout(False)
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStripRes.ResumeLayout(False)
+        CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GCComponent, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVComponent, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl2.ResumeLayout(False)
-        CType(Me.GCResult, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVResult, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ContextMenuStripRes.ResumeLayout(False)
         Me.ContextMenuStripComp.ResumeLayout(False)
+        CType(Me.GVComponent, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -497,7 +548,6 @@ Partial Class FormProductionAssemblySingle
     Friend WithEvents TxtNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents DEForm As DevExpress.XtraEditors.TextEdit
     Friend WithEvents EPRet As ErrorProvider
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
@@ -520,11 +570,15 @@ Partial Class FormProductionAssemblySingle
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCComponent As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVComponent As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GCResult As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVResult As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCItemList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVItemList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ContextMenuStripRes As ContextMenuStrip
     Friend WithEvents AddComponentToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ContextMenuStripComp As ContextMenuStrip
     Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtDesignCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
 End Class
