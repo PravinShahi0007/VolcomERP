@@ -21,8 +21,8 @@ Partial Class FormProductionAssemblyNew
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionAssemblyNew))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnNew = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnNew = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.ButtonEdit1 = New DevExpress.XtraEditors.ButtonEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -43,16 +43,6 @@ Partial Class FormProductionAssemblyNew
         Me.PanelControl1.Size = New System.Drawing.Size(372, 41)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnNew
-        '
-        Me.BtnNew.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnNew.Image = CType(resources.GetObject("BtnNew.Image"), System.Drawing.Image)
-        Me.BtnNew.Location = New System.Drawing.Point(261, 2)
-        Me.BtnNew.Name = "BtnNew"
-        Me.BtnNew.Size = New System.Drawing.Size(109, 37)
-        Me.BtnNew.TabIndex = 0
-        Me.BtnNew.Text = "Create New"
-        '
         'BtnCancel
         '
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
@@ -62,6 +52,16 @@ Partial Class FormProductionAssemblyNew
         Me.BtnCancel.Size = New System.Drawing.Size(86, 37)
         Me.BtnCancel.TabIndex = 1
         Me.BtnCancel.Text = "Cancel"
+        '
+        'BtnNew
+        '
+        Me.BtnNew.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnNew.Image = CType(resources.GetObject("BtnNew.Image"), System.Drawing.Image)
+        Me.BtnNew.Location = New System.Drawing.Point(261, 2)
+        Me.BtnNew.Name = "BtnNew"
+        Me.BtnNew.Size = New System.Drawing.Size(109, 37)
+        Me.BtnNew.TabIndex = 0
+        Me.BtnNew.Text = "Create New"
         '
         'LabelControl1
         '

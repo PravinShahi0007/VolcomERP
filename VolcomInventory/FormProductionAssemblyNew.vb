@@ -10,4 +10,9 @@
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
     End Sub
+
+    Private Sub ButtonEdit1_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles ButtonEdit1.ButtonClick
+        FormPopUpProd.id_pop_up = "10"
+        FormPopUpProd.ShowDialog()
+    End Sub
 End Class
