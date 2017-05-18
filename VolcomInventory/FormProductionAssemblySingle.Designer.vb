@@ -52,6 +52,16 @@ Partial Class FormProductionAssemblySingle
         Me.ContextMenuStripRes = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddComponentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCComponent = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStripComp = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -59,6 +69,15 @@ Partial Class FormProductionAssemblySingle
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVComponent = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.XTPBOM = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridColumnIdCompDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdPODet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProductComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCodeComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNameComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControHead.SuspendLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,6 +107,7 @@ Partial Class FormProductionAssemblySingle
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ContextMenuStripRes.SuspendLayout()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCComponent, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -413,6 +433,7 @@ Partial Class FormProductionAssemblySingle
         Me.GCItemList.Location = New System.Drawing.Point(20, 2)
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
         Me.GCItemList.Size = New System.Drawing.Size(766, 174)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
@@ -431,9 +452,107 @@ Partial Class FormProductionAssemblySingle
         '
         'GVItemList
         '
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDet, Me.GridColumnId, Me.GridColumnIdProduct, Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnNote})
         Me.GVItemList.GridControl = Me.GCItemList
+        Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_ass_det_qty", Me.GridColumnQty, "{0:n0}")})
         Me.GVItemList.Name = "GVItemList"
+        Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIdDet
+        '
+        Me.GridColumnIdDet.Caption = "Id Det"
+        Me.GridColumnIdDet.FieldName = "id_prod_ass_det"
+        Me.GridColumnIdDet.Name = "GridColumnIdDet"
+        Me.GridColumnIdDet.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnId
+        '
+        Me.GridColumnId.Caption = "Id"
+        Me.GridColumnId.FieldName = "id_prod_ass"
+        Me.GridColumnId.Name = "GridColumnId"
+        Me.GridColumnId.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnIdProduct
+        '
+        Me.GridColumnIdProduct.Caption = "Id Product"
+        Me.GridColumnIdProduct.FieldName = "id_product"
+        Me.GridColumnIdProduct.Name = "GridColumnIdProduct"
+        Me.GridColumnIdProduct.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnNo
+        '
+        Me.GridColumnNo.Caption = "No"
+        Me.GridColumnNo.FieldName = "no"
+        Me.GridColumnNo.Name = "GridColumnNo"
+        Me.GridColumnNo.OptionsColumn.AllowEdit = False
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
+        Me.GridColumnNo.Width = 42
+        '
+        'GridColumnCode
+        '
+        Me.GridColumnCode.Caption = "Code"
+        Me.GridColumnCode.FieldName = "code"
+        Me.GridColumnCode.Name = "GridColumnCode"
+        Me.GridColumnCode.OptionsColumn.AllowEdit = False
+        Me.GridColumnCode.OptionsColumn.ReadOnly = True
+        Me.GridColumnCode.Visible = True
+        Me.GridColumnCode.VisibleIndex = 1
+        Me.GridColumnCode.Width = 143
+        '
+        'GridColumnName
+        '
+        Me.GridColumnName.Caption = "Design"
+        Me.GridColumnName.FieldName = "name"
+        Me.GridColumnName.Name = "GridColumnName"
+        Me.GridColumnName.OptionsColumn.AllowEdit = False
+        Me.GridColumnName.OptionsColumn.ReadOnly = True
+        Me.GridColumnName.Visible = True
+        Me.GridColumnName.VisibleIndex = 2
+        Me.GridColumnName.Width = 282
+        '
+        'GridColumnSize
+        '
+        Me.GridColumnSize.Caption = "Size"
+        Me.GridColumnSize.FieldName = "size"
+        Me.GridColumnSize.Name = "GridColumnSize"
+        Me.GridColumnSize.OptionsColumn.AllowEdit = False
+        Me.GridColumnSize.OptionsColumn.ReadOnly = True
+        Me.GridColumnSize.Visible = True
+        Me.GridColumnSize.VisibleIndex = 3
+        Me.GridColumnSize.Width = 49
+        '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.ColumnEdit = Me.RepositoryItemTextEdit1
+        Me.GridColumnQty.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "prod_ass_det_qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_ass_det_qty", "{0:n0}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.Width = 46
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatString = "N0"
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "n0"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'GridColumnNote
+        '
+        Me.GridColumnNote.Caption = "Remark"
+        Me.GridColumnNote.FieldName = "prod_ass_det_note"
+        Me.GridColumnNote.Name = "GridColumnNote"
+        Me.GridColumnNote.Visible = True
+        Me.GridColumnNote.VisibleIndex = 5
+        Me.GridColumnNote.Width = 516
         '
         'GroupControl1
         '
@@ -477,8 +596,12 @@ Partial Class FormProductionAssemblySingle
         '
         'GVComponent
         '
+        Me.GVComponent.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdCompDet, Me.GridColumnIdDetail, Me.GridColumnIdPODet, Me.GridColumnIdProductComp, Me.GridColumnCodeComp, Me.GridColumnNameComp, Me.GridColumnCompSize, Me.GridColumnCompQty, Me.GridColumnCompNo})
         Me.GVComponent.GridControl = Me.GCComponent
+        Me.GVComponent.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_ass_comp_qty_det", Me.GridColumnCompQty, "{0:n0}")})
         Me.GVComponent.Name = "GVComponent"
+        Me.GVComponent.OptionsBehavior.Editable = False
+        Me.GVComponent.OptionsView.ShowFooter = True
         Me.GVComponent.OptionsView.ShowGroupPanel = False
         '
         'XTPBOM
@@ -486,6 +609,82 @@ Partial Class FormProductionAssemblySingle
         Me.XTPBOM.Name = "XTPBOM"
         Me.XTPBOM.Size = New System.Drawing.Size(788, 351)
         Me.XTPBOM.Text = "Bill Of Material"
+        '
+        'GridColumnIdCompDet
+        '
+        Me.GridColumnIdCompDet.Caption = "Id Comp Det"
+        Me.GridColumnIdCompDet.FieldName = "id_prod_ass_comp_det"
+        Me.GridColumnIdCompDet.Name = "GridColumnIdCompDet"
+        Me.GridColumnIdCompDet.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnIdDetail
+        '
+        Me.GridColumnIdDetail.Caption = "Id Detail"
+        Me.GridColumnIdDetail.FieldName = "id_prod_ass_det"
+        Me.GridColumnIdDetail.Name = "GridColumnIdDetail"
+        Me.GridColumnIdDetail.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnIdPODet
+        '
+        Me.GridColumnIdPODet.Caption = "Id PO Det"
+        Me.GridColumnIdPODet.FieldName = "id_prod_order_det"
+        Me.GridColumnIdPODet.Name = "GridColumnIdPODet"
+        Me.GridColumnIdPODet.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnIdProductComp
+        '
+        Me.GridColumnIdProductComp.Caption = "Id Product"
+        Me.GridColumnIdProductComp.FieldName = "id_product"
+        Me.GridColumnIdProductComp.Name = "GridColumnIdProductComp"
+        Me.GridColumnIdProductComp.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnCodeComp
+        '
+        Me.GridColumnCodeComp.Caption = "Code"
+        Me.GridColumnCodeComp.FieldName = "code"
+        Me.GridColumnCodeComp.Name = "GridColumnCodeComp"
+        Me.GridColumnCodeComp.Visible = True
+        Me.GridColumnCodeComp.VisibleIndex = 1
+        Me.GridColumnCodeComp.Width = 161
+        '
+        'GridColumnNameComp
+        '
+        Me.GridColumnNameComp.Caption = "Design"
+        Me.GridColumnNameComp.FieldName = "name"
+        Me.GridColumnNameComp.Name = "GridColumnNameComp"
+        Me.GridColumnNameComp.Visible = True
+        Me.GridColumnNameComp.VisibleIndex = 2
+        Me.GridColumnNameComp.Width = 732
+        '
+        'GridColumnCompSize
+        '
+        Me.GridColumnCompSize.Caption = "Size"
+        Me.GridColumnCompSize.FieldName = "size"
+        Me.GridColumnCompSize.Name = "GridColumnCompSize"
+        Me.GridColumnCompSize.Visible = True
+        Me.GridColumnCompSize.VisibleIndex = 3
+        Me.GridColumnCompSize.Width = 74
+        '
+        'GridColumnCompQty
+        '
+        Me.GridColumnCompQty.Caption = "Qty"
+        Me.GridColumnCompQty.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnCompQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCompQty.FieldName = "prod_ass_comp_qty_det"
+        Me.GridColumnCompQty.Name = "GridColumnCompQty"
+        Me.GridColumnCompQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_ass_comp_qty_det", "{0:n0}")})
+        Me.GridColumnCompQty.Visible = True
+        Me.GridColumnCompQty.VisibleIndex = 4
+        Me.GridColumnCompQty.Width = 66
+        '
+        'GridColumnCompNo
+        '
+        Me.GridColumnCompNo.Caption = "No"
+        Me.GridColumnCompNo.FieldName = "no"
+        Me.GridColumnCompNo.Name = "GridColumnCompNo"
+        Me.GridColumnCompNo.Visible = True
+        Me.GridColumnCompNo.VisibleIndex = 0
+        Me.GridColumnCompNo.Width = 45
         '
         'FormProductionAssemblySingle
         '
@@ -534,6 +733,7 @@ Partial Class FormProductionAssemblySingle
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ContextMenuStripRes.ResumeLayout(False)
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GCComponent, System.ComponentModel.ISupportInitialize).EndInit()
@@ -581,4 +781,23 @@ Partial Class FormProductionAssemblySingle
     Friend WithEvents TxtDesignCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEFrom As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumnIdDet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdProduct As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumnIdCompDet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdDetail As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdPODet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdProductComp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCodeComp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNameComp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCompSize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCompQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCompNo As DevExpress.XtraGrid.Columns.GridColumn
 End Class

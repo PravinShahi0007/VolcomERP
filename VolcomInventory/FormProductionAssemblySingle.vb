@@ -22,18 +22,31 @@
     End Sub
 
     Sub viewDetail()
+        Dim query As String = "CALL view_prod_ass(" + id_prod_ass + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCItemList.DataSource = data
+        viewDetailComponent()
+    End Sub
 
+    Sub viewDetailComponent()
+        Dim id_prod_ass_det As String = "0"
+        Try
+            id_prod_ass_det = GVItemList.GetFocusedRowCellValue("id_prod_ass_det").ToString
+        Catch ex As Exception
+        End Try
+        Dim query As String = "CALL view_prod_ass_comp(" + id_prod_ass_det + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCComponent.DataSource = data
     End Sub
 
     Sub allow_status()
         If check_edit_report_status(id_report_status, "107", id_prod_ass) Then
             MENote.Enabled = True
+            BtnSave.Enabled = True
         Else
             MENote.Enabled = False
+            BtnSave.Enabled = False
         End If
-        BtnSave.Enabled = False
-        GVItemList.OptionsBehavior.Editable = False
-        MENote.Enabled = False
 
         'ATTACH
         If check_attach_report_status(id_report_status, "107", id_prod_ass) Then
@@ -56,5 +69,29 @@
 
     Private Sub FormProductionAssemblySingle_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVComponent_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVComponent.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVItemList_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVItemList.FocusedRowChanged
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            viewDetailComponent()
+        End If
+    End Sub
+
+    Private Sub GVItemList_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVItemList.ColumnFilterChanged
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            viewDetailComponent()
+        End If
     End Sub
 End Class
