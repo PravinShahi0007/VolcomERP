@@ -24,13 +24,11 @@ Partial Class FormProductionAssemblyComp
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEDesignStockStore = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GVSLEDesgSearch = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.GridColumnCodeSearch = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.GridColumnIdProdOrderDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -39,15 +37,18 @@ Partial Class FormProductionAssemblyComp
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtySel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnInfo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEDesignStockStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -86,15 +87,6 @@ Partial Class FormProductionAssemblyComp
         Me.GVSLEDesgSearch.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GVSLEDesgSearch.OptionsView.ShowGroupPanel = False
         '
-        'LabelControl9
-        '
-        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(11, 11)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(32, 13)
-        Me.LabelControl9.TabIndex = 8895
-        Me.LabelControl9.Text = "Design"
-        '
         'GridColumnCodeSearch
         '
         Me.GridColumnCodeSearch.Caption = "Code"
@@ -113,6 +105,15 @@ Partial Class FormProductionAssemblyComp
         Me.GridColumn7.VisibleIndex = 1
         Me.GridColumn7.Width = 360
         '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(11, 11)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(32, 13)
+        Me.LabelControl9.TabIndex = 8895
+        Me.LabelControl9.Text = "Design"
+        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
@@ -120,37 +121,18 @@ Partial Class FormProductionAssemblyComp
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCData.Size = New System.Drawing.Size(673, 225)
+        Me.GCData.Size = New System.Drawing.Size(673, 221)
         Me.GCData.TabIndex = 5
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdOrderDet, Me.GridColumnIdProduct, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnQtySel})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdProdOrderDet, Me.GridColumnIdProduct, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnQtySel, Me.GridColumnInfo})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sel", Me.GridColumnQtySel, "{0:n0}")})
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupPanel = False
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(608, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(63, 24)
-        Me.SimpleButton1.TabIndex = 6
-        Me.SimpleButton1.Text = "Add"
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 263)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(673, 28)
-        Me.PanelControl2.TabIndex = 7
         '
         'GridColumnIdProdOrderDet
         '
@@ -171,7 +153,7 @@ Partial Class FormProductionAssemblyComp
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 0
-        Me.GridColumnCode.Width = 88
+        Me.GridColumnCode.Width = 115
         '
         'GridColumnName
         '
@@ -180,7 +162,7 @@ Partial Class FormProductionAssemblyComp
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 1
-        Me.GridColumnName.Width = 435
+        Me.GridColumnName.Width = 392
         '
         'GridColumnSize
         '
@@ -189,7 +171,7 @@ Partial Class FormProductionAssemblyComp
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 2
-        Me.GridColumnSize.Width = 240
+        Me.GridColumnSize.Width = 46
         '
         'GridColumnQty
         '
@@ -201,7 +183,7 @@ Partial Class FormProductionAssemblyComp
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 3
-        Me.GridColumnQty.Width = 154
+        Me.GridColumnQty.Width = 81
         '
         'GridColumnQtySel
         '
@@ -214,7 +196,7 @@ Partial Class FormProductionAssemblyComp
         Me.GridColumnQtySel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_sel", "{0:n0}")})
         Me.GridColumnQtySel.Visible = True
         Me.GridColumnQtySel.VisibleIndex = 4
-        Me.GridColumnQtySel.Width = 161
+        Me.GridColumnQtySel.Width = 65
         '
         'RepositoryItemTextEdit1
         '
@@ -222,6 +204,33 @@ Partial Class FormProductionAssemblyComp
         Me.RepositoryItemTextEdit1.Mask.EditMask = "n0"
         Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
+        '
+        'GridColumnInfo
+        '
+        Me.GridColumnInfo.Caption = "Info"
+        Me.GridColumnInfo.FieldName = "info"
+        Me.GridColumnInfo.Name = "GridColumnInfo"
+        Me.GridColumnInfo.OptionsColumn.ShowInExpressionEditor = False
+        Me.GridColumnInfo.Width = 379
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(608, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(63, 28)
+        Me.SimpleButton1.TabIndex = 6
+        Me.SimpleButton1.Text = "Add"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 259)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(673, 32)
+        Me.PanelControl2.TabIndex = 7
         '
         'FormProductionAssemblyComp
         '
@@ -244,9 +253,9 @@ Partial Class FormProductionAssemblyComp
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -270,4 +279,5 @@ Partial Class FormProductionAssemblyComp
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQtySel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumnInfo As DevExpress.XtraGrid.Columns.GridColumn
 End Class
