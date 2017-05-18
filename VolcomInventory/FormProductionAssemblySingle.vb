@@ -94,4 +94,18 @@
             viewDetailComponent()
         End If
     End Sub
+
+    Private Sub AddComponentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddComponentToolStripMenuItem.Click
+        addComponent()
+    End Sub
+
+    Private Sub AddToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddToolStripMenuItem.Click
+        addComponent()
+    End Sub
+
+    Sub addComponent()
+        Cursor = Cursors.WaitCursor
+        FormProductionAssemblyComp.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

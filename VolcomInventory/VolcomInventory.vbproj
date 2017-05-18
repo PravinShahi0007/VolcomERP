@@ -1110,6 +1110,12 @@
     <Compile Include="FormProductionAssembly.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionAssemblyComp.Designer.vb">
+      <DependentUpon>FormProductionAssemblyComp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionAssemblyComp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionAssemblyNew.Designer.vb">
       <DependentUpon>FormProductionAssemblyNew.vb</DependentUpon>
     </Compile>
@@ -5184,6 +5190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssembly.resx">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionAssemblyComp.resx">
+      <DependentUpon>FormProductionAssemblyComp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssemblyNew.resx">
       <DependentUpon>FormProductionAssemblyNew.vb</DependentUpon>

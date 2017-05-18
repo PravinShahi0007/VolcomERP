@@ -68,7 +68,6 @@ Partial Class FormProductionAssemblySingle
         Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVComponent = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.XTPBOM = New DevExpress.XtraTab.XtraTabPage()
         Me.GridColumnIdCompDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDetail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPODet = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -78,6 +77,7 @@ Partial Class FormProductionAssemblySingle
         Me.GridColumnCompSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCompQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCompNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPBOM = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GroupControHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControHead.SuspendLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -580,18 +580,18 @@ Partial Class FormProductionAssemblySingle
         '
         Me.ContextMenuStripComp.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.ContextMenuStripComp.Name = "ContextMenuStripComp"
-        Me.ContextMenuStripComp.Size = New System.Drawing.Size(108, 48)
+        Me.ContextMenuStripComp.Size = New System.Drawing.Size(153, 70)
         '
         'AddToolStripMenuItem
         '
         Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
-        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AddToolStripMenuItem.Text = "Add"
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'GVComponent
@@ -603,12 +603,6 @@ Partial Class FormProductionAssemblySingle
         Me.GVComponent.OptionsBehavior.Editable = False
         Me.GVComponent.OptionsView.ShowFooter = True
         Me.GVComponent.OptionsView.ShowGroupPanel = False
-        '
-        'XTPBOM
-        '
-        Me.XTPBOM.Name = "XTPBOM"
-        Me.XTPBOM.Size = New System.Drawing.Size(788, 351)
-        Me.XTPBOM.Text = "Bill Of Material"
         '
         'GridColumnIdCompDet
         '
@@ -685,6 +679,12 @@ Partial Class FormProductionAssemblySingle
         Me.GridColumnCompNo.Visible = True
         Me.GridColumnCompNo.VisibleIndex = 0
         Me.GridColumnCompNo.Width = 45
+        '
+        'XTPBOM
+        '
+        Me.XTPBOM.Name = "XTPBOM"
+        Me.XTPBOM.Size = New System.Drawing.Size(788, 351)
+        Me.XTPBOM.Text = "Bill Of Material"
         '
         'FormProductionAssemblySingle
         '
