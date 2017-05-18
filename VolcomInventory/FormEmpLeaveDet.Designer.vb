@@ -69,6 +69,19 @@ Partial Class FormEmpLeaveDet
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BRecalculate = New DevExpress.XtraEditors.SimpleButton()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCMutasi = New DevExpress.XtraGrid.GridControl()
+        Me.GVMutasi = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCutiTerpakai = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BViewMutasi = New DevExpress.XtraEditors.SimpleButton()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
@@ -121,6 +134,13 @@ Partial Class FormEmpLeaveDet
         Me.XTPLeaveUsed.SuspendLayout()
         CType(Me.GCLeaveUsage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVLeaveUsage, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XtraTabPage1.SuspendLayout()
+        CType(Me.GCMutasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVMutasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEFormDC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -316,7 +336,7 @@ Partial Class FormEmpLeaveDet
         Me.XTCDet.SelectedTabPage = Me.XTPDetLeave
         Me.XTCDet.Size = New System.Drawing.Size(696, 253)
         Me.XTCDet.TabIndex = 2
-        Me.XTCDet.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetLeave, Me.XTPLeaveRemaining, Me.XTPLeaveUsed})
+        Me.XTCDet.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPDetLeave, Me.XTPLeaveRemaining, Me.XTPLeaveUsed, Me.XtraTabPage1})
         '
         'XTPDetLeave
         '
@@ -638,6 +658,141 @@ Partial Class FormEmpLeaveDet
         Me.BRecalculate.Size = New System.Drawing.Size(690, 27)
         Me.BRecalculate.TabIndex = 5
         Me.BRecalculate.Text = "Re-Calculate"
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCMutasi)
+        Me.XtraTabPage1.Controls.Add(Me.PanelControl2)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.Size = New System.Drawing.Size(690, 225)
+        Me.XtraTabPage1.Text = "Mutasi Cuti"
+        '
+        'GCMutasi
+        '
+        Me.GCMutasi.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCMutasi.Location = New System.Drawing.Point(0, 38)
+        Me.GCMutasi.MainView = Me.GVMutasi
+        Me.GCMutasi.Name = "GCMutasi"
+        Me.GCMutasi.Size = New System.Drawing.Size(690, 187)
+        Me.GCMutasi.TabIndex = 4
+        Me.GCMutasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMutasi})
+        '
+        'GVMutasi
+        '
+        Me.GVMutasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn17, Me.GridColumn21, Me.GridColumnCutiTerpakai, Me.GridColumn20, Me.GridColumn19})
+        Me.GVMutasi.GridControl = Me.GCMutasi
+        Me.GVMutasi.Name = "GVMutasi"
+        Me.GVMutasi.OptionsCustomization.AllowColumnMoving = False
+        Me.GVMutasi.OptionsCustomization.AllowFilter = False
+        Me.GVMutasi.OptionsCustomization.AllowSort = False
+        Me.GVMutasi.OptionsFind.AllowFindPanel = False
+        Me.GVMutasi.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "ID"
+        Me.GridColumn18.FieldName = "id_emp_leave_stock"
+        Me.GridColumn18.Name = "GridColumn18"
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Tanggal"
+        Me.GridColumn17.FieldName = "date_leave"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 0
+        Me.GridColumn17.Width = 149
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Tipe"
+        Me.GridColumn21.FieldName = "leave_type"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 1
+        Me.GridColumn21.Width = 114
+        '
+        'GridColumnCutiTerpakai
+        '
+        Me.GridColumnCutiTerpakai.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnCutiTerpakai.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnCutiTerpakai.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnCutiTerpakai.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnCutiTerpakai.Caption = "Mutasi Cuti (Jam)"
+        Me.GridColumnCutiTerpakai.DisplayFormat.FormatString = "N0"
+        Me.GridColumnCutiTerpakai.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCutiTerpakai.FieldName = "qty_hr"
+        Me.GridColumnCutiTerpakai.Name = "GridColumnCutiTerpakai"
+        Me.GridColumnCutiTerpakai.Visible = True
+        Me.GridColumnCutiTerpakai.VisibleIndex = 3
+        Me.GridColumnCutiTerpakai.Width = 113
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn20.Caption = "Sisa Cuti (Jam)"
+        Me.GridColumn20.DisplayFormat.FormatString = "N0"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "bal_hr"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0}")})
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 4
+        Me.GridColumn20.Width = 119
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Note"
+        Me.GridColumn19.FieldName = "note"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 2
+        Me.GridColumn19.Width = 177
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.BViewMutasi)
+        Me.PanelControl2.Controls.Add(Me.Label7)
+        Me.PanelControl2.Controls.Add(Me.DEUntil)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(690, 38)
+        Me.PanelControl2.TabIndex = 0
+        '
+        'BViewMutasi
+        '
+        Me.BViewMutasi.Location = New System.Drawing.Point(233, 8)
+        Me.BViewMutasi.Name = "BViewMutasi"
+        Me.BViewMutasi.Size = New System.Drawing.Size(59, 23)
+        Me.BViewMutasi.TabIndex = 17
+        Me.BViewMutasi.Text = "Tampilkan"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(13, 13)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(81, 13)
+        Me.Label7.TabIndex = 16
+        Me.Label7.Text = "Sejak Tanggal :"
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(100, 10)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Properties.Mask.EditMask = "dd-MM-yyyy"
+        Me.DEUntil.Size = New System.Drawing.Size(127, 20)
+        Me.DEUntil.TabIndex = 15
         '
         'Label3
         '
@@ -963,6 +1118,14 @@ Partial Class FormEmpLeaveDet
         Me.XTPLeaveUsed.ResumeLayout(False)
         CType(Me.GCLeaveUsage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVLeaveUsage, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GCMutasi, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVMutasi, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -1055,4 +1218,17 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents LEFormDC As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BCancelPropose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents XtraTabPage1 As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BViewMutasi As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Label7 As Label
+    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GCMutasi As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVMutasi As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCutiTerpakai As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
