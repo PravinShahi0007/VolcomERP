@@ -19,9 +19,11 @@ Partial Class FormWork
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim GridLevelNode3 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormWork))
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn711 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn712 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -1768,6 +1770,7 @@ Partial Class FormWork
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesCreditNote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesCreditNote, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2366,6 +2369,7 @@ Partial Class FormWork
         CType(Me.RepositoryItemSpinEdit32, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlFGWoff, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlFGWoff.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GVSalesPOSDet
@@ -8089,11 +8093,13 @@ Partial Class FormWork
         'BViewApproval
         '
         Me.BViewApproval.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BViewApproval.Location = New System.Drawing.Point(860, 2)
+        Me.BViewApproval.ImageIndex = 3
+        Me.BViewApproval.ImageList = Me.LargeImageCollection
+        Me.BViewApproval.Location = New System.Drawing.Point(829, 2)
         Me.BViewApproval.Name = "BViewApproval"
-        Me.BViewApproval.Size = New System.Drawing.Size(77, 32)
+        Me.BViewApproval.Size = New System.Drawing.Size(108, 32)
         Me.BViewApproval.TabIndex = 0
-        Me.BViewApproval.Text = "View"
+        Me.BViewApproval.Text = "Refresh"
         '
         'XTPMarkHistory
         '
@@ -19674,6 +19680,31 @@ Partial Class FormWork
         Me.GridBand1.Name = "GridBand1"
         Me.GridBand1.VisibleIndex = -1
         '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
+        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
+        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
+        '
         'FormWork
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -20286,6 +20317,7 @@ Partial Class FormWork
         CType(Me.RepositoryItemSpinEdit32, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlFGWoff, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlFGWoff.ResumeLayout(False)
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -22035,4 +22067,5 @@ Partial Class FormWork
     Friend WithEvents GridColumn897 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn898 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn900 As DevExpress.XtraGrid.Columns.GridColumn
+    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
 End Class

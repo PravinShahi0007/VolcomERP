@@ -48,6 +48,7 @@
     End Sub
 
     Private Sub GVSchedule_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVSchedule.FocusedRowChanged
+        CEFullDay.Checked = True
         load_total()
     End Sub
 
@@ -110,20 +111,24 @@
                         total_min = GVSchedule.GetFocusedRowCellValue("minutes_work")
                     End If
 
-                    Dim newRow As DataRow = (TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable)).NewRow()
-                    newRow("id_schedule") = GVSchedule.GetFocusedRowCellDisplayText("id_schedule").ToString
-                    newRow("datetime_start") = date_from
-                    newRow("datetime_until") = date_until
-                    newRow("is_full_day") = is_full_day
-                    newRow("hours_total") = total_min / 60
-                    newRow("minutes_total") = total_min
+                    If total_min < get_opt_emp_field("min_leave_minutes") Then
+                        stopCustom("Hanya dapat mengajukan cuti dengan lama minimal 4 jam")
+                    Else
+                        Dim newRow As DataRow = (TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable)).NewRow()
+                        newRow("id_schedule") = GVSchedule.GetFocusedRowCellDisplayText("id_schedule").ToString
+                        newRow("datetime_start") = date_from
+                        newRow("datetime_until") = date_until
+                        newRow("is_full_day") = is_full_day
+                        newRow("hours_total") = total_min / 60
+                        newRow("minutes_total") = total_min
 
-                    TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
-                    FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
-                    FormEmpLeaveDet.load_but_calc()
-                    FormEmpLeaveDet.GVLeaveDet.FocusedRowHandle = 0
-                    '
-                    Close()
+                        TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable).Rows.Add(newRow)
+                        FormEmpLeaveDet.GCLeaveDet.RefreshDataSource()
+                        FormEmpLeaveDet.load_but_calc()
+                        FormEmpLeaveDet.GVLeaveDet.FocusedRowHandle = 0
+                        '
+                        Close()
+                    End If
                 End If
             End If
         End If
@@ -147,7 +152,6 @@
                     '
                     DEStartLeave.Properties.ReadOnly = True
                     DEUntilLeave.Properties.ReadOnly = True
-                    '
                 End If
             Else
                 DEStartLeave.Properties.ReadOnly = False
@@ -253,4 +257,5 @@
         Catch ex As Exception
         End Try
     End Sub
+
 End Class
