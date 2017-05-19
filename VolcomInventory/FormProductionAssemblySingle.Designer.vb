@@ -580,18 +580,18 @@ Partial Class FormProductionAssemblySingle
         '
         Me.ContextMenuStripComp.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.ContextMenuStripComp.Name = "ContextMenuStripComp"
-        Me.ContextMenuStripComp.Size = New System.Drawing.Size(153, 70)
+        Me.ContextMenuStripComp.Size = New System.Drawing.Size(108, 48)
         '
         'AddToolStripMenuItem
         '
         Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
-        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AddToolStripMenuItem.Text = "Add"
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'GVComponent

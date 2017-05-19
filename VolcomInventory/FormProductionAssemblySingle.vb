@@ -16,6 +16,7 @@
         TxtDesign.Text = data.Rows(0)("name").ToString
         DEFrom.EditValue = data.Rows(0)("prod_ass_date")
         TxtNumber.Text = data.Rows(0)("prod_ass_number").ToString
+        MENote.Text = data.Rows(0)("prod_ass_note").ToString
         id_report_status = data.Rows(0)("id_report_status").ToString
         viewDetail()
         allow_status()
@@ -105,7 +106,38 @@
 
     Sub addComponent()
         Cursor = Cursors.WaitCursor
-        FormProductionAssemblyComp.ShowDialog()
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim qty As Decimal = GVItemList.GetFocusedRowCellValue("prod_ass_det_qty")
+            If qty > 0 Then
+                Dim id_ass_det As String = GVItemList.GetFocusedRowCellValue("id_prod_ass_det").ToString
+                FormProductionAssemblyComp.id_prod_ass_det = id_ass_det
+                FormProductionAssemblyComp.data_par = GCComponent.DataSource
+                FormProductionAssemblyComp.ShowDialog()
+            End If
+        End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        Try
+            'main
+            Dim prod_ass_note As String = addSlashes(MENote.Text)
+            Dim query As String = "UPDATE tb_prod_ass SET prod_ass_note = '" + prod_ass_note + "' WHERE id_prod_ass=" + id_prod_ass + ""
+            execute_non_query(query, True, "", "", "", "")
+
+            'detail
+            makeSafeGV(GVItemList)
+            For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                Dim id_prod_ass_det As String = GVItemList.GetRowCellValue(i, "id_prod_ass_det").ToString
+                Dim qty_foc As String = GVItemList.GetRowCellValue(i, "prod_ass_det_qty").ToString
+                Dim note_foc As String = addSlashes(GVItemList.GetRowCellValue(i, "prod_ass_det_note").ToString)
+                Dim query_upd As String = "UPDATE tb_prod_ass_det SET prod_ass_det_qty='" + qty_foc + "',
+            prod_ass_det_note='" + note_foc + "' WHERE id_prod_ass_det=" + id_prod_ass_det + " "
+                execute_non_query(query_upd, True, "", "", "", "")
+            Next
+            infoCustom(TxtNumber.Text + " was updated successfully. ")
+        Catch ex As Exception
+            stopCustom(ex.ToString)
+        End Try
     End Sub
 End Class
