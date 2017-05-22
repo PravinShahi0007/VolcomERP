@@ -55,11 +55,11 @@
 	        INNER JOIN tb_m_product p ON p.id_product = b.id_product
 	        INNER JOIN tb_m_design d ON d.id_design = p.id_design
 	        LEFT JOIN (
-		        SELECT ass.id_prod_ass, SUM(cd.prod_ass_det_qty) AS `qty` 
-		        FROM tb_prod_ass_det cd
-		        INNER JOIN tb_prod_ass ass ON ass.id_prod_ass = cd.id_prod_ass
-		        GROUP BY ass.id_prod_ass
-	        ) comp ON comp.id_prod_ass = a.id_prod_ass
+		        SELECT p.id_design,SUM(cd.prod_ass_comp_qty_det) AS `qty` 
+		        FROM tb_prod_ass_comp_det cd
+		        INNER JOIN tb_m_product p ON p.id_product = cd.id_product
+		        GROUP BY p.id_design
+	        ) comp ON comp.id_design = p.id_design
 	        INNER JOIN tb_m_uom u ON u.id_uom = d.id_uom
 	        WHERE a.id_prod_ass=" + id_prod_ass + "
 	        GROUP BY p.id_product
@@ -187,5 +187,13 @@
             viewBom()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub QuickAddComponentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuickAddComponentToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            FormProductionAssemblyQuickAdd.ShowDialog()
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

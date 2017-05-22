@@ -52,6 +52,7 @@ Partial Class FormProductionAssemblySingle
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStripRes = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddComponentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.QuickAddComponentToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -452,15 +453,21 @@ Partial Class FormProductionAssemblySingle
         '
         'ContextMenuStripRes
         '
-        Me.ContextMenuStripRes.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddComponentToolStripMenuItem})
+        Me.ContextMenuStripRes.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddComponentToolStripMenuItem, Me.QuickAddComponentToolStripMenuItem})
         Me.ContextMenuStripRes.Name = "ContextMenuStripRes"
-        Me.ContextMenuStripRes.Size = New System.Drawing.Size(164, 26)
+        Me.ContextMenuStripRes.Size = New System.Drawing.Size(198, 70)
         '
         'AddComponentToolStripMenuItem
         '
         Me.AddComponentToolStripMenuItem.Name = "AddComponentToolStripMenuItem"
-        Me.AddComponentToolStripMenuItem.Size = New System.Drawing.Size(163, 22)
+        Me.AddComponentToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
         Me.AddComponentToolStripMenuItem.Text = "Add Component"
+        '
+        'QuickAddComponentToolStripMenuItem
+        '
+        Me.QuickAddComponentToolStripMenuItem.Name = "QuickAddComponentToolStripMenuItem"
+        Me.QuickAddComponentToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.QuickAddComponentToolStripMenuItem.Text = "Quick Add Component"
         '
         'GVItemList
         '
@@ -972,4 +979,5 @@ Partial Class FormProductionAssemblySingle
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnUOM As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents QuickAddComponentToolStripMenuItem As ToolStripMenuItem
 End Class

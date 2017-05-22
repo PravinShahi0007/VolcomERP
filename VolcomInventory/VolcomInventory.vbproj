@@ -1122,6 +1122,12 @@
     <Compile Include="FormProductionAssemblyNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProductionAssemblyQuickAdd.Designer.vb">
+      <DependentUpon>FormProductionAssemblyQuickAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionAssemblyQuickAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProductionAssemblySingle.Designer.vb">
       <DependentUpon>FormProductionAssemblySingle.vb</DependentUpon>
     </Compile>
@@ -5196,6 +5202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssemblyNew.resx">
       <DependentUpon>FormProductionAssemblyNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionAssemblyQuickAdd.resx">
+      <DependentUpon>FormProductionAssemblyQuickAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssemblySingle.resx">
       <DependentUpon>FormProductionAssemblySingle.vb</DependentUpon>
