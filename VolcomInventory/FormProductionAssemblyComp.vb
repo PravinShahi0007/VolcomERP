@@ -99,6 +99,7 @@
                 makeSafeGV(GVData)
                 GCData.DataSource = Nothing
                 FormProductionAssemblySingle.viewDetailComponent()
+                FormProductionAssemblySingle.viewBom()
                 data_par = Nothing
                 data_par = FormProductionAssemblySingle.GCComponent.DataSource
             End If

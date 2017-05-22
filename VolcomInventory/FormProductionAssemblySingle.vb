@@ -19,6 +19,7 @@
         MENote.Text = data.Rows(0)("prod_ass_note").ToString
         id_report_status = data.Rows(0)("id_report_status").ToString
         viewDetail()
+        viewBom()
         allow_status()
     End Sub
 
@@ -38,6 +39,33 @@
         Dim query As String = "CALL view_prod_ass_comp(" + id_prod_ass_det + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCComponent.DataSource = data
+    End Sub
+
+    Sub viewBom()
+        Dim query As String = "SELECT a.id_product, a.code, a.name, a.qty, a.uom,AVG(a.val) AS `price`
+        FROM(
+	        SELECT acd.id_product, p.id_design, d.design_code AS `code`,d.design_display_name AS `name`, b.id_bom, acd.prod_ass_comp_qty_det, bd.id_bom_det, 
+	        bd.id_mat_det_price, bd.id_ovh_price, bd.component_qty,
+	        bd.bom_price, bd.kurs, comp.qty, u.uom,SUM(bd.component_qty*bd.bom_price*bd.kurs) AS `val`
+	        FROM tb_prod_ass a
+	        INNER JOIN tb_prod_ass_det ad ON ad.id_prod_ass = a.id_prod_ass
+	        INNER JOIN tb_prod_ass_comp_det acd ON acd.id_prod_ass_det = ad.id_prod_ass_det
+	        INNER JOIN tb_bom b ON b.id_product = acd.id_product AND b.is_default=1
+	        INNER JOIN tb_bom_det bd ON bd.id_bom = b.id_bom
+	        INNER JOIN tb_m_product p ON p.id_product = b.id_product
+	        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+	        LEFT JOIN (
+		        SELECT ass.id_prod_ass, SUM(cd.prod_ass_det_qty) AS `qty` 
+		        FROM tb_prod_ass_det cd
+		        INNER JOIN tb_prod_ass ass ON ass.id_prod_ass = cd.id_prod_ass
+		        GROUP BY ass.id_prod_ass
+	        ) comp ON comp.id_prod_ass = a.id_prod_ass
+	        INNER JOIN tb_m_uom u ON u.id_uom = d.id_uom
+	        WHERE a.id_prod_ass=" + id_prod_ass + "
+	        GROUP BY p.id_product
+        ) a GROUP BY a.id_design "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCBOM.DataSource = data
     End Sub
 
     Sub allow_status()
@@ -139,5 +167,25 @@
         Catch ex As Exception
             stopCustom(ex.ToString)
         End Try
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        deleteComponent()
+    End Sub
+
+    Sub deleteComponent()
+        If GVComponent.RowCount > 0 And GVComponent.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim id As String = "-1"
+            Try
+                id = GVComponent.GetFocusedRowCellValue("id_prod_ass_comp_det").ToString
+            Catch ex As Exception
+            End Try
+            Dim query As String = "DELETE FROM tb_prod_ass_comp_det WHERE id_prod_ass_comp_det='" + id + "'"
+            execute_non_query(query, True, "", "", "", "")
+            viewDetailComponent()
+            viewBom()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
