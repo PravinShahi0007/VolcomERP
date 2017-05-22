@@ -561,4 +561,16 @@
         End If
 
     End Sub
+
+    Private Sub BViewMutasi_Click(sender As Object, e As EventArgs) Handles BViewMutasi.Click
+        Dim query As String = ""
+        Try
+            Dim date_until As Date = DEUntil.EditValue
+            query = "CALL view_leave_mutasi('" & id_employee & "','" & date_until.ToString("yyyy-MM-dd") & "')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCMutasi.DataSource = data
+        Catch ex As Exception
+            stopCustom("Pastikan anda telah menginput karyawan dan tanggal awal mutasi.")
+        End Try
+    End Sub
 End Class
