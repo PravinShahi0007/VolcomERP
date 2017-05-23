@@ -163,6 +163,8 @@
             prod_ass_det_note='" + note_foc + "' WHERE id_prod_ass_det=" + id_prod_ass_det + " "
                 execute_non_query(query_upd, True, "", "", "", "")
             Next
+            FormProductionAssembly.viewData()
+            FormProductionAssembly.GVData.FocusedRowHandle = find_row(FormProductionAssembly.GVData, "id_prod_ass", id_prod_ass)
             infoCustom(TxtNumber.Text + " was updated successfully. ")
         Catch ex As Exception
             stopCustom(ex.ToString)
@@ -190,10 +192,37 @@
     End Sub
 
     Private Sub QuickAddComponentToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles QuickAddComponentToolStripMenuItem.Click
+        quickAddComponent()
+    End Sub
+
+    Sub quickAddComponent()
         Cursor = Cursors.WaitCursor
         If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
             FormProductionAssemblyQuickAdd.ShowDialog()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCancelComp_Click(sender As Object, e As EventArgs) Handles BtnCancelComp.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be removed all components. Are you sure you want to continue this action? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim ass As New ClassProductionAssembly()
+            ass.removeAllComponents(id_prod_ass)
+
+            'update qty main
+            Dim query_upd_main As String = "UPDATE tb_prod_ass_det main
+            SET main.prod_ass_det_qty = 0 WHERE main.id_prod_ass=" + id_prod_ass + " "
+            execute_non_query(query_upd_main, True, "", "", "", "")
+            FormProductionAssembly.viewData()
+            FormProductionAssembly.GVData.FocusedRowHandle = find_row(FormProductionAssembly.GVData, "id_prod_ass", id_prod_ass)
+            viewDetail()
+            viewBom()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BtnAddComponent_Click(sender As Object, e As EventArgs) Handles BtnAddComponent.Click
+        quickAddComponent()
     End Sub
 End Class

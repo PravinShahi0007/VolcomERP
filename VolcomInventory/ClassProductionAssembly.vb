@@ -25,4 +25,12 @@
         query += "ORDER BY a.id_prod_ass " + order_type
         Return query
     End Function
+
+    Public Sub removeAllComponents(ByVal id_prod_ass As String)
+        Dim query As String = "DELETE tb_prod_ass_comp_det 
+        FROM tb_prod_ass_comp_det 
+        INNER JOIN tb_prod_ass_det ON tb_prod_ass_det.id_prod_ass_det = tb_prod_ass_comp_det.id_prod_ass_det
+        WHERE tb_prod_ass_det.id_prod_ass=" + id_prod_ass + " "
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
 End Class

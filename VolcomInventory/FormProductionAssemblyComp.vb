@@ -150,6 +150,8 @@
 
                     makeSafeGV(GVData)
                     GCData.DataSource = Nothing
+                    FormProductionAssembly.viewData()
+                    FormProductionAssembly.GVData.FocusedRowHandle = find_row(FormProductionAssembly.GVData, "id_prod_ass", FormProductionAssemblySingle.id_prod_ass)
                     FormProductionAssemblySingle.viewDetailComponent()
                     FormProductionAssemblySingle.viewBom()
                     data_par = Nothing
@@ -203,8 +205,22 @@
                     execute_non_query(query_ins, True, "", "", "", "")
                 End If
 
+                'update qty main
+                Dim query_upd_main As String = "UPDATE tb_prod_ass_det main
+                INNER JOIN (
+	                SELECT ad.id_prod_ass_det, acd.prod_ass_comp_qty_det AS `qty`
+	                FROM tb_prod_ass_comp_det acd
+	                INNER JOIN tb_prod_ass_det ad ON ad.id_prod_ass_det = acd.id_prod_ass_det
+	                WHERE ad.id_prod_ass=" + FormProductionAssemblySingle.id_prod_ass + "
+	                GROUP BY acd.id_prod_ass_det
+                ) src ON src.id_prod_ass_det = main.id_prod_ass_det
+                SET main.prod_ass_det_qty = src.qty "
+                execute_non_query(query_upd_main, True, "", "", "", "")
+
+                FormProductionAssembly.viewData()
+                FormProductionAssembly.GVData.FocusedRowHandle = find_row(FormProductionAssembly.GVData, "id_prod_ass", FormProductionAssemblySingle.id_prod_ass)
                 FormProductionAssemblyQuickAdd.viewData()
-                FormProductionAssemblySingle.viewDetailComponent()
+                FormProductionAssemblySingle.viewDetail()
                 FormProductionAssemblySingle.viewBom()
                 Close()
             End If

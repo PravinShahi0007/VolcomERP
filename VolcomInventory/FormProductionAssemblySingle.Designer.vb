@@ -20,8 +20,8 @@ Partial Class FormProductionAssemblySingle
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionAssemblySingle))
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Me.GroupControHead = New DevExpress.XtraEditors.GroupControl()
         Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
         Me.TxtDesignCode = New DevExpress.XtraEditors.TextEdit()
@@ -88,6 +88,9 @@ Partial Class FormProductionAssemblySingle
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnCancelComp = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddComponent = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControHead.SuspendLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,6 +129,8 @@ Partial Class FormProductionAssemblySingle
         Me.XTPBOM.SuspendLayout()
         CType(Me.GCBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBOM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControHead
@@ -420,6 +425,7 @@ Partial Class FormProductionAssemblySingle
         Me.SCCDetail.Location = New System.Drawing.Point(0, 0)
         Me.SCCDetail.Name = "SCCDetail"
         Me.SCCDetail.Panel1.Controls.Add(Me.GroupControl2)
+        Me.SCCDetail.Panel1.Controls.Add(Me.PanelControl1)
         Me.SCCDetail.Panel1.Text = "Panel1"
         Me.SCCDetail.Panel2.Controls.Add(Me.GroupControl1)
         Me.SCCDetail.Panel2.Text = "Panel2"
@@ -433,9 +439,9 @@ Partial Class FormProductionAssemblySingle
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl2.Controls.Add(Me.GCItemList)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 37)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(788, 178)
+        Me.GroupControl2.Size = New System.Drawing.Size(788, 141)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Result"
         '
@@ -447,7 +453,7 @@ Partial Class FormProductionAssemblySingle
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(766, 174)
+        Me.GCItemList.Size = New System.Drawing.Size(766, 137)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -455,7 +461,7 @@ Partial Class FormProductionAssemblySingle
         '
         Me.ContextMenuStripRes.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddComponentToolStripMenuItem, Me.QuickAddComponentToolStripMenuItem})
         Me.ContextMenuStripRes.Name = "ContextMenuStripRes"
-        Me.ContextMenuStripRes.Size = New System.Drawing.Size(198, 70)
+        Me.ContextMenuStripRes.Size = New System.Drawing.Size(198, 48)
         '
         'AddComponentToolStripMenuItem
         '
@@ -709,8 +715,8 @@ Partial Class FormProductionAssemblySingle
         'GCBOM
         '
         Me.GCBOM.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode1.RelationName = "Level1"
-        Me.GCBOM.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        GridLevelNode2.RelationName = "Level1"
+        Me.GCBOM.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
         Me.GCBOM.Location = New System.Drawing.Point(0, 0)
         Me.GCBOM.MainView = Me.GVBOM
         Me.GCBOM.Name = "GCBOM"
@@ -854,6 +860,36 @@ Partial Class FormProductionAssemblySingle
         Me.GridColumnUOM.VisibleIndex = 3
         Me.GridColumnUOM.Width = 69
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnCancelComp)
+        Me.PanelControl1.Controls.Add(Me.BtnAddComponent)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(788, 37)
+        Me.PanelControl1.TabIndex = 2
+        '
+        'BtnCancelComp
+        '
+        Me.BtnCancelComp.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancelComp.Image = CType(resources.GetObject("BtnCancelComp.Image"), System.Drawing.Image)
+        Me.BtnCancelComp.Location = New System.Drawing.Point(465, 2)
+        Me.BtnCancelComp.Name = "BtnCancelComp"
+        Me.BtnCancelComp.Size = New System.Drawing.Size(166, 33)
+        Me.BtnCancelComp.TabIndex = 2
+        Me.BtnCancelComp.Text = "Remove All Components"
+        '
+        'BtnAddComponent
+        '
+        Me.BtnAddComponent.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddComponent.Image = CType(resources.GetObject("BtnAddComponent.Image"), System.Drawing.Image)
+        Me.BtnAddComponent.Location = New System.Drawing.Point(631, 2)
+        Me.BtnAddComponent.Name = "BtnAddComponent"
+        Me.BtnAddComponent.Size = New System.Drawing.Size(155, 33)
+        Me.BtnAddComponent.TabIndex = 1
+        Me.BtnAddComponent.Text = "Quick Add Components"
+        '
         'FormProductionAssemblySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -910,6 +946,8 @@ Partial Class FormProductionAssemblySingle
         Me.XTPBOM.ResumeLayout(False)
         CType(Me.GCBOM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBOM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -980,4 +1018,7 @@ Partial Class FormProductionAssemblySingle
     Friend WithEvents ColTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnUOM As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents QuickAddComponentToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnCancelComp As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddComponent As DevExpress.XtraEditors.SimpleButton
 End Class

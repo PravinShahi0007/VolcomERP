@@ -124,7 +124,7 @@ Partial Class FormProductionAssemblyQuickAdd
         Me.GridColumnCodeComp.FieldName = "code"
         Me.GridColumnCodeComp.Name = "GridColumnCodeComp"
         Me.GridColumnCodeComp.Visible = True
-        Me.GridColumnCodeComp.VisibleIndex = 1
+        Me.GridColumnCodeComp.VisibleIndex = 0
         Me.GridColumnCodeComp.Width = 161
         '
         'GridColumnNameComp
@@ -133,7 +133,7 @@ Partial Class FormProductionAssemblyQuickAdd
         Me.GridColumnNameComp.FieldName = "name"
         Me.GridColumnNameComp.Name = "GridColumnNameComp"
         Me.GridColumnNameComp.Visible = True
-        Me.GridColumnNameComp.VisibleIndex = 2
+        Me.GridColumnNameComp.VisibleIndex = 1
         Me.GridColumnNameComp.Width = 732
         '
         'GridColumnCompSize
@@ -142,7 +142,7 @@ Partial Class FormProductionAssemblyQuickAdd
         Me.GridColumnCompSize.FieldName = "size"
         Me.GridColumnCompSize.Name = "GridColumnCompSize"
         Me.GridColumnCompSize.Visible = True
-        Me.GridColumnCompSize.VisibleIndex = 3
+        Me.GridColumnCompSize.VisibleIndex = 2
         Me.GridColumnCompSize.Width = 74
         '
         'GridColumnCompQty
@@ -154,7 +154,7 @@ Partial Class FormProductionAssemblyQuickAdd
         Me.GridColumnCompQty.Name = "GridColumnCompQty"
         Me.GridColumnCompQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_ass_comp_qty_det", "{0:n0}")})
         Me.GridColumnCompQty.Visible = True
-        Me.GridColumnCompQty.VisibleIndex = 4
+        Me.GridColumnCompQty.VisibleIndex = 3
         Me.GridColumnCompQty.Width = 66
         '
         'GridColumnCompNo
@@ -162,8 +162,6 @@ Partial Class FormProductionAssemblyQuickAdd
         Me.GridColumnCompNo.Caption = "No"
         Me.GridColumnCompNo.FieldName = "no"
         Me.GridColumnCompNo.Name = "GridColumnCompNo"
-        Me.GridColumnCompNo.Visible = True
-        Me.GridColumnCompNo.VisibleIndex = 0
         Me.GridColumnCompNo.Width = 45
         '
         'FormProductionAssemblyQuickAdd
