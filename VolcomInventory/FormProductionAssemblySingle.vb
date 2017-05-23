@@ -5,6 +5,7 @@
     Dim id_report_status As String = "-1"
 
     Private Sub FormProductionAssemblySingle_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewReportStatus()
         actionLoad()
     End Sub
 
@@ -17,10 +18,18 @@
         DEFrom.EditValue = data.Rows(0)("prod_ass_date")
         TxtNumber.Text = data.Rows(0)("prod_ass_number").ToString
         MENote.Text = data.Rows(0)("prod_ass_note").ToString
+        LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         id_report_status = data.Rows(0)("id_report_status").ToString
         viewDetail()
         viewBom()
         allow_status()
+    End Sub
+
+    'View Data
+    Sub viewReportStatus()
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
 
     Sub viewDetail()
@@ -84,11 +93,12 @@
             BtnAttachment.Enabled = False
         End If
 
-        If check_print_report_status(id_report_status) Then
-            BtnPrint.Enabled = True
-        Else
-            BtnPrint.Enabled = False
-        End If
+        BtnPrint.Enabled = True
+        'If check_print_report_status(id_report_status) Then
+        '    BtnPrint.Enabled = True
+        'Else
+        '    BtnPrint.Enabled = False
+        'End If
 
         If is_view = "1" Then
             BtnSave.Visible = False
@@ -224,5 +234,42 @@
 
     Private Sub BtnAddComponent_Click(sender As Object, e As EventArgs) Handles BtnAddComponent.Click
         quickAddComponent()
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Close()
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.report_mark_type = "107"
+        FormDocumentUpload.id_report = id_prod_ass
+        If is_view = "1" Then
+            FormDocumentUpload.is_view = "1"
+        End If
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "107"
+        FormReportMark.id_report = id_prod_ass
+        If is_view = "1" Then
+            FormReportMark.is_view = "1"
+        End If
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        If XTCDetail.SelectedTabPageIndex = 0 Then
+            print(GCItemList, "Assembly - Product Detail")
+        Else
+            print(GCBOM, "Assembly - Bill of Material")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

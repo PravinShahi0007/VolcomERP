@@ -20,7 +20,6 @@ Partial Class FormProductionAssemblySingle
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProductionAssemblySingle))
         Me.GroupControHead = New DevExpress.XtraEditors.GroupControl()
         Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
@@ -64,6 +63,9 @@ Partial Class FormProductionAssemblySingle
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnCancelComp = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddComponent = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.GCComponent = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStripComp = New System.Windows.Forms.ContextMenuStrip(Me.components)
@@ -88,9 +90,6 @@ Partial Class FormProductionAssemblySingle
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnCancelComp = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAddComponent = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControHead, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControHead.SuspendLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,6 +120,8 @@ Partial Class FormProductionAssemblySingle
         Me.ContextMenuStripRes.SuspendLayout()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCComponent, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,8 +130,6 @@ Partial Class FormProductionAssemblySingle
         Me.XTPBOM.SuspendLayout()
         CType(Me.GCBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBOM, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControHead
@@ -579,6 +578,36 @@ Partial Class FormProductionAssemblySingle
         Me.GridColumnNote.VisibleIndex = 5
         Me.GridColumnNote.Width = 516
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnCancelComp)
+        Me.PanelControl1.Controls.Add(Me.BtnAddComponent)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(788, 37)
+        Me.PanelControl1.TabIndex = 2
+        '
+        'BtnCancelComp
+        '
+        Me.BtnCancelComp.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancelComp.Image = CType(resources.GetObject("BtnCancelComp.Image"), System.Drawing.Image)
+        Me.BtnCancelComp.Location = New System.Drawing.Point(465, 2)
+        Me.BtnCancelComp.Name = "BtnCancelComp"
+        Me.BtnCancelComp.Size = New System.Drawing.Size(166, 33)
+        Me.BtnCancelComp.TabIndex = 2
+        Me.BtnCancelComp.Text = "Remove All Components"
+        '
+        'BtnAddComponent
+        '
+        Me.BtnAddComponent.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddComponent.Image = CType(resources.GetObject("BtnAddComponent.Image"), System.Drawing.Image)
+        Me.BtnAddComponent.Location = New System.Drawing.Point(631, 2)
+        Me.BtnAddComponent.Name = "BtnAddComponent"
+        Me.BtnAddComponent.Size = New System.Drawing.Size(155, 33)
+        Me.BtnAddComponent.TabIndex = 1
+        Me.BtnAddComponent.Text = "Quick Add Components"
+        '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -715,8 +744,6 @@ Partial Class FormProductionAssemblySingle
         'GCBOM
         '
         Me.GCBOM.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode2.RelationName = "Level1"
-        Me.GCBOM.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
         Me.GCBOM.Location = New System.Drawing.Point(0, 0)
         Me.GCBOM.MainView = Me.GVBOM
         Me.GCBOM.Name = "GCBOM"
@@ -728,11 +755,9 @@ Partial Class FormProductionAssemblySingle
         '
         Me.GVBOM.AppearancePrint.FooterPanel.BackColor = System.Drawing.Color.White
         Me.GVBOM.AppearancePrint.FooterPanel.BackColor2 = System.Drawing.Color.White
-        Me.GVBOM.AppearancePrint.FooterPanel.BorderColor = System.Drawing.Color.Transparent
         Me.GVBOM.AppearancePrint.FooterPanel.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.GVBOM.AppearancePrint.FooterPanel.ForeColor = System.Drawing.Color.Black
         Me.GVBOM.AppearancePrint.FooterPanel.Options.UseBackColor = True
-        Me.GVBOM.AppearancePrint.FooterPanel.Options.UseBorderColor = True
         Me.GVBOM.AppearancePrint.FooterPanel.Options.UseFont = True
         Me.GVBOM.AppearancePrint.FooterPanel.Options.UseForeColor = True
         Me.GVBOM.AppearancePrint.GroupFooter.BackColor = System.Drawing.Color.White
@@ -766,7 +791,6 @@ Partial Class FormProductionAssemblySingle
         Me.GVBOM.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.ColTotal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "price", Me.GridColumn24, "Sub Total{0}")})
         Me.GVBOM.Name = "GVBOM"
         Me.GVBOM.OptionsBehavior.Editable = False
-        Me.GVBOM.OptionsPrint.PrintVertLines = False
         Me.GVBOM.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
         Me.GVBOM.OptionsView.ShowFooter = True
         Me.GVBOM.OptionsView.ShowGroupPanel = False
@@ -860,36 +884,6 @@ Partial Class FormProductionAssemblySingle
         Me.GridColumnUOM.VisibleIndex = 3
         Me.GridColumnUOM.Width = 69
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BtnCancelComp)
-        Me.PanelControl1.Controls.Add(Me.BtnAddComponent)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(788, 37)
-        Me.PanelControl1.TabIndex = 2
-        '
-        'BtnCancelComp
-        '
-        Me.BtnCancelComp.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancelComp.Image = CType(resources.GetObject("BtnCancelComp.Image"), System.Drawing.Image)
-        Me.BtnCancelComp.Location = New System.Drawing.Point(465, 2)
-        Me.BtnCancelComp.Name = "BtnCancelComp"
-        Me.BtnCancelComp.Size = New System.Drawing.Size(166, 33)
-        Me.BtnCancelComp.TabIndex = 2
-        Me.BtnCancelComp.Text = "Remove All Components"
-        '
-        'BtnAddComponent
-        '
-        Me.BtnAddComponent.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAddComponent.Image = CType(resources.GetObject("BtnAddComponent.Image"), System.Drawing.Image)
-        Me.BtnAddComponent.Location = New System.Drawing.Point(631, 2)
-        Me.BtnAddComponent.Name = "BtnAddComponent"
-        Me.BtnAddComponent.Size = New System.Drawing.Size(155, 33)
-        Me.BtnAddComponent.TabIndex = 1
-        Me.BtnAddComponent.Text = "Quick Add Components"
-        '
         'FormProductionAssemblySingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -938,6 +932,8 @@ Partial Class FormProductionAssemblySingle
         Me.ContextMenuStripRes.ResumeLayout(False)
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GCComponent, System.ComponentModel.ISupportInitialize).EndInit()
@@ -946,8 +942,6 @@ Partial Class FormProductionAssemblySingle
         Me.XTPBOM.ResumeLayout(False)
         CType(Me.GCBOM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBOM, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
