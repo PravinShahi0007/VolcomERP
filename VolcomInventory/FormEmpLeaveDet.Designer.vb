@@ -107,6 +107,9 @@ Partial Class FormEmpLeaveDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMEditEcopPD = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.LELeaveType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -154,6 +157,7 @@ Partial Class FormEmpLeaveDet
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -669,6 +673,7 @@ Partial Class FormEmpLeaveDet
         '
         'GCMutasi
         '
+        Me.GCMutasi.ContextMenuStrip = Me.ViewMenu
         Me.GCMutasi.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCMutasi.Location = New System.Drawing.Point(0, 38)
         Me.GCMutasi.MainView = Me.GVMutasi
@@ -679,7 +684,7 @@ Partial Class FormEmpLeaveDet
         '
         'GVMutasi
         '
-        Me.GVMutasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn17, Me.GridColumn21, Me.GridColumnCutiTerpakai, Me.GridColumn20, Me.GridColumn19})
+        Me.GVMutasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn22, Me.GridColumn17, Me.GridColumn21, Me.GridColumnCutiTerpakai, Me.GridColumn20, Me.GridColumn19})
         Me.GVMutasi.GridControl = Me.GCMutasi
         Me.GVMutasi.Name = "GVMutasi"
         Me.GVMutasi.OptionsCustomization.AllowColumnMoving = False
@@ -1076,6 +1081,24 @@ Partial Class FormEmpLeaveDet
         Me.BSave.TabIndex = 0
         Me.BSave.Text = "Save"
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditEcopPD})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(159, 48)
+        '
+        'SMEditEcopPD
+        '
+        Me.SMEditEcopPD.Name = "SMEditEcopPD"
+        Me.SMEditEcopPD.Size = New System.Drawing.Size(158, 22)
+        Me.SMEditEcopPD.Text = "View Document"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "ID Document"
+        Me.GridColumn22.FieldName = "id_emp_leave"
+        Me.GridColumn22.Name = "GridColumn22"
+        '
         'FormEmpLeaveDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1141,6 +1164,7 @@ Partial Class FormEmpLeaveDet
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1231,4 +1255,7 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents GridColumnCutiTerpakai As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents SMEditEcopPD As ToolStripMenuItem
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

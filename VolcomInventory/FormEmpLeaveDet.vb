@@ -573,4 +573,28 @@
             stopCustom("Pastikan anda telah menginput karyawan dan tanggal awal mutasi.")
         End Try
     End Sub
+
+    Private Sub SMEditEcopPD_Click(sender As Object, e As EventArgs) Handles SMEditEcopPD.Click
+        If GVMutasi.RowCount > 0 Then
+            If Not GVMutasi.GetFocusedRowCellValue("id_emp_leave").ToString = "" Then
+                Dim id_leave, report_type As String
+                Dim query As String = ""
+                query = "SELECT * FROM tb_emp_leave WHERE id_emp_leave='" & GVMutasi.GetFocusedRowCellValue("id_emp_leave").ToString & "'"
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                id_leave = GVMutasi.GetFocusedRowCellValue("id_emp_leave").ToString
+                report_type = data.Rows(0)("report_mark_type")
+
+                ReportEmpLeave.id_report = id_leave
+                ReportEmpLeave.report_mark_type = report_type
+
+                Dim Report As New ReportEmpLeave()
+                ' Show the report's preview. 
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreview()
+            Else
+                infoCustom("This record created by system without document.")
+            End If
+        End If
+    End Sub
 End Class
