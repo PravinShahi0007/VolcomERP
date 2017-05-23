@@ -33,4 +33,24 @@
         WHERE tb_prod_ass_det.id_prod_ass=" + id_prod_ass + " "
         execute_non_query(query, True, "", "", "", "")
     End Sub
+
+    Public Sub changeStatus(ByVal id_report_par As String, ByVal id_status_reportx_par As String)
+        If id_status_reportx_par = "6" Then
+            'cek po
+            Dim query_cek_po As String = "SELECT po.id_prod_order FROM tb_prod_ass a 
+            INNER JOIN tb_prod_demand_design pdd ON pdd.id_design = a.id_design
+            INNER JOIN tb_prod_order po ON po.id_prod_demand_design = pdd.id_prod_demand_design
+            WHERE a.id_prod_ass=" + id_report_par + " "
+            Dim data_cek_po As DataTable = execute_query(query_cek_po, -1, True, "", "", "", "")
+            If data_cek_po.Rows.Count > 0 Then 'ada po
+
+            Else
+
+            End If
+        End If
+
+        'change report status
+        Dim query As String = String.Format("UPDATE tb_prod_ass SET id_report_status='{0}' WHERE id_prod_ass ='{1}' ", id_status_reportx_par, id_report_par)
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
 End Class
