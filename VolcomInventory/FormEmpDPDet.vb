@@ -117,6 +117,8 @@
                 Dim query As String = "INSERT INTO tb_emp_dp(dp_number,id_employee,dp_date_created,dp_total,dp_note)
                                         VALUES('" & header_number_emp("2") & "','" & id_employee & "',NOW(),'" & TETotHour.EditValue.ToString & "','" & MEDPNote.Text & "');SELECT LAST_INSERT_ID();"
                 id_emp_dp = execute_query(query, 0, True, "", "", "", "")
+                increase_inc_emp("2")
+
                 query = "INSERT INTO tb_emp_dp_det(id_dp,dp_time_start,dp_time_end,remark,subtotal_hour) VALUES"
                 For i As Integer = 0 To GVDP.RowCount - 1
                     Dim subtot_hr As Integer = GVDP.GetRowCellValue(i, "subtotal_hour")
