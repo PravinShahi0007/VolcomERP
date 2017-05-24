@@ -3466,6 +3466,7 @@
                 FormProductionFinalClear.GVFinalClear.FocusedRowHandle = find_row(FormProductionFinalClear.GVFinalClear, "id_prod_fc", id_report)
             End If
         ElseIf report_mark_type = "107" Then
+            Cursor = Cursors.WaitCursor
             'production assem
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -3480,6 +3481,7 @@
                 FormProductionAssembly.viewData()
                 FormProductionAssembly.GVData.FocusedRowHandle = find_row(FormProductionAssembly.GVData, "id_prod_ass", id_report)
             End If
+            Cursor = Cursors.Default
         End If
 
         'adding lead time
