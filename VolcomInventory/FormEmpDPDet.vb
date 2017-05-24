@@ -140,7 +140,7 @@
             End If
         Else
             If GVDP.RowCount > 0 Then
-                Dim query As String = "UDPATE tb_emp_dp SET id_employee='" & id_employee & "',dp_total='" & TETotHour.EditValue.ToString & "',dp_note='" & MEDPNote.Text & "' WHERE id_dp='" & id_emp_dp & "'"
+                Dim query As String = "UPDATE tb_emp_dp SET id_employee='" & id_employee & "',dp_total='" & TETotHour.EditValue.ToString & "',dp_note='" & MEDPNote.Text & "' WHERE id_dp='" & id_emp_dp & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
                 query = "DELETE FROM tb_emp_dp WHERE id_dp='" & id_emp_dp & "'"
