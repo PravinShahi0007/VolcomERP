@@ -88,4 +88,11 @@
             FormProdDutyVar.ShowDialog()
         End If
     End Sub
+
+    Private Sub BImportExcel_Click(sender As Object, e As EventArgs) Handles BImportExcel.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "30"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

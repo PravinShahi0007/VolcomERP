@@ -12,9 +12,11 @@
         '
         If data.Rows.Count > 0 Then
             TEPO.Text = FormProdDuty.GVProd.GetFocusedRowCellValue("prod_order_number").ToString
+            TEPOLama.Text = FormProdDuty.GVProd.GetFocusedRowCellValue("po_lama_no").ToString
             TEStyle.Text = FormProdDuty.GVProd.GetFocusedRowCellValue("design_display_name").ToString & " " & FormProdDuty.GVProd.GetFocusedRowCellValue("color").ToString
             '
             TEPIBNo.Text = data.Rows(0)("pib_no").ToString
+            TEAju.Text = data.Rows(0)("aju_no").ToString
             DEDate.EditValue = data.Rows(0)("pib_date")
             '
             TEDuty.EditValue = data.Rows(0)("duty_percent")
@@ -69,7 +71,7 @@
             is_pr = "2"
         End If
 
-        Dim query_upd As String = "UPDATE tb_prod_order SET pib_no='" & TEPIBNo.Text & "'" & pib_date & ",duty_percent='" & TEDuty.EditValue.ToString & "',duty_royalty='" & TERoyalty.EditValue.ToString & "',duty_sales_vat='" & TESalesVAT.EditValue.ToString & "',duty_sales_thru='" & TESalesThrough.EditValue.ToString & "',duty_store_disc='" & TEStoreDisc.EditValue.ToString & "',duty_is_pr_proposed='" & is_pr & "',duty_is_pay='" & is_paid & "' WHERE id_prod_order='" & id_prod_order & "'"
+        Dim query_upd As String = "UPDATE tb_prod_order SET pib_no='" & TEPIBNo.Text & "'" & pib_date & ",duty_percent='" & TEDuty.EditValue.ToString & "',duty_royalty='" & TERoyalty.EditValue.ToString & "',duty_sales_vat='" & TESalesVAT.EditValue.ToString & "',duty_sales_thru='" & TESalesThrough.EditValue.ToString & "',duty_store_disc='" & TEStoreDisc.EditValue.ToString & "',aju_no='" & TEAju.EditValue.ToString & "',po_lama_no='" & TEPOLama.EditValue.ToString & "',duty_is_pr_proposed='" & is_pr & "',duty_is_pay='" & is_paid & "' WHERE id_prod_order='" & id_prod_order & "'"
         execute_non_query(query_upd, True, "", "", "", "")
         '
         infoCustom("Variable set !")

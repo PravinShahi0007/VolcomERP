@@ -79,8 +79,11 @@ Partial Class FormProdDuty
         Me.BandedGridColumnDiffRoyD = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiffAmoRoyS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiffAmoRoyD = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BImportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -124,7 +127,7 @@ Partial Class FormProdDuty
         Me.GCProd.MainView = Me.GVProd
         Me.GCProd.Name = "GCProd"
         Me.GCProd.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RIPictureEdit, Me.RICEPRProposed, Me.RICEDutyPaid})
-        Me.GCProd.Size = New System.Drawing.Size(889, 294)
+        Me.GCProd.Size = New System.Drawing.Size(973, 294)
         Me.GCProd.TabIndex = 4
         Me.GCProd.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProd})
         '
@@ -143,7 +146,7 @@ Partial Class FormProdDuty
         'GVProd
         '
         Me.GVProd.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand2, Me.gridBand3, Me.gridBand4, Me.gridBand5, Me.gridBand6, Me.gridBand7})
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnVendorCode, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnDesign, Me.BandedGridColumnColor, Me.BandedGridColumnFOB, Me.BandedGridColumnPIBNo, Me.BandedGridColumnPIBDate, Me.BandedGridColumnPIBDueDate, Me.BandedGridColumnPIBPRDueDate, Me.BandedGridColumnDutyPaid, Me.BandedGridColumnPRProposed, Me.BandedGridColumnDutyP, Me.BandedGridColumnSDP, Me.BandedGridColumnSVATP, Me.BandedGridColumnSRP, Me.BandedGridColumnSTP, Me.GridColumnOrderQty, Me.BandedGridColumn1, Me.BandedGridColumnEst, Me.BandedGridColumnEstRoyS, Me.BandedGridColumnEstRoyD, Me.BandedGridColumnEstRoySA, Me.BandedGridColumnEstRoyDA, Me.BandedGridColumnFinal, Me.BandedGridColumnFinalRoyS, Me.BandedGridColumnFinalRoyD, Me.BandedGridColumnFinalRoySA, Me.BandedGridColumnFinalRoyDA, Me.BandedGridColumnDiffPrice, Me.BandedGridColumnDiffRoyS, Me.BandedGridColumnDiffRoyD, Me.BandedGridColumnDiffAmoRoyS, Me.BandedGridColumnDiffAmoRoyD, Me.GridColumnCode, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnVendorCode, Me.GridColumnCompName, Me.GridColumnProdNo, Me.BandedGridColumn2, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnDesign, Me.BandedGridColumnColor, Me.BandedGridColumnFOB, Me.BandedGridColumnPIBNo, Me.BandedGridColumn3, Me.BandedGridColumnPIBDate, Me.BandedGridColumnPIBDueDate, Me.BandedGridColumnPIBPRDueDate, Me.BandedGridColumnDutyPaid, Me.BandedGridColumnPRProposed, Me.BandedGridColumnDutyP, Me.BandedGridColumnSDP, Me.BandedGridColumnSVATP, Me.BandedGridColumnSRP, Me.BandedGridColumnSTP, Me.GridColumnOrderQty, Me.BandedGridColumn1, Me.BandedGridColumnEst, Me.BandedGridColumnEstRoyS, Me.BandedGridColumnEstRoyD, Me.BandedGridColumnEstRoySA, Me.BandedGridColumnEstRoyDA, Me.BandedGridColumnFinal, Me.BandedGridColumnFinalRoyS, Me.BandedGridColumnFinalRoyD, Me.BandedGridColumnFinalRoySA, Me.BandedGridColumnFinalRoyDA, Me.BandedGridColumnDiffPrice, Me.BandedGridColumnDiffRoyS, Me.BandedGridColumnDiffRoyD, Me.BandedGridColumnDiffAmoRoyS, Me.BandedGridColumnDiffAmoRoyD, Me.GridColumnCode, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 2
         Me.GVProd.Name = "GVProd"
@@ -760,6 +763,20 @@ Partial Class FormProdDuty
         Me.BandedGridColumnDiffAmoRoyD.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.BandedGridColumnDiffAmoRoyD.Visible = True
         '
+        'BandedGridColumn2
+        '
+        Me.BandedGridColumn2.Caption = "PO REFF#"
+        Me.BandedGridColumn2.FieldName = "po_lama_no"
+        Me.BandedGridColumn2.Name = "BandedGridColumn2"
+        Me.BandedGridColumn2.Visible = True
+        '
+        'BandedGridColumn3
+        '
+        Me.BandedGridColumn3.Caption = "AJU#"
+        Me.BandedGridColumn3.FieldName = "aju_no"
+        Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.Visible = True
+        '
         'RIPictureEdit
         '
         Me.RIPictureEdit.Name = "RIPictureEdit"
@@ -767,6 +784,7 @@ Partial Class FormProdDuty
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BImportExcel)
         Me.PanelControl1.Controls.Add(Me.BPrint)
         Me.PanelControl1.Controls.Add(Me.SLEVendor)
         Me.PanelControl1.Controls.Add(Me.SLESeason)
@@ -778,8 +796,16 @@ Partial Class FormProdDuty
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(889, 38)
+        Me.PanelControl1.Size = New System.Drawing.Size(973, 38)
         Me.PanelControl1.TabIndex = 5
+        '
+        'BImportExcel
+        '
+        Me.BImportExcel.Location = New System.Drawing.Point(845, 6)
+        Me.BImportExcel.Name = "BImportExcel"
+        Me.BImportExcel.Size = New System.Drawing.Size(88, 23)
+        Me.BImportExcel.TabIndex = 8907
+        Me.BImportExcel.Text = "Import Excel"
         '
         'BPrint
         '
@@ -952,7 +978,7 @@ Partial Class FormProdDuty
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(889, 332)
+        Me.ClientSize = New System.Drawing.Size(973, 332)
         Me.Controls.Add(Me.GCProd)
         Me.Controls.Add(Me.PanelControl1)
         Me.Name = "FormProdDuty"
@@ -1057,4 +1083,7 @@ Partial Class FormProdDuty
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand6 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand7 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BImportExcel As DevExpress.XtraEditors.SimpleButton
 End Class

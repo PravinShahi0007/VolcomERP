@@ -140,6 +140,7 @@
             FormWHAWBillDet.TECompCode.Text = GVCompany.GetFocusedRowCellDisplayText("comp_number").ToString
             FormWHAWBillDet.TECompName.Text = GVCompany.GetFocusedRowCellDisplayText("comp_name").ToString
             FormWHAWBillDet.rate_table()
+            FormWHAWBillDet.clear_do()
             Close()
         ElseIf id_pop_up = "1" Then
             FormSamplePurchaseDet.id_comp_to = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
