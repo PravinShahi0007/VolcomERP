@@ -202,12 +202,21 @@
 
             GVScheduleTable.Columns.AddVisible("employee_code", "NIP")
             GVScheduleTable.Columns("employee_code").OptionsColumn.AllowEdit = False
+            GVScheduleTable.Columns("employee_code").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
 
             GVScheduleTable.Columns.AddVisible("employee_name", "Name")
             GVScheduleTable.Columns("employee_name").OptionsColumn.AllowEdit = False
+            GVScheduleTable.Columns("employee_name").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
 
             While (curD <= endP)
                 GVScheduleTable.Columns.AddVisible(curD.ToString("yyyy-MM-dd"), curD.ToString("dddd, dd MMM yyyy"))
+
+                If curD.DayOfWeek = DayOfWeek.Saturday Or curD.DayOfWeek = DayOfWeek.Sunday Then
+                    GVScheduleTable.Columns(curD.ToString("yyyy-MM-dd")).AppearanceCell.BackColor = Color.Pink
+                ElseIf check_public_holiday(curD) = "1" Then
+                    GVScheduleTable.Columns(curD.ToString("yyyy-MM-dd")).AppearanceCell.BackColor = Color.Red
+                End If
+
                 string_date += ",'" & curD.ToString("yyyy-MM-dd") & "'"
                 curD = curD.AddDays(1)
             End While
@@ -235,11 +244,26 @@
                 GCScheduleTable.RefreshDataSource()
             Next
             GVScheduleTable.BestFitColumns()
+            GVScheduleTable.OptionsSelection.EnableAppearanceFocusedRow = False
+            GVScheduleTable.OptionsSelection.EnableAppearanceFocusedCell = False
         Else
             stopCustom("Please select employee first.")
         End If
 
     End Sub
+
+    Function check_public_holiday(date_par As Date)
+        Dim is_public_holiday = "2"
+
+        Dim query As String = "SELECT * FROM tb_emp_holiday WHERE id_religion=0 AND emp_holiday_date='" & date_par.ToString("yyyy-MM-dd") & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        If data.Rows.Count > 0 Then
+            is_public_holiday = "1"
+        End If
+
+        Return is_public_holiday
+    End Function
 
     Sub load_report_sum()
         Dim date_start, date_until, dept As String

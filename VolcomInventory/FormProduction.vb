@@ -170,6 +170,7 @@
         query += "comp.comp_name,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, "
         query += "a.prod_order_date,a.id_report_status,c.report_status, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season "
+        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design b On a.id_prod_demand_design = b.id_prod_demand_design "
@@ -183,6 +184,10 @@
         query += "LEFT JOIN tb_m_ovh_price ovh_p On ovh_p.id_ovh_price=wo.id_ovh_price "
         query += "LEFT JOIN tb_m_comp_contact cc ON cc.id_comp_contact=ovh_p.id_comp_contact "
         query += "LEFT JOIN tb_m_comp comp On comp.id_comp=cc.id_comp "
+        query += "LEFT JOIN 
+                    (
+	                    SELECT * FROM tb_report_mark GROUP BY report_mark_type,id_report
+                    ) mark ON mark.id_report=a.id_prod_order AND mark.report_mark_type='22' "
         query += "LEFT JOIN  "
         query += "( "
         query += "SELECT recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty "
@@ -346,6 +351,7 @@
         query += "a.prod_order_wo_date, "
         query += "DATE_ADD(a.prod_order_wo_date,INTERVAL a.prod_order_wo_lead_time DAY) AS prod_order_wo_lead_time, "
         query += "DATE_ADD(a.prod_order_wo_date,INTERVAL (a.prod_order_wo_top+a.prod_order_wo_lead_time) DAY) AS prod_order_wo_top "
+        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit "
         query += "FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price "
         '
         query += "INNER JOIN tb_prod_order po ON po.id_prod_order=a.id_prod_order "
@@ -361,6 +367,10 @@
         query += "INNER JOIN tb_lookup_payment g ON a.id_payment = g.id_payment "
         query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
         query += "INNER JOIN tb_m_ovh j ON b.id_ovh = j.id_ovh "
+        query += "LEFT JOIN 
+                    (
+	                    SELECT * FROM tb_report_mark GROUP BY report_mark_type,id_report
+                    ) mark ON mark.id_report=a.id_prod_order_wo AND mark.report_mark_type='23' "
         '
         query += "WHERE 1=1 " & query_where
 
@@ -394,6 +404,7 @@
         query += "d.comp_name AS comp_name_req_from,c.id_comp_contact AS id_comp_name_req_from, "
         query += "f.comp_name AS comp_name_req_to,e.id_comp_contact AS id_comp_name_req_to, "
         query += "a.prod_order_mrs_date "
+        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit "
         query += "FROM tb_prod_order_mrs a "
         query += "LEFT JOIN tb_prod_order_wo b ON a.id_prod_order_wo = b.id_prod_order_wo "
         '
@@ -408,6 +419,10 @@
         query += "INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_req_to = e.id_comp_contact "
         query += "INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp "
         query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
+        query += "LEFT JOIN 
+                    (
+	                    SELECT * FROM tb_report_mark GROUP BY report_mark_type,id_report
+                    ) mark ON mark.id_report=a.id_prod_order_mrs AND mark.report_mark_type='29' "
         '
         query += "WHERE 1=1 " & query_where
 

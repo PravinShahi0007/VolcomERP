@@ -31,6 +31,8 @@
             TEEmployeeCode.Properties.ReadOnly = False
             BPickEmployee.Visible = True
 
+            DEDateCreated.EditValue = Now
+
             BMark.Visible = False
             BPrint.Visible = False
             '
@@ -60,6 +62,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
             TENumber.Text = data.Rows(0)("emp_leave_number").ToString
+            DEDateCreated.EditValue = data.Rows(0)("emp_leave_date")
             '
             report_mark_type = data.Rows(0)("report_mark_type").ToString
             LELeaveType.ItemIndex = LELeaveType.Properties.GetDataSourceRowIndex("id_leave_type", data.Rows(0)("id_leave_type").ToString)
