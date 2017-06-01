@@ -127,6 +127,7 @@ Partial Class FormMatPL
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar2 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCPL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPL.SuspendLayout()
         Me.XTPProduction.SuspendLayout()
@@ -214,7 +215,7 @@ Partial Class FormMatPL
         '
         'GVProdPL
         '
-        Me.GVProdPL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdPLSample, Me.GridColumnIdContactFrom, Me.GridColumnIdCompContactTo, Me.GridColumnPLIdWO, Me.GridColumnPLNumber, Me.GridColumnPLPoNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnPLDate, Me.GridColumnPLStatus, Me.GridColumnDesignCode, Me.GridColumnPLDesign, Me.GridColumnPLWONumber, Me.GridColumnPLIdPO, Me.GridColumnIdReportStatus, Me.ColMrsNumber})
+        Me.GVProdPL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdPLSample, Me.GridColumnIdContactFrom, Me.GridColumnIdCompContactTo, Me.GridColumnPLIdWO, Me.GridColumnPLNumber, Me.GridColumnPLPoNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnPLDate, Me.GridColumnPLStatus, Me.GridColumnDesignCode, Me.GridColumnPLDesign, Me.GridColumnPLWONumber, Me.GridColumnPLIdPO, Me.GridColumnIdReportStatus, Me.ColMrsNumber, Me.GridColumn44})
         Me.GVProdPL.GridControl = Me.GCProdPL
         Me.GVProdPL.Name = "GVProdPL"
         Me.GVProdPL.OptionsBehavior.Editable = False
@@ -1054,6 +1055,14 @@ Partial Class FormMatPL
         Me.RepositoryItemProgressBar2.StartColor = System.Drawing.Color.Green
         Me.RepositoryItemProgressBar2.Step = 1
         '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "Submitted"
+        Me.GridColumn44.FieldName = "is_submit"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 10
+        '
         'FormMatPL
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1215,4 +1224,5 @@ Partial Class FormMatPL
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnDesignCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMRSDesignCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

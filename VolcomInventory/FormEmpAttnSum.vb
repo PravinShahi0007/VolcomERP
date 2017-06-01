@@ -202,9 +202,11 @@
 
             GVScheduleTable.Columns.AddVisible("employee_code", "NIP")
             GVScheduleTable.Columns("employee_code").OptionsColumn.AllowEdit = False
+            GVScheduleTable.Columns("employee_code").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
 
             GVScheduleTable.Columns.AddVisible("employee_name", "Name")
             GVScheduleTable.Columns("employee_name").OptionsColumn.AllowEdit = False
+            GVScheduleTable.Columns("employee_name").Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
 
             While (curD <= endP)
                 GVScheduleTable.Columns.AddVisible(curD.ToString("yyyy-MM-dd"), curD.ToString("dddd, dd MMM yyyy"))
