@@ -61,6 +61,12 @@
                 GVScheduleBefore.Columns.AddVisible(curD.ToString("yyyy-MM-dd"), curD.ToString("dd MMM yyyy"))
                 GVScheduleBefore.Columns(curD.ToString("yyyy-MM-dd")).OptionsColumn.AllowEdit = False
 
+                If curD.DayOfWeek = DayOfWeek.Saturday Or curD.DayOfWeek = DayOfWeek.Sunday Then
+                    GVScheduleBefore.Columns(curD.ToString("yyyy-MM-dd")).AppearanceCell.BackColor = Color.Pink
+                End If
+
+
+
                 string_date += ",'" & curD.ToString("yyyy-MM-dd") & "'"
                 curD = curD.AddDays(1)
             End While
