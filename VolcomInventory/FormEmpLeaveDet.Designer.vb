@@ -22,6 +22,8 @@ Partial Class FormEmpLeaveDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpLeaveDet))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.LELeaveType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
@@ -71,8 +73,11 @@ Partial Class FormEmpLeaveDet
         Me.BRecalculate = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCMutasi = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMEditEcopPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVMutasi = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCutiTerpakai = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -107,11 +112,10 @@ Partial Class FormEmpLeaveDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMEditEcopPD = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LELeaveType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,6 +143,7 @@ Partial Class FormEmpLeaveDet
         CType(Me.GVLeaveUsage, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.GCMutasi, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVMutasi, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -157,12 +162,13 @@ Partial Class FormEmpLeaveDet
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.LabelControl10)
+        Me.GroupControl1.Controls.Add(Me.DEDateCreated)
         Me.GroupControl1.Controls.Add(Me.LELeaveType)
         Me.GroupControl1.Controls.Add(Me.LabelControl9)
         Me.GroupControl1.Controls.Add(Me.TENumber)
@@ -184,9 +190,30 @@ Partial Class FormEmpLeaveDet
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "Detail"
         '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(483, 13)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(95, 13)
+        Me.LabelControl10.TabIndex = 146
+        Me.LabelControl10.Text = "Tanggal Permintaan"
+        '
+        'DEDateCreated
+        '
+        Me.DEDateCreated.EditValue = Nothing
+        Me.DEDateCreated.Location = New System.Drawing.Point(584, 10)
+        Me.DEDateCreated.Name = "DEDateCreated"
+        Me.DEDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDateCreated.Properties.ReadOnly = True
+        Me.DEDateCreated.Size = New System.Drawing.Size(129, 20)
+        Me.DEDateCreated.TabIndex = 145
+        '
         'LELeaveType
         '
-        Me.LELeaveType.Location = New System.Drawing.Point(416, 10)
+        Me.LELeaveType.Location = New System.Drawing.Point(342, 10)
         Me.LELeaveType.Name = "LELeaveType"
         Me.LELeaveType.Properties.Appearance.Options.UseTextOptions = True
         Me.LELeaveType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -198,12 +225,12 @@ Partial Class FormEmpLeaveDet
         Me.LELeaveType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_leave_type", "ID Leave", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("leave_type", "Leave")})
         Me.LELeaveType.Properties.NullText = ""
         Me.LELeaveType.Properties.ShowFooter = False
-        Me.LELeaveType.Size = New System.Drawing.Size(213, 20)
+        Me.LELeaveType.Size = New System.Drawing.Size(135, 20)
         Me.LELeaveType.TabIndex = 144
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(368, 12)
+        Me.LabelControl9.Location = New System.Drawing.Point(294, 13)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(42, 13)
         Me.LabelControl9.TabIndex = 143
@@ -216,7 +243,7 @@ Partial Class FormEmpLeaveDet
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.EditValueChangedDelay = 1
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(209, 20)
+        Me.TENumber.Size = New System.Drawing.Size(143, 20)
         Me.TENumber.TabIndex = 95
         '
         'LabelControl7
@@ -239,7 +266,7 @@ Partial Class FormEmpLeaveDet
         '
         'BPickEmployee
         '
-        Me.BPickEmployee.Location = New System.Drawing.Point(600, 34)
+        Me.BPickEmployee.Location = New System.Drawing.Point(682, 34)
         Me.BPickEmployee.Name = "BPickEmployee"
         Me.BPickEmployee.Size = New System.Drawing.Size(29, 23)
         Me.BPickEmployee.TabIndex = 0
@@ -292,7 +319,7 @@ Partial Class FormEmpLeaveDet
         Me.TEPosition.Name = "TEPosition"
         Me.TEPosition.Properties.EditValueChangedDelay = 1
         Me.TEPosition.Properties.ReadOnly = True
-        Me.TEPosition.Size = New System.Drawing.Size(213, 20)
+        Me.TEPosition.Size = New System.Drawing.Size(293, 20)
         Me.TEPosition.TabIndex = 4
         '
         'LabelControl1
@@ -310,7 +337,7 @@ Partial Class FormEmpLeaveDet
         Me.TEEmployeeName.Name = "TEEmployeeName"
         Me.TEEmployeeName.Properties.EditValueChangedDelay = 1
         Me.TEEmployeeName.Properties.ReadOnly = True
-        Me.TEEmployeeName.Size = New System.Drawing.Size(324, 20)
+        Me.TEEmployeeName.Size = New System.Drawing.Size(406, 20)
         Me.TEEmployeeName.TabIndex = 2
         '
         'LabelControl3
@@ -682,6 +709,18 @@ Partial Class FormEmpLeaveDet
         Me.GCMutasi.TabIndex = 4
         Me.GCMutasi.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMutasi})
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditEcopPD})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(159, 26)
+        '
+        'SMEditEcopPD
+        '
+        Me.SMEditEcopPD.Name = "SMEditEcopPD"
+        Me.SMEditEcopPD.Size = New System.Drawing.Size(158, 22)
+        Me.SMEditEcopPD.Text = "View Document"
+        '
         'GVMutasi
         '
         Me.GVMutasi.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn18, Me.GridColumn22, Me.GridColumn17, Me.GridColumn21, Me.GridColumnCutiTerpakai, Me.GridColumn20, Me.GridColumn19})
@@ -698,6 +737,12 @@ Partial Class FormEmpLeaveDet
         Me.GridColumn18.Caption = "ID"
         Me.GridColumn18.FieldName = "id_emp_leave_stock"
         Me.GridColumn18.Name = "GridColumn18"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "ID Document"
+        Me.GridColumn22.FieldName = "id_emp_leave"
+        Me.GridColumn22.Name = "GridColumn22"
         '
         'GridColumn17
         '
@@ -1081,24 +1126,6 @@ Partial Class FormEmpLeaveDet
         Me.BSave.TabIndex = 0
         Me.BSave.Text = "Save"
         '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditEcopPD})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(159, 48)
-        '
-        'SMEditEcopPD
-        '
-        Me.SMEditEcopPD.Name = "SMEditEcopPD"
-        Me.SMEditEcopPD.Size = New System.Drawing.Size(158, 22)
-        Me.SMEditEcopPD.Text = "View Document"
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "ID Document"
-        Me.GridColumn22.FieldName = "id_emp_leave"
-        Me.GridColumn22.Name = "GridColumn22"
-        '
         'FormEmpLeaveDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1116,6 +1143,8 @@ Partial Class FormEmpLeaveDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
+        CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LELeaveType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1143,6 +1172,7 @@ Partial Class FormEmpLeaveDet
         CType(Me.GVLeaveUsage, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage1.ResumeLayout(False)
         CType(Me.GCMutasi, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVMutasi, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -1164,7 +1194,6 @@ Partial Class FormEmpLeaveDet
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -1258,4 +1287,6 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents ViewMenu As ContextMenuStrip
     Friend WithEvents SMEditEcopPD As ToolStripMenuItem
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEDateCreated As DevExpress.XtraEditors.DateEdit
 End Class
