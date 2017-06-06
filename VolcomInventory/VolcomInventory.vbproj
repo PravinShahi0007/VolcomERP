@@ -890,6 +890,12 @@
     <Compile Include="FormFGStock.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGTransList.Designer.vb">
+      <DependentUpon>FormFGTransList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGTransList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGTrfNew.Designer.vb">
       <DependentUpon>FormFGTrfNew.vb</DependentUpon>
     </Compile>
@@ -5084,6 +5090,9 @@
     <EmbeddedResource Include="FormFGStock.resx">
       <DependentUpon>FormFGStock.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGTransList.resx">
+      <DependentUpon>FormFGTransList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGTrfNew.resx">
       <DependentUpon>FormFGTrfNew.vb</DependentUpon>
