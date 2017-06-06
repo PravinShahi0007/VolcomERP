@@ -938,6 +938,12 @@
     <Compile Include="FormListPOMat.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterCargoRate.Designer.vb">
+      <DependentUpon>FormMasterCargoRate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterCargoRate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterComnputerDet.Designer.vb">
       <DependentUpon>FormMasterComnputerDet.vb</DependentUpon>
     </Compile>
@@ -5098,6 +5104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterCargoRate.resx">
+      <DependentUpon>FormMasterCargoRate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterComnputerDet.resx">
       <DependentUpon>FormMasterComnputerDet.vb</DependentUpon>
