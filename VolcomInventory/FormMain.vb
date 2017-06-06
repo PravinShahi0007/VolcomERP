@@ -10448,4 +10448,30 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBTransList_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBTransList.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGTransList.MdiParent = Me
+            FormFGTransList.Show()
+            FormFGTransList.WindowState = FormWindowState.Maximized
+            FormFGTransList.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBRateCargo_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRateCargo.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterCargoRate.MdiParent = Me
+            FormMasterCargoRate.Show()
+            FormMasterCargoRate.WindowState = FormWindowState.Maximized
+            FormMasterCargoRate.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class

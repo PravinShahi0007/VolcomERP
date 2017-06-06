@@ -890,6 +890,12 @@
     <Compile Include="FormFGStock.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGTransList.Designer.vb">
+      <DependentUpon>FormFGTransList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGTransList.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGTrfNew.Designer.vb">
       <DependentUpon>FormFGTrfNew.vb</DependentUpon>
     </Compile>
@@ -936,6 +942,12 @@
       <DependentUpon>FormListPOMat.vb</DependentUpon>
     </Compile>
     <Compile Include="FormListPOMat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterCargoRate.Designer.vb">
+      <DependentUpon>FormMasterCargoRate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterCargoRate.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMasterComnputerDet.Designer.vb">
@@ -5085,6 +5097,9 @@
       <DependentUpon>FormFGStock.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFGTransList.resx">
+      <DependentUpon>FormFGTransList.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFGTrfNew.resx">
       <DependentUpon>FormFGTrfNew.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -5110,6 +5125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterCargoRate.resx">
+      <DependentUpon>FormMasterCargoRate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterComnputerDet.resx">
       <DependentUpon>FormMasterComnputerDet.vb</DependentUpon>
