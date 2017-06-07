@@ -679,22 +679,37 @@
             XTPLineList.Visible = False
             XTPPrice.Visible = False
         ElseIf id_pop_up = "5" Then 'design dept
-            TEName.Enabled = True
-            BeditCodeDsg.Enabled = True
-            BRefreshCodeDsg.Enabled = True
-            BGenerateDesc.Enabled = True
-            LESampleOrign.Enabled = True
-            TxtFabrication.Enabled = True
-            SLEDesign.Enabled = True
-            GCCodeDsg.Enabled = True
-            MEDetail.Enabled = True
-            SLEDesign.Enabled = True
-            TxtCodeImport.Enabled = True
-            LESeason.Enabled = True
-            SLESeasonOrigin.Enabled = True
-            BtnAddSeasonOrign.Enabled = True
-
-
+            If is_approved = "2" Then
+                BtnReviseStyle.Visible = False
+                TEName.Enabled = True
+                BeditCodeDsg.Enabled = True
+                BRefreshCodeDsg.Enabled = True
+                BGenerateDesc.Enabled = True
+                LESampleOrign.Enabled = True
+                TxtFabrication.Enabled = True
+                SLEDesign.Enabled = True
+                GCCodeDsg.Enabled = True
+                MEDetail.Enabled = True
+                TxtCodeImport.Enabled = True
+                LESeason.Enabled = True
+                SLESeasonOrigin.Enabled = True
+                BtnAddSeasonOrign.Enabled = True
+            Else
+                BtnReviseStyle.Visible = True
+                TEName.Enabled = False
+                BeditCodeDsg.Enabled = False
+                BRefreshCodeDsg.Enabled = False
+                BGenerateDesc.Enabled = False
+                LESampleOrign.Enabled = False
+                TxtFabrication.Enabled = False
+                SLEDesign.Enabled = False
+                GCCodeDsg.Enabled = False
+                MEDetail.Enabled = False
+                TxtCodeImport.Enabled = False
+                LESeason.Enabled = False
+                SLESeasonOrigin.Enabled = False
+                BtnAddSeasonOrign.Enabled = False
+            End If
             PictureEdit1.Properties.ReadOnly = False
             XTPLineList.PageVisible = False
             XTPPrice.PageVisible = False
@@ -2086,6 +2101,35 @@
     Private Sub TEDisplayNameNonMD_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEDisplayNameNonMD.Validating
         If id_pop_up = "3" Then 'only for codefication
             EP_TE_cant_blank(EPMasterDesign, TEDisplayNameNonMD)
+        End If
+    End Sub
+
+    Private Sub BtnReviseStyle_Click(sender As Object, e As EventArgs) Handles BtnReviseStyle.Click
+        Dim is_permanent_master_dsg As String = get_setup_field("is_permanent_master_dsg")
+        Dim query_cek_po As String = ""
+        query_cek_po += "SELECT COUNT(*) FROM tb_prod_order pr_ord "
+        query_cek_po += "INNER JOIN tb_prod_demand_design pd_dsg ON pr_ord.id_prod_demand_design = pd_dsg.id_prod_demand_design "
+        query_cek_po += "WHERE pd_dsg.id_design = '" + id_design + "' AND pr_ord.id_report_status !='5' "
+        Dim jum_cek_po As String = execute_query(query_cek_po, 0, True, "", "", "", "")
+        If jum_cek_po > 0 Then
+            If is_permanent_master_dsg = "1" Then
+                stopCustom("Can not be revised because the order is being processed")
+            Else
+                resetApprove()
+            End If
+        Else
+            resetApprove()
+        End If
+    End Sub
+
+    Sub resetApprove()
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset approval this design and you can revise this design. Are you sure you want to continue this process?", "Revise", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Dim query As String = "UPDATE tb_m_design SET is_approved=2, approved_by=NULL, approved_time=NULL WHERE id_design=" + id_design + " "
+            execute_non_query(query, True, "", "", "", "")
+            actionLoad()
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class
