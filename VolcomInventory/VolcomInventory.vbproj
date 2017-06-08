@@ -3944,6 +3944,12 @@
     <Compile Include="FormWorkPlace.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormWorkQuick.Designer.vb">
+      <DependentUpon>FormWorkQuick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWorkQuick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Library\Common.vb" />
     <Compile Include="Library\Database.vb" />
     <Compile Include="FormAccessRoleSingle.Designer.vb">
