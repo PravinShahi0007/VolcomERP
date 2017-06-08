@@ -508,7 +508,27 @@
     End Sub
 
     Private Sub LEpayment_EditValueChanged(sender As Object, e As EventArgs) Handles LELeaveType.EditValueChanged
-        load_but_calc()
+        If Not LELeaveType.EditValue = LELeaveType.OldEditValue Then
+            If GVLeaveDet.RowCount > 0 Then
+                Dim confirm As DialogResult
+                confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Jam pengambilan cuti harus diinput ulang, lanjutkan ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+                If confirm = DialogResult.Yes Then
+                    clear_all_leave()
+                    load_but_calc()
+                Else
+                    LELeaveType.EditValue = LELeaveType.OldEditValue
+                End If
+            Else
+                load_but_calc()
+            End If
+        End If
+    End Sub
+
+    Sub clear_all_leave()
+        For i As Integer = GVLeaveDet.RowCount - 1 To 0 Step -1
+            GVLeaveDet.DeleteRow(i)
+        Next
     End Sub
 
     Private Sub BPickChange_Click(sender As Object, e As EventArgs) Handles BPickChange.Click
