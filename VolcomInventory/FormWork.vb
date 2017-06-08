@@ -4676,6 +4676,12 @@
         End Try
     End Sub
 
+    Private Sub FormWork_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F2 Then
+            FormWorkQuick.ShowDialog()
+        End If
+    End Sub
+
     'Private Sub GVMarkNeed_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVMarkNeed.CustomColumnDisplayText
     '    Try
     '        If e.Column.FieldName = "info" Then

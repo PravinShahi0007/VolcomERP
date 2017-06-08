@@ -7066,6 +7066,9 @@
       <DependentUpon>FormMasterEmployeeDet.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormWorkQuick.resx">
+      <DependentUpon>FormWorkQuick.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pivot.resx">
       <DependentUpon>Pivot.vb</DependentUpon>
       <SubType>Designer</SubType>
