@@ -66,8 +66,6 @@ Public Class FormMain
         For Each ex As Control In Me.Controls
             AddHandler ex.KeyDown, AddressOf FormMain_KeyUp
         Next
-
-
         '
         NotifyIconVI.ShowBalloonTip(2000, "Information", "Volcom ERP is now running." + Environment.NewLine + "Right click at volcom icon for more option.", ToolTipIcon.Info)
         Cursor = Cursors.Default
