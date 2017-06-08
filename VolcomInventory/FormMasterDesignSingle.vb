@@ -15,7 +15,7 @@
     Public bool_qty_line As Boolean = False
     Public id_pop_up As String = "-1"
     Public ss_dept As String = "-1"
-    Dim is_approved As String = "-1"
+    Dim is_approved As String = "2"
 
     'View UOM
     Private Sub viewUOM(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
