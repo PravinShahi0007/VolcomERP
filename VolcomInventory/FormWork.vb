@@ -4679,7 +4679,11 @@
     Private Sub FormWork_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.F2 Then
             Cursor = Cursors.WaitCursor
-            FormWorkQuick.ShowDialog()
+            Dim query_cek As String = "SELECT COUNT(*) AS `jum` FROM tb_work_quick_user w WHERE w.id_user='" + id_user + "' "
+            Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+            If data_cek.Rows(0)("jum") > 0 Then
+                FormWorkQuick.ShowDialog()
+            End If
             Cursor = Cursors.Default
         End If
     End Sub
