@@ -91,7 +91,7 @@
                                 " & emp_search & "
                                 GROUP BY emp.id_employee"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-            Console.WriteLine(query)
+
             GCSum.DataSource = data
             GVSum.BestFitColumns()
             GVSum.ExpandAllGroups()

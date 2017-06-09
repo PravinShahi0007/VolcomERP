@@ -111,8 +111,9 @@
                         total_min = GVSchedule.GetFocusedRowCellValue("minutes_work")
                     End If
 
-                    If total_min < get_opt_emp_field("min_leave_minutes") Then
-                        stopCustom("Hanya dapat mengajukan cuti dengan lama minimal 4 jam")
+
+                    If total_min < get_opt_emp_field("min_leave_minutes") And is_no_min_hour(FormEmpLeaveDet.LELeaveType.EditValue.ToString) = "2" Then
+                        stopCustom("Hanya dapat mengajukan dengan lama minimal 4 jam")
                     Else
                         Dim newRow As DataRow = (TryCast(FormEmpLeaveDet.GCLeaveDet.DataSource, DataTable)).NewRow()
                         newRow("id_schedule") = GVSchedule.GetFocusedRowCellDisplayText("id_schedule").ToString
@@ -133,6 +134,17 @@
             End If
         End If
     End Sub
+
+    Function is_no_min_hour(ByVal id_leave_type As String)
+        Dim no_min_hour As String = ""
+
+        Dim query As String = "SELECT * FROM tb_lookup_leave_type WHERE id_leave_type='" & id_leave_type & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        no_min_hour = data.Rows(0)("is_no_min_hour").ToString
+
+        Return no_min_hour
+    End Function
 
     Private Sub CEFullDay_CheckedChanged(sender As Object, e As EventArgs) Handles CEFullDay.CheckedChanged
         load_date()
