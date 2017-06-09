@@ -802,9 +802,8 @@
                     XTPLineList.PageVisible = True
                 End If
                 XTPSize.PageVisible = False
-                SLEDel.Enabled = False
-                LERetCode.Enabled = False
-                DEEOS.Enabled = False
+                SLEDel.Enabled = True
+                DEEOS.Enabled = True
                 BeditCode.Enabled = False
                 BRefreshCode.Enabled = False
                 BGenerate.Enabled = False
@@ -812,6 +811,15 @@
                 GCCode.Enabled = False
                 DEWHDate.Enabled = False
                 BtnAddRetCode.Enabled = False
+
+                Dim query_cek_print As String = "SELECT SUM(last_print_unique) AS `total_print` FROM tb_m_product WHERE id_design='" + id_design + "' "
+                Dim dt_cek_print As DataTable = execute_query(query_cek_print, -1, True, "", "", "", "")
+                Dim total_print As Integer = dt_cek_print.Rows(0)("total_print")
+                If total_print > 0 Then
+                    LERetCode.Enabled = False
+                Else
+                    LERetCode.Enabled = True
+                End If
             End If
         End If
     End Sub
@@ -1182,7 +1190,7 @@
                             query += "id_design_ref='" + id_design_ref + "', "
                         End If
                         query += "id_active='" + id_active + "', "
-                        query += "id_lookup_status_order='" + id_lookup_status_order + "', design_detail='" + design_detail + "' "
+                        query += "design_detail='" + design_detail + "' "
                         query += "WHERE id_design='{5}' "
                         query = String.Format(query, namex, display_name, code, id_uom, id_season, id_design, id_design_type, design_ret_code)
                         execute_non_query(query, True, "", "", "", "")
