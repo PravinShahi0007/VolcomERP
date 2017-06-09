@@ -11,6 +11,8 @@
     Dim file_ext As String = ""
     '
     Public is_hrd As String = "-1"
+    Public is_reload As String = "2"
+
     Private Sub FormEmpLeaveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
     End Sub
@@ -23,7 +25,10 @@
         TETotLeave.EditValue = 0
         TERemainingLeaveAfter.EditValue = 0
         '
+        is_reload = "1"
         load_leave_type()
+        is_reload = "2"
+
         load_form_dc()
         TENumber.Text = header_number_emp("1")
         '
@@ -65,7 +70,9 @@
             DEDateCreated.EditValue = data.Rows(0)("emp_leave_date")
             '
             report_mark_type = data.Rows(0)("report_mark_type").ToString
+            is_reload = "1"
             LELeaveType.ItemIndex = LELeaveType.Properties.GetDataSourceRowIndex("id_leave_type", data.Rows(0)("id_leave_type").ToString)
+            is_reload = "2"
             LEFormDC.ItemIndex = LEFormDC.Properties.GetDataSourceRowIndex("id_form_dc", data.Rows(0)("id_form_dc").ToString)
             '
             TEEmployeeCode.Text = data.Rows(0)("employee_code").ToString
@@ -308,6 +315,29 @@
                     problem = True
                 End If
             End If
+            If LELeaveType.EditValue.ToString = "6" Then
+                'check if sudah lebih dari 2 jam dalam sebulan.
+                Dim query_cek As String = "SELECT SUM(minutes_total) AS total_min FROM tb_emp_leave_det ld
+                                        INNER JOIN tb_emp_leave l ON l.id_emp_leave=ld.id_emp_leave
+                                        WHERE l.id_leave_type='6' 
+                                        AND id_emp='" & id_employee & "' 
+                                        AND id_report_status!='5' AND DATE_FORMAT(ld.datetime_start, '%Y-%m') = DATE_FORMAT(NOW(), '%Y-%m')
+                                        GROUP BY l.`id_emp`"
+                Dim cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+
+                Dim total_min As Integer
+
+                If cek.Rows.Count = 0 Then
+                    total_min = TETotLeave.EditValue * 60
+                Else
+                    total_min = cek.Rows(0)("total_min") + (TETotLeave.EditValue * 60)
+                End If
+
+                If total_min > get_opt_emp_field("ijin_in_month") Then
+                    stopCustom("Hanya dapat mengajukan ijin maksimal 2 jam dalam sebulan.")
+                    problem = True
+                End If
+            End If
             If problem = False Then
                 'add parent
                 Dim number As String = header_number_emp("1")
@@ -508,7 +538,7 @@
     End Sub
 
     Private Sub LEpayment_EditValueChanged(sender As Object, e As EventArgs) Handles LELeaveType.EditValueChanged
-        If Not LELeaveType.EditValue = LELeaveType.OldEditValue Then
+        If Not LELeaveType.EditValue = LELeaveType.OldEditValue And is_reload = "2" Then
             If GVLeaveDet.RowCount > 0 Then
                 Dim confirm As DialogResult
                 confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Jam pengambilan cuti harus diinput ulang, lanjutkan ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -523,6 +553,7 @@
                 load_but_calc()
             End If
         End If
+        is_reload = "2"
     End Sub
 
     Sub clear_all_leave()
