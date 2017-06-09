@@ -50,6 +50,7 @@ Partial Class FormWorkQuick
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         CType(Me.PCQuick, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCQuick.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -377,6 +378,10 @@ Partial Class FormWorkQuick
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Comment"
         '
+        'SplashScreenManager1
+        '
+        Me.SplashScreenManager1.ClosingDelay = 500
+        '
         'FormWorkQuick
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -438,4 +443,5 @@ Partial Class FormWorkQuick
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
 End Class

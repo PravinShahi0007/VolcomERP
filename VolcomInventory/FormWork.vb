@@ -4678,7 +4678,9 @@
 
     Private Sub FormWork_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
         If e.KeyCode = Keys.F2 Then
+            Cursor = Cursors.WaitCursor
             FormWorkQuick.ShowDialog()
+            Cursor = Cursors.Default
         End If
     End Sub
 

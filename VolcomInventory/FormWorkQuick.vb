@@ -81,6 +81,7 @@
             End If
             If confirm = Windows.Forms.DialogResult.Yes Then
                 updateStatus(id_mark_par)
+                GVData.ActiveFilterString = ""
             Else
                 GVData.ActiveFilterString = ""
             End If
@@ -90,7 +91,7 @@
     End Sub
 
     Sub updateStatus(ByVal id_mark_par As String)
-        Cursor = Cursors.WaitCursor
+        SplashScreenManager1.ShowWaitForm()
         For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
             'update all to 2
             Console.WriteLine(i.ToString)
@@ -112,16 +113,56 @@
             End If
 
             If (jml < 1 And assigned = True) Then
-                FormReportMark.change_status(id_status_reportx)
+                change_status(GVData.GetRowCellValue(i, "report_mark_type").ToString, GVData.GetRowCellValue(i, "id_report").ToString, id_status_reportx)
             End If
-            FormReportMark.sendNotif("1")
-            FormWork.view_mark_need()
         Next
         view_mark_need()
-        Cursor = Cursors.Default
+        FormWork.view_mark_need()
+        SplashScreenManager1.CloseWaitForm()
     End Sub
 
     Private Sub BRefuse_Click(sender As Object, e As EventArgs) Handles BRefuse.Click
         actionButton("3")
+    End Sub
+
+    Sub change_status(ByVal report_mark_type As String, ByVal id_report As String, ByVal id_status_reportx As String)
+        If report_mark_type = "37" Then
+            'Rec PL FG TO WH
+            Try
+                Dim ch_stt As ClassProductionPLToWHRec = New ClassProductionPLToWHRec()
+                ch_stt.changeStatus(id_report, id_status_reportx)
+            Catch ex As Exception
+                errorProcess()
+            End Try
+        ElseIf report_mark_type = "43" Then
+            'SALES Del Order
+            Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+            stt.changeStatus(id_report, id_status_reportx)
+        ElseIf report_mark_type = "46" Then
+            'SALES RETURN
+            Dim stt As ClassSalesReturn = New ClassSalesReturn()
+            stt.changeStatus(id_report, id_status_reportx)
+        ElseIf report_mark_type = "49" Then
+            'SALES RETURN QC
+            Dim st As ClassSalesReturnQC = New ClassSalesReturnQC()
+            st.changeStatus(id_report, id_status_reportx)
+        End If
+    End Sub
+
+    Private Sub GVData_DoubleClick(sender As Object, e As EventArgs) Handles GVData.DoubleClick
+        If GVData.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            Dim report_mark_type As String = "-1"
+            Dim id_report As String = "-1"
+
+            report_mark_type = GVData.GetFocusedRowCellValue("report_mark_type").ToString
+            id_report = GVData.GetFocusedRowCellValue("id_report").ToString
+
+            Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
+            showpopup.report_mark_type = report_mark_type
+            showpopup.id_report = id_report
+            showpopup.show()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class
