@@ -961,7 +961,6 @@
 
         band_stat.AutoFillDown = True
         Dim query As String = "CALL view_mat_stock_res('" + id_mat_selected + "') "
-        Console.WriteLine(query)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Columns.Count - 1
             If data.Columns(i).ColumnName.ToString = "design_display_name" Or data.Columns(i).ColumnName.ToString = "design_code" Or data.Columns(i).ColumnName.ToString = "note" Or data.Columns(i).ColumnName.ToString = "id_mat_det" Or data.Columns(i).ColumnName.ToString = "id_report" Or data.Columns(i).ColumnName.ToString = "report_mark_type" Or data.Columns(i).ColumnName.ToString = "id_storage_category" Or data.Columns(i).ColumnName.ToString = "date" Then
