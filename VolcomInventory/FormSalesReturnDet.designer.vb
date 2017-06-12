@@ -96,6 +96,9 @@ Partial Class FormSalesReturnDet
         Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPlSalesOrderDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
@@ -156,10 +159,31 @@ Partial Class FormSalesReturnDet
         Me.GridColumnIdWHDrawerDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPProblem = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCBarcodeProb = New DevExpress.XtraGrid.GridControl()
+        Me.GVBarcodeProb = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtScanProb = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.BDeleteProb = New DevExpress.XtraEditors.SimpleButton()
+        Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
+        Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -224,6 +248,16 @@ Partial Class FormSalesReturnDet
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPProblem.SuspendLayout()
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl2.SuspendLayout()
+        CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -1049,6 +1083,27 @@ Partial Class FormSalesReturnDet
         Me.GridColumnStt.FieldName = "status"
         Me.GridColumnStt.Name = "GridColumnStt"
         '
+        'GridColumnNumber
+        '
+        Me.GridColumnNumber.Caption = "Number"
+        Me.GridColumnNumber.FieldName = "number"
+        Me.GridColumnNumber.Name = "GridColumnNumber"
+        Me.GridColumnNumber.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
+        'GridColumnFrom
+        '
+        Me.GridColumnFrom.Caption = "From"
+        Me.GridColumnFrom.FieldName = "from"
+        Me.GridColumnFrom.Name = "GridColumnFrom"
+        Me.GridColumnFrom.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
+        'GridColumnTo
+        '
+        Me.GridColumnTo.Caption = "To"
+        Me.GridColumnTo.FieldName = "to"
+        Me.GridColumnTo.Name = "GridColumnTo"
+        Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        '
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
@@ -1112,7 +1167,7 @@ Partial Class FormSalesReturnDet
         Me.XTCReturn.SelectedTabPage = Me.XTPScan
         Me.XTCReturn.Size = New System.Drawing.Size(911, 201)
         Me.XTCReturn.TabIndex = 0
-        Me.XTCReturn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPStorage})
+        Me.XTCReturn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPStorage, Me.XTPProblem})
         '
         'XTPScan
         '
@@ -1591,30 +1646,238 @@ Partial Class FormSalesReturnDet
         Me.GridColumnIdx2.Visible = True
         Me.GridColumnIdx2.VisibleIndex = 4
         '
+        'XTPProblem
+        '
+        Me.XTPProblem.Controls.Add(Me.GroupControl2)
+        Me.XTPProblem.Name = "XTPProblem"
+        Me.XTPProblem.Size = New System.Drawing.Size(905, 173)
+        Me.XTPProblem.Text = "Problem"
+        '
+        'GroupControl2
+        '
+        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.GCBarcodeProb)
+        Me.GroupControl2.Controls.Add(Me.PanelControl1)
+        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl2.Enabled = False
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControl2.Name = "GroupControl2"
+        Me.GroupControl2.Size = New System.Drawing.Size(905, 173)
+        Me.GroupControl2.TabIndex = 4
+        Me.GroupControl2.Text = "Unidentified Code"
+        '
+        'GCBarcodeProb
+        '
+        Me.GCBarcodeProb.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCBarcodeProb.Location = New System.Drawing.Point(20, 35)
+        Me.GCBarcodeProb.MainView = Me.GVBarcodeProb
+        Me.GCBarcodeProb.Name = "GCBarcodeProb"
+        Me.GCBarcodeProb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit3})
+        Me.GCBarcodeProb.Size = New System.Drawing.Size(883, 136)
+        Me.GCBarcodeProb.TabIndex = 6
+        Me.GCBarcodeProb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcodeProb})
+        '
+        'GVBarcodeProb
+        '
+        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.GVBarcodeProb.GridControl = Me.GCBarcodeProb
+        Me.GVBarcodeProb.Name = "GVBarcodeProb"
+        Me.GVBarcodeProb.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVBarcodeProb.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVBarcodeProb.OptionsCustomization.AllowColumnMoving = False
+        Me.GVBarcodeProb.OptionsCustomization.AllowGroup = False
+        Me.GVBarcodeProb.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVBarcodeProb.OptionsCustomization.AllowSort = False
+        Me.GVBarcodeProb.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "No"
+        Me.GridColumn1.FieldName = "no"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn1.OptionsColumn.AllowMove = False
+        Me.GridColumn1.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        Me.GridColumn1.Width = 57
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Scanned Code"
+        Me.GridColumn3.FieldName = "code"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.Width = 320
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Counting Code"
+        Me.GridColumn4.FieldName = "counting_code"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
+        Me.GridColumn4.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Id PL Counting"
+        Me.GridColumn6.FieldName = "id_sales_return_det_counting"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Is Fix"
+        Me.GridColumn7.FieldName = "is_fix"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn7.OptionsColumn.AllowMove = False
+        Me.GridColumn7.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Id Unique Receiving"
+        Me.GridColumn8.FieldName = "id_pl_prod_order_rec_det_unique"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn8.OptionsColumn.AllowMove = False
+        Me.GridColumn8.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Id Product"
+        Me.GridColumn9.FieldName = "id_product"
+        Me.GridColumn9.Name = "GridColumn9"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Unit Cost"
+        Me.GridColumn10.FieldName = "bom_unit_price"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Width = 132
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Id Design Price"
+        Me.GridColumn11.FieldName = "id_design_price"
+        Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Design Price"
+        Me.GridColumn12.FieldName = "design_price"
+        Me.GridColumn12.Name = "GridColumn12"
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Description"
+        Me.GridColumn13.FieldName = "name"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 2
+        Me.GridColumn13.Width = 626
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Size"
+        Me.GridColumn14.FieldName = "size"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 3
+        Me.GridColumn14.Width = 59
+        '
+        'RepositoryItemCheckEdit1
+        '
+        Me.RepositoryItemCheckEdit1.AutoHeight = False
+        Me.RepositoryItemCheckEdit1.Name = "RepositoryItemCheckEdit1"
+        '
+        'RepositoryItemSpinEdit3
+        '
+        Me.RepositoryItemSpinEdit3.AutoHeight = False
+        Me.RepositoryItemSpinEdit3.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit3.EditValueChangedDelay = 50
+        Me.RepositoryItemSpinEdit3.Mask.EditMask = "n2"
+        Me.RepositoryItemSpinEdit3.Mask.SaveLiteral = False
+        Me.RepositoryItemSpinEdit3.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
+        Me.RepositoryItemSpinEdit3.Name = "RepositoryItemSpinEdit3"
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.TxtScanProb)
+        Me.PanelControl1.Controls.Add(Me.LabelControl6)
+        Me.PanelControl1.Controls.Add(Me.BDeleteProb)
+        Me.PanelControl1.Controls.Add(Me.BStopProb)
+        Me.PanelControl1.Controls.Add(Me.BScanProb)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControl1.LookAndFeel.SkinName = "Office 2010 Blue"
+        Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(883, 33)
+        Me.PanelControl1.TabIndex = 2
+        '
+        'TxtScanProb
+        '
+        Me.TxtScanProb.Location = New System.Drawing.Point(82, 7)
+        Me.TxtScanProb.MenuManager = Me.BMDD
+        Me.TxtScanProb.Name = "TxtScanProb"
+        Me.TxtScanProb.Size = New System.Drawing.Size(248, 20)
+        Me.TxtScanProb.TabIndex = 21
+        Me.TxtScanProb.Visible = False
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(9, 10)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl6.TabIndex = 20
+        Me.LabelControl6.Text = "Scan Product"
+        Me.LabelControl6.Visible = False
+        '
+        'BDeleteProb
+        '
+        Me.BDeleteProb.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDeleteProb.ImageIndex = 1
+        Me.BDeleteProb.ImageList = Me.LargeImageCollection
+        Me.BDeleteProb.Location = New System.Drawing.Point(601, 0)
+        Me.BDeleteProb.Name = "BDeleteProb"
+        Me.BDeleteProb.Size = New System.Drawing.Size(94, 33)
+        Me.BDeleteProb.TabIndex = 8
+        Me.BDeleteProb.Text = "Delete Scan"
+        '
+        'BStopProb
+        '
+        Me.BStopProb.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BStopProb.Enabled = False
+        Me.BStopProb.ImageIndex = 9
+        Me.BStopProb.ImageList = Me.LargeImageCollection
+        Me.BStopProb.Location = New System.Drawing.Point(695, 0)
+        Me.BStopProb.Name = "BStopProb"
+        Me.BStopProb.Size = New System.Drawing.Size(97, 33)
+        Me.BStopProb.TabIndex = 7
+        Me.BStopProb.Text = "Finish Scan"
+        '
+        'BScanProb
+        '
+        Me.BScanProb.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BScanProb.ImageIndex = 8
+        Me.BScanProb.ImageList = Me.LargeImageCollection
+        Me.BScanProb.Location = New System.Drawing.Point(792, 0)
+        Me.BScanProb.Name = "BScanProb"
+        Me.BScanProb.Size = New System.Drawing.Size(91, 33)
+        Me.BScanProb.TabIndex = 6
+        Me.BScanProb.Text = "Start Scan"
+        '
         'EPForm
         '
         Me.EPForm.ContainerControl = Me
-        '
-        'GridColumnNumber
-        '
-        Me.GridColumnNumber.Caption = "Number"
-        Me.GridColumnNumber.FieldName = "number"
-        Me.GridColumnNumber.Name = "GridColumnNumber"
-        Me.GridColumnNumber.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        '
-        'GridColumnFrom
-        '
-        Me.GridColumnFrom.Caption = "From"
-        Me.GridColumnFrom.FieldName = "from"
-        Me.GridColumnFrom.Name = "GridColumnFrom"
-        Me.GridColumnFrom.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        '
-        'GridColumnTo
-        '
-        Me.GridColumnTo.Caption = "To"
-        Me.GridColumnTo.FieldName = "to"
-        Me.GridColumnTo.Name = "GridColumnTo"
-        Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
         'FormSalesReturnDet
         '
@@ -1703,6 +1966,17 @@ Partial Class FormSalesReturnDet
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPProblem.ResumeLayout(False)
+        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -1847,4 +2121,28 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPProblem As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GCBarcodeProb As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVBarcodeProb As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepositoryItemSpinEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TxtScanProb As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BDeleteProb As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BStopProb As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BScanProb As DevExpress.XtraEditors.SimpleButton
 End Class

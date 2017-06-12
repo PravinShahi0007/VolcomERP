@@ -308,6 +308,10 @@ Public Class FormSalesReturnDet
         End If
     End Sub
 
+    Sub codeAvailableInsProb(ByVal id_product_param As String, ByVal id_store_param As String, ByVal id_design_price_param As String)
+
+    End Sub
+
     Sub insertDt(ByVal id_product_param As String, ByVal id_pl_prod_order_rec_det_unique_param As String, ByVal product_code_param As String, ByVal product_counting_code_param As String, ByVal product_full_code_param As String, ByVal cost_param As Decimal, ByVal id_design_price_param As String, ByVal design_price_param As Decimal)
         Dim R As DataRow = dt.NewRow
         R("id_product") = id_product_param
@@ -943,8 +947,11 @@ Public Class FormSalesReturnDet
         BtnSave.Enabled = False
         BtnVerify.Enabled = False
         BScan.Enabled = False
+        BScanProb.Enabled = False
         BStop.Enabled = True
+        BStopProb.Enabled = True
         BDelete.Enabled = False
+        BDeleteProb.Enabled = False
         BtnCancel.Enabled = False
         ControlBox = False
         BtnAdd.Enabled = False
@@ -964,6 +971,19 @@ Public Class FormSalesReturnDet
             End If
         Next
         codeAvailableIns(id_product_param, id_store, "0")
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub loadCodeDetailProb()
+        Cursor = Cursors.WaitCursor
+        Dim id_product_param As String = ""
+        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+            id_product_param += GVItemList.GetRowCellValue(i, "id_product").ToString
+            If i < ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList)) Then
+                id_product_param += ";"
+            End If
+        Next
+        codeAvailableInsProb(id_product_param, id_store, "0")
         Cursor = Cursors.Default
     End Sub
 
@@ -1680,6 +1700,22 @@ Public Class FormSalesReturnDet
             e.Value = TxtCodeCompTo.Text.ToString
         ElseIf e.Column.FieldName = "number" AndAlso e.IsGetData Then
             e.Value = TxtSalesReturnNumber.Text.ToString
+        End If
+    End Sub
+
+    Private Sub BScanProb_Click(sender As Object, e As EventArgs) Handles BScanProb.Click
+        If GVItemList.RowCount > 0 Then
+            disableControl()
+            TxtScanProb.Text = ""
+            TxtScanProb.Focus()
+        Else
+            errorCustom("Item list can't blank")
+        End If
+    End Sub
+
+    Private Sub TxtScanProb_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScanProb.KeyDown
+        If e.KeyCode = Keys.Enter Then
+
         End If
     End Sub
 End Class
