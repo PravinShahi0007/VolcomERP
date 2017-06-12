@@ -1486,6 +1486,8 @@ Public Class FormMain
             FormProductionFinalClearDet.ShowDialog()
         ElseIf formName = "FormProductionAssembly" Then
             FormProductionAssemblyNew.ShowDialog()
+        ElseIf formName = "FormMasterCargoRate" Then
+            FormMasterCargoRate.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
