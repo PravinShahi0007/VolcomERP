@@ -35,6 +35,7 @@ Public Class FormSalesReturnDet
     Dim rack_sel As String = "-1"
     Dim drawer_sel As String = "-1"
     Dim is_save_unreg_unique As String = "-1"
+    Dim is_scan_prob As String = "-1"
 
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -145,6 +146,7 @@ Public Class FormSalesReturnDet
             'detail2
             viewDetail()
             view_barcode_list()
+            view_barcode_list_prob()
             check_but()
             allow_status()
 
@@ -191,8 +193,10 @@ Public Class FormSalesReturnDet
         'general
         viewDetail()
         view_barcode_list()
+        view_barcode_list_prob()
         GroupControlListItem.Enabled = True
         GroupControlScannedItem.Enabled = True
+        GroupControlProb.Enabled = True
         BtnInfoSrs.Enabled = True
         GVItemList.OptionsBehavior.AutoExpandAllGroups = True
     End Sub
@@ -268,6 +272,19 @@ Public Class FormSalesReturnDet
             Next
             GCBarcode.DataSource = data
         End If
+    End Sub
+
+    Sub view_barcode_list_prob()
+        Dim query As String = "SELECT '0' AS `no`,rp.id_sales_return_problem, rp.id_product, rp.scanned_code AS `code`,
+            d.design_display_name AS `name`, cd.code_detail_name AS `size` 
+            FROM tb_sales_return_problem rp
+            INNER JOIN tb_m_product p ON p.id_product = rp.id_product
+            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+            INNER JOIN tb_m_design d ON d.id_design = p.id_design
+            WHERE rp.id_sales_return=" + id_sales_return + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCBarcodeProb.DataSource = data
     End Sub
 
 
@@ -1009,13 +1026,19 @@ Public Class FormSalesReturnDet
                 GVBarcode.DeleteRow(i)
             End If
         Next
+        enableControl()
+    End Sub
 
+    Sub enableControl()
         MENote.Enabled = True
         BtnSave.Enabled = True
         BtnVerify.Enabled = True
         BScan.Enabled = True
+        BScanProb.Enabled = True
         BStop.Enabled = False
+        BStopProb.Enabled = False
         BDelete.Enabled = True
+        BDeleteProb.Enabled = True
         BtnCancel.Enabled = True
         allowDelete()
         ControlBox = True
@@ -1026,6 +1049,8 @@ Public Class FormSalesReturnDet
         TxtStoreReturnNumber.Enabled = True
         LabelDelScan.Visible = False
         TxtDeleteScan.Visible = False
+        LabelScanProb.Visible = False
+        TxtScanProb.Visible = False
     End Sub
 
     Private Sub BDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BDelete.Click
@@ -1705,8 +1730,11 @@ Public Class FormSalesReturnDet
 
     Private Sub BScanProb_Click(sender As Object, e As EventArgs) Handles BScanProb.Click
         If GVItemList.RowCount > 0 Then
-            disableControl()
             TxtScanProb.Text = ""
+            is_scan_prob = "1"
+            disableControl()
+            LabelScanProb.Visible = True
+            TxtScanProb.Visible = True
             TxtScanProb.Focus()
         Else
             errorCustom("Item list can't blank")
@@ -1715,7 +1743,75 @@ Public Class FormSalesReturnDet
 
     Private Sub TxtScanProb_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScanProb.KeyDown
         If e.KeyCode = Keys.Enter Then
+            Dim code As String = addSlashes(TxtScanProb.Text)
 
+            If is_scan_prob = "1" Then 'scan
+                Dim query As String = "CALL view_scan_code_active('AND list.code=''" + code + "''')"
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If data.Rows.Count > 0 Then
+                    'check duplicate
+                    'code
+
+                    Dim newRow As DataRow = (TryCast(GCBarcodeProb.DataSource, DataTable)).NewRow()
+                    newRow("id_sales_return_problem") = "0"
+                    newRow("id_product") = data.Rows(0)("id_product").ToString
+                    newRow("code") = data.Rows(0)("code").ToString
+                    newRow("name") = data.Rows(0)("name").ToString
+                    newRow("size") = data.Rows(0)("size").ToString
+                    TryCast(GCBarcodeProb.DataSource, DataTable).Rows.Add(newRow)
+                    GCBarcodeProb.RefreshDataSource()
+                    GVBarcodeProb.RefreshData()
+                    GVBarcodeProb.ActiveFilterString = ""
+                    TxtScanProb.Text = ""
+                    TxtScanProb.Focus()
+                Else
+                    stopCustom("Data not found")
+                    GVBarcodeProb.ActiveFilterString = ""
+                    TxtScanProb.Text = ""
+                    TxtScanProb.Focus()
+                End If
+            ElseIf is_scan_prob = "2" Then 'del scan
+                Cursor = Cursors.WaitCursor
+                GVBarcodeProb.ActiveFilterString = "[code]='" + TxtScanProb.Text + "'"
+                If GVBarcodeProb.RowCount <= 0 Then
+                    stopCustom("Code not found.")
+                    GVBarcodeProb.ActiveFilterString = ""
+                    TxtScanProb.Text = ""
+                    TxtScanProb.Focus()
+                Else
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        GVBarcodeProb.DeleteRow(GVBarcode.FocusedRowHandle)
+                        GVBarcodeProb.ApplyFindFilter("")
+                    Else
+                        GVBarcodeProb.ActiveFilterString = ""
+                    End If
+                    TxtScanProb.Text = ""
+                    TxtScanProb.Focus()
+                End If
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub BStopProb_Click(sender As Object, e As EventArgs) Handles BStopProb.Click
+        TxtScanProb.Text = ""
+        is_scan_prob = "-1"
+        enableControl()
+    End Sub
+
+    Private Sub BDeleteProb_Click(sender As Object, e As EventArgs) Handles BDeleteProb.Click
+        is_scan_prob = "2"
+        disableControl()
+        TxtScanProb.Text = ""
+        LabelScanProb.Visible = True
+        TxtScanProb.Visible = True
+        TxtScanProb.Focus()
+    End Sub
+
+    Private Sub GVBarcodeProb_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVBarcodeProb.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 End Class

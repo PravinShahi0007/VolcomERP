@@ -160,7 +160,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPProblem = New DevExpress.XtraTab.XtraTabPage()
-        Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.GroupControlProb = New DevExpress.XtraEditors.GroupControl()
         Me.GCBarcodeProb = New DevExpress.XtraGrid.GridControl()
         Me.GVBarcodeProb = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -179,7 +179,7 @@ Partial Class FormSalesReturnDet
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.TxtScanProb = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelScanProb = New DevExpress.XtraEditors.LabelControl()
         Me.BDeleteProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
@@ -249,8 +249,8 @@ Partial Class FormSalesReturnDet
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPProblem.SuspendLayout()
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl2.SuspendLayout()
+        CType(Me.GroupControlProb, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControlProb.SuspendLayout()
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1648,23 +1648,23 @@ Partial Class FormSalesReturnDet
         '
         'XTPProblem
         '
-        Me.XTPProblem.Controls.Add(Me.GroupControl2)
+        Me.XTPProblem.Controls.Add(Me.GroupControlProb)
         Me.XTPProblem.Name = "XTPProblem"
         Me.XTPProblem.Size = New System.Drawing.Size(905, 173)
         Me.XTPProblem.Text = "Problem"
         '
-        'GroupControl2
+        'GroupControlProb
         '
-        Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl2.Controls.Add(Me.GCBarcodeProb)
-        Me.GroupControl2.Controls.Add(Me.PanelControl1)
-        Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl2.Enabled = False
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
-        Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(905, 173)
-        Me.GroupControl2.TabIndex = 4
-        Me.GroupControl2.Text = "Unidentified Code"
+        Me.GroupControlProb.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlProb.Controls.Add(Me.GCBarcodeProb)
+        Me.GroupControlProb.Controls.Add(Me.PanelControl1)
+        Me.GroupControlProb.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControlProb.Enabled = False
+        Me.GroupControlProb.Location = New System.Drawing.Point(0, 0)
+        Me.GroupControlProb.Name = "GroupControlProb"
+        Me.GroupControlProb.Size = New System.Drawing.Size(905, 173)
+        Me.GroupControlProb.TabIndex = 4
+        Me.GroupControlProb.Text = "Unidentified Code"
         '
         'GCBarcodeProb
         '
@@ -1684,6 +1684,7 @@ Partial Class FormSalesReturnDet
         Me.GVBarcodeProb.Name = "GVBarcodeProb"
         Me.GVBarcodeProb.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVBarcodeProb.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVBarcodeProb.OptionsBehavior.Editable = False
         Me.GVBarcodeProb.OptionsCustomization.AllowColumnMoving = False
         Me.GVBarcodeProb.OptionsCustomization.AllowGroup = False
         Me.GVBarcodeProb.OptionsCustomization.AllowQuickHideColumns = False
@@ -1811,7 +1812,7 @@ Partial Class FormSalesReturnDet
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl1.Controls.Add(Me.TxtScanProb)
-        Me.PanelControl1.Controls.Add(Me.LabelControl6)
+        Me.PanelControl1.Controls.Add(Me.LabelScanProb)
         Me.PanelControl1.Controls.Add(Me.BDeleteProb)
         Me.PanelControl1.Controls.Add(Me.BStopProb)
         Me.PanelControl1.Controls.Add(Me.BScanProb)
@@ -1832,14 +1833,14 @@ Partial Class FormSalesReturnDet
         Me.TxtScanProb.TabIndex = 21
         Me.TxtScanProb.Visible = False
         '
-        'LabelControl6
+        'LabelScanProb
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(9, 10)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(63, 13)
-        Me.LabelControl6.TabIndex = 20
-        Me.LabelControl6.Text = "Scan Product"
-        Me.LabelControl6.Visible = False
+        Me.LabelScanProb.Location = New System.Drawing.Point(9, 10)
+        Me.LabelScanProb.Name = "LabelScanProb"
+        Me.LabelScanProb.Size = New System.Drawing.Size(63, 13)
+        Me.LabelScanProb.TabIndex = 20
+        Me.LabelScanProb.Text = "Scan Product"
+        Me.LabelScanProb.Visible = False
         '
         'BDeleteProb
         '
@@ -1967,8 +1968,8 @@ Partial Class FormSalesReturnDet
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPProblem.ResumeLayout(False)
-        CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl2.ResumeLayout(False)
+        CType(Me.GroupControlProb, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControlProb.ResumeLayout(False)
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2122,7 +2123,7 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumnFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPProblem As DevExpress.XtraTab.XtraTabPage
-    Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents GroupControlProb As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCBarcodeProb As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVBarcodeProb As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
@@ -2141,7 +2142,7 @@ Partial Class FormSalesReturnDet
     Friend WithEvents RepositoryItemSpinEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtScanProb As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelScanProb As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BDeleteProb As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BStopProb As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BScanProb As DevExpress.XtraEditors.SimpleButton
