@@ -34,4 +34,11 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCargoRate.DataSource = data
     End Sub
+
+    Private Sub GVCargoRate_DoubleClick(sender As Object, e As EventArgs) Handles GVCargoRate.DoubleClick
+        If GVCargoRate.RowCount > 0 Then
+            FormMasterCargoRateDet.id_cargo_rate = GVCargoRate.GetFocusedRowCellValue("id_cargo_rate").ToString
+            FormMasterCargoRateDet.ShowDialog()
+        End If
+    End Sub
 End Class

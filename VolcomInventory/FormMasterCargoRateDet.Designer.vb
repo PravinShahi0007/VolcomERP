@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormMasterCargoRateDet
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,41 +17,39 @@ Partial Class FormMasterCargoRateDet
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterCargoRateDet))
         Me.SPC = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GCCargo = New DevExpress.XtraGrid.GridControl()
         Me.GVCargo = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.XTCInOut = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPInbound = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCInbound = New DevExpress.XtraGrid.GridControl()
-        Me.GVInbound = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GCOutbound = New DevExpress.XtraGrid.GridControl()
-        Me.GVOutbound = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTCInOut = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPInbound = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCInbound = New DevExpress.XtraGrid.GridControl()
+        Me.GVInbound = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCOutbound = New DevExpress.XtraGrid.GridControl()
+        Me.GVOutbound = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         CType(Me.SPC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SPC.SuspendLayout()
         CType(Me.GCCargo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCargo, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
         CType(Me.XTCInOut, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCInOut.SuspendLayout()
         Me.XTPInbound.SuspendLayout()
-        Me.XTPOutbound.SuspendLayout()
         CType(Me.GCInbound, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVInbound, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPOutbound.SuspendLayout()
         CType(Me.GCOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOutbound, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -83,19 +81,24 @@ Partial Class FormMasterCargoRateDet
         '
         'GVCargo
         '
-        Me.GVCargo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
+        Me.GVCargo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
         Me.GVCargo.GridControl = Me.GCCargo
         Me.GVCargo.Name = "GVCargo"
         Me.GVCargo.OptionsView.ShowGroupPanel = False
         '
-        'PanelControl1
+        'GridColumn1
         '
-        Me.PanelControl1.Controls.Add(Me.BAdd)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(791, 40)
-        Me.PanelControl1.TabIndex = 1
+        Me.GridColumn1.Caption = "Code"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 0
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Description"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 1
         '
         'XTCInOut
         '
@@ -115,13 +118,6 @@ Partial Class FormMasterCargoRateDet
         Me.XTPInbound.Size = New System.Drawing.Size(785, 176)
         Me.XTPInbound.Text = "Inbound"
         '
-        'XTPOutbound
-        '
-        Me.XTPOutbound.Controls.Add(Me.GCOutbound)
-        Me.XTPOutbound.Name = "XTPOutbound"
-        Me.XTPOutbound.Size = New System.Drawing.Size(785, 176)
-        Me.XTPOutbound.Text = "Outbound"
-        '
         'GCInbound
         '
         Me.GCInbound.Dock = System.Windows.Forms.DockStyle.Fill
@@ -138,6 +134,13 @@ Partial Class FormMasterCargoRateDet
         Me.GVInbound.Name = "GVInbound"
         Me.GVInbound.OptionsView.ShowGroupPanel = False
         '
+        'XTPOutbound
+        '
+        Me.XTPOutbound.Controls.Add(Me.GCOutbound)
+        Me.XTPOutbound.Name = "XTPOutbound"
+        Me.XTPOutbound.Size = New System.Drawing.Size(785, 176)
+        Me.XTPOutbound.Text = "Outbound"
+        '
         'GCOutbound
         '
         Me.GCOutbound.Dock = System.Windows.Forms.DockStyle.Fill
@@ -153,6 +156,15 @@ Partial Class FormMasterCargoRateDet
         Me.GVOutbound.GridControl = Me.GCOutbound
         Me.GVOutbound.Name = "GVOutbound"
         Me.GVOutbound.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BAdd)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(791, 40)
+        Me.PanelControl1.TabIndex = 1
         '
         'BAdd
         '
@@ -182,34 +194,6 @@ Partial Class FormMasterCargoRateDet
         Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(11, "30-Text_32x32.png")
         '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "GridColumn1"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "GridColumn2"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 1
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "GridColumn3"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 2
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "GridColumn4"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
-        '
         'FormMasterCargoRateDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -225,16 +209,16 @@ Partial Class FormMasterCargoRateDet
         Me.SPC.ResumeLayout(False)
         CType(Me.GCCargo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCargo, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
         CType(Me.XTCInOut, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCInOut.ResumeLayout(False)
         Me.XTPInbound.ResumeLayout(False)
-        Me.XTPOutbound.ResumeLayout(False)
         CType(Me.GCInbound, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVInbound, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPOutbound.ResumeLayout(False)
         CType(Me.GCOutbound, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVOutbound, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -255,6 +239,4 @@ Partial Class FormMasterCargoRateDet
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
