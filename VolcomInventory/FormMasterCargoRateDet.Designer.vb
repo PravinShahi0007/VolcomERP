@@ -21,12 +21,12 @@ Partial Class FormMasterCargoRateDet
     Private Sub InitializeComponent()
         Me.SPC = New DevExpress.XtraEditors.SplitContainerControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GC = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.SPC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SPC.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GC, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -36,7 +36,7 @@ Partial Class FormMasterCargoRateDet
         Me.SPC.Horizontal = False
         Me.SPC.Location = New System.Drawing.Point(0, 0)
         Me.SPC.Name = "SPC"
-        Me.SPC.Panel1.Controls.Add(Me.GridControl1)
+        Me.SPC.Panel1.Controls.Add(Me.GC)
         Me.SPC.Panel1.Text = "Panel1"
         Me.SPC.Panel2.Controls.Add(Me.PanelControl1)
         Me.SPC.Panel2.Text = "Panel2"
@@ -53,19 +53,19 @@ Partial Class FormMasterCargoRateDet
         Me.PanelControl1.Size = New System.Drawing.Size(736, 40)
         Me.PanelControl1.TabIndex = 1
         '
-        'GridControl1
+        'GC
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(0, 0)
-        Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(736, 148)
-        Me.GridControl1.TabIndex = 0
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        Me.GC.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GC.Location = New System.Drawing.Point(0, 0)
+        Me.GC.MainView = Me.GridView1
+        Me.GC.Name = "GC"
+        Me.GC.Size = New System.Drawing.Size(736, 148)
+        Me.GC.TabIndex = 0
+        Me.GC.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.GridControl = Me.GC
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
@@ -83,7 +83,7 @@ Partial Class FormMasterCargoRateDet
         CType(Me.SPC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SPC.ResumeLayout(False)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GC, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -91,6 +91,6 @@ Partial Class FormMasterCargoRateDet
 
     Friend WithEvents SPC As DevExpress.XtraEditors.SplitContainerControl
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GC As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class
