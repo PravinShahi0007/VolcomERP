@@ -944,6 +944,12 @@
     <Compile Include="FormMasterCargoRate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterCargoRateAdd.Designer.vb">
+      <DependentUpon>FormMasterCargoRateAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterCargoRateAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterCargoRateDet.Designer.vb">
       <DependentUpon>FormMasterCargoRateDet.vb</DependentUpon>
     </Compile>
@@ -5113,6 +5119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterCargoRate.resx">
       <DependentUpon>FormMasterCargoRate.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterCargoRateAdd.resx">
+      <DependentUpon>FormMasterCargoRateAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterCargoRateDet.resx">
       <DependentUpon>FormMasterCargoRateDet.vb</DependentUpon>
