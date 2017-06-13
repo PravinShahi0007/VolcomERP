@@ -89,6 +89,7 @@ Partial Class FormMasterCargoRateDet
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Code"
+        Me.GridColumn1.FieldName = "comp_number"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
@@ -96,6 +97,7 @@ Partial Class FormMasterCargoRateDet
         'GridColumn2
         '
         Me.GridColumn2.Caption = "Description"
+        Me.GridColumn2.FieldName = "comp_name"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1

@@ -16,6 +16,7 @@
         checkFormAccess(Name)
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub
+
     Private Sub FormMasterCargoRate_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
@@ -25,9 +26,11 @@
     Private Sub FormMasterCargoRate_Deactivate(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
+
     Private Sub FormMasterCargoRate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_cargo_rate()
     End Sub
+
     Sub load_cargo_rate()
         Dim query As String = ""
         query = "SELECT * FROM tb_m_cargo_rate"
