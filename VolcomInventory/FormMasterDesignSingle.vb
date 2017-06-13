@@ -586,7 +586,6 @@
             XTPLineList.PageVisible = True
             XTPSize.PageVisible = True
             SLEDel.Enabled = True
-            LERetCode.Enabled = True
             DEEOS.Enabled = True
             BeditCode.Enabled = True
             BRefreshCode.Enabled = True
@@ -606,6 +605,16 @@
                 XTPSize.PageVisible = True
                 XTPLineList.PageVisible = True
                 BtnGetLastCount.Visible = False
+            End If
+
+            'cek return code permission
+            Dim query_cek_print As String = "SELECT IFNULL(SUM(last_print_unique),0) AS `total_print` FROM tb_m_product WHERE id_design='" + id_design + "' "
+            Dim dt_cek_print As DataTable = execute_query(query_cek_print, -1, True, "", "", "", "")
+            Dim total_print As Integer = dt_cek_print.Rows(0)("total_print")
+            If total_print > 0 Then
+                LERetCode.Enabled = False
+            Else
+                LERetCode.Enabled = True
             End If
         ElseIf id_pop_up = "2" Then 'sample dept
             XTPLineList.PageVisible = False
@@ -802,8 +811,6 @@
                     XTPLineList.PageVisible = True
                 End If
                 XTPSize.PageVisible = False
-                SLEDel.Enabled = True
-                DEEOS.Enabled = True
                 BeditCode.Enabled = False
                 BRefreshCode.Enabled = False
                 BGenerate.Enabled = False
@@ -811,15 +818,6 @@
                 GCCode.Enabled = False
                 DEWHDate.Enabled = False
                 BtnAddRetCode.Enabled = False
-
-                Dim query_cek_print As String = "SELECT SUM(last_print_unique) AS `total_print` FROM tb_m_product WHERE id_design='" + id_design + "' "
-                Dim dt_cek_print As DataTable = execute_query(query_cek_print, -1, True, "", "", "", "")
-                Dim total_print As Integer = dt_cek_print.Rows(0)("total_print")
-                If total_print > 0 Then
-                    LERetCode.Enabled = False
-                Else
-                    LERetCode.Enabled = True
-                End If
             End If
         End If
     End Sub
