@@ -85,6 +85,7 @@ Public Class FormSalesReturnDet
         ElseIf action = "upd" Then
             GroupControlListItem.Enabled = True
             GroupControlScannedItem.Enabled = True
+            GroupControlProb.Enabled = True
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BtnBrowseRO.Enabled = False
             BtnInfoSrs.Enabled = True
@@ -385,6 +386,7 @@ Public Class FormSalesReturnDet
         If check_edit_report_status(id_report_status, "46", id_sales_return) Then
             PanelControlNav.Enabled = True
             PanelNavBarcode.Enabled = False
+            PanelNavBarcodeProb.Enabled = False
             MENote.Properties.ReadOnly = False
             BtnSave.Enabled = False
             TxtStoreReturnNumber.Properties.ReadOnly = False
@@ -395,6 +397,7 @@ Public Class FormSalesReturnDet
         Else
             PanelControlNav.Enabled = False
             PanelNavBarcode.Enabled = False
+            PanelNavBarcodeProb.Enabled = False
             MENote.Properties.ReadOnly = True
             BtnSave.Enabled = False
             TxtStoreReturnNumber.Properties.ReadOnly = True
@@ -733,6 +736,7 @@ Public Class FormSalesReturnDet
         ValidateChildren()
         makeSafeGV(GVItemList)
         makeSafeGV(GVBarcode)
+        makeSafeGV(GVBarcodeProb)
 
         'check limit
         Dim error_list As String = ""
@@ -827,6 +831,25 @@ Public Class FormSalesReturnDet
                     Next
                     If jum_ins_p > 0 Then
                         execute_non_query(query_counting, True, "", "", "", "")
+                    End If
+
+                    'code problem scan
+                    Dim jum_ins_k As Integer = 0
+                    Dim query_problem_stock As String = ""
+                    If GVBarcodeProb.RowCount > 0 Then
+                        query_problem_stock = "INSERT INTO tb_sales_return_problem(id_sales_return, id_product, scanned_code) VALUES "
+                    End If
+                    For k As Integer = 0 To ((GVBarcodeProb.RowCount - 1) - GetGroupRowCount(GVBarcodeProb))
+                        Dim id_product As String = GVBarcodeProb.GetRowCellValue(k, "id_product").ToString
+                        Dim scanned_code As String = GVBarcodeProb.GetRowCellValue(k, "code").ToString
+                        If jum_ins_k > 0 Then
+                            query_problem_stock += ", "
+                        End If
+                        query_problem_stock += "('" + id_sales_return + "','" + id_product + "','" + scanned_code + "') "
+                        jum_ins_k = jum_ins_k + 1
+                    Next
+                    If jum_ins_k > 0 Then
+                        execute_non_query(query_problem_stock, True, "", "", "", "")
                     End If
 
                     'reserved stock
@@ -1751,6 +1774,17 @@ Public Class FormSalesReturnDet
                 If data.Rows.Count > 0 Then
                     'check duplicate
                     'code
+                    If data.Rows(0)("is_old_design").ToString = "2" Then
+                        GVBarcodeProb.ActiveFilterString = "[code]='" + code + "' "
+                        Dim jum_duplicate As Integer = GVBarcodeProb.RowCount
+                        GVBarcodeProb.ActiveFilterString = ""
+                        If jum_duplicate > 0 Then
+                            stopCustom("Data duplicate")
+                            TxtScanProb.Text = ""
+                            TxtScanProb.Focus()
+                            Exit Sub
+                        End If
+                    End If
 
                     Dim newRow As DataRow = (TryCast(GCBarcodeProb.DataSource, DataTable)).NewRow()
                     newRow("id_sales_return_problem") = "0"
@@ -1781,8 +1815,8 @@ Public Class FormSalesReturnDet
                 Else
                     Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                     If confirm = Windows.Forms.DialogResult.Yes Then
-                        GVBarcodeProb.DeleteRow(GVBarcode.FocusedRowHandle)
-                        GVBarcodeProb.ApplyFindFilter("")
+                        GVBarcodeProb.DeleteRow(GVBarcodeProb.FocusedRowHandle)
+                        GVBarcodeProb.ActiveFilterString = ""
                     Else
                         GVBarcodeProb.ActiveFilterString = ""
                     End If

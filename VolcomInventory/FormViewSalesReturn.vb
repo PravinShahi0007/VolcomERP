@@ -561,4 +561,20 @@
     Private Sub GVItemList_ColumnFilterChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVItemList.ColumnFilterChanged
         view_barcode_list()
     End Sub
+
+    Private Sub XTCReturnSummary_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCReturnSummary.SelectedPageChanged
+        If XTCReturnSummary.SelectedTabPageIndex = 0 Then
+            XTCReturn.SelectedTabPageIndex = 0
+        Else
+            XTCReturn.SelectedTabPageIndex = 1
+        End If
+    End Sub
+
+    Private Sub XTCReturn_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCReturn.SelectedPageChanged
+        If XTCReturn.SelectedTabPageIndex = 0 Then
+            XTCReturnSummary.SelectedTabPageIndex = 0
+        Else
+            XTCReturnSummary.SelectedTabPageIndex = 1
+        End If
+    End Sub
 End Class

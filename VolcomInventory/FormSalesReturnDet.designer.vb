@@ -177,7 +177,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelNavBarcodeProb = New DevExpress.XtraEditors.PanelControl()
         Me.TxtScanProb = New DevExpress.XtraEditors.TextEdit()
         Me.LabelScanProb = New DevExpress.XtraEditors.LabelControl()
         Me.BDeleteProb = New DevExpress.XtraEditors.SimpleButton()
@@ -255,8 +255,8 @@ Partial Class FormSalesReturnDet
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        CType(Me.PanelNavBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelNavBarcodeProb.SuspendLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -1174,7 +1174,7 @@ Partial Class FormSalesReturnDet
         Me.XTPScan.Controls.Add(Me.GroupControlScannedItem)
         Me.XTPScan.Name = "XTPScan"
         Me.XTPScan.Size = New System.Drawing.Size(905, 173)
-        Me.XTPScan.Text = "Scanned Item"
+        Me.XTPScan.Text = "Return Product"
         '
         'GroupControlScannedItem
         '
@@ -1657,7 +1657,7 @@ Partial Class FormSalesReturnDet
         '
         Me.GroupControlProb.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlProb.Controls.Add(Me.GCBarcodeProb)
-        Me.GroupControlProb.Controls.Add(Me.PanelControl1)
+        Me.GroupControlProb.Controls.Add(Me.PanelNavBarcodeProb)
         Me.GroupControlProb.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlProb.Enabled = False
         Me.GroupControlProb.Location = New System.Drawing.Point(0, 0)
@@ -1808,21 +1808,21 @@ Partial Class FormSalesReturnDet
         Me.RepositoryItemSpinEdit3.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
         Me.RepositoryItemSpinEdit3.Name = "RepositoryItemSpinEdit3"
         '
-        'PanelControl1
+        'PanelNavBarcodeProb
         '
-        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl1.Controls.Add(Me.TxtScanProb)
-        Me.PanelControl1.Controls.Add(Me.LabelScanProb)
-        Me.PanelControl1.Controls.Add(Me.BDeleteProb)
-        Me.PanelControl1.Controls.Add(Me.BStopProb)
-        Me.PanelControl1.Controls.Add(Me.BScanProb)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(20, 2)
-        Me.PanelControl1.LookAndFeel.SkinName = "Office 2010 Blue"
-        Me.PanelControl1.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(883, 33)
-        Me.PanelControl1.TabIndex = 2
+        Me.PanelNavBarcodeProb.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelNavBarcodeProb.Controls.Add(Me.TxtScanProb)
+        Me.PanelNavBarcodeProb.Controls.Add(Me.LabelScanProb)
+        Me.PanelNavBarcodeProb.Controls.Add(Me.BDeleteProb)
+        Me.PanelNavBarcodeProb.Controls.Add(Me.BStopProb)
+        Me.PanelNavBarcodeProb.Controls.Add(Me.BScanProb)
+        Me.PanelNavBarcodeProb.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelNavBarcodeProb.Location = New System.Drawing.Point(20, 2)
+        Me.PanelNavBarcodeProb.LookAndFeel.SkinName = "Office 2010 Blue"
+        Me.PanelNavBarcodeProb.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.PanelNavBarcodeProb.Name = "PanelNavBarcodeProb"
+        Me.PanelNavBarcodeProb.Size = New System.Drawing.Size(883, 33)
+        Me.PanelNavBarcodeProb.TabIndex = 2
         '
         'TxtScanProb
         '
@@ -1974,9 +1974,9 @@ Partial Class FormSalesReturnDet
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
-        Me.PanelControl1.PerformLayout()
+        CType(Me.PanelNavBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelNavBarcodeProb.ResumeLayout(False)
+        Me.PanelNavBarcodeProb.PerformLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -2140,7 +2140,7 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemSpinEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelNavBarcodeProb As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtScanProb As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelScanProb As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BDeleteProb As DevExpress.XtraEditors.SimpleButton
