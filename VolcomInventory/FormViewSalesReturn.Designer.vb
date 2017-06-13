@@ -54,6 +54,8 @@ Partial Class FormViewSalesReturn
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControlListItem = New DevExpress.XtraEditors.GroupControl()
+        Me.XTCReturnSummary = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPReturnItem = New DevExpress.XtraTab.XtraTabPage()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -75,6 +77,7 @@ Partial Class FormViewSalesReturn
         Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdPlSalesOrderDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.XTPProblemItem = New DevExpress.XtraTab.XtraTabPage()
         Me.XTCReturn = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControlScannedItem = New DevExpress.XtraEditors.GroupControl()
@@ -92,8 +95,6 @@ Partial Class FormViewSalesReturn
         Me.GridColumnDesignPriceBc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GroupControlStatus = New DevExpress.XtraEditors.GroupControl()
-        Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPProblem = New DevExpress.XtraTab.XtraTabPage()
         Me.GCBarcodeProb = New DevExpress.XtraGrid.GridControl()
         Me.GVBarcodeProb = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -111,9 +112,25 @@ Partial Class FormViewSalesReturn
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.XTCReturnSummary = New DevExpress.XtraTab.XtraTabControl()
-        Me.XTPReturnItem = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPProblemItem = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupControlStatus = New DevExpress.XtraEditors.GroupControl()
+        Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCProbSum = New DevExpress.XtraGrid.GridControl()
+        Me.GVProbSum = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemSpinEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumnQtyProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,9 +162,13 @@ Partial Class FormViewSalesReturn
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupControlListItem, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlListItem.SuspendLayout()
+        CType(Me.XTCReturnSummary, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCReturnSummary.SuspendLayout()
+        Me.XTPReturnItem.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPProblemItem.SuspendLayout()
         CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReturn.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -157,16 +178,17 @@ Partial Class FormViewSalesReturn
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControlStatus.SuspendLayout()
         Me.XTPProblem.SuspendLayout()
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XTCReturnSummary, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTCReturnSummary.SuspendLayout()
-        Me.XTPReturnItem.SuspendLayout()
+        CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControlStatus.SuspendLayout()
+        CType(Me.GCProbSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProbSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -553,6 +575,23 @@ Partial Class FormViewSalesReturn
         Me.GroupControlListItem.TabIndex = 3
         Me.GroupControlListItem.Text = "Summary"
         '
+        'XTCReturnSummary
+        '
+        Me.XTCReturnSummary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCReturnSummary.Location = New System.Drawing.Point(21, 2)
+        Me.XTCReturnSummary.Name = "XTCReturnSummary"
+        Me.XTCReturnSummary.SelectedTabPage = Me.XTPReturnItem
+        Me.XTCReturnSummary.Size = New System.Drawing.Size(888, 197)
+        Me.XTCReturnSummary.TabIndex = 6
+        Me.XTCReturnSummary.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReturnItem, Me.XTPProblemItem})
+        '
+        'XTPReturnItem
+        '
+        Me.XTPReturnItem.Controls.Add(Me.GCItemList)
+        Me.XTPReturnItem.Name = "XTPReturnItem"
+        Me.XTPReturnItem.Size = New System.Drawing.Size(882, 169)
+        Me.XTPReturnItem.Text = "Return Item"
+        '
         'GCItemList
         '
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
@@ -790,6 +829,13 @@ Partial Class FormViewSalesReturn
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
+        'XTPProblemItem
+        '
+        Me.XTPProblemItem.Controls.Add(Me.GCProbSum)
+        Me.XTPProblemItem.Name = "XTPProblemItem"
+        Me.XTPProblemItem.Size = New System.Drawing.Size(882, 169)
+        Me.XTPProblemItem.Text = "Problem Item"
+        '
         'XTCReturn
         '
         Me.XTCReturn.Dock = System.Windows.Forms.DockStyle.Fill
@@ -938,26 +984,6 @@ Partial Class FormViewSalesReturn
         Me.RepositoryItemSpinEdit2.Mask.SaveLiteral = False
         Me.RepositoryItemSpinEdit2.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
         Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
-        '
-        'GroupControlStatus
-        '
-        Me.GroupControlStatus.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControlStatus.Controls.Add(Me.BtnUpdateStatus)
-        Me.GroupControlStatus.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControlStatus.Location = New System.Drawing.Point(0, 628)
-        Me.GroupControlStatus.Name = "GroupControlStatus"
-        Me.GroupControlStatus.Size = New System.Drawing.Size(911, 32)
-        Me.GroupControlStatus.TabIndex = 192
-        Me.GroupControlStatus.Visible = False
-        '
-        'BtnUpdateStatus
-        '
-        Me.BtnUpdateStatus.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BtnUpdateStatus.Location = New System.Drawing.Point(21, 2)
-        Me.BtnUpdateStatus.Name = "BtnUpdateStatus"
-        Me.BtnUpdateStatus.Size = New System.Drawing.Size(888, 28)
-        Me.BtnUpdateStatus.TabIndex = 5
-        Me.BtnUpdateStatus.Text = "Update Order Status"
         '
         'XTPProblem
         '
@@ -1108,28 +1134,180 @@ Partial Class FormViewSalesReturn
         Me.RepositoryItemSpinEdit3.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
         Me.RepositoryItemSpinEdit3.Name = "RepositoryItemSpinEdit3"
         '
-        'XTCReturnSummary
+        'GroupControlStatus
         '
-        Me.XTCReturnSummary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCReturnSummary.Location = New System.Drawing.Point(21, 2)
-        Me.XTCReturnSummary.Name = "XTCReturnSummary"
-        Me.XTCReturnSummary.SelectedTabPage = Me.XTPReturnItem
-        Me.XTCReturnSummary.Size = New System.Drawing.Size(888, 197)
-        Me.XTCReturnSummary.TabIndex = 6
-        Me.XTCReturnSummary.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReturnItem, Me.XTPProblemItem})
+        Me.GroupControlStatus.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlStatus.Controls.Add(Me.BtnUpdateStatus)
+        Me.GroupControlStatus.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.GroupControlStatus.Location = New System.Drawing.Point(0, 628)
+        Me.GroupControlStatus.Name = "GroupControlStatus"
+        Me.GroupControlStatus.Size = New System.Drawing.Size(911, 32)
+        Me.GroupControlStatus.TabIndex = 192
+        Me.GroupControlStatus.Visible = False
         '
-        'XTPReturnItem
+        'BtnUpdateStatus
         '
-        Me.XTPReturnItem.Controls.Add(Me.GCItemList)
-        Me.XTPReturnItem.Name = "XTPReturnItem"
-        Me.XTPReturnItem.Size = New System.Drawing.Size(882, 169)
-        Me.XTPReturnItem.Text = "Return Item"
+        Me.BtnUpdateStatus.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BtnUpdateStatus.Location = New System.Drawing.Point(21, 2)
+        Me.BtnUpdateStatus.Name = "BtnUpdateStatus"
+        Me.BtnUpdateStatus.Size = New System.Drawing.Size(888, 28)
+        Me.BtnUpdateStatus.TabIndex = 5
+        Me.BtnUpdateStatus.Text = "Update Order Status"
         '
-        'XTPProblemItem
+        'GCProbSum
         '
-        Me.XTPProblemItem.Name = "XTPProblemItem"
-        Me.XTPProblemItem.Size = New System.Drawing.Size(882, 169)
-        Me.XTPProblemItem.Text = "Problem Item"
+        Me.GCProbSum.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCProbSum.Location = New System.Drawing.Point(0, 0)
+        Me.GCProbSum.MainView = Me.GVProbSum
+        Me.GCProbSum.Name = "GCProbSum"
+        Me.GCProbSum.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemSpinEdit4})
+        Me.GCProbSum.Size = New System.Drawing.Size(882, 169)
+        Me.GCProbSum.TabIndex = 8
+        Me.GCProbSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbSum})
+        '
+        'GVProbSum
+        '
+        Me.GVProbSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnQtyProbSum})
+        Me.GVProbSum.GridControl = Me.GCProbSum
+        Me.GVProbSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyProbSum, "{0:N0}")})
+        Me.GVProbSum.Name = "GVProbSum"
+        Me.GVProbSum.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVProbSum.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVProbSum.OptionsBehavior.Editable = False
+        Me.GVProbSum.OptionsCustomization.AllowColumnMoving = False
+        Me.GVProbSum.OptionsCustomization.AllowGroup = False
+        Me.GVProbSum.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVProbSum.OptionsCustomization.AllowSort = False
+        Me.GVProbSum.OptionsView.ShowFooter = True
+        Me.GVProbSum.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "No"
+        Me.GridColumn15.FieldName = "no"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn15.OptionsColumn.AllowMove = False
+        Me.GridColumn15.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 0
+        Me.GridColumn15.Width = 57
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Code"
+        Me.GridColumn16.FieldName = "code"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 1
+        Me.GridColumn16.Width = 320
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Counting Code"
+        Me.GridColumn17.FieldName = "counting_code"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
+        Me.GridColumn17.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Id PL Counting"
+        Me.GridColumn18.FieldName = "id_sales_return_det_counting"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Is Fix"
+        Me.GridColumn19.FieldName = "is_fix"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
+        Me.GridColumn19.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn19.OptionsColumn.AllowMove = False
+        Me.GridColumn19.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Id Unique Receiving"
+        Me.GridColumn20.FieldName = "id_pl_prod_order_rec_det_unique"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn20.OptionsColumn.AllowMove = False
+        Me.GridColumn20.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Id Product"
+        Me.GridColumn21.FieldName = "id_product"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Unit Cost"
+        Me.GridColumn22.FieldName = "bom_unit_price"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Width = 132
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Id Design Price"
+        Me.GridColumn23.FieldName = "id_design_price"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Design Price"
+        Me.GridColumn24.FieldName = "design_price"
+        Me.GridColumn24.Name = "GridColumn24"
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Description"
+        Me.GridColumn25.FieldName = "name"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.AllowEdit = False
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 2
+        Me.GridColumn25.Width = 626
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Size"
+        Me.GridColumn26.FieldName = "size"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.OptionsColumn.AllowEdit = False
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 3
+        Me.GridColumn26.Width = 59
+        '
+        'RepositoryItemCheckEdit3
+        '
+        Me.RepositoryItemCheckEdit3.AutoHeight = False
+        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        '
+        'RepositoryItemSpinEdit4
+        '
+        Me.RepositoryItemSpinEdit4.AutoHeight = False
+        Me.RepositoryItemSpinEdit4.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit4.EditValueChangedDelay = 50
+        Me.RepositoryItemSpinEdit4.Mask.EditMask = "n2"
+        Me.RepositoryItemSpinEdit4.Mask.SaveLiteral = False
+        Me.RepositoryItemSpinEdit4.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
+        Me.RepositoryItemSpinEdit4.Name = "RepositoryItemSpinEdit4"
+        '
+        'GridColumnQtyProbSum
+        '
+        Me.GridColumnQtyProbSum.Caption = "Qty"
+        Me.GridColumnQtyProbSum.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyProbSum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyProbSum.FieldName = "qty"
+        Me.GridColumnQtyProbSum.Name = "GridColumnQtyProbSum"
+        Me.GridColumnQtyProbSum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnQtyProbSum.Visible = True
+        Me.GridColumnQtyProbSum.VisibleIndex = 4
         '
         'FormViewSalesReturn
         '
@@ -1183,9 +1361,13 @@ Partial Class FormViewSalesReturn
         Me.SplitContainerControl1.ResumeLayout(False)
         CType(Me.GroupControlListItem, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlListItem.ResumeLayout(False)
+        CType(Me.XTCReturnSummary, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCReturnSummary.ResumeLayout(False)
+        Me.XTPReturnItem.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPProblemItem.ResumeLayout(False)
         CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCReturn.ResumeLayout(False)
         Me.XTPScan.ResumeLayout(False)
@@ -1195,16 +1377,17 @@ Partial Class FormViewSalesReturn
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControlStatus.ResumeLayout(False)
         Me.XTPProblem.ResumeLayout(False)
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XTCReturnSummary, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTCReturnSummary.ResumeLayout(False)
-        Me.XTPReturnItem.ResumeLayout(False)
+        CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControlStatus.ResumeLayout(False)
+        CType(Me.GCProbSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProbSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1303,4 +1486,21 @@ Partial Class FormViewSalesReturn
     Friend WithEvents XTCReturnSummary As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPReturnItem As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPProblemItem As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCProbSum As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVProbSum As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyProbSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents RepositoryItemSpinEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
 End Class
