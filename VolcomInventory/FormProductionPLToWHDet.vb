@@ -796,6 +796,7 @@ Public Class FormProductionPLToWHDet
     End Sub
 
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
+        getLimitQty()
         MENote.Enabled = False
         BtnBrowsePO.Enabled = False
         BtnBrowseContactFrom.Enabled = False
@@ -819,6 +820,25 @@ Public Class FormProductionPLToWHDet
         End If
         newRowsBc()
         'allowDelete()
+    End Sub
+
+    Sub getLimitQty()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '" + id_pl_prod_order + "','0', '" + LEPDAlloc.EditValue.ToString + "')"
+        Dim dt_cek As DataTable = execute_query(query, -1, True, "", "", "", "")
+        For i As Integer = 0 To ((GVRetDetail.RowCount - 1) - GetGroupRowCount(GVRetDetail))
+            Dim id_prod_order_det_cekya As String = GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString
+            Dim qty_cek As Integer = GVRetDetail.GetRowCellValue(i, "pl_prod_order_det_qty")
+
+            Dim data_filter_cek As DataRow() = dt_cek.Select("[id_prod_order_det]='" + id_prod_order_det_cekya + "' ")
+            If data_filter_cek.Length <= 0 Then
+                GVRetDetail.SetRowCellValue(i, "limit_qty", 0)
+            Else
+                Dim limit_qty As Integer = data_filter_cek(0)("qty")
+                GVRetDetail.SetRowCellValue(i, "limit_qty", limit_qty)
+            End If
+        Next
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BStop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BStop.Click
