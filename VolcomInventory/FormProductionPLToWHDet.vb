@@ -203,6 +203,7 @@ Public Class FormProductionPLToWHDet
             LEPLCategory.Enabled = False
             GVRetDetail.OptionsBehavior.ReadOnly = True
         End If
+        PanelNavBarcode.Enabled = False
 
         'attachment
         If check_attach_report_status(id_report_status, "33", id_pl_prod_order) Then
@@ -842,6 +843,9 @@ Public Class FormProductionPLToWHDet
     End Sub
 
     Private Sub BStop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BStop.Click
+        LabelDelScan.Visible = False
+        TxtDeleteScan.Visible = False
+        TxtDeleteScan.Text = ""
         MENote.Enabled = True
         If action = "ins" Then
             BtnBrowsePO.Enabled = True
@@ -879,17 +883,24 @@ Public Class FormProductionPLToWHDet
     End Sub
 
     Private Sub BDelete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BDelete.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim id_prod_order_det As String = GVBarcode.GetFocusedRowCellValue("id_prod_order_det").ToString
-            deleteRowsBc()
-            If id_prod_order_det <> "" Or id_prod_order_det <> Nothing Then
-                GVBarcode.ApplyFindFilter("")
-                'GVBarcode.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Default
-                countQty(id_prod_order_det)
-            End If
-            allowDelete()
-        End If
+        BDelete.Enabled = False
+        BScan.Enabled = False
+        BStop.Enabled = True
+        LabelDelScan.Visible = True
+        TxtDeleteScan.Visible = True
+        TxtDeleteScan.Text = ""
+        TxtDeleteScan.Focus()
+        'Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        'If confirm = Windows.Forms.DialogResult.Yes Then
+        '    Dim id_prod_order_det As String = GVBarcode.GetFocusedRowCellValue("id_prod_order_det").ToString
+        '    deleteRowsBc()
+        '    If id_prod_order_det <> "" Or id_prod_order_det <> Nothing Then
+        '        GVBarcode.ApplyFindFilter("")
+        '        'GVBarcode.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Default
+        '        countQty(id_prod_order_det)
+        '    End If
+        '    allowDelete()
+        'End If
     End Sub
 
     Private Sub GVBarcode_HiddenEditor(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVBarcode.HiddenEditor
@@ -1180,6 +1191,67 @@ Public Class FormProductionPLToWHDet
             e.Value = TxtCodeCompTo.Text.ToString
         ElseIf e.Column.FieldName = "number" AndAlso e.IsGetData Then
             e.Value = TxtRetOutNumber.Text.ToString
+        End If
+    End Sub
+
+    Private Sub TxtDeleteScan_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDeleteScan.KeyDown
+        If e.KeyCode = Keys.Enter And TxtDeleteScan.Text.Length > 0 Then
+            Cursor = Cursors.WaitCursor
+            GVBarcode.ActiveFilterString = "[code]='" + TxtDeleteScan.Text + "'"
+            If GVBarcode.RowCount <= 0 Then
+                stopCustom("Code not found.")
+                GVBarcode.ActiveFilterString = ""
+                TxtDeleteScan.Text = ""
+                TxtDeleteScan.Focus()
+            Else
+                Dim id_pl_prod_order_del_det_counting As String = "-1"
+                Try
+                    id_pl_prod_order_del_det_counting = GVBarcode.GetFocusedRowCellValue("id_pl_prod_order_del_det_counting").ToString
+                Catch ex As Exception
+                End Try
+
+                If action = "ins" Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Dim id_prod_order_det As String = GVBarcode.GetFocusedRowCellValue("id_prod_order_det").ToString
+                        deleteRowsBc()
+                        If id_prod_order_det <> "" Or id_prod_order_det <> Nothing Then
+                            GVBarcode.ActiveFilterString = ""
+                            countQty(id_prod_order_det)
+                        End If
+                        GCRetDetail.RefreshDataSource()
+                        GVRetDetail.RefreshData()
+                        allowDelete()
+                    Else
+                        GVBarcode.ActiveFilterString = ""
+                    End If
+                    TxtDeleteScan.Text = ""
+                    TxtDeleteScan.Focus()
+                ElseIf action = "upd" Then
+                    If id_pl_prod_order_del_det_counting = "0" Then
+                        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                        If confirm = Windows.Forms.DialogResult.Yes Then
+                            Dim id_prod_order_det As String = GVBarcode.GetFocusedRowCellValue("id_prod_order_det").ToString
+                            deleteRowsBc()
+                            If id_prod_order_det <> "" Or id_prod_order_det <> Nothing Then
+                                GVBarcode.ActiveFilterString = ""
+                                countQty(id_prod_order_det)
+                            End If
+                            GCRetDetail.RefreshDataSource()
+                            GVRetDetail.RefreshData()
+                            allowDelete()
+                        Else
+                            GVBarcode.ActiveFilterString = ""
+                        End If
+                    Else
+                        errorCustom("This data already locked and can't delete.")
+                        GVBarcode.ActiveFilterString = ""
+                    End If
+                    TxtDeleteScan.Text = ""
+                    TxtDeleteScan.Focus()
+                End If
+            End If
+            Cursor = Cursors.Default
         End If
     End Sub
 
