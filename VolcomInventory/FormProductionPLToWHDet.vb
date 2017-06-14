@@ -900,6 +900,8 @@ Public Class FormProductionPLToWHDet
         Dim counting_code As String = ""
         Dim index_atas As Integer = 0
         Dim is_old As String = "0"
+        Dim jum_scan As Integer = 0
+        Dim jum_limit As Integer = 0
 
         'check available code
         Dim dt_filter As DataRow() = dt.Select("[product_full_code]='" + code_check + "' ")
@@ -911,12 +913,19 @@ Public Class FormProductionPLToWHDet
         End If
 
         If is_old = "1" Then
-            GVBarcode.SetFocusedRowCellValue("id_pl_prod_order_det_unique", "0")
-            GVBarcode.SetFocusedRowCellValue("is_fix", "2")
-            GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
-            GVBarcode.SetFocusedRowCellValue("counting_code", counting_code)
-            countQty(id_prod_order_det)
-            newRowsBc()
+            GVRetDetail.FocusedRowHandle = find_row(GVRetDetail, "id_prod_order_det", id_prod_order_det)
+            If GVRetDetail.GetFocusedRowCellValue("pl_prod_order_det_qty") >= GVRetDetail.GetFocusedRowCellValue("limit_qty") Then
+                GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                stopCustom("Can't scan. Maximum qty for size " + GVRetDetail.GetFocusedRowCellValue("size").ToString + " :  " + GVRetDetail.GetFocusedRowCellValue("limit_qty").ToString)
+            Else
+                GVBarcode.SetFocusedRowCellValue("id_pl_prod_order_det_unique", "0")
+                GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
+                GVBarcode.SetFocusedRowCellValue("counting_code", counting_code)
+                countQty(id_prod_order_det)
+                newRowsBc()
+            End If
         ElseIf is_old = "2" Then
             'check duplicate code
             If GVBarcode.RowCount <= 0 Then
@@ -948,12 +957,19 @@ Public Class FormProductionPLToWHDet
                 GVBarcode.SetFocusedRowCellValue("code", "")
                 stopCustom("Data duplicate !")
             Else
-                GVBarcode.SetFocusedRowCellValue("id_pl_prod_order_det_unique", "0")
-                GVBarcode.SetFocusedRowCellValue("is_fix", "2")
-                GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
-                GVBarcode.SetFocusedRowCellValue("counting_code", counting_code)
-                countQty(id_prod_order_det)
-                newRowsBc()
+                GVRetDetail.FocusedRowHandle = find_row(GVRetDetail, "id_prod_order_det", id_prod_order_det)
+                If GVRetDetail.GetFocusedRowCellValue("pl_prod_order_det_qty") >= GVRetDetail.GetFocusedRowCellValue("limit_qty") Then
+                    GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
+                    GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
+                    stopCustom("Can't scan. Maximum qty for size " + GVRetDetail.GetFocusedRowCellValue("size").ToString + " :  " + GVRetDetail.GetFocusedRowCellValue("limit_qty").ToString)
+                Else
+                    GVBarcode.SetFocusedRowCellValue("id_pl_prod_order_det_unique", "0")
+                    GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                    GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
+                    GVBarcode.SetFocusedRowCellValue("counting_code", counting_code)
+                    countQty(id_prod_order_det)
+                    newRowsBc()
+                End If
             End If
         Else
             GVBarcode.SetFocusedRowCellValue("code", "")
