@@ -3926,6 +3926,12 @@
     <Compile Include="FormWHCargoRateDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormWHDelEmpty.Designer.vb">
+      <DependentUpon>FormWHDelEmpty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWHDelEmpty.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormWHImportDO.Designer.vb">
       <DependentUpon>FormWHImportDO.vb</DependentUpon>
     </Compile>
