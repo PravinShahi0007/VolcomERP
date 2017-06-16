@@ -28,9 +28,9 @@
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
         If XTCInOut.SelectedTabPageIndex = 0 Then 'inbound
-            load_inbound()
+
         Else 'outbound
-            load_outbound()
+
         End If
     End Sub
 End Class
