@@ -338,6 +338,7 @@ Public Class FormProductionRecDet
 
         Report.LRecDate.Text = TERecDate.Text.ToString
         Report.LDODate.Text = TEDODate.Text.ToString
+        Report.LabelArriveDate.Text = DEArrive.Text.ToString
 
         Report.LNote.Text = MENote.Text.ToString
         Report.GVListPurchase.OptionsPrint.PrintFooter = False
