@@ -262,6 +262,7 @@ Public Class FormProductionRecDet
             BDelete.Enabled = True
             BSave.Enabled = True
             TEDODate.Properties.ReadOnly = False
+            DEArrive.Properties.ReadOnly = False
             TEDONumber.Properties.ReadOnly = False
             MENote.Properties.ReadOnly = False
             GVListPurchase.OptionsBehavior.Editable = True
@@ -272,6 +273,7 @@ Public Class FormProductionRecDet
             BDelete.Enabled = False
             BSave.Enabled = False
             TEDODate.Properties.ReadOnly = True
+            DEArrive.Properties.ReadOnly = True
             TEDONumber.Properties.ReadOnly = True
             MENote.Properties.ReadOnly = True
             GVListPurchase.OptionsBehavior.Editable = False
