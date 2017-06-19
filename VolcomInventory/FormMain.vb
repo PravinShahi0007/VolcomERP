@@ -1487,7 +1487,7 @@ Public Class FormMain
         ElseIf formName = "FormProductionAssembly" Then
             FormProductionAssemblyNew.ShowDialog()
         ElseIf formName = "FormMasterCargoRate" Then
-            FormMasterCargoRate.ShowDialog()
+            FormMasterCargoRateAdd.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -1662,7 +1662,7 @@ Public Class FormMain
                         FormMasterRawMaterialDetSingle.id_mat_det = FormMasterRawMaterial.GVMatDetail.GetFocusedRowCellDisplayText("id_mat_det").ToString
                         FormMasterRawMaterialDetSingle.ShowDialog()
                     End If
-                ElseIf FormMasterRawMaterial.XTCList.SelectedTabPageIndex = 1
+                ElseIf FormMasterRawMaterial.XTCList.SelectedTabPageIndex = 1 Then
                     FormMasterRawMaterialDetSingle.action = "upd"
 
                     FormMasterRawMaterialDetSingle.id_mat = FormMasterRawMaterial.GVListMat.GetFocusedRowCellValue("id_mat").ToString
@@ -2253,7 +2253,8 @@ Public Class FormMain
                 FormFGBorrowQCReqSingle.action = "upd"
                 FormFGBorrowQCReqSingle.id_borrow_qc_req = FormFGBorrowQCReq.GVBorrowReq.GetFocusedRowCellValue("id_borrow_qc_req").ToString
                 FormFGBorrowQCReqSingle.ShowDialog()
-            ElseIf formName = "FormWHAWBill"
+            ElseIf formName = "FormWHAWBill" Then
+
                 If FormWHAWBill.XTCAwb.SelectedTabPageIndex = 0 Then
                     FormWHAWBillDet.id_awb = FormWHAWBill.GVAWBill.GetFocusedRowCellValue("id_awbill").ToString
                     FormWHAWBillDet.id_awb_type = "1"
@@ -2359,6 +2360,9 @@ Public Class FormMain
                 FormProductionAssemblySingle.action = "upd"
                 FormProductionAssemblySingle.id_prod_ass = FormProductionAssembly.GVData.GetFocusedRowCellValue("id_prod_ass").ToString
                 FormProductionAssemblySingle.ShowDialog()
+            ElseIf formName = "FormMasterCargoRate" Then
+                FormMasterCargoRateAdd.id_cargo_rate = FormMasterCargoRate.GVCargoRate.GetFocusedRowCellValue("id_cargo_rate").ToString
+                FormMasterCargoRateAdd.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -10469,6 +10473,19 @@ Public Class FormMain
             FormMasterCargoRate.Show()
             FormMasterCargoRate.WindowState = FormWindowState.Maximized
             FormMasterCargoRate.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBDelEmpty_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBDelEmpty.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormWHDelEmpty.MdiParent = Me
+            FormWHDelEmpty.Show()
+            FormWHDelEmpty.WindowState = FormWindowState.Maximized
+            FormWHDelEmpty.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
