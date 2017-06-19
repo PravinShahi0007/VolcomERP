@@ -212,10 +212,11 @@ Public Class FormMain
         '
         If err_pic <> "-1" Then
             LoginToolStripMenuItem.Visible = False
-            FormSetupPicLocation.TopMost = True
-            FormSetupPicLocation.Show()
-            FormSetupPicLocation.Focus()
-            FormSetupPicLocation.TopMost = False
+            stopCustom("Connection error, please contact administrator.")
+            'FormSetupPicLocation.TopMost = True
+            'FormSetupPicLocation.Show()
+            'FormSetupPicLocation.Focus()
+            'FormSetupPicLocation.TopMost = False
         Else
             LoginToolStripMenuItem.Visible = True
             DashboardToolStripMenuItem.Visible = False
