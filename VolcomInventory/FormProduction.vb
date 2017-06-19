@@ -170,7 +170,7 @@
         query += "comp.comp_name,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, "
         query += "a.prod_order_date,a.id_report_status,c.report_status, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season "
-        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit "
+        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design b On a.id_prod_demand_design = b.id_prod_demand_design "
@@ -196,6 +196,19 @@
         query += "LEFT JOIN tb_prod_order_rec_det recd On recd.id_prod_order_rec=rec.id_prod_order_rec "
         query += "GROUP BY recd.id_prod_order_det "
         query += ") rec On rec.id_prod_order_det=pod.id_prod_order_det "
+        query += "LEFT JOIN
+                 (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
+                    FROM tb_report_mark mark
+                    INNER JOIN tb_m_employee emp ON emp.`id_employee`=mark.id_employee
+                    INNER JOIN 
+                    (
+	                    SELECT mark.id_report,mark.report_mark_type,MAX(report_mark_datetime) AS report_mark_datetime
+	                    FROM tb_report_mark mark
+	                    WHERE mark.id_mark='2' AND NOT ISNULL(report_mark_start_datetime) AND report_mark_type='22'
+	                    GROUP BY report_mark_type,id_report
+                    ) maxd ON maxd.id_report=mark.id_report AND maxd.report_mark_type=mark.report_mark_type AND maxd.report_mark_datetime=mark.report_mark_datetime
+                    WHERE mark.id_mark='2' AND NOT ISNULL(mark.report_mark_start_datetime) AND mark.report_mark_type='22'
+                  ) maxd ON maxd.id_report = a.id_prod_order "
         query += "WHERE 1=1 " & query_where
         query += "GROUP BY a.id_prod_order"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -351,7 +364,7 @@
         query += "a.prod_order_wo_date, "
         query += "DATE_ADD(a.prod_order_wo_date,INTERVAL a.prod_order_wo_lead_time DAY) AS prod_order_wo_lead_time, "
         query += "DATE_ADD(a.prod_order_wo_date,INTERVAL (a.prod_order_wo_top+a.prod_order_wo_lead_time) DAY) AS prod_order_wo_top "
-        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit "
+        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark "
         query += "FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price "
         '
         query += "INNER JOIN tb_prod_order po ON po.id_prod_order=a.id_prod_order "
@@ -372,6 +385,19 @@
 	                    SELECT * FROM tb_report_mark GROUP BY report_mark_type,id_report
                     ) mark ON mark.id_report=a.id_prod_order_wo AND mark.report_mark_type='23' "
         '
+        query += "LEFT JOIN
+                 (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
+                    FROM tb_report_mark mark
+                    INNER JOIN tb_m_employee emp ON emp.`id_employee`=mark.id_employee
+                    INNER JOIN 
+                    (
+	                    SELECT mark.id_report,mark.report_mark_type,MAX(report_mark_datetime) AS report_mark_datetime
+	                    FROM tb_report_mark mark
+	                    WHERE mark.id_mark='2' AND NOT ISNULL(report_mark_start_datetime) AND report_mark_type='23'
+	                    GROUP BY report_mark_type,id_report
+                    ) maxd ON maxd.id_report=mark.id_report AND maxd.report_mark_type=mark.report_mark_type AND maxd.report_mark_datetime=mark.report_mark_datetime
+                    WHERE mark.id_mark='2' AND NOT ISNULL(mark.report_mark_start_datetime) AND mark.report_mark_type='23'
+                  ) maxd ON maxd.id_report = a.id_prod_order_wo "
         query += "WHERE 1=1 " & query_where
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -404,7 +430,7 @@
         query += "d.comp_name AS comp_name_req_from,c.id_comp_contact AS id_comp_name_req_from, "
         query += "f.comp_name AS comp_name_req_to,e.id_comp_contact AS id_comp_name_req_to, "
         query += "a.prod_order_mrs_date "
-        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit "
+        query += ",IF(ISNULL(mark.id_mark),'no','yes') AS is_submit,maxd.employee_name as last_mark "
         query += "FROM tb_prod_order_mrs a "
         query += "LEFT JOIN tb_prod_order_wo b ON a.id_prod_order_wo = b.id_prod_order_wo "
         '
@@ -424,6 +450,19 @@
 	                    SELECT * FROM tb_report_mark GROUP BY report_mark_type,id_report
                     ) mark ON mark.id_report=a.id_prod_order_mrs AND mark.report_mark_type='29' "
         '
+        query += "LEFT JOIN
+                 (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
+                    FROM tb_report_mark mark
+                    INNER JOIN tb_m_employee emp ON emp.`id_employee`=mark.id_employee
+                    INNER JOIN 
+                    (
+	                    SELECT mark.id_report,mark.report_mark_type,MAX(report_mark_datetime) AS report_mark_datetime
+	                    FROM tb_report_mark mark
+	                    WHERE mark.id_mark='2' AND NOT ISNULL(report_mark_start_datetime) AND report_mark_type='29'
+	                    GROUP BY report_mark_type,id_report
+                    ) maxd ON maxd.id_report=mark.id_report AND maxd.report_mark_type=mark.report_mark_type AND maxd.report_mark_datetime=mark.report_mark_datetime
+                    WHERE mark.id_mark='2' AND NOT ISNULL(mark.report_mark_start_datetime) AND mark.report_mark_type='29'
+                  ) maxd ON maxd.id_report = a.id_prod_order_mrs "
         query += "WHERE 1=1 " & query_where
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
