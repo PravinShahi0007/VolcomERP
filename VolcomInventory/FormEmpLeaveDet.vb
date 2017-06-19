@@ -392,7 +392,7 @@
                         execute_non_query(query, True, "", "", "", "")
                     Else
                         Dim query_kkunit As String = "SELECT `is_kk_unit` FROM tb_m_employee emp INNER JOIN tb_m_departement dep ON dep.`id_departement`=emp.`id_departement` WHERE id_employee='" & id_employee & "'"
-                        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                        Dim data As DataTable = execute_query(query_kkunit, -1, True, "", "", "", "")
 
                         If data.Rows(0)("is_kk_unit") = 1 Then
                             Dim jum_check_dept_head As String = ""
