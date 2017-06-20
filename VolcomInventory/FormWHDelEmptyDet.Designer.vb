@@ -69,7 +69,7 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtDeleteScan = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtScan = New DevExpress.XtraEditors.TextEdit()
         Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -134,7 +134,7 @@ Partial Class FormWHDelEmptyDet
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcode.SuspendLayout()
-        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSUmmary.SuspendLayout()
         CType(Me.GCProbSum, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -635,7 +635,7 @@ Partial Class FormWHDelEmptyDet
         'PanelNavBarcode
         '
         Me.PanelNavBarcode.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelNavBarcode.Controls.Add(Me.TxtDeleteScan)
+        Me.PanelNavBarcode.Controls.Add(Me.TxtScan)
         Me.PanelNavBarcode.Controls.Add(Me.LabelDelScan)
         Me.PanelNavBarcode.Controls.Add(Me.BDelete)
         Me.PanelNavBarcode.Controls.Add(Me.BStop)
@@ -648,14 +648,14 @@ Partial Class FormWHDelEmptyDet
         Me.PanelNavBarcode.Size = New System.Drawing.Size(926, 36)
         Me.PanelNavBarcode.TabIndex = 4
         '
-        'TxtDeleteScan
+        'TxtScan
         '
-        Me.TxtDeleteScan.Location = New System.Drawing.Point(75, 8)
-        Me.TxtDeleteScan.MenuManager = Me.BMDD
-        Me.TxtDeleteScan.Name = "TxtDeleteScan"
-        Me.TxtDeleteScan.Size = New System.Drawing.Size(248, 20)
-        Me.TxtDeleteScan.TabIndex = 19
-        Me.TxtDeleteScan.Visible = False
+        Me.TxtScan.Location = New System.Drawing.Point(75, 8)
+        Me.TxtScan.MenuManager = Me.BMDD
+        Me.TxtScan.Name = "TxtScan"
+        Me.TxtScan.Size = New System.Drawing.Size(248, 20)
+        Me.TxtScan.TabIndex = 19
+        Me.TxtScan.Visible = False
         '
         'LabelDelScan
         '
@@ -1040,7 +1040,7 @@ Partial Class FormWHDelEmptyDet
         CType(Me.PanelNavBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelNavBarcode.ResumeLayout(False)
         Me.PanelNavBarcode.PerformLayout()
-        CType(Me.TxtDeleteScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtScan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSUmmary.ResumeLayout(False)
         CType(Me.GCProbSum, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1112,7 +1112,7 @@ Partial Class FormWHDelEmptyDet
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelNavBarcode As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TxtDeleteScan As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtScan As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BStop As DevExpress.XtraEditors.SimpleButton
