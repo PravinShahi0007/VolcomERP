@@ -78,6 +78,23 @@ Partial Class FormViewSalesReturn
         Me.GridColumnIdPlSalesOrderDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.XTPProblemItem = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCProbSum = New DevExpress.XtraGrid.GridControl()
+        Me.GVProbSum = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemSpinEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.XTCReturn = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPScan = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControlScannedItem = New DevExpress.XtraEditors.GroupControl()
@@ -114,23 +131,6 @@ Partial Class FormViewSalesReturn
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GroupControlStatus = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
-        Me.GCProbSum = New DevExpress.XtraGrid.GridControl()
-        Me.GVProbSum = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.RepositoryItemSpinEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumnQtyProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,6 +169,10 @@ Partial Class FormViewSalesReturn
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPProblemItem.SuspendLayout()
+        CType(Me.GCProbSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVProbSum, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCReturn.SuspendLayout()
         Me.XTPScan.SuspendLayout()
@@ -185,10 +189,6 @@ Partial Class FormViewSalesReturn
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlStatus.SuspendLayout()
-        CType(Me.GCProbSum, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVProbSum, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -836,6 +836,161 @@ Partial Class FormViewSalesReturn
         Me.XTPProblemItem.Size = New System.Drawing.Size(882, 169)
         Me.XTPProblemItem.Text = "Problem Item"
         '
+        'GCProbSum
+        '
+        Me.GCProbSum.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCProbSum.Location = New System.Drawing.Point(0, 0)
+        Me.GCProbSum.MainView = Me.GVProbSum
+        Me.GCProbSum.Name = "GCProbSum"
+        Me.GCProbSum.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemSpinEdit4})
+        Me.GCProbSum.Size = New System.Drawing.Size(882, 169)
+        Me.GCProbSum.TabIndex = 8
+        Me.GCProbSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbSum})
+        '
+        'GVProbSum
+        '
+        Me.GVProbSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnQtyProbSum})
+        Me.GVProbSum.GridControl = Me.GCProbSum
+        Me.GVProbSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyProbSum, "{0:N0}")})
+        Me.GVProbSum.Name = "GVProbSum"
+        Me.GVProbSum.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVProbSum.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GVProbSum.OptionsBehavior.Editable = False
+        Me.GVProbSum.OptionsCustomization.AllowColumnMoving = False
+        Me.GVProbSum.OptionsCustomization.AllowGroup = False
+        Me.GVProbSum.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVProbSum.OptionsCustomization.AllowSort = False
+        Me.GVProbSum.OptionsView.ShowFooter = True
+        Me.GVProbSum.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.Caption = "No"
+        Me.GridColumn15.FieldName = "no"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn15.OptionsColumn.AllowMove = False
+        Me.GridColumn15.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 0
+        Me.GridColumn15.Width = 57
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "Code"
+        Me.GridColumn16.FieldName = "code"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.Visible = True
+        Me.GridColumn16.VisibleIndex = 1
+        Me.GridColumn16.Width = 320
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Counting Code"
+        Me.GridColumn17.FieldName = "counting_code"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
+        Me.GridColumn17.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Id PL Counting"
+        Me.GridColumn18.FieldName = "id_sales_return_det_counting"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Is Fix"
+        Me.GridColumn19.FieldName = "is_fix"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
+        Me.GridColumn19.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn19.OptionsColumn.AllowMove = False
+        Me.GridColumn19.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Id Unique Receiving"
+        Me.GridColumn20.FieldName = "id_pl_prod_order_rec_det_unique"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumn20.OptionsColumn.AllowMove = False
+        Me.GridColumn20.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Id Product"
+        Me.GridColumn21.FieldName = "id_product"
+        Me.GridColumn21.Name = "GridColumn21"
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Unit Cost"
+        Me.GridColumn22.FieldName = "bom_unit_price"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Width = 132
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Id Design Price"
+        Me.GridColumn23.FieldName = "id_design_price"
+        Me.GridColumn23.Name = "GridColumn23"
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Design Price"
+        Me.GridColumn24.FieldName = "design_price"
+        Me.GridColumn24.Name = "GridColumn24"
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Description"
+        Me.GridColumn25.FieldName = "name"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.OptionsColumn.AllowEdit = False
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 2
+        Me.GridColumn25.Width = 626
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Size"
+        Me.GridColumn26.FieldName = "size"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.OptionsColumn.AllowEdit = False
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 3
+        Me.GridColumn26.Width = 59
+        '
+        'GridColumnQtyProbSum
+        '
+        Me.GridColumnQtyProbSum.Caption = "Qty"
+        Me.GridColumnQtyProbSum.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyProbSum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyProbSum.FieldName = "qty"
+        Me.GridColumnQtyProbSum.Name = "GridColumnQtyProbSum"
+        Me.GridColumnQtyProbSum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnQtyProbSum.Visible = True
+        Me.GridColumnQtyProbSum.VisibleIndex = 4
+        '
+        'RepositoryItemCheckEdit3
+        '
+        Me.RepositoryItemCheckEdit3.AutoHeight = False
+        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
+        '
+        'RepositoryItemSpinEdit4
+        '
+        Me.RepositoryItemSpinEdit4.AutoHeight = False
+        Me.RepositoryItemSpinEdit4.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit4.EditValueChangedDelay = 50
+        Me.RepositoryItemSpinEdit4.Mask.EditMask = "n2"
+        Me.RepositoryItemSpinEdit4.Mask.SaveLiteral = False
+        Me.RepositoryItemSpinEdit4.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
+        Me.RepositoryItemSpinEdit4.Name = "RepositoryItemSpinEdit4"
+        '
         'XTCReturn
         '
         Me.XTCReturn.Dock = System.Windows.Forms.DockStyle.Fill
@@ -1154,161 +1309,6 @@ Partial Class FormViewSalesReturn
         Me.BtnUpdateStatus.TabIndex = 5
         Me.BtnUpdateStatus.Text = "Update Order Status"
         '
-        'GCProbSum
-        '
-        Me.GCProbSum.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProbSum.Location = New System.Drawing.Point(0, 0)
-        Me.GCProbSum.MainView = Me.GVProbSum
-        Me.GCProbSum.Name = "GCProbSum"
-        Me.GCProbSum.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemSpinEdit4})
-        Me.GCProbSum.Size = New System.Drawing.Size(882, 169)
-        Me.GCProbSum.TabIndex = 8
-        Me.GCProbSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbSum})
-        '
-        'GVProbSum
-        '
-        Me.GVProbSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnQtyProbSum})
-        Me.GVProbSum.GridControl = Me.GCProbSum
-        Me.GVProbSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyProbSum, "{0:N0}")})
-        Me.GVProbSum.Name = "GVProbSum"
-        Me.GVProbSum.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GVProbSum.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GVProbSum.OptionsBehavior.Editable = False
-        Me.GVProbSum.OptionsCustomization.AllowColumnMoving = False
-        Me.GVProbSum.OptionsCustomization.AllowGroup = False
-        Me.GVProbSum.OptionsCustomization.AllowQuickHideColumns = False
-        Me.GVProbSum.OptionsCustomization.AllowSort = False
-        Me.GVProbSum.OptionsView.ShowFooter = True
-        Me.GVProbSum.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.Caption = "No"
-        Me.GridColumn15.FieldName = "no"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.AllowEdit = False
-        Me.GridColumn15.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn15.OptionsColumn.AllowMove = False
-        Me.GridColumn15.OptionsColumn.ShowInCustomizationForm = False
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 0
-        Me.GridColumn15.Width = 57
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "Code"
-        Me.GridColumn16.FieldName = "code"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 1
-        Me.GridColumn16.Width = 320
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Counting Code"
-        Me.GridColumn17.FieldName = "counting_code"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.OptionsColumn.AllowEdit = False
-        Me.GridColumn17.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Id PL Counting"
-        Me.GridColumn18.FieldName = "id_sales_return_det_counting"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Is Fix"
-        Me.GridColumn19.FieldName = "is_fix"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.OptionsColumn.AllowEdit = False
-        Me.GridColumn19.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn19.OptionsColumn.AllowMove = False
-        Me.GridColumn19.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Id Unique Receiving"
-        Me.GridColumn20.FieldName = "id_pl_prod_order_rec_det_unique"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.OptionsColumn.AllowEdit = False
-        Me.GridColumn20.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn20.OptionsColumn.AllowMove = False
-        Me.GridColumn20.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "Id Product"
-        Me.GridColumn21.FieldName = "id_product"
-        Me.GridColumn21.Name = "GridColumn21"
-        '
-        'GridColumn22
-        '
-        Me.GridColumn22.Caption = "Unit Cost"
-        Me.GridColumn22.FieldName = "bom_unit_price"
-        Me.GridColumn22.Name = "GridColumn22"
-        Me.GridColumn22.Width = 132
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "Id Design Price"
-        Me.GridColumn23.FieldName = "id_design_price"
-        Me.GridColumn23.Name = "GridColumn23"
-        '
-        'GridColumn24
-        '
-        Me.GridColumn24.Caption = "Design Price"
-        Me.GridColumn24.FieldName = "design_price"
-        Me.GridColumn24.Name = "GridColumn24"
-        '
-        'GridColumn25
-        '
-        Me.GridColumn25.Caption = "Description"
-        Me.GridColumn25.FieldName = "name"
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.OptionsColumn.AllowEdit = False
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 2
-        Me.GridColumn25.Width = 626
-        '
-        'GridColumn26
-        '
-        Me.GridColumn26.Caption = "Size"
-        Me.GridColumn26.FieldName = "size"
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.OptionsColumn.AllowEdit = False
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 3
-        Me.GridColumn26.Width = 59
-        '
-        'RepositoryItemCheckEdit3
-        '
-        Me.RepositoryItemCheckEdit3.AutoHeight = False
-        Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
-        '
-        'RepositoryItemSpinEdit4
-        '
-        Me.RepositoryItemSpinEdit4.AutoHeight = False
-        Me.RepositoryItemSpinEdit4.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemSpinEdit4.EditValueChangedDelay = 50
-        Me.RepositoryItemSpinEdit4.Mask.EditMask = "n2"
-        Me.RepositoryItemSpinEdit4.Mask.SaveLiteral = False
-        Me.RepositoryItemSpinEdit4.MaxValue = New Decimal(New Integer() {99999999, 0, 0, 131072})
-        Me.RepositoryItemSpinEdit4.Name = "RepositoryItemSpinEdit4"
-        '
-        'GridColumnQtyProbSum
-        '
-        Me.GridColumnQtyProbSum.Caption = "Qty"
-        Me.GridColumnQtyProbSum.DisplayFormat.FormatString = "N0"
-        Me.GridColumnQtyProbSum.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtyProbSum.FieldName = "qty"
-        Me.GridColumnQtyProbSum.Name = "GridColumnQtyProbSum"
-        Me.GridColumnQtyProbSum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
-        Me.GridColumnQtyProbSum.Visible = True
-        Me.GridColumnQtyProbSum.VisibleIndex = 4
-        '
         'FormViewSalesReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1368,6 +1368,10 @@ Partial Class FormViewSalesReturn
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPProblemItem.ResumeLayout(False)
+        CType(Me.GCProbSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVProbSum, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XTCReturn, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCReturn.ResumeLayout(False)
         Me.XTPScan.ResumeLayout(False)
@@ -1384,10 +1388,6 @@ Partial Class FormViewSalesReturn
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlStatus.ResumeLayout(False)
-        CType(Me.GCProbSum, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVProbSum, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemSpinEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

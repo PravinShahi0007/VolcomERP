@@ -72,7 +72,7 @@
         End Try
 
         Dim query_c As ClassDelEmpty = New ClassDelEmpty()
-        Dim query As String = query_c.queryMain("AND (del.id_wh_del_empty>='" + date_from_selected + "' AND del.id_wh_del_empty<='" + date_until_selected + "') ", "2")
+        Dim query As String = query_c.queryMain("AND (del.wh_del_empty_date>='" + date_from_selected + "' AND del.wh_del_empty_date<='" + date_until_selected + "') ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDel.DataSource = data
         check_menu()
@@ -81,5 +81,11 @@
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         viewDel()
+    End Sub
+
+    Private Sub GVDel_DoubleClick(sender As Object, e As EventArgs) Handles GVDel.DoubleClick
+        If GVDel.RowCount > 0 And GVDel.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
     End Sub
 End Class

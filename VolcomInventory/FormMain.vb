@@ -1489,6 +1489,10 @@ Public Class FormMain
             FormProductionAssemblyNew.ShowDialog()
         ElseIf formName = "FormMasterCargoRate" Then
             FormMasterCargoRateAdd.ShowDialog()
+        ElseIf formName = "FormWHDelEmpty" Then
+            FormPopUpContact.id_cat = "6"
+            FormPopUpContact.id_pop_up = "77"
+            FormPopUpContact.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2364,6 +2368,9 @@ Public Class FormMain
             ElseIf formName = "FormMasterCargoRate" Then
                 FormMasterCargoRateAdd.id_cargo_rate = FormMasterCargoRate.GVCargoRate.GetFocusedRowCellValue("id_cargo_rate").ToString
                 FormMasterCargoRateAdd.ShowDialog()
+            ElseIf formName = "FormWHDelEmpty" Then
+                FormWHDelEmptyDet.id_wh_del_empty = FormWHDelEmpty.GVDel.GetFocusedRowCellValue("id_wh_del_empty").ToString
+                FormWHDelEmptyDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If

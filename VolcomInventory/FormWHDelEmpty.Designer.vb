@@ -35,7 +35,6 @@ Partial Class FormWHDelEmpty
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSalesDelOrder = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnWHName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastUpdate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -150,7 +149,7 @@ Partial Class FormWHDelEmpty
         '
         'GVDel
         '
-        Me.GVDel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnLastUpdate, Me.GridColumnUpdBy, Me.GridColumnTotal})
+        Me.GVDel.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnIdSalesDelOrder, Me.GridColumnLastUpdate, Me.GridColumnUpdBy, Me.GridColumnTotal})
         Me.GVDel.GridControl = Me.GCDel
         Me.GVDel.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotal, "{0:n0}")})
         Me.GVDel.Name = "GVDel"
@@ -164,7 +163,7 @@ Partial Class FormWHDelEmpty
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Number"
-        Me.GridColumn1.FieldName = "pl_sales_order_del_number"
+        Me.GridColumn1.FieldName = "wh_del_empty_number"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
@@ -183,7 +182,7 @@ Partial Class FormWHDelEmpty
         Me.GridColumn3.Caption = "Created Date"
         Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn3.FieldName = "pl_sales_order_del_date"
+        Me.GridColumn3.FieldName = "wh_del_empty_date"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 4
@@ -191,7 +190,7 @@ Partial Class FormWHDelEmpty
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Note"
-        Me.GridColumn4.FieldName = "pl_sales_order_del_note"
+        Me.GridColumn4.FieldName = "wh_del_empty_note"
         Me.GridColumn4.Name = "GridColumn4"
         '
         'GridColumn5
@@ -205,18 +204,9 @@ Partial Class FormWHDelEmpty
         'GridColumnIdSalesDelOrder
         '
         Me.GridColumnIdSalesDelOrder.Caption = "Id Sales Del Order"
-        Me.GridColumnIdSalesDelOrder.FieldName = "id_pl_sales_order_del"
+        Me.GridColumnIdSalesDelOrder.FieldName = "id_wh_del_empty"
         Me.GridColumnIdSalesDelOrder.Name = "GridColumnIdSalesDelOrder"
         Me.GridColumnIdSalesDelOrder.OptionsColumn.ShowInCustomizationForm = False
-        '
-        'GridColumnWHName
-        '
-        Me.GridColumnWHName.Caption = "Warehouse"
-        Me.GridColumnWHName.FieldName = "wh"
-        Me.GridColumnWHName.FieldNameSortGroup = "id_wh"
-        Me.GridColumnWHName.Name = "GridColumnWHName"
-        Me.GridColumnWHName.Visible = True
-        Me.GridColumnWHName.VisibleIndex = 1
         '
         'GridColumnLastUpdate
         '
@@ -293,7 +283,6 @@ Partial Class FormWHDelEmpty
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdSalesDelOrder As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnWHName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnLastUpdate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnUpdBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
