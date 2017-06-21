@@ -36,6 +36,7 @@ Partial Class FormMasterCargoRateDet
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SPC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SPC.SuspendLayout()
         CType(Me.GCCargo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,9 +82,10 @@ Partial Class FormMasterCargoRateDet
         '
         'GVCargo
         '
-        Me.GVCargo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GVCargo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn1, Me.GridColumn2})
         Me.GVCargo.GridControl = Me.GCCargo
         Me.GVCargo.Name = "GVCargo"
+        Me.GVCargo.OptionsBehavior.Editable = False
         Me.GVCargo.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -196,6 +198,12 @@ Partial Class FormMasterCargoRateDet
         Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(11, "30-Text_32x32.png")
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID Comp"
+        Me.GridColumn3.FieldName = "id_comp"
+        Me.GridColumn3.Name = "GridColumn3"
+        '
         'FormMasterCargoRateDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -241,4 +249,5 @@ Partial Class FormMasterCargoRateDet
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
