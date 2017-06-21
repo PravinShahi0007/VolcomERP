@@ -859,9 +859,10 @@
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to choose this store : " + GVCompany.GetFocusedRowCellValue("comp_number").ToString + " - " + GVCompany.GetFocusedRowCellValue("comp_name").ToString + "?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Dim id_comp_contact As String = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
-                Dim query As String = "INSERT INTO tb_wh_del_empty(wh_del_empty_number, id_store_contact_from, wh_del_empty_date,id_report_status) "
-                query += "VALUES('" + header_number_sales("31") + "', '" + id_comp_contact + "', NOW(),1);SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_wh_del_empty(wh_del_empty_number, id_store_contact_from, wh_del_empty_date,id_report_status, last_update, last_update_by) "
+                query += "VALUES('" + header_number_sales("31") + "', '" + id_comp_contact + "', NOW(),1, NOW(), " + id_user + ");SELECT LAST_INSERT_ID(); "
                 Dim id As String = execute_query(query, 0, True, "", "", "", "")
+                increase_inc_sales("31")
                 FormWHDelEmpty.viewDel()
                 FormWHDelEmpty.GVDel.FocusedRowHandle = find_row(FormWHDelEmpty.GVDel, "id_wh_del_empty", id)
                 Close()

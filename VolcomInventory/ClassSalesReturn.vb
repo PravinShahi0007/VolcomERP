@@ -144,13 +144,16 @@
     End Sub
 
     Public Sub completeProbStock(ByVal id_report_param As String)
-        Dim query As String = "INSERT INTO tb_storage_fg_prob(id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
-        SELECT '1', p.id_product , IFNULL(d.design_cop,0), '46', '" + id_report_param + "',  COUNT(rp.id_product) AS `qty`, NOW(),'', '1'
+        Dim query As String = "INSERT INTO tb_storage_fg_prob(id_store,id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+        SELECT c.id_comp,'1', p.id_product , IFNULL(d.design_cop,0), '46', '" + id_report_param + "',  COUNT(rp.id_product) AS `qty`, NOW(),'', '1'
         FROM tb_sales_return_problem rp
         INNER JOIN tb_m_product p ON p.id_product = RP.id_product
         INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
         INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
         INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        INNER JOIN tb_sales_return r ON r.id_sales_return = rp.id_sales_return
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = r.id_store_contact_from
+		INNER JOIN tb_m_comp c ON c.id_comp= cc.id_comp
         WHERE rp.id_sales_return='" + id_report_param + "'
         GROUP BY rp.id_product "
         execute_non_query(query, True, "", "", "", "")

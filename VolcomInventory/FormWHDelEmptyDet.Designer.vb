@@ -100,7 +100,6 @@ Partial Class FormWHDelEmptyDet
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
-        Me.BtnVerify = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -177,6 +176,7 @@ Partial Class FormWHDelEmptyDet
         '
         Me.MEAdrressCompTo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MEAdrressCompTo.Enabled = False
         Me.MEAdrressCompTo.Location = New System.Drawing.Point(88, 34)
         Me.MEAdrressCompTo.Name = "MEAdrressCompTo"
         Me.MEAdrressCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -198,6 +198,7 @@ Partial Class FormWHDelEmptyDet
         'TxtCodeCompTo
         '
         Me.TxtCodeCompTo.EditValue = ""
+        Me.TxtCodeCompTo.Enabled = False
         Me.TxtCodeCompTo.Location = New System.Drawing.Point(88, 8)
         Me.TxtCodeCompTo.Name = "TxtCodeCompTo"
         Me.TxtCodeCompTo.Properties.Appearance.BackColor = System.Drawing.Color.White
@@ -214,6 +215,7 @@ Partial Class FormWHDelEmptyDet
         Me.TxtNameCompTo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.TxtNameCompTo.EditValue = ""
+        Me.TxtNameCompTo.Enabled = False
         Me.TxtNameCompTo.Location = New System.Drawing.Point(160, 8)
         Me.TxtNameCompTo.Name = "TxtNameCompTo"
         Me.TxtNameCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -259,6 +261,7 @@ Partial Class FormWHDelEmptyDet
         'DETrans
         '
         Me.DETrans.EditValue = Nothing
+        Me.DETrans.Enabled = False
         Me.DETrans.Location = New System.Drawing.Point(60, 12)
         Me.DETrans.MenuManager = Me.BMDD
         Me.DETrans.Name = "DETrans"
@@ -327,11 +330,15 @@ Partial Class FormWHDelEmptyDet
         'TxtSalesDelOrderNumber
         '
         Me.TxtSalesDelOrderNumber.EditValue = ""
+        Me.TxtSalesDelOrderNumber.Enabled = False
         Me.TxtSalesDelOrderNumber.Location = New System.Drawing.Point(60, 36)
         Me.TxtSalesDelOrderNumber.Name = "TxtSalesDelOrderNumber"
         Me.TxtSalesDelOrderNumber.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtSalesDelOrderNumber.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtSalesDelOrderNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TxtSalesDelOrderNumber.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TxtSalesDelOrderNumber.Properties.EditValueChangedDelay = 1
+        Me.TxtSalesDelOrderNumber.Properties.ReadOnly = True
         Me.TxtSalesDelOrderNumber.Size = New System.Drawing.Size(137, 20)
         Me.TxtSalesDelOrderNumber.TabIndex = 8
         '
@@ -415,10 +422,11 @@ Partial Class FormWHDelEmptyDet
         Me.LEReportStatus.Properties.Appearance.Options.UseBackColor = True
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.LEReportStatus.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
-        Me.LEReportStatus.Properties.ShowFooter = False
         Me.LEReportStatus.Size = New System.Drawing.Size(294, 20)
         Me.LEReportStatus.TabIndex = 7
         '
@@ -894,7 +902,6 @@ Partial Class FormWHDelEmptyDet
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.DDBPrint)
-        Me.PanelControl3.Controls.Add(Me.BtnVerify)
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -911,7 +918,7 @@ Partial Class FormWHDelEmptyDet
         Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
         Me.BtnXlsBOF.ImageIndex = 11
         Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(430, 2)
+        Me.BtnXlsBOF.Location = New System.Drawing.Point(512, 2)
         Me.BtnXlsBOF.Name = "BtnXlsBOF"
         Me.BtnXlsBOF.Size = New System.Drawing.Size(116, 32)
         Me.BtnXlsBOF.TabIndex = 23
@@ -923,7 +930,7 @@ Partial Class FormWHDelEmptyDet
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAttachment.ImageIndex = 10
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(546, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(628, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
         Me.BtnAttachment.Size = New System.Drawing.Size(95, 32)
         Me.BtnAttachment.TabIndex = 22
@@ -947,23 +954,11 @@ Partial Class FormWHDelEmptyDet
         Me.DDBPrint.DropDownControl = Me.PUDD
         Me.DDBPrint.ImageIndex = 6
         Me.DDBPrint.ImageList = Me.LargeImageCollection
-        Me.DDBPrint.Location = New System.Drawing.Point(641, 2)
+        Me.DDBPrint.Location = New System.Drawing.Point(723, 2)
         Me.DDBPrint.Name = "DDBPrint"
         Me.DDBPrint.Size = New System.Drawing.Size(79, 32)
         Me.DDBPrint.TabIndex = 21
         Me.DDBPrint.Text = "Print"
-        '
-        'BtnVerify
-        '
-        Me.BtnVerify.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnVerify.Image = CType(resources.GetObject("BtnVerify.Image"), System.Drawing.Image)
-        Me.BtnVerify.ImageIndex = 5
-        Me.BtnVerify.ImageList = Me.LargeImageCollection
-        Me.BtnVerify.Location = New System.Drawing.Point(720, 2)
-        Me.BtnVerify.Name = "BtnVerify"
-        Me.BtnVerify.Size = New System.Drawing.Size(82, 32)
-        Me.BtnVerify.TabIndex = 20
-        Me.BtnVerify.Text = "Verify"
         '
         'BtnCancel
         '
@@ -1004,6 +999,7 @@ Partial Class FormWHDelEmptyDet
         Me.Name = "FormWHDelEmptyDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Delivery"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1108,7 +1104,6 @@ Partial Class FormWHDelEmptyDet
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents DDBPrint As DevExpress.XtraEditors.DropDownButton
-    Friend WithEvents BtnVerify As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelNavBarcode As DevExpress.XtraEditors.PanelControl

@@ -13,7 +13,14 @@
     Dim id_store As String = "-1"
 
     Private Sub FormWHDelEmptyDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewReportStatus()
         actionLoad()
+    End Sub
+
+    Sub viewReportStatus()
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
 
     Sub actionLoad()
@@ -24,6 +31,7 @@
         id_store = data.Rows(0)("id_comp").ToString
         TxtCodeCompTo.Text = data.Rows(0)("comp_number").ToString
         TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
+        MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
         DETrans.EditValue = data.Rows(0)("wh_del_empty_date")
         TxtSalesDelOrderNumber.Text = data.Rows(0)("wh_del_empty_number").ToString
         id_report_status = data.Rows(0)("id_report_status").ToString
@@ -116,6 +124,8 @@
                 If data.Rows.Count > 0 Then
                     Dim stt As String = data.Rows(0)("stt").ToString
                     If stt = "ok" Then
+                        TxtScan.Text = ""
+                        TxtScan.Focus()
                         view_detail()
                     Else
                         stopCustom(stt)
@@ -133,6 +143,8 @@
                     If data.Rows.Count > 0 Then
                         Dim stt As String = data.Rows(0)("stt").ToString
                         If stt = "ok" Then
+                            TxtScan.Text = ""
+                            TxtScan.Focus()
                             view_detail()
                         Else
                             stopCustom(stt)
@@ -183,5 +195,13 @@
         TxtScan.Visible = True
         TxtScan.Focus()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Close()
+    End Sub
+
+    Private Sub FormWHDelEmptyDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
