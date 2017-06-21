@@ -58,9 +58,11 @@
         If is_fix = "1" Then
             BtnSave.Enabled = False
             PanelNavBarcode.Enabled = False
+            BMark.Enabled = True
         Else
             BtnSave.Enabled = True
             PanelNavBarcode.Enabled = True
+            BMark.Enabled = False
         End If
 
         'attachment
@@ -97,7 +99,7 @@
         FormReportMark.id_report = id_wh_del_empty
         FormReportMark.report_mark_type = "111"
         FormReportMark.form_origin = Name
-        'FormReportMark.is_disabled_set_stt = "1"
+        FormReportMark.is_disabled_set_stt = "1"
         FormReportMark.is_view_finalize = "1"
         FormReportMark.is_view = is_view
         FormReportMark.ShowDialog()
@@ -215,6 +217,23 @@
     Private Sub GVProbSum_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVProbSum.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim wh_del_empty_note As String = addSlashes(MENote.Text)
+            Dim query As String = "UPDATE tb_wh_del_empty SET wh_del_empty_note='" + wh_del_empty_note + "', is_fix=1 WHERE id_wh_del_empty='" + id_wh_del_empty + "' "
+            execute_non_query(query, True, "", "", "", "")
+
+            'submit who prepared
+            submit_who_prepared("111", id_wh_del_empty, id_user)
+
+            actionLoad()
+            FormWHDelEmpty.viewDel()
+            FormWHDelEmpty.GVDel.FocusedRowHandle = find_row(FormWHDelEmpty.GVDel, "id_wh_del_empty", id_wh_del_empty)
+            infoCustom("Document " + TxtSalesDelOrderNumber.Text + " was created successfully")
         End If
     End Sub
 End Class
