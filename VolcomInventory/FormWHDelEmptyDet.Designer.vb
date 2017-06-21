@@ -58,9 +58,7 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -91,6 +89,8 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
@@ -479,10 +479,9 @@ Partial Class FormWHDelEmptyDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnIdProduct, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnStatus, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPrice, Me.GridColumnIdProduct, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnStatus, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
         Me.GVItemList.CustomizationFormBounds = New System.Drawing.Rectangle(958, 136, 216, 180)
         Me.GVItemList.GridControl = Me.GCItemList
-        Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n0}")})
         Me.GVItemList.IndicatorWidth = 30
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -499,8 +498,9 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumnNo.FieldName = "no"
         Me.GridColumnNo.Name = "GridColumnNo"
         Me.GridColumnNo.OptionsColumn.ReadOnly = True
-        Me.GridColumnNo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumnNo.Width = 47
+        Me.GridColumnNo.Visible = True
+        Me.GridColumnNo.VisibleIndex = 0
+        Me.GridColumnNo.Width = 48
         '
         'GridColumnCode
         '
@@ -509,8 +509,8 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 0
-        Me.GridColumnCode.Width = 127
+        Me.GridColumnCode.VisibleIndex = 1
+        Me.GridColumnCode.Width = 208
         '
         'GridColumnName
         '
@@ -520,8 +520,8 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 1
-        Me.GridColumnName.Width = 234
+        Me.GridColumnName.VisibleIndex = 2
+        Me.GridColumnName.Width = 382
         '
         'GridColumnSize
         '
@@ -534,27 +534,8 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumnSize.Name = "GridColumnSize"
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 2
-        Me.GridColumnSize.Width = 50
-        '
-        'GridColumnQty
-        '
-        Me.GridColumnQty.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnQty.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQty.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQty.Caption = "Qty"
-        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
-        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQty.FieldName = "qty"
-        Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnQty.OptionsColumn.AllowShowHide = False
-        Me.GridColumnQty.OptionsColumn.ReadOnly = True
-        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
-        Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 3
-        Me.GridColumnQty.Width = 52
+        Me.GridColumnSize.VisibleIndex = 3
+        Me.GridColumnSize.Width = 81
         '
         'GridColumnPrice
         '
@@ -568,24 +549,7 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 4
-        Me.GridColumnPrice.Width = 207
-        '
-        'GridColumnAmount
-        '
-        Me.GridColumnAmount.Caption = "Amount"
-        Me.GridColumnAmount.DisplayFormat.FormatString = "{0:n2}"
-        Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnAmount.FieldName = "amount"
-        Me.GridColumnAmount.Name = "GridColumnAmount"
-        Me.GridColumnAmount.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumnAmount.OptionsColumn.AllowShowHide = False
-        Me.GridColumnAmount.OptionsColumn.ReadOnly = True
-        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
-        Me.GridColumnAmount.UnboundExpression = "[design_price] * [qty]"
-        Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 5
-        Me.GridColumnAmount.Width = 238
+        Me.GridColumnPrice.Width = 345
         '
         'GridColumnIdProduct
         '
@@ -744,9 +708,9 @@ Partial Class FormWHDelEmptyDet
         '
         'GVProbSum
         '
-        Me.GVProbSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnQtyProbSum})
+        Me.GVProbSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnQtyProbSum, Me.GridColumnPrc, Me.GridColumnAmount})
         Me.GVProbSum.GridControl = Me.GCProbSum
-        Me.GVProbSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyProbSum, "{0:N0}")})
+        Me.GVProbSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyProbSum, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n2}")})
         Me.GVProbSum.Name = "GVProbSum"
         Me.GVProbSum.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVProbSum.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -769,7 +733,7 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumn15.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn15.Visible = True
         Me.GridColumn15.VisibleIndex = 0
-        Me.GridColumn15.Width = 57
+        Me.GridColumn15.Width = 47
         '
         'GridColumn16
         '
@@ -778,7 +742,7 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
         Me.GridColumn16.VisibleIndex = 1
-        Me.GridColumn16.Width = 320
+        Me.GridColumn16.Width = 268
         '
         'GridColumn17
         '
@@ -848,7 +812,7 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
         Me.GridColumn25.VisibleIndex = 2
-        Me.GridColumn25.Width = 626
+        Me.GridColumn25.Width = 283
         '
         'GridColumn26
         '
@@ -858,7 +822,7 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumn26.OptionsColumn.AllowEdit = False
         Me.GridColumn26.Visible = True
         Me.GridColumn26.VisibleIndex = 3
-        Me.GridColumn26.Width = 59
+        Me.GridColumn26.Width = 43
         '
         'GridColumnQtyProbSum
         '
@@ -870,6 +834,32 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumnQtyProbSum.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQtyProbSum.Visible = True
         Me.GridColumnQtyProbSum.VisibleIndex = 4
+        Me.GridColumnQtyProbSum.Width = 64
+        '
+        'GridColumnPrc
+        '
+        Me.GridColumnPrc.Caption = "Price"
+        Me.GridColumnPrc.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPrc.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPrc.FieldName = "design_price"
+        Me.GridColumnPrc.Name = "GridColumnPrc"
+        Me.GridColumnPrc.Visible = True
+        Me.GridColumnPrc.VisibleIndex = 5
+        Me.GridColumnPrc.Width = 152
+        '
+        'GridColumnAmount
+        '
+        Me.GridColumnAmount.Caption = "Amount"
+        Me.GridColumnAmount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAmount.FieldName = "amount"
+        Me.GridColumnAmount.Name = "GridColumnAmount"
+        Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:N2}")})
+        Me.GridColumnAmount.UnboundExpression = "[design_price] * [qty]"
+        Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnAmount.Visible = True
+        Me.GridColumnAmount.VisibleIndex = 6
+        Me.GridColumnAmount.Width = 221
         '
         'RepositoryItemCheckEdit3
         '
@@ -1078,9 +1068,7 @@ Partial Class FormWHDelEmptyDet
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrice As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdProduct As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDesignPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDesign As DevExpress.XtraGrid.Columns.GridColumn
@@ -1133,4 +1121,6 @@ Partial Class FormWHDelEmptyDet
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemSpinEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents DETrans As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumnPrc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
 End Class

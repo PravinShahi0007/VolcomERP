@@ -29,4 +29,42 @@
         query += "ORDER BY del.id_wh_del_empty " + order_type
         Return query
     End Function
+
+    Public Sub changeStatus(ByVal id_report_par As String, ByVal id_status_reportx_par As String)
+        If id_status_reportx_par = "5" Then
+            Dim query As String = "INSERT INTO tb_storage_fg_prob(id_store, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status)
+		    SELECT c.id_comp,1, ed.id_product, d.design_cop,111, '" + id_report_par + "',1, NOW(),'',2 
+		    FROM tb_wh_del_empty_det ed
+		    INNER JOIN tb_wh_del_empty e ON e.id_wh_del_empty = ed.id_wh_del_empty
+		    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = e.id_store_contact_from
+		    INNER JOIN tb_m_comp c ON c.id_comp= cc.id_comp
+		    INNER JOIN tb_m_product p ON p.id_product = ed.id_product
+		    INNER JOIN tb_m_design d ON d.id_design = p.id_design
+		    WHERE ed.id_wh_del_empty = " + id_report_par + " "
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf id_status_reportx_par = "6" Then
+            'action
+            Dim query As String = "INSERT INTO tb_storage_fg_prob(id_store, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status)
+		    SELECT c.id_comp,1, ed.id_product, d.design_cop,111, '" + id_report_par + "',1, NOW(),'',2 
+		    FROM tb_wh_del_empty_det ed
+		    INNER JOIN tb_wh_del_empty e ON e.id_wh_del_empty = ed.id_wh_del_empty
+		    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = e.id_store_contact_from
+		    INNER JOIN tb_m_comp c ON c.id_comp= cc.id_comp
+		    INNER JOIN tb_m_product p ON p.id_product = ed.id_product
+		    INNER JOIN tb_m_design d ON d.id_design = p.id_design
+		    WHERE ed.id_wh_del_empty = " + id_report_par + "
+            UNION ALL
+            SELECT c.id_comp,2, ed.id_product, d.design_cop,111, '" + id_report_par + "',1, NOW(),'',1 
+		    FROM tb_wh_del_empty_det ed
+		    INNER JOIN tb_wh_del_empty e ON e.id_wh_del_empty = ed.id_wh_del_empty
+		    INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = e.id_store_contact_from
+		    INNER JOIN tb_m_comp c ON c.id_comp= cc.id_comp
+		    INNER JOIN tb_m_product p ON p.id_product = ed.id_product
+		    INNER JOIN tb_m_design d ON d.id_design = p.id_design
+		    WHERE ed.id_wh_del_empty = " + id_report_par + " "
+            execute_non_query(query, True, "", "", "", "")
+        End If
+        Dim queryupd As String = String.Format("UPDATE tb_wh_del_empty SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_wh_del_empty ='{1}'", id_status_reportx_par, id_report_par)
+        execute_non_query(queryupd, True, "", "", "", "")
+    End Sub
 End Class

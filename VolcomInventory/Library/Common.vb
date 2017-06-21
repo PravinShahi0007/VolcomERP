@@ -752,7 +752,7 @@ Module Common
             query = "UPDATE tb_opt_sales SET fg_repair_return_rec_inc  = (tb_opt_sales.fg_repair_return_rec_inc +1)"
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "31" Then
-            query = "UPDATE tb_opt_sales SET sales_del_emp_code_inc  = (tb_opt_sales.sales_del_emp_code_head +1)"
+            query = "UPDATE tb_opt_sales SET sales_del_emp_code_inc  = (tb_opt_sales.sales_del_emp_code_inc +1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub

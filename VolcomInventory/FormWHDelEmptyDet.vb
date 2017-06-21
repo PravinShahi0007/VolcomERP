@@ -45,16 +45,13 @@
 
     Sub view_detail()
         'detail barcode
-        Dim query As String = "SELECT '0' AS `no`, ed.id_wh_del_empty_det,ed.id_wh_del_empty, ed.id_product, ed.scanned_code AS `code`,
-        d.design_display_name AS `name`, cd.code_detail_name AS `size` 
-        FROM tb_wh_del_empty_det ed
-        INNER JOIN tb_m_product p ON p.id_product = ed.id_product
-        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
-        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
-        INNER JOIN tb_m_design d ON d.id_design = p.id_design
-        WHERE ed.id_wh_del_empty=" + id_wh_del_empty + " ORDER BY id_wh_del_empty_det ASC "
+        Dim query As String = "CALL view_wh_del_empty(" + id_wh_del_empty + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
+
+        Dim queryd As String = "CALL view_wh_del_empty_sum(" + id_wh_del_empty + ")"
+        Dim datad As DataTable = execute_query(queryd, -1, True, "", "", "", "")
+        GCProbSum.DataSource = datad
     End Sub
 
     Sub allow_status()
@@ -100,7 +97,7 @@
         FormReportMark.id_report = id_wh_del_empty
         FormReportMark.report_mark_type = "111"
         FormReportMark.form_origin = Name
-        FormReportMark.is_disabled_set_stt = "1"
+        'FormReportMark.is_disabled_set_stt = "1"
         FormReportMark.is_view_finalize = "1"
         FormReportMark.is_view = is_view
         FormReportMark.ShowDialog()
@@ -119,6 +116,7 @@
         If e.KeyCode = Keys.Enter Then
             Dim code As String = addSlashes(TxtScan.Text)
             If is_scan_prob = "1" Then 'scan
+                Cursor = Cursors.WaitCursor
                 Dim query As String = "CALL view_wh_del_empty_avl('" + id_wh_del_empty + "', '" + code + "', '" + id_store + "')"
                 Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If data.Rows.Count > 0 Then
@@ -135,9 +133,11 @@
                     stopCustom("Data not found")
                 End If
                 data.Dispose()
+                Cursor = Cursors.Default
             Else 'del
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
                     Dim query As String = "CALL view_wh_del_empty_del('" + id_wh_del_empty + "', '" + code + "')"
                     Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
                     If data.Rows.Count > 0 Then
@@ -154,9 +154,10 @@
                         stopCustom("Data not found")
                     End If
                     data.Dispose()
+                    Cursor = Cursors.Default
                 End If
             End If
-            End If
+        End If
     End Sub
 
     Private Sub BScan_Click(sender As Object, e As EventArgs) Handles BScan.Click
@@ -203,5 +204,17 @@
 
     Private Sub FormWHDelEmptyDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub GVProbSum_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVProbSum.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class
