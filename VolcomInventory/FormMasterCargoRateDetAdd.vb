@@ -29,7 +29,7 @@
             Dim query_ins As String = ""
             query_ins = "INSERT INTO tb_m_cargo_rate_det(id_type,id_cargo_rate,id_cargo,cargo_rate,cargo_min_weight,cargo_lead_time,cargo_datetime) VALUES(2,'" & FormMasterCargoRate.GVCargoRate.GetFocusedRowCellValue("id_cargo_rate").ToString & "','" & FormMasterCargoRateDet.GVCargo.GetFocusedRowCellValue("id_comp").ToString & "','" & decimalSQL(TERate.EditValue.ToString) & "','" & decimalSQL(TEMinWeight.EditValue.ToString) & "','" & decimalSQL(TELeadTime.EditValue.ToString) & "',NOW())"
             execute_non_query(query_ins, True, "", "", "", "")
-            FormMasterCargoRateDet.load_inbound()
+            FormMasterCargoRateDet.load_outbound()
             Close()
         End If
         Dim query As String = ""
