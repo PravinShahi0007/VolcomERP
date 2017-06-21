@@ -10,6 +10,7 @@
     Public is_view As String = "-1"
     Public is_fix As String = "2"
     Dim is_scan_prob As String = "-1"
+    Dim id_store As String = "-1"
 
     Private Sub FormWHDelEmptyDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actionLoad()
@@ -20,6 +21,7 @@
         Dim del As New ClassDelEmpty()
         Dim query As String = del.queryMain("AND del.id_wh_del_empty=" + id_wh_del_empty + "", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        id_store = data.Rows(0)("id_comp").ToString
         TxtCodeCompTo.Text = data.Rows(0)("comp_number").ToString
         TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
         DETrans.EditValue = data.Rows(0)("wh_del_empty_date")
@@ -109,10 +111,77 @@
         If e.KeyCode = Keys.Enter Then
             Dim code As String = addSlashes(TxtScan.Text)
             If is_scan_prob = "1" Then 'scan
-
+                Dim query As String = "CALL view_wh_del_empty_avl('" + id_wh_del_empty + "', '" + code + "', '" + id_store + "')"
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If data.Rows.Count > 0 Then
+                    Dim stt As String = data.Rows(0)("stt").ToString
+                    If stt = "ok" Then
+                        view_detail()
+                    Else
+                        stopCustom(stt)
+                        TxtScan.Text = ""
+                    End If
+                Else
+                    stopCustom("Data not found")
+                End If
+                data.Dispose()
             Else 'del
-
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Dim query As String = "CALL view_wh_del_empty_del('" + id_wh_del_empty + "', '" + code + "')"
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    If data.Rows.Count > 0 Then
+                        Dim stt As String = data.Rows(0)("stt").ToString
+                        If stt = "ok" Then
+                            view_detail()
+                        Else
+                            stopCustom(stt)
+                            TxtScan.Text = ""
+                        End If
+                    Else
+                        stopCustom("Data not found")
+                    End If
+                    data.Dispose()
+                End If
             End If
-        End If
+            End If
+    End Sub
+
+    Private Sub BScan_Click(sender As Object, e As EventArgs) Handles BScan.Click
+        Cursor = Cursors.WaitCursor
+        is_scan_prob = "1"
+        BScan.Enabled = False
+        BStop.Enabled = True
+        BDelete.Enabled = False
+        TxtScan.Text = ""
+        LabelScan.Visible = True
+        TxtScan.Visible = True
+        TxtScan.Focus()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BStop_Click(sender As Object, e As EventArgs) Handles BStop.Click
+        Cursor = Cursors.WaitCursor
+        is_scan_prob = "-1"
+        BScan.Enabled = True
+        BStop.Enabled = False
+        BDelete.Enabled = True
+        TxtScan.Text = ""
+        LabelScan.Visible = False
+        TxtScan.Visible = False
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BDelete.Click
+        Cursor = Cursors.WaitCursor
+        is_scan_prob = "2"
+        BScan.Enabled = False
+        BStop.Enabled = True
+        BDelete.Enabled = False
+        TxtScan.Text = ""
+        LabelScan.Visible = True
+        TxtScan.Visible = True
+        TxtScan.Focus()
+        Cursor = Cursors.Default
     End Sub
 End Class

@@ -70,7 +70,7 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelNavBarcode = New DevExpress.XtraEditors.PanelControl()
         Me.TxtScan = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelDelScan = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelScan = New DevExpress.XtraEditors.LabelControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BStop = New DevExpress.XtraEditors.SimpleButton()
@@ -636,7 +636,7 @@ Partial Class FormWHDelEmptyDet
         '
         Me.PanelNavBarcode.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelNavBarcode.Controls.Add(Me.TxtScan)
-        Me.PanelNavBarcode.Controls.Add(Me.LabelDelScan)
+        Me.PanelNavBarcode.Controls.Add(Me.LabelScan)
         Me.PanelNavBarcode.Controls.Add(Me.BDelete)
         Me.PanelNavBarcode.Controls.Add(Me.BStop)
         Me.PanelNavBarcode.Controls.Add(Me.BScan)
@@ -657,14 +657,14 @@ Partial Class FormWHDelEmptyDet
         Me.TxtScan.TabIndex = 19
         Me.TxtScan.Visible = False
         '
-        'LabelDelScan
+        'LabelScan
         '
-        Me.LabelDelScan.Location = New System.Drawing.Point(13, 11)
-        Me.LabelDelScan.Name = "LabelDelScan"
-        Me.LabelDelScan.Size = New System.Drawing.Size(51, 13)
-        Me.LabelDelScan.TabIndex = 18
-        Me.LabelDelScan.Text = "Scan Code"
-        Me.LabelDelScan.Visible = False
+        Me.LabelScan.Location = New System.Drawing.Point(13, 11)
+        Me.LabelScan.Name = "LabelScan"
+        Me.LabelScan.Size = New System.Drawing.Size(51, 13)
+        Me.LabelScan.TabIndex = 18
+        Me.LabelScan.Text = "Scan Code"
+        Me.LabelScan.Visible = False
         '
         'BDelete
         '
@@ -1113,7 +1113,7 @@ Partial Class FormWHDelEmptyDet
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelNavBarcode As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtScan As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelDelScan As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelScan As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BStop As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BScan As DevExpress.XtraEditors.SimpleButton
