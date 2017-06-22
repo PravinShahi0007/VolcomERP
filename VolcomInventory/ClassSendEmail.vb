@@ -106,7 +106,10 @@ Public Class ClassSendEmail
     Sub send_email_appr(ByVal report_mark_type As String, ByVal id_leave As String, ByVal is_appr As Boolean)
         '
         Dim query As String = ""
-        query = "SELECT empl.*,lt.leave_type,empl.leave_purpose,empx.email_lokal as dept_head_email,empx.id_employee as id_dep_head,empx.employee_name as dep_head,empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total,empl.report_mark_type 
+        query = "SELECT empl.*,lt.leave_type,empl.leave_purpose,
+                empx.email_lokal as dept_head_email,empx.id_employee as id_dep_head,empx.employee_name as dep_head,
+                empa.email_lokal as asst_dept_head_email,empa.id_employee as id_asst_dep_head,empa.employee_name as asst_dep_head,
+                empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total,empl.report_mark_type 
                 FROM tb_emp_leave empl
                 INNER JOIN tb_lookup_leave_type lt ON lt.id_leave_type=empl.id_leave_type
                 INNER JOIN tb_lookup_report_status STATUS ON status.id_report_status=empl.id_report_status
@@ -114,7 +117,9 @@ Public Class ClassSendEmail
                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level  
                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                 LEFT JOIN tb_m_user usrx ON usrx.id_user=dep.id_user_head
-                LEFT JOIN tb_m_employee empx ON empx.id_employee=usrx.id_employee
+                LEFT JOIN tb_m_employee empa ON empx.id_employee=usrx.id_employee
+                LEFT JOIN tb_m_user usra ON usra.id_user=dep.id_user_asst_head
+                LEFT JOIN tb_m_employee empa ON empx.id_employee=usra.id_employee
                 INNER JOIN 
                 (SELECT id_emp_leave,MIN(datetime_start) AS min_date,MAX(datetime_until) AS max_date,ROUND(SUM(minutes_total)/60) AS hours_total FROM tb_emp_leave_det GROUP BY id_emp_leave) empld ON empld.id_emp_leave=empl.id_emp_leave
                 WHERE empl.id_emp_leave='" & id_leave & "'"
@@ -124,11 +129,16 @@ Public Class ClassSendEmail
         Dim dep_head_email As String = data.Rows(0)("dept_head_email").ToString
         Dim emp_name As String = data.Rows(0)("employee_name").ToString
         Dim leave_no As String = data.Rows(0)("emp_leave_number").ToString
-        'to list : dep head ; cc list : yg ada di mark semua
+        'to list : dep head 
         Dim to_mail As MailAddress = New MailAddress(dep_head_email, dep_head)
         Dim from_mail As MailAddress = New MailAddress(get_setup_field("system_email").ToString, get_setup_field("app_name").ToString)
         Dim mail As MailMessage = New MailMessage(from_mail, to_mail)
-
+        'add cc asst dept head
+        If Not data.Rows(0)("asst_dept_head_email").ToString = "" Then
+            Dim cc_asst_dept As MailAddress = New MailAddress(data.Rows(0)("asst_dept_head_email").ToString, data.Rows(0)("asst_dep_head").ToString)
+            mail.CC.Add(cc_asst_dept)
+        End If
+        'add cc list : yg ada di mark semua
         Dim querycc As String = "SELECT emp.email_lokal,emp.employee_name,rm.* FROM tb_report_mark rm 
                                     INNER JOIN tb_m_user usr ON usr.id_user=rm.id_user
                                     INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
@@ -140,7 +150,6 @@ Public Class ClassSendEmail
                 mail.CC.Add(cc)
             Next
         End If
-        '
         'Dim to_mail As MailAddress = New MailAddress("septian@volcom.mail", "Septian Primadewa")
         'Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Volcom ERP")
         'Dim mail As MailMessage = New MailMessage(from_mail, to_mail)
