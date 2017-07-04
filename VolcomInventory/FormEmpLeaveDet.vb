@@ -301,8 +301,10 @@
         Dim problem As Boolean = False
         If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Then
             stopCustom("Lengkapi isian dengan lengkap !")
-        ElseIf TERemainingLeaveAfter.EditValue < 0
+        ElseIf TERemainingLeaveAfter.EditValue < 0 Then
             stopCustom("Sisa cuti tidak mencukupi.")
+        ElseIf LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "1" Then
+            stopCustom("Sakit harus menggunakan form atau DC.")
         Else
             If LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "2" Then
                 'check if sudah form sekali dalam sebulan.
@@ -392,7 +394,7 @@
                         execute_non_query(query, True, "", "", "", "")
                     Else
                         Dim query_kkunit As String = "SELECT `is_kk_unit` FROM tb_m_employee emp INNER JOIN tb_m_departement dep ON dep.`id_departement`=emp.`id_departement` WHERE id_employee='" & id_employee & "'"
-                        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                        Dim data As DataTable = execute_query(query_kkunit, -1, True, "", "", "", "")
 
                         If data.Rows(0)("is_kk_unit") = 1 Then
                             Dim jum_check_dept_head As String = ""
