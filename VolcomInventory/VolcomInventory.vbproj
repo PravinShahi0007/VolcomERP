@@ -470,6 +470,18 @@
     <Compile Include="FormDataReff.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormDeliveryCargo.Designer.vb">
+      <DependentUpon>FormDeliveryCargo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeliveryCargo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDeliveryCargoDet.Designer.vb">
+      <DependentUpon>FormDeliveryCargoDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormDeliveryCargoDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpAttn.Designer.vb">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>
     </Compile>
@@ -4901,6 +4913,12 @@
     <EmbeddedResource Include="FormDataReff.resx">
       <DependentUpon>FormDataReff.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDeliveryCargo.resx">
+      <DependentUpon>FormDeliveryCargo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDeliveryCargoDet.resx">
+      <DependentUpon>FormDeliveryCargoDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpAttn.resx">
       <DependentUpon>FormEmpAttn.vb</DependentUpon>

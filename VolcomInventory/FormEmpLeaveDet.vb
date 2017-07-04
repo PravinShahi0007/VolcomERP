@@ -301,8 +301,10 @@
         Dim problem As Boolean = False
         If id_employee = "-1" Or id_employee_change = "-1" Or TETotLeave.EditValue <= 0 Then
             stopCustom("Lengkapi isian dengan lengkap !")
-        ElseIf TERemainingLeaveAfter.EditValue < 0
+        ElseIf TERemainingLeaveAfter.EditValue < 0 Then
             stopCustom("Sisa cuti tidak mencukupi.")
+        ElseIf LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "1" Then
+            stopCustom("Sakit harus menggunakan form atau DC.")
         Else
             If LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "2" Then
                 'check if sudah form sekali dalam sebulan.
