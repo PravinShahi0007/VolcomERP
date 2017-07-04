@@ -154,6 +154,7 @@ Partial Class FormDeliveryCargo
         Me.MinimizeBox = False
         Me.Name = "FormDeliveryCargo"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Air Waybill"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
