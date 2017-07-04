@@ -86,4 +86,11 @@
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
         GCLeave.DataSource = data
     End Sub
+
+    Private Sub GVLeave_DoubleClick(sender As Object, e As EventArgs) Handles GVLeave.DoubleClick
+        If GVLeave.RowCount > 0 Then
+            FormEmpLeaveDet.id_emp_leave = GVLeave.GetFocusedRowCellValue("id_emp_leave").ToString
+            FormEmpLeaveDet.ShowDialog()
+        End If
+    End Sub
 End Class
