@@ -107,8 +107,8 @@ Public Class ClassSendEmail
         '
         Dim query As String = ""
         query = "SELECT empl.*,lt.leave_type,empl.leave_purpose,
-                empx.email_lokal as dept_head_email,empx.id_employee as id_dep_head,empx.employee_name as dep_head,
-                empa.email_lokal as asst_dept_head_email,empa.id_employee as id_asst_dep_head,empa.employee_name as asst_dep_head,
+                empx.email_lokal AS dept_head_email,empx.id_employee AS id_dep_head,empx.employee_name AS dep_head,
+                empa.email_lokal AS asst_dept_head_email,empa.id_employee AS id_asst_dep_head,empa.employee_name AS asst_dep_head,
                 empld.min_date,empld.max_date,status.report_status,emp.employee_name,emp.employee_code,empld.hours_total,empl.report_mark_type 
                 FROM tb_emp_leave empl
                 INNER JOIN tb_lookup_leave_type lt ON lt.id_leave_type=empl.id_leave_type
@@ -117,9 +117,9 @@ Public Class ClassSendEmail
                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level  
                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                 LEFT JOIN tb_m_user usrx ON usrx.id_user=dep.id_user_head
-                LEFT JOIN tb_m_employee empa ON empx.id_employee=usrx.id_employee
+                LEFT JOIN tb_m_employee empx ON empx.id_employee=usrx.id_employee
                 LEFT JOIN tb_m_user usra ON usra.id_user=dep.id_user_asst_head
-                LEFT JOIN tb_m_employee empa ON empx.id_employee=usra.id_employee
+                LEFT JOIN tb_m_employee empa ON empa.id_employee=usra.id_employee
                 INNER JOIN 
                 (SELECT id_emp_leave,MIN(datetime_start) AS min_date,MAX(datetime_until) AS max_date,ROUND(SUM(minutes_total)/60) AS hours_total FROM tb_emp_leave_det GROUP BY id_emp_leave) empld ON empld.id_emp_leave=empl.id_emp_leave
                 WHERE empl.id_emp_leave='" & id_leave & "'"
