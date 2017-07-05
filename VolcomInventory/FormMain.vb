@@ -279,7 +279,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Then
             RGAreaManage.Visible = False
         End If
 
@@ -397,7 +397,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Then
             RGAreaManage.Visible = True
         End If
 
@@ -6587,6 +6587,8 @@ Public Class FormMain
             print(FormSampleSummary.GCListPurchase, "Sample Summary")
         ElseIf formName = "FormWHDelEmpty" Then
             print(FormWHDelEmpty.GCDel, "Non Stock Inventory - Out")
+        ElseIf formName = "FormWHDelEmptyStock" Then
+            'command print here
         Else
             RPSubMenu.Visible = False
         End If
@@ -7141,6 +7143,9 @@ Public Class FormMain
         ElseIf formName = "FormWHDelEmpty" Then
             FormWHDelEmpty.Close()
             FormWHDelEmpty.Dispose()
+        ElseIf formName = "FormWHDelEmptyStock" Then
+            FormWHDelEmptyStock.Close()
+            FormWHDelEmptyStock.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10503,6 +10508,19 @@ Public Class FormMain
             FormWHDelEmpty.Show()
             FormWHDelEmpty.WindowState = FormWindowState.Maximized
             FormWHDelEmpty.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBNonStockInv_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBNonStockInv.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormWHDelEmptyStock.MdiParent = Me
+            FormWHDelEmptyStock.Show()
+            FormWHDelEmptyStock.WindowState = FormWindowState.Maximized
+            FormWHDelEmptyStock.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
