@@ -24,18 +24,29 @@ Partial Class FormMasterCargoRateDet
         Me.SPC = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GCCargo = New DevExpress.XtraGrid.GridControl()
         Me.GVCargo = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTCInOut = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPInbound = New DevExpress.XtraTab.XtraTabPage()
         Me.GCInbound = New DevExpress.XtraGrid.GridControl()
         Me.GVInbound = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIDCargoDetIN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCargoRateIN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCargoMinWeightIN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCargoLeadTimeIN = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCargoDatetimeIN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPOutbound = New DevExpress.XtraTab.XtraTabPage()
         Me.GCOutbound = New DevExpress.XtraGrid.GridControl()
         Me.GVOutbound = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.GridColumnIDCargoDetOut = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCargoRateOut = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMinWeightOut = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLeadTimeOut = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDateInputOut = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SPC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SPC.SuspendLayout()
         CType(Me.GCCargo, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,10 +92,17 @@ Partial Class FormMasterCargoRateDet
         '
         'GVCargo
         '
-        Me.GVCargo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2})
+        Me.GVCargo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn3, Me.GridColumn1, Me.GridColumn2})
         Me.GVCargo.GridControl = Me.GCCargo
         Me.GVCargo.Name = "GVCargo"
+        Me.GVCargo.OptionsBehavior.Editable = False
         Me.GVCargo.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID Comp"
+        Me.GridColumn3.FieldName = "id_comp"
+        Me.GridColumn3.Name = "GridColumn3"
         '
         'GridColumn1
         '
@@ -132,9 +150,48 @@ Partial Class FormMasterCargoRateDet
         '
         'GVInbound
         '
+        Me.GVInbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDCargoDetIN, Me.GridColumnCargoRateIN, Me.GridColumnCargoMinWeightIN, Me.GridColumnCargoLeadTimeIN, Me.GridColumnCargoDatetimeIN})
         Me.GVInbound.GridControl = Me.GCInbound
         Me.GVInbound.Name = "GVInbound"
         Me.GVInbound.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIDCargoDetIN
+        '
+        Me.GridColumnIDCargoDetIN.Caption = "ID"
+        Me.GridColumnIDCargoDetIN.FieldName = "id_cargo_rate_det"
+        Me.GridColumnIDCargoDetIN.Name = "GridColumnIDCargoDetIN"
+        '
+        'GridColumnCargoRateIN
+        '
+        Me.GridColumnCargoRateIN.Caption = "Rate (Rp)"
+        Me.GridColumnCargoRateIN.FieldName = "cargo_rate"
+        Me.GridColumnCargoRateIN.Name = "GridColumnCargoRateIN"
+        Me.GridColumnCargoRateIN.Visible = True
+        Me.GridColumnCargoRateIN.VisibleIndex = 0
+        '
+        'GridColumnCargoMinWeightIN
+        '
+        Me.GridColumnCargoMinWeightIN.Caption = "Minimum Weight (Kg)"
+        Me.GridColumnCargoMinWeightIN.FieldName = "cargo_min_weight"
+        Me.GridColumnCargoMinWeightIN.Name = "GridColumnCargoMinWeightIN"
+        Me.GridColumnCargoMinWeightIN.Visible = True
+        Me.GridColumnCargoMinWeightIN.VisibleIndex = 1
+        '
+        'GridColumnCargoLeadTimeIN
+        '
+        Me.GridColumnCargoLeadTimeIN.Caption = "Lead Time (days)"
+        Me.GridColumnCargoLeadTimeIN.FieldName = "cargo_lead_time"
+        Me.GridColumnCargoLeadTimeIN.Name = "GridColumnCargoLeadTimeIN"
+        Me.GridColumnCargoLeadTimeIN.Visible = True
+        Me.GridColumnCargoLeadTimeIN.VisibleIndex = 2
+        '
+        'GridColumnCargoDatetimeIN
+        '
+        Me.GridColumnCargoDatetimeIN.Caption = "Date Input"
+        Me.GridColumnCargoDatetimeIN.FieldName = "cargo_datetime"
+        Me.GridColumnCargoDatetimeIN.Name = "GridColumnCargoDatetimeIN"
+        Me.GridColumnCargoDatetimeIN.Visible = True
+        Me.GridColumnCargoDatetimeIN.VisibleIndex = 3
         '
         'XTPOutbound
         '
@@ -155,6 +212,7 @@ Partial Class FormMasterCargoRateDet
         '
         'GVOutbound
         '
+        Me.GVOutbound.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDCargoDetOut, Me.GridColumnCargoRateOut, Me.GridColumnMinWeightOut, Me.GridColumnLeadTimeOut, Me.GridColumnDateInputOut})
         Me.GVOutbound.GridControl = Me.GCOutbound
         Me.GVOutbound.Name = "GVOutbound"
         Me.GVOutbound.OptionsView.ShowGroupPanel = False
@@ -195,6 +253,44 @@ Partial Class FormMasterCargoRateDet
         Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(11, "30-Text_32x32.png")
+        '
+        'GridColumnIDCargoDetOut
+        '
+        Me.GridColumnIDCargoDetOut.Caption = "ID"
+        Me.GridColumnIDCargoDetOut.FieldName = "id_cargo_rate_det"
+        Me.GridColumnIDCargoDetOut.Name = "GridColumnIDCargoDetOut"
+        '
+        'GridColumnCargoRateOut
+        '
+        Me.GridColumnCargoRateOut.Caption = "Rate (Rp)"
+        Me.GridColumnCargoRateOut.FieldName = "cargo_rate"
+        Me.GridColumnCargoRateOut.Name = "GridColumnCargoRateOut"
+        Me.GridColumnCargoRateOut.Visible = True
+        Me.GridColumnCargoRateOut.VisibleIndex = 0
+        '
+        'GridColumnMinWeightOut
+        '
+        Me.GridColumnMinWeightOut.Caption = "Minimum Weight (Kg)"
+        Me.GridColumnMinWeightOut.FieldName = "cargo_min_weight"
+        Me.GridColumnMinWeightOut.Name = "GridColumnMinWeightOut"
+        Me.GridColumnMinWeightOut.Visible = True
+        Me.GridColumnMinWeightOut.VisibleIndex = 1
+        '
+        'GridColumnLeadTimeOut
+        '
+        Me.GridColumnLeadTimeOut.Caption = "Lead Time (days)"
+        Me.GridColumnLeadTimeOut.FieldName = "cargo_lead_time"
+        Me.GridColumnLeadTimeOut.Name = "GridColumnLeadTimeOut"
+        Me.GridColumnLeadTimeOut.Visible = True
+        Me.GridColumnLeadTimeOut.VisibleIndex = 2
+        '
+        'GridColumnDateInputOut
+        '
+        Me.GridColumnDateInputOut.Caption = "Date Input"
+        Me.GridColumnDateInputOut.FieldName = "cargo_datetime"
+        Me.GridColumnDateInputOut.Name = "GridColumnDateInputOut"
+        Me.GridColumnDateInputOut.Visible = True
+        Me.GridColumnDateInputOut.VisibleIndex = 3
         '
         'FormMasterCargoRateDet
         '
@@ -241,4 +337,15 @@ Partial Class FormMasterCargoRateDet
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIDCargoDetIN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCargoRateIN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCargoMinWeightIN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCargoLeadTimeIN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCargoDatetimeIN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIDCargoDetOut As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCargoRateOut As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMinWeightOut As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnLeadTimeOut As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDateInputOut As DevExpress.XtraGrid.Columns.GridColumn
 End Class

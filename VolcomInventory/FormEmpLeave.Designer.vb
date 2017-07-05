@@ -24,6 +24,7 @@ Partial Class FormEmpLeave
         Me.GridColumnIDLeave = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -38,7 +39,6 @@ Partial Class FormEmpLeave
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCLeave, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVLeave, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,6 +94,14 @@ Partial Class FormEmpLeave
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 1
         Me.GridColumn7.Width = 96
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Departement"
+        Me.GridColumn9.FieldName = "departement"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 3
         '
         'GridColumn3
         '
@@ -231,14 +239,6 @@ Partial Class FormEmpLeave
         Me.Label1.Size = New System.Drawing.Size(41, 13)
         Me.Label1.TabIndex = 8
         Me.Label1.Text = "From : "
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "Departement"
-        Me.GridColumn9.FieldName = "departement"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 3
         '
         'FormEmpLeave
         '

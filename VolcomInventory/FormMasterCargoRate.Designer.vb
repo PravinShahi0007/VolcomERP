@@ -45,6 +45,7 @@ Partial Class FormMasterCargoRate
         Me.GVCargoRate.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn10, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4})
         Me.GVCargoRate.GridControl = Me.GCCargoRate
         Me.GVCargoRate.Name = "GVCargoRate"
+        Me.GVCargoRate.OptionsBehavior.Editable = False
         Me.GVCargoRate.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
