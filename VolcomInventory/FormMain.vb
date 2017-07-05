@@ -5367,6 +5367,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormEmpLeave" Then
             '
+        ElseIf formName = "FormWHDelEmpty" Then
+
         ElseIf formName = "FormEmpDP" Then
             If check_edit_report_status(FormEmpDP.GVLeave.GetFocusedRowCellValue("id_report_status").ToString, "97", FormEmpDP.GVLeave.GetFocusedRowCellValue("id_dp")) Then
                 Dim id As String = FormEmpDP.GVLeave.GetFocusedRowCellValue("id_dp").ToString
@@ -6583,6 +6585,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormSampleSummary" Then
             print(FormSampleSummary.GCListPurchase, "Sample Summary")
+        ElseIf formName = "FormWHDelEmpty" Then
+            print(FormWHDelEmpty.GCDel, "Non Stock Inventory - Out")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7134,6 +7138,9 @@ Public Class FormMain
         ElseIf formName = "FormSampleSummary" Then
             FormSampleSummary.Close()
             FormSampleSummary.Dispose()
+        ElseIf formName = "FormWHDelEmpty" Then
+            FormWHDelEmpty.Close()
+            FormWHDelEmpty.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7786,6 +7793,8 @@ Public Class FormMain
             FormProductionFinalClear.viewFinalClear()
         ElseIf formName = "FormProductionAssembly" Then
             FormProductionAssembly.viewData()
+        ElseIf formName = "FormWHDelEmpty" Then
+            FormWHDelEmpty.viewDel()
         End If
     End Sub
     'Switch
