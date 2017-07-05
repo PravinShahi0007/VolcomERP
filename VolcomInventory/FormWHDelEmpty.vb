@@ -8,6 +8,7 @@
         Dim data As DataTable = execute_query("SELECT DATE(NOW()) AS `tgl`", -1, True, "", "", "", "")
         DEFrom.EditValue = data.Rows(0)("tgl")
         DEUntil.EditValue = data.Rows(0)("tgl")
+        DEFrom.Focus()
     End Sub
 
     Sub check_menu()
@@ -86,6 +87,18 @@
     Private Sub GVDel_DoubleClick(sender As Object, e As EventArgs) Handles GVDel.DoubleClick
         If GVDel.RowCount > 0 And GVDel.FocusedRowHandle >= 0 Then
             FormMain.but_edit()
+        End If
+    End Sub
+
+    Private Sub DEFrom_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFrom.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            DEUntil.Focus()
+        End If
+    End Sub
+
+    Private Sub DEUntil_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntil.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BtnView.Focus()
         End If
     End Sub
 End Class
