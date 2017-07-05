@@ -19,6 +19,7 @@ Partial Class FormWHDelEmpty
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GCFilter = New DevExpress.XtraEditors.GroupControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.BHide = New DevExpress.XtraEditors.SimpleButton()
@@ -39,6 +40,9 @@ Partial Class FormWHDelEmpty
         Me.GridColumnUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,6 +52,7 @@ Partial Class FormWHDelEmpty
         CType(Me.GCDel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDel, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCFilter
@@ -139,6 +144,7 @@ Partial Class FormWHDelEmpty
         '
         'GCDel
         '
+        Me.GCDel.ContextMenuStrip = Me.ViewMenu
         Me.GCDel.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCDel.Location = New System.Drawing.Point(0, 39)
         Me.GCDel.MainView = Me.GVDel
@@ -243,6 +249,24 @@ Partial Class FormWHDelEmpty
         Me.GridView3.GridControl = Me.GCDel
         Me.GridView3.Name = "GridView3"
         '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMPrePrint, Me.SMPrint})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(137, 48)
+        '
+        'SMPrePrint
+        '
+        Me.SMPrePrint.Name = "SMPrePrint"
+        Me.SMPrePrint.Size = New System.Drawing.Size(152, 22)
+        Me.SMPrePrint.Text = "Pre Printing"
+        '
+        'SMPrint
+        '
+        Me.SMPrint.Name = "SMPrint"
+        Me.SMPrint.Size = New System.Drawing.Size(152, 22)
+        Me.SMPrint.Text = "Print"
+        '
         'FormWHDelEmpty
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -263,6 +287,7 @@ Partial Class FormWHDelEmpty
         CType(Me.GCDel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDel, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -287,4 +312,7 @@ Partial Class FormWHDelEmpty
     Friend WithEvents GridColumnUpdBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents ViewMenu As ContextMenuStrip
+    Friend WithEvents SMPrePrint As ToolStripMenuItem
+    Friend WithEvents SMPrint As ToolStripMenuItem
 End Class

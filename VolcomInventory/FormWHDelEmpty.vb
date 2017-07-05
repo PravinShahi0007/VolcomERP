@@ -101,4 +101,41 @@
             BtnView.Focus()
         End If
     End Sub
+
+    Private Sub SMPrePrint_Click(sender As Object, e As EventArgs) Handles SMPrePrint.Click
+        Cursor = Cursors.WaitCursor
+        FormWHDelEmptyDet.id_pre = "1"
+        FormMain.but_edit()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SMPrint_Click(sender As Object, e As EventArgs) Handles SMPrint.Click
+        Cursor = Cursors.WaitCursor
+        FormWHDelEmptyDet.id_pre = "2"
+        FormMain.but_edit()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVDel_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVDel.PopupMenuShowing
+        If GVDel.RowCount > 0 And GVDel.FocusedRowHandle >= 0 Then
+            Dim id_stt As String = GVDel.GetFocusedRowCellValue("id_report_status").ToString
+            If id_stt <> "3" And id_stt <> "4" And id_stt <> "6" Then
+                SMPrint.Visible = False
+            Else
+                SMPrint.Visible = True
+            End If
+
+            If id_stt <> "1" And id_stt <> "2" And id_stt <> "3" And id_stt <> "4" And id_stt <> "6" Then
+                SMPrePrint.Visible = False
+            Else
+                SMPrePrint.Visible = True
+            End If
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
+            If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
+                view.FocusedRowHandle = hitInfo.RowHandle
+                ViewMenu.Show(view.GridControl, e.Point)
+            End If
+        End If
+    End Sub
 End Class

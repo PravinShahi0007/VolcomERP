@@ -40,6 +40,14 @@
 
         view_detail()
         allow_status()
+
+        If id_pre = "1" Then
+            prePrinting()
+            Close()
+        ElseIf id_pre = "2" Then
+            printing()
+            Close()
+        End If
         Cursor = Cursors.Default
     End Sub
 
@@ -235,5 +243,58 @@
             FormWHDelEmpty.GVDel.FocusedRowHandle = find_row(FormWHDelEmpty.GVDel, "id_wh_del_empty", id_wh_del_empty)
             infoCustom("Document " + TxtSalesDelOrderNumber.Text + " was created successfully")
         End If
+    End Sub
+
+    Sub getReport()
+        GCProbSum.RefreshDataSource()
+        GVProbSum.RefreshData()
+        ReportWHDelEmpty.dt = GCProbSum.DataSource
+        ReportWHDelEmpty.id = id_wh_del_empty
+        Dim Report As New ReportWHDelEmpty()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVProbSum.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVProbSum.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVProbSum)
+
+        'Parse val
+        Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+        Report.LabelAddress.Text = MEAdrressCompTo.Text
+        Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+        Report.LabelNote.Text = MENote.Text
+
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+    End Sub
+
+    Sub prePrinting()
+        Cursor = Cursors.WaitCursor
+        ReportWHDelEmpty.id_pre = "1"
+        getReport()
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub printing()
+        Cursor = Cursors.WaitCursor
+        ReportWHDelEmpty.id_pre = "-1"
+        getReport()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrePrinting_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnPrePrinting.ItemClick
+        prePrinting()
+    End Sub
+
+    Private Sub BtnPrint_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnPrint.ItemClick
+        printing()
     End Sub
 End Class
