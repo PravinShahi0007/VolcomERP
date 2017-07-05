@@ -988,7 +988,7 @@ Partial Class FormWHDelEmptyDet
         Me.MinimizeBox = False
         Me.Name = "FormWHDelEmptyDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Delivery"
+        Me.Text = "Non Stock Inventory - Out"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)

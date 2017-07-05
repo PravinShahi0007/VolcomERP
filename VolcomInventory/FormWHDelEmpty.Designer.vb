@@ -175,7 +175,7 @@ Partial Class FormWHDelEmpty
         Me.GridColumn2.FieldName = "store"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumn2.VisibleIndex = 1
         '
         'GridColumn3
         '
@@ -185,7 +185,7 @@ Partial Class FormWHDelEmpty
         Me.GridColumn3.FieldName = "wh_del_empty_date"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 4
+        Me.GridColumn3.VisibleIndex = 3
         '
         'GridColumn4
         '
@@ -199,7 +199,7 @@ Partial Class FormWHDelEmpty
         Me.GridColumn5.FieldName = "report_status"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 7
+        Me.GridColumn5.VisibleIndex = 6
         '
         'GridColumnIdSalesDelOrder
         '
@@ -216,7 +216,7 @@ Partial Class FormWHDelEmpty
         Me.GridColumnLastUpdate.FieldName = "last_update"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
         Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 5
+        Me.GridColumnLastUpdate.VisibleIndex = 4
         '
         'GridColumnUpdBy
         '
@@ -224,7 +224,7 @@ Partial Class FormWHDelEmpty
         Me.GridColumnUpdBy.FieldName = "last_user"
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 6
+        Me.GridColumnUpdBy.VisibleIndex = 5
         '
         'GridColumnTotal
         '
@@ -236,7 +236,7 @@ Partial Class FormWHDelEmpty
         Me.GridColumnTotal.OptionsColumn.AllowEdit = False
         Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GridColumnTotal.Visible = True
-        Me.GridColumnTotal.VisibleIndex = 3
+        Me.GridColumnTotal.VisibleIndex = 2
         '
         'GridView3
         '
@@ -252,7 +252,7 @@ Partial Class FormWHDelEmpty
         Me.Controls.Add(Me.GCFilter)
         Me.Name = "FormWHDelEmpty"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Delivery"
+        Me.Text = "Non Stock Inventory - Out"
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GCFilter.ResumeLayout(False)
         Me.GCFilter.PerformLayout()
