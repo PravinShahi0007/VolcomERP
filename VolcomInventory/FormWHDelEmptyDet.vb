@@ -269,7 +269,7 @@
         Report.LabelAddress.Text = MEAdrressCompTo.Text
         Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
         Report.LabelNote.Text = MENote.Text
-
+        Report.LRecDate.Text = DETrans.Text
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

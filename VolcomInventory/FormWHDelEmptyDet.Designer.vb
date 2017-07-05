@@ -269,6 +269,8 @@ Partial Class FormWHDelEmptyDet
         Me.DETrans.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.DETrans.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DETrans.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETrans.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DETrans.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DETrans.Size = New System.Drawing.Size(137, 20)
         Me.DETrans.TabIndex = 0
         '
