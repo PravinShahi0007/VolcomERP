@@ -3956,6 +3956,12 @@
     <Compile Include="FormWHDelEmpty.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormWHDelEmptyStock.Designer.vb">
+      <DependentUpon>FormWHDelEmptyStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWHDelEmptyStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormWHImportDO.Designer.vb">
       <DependentUpon>FormWHImportDO.vb</DependentUpon>
     </Compile>
@@ -7086,6 +7092,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHCargoRateDet.resx">
       <DependentUpon>FormWHCargoRateDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWHDelEmptyStock.resx">
+      <DependentUpon>FormWHDelEmptyStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormWHImportDO.resx">
       <DependentUpon>FormWHImportDO.vb</DependentUpon>
