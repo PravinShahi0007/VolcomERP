@@ -6589,6 +6589,7 @@ Public Class FormMain
             print(FormWHDelEmpty.GCDel, "Non Stock Inventory - Out")
         ElseIf formName = "FormWHDelEmptyStock" Then
             'command print here
+            print(FormWHDelEmptyStock.GCData, "NON STOCK INVENTORY - " + FormWHDelEmptyStock.store)
         Else
             RPSubMenu.Visible = False
         End If
