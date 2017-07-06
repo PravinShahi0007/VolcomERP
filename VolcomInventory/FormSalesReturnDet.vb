@@ -23,6 +23,7 @@ Public Class FormSalesReturnDet
     'Dim is_scan As Boolean = False
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls_so As String = get_setup_field("bof_xls_ret")
+    Public bof_xls_nsi As String = get_setup_field("bof_xls_nsi")
 
     'var check qty
     Public cond_check As Boolean = True
@@ -865,6 +866,7 @@ Public Class FormSalesReturnDet
                     action = "upd"
                     actionLoad()
                     exportToBOF(False)
+                    exportToBOFPro(False)
                     infoCustom("Return #" + sales_return_number + " was created successfully ")
                 ElseIf action = "upd" Then
                     'update main table
@@ -968,13 +970,13 @@ Public Class FormSalesReturnDet
                     '    End Try
                     'Next
 
-                    exportToBOF(False)
                     FormSalesReturn.viewSalesReturn()
                     FormSalesReturn.viewSalesReturnOrder()
                     FormSalesReturn.GVSalesReturn.FocusedRowHandle = find_row(FormSalesReturn.GVSalesReturn, "id_sales_return", id_sales_return)
                     action = "upd"
                     actionLoad()
                     exportToBOF(False)
+                    exportToBOFProb(False)
                     infoCustom("Return #" + sales_return_number + " was edited successfully ")
                 End If
                 Cursor = Cursors.Default
@@ -1701,8 +1703,110 @@ Public Class FormSalesReturnDet
         End Try
     End Sub
 
+    Sub exportToBOFProb(ByVal show_msg As Boolean)
+        If bof_column = "1" Then
+            Cursor = Cursors.WaitCursor
+
+            'export excel
+            Dim path_root As String = ""
+            Try
+                ' Open the file using a stream reader.
+                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                    ' Read the stream to a string and write the string to the console.
+                    path_root = sr.ReadToEnd()
+                End Using
+            Catch ex As Exception
+            End Try
+
+            Dim fileName As String = bof_xls_nsi + ".xls"
+            Dim exp As String = IO.Path.Combine(path_root, fileName)
+            ' Try
+            ExportToExcelProb(exp, show_msg)
+            'Catch ex As Exception
+            'stopCustom("Please close your excel file first then try again later")
+            'End Try
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Public Sub ExportToExcelProb(ByVal filepath As String, show_msg As Boolean)
+        Dim strFileName As String = filepath
+        If System.IO.File.Exists(strFileName) Then
+            System.IO.File.Delete(strFileName)
+        End If
+        Dim _excel As New Excel.Application
+        Dim wBook As Excel.Workbook
+        Dim wSheet As Excel.Worksheet
+
+        wBook = _excel.Workbooks.Add()
+        wSheet = wBook.ActiveSheet()
+
+
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = -1
+
+        ' export the Columns 
+        Dim query As String = "SELECT p.id_product,p.product_full_code AS `code` , d.design_display_name AS `name`, cd.code_detail_name AS `size`,
+        COUNT(rp.id_product) AS `qty`, r.sales_return_number AS `number`, s.comp_number AS `from`,
+        o.non_inv_account AS `to`
+        FROM tb_sales_return_problem rp
+        INNER JOIN tb_sales_return r ON r.id_sales_return = rp.id_sales_return
+        INNER JOIN tb_m_comp_contact sc ON sc.id_comp_contact = r.id_store_contact_from
+        INNER JOIN tb_m_comp s ON s.id_comp = sc.id_comp
+        INNER JOIN tb_m_product p ON p.id_product = RP.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        JOIN tb_opt_sales o
+        WHERE rp.id_sales_return='" + id_sales_return + "'
+        GROUP BY rp.id_product "
+        Dim dtTemp As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        'export the rows 
+        For i As Integer = 0 To dtTemp.Rows.Count - 1
+            rowIndex = rowIndex + 1
+            colIndex = 0
+
+            For j As Integer = 0 To dtTemp.Columns.Count - 1
+                colIndex = colIndex + 1
+                If j = 0 Then 'code
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.Rows(i)("code").ToString
+                ElseIf j = 1 Then 'qty
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.Rows(i)("qty")
+                ElseIf j = 2 Then  'number
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.Rows(i)("number").ToString
+                ElseIf j = 3 Then  'from
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.Rows(i)("from").ToString
+                ElseIf j = 4 Then  'to
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.Rows(i)("to").ToString
+                Else
+                    wSheet.Cells(rowIndex + 1, colIndex) = ""
+                End If
+            Next
+        Next
+
+        wSheet.Columns.AutoFit()
+        wBook.SaveAs(strFileName, Excel.XlFileFormat.xlExcel5)
+
+        'release the objects
+        ReleaseObject(wSheet)
+        wBook.Close(False)
+        ReleaseObject(wBook)
+        _excel.Quit()
+        ReleaseObject(_excel)
+        ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+        GC.Collect()
+
+        If show_msg Then
+            infoCustom("File exported successfully")
+        End If
+    End Sub
+
+
+
     Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
-        exportToBOF(True)
+        exportToBOF(False)
+        exportToBOFProb(True)
     End Sub
 
     Private Sub GVItemList_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVItemList.RowCellStyle
