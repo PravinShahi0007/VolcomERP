@@ -197,6 +197,34 @@
         GCFGTrf.DataSource = data
     End Sub
 
+    Sub viewNonStock()
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromNonStock.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilNonStock.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Dim cond_status As String = ""
+        If SLEStatusNonStock.EditValue.ToString = "0" Then
+            cond_status = "AND (del.id_report_status=1 OR del.id_report_status=3 OR del.id_report_status=5 OR del.id_report_status=6) "
+        Else
+            cond_status = "AND del.id_report_status=" + SLEStatusNonStock.EditValue.ToString + " "
+        End If
+
+        'prepare query
+        Dim query_c As ClassDelEmpty = New ClassDelEmpty()
+        Dim query As String = query_c.queryMain("AND (del.wh_del_empty_date>='" + date_from_selected + "' AND wh_del_empty_date<='" + date_until_selected + "') " + cond_status, "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCNonStock.DataSource = data
+    End Sub
+
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         Cursor = Cursors.WaitCursor
         GVSalesOrder.ActiveFilterString = ""
@@ -231,6 +259,8 @@
         DEUntilReturnQC.EditValue = data_dt.Rows(0)("dt")
         DEFromTrf.EditValue = data_dt.Rows(0)("dt")
         DEUntilTrf.EditValue = data_dt.Rows(0)("dt")
+        DEFromNonStock.EditValue = data_dt.Rows(0)("dt")
+        DEUntilNonStock.EditValue = data_dt.Rows(0)("dt")
     End Sub
 
     Sub viewPackingStatus()
@@ -248,6 +278,7 @@
         viewSearchLookupQuery(SLEStatusReturn, query, "id_report_status", "report_status", "id_report_status")
         viewSearchLookupQuery(SLEStatusReturnQC, query, "id_report_status", "report_status", "id_report_status")
         viewSearchLookupQuery(SLEStatusTrf, query, "id_report_status", "report_status", "id_report_status")
+        viewSearchLookupQuery(SLEStatusNonStock, query, "id_report_status", "report_status", "id_report_status")
     End Sub
 
     Private Sub SMView_Click(sender As Object, e As EventArgs) Handles SMView.Click
@@ -468,6 +499,15 @@
                     Else
                         GVSalesOrder.Columns("is_select").OptionsColumn.AllowEdit = False
                     End If
+                End If
+            End If
+        ElseIf type = "7" Then ' non stock inv
+            If GVNonStock.FocusedRowHandle >= 0 Then
+                Dim alloc_cek As String = GVNonStock.GetFocusedRowCellValue("id_report_status").ToString
+                If alloc_cek = "5" Or alloc_cek = "6" Then
+                    GVNonStock.Columns("is_select").OptionsColumn.AllowEdit = False
+                Else
+                    GVNonStock.Columns("is_select").OptionsColumn.AllowEdit = True
                 End If
             End If
         End If
@@ -719,5 +759,42 @@
             FormUniqueDel.ShowDialog()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewNonStock_Click(sender As Object, e As EventArgs) Handles BtnViewNonStock.Click
+        Cursor = Cursors.WaitCursor
+        GVNonStock.ActiveFilterString = ""
+        viewNonStock()
+        noEdit(7)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVNonStock_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVNonStock.FocusedRowChanged
+        noEdit(7)
+    End Sub
+
+    Private Sub BtnUpdateStatusNonStock_Click(sender As Object, e As EventArgs) Handles BtnUpdateStatusNonStock.Click
+        Cursor = Cursors.WaitCursor
+        GVNonStock.ActiveFilterString = ""
+        GVNonStock.ActiveFilterString = "[is_select]='Yes' "
+        If GVNonStock.RowCount = 0 Then
+            stopCustom("Please select document first.")
+            GVNonStock.ActiveFilterString = ""
+        Else
+            FormChangeStatus.id_pop_up = "6"
+            FormChangeStatus.ShowDialog()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVNonStock_DoubleClick(sender As Object, e As EventArgs) Handles GVNonStock.DoubleClick
+        If GVNonStock.FocusedRowHandle >= 0 And GVNonStock.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            FormWHDelEmptyDet.action = "upd"
+            FormWHDelEmptyDet.id_wh_del_empty = GVNonStock.GetFocusedRowCellValue("id_wh_del_empty").ToString
+            FormWHDelEmptyDet.is_view = "1"
+            FormWHDelEmptyDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

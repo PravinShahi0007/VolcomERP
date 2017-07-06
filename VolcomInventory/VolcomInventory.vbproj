@@ -182,6 +182,7 @@
     <Compile Include="barcodeaa.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
     <Compile Include="ClassFGBorrowQCReq.vb" />
@@ -3956,6 +3957,12 @@
     <Compile Include="FormWHDelEmpty.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormWHDelEmptyDet.Designer.vb">
+      <DependentUpon>FormWHDelEmptyDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormWHDelEmptyDet.vb">
+     <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormWHDelEmptyStock.Designer.vb">
       <DependentUpon>FormWHDelEmptyStock.vb</DependentUpon>
     </Compile>
@@ -4722,6 +4729,12 @@
       <DependentUpon>ReportSampleStockOpname.vb</DependentUpon>
     </Compile>
     <Compile Include="ReportSampleStockOpname.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportWHDelEmpty.Designer.vb">
+      <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportWHDelEmpty.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Settings.vb" />
@@ -7093,6 +7106,12 @@
     <EmbeddedResource Include="FormWHCargoRateDet.resx">
       <DependentUpon>FormWHCargoRateDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormWHDelEmpty.resx">
+      <DependentUpon>FormWHDelEmpty.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormWHDelEmptyDet.resx">
+      <DependentUpon>FormWHDelEmptyDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormWHDelEmptyStock.resx">
       <DependentUpon>FormWHDelEmptyStock.vb</DependentUpon>
     </EmbeddedResource>
@@ -7567,6 +7586,9 @@
     <EmbeddedResource Include="ReportSampleStockOpname.resx">
       <DependentUpon>ReportSampleStockOpname.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportWHDelEmpty.resx">
+      <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.vb</DependentUpon>

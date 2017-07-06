@@ -1489,6 +1489,10 @@ Public Class FormMain
             FormProductionAssemblyNew.ShowDialog()
         ElseIf formName = "FormMasterCargoRate" Then
             FormMasterCargoRateAdd.ShowDialog()
+        ElseIf formName = "FormWHDelEmpty" Then
+            FormPopUpContact.id_cat = "6"
+            FormPopUpContact.id_pop_up = "77"
+            FormPopUpContact.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2364,6 +2368,9 @@ Public Class FormMain
             ElseIf formName = "FormMasterCargoRate" Then
                 FormMasterCargoRateAdd.id_cargo_rate = FormMasterCargoRate.GVCargoRate.GetFocusedRowCellValue("id_cargo_rate").ToString
                 FormMasterCargoRateAdd.ShowDialog()
+            ElseIf formName = "FormWHDelEmpty" Then
+                FormWHDelEmptyDet.id_wh_del_empty = FormWHDelEmpty.GVDel.GetFocusedRowCellValue("id_wh_del_empty").ToString
+                FormWHDelEmptyDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5360,6 +5367,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormEmpLeave" Then
             '
+        ElseIf formName = "FormWHDelEmpty" Then
+
         ElseIf formName = "FormEmpDP" Then
             If check_edit_report_status(FormEmpDP.GVLeave.GetFocusedRowCellValue("id_report_status").ToString, "97", FormEmpDP.GVLeave.GetFocusedRowCellValue("id_dp")) Then
                 Dim id As String = FormEmpDP.GVLeave.GetFocusedRowCellValue("id_dp").ToString
@@ -6576,8 +6585,11 @@ Public Class FormMain
             End If
         ElseIf formName = "FormSampleSummary" Then
             print(FormSampleSummary.GCListPurchase, "Sample Summary")
+        ElseIf formName = "FormWHDelEmpty" Then
+            print(FormWHDelEmpty.GCDel, "Non Stock Inventory - Out")
         ElseIf formName = "FormWHDelEmptyStock" Then
             'command print here
+            print(FormWHDelEmptyStock.GCData, "NON STOCK INVENTORY - " + FormWHDelEmptyStock.store)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7129,6 +7141,9 @@ Public Class FormMain
         ElseIf formName = "FormSampleSummary" Then
             FormSampleSummary.Close()
             FormSampleSummary.Dispose()
+        ElseIf formName = "FormWHDelEmpty" Then
+            FormWHDelEmpty.Close()
+            FormWHDelEmpty.Dispose()
         ElseIf formName = "FormWHDelEmptyStock" Then
             FormWHDelEmptyStock.Close()
             FormWHDelEmptyStock.Dispose()
@@ -7784,6 +7799,8 @@ Public Class FormMain
             FormProductionFinalClear.viewFinalClear()
         ElseIf formName = "FormProductionAssembly" Then
             FormProductionAssembly.viewData()
+        ElseIf formName = "FormWHDelEmpty" Then
+            FormWHDelEmpty.viewDel()
         End If
     End Sub
     'Switch

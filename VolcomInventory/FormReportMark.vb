@@ -355,6 +355,9 @@
         ElseIf report_mark_type = "107" Then
             'production assembly
             query = String.Format("SELECT id_report_status, prod_ass_number as report_number FROM tb_prod_ass WHERE id_prod_ass = '{0}'", id_report)
+        ElseIf report_mark_type = "111" Then
+            'out non inventory
+            query = String.Format("SELECT id_report_status, wh_del_empty_number as report_number FROM tb_wh_del_empty WHERE id_wh_del_empty = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3483,6 +3486,20 @@
                 FormProductionAssemblySingle.actionLoad()
                 FormProductionAssembly.viewData()
                 FormProductionAssembly.GVData.FocusedRowHandle = find_row(FormProductionAssembly.GVData, "id_prod_ass", id_report)
+            End If
+            Cursor = Cursors.Default
+        ElseIf report_mark_type = "111" Then
+            Cursor = Cursors.WaitCursor
+            'out non stock
+
+            Dim ch_stt As New ClassDelEmpty()
+            ch_stt.changeStatus(id_report, id_status_reportx)
+
+            If form_origin = "FormProductionAssemblySingle" Then
+                FormWHDelEmptyDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormWHDelEmptyDet.actionLoad()
+                FormWHDelEmpty.viewDel()
+                FormWHDelEmpty.GVDel.FocusedRowHandle = find_row(FormWHDelEmpty.GVDel, "id_wh_del_empty", id_report)
             End If
             Cursor = Cursors.Default
         End If
