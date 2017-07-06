@@ -227,38 +227,37 @@
                 FormSalesOrderSvcLevel.viewSalesOrder()
                 Close()
             ElseIf id_pop_up = "6" Then
-                'Dim check_stt As Boolean = False
-                'For c As Integer = 0 To ((FormSalesOrderSvcLevel.GVNonStock.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVNonStock))
-                '    Dim rs As String = FormSalesOrderSvcLevel.GVNonStock.GetRowCellValue(c, "id_report_status").ToString
-                '    If rs = "5" Or rs = "6" Then
-                '        check_stt = True
-                '        Exit For
-                '    End If
-                'Next
+                Dim check_stt As Boolean = False
+                For c As Integer = 0 To ((FormSalesOrderSvcLevel.GVNonStock.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVNonStock))
+                    Dim rs As String = FormSalesOrderSvcLevel.GVNonStock.GetRowCellValue(c, "id_report_status").ToString
+                    If rs = "5" Or rs = "6" Then
+                        check_stt = True
+                        Exit For
+                    End If
+                Next
 
-                'If check_stt Then
-                '    stopCustom("Can't update status because data is already locked.")
-                '    FormSalesOrderSvcLevel.GVNonStock.ActiveFilterString = ""
-                '    Close()
-                'Else
-                '    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to set " + SLEStatusRec.Text.ToLower.ToString + " status for these data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                '    If confirm = Windows.Forms.DialogResult.Yes Then
-                '        Cursor = Cursors.WaitCursor
-                '        For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVNonStock.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVNonStock))
-                '            Dim stt As ClassDelEmpty = New ClassDelEmpty()
-                '            stt.changeStatus(FormSalesOrderSvcLevel.GVNonStock.GetRowCellValue(i, "id_wh_del_empty").ToString, SLEStatusRec.EditValue.ToString)
-                '            removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, id_status_reportx)
-                '            insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVFGTrf.GetRowCellValue(i, "id_fg_trf").ToString, id_status_reportx, note)
-                '            PBC.PerformStep()
-                '            PBC.Update()
-                '        Next
-                '        Cursor = Cursors.Default
-                '    End If
-                'End If
-                'FormSalesOrderSvcLevel.GVFGTrf.ActiveFilterString = ""
-                'FormSalesOrderSvcLevel.viewTrf()
-                'FormSalesOrderSvcLevel.viewSalesOrder()
-                'Close()
+                If check_stt Then
+                    stopCustom("Can't update status because data is already locked.")
+                    FormSalesOrderSvcLevel.GVNonStock.ActiveFilterString = ""
+                    Close()
+                Else
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to set " + SLEStatusRec.Text.ToLower.ToString + " status for these data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Cursor = Cursors.WaitCursor
+                        For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVNonStock.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVNonStock))
+                            Dim stt As ClassDelEmpty = New ClassDelEmpty()
+                            stt.changeStatus(FormSalesOrderSvcLevel.GVNonStock.GetRowCellValue(i, "id_wh_del_empty").ToString, SLEStatusRec.EditValue.ToString)
+                            removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVNonStock.GetRowCellValue(i, "id_wh_del_empty").ToString, id_status_reportx)
+                            insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVNonStock.GetRowCellValue(i, "id_wh_del_empty").ToString, id_status_reportx, note)
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        Cursor = Cursors.Default
+                    End If
+                End If
+                FormSalesOrderSvcLevel.GVNonStock.ActiveFilterString = ""
+                FormSalesOrderSvcLevel.viewNonStock()
+                Close()
             End If
         Else
             stopCustom("Unable change to this status, report doesn't meet requirement to this status.")

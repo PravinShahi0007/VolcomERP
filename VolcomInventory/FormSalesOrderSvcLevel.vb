@@ -781,9 +781,20 @@
             stopCustom("Please select document first.")
             GVNonStock.ActiveFilterString = ""
         Else
-            FormChangeStatus.id_pop_up = "5"
+            FormChangeStatus.id_pop_up = "6"
             FormChangeStatus.ShowDialog()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVNonStock_DoubleClick(sender As Object, e As EventArgs) Handles GVNonStock.DoubleClick
+        If GVNonStock.FocusedRowHandle >= 0 And GVNonStock.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            FormWHDelEmptyDet.action = "upd"
+            FormWHDelEmptyDet.id_wh_del_empty = GVNonStock.GetFocusedRowCellValue("id_wh_del_empty").ToString
+            FormWHDelEmptyDet.is_view = "1"
+            FormWHDelEmptyDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

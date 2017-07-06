@@ -76,8 +76,8 @@ Partial Class FormWHDelEmptyDet
         Me.XTPSUmmary = New DevExpress.XtraTab.XtraTabPage()
         Me.GCProbSum = New DevExpress.XtraGrid.GridControl()
         Me.GVProbSum = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNoProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCodeProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -86,8 +86,8 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNameProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSizeProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -102,6 +102,10 @@ Partial Class FormWHDelEmptyDet
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnRemarkProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFromProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnToProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumberProbSum = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -710,7 +714,7 @@ Partial Class FormWHDelEmptyDet
         '
         'GVProbSum
         '
-        Me.GVProbSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn16, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumnQtyProbSum, Me.GridColumnPrc, Me.GridColumnAmount})
+        Me.GVProbSum.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNoProbSum, Me.GridColumnCodeProbSum, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumnNameProbSum, Me.GridColumnSizeProbSum, Me.GridColumnQtyProbSum, Me.GridColumnPrc, Me.GridColumnAmount, Me.GridColumnRemarkProbSum, Me.GridColumnFromProbSum, Me.GridColumnToProbSum, Me.GridColumnNumberProbSum})
         Me.GVProbSum.GridControl = Me.GCProbSum
         Me.GVProbSum.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyProbSum, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n2}")})
         Me.GVProbSum.Name = "GVProbSum"
@@ -724,27 +728,27 @@ Partial Class FormWHDelEmptyDet
         Me.GVProbSum.OptionsView.ShowFooter = True
         Me.GVProbSum.OptionsView.ShowGroupPanel = False
         '
-        'GridColumn15
+        'GridColumnNoProbSum
         '
-        Me.GridColumn15.Caption = "No"
-        Me.GridColumn15.FieldName = "no"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.AllowEdit = False
-        Me.GridColumn15.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn15.OptionsColumn.AllowMove = False
-        Me.GridColumn15.OptionsColumn.ShowInCustomizationForm = False
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 0
-        Me.GridColumn15.Width = 47
+        Me.GridColumnNoProbSum.Caption = "No"
+        Me.GridColumnNoProbSum.FieldName = "no"
+        Me.GridColumnNoProbSum.Name = "GridColumnNoProbSum"
+        Me.GridColumnNoProbSum.OptionsColumn.AllowEdit = False
+        Me.GridColumnNoProbSum.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridColumnNoProbSum.OptionsColumn.AllowMove = False
+        Me.GridColumnNoProbSum.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumnNoProbSum.Visible = True
+        Me.GridColumnNoProbSum.VisibleIndex = 0
+        Me.GridColumnNoProbSum.Width = 47
         '
-        'GridColumn16
+        'GridColumnCodeProbSum
         '
-        Me.GridColumn16.Caption = "Code"
-        Me.GridColumn16.FieldName = "code"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 1
-        Me.GridColumn16.Width = 268
+        Me.GridColumnCodeProbSum.Caption = "Code"
+        Me.GridColumnCodeProbSum.FieldName = "code"
+        Me.GridColumnCodeProbSum.Name = "GridColumnCodeProbSum"
+        Me.GridColumnCodeProbSum.Visible = True
+        Me.GridColumnCodeProbSum.VisibleIndex = 1
+        Me.GridColumnCodeProbSum.Width = 268
         '
         'GridColumn17
         '
@@ -806,25 +810,25 @@ Partial Class FormWHDelEmptyDet
         Me.GridColumn24.FieldName = "design_price"
         Me.GridColumn24.Name = "GridColumn24"
         '
-        'GridColumn25
+        'GridColumnNameProbSum
         '
-        Me.GridColumn25.Caption = "Description"
-        Me.GridColumn25.FieldName = "name"
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.OptionsColumn.AllowEdit = False
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 2
-        Me.GridColumn25.Width = 283
+        Me.GridColumnNameProbSum.Caption = "Description"
+        Me.GridColumnNameProbSum.FieldName = "name"
+        Me.GridColumnNameProbSum.Name = "GridColumnNameProbSum"
+        Me.GridColumnNameProbSum.OptionsColumn.AllowEdit = False
+        Me.GridColumnNameProbSum.Visible = True
+        Me.GridColumnNameProbSum.VisibleIndex = 2
+        Me.GridColumnNameProbSum.Width = 283
         '
-        'GridColumn26
+        'GridColumnSizeProbSum
         '
-        Me.GridColumn26.Caption = "Size"
-        Me.GridColumn26.FieldName = "size"
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.OptionsColumn.AllowEdit = False
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 3
-        Me.GridColumn26.Width = 43
+        Me.GridColumnSizeProbSum.Caption = "Size"
+        Me.GridColumnSizeProbSum.FieldName = "size"
+        Me.GridColumnSizeProbSum.Name = "GridColumnSizeProbSum"
+        Me.GridColumnSizeProbSum.OptionsColumn.AllowEdit = False
+        Me.GridColumnSizeProbSum.Visible = True
+        Me.GridColumnSizeProbSum.VisibleIndex = 3
+        Me.GridColumnSizeProbSum.Width = 43
         '
         'GridColumnQtyProbSum
         '
@@ -974,6 +978,30 @@ Partial Class FormWHDelEmptyDet
         Me.BtnSave.TabIndex = 18
         Me.BtnSave.Text = "Save"
         '
+        'GridColumnRemarkProbSum
+        '
+        Me.GridColumnRemarkProbSum.Caption = "Remark"
+        Me.GridColumnRemarkProbSum.FieldName = "remark"
+        Me.GridColumnRemarkProbSum.Name = "GridColumnRemarkProbSum"
+        '
+        'GridColumnFromProbSum
+        '
+        Me.GridColumnFromProbSum.Caption = "From"
+        Me.GridColumnFromProbSum.FieldName = "from"
+        Me.GridColumnFromProbSum.Name = "GridColumnFromProbSum"
+        '
+        'GridColumnToProbSum
+        '
+        Me.GridColumnToProbSum.Caption = "To"
+        Me.GridColumnToProbSum.FieldName = "to"
+        Me.GridColumnToProbSum.Name = "GridColumnToProbSum"
+        '
+        'GridColumnNumberProbSum
+        '
+        Me.GridColumnNumberProbSum.Caption = "Number"
+        Me.GridColumnNumberProbSum.FieldName = "number"
+        Me.GridColumnNumberProbSum.Name = "GridColumnNumberProbSum"
+        '
         'FormWHDelEmptyDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1107,8 +1135,8 @@ Partial Class FormWHDelEmptyDet
     Friend WithEvents XTPSUmmary As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCProbSum As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVProbSum As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn16 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNoProbSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCodeProbSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1117,12 +1145,16 @@ Partial Class FormWHDelEmptyDet
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNameProbSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSizeProbSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQtyProbSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemSpinEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents DETrans As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumnPrc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRemarkProbSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnFromProbSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnToProbSum As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNumberProbSum As DevExpress.XtraGrid.Columns.GridColumn
 End Class

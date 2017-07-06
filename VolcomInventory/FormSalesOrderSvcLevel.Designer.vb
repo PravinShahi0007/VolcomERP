@@ -2759,7 +2759,6 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GCNonStock
         '
-        Me.GCNonStock.ContextMenuStrip = Me.ViewMenu
         Me.GCNonStock.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCNonStock.Location = New System.Drawing.Point(0, 39)
         Me.GCNonStock.MainView = Me.GVNonStock

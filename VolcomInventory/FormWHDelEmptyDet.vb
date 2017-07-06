@@ -1,4 +1,6 @@
-﻿Public Class FormWHDelEmptyDet
+﻿Imports Microsoft.Office.Interop
+
+Public Class FormWHDelEmptyDet
     Public action As String
     Public id_wh_del_empty As String = "-1"
     Public id_report_status As String
@@ -6,7 +8,7 @@
     Public id_pre As String = "-1"
     Public id_wh_drawer As String = "-1"
     Public bof_column As String = get_setup_field("bof_column")
-    Public bof_xls_so As String = get_setup_field("bof_xls_do_emp")
+    Public bof_xls_so As String = get_setup_field("bof_xls_nso")
     Public is_view As String = "-1"
     Public is_fix As String = "2"
     Dim is_scan_prob As String = "-1"
@@ -239,6 +241,7 @@
             submit_who_prepared("111", id_wh_del_empty, id_user)
 
             actionLoad()
+            exportToBOF(False)
             FormWHDelEmpty.viewDel()
             FormWHDelEmpty.GVDel.FocusedRowHandle = find_row(FormWHDelEmpty.GVDel, "id_wh_del_empty", id_wh_del_empty)
             infoCustom("Document " + TxtSalesDelOrderNumber.Text + " was created successfully")
@@ -296,5 +299,136 @@
 
     Private Sub BtnPrint_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnPrint.ItemClick
         printing()
+    End Sub
+
+    Private Sub BtnXlsBOF_Click(sender As Object, e As EventArgs) Handles BtnXlsBOF.Click
+        exportToBOF(True)
+    End Sub
+
+    Sub exportToBOF(ByVal show_msg As Boolean)
+        If bof_column = "1" Then
+            Cursor = Cursors.WaitCursor
+
+            'hide column
+            For c As Integer = 0 To GVProbSum.Columns.Count - 1
+                GVProbSum.Columns(c).Visible = False
+            Next
+            GridColumnCodeProbSum.VisibleIndex = 0
+            GridColumnQtyProbSum.VisibleIndex = 1
+            GridColumnNumberProbSum.VisibleIndex = 2
+            GridColumnFromProbSum.VisibleIndex = 3
+            GridColumnToProbSum.VisibleIndex = 4
+            GridColumnRemarkProbSum.VisibleIndex = 5
+            GVProbSum.OptionsPrint.PrintFooter = False
+            GVProbSum.OptionsPrint.PrintHeader = False
+
+
+            'export excel
+            Dim path_root As String = ""
+            Try
+                ' Open the file using a stream reader.
+                Using sr As New IO.StreamReader(Application.StartupPath & "\bof_path.txt")
+                    ' Read the stream to a string and write the string to the console.
+                    path_root = sr.ReadToEnd()
+                End Using
+            Catch ex As Exception
+            End Try
+
+            Dim fileName As String = bof_xls_so + ".xls"
+            Dim exp As String = IO.Path.Combine(path_root, fileName)
+            Try
+                ExportToExcel(GVProbSum, exp, show_msg)
+            Catch ex As Exception
+                stopCustom("Please close your excel file first then try again later")
+            End Try
+
+            'show column
+            GridColumnNoProbSum.VisibleIndex = 0
+            GridColumnCodeProbSum.VisibleIndex = 1
+            GridColumnNameProbSum.VisibleIndex = 2
+            GridColumnSizeProbSum.VisibleIndex = 3
+            GridColumnQtyProbSum.VisibleIndex = 4
+            GridColumnPrc.VisibleIndex = 5
+            GridColumnAmount.VisibleIndex = 6
+            GridColumnNumberProbSum.Visible = False
+            GridColumnFromProbSum.Visible = False
+            GridColumnToProbSum.Visible = False
+            GVProbSum.OptionsPrint.PrintFooter = True
+            GVProbSum.OptionsPrint.PrintHeader = True
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Public Sub ExportToExcel(ByVal dtTemp As DevExpress.XtraGrid.Views.Grid.GridView, ByVal filepath As String, show_msg As Boolean)
+        Dim strFileName As String = filepath
+        If System.IO.File.Exists(strFileName) Then
+            System.IO.File.Delete(strFileName)
+        End If
+        Dim _excel As New Excel.Application
+        Dim wBook As Excel.Workbook
+        Dim wSheet As Excel.Worksheet
+
+        wBook = _excel.Workbooks.Add()
+        wSheet = wBook.ActiveSheet()
+
+
+        Dim colIndex As Integer = 0
+        Dim rowIndex As Integer = -1
+
+        ' export the Columns 
+        'If CheckBox1.Checked Then
+        '    For Each dc In dt.Columns
+        '        colIndex = colIndex + 1
+        '        wSheet.Cells(1, colIndex) = dc.ColumnName
+        '    Next
+        'End If
+
+        'export the rows 
+        For i As Integer = 0 To dtTemp.RowCount - 1
+            rowIndex = rowIndex + 1
+            colIndex = 0
+            For j As Integer = 0 To dtTemp.VisibleColumns.Count - 1
+                colIndex = colIndex + 1
+                If j = 0 Then 'code
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
+                ElseIf j = 1 Then 'qty
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "qty")
+                ElseIf j = 2 Then 'number
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "number").ToString
+                ElseIf j = 3 Then 'from
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "from").ToString
+                ElseIf j = 4 Then 'to
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "to").ToString
+                Else
+                    wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "remark").ToString
+                End If
+            Next
+        Next
+
+        wSheet.Columns.AutoFit()
+        wBook.SaveAs(strFileName, Excel.XlFileFormat.xlExcel5)
+
+        'release the objects
+        ReleaseObject(wSheet)
+        wBook.Close(False)
+        ReleaseObject(wBook)
+        _excel.Quit()
+        ReleaseObject(_excel)
+        ' some time Office application does not quit after automation: so i am calling GC.Collect method.
+        GC.Collect()
+
+        If show_msg Then
+            infoCustom("File exported successfully")
+        End If
+    End Sub
+
+    Private Sub ReleaseObject(ByVal o As Object)
+        Try
+            While (System.Runtime.InteropServices.Marshal.ReleaseComObject(o) > 0)
+            End While
+        Catch
+        Finally
+            o = Nothing
+        End Try
     End Sub
 End Class
