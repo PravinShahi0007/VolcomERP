@@ -866,7 +866,7 @@ Public Class FormSalesReturnDet
                     action = "upd"
                     actionLoad()
                     exportToBOF(False)
-                    exportToBOFPro(False)
+                    exportToBOFProb(False)
                     infoCustom("Return #" + sales_return_number + " was created successfully ")
                 ElseIf action = "upd" Then
                     'update main table
