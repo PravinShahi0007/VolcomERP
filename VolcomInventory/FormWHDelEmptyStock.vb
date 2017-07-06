@@ -35,9 +35,16 @@
                 TxtStore.Text = data.Rows(0)("comp_name").ToString
                 store_code = data.Rows(0)("comp_number").ToString
                 store = data.Rows(0)("comp_name").ToString
+                GCData.DataSource = Nothing
                 BtnView.Focus()
             End If
             Cursor = Cursors.Default
+        Else
+            id_store = "-1"
+            store_code = ""
+            store = ""
+            TxtStore.Text = ""
+            GCData.DataSource = Nothing
         End If
     End Sub
 
