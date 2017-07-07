@@ -1251,6 +1251,12 @@
     <Compile Include="FormSalesOrderCat.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesOrderDetEdit.Designer.vb">
+      <DependentUpon>FormSalesOrderDetEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesOrderDetEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesOrderGen.Designer.vb">
       <DependentUpon>FormSalesOrderGen.vb</DependentUpon>
     </Compile>
@@ -3961,7 +3967,7 @@
       <DependentUpon>FormWHDelEmptyDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormWHDelEmptyDet.vb">
-     <SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormWHDelEmptyStock.Designer.vb">
       <DependentUpon>FormWHDelEmptyStock.vb</DependentUpon>
@@ -5342,6 +5348,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderCat.resx">
       <DependentUpon>FormSalesOrderCat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesOrderDetEdit.resx">
+      <DependentUpon>FormSalesOrderDetEdit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderGen.resx">
       <DependentUpon>FormSalesOrderGen.vb</DependentUpon>
