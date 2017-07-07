@@ -22,23 +22,23 @@ Partial Class FormDeliveryCargo
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDeliveryCargo))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.GCDeliveryslip = New DevExpress.XtraGrid.GridControl()
-        Me.GVDeliverySlip = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BViewSum = New DevExpress.XtraEditors.SimpleButton()
         Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.GCDeliveryslip = New DevExpress.XtraGrid.GridControl()
+        Me.GVDeliverySlip = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.GCDeliveryslip, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVDeliverySlip, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCDeliveryslip, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVDeliverySlip, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -53,44 +53,6 @@ Partial Class FormDeliveryCargo
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(654, 45)
         Me.PanelControl1.TabIndex = 0
-        '
-        'GCDeliveryslip
-        '
-        Me.GCDeliveryslip.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCDeliveryslip.Location = New System.Drawing.Point(0, 45)
-        Me.GCDeliveryslip.MainView = Me.GVDeliverySlip
-        Me.GCDeliveryslip.Name = "GCDeliveryslip"
-        Me.GCDeliveryslip.Size = New System.Drawing.Size(654, 251)
-        Me.GCDeliveryslip.TabIndex = 1
-        Me.GCDeliveryslip.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDeliverySlip})
-        '
-        'GVDeliverySlip
-        '
-        Me.GVDeliverySlip.GridControl = Me.GCDeliveryslip
-        Me.GVDeliverySlip.Name = "GVDeliverySlip"
-        Me.GVDeliverySlip.OptionsView.ShowGroupPanel = False
-        '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "1417618546_Blue tag.png")
-        Me.LargeImageCollection.Images.SetKeyName(16, "attachment-icon.png")
         '
         'BViewSum
         '
@@ -142,6 +104,44 @@ Partial Class FormDeliveryCargo
         Me.Label1.TabIndex = 13
         Me.Label1.Text = "From : "
         '
+        'GCDeliveryslip
+        '
+        Me.GCDeliveryslip.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCDeliveryslip.Location = New System.Drawing.Point(0, 45)
+        Me.GCDeliveryslip.MainView = Me.GVDeliverySlip
+        Me.GCDeliveryslip.Name = "GCDeliveryslip"
+        Me.GCDeliveryslip.Size = New System.Drawing.Size(654, 251)
+        Me.GCDeliveryslip.TabIndex = 1
+        Me.GCDeliveryslip.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDeliverySlip})
+        '
+        'GVDeliverySlip
+        '
+        Me.GVDeliverySlip.GridControl = Me.GCDeliveryslip
+        Me.GVDeliverySlip.Name = "GVDeliverySlip"
+        Me.GVDeliverySlip.OptionsView.ShowGroupPanel = False
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "1417618546_Blue tag.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "attachment-icon.png")
+        '
         'FormDeliveryCargo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -158,13 +158,13 @@ Partial Class FormDeliveryCargo
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.GCDeliveryslip, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVDeliverySlip, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCDeliveryslip, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVDeliverySlip, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

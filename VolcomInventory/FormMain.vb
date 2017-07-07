@@ -1489,10 +1489,13 @@ Public Class FormMain
             FormProductionAssemblyNew.ShowDialog()
         ElseIf formName = "FormMasterCargoRate" Then
             FormMasterCargoRateAdd.ShowDialog()
-        ElseIf formName = "FormWHDelEmpty" Then
+	ElseIf formName = "FormWHDelEmpty" Then
             FormPopUpContact.id_cat = "6"
             FormPopUpContact.id_pop_up = "77"
             FormPopUpContact.ShowDialog()
+        ElseIf formName = "FormDeliveryCargo" Then
+            FormDeliveryCargoDet.id_awbill = "-1"
+            FormDeliveryCargoDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2371,6 +2374,9 @@ Public Class FormMain
             ElseIf formName = "FormWHDelEmpty" Then
                 FormWHDelEmptyDet.id_wh_del_empty = FormWHDelEmpty.GVDel.GetFocusedRowCellValue("id_wh_del_empty").ToString
                 FormWHDelEmptyDet.ShowDialog()
+            ElseIf formName = "FormDeliveryCargo" Then
+                FormDeliveryCargoDet.id_awbill = FormDeliveryCargo.GVDeliverySlip.GetFocusedRowCellValue("id_awbill").ToString
+                FormDeliveryCargoDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5040,7 +5046,7 @@ Public Class FormMain
             Else
                 stopCustom("This data already marked")
             End If
-        ElseIf formName = "FormMasterComputer"
+        ElseIf formName = "FormMasterComputer" Then
             confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Try
@@ -5377,6 +5383,19 @@ Public Class FormMain
                     Dim query_del As String = "DELETE FROM tb_emp_dp WHERE id_dp='" + id + "'"
                     execute_non_query(query_del, True, "", "", "", "")
                     FormEmpDP.load_dp()
+                End If
+            Else
+                stopCustom("This report already appoved.")
+            End If
+        ElseIf formName = "FormDeliveryCargo" Then
+            If check_edit_report_status(FormDeliveryCargo.GVDeliverySlip.GetFocusedRowCellValue("id_report_status").ToString, "112", FormDeliveryCargo.GVDeliverySlip.GetFocusedRowCellValue("id_awbill")) Then
+                Dim id As String = FormDeliveryCargo.GVDeliverySlip.GetFocusedRowCellValue("id_awbill").ToString
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = DialogResult.Yes Then
+                    Dim query_del As String = "DELETE FROM tb_awbill WHERE id_awbill='" + id + "'"
+                    execute_non_query(query_del, True, "", "", "", "")
+                    '
+                    FormDeliveryCargo.load_awb()
                 End If
             Else
                 stopCustom("This report already appoved.")
@@ -10522,6 +10541,19 @@ Public Class FormMain
             FormWHDelEmptyStock.Show()
             FormWHDelEmptyStock.WindowState = FormWindowState.Maximized
             FormWHDelEmptyStock.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAwbill_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAwbill.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormDeliveryCargo.MdiParent = Me
+            FormDeliveryCargo.Show()
+            FormDeliveryCargo.WindowState = FormWindowState.Maximized
+            FormDeliveryCargo.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
