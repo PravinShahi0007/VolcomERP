@@ -46,6 +46,7 @@
             ' jika complete
             Dim stc_compl As ClassSalesReturn = New ClassSalesReturn()
             stc_compl.completeReservedStock(id_report_par)
+            stc_compl.completeProbStock(id_report_par)
 
             'save unreg unique
             execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",3)", True, "", "", "", "")
@@ -123,6 +124,38 @@
         INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
         INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
         WHERE r.id_sales_return=" + id_report_param + " AND rd.sales_return_det_qty>0 "
+        execute_non_query(query, True, "", "", "", "")
+
+        'complete old
+        'Dim query_compl As String = "CALL view_sales_return('" + id_report_param + "') "
+        'Dim dt_compl As DataTable = execute_query(query_compl, -1, True, "", "", "", "")
+
+        'Dim stc_remove_rsv As ClassStock = New ClassStock()
+        'Dim stc_compl As ClassStock = New ClassStock()
+        'Dim stc_in As ClassStock = New ClassStock()
+        'For s As Integer = 0 To dt_compl.Rows.Count - 1
+        '    stc_remove_rsv.prepInsStockFG(dt_compl.Rows(s)("id_wh_drawer_store").ToString, "1", dt_compl.Rows(s)("id_product").ToString, decimalSQL(dt_compl.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_compl.Rows(s)("sales_return_det_qty").ToString), "", "2")
+        '    stc_compl.prepInsStockFG(dt_compl.Rows(s)("id_wh_drawer_store").ToString, "2", dt_compl.Rows(s)("id_product").ToString, decimalSQL(dt_compl.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_compl.Rows(s)("sales_return_det_qty").ToString), "", "1")
+        '    stc_in.prepInsStockFG(dt_compl.Rows(s)("id_wh_drawer").ToString, "1", dt_compl.Rows(s)("id_product").ToString, decimalSQL(dt_compl.Rows(s)("design_cop").ToString), report_mark_type_param, id_report_param, decimalSQL(dt_compl.Rows(s)("sales_return_det_qty").ToString), "", "1")
+        'Next
+        'stc_remove_rsv.insStockFG()
+        'stc_compl.insStockFG()
+        'stc_in.insStockFG()
+    End Sub
+
+    Public Sub completeProbStock(ByVal id_report_param As String)
+        Dim query As String = "INSERT INTO tb_storage_fg_prob(id_store,id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+        SELECT c.id_comp,'1', p.id_product , IFNULL(d.design_cop,0), '46', '" + id_report_param + "',  COUNT(rp.id_product) AS `qty`, NOW(),'', '1'
+        FROM tb_sales_return_problem rp
+        INNER JOIN tb_m_product p ON p.id_product = RP.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+        INNER JOIN tb_m_design d ON d.id_design = p.id_design
+        INNER JOIN tb_sales_return r ON r.id_sales_return = rp.id_sales_return
+        INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = r.id_store_contact_from
+		INNER JOIN tb_m_comp c ON c.id_comp= cc.id_comp
+        WHERE rp.id_sales_return='" + id_report_param + "'
+        GROUP BY rp.id_product "
         execute_non_query(query, True, "", "", "", "")
 
         'complete old

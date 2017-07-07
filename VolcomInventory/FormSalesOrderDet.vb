@@ -737,9 +737,15 @@ Public Class FormSalesOrderDet
                             GVItemList.FocusedColumn = GridColumnQty
                             CType(GCItemList.DataSource, DataTable).AcceptChanges()
                         Else
-                            stopCustom("You already entry this product.")
-                            setDefautMyRow(rh)
-                            CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                            GVItemList.SetFocusedRowCellValue("code", "")
+                            GVItemList.ActiveFilterString = "[code]='" + code_pas + "'"
+                            FormSalesOrderDetEdit.ShowDialog()
+                            GVItemList.ActiveFilterString = ""
+                            GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+                            GVItemList.FocusedColumn = GridColumnCode
+                            'stopCustom("You already entry this product.")
+                            'setDefautMyRow(rh)
+                            'CType(GCItemList.DataSource, DataTable).AcceptChanges()
                         End If
                     End If
                 ElseIf GVItemList.FocusedColumn.ToString = "Qty" Then
@@ -755,7 +761,9 @@ Public Class FormSalesOrderDet
                     End If
                 ElseIf GVItemList.FocusedColumn.ToString = "Remark" Then 'for remark
                     GVItemList.CloseEditor()
-                    addMyRow()
+                    If GVItemList.GetRowCellValue(GVItemList.RowCount - 1, "code").ToString <> "" Then
+                        addMyRow()
+                    End If
                     GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
                     GVItemList.FocusedColumn = GridColumnCode
                 End If
