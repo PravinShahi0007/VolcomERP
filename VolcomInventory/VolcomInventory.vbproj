@@ -724,6 +724,12 @@
     <Compile Include="FormEmpUniPeriod.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniPeriodDet.Designer.vb">
+      <DependentUpon>FormEmpUniPeriodDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniPeriodDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGBorrowQCReq.Designer.vb">
       <DependentUpon>FormFGBorrowQCReq.vb</DependentUpon>
     </Compile>
@@ -5068,6 +5074,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniPeriod.resx">
       <DependentUpon>FormEmpUniPeriod.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniPeriodDet.resx">
+      <DependentUpon>FormEmpUniPeriodDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGBorrowQCReq.resx">
       <DependentUpon>FormFGBorrowQCReq.vb</DependentUpon>
