@@ -65,4 +65,14 @@
         check_menu()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVUni_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVUni.FocusedRowChanged
+
+    End Sub
+
+    Private Sub GVUni_DoubleClick(sender As Object, e As EventArgs) Handles GVUni.DoubleClick
+        If GVUni.FocusedRowHandle >= 0 And GVUni.RowCount > 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
 End Class

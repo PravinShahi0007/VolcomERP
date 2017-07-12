@@ -59,7 +59,7 @@ Partial Class FormEmpUniPeriod
         'GridColumnSelectionStart
         '
         Me.GridColumnSelectionStart.Caption = "Est. Selection Start"
-        Me.GridColumnSelectionStart.DisplayFormat.FormatString = "dd\/MMM\/yyyy"
+        Me.GridColumnSelectionStart.DisplayFormat.FormatString = "dd\/MM\/yyyy"
         Me.GridColumnSelectionStart.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnSelectionStart.FieldName = "selection_date_start"
         Me.GridColumnSelectionStart.Name = "GridColumnSelectionStart"
@@ -69,7 +69,7 @@ Partial Class FormEmpUniPeriod
         'GridColumnSelectionEnd
         '
         Me.GridColumnSelectionEnd.Caption = "Est. Selection End"
-        Me.GridColumnSelectionEnd.DisplayFormat.FormatString = "dd\/MMM\/yyyy"
+        Me.GridColumnSelectionEnd.DisplayFormat.FormatString = "dd\/MM\/yyyy"
         Me.GridColumnSelectionEnd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnSelectionEnd.FieldName = "selection_date_end"
         Me.GridColumnSelectionEnd.Name = "GridColumnSelectionEnd"
@@ -79,7 +79,7 @@ Partial Class FormEmpUniPeriod
         'GridColumnCreatedDate
         '
         Me.GridColumnCreatedDate.Caption = "Created Date"
-        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd\/MMM\/yyyy"
+        Me.GridColumnCreatedDate.DisplayFormat.FormatString = "dd\/MM\/yyyy"
         Me.GridColumnCreatedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnCreatedDate.FieldName = "created_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
@@ -89,7 +89,7 @@ Partial Class FormEmpUniPeriod
         'GridColumnDistribution
         '
         Me.GridColumnDistribution.Caption = "Est. Distribution"
-        Me.GridColumnDistribution.DisplayFormat.FormatString = "dd\/MMM\/yyyy"
+        Me.GridColumnDistribution.DisplayFormat.FormatString = "dd\/MM\/yyyy"
         Me.GridColumnDistribution.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnDistribution.FieldName = "distribution_date"
         Me.GridColumnDistribution.Name = "GridColumnDistribution"

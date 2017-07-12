@@ -5419,7 +5419,8 @@ Public Class FormMain
                 Catch ex As Exception
                     errorDelete()
                 End Try
-            Else
+            End If
+        Else
             RPSubMenu.Visible = False
         End If
     End Sub
@@ -6629,7 +6630,7 @@ Public Class FormMain
             'command print here
             print(FormWHDelEmptyStock.GCData, "NON STOCK INVENTORY - " + FormWHDelEmptyStock.store)
         ElseIf formName = "FormEmpUniPeriod" Then
-            'print(FormEmpUniPeriod.GCUni)
+            print(FormEmpUniPeriod.GCUni, "Uniform Period")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7187,6 +7188,8 @@ Public Class FormMain
         ElseIf formName = "FormWHDelEmptyStock" Then
             FormWHDelEmptyStock.Close()
             FormWHDelEmptyStock.Dispose()
+        ElseIf formName = "FormEmpUniPeriod" Then
+            FormEmpUniPeriod.Close()
         Else
             RPSubMenu.Visible = False
         End If

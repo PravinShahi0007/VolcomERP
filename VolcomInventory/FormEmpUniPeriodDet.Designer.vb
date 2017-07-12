@@ -50,9 +50,12 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrintBudget = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnExportBudget = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportBudget = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPrintBudget = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.DEDist.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -247,6 +250,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GVDetail.GroupCount = 1
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDetail.OptionsView.ShowGroupedColumns = True
         Me.GVDetail.OptionsView.ShowGroupPanel = False
         Me.GVDetail.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnDept, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnLevel, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
@@ -289,7 +293,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnPosition.FieldName = "employee_position"
         Me.GridColumnPosition.Name = "GridColumnPosition"
         Me.GridColumnPosition.Visible = True
-        Me.GridColumnPosition.VisibleIndex = 2
+        Me.GridColumnPosition.VisibleIndex = 3
         Me.GridColumnPosition.Width = 99
         '
         'GridColumnLevel
@@ -299,7 +303,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnLevel.FieldNameSortGroup = "id_employee_level"
         Me.GridColumnLevel.Name = "GridColumnLevel"
         Me.GridColumnLevel.Visible = True
-        Me.GridColumnLevel.VisibleIndex = 3
+        Me.GridColumnLevel.VisibleIndex = 4
         Me.GridColumnLevel.Width = 99
         '
         'GridColumnBudget
@@ -310,7 +314,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnBudget.FieldName = "budget"
         Me.GridColumnBudget.Name = "GridColumnBudget"
         Me.GridColumnBudget.Visible = True
-        Me.GridColumnBudget.VisibleIndex = 4
+        Me.GridColumnBudget.VisibleIndex = 5
         Me.GridColumnBudget.Width = 99
         '
         'GridColumnActual
@@ -321,7 +325,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnActual.FieldName = "amount"
         Me.GridColumnActual.Name = "GridColumnActual"
         Me.GridColumnActual.Visible = True
-        Me.GridColumnActual.VisibleIndex = 5
+        Me.GridColumnActual.VisibleIndex = 6
         Me.GridColumnActual.Width = 99
         '
         'GridColumn1
@@ -332,7 +336,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumn1.FieldName = "total_qty"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 6
+        Me.GridColumn1.VisibleIndex = 7
         Me.GridColumn1.Width = 64
         '
         'GridColumnStatus
@@ -341,20 +345,43 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnStatus.FieldName = "del_report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 7
+        Me.GridColumnStatus.VisibleIndex = 8
         Me.GridColumnStatus.Width = 150
         '
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.BtnPrintBudget)
+        Me.PanelControl2.Controls.Add(Me.BtnDelete)
         Me.PanelControl2.Controls.Add(Me.BtnExportBudget)
         Me.PanelControl2.Controls.Add(Me.BtnImportBudget)
-        Me.PanelControl2.Controls.Add(Me.BtnPrintBudget)
+        Me.PanelControl2.Controls.Add(Me.BtnEdit)
+        Me.PanelControl2.Controls.Add(Me.BtnAdd)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(690, 37)
         Me.PanelControl2.TabIndex = 0
+        '
+        'BtnPrintBudget
+        '
+        Me.BtnPrintBudget.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrintBudget.Image = CType(resources.GetObject("BtnPrintBudget.Image"), System.Drawing.Image)
+        Me.BtnPrintBudget.Location = New System.Drawing.Point(350, 0)
+        Me.BtnPrintBudget.Name = "BtnPrintBudget"
+        Me.BtnPrintBudget.Size = New System.Drawing.Size(85, 37)
+        Me.BtnPrintBudget.TabIndex = 2
+        Me.BtnPrintBudget.Text = "Print"
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
+        Me.BtnDelete.Location = New System.Drawing.Point(435, 0)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(85, 37)
+        Me.BtnDelete.TabIndex = 7
+        Me.BtnDelete.Text = "Delete"
         '
         'BtnExportBudget
         '
@@ -362,9 +389,10 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnExportBudget.Image = CType(resources.GetObject("BtnExportBudget.Image"), System.Drawing.Image)
         Me.BtnExportBudget.Location = New System.Drawing.Point(121, 0)
         Me.BtnExportBudget.Name = "BtnExportBudget"
-        Me.BtnExportBudget.Size = New System.Drawing.Size(113, 37)
+        Me.BtnExportBudget.Size = New System.Drawing.Size(170, 37)
         Me.BtnExportBudget.TabIndex = 4
-        Me.BtnExportBudget.Text = "Export Budget"
+        Me.BtnExportBudget.Text = "Export Master Employee"
+        Me.BtnExportBudget.Visible = False
         '
         'BtnImportBudget
         '
@@ -375,16 +403,27 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnImportBudget.Size = New System.Drawing.Size(121, 37)
         Me.BtnImportBudget.TabIndex = 3
         Me.BtnImportBudget.Text = "Import Budget"
+        Me.BtnImportBudget.Visible = False
         '
-        'BtnPrintBudget
+        'BtnEdit
         '
-        Me.BtnPrintBudget.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnPrintBudget.Image = CType(resources.GetObject("BtnPrintBudget.Image"), System.Drawing.Image)
-        Me.BtnPrintBudget.Location = New System.Drawing.Point(575, 0)
-        Me.BtnPrintBudget.Name = "BtnPrintBudget"
-        Me.BtnPrintBudget.Size = New System.Drawing.Size(115, 37)
-        Me.BtnPrintBudget.TabIndex = 2
-        Me.BtnPrintBudget.Text = "Print Budget"
+        Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
+        Me.BtnEdit.Location = New System.Drawing.Point(520, 0)
+        Me.BtnEdit.Name = "BtnEdit"
+        Me.BtnEdit.Size = New System.Drawing.Size(85, 37)
+        Me.BtnEdit.TabIndex = 6
+        Me.BtnEdit.Text = "Edit"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(605, 0)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(85, 37)
+        Me.BtnAdd.TabIndex = 5
+        Me.BtnAdd.Text = "Add"
         '
         'FormEmpUniPeriodDet
         '
@@ -455,4 +494,7 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents GridColumnActual As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
 End Class
