@@ -1489,13 +1489,16 @@ Public Class FormMain
             FormProductionAssemblyNew.ShowDialog()
         ElseIf formName = "FormMasterCargoRate" Then
             FormMasterCargoRateAdd.ShowDialog()
-	ElseIf formName = "FormWHDelEmpty" Then
+        ElseIf formName = "FormWHDelEmpty" Then
             FormPopUpContact.id_cat = "6"
             FormPopUpContact.id_pop_up = "77"
             FormPopUpContact.ShowDialog()
         ElseIf formName = "FormDeliveryCargo" Then
             FormDeliveryCargoDet.id_awbill = "-1"
             FormDeliveryCargoDet.ShowDialog()
+        ElseIf formName = "FormEmpUniPeriod" Then
+            FormEmpUniPeriodDet.action = "ins"
+            FormEmpUniPeriodDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2377,6 +2380,10 @@ Public Class FormMain
             ElseIf formName = "FormDeliveryCargo" Then
                 FormDeliveryCargoDet.id_awbill = FormDeliveryCargo.GVDeliverySlip.GetFocusedRowCellValue("id_awbill").ToString
                 FormDeliveryCargoDet.ShowDialog()
+            ElseIf formName = "FormEmpUniPeriod" Then
+                FormEmpUniPeriodDet.action = "upd"
+                FormEmpUniPeriodDet.id_emp_uni_period = FormEmpUniPeriod.GVUni.GetFocusedRowCellValue("id_emp_uni_period").ToString
+                FormEmpUniPeriodDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5400,7 +5407,19 @@ Public Class FormMain
             Else
                 stopCustom("This report already appoved.")
             End If
-        Else
+        ElseIf formName = "FormEmpUniPeriod" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim id_emp_uni_period As String = FormEmpUniPeriod.GVUni.GetFocusedRowCellValue("id_emp_uni_period").ToString
+
+                    query = String.Format("DELETE FROM tb_emp_uni_period WHERE id_emp_uni_period='{0}'", id_emp_uni_period)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormEmpUniPeriod.viewUniformPeriod()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            Else
             RPSubMenu.Visible = False
         End If
     End Sub
@@ -6609,6 +6628,8 @@ Public Class FormMain
         ElseIf formName = "FormWHDelEmptyStock" Then
             'command print here
             print(FormWHDelEmptyStock.GCData, "NON STOCK INVENTORY - " + FormWHDelEmptyStock.store)
+        ElseIf formName = "FormEmpUniPeriod" Then
+            'print(FormEmpUniPeriod.GCUni)
         Else
             RPSubMenu.Visible = False
         End If
@@ -7820,6 +7841,8 @@ Public Class FormMain
             FormProductionAssembly.viewData()
         ElseIf formName = "FormWHDelEmpty" Then
             FormWHDelEmpty.viewDel()
+        ElseIf formName = "FormEmpUniPeriod" Then
+            FormEmpUniPeriod.viewUniformPeriod()
         End If
     End Sub
     'Switch
