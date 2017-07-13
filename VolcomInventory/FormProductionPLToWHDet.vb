@@ -391,11 +391,21 @@ Public Class FormProductionPLToWHDet
         Next
 
         'cek qty limit di DB
+        Dim dt_cek As DataTable = execute_query("CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '" + id_pl_prod_order + "', '0', '" + LEPDAlloc.EditValue.ToString + "') ", -1, True, "", "", "", "")
         For i As Integer = 0 To ((GVRetDetail.RowCount - 1) - GetGroupRowCount(GVRetDetail))
             Dim id_prod_order_det_cekya As String = GVRetDetail.GetRowCellValue(i, "id_prod_order_det").ToString
             Dim qty_plya As String = GVRetDetail.GetRowCellValue(i, "pl_prod_order_det_qty").ToString
             Dim sample_checkya As String = GVRetDetail.GetRowCellValue(i, "name").ToString + " / Size " + GVRetDetail.GetRowCellValue(i, "size").ToString
-            isAllowRequisition(sample_checkya, id_prod_order_det_cekya, qty_plya)
+            Dim data_filter_cek As DataRow() = dt_cek.Select("[id_prod_order_det]='" + id_prod_order_det_cekya + "' ")
+            Dim qty_pl As Integer = 0
+            If data_filter_cek.Length <= 0 Then
+                qty_pl = 0
+            Else
+                qty_pl = data_filter_cek(0)("qty")
+            End If
+            If qty_plya > qty_pl Then
+                cond_check = False
+            End If
             If Not cond_check Then
                 Exit For
             End If
@@ -403,12 +413,15 @@ Public Class FormProductionPLToWHDet
 
         'cek uniqueCode
         Dim found_check_unique As Boolean = False
-        sample_check_unique = ""
+        'sample_check_unique = ""
         Dim query_check_exist As String = "SELECT d.pl_prod_order_number, CONCAT(b.product_full_code, a.pl_prod_order_det_counting) AS `barcode` FROM tb_pl_prod_order_det_counting a "
         query_check_exist += "INNER JOIN tb_m_product b ON a.id_product = b.id_product "
         query_check_exist += "INNER JOIN tb_pl_prod_order_det c ON a.id_pl_prod_order_det = c.id_pl_prod_order_det "
-        query_check_exist += "INNER JOIN tb_pl_prod_order d ON c.id_pl_prod_order = d.id_pl_prod_order "
-        query_check_exist += "WHERE d.id_pl_prod_order!='" + id_pl_prod_order + "' AND d.id_report_status != '5'"
+        query_check_exist += "INNER JOIN tb_pl_prod_order d ON c.id_pl_prod_order = d.id_pl_prod_order 
+        INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = c.id_prod_order_det
+        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pod.id_prod_demand_product
+        INNER JOIN tb_m_product p ON p.id_product = pdp.id_product "
+        query_check_exist += "WHERE d.id_pl_prod_order!='" + id_pl_prod_order + "' AND d.id_report_status != '5' AND p.id_design='" + id_design + "' "
         Dim data_check_exist As DataTable = execute_query(query_check_exist, True, -1, "", "", "", "")
         For j As Integer = 0 To (GVBarcode.RowCount - 1)
             Dim barcode_check As String = GVBarcode.GetRowCellValue(j, "code")
