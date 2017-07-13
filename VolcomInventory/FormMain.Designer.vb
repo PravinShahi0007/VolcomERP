@@ -116,6 +116,15 @@ Partial Class FormMain
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NotifyIconVI = New System.Windows.Forms.NotifyIcon(Me.components)
         Me.NBProdRet = New DevExpress.XtraNavBar.NavBarControl()
+        Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
+        Me.NBAccFY = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAcc = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAccJournal = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBPayment = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBJournalAdj = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBAccSum = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBScanEFactur = New DevExpress.XtraNavBar.NavBarItem()
+        Me.NBRateManagement = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBGHRD = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBEmployee = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBShift = New DevExpress.XtraNavBar.NavBarItem()
@@ -279,14 +288,6 @@ Partial Class FormMain
         Me.NBFGRepairReturn = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBFGRepairReturnRec = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBTransList = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBGAccounting = New DevExpress.XtraNavBar.NavBarGroup()
-        Me.NBAccFY = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAcc = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAccJournal = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBPayment = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBJournalAdj = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBAccSum = New DevExpress.XtraNavBar.NavBarItem()
-        Me.NBScanEFactur = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBQC = New DevExpress.XtraNavBar.NavBarGroup()
         Me.NBProdRec = New DevExpress.XtraNavBar.NavBarItem()
         Me.NBProdPLToWH = New DevExpress.XtraNavBar.NavBarItem()
@@ -1204,7 +1205,7 @@ Partial Class FormMain
         Me.NBProdRet.ActiveGroup = Me.NBGGeneral
         Me.NBProdRet.Dock = System.Windows.Forms.DockStyle.Fill
         Me.NBProdRet.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NBGGeneral, Me.NBGHRD, Me.NBGMaster, Me.NBGTransaction, Me.NBGMat, Me.NBGProduction, Me.NBGSales, Me.NBGAccounting, Me.NBQC, Me.NBGSetup})
-        Me.NBProdRet.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItemItemCategory, Me.NBArea, Me.NBCompany_category, Me.NBUom, Me.NBSeason, Me.NBDepartement, Me.NBUser, Me.NBCompany, Me.NBRawMaterial, Me.NBRawMatCode, Me.NBAccess, Me.NBAccessUser, Me.NBOVH, Me.NBProdDemand, Me.NBCode, Me.NBCodeTemplate, Me.NBSample, Me.NBProduct, Me.NBBom, Me.NBPicLocation, Me.NBRawMatCat, Me.NBPLSample, Me.NBHeadNumber, Me.NBSamplePurchase, Me.NBSampleReceive, Me.NBSamplePR, Me.NBWH, Me.NBReceiptSample, Me.NBSampleStorage, Me.NBPLDelivery, Me.NBROSample, Me.NBWork, Me.NBPLDel, Me.NBReqSample, Me.NBSamplePlan, Me.NBMarkAssign, Me.NBMatPurchase, Me.NBReturnSample, Me.NBMatWO, Me.NBMatRecPurc, Me.NBMatRecWO, Me.NBMatRet, Me.NBAdjSample, Me.NBProdOrder, Me.NBMatPR, Me.NBMatPRWO, Me.NBAdjMat, Me.NBProdRec, Me.NBProdReturn, Me.NBMatPL, Me.NBMatMRS, Me.NBProdPLToWH, Me.NBMatInvoice, Me.NBAcc, Me.NBAccJournal, Me.NBProdRecWH, Me.NBSalesTarget, Me.NBSalesOrder, Me.NBSalesDelOrder, Me.NBSalesReturnOrder, Me.NBSalesReturn, Me.NBSalesPOS, Me.NBSalesReturnQC, Me.NBSalesInvoice, Me.NBJournalAdj, Me.NBProdWOPR, Me.NBFGSoStore, Me.NBFGMissing, Me.NBFGMissingInvoice, Me.NBFGSOWH, Me.NBMatSO, Me.NBFGAdj, Me.NBFGTrf, Me.NBFGTrfRec, Me.NBFGTracking, Me.NBFGStock, Me.NBAccSum, Me.NBAccFY, Me.NBMatStock, Me.NBSampleStock, Me.NBEmployee, Me.NBSampleTrf, Me.NBSampleDelivery, Me.NBSampleDelRec, Me.NBSampleBarcode, Me.NBSampleOrder, Me.NBSampleDelOrder, Me.NBSampleStockOpname, Me.NBFGCodeReplace, Me.NBPayment, Me.NBSalesWeekly, Me.NBSalesCreditNote, Me.NBFGMissingCreditNote, Me.NBSOHPeriode, Me.NBSOHPrice, Me.NBSOH, Me.NBSOHSum, Me.NBFGWoff, Me.NavBarItem2, Me.NBFGWoffList, Me.NBProposePrice, Me.NBFGLineList, Me.NBDistSchemaSetup, Me.NBFGLineListDsg, Me.NBRetCode, Me.NBFGProdList, Me.NBPrintBarcode, Me.NBDesignList, Me.NBSampleOrdered, Me.NBFGDS, Me.NBRateStore, Me.NBAdjQC, Me.NBFGSOReff, Me.NBSalesOrderList, Me.NBFGTrfNew, Me.NBSalesPromo, Me.NBComputer, Me.NBScanEFactur, Me.NBBorrowQCRec, Me.NBSeasonNonMerch, Me.NBLineListNonMerch, Me.NBSalesOrderCat, Me.NBAWB, Me.NBCargoRate, Me.NBSalesOrderSvcLevel, Me.NBMasterPrice, Me.NBImportDO, Me.NBDesignLineList, Me.NBWHSvcLevel, Me.NBTestBC, Me.NBSamplePL, Me.NBMasterSamplePrice, Me.NBSamplePriceRet, Me.NBFGWHAlloc, Me.NBProdWO, Me.NBFGWHAllocLog, Me.NBStockQC, Me.NBSamplePLRet, Me.NBDesignListApp, Me.NBLeavePropose, Me.NBInitializeFP, Me.NBFPSetup, Me.NBAttnLog, Me.NBShift, Me.NBHoliday, Me.NBSchedule, Me.NBAttnInd, Me.NBAttnSum, Me.NBEmpReview, Me.NBFGRepair, Me.NBFGRepairRec, Me.NBFGRepairReturn, Me.NBFGRepairReturnRec, Me.NBEmpLeave, Me.NBAttnSumDept, Me.NBEmpEmail, Me.NBScheduleSecurity, Me.NBEmpLeaveRemaining, Me.NBDP, Me.NBChSchedule, Me.NBSchedulePropose, Me.NBProdReport, Me.NBAttnStore, Me.NBSpecialReceiving, Me.NBFinalClear, Me.NBSchCompare, Me.NBDutyReport, Me.NBSampleSum, Me.NBCloseFGPO, Me.NBProdAss, Me.NBTransList, Me.NBRateCargo, Me.NBDelEmpty, Me.NBNonStockInv, Me.NBAwbill, Me.NBEmpUniPeriod})
+        Me.NBProdRet.Items.AddRange(New DevExpress.XtraNavBar.NavBarItem() {Me.NavBarItemItemCategory, Me.NBArea, Me.NBCompany_category, Me.NBUom, Me.NBSeason, Me.NBDepartement, Me.NBUser, Me.NBCompany, Me.NBRawMaterial, Me.NBRawMatCode, Me.NBAccess, Me.NBAccessUser, Me.NBOVH, Me.NBProdDemand, Me.NBCode, Me.NBCodeTemplate, Me.NBSample, Me.NBProduct, Me.NBBom, Me.NBPicLocation, Me.NBRawMatCat, Me.NBPLSample, Me.NBHeadNumber, Me.NBSamplePurchase, Me.NBSampleReceive, Me.NBSamplePR, Me.NBWH, Me.NBReceiptSample, Me.NBSampleStorage, Me.NBPLDelivery, Me.NBROSample, Me.NBWork, Me.NBPLDel, Me.NBReqSample, Me.NBSamplePlan, Me.NBMarkAssign, Me.NBMatPurchase, Me.NBReturnSample, Me.NBMatWO, Me.NBMatRecPurc, Me.NBMatRecWO, Me.NBMatRet, Me.NBAdjSample, Me.NBProdOrder, Me.NBMatPR, Me.NBMatPRWO, Me.NBAdjMat, Me.NBProdRec, Me.NBProdReturn, Me.NBMatPL, Me.NBMatMRS, Me.NBProdPLToWH, Me.NBMatInvoice, Me.NBAcc, Me.NBAccJournal, Me.NBProdRecWH, Me.NBSalesTarget, Me.NBSalesOrder, Me.NBSalesDelOrder, Me.NBSalesReturnOrder, Me.NBSalesReturn, Me.NBSalesPOS, Me.NBSalesReturnQC, Me.NBSalesInvoice, Me.NBJournalAdj, Me.NBProdWOPR, Me.NBFGSoStore, Me.NBFGMissing, Me.NBFGMissingInvoice, Me.NBFGSOWH, Me.NBMatSO, Me.NBFGAdj, Me.NBFGTrf, Me.NBFGTrfRec, Me.NBFGTracking, Me.NBFGStock, Me.NBAccSum, Me.NBAccFY, Me.NBMatStock, Me.NBSampleStock, Me.NBEmployee, Me.NBSampleTrf, Me.NBSampleDelivery, Me.NBSampleDelRec, Me.NBSampleBarcode, Me.NBSampleOrder, Me.NBSampleDelOrder, Me.NBSampleStockOpname, Me.NBFGCodeReplace, Me.NBPayment, Me.NBSalesWeekly, Me.NBSalesCreditNote, Me.NBFGMissingCreditNote, Me.NBSOHPeriode, Me.NBSOHPrice, Me.NBSOH, Me.NBSOHSum, Me.NBFGWoff, Me.NavBarItem2, Me.NBFGWoffList, Me.NBProposePrice, Me.NBFGLineList, Me.NBDistSchemaSetup, Me.NBFGLineListDsg, Me.NBRetCode, Me.NBFGProdList, Me.NBPrintBarcode, Me.NBDesignList, Me.NBSampleOrdered, Me.NBFGDS, Me.NBRateStore, Me.NBAdjQC, Me.NBFGSOReff, Me.NBSalesOrderList, Me.NBFGTrfNew, Me.NBSalesPromo, Me.NBComputer, Me.NBScanEFactur, Me.NBBorrowQCRec, Me.NBSeasonNonMerch, Me.NBLineListNonMerch, Me.NBSalesOrderCat, Me.NBAWB, Me.NBCargoRate, Me.NBSalesOrderSvcLevel, Me.NBMasterPrice, Me.NBImportDO, Me.NBDesignLineList, Me.NBWHSvcLevel, Me.NBTestBC, Me.NBSamplePL, Me.NBMasterSamplePrice, Me.NBSamplePriceRet, Me.NBFGWHAlloc, Me.NBProdWO, Me.NBFGWHAllocLog, Me.NBStockQC, Me.NBSamplePLRet, Me.NBDesignListApp, Me.NBLeavePropose, Me.NBInitializeFP, Me.NBFPSetup, Me.NBAttnLog, Me.NBShift, Me.NBHoliday, Me.NBSchedule, Me.NBAttnInd, Me.NBAttnSum, Me.NBEmpReview, Me.NBFGRepair, Me.NBFGRepairRec, Me.NBFGRepairReturn, Me.NBFGRepairReturnRec, Me.NBEmpLeave, Me.NBAttnSumDept, Me.NBEmpEmail, Me.NBScheduleSecurity, Me.NBEmpLeaveRemaining, Me.NBDP, Me.NBChSchedule, Me.NBSchedulePropose, Me.NBProdReport, Me.NBAttnStore, Me.NBSpecialReceiving, Me.NBFinalClear, Me.NBSchCompare, Me.NBDutyReport, Me.NBSampleSum, Me.NBCloseFGPO, Me.NBProdAss, Me.NBTransList, Me.NBRateCargo, Me.NBDelEmpty, Me.NBNonStockInv, Me.NBAwbill, Me.NBEmpUniPeriod, Me.NBRateManagement})
         Me.NBProdRet.LargeImages = Me.MenuImages
         Me.NBProdRet.Location = New System.Drawing.Point(2, 26)
         Me.NBProdRet.LookAndFeel.SkinName = "Office 2010 Silver"
@@ -1217,6 +1218,71 @@ Partial Class FormMain
         Me.NBProdRet.TabIndex = 3
         Me.NBProdRet.Text = "NavBarControl1"
         Me.NBProdRet.View = New DevExpress.XtraNavBar.ViewInfo.SkinNavigationPaneViewInfoRegistrator()
+        '
+        'NBGAccounting
+        '
+        Me.NBGAccounting.Caption = "Accounting"
+        Me.NBGAccounting.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
+        Me.NBGAccounting.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccFY), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccJournal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBJournalAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanEFactur), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBRateManagement)})
+        Me.NBGAccounting.LargeImage = CType(resources.GetObject("NBGAccounting.LargeImage"), System.Drawing.Image)
+        Me.NBGAccounting.LargeImageIndex = 3
+        Me.NBGAccounting.Name = "NBGAccounting"
+        Me.NBGAccounting.SmallImage = CType(resources.GetObject("NBGAccounting.SmallImage"), System.Drawing.Image)
+        Me.NBGAccounting.TopVisibleLinkIndex = 1
+        '
+        'NBAccFY
+        '
+        Me.NBAccFY.Caption = "Fiscal Year"
+        Me.NBAccFY.LargeImageIndex = 3
+        Me.NBAccFY.Name = "NBAccFY"
+        Me.NBAccFY.SmallImageIndex = 43
+        '
+        'NBAcc
+        '
+        Me.NBAcc.Caption = "Chart Of Account"
+        Me.NBAcc.LargeImageIndex = 8
+        Me.NBAcc.Name = "NBAcc"
+        Me.NBAcc.SmallImageIndex = 38
+        '
+        'NBAccJournal
+        '
+        Me.NBAccJournal.Caption = "Entry Journal"
+        Me.NBAccJournal.LargeImageIndex = 7
+        Me.NBAccJournal.Name = "NBAccJournal"
+        Me.NBAccJournal.SmallImageIndex = 44
+        '
+        'NBPayment
+        '
+        Me.NBPayment.Caption = "Payment"
+        Me.NBPayment.LargeImageIndex = 40
+        Me.NBPayment.Name = "NBPayment"
+        Me.NBPayment.SmallImageIndex = 28
+        '
+        'NBJournalAdj
+        '
+        Me.NBJournalAdj.Caption = "Adjustment Journal"
+        Me.NBJournalAdj.LargeImageIndex = 31
+        Me.NBJournalAdj.Name = "NBJournalAdj"
+        Me.NBJournalAdj.SmallImageIndex = 33
+        '
+        'NBAccSum
+        '
+        Me.NBAccSum.Caption = "Summary"
+        Me.NBAccSum.LargeImageIndex = 29
+        Me.NBAccSum.Name = "NBAccSum"
+        Me.NBAccSum.SmallImageIndex = 45
+        '
+        'NBScanEFactur
+        '
+        Me.NBScanEFactur.Caption = "E-Faktur"
+        Me.NBScanEFactur.Name = "NBScanEFactur"
+        Me.NBScanEFactur.SmallImageIndex = 15
+        '
+        'NBRateManagement
+        '
+        Me.NBRateManagement.Caption = "Rate Management"
+        Me.NBRateManagement.Name = "NBRateManagement"
+        Me.NBRateManagement.SmallImageIndex = 9
         '
         'NBGHRD
         '
@@ -2279,64 +2345,6 @@ Partial Class FormMain
         Me.NBTransList.Name = "NBTransList"
         Me.NBTransList.SmallImage = CType(resources.GetObject("NBTransList.SmallImage"), System.Drawing.Image)
         '
-        'NBGAccounting
-        '
-        Me.NBGAccounting.Caption = "Accounting"
-        Me.NBGAccounting.GroupCaptionUseImage = DevExpress.XtraNavBar.NavBarImage.Large
-        Me.NBGAccounting.ItemLinks.AddRange(New DevExpress.XtraNavBar.NavBarItemLink() {New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccFY), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAcc), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccJournal), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBPayment), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBJournalAdj), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBAccSum), New DevExpress.XtraNavBar.NavBarItemLink(Me.NBScanEFactur)})
-        Me.NBGAccounting.LargeImage = CType(resources.GetObject("NBGAccounting.LargeImage"), System.Drawing.Image)
-        Me.NBGAccounting.LargeImageIndex = 3
-        Me.NBGAccounting.Name = "NBGAccounting"
-        Me.NBGAccounting.SmallImage = CType(resources.GetObject("NBGAccounting.SmallImage"), System.Drawing.Image)
-        '
-        'NBAccFY
-        '
-        Me.NBAccFY.Caption = "Fiscal Year"
-        Me.NBAccFY.LargeImageIndex = 3
-        Me.NBAccFY.Name = "NBAccFY"
-        Me.NBAccFY.SmallImageIndex = 43
-        '
-        'NBAcc
-        '
-        Me.NBAcc.Caption = "Chart Of Account"
-        Me.NBAcc.LargeImageIndex = 8
-        Me.NBAcc.Name = "NBAcc"
-        Me.NBAcc.SmallImageIndex = 38
-        '
-        'NBAccJournal
-        '
-        Me.NBAccJournal.Caption = "Entry Journal"
-        Me.NBAccJournal.LargeImageIndex = 7
-        Me.NBAccJournal.Name = "NBAccJournal"
-        Me.NBAccJournal.SmallImageIndex = 44
-        '
-        'NBPayment
-        '
-        Me.NBPayment.Caption = "Payment"
-        Me.NBPayment.LargeImageIndex = 40
-        Me.NBPayment.Name = "NBPayment"
-        Me.NBPayment.SmallImageIndex = 28
-        '
-        'NBJournalAdj
-        '
-        Me.NBJournalAdj.Caption = "Adjustment Journal"
-        Me.NBJournalAdj.LargeImageIndex = 31
-        Me.NBJournalAdj.Name = "NBJournalAdj"
-        Me.NBJournalAdj.SmallImageIndex = 33
-        '
-        'NBAccSum
-        '
-        Me.NBAccSum.Caption = "Summary"
-        Me.NBAccSum.LargeImageIndex = 29
-        Me.NBAccSum.Name = "NBAccSum"
-        Me.NBAccSum.SmallImageIndex = 45
-        '
-        'NBScanEFactur
-        '
-        Me.NBScanEFactur.Caption = "E-Faktur"
-        Me.NBScanEFactur.Name = "NBScanEFactur"
-        Me.NBScanEFactur.SmallImageIndex = 15
-        '
         'NBQC
         '
         Me.NBQC.Caption = "Quality Control"
@@ -2902,4 +2910,5 @@ Partial Class FormMain
     Friend WithEvents NBNonStockInv As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBAwbill As DevExpress.XtraNavBar.NavBarItem
     Friend WithEvents NBEmpUniPeriod As DevExpress.XtraNavBar.NavBarItem
+    Friend WithEvents NBRateManagement As DevExpress.XtraNavBar.NavBarItem
 End Class

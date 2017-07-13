@@ -10559,4 +10559,14 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBRateManagement_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRateManagement.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterRate.ShowDialog()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
