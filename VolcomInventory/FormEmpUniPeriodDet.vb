@@ -73,4 +73,11 @@
     Private Sub FormEmpUniPeriodDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Cursor = Cursors.WaitCursor
+        FormEmpUniPeriodSingle.action = "ins"
+        FormEmpUniPeriodSingle.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

@@ -32,10 +32,12 @@ Partial Class FormEmpUniPeriodSingle
         Me.GridColumnPosition = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLevel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBudget = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl2
@@ -74,6 +76,7 @@ Partial Class FormEmpUniPeriodSingle
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
+        Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
         Me.GCDetail.Size = New System.Drawing.Size(710, 312)
         Me.GCDetail.TabIndex = 2
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
@@ -150,6 +153,7 @@ Partial Class FormEmpUniPeriodSingle
         'GridColumnBudget
         '
         Me.GridColumnBudget.Caption = "Budget"
+        Me.GridColumnBudget.ColumnEdit = Me.RepositoryItemTextEdit1
         Me.GridColumnBudget.DisplayFormat.FormatString = "N2"
         Me.GridColumnBudget.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnBudget.FieldName = "budget"
@@ -157,6 +161,16 @@ Partial Class FormEmpUniPeriodSingle
         Me.GridColumnBudget.Visible = True
         Me.GridColumnBudget.VisibleIndex = 5
         Me.GridColumnBudget.Width = 232
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatString = "N2"
+        Me.RepositoryItemTextEdit1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "n2"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'FormEmpUniPeriodSingle
         '
@@ -175,6 +189,7 @@ Partial Class FormEmpUniPeriodSingle
         Me.PanelControl2.ResumeLayout(False)
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -190,4 +205,5 @@ Partial Class FormEmpUniPeriodSingle
     Friend WithEvents GridColumnPosition As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnLevel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBudget As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
