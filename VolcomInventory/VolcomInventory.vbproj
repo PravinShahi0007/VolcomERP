@@ -1065,6 +1065,12 @@
     <Compile Include="FormMasterPriceSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterRate.Designer.vb">
+      <DependentUpon>FormMasterRate.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterRate.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterRejectType.Designer.vb">
       <DependentUpon>FormMasterRejectType.vb</DependentUpon>
     </Compile>
@@ -5252,6 +5258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterPriceSingle.resx">
       <DependentUpon>FormMasterPriceSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterRate.resx">
+      <DependentUpon>FormMasterRate.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterRejectType.resx">
       <DependentUpon>FormMasterRejectType.vb</DependentUpon>
