@@ -340,6 +340,7 @@ Partial Class FormProductionPLToWH
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 1
         Me.GVProd.Name = "GVProd"
+        Me.GVProd.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVProd.OptionsBehavior.Editable = False
         Me.GVProd.OptionsFind.AlwaysVisible = True
         Me.GVProd.OptionsView.ShowGroupPanel = False

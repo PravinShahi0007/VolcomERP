@@ -204,50 +204,27 @@
         'GVProd.ActiveFilterString = "[pl_created]=0 "
         If GVProd.RowCount > 0 Then
             'show all
-            view_list_purchase(GVProd.GetFocusedRowCellValue("id_prod_order").ToString)
+            view_list_purchase("-1")
         End If
     End Sub
     Sub view_list_purchase(ByVal id_prod_order As String)
-        Dim query = "CALL view_stock_prod_rec('" + id_prod_order + "', '0', '0', '0', '0','0', '0')"
+        Dim id_po As String = "-1"
+        Try
+            id_po = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+        Catch ex As Exception
+        End Try
+        Dim query = "CALL view_stock_prod_rec('" + id_po + "', '0', '0', '0', '0','0', '0')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCListProduct.DataSource = data
     End Sub
 
     Private Sub GVProd_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVProd.FocusedRowChanged
-        Dim focusedRowHandle As Integer = -1
-        If e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.NewItemRowHandle OrElse e.FocusedRowHandle = DevExpress.XtraGrid.GridControl.AutoFilterRowHandle Then
-            Return
-        End If
-        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
-        If e.FocusedRowHandle < 0 Then
-            If e.PrevFocusedRowHandle = DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-                focusedRowHandle = 0
-            ElseIf Control.MouseButtons = MouseButtons.Left OrElse Control.MouseButtons = MouseButtons.Right Then
-                focusedRowHandle = e.PrevFocusedRowHandle
-            Else
-                Dim prevRow As Integer = view.GetVisibleIndex(e.PrevFocusedRowHandle)
-                Dim currRow As Integer = view.GetVisibleIndex(e.FocusedRowHandle)
-                If prevRow > currRow Then
-                    focusedRowHandle = e.PrevFocusedRowHandle - 1
-                Else
-                    focusedRowHandle = e.PrevFocusedRowHandle + 1
-                End If
-                If focusedRowHandle < 0 Then
-                    focusedRowHandle = 0
-                End If
-                If focusedRowHandle >= view.DataRowCount Then
-                    focusedRowHandle = view.DataRowCount - 1
-                End If
-            End If
-            If focusedRowHandle < 0 Then
-                view.FocusedRowHandle = 0
-            Else
-                view.FocusedRowHandle = focusedRowHandle
-            End If
-        End If
-        If GVProd.RowCount > 0 Then
-            view_list_purchase(GVProd.GetFocusedRowCellValue("id_prod_order").ToString)
-        End If
+        Dim id_po As String = "-1"
+        Try
+            id_po = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+        Catch ex As Exception
+        End Try
+        view_list_purchase(id_po)
         showMyToolHint()
     End Sub
     Private Sub GVProd_RowClick(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Grid.RowClickEventArgs) Handles GVProd.RowClick
