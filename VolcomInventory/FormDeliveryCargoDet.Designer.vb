@@ -46,35 +46,39 @@ Partial Class FormDeliveryCargoDet
         Me.DEPickUp = New DevExpress.XtraEditors.DateEdit()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.TEBeratTerpakai = New DevExpress.XtraEditors.TextEdit()
-        Me.TEWeight = New DevExpress.XtraEditors.TextEdit()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.TEVolume = New DevExpress.XtraEditors.TextEdit()
-        Me.TELength = New DevExpress.XtraEditors.TextEdit()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.TEHeight = New DevExpress.XtraEditors.TextEdit()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TEBeratTerpakai = New DevExpress.XtraEditors.TextEdit()
+        Me.TEVolume = New DevExpress.XtraEditors.TextEdit()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.TEWidth = New DevExpress.XtraEditors.TextEdit()
+        Me.TEWeight = New DevExpress.XtraEditors.TextEdit()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.TECargoMinWeight = New DevExpress.XtraEditors.TextEdit()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.TECargoLeadTime = New DevExpress.XtraEditors.TextEdit()
-        Me.Label19 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.TEChargeRate = New DevExpress.XtraEditors.TextEdit()
+        Me.TELength = New DevExpress.XtraEditors.TextEdit()
+        Me.TEWidth = New DevExpress.XtraEditors.TextEdit()
+        Me.TEHeight = New DevExpress.XtraEditors.TextEdit()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.SLECargo = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.SLVCargo = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRange = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSLELeadTime = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnRateCargo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSLEMinWeight = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnslvWeight = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnslvAmount = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TEChargeRate = New DevExpress.XtraEditors.TextEdit()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.TECargoMinWeight = New DevExpress.XtraEditors.TextEdit()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.TECargoLeadTime = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
+        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
+        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.SLEDestination = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.Label14 = New System.Windows.Forms.Label()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.TEDepartement = New DevExpress.XtraEditors.TextEdit()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -83,28 +87,21 @@ Partial Class FormDeliveryCargoDet
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.SLEDestination = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
+        Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRange = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSLELeadTime = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRateCargo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSLEMinWeight = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnslvWeight = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnslvAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIDCargo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCargoCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDestination = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnZone = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
@@ -127,19 +124,28 @@ Partial Class FormDeliveryCargoDet
         CType(Me.DEPickUp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl3.SuspendLayout()
         CType(Me.TEBeratTerpakai.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVolume.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TELength.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWidth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl5.SuspendLayout()
-        CType(Me.TECargoMinWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TECargoLeadTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEChargeRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl1.SuspendLayout()
         CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLVCargo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEChargeRate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECargoMinWeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECargoLeadTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl5.SuspendLayout()
+        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SLEDestination.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,15 +154,6 @@ Partial Class FormDeliveryCargoDet
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.SLEDestination.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl1.SuspendLayout()
-        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupControl3.SuspendLayout()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -465,6 +462,57 @@ Partial Class FormDeliveryCargoDet
         Me.PanelControl3.Size = New System.Drawing.Size(734, 138)
         Me.PanelControl3.TabIndex = 102
         '
+        'GroupControl3
+        '
+        Me.GroupControl3.AppearanceCaption.Options.UseTextOptions = True
+        Me.GroupControl3.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.Label5)
+        Me.GroupControl3.Controls.Add(Me.Label1)
+        Me.GroupControl3.Controls.Add(Me.Label4)
+        Me.GroupControl3.Controls.Add(Me.TEBeratTerpakai)
+        Me.GroupControl3.Controls.Add(Me.TEVolume)
+        Me.GroupControl3.Controls.Add(Me.Label11)
+        Me.GroupControl3.Controls.Add(Me.Label2)
+        Me.GroupControl3.Controls.Add(Me.TEWeight)
+        Me.GroupControl3.Controls.Add(Me.Label3)
+        Me.GroupControl3.Controls.Add(Me.TELength)
+        Me.GroupControl3.Controls.Add(Me.TEWidth)
+        Me.GroupControl3.Controls.Add(Me.TEHeight)
+        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl3.Location = New System.Drawing.Point(325, 2)
+        Me.GroupControl3.Name = "GroupControl3"
+        Me.GroupControl3.Size = New System.Drawing.Size(407, 134)
+        Me.GroupControl3.TabIndex = 123
+        Me.GroupControl3.Text = "Parameter"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(196, 69)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(56, 13)
+        Me.Label5.TabIndex = 1
+        Me.Label5.Text = "Berat (Kg)"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(23, 17)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(70, 13)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "Panjang (cm)"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(23, 95)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(100, 13)
+        Me.Label4.TabIndex = 6
+        Me.Label4.Text = "Dimensional Weight"
+        '
         'TEBeratTerpakai
         '
         Me.TEBeratTerpakai.Location = New System.Drawing.Point(291, 92)
@@ -478,45 +526,6 @@ Partial Class FormDeliveryCargoDet
         Me.TEBeratTerpakai.Size = New System.Drawing.Size(101, 20)
         Me.TEBeratTerpakai.TabIndex = 93
         Me.TEBeratTerpakai.TabStop = False
-        '
-        'TEWeight
-        '
-        Me.TEWeight.Location = New System.Drawing.Point(291, 66)
-        Me.TEWeight.Name = "TEWeight"
-        Me.TEWeight.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEWeight.Properties.Mask.EditMask = "N2"
-        Me.TEWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEWeight.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEWeight.Size = New System.Drawing.Size(101, 20)
-        Me.TEWeight.TabIndex = 2
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(196, 69)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(56, 13)
-        Me.Label5.TabIndex = 1
-        Me.Label5.Text = "Berat (Kg)"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(23, 95)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(100, 13)
-        Me.Label4.TabIndex = 6
-        Me.Label4.Text = "Dimensional Weight"
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(196, 95)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(89, 13)
-        Me.Label11.TabIndex = 92
-        Me.Label11.Text = "Final Weight (Kg)"
         '
         'TEVolume
         '
@@ -532,6 +541,45 @@ Partial Class FormDeliveryCargoDet
         Me.TEVolume.TabIndex = 9
         Me.TEVolume.TabStop = False
         '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(196, 95)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(89, 13)
+        Me.Label11.TabIndex = 92
+        Me.Label11.Text = "Final Weight (Kg)"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(23, 43)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(58, 13)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "Lebar (cm)"
+        '
+        'TEWeight
+        '
+        Me.TEWeight.Location = New System.Drawing.Point(291, 66)
+        Me.TEWeight.Name = "TEWeight"
+        Me.TEWeight.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEWeight.Properties.Mask.EditMask = "N2"
+        Me.TEWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEWeight.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEWeight.Size = New System.Drawing.Size(101, 20)
+        Me.TEWeight.TabIndex = 2
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(23, 69)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(59, 13)
+        Me.Label3.TabIndex = 5
+        Me.Label3.Text = "Tinggi (cm)"
+        '
         'TELength
         '
         Me.TELength.Location = New System.Drawing.Point(99, 14)
@@ -543,36 +591,6 @@ Partial Class FormDeliveryCargoDet
         Me.TELength.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TELength.Size = New System.Drawing.Size(91, 20)
         Me.TELength.TabIndex = 3
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(23, 17)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(70, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Panjang (cm)"
-        '
-        'TEHeight
-        '
-        Me.TEHeight.Location = New System.Drawing.Point(99, 66)
-        Me.TEHeight.Name = "TEHeight"
-        Me.TEHeight.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEHeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEHeight.Properties.Mask.EditMask = "N2"
-        Me.TEHeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEHeight.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEHeight.Size = New System.Drawing.Size(91, 20)
-        Me.TEHeight.TabIndex = 5
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(23, 43)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(58, 13)
-        Me.Label2.TabIndex = 3
-        Me.Label2.Text = "Lebar (cm)"
         '
         'TEWidth
         '
@@ -586,100 +604,46 @@ Partial Class FormDeliveryCargoDet
         Me.TEWidth.Size = New System.Drawing.Size(91, 20)
         Me.TEWidth.TabIndex = 4
         '
-        'Label3
+        'TEHeight
         '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(23, 69)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(59, 13)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Tinggi (cm)"
+        Me.TEHeight.Location = New System.Drawing.Point(99, 66)
+        Me.TEHeight.Name = "TEHeight"
+        Me.TEHeight.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEHeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEHeight.Properties.Mask.EditMask = "N2"
+        Me.TEHeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEHeight.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEHeight.Size = New System.Drawing.Size(91, 20)
+        Me.TEHeight.TabIndex = 5
         '
-        'PanelControl5
+        'GroupControl1
         '
-        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.PanelControl5.Controls.Add(Me.MemoEdit1)
-        Me.PanelControl5.Controls.Add(Me.TextEdit2)
-        Me.PanelControl5.Controls.Add(Me.Label23)
-        Me.PanelControl5.Controls.Add(Me.Label22)
-        Me.PanelControl5.Controls.Add(Me.TextEdit1)
-        Me.PanelControl5.Controls.Add(Me.Label21)
-        Me.PanelControl5.Controls.Add(Me.SLEDestination)
-        Me.PanelControl5.Controls.Add(Me.Label14)
-        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl5.Location = New System.Drawing.Point(0, 43)
-        Me.PanelControl5.Name = "PanelControl5"
-        Me.PanelControl5.Size = New System.Drawing.Size(734, 88)
-        Me.PanelControl5.TabIndex = 117
+        Me.GroupControl1.AppearanceCaption.Options.UseTextOptions = True
+        Me.GroupControl1.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.Label10)
+        Me.GroupControl1.Controls.Add(Me.SLECargo)
+        Me.GroupControl1.Controls.Add(Me.TEChargeRate)
+        Me.GroupControl1.Controls.Add(Me.Label12)
+        Me.GroupControl1.Controls.Add(Me.Label20)
+        Me.GroupControl1.Controls.Add(Me.TECargoMinWeight)
+        Me.GroupControl1.Controls.Add(Me.Label19)
+        Me.GroupControl1.Controls.Add(Me.TECargoLeadTime)
+        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.GroupControl1.Location = New System.Drawing.Point(2, 2)
+        Me.GroupControl1.Name = "GroupControl1"
+        Me.GroupControl1.Size = New System.Drawing.Size(323, 134)
+        Me.GroupControl1.TabIndex = 122
+        Me.GroupControl1.Text = "Expedition"
         '
-        'TECargoMinWeight
+        'Label10
         '
-        Me.TECargoMinWeight.Location = New System.Drawing.Point(122, 66)
-        Me.TECargoMinWeight.Name = "TECargoMinWeight"
-        Me.TECargoMinWeight.Properties.Appearance.Options.UseTextOptions = True
-        Me.TECargoMinWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TECargoMinWeight.Properties.Mask.EditMask = "N0"
-        Me.TECargoMinWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TECargoMinWeight.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TECargoMinWeight.Properties.ReadOnly = True
-        Me.TECargoMinWeight.Size = New System.Drawing.Size(159, 20)
-        Me.TECargoMinWeight.TabIndex = 121
-        Me.TECargoMinWeight.TabStop = False
-        '
-        'Label20
-        '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(26, 69)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(60, 13)
-        Me.Label20.TabIndex = 120
-        Me.Label20.Text = "Min Weight"
-        '
-        'TECargoLeadTime
-        '
-        Me.TECargoLeadTime.Location = New System.Drawing.Point(122, 92)
-        Me.TECargoLeadTime.Name = "TECargoLeadTime"
-        Me.TECargoLeadTime.Properties.Appearance.Options.UseTextOptions = True
-        Me.TECargoLeadTime.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TECargoLeadTime.Properties.Mask.EditMask = "N0"
-        Me.TECargoLeadTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TECargoLeadTime.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TECargoLeadTime.Properties.ReadOnly = True
-        Me.TECargoLeadTime.Size = New System.Drawing.Size(159, 20)
-        Me.TECargoLeadTime.TabIndex = 119
-        Me.TECargoLeadTime.TabStop = False
-        '
-        'Label19
-        '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(26, 95)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(89, 13)
-        Me.Label19.TabIndex = 118
-        Me.Label19.Text = "Lead Time (days)"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(26, 43)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(52, 13)
-        Me.Label12.TabIndex = 117
-        Me.Label12.Text = "Rate / Kg"
-        '
-        'TEChargeRate
-        '
-        Me.TEChargeRate.Location = New System.Drawing.Point(122, 40)
-        Me.TEChargeRate.Name = "TEChargeRate"
-        Me.TEChargeRate.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEChargeRate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEChargeRate.Properties.Mask.EditMask = "N2"
-        Me.TEChargeRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEChargeRate.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEChargeRate.Properties.ReadOnly = True
-        Me.TEChargeRate.Size = New System.Drawing.Size(159, 20)
-        Me.TEChargeRate.TabIndex = 116
-        Me.TEChargeRate.TabStop = False
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(26, 17)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(57, 13)
+        Me.Label10.TabIndex = 109
+        Me.Label10.Text = "Expedition"
         '
         'SLECargo
         '
@@ -704,68 +668,173 @@ Partial Class FormDeliveryCargoDet
         Me.SLVCargo.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.SLVCargo.OptionsView.ShowGroupPanel = False
         '
-        'GridColumnIdSeason
+        'TEChargeRate
         '
-        Me.GridColumnIdSeason.Caption = "ID Cargo"
-        Me.GridColumnIdSeason.FieldName = "id_cargo"
-        Me.GridColumnIdSeason.Name = "GridColumnIdSeason"
+        Me.TEChargeRate.Location = New System.Drawing.Point(122, 40)
+        Me.TEChargeRate.Name = "TEChargeRate"
+        Me.TEChargeRate.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEChargeRate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEChargeRate.Properties.Mask.EditMask = "N2"
+        Me.TEChargeRate.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEChargeRate.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEChargeRate.Properties.ReadOnly = True
+        Me.TEChargeRate.Size = New System.Drawing.Size(159, 20)
+        Me.TEChargeRate.TabIndex = 116
+        Me.TEChargeRate.TabStop = False
         '
-        'GridColumnRange
+        'Label12
         '
-        Me.GridColumnRange.Caption = "Cargo Name"
-        Me.GridColumnRange.FieldName = "cargo"
-        Me.GridColumnRange.Name = "GridColumnRange"
-        Me.GridColumnRange.Visible = True
-        Me.GridColumnRange.VisibleIndex = 0
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(26, 43)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(52, 13)
+        Me.Label12.TabIndex = 117
+        Me.Label12.Text = "Rate / Kg"
         '
-        'GridColumnSLELeadTime
+        'Label20
         '
-        Me.GridColumnSLELeadTime.Caption = "Lead Time (days)"
-        Me.GridColumnSLELeadTime.FieldName = "cargo_lead_time"
-        Me.GridColumnSLELeadTime.Name = "GridColumnSLELeadTime"
-        Me.GridColumnSLELeadTime.Visible = True
-        Me.GridColumnSLELeadTime.VisibleIndex = 1
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(26, 69)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(60, 13)
+        Me.Label20.TabIndex = 120
+        Me.Label20.Text = "Min Weight"
         '
-        'GridColumnRateCargo
+        'TECargoMinWeight
         '
-        Me.GridColumnRateCargo.Caption = "Rate / Kg"
-        Me.GridColumnRateCargo.FieldName = "cargo_rate"
-        Me.GridColumnRateCargo.Name = "GridColumnRateCargo"
-        Me.GridColumnRateCargo.Visible = True
-        Me.GridColumnRateCargo.VisibleIndex = 3
+        Me.TECargoMinWeight.Location = New System.Drawing.Point(122, 66)
+        Me.TECargoMinWeight.Name = "TECargoMinWeight"
+        Me.TECargoMinWeight.Properties.Appearance.Options.UseTextOptions = True
+        Me.TECargoMinWeight.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TECargoMinWeight.Properties.Mask.EditMask = "N0"
+        Me.TECargoMinWeight.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TECargoMinWeight.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TECargoMinWeight.Properties.ReadOnly = True
+        Me.TECargoMinWeight.Size = New System.Drawing.Size(159, 20)
+        Me.TECargoMinWeight.TabIndex = 121
+        Me.TECargoMinWeight.TabStop = False
         '
-        'GridColumnSLEMinWeight
+        'Label19
         '
-        Me.GridColumnSLEMinWeight.Caption = "Minimum Weight (Kg)"
-        Me.GridColumnSLEMinWeight.FieldName = "cargo_min_weight"
-        Me.GridColumnSLEMinWeight.Name = "GridColumnSLEMinWeight"
-        Me.GridColumnSLEMinWeight.Visible = True
-        Me.GridColumnSLEMinWeight.VisibleIndex = 2
+        Me.Label19.AutoSize = True
+        Me.Label19.Location = New System.Drawing.Point(26, 95)
+        Me.Label19.Name = "Label19"
+        Me.Label19.Size = New System.Drawing.Size(89, 13)
+        Me.Label19.TabIndex = 118
+        Me.Label19.Text = "Lead Time (days)"
         '
-        'GridColumnslvWeight
+        'TECargoLeadTime
         '
-        Me.GridColumnslvWeight.Caption = "Weight"
-        Me.GridColumnslvWeight.FieldName = "weight"
-        Me.GridColumnslvWeight.Name = "GridColumnslvWeight"
-        Me.GridColumnslvWeight.Visible = True
-        Me.GridColumnslvWeight.VisibleIndex = 4
+        Me.TECargoLeadTime.Location = New System.Drawing.Point(122, 92)
+        Me.TECargoLeadTime.Name = "TECargoLeadTime"
+        Me.TECargoLeadTime.Properties.Appearance.Options.UseTextOptions = True
+        Me.TECargoLeadTime.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TECargoLeadTime.Properties.Mask.EditMask = "N0"
+        Me.TECargoLeadTime.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TECargoLeadTime.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TECargoLeadTime.Properties.ReadOnly = True
+        Me.TECargoLeadTime.Size = New System.Drawing.Size(159, 20)
+        Me.TECargoLeadTime.TabIndex = 119
+        Me.TECargoLeadTime.TabStop = False
         '
-        'GridColumnslvAmount
+        'PanelControl5
         '
-        Me.GridColumnslvAmount.Caption = "Amount"
-        Me.GridColumnslvAmount.FieldName = "amount"
-        Me.GridColumnslvAmount.Name = "GridColumnslvAmount"
-        Me.GridColumnslvAmount.Visible = True
-        Me.GridColumnslvAmount.VisibleIndex = 5
+        Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
+        Me.PanelControl5.Controls.Add(Me.MemoEdit1)
+        Me.PanelControl5.Controls.Add(Me.TextEdit2)
+        Me.PanelControl5.Controls.Add(Me.Label23)
+        Me.PanelControl5.Controls.Add(Me.Label22)
+        Me.PanelControl5.Controls.Add(Me.TextEdit1)
+        Me.PanelControl5.Controls.Add(Me.Label21)
+        Me.PanelControl5.Controls.Add(Me.SLEDestination)
+        Me.PanelControl5.Controls.Add(Me.Label14)
+        Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl5.Location = New System.Drawing.Point(0, 43)
+        Me.PanelControl5.Name = "PanelControl5"
+        Me.PanelControl5.Size = New System.Drawing.Size(734, 88)
+        Me.PanelControl5.TabIndex = 117
         '
-        'Label10
+        'MemoEdit1
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(26, 17)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(57, 13)
-        Me.Label10.TabIndex = 109
-        Me.Label10.Text = "Expedition"
+        Me.MemoEdit1.Location = New System.Drawing.Point(105, 37)
+        Me.MemoEdit1.Name = "MemoEdit1"
+        Me.MemoEdit1.Size = New System.Drawing.Size(612, 39)
+        Me.MemoEdit1.TabIndex = 129
+        '
+        'TextEdit2
+        '
+        Me.TextEdit2.Location = New System.Drawing.Point(317, 11)
+        Me.TextEdit2.Name = "TextEdit2"
+        Me.TextEdit2.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TextEdit2.Size = New System.Drawing.Size(171, 20)
+        Me.TextEdit2.TabIndex = 128
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Location = New System.Drawing.Point(292, 14)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(19, 13)
+        Me.Label23.TabIndex = 127
+        Me.Label23.Text = "To"
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(10, 39)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(46, 13)
+        Me.Label22.TabIndex = 126
+        Me.Label22.Text = "Address"
+        '
+        'TextEdit1
+        '
+        Me.TextEdit1.Location = New System.Drawing.Point(528, 11)
+        Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TextEdit1.Size = New System.Drawing.Size(189, 20)
+        Me.TextEdit1.TabIndex = 125
+        '
+        'Label21
+        '
+        Me.Label21.AutoSize = True
+        Me.Label21.Location = New System.Drawing.Point(494, 14)
+        Me.Label21.Name = "Label21"
+        Me.Label21.Size = New System.Drawing.Size(28, 13)
+        Me.Label21.TabIndex = 124
+        Me.Label21.Text = "Attn"
+        '
+        'SLEDestination
+        '
+        Me.SLEDestination.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.SLEDestination.Location = New System.Drawing.Point(105, 11)
+        Me.SLEDestination.Name = "SLEDestination"
+        Me.SLEDestination.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SLEDestination.Properties.Appearance.Options.UseFont = True
+        Me.SLEDestination.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEDestination.Properties.NullText = "-"
+        Me.SLEDestination.Properties.View = Me.GridView1
+        Me.SLEDestination.Size = New System.Drawing.Size(185, 20)
+        Me.SLEDestination.TabIndex = 123
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDCargo, Me.GridColumnCargoCode, Me.GridColumnDestination, Me.GridColumnZone})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.ReadOnly = True
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(10, 14)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(89, 13)
+        Me.Label14.TabIndex = 122
+        Me.Label14.Text = "Destination Code"
         '
         'PanelControl2
         '
@@ -861,6 +930,17 @@ Partial Class FormDeliveryCargoDet
         Me.PanelControl1.Size = New System.Drawing.Size(734, 38)
         Me.PanelControl1.TabIndex = 5
         '
+        'BPrint
+        '
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPrint.ImageIndex = 6
+        Me.BPrint.ImageList = Me.LargeImageCollection
+        Me.BPrint.Location = New System.Drawing.Point(462, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(90, 34)
+        Me.BPrint.TabIndex = 94
+        Me.BPrint.Text = "Print"
+        '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
@@ -895,196 +975,89 @@ Partial Class FormDeliveryCargoDet
         Me.BSave.TabIndex = 91
         Me.BSave.Text = "Save"
         '
-        'BPrint
+        'GridColumnIdSeason
         '
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPrint.ImageIndex = 6
-        Me.BPrint.ImageList = Me.LargeImageCollection
-        Me.BPrint.Location = New System.Drawing.Point(462, 2)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(90, 34)
-        Me.BPrint.TabIndex = 94
-        Me.BPrint.Text = "Print"
+        Me.GridColumnIdSeason.Caption = "ID Cargo"
+        Me.GridColumnIdSeason.FieldName = "id_cargo"
+        Me.GridColumnIdSeason.Name = "GridColumnIdSeason"
         '
-        'Label14
+        'GridColumnRange
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(10, 14)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(89, 13)
-        Me.Label14.TabIndex = 122
-        Me.Label14.Text = "Destination Code"
+        Me.GridColumnRange.Caption = "Cargo Name"
+        Me.GridColumnRange.FieldName = "cargo"
+        Me.GridColumnRange.Name = "GridColumnRange"
+        Me.GridColumnRange.Visible = True
+        Me.GridColumnRange.VisibleIndex = 0
         '
-        'SLEDestination
+        'GridColumnSLELeadTime
         '
-        Me.SLEDestination.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.SLEDestination.Location = New System.Drawing.Point(105, 11)
-        Me.SLEDestination.Name = "SLEDestination"
-        Me.SLEDestination.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.SLEDestination.Properties.Appearance.Options.UseFont = True
-        Me.SLEDestination.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEDestination.Properties.NullText = "-"
-        Me.SLEDestination.Properties.View = Me.GridView1
-        Me.SLEDestination.Size = New System.Drawing.Size(185, 20)
-        Me.SLEDestination.TabIndex = 123
+        Me.GridColumnSLELeadTime.Caption = "Lead Time (days)"
+        Me.GridColumnSLELeadTime.FieldName = "cargo_lead_time"
+        Me.GridColumnSLELeadTime.Name = "GridColumnSLELeadTime"
+        Me.GridColumnSLELeadTime.Visible = True
+        Me.GridColumnSLELeadTime.VisibleIndex = 1
         '
-        'GridView1
+        'GridColumnRateCargo
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7})
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.ReadOnly = True
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ShowGroupPanel = False
+        Me.GridColumnRateCargo.Caption = "Rate / Kg"
+        Me.GridColumnRateCargo.FieldName = "cargo_rate"
+        Me.GridColumnRateCargo.Name = "GridColumnRateCargo"
+        Me.GridColumnRateCargo.Visible = True
+        Me.GridColumnRateCargo.VisibleIndex = 3
         '
-        'GridColumn1
+        'GridColumnSLEMinWeight
         '
-        Me.GridColumn1.Caption = "ID Cargo"
-        Me.GridColumn1.FieldName = "id_cargo"
-        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumnSLEMinWeight.Caption = "Minimum Weight (Kg)"
+        Me.GridColumnSLEMinWeight.FieldName = "cargo_min_weight"
+        Me.GridColumnSLEMinWeight.Name = "GridColumnSLEMinWeight"
+        Me.GridColumnSLEMinWeight.Visible = True
+        Me.GridColumnSLEMinWeight.VisibleIndex = 2
         '
-        'GridColumn2
+        'GridColumnslvWeight
         '
-        Me.GridColumn2.Caption = "Cargo Name"
-        Me.GridColumn2.FieldName = "cargo"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumnslvWeight.Caption = "Weight"
+        Me.GridColumnslvWeight.FieldName = "weight"
+        Me.GridColumnslvWeight.Name = "GridColumnslvWeight"
+        Me.GridColumnslvWeight.Visible = True
+        Me.GridColumnslvWeight.VisibleIndex = 4
         '
-        'GridColumn3
+        'GridColumnslvAmount
         '
-        Me.GridColumn3.Caption = "Lead Time (days)"
-        Me.GridColumn3.FieldName = "cargo_lead_time"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumnslvAmount.Caption = "Amount"
+        Me.GridColumnslvAmount.FieldName = "amount"
+        Me.GridColumnslvAmount.Name = "GridColumnslvAmount"
+        Me.GridColumnslvAmount.Visible = True
+        Me.GridColumnslvAmount.VisibleIndex = 5
         '
-        'GridColumn4
+        'GridColumnIDCargo
         '
-        Me.GridColumn4.Caption = "Rate / Kg"
-        Me.GridColumn4.FieldName = "cargo_rate"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 3
+        Me.GridColumnIDCargo.Caption = "ID Cargo"
+        Me.GridColumnIDCargo.FieldName = "id_cargo_rate"
+        Me.GridColumnIDCargo.Name = "GridColumnIDCargo"
         '
-        'GridColumn5
+        'GridColumnCargoCode
         '
-        Me.GridColumn5.Caption = "Minimum Weight (Kg)"
-        Me.GridColumn5.FieldName = "cargo_min_weight"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 2
+        Me.GridColumnCargoCode.Caption = "Cargo Code"
+        Me.GridColumnCargoCode.FieldName = "cargo_code"
+        Me.GridColumnCargoCode.Name = "GridColumnCargoCode"
+        Me.GridColumnCargoCode.Visible = True
+        Me.GridColumnCargoCode.VisibleIndex = 0
         '
-        'GridColumn6
+        'GridColumnDestination
         '
-        Me.GridColumn6.Caption = "Weight"
-        Me.GridColumn6.FieldName = "weight"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumnDestination.Caption = "Destination"
+        Me.GridColumnDestination.FieldName = "destination"
+        Me.GridColumnDestination.Name = "GridColumnDestination"
+        Me.GridColumnDestination.Visible = True
+        Me.GridColumnDestination.VisibleIndex = 1
         '
-        'GridColumn7
+        'GridColumnZone
         '
-        Me.GridColumn7.Caption = "Amount"
-        Me.GridColumn7.FieldName = "amount"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(494, 14)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(28, 13)
-        Me.Label21.TabIndex = 124
-        Me.Label21.Text = "Attn"
-        '
-        'TextEdit1
-        '
-        Me.TextEdit1.Location = New System.Drawing.Point(528, 11)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit1.Size = New System.Drawing.Size(189, 20)
-        Me.TextEdit1.TabIndex = 125
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(10, 39)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(46, 13)
-        Me.Label22.TabIndex = 126
-        Me.Label22.Text = "Address"
-        '
-        'GroupControl1
-        '
-        Me.GroupControl1.AppearanceCaption.Options.UseTextOptions = True
-        Me.GroupControl1.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.Label10)
-        Me.GroupControl1.Controls.Add(Me.SLECargo)
-        Me.GroupControl1.Controls.Add(Me.TEChargeRate)
-        Me.GroupControl1.Controls.Add(Me.Label12)
-        Me.GroupControl1.Controls.Add(Me.Label20)
-        Me.GroupControl1.Controls.Add(Me.TECargoMinWeight)
-        Me.GroupControl1.Controls.Add(Me.Label19)
-        Me.GroupControl1.Controls.Add(Me.TECargoLeadTime)
-        Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.GroupControl1.Location = New System.Drawing.Point(2, 2)
-        Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(323, 134)
-        Me.GroupControl1.TabIndex = 122
-        Me.GroupControl1.Text = "Expedition"
-        '
-        'GroupControl3
-        '
-        Me.GroupControl3.AppearanceCaption.Options.UseTextOptions = True
-        Me.GroupControl3.AppearanceCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl3.Controls.Add(Me.Label5)
-        Me.GroupControl3.Controls.Add(Me.Label1)
-        Me.GroupControl3.Controls.Add(Me.Label4)
-        Me.GroupControl3.Controls.Add(Me.TEBeratTerpakai)
-        Me.GroupControl3.Controls.Add(Me.TEVolume)
-        Me.GroupControl3.Controls.Add(Me.Label11)
-        Me.GroupControl3.Controls.Add(Me.Label2)
-        Me.GroupControl3.Controls.Add(Me.TEWeight)
-        Me.GroupControl3.Controls.Add(Me.Label3)
-        Me.GroupControl3.Controls.Add(Me.TELength)
-        Me.GroupControl3.Controls.Add(Me.TEWidth)
-        Me.GroupControl3.Controls.Add(Me.TEHeight)
-        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl3.Location = New System.Drawing.Point(325, 2)
-        Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(407, 134)
-        Me.GroupControl3.TabIndex = 123
-        Me.GroupControl3.Text = "Parameter"
-        '
-        'TextEdit2
-        '
-        Me.TextEdit2.Location = New System.Drawing.Point(317, 11)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit2.Size = New System.Drawing.Size(171, 20)
-        Me.TextEdit2.TabIndex = 128
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(292, 14)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(19, 13)
-        Me.Label23.TabIndex = 127
-        Me.Label23.Text = "To"
-        '
-        'MemoEdit1
-        '
-        Me.MemoEdit1.Location = New System.Drawing.Point(105, 37)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(612, 39)
-        Me.MemoEdit1.TabIndex = 129
+        Me.GridColumnZone.Caption = "Zone"
+        Me.GridColumnZone.FieldName = "zone"
+        Me.GridColumnZone.Name = "GridColumnZone"
+        Me.GridColumnZone.Visible = True
+        Me.GridColumnZone.VisibleIndex = 2
         '
         'FormDeliveryCargoDet
         '
@@ -1121,20 +1094,31 @@ Partial Class FormDeliveryCargoDet
         CType(Me.DEPickUp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl3.ResumeLayout(False)
+        Me.GroupControl3.PerformLayout()
         CType(Me.TEBeratTerpakai.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVolume.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TELength.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWidth.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl1.ResumeLayout(False)
+        Me.GroupControl1.PerformLayout()
+        CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLVCargo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEChargeRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECargoMinWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECargoLeadTime.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         Me.PanelControl5.PerformLayout()
-        CType(Me.TECargoMinWeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TECargoLeadTime.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEChargeRate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLECargo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLVCargo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SLEDestination.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -1144,17 +1128,6 @@ Partial Class FormDeliveryCargoDet
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.SLEDestination.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl1.ResumeLayout(False)
-        Me.GroupControl1.PerformLayout()
-        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupControl3.ResumeLayout(False)
-        Me.GroupControl3.PerformLayout()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1231,16 +1204,13 @@ Partial Class FormDeliveryCargoDet
     Friend WithEvents Label21 As Label
     Friend WithEvents SLEDestination As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIDCargo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label23 As Label
+    Friend WithEvents GridColumnCargoCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDestination As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnZone As DevExpress.XtraGrid.Columns.GridColumn
 End Class
