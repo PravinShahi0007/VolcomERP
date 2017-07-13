@@ -12,7 +12,7 @@
             BtnSave.Text = "Create New"
         Else
             Dim query_c As New ClassEmpUni()
-            Dim query As String = query_c.queryMain("AND p.id_emp_uni_period=" + id_emp_uni_period + "", "1")
+            Dim query As String = query_c.queryMain("AND u.id_emp_uni_period=" + id_emp_uni_period + "", "1")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             TxtPeriodName.Text = data.Rows(0)("period_name").ToString
             DEStart.EditValue = data.Rows(0)("selection_date_start")
