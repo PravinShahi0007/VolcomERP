@@ -19,7 +19,7 @@
             DEEnd.EditValue = data.Rows(0)("selection_date_end")
             DEDist.EditValue = data.Rows(0)("distribution_date")
             XTCUni.Enabled = True
-            BtnSave.Text = "Save"
+            BtnSave.Text = "Save Changes"
             viewDetail()
         End If
     End Sub
