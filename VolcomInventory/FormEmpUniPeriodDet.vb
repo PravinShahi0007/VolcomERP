@@ -33,7 +33,7 @@
         INNER JOIN tb_m_employee e ON e.id_employee = b.id_employee
         INNER JOIN tb_m_departement d ON d.id_departement = e.id_departement
         LEFT JOIN tb_lookup_employee_level l ON l.id_employee_level=e.id_employee_level
-        WHERE b.id_emp_uni_period=-" + id_emp_uni_period + " "
+        WHERE b.id_emp_uni_period=" + id_emp_uni_period + " "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
     End Sub
