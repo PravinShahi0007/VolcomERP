@@ -118,4 +118,12 @@
             End If
         End If
     End Sub
+
+    Private Sub XTCUni_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCUni.SelectedPageChanged
+        If XTCUni.SelectedTabPageIndex = 0 Then
+            BtnSave.Visible = True
+        Else
+            BtnSave.Visible = False
+        End If
+    End Sub
 End Class

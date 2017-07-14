@@ -58,6 +58,7 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.DEDist.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,7 +96,6 @@ Partial Class FormEmpUniPeriodDet
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(719, 105)
         Me.GroupControl1.TabIndex = 0
-        Me.GroupControl1.Text = "Period"
         '
         'DEDist
         '
@@ -190,7 +190,7 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(86, 36)
         Me.BtnClose.TabIndex = 1
-        Me.BtnClose.Text = "Cancel"
+        Me.BtnClose.Text = "Close"
         '
         'BtnSave
         '
@@ -212,7 +212,7 @@ Partial Class FormEmpUniPeriodDet
         Me.XTCUni.SelectedTabPage = Me.XTPBudget
         Me.XTCUni.Size = New System.Drawing.Size(719, 306)
         Me.XTCUni.TabIndex = 2
-        Me.XTCUni.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget, Me.XTPDesign})
+        Me.XTCUni.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget, Me.XTPDesign, Me.XTPOrder})
         '
         'XTPBudget
         '
@@ -436,8 +436,14 @@ Partial Class FormEmpUniPeriodDet
         'XTPDesign
         '
         Me.XTPDesign.Name = "XTPDesign"
-        Me.XTPDesign.Size = New System.Drawing.Size(0, 0)
+        Me.XTPDesign.Size = New System.Drawing.Size(690, 300)
         Me.XTPDesign.Text = "Design List"
+        '
+        'XTPOrder
+        '
+        Me.XTPOrder.Name = "XTPOrder"
+        Me.XTPOrder.Size = New System.Drawing.Size(690, 300)
+        Me.XTPOrder.Text = "Order"
         '
         'FormEmpUniPeriodDet
         '
@@ -513,4 +519,5 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnIdBudget As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents XTPDesign As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPOrder As DevExpress.XtraTab.XtraTabPage
 End Class
