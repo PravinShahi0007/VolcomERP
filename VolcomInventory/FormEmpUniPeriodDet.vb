@@ -80,4 +80,42 @@
         FormEmpUniPeriodSingle.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnEdit_Click(sender As Object, e As EventArgs) Handles BtnEdit.Click
+        Dim id As String = "-1"
+        Try
+            id = GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString
+        Catch ex As Exception
+        End Try
+        If id <> "-1" Then
+            FormEmpUniPeriodSingle.action = "upd"
+            FormEmpUniPeriodSingle.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BtnPrintBudget_Click(sender As Object, e As EventArgs) Handles BtnPrintBudget.Click
+        Cursor = Cursors.WaitCursor
+        print(GCDetail, "UNIFORM BUDGET : " + TxtPeriodName.Text.ToUpper)
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDelete_Click(sender As Object, e As EventArgs) Handles BtnDelete.Click
+        Dim id As String = "-1"
+        Try
+            id = GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString
+        Catch ex As Exception
+        End Try
+        If id <> "-1" Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this budget for this employee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim query As String = "DELETE FROM tb_emp_uni_budget WHERE id_emp_uni_budget=" + id + " "
+                    execute_non_query(query, True, "", "", "", "")
+                    viewDetail()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
+        End If
+    End Sub
 End Class

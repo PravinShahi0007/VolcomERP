@@ -40,6 +40,7 @@ Partial Class FormEmpUniPeriodDet
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdBudget = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNik = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDept = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -56,6 +57,7 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnImportBudget = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPDesign = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.DEDist.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -210,7 +212,7 @@ Partial Class FormEmpUniPeriodDet
         Me.XTCUni.SelectedTabPage = Me.XTPBudget
         Me.XTCUni.Size = New System.Drawing.Size(719, 306)
         Me.XTCUni.TabIndex = 2
-        Me.XTCUni.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget})
+        Me.XTCUni.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget, Me.XTPDesign})
         '
         'XTPBudget
         '
@@ -218,7 +220,7 @@ Partial Class FormEmpUniPeriodDet
         Me.XTPBudget.Controls.Add(Me.PanelControl2)
         Me.XTPBudget.Name = "XTPBudget"
         Me.XTPBudget.Size = New System.Drawing.Size(690, 300)
-        Me.XTPBudget.Text = "Detail"
+        Me.XTPBudget.Text = "Detail && Budget"
         '
         'GCDetail
         '
@@ -245,7 +247,7 @@ Partial Class FormEmpUniPeriodDet
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdEmployee, Me.GridColumnNik, Me.GridColumnName, Me.GridColumnDept, Me.GridColumnPosition, Me.GridColumnLevel, Me.GridColumnBudget, Me.GridColumnActual, Me.GridColumn1, Me.GridColumnStatus})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdEmployee, Me.GridColumnIdBudget, Me.GridColumnNik, Me.GridColumnName, Me.GridColumnDept, Me.GridColumnPosition, Me.GridColumnLevel, Me.GridColumnBudget, Me.GridColumnActual, Me.GridColumn1, Me.GridColumnStatus})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.GroupCount = 1
         Me.GVDetail.Name = "GVDetail"
@@ -259,6 +261,12 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnIdEmployee.Caption = "Id Employee"
         Me.GridColumnIdEmployee.FieldName = "id_employee"
         Me.GridColumnIdEmployee.Name = "GridColumnIdEmployee"
+        '
+        'GridColumnIdBudget
+        '
+        Me.GridColumnIdBudget.Caption = "Id Budget"
+        Me.GridColumnIdBudget.FieldName = "id_emp_uni_budget"
+        Me.GridColumnIdBudget.Name = "GridColumnIdBudget"
         '
         'GridColumnNik
         '
@@ -425,6 +433,12 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnAdd.TabIndex = 5
         Me.BtnAdd.Text = "Add Budget"
         '
+        'XTPDesign
+        '
+        Me.XTPDesign.Name = "XTPDesign"
+        Me.XTPDesign.Size = New System.Drawing.Size(0, 0)
+        Me.XTPDesign.Text = "Design List"
+        '
         'FormEmpUniPeriodDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -497,4 +511,6 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnIdBudget As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPDesign As DevExpress.XtraTab.XtraTabPage
 End Class

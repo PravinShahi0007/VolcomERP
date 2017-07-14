@@ -37,9 +37,14 @@
             FROM tb_m_employee e
             INNER JOIN tb_m_departement d ON d.id_departement = e.id_departement
             LEFT JOIN tb_lookup_employee_level l ON l.id_employee_level=e.id_employee_level
-            INNER JOIN tb_emp_uni_budget b ON b.id_employee = e.id_employee AND b.id_emp_uni_period=" + FormEmpUniPeriodDet.id_emp_uni_period + " "
+            INNER JOIN tb_emp_uni_budget b ON b.id_employee = e.id_employee AND b.id_emp_uni_budget=" + FormEmpUniPeriodDet.GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString + " "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCDetail.DataSource = data
+            GVDetail.FocusedRowHandle = 0
+            GVDetail.SetFocusedRowCellValue("budget", FormEmpUniPeriodDet.GVDetail.GetFocusedRowCellValue("budget"))
+            GVDetail.FocusedColumn = GridColumnBudget
+            RepositoryItemTextEdit1.NullText = 0
+            BtnOK.Text = "Edit"
         End If
     End Sub
 
@@ -56,7 +61,7 @@
             makeSafeGV(GVDetail)
             GVDetail.ActiveFilterString = "[budget]>=0"
             If GVDetail.RowCount > 0 Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this involved form?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to add this budget for these employee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Dim j As Integer = 0
                     Dim query As String = "INSERT INTO tb_emp_uni_budget(id_emp_uni_period, id_employee, budget) VALUES "
@@ -81,6 +86,17 @@
             Else
                 GVDetail.ActiveFilterString = ""
                 GridColumnDept.GroupIndex = 0
+            End If
+        Else
+            GVDetail.FocusedRowHandle = 0
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to edit this budget for this employee?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim id_budget As String = FormEmpUniPeriodDet.GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString
+                Dim query As String = "UPDATE tb_emp_uni_budget SET budget='" + decimalSQL(GVDetail.GetFocusedRowCellValue("budget").ToString) + "' WHERE id_emp_uni_budget=" + id_budget + " "
+                execute_non_query(query, True, "", "", "", "")
+                FormEmpUniPeriodDet.viewDetail()
+                FormEmpUniPeriodDet.GVDetail.FocusedRowHandle = find_row(FormEmpUniPeriodDet.GVDetail, "id_emp_uni_budget", id_budget)
+                Close()
             End If
         End If
     End Sub
