@@ -21,12 +21,22 @@ Public Class FormSalesOrderDet
         viewReportStatus()
         viewSoType()
         viewSoStatus()
+
+        If FormSalesOrder.id_type = "1" Then 'prepare uniform
+            GroupUni.Visible = True
+            LEPeriodx.Focus()
+            LEPeriodx.ItemIndex = LEPeriodx.Properties.GetDataSourceRowIndex("id_so_status", "5")
+            LEStatusSO.Enabled = False
+        End If
         viewPeriodUniform()
+
         actionLoad()
 
         'packing status invisible
         LabelControl4.Visible = False
         TxtPackingStatus.Visible = False
+
+
         WindowState = FormWindowState.Maximized
     End Sub
 
@@ -124,11 +134,11 @@ Public Class FormSalesOrderDet
     Sub viewPeriodUniform()
         Dim query As String = "SELECT * FROM tb_emp_uni_period p ORDER BY p.id_emp_uni_period DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        LEPeriod.Properties.DataSource = Nothing
-        LEPeriod.Properties.DataSource = data
-        LEPeriod.Properties.DisplayMember = data.Rows(0)("period_name").ToString
-        LEPeriod.Properties.ValueMember = data.Rows(0)("id_emp_uni_period").ToString
-        LEPeriod.ItemIndex = 0
+        LEPeriodx.Properties.DataSource = Nothing
+        LEPeriodx.Properties.DataSource = data
+        LEPeriodx.Properties.DisplayMember = "period_name"
+        LEPeriodx.Properties.ValueMember = "id_emp_uni_period"
+        LEPeriodx.ItemIndex = 0
         DEStartPeriod.EditValue = data.Rows(0)("selection_date_start")
         DEEndPeriod.EditValue = data.Rows(0)("selection_date_end")
     End Sub
@@ -376,7 +386,7 @@ Public Class FormSalesOrderDet
             LEStatusSO.Enabled = True
             TxtCodeCompTo.Enabled = False
             TxtWHCodeTo.Enabled = False
-            LEPeriod.Enabled = True
+            LEPeriodx.Enabled = True
         Else
             BtnBrowseContactTo.Enabled = False
             BtnBrowseWH.Enabled = False
@@ -388,7 +398,7 @@ Public Class FormSalesOrderDet
             LEStatusSO.Enabled = False
             TxtCodeCompTo.Enabled = False
             TxtWHCodeTo.Enabled = False
-            LEPeriod.Enabled = False
+            LEPeriodx.Enabled = False
         End If
 
         'attachment
@@ -691,12 +701,8 @@ Public Class FormSalesOrderDet
 
     Private Sub LEStatusSO_KeyDown(sender As Object, e As KeyEventArgs) Handles LEStatusSO.KeyDown
         If e.KeyCode = Keys.Enter Then
-            If LEPeriod.Visible = False Then
-                addMyRow()
-                GCItemList.Focus()
-            Else
-                LEPeriod.Focus()
-            End If
+            addMyRow()
+            GCItemList.Focus()
         End If
     End Sub
 
@@ -1030,25 +1036,20 @@ Public Class FormSalesOrderDet
     End Sub
 
     Private Sub LEStatusSO_EditValueChanged(sender As Object, e As EventArgs) Handles LEStatusSO.EditValueChanged
-        Dim id_so_status As String = "-1"
-        Try
-            id_so_status = LEStatusSO.EditValue.ToString
-        Catch ex As Exception
-        End Try
-        showHideUniform(id_so_status)
+
     End Sub
 
     Sub showHideUniform(ByVal id_so_status As String)
         If id_so_status = "7" Then
             LabelPeriod.Visible = True
-            LEPeriod.Visible = True
+            LEPeriodx.Visible = True
             LabelStart.Visible = True
             DEStartPeriod.Visible = True
             LabelEnd.Visible = True
             DEEndPeriod.Visible = True
         Else
             LabelPeriod.Visible = False
-            LEPeriod.Visible = False
+            LEPeriodx.Visible = False
             LabelStart.Visible = False
             DEStartPeriod.Visible = False
             LabelEnd.Visible = False
@@ -1056,17 +1057,16 @@ Public Class FormSalesOrderDet
         End If
     End Sub
 
-    Private Sub LEPeriod_KeyDown(sender As Object, e As KeyEventArgs) Handles LEPeriod.KeyDown
+    Private Sub LEPeriod_KeyDown(sender As Object, e As KeyEventArgs)
         If e.KeyCode = Keys.Enter Then
-            addMyRow()
-            GCItemList.Focus()
+            LETypeSO.Focus()
         End If
     End Sub
 
-    Private Sub LEPeriod_EditValueChanged(sender As Object, e As EventArgs) Handles LEPeriod.EditValueChanged
-        'Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
-        'Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
-        'DEStartPeriod.EditValue = row("selection_date_start")
-        'DEEndPeriod.EditValue = row("selection_date_end")
+    Private Sub LEPeriodx_EditValueChanged(sender As Object, e As EventArgs) Handles LEPeriodx.EditValueChanged
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
+        Dim row As DataRowView = CType(editor.Properties.GetDataSourceRowByKeyValue(editor.EditValue), DataRowView)
+        DEStartPeriod.EditValue = row("selection_date_start")
+        DEEndPeriod.EditValue = row("selection_date_end")
     End Sub
 End Class

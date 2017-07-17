@@ -14,6 +14,10 @@
 
         'viewSalesOrder()
         'viewSalesOrderGen()
+        'VIEW OPTION
+        If id_type = "1" Then 'prepare uniform
+            XTPPrepareGenerate.PageVisible = False
+        End If
     End Sub
 
     Sub viewSalesOrderGen()

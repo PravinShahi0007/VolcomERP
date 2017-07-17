@@ -45,6 +45,11 @@ Partial Class FormSalesOrderDet
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.DEForm = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelEnd = New DevExpress.XtraEditors.LabelControl()
+        Me.DEEndPeriod = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelStart = New DevExpress.XtraEditors.LabelControl()
+        Me.DEStartPeriod = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelPeriod = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -98,12 +103,8 @@ Partial Class FormSalesOrderDet
         Me.BtnAddV3 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddV2 = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.LabelPeriod = New DevExpress.XtraEditors.LabelControl()
-        Me.LEPeriod = New DevExpress.XtraEditors.LookUpEdit()
-        Me.DEStartPeriod = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelStart = New DevExpress.XtraEditors.LabelControl()
-        Me.DEEndPeriod = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelEnd = New DevExpress.XtraEditors.LabelControl()
+        Me.GroupUni = New DevExpress.XtraEditors.GroupControl()
+        Me.LEPeriodx = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,6 +123,10 @@ Partial Class FormSalesOrderDet
         CType(Me.TxtReff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSalesOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEndPeriod.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEEndPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartPeriod.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStartPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -140,11 +145,9 @@ Partial Class FormSalesOrderDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStartPeriod.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStartPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEEndPeriod.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEEndPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupUni, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupUni.SuspendLayout()
+        CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -154,7 +157,7 @@ Partial Class FormSalesOrderDet
         Me.GroupGeneralHeader.Controls.Add(Me.PanelControlTopMain)
         Me.GroupGeneralHeader.Controls.Add(Me.PanelControlTopRight)
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
+        Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 36)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(842, 136)
         Me.GroupGeneralHeader.TabIndex = 183
@@ -326,12 +329,6 @@ Partial Class FormSalesOrderDet
         'PanelControlTopMain
         '
         Me.PanelControlTopMain.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTopMain.Controls.Add(Me.LabelEnd)
-        Me.PanelControlTopMain.Controls.Add(Me.DEEndPeriod)
-        Me.PanelControlTopMain.Controls.Add(Me.LabelStart)
-        Me.PanelControlTopMain.Controls.Add(Me.DEStartPeriod)
-        Me.PanelControlTopMain.Controls.Add(Me.LEPeriod)
-        Me.PanelControlTopMain.Controls.Add(Me.LabelPeriod)
         Me.PanelControlTopMain.Controls.Add(Me.LEStatusSO)
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl8)
         Me.PanelControlTopMain.Dock = System.Windows.Forms.DockStyle.Right
@@ -439,6 +436,59 @@ Partial Class FormSalesOrderDet
         Me.DEForm.Size = New System.Drawing.Size(129, 20)
         Me.DEForm.TabIndex = 162
         Me.DEForm.TabStop = False
+        '
+        'LabelEnd
+        '
+        Me.LabelEnd.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelEnd.Location = New System.Drawing.Point(446, 11)
+        Me.LabelEnd.Name = "LabelEnd"
+        Me.LabelEnd.Size = New System.Drawing.Size(18, 13)
+        Me.LabelEnd.TabIndex = 8900
+        Me.LabelEnd.Text = "End"
+        '
+        'DEEndPeriod
+        '
+        Me.DEEndPeriod.EditValue = Nothing
+        Me.DEEndPeriod.Enabled = False
+        Me.DEEndPeriod.Location = New System.Drawing.Point(470, 8)
+        Me.DEEndPeriod.Name = "DEEndPeriod"
+        Me.DEEndPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEndPeriod.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEEndPeriod.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DEEndPeriod.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEndPeriod.Size = New System.Drawing.Size(120, 20)
+        Me.DEEndPeriod.TabIndex = 8899
+        '
+        'LabelStart
+        '
+        Me.LabelStart.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelStart.Location = New System.Drawing.Point(296, 11)
+        Me.LabelStart.Name = "LabelStart"
+        Me.LabelStart.Size = New System.Drawing.Size(24, 13)
+        Me.LabelStart.TabIndex = 8898
+        Me.LabelStart.Text = "Start"
+        '
+        'DEStartPeriod
+        '
+        Me.DEStartPeriod.EditValue = Nothing
+        Me.DEStartPeriod.Enabled = False
+        Me.DEStartPeriod.Location = New System.Drawing.Point(324, 8)
+        Me.DEStartPeriod.Name = "DEStartPeriod"
+        Me.DEStartPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartPeriod.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStartPeriod.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DEStartPeriod.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStartPeriod.Size = New System.Drawing.Size(115, 20)
+        Me.DEStartPeriod.TabIndex = 8897
+        '
+        'LabelPeriod
+        '
+        Me.LabelPeriod.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPeriod.Location = New System.Drawing.Point(31, 11)
+        Me.LabelPeriod.Name = "LabelPeriod"
+        Me.LabelPeriod.Size = New System.Drawing.Size(70, 13)
+        Me.LabelPeriod.TabIndex = 8895
+        Me.LabelPeriod.Text = "Uniform Period"
         '
         'PanelControl3
         '
@@ -639,9 +689,9 @@ Partial Class FormSalesOrderDet
         Me.GroupControlList.Controls.Add(Me.GCItemList)
         Me.GroupControlList.Controls.Add(Me.PanelControlNav)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlList.Location = New System.Drawing.Point(0, 136)
+        Me.GroupControlList.Location = New System.Drawing.Point(0, 172)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(842, 299)
+        Me.GroupControlList.Size = New System.Drawing.Size(842, 263)
         Me.GroupControlList.TabIndex = 184
         Me.GroupControlList.Text = "Item List"
         '
@@ -653,7 +703,7 @@ Partial Class FormSalesOrderDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(820, 260)
+        Me.GCItemList.Size = New System.Drawing.Size(820, 224)
         Me.GCItemList.TabIndex = 4
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1012,77 +1062,30 @@ Partial Class FormSalesOrderDet
         '
         Me.EPForm.ContainerControl = Me
         '
-        'LabelPeriod
+        'GroupUni
         '
-        Me.LabelPeriod.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPeriod.Location = New System.Drawing.Point(6, 38)
-        Me.LabelPeriod.Name = "LabelPeriod"
-        Me.LabelPeriod.Size = New System.Drawing.Size(30, 13)
-        Me.LabelPeriod.TabIndex = 8895
-        Me.LabelPeriod.Text = "Period"
-        Me.LabelPeriod.Visible = False
+        Me.GroupUni.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupUni.Controls.Add(Me.LEPeriodx)
+        Me.GroupUni.Controls.Add(Me.DEEndPeriod)
+        Me.GroupUni.Controls.Add(Me.LabelEnd)
+        Me.GroupUni.Controls.Add(Me.LabelPeriod)
+        Me.GroupUni.Controls.Add(Me.DEStartPeriod)
+        Me.GroupUni.Controls.Add(Me.LabelStart)
+        Me.GroupUni.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupUni.Location = New System.Drawing.Point(0, 0)
+        Me.GroupUni.Name = "GroupUni"
+        Me.GroupUni.Size = New System.Drawing.Size(842, 36)
+        Me.GroupUni.TabIndex = 182
+        Me.GroupUni.Visible = False
         '
-        'LEPeriod
+        'LEPeriodx
         '
-        Me.LEPeriod.Location = New System.Drawing.Point(65, 35)
-        Me.LEPeriod.Name = "LEPeriod"
-        Me.LEPeriod.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEPeriod.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPeriod.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_emp_uni_period", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("period_name", "Period"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("selection_date_start", "Start", 20, DevExpress.Utils.FormatType.DateTime, "dd\/MM\/yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("selection_date_end", "End", 20, DevExpress.Utils.FormatType.DateTime, "dd\/MM\/yyyy", True, DevExpress.Utils.HorzAlignment.[Default])})
-        Me.LEPeriod.Properties.NullText = ""
-        Me.LEPeriod.Properties.ShowFooter = False
-        Me.LEPeriod.Size = New System.Drawing.Size(113, 20)
-        Me.LEPeriod.TabIndex = 8896
-        Me.LEPeriod.Visible = False
-        '
-        'DEStartPeriod
-        '
-        Me.DEStartPeriod.EditValue = Nothing
-        Me.DEStartPeriod.Enabled = False
-        Me.DEStartPeriod.Location = New System.Drawing.Point(65, 59)
-        Me.DEStartPeriod.Name = "DEStartPeriod"
-        Me.DEStartPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartPeriod.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStartPeriod.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
-        Me.DEStartPeriod.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStartPeriod.Size = New System.Drawing.Size(113, 20)
-        Me.DEStartPeriod.TabIndex = 8897
-        Me.DEStartPeriod.Visible = False
-        '
-        'LabelStart
-        '
-        Me.LabelStart.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelStart.Location = New System.Drawing.Point(6, 63)
-        Me.LabelStart.Name = "LabelStart"
-        Me.LabelStart.Size = New System.Drawing.Size(24, 13)
-        Me.LabelStart.TabIndex = 8898
-        Me.LabelStart.Text = "Start"
-        Me.LabelStart.Visible = False
-        '
-        'DEEndPeriod
-        '
-        Me.DEEndPeriod.EditValue = Nothing
-        Me.DEEndPeriod.Enabled = False
-        Me.DEEndPeriod.Location = New System.Drawing.Point(65, 85)
-        Me.DEEndPeriod.Name = "DEEndPeriod"
-        Me.DEEndPeriod.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEEndPeriod.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEEndPeriod.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
-        Me.DEEndPeriod.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEEndPeriod.Size = New System.Drawing.Size(113, 20)
-        Me.DEEndPeriod.TabIndex = 8899
-        Me.DEEndPeriod.Visible = False
-        '
-        'LabelEnd
-        '
-        Me.LabelEnd.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelEnd.Location = New System.Drawing.Point(6, 88)
-        Me.LabelEnd.Name = "LabelEnd"
-        Me.LabelEnd.Size = New System.Drawing.Size(18, 13)
-        Me.LabelEnd.TabIndex = 8900
-        Me.LabelEnd.Text = "End"
-        Me.LabelEnd.Visible = False
+        Me.LEPeriodx.Location = New System.Drawing.Point(121, 8)
+        Me.LEPeriodx.Name = "LEPeriodx"
+        Me.LEPeriodx.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPeriodx.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_emp_uni_period", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("period_name", "Period")})
+        Me.LEPeriodx.Size = New System.Drawing.Size(169, 20)
+        Me.LEPeriodx.TabIndex = 8901
         '
         'FormSalesOrderDet
         '
@@ -1093,6 +1096,7 @@ Partial Class FormSalesOrderDet
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupGeneralHeader)
+        Me.Controls.Add(Me.GroupUni)
         Me.MinimizeBox = False
         Me.Name = "FormSalesOrderDet"
         Me.ShowInTaskbar = False
@@ -1119,6 +1123,10 @@ Partial Class FormSalesOrderDet
         CType(Me.TxtReff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSalesOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEndPeriod.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEEndPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartPeriod.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStartPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1139,11 +1147,10 @@ Partial Class FormSalesOrderDet
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStartPeriod.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStartPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEEndPeriod.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEEndPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupUni, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupUni.ResumeLayout(False)
+        Me.GroupUni.PerformLayout()
+        CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1228,6 +1235,7 @@ Partial Class FormSalesOrderDet
     Friend WithEvents DEEndPeriod As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelStart As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEStartPeriod As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents LEPeriod As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelPeriod As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GroupUni As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents LEPeriodx As DevExpress.XtraEditors.LookUpEdit
 End Class

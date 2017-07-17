@@ -10613,7 +10613,11 @@ Public Class FormMain
     Private Sub NBPrepareOrderUni_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPrepareOrderUni.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
-            FormSalesOrder.ShowDialog()
+            FormSalesOrder.MdiParent = Me
+            FormSalesOrder.id_type = "1"
+            FormSalesOrder.Show()
+            FormSalesOrder.WindowState = FormWindowState.Maximized
+            FormSalesOrder.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
