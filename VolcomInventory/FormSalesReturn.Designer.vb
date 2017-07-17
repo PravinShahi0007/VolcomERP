@@ -87,13 +87,13 @@ Partial Class FormSalesReturn
         Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrintDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnRemaining = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesReturn.SuspendLayout()
         Me.XTPSalesReturnList.SuspendLayout()
@@ -422,8 +422,6 @@ Partial Class FormSalesReturn
         Me.GridColumnSalesTargetDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnSalesTargetDate.FieldName = "sales_return_order_date"
         Me.GridColumnSalesTargetDate.Name = "GridColumnSalesTargetDate"
-        Me.GridColumnSalesTargetDate.Visible = True
-        Me.GridColumnSalesTargetDate.VisibleIndex = 2
         '
         'GridColumnEstDate
         '
@@ -432,8 +430,6 @@ Partial Class FormSalesReturn
         Me.GridColumnEstDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnEstDate.FieldName = "sales_return_order_est_date"
         Me.GridColumnEstDate.Name = "GridColumnEstDate"
-        Me.GridColumnEstDate.Visible = True
-        Me.GridColumnEstDate.VisibleIndex = 3
         '
         'GridColumnDSalesTargetNote
         '
@@ -447,15 +443,13 @@ Partial Class FormSalesReturn
         Me.GridColumn1.FieldName = "created_return"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 5
+        Me.GridColumn1.VisibleIndex = 4
         '
         'GridColumnTimeRemaining
         '
         Me.GridColumnTimeRemaining.Caption = "Time Remaining"
         Me.GridColumnTimeRemaining.FieldName = "time_remaining"
         Me.GridColumnTimeRemaining.Name = "GridColumnTimeRemaining"
-        Me.GridColumnTimeRemaining.Visible = True
-        Me.GridColumnTimeRemaining.VisibleIndex = 4
         '
         'GridColumnReturnQty
         '
@@ -464,6 +458,8 @@ Partial Class FormSalesReturn
         Me.GridColumnReturnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnReturnQty.FieldName = "return_qty"
         Me.GridColumnReturnQty.Name = "GridColumnReturnQty"
+        Me.GridColumnReturnQty.Visible = True
+        Me.GridColumnReturnQty.VisibleIndex = 3
         '
         'GridColumnOrderQty
         '
@@ -472,6 +468,8 @@ Partial Class FormSalesReturn
         Me.GridColumnOrderQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOrderQty.FieldName = "order_qty"
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
+        Me.GridColumnOrderQty.Visible = True
+        Me.GridColumnOrderQty.VisibleIndex = 2
         '
         'GridColumnReportStatus
         '
@@ -765,6 +763,19 @@ Partial Class FormSalesReturn
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "soh", "{0:N0}")})
         '
+        'GridColumnRemaining
+        '
+        Me.GridColumnRemaining.Caption = "Remaining"
+        Me.GridColumnRemaining.DisplayFormat.FormatString = "{0:N0}"
+        Me.GridColumnRemaining.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnRemaining.FieldName = "remaining"
+        Me.GridColumnRemaining.Name = "GridColumnRemaining"
+        Me.GridColumnRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "remaining", "{0:N0}")})
+        Me.GridColumnRemaining.UnboundExpression = "[sales_return_order_det_qty] - [sales_return_det_qty_view]"
+        Me.GridColumnRemaining.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumnRemaining.Visible = True
+        Me.GridColumnRemaining.VisibleIndex = 6
+        '
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -824,19 +835,6 @@ Partial Class FormSalesReturn
         Me.SMPrint.Name = "SMPrint"
         Me.SMPrint.Size = New System.Drawing.Size(136, 22)
         Me.SMPrint.Text = "Print"
-        '
-        'GridColumnRemaining
-        '
-        Me.GridColumnRemaining.Caption = "Remaining"
-        Me.GridColumnRemaining.DisplayFormat.FormatString = "{0:N0}"
-        Me.GridColumnRemaining.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnRemaining.FieldName = "remaining"
-        Me.GridColumnRemaining.Name = "GridColumnRemaining"
-        Me.GridColumnRemaining.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "remaining", "{0:N0}")})
-        Me.GridColumnRemaining.UnboundExpression = "[sales_return_order_det_qty] - [sales_return_det_qty_view]"
-        Me.GridColumnRemaining.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-        Me.GridColumnRemaining.Visible = True
-        Me.GridColumnRemaining.VisibleIndex = 6
         '
         'FormSalesReturn
         '
