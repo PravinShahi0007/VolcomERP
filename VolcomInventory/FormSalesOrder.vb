@@ -4,6 +4,7 @@
     Dim bdel_active As String = "1"
     Dim id_season_par As String = "-1"
     Dim super_user As String = get_setup_field("id_role_super_admin")
+    Public id_type As String = "-1"
 
     Private Sub FormSalesOrder_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'date now
