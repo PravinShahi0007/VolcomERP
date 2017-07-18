@@ -8944,14 +8944,19 @@ Public Class FormMain
 
     Private Sub NBSalesOrder_LinkClicked(ByVal sender As System.Object, ByVal e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesOrder.LinkClicked
         Cursor = Cursors.WaitCursor
-        'Try
-        FormSalesOrder.MdiParent = Me
-        FormSalesOrder.Show()
-        FormSalesOrder.WindowState = FormWindowState.Maximized
-        FormSalesOrder.Focus()
-        'Catch ex As Exception
-        'errorProcess()
-        'End Try
+        Try
+            FormSalesOrder.Close()
+            FormSalesOrder.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesOrder.MdiParent = Me
+            FormSalesOrder.Show()
+            FormSalesOrder.WindowState = FormWindowState.Maximized
+            FormSalesOrder.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
         Cursor = Cursors.Default
     End Sub
 
@@ -10612,6 +10617,11 @@ Public Class FormMain
 
     Private Sub NBPrepareOrderUni_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPrepareOrderUni.LinkClicked
         Cursor = Cursors.WaitCursor
+        Try
+            FormSalesOrder.Close()
+            FormSalesOrder.Dispose()
+        Catch ex As Exception
+        End Try
         Try
             FormSalesOrder.MdiParent = Me
             FormSalesOrder.id_type = "1"
