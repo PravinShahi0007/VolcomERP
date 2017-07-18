@@ -38,6 +38,11 @@
         GCDetail.DataSource = data
     End Sub
 
+    Sub viewDesignList()
+        Cursor = Cursors.WaitCursor
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
         Close()
     End Sub
@@ -125,5 +130,15 @@
         Else
             BtnSave.Visible = False
         End If
+    End Sub
+
+    Private Sub SimpleButton6_Click(sender As Object, e As EventArgs) Handles SimpleButton6.Click
+        viewDesignList()
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Cursor = Cursors.WaitCursor
+        print(GCDesignList, TxtPeriodName.Text + " - " + "DESIGN LIST")
+        Cursor = Cursors.Default
     End Sub
 End Class
