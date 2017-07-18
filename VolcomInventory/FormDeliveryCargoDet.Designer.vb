@@ -70,17 +70,16 @@ Partial Class FormDeliveryCargoDet
         Me.Label19 = New System.Windows.Forms.Label()
         Me.TECargoLeadTime = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.METoAddress = New DevExpress.XtraEditors.MemoEdit()
+        Me.TETo = New DevExpress.XtraEditors.TextEdit()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.Label22 = New System.Windows.Forms.Label()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TEToAttn = New DevExpress.XtraEditors.TextEdit()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.SLEDestination = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.TEDepartement = New DevExpress.XtraEditors.TextEdit()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.DEDateCreated = New DevExpress.XtraEditors.DateEdit()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -91,6 +90,7 @@ Partial Class FormDeliveryCargoDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.TEDepartement = New DevExpress.XtraEditors.TextEdit()
         Me.GridColumnIdSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRange = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSLELeadTime = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -102,6 +102,7 @@ Partial Class FormDeliveryCargoDet
         Me.GridColumnCargoCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDestination = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnZone = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdCargoRateDet = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
@@ -141,19 +142,19 @@ Partial Class FormDeliveryCargoDet
         CType(Me.TECargoLeadTime.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl5.SuspendLayout()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.METoAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEToAttn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDestination.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -661,7 +662,7 @@ Partial Class FormDeliveryCargoDet
         '
         'SLVCargo
         '
-        Me.SLVCargo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdSeason, Me.GridColumnRange, Me.GridColumnSLELeadTime, Me.GridColumnRateCargo, Me.GridColumnSLEMinWeight, Me.GridColumnslvWeight, Me.GridColumnslvAmount})
+        Me.SLVCargo.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdCargoRateDet, Me.GridColumnIdSeason, Me.GridColumnRange, Me.GridColumnSLELeadTime, Me.GridColumnRateCargo, Me.GridColumnSLEMinWeight, Me.GridColumnslvWeight, Me.GridColumnslvAmount})
         Me.SLVCargo.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.SLVCargo.Name = "SLVCargo"
         Me.SLVCargo.OptionsBehavior.ReadOnly = True
@@ -740,11 +741,11 @@ Partial Class FormDeliveryCargoDet
         'PanelControl5
         '
         Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple
-        Me.PanelControl5.Controls.Add(Me.MemoEdit1)
-        Me.PanelControl5.Controls.Add(Me.TextEdit2)
+        Me.PanelControl5.Controls.Add(Me.METoAddress)
+        Me.PanelControl5.Controls.Add(Me.TETo)
         Me.PanelControl5.Controls.Add(Me.Label23)
         Me.PanelControl5.Controls.Add(Me.Label22)
-        Me.PanelControl5.Controls.Add(Me.TextEdit1)
+        Me.PanelControl5.Controls.Add(Me.TEToAttn)
         Me.PanelControl5.Controls.Add(Me.Label21)
         Me.PanelControl5.Controls.Add(Me.SLEDestination)
         Me.PanelControl5.Controls.Add(Me.Label14)
@@ -754,20 +755,20 @@ Partial Class FormDeliveryCargoDet
         Me.PanelControl5.Size = New System.Drawing.Size(734, 88)
         Me.PanelControl5.TabIndex = 117
         '
-        'MemoEdit1
+        'METoAddress
         '
-        Me.MemoEdit1.Location = New System.Drawing.Point(105, 37)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(612, 39)
-        Me.MemoEdit1.TabIndex = 129
+        Me.METoAddress.Location = New System.Drawing.Point(105, 37)
+        Me.METoAddress.Name = "METoAddress"
+        Me.METoAddress.Size = New System.Drawing.Size(612, 39)
+        Me.METoAddress.TabIndex = 129
         '
-        'TextEdit2
+        'TETo
         '
-        Me.TextEdit2.Location = New System.Drawing.Point(317, 11)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit2.Size = New System.Drawing.Size(171, 20)
-        Me.TextEdit2.TabIndex = 128
+        Me.TETo.Location = New System.Drawing.Point(317, 11)
+        Me.TETo.Name = "TETo"
+        Me.TETo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TETo.Size = New System.Drawing.Size(171, 20)
+        Me.TETo.TabIndex = 128
         '
         'Label23
         '
@@ -787,13 +788,13 @@ Partial Class FormDeliveryCargoDet
         Me.Label22.TabIndex = 126
         Me.Label22.Text = "Address"
         '
-        'TextEdit1
+        'TEToAttn
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(528, 11)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit1.Size = New System.Drawing.Size(189, 20)
-        Me.TextEdit1.TabIndex = 125
+        Me.TEToAttn.Location = New System.Drawing.Point(528, 11)
+        Me.TEToAttn.Name = "TEToAttn"
+        Me.TEToAttn.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEToAttn.Size = New System.Drawing.Size(189, 20)
+        Me.TEToAttn.TabIndex = 125
         '
         'Label21
         '
@@ -851,19 +852,6 @@ Partial Class FormDeliveryCargoDet
         Me.PanelControl2.Size = New System.Drawing.Size(734, 43)
         Me.PanelControl2.TabIndex = 115
         '
-        'TEDepartement
-        '
-        Me.TEDepartement.Location = New System.Drawing.Point(292, 12)
-        Me.TEDepartement.Name = "TEDepartement"
-        Me.TEDepartement.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEDepartement.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEDepartement.Properties.Mask.EditMask = "N2"
-        Me.TEDepartement.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEDepartement.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEDepartement.Properties.ReadOnly = True
-        Me.TEDepartement.Size = New System.Drawing.Size(161, 20)
-        Me.TEDepartement.TabIndex = 114
-        '
         'Label8
         '
         Me.Label8.AutoSize = True
@@ -876,13 +864,13 @@ Partial Class FormDeliveryCargoDet
         'DEDateCreated
         '
         Me.DEDateCreated.EditValue = Nothing
-        Me.DEDateCreated.Enabled = False
         Me.DEDateCreated.Location = New System.Drawing.Point(541, 12)
         Me.DEDateCreated.Name = "DEDateCreated"
         Me.DEDateCreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDateCreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDateCreated.Properties.ReadOnly = True
         Me.DEDateCreated.Size = New System.Drawing.Size(176, 20)
         Me.DEDateCreated.TabIndex = 112
         '
@@ -900,10 +888,6 @@ Partial Class FormDeliveryCargoDet
         '
         Me.TENumber.Location = New System.Drawing.Point(60, 12)
         Me.TENumber.Name = "TENumber"
-        Me.TENumber.Properties.Appearance.Options.UseTextOptions = True
-        Me.TENumber.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TENumber.Properties.Mask.EditMask = "N2"
-        Me.TENumber.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TENumber.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TENumber.Properties.ReadOnly = True
         Me.TENumber.Size = New System.Drawing.Size(150, 20)
@@ -975,6 +959,15 @@ Partial Class FormDeliveryCargoDet
         Me.BSave.TabIndex = 91
         Me.BSave.Text = "Save"
         '
+        'TEDepartement
+        '
+        Me.TEDepartement.Location = New System.Drawing.Point(292, 12)
+        Me.TEDepartement.Name = "TEDepartement"
+        Me.TEDepartement.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEDepartement.Properties.ReadOnly = True
+        Me.TEDepartement.Size = New System.Drawing.Size(165, 20)
+        Me.TEDepartement.TabIndex = 114
+        '
         'GridColumnIdSeason
         '
         Me.GridColumnIdSeason.Caption = "ID Cargo"
@@ -984,7 +977,7 @@ Partial Class FormDeliveryCargoDet
         'GridColumnRange
         '
         Me.GridColumnRange.Caption = "Cargo Name"
-        Me.GridColumnRange.FieldName = "cargo"
+        Me.GridColumnRange.FieldName = "comp_name"
         Me.GridColumnRange.Name = "GridColumnRange"
         Me.GridColumnRange.Visible = True
         Me.GridColumnRange.VisibleIndex = 0
@@ -1059,6 +1052,12 @@ Partial Class FormDeliveryCargoDet
         Me.GridColumnZone.Visible = True
         Me.GridColumnZone.VisibleIndex = 2
         '
+        'GridColumnIdCargoRateDet
+        '
+        Me.GridColumnIdCargoRateDet.Caption = "ID Cargo Rate Det"
+        Me.GridColumnIdCargoRateDet.FieldName = "id_cargo_rate_det"
+        Me.GridColumnIdCargoRateDet.Name = "GridColumnIdCargoRateDet"
+        '
         'FormDeliveryCargoDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1114,20 +1113,20 @@ Partial Class FormDeliveryCargoDet
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl5.ResumeLayout(False)
         Me.PanelControl5.PerformLayout()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.METoAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TETo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEToAttn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDestination.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDateCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.TEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1168,7 +1167,6 @@ Partial Class FormDeliveryCargoDet
     Friend WithEvents DEPickUp As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label17 As Label
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TEDepartement As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label8 As Label
     Friend WithEvents SLECargo As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents SLVCargo As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1200,17 +1198,19 @@ Partial Class FormDeliveryCargoDet
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents Label14 As Label
     Friend WithEvents Label22 As Label
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEToAttn As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label21 As Label
     Friend WithEvents SLEDestination As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnIDCargo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents METoAddress As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents TETo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label23 As Label
     Friend WithEvents GridColumnCargoCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDestination As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnZone As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TEDepartement As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumnIdCargoRateDet As DevExpress.XtraGrid.Columns.GridColumn
 End Class

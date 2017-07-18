@@ -13,15 +13,24 @@
         Dim query As String = "SELECT * FROM tb_m_cargo_rate"
 
         SLEDestination.EditValue = Nothing
-        viewSearchLookupQuery(SLEDestination, query, "id_cargo_rate", "cargo_destination", "id_cargo_rate")
+        viewSearchLookupQuery(SLEDestination, query, "id_cargo_rate", "destination", "id_cargo_rate")
     End Sub
 
     Private Sub FormDeliveryCargoDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_awbill = "-1" Then 'new
             TENumber.Text = header_number_general("1")
-            load_expedition()
+            DEDateCreated.EditValue = Now
+            TEDepartement.Text = get_departement_x(id_departement_user, "1")
+            '
+            BSave.Visible = True
+            BMark.Visible = False
+            BCancel.Visible = True
+            '
+            load_destination()
         Else
-
+            BSave.Visible = False
+            BMark.Visible = True
+            BCancel.Visible = False
         End If
     End Sub
 
@@ -47,5 +56,9 @@
 
     Private Sub SLEDestination_EditValueChanged(sender As Object, e As EventArgs) Handles SLEDestination.EditValueChanged
         load_expedition()
+    End Sub
+
+    Private Sub BRecStoreNothing_Click(sender As Object, e As EventArgs) Handles BRecStoreNothing.Click
+
     End Sub
 End Class
