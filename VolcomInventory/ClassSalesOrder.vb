@@ -19,7 +19,7 @@
         query += "IF(a.id_so_status!='5',CAST((IFNULL(dord_item.tot_do, 0.00)/IFNULL(so_item.tot_so,0.00)*100) AS DECIMAL(5,2)), CAST((IFNULL(trf_item.tot_trf, 0.00)/IFNULL(so_item.tot_so,0.00)*100) AS DECIMAL(5,2))) AS so_completness,  "
         query += "IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`,a.id_so_type,prep.id_user, "
         query += "IFNULL(crt.created, 0) AS created_process, "
-        query += "gen.id_sales_order_gen, IFNULL(gen.sales_order_gen_reff, '-') AS `sales_order_gen_reff`, a.final_comment, a.final_date, fe.employee_name AS `final_by_name` "
+        query += "gen.id_sales_order_gen, IFNULL(gen.sales_order_gen_reff, '-') AS `sales_order_gen_reff`, a.final_comment, a.final_date, fe.employee_name AS `final_by_name`, eu.period_name, ut.uni_type "
         query += "FROM tb_sales_order a "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
@@ -75,6 +75,8 @@
         ) otstrf ON otstrf.id_sales_order = a.id_sales_order "
         query += "LEFT JOIN tb_m_user fu ON fu.id_user = a.final_by "
         query += "LEFT JOIN tb_m_employee fe ON fe.id_employee = fu.id_employee "
+        query += "LEFT JOIN tb_emp_uni_period eu ON eu.id_emp_uni_period=a.id_emp_uni_period 
+        LEFT JOIN tb_lookup_uni_type ut ON ut.id_uni_type = a.id_uni_type "
         query += "WHERE a.id_sales_order>0 "
         query += condition + " "
         query += "ORDER BY a.id_sales_order " + order_type

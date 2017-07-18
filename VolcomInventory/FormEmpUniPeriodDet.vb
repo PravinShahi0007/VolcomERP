@@ -21,6 +21,7 @@
             XTCUni.Enabled = True
             BtnSave.Text = "Save Changes"
             viewDetail()
+            viewDesignList()
         End If
     End Sub
 
@@ -40,6 +41,9 @@
 
     Sub viewDesignList()
         Cursor = Cursors.WaitCursor
+        Dim query As String = "CALL view_emp_uni_design(" + id_emp_uni_period + ") "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCDesignList.DataSource = data
         Cursor = Cursors.Default
     End Sub
 
