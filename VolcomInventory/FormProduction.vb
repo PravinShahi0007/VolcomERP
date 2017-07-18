@@ -167,6 +167,7 @@
         Dim query = "SELECT "
         query += "IFNULL(SUM(rec.prod_order_rec_det_qty),0) AS qty_rec, "
         query += "IFNULL(SUM(pod.prod_order_qty),0) As qty_order, "
+        query += "IFNULL(SUM(qty_plwh.qty),0) As qty_plwh, "
         query += "comp.comp_name,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, "
         query += "a.prod_order_date,a.id_report_status,c.report_status, "
         query += "b.id_design,b.id_delivery, e.delivery, f.season, e.id_season "
@@ -196,6 +197,13 @@
         query += "LEFT JOIN tb_prod_order_rec_det recd On recd.id_prod_order_rec=rec.id_prod_order_rec "
         query += "GROUP BY recd.id_prod_order_det "
         query += ") rec On rec.id_prod_order_det=pod.id_prod_order_det "
+        query += "LEFT JOIN
+                    (
+                    SELECT pld.`id_prod_order_det`,SUM(pld.`pl_prod_order_det_qty`) as qty FROM tb_pl_prod_order_det pld
+                    INNER JOIN tb_pl_prod_order pl ON pl.`id_pl_prod_order`=pld.`id_pl_prod_order`
+                    WHERE pl.`id_report_status`='6'
+                    GROUP BY pld.`id_prod_order_det`
+                    ) qty_plwh ON qty_plwh.id_prod_order_det=pod.id_prod_order_det "
         query += "LEFT JOIN
                  (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
                     FROM tb_report_mark mark

@@ -68,7 +68,7 @@ Module Common
         ret_var = ""
 
         Try
-            query = "SELECT " & field & " FROM tb_opt_accounting LIMIT 1"
+            query = "SELECT " & field & " FROM tb_opt_general LIMIT 1"
             ret_var = execute_query(query, 0, True, "", "", "", "")
         Catch ex As Exception
             ret_var = ""
