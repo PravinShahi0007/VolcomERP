@@ -10,8 +10,11 @@
     Sub chooseEmp()
         If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
-            Close()
+            'Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type) "
+            'query += "VALUES('" + id_store_contact_to + "', '" + id_comp_contact_par + "', '" + sales_order_number + "', NOW(), '" + sales_order_note + "', '" + id_so_type + "', '" + id_report_status + "', '" + id_so_status + "', '" + id_user + "'," + id_emp_uni_period + ", " + id_uni_type + "); SELECT LAST_INSERT_ID(); "
+            'FormEmpUniOrderDet.id_sales_order = execute_query(query, 0, True, "", "", "", "")
             FormEmpUniOrderDet.ShowDialog()
+            Close()
             Cursor = Cursors.Default
         End If
     End Sub

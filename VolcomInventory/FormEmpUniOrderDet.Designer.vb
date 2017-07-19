@@ -21,16 +21,18 @@ Partial Class FormEmpUniOrderDet
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniOrderDet))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.TextEdit10 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtLevel = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit9 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDept = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtOrderNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtPeriodName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit8 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit7 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtName = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtNIK = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
@@ -39,17 +41,17 @@ Partial Class FormEmpUniOrderDet
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit6 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit5 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDiff = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtTotal = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit4 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDiscountValue = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtBudget = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit3 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDiscount = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtGross = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
@@ -78,44 +80,48 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
-        CType(Me.TextEdit10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPeriodName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDiscount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtGross.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.TextEdit10)
+        Me.GroupControl1.Controls.Add(Me.TxtLevel)
         Me.GroupControl1.Controls.Add(Me.LabelControl11)
-        Me.GroupControl1.Controls.Add(Me.TextEdit9)
+        Me.GroupControl1.Controls.Add(Me.TxtDept)
         Me.GroupControl1.Controls.Add(Me.LabelControl10)
         Me.GroupControl1.Controls.Add(Me.PanelControl3)
         Me.GroupControl1.Controls.Add(Me.LabelControl8)
-        Me.GroupControl1.Controls.Add(Me.TextEdit8)
-        Me.GroupControl1.Controls.Add(Me.TextEdit7)
+        Me.GroupControl1.Controls.Add(Me.TxtName)
+        Me.GroupControl1.Controls.Add(Me.TxtNIK)
         Me.GroupControl1.Controls.Add(Me.LabelControl7)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
@@ -123,27 +129,33 @@ Partial Class FormEmpUniOrderDet
         Me.GroupControl1.Size = New System.Drawing.Size(784, 69)
         Me.GroupControl1.TabIndex = 0
         '
-        'TextEdit10
+        'TxtLevel
         '
-        Me.TextEdit10.Location = New System.Drawing.Point(224, 35)
-        Me.TextEdit10.Name = "TextEdit10"
-        Me.TextEdit10.Size = New System.Drawing.Size(112, 20)
-        Me.TextEdit10.TabIndex = 154
+        Me.TxtLevel.Enabled = False
+        Me.TxtLevel.Location = New System.Drawing.Point(302, 35)
+        Me.TxtLevel.Name = "TxtLevel"
+        Me.TxtLevel.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtLevel.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtLevel.Size = New System.Drawing.Size(174, 20)
+        Me.TxtLevel.TabIndex = 154
         '
         'LabelControl11
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(188, 38)
+        Me.LabelControl11.Location = New System.Drawing.Point(271, 38)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl11.TabIndex = 153
         Me.LabelControl11.Text = "Level"
         '
-        'TextEdit9
+        'TxtDept
         '
-        Me.TextEdit9.Location = New System.Drawing.Point(66, 35)
-        Me.TextEdit9.Name = "TextEdit9"
-        Me.TextEdit9.Size = New System.Drawing.Size(115, 20)
-        Me.TextEdit9.TabIndex = 152
+        Me.TxtDept.Enabled = False
+        Me.TxtDept.Location = New System.Drawing.Point(66, 35)
+        Me.TxtDept.Name = "TxtDept"
+        Me.TxtDept.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDept.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDept.Size = New System.Drawing.Size(199, 20)
+        Me.TxtDept.TabIndex = 152
         '
         'LabelControl10
         '
@@ -156,6 +168,8 @@ Partial Class FormEmpUniOrderDet
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.TxtOrderNumber)
+        Me.PanelControl3.Controls.Add(Me.LabelControl12)
         Me.PanelControl3.Controls.Add(Me.TxtPeriodName)
         Me.PanelControl3.Controls.Add(Me.LabelControl9)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Right
@@ -164,10 +178,31 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl3.Size = New System.Drawing.Size(248, 65)
         Me.PanelControl3.TabIndex = 150
         '
+        'TxtOrderNumber
+        '
+        Me.TxtOrderNumber.Enabled = False
+        Me.TxtOrderNumber.Location = New System.Drawing.Point(98, 33)
+        Me.TxtOrderNumber.Name = "TxtOrderNumber"
+        Me.TxtOrderNumber.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtOrderNumber.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtOrderNumber.Size = New System.Drawing.Size(140, 20)
+        Me.TxtOrderNumber.TabIndex = 5
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Location = New System.Drawing.Point(15, 36)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl12.TabIndex = 4
+        Me.LabelControl12.Text = "Order#"
+        '
         'TxtPeriodName
         '
+        Me.TxtPeriodName.Enabled = False
         Me.TxtPeriodName.Location = New System.Drawing.Point(98, 7)
         Me.TxtPeriodName.Name = "TxtPeriodName"
+        Me.TxtPeriodName.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtPeriodName.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtPeriodName.Size = New System.Drawing.Size(140, 20)
         Me.TxtPeriodName.TabIndex = 3
         '
@@ -187,19 +222,25 @@ Partial Class FormEmpUniOrderDet
         Me.LabelControl8.TabIndex = 149
         Me.LabelControl8.Text = "Name"
         '
-        'TextEdit8
+        'TxtName
         '
-        Me.TextEdit8.Location = New System.Drawing.Point(224, 9)
-        Me.TextEdit8.Name = "TextEdit8"
-        Me.TextEdit8.Size = New System.Drawing.Size(252, 20)
-        Me.TextEdit8.TabIndex = 148
+        Me.TxtName.Enabled = False
+        Me.TxtName.Location = New System.Drawing.Point(224, 9)
+        Me.TxtName.Name = "TxtName"
+        Me.TxtName.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtName.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtName.Size = New System.Drawing.Size(252, 20)
+        Me.TxtName.TabIndex = 148
         '
-        'TextEdit7
+        'TxtNIK
         '
-        Me.TextEdit7.Location = New System.Drawing.Point(66, 9)
-        Me.TextEdit7.Name = "TextEdit7"
-        Me.TextEdit7.Size = New System.Drawing.Size(115, 20)
-        Me.TextEdit7.TabIndex = 147
+        Me.TxtNIK.Enabled = False
+        Me.TxtNIK.Location = New System.Drawing.Point(66, 9)
+        Me.TxtNIK.Name = "TxtNIK"
+        Me.TxtNIK.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtNIK.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtNIK.Size = New System.Drawing.Size(115, 20)
+        Me.TxtNIK.TabIndex = 147
         '
         'LabelControl7
         '
@@ -266,17 +307,17 @@ Partial Class FormEmpUniOrderDet
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl2.Controls.Add(Me.LabelControl6)
-        Me.PanelControl2.Controls.Add(Me.TextEdit6)
-        Me.PanelControl2.Controls.Add(Me.TextEdit5)
+        Me.PanelControl2.Controls.Add(Me.TxtDiff)
+        Me.PanelControl2.Controls.Add(Me.TxtTotal)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
-        Me.PanelControl2.Controls.Add(Me.TextEdit4)
-        Me.PanelControl2.Controls.Add(Me.TextEdit1)
+        Me.PanelControl2.Controls.Add(Me.TxtDiscountValue)
+        Me.PanelControl2.Controls.Add(Me.TxtBudget)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Controls.Add(Me.LabelControl4)
         Me.PanelControl2.Controls.Add(Me.LabelControl3)
-        Me.PanelControl2.Controls.Add(Me.TextEdit3)
+        Me.PanelControl2.Controls.Add(Me.TxtDiscount)
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
-        Me.PanelControl2.Controls.Add(Me.TextEdit2)
+        Me.PanelControl2.Controls.Add(Me.TxtGross)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl2.Location = New System.Drawing.Point(495, 2)
         Me.PanelControl2.Name = "PanelControl2"
@@ -291,19 +332,29 @@ Partial Class FormEmpUniOrderDet
         Me.LabelControl6.TabIndex = 153
         Me.LabelControl6.Text = "Diff"
         '
-        'TextEdit6
+        'TxtDiff
         '
-        Me.TextEdit6.Location = New System.Drawing.Point(89, 113)
-        Me.TextEdit6.Name = "TextEdit6"
-        Me.TextEdit6.Size = New System.Drawing.Size(188, 20)
-        Me.TextEdit6.TabIndex = 152
+        Me.TxtDiff.Enabled = False
+        Me.TxtDiff.Location = New System.Drawing.Point(89, 113)
+        Me.TxtDiff.Name = "TxtDiff"
+        Me.TxtDiff.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDiff.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDiff.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtDiff.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtDiff.Size = New System.Drawing.Size(188, 20)
+        Me.TxtDiff.TabIndex = 152
         '
-        'TextEdit5
+        'TxtTotal
         '
-        Me.TextEdit5.Location = New System.Drawing.Point(89, 61)
-        Me.TextEdit5.Name = "TextEdit5"
-        Me.TextEdit5.Size = New System.Drawing.Size(188, 20)
-        Me.TextEdit5.TabIndex = 151
+        Me.TxtTotal.Enabled = False
+        Me.TxtTotal.Location = New System.Drawing.Point(89, 61)
+        Me.TxtTotal.Name = "TxtTotal"
+        Me.TxtTotal.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtTotal.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtTotal.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtTotal.Size = New System.Drawing.Size(188, 20)
+        Me.TxtTotal.TabIndex = 151
         '
         'LabelControl5
         '
@@ -313,19 +364,29 @@ Partial Class FormEmpUniOrderDet
         Me.LabelControl5.TabIndex = 150
         Me.LabelControl5.Text = "Total"
         '
-        'TextEdit4
+        'TxtDiscountValue
         '
-        Me.TextEdit4.Location = New System.Drawing.Point(156, 35)
-        Me.TextEdit4.Name = "TextEdit4"
-        Me.TextEdit4.Size = New System.Drawing.Size(121, 20)
-        Me.TextEdit4.TabIndex = 149
+        Me.TxtDiscountValue.Enabled = False
+        Me.TxtDiscountValue.Location = New System.Drawing.Point(156, 35)
+        Me.TxtDiscountValue.Name = "TxtDiscountValue"
+        Me.TxtDiscountValue.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDiscountValue.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDiscountValue.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtDiscountValue.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtDiscountValue.Size = New System.Drawing.Size(121, 20)
+        Me.TxtDiscountValue.TabIndex = 149
         '
-        'TextEdit1
+        'TxtBudget
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(89, 87)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(188, 20)
-        Me.TextEdit1.TabIndex = 143
+        Me.TxtBudget.Enabled = False
+        Me.TxtBudget.Location = New System.Drawing.Point(89, 87)
+        Me.TxtBudget.Name = "TxtBudget"
+        Me.TxtBudget.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtBudget.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtBudget.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtBudget.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtBudget.Size = New System.Drawing.Size(188, 20)
+        Me.TxtBudget.TabIndex = 143
         '
         'LabelControl1
         '
@@ -351,12 +412,19 @@ Partial Class FormEmpUniOrderDet
         Me.LabelControl3.TabIndex = 147
         Me.LabelControl3.Text = "Discount"
         '
-        'TextEdit3
+        'TxtDiscount
         '
-        Me.TextEdit3.Location = New System.Drawing.Point(89, 35)
-        Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Size = New System.Drawing.Size(44, 20)
-        Me.TextEdit3.TabIndex = 146
+        Me.TxtDiscount.Location = New System.Drawing.Point(89, 35)
+        Me.TxtDiscount.Name = "TxtDiscount"
+        Me.TxtDiscount.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDiscount.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDiscount.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtDiscount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtDiscount.Properties.Mask.EditMask = "n2"
+        Me.TxtDiscount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtDiscount.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TxtDiscount.Size = New System.Drawing.Size(44, 20)
+        Me.TxtDiscount.TabIndex = 146
         '
         'LabelControl2
         '
@@ -366,12 +434,16 @@ Partial Class FormEmpUniOrderDet
         Me.LabelControl2.TabIndex = 145
         Me.LabelControl2.Text = "Gross Total"
         '
-        'TextEdit2
+        'TxtGross
         '
-        Me.TextEdit2.Location = New System.Drawing.Point(89, 9)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(188, 20)
-        Me.TextEdit2.TabIndex = 144
+        Me.TxtGross.Location = New System.Drawing.Point(89, 9)
+        Me.TxtGross.Name = "TxtGross"
+        Me.TxtGross.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtGross.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtGross.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtGross.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtGross.Size = New System.Drawing.Size(188, 20)
+        Me.TxtGross.TabIndex = 144
         '
         'MENote
         '
@@ -392,12 +464,12 @@ Partial Class FormEmpUniOrderDet
         'GCItemList
         '
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemList.Location = New System.Drawing.Point(0, 69)
+        Me.GCItemList.Location = New System.Drawing.Point(20, 2)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(784, 304)
+        Me.GCItemList.Size = New System.Drawing.Size(762, 300)
         Me.GCItemList.TabIndex = 5
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -534,8 +606,6 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnRemark.Caption = "Remark"
         Me.GridColumnRemark.FieldName = "sales_order_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
-        Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 7
         Me.GridColumnRemark.Width = 225
         '
         'GridColumnUOM
@@ -649,12 +719,22 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.UnboundType = DevExpress.Data.UnboundColumnType.[String]
         '
+        'GroupControl3
+        '
+        Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.GCItemList)
+        Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 69)
+        Me.GroupControl3.Name = "GroupControl3"
+        Me.GroupControl3.Size = New System.Drawing.Size(784, 304)
+        Me.GroupControl3.TabIndex = 6
+        '
         'FormEmpUniOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(784, 562)
-        Me.Controls.Add(Me.GCItemList)
+        Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.GroupControl1)
@@ -666,14 +746,15 @@ Partial Class FormEmpUniOrderDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
-        CType(Me.TextEdit10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         Me.PanelControl3.PerformLayout()
+        CType(Me.TxtOrderNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPeriodName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -682,16 +763,18 @@ Partial Class FormEmpUniOrderDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtBudget.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDiscount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtGross.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -728,30 +811,33 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtBudget As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtDiscountValue As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtDiscount As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtGross As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit6 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit5 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtDiff As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtTotal As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit8 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit7 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtNIK As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtPeriodName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit10 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtLevel As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TextEdit9 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtDept As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
+    Friend WithEvents TxtOrderNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
 End Class
