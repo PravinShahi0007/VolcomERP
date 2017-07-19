@@ -10,7 +10,8 @@
     Sub chooseEmp()
         If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
-            infoCustom("OK")
+            Close()
+            FormEmpUniOrderDet.ShowDialog()
             Cursor = Cursors.Default
         End If
     End Sub
@@ -23,5 +24,9 @@
         If e.KeyCode = Keys.Enter Then
             chooseEmp()
         End If
+    End Sub
+
+    Private Sub FormEmpUniOrderNew_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class
