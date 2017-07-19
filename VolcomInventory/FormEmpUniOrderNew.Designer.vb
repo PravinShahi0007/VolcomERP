@@ -42,16 +42,16 @@ Partial Class FormEmpUniOrderNew
         '
         Me.PanelControl1.Controls.Add(Me.BtnChoose)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 279)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 521)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(668, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(784, 41)
         Me.PanelControl1.TabIndex = 5
         '
         'BtnChoose
         '
         Me.BtnChoose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnChoose.Image = CType(resources.GetObject("BtnChoose.Image"), System.Drawing.Image)
-        Me.BtnChoose.Location = New System.Drawing.Point(573, 2)
+        Me.BtnChoose.Location = New System.Drawing.Point(689, 2)
         Me.BtnChoose.Name = "BtnChoose"
         Me.BtnChoose.Size = New System.Drawing.Size(93, 37)
         Me.BtnChoose.TabIndex = 6
@@ -63,7 +63,7 @@ Partial Class FormEmpUniOrderNew
         Me.GCDetail.Location = New System.Drawing.Point(0, 0)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(668, 279)
+        Me.GCDetail.Size = New System.Drawing.Size(784, 521)
         Me.GCDetail.TabIndex = 4
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -152,12 +152,11 @@ Partial Class FormEmpUniOrderNew
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(668, 320)
+        Me.ClientSize = New System.Drawing.Size(784, 562)
         Me.Controls.Add(Me.GCDetail)
         Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormEmpUniOrderNew"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
