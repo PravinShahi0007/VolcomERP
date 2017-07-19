@@ -718,6 +718,12 @@
     <Compile Include="FormEmpStoreSchCompareHistory.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniOrderNew.Designer.vb">
+      <DependentUpon>FormEmpUniOrderNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniOrderNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniPeriod.Designer.vb">
       <DependentUpon>FormEmpUniPeriod.vb</DependentUpon>
     </Compile>
@@ -5083,6 +5089,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpStoreSchCompareHistory.resx">
       <DependentUpon>FormEmpStoreSchCompareHistory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniOrderNew.resx">
+      <DependentUpon>FormEmpUniOrderNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniPeriod.resx">
       <DependentUpon>FormEmpUniPeriod.vb</DependentUpon>
