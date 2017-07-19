@@ -546,15 +546,18 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnPlan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPlan.FieldName = "qty_plan"
         Me.GridColumnPlan.Name = "GridColumnPlan"
+        Me.GridColumnPlan.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_plan", "{0:N0}")})
         Me.GridColumnPlan.Visible = True
         Me.GridColumnPlan.VisibleIndex = 5
         '
         'GridColumnAct
         '
         Me.GridColumnAct.Caption = "Actual"
+        Me.GridColumnAct.DisplayFormat.FormatString = "N0"
         Me.GridColumnAct.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAct.FieldName = "qty_act"
         Me.GridColumnAct.Name = "GridColumnAct"
+        Me.GridColumnAct.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_act", "{0:N0}")})
         Me.GridColumnAct.Visible = True
         Me.GridColumnAct.VisibleIndex = 6
         '
