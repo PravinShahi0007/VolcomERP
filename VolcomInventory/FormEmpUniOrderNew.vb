@@ -10,11 +10,39 @@
     Sub chooseEmp()
         If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
-            'Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type) "
-            'query += "VALUES('" + id_store_contact_to + "', '" + id_comp_contact_par + "', '" + sales_order_number + "', NOW(), '" + sales_order_note + "', '" + id_so_type + "', '" + id_report_status + "', '" + id_so_status + "', '" + id_user + "'," + id_emp_uni_period + ", " + id_uni_type + "); SELECT LAST_INSERT_ID(); "
-            'FormEmpUniOrderDet.id_sales_order = execute_query(query, 0, True, "", "", "", "")
-            FormEmpUniOrderDet.ShowDialog()
-            Close()
+            'get destination
+            Dim id_dept As String = GVDetail.GetFocusedRowCellValue("id_departement").ToString
+            Dim id_store_contact_to As String = "-1"
+            Try
+                id_store_contact_to = execute_query("SELECT cc.id_comp_contact FROM tb_m_departement d 
+                INNER JOIN tb_m_comp c ON c.id_comp = d.id_comp_promo
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1
+                WHERE d.id_departement=" + id_dept + " ", 0, True, "", "", "", "")
+            Catch ex As Exception
+            End Try
+
+            'get from
+            Dim id_wh_uni As String = get_setup_field("id_wh_uni")
+            Dim id_warehouse_contact_to = "-1"
+            Try
+                id_warehouse_contact_to = execute_query("SELECT cc.id_comp_contact FROM tb_m_comp c 
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1
+                WHERE c.id_comp = " + id_wh_uni + " ", 0, True, "", "", "", "")
+            Catch ex As Exception
+            End Try
+
+            'get id_emp_uni_budget
+            Dim id_emp_uni_budget As String = GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString
+
+            If id_store_contact_to = "-1" Then
+                stopCustom("Promo account is not found")
+            Else
+                Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_budget) "
+                query += "VALUES('" + id_store_contact_to + "', '" + id_warehouse_contact_to + "', '" + header_number_sales("2") + "', NOW(), '" + "" + "', '" + 0 + "', '" + 1 + "', '" + 7 + "', '" + id_user + "'," + id_emp_uni_budget + "); SELECT LAST_INSERT_ID(); "
+                'FormEmpUniOrderDet.id_sales_order = execute_query(query, 0, True, "", "", "", "")
+                FormEmpUniOrderDet.ShowDialog()
+                Close()
+            End If
             Cursor = Cursors.Default
         End If
     End Sub
