@@ -36,9 +36,11 @@ Partial Class FormEmpUniOrderDet
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancelOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAccept = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtDiff = New DevExpress.XtraEditors.TextEdit()
@@ -95,6 +97,7 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -253,8 +256,8 @@ Partial Class FormEmpUniOrderDet
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SimpleButton3)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BtnCancelOrder)
+        Me.PanelControl1.Controls.Add(Me.BtnAccept)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 521)
         Me.PanelControl1.Name = "PanelControl1"
@@ -271,29 +274,31 @@ Partial Class FormEmpUniOrderDet
         Me.SimpleButton3.TabIndex = 3
         Me.SimpleButton3.Text = "Print"
         '
-        'SimpleButton2
+        'BtnCancelOrder
         '
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton2.Image = CType(resources.GetObject("SimpleButton2.Image"), System.Drawing.Image)
-        Me.SimpleButton2.Location = New System.Drawing.Point(584, 2)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(111, 37)
-        Me.SimpleButton2.TabIndex = 1
-        Me.SimpleButton2.Text = "Cancell Order"
+        Me.BtnCancelOrder.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancelOrder.Image = CType(resources.GetObject("BtnCancelOrder.Image"), System.Drawing.Image)
+        Me.BtnCancelOrder.Location = New System.Drawing.Point(584, 2)
+        Me.BtnCancelOrder.Name = "BtnCancelOrder"
+        Me.BtnCancelOrder.Size = New System.Drawing.Size(111, 37)
+        Me.BtnCancelOrder.TabIndex = 1
+        Me.BtnCancelOrder.Text = "Cancell Order"
         '
-        'SimpleButton1
+        'BtnAccept
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(695, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(87, 37)
-        Me.SimpleButton1.TabIndex = 0
-        Me.SimpleButton1.Text = "Accept"
+        Me.BtnAccept.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAccept.Image = CType(resources.GetObject("BtnAccept.Image"), System.Drawing.Image)
+        Me.BtnAccept.Location = New System.Drawing.Point(695, 2)
+        Me.BtnAccept.Name = "BtnAccept"
+        Me.BtnAccept.Size = New System.Drawing.Size(87, 37)
+        Me.BtnAccept.TabIndex = 0
+        Me.BtnAccept.Text = "Accept"
         '
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.LEReportStatus)
+        Me.GroupControl2.Controls.Add(Me.LabelControl21)
         Me.GroupControl2.Controls.Add(Me.PanelControl2)
         Me.GroupControl2.Controls.Add(Me.MENote)
         Me.GroupControl2.Controls.Add(Me.LabelControl18)
@@ -302,6 +307,30 @@ Partial Class FormEmpUniOrderDet
         Me.GroupControl2.Name = "GroupControl2"
         Me.GroupControl2.Size = New System.Drawing.Size(784, 148)
         Me.GroupControl2.TabIndex = 2
+        '
+        'LEReportStatus
+        '
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(27, 102)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.LEReportStatus.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEReportStatus.Properties.NullText = ""
+        Me.LEReportStatus.Properties.ShowFooter = False
+        Me.LEReportStatus.Size = New System.Drawing.Size(201, 20)
+        Me.LEReportStatus.TabIndex = 145
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(27, 83)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl21.TabIndex = 146
+        Me.LabelControl21.Text = "Status"
         '
         'PanelControl2
         '
@@ -447,10 +476,10 @@ Partial Class FormEmpUniOrderDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(66, 12)
+        Me.MENote.Location = New System.Drawing.Point(27, 32)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(410, 45)
+        Me.MENote.Size = New System.Drawing.Size(449, 45)
         Me.MENote.TabIndex = 139
         '
         'LabelControl18
@@ -760,6 +789,7 @@ Partial Class FormEmpUniOrderDet
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
@@ -808,8 +838,8 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnCancelOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAccept As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtBudget As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
@@ -840,4 +870,6 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents TxtOrderNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
 End Class

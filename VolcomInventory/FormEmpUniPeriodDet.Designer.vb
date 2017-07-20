@@ -471,6 +471,7 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnEdit.Size = New System.Drawing.Size(107, 37)
         Me.BtnEdit.TabIndex = 6
         Me.BtnEdit.Text = "Edit Budget"
+        Me.BtnEdit.Visible = False
         '
         'BtnAdd
         '

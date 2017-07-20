@@ -22,6 +22,7 @@
             BtnSave.Text = "Save Changes"
             viewDetail()
             viewDesignList()
+            viewOrder()
         End If
     End Sub
 
@@ -36,6 +37,15 @@
         Dim query As String = "CALL view_emp_uni_design(" + id_emp_uni_period + ") "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesignList.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewOrder()
+        Cursor = Cursors.WaitCursor
+        Dim query_c As New ClassEmpUni()
+        Dim query As String = query_c.queryMainOrder("AND p.id_emp_uni_period=" + id_emp_uni_period + " ", "2")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSalesOrder.DataSource = data
         Cursor = Cursors.Default
     End Sub
 
@@ -148,5 +158,14 @@
         Cursor = Cursors.WaitCursor
         FormEmpUniOrderNew.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVSalesOrder_DoubleClick(sender As Object, e As EventArgs) Handles GVSalesOrder.DoubleClick
+        If GVSalesOrder.RowCount > 0 And GVSalesOrder.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            FormEmpUniOrderDet.id_sales_order = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+            FormEmpUniOrderDet.ShowDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

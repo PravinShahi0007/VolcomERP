@@ -22,7 +22,7 @@
             End Try
 
             'get from
-            Dim id_wh_uni As String = get_setup_field("id_wh_uni")
+            Dim id_wh_uni As String = get_setup_field("wh_uni")
             Dim id_warehouse_contact_to = "-1"
             Try
                 id_warehouse_contact_to = execute_query("SELECT cc.id_comp_contact FROM tb_m_comp c 
@@ -36,10 +36,13 @@
 
             If id_store_contact_to = "-1" Then
                 stopCustom("Promo account is not found")
+            ElseIf id_warehouse_contact_to = "-1" Then
+                stopCustom("WH account is not found")
             Else
                 Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_budget) "
-                query += "VALUES('" + id_store_contact_to + "', '" + id_warehouse_contact_to + "', '" + header_number_sales("2") + "', NOW(), '" + "" + "', '" + 0 + "', '" + 1 + "', '" + 7 + "', '" + id_user + "'," + id_emp_uni_budget + "); SELECT LAST_INSERT_ID(); "
-                'FormEmpUniOrderDet.id_sales_order = execute_query(query, 0, True, "", "", "", "")
+                query += "VALUES('" + id_store_contact_to + "', '" + id_warehouse_contact_to + "', '" + header_number_sales("2") + "', NOW(), '', '0', '1', '7', '" + id_user + "'," + id_emp_uni_budget + "); SELECT LAST_INSERT_ID(); "
+                FormEmpUniOrderDet.id_sales_order = execute_query(query, 0, True, "", "", "", "")
+                increase_inc_sales("2")
                 FormEmpUniOrderDet.ShowDialog()
                 Close()
             End If
