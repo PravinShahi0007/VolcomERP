@@ -12,7 +12,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT u.id_emp_uni_period, u.period_name, u.selection_date_start, u.selection_date_start, u.selection_date_end, u.created_date, u.distribution_date 
+        Dim query As String = "SELECT u.id_emp_uni_period, u.period_name, u.selection_date_start, u.selection_date_start, u.selection_date_end, u.created_date, u.distribution_date, u.tolerance
         FROM tb_emp_uni_period u
         WHERE u.id_emp_uni_period>0 "
         query += condition + " "
@@ -35,7 +35,7 @@
         End If
 
         Dim query As String = "SELECT so.id_sales_order, so.sales_order_number, so.sales_order_date, so.sales_order_note, SUM(IFNULL(sod.sales_order_det_qty,0)) AS `total_order`,
-        so.id_emp_uni_budget, b.id_emp_uni_period, p.period_name, b.budget,
+        so.id_emp_uni_budget, b.id_emp_uni_period, p.period_name, b.budget, so.tolerance,
         b.id_employee, e.employee_code, e.employee_name, e.employee_position, e.id_employee_level, lvl.employee_level, e.id_departement, d.departement,
         so.id_report_status, rs.report_status
         FROM tb_sales_order so

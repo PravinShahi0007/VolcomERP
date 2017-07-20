@@ -10,6 +10,7 @@
         If action = "ins" Then
             XTCUni.Enabled = False
             BtnSave.Text = "Create New"
+            TxtTolerance.EditValue = 0
         Else
             Dim query_c As New ClassEmpUni()
             Dim query As String = query_c.queryMain("AND u.id_emp_uni_period=" + id_emp_uni_period + "", "1")
@@ -18,6 +19,7 @@
             DEStart.EditValue = data.Rows(0)("selection_date_start")
             DEEnd.EditValue = data.Rows(0)("selection_date_end")
             DEDist.EditValue = data.Rows(0)("distribution_date")
+            TxtTolerance.EditValue = data.Rows(0)("tolerance")
             XTCUni.Enabled = True
             BtnSave.Text = "Save Changes"
             viewDetail()
@@ -59,15 +61,16 @@
             Dim selection_date_start As String = DateTime.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim selection_date_end As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim distribution_date As String = DateTime.Parse(DEDist.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim tolerance As String = decimalSQL(TxtTolerance.EditValue.ToString)
             If action = "ins" Then
-                Dim query As String = "INSERT INTO tb_emp_uni_period(period_name, selection_date_start, selection_date_end, created_date, distribution_date) VALUES "
-                query += "('" + period_name + "', '" + selection_date_start + "', '" + selection_date_end + "', NOW(), '" + distribution_date + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_emp_uni_period(period_name, selection_date_start, selection_date_end, created_date, distribution_date, tolerance) VALUES "
+                query += "('" + period_name + "', '" + selection_date_start + "', '" + selection_date_end + "', NOW(), '" + distribution_date + "','" + tolerance + "'); SELECT LAST_INSERT_ID(); "
                 id_emp_uni_period = execute_query(query, 0, True, "", "", "", "")
                 action = "upd"
                 actionLoad()
                 infoCustom("Uniform period was created successfully, please input detail budget.")
             Else
-                Dim query As String = "UPDATE tb_emp_uni_period SET period_name='" + period_name + "', selection_date_start='" + selection_date_start + "', selection_date_end='" + selection_date_end + "', distribution_date='" + distribution_date + "' WHERE id_emp_uni_period='" + id_emp_uni_period + "' "
+                Dim query As String = "UPDATE tb_emp_uni_period SET period_name='" + period_name + "', selection_date_start='" + selection_date_start + "', selection_date_end='" + selection_date_end + "', distribution_date='" + distribution_date + "', tolerance='" + tolerance + "' WHERE id_emp_uni_period='" + id_emp_uni_period + "' "
                 execute_non_query(query, True, "", "", "", "")
                 action = "upd"
                 actionLoad()
