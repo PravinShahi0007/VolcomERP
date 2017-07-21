@@ -730,6 +730,12 @@
     <Compile Include="FormEmpUniOrderNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniOrderSingle.Designer.vb">
+      <DependentUpon>FormEmpUniOrderSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniOrderSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniPeriod.Designer.vb">
       <DependentUpon>FormEmpUniPeriod.vb</DependentUpon>
     </Compile>
@@ -5101,6 +5107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniOrderNew.resx">
       <DependentUpon>FormEmpUniOrderNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniOrderSingle.resx">
+      <DependentUpon>FormEmpUniOrderSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniPeriod.resx">
       <DependentUpon>FormEmpUniPeriod.vb</DependentUpon>

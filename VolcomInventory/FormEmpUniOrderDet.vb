@@ -74,5 +74,35 @@
         GVItemList.Focus()
     End Sub
 
+    Private Sub FormEmpUniOrderDet_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.Insert Then
+            addRow()
+        ElseIf e.KeyCode = Keys.Delete Then
+            deleteRow()
+        ElseIf e.KeyCode = Keys.Control Then
+            focusRow()
+        End If
+    End Sub
 
+    Private Sub BtnAddOrder_Click(sender As Object, e As EventArgs) Handles BtnAddOrder.Click
+        addRow()
+    End Sub
+
+    Private Sub BtnDelOrder_Click(sender As Object, e As EventArgs) Handles BtnDelOrder.Click
+        deleteRow()
+    End Sub
+
+    Private Sub BtnFocusRow_Click(sender As Object, e As EventArgs) Handles BtnFocusRow.Click
+        focusRow()
+    End Sub
+
+    Private Sub TxtCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCode.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim val As String = addSlashes(TxtCode.Text)
+            If val.Length > 9 Then
+                val = val.Substring(0, 9)
+            End If
+
+        End If
+    End Sub
 End Class

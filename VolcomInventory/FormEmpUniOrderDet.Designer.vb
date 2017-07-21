@@ -818,7 +818,7 @@ Partial Class FormEmpUniOrderDet
         '
         'TxtCode
         '
-        Me.TxtCode.Location = New System.Drawing.Point(53, 10)
+        Me.TxtCode.Location = New System.Drawing.Point(58, 10)
         Me.TxtCode.Name = "TxtCode"
         Me.TxtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCode.Properties.Appearance.Options.UseFont = True
@@ -830,9 +830,9 @@ Partial Class FormEmpUniOrderDet
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl6.Location = New System.Drawing.Point(14, 13)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(28, 13)
+        Me.LabelControl6.Size = New System.Drawing.Size(38, 13)
         Me.LabelControl6.TabIndex = 0
-        Me.LabelControl6.Text = "Code"
+        Me.LabelControl6.Text = "Design"
         '
         'FormEmpUniOrderDet
         '
