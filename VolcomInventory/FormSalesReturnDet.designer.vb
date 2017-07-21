@@ -1651,7 +1651,7 @@ Partial Class FormSalesReturnDet
         Me.XTPProblem.Controls.Add(Me.GroupControlProb)
         Me.XTPProblem.Name = "XTPProblem"
         Me.XTPProblem.Size = New System.Drawing.Size(905, 173)
-        Me.XTPProblem.Text = "Problem"
+        Me.XTPProblem.Text = "Non Stock"
         '
         'GroupControlProb
         '
