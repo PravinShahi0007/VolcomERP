@@ -834,7 +834,7 @@ Partial Class FormViewSalesReturn
         Me.XTPProblemItem.Controls.Add(Me.GCProbSum)
         Me.XTPProblemItem.Name = "XTPProblemItem"
         Me.XTPProblemItem.Size = New System.Drawing.Size(882, 169)
-        Me.XTPProblemItem.Text = "Problem Item"
+        Me.XTPProblemItem.Text = "Non Stock Item"
         '
         'GCProbSum
         '
@@ -1145,7 +1145,7 @@ Partial Class FormViewSalesReturn
         Me.XTPProblem.Controls.Add(Me.GCBarcodeProb)
         Me.XTPProblem.Name = "XTPProblem"
         Me.XTPProblem.Size = New System.Drawing.Size(905, 265)
-        Me.XTPProblem.Text = "Problem Product Detail"
+        Me.XTPProblem.Text = "Non Stock Detail"
         '
         'GCBarcodeProb
         '

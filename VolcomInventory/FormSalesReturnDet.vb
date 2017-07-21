@@ -749,8 +749,8 @@ Public Class FormSalesReturnDet
 
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopRight) Then
             errorInput()
-        ElseIf GVItemList.RowCount = 0 Or GVBarcode.RowCount = 0 Then
-            errorCustom("Return item and scanned item data can't blank")
+        ElseIf GVItemList.RowCount = 0 Then
+            errorCustom("Return item data can't blank")
         ElseIf Not cond_list Then
             stopCustom("Please see different in column status.")
         Else

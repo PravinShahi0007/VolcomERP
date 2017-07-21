@@ -94,6 +94,7 @@ Partial Class FormSalesReturn
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumnTotalNonStock = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesReturn, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesReturn.SuspendLayout()
         Me.XTPSalesReturnList.SuspendLayout()
@@ -155,9 +156,9 @@ Partial Class FormSalesReturn
         '
         'GVSalesReturn
         '
-        Me.GVSalesReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnNumber, Me.GridColumnReturnOrderNumber, Me.GridColumnStore, Me.GridColumnCompNameTo, Me.GridColumnStoreRetNumber, Me.GridColumnCreatedDate, Me.GridColumnStatus, Me.GridColumnLastUpdate, Me.GridColumnLastUser, Me.GridColumnTotal})
+        Me.GVSalesReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnNumber, Me.GridColumnReturnOrderNumber, Me.GridColumnStore, Me.GridColumnCompNameTo, Me.GridColumnStoreRetNumber, Me.GridColumnCreatedDate, Me.GridColumnStatus, Me.GridColumnLastUpdate, Me.GridColumnLastUser, Me.GridColumnTotal, Me.GridColumnTotalNonStock})
         Me.GVSalesReturn.GridControl = Me.GCSalesReturn
-        Me.GVSalesReturn.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotal, "{0:n0}")})
+        Me.GVSalesReturn.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotal, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_nsi", Me.GridColumnTotalNonStock, "{0:n0}")})
         Me.GVSalesReturn.Name = "GVSalesReturn"
         Me.GVSalesReturn.OptionsBehavior.ReadOnly = True
         Me.GVSalesReturn.OptionsView.ShowFooter = True
@@ -170,7 +171,7 @@ Partial Class FormSalesReturn
         Me.GridColumnSalesReturnNumber.Name = "GridColumnSalesReturnNumber"
         Me.GridColumnSalesReturnNumber.Visible = True
         Me.GridColumnSalesReturnNumber.VisibleIndex = 0
-        Me.GridColumnSalesReturnNumber.Width = 106
+        Me.GridColumnSalesReturnNumber.Width = 100
         '
         'GridColumnReturnOrderNumber
         '
@@ -179,7 +180,7 @@ Partial Class FormSalesReturn
         Me.GridColumnReturnOrderNumber.Name = "GridColumnReturnOrderNumber"
         Me.GridColumnReturnOrderNumber.Visible = True
         Me.GridColumnReturnOrderNumber.VisibleIndex = 1
-        Me.GridColumnReturnOrderNumber.Width = 106
+        Me.GridColumnReturnOrderNumber.Width = 100
         '
         'GridColumnStore
         '
@@ -188,7 +189,7 @@ Partial Class FormSalesReturn
         Me.GridColumnStore.Name = "GridColumnStore"
         Me.GridColumnStore.Visible = True
         Me.GridColumnStore.VisibleIndex = 2
-        Me.GridColumnStore.Width = 106
+        Me.GridColumnStore.Width = 100
         '
         'GridColumnCompNameTo
         '
@@ -197,7 +198,7 @@ Partial Class FormSalesReturn
         Me.GridColumnCompNameTo.Name = "GridColumnCompNameTo"
         Me.GridColumnCompNameTo.Visible = True
         Me.GridColumnCompNameTo.VisibleIndex = 3
-        Me.GridColumnCompNameTo.Width = 106
+        Me.GridColumnCompNameTo.Width = 100
         '
         'GridColumnStoreRetNumber
         '
@@ -206,7 +207,7 @@ Partial Class FormSalesReturn
         Me.GridColumnStoreRetNumber.Name = "GridColumnStoreRetNumber"
         Me.GridColumnStoreRetNumber.Visible = True
         Me.GridColumnStoreRetNumber.VisibleIndex = 4
-        Me.GridColumnStoreRetNumber.Width = 106
+        Me.GridColumnStoreRetNumber.Width = 100
         '
         'GridColumnCreatedDate
         '
@@ -216,8 +217,8 @@ Partial Class FormSalesReturn
         Me.GridColumnCreatedDate.FieldName = "sales_return_date"
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 6
-        Me.GridColumnCreatedDate.Width = 112
+        Me.GridColumnCreatedDate.VisibleIndex = 7
+        Me.GridColumnCreatedDate.Width = 102
         '
         'GridColumnStatus
         '
@@ -225,8 +226,8 @@ Partial Class FormSalesReturn
         Me.GridColumnStatus.FieldName = "report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 9
-        Me.GridColumnStatus.Width = 118
+        Me.GridColumnStatus.VisibleIndex = 10
+        Me.GridColumnStatus.Width = 113
         '
         'GridColumnLastUpdate
         '
@@ -236,8 +237,8 @@ Partial Class FormSalesReturn
         Me.GridColumnLastUpdate.FieldName = "last_update"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
         Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 7
-        Me.GridColumnLastUpdate.Width = 112
+        Me.GridColumnLastUpdate.VisibleIndex = 8
+        Me.GridColumnLastUpdate.Width = 102
         '
         'GridColumnLastUser
         '
@@ -245,8 +246,8 @@ Partial Class FormSalesReturn
         Me.GridColumnLastUser.FieldName = "last_user"
         Me.GridColumnLastUser.Name = "GridColumnLastUser"
         Me.GridColumnLastUser.Visible = True
-        Me.GridColumnLastUser.VisibleIndex = 8
-        Me.GridColumnLastUser.Width = 112
+        Me.GridColumnLastUser.VisibleIndex = 9
+        Me.GridColumnLastUser.Width = 102
         '
         'GridColumnTotal
         '
@@ -258,7 +259,7 @@ Partial Class FormSalesReturn
         Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:n0}")})
         Me.GridColumnTotal.Visible = True
         Me.GridColumnTotal.VisibleIndex = 5
-        Me.GridColumnTotal.Width = 78
+        Me.GridColumnTotal.Width = 73
         '
         'GCFilter
         '
@@ -836,6 +837,18 @@ Partial Class FormSalesReturn
         Me.SMPrint.Size = New System.Drawing.Size(136, 22)
         Me.SMPrint.Text = "Print"
         '
+        'GridColumnTotalNonStock
+        '
+        Me.GridColumnTotalNonStock.Caption = "Total Non Stock"
+        Me.GridColumnTotalNonStock.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalNonStock.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalNonStock.FieldName = "total_nsi"
+        Me.GridColumnTotalNonStock.Name = "GridColumnTotalNonStock"
+        Me.GridColumnTotalNonStock.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_nsi", "{0:N0}")})
+        Me.GridColumnTotalNonStock.Visible = True
+        Me.GridColumnTotalNonStock.VisibleIndex = 6
+        Me.GridColumnTotalNonStock.Width = 86
+        '
         'FormSalesReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -955,4 +968,5 @@ Partial Class FormSalesReturn
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemaining As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalNonStock As DevExpress.XtraGrid.Columns.GridColumn
 End Class
