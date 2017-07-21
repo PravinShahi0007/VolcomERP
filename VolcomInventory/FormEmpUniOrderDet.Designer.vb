@@ -83,6 +83,12 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,6 +118,9 @@ Partial Class FormEmpUniOrderDet
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -135,7 +144,7 @@ Partial Class FormEmpUniOrderDet
         'TxtLevel
         '
         Me.TxtLevel.Enabled = False
-        Me.TxtLevel.Location = New System.Drawing.Point(302, 35)
+        Me.TxtLevel.Location = New System.Drawing.Point(309, 35)
         Me.TxtLevel.Name = "TxtLevel"
         Me.TxtLevel.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtLevel.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -144,7 +153,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl11
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(271, 38)
+        Me.LabelControl11.Location = New System.Drawing.Point(278, 38)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl11.TabIndex = 153
@@ -153,7 +162,7 @@ Partial Class FormEmpUniOrderDet
         'TxtDept
         '
         Me.TxtDept.Enabled = False
-        Me.TxtDept.Location = New System.Drawing.Point(66, 35)
+        Me.TxtDept.Location = New System.Drawing.Point(73, 35)
         Me.TxtDept.Name = "TxtDept"
         Me.TxtDept.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtDept.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -162,7 +171,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(27, 38)
+        Me.LabelControl10.Location = New System.Drawing.Point(34, 38)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(27, 13)
         Me.LabelControl10.TabIndex = 151
@@ -219,7 +228,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(188, 12)
+        Me.LabelControl8.Location = New System.Drawing.Point(195, 12)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(27, 13)
         Me.LabelControl8.TabIndex = 149
@@ -228,7 +237,7 @@ Partial Class FormEmpUniOrderDet
         'TxtName
         '
         Me.TxtName.Enabled = False
-        Me.TxtName.Location = New System.Drawing.Point(224, 9)
+        Me.TxtName.Location = New System.Drawing.Point(231, 9)
         Me.TxtName.Name = "TxtName"
         Me.TxtName.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtName.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -238,7 +247,7 @@ Partial Class FormEmpUniOrderDet
         'TxtNIK
         '
         Me.TxtNIK.Enabled = False
-        Me.TxtNIK.Location = New System.Drawing.Point(66, 9)
+        Me.TxtNIK.Location = New System.Drawing.Point(73, 9)
         Me.TxtNIK.Name = "TxtNIK"
         Me.TxtNIK.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtNIK.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -247,7 +256,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(27, 12)
+        Me.LabelControl7.Location = New System.Drawing.Point(34, 12)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(17, 13)
         Me.LabelControl7.TabIndex = 146
@@ -311,7 +320,7 @@ Partial Class FormEmpUniOrderDet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(66, 65)
+        Me.LEReportStatus.Location = New System.Drawing.Point(73, 65)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -326,7 +335,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(23, 68)
+        Me.LabelControl21.Location = New System.Drawing.Point(34, 68)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 146
@@ -375,7 +384,7 @@ Partial Class FormEmpUniOrderDet
         '
         'TxtTotal
         '
-        Me.TxtTotal.EditValue = "150000"
+        Me.TxtTotal.EditValue = ""
         Me.TxtTotal.Enabled = False
         Me.TxtTotal.Location = New System.Drawing.Point(314, 63)
         Me.TxtTotal.Name = "TxtTotal"
@@ -480,7 +489,7 @@ Partial Class FormEmpUniOrderDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(66, 14)
+        Me.MENote.Location = New System.Drawing.Point(73, 14)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
         Me.MENote.Size = New System.Drawing.Size(334, 45)
@@ -488,7 +497,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl18
         '
-        Me.LabelControl18.Location = New System.Drawing.Point(23, 20)
+        Me.LabelControl18.Location = New System.Drawing.Point(34, 20)
         Me.LabelControl18.Name = "LabelControl18"
         Me.LabelControl18.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl18.TabIndex = 140
@@ -497,12 +506,12 @@ Partial Class FormEmpUniOrderDet
         'GCItemList
         '
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemList.Location = New System.Drawing.Point(20, 2)
+        Me.GCItemList.Location = New System.Drawing.Point(20, 42)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(912, 345)
+        Me.GCItemList.Size = New System.Drawing.Size(912, 305)
         Me.GCItemList.TabIndex = 5
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -756,11 +765,74 @@ Partial Class FormEmpUniOrderDet
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl3.Controls.Add(Me.GCItemList)
+        Me.GroupControl3.Controls.Add(Me.PanelControl4)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(0, 69)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(934, 349)
         Me.GroupControl3.TabIndex = 6
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.BtnFocusRow)
+        Me.PanelControl4.Controls.Add(Me.BtnDelOrder)
+        Me.PanelControl4.Controls.Add(Me.BtnAddOrder)
+        Me.PanelControl4.Controls.Add(Me.TxtCode)
+        Me.PanelControl4.Controls.Add(Me.LabelControl6)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(20, 2)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(912, 40)
+        Me.PanelControl4.TabIndex = 6
+        '
+        'BtnFocusRow
+        '
+        Me.BtnFocusRow.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnFocusRow.Image = CType(resources.GetObject("BtnFocusRow.Image"), System.Drawing.Image)
+        Me.BtnFocusRow.Location = New System.Drawing.Point(575, 0)
+        Me.BtnFocusRow.Name = "BtnFocusRow"
+        Me.BtnFocusRow.Size = New System.Drawing.Size(129, 40)
+        Me.BtnFocusRow.TabIndex = 4
+        Me.BtnFocusRow.Text = "Select Row (Ctrl)"
+        '
+        'BtnDelOrder
+        '
+        Me.BtnDelOrder.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelOrder.Image = CType(resources.GetObject("BtnDelOrder.Image"), System.Drawing.Image)
+        Me.BtnDelOrder.Location = New System.Drawing.Point(704, 0)
+        Me.BtnDelOrder.Name = "BtnDelOrder"
+        Me.BtnDelOrder.Size = New System.Drawing.Size(109, 40)
+        Me.BtnDelOrder.TabIndex = 3
+        Me.BtnDelOrder.Text = "Delete (Del)"
+        '
+        'BtnAddOrder
+        '
+        Me.BtnAddOrder.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddOrder.Image = CType(resources.GetObject("BtnAddOrder.Image"), System.Drawing.Image)
+        Me.BtnAddOrder.Location = New System.Drawing.Point(813, 0)
+        Me.BtnAddOrder.Name = "BtnAddOrder"
+        Me.BtnAddOrder.Size = New System.Drawing.Size(99, 40)
+        Me.BtnAddOrder.TabIndex = 2
+        Me.BtnAddOrder.Text = "Add (Ins)"
+        '
+        'TxtCode
+        '
+        Me.TxtCode.Location = New System.Drawing.Point(53, 10)
+        Me.TxtCode.Name = "TxtCode"
+        Me.TxtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCode.Properties.Appearance.Options.UseFont = True
+        Me.TxtCode.Size = New System.Drawing.Size(199, 20)
+        Me.TxtCode.TabIndex = 1
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(14, 13)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(28, 13)
+        Me.LabelControl6.TabIndex = 0
+        Me.LabelControl6.Text = "Code"
         '
         'FormEmpUniOrderDet
         '
@@ -809,6 +881,10 @@ Partial Class FormEmpUniOrderDet
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
+        CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -876,4 +952,10 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtTolerance As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TxtCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnFocusRow As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnDelOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddOrder As DevExpress.XtraEditors.SimpleButton
 End Class

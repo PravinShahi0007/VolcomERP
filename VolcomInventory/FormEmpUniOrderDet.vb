@@ -58,4 +58,21 @@
     Private Sub LabelControl6_Click(sender As Object, e As EventArgs)
 
     End Sub
+
+    Sub addRow()
+        TxtCode.Focus()
+    End Sub
+
+    Sub deleteRow()
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this detail order?", "Delete Detail Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+
+        End If
+    End Sub
+
+    Sub focusRow()
+        GVItemList.Focus()
+    End Sub
+
+
 End Class
