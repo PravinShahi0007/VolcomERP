@@ -23,6 +23,8 @@
             BMark.Enabled = False
             BtnAttachment.Enabled = False
             DEForm.Text = view_date(0)
+            Dim data As DataTable = execute_query("SELECT DATE(NOW()) AS `tgl`", -1, True, "", "", "", "")
+            DERetDueDate.EditValue = data.Rows(0)("tgl")
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BtnBrowseContactTo.Enabled = False
@@ -302,15 +304,16 @@
 
 
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
-        FormSalesReturnOrderSingle.action_pop = "ins"
-        FormSalesReturnOrderSingle.id_product = "0"
-        FormSalesReturnOrderSingle.id_comp = id_comp
-        FormSalesReturnOrderSingle.id_wh_locator = id_wh_locator
-        FormSalesReturnOrderSingle.id_wh_rack = id_wh_rack
-        FormSalesReturnOrderSingle.id_wh_drawer = id_wh_drawer
-        Dim end_period As String = "9999-01-01"
-        FormSalesReturnOrderSingle.date_param = end_period
-        FormSalesReturnOrderSingle.ShowDialog()
+        addRow()
+        'FormSalesReturnOrderSingle.action_pop = "ins"
+        'FormSalesReturnOrderSingle.id_product = "0"
+        'FormSalesReturnOrderSingle.id_comp = id_comp
+        'FormSalesReturnOrderSingle.id_wh_locator = id_wh_locator
+        'FormSalesReturnOrderSingle.id_wh_rack = id_wh_rack
+        'FormSalesReturnOrderSingle.id_wh_drawer = id_wh_drawer
+        'Dim end_period As String = "9999-01-01"
+        'FormSalesReturnOrderSingle.date_param = end_period
+        'FormSalesReturnOrderSingle.ShowDialog()
     End Sub
 
     Private Sub GVItemList_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVItemList.FocusedRowChanged
@@ -457,7 +460,8 @@
 
     Private Sub DERetDueDate_KeyDown(sender As Object, e As KeyEventArgs) Handles DERetDueDate.KeyDown
         If e.KeyCode = Keys.Enter Then
-            BtnAdd.Focus()
+            addRow()
+            GCItemList.Focus()
         End If
     End Sub
 
@@ -470,5 +474,144 @@
         Else
             stopCustom("Please select store/destination first !")
         End If
+    End Sub
+
+    Private Sub FormSalesReturnOrderDet_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.Control AndAlso Keys.N Then
+
+        ElseIf e.KeyCode = Keys.Control AndAlso Keys.D
+
+        End If
+    End Sub
+
+    Sub addRow()
+        Cursor = Cursors.WaitCursor
+        Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+        newRow("id_sales_return_order_det") = "0"
+        newRow("name") = ""
+        newRow("code") = ""
+        newRow("size") = ""
+        newRow("sales_return_order_det_qty") = 0
+        newRow("qty_avail") = 0
+        newRow("design_price_type") = ""
+        newRow("id_design_price") = "0"
+        newRow("design_price") = 0
+        newRow("id_return_cat") = "1"
+        newRow("return_cat") = "Return"
+        newRow("amount") = 0
+        newRow("sales_return_order_det_note") = ""
+        newRow("id_design") = "0"
+        newRow("id_product") = "0"
+        newRow("id_sample") = "0"
+        newRow("is_found") = "2"
+        newRow("error_status") = ""
+        TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
+        check_but()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVItemList_FocusedColumnChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedColumnChangedEventArgs) Handles GVItemList.FocusedColumnChanged
+        Try
+            If e.FocusedColumn.ToString = GVItemList.Columns("no").ToString Then
+                GVItemList.FocusedColumn = GridColumnCode
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
+
+    Private Sub GVItemList_KeyDown(sender As Object, e As KeyEventArgs) Handles GVItemList.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim rh As Integer = GVItemList.FocusedRowHandle
+            Dim id_sales_return_order_det As String = GVItemList.GetRowCellValue(rh, "id_sales_return_order_det").ToString
+            If id_sales_return_order_det = "0" Then
+                If GVItemList.FocusedColumn.ToString = "Code" Then
+                    GVItemList.CloseEditor()
+                    Dim code_pas As String = addSlashes(GVItemList.GetRowCellValue(rh, "code").ToString)
+                    Dim dt As DataTable = execute_query("CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '9999-01-01') ", -1, True, "", "", "", "")
+                    Dim data_filter As DataRow() = dt.Select("[code]='" + code_pas + "' ")
+                    If data_filter.Length = 0 Then
+                        stopCustom("Product not found !")
+                        setDefautMyRow(rh)
+                        CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                    Else
+                        Dim dt_dupe As DataTable = GCItemList.DataSource
+                        Dim data_filter_dupe As DataRow() = dt_dupe.Select("[code]='" + code_pas + "' ")
+                        If data_filter_dupe.Length <= 0 Then
+                            GVItemList.SetRowCellValue(rh, "id_sales_return_order_det", "0")
+                            GVItemList.SetRowCellValue(rh, "name", data_filter(0)("name").ToString)
+                            GVItemList.SetRowCellValue(rh, "code", data_filter(0)("code").ToString)
+                            GVItemList.SetRowCellValue(rh, "size", data_filter(0)("size").ToString)
+                            GVItemList.SetRowCellValue(rh, "sales_return_order_det_qty", 0)
+                            GVItemList.SetRowCellValue(rh, "qty_avail", data_filter(0)("qty_all_product"))
+                            GVItemList.SetRowCellValue(rh, "design_price_type", "")
+                            GVItemList.SetRowCellValue(rh, "id_design_price", data_filter(0)("id_design_price_retail").ToString)
+                            GVItemList.SetRowCellValue(rh, "design_price", data_filter(0)("design_price_retail"))
+                            GVItemList.SetRowCellValue(rh, "id_return_cat", "1")
+                            GVItemList.SetRowCellValue(rh, "return_cat", "Return")
+                            GVItemList.SetRowCellValue(rh, "amount", 0)
+                            GVItemList.SetRowCellValue(rh, "sales_return_order_det_note", "")
+                            GVItemList.SetRowCellValue(rh, "id_design", data_filter(0)("id_design").ToString)
+                            GVItemList.SetRowCellValue(rh, "id_product", data_filter(0)("id_product").ToString)
+                            GVItemList.SetRowCellValue(rh, "id_sample", data_filter(0)("id_sample").ToString)
+                            GVItemList.SetRowCellValue(rh, "is_found", "1")
+                            GVItemList.SetRowCellValue(rh, "error_status", "")
+                            GVItemList.FocusedColumn = GridColumnQty
+                            CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                        Else
+                            GVItemList.SetFocusedRowCellValue("code", "")
+                            GVItemList.ActiveFilterString = "[code]='" + code_pas + "'"
+                            FormSalesOrderDetEdit.ShowDialog()
+                            GVItemList.ActiveFilterString = ""
+                            GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+                            GVItemList.FocusedColumn = GridColumnCode
+                            'stopCustom("You already entry this product.")
+                            'setDefautMyRow(rh)
+                            'CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                        End If
+                    End If
+                ElseIf GVItemList.FocusedColumn.ToString = "Qty" Then
+                    GVItemList.CloseEditor()
+                    Dim qty_par As Integer = GVItemList.GetRowCellValue(rh, "sales_order_det_qty")
+                    Dim qty_limit As Integer = GVItemList.GetRowCellValue(rh, "qty_avail")
+                    If qty_par > qty_limit Then
+                        stopCustom("Qty can't exceed " + qty_limit.ToString)
+                        GVItemList.SetRowCellValue(rh, "sales_order_det_qty", 0)
+                    Else
+                        GVItemList.SetRowCellValue(rh, "amount", qty_par * GVItemList.GetRowCellValue(rh, "design_price"))
+                        GVItemList.FocusedColumn = GridColumnRemark
+                    End If
+                ElseIf GVItemList.FocusedColumn.ToString = "Remark" Then 'for remark
+                    GVItemList.CloseEditor()
+                    If GVItemList.GetRowCellValue(GVItemList.RowCount - 1, "code").ToString <> "" Then
+                        addRow()
+                    End If
+                    GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+                    GVItemList.FocusedColumn = GridColumnCode
+                End If
+            End If
+        End If
+    End Sub
+
+    Sub setDefautMyRow(ByVal rh As Integer)
+        GVItemList.SetRowCellValue(rh, "id_sales_return_order_det", "0")
+        GVItemList.SetRowCellValue(rh, "name", "")
+        GVItemList.SetRowCellValue(rh, "code", "")
+        GVItemList.SetRowCellValue(rh, "size", "")
+        GVItemList.SetRowCellValue(rh, "sales_return_order_det_qty", 0)
+        GVItemList.SetRowCellValue(rh, "qty_avail", 0)
+        GVItemList.SetRowCellValue(rh, "design_price_type", "")
+        GVItemList.SetRowCellValue(rh, "id_design_price", "0")
+        GVItemList.SetRowCellValue(rh, "design_price", 0)
+        GVItemList.SetRowCellValue(rh, "id_return_cat", "1")
+        GVItemList.SetRowCellValue(rh, "return_cat", "Return")
+        GVItemList.SetRowCellValue(rh, "amount", 0)
+        GVItemList.SetRowCellValue(rh, "sales_return_order_det_note", "")
+        GVItemList.SetRowCellValue(rh, "id_design", "0")
+        GVItemList.SetRowCellValue(rh, "id_product", "0")
+        GVItemList.SetRowCellValue(rh, "id_sample", "0")
+        GVItemList.SetRowCellValue(rh, "is_found", "2")
+        GVItemList.SetRowCellValue(rh, "error_status", "")
     End Sub
 End Class
