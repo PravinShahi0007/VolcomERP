@@ -730,6 +730,12 @@
     <Compile Include="FormEmpUniOrderNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniOrderSearch.Designer.vb">
+      <DependentUpon>FormEmpUniOrderSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniOrderSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniOrderSingle.Designer.vb">
       <DependentUpon>FormEmpUniOrderSingle.vb</DependentUpon>
     </Compile>
@@ -5107,6 +5113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniOrderNew.resx">
       <DependentUpon>FormEmpUniOrderNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniOrderSearch.resx">
+      <DependentUpon>FormEmpUniOrderSearch.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniOrderSingle.resx">
       <DependentUpon>FormEmpUniOrderSingle.vb</DependentUpon>

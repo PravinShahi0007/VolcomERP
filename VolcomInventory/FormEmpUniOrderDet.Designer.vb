@@ -87,8 +87,6 @@ Partial Class FormEmpUniOrderDet
         Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtCode = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,7 +118,6 @@ Partial Class FormEmpUniOrderDet
         Me.GroupControl3.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -778,8 +775,6 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl4.Controls.Add(Me.BtnFocusRow)
         Me.PanelControl4.Controls.Add(Me.BtnDelOrder)
         Me.PanelControl4.Controls.Add(Me.BtnAddOrder)
-        Me.PanelControl4.Controls.Add(Me.TxtCode)
-        Me.PanelControl4.Controls.Add(Me.LabelControl6)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl4.Name = "PanelControl4"
@@ -815,24 +810,6 @@ Partial Class FormEmpUniOrderDet
         Me.BtnAddOrder.Size = New System.Drawing.Size(99, 40)
         Me.BtnAddOrder.TabIndex = 2
         Me.BtnAddOrder.Text = "Add (Ins)"
-        '
-        'TxtCode
-        '
-        Me.TxtCode.Location = New System.Drawing.Point(58, 10)
-        Me.TxtCode.Name = "TxtCode"
-        Me.TxtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCode.Properties.Appearance.Options.UseFont = True
-        Me.TxtCode.Size = New System.Drawing.Size(199, 20)
-        Me.TxtCode.TabIndex = 1
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(14, 13)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(38, 13)
-        Me.LabelControl6.TabIndex = 0
-        Me.LabelControl6.Text = "Design"
         '
         'FormEmpUniOrderDet
         '
@@ -883,8 +860,6 @@ Partial Class FormEmpUniOrderDet
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
-        Me.PanelControl4.PerformLayout()
-        CType(Me.TxtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -953,8 +928,6 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtTolerance As DevExpress.XtraEditors.TextEdit
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents TxtCode As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnFocusRow As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDelOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAddOrder As DevExpress.XtraEditors.SimpleButton

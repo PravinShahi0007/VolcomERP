@@ -60,7 +60,7 @@
     End Sub
 
     Sub addRow()
-        TxtCode.Focus()
+        FormEmpUniOrderSingle.ShowDialog()
     End Sub
 
     Sub deleteRow()
@@ -96,13 +96,13 @@
         focusRow()
     End Sub
 
-    Private Sub TxtCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCode.KeyDown
-        If e.KeyCode = Keys.Enter Then
-            Dim val As String = addSlashes(TxtCode.Text)
-            If val.Length > 9 Then
-                val = val.Substring(0, 9)
-            End If
+    'Private Sub TxtCode_KeyDown(sender As Object, e As KeyEventArgs)
+    '    If e.KeyCode = Keys.Enter Then
+    '        Dim val As String = addSlashes(TxtCode.Text)
+    '        If val.Length > 9 Then
+    '            val = val.Substring(0, 9)
+    '        End If
 
-        End If
-    End Sub
+    '    End If
+    'End Sub
 End Class
