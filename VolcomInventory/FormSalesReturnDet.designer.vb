@@ -847,6 +847,7 @@ Partial Class FormSalesReturnDet
         '
         Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnUOM, Me.GridColumnQtyWH, Me.GridColumnQty, Me.GridColumnQtyLimit, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesOrderDet, Me.GridColumn2, Me.GridColumnIdDesignPrice, Me.GridColumnIdDesign, Me.GridColumnIdSample, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnStt, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
         Me.GVItemList.GridControl = Me.GCItemList
+        Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", Me.GridColumnQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_limit", Me.GridColumnQtyLimit, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_amount", Me.GridColumnAmount, "{0:n2}")})
         Me.GVItemList.IndicatorWidth = 30
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -872,7 +873,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 0
-        Me.GridColumnCode.Width = 65
+        Me.GridColumnCode.Width = 70
         '
         'GridColumnEanCode
         '
@@ -892,7 +893,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 1
-        Me.GridColumnName.Width = 131
+        Me.GridColumnName.Width = 142
         '
         'GridColumnSize
         '
@@ -907,7 +908,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 2
-        Me.GridColumnSize.Width = 50
+        Me.GridColumnSize.Width = 53
         '
         'GridColumnPriceType
         '
@@ -915,7 +916,9 @@ Partial Class FormSalesReturnDet
         Me.GridColumnPriceType.FieldName = "design_price_type"
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.OptionsColumn.ReadOnly = True
-        Me.GridColumnPriceType.Width = 80
+        Me.GridColumnPriceType.Visible = True
+        Me.GridColumnPriceType.VisibleIndex = 6
+        Me.GridColumnPriceType.Width = 93
         '
         'GridColumnUOM
         '
@@ -943,6 +946,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumnQtyWH.Name = "GridColumnQtyWH"
         Me.GridColumnQtyWH.OptionsColumn.AllowEdit = False
         Me.GridColumnQtyWH.OptionsColumn.ReadOnly = True
+        Me.GridColumnQtyWH.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnQtyWH.Width = 97
         '
         'GridColumnQty
@@ -961,8 +965,8 @@ Partial Class FormSalesReturnDet
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 3
-        Me.GridColumnQty.Width = 82
+        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.Width = 70
         '
         'GridColumnQtyLimit
         '
@@ -970,16 +974,18 @@ Partial Class FormSalesReturnDet
         Me.GridColumnQtyLimit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnQtyLimit.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnQtyLimit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnQtyLimit.Caption = "Remaining Qty"
-        Me.GridColumnQtyLimit.DisplayFormat.FormatString = "F2"
+        Me.GridColumnQtyLimit.Caption = "Limit Qty"
+        Me.GridColumnQtyLimit.DisplayFormat.FormatString = "N0"
         Me.GridColumnQtyLimit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQtyLimit.FieldName = "sales_return_det_qty_limit"
         Me.GridColumnQtyLimit.Name = "GridColumnQtyLimit"
         Me.GridColumnQtyLimit.OptionsColumn.AllowEdit = False
         Me.GridColumnQtyLimit.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQtyLimit.OptionsColumn.ReadOnly = True
-        Me.GridColumnQtyLimit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_limit", "{0:f2}")})
-        Me.GridColumnQtyLimit.Width = 104
+        Me.GridColumnQtyLimit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_limit", "{0:n0}")})
+        Me.GridColumnQtyLimit.Visible = True
+        Me.GridColumnQtyLimit.VisibleIndex = 3
+        Me.GridColumnQtyLimit.Width = 67
         '
         'GridColumnPrice
         '
@@ -995,8 +1001,8 @@ Partial Class FormSalesReturnDet
         Me.GridColumnPrice.OptionsColumn.AllowEdit = False
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 4
-        Me.GridColumnPrice.Width = 100
+        Me.GridColumnPrice.VisibleIndex = 7
+        Me.GridColumnPrice.Width = 114
         '
         'GridColumnAmount
         '
@@ -1013,8 +1019,8 @@ Partial Class FormSalesReturnDet
         Me.GridColumnAmount.OptionsColumn.ReadOnly = True
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 5
-        Me.GridColumnAmount.Width = 103
+        Me.GridColumnAmount.VisibleIndex = 8
+        Me.GridColumnAmount.Width = 117
         '
         'GridColumnRemark
         '
@@ -1022,8 +1028,8 @@ Partial Class FormSalesReturnDet
         Me.GridColumnRemark.FieldName = "sales_return_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 6
-        Me.GridColumnRemark.Width = 198
+        Me.GridColumnRemark.VisibleIndex = 9
+        Me.GridColumnRemark.Width = 250
         '
         'GridColumnIdSalesOrderDet
         '
@@ -1082,6 +1088,10 @@ Partial Class FormSalesReturnDet
         Me.GridColumnStt.Caption = "Diff"
         Me.GridColumnStt.FieldName = "status"
         Me.GridColumnStt.Name = "GridColumnStt"
+        Me.GridColumnStt.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnStt.Visible = True
+        Me.GridColumnStt.VisibleIndex = 5
+        Me.GridColumnStt.Width = 88
         '
         'GridColumnNumber
         '

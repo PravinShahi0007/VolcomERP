@@ -62,9 +62,6 @@ Public Class FormSalesReturnDet
         Catch ex As Exception
         End Try
 
-        'hide diff status
-        GridColumnStt.Visible = False
-
         If action = "ins" Then
             XTPStorage.PageEnabled = False
             TxtSalesReturnNumber.Text = ""
@@ -720,15 +717,9 @@ Public Class FormSalesReturnDet
             End If
 
             If qty_cek > qty_soh Then
-                Dim diff As Integer = qty_cek - qty_soh
-                GVItemList.SetRowCellValue(i, "status", "+" + diff.ToString)
                 cond_list = False
-            ElseIf qty_cek < qty_soh
-                Dim diff As Integer = qty_cek - qty_soh
-                GVItemList.SetRowCellValue(i, "status", diff.ToString)
-            Else
-                GVItemList.SetRowCellValue(i, "status", "0")
             End If
+            GVItemList.SetRowCellValue(i, "sales_return_det_qty_limit", qty_soh)
         Next
         Return cond_list
     End Function
@@ -1032,6 +1023,7 @@ Public Class FormSalesReturnDet
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
         If GVItemList.RowCount > 0 Then
             loadCodeDetail()
+            verifyTrans()
             disableControl()
             newRowsBc()
         Else
@@ -1297,7 +1289,6 @@ Public Class FormSalesReturnDet
 
     Sub getReport()
         GridColumnNo.VisibleIndex = 0
-        GridColumnStt.Visible = False
         GVItemList.ActiveFilterString = "[sales_return_det_qty]>0"
         For i As Integer = 0 To GVItemList.RowCount - 1
             GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
@@ -1616,10 +1607,10 @@ Public Class FormSalesReturnDet
             GridColumnName.VisibleIndex = 1
             GridColumnSize.VisibleIndex = 2
             GridColumnQty.VisibleIndex = 3
-            GridColumnPrice.VisibleIndex = 4
-            GridColumnAmount.VisibleIndex = 5
-            GridColumnRemark.VisibleIndex = 6
-            GridColumnStt.VisibleIndex = 7
+            GridColumnPriceType.VisibleIndex = 4
+            GridColumnPrice.VisibleIndex = 5
+            GridColumnAmount.VisibleIndex = 6
+            GridColumnRemark.VisibleIndex = 7
             GridColumnStt.Visible = False
             GridColumnNumber.Visible = False
             GridColumnFrom.Visible = False
@@ -1852,8 +1843,23 @@ Public Class FormSalesReturnDet
             e.Value = TxtCodeCompTo.Text.ToString
         ElseIf e.Column.FieldName = "number" AndAlso e.IsGetData Then
             e.Value = TxtSalesReturnNumber.Text.ToString
+        ElseIf e.Column.FieldName = "status" AndAlso e.IsGetData Then
+            e.Value = getDiff(view, e.ListSourceRowIndex)
         End If
     End Sub
+
+    Private Function getDiff(view As DevExpress.XtraGrid.Views.Grid.GridView, listSourceRowIndex As Integer) As String
+        Dim qty As Integer = Convert.ToInt32(view.GetListSourceRowCellValue(listSourceRowIndex, "sales_return_det_qty"))
+        Dim limit As Integer = Convert.ToInt32(view.GetListSourceRowCellValue(listSourceRowIndex, "sales_return_det_qty_limit"))
+        Dim diff As Integer = qty - limit
+        Dim stt As String = ""
+        If diff > 0 Then
+            stt = "+" + diff.ToString
+        Else
+            stt = diff.ToString
+        End If
+        Return stt
+    End Function
 
     Private Sub BScanProb_Click(sender As Object, e As EventArgs) Handles BScanProb.Click
         If GVItemList.RowCount > 0 Then
