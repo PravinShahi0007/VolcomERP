@@ -50,9 +50,6 @@ Public Class FormSalesDelOrderDet
 
         End Try
 
-        'hide diff status
-        GridColumnStatus.Visible = False
-
         If action = "ins" Then
             'TxtSalesDelOrderNumber.Text = header_number_sales("3")
             BtnPrint.Enabled = False
@@ -356,17 +353,16 @@ Public Class FormSalesDelOrderDet
             MENote.Properties.ReadOnly = False
             GVItemList.OptionsCustomization.AllowQuickHideColumns = False
             GVItemList.OptionsCustomization.AllowGroup = False
-            GridColumnQtyLimit.Visible = True
         Else
             MENote.Properties.ReadOnly = True
             GVItemList.OptionsCustomization.AllowQuickHideColumns = True
-            GVItemList.Columns("sales_order_det_qty_limit").Visible = False
             GVItemList.OptionsCustomization.AllowGroup = True
-            GridColumnQtyLimit.Visible = False
         End If
         PanelNavBarcode.Enabled = False
         BtnSave.Enabled = False
         BtnVerify.Enabled = False
+        GridColumnQtyLimit.Visible = False
+        GridColumnStatus.Visible = False
 
         'attachment
         If check_attach_report_status(id_report_status, "43", id_pl_sales_order_del) Then
@@ -518,17 +514,9 @@ Public Class FormSalesDelOrderDet
                 cond_check_data = False
             Else
                 If qty_cek > data_filter_cek(0)("sales_order_det_qty_limit") Then
-                    Dim diff As Integer = 0
-                    diff = qty_cek - data_filter_cek(0)("sales_order_det_qty_limit")
-                    GVItemList.SetRowCellValue(i, "status", "+" + diff.ToString)
                     cond_check_data = False
-                ElseIf qty_cek < data_filter_cek(0)("sales_order_det_qty_limit") Then
-                    Dim diff As Integer = 0
-                    diff = qty_cek - data_filter_cek(0)("sales_order_det_qty_limit")
-                    GVItemList.SetRowCellValue(i, "status", diff.ToString)
-                Else
-                    GVItemList.SetRowCellValue(i, "status", "0")
                 End If
+                GVItemList.SetRowCellValue(i, "sales_order_det_qty_limit", data_filter_cek(0)("sales_order_det_qty_limit"))
             End If
         Next
         GCItemList.RefreshDataSource()
@@ -808,6 +796,7 @@ Public Class FormSalesDelOrderDet
 
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
         loadCodeDetail()
+        verifyTrans()
         disableControl()
         newRowsBc()
         'allowDelete()
@@ -962,8 +951,7 @@ Public Class FormSalesDelOrderDet
         GVItemList.ActiveFilterString = "[id_product]='" + id_product + "' "
         GVItemList.FocusedRowHandle = 0
         Try
-            'jum_limit = GVItemList.GetFocusedRowCellValue("sales_order_det_qty_limit")
-            jum_limit = 999999999
+            jum_limit = GVItemList.GetFocusedRowCellValue("sales_order_det_qty_limit")
         Catch ex As Exception
         End Try
         Try
@@ -996,11 +984,11 @@ Public Class FormSalesDelOrderDet
                 If jum_limit <= 0 Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("This item cannot scan, because exceed the limit order.")
+                    stopCustom("This item cannot scan, because limit qty is zero.")
                 ElseIf jum_scan >= jum_limit Then
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                     GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                    stopCustom("Scanned qty exceed allowed qty")
+                    stopCustom("Maximum qty : " + jum_limit.ToString)
                 Else
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
                     GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_sales_order_del_det_counting", "0")
@@ -1034,11 +1022,11 @@ Public Class FormSalesDelOrderDet
                     If jum_limit <= 0 Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("This item cannot scan, because exceed the limit order.")
+                        stopCustom("This item cannot scan, because limit qty is zero.")
                     ElseIf jum_scan >= jum_limit Then
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "code", "")
                         GVBarcode.FocusedRowHandle = GVBarcode.RowCount - 1
-                        stopCustom("Scanned qty exceed allowed qty")
+                        stopCustom("Maximum qty : " + jum_limit.ToString)
                     Else
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_prod_order_rec_det_unique", id_pl_prod_order_rec_det_unique)
                         GVBarcode.SetRowCellValue(GVBarcode.RowCount - 1, "id_pl_sales_order_del_det_counting", "0")
@@ -1139,8 +1127,6 @@ Public Class FormSalesDelOrderDet
 
     Sub getReport()
         GridColumnNo.VisibleIndex = 0
-        GridColumnStatus.Visible = False
-        GridColumnQtyLimit.Visible = False
         GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
         For i As Integer = 0 To GVItemList.RowCount - 1
             GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
@@ -1179,7 +1165,6 @@ Public Class FormSalesDelOrderDet
         Tool.ShowPreview()
         GVItemList.ActiveFilterString = ""
         GridColumnNo.Visible = False
-        GridColumnQtyLimit.Visible = True
     End Sub
 
     'Color Cell
@@ -1380,12 +1365,11 @@ Public Class FormSalesDelOrderDet
             GridColumnCode.VisibleIndex = 0
             GridColumnName.VisibleIndex = 1
             GridColumnSize.VisibleIndex = 2
-            GridColumnQtyLimit.VisibleIndex = 3
-            GridColumnQty.VisibleIndex = 4
+            GridColumnQty.VisibleIndex = 3
+            GridColumnPriceType.VisibleIndex = 4
             GridColumnPrice.VisibleIndex = 5
             GridColumnAmount.VisibleIndex = 6
             GridColumnRemark.VisibleIndex = 7
-            GridColumnStatus.VisibleIndex = 8
             GridColumnStatus.Visible = False
             GridColumnNumber.Visible = False
             GridColumnFrom.Visible = False
@@ -1494,6 +1478,21 @@ Public Class FormSalesDelOrderDet
             e.Value = TxtCodeCompTo.Text.ToString
         ElseIf e.Column.FieldName = "number" AndAlso e.IsGetData Then
             e.Value = TxtSalesDelOrderNumber.Text.ToString
+        ElseIf e.Column.FieldName = "status" AndAlso e.IsGetData Then
+            e.Value = getDiff(view, e.ListSourceRowIndex)
         End If
     End Sub
+
+    Private Function getDiff(view As DevExpress.XtraGrid.Views.Grid.GridView, listSourceRowIndex As Integer) As String
+        Dim qty As Integer = Convert.ToInt32(view.GetListSourceRowCellValue(listSourceRowIndex, "pl_sales_order_del_det_qty"))
+        Dim limit As Integer = Convert.ToInt32(view.GetListSourceRowCellValue(listSourceRowIndex, "sales_order_det_qty_limit"))
+        Dim diff As Integer = qty - limit
+        Dim stt As String = ""
+        If diff > 0 Then
+            stt = "+" + diff.ToString
+        Else
+            stt = diff.ToString
+        End If
+        Return stt
+    End Function
 End Class
