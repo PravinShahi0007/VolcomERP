@@ -1994,4 +1994,27 @@ Public Class FormSalesReturnDet
     Private Sub BtnAddManual_Click(sender As Object, e As EventArgs) Handles BtnAddManual.Click
         FormSalesReturnDetProblem.ShowDialog()
     End Sub
+
+    Private Sub EditRemarkToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditRemarkToolStripMenuItem.Click
+        If GVBarcodeProb.RowCount > 0 And GVBarcodeProb.FocusedRowHandle >= 0 Then
+            FormSalesReturnDetProblem.id_type = "2"
+            FormSalesReturnDetProblem.TxtSearch.Text = ""
+            FormSalesReturnDetProblem.TxtCode.Text = GVBarcodeProb.GetFocusedRowCellValue("design_code").ToString
+            FormSalesReturnDetProblem.TxtBarcode.Text = GVBarcodeProb.GetFocusedRowCellValue("code").ToString
+            FormSalesReturnDetProblem.TxtSize.Text = GVBarcodeProb.GetFocusedRowCellValue("size").ToString
+            FormSalesReturnDetProblem.TxtDesign.Text = GVBarcodeProb.GetFocusedRowCellValue("name").ToString
+            FormSalesReturnDetProblem.TxtRemark.Text = GVBarcodeProb.GetFocusedRowCellValue("remark").ToString
+            FormSalesReturnDetProblem.id_product = GVBarcodeProb.GetFocusedRowCellValue("id_product").ToString
+            FormSalesReturnDetProblem.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        If GVBarcodeProb.RowCount > 0 And GVBarcodeProb.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                GVBarcodeProb.DeleteSelectedRows()
+            End If
+        End If
+    End Sub
 End Class

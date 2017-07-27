@@ -1725,18 +1725,18 @@ Partial Class FormSalesReturnDet
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditRemarkToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(138, 48)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
         '
         'EditRemarkToolStripMenuItem
         '
         Me.EditRemarkToolStripMenuItem.Name = "EditRemarkToolStripMenuItem"
-        Me.EditRemarkToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.EditRemarkToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.EditRemarkToolStripMenuItem.Text = "Edit Remark"
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'GVBarcodeProb

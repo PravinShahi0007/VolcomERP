@@ -5,7 +5,7 @@
     Public id_type As String = "-1"
 
     Private Sub FormSalesReturnDetProblem_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If id_type = "1" Then
+        If id_type = "1" Or id_type = "2" Then
             PanelSearch.Visible = False
             ActiveControl = TxtRemark
         Else
@@ -21,6 +21,9 @@
         If id_product <> "-1" Then
             If id_type = "1" Then
                 FormSalesReturnDet.GVBarcodeProb.SetRowCellValue(FormSalesReturnDet.GVBarcodeProb.RowCount - 1, "remark", TxtRemark.Text.ToString)
+                Close()
+            ElseIf id_type = "2" Then
+                FormSalesReturnDet.GVBarcodeProb.SetFocusedRowCellValue("remark", TxtRemark.Text.ToString)
                 Close()
             Else
                 Dim newRow As DataRow = (TryCast(FormSalesReturnDet.GCBarcodeProb.DataSource, DataTable)).NewRow()
