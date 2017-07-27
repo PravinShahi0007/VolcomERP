@@ -2017,4 +2017,36 @@ Public Class FormSalesReturnDet
             End If
         End If
     End Sub
+
+    Private Sub BBPrintNonStock_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPrintNonStock.ItemClick
+        Cursor = Cursors.WaitCursor
+        ReportSalesReturnNonStock.dt = GCBarcodeProb.DataSource
+        Dim Report As New ReportSalesReturnNonStock()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVBarcodeProb.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVBarcodeProb.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVBarcodeProb)
+
+        'Parse val
+        Report.LRecNumber.Text = TxtSalesReturnNumber.Text
+        Report.LRecDate.Text = DEForm.Text
+        Report.LabelReturnStore.Text = TxtStoreReturnNumber.Text
+        Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+        Report.LabelAddressFrom.Text = MEAdrressCompFrom.Text
+        'Report.LabelNote.Text = MENote.Text
+
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

@@ -56,6 +56,7 @@ Partial Class FormSalesReturnDet
         Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.BtnPrePrinting = New DevExpress.XtraBars.BarButtonItem()
         Me.BtnPrint = New DevExpress.XtraBars.BarLargeButtonItem()
+        Me.BBPrintNonStock = New DevExpress.XtraBars.BarButtonItem()
         Me.BMDD = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -651,7 +652,7 @@ Partial Class FormSalesReturnDet
         '
         'PUDD
         '
-        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrePrinting), New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrint)})
+        Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrePrinting), New DevExpress.XtraBars.LinkPersistInfo(Me.BtnPrint), New DevExpress.XtraBars.LinkPersistInfo(Me.BBPrintNonStock)})
         Me.PUDD.Manager = Me.BMDD
         Me.PUDD.Name = "PUDD"
         '
@@ -667,6 +668,12 @@ Partial Class FormSalesReturnDet
         Me.BtnPrint.Id = 1
         Me.BtnPrint.Name = "BtnPrint"
         '
+        'BBPrintNonStock
+        '
+        Me.BBPrintNonStock.Caption = "Non Stock"
+        Me.BBPrintNonStock.Id = 3
+        Me.BBPrintNonStock.Name = "BBPrintNonStock"
+        '
         'BMDD
         '
         Me.BMDD.DockControls.Add(Me.barDockControlTop)
@@ -674,8 +681,8 @@ Partial Class FormSalesReturnDet
         Me.BMDD.DockControls.Add(Me.barDockControlLeft)
         Me.BMDD.DockControls.Add(Me.barDockControlRight)
         Me.BMDD.Form = Me
-        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BtnPrint, Me.BtnPrePrinting})
-        Me.BMDD.MaxItemId = 3
+        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BtnPrint, Me.BtnPrePrinting, Me.BBPrintNonStock})
+        Me.BMDD.MaxItemId = 4
         '
         'barDockControlTop
         '
@@ -1725,18 +1732,18 @@ Partial Class FormSalesReturnDet
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditRemarkToolStripMenuItem, Me.DeleteToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(153, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(138, 48)
         '
         'EditRemarkToolStripMenuItem
         '
         Me.EditRemarkToolStripMenuItem.Name = "EditRemarkToolStripMenuItem"
-        Me.EditRemarkToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.EditRemarkToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
         Me.EditRemarkToolStripMenuItem.Text = "Edit Remark"
         '
         'DeleteToolStripMenuItem
         '
         Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
-        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
         Me.DeleteToolStripMenuItem.Text = "Delete"
         '
         'GVBarcodeProb
@@ -2244,4 +2251,5 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumnRemarkProb As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnAddManual As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnDesignCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BBPrintNonStock As DevExpress.XtraBars.BarButtonItem
 End Class

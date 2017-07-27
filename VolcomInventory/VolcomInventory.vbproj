@@ -4623,6 +4623,12 @@
     <Compile Include="ReportSalesReturn.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesReturnNonStock.Designer.vb">
+      <DependentUpon>ReportSalesReturnNonStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalesReturnNonStock.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesReturnOrder.Designer.vb">
       <DependentUpon>ReportSalesReturnOrder.vb</DependentUpon>
     </Compile>
@@ -7536,6 +7542,9 @@
     <EmbeddedResource Include="ReportSalesReturn.resx">
       <DependentUpon>ReportSalesReturn.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesReturnNonStock.resx">
+      <DependentUpon>ReportSalesReturnNonStock.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesReturnOrder.resx">
       <DependentUpon>ReportSalesReturnOrder.vb</DependentUpon>
