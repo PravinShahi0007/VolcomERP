@@ -159,9 +159,15 @@ Partial Class FormSalesReturnDet
         Me.GridColumnIdWHDrawerDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdx2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTPProblem = New DevExpress.XtraTab.XtraTabPage()
+        Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.XTCReturnMain = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPReturn = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPNonStock = New DevExpress.XtraTab.XtraTabPage()
         Me.GroupControlProb = New DevExpress.XtraEditors.GroupControl()
         Me.GCBarcodeProb = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.EditRemarkToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVBarcodeProb = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -175,6 +181,8 @@ Partial Class FormSalesReturnDet
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemarkProb = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcodeProb = New DevExpress.XtraEditors.PanelControl()
@@ -183,7 +191,7 @@ Partial Class FormSalesReturnDet
         Me.BDeleteProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
-        Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -248,17 +256,21 @@ Partial Class FormSalesReturnDet
         Me.GroupControl1.SuspendLayout()
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPProblem.SuspendLayout()
+        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XTCReturnMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCReturnMain.SuspendLayout()
+        Me.XTPReturn.SuspendLayout()
+        Me.XTPNonStock.SuspendLayout()
         CType(Me.GroupControlProb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlProb.SuspendLayout()
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelNavBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcodeProb.SuspendLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -807,13 +819,13 @@ Partial Class FormSalesReturnDet
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 128)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 0)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControlListItem)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.XTCReturn)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(911, 423)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(905, 395)
         Me.SplitContainerControl1.SplitterPosition = 217
         Me.SplitContainerControl1.TabIndex = 188
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -827,7 +839,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlListItem.Enabled = False
         Me.GroupControlListItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListItem.Name = "GroupControlListItem"
-        Me.GroupControlListItem.Size = New System.Drawing.Size(911, 217)
+        Me.GroupControlListItem.Size = New System.Drawing.Size(905, 217)
         Me.GroupControlListItem.TabIndex = 3
         Me.GroupControlListItem.Text = "Return Item"
         '
@@ -839,7 +851,7 @@ Partial Class FormSalesReturnDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(889, 178)
+        Me.GCItemList.Size = New System.Drawing.Size(883, 178)
         Me.GCItemList.TabIndex = 5
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1131,7 +1143,7 @@ Partial Class FormSalesReturnDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(889, 35)
+        Me.PanelControlNav.Size = New System.Drawing.Size(883, 35)
         Me.PanelControlNav.TabIndex = 2
         Me.PanelControlNav.Visible = False
         '
@@ -1140,7 +1152,7 @@ Partial Class FormSalesReturnDet
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.ImageIndex = 1
         Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(608, 0)
+        Me.BtnDel.Location = New System.Drawing.Point(602, 0)
         Me.BtnDel.Name = "BtnDel"
         Me.BtnDel.Size = New System.Drawing.Size(99, 35)
         Me.BtnDel.TabIndex = 5
@@ -1151,7 +1163,7 @@ Partial Class FormSalesReturnDet
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnEdit.ImageIndex = 2
         Me.BtnEdit.ImageList = Me.LargeImageCollection
-        Me.BtnEdit.Location = New System.Drawing.Point(707, 0)
+        Me.BtnEdit.Location = New System.Drawing.Point(701, 0)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(91, 35)
         Me.BtnEdit.TabIndex = 4
@@ -1163,7 +1175,7 @@ Partial Class FormSalesReturnDet
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.ImageIndex = 0
         Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(798, 0)
+        Me.BtnAdd.Location = New System.Drawing.Point(792, 0)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(91, 35)
         Me.BtnAdd.TabIndex = 3
@@ -1175,15 +1187,15 @@ Partial Class FormSalesReturnDet
         Me.XTCReturn.Location = New System.Drawing.Point(0, 0)
         Me.XTCReturn.Name = "XTCReturn"
         Me.XTCReturn.SelectedTabPage = Me.XTPScan
-        Me.XTCReturn.Size = New System.Drawing.Size(911, 201)
+        Me.XTCReturn.Size = New System.Drawing.Size(905, 173)
         Me.XTCReturn.TabIndex = 0
-        Me.XTCReturn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPStorage, Me.XTPProblem})
+        Me.XTCReturn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPStorage})
         '
         'XTPScan
         '
         Me.XTPScan.Controls.Add(Me.GroupControlScannedItem)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(905, 173)
+        Me.XTPScan.Size = New System.Drawing.Size(899, 145)
         Me.XTPScan.Text = "Return Product"
         '
         'GroupControlScannedItem
@@ -1195,7 +1207,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlScannedItem.Enabled = False
         Me.GroupControlScannedItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlScannedItem.Name = "GroupControlScannedItem"
-        Me.GroupControlScannedItem.Size = New System.Drawing.Size(905, 173)
+        Me.GroupControlScannedItem.Size = New System.Drawing.Size(899, 145)
         Me.GroupControlScannedItem.TabIndex = 3
         Me.GroupControlScannedItem.Text = "Scanned Code"
         '
@@ -1206,7 +1218,7 @@ Partial Class FormSalesReturnDet
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(883, 136)
+        Me.GCBarcode.Size = New System.Drawing.Size(877, 108)
         Me.GCBarcode.TabIndex = 6
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -1353,7 +1365,7 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcode.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelNavBarcode.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelNavBarcode.Name = "PanelNavBarcode"
-        Me.PanelNavBarcode.Size = New System.Drawing.Size(883, 33)
+        Me.PanelNavBarcode.Size = New System.Drawing.Size(877, 33)
         Me.PanelNavBarcode.TabIndex = 2
         '
         'TxtDeleteScan
@@ -1379,7 +1391,7 @@ Partial Class FormSalesReturnDet
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelete.ImageIndex = 1
         Me.BDelete.ImageList = Me.LargeImageCollection
-        Me.BDelete.Location = New System.Drawing.Point(601, 0)
+        Me.BDelete.Location = New System.Drawing.Point(595, 0)
         Me.BDelete.Name = "BDelete"
         Me.BDelete.Size = New System.Drawing.Size(94, 33)
         Me.BDelete.TabIndex = 8
@@ -1391,7 +1403,7 @@ Partial Class FormSalesReturnDet
         Me.BStop.Enabled = False
         Me.BStop.ImageIndex = 9
         Me.BStop.ImageList = Me.LargeImageCollection
-        Me.BStop.Location = New System.Drawing.Point(695, 0)
+        Me.BStop.Location = New System.Drawing.Point(689, 0)
         Me.BStop.Name = "BStop"
         Me.BStop.Size = New System.Drawing.Size(97, 33)
         Me.BStop.TabIndex = 7
@@ -1402,7 +1414,7 @@ Partial Class FormSalesReturnDet
         Me.BScan.Dock = System.Windows.Forms.DockStyle.Right
         Me.BScan.ImageIndex = 8
         Me.BScan.ImageList = Me.LargeImageCollection
-        Me.BScan.Location = New System.Drawing.Point(792, 0)
+        Me.BScan.Location = New System.Drawing.Point(786, 0)
         Me.BScan.Name = "BScan"
         Me.BScan.Size = New System.Drawing.Size(91, 33)
         Me.BScan.TabIndex = 6
@@ -1413,7 +1425,7 @@ Partial Class FormSalesReturnDet
         Me.XTPStorage.Controls.Add(Me.SCCStorage)
         Me.XTPStorage.Name = "XTPStorage"
         Me.XTPStorage.PageVisible = False
-        Me.XTPStorage.Size = New System.Drawing.Size(905, 173)
+        Me.XTPStorage.Size = New System.Drawing.Size(899, 145)
         Me.XTPStorage.Text = "Save to Storage"
         '
         'SCCStorage
@@ -1426,7 +1438,7 @@ Partial Class FormSalesReturnDet
         Me.SCCStorage.Panel1.Text = "Panel1"
         Me.SCCStorage.Panel2.Controls.Add(Me.GroupControl1)
         Me.SCCStorage.Panel2.Text = "Panel2"
-        Me.SCCStorage.Size = New System.Drawing.Size(905, 173)
+        Me.SCCStorage.Size = New System.Drawing.Size(899, 145)
         Me.SCCStorage.SplitterPosition = 900
         Me.SCCStorage.TabIndex = 0
         Me.SCCStorage.Text = "SplitContainerControl2"
@@ -1439,7 +1451,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlListStorage.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlListStorage.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListStorage.Name = "GroupControlListStorage"
-        Me.GroupControlListStorage.Size = New System.Drawing.Size(900, 173)
+        Me.GroupControlListStorage.Size = New System.Drawing.Size(894, 145)
         Me.GroupControlListStorage.TabIndex = 0
         Me.GroupControlListStorage.Text = "Item Based On Cost"
         '
@@ -1449,7 +1461,7 @@ Partial Class FormSalesReturnDet
         Me.GCDrawer.Location = New System.Drawing.Point(20, 38)
         Me.GCDrawer.MainView = Me.GVDrawer
         Me.GCDrawer.Name = "GCDrawer"
-        Me.GCDrawer.Size = New System.Drawing.Size(878, 133)
+        Me.GCDrawer.Size = New System.Drawing.Size(872, 105)
         Me.GCDrawer.TabIndex = 4
         Me.GCDrawer.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDrawer, Me.GridView2})
         '
@@ -1561,7 +1573,7 @@ Partial Class FormSalesReturnDet
         Me.PanelNavStorage.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelNavStorage.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelNavStorage.Name = "PanelNavStorage"
-        Me.PanelNavStorage.Size = New System.Drawing.Size(878, 36)
+        Me.PanelNavStorage.Size = New System.Drawing.Size(872, 36)
         Me.PanelNavStorage.TabIndex = 3
         '
         'BtmDeleteStorage
@@ -1656,12 +1668,33 @@ Partial Class FormSalesReturnDet
         Me.GridColumnIdx2.Visible = True
         Me.GridColumnIdx2.VisibleIndex = 4
         '
-        'XTPProblem
+        'EPForm
         '
-        Me.XTPProblem.Controls.Add(Me.GroupControlProb)
-        Me.XTPProblem.Name = "XTPProblem"
-        Me.XTPProblem.Size = New System.Drawing.Size(905, 173)
-        Me.XTPProblem.Text = "Non Stock"
+        Me.EPForm.ContainerControl = Me
+        '
+        'XTCReturnMain
+        '
+        Me.XTCReturnMain.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCReturnMain.Location = New System.Drawing.Point(0, 128)
+        Me.XTCReturnMain.Name = "XTCReturnMain"
+        Me.XTCReturnMain.SelectedTabPage = Me.XTPReturn
+        Me.XTCReturnMain.Size = New System.Drawing.Size(911, 423)
+        Me.XTCReturnMain.TabIndex = 193
+        Me.XTCReturnMain.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReturn, Me.XTPNonStock})
+        '
+        'XTPReturn
+        '
+        Me.XTPReturn.Controls.Add(Me.SplitContainerControl1)
+        Me.XTPReturn.Name = "XTPReturn"
+        Me.XTPReturn.Size = New System.Drawing.Size(905, 395)
+        Me.XTPReturn.Text = "Return"
+        '
+        'XTPNonStock
+        '
+        Me.XTPNonStock.Controls.Add(Me.GroupControlProb)
+        Me.XTPNonStock.Name = "XTPNonStock"
+        Me.XTPNonStock.Size = New System.Drawing.Size(905, 395)
+        Me.XTPNonStock.Text = "Non Stock"
         '
         'GroupControlProb
         '
@@ -1672,24 +1705,43 @@ Partial Class FormSalesReturnDet
         Me.GroupControlProb.Enabled = False
         Me.GroupControlProb.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlProb.Name = "GroupControlProb"
-        Me.GroupControlProb.Size = New System.Drawing.Size(905, 173)
-        Me.GroupControlProb.TabIndex = 4
+        Me.GroupControlProb.Size = New System.Drawing.Size(905, 395)
+        Me.GroupControlProb.TabIndex = 5
         Me.GroupControlProb.Text = "Unidentified Code"
         '
         'GCBarcodeProb
         '
+        Me.GCBarcodeProb.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCBarcodeProb.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCBarcodeProb.Location = New System.Drawing.Point(20, 35)
+        Me.GCBarcodeProb.Location = New System.Drawing.Point(20, 38)
         Me.GCBarcodeProb.MainView = Me.GVBarcodeProb
         Me.GCBarcodeProb.Name = "GCBarcodeProb"
         Me.GCBarcodeProb.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit3})
-        Me.GCBarcodeProb.Size = New System.Drawing.Size(883, 136)
+        Me.GCBarcodeProb.Size = New System.Drawing.Size(883, 355)
         Me.GCBarcodeProb.TabIndex = 6
         Me.GCBarcodeProb.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcodeProb})
         '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditRemarkToolStripMenuItem, Me.DeleteToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(138, 48)
+        '
+        'EditRemarkToolStripMenuItem
+        '
+        Me.EditRemarkToolStripMenuItem.Name = "EditRemarkToolStripMenuItem"
+        Me.EditRemarkToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.EditRemarkToolStripMenuItem.Text = "Edit Remark"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
+        '
         'GVBarcodeProb
         '
-        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14})
+        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnRemarkProb, Me.GridColumnDesignCode})
         Me.GVBarcodeProb.GridControl = Me.GCBarcodeProb
         Me.GVBarcodeProb.Name = "GVBarcodeProb"
         Me.GVBarcodeProb.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -1712,7 +1764,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumn1.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 57
+        Me.GridColumn1.Width = 54
         '
         'GridColumn3
         '
@@ -1721,7 +1773,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 1
-        Me.GridColumn3.Width = 320
+        Me.GridColumn3.Width = 303
         '
         'GridColumn4
         '
@@ -1791,7 +1843,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 2
-        Me.GridColumn13.Width = 626
+        Me.GridColumn13.Width = 348
         '
         'GridColumn14
         '
@@ -1801,7 +1853,23 @@ Partial Class FormSalesReturnDet
         Me.GridColumn14.OptionsColumn.AllowEdit = False
         Me.GridColumn14.Visible = True
         Me.GridColumn14.VisibleIndex = 3
-        Me.GridColumn14.Width = 59
+        Me.GridColumn14.Width = 81
+        '
+        'GridColumnRemarkProb
+        '
+        Me.GridColumnRemarkProb.Caption = "Remark"
+        Me.GridColumnRemarkProb.FieldName = "remark"
+        Me.GridColumnRemarkProb.Name = "GridColumnRemarkProb"
+        Me.GridColumnRemarkProb.OptionsColumn.AllowEdit = False
+        Me.GridColumnRemarkProb.Visible = True
+        Me.GridColumnRemarkProb.VisibleIndex = 4
+        Me.GridColumnRemarkProb.Width = 292
+        '
+        'GridColumnDesignCode
+        '
+        Me.GridColumnDesignCode.Caption = "Code"
+        Me.GridColumnDesignCode.FieldName = "design_code"
+        Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
         '
         'RepositoryItemCheckEdit1
         '
@@ -1826,12 +1894,13 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcodeProb.Controls.Add(Me.BDeleteProb)
         Me.PanelNavBarcodeProb.Controls.Add(Me.BStopProb)
         Me.PanelNavBarcodeProb.Controls.Add(Me.BScanProb)
+        Me.PanelNavBarcodeProb.Controls.Add(Me.BtnAddManual)
         Me.PanelNavBarcodeProb.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelNavBarcodeProb.Location = New System.Drawing.Point(20, 2)
         Me.PanelNavBarcodeProb.LookAndFeel.SkinName = "Office 2010 Blue"
         Me.PanelNavBarcodeProb.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelNavBarcodeProb.Name = "PanelNavBarcodeProb"
-        Me.PanelNavBarcodeProb.Size = New System.Drawing.Size(883, 33)
+        Me.PanelNavBarcodeProb.Size = New System.Drawing.Size(883, 36)
         Me.PanelNavBarcodeProb.TabIndex = 2
         '
         'TxtScanProb
@@ -1857,9 +1926,9 @@ Partial Class FormSalesReturnDet
         Me.BDeleteProb.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDeleteProb.ImageIndex = 1
         Me.BDeleteProb.ImageList = Me.LargeImageCollection
-        Me.BDeleteProb.Location = New System.Drawing.Point(601, 0)
+        Me.BDeleteProb.Location = New System.Drawing.Point(492, 0)
         Me.BDeleteProb.Name = "BDeleteProb"
-        Me.BDeleteProb.Size = New System.Drawing.Size(94, 33)
+        Me.BDeleteProb.Size = New System.Drawing.Size(94, 36)
         Me.BDeleteProb.TabIndex = 8
         Me.BDeleteProb.Text = "Delete Scan"
         '
@@ -1869,9 +1938,9 @@ Partial Class FormSalesReturnDet
         Me.BStopProb.Enabled = False
         Me.BStopProb.ImageIndex = 9
         Me.BStopProb.ImageList = Me.LargeImageCollection
-        Me.BStopProb.Location = New System.Drawing.Point(695, 0)
+        Me.BStopProb.Location = New System.Drawing.Point(586, 0)
         Me.BStopProb.Name = "BStopProb"
-        Me.BStopProb.Size = New System.Drawing.Size(97, 33)
+        Me.BStopProb.Size = New System.Drawing.Size(97, 36)
         Me.BStopProb.TabIndex = 7
         Me.BStopProb.Text = "Finish Scan"
         '
@@ -1880,22 +1949,29 @@ Partial Class FormSalesReturnDet
         Me.BScanProb.Dock = System.Windows.Forms.DockStyle.Right
         Me.BScanProb.ImageIndex = 8
         Me.BScanProb.ImageList = Me.LargeImageCollection
-        Me.BScanProb.Location = New System.Drawing.Point(792, 0)
+        Me.BScanProb.Location = New System.Drawing.Point(683, 0)
         Me.BScanProb.Name = "BScanProb"
-        Me.BScanProb.Size = New System.Drawing.Size(91, 33)
+        Me.BScanProb.Size = New System.Drawing.Size(91, 36)
         Me.BScanProb.TabIndex = 6
         Me.BScanProb.Text = "Start Scan"
         '
-        'EPForm
+        'BtnAddManual
         '
-        Me.EPForm.ContainerControl = Me
+        Me.BtnAddManual.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddManual.ImageIndex = 0
+        Me.BtnAddManual.ImageList = Me.LargeImageCollection
+        Me.BtnAddManual.Location = New System.Drawing.Point(774, 0)
+        Me.BtnAddManual.Name = "BtnAddManual"
+        Me.BtnAddManual.Size = New System.Drawing.Size(109, 36)
+        Me.BtnAddManual.TabIndex = 22
+        Me.BtnAddManual.Text = "Add Manually"
         '
         'FormSalesReturnDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(911, 660)
-        Me.Controls.Add(Me.SplitContainerControl1)
+        Me.Controls.Add(Me.XTCReturnMain)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupGeneralHeader)
@@ -1977,10 +2053,15 @@ Partial Class FormSalesReturnDet
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.GCDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDrawerDetail, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPProblem.ResumeLayout(False)
+        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XTCReturnMain, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCReturnMain.ResumeLayout(False)
+        Me.XTPReturn.ResumeLayout(False)
+        Me.XTPNonStock.ResumeLayout(False)
         CType(Me.GroupControlProb, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlProb.ResumeLayout(False)
         CType(Me.GCBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVBarcodeProb, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1988,7 +2069,6 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcodeProb.ResumeLayout(False)
         Me.PanelNavBarcodeProb.PerformLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2132,7 +2212,9 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnFrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTo As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents XTPProblem As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTCReturnMain As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPReturn As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPNonStock As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GroupControlProb As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCBarcodeProb As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVBarcodeProb As DevExpress.XtraGrid.Views.Grid.GridView
@@ -2156,4 +2238,10 @@ Partial Class FormSalesReturnDet
     Friend WithEvents BDeleteProb As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BStopProb As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BScanProb As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents EditRemarkToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumnRemarkProb As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnAddManual As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnDesignCode As DevExpress.XtraGrid.Columns.GridColumn
 End Class
