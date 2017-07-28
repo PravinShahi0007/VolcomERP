@@ -2697,6 +2697,12 @@
     <Compile Include="FormSalesReturnOrderDetEdit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnOrderRevise.Designer.vb">
+      <DependentUpon>FormSalesReturnOrderRevise.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderRevise.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnOrderSingleV2.Designer.vb">
       <DependentUpon>FormSalesReturnOrderSingleV2.vb</DependentUpon>
     </Compile>
@@ -6318,6 +6324,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderDetEdit.resx">
       <DependentUpon>FormSalesReturnOrderDetEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOrderRevise.resx">
+      <DependentUpon>FormSalesReturnOrderRevise.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderSingleV2.resx">
       <DependentUpon>FormSalesReturnOrderSingleV2.vb</DependentUpon>
