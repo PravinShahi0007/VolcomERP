@@ -684,4 +684,10 @@
         GVItemList.SetRowCellValue(rh, "is_found", "2")
         GVItemList.SetRowCellValue(rh, "error_status", "")
     End Sub
+
+    Private Sub AddAnotherProductToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddAnotherProductToolStripMenuItem.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesReturnOrderDetEdit.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
