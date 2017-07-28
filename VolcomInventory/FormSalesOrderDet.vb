@@ -826,10 +826,8 @@ Public Class FormSalesOrderDet
             Dim id_sales_order_det_cek As String = GVItemList.GetFocusedRowCellValue("id_sales_order_det").ToString
             If id_sales_order_det_cek = "0" Then
                 GVItemList.Columns("code").OptionsColumn.AllowEdit = True
-                GVItemList.Columns("sales_order_det_qty").OptionsColumn.AllowEdit = True
             Else
                 GVItemList.Columns("code").OptionsColumn.AllowEdit = False
-                GVItemList.Columns("sales_order_det_qty").OptionsColumn.AllowEdit = False
             End If
         End If
     End Sub

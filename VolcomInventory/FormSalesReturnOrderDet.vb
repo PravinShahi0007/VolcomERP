@@ -57,8 +57,26 @@
 
             'detail2
             viewDetail()
+            checkStockAvail()
+            noEdit()
             check_but()
             allow_status()
+        End If
+    End Sub
+
+    Sub checkStockAvail()
+        If id_report_status = "1" Then
+            Dim dt As DataTable = execute_query("CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '9999-01-01') ", -1, True, "", "", "", "")
+            For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                Dim data_filter As DataRow() = dt.Select("[code]='" + GVItemList.GetRowCellValue(i, "code") + "' ")
+                Dim qty As Integer = 0
+                If data_filter.Length = 0 Then
+                    qty = 0
+                Else
+                    qty = data_filter(0)("qty_all_product")
+                End If
+                GVItemList.SetRowCellValue(i, "qty_avail", qty)
+            Next
         End If
     End Sub
 
@@ -100,8 +118,26 @@
         'End Try
     End Sub
 
+    Sub delNotFoundMyRow()
+        GVItemList.ActiveFilterString = "[is_found]='2'"
+        Dim i As Integer = GVItemList.RowCount - 1
+        While (i >= 0)
+            GVItemList.DeleteRow(i)
+            i = i - 1
+        End While
+        makeSafeGV(GVItemList)
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
+    End Sub
+
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
+        GVItemList.CloseEditor()
+        makeSafeGV(GVItemList)
         ValidateChildren()
+
+        'del not found
+        delNotFoundMyRow()
+
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopRight) Then
             errorInput()
         ElseIf GVItemList.RowCount <= 0 Then
@@ -235,23 +271,23 @@
 
     'sub check_but
     Sub check_but()
-        Dim id_productx As String = "0"
-        Try
-            id_productx = GVItemList.GetFocusedRowCellValue("id_product").ToString
-        Catch ex As Exception
+        'Dim id_productx As String = "0"
+        'Try
+        '    id_productx = GVItemList.GetFocusedRowCellValue("id_product").ToString
+        'Catch ex As Exception
 
-        End Try
+        'End Try
 
-        'MsgBox("main :" + id_productx)
+        ''MsgBox("main :" + id_productx)
 
-        'Constraint Status
-        If GVItemList.RowCount > 0 And id_productx <> "0" Then
-            BtnEdit.Enabled = True
-            BtnDel.Enabled = True
-        Else
-            BtnEdit.Enabled = False
-            BtnDel.Enabled = False
-        End If
+        ''Constraint Status
+        'If GVItemList.RowCount > 0 And id_productx <> "0" Then
+        '    BtnEdit.Enabled = True
+        '    BtnDel.Enabled = True
+        'Else
+        '    BtnEdit.Enabled = False
+        '    BtnDel.Enabled = False
+        'End If
     End Sub
 
     Sub allow_status()
@@ -269,6 +305,12 @@
             TxtCodeCompTo.Properties.ReadOnly = True
         End If
 
+        If id_report_status = "6" Then
+            GCItemList.ContextMenuStrip = ContextMenuStrip1
+        Else
+            GCItemList.ContextMenuStrip = Nothing
+        End If
+
         If check_attach_report_status(id_report_status, "45", id_sales_return_order) Then
             BtnAttachment.Enabled = True
         Else
@@ -281,6 +323,19 @@
             BtnPrint.Enabled = False
         End If
         TxtSalesOrderNumber.Focus()
+    End Sub
+
+    Sub noEdit()
+        If GVItemList.FocusedRowHandle >= 0 Then
+            Dim id_sales_return_order_det_cek As String = GVItemList.GetFocusedRowCellValue("id_sales_return_order_det").ToString
+            If id_sales_return_order_det_cek = "0" Then
+                GVItemList.Columns("code").OptionsColumn.AllowEdit = True
+                GVItemList.Columns("sales_return_order_det_qty").OptionsColumn.AllowEdit = True
+            Else
+                GVItemList.Columns("code").OptionsColumn.AllowEdit = False
+                GVItemList.Columns("sales_return_order_det_qty").OptionsColumn.AllowEdit = False
+            End If
+        End If
     End Sub
 
     Private Sub BtnBrowseContactTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnBrowseContactTo.Click
@@ -305,6 +360,9 @@
 
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
         addRow()
+        GCItemList.Focus()
+        GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+        GVItemList.FocusedColumn = GridColumnCode
         'FormSalesReturnOrderSingle.action_pop = "ins"
         'FormSalesReturnOrderSingle.id_product = "0"
         'FormSalesReturnOrderSingle.id_comp = id_comp
@@ -318,6 +376,7 @@
 
     Private Sub GVItemList_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVItemList.FocusedRowChanged
         check_but()
+        noEdit()
     End Sub
 
     Private Sub GVItemList_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
@@ -331,14 +390,21 @@
     End Sub
 
     Private Sub BtnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDel.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
-            GCItemList.RefreshDataSource()
-            GVItemList.RefreshData()
-            check_but()
-            Cursor = Cursors.Default
+        delRow()
+    End Sub
+
+    Sub delRow()
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
+                CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                check_but()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
@@ -477,11 +543,7 @@
     End Sub
 
     Private Sub FormSalesReturnOrderDet_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
-        If e.KeyCode = Keys.Control AndAlso Keys.N Then
 
-        ElseIf e.KeyCode = Keys.Control AndAlso Keys.D
-
-        End If
     End Sub
 
     Sub addRow()
@@ -522,6 +584,13 @@
     End Sub
 
     Private Sub GVItemList_KeyDown(sender As Object, e As KeyEventArgs) Handles GVItemList.KeyDown
+        'If (e.KeyCode = Keys.N AndAlso e.Modifiers = Keys.Control) Then
+        '    addRow()
+        '    GCItemList.Focus()
+        '    GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+        '    GVItemList.FocusedColumn = GridColumnCode
+        'ElseIf (e.KeyCode = Keys.D AndAlso e.Modifiers = Keys.Control) Then
+        '    delRow()
         If e.KeyCode = Keys.Enter Then
             Dim rh As Integer = GVItemList.FocusedRowHandle
             Dim id_sales_return_order_det As String = GVItemList.GetRowCellValue(rh, "id_sales_return_order_det").ToString
@@ -562,6 +631,7 @@
                         Else
                             GVItemList.SetFocusedRowCellValue("code", "")
                             GVItemList.ActiveFilterString = "[code]='" + code_pas + "'"
+                            FormSalesOrderDetEdit.id_pop_up = "1"
                             FormSalesOrderDetEdit.ShowDialog()
                             GVItemList.ActiveFilterString = ""
                             GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
@@ -573,11 +643,11 @@
                     End If
                 ElseIf GVItemList.FocusedColumn.ToString = "Qty" Then
                     GVItemList.CloseEditor()
-                    Dim qty_par As Integer = GVItemList.GetRowCellValue(rh, "sales_order_det_qty")
+                    Dim qty_par As Integer = GVItemList.GetRowCellValue(rh, "sales_return_order_det_qty")
                     Dim qty_limit As Integer = GVItemList.GetRowCellValue(rh, "qty_avail")
                     If qty_par > qty_limit Then
                         stopCustom("Qty can't exceed " + qty_limit.ToString)
-                        GVItemList.SetRowCellValue(rh, "sales_order_det_qty", 0)
+                        GVItemList.SetRowCellValue(rh, "sales_return_order_det_qty", 0)
                     Else
                         GVItemList.SetRowCellValue(rh, "amount", qty_par * GVItemList.GetRowCellValue(rh, "design_price"))
                         GVItemList.FocusedColumn = GridColumnRemark
