@@ -1888,6 +1888,7 @@ Public Class FormSalesReturnDet
 
     Private Sub TxtScanProb_KeyDown_1(sender As Object, e As KeyEventArgs) Handles TxtScanProb.KeyDown
         If e.KeyCode = Keys.Enter Then
+            Cursor = Cursors.WaitCursor
             Dim code As String = addSlashes(TxtScanProb.Text)
 
             If is_scan_prob = "1" Then 'scan
@@ -1920,6 +1921,7 @@ Public Class FormSalesReturnDet
                     FormSalesReturnDetProblem.TxtBarcode.Text = data.Rows(0)("code").ToString
                     FormSalesReturnDetProblem.TxtSize.Text = data.Rows(0)("size").ToString
                     FormSalesReturnDetProblem.TxtDesign.Text = data.Rows(0)("name").ToString
+                    FormSalesReturnDetProblem.id_product = data.Rows(0)("id_product").ToString
                     FormSalesReturnDetProblem.id_type = "1"
                     FormSalesReturnDetProblem.ShowDialog()
                     GCBarcodeProb.RefreshDataSource()
@@ -1954,6 +1956,7 @@ Public Class FormSalesReturnDet
                 End If
                 Cursor = Cursors.Default
             End If
+            Cursor = Cursors.Default
         End If
     End Sub
 
