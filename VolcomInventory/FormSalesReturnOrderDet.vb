@@ -702,6 +702,7 @@
             If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
                 FormSalesReturnOrderRevise.id_sales_return_order = id_sales_return_order
                 FormSalesReturnOrderRevise.id_sales_return_order_det = GVItemList.GetFocusedRowCellValue("id_sales_return_order_det").ToString
+                FormSalesReturnOrderRevise.id_product = GVItemList.GetFocusedRowCellValue("id_product").ToString
                 FormSalesReturnOrderRevise.ShowDialog()
             End If
         Else

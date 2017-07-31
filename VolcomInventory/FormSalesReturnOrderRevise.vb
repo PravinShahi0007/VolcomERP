@@ -1,6 +1,7 @@
 ﻿Public Class FormSalesReturnOrderRevise
     Public id_sales_return_order As String = "-1"
     Public id_sales_return_order_det As String = "-1"
+    Public id_product As String = "-1"
 
     Private Sub TextEdit5_Properties_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtProcess.Properties.KeyUp, TxtOutstanding.Properties.KeyUp, TxtAdd.Properties.KeyUp
 
@@ -37,5 +38,29 @@
         End Try
         Dim total As Integer = process + outstand
         TxtAdd.EditValue = total
+    End Sub
+
+    Private Sub TxtOutstanding_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtOutstanding.KeyUp
+        getTotalOrder()
+    End Sub
+
+    Private Sub TxtOutstanding_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtOutstanding.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If id_product = "-1" Then
+                stopCustom("Please input spesific product !")
+            Else
+                Dim qty As Integer = TxtAdd.EditValue
+                Dim dt As DataTable = execute_query("CALL view_stock_fg('" + FormSalesReturnOrderDet.id_comp + "', '" + FormSalesReturnOrderDet.id_wh_locator + "', '" + FormSalesReturnOrderDet.id_wh_rack + "', '" + FormSalesReturnOrderDet.id_wh_drawer + "', '" + id_product + "', '4', '9999-01-01') ", -1, True, "", "", "", "")
+                Dim qty_limit As Integer = dt.Rows(0)("qty_all_product")
+                If qty > qty_limit Then
+                    stopCustom("Can't exceed " + qty_limit.ToString)
+                Else
+                    Dim query_upd = "UPDATE tb_sales_return_order_det SET sales_return_order_det_qty='" + decimalSQL(qty.ToString) + "' WHERE id_sales_return_order_det='" + id_sales_return_order_det + "' "
+                    execute_non_query(query_upd, True, "", "", "", "")
+                    FormSalesReturnOrderDet.viewDetail()
+                    Close()
+                End If
+            End If
+        End If
     End Sub
 End Class
