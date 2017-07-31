@@ -62,9 +62,6 @@ Public Class FormSalesReturnDet
         Catch ex As Exception
         End Try
 
-        'hide diff status
-        GridColumnStt.Visible = False
-
         If action = "ins" Then
             XTPStorage.PageEnabled = False
             TxtSalesReturnNumber.Text = ""
@@ -277,8 +274,8 @@ Public Class FormSalesReturnDet
     End Sub
 
     Sub view_barcode_list_prob()
-        Dim query As String = "SELECT '0' AS `no`,rp.id_sales_return_problem, rp.id_product, rp.scanned_code AS `code`,
-            d.design_display_name AS `name`, cd.code_detail_name AS `size` 
+        Dim query As String = "SELECT '0' AS `no`,rp.id_sales_return_problem, rp.id_product, d.design_code, rp.scanned_code AS `code`,
+            d.design_display_name AS `name`, cd.code_detail_name AS `size`, rp.remark
             FROM tb_sales_return_problem rp
             INNER JOIN tb_m_product p ON p.id_product = rp.id_product
             INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
@@ -720,15 +717,9 @@ Public Class FormSalesReturnDet
             End If
 
             If qty_cek > qty_soh Then
-                Dim diff As Integer = qty_cek - qty_soh
-                GVItemList.SetRowCellValue(i, "status", "+" + diff.ToString)
                 cond_list = False
-            ElseIf qty_cek < qty_soh
-                Dim diff As Integer = qty_cek - qty_soh
-                GVItemList.SetRowCellValue(i, "status", diff.ToString)
-            Else
-                GVItemList.SetRowCellValue(i, "status", "0")
             End If
+            GVItemList.SetRowCellValue(i, "sales_return_det_qty_limit", qty_soh)
         Next
         Return cond_list
     End Function
@@ -838,15 +829,16 @@ Public Class FormSalesReturnDet
                     Dim jum_ins_k As Integer = 0
                     Dim query_problem_stock As String = ""
                     If GVBarcodeProb.RowCount > 0 Then
-                        query_problem_stock = "INSERT INTO tb_sales_return_problem(id_sales_return, id_product, scanned_code) VALUES "
+                        query_problem_stock = "INSERT INTO tb_sales_return_problem(id_sales_return, id_product, scanned_code, remark) VALUES "
                     End If
                     For k As Integer = 0 To ((GVBarcodeProb.RowCount - 1) - GetGroupRowCount(GVBarcodeProb))
                         Dim id_product As String = GVBarcodeProb.GetRowCellValue(k, "id_product").ToString
                         Dim scanned_code As String = GVBarcodeProb.GetRowCellValue(k, "code").ToString
+                        Dim remark As String = addSlashes(GVBarcodeProb.GetRowCellValue(k, "remark").ToString)
                         If jum_ins_k > 0 Then
                             query_problem_stock += ", "
                         End If
-                        query_problem_stock += "('" + id_sales_return + "','" + id_product + "','" + scanned_code + "') "
+                        query_problem_stock += "('" + id_sales_return + "','" + id_product + "','" + scanned_code + "', '" + remark + "') "
                         jum_ins_k = jum_ins_k + 1
                     Next
                     If jum_ins_k > 0 Then
@@ -1032,6 +1024,7 @@ Public Class FormSalesReturnDet
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
         If GVItemList.RowCount > 0 Then
             loadCodeDetail()
+            verifyTrans()
             disableControl()
             newRowsBc()
         Else
@@ -1297,7 +1290,6 @@ Public Class FormSalesReturnDet
 
     Sub getReport()
         GridColumnNo.VisibleIndex = 0
-        GridColumnStt.Visible = False
         GVItemList.ActiveFilterString = "[sales_return_det_qty]>0"
         For i As Integer = 0 To GVItemList.RowCount - 1
             GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
@@ -1616,10 +1608,10 @@ Public Class FormSalesReturnDet
             GridColumnName.VisibleIndex = 1
             GridColumnSize.VisibleIndex = 2
             GridColumnQty.VisibleIndex = 3
-            GridColumnPrice.VisibleIndex = 4
-            GridColumnAmount.VisibleIndex = 5
-            GridColumnRemark.VisibleIndex = 6
-            GridColumnStt.VisibleIndex = 7
+            GridColumnPriceType.VisibleIndex = 4
+            GridColumnPrice.VisibleIndex = 5
+            GridColumnAmount.VisibleIndex = 6
+            GridColumnRemark.VisibleIndex = 7
             GridColumnStt.Visible = False
             GridColumnNumber.Visible = False
             GridColumnFrom.Visible = False
@@ -1852,23 +1844,49 @@ Public Class FormSalesReturnDet
             e.Value = TxtCodeCompTo.Text.ToString
         ElseIf e.Column.FieldName = "number" AndAlso e.IsGetData Then
             e.Value = TxtSalesReturnNumber.Text.ToString
+        ElseIf e.Column.FieldName = "status" AndAlso e.IsGetData Then
+            e.Value = getDiff(view, e.ListSourceRowIndex)
         End If
     End Sub
 
-    Private Sub BScanProb_Click(sender As Object, e As EventArgs) Handles BScanProb.Click
-        If GVItemList.RowCount > 0 Then
-            TxtScanProb.Text = ""
-            is_scan_prob = "1"
-            disableControl()
-            LabelScanProb.Visible = True
-            TxtScanProb.Visible = True
-            TxtScanProb.Focus()
+    Private Function getDiff(view As DevExpress.XtraGrid.Views.Grid.GridView, listSourceRowIndex As Integer) As String
+        Dim qty As Integer = Convert.ToInt32(view.GetListSourceRowCellValue(listSourceRowIndex, "sales_return_det_qty"))
+        Dim limit As Integer = Convert.ToInt32(view.GetListSourceRowCellValue(listSourceRowIndex, "sales_return_det_qty_limit"))
+        Dim diff As Integer = qty - limit
+        Dim stt As String = ""
+        If diff > 0 Then
+            stt = "+" + diff.ToString
         Else
-            errorCustom("Item list can't blank")
+            stt = diff.ToString
         End If
+        Return stt
+    End Function
+
+    Private Sub BScanProb_Click(sender As Object, e As EventArgs)
+
     End Sub
 
-    Private Sub TxtScanProb_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScanProb.KeyDown
+    Private Sub TxtScanProb_KeyDown(sender As Object, e As KeyEventArgs)
+
+    End Sub
+
+    Private Sub BStopProb_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub BDeleteProb_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub GVBarcodeProb_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs)
+
+    End Sub
+
+    Private Sub GVBarcodeProb_HiddenEditor(sender As Object, e As EventArgs) Handles GVBarcodeProb.HiddenEditor
+
+    End Sub
+
+    Private Sub TxtScanProb_KeyDown_1(sender As Object, e As KeyEventArgs) Handles TxtScanProb.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim code As String = addSlashes(TxtScanProb.Text)
 
@@ -1893,10 +1911,17 @@ Public Class FormSalesReturnDet
                     Dim newRow As DataRow = (TryCast(GCBarcodeProb.DataSource, DataTable)).NewRow()
                     newRow("id_sales_return_problem") = "0"
                     newRow("id_product") = data.Rows(0)("id_product").ToString
+                    newRow("design_code") = data.Rows(0)("design_code").ToString
                     newRow("code") = data.Rows(0)("code").ToString
                     newRow("name") = data.Rows(0)("name").ToString
                     newRow("size") = data.Rows(0)("size").ToString
                     TryCast(GCBarcodeProb.DataSource, DataTable).Rows.Add(newRow)
+                    FormSalesReturnDetProblem.TxtCode.Text = data.Rows(0)("design_code").ToString
+                    FormSalesReturnDetProblem.TxtBarcode.Text = data.Rows(0)("code").ToString
+                    FormSalesReturnDetProblem.TxtSize.Text = data.Rows(0)("size").ToString
+                    FormSalesReturnDetProblem.TxtDesign.Text = data.Rows(0)("name").ToString
+                    FormSalesReturnDetProblem.id_type = "1"
+                    FormSalesReturnDetProblem.ShowDialog()
                     GCBarcodeProb.RefreshDataSource()
                     GVBarcodeProb.RefreshData()
                     GVBarcodeProb.ActiveFilterString = ""
@@ -1932,13 +1957,26 @@ Public Class FormSalesReturnDet
         End If
     End Sub
 
-    Private Sub BStopProb_Click(sender As Object, e As EventArgs) Handles BStopProb.Click
+    Private Sub BScanProb_Click_1(sender As Object, e As EventArgs) Handles BScanProb.Click
+        If GVItemList.RowCount > 0 Then
+            TxtScanProb.Text = ""
+            is_scan_prob = "1"
+            disableControl()
+            LabelScanProb.Visible = True
+            TxtScanProb.Visible = True
+            TxtScanProb.Focus()
+        Else
+            errorCustom("Item list can't blank")
+        End If
+    End Sub
+
+    Private Sub BStopProb_Click_1(sender As Object, e As EventArgs) Handles BStopProb.Click
         TxtScanProb.Text = ""
         is_scan_prob = "-1"
         enableControl()
     End Sub
 
-    Private Sub BDeleteProb_Click(sender As Object, e As EventArgs) Handles BDeleteProb.Click
+    Private Sub BDeleteProb_Click_1(sender As Object, e As EventArgs) Handles BDeleteProb.Click
         is_scan_prob = "2"
         disableControl()
         TxtScanProb.Text = ""
@@ -1947,9 +1985,68 @@ Public Class FormSalesReturnDet
         TxtScanProb.Focus()
     End Sub
 
-    Private Sub GVBarcodeProb_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVBarcodeProb.CustomColumnDisplayText
+    Private Sub GVBarcodeProb_CustomColumnDisplayText_1(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVBarcodeProb.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+
+    Private Sub BtnAddManual_Click(sender As Object, e As EventArgs) Handles BtnAddManual.Click
+        FormSalesReturnDetProblem.ShowDialog()
+    End Sub
+
+    Private Sub EditRemarkToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EditRemarkToolStripMenuItem.Click
+        If GVBarcodeProb.RowCount > 0 And GVBarcodeProb.FocusedRowHandle >= 0 Then
+            FormSalesReturnDetProblem.id_type = "2"
+            FormSalesReturnDetProblem.TxtSearch.Text = ""
+            FormSalesReturnDetProblem.TxtCode.Text = GVBarcodeProb.GetFocusedRowCellValue("design_code").ToString
+            FormSalesReturnDetProblem.TxtBarcode.Text = GVBarcodeProb.GetFocusedRowCellValue("code").ToString
+            FormSalesReturnDetProblem.TxtSize.Text = GVBarcodeProb.GetFocusedRowCellValue("size").ToString
+            FormSalesReturnDetProblem.TxtDesign.Text = GVBarcodeProb.GetFocusedRowCellValue("name").ToString
+            FormSalesReturnDetProblem.TxtRemark.Text = GVBarcodeProb.GetFocusedRowCellValue("remark").ToString
+            FormSalesReturnDetProblem.id_product = GVBarcodeProb.GetFocusedRowCellValue("id_product").ToString
+            FormSalesReturnDetProblem.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        If GVBarcodeProb.RowCount > 0 And GVBarcodeProb.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                GVBarcodeProb.DeleteSelectedRows()
+            End If
+        End If
+    End Sub
+
+    Private Sub BBPrintNonStock_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBPrintNonStock.ItemClick
+        Cursor = Cursors.WaitCursor
+        ReportSalesReturnNonStock.dt = GCBarcodeProb.DataSource
+        Dim Report As New ReportSalesReturnNonStock()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVBarcodeProb.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVBarcodeProb.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVBarcodeProb)
+
+        'Parse val
+        Report.LRecNumber.Text = TxtSalesReturnNumber.Text
+        Report.LRecDate.Text = DEForm.Text
+        Report.LabelReturnStore.Text = TxtStoreReturnNumber.Text
+        Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
+        Report.LabelAddressFrom.Text = MEAdrressCompFrom.Text
+        'Report.LabelNote.Text = MENote.Text
+
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
