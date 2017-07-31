@@ -2044,6 +2044,7 @@ Public Class FormSalesReturnDet
         Report.LabelReturnStore.Text = TxtStoreReturnNumber.Text
         Report.LabelFrom.Text = TxtCodeCompFrom.Text + " - " + TxtNameCompFrom.Text
         Report.LabelAddressFrom.Text = MEAdrressCompFrom.Text
+        Report.LabelPrint.Text = name_user + " (" + execute_query("SELECT DATE_FORMAT(NOW(),'%d/%m/%Y %T')", 0, True, "", "", "", "") + ")"
         'Report.LabelNote.Text = MENote.Text
 
 
