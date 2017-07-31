@@ -2761,6 +2761,7 @@ Public Class FormImportExcel
                     makeSafeGV(GVData)
                     GVData.ActiveFilterString = "[Status] = 'OK'"
                     If GVData.RowCount > 0 Then
+                        FormSalesReturnOrderDet.delNotFoundMyRow()
                         For i As Integer = 0 To GVData.RowCount - 1
                             Dim newRow As DataRow = (TryCast(FormSalesReturnOrderDet.GCItemList.DataSource, DataTable)).NewRow()
                             newRow("id_sales_return_order_det") = "0"
