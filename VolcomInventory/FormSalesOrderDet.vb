@@ -709,7 +709,7 @@ Public Class FormSalesOrderDet
             If id_sales_order_det = "0" Then
                 If GVItemList.FocusedColumn.ToString = "Code" Then
                     GVItemList.CloseEditor()
-                    Dim code_pas As String = GVItemList.GetRowCellValue(rh, "code").ToString
+                    Dim code_pas As String = addSlashes(GVItemList.GetRowCellValue(rh, "code").ToString)
                     Dim data_filter As DataRow() = dt.Select("[product_full_code]='" + code_pas + "' ")
                     If data_filter.Length = 0 Then
                         stopCustom("Product not found !")
