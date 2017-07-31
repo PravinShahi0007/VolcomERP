@@ -999,6 +999,12 @@
     <Compile Include="FormMasterComputer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterDesignComment.Designer.vb">
+      <DependentUpon>FormMasterDesignComment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterDesignComment.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterDesignCOPPD.Designer.vb">
       <DependentUpon>FormMasterDesignCOPPD.vb</DependentUpon>
     </Compile>
@@ -2695,7 +2701,7 @@
       <DependentUpon>FormSalesReturnDetProblem.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesReturnDetProblem.vb">
-     <SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesReturnOrderDetEdit.Designer.vb">
       <DependentUpon>FormSalesReturnOrderDetEdit.vb</DependentUpon>
@@ -5255,6 +5261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterComputer.resx">
       <DependentUpon>FormMasterComputer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterDesignComment.resx">
+      <DependentUpon>FormMasterDesignComment.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterDesignCOPPD.resx">
       <DependentUpon>FormMasterDesignCOPPD.vb</DependentUpon>

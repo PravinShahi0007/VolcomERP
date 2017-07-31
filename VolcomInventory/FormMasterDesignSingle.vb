@@ -354,7 +354,8 @@
         load_isi_param("1")
         load_isi_param("2")
         load_isi_param("3")
-
+        '
+        load_comment()
 
         'permission condition
         If id_pop_up = "-1" Or id_pop_up = "2" Or id_pop_up = "5" Then
@@ -546,13 +547,14 @@
                 errorConnection()
             End Try
         Else
-            'ins jika dilakuyukan di LINE LIST
+            'ins jika dilakukan di LINE LIST
             SLEDesign.EditValue = Nothing
             If formName = "FormFGLineList" Or formName = "FormFGDesignList" Then
                 LESeason.EditValue = id_season_par
                 LESampleOrign.EditValue = Nothing
             End If
             inputPermission() 'access limit
+            XTPComment.PageVisible = False
         End If
     End Sub
 
@@ -616,6 +618,10 @@
             Else
                 LERetCode.Enabled = True
             End If
+
+            'comment
+            PanelControlComment.Visible = False
+
         ElseIf id_pop_up = "2" Then 'sample dept
             XTPLineList.PageVisible = False
             XTPPrice.PageVisible = False
@@ -646,6 +652,10 @@
             BtnAddSeaason.Enabled = False
             DNCode.Enabled = False
             PictureEdit1.Properties.ReadOnly = True
+
+            'comment
+            PanelControlComment.Visible = False
+
         ElseIf id_pop_up = "3" Then 'non merch
             TxtFabrication.Enabled = True
             LESampleOrign.Enabled = True
@@ -653,6 +663,10 @@
             DERetDate.Enabled = False
             DEEOS.Enabled = False
             LEPlanStatus.Enabled = False
+
+            'comment
+            PanelControlComment.Visible = False
+
         ElseIf id_pop_up = "4" Then 'preview design
             XTPLineList.PageVisible = False
             XTPPrice.PageVisible = False
@@ -687,6 +701,10 @@
             XTPSize.Visible = False
             XTPLineList.Visible = False
             XTPPrice.Visible = False
+
+            'comment
+            PanelControlComment.Visible = False
+
         ElseIf id_pop_up = "5" Then 'design dept
             If is_approved = "2" Then
                 BtnReviseStyle.Visible = False
@@ -741,6 +759,10 @@
             DEWHDate.Enabled = False
             DEInStoreDet.Enabled = False
             BtnAddRetCode.Enabled = False
+
+            'comment
+            PanelControlComment.Visible = True
+
         Else 'unidentified -> from formmasterproduct
             XTPLineList.PageVisible = False
             XTPSize.PageVisible = False
@@ -2136,6 +2158,45 @@
             execute_non_query(query, True, "", "", "", "")
             actionLoad()
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BDelComment_Click(sender As Object, e As EventArgs) Handles BDelComment.Click
+        Dim confirm As DialogResult
+        Dim query As String = ""
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+
+        Dim id_design_comment As String = GVComment.GetFocusedRowCellDisplayText("id_design_comment").ToString
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            query = "DELETE FROM tb_m_design_comment WHERE id_design_comment='" & id_design_comment & "'"
+            execute_non_query(query, True, "", "", "", "")
+            load_comment()
+        End If
+    End Sub
+
+    Private Sub BAddComment_Click(sender As Object, e As EventArgs) Handles BAddComment.Click
+        Cursor = Cursors.WaitCursor
+
+        'Try
+        FormMasterDesignComment.ShowDialog()
+        'Catch ex As Exception
+        '    stopCustom(ex.ToString)
+        'End Try
+
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub load_comment()
+        Dim query As String = "SELECT * FROM tb_m_design_comment dc
+                                INNER JOIN tb_m_user usr ON dc.`id_user`=usr.`id_user`
+                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                                WHERE dc.id_design='" & id_design & "' ORDER BY dc.datetime DESC"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
+        GCComment.DataSource = data
+        If data.Rows.Count > 0 Then
+            BDelComment.Visible = True
+        Else
+            BDelComment.Visible = False
         End If
     End Sub
 End Class
