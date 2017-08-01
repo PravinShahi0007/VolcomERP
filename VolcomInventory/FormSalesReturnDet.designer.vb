@@ -193,6 +193,7 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnQtyNonStock = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1748,8 +1749,9 @@ Partial Class FormSalesReturnDet
         '
         'GVBarcodeProb
         '
-        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnRemarkProb, Me.GridColumnDesignCode})
+        Me.GVBarcodeProb.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnRemarkProb, Me.GridColumnDesignCode, Me.GridColumnQtyNonStock})
         Me.GVBarcodeProb.GridControl = Me.GCBarcodeProb
+        Me.GVBarcodeProb.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyNonStock, "{0:n0}")})
         Me.GVBarcodeProb.Name = "GVBarcodeProb"
         Me.GVBarcodeProb.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
         Me.GVBarcodeProb.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -1758,6 +1760,7 @@ Partial Class FormSalesReturnDet
         Me.GVBarcodeProb.OptionsCustomization.AllowGroup = False
         Me.GVBarcodeProb.OptionsCustomization.AllowQuickHideColumns = False
         Me.GVBarcodeProb.OptionsCustomization.AllowSort = False
+        Me.GVBarcodeProb.OptionsView.ShowFooter = True
         Me.GVBarcodeProb.OptionsView.ShowGroupPanel = False
         '
         'GridColumn1
@@ -1869,7 +1872,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumnRemarkProb.Name = "GridColumnRemarkProb"
         Me.GridColumnRemarkProb.OptionsColumn.AllowEdit = False
         Me.GridColumnRemarkProb.Visible = True
-        Me.GridColumnRemarkProb.VisibleIndex = 4
+        Me.GridColumnRemarkProb.VisibleIndex = 5
         Me.GridColumnRemarkProb.Width = 292
         '
         'GridColumnDesignCode
@@ -1972,6 +1975,20 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.Size = New System.Drawing.Size(109, 36)
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
+        '
+        'GridColumnQtyNonStock
+        '
+        Me.GridColumnQtyNonStock.Caption = "Qty"
+        Me.GridColumnQtyNonStock.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnQtyNonStock.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyNonStock.FieldName = "qty"
+        Me.GridColumnQtyNonStock.Name = "GridColumnQtyNonStock"
+        Me.GridColumnQtyNonStock.OptionsColumn.AllowEdit = False
+        Me.GridColumnQtyNonStock.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
+        Me.GridColumnQtyNonStock.UnboundExpression = "1"
+        Me.GridColumnQtyNonStock.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumnQtyNonStock.Visible = True
+        Me.GridColumnQtyNonStock.VisibleIndex = 4
         '
         'FormSalesReturnDet
         '
@@ -2252,4 +2269,5 @@ Partial Class FormSalesReturnDet
     Friend WithEvents BtnAddManual As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnDesignCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BBPrintNonStock As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents GridColumnQtyNonStock As DevExpress.XtraGrid.Columns.GridColumn
 End Class
