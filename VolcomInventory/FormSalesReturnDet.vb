@@ -37,6 +37,7 @@ Public Class FormSalesReturnDet
     Dim drawer_sel As String = "-1"
     Dim is_save_unreg_unique As String = "-1"
     Dim is_scan_prob As String = "-1"
+    Public id_ret_type As String = ""
 
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()

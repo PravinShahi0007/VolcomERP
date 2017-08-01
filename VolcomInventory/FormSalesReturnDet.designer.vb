@@ -184,6 +184,7 @@ Partial Class FormSalesReturnDet
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemarkProb = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyNonStock = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.PanelNavBarcodeProb = New DevExpress.XtraEditors.PanelControl()
@@ -193,7 +194,8 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnQtyNonStock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.TxtReturnType = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -273,6 +275,7 @@ Partial Class FormSalesReturnDet
         CType(Me.PanelNavBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcodeProb.SuspendLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtReturnType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -289,6 +292,8 @@ Partial Class FormSalesReturnDet
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl6)
+        Me.PanelControlTopRight.Controls.Add(Me.TxtReturnType)
         Me.PanelControlTopRight.Controls.Add(Me.TxtStoreReturnNumber)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
         Me.PanelControlTopRight.Controls.Add(Me.TxtSalesReturnNumber)
@@ -1881,6 +1886,20 @@ Partial Class FormSalesReturnDet
         Me.GridColumnDesignCode.FieldName = "design_code"
         Me.GridColumnDesignCode.Name = "GridColumnDesignCode"
         '
+        'GridColumnQtyNonStock
+        '
+        Me.GridColumnQtyNonStock.Caption = "Qty"
+        Me.GridColumnQtyNonStock.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnQtyNonStock.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyNonStock.FieldName = "qty"
+        Me.GridColumnQtyNonStock.Name = "GridColumnQtyNonStock"
+        Me.GridColumnQtyNonStock.OptionsColumn.AllowEdit = False
+        Me.GridColumnQtyNonStock.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
+        Me.GridColumnQtyNonStock.UnboundExpression = "1"
+        Me.GridColumnQtyNonStock.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
+        Me.GridColumnQtyNonStock.Visible = True
+        Me.GridColumnQtyNonStock.VisibleIndex = 4
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -1976,19 +1995,22 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
         '
-        'GridColumnQtyNonStock
+        'TxtReturnType
         '
-        Me.GridColumnQtyNonStock.Caption = "Qty"
-        Me.GridColumnQtyNonStock.DisplayFormat.FormatString = "{0:n0}"
-        Me.GridColumnQtyNonStock.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtyNonStock.FieldName = "qty"
-        Me.GridColumnQtyNonStock.Name = "GridColumnQtyNonStock"
-        Me.GridColumnQtyNonStock.OptionsColumn.AllowEdit = False
-        Me.GridColumnQtyNonStock.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
-        Me.GridColumnQtyNonStock.UnboundExpression = "1"
-        Me.GridColumnQtyNonStock.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
-        Me.GridColumnQtyNonStock.Visible = True
-        Me.GridColumnQtyNonStock.VisibleIndex = 4
+        Me.TxtReturnType.Location = New System.Drawing.Point(104, 84)
+        Me.TxtReturnType.Name = "TxtReturnType"
+        Me.TxtReturnType.Properties.ReadOnly = True
+        Me.TxtReturnType.Size = New System.Drawing.Size(182, 20)
+        Me.TxtReturnType.TabIndex = 10003
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(7, 87)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl6.TabIndex = 10004
+        Me.LabelControl6.Text = "Type"
         '
         'FormSalesReturnDet
         '
@@ -2093,6 +2115,7 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcodeProb.ResumeLayout(False)
         Me.PanelNavBarcodeProb.PerformLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtReturnType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2270,4 +2293,6 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumnDesignCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BBPrintNonStock As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents GridColumnQtyNonStock As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtReturnType As DevExpress.XtraEditors.TextEdit
 End Class
