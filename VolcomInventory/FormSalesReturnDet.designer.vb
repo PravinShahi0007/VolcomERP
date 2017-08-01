@@ -23,6 +23,8 @@ Partial Class FormSalesReturnDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReturnDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtReturnType = New DevExpress.XtraEditors.TextEdit()
         Me.TxtStoreReturnNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtSalesReturnNumber = New DevExpress.XtraEditors.TextEdit()
@@ -194,12 +196,12 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtReturnType = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnCreateNonStock = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.TxtReturnType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStoreReturnNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtSalesReturnNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -275,7 +277,6 @@ Partial Class FormSalesReturnDet
         CType(Me.PanelNavBarcodeProb, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavBarcodeProb.SuspendLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtReturnType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -305,6 +306,23 @@ Partial Class FormSalesReturnDet
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(303, 124)
         Me.PanelControlTopRight.TabIndex = 10009
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(7, 87)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl6.TabIndex = 10004
+        Me.LabelControl6.Text = "Type"
+        '
+        'TxtReturnType
+        '
+        Me.TxtReturnType.Location = New System.Drawing.Point(104, 84)
+        Me.TxtReturnType.Name = "TxtReturnType"
+        Me.TxtReturnType.Properties.ReadOnly = True
+        Me.TxtReturnType.Size = New System.Drawing.Size(182, 20)
+        Me.TxtReturnType.TabIndex = 10003
         '
         'TxtStoreReturnNumber
         '
@@ -566,9 +584,10 @@ Partial Class FormSalesReturnDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnTest)
+        Me.PanelControl3.Controls.Add(Me.BtnCreateNonStock)
         Me.PanelControl3.Controls.Add(Me.BtnXlsBOF)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
-        Me.PanelControl3.Controls.Add(Me.BtnTest)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Controls.Add(Me.DDBPrint)
         Me.PanelControl3.Controls.Add(Me.BtnVerify)
@@ -625,7 +644,7 @@ Partial Class FormSalesReturnDet
         'BtnTest
         '
         Me.BtnTest.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnTest.Location = New System.Drawing.Point(77, 2)
+        Me.BtnTest.Location = New System.Drawing.Point(240, 2)
         Me.BtnTest.Name = "BtnTest"
         Me.BtnTest.Size = New System.Drawing.Size(75, 34)
         Me.BtnTest.TabIndex = 12
@@ -1995,22 +2014,17 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
         '
-        'TxtReturnType
+        'BtnCreateNonStock
         '
-        Me.TxtReturnType.Location = New System.Drawing.Point(104, 84)
-        Me.TxtReturnType.Name = "TxtReturnType"
-        Me.TxtReturnType.Properties.ReadOnly = True
-        Me.TxtReturnType.Size = New System.Drawing.Size(182, 20)
-        Me.TxtReturnType.TabIndex = 10003
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(7, 87)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
-        Me.LabelControl6.TabIndex = 10004
-        Me.LabelControl6.Text = "Type"
+        Me.BtnCreateNonStock.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnCreateNonStock.ImageIndex = 0
+        Me.BtnCreateNonStock.ImageList = Me.LargeImageCollection
+        Me.BtnCreateNonStock.Location = New System.Drawing.Point(77, 2)
+        Me.BtnCreateNonStock.Name = "BtnCreateNonStock"
+        Me.BtnCreateNonStock.Size = New System.Drawing.Size(163, 34)
+        Me.BtnCreateNonStock.TabIndex = 26
+        Me.BtnCreateNonStock.Text = "Create Non Stock Report"
+        Me.BtnCreateNonStock.Visible = False
         '
         'FormSalesReturnDet
         '
@@ -2035,6 +2049,7 @@ Partial Class FormSalesReturnDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.TxtReturnType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtStoreReturnNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtSalesReturnNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEForm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2115,7 +2130,6 @@ Partial Class FormSalesReturnDet
         Me.PanelNavBarcodeProb.ResumeLayout(False)
         Me.PanelNavBarcodeProb.PerformLayout()
         CType(Me.TxtScanProb.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtReturnType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2295,4 +2309,5 @@ Partial Class FormSalesReturnDet
     Friend WithEvents GridColumnQtyNonStock As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtReturnType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BtnCreateNonStock As DevExpress.XtraEditors.SimpleButton
 End Class

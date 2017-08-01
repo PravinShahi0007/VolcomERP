@@ -89,13 +89,14 @@ Public Class FormSalesReturnDet
             BtnBrowseRO.Enabled = False
             BtnInfoSrs.Enabled = True
             BMark.Enabled = True
+            BtnCreateNonStock.Visible = True
             DDBPrint.Enabled = True
 
 
             'query view based on edit id's
             Dim query As String = "SELECT a.id_wh_drawer,dw.wh_drawer_code,b.id_sales_return_order, a.id_store_contact_from, (d.id_drawer_def) AS `id_wh_drawer_store`,IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`, a.id_comp_contact_to, (d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to, (d.comp_number) AS store_number_from, (d1.comp_number) AS comp_number_to, (d.address_primary) AS store_address_from, a.id_report_status, f.report_status, "
             query += "a.sales_return_note,a.sales_return_date, a.sales_return_number, sales_return_store_number,b.sales_return_order_number, "
-            query += "DATE_FORMAT(a.sales_return_date,'%Y-%m-%d') AS sales_return_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, dw.wh_drawer, rc.wh_rack, loc.wh_locator  "
+            query += "DATE_FORMAT(a.sales_return_date,'%Y-%m-%d') AS sales_return_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, dw.wh_drawer, rc.wh_rack, loc.wh_locator, a.id_ret_type, rt.ret_type "
             query += "FROM tb_sales_return a "
             query += "INNER JOIN tb_sales_return_order b ON a.id_sales_return_order = b.id_sales_return_order "
             query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_from "
@@ -108,6 +109,7 @@ Public Class FormSalesReturnDet
             query += "LEFT JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rc.id_wh_locator "
             query += "INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = d.id_drawer_def "
             query += "INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack "
+            query += "LEFT JOIN tb_lookup_ret_type rt ON rt.id_ret_type = a.id_ret_type "
             query += "WHERE a.id_sales_return = '" + id_sales_return + "' "
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
@@ -143,6 +145,9 @@ Public Class FormSalesReturnDet
 
             id_drawer = data.Rows(0)("id_wh_drawer").ToString
             TEDrawer.Text = data.Rows(0)("wh_drawer_code").ToString
+            id_ret_type = data.Rows(0)("id_ret_type").ToString
+            TxtReturnType.Text = data.Rows(0)("ret_type").ToString
+
             'detail2
             viewDetail()
             view_barcode_list()
@@ -157,6 +162,17 @@ Public Class FormSalesReturnDet
                 printing()
                 Close()
             End If
+        End If
+
+        'ret type
+        If id_ret_type = "2" Then
+            XTCReturn.SelectedTabPageIndex = 1
+            XTPReturn.PageEnabled = False
+            XTPNonStock.PageEnabled = True
+        Else
+            XTCReturn.SelectedTabPageIndex = 0
+            XTPNonStock.PageEnabled = False
+            XTPReturn.PageEnabled = True
         End If
     End Sub
     Sub viewSalesReturnOrder()
@@ -189,6 +205,15 @@ Public Class FormSalesReturnDet
         id_wh_rack_store = data.Rows(0)("id_wh_rack_store").ToString
         id_wh_locator_store = data.Rows(0)("id_wh_locator_store").ToString
         'MEAdrressCompTo.Text = get_company_x(id_comp_to, 3)
+
+        'default for non stock
+        If id_ret_type = "2" Then
+            id_comp_contact_to = id_store_contact_from
+            TxtNameCompTo.Text = TxtNameCompFrom.Text
+            TxtCodeCompTo.Text = TxtCodeCompFrom.Text
+            id_comp_user = id_store
+            setDefDrawer()
+        End If
 
         'general
         viewDetail()
@@ -743,6 +768,8 @@ Public Class FormSalesReturnDet
             errorInput()
         ElseIf GVItemList.RowCount = 0 Then
             errorCustom("Return item data can't blank")
+        ElseIf TxtStoreReturnNumber.Text = "" Then
+            stopCustom("Store return number can't blank")
         ElseIf Not cond_list Then
             stopCustom("Please see different in column status.")
         Else
@@ -2053,5 +2080,27 @@ Public Class FormSalesReturnDet
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnCreateNonStock_Click(sender As Object, e As EventArgs) Handles BtnCreateNonStock.Click
+        action = "ins"
+        id_ret_type = "2"
+        id_sales_return = "-1"
+        TxtReturnType.Text = "Non Stock"
+        Dim store_ret_number As String = TxtStoreReturnNumber.Text
+        actionLoad()
+        TxtStoreReturnNumber.Text = store_ret_number
+        TxtSalesReturnNumber.Text = ""
+        TxtSalesReturnNumber.Text = ""
+        BtnPrint.Enabled = False
+        BMark.Enabled = False
+        BtnAttachment.Enabled = False
+        DEForm.Text = view_date(0)
+        DDBPrint.Enabled = False
+        BtnSave.Enabled = True
+        BtnXlsBOF.Visible = False
+        BtnCreateNonStock.Visible = False
+        PanelNavBarcode.Enabled = True
+        PanelNavBarcodeProb.Enabled = True
     End Sub
 End Class
