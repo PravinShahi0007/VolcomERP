@@ -782,11 +782,11 @@ Public Class FormSalesReturnDet
                 If action = "ins" Then
                     'query main table
                     Dim sales_return_number As String = header_number_sales("5")
-                    Dim query_main As String = "INSERT tb_sales_return(id_store_contact_from, id_comp_contact_to, id_sales_return_order, sales_return_number, sales_return_store_number, sales_return_date, sales_return_note,id_wh_drawer ,id_report_status, last_update, last_update_by) "
-                    query_main += "VALUES('" + id_store_contact_from + "', '" + id_comp_contact_to + "', '" + id_sales_return_order + "', '" + sales_return_number + "', '" + sales_return_store_number + "', NOW(), '" + sales_return_note + "','" + id_drawer + "', '1', NOW(), " + id_user + ");SELECT LAST_INSERT_ID(); "
+                    Dim query_main As String = "INSERT tb_sales_return(id_store_contact_from, id_comp_contact_to, id_sales_return_order, sales_return_number, sales_return_store_number, sales_return_date, sales_return_note,id_wh_drawer ,id_report_status, last_update, last_update_by, id_ret_type) "
+                    query_main += "VALUES('" + id_store_contact_from + "', '" + id_comp_contact_to + "', '" + id_sales_return_order + "', '" + sales_return_number + "', '" + sales_return_store_number + "', NOW(), '" + sales_return_note + "','" + id_drawer + "', '1', NOW(), " + id_user + ",'" + id_ret_type + "');SELECT LAST_INSERT_ID(); "
                     id_sales_return = execute_query(query_main, 0, True, "", "", "", "")
-                    increase_inc_sales("5")
 
+                    increase_inc_sales("5")
                     'insert who prepared
                     insert_who_prepared("46", id_sales_return, id_user)
 
