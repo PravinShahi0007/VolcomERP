@@ -71,8 +71,15 @@ Partial Class FormFGTransList
         Me.GridColumnUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSelect = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumnTotalDel = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSORemainign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnGroupStoreDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCodeDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNameDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSizeDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnClass = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceTypeDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmountDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnViewDO = New DevExpress.XtraEditors.SimpleButton()
@@ -176,7 +183,6 @@ Partial Class FormFGTransList
         Me.DEFromTrf = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnGroupStoreDel = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -620,11 +626,12 @@ Partial Class FormFGTransList
         '
         'GVSalesDelOrder
         '
-        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumn26, Me.GridColumnUpdBy, Me.GridColumnSelect, Me.GridColumnTotalDel, Me.GridColumnSORemainign, Me.GridColumnGroupStoreDel})
+        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumn26, Me.GridColumnUpdBy, Me.GridColumnSelect, Me.GridColumnGroupStoreDel, Me.GridColumnCodeDel, Me.GridColumnNameDel, Me.GridColumnSizeDel, Me.GridColumnClass, Me.GridColumnQtyDel, Me.GridColumnPriceDel, Me.GridColumnPriceTypeDel, Me.GridColumnAmountDel})
         Me.GVSalesDelOrder.GridControl = Me.GCSalesDelOrder
-        Me.GVSalesDelOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnSelect, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_remaining", Me.GridColumnSORemainign, "{0:n0}")})
+        Me.GVSalesDelOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumnQtyDel, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmountDel, "{0:n2}")})
         Me.GVSalesDelOrder.Name = "GVSalesDelOrder"
         Me.GVSalesDelOrder.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSalesDelOrder.OptionsView.ColumnAutoWidth = False
         Me.GVSalesDelOrder.OptionsView.ShowFooter = True
         Me.GVSalesDelOrder.OptionsView.ShowGroupPanel = False
         '
@@ -636,7 +643,7 @@ Partial Class FormFGTransList
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 0
-        Me.GridColumn20.Width = 67
+        Me.GridColumn20.Width = 79
         '
         'GridColumn21
         '
@@ -645,8 +652,8 @@ Partial Class FormFGTransList
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 2
-        Me.GridColumn21.Width = 61
+        Me.GridColumn21.VisibleIndex = 4
+        Me.GridColumn21.Width = 111
         '
         'GridColumn22
         '
@@ -657,8 +664,8 @@ Partial Class FormFGTransList
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 5
-        Me.GridColumn22.Width = 54
+        Me.GridColumn22.VisibleIndex = 15
+        Me.GridColumn22.Width = 107
         '
         'GridColumn23
         '
@@ -674,8 +681,8 @@ Partial Class FormFGTransList
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 8
-        Me.GridColumn24.Width = 54
+        Me.GridColumn24.VisibleIndex = 6
+        Me.GridColumn24.Width = 104
         '
         'GridColumn25
         '
@@ -685,8 +692,8 @@ Partial Class FormFGTransList
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 3
-        Me.GridColumn25.Width = 61
+        Me.GridColumn25.VisibleIndex = 1
+        Me.GridColumn25.Width = 99
         '
         'GridColumnIdSalesDelOrder
         '
@@ -704,8 +711,8 @@ Partial Class FormFGTransList
         Me.GridColumnWHName.Name = "GridColumnWHName"
         Me.GridColumnWHName.OptionsColumn.AllowEdit = False
         Me.GridColumnWHName.Visible = True
-        Me.GridColumnWHName.VisibleIndex = 1
-        Me.GridColumnWHName.Width = 61
+        Me.GridColumnWHName.VisibleIndex = 3
+        Me.GridColumnWHName.Width = 120
         '
         'GridColumnCategory
         '
@@ -715,8 +722,8 @@ Partial Class FormFGTransList
         Me.GridColumnCategory.Name = "GridColumnCategory"
         Me.GridColumnCategory.OptionsColumn.AllowEdit = False
         Me.GridColumnCategory.Visible = True
-        Me.GridColumnCategory.VisibleIndex = 4
-        Me.GridColumnCategory.Width = 61
+        Me.GridColumnCategory.VisibleIndex = 2
+        Me.GridColumnCategory.Width = 82
         '
         'GridColumn26
         '
@@ -727,8 +734,8 @@ Partial Class FormFGTransList
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.OptionsColumn.AllowEdit = False
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 6
-        Me.GridColumn26.Width = 54
+        Me.GridColumn26.VisibleIndex = 16
+        Me.GridColumn26.Width = 91
         '
         'GridColumnUpdBy
         '
@@ -737,8 +744,8 @@ Partial Class FormFGTransList
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 7
-        Me.GridColumnUpdBy.Width = 54
+        Me.GridColumnUpdBy.VisibleIndex = 17
+        Me.GridColumnUpdBy.Width = 102
         '
         'GridColumnSelect
         '
@@ -759,34 +766,94 @@ Partial Class FormFGTransList
         Me.RepositoryItemCheckEdit2.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit2.ValueUnchecked = "No"
         '
-        'GridColumnTotalDel
+        'GridColumnGroupStoreDel
         '
-        Me.GridColumnTotalDel.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnTotalDel.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnTotalDel.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnTotalDel.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnTotalDel.Caption = "Total Delivery"
-        Me.GridColumnTotalDel.DisplayFormat.FormatString = "{0:n0}"
-        Me.GridColumnTotalDel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotalDel.FieldName = "total"
-        Me.GridColumnTotalDel.Name = "GridColumnTotalDel"
-        Me.GridColumnTotalDel.OptionsColumn.AllowEdit = False
-        Me.GridColumnTotalDel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:n0}")})
-        Me.GridColumnTotalDel.Width = 61
+        Me.GridColumnGroupStoreDel.Caption = "Store Group"
+        Me.GridColumnGroupStoreDel.FieldName = "comp_group"
+        Me.GridColumnGroupStoreDel.Name = "GridColumnGroupStoreDel"
+        Me.GridColumnGroupStoreDel.Visible = True
+        Me.GridColumnGroupStoreDel.VisibleIndex = 5
         '
-        'GridColumnSORemainign
+        'GridColumnCodeDel
         '
-        Me.GridColumnSORemainign.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnSORemainign.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnSORemainign.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnSORemainign.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnSORemainign.Caption = "Order Remaining"
-        Me.GridColumnSORemainign.DisplayFormat.FormatString = "N0"
-        Me.GridColumnSORemainign.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnSORemainign.FieldName = "total_remaining"
-        Me.GridColumnSORemainign.Name = "GridColumnSORemainign"
-        Me.GridColumnSORemainign.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_remaining", "{0:N0}")})
-        Me.GridColumnSORemainign.Width = 92
+        Me.GridColumnCodeDel.Caption = "Code"
+        Me.GridColumnCodeDel.FieldName = "code"
+        Me.GridColumnCodeDel.Name = "GridColumnCodeDel"
+        Me.GridColumnCodeDel.Visible = True
+        Me.GridColumnCodeDel.VisibleIndex = 7
+        Me.GridColumnCodeDel.Width = 118
+        '
+        'GridColumnNameDel
+        '
+        Me.GridColumnNameDel.Caption = "Description"
+        Me.GridColumnNameDel.FieldName = "name"
+        Me.GridColumnNameDel.Name = "GridColumnNameDel"
+        Me.GridColumnNameDel.Visible = True
+        Me.GridColumnNameDel.VisibleIndex = 8
+        Me.GridColumnNameDel.Width = 188
+        '
+        'GridColumnSizeDel
+        '
+        Me.GridColumnSizeDel.Caption = "Size"
+        Me.GridColumnSizeDel.FieldName = "size"
+        Me.GridColumnSizeDel.Name = "GridColumnSizeDel"
+        Me.GridColumnSizeDel.Visible = True
+        Me.GridColumnSizeDel.VisibleIndex = 10
+        Me.GridColumnSizeDel.Width = 52
+        '
+        'GridColumnClass
+        '
+        Me.GridColumnClass.Caption = "Class"
+        Me.GridColumnClass.FieldName = "class"
+        Me.GridColumnClass.Name = "GridColumnClass"
+        Me.GridColumnClass.Visible = True
+        Me.GridColumnClass.VisibleIndex = 9
+        Me.GridColumnClass.Width = 53
+        '
+        'GridColumnQtyDel
+        '
+        Me.GridColumnQtyDel.Caption = "Qty"
+        Me.GridColumnQtyDel.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnQtyDel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyDel.FieldName = "pl_sales_order_del_det_qty"
+        Me.GridColumnQtyDel.Name = "GridColumnQtyDel"
+        Me.GridColumnQtyDel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", "{0:n0}")})
+        Me.GridColumnQtyDel.Visible = True
+        Me.GridColumnQtyDel.VisibleIndex = 11
+        Me.GridColumnQtyDel.Width = 57
+        '
+        'GridColumnPriceDel
+        '
+        Me.GridColumnPriceDel.Caption = "Price"
+        Me.GridColumnPriceDel.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnPriceDel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPriceDel.FieldName = "design_price"
+        Me.GridColumnPriceDel.Name = "GridColumnPriceDel"
+        Me.GridColumnPriceDel.Visible = True
+        Me.GridColumnPriceDel.VisibleIndex = 13
+        Me.GridColumnPriceDel.Width = 113
+        '
+        'GridColumnPriceTypeDel
+        '
+        Me.GridColumnPriceTypeDel.Caption = "Price Type"
+        Me.GridColumnPriceTypeDel.FieldName = "design_price_type"
+        Me.GridColumnPriceTypeDel.Name = "GridColumnPriceTypeDel"
+        Me.GridColumnPriceTypeDel.Visible = True
+        Me.GridColumnPriceTypeDel.VisibleIndex = 12
+        '
+        'GridColumnAmountDel
+        '
+        Me.GridColumnAmountDel.Caption = "Amount"
+        Me.GridColumnAmountDel.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnAmountDel.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAmountDel.FieldName = "amount"
+        Me.GridColumnAmountDel.Name = "GridColumnAmountDel"
+        Me.GridColumnAmountDel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
+        Me.GridColumnAmountDel.UnboundExpression = "[design_price] * [pl_sales_order_del_det_qty]"
+        Me.GridColumnAmountDel.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnAmountDel.Visible = True
+        Me.GridColumnAmountDel.VisibleIndex = 14
+        Me.GridColumnAmountDel.Width = 124
         '
         'GridView6
         '
@@ -1825,13 +1892,6 @@ Partial Class FormFGTransList
         Me.LabelControl21.TabIndex = 8892
         Me.LabelControl21.Text = "From"
         '
-        'GridColumnGroupStoreDel
-        '
-        Me.GridColumnGroupStoreDel.Caption = "Group Store"
-        Me.GridColumnGroupStoreDel.Name = "GridColumnGroupStoreDel"
-        Me.GridColumnGroupStoreDel.Visible = True
-        Me.GridColumnGroupStoreDel.VisibleIndex = 9
-        '
         'FormFGTransList
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1968,8 +2028,6 @@ Partial Class FormFGTransList
     Friend WithEvents GridColumnUpdBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSelect As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents GridColumnTotalDel As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnSORemainign As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BtnViewDO As DevExpress.XtraEditors.SimpleButton
@@ -2074,4 +2132,12 @@ Partial Class FormFGTransList
     Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnGroupStoreDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCodeDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNameDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSizeDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnClass As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPriceDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPriceTypeDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAmountDel As DevExpress.XtraGrid.Columns.GridColumn
 End Class
