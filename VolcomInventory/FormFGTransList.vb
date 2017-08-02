@@ -147,4 +147,30 @@
     Private Sub BtnViewTrf_Click(sender As Object, e As EventArgs) Handles BtnViewTrf.Click
         viewTrf()
     End Sub
+
+    Sub viewRQC()
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromReturnQC.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilReturnQC.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'prepare query
+        Dim query_c As ClassSalesReturnQC = New ClassSalesReturnQC()
+        Dim data As DataTable = query_c.transactionList("AND (a.sales_return_qc_date>='" + date_from_selected + "' AND a.sales_return_qc_date<='" + date_until_selected + "') ", "1")
+        GCSalesReturnQC.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewReturnQC_Click(sender As Object, e As EventArgs) Handles BtnViewReturnQC.Click
+        viewRQC()
+    End Sub
 End Class
