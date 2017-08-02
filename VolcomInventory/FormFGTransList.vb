@@ -18,6 +18,28 @@
         DEUntilNonStock.EditValue = data_dt.Rows(0)("dt")
     End Sub
 
+    Sub viewRec()
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromRec.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilRec.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'prepare query
+        Dim query_c As ClassProductionPLToWHRec = New ClassProductionPLToWHRec()
+        Dim data As DataTable = query_c.transactionList("AND (a0.pl_prod_order_rec_date>='" + date_from_selected + "' AND a0.pl_prod_order_rec_date<='" + date_until_selected + "') ", "1")
+        GCPL.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewDO()
         Cursor = Cursors.WaitCursor
         'Prepare paramater
@@ -61,12 +83,68 @@
 
         'prepare query
         Dim query_c As ClassSalesReturn = New ClassSalesReturn()
-        Dim data As DataTable = query_c.transactionList("AND (a.sales_return_date>='" + date_from_selected + "' AND a.sales_return_date<='" + date_until_selected + "') ", "1")
+        Dim data As DataTable = query_c.transactionList("AND (a.id_ret_type=1 OR a.id_ret_type=3) AND (a.sales_return_date>='" + date_from_selected + "' AND a.sales_return_date<='" + date_until_selected + "') ", "1")
         GCSalesReturn.DataSource = data
         Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnViewReturn_Click(sender As Object, e As EventArgs) Handles BtnViewReturn.Click
         viewReturn()
+    End Sub
+
+    Sub viewNonStock()
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromNonStock.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilNonStock.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'prepare query
+        Dim query_c As ClassSalesReturn = New ClassSalesReturn()
+        Dim data As DataTable = query_c.transactionList("AND a.id_ret_type=2 AND (a.sales_return_date>='" + date_from_selected + "' AND a.sales_return_date<='" + date_until_selected + "') ", "1")
+        GCNonStock.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewNonStock_Click(sender As Object, e As EventArgs) Handles BtnViewNonStock.Click
+        viewNonStock()
+    End Sub
+
+    Private Sub BtnViewRec_Click(sender As Object, e As EventArgs) Handles BtnViewRec.Click
+        viewRec()
+    End Sub
+
+    Sub viewTrf()
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromTrf.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilTrf.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'prepare query
+        Dim query_c As ClassFGTrf = New ClassFGTrf()
+        Dim data As DataTable = query_c.transactionList("AND (trf.fg_trf_date>='" + date_from_selected + "' AND trf.fg_trf_date<='" + date_until_selected + "') ", "1")
+        GCFGTrf.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewTrf_Click(sender As Object, e As EventArgs) Handles BtnViewTrf.Click
+        viewTrf()
     End Sub
 End Class

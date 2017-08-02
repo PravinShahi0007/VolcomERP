@@ -4,6 +4,12 @@
         Return query
     End Function
 
+    Public Function transactionList(ByVal condition As String, ByVal order_type As String) As DataTable
+        Dim query As String = "CALL view_fg_trf_main2(""" + condition + """, " + order_type + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
+
     Public Function queryDetail(ByVal id_report_param As String) As String
         Dim query As String = "CALL view_fg_trf('" + id_report_param + "')"
         Return query
