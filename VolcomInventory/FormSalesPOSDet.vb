@@ -594,6 +594,7 @@ Public Class FormSalesPOSDet
             stopCustom("Please fill start & end period !")
         Else
             viewStockStore()
+            load_excel_data()
             'FormImportExcel.id_pop_up = "6"
             'FormImportExcel.ShowDialog()
         End If
@@ -607,18 +608,19 @@ Public Class FormSalesPOSDet
         Dim bof_xls_path As String = get_setup_field("bof_xls_bill_path")
         Dim bof_xls_ws As String = get_setup_field("bof_xls_bill_path_worksheet")
 
-        strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & bof_xls_path & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text;"""
+        strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & bof_xls_path & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text;"""
         oledbconn.ConnectionString = strConn
         Dim MyCommand As OleDbDataAdapter
-        MyCommand = New OleDbDataAdapter("select code, SUM(qty) AS qty from [" & bof_xls_ws & "] GROUP BY code", oledbconn)
+        MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as sales_pos_det_qty from [" & bof_xls_ws & "] WHERE NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2]", oledbconn)
 
-        Try
-            MyCommand.Fill(data_temp)
+        'Try
+        MyCommand.Fill(data_temp)
             MyCommand.Dispose()
-        Catch ex As Exception
-            stopCustom("Input must be in accordance with the format specified !")
-            Exit Sub
-        End Try
+            GCItemList.DataSource = data_temp
+        'Catch ex As Exception
+        'stopCustom("Input must be in accordance with the format specified !")
+        'Exit Sub
+        'End Try
     End Sub
 
     Private Sub DEEnd_EditValueChanging(ByVal sender As System.Object, ByVal e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles DEEnd.EditValueChanging
