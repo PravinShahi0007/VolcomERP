@@ -43,4 +43,30 @@
     Private Sub BtnViewDO_Click(sender As Object, e As EventArgs) Handles BtnViewDO.Click
         viewDO()
     End Sub
+
+    Sub viewReturn()
+        Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFromReturn.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntilReturn.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        'prepare query
+        Dim query_c As ClassSalesReturn = New ClassSalesReturn()
+        Dim data As DataTable = query_c.transactionList("AND (a.sales_return_date>='" + date_from_selected + "' AND a.sales_return_date<='" + date_until_selected + "') ", "1")
+        GCSalesReturn.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnViewReturn_Click(sender As Object, e As EventArgs) Handles BtnViewReturn.Click
+        viewReturn()
+    End Sub
 End Class

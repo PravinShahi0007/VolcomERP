@@ -17,7 +17,7 @@
         query += "a.sales_return_note, a.sales_return_number, a.sales_return_store_number,  "
         query += "CONCAT(c.comp_number,' - ',c.comp_name) AS store_name_from, (c.comp_name) AS store_name_to, "
         query += "CONCAT(e.comp_number,' - ',e.comp_name) AS comp_name_to, (e.comp_number) AS comp_number_to, "
-        query += "f.sales_return_order_number, g.report_status, a.last_update, getUserEmp(a.last_update_by, '1') AS `last_user`, ('No') AS `is_select`, IFNULL(det.`total`,0) AS `total`, IFNULL(nsi.total_nsi,0) AS `total_nsi` "
+        query += "f.sales_return_order_number, g.report_status, a.last_update, getUserEmp(a.last_update_by, '1') AS `last_user`, ('No') AS `is_select`, a.id_ret_type, rty.ret_type, IFNULL(det.`total`,0) AS `total`, IFNULL(nsi.total_nsi,0) AS `total_nsi` "
         query += "FROM tb_sales_return a  "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -35,11 +35,18 @@
             SELECT p.id_sales_return, COUNT(p.id_sales_return) AS `total_nsi` 
             FROM tb_sales_return_problem p
             GROUP BY p.id_sales_return
-        ) nsi ON nsi.id_sales_return = a.id_sales_return "
+        ) nsi ON nsi.id_sales_return = a.id_sales_return 
+        LEFT JOIN tb_lookup_ret_type rty ON rty.id_ret_type = a.id_ret_type "
         query += "WHERE a.id_sales_return>0 "
         query += condition + " "
         query += "ORDER BY a.id_sales_return " + order_type
         Return query
+    End Function
+
+    Public Function transactionList(ByVal condition As String, ByVal order_type As String) As DataTable
+        Dim query As String = "CALL view_sales_return_main(""" + condition + """, " + order_type + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
     End Function
 
     Public Sub changeStatus(ByVal id_report_par As String, ByVal id_status_reportx_par As String)
@@ -51,7 +58,6 @@
             ' jika complete
             Dim stc_compl As ClassSalesReturn = New ClassSalesReturn()
             stc_compl.completeReservedStock(id_report_par)
-            stc_compl.completeProbStock(id_report_par)
 
             'save unreg unique
             execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",3)", True, "", "", "", "")

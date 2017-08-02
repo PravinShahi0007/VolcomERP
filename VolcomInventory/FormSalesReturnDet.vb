@@ -38,6 +38,7 @@ Public Class FormSalesReturnDet
     Dim is_save_unreg_unique As String = "-1"
     Dim is_scan_prob As String = "-1"
     Public id_ret_type As String = ""
+    Public is_view As String = "-1"
 
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -407,7 +408,13 @@ Public Class FormSalesReturnDet
     End Sub
 
     Sub allow_status()
-        If check_edit_report_status(id_report_status, "46", id_sales_return) Then
+        Dim rm As String = ""
+        If id_ret_type = "1" Or id_ret_type = "3" Then
+            rm = "46"
+        Else
+            rm = "111"
+        End If
+        If check_edit_report_status(id_report_status, rm, id_sales_return) Then
             PanelControlNav.Enabled = True
             PanelNavBarcode.Enabled = False
             PanelNavBarcodeProb.Enabled = False
@@ -431,9 +438,15 @@ Public Class FormSalesReturnDet
             BPickDrawer.Enabled = False
         End If
         BtnVerify.Enabled = False
+        GridColumnStt.Visible = False
+
+        'non stock report
+        If is_view = "1" Then
+            BtnCreateNonStock.Visible = False
+        End If
 
         'attachment
-        If check_attach_report_status(id_report_status, "46", id_sales_return) Then
+        If check_attach_report_status(id_report_status, rm, id_sales_return) Then
             BtnAttachment.Enabled = True
         Else
             BtnAttachment.Enabled = False
@@ -652,7 +665,11 @@ Public Class FormSalesReturnDet
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
         FormReportMark.id_report = id_sales_return
-        FormReportMark.report_mark_type = "46"
+        If id_ret_type = "1" Or id_ret_type = "3" Then
+            FormReportMark.report_mark_type = "46"
+        Else
+            FormReportMark.report_mark_type = "111"
+        End If
         FormReportMark.form_origin = Name
         FormReportMark.is_view = "1"
         FormReportMark.is_view_finalize = "1"
@@ -781,14 +798,26 @@ Public Class FormSalesReturnDet
 
                 If action = "ins" Then
                     'query main table
-                    Dim sales_return_number As String = header_number_sales("5")
+                    Dim sales_return_number As String = ""
+                    If id_ret_type = "1" Or id_ret_type = "3" Then
+                        sales_return_number = header_number_sales("5")
+                    Else
+                        sales_return_number = header_number_sales("32")
+                    End If
                     Dim query_main As String = "INSERT tb_sales_return(id_store_contact_from, id_comp_contact_to, id_sales_return_order, sales_return_number, sales_return_store_number, sales_return_date, sales_return_note,id_wh_drawer ,id_report_status, last_update, last_update_by, id_ret_type) "
                     query_main += "VALUES('" + id_store_contact_from + "', '" + id_comp_contact_to + "', '" + id_sales_return_order + "', '" + sales_return_number + "', '" + sales_return_store_number + "', NOW(), '" + sales_return_note + "','" + id_drawer + "', '1', NOW(), " + id_user + ",'" + id_ret_type + "');SELECT LAST_INSERT_ID(); "
                     id_sales_return = execute_query(query_main, 0, True, "", "", "", "")
 
-                    increase_inc_sales("5")
-                    'insert who prepared
-                    insert_who_prepared("46", id_sales_return, id_user)
+                    If id_ret_type = "1" Or id_ret_type = "3" Then
+                        increase_inc_sales("5")
+                        'insert who prepared
+                        insert_who_prepared("46", id_sales_return, id_user)
+                    Else
+                        increase_inc_sales("32")
+                        'insert who prepared
+                        insert_who_prepared("111", id_sales_return, id_user)
+                    End If
+
 
                     'Detail return
                     Dim jum_ins_j As Integer = 0
@@ -877,8 +906,14 @@ Public Class FormSalesReturnDet
                     Dim stc_rev As ClassSalesReturn = New ClassSalesReturn()
                     stc_rev.reservedStock(id_sales_return)
 
-                    'submit who prepared
-                    submit_who_prepared("46", id_sales_return, id_user)
+                    If id_ret_type = "1" Or id_ret_type = "3" Then
+                        'submit who prepared
+                        submit_who_prepared("46", id_sales_return, id_user)
+                    Else
+                        'submit who prepared
+                        submit_who_prepared("111", id_sales_return, id_user)
+                    End If
+
 
                     FormSalesReturn.viewSalesReturn()
                     FormSalesReturn.viewSalesReturnOrder()
@@ -1494,7 +1529,12 @@ Public Class FormSalesReturnDet
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_sales_return
-        FormDocumentUpload.report_mark_type = "46"
+        If id_ret_type = "1" Or id_ret_type = "3" Then
+            FormDocumentUpload.report_mark_type = "46"
+        Else
+            FormDocumentUpload.report_mark_type = "111"
+        End If
+        FormDocumentUpload.is_view = is_view
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub

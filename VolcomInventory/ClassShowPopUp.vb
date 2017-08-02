@@ -426,6 +426,12 @@
             FormProductionAssemblySingle.action = "upd"
             FormProductionAssemblySingle.is_view = "1"
             FormProductionAssemblySingle.ShowDialog()
+        ElseIf report_mark_type = "111" Then
+            'non stock out
+            FormSalesReturnDet.id_sales_return = id_report
+            FormSalesReturnDet.action = "upd"
+            FormSalesReturnDet.is_view = "1"
+            FormSalesReturnDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1004,6 +1010,12 @@
             field_id = "id_prod_ass"
             field_number = "prod_ass_number"
             field_date = "prod_ass_date"
+        ElseIf report_mark_type = "111" Then
+            'non stock out
+            table_name = "tb_sales_return"
+            field_id = "id_sales_return"
+            field_number = "sales_return_number"
+            field_date = "sales_return_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1255,6 +1267,22 @@
                     info_report = ""
                     info_design_code = datax.Rows(0)("code").ToString
                     info_design = datax.Rows(0)("name").ToString
+                End If
+            ElseIf report_mark_type = "111" Then
+                'non stock
+                'return
+                query = "SELECT CONCAT(c.comp_number,' - ', c.comp_name) AS `store`,
+                CAST(IFNULL(COUNT(rd.id_sales_return_problem),0) AS DECIMAL(10,0)) AS `total_qty`
+                FROM tb_sales_return r
+                LEFT JOIN tb_sales_return_problem rd ON rd.id_sales_return = r.id_sales_return
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = r.id_store_contact_from
+                INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp 
+                WHERE r.id_sales_return=" + id_report + " 
+                GROUP BY r.id_sales_return "
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("total_qty").ToString
+                    info_report = datax.Rows(0)("store").ToString
                 End If
             End If
         End If
