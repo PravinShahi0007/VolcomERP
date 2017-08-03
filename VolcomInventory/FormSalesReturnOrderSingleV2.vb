@@ -115,4 +115,19 @@
         viewProduct()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVProduct_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVProduct.CellValueChanged
+        If e.Column.FieldName = "qty_ord" Then
+            Cursor = Cursors.WaitCursor
+            Dim row_foc As String = e.RowHandle.ToString
+            Dim avail As Integer = GVProduct.GetRowCellValue(row_foc, "qty_all_product").ToString
+            Dim val_foc As Integer = e.Value
+            If val_foc > avail Then
+                stopCustom("Order can't exceed : " + avail.ToString + " pcs.")
+                GVProduct.SetRowCellValue(row_foc, "qty_ord", GVProduct.ActiveEditor.OldEditValue)
+                GVProduct.FocusedColumn = GridColumnQtyQC
+            End If
+            Cursor = Cursors.Default
+        End If
+    End Sub
 End Class
