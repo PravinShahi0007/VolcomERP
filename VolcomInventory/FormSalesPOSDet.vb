@@ -660,42 +660,6 @@ Public Class FormSalesPOSDet
         GCItemList.RefreshDataSource()
         GVItemList.PopulateColumns()
 
-        'Customize column
-        GVData.Columns("Code").VisibleIndex = 0
-        GVData.Columns("Description").VisibleIndex = 1
-        GVData.Columns("Size").VisibleIndex = 2
-        GVData.Columns("Qty").VisibleIndex = 3
-        GVData.Columns("Qty").Caption = "Qty Store"
-        GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n2}"
-        GVData.Columns("Qty_Volcom").VisibleIndex = 4
-        GVData.Columns("Qty_Volcom").Caption = "Qty Limit"
-        GVData.Columns("Qty_Volcom").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        GVData.Columns("Qty_Volcom").DisplayFormat.FormatString = "{0:n2}"
-        GVData.Columns("Price").VisibleIndex = 5
-        GVData.Columns("Price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        GVData.Columns("Price").DisplayFormat.FormatString = "{0:n2}"
-        GVData.Columns("Diff").VisibleIndex = 6
-        GVData.Columns("Diff").Caption = "Over Qty"
-        GVData.Columns("Diff").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        GVData.Columns("Diff").DisplayFormat.FormatString = "{0:n2}"
-        GVData.Columns("UOM").Visible = False
-        GVData.Columns("id_design_price_retail").Visible = False
-        GVData.Columns("design_price_type").Visible = False
-        GVData.Columns("design_price").Visible = False
-        GVData.Columns("sales_pos_det_note").Visible = False
-        GVData.Columns("id_design").Visible = False
-        GVData.Columns("id_product").Visible = False
-        GVData.Columns("id_sample").Visible = False
-        GVData.Columns("id_design_price").Visible = False
-        GVData.Columns("Type").Visible = False
-        GVData.Columns("id_sales_pos_det").Visible = False
-        GVData.Columns("Color").Visible = False
-        GVData.Columns("Amount").Visible = False
-        Catch ex As Exception
-        stopCustom("Incorrect format on table.")
-        End Try
-
         'Catch ex As Exception
         'stopCustom("Input must be in accordance with the format specified !")
         'Exit Sub

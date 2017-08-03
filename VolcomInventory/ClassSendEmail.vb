@@ -207,11 +207,28 @@ Public Class ClassSendEmail
         Dim report_mark_type As String = data.Rows(0)("report_mark_type").ToString
         Dim reject_by_user As String = ""
         Dim reject_reason As String = ""
+        Dim appr_note As String = ""
         If is_appr = False Then
             Dim query_appr As String = "SELECT rm.*,emp.employee_name FROM tb_report_mark rm INNER JOIN tb_m_user usr ON usr.id_user=rm.id_user INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee WHERE rm.report_mark_type='" & report_mark_type & "' AND rm.id_report='" & id_leave & "' AND rm.id_mark='3'"
             Dim data_appr As DataTable = execute_query(query_appr, -1, True, "", "", "", "")
             reject_by_user = data_appr.Rows(0)("employee_name").ToString
             reject_reason = data_appr.Rows(0)("report_mark_note").ToString
+        Else
+            Dim query_appr As String = "SELECT rm.*,emp.employee_name FROM tb_report_mark rm INNER JOIN tb_m_user usr ON usr.id_user=rm.id_user INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee WHERE rm.report_mark_type='" & report_mark_type & "' AND rm.id_report='" & id_leave & "' AND rm.id_mark='2'"
+            Dim data_appr As DataTable = execute_query(query_appr, -1, True, "", "", "", "")
+            If data_appr.Rows.Count <= 0 Then
+                appr_note = "-"
+            Else
+                For i As Integer = 0 To data_appr.Rows.Count - 1
+                    If Not data_appr.Rows(i)("report_mark_note").ToString = "" Then
+                        If Not appr_note = "" Then
+                            appr_note += "<br/>"
+                        End If
+                        appr_note += "(" & data_appr.Rows(i)("employee_name").ToString & ")" & data_appr.Rows(i)("report_mark_note").ToString
+                    End If
+                Next
+            End If
+
         End If
         '
         Dim leave_no As String = data.Rows(0)("emp_leave_number").ToString
@@ -374,6 +391,34 @@ Public Class ClassSendEmail
                           <td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
                           <div>
                           <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>The request has been <b><u>approved</u></b>.</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+                          </div>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+                        
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Note
+                              
+                            </span>
+
+                          
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & appr_note & "
+                            </span>
+                          </p>
                           </div>
                           </td>
                          </tr>"
