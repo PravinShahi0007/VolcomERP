@@ -16,6 +16,9 @@
         DEUntilTrf.EditValue = data_dt.Rows(0)("dt")
         DEFromNonStock.EditValue = data_dt.Rows(0)("dt")
         DEUntilNonStock.EditValue = data_dt.Rows(0)("dt")
+
+        ActiveControl = DEFromRec
+        page_active = "rec"
     End Sub
 
     Sub viewRec()
@@ -172,5 +175,113 @@
 
     Private Sub BtnViewReturnQC_Click(sender As Object, e As EventArgs) Handles BtnViewReturnQC.Click
         viewRQC()
+    End Sub
+
+    Private Sub FormFGTransList_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub FormFGTransList_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+    End Sub
+
+    Private Sub FormFGTransList_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
+
+    Private Sub XTCSvcLevel_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCSvcLevel.SelectedPageChanged
+        Dim tab_index As Integer = XTCSvcLevel.SelectedTabPageIndex
+        If tab_index = 0 Then
+            page_active = "rec"
+            ActiveControl = DEFromRec
+        ElseIf tab_index = 1 Then
+            page_active = "del"
+            ActiveControl = DEFromDO
+        ElseIf tab_index = 2 Then
+            page_active = "ret"
+            ActiveControl = DEFromReturn
+        ElseIf tab_index = 3 Then
+            page_active = "nsr"
+            ActiveControl = DEFromNonStock
+        ElseIf tab_index = 4 Then
+            page_active = "ret_trf"
+            ActiveControl = DEFromReturnQC
+        ElseIf tab_index = 5 Then
+            page_active = "trf"
+            ActiveControl = DEFromTrf
+        End If
+    End Sub
+
+    Private Sub DEFromRec_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFromRec.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            DEUntilRec.Focus()
+        End If
+    End Sub
+
+    Private Sub DEUntilRec_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntilRec.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BtnViewRec.Focus()
+        End If
+    End Sub
+
+    Private Sub DEFromDO_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFromDO.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            DEUntilDO.Focus()
+        End If
+    End Sub
+
+    Private Sub DEUntilDO_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntilDO.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BtnViewDO.Focus()
+        End If
+    End Sub
+
+    Private Sub DEFromReturn_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFromReturn.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            DEUntilReturn.Focus()
+        End If
+    End Sub
+
+    Private Sub DEUntilReturn_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntilReturn.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BtnViewReturn.Focus()
+        End If
+    End Sub
+
+    Private Sub DEFromNonStock_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFromNonStock.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            DEUntilNonStock.Focus()
+        End If
+    End Sub
+
+    Private Sub DEUntilNonStock_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntilNonStock.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BtnViewNonStock.Focus()
+        End If
+    End Sub
+
+    Private Sub DEFromReturnQC_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFromReturnQC.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            DEUntilReturnQC.Focus()
+        End If
+    End Sub
+
+    Private Sub DEUntilReturnQC_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntilReturnQC.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BtnViewReturnQC.Focus()
+        End If
+    End Sub
+
+    Private Sub DEFromTrf_KeyDown(sender As Object, e As KeyEventArgs) Handles DEFromTrf.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            DEUntilTrf.Focus()
+        End If
+    End Sub
+
+    Private Sub DEUntilTrf_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntilTrf.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            BtnViewTrf.Focus()
+        End If
     End Sub
 End Class

@@ -48,6 +48,7 @@ Partial Class FormFGTransList
         Me.GridColumnCodeRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSizeRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnClassRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCFilterRec = New DevExpress.XtraEditors.GroupControl()
         Me.BtnViewRec = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
@@ -166,6 +167,14 @@ Partial Class FormFGTransList
         Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnCodeRQC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNameRetQC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSizeRQC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnClassRQC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrcTypeRQC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPriceRQC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyRQC = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmountRQC = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnViewReturnQC = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton11 = New DevExpress.XtraEditors.SimpleButton()
@@ -193,6 +202,7 @@ Partial Class FormFGTransList
         Me.GridColumnNameTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSizeTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyTrf = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnClassTrf = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnViewTrf = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton13 = New DevExpress.XtraEditors.SimpleButton()
@@ -201,16 +211,6 @@ Partial Class FormFGTransList
         Me.DEFromTrf = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnCodeRQC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNameRetQC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnSizeRQC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnClassRQC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPrcTypeRQC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPriceRQC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnQtyRQC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnAmountRQC = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnClassTrf = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnClassRec = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSvcLevel, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSvcLevel.SuspendLayout()
         Me.XTPRec.SuspendLayout()
@@ -558,6 +558,15 @@ Partial Class FormFGTransList
         Me.GridColumnSizeRec.VisibleIndex = 10
         Me.GridColumnSizeRec.Width = 53
         '
+        'GridColumnClassRec
+        '
+        Me.GridColumnClassRec.Caption = "Class"
+        Me.GridColumnClassRec.FieldName = "class"
+        Me.GridColumnClassRec.Name = "GridColumnClassRec"
+        Me.GridColumnClassRec.Visible = True
+        Me.GridColumnClassRec.VisibleIndex = 7
+        Me.GridColumnClassRec.Width = 57
+        '
         'GCFilterRec
         '
         Me.GCFilterRec.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -612,6 +621,7 @@ Partial Class FormFGTransList
         Me.DEUntilRec.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntilRec.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilRec.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilRec.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEUntilRec.Size = New System.Drawing.Size(111, 20)
         Me.DEUntilRec.TabIndex = 8895
         '
@@ -624,6 +634,7 @@ Partial Class FormFGTransList
         Me.DEFromRec.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFromRec.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEFromRec.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromRec.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEFromRec.Size = New System.Drawing.Size(111, 20)
         Me.DEFromRec.TabIndex = 8894
         '
@@ -957,6 +968,7 @@ Partial Class FormFGTransList
         Me.DEUntilDO.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntilDO.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilDO.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilDO.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEUntilDO.Size = New System.Drawing.Size(111, 20)
         Me.DEUntilDO.TabIndex = 8895
         '
@@ -969,6 +981,7 @@ Partial Class FormFGTransList
         Me.DEFromDO.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFromDO.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEFromDO.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromDO.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEFromDO.Size = New System.Drawing.Size(111, 20)
         Me.DEFromDO.TabIndex = 8894
         '
@@ -1287,6 +1300,7 @@ Partial Class FormFGTransList
         Me.DEUntilReturn.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntilReturn.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilReturn.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilReturn.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEUntilReturn.Size = New System.Drawing.Size(111, 20)
         Me.DEUntilReturn.TabIndex = 8895
         '
@@ -1299,6 +1313,7 @@ Partial Class FormFGTransList
         Me.DEFromReturn.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFromReturn.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEFromReturn.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromReturn.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEFromReturn.Size = New System.Drawing.Size(111, 20)
         Me.DEFromReturn.TabIndex = 8894
         '
@@ -1590,6 +1605,7 @@ Partial Class FormFGTransList
         Me.DEUntilNonStock.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntilNonStock.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilNonStock.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilNonStock.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEUntilNonStock.Size = New System.Drawing.Size(111, 20)
         Me.DEUntilNonStock.TabIndex = 8895
         '
@@ -1602,6 +1618,7 @@ Partial Class FormFGTransList
         Me.DEFromNonStock.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFromNonStock.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEFromNonStock.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromNonStock.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEFromNonStock.Size = New System.Drawing.Size(111, 20)
         Me.DEFromNonStock.TabIndex = 8894
         '
@@ -1768,6 +1785,83 @@ Partial Class FormFGTransList
         Me.RepositoryItemCheckEdit4.ValueChecked = "Yes"
         Me.RepositoryItemCheckEdit4.ValueUnchecked = "No"
         '
+        'GridColumnCodeRQC
+        '
+        Me.GridColumnCodeRQC.Caption = "Code"
+        Me.GridColumnCodeRQC.FieldName = "code"
+        Me.GridColumnCodeRQC.Name = "GridColumnCodeRQC"
+        Me.GridColumnCodeRQC.Visible = True
+        Me.GridColumnCodeRQC.VisibleIndex = 7
+        Me.GridColumnCodeRQC.Width = 102
+        '
+        'GridColumnNameRetQC
+        '
+        Me.GridColumnNameRetQC.Caption = "Description"
+        Me.GridColumnNameRetQC.FieldName = "name"
+        Me.GridColumnNameRetQC.Name = "GridColumnNameRetQC"
+        Me.GridColumnNameRetQC.Visible = True
+        Me.GridColumnNameRetQC.VisibleIndex = 8
+        Me.GridColumnNameRetQC.Width = 169
+        '
+        'GridColumnSizeRQC
+        '
+        Me.GridColumnSizeRQC.Caption = "Size"
+        Me.GridColumnSizeRQC.FieldName = "size"
+        Me.GridColumnSizeRQC.Name = "GridColumnSizeRQC"
+        Me.GridColumnSizeRQC.Visible = True
+        Me.GridColumnSizeRQC.VisibleIndex = 9
+        Me.GridColumnSizeRQC.Width = 57
+        '
+        'GridColumnClassRQC
+        '
+        Me.GridColumnClassRQC.Caption = "Class"
+        Me.GridColumnClassRQC.FieldName = "class"
+        Me.GridColumnClassRQC.Name = "GridColumnClassRQC"
+        Me.GridColumnClassRQC.Visible = True
+        Me.GridColumnClassRQC.VisibleIndex = 6
+        '
+        'GridColumnPrcTypeRQC
+        '
+        Me.GridColumnPrcTypeRQC.Caption = "Price Type"
+        Me.GridColumnPrcTypeRQC.FieldName = "design_price_type"
+        Me.GridColumnPrcTypeRQC.Name = "GridColumnPrcTypeRQC"
+        Me.GridColumnPrcTypeRQC.Visible = True
+        Me.GridColumnPrcTypeRQC.VisibleIndex = 11
+        '
+        'GridColumnPriceRQC
+        '
+        Me.GridColumnPriceRQC.Caption = "Price"
+        Me.GridColumnPriceRQC.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnPriceRQC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPriceRQC.FieldName = "design_price"
+        Me.GridColumnPriceRQC.Name = "GridColumnPriceRQC"
+        Me.GridColumnPriceRQC.Visible = True
+        Me.GridColumnPriceRQC.VisibleIndex = 12
+        '
+        'GridColumnQtyRQC
+        '
+        Me.GridColumnQtyRQC.Caption = "Qty"
+        Me.GridColumnQtyRQC.DisplayFormat.FormatString = "{0:n0}"
+        Me.GridColumnQtyRQC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyRQC.FieldName = "qty"
+        Me.GridColumnQtyRQC.Name = "GridColumnQtyRQC"
+        Me.GridColumnQtyRQC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
+        Me.GridColumnQtyRQC.Visible = True
+        Me.GridColumnQtyRQC.VisibleIndex = 10
+        '
+        'GridColumnAmountRQC
+        '
+        Me.GridColumnAmountRQC.Caption = "Amount"
+        Me.GridColumnAmountRQC.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumnAmountRQC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAmountRQC.FieldName = "amount"
+        Me.GridColumnAmountRQC.Name = "GridColumnAmountRQC"
+        Me.GridColumnAmountRQC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
+        Me.GridColumnAmountRQC.UnboundExpression = "[qty] * [design_price]"
+        Me.GridColumnAmountRQC.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnAmountRQC.Visible = True
+        Me.GridColumnAmountRQC.VisibleIndex = 13
+        '
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -1822,6 +1916,7 @@ Partial Class FormFGTransList
         Me.DEUntilReturnQC.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntilReturnQC.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilReturnQC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilReturnQC.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEUntilReturnQC.Size = New System.Drawing.Size(111, 20)
         Me.DEUntilReturnQC.TabIndex = 8895
         '
@@ -1834,6 +1929,7 @@ Partial Class FormFGTransList
         Me.DEFromReturnQC.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFromReturnQC.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEFromReturnQC.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromReturnQC.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEFromReturnQC.Size = New System.Drawing.Size(111, 20)
         Me.DEFromReturnQC.TabIndex = 8894
         '
@@ -2043,6 +2139,15 @@ Partial Class FormFGTransList
         Me.GridColumnQtyTrf.VisibleIndex = 9
         Me.GridColumnQtyTrf.Width = 54
         '
+        'GridColumnClassTrf
+        '
+        Me.GridColumnClassTrf.Caption = "Class"
+        Me.GridColumnClassTrf.FieldName = "class"
+        Me.GridColumnClassTrf.Name = "GridColumnClassTrf"
+        Me.GridColumnClassTrf.Visible = True
+        Me.GridColumnClassTrf.VisibleIndex = 5
+        Me.GridColumnClassTrf.Width = 63
+        '
         'GroupControl4
         '
         Me.GroupControl4.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -2097,6 +2202,7 @@ Partial Class FormFGTransList
         Me.DEUntilTrf.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEUntilTrf.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilTrf.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntilTrf.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEUntilTrf.Size = New System.Drawing.Size(111, 20)
         Me.DEUntilTrf.TabIndex = 8895
         '
@@ -2109,6 +2215,7 @@ Partial Class FormFGTransList
         Me.DEFromTrf.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFromTrf.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEFromTrf.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromTrf.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEFromTrf.Size = New System.Drawing.Size(111, 20)
         Me.DEFromTrf.TabIndex = 8894
         '
@@ -2127,101 +2234,6 @@ Partial Class FormFGTransList
         Me.LabelControl21.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl21.TabIndex = 8892
         Me.LabelControl21.Text = "From"
-        '
-        'GridColumnCodeRQC
-        '
-        Me.GridColumnCodeRQC.Caption = "Code"
-        Me.GridColumnCodeRQC.FieldName = "code"
-        Me.GridColumnCodeRQC.Name = "GridColumnCodeRQC"
-        Me.GridColumnCodeRQC.Visible = True
-        Me.GridColumnCodeRQC.VisibleIndex = 7
-        Me.GridColumnCodeRQC.Width = 102
-        '
-        'GridColumnNameRetQC
-        '
-        Me.GridColumnNameRetQC.Caption = "Description"
-        Me.GridColumnNameRetQC.FieldName = "name"
-        Me.GridColumnNameRetQC.Name = "GridColumnNameRetQC"
-        Me.GridColumnNameRetQC.Visible = True
-        Me.GridColumnNameRetQC.VisibleIndex = 8
-        Me.GridColumnNameRetQC.Width = 169
-        '
-        'GridColumnSizeRQC
-        '
-        Me.GridColumnSizeRQC.Caption = "Size"
-        Me.GridColumnSizeRQC.FieldName = "size"
-        Me.GridColumnSizeRQC.Name = "GridColumnSizeRQC"
-        Me.GridColumnSizeRQC.Visible = True
-        Me.GridColumnSizeRQC.VisibleIndex = 9
-        Me.GridColumnSizeRQC.Width = 57
-        '
-        'GridColumnClassRQC
-        '
-        Me.GridColumnClassRQC.Caption = "Class"
-        Me.GridColumnClassRQC.FieldName = "class"
-        Me.GridColumnClassRQC.Name = "GridColumnClassRQC"
-        Me.GridColumnClassRQC.Visible = True
-        Me.GridColumnClassRQC.VisibleIndex = 6
-        '
-        'GridColumnPrcTypeRQC
-        '
-        Me.GridColumnPrcTypeRQC.Caption = "Price Type"
-        Me.GridColumnPrcTypeRQC.FieldName = "design_price_type"
-        Me.GridColumnPrcTypeRQC.Name = "GridColumnPrcTypeRQC"
-        Me.GridColumnPrcTypeRQC.Visible = True
-        Me.GridColumnPrcTypeRQC.VisibleIndex = 11
-        '
-        'GridColumnPriceRQC
-        '
-        Me.GridColumnPriceRQC.Caption = "Price"
-        Me.GridColumnPriceRQC.DisplayFormat.FormatString = "{0:n2}"
-        Me.GridColumnPriceRQC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnPriceRQC.FieldName = "design_price"
-        Me.GridColumnPriceRQC.Name = "GridColumnPriceRQC"
-        Me.GridColumnPriceRQC.Visible = True
-        Me.GridColumnPriceRQC.VisibleIndex = 12
-        '
-        'GridColumnQtyRQC
-        '
-        Me.GridColumnQtyRQC.Caption = "Qty"
-        Me.GridColumnQtyRQC.DisplayFormat.FormatString = "{0:n0}"
-        Me.GridColumnQtyRQC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtyRQC.FieldName = "qty"
-        Me.GridColumnQtyRQC.Name = "GridColumnQtyRQC"
-        Me.GridColumnQtyRQC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:n0}")})
-        Me.GridColumnQtyRQC.Visible = True
-        Me.GridColumnQtyRQC.VisibleIndex = 10
-        '
-        'GridColumnAmountRQC
-        '
-        Me.GridColumnAmountRQC.Caption = "Amount"
-        Me.GridColumnAmountRQC.DisplayFormat.FormatString = "{0:n2}"
-        Me.GridColumnAmountRQC.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnAmountRQC.FieldName = "amount"
-        Me.GridColumnAmountRQC.Name = "GridColumnAmountRQC"
-        Me.GridColumnAmountRQC.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
-        Me.GridColumnAmountRQC.UnboundExpression = "[qty] * [design_price]"
-        Me.GridColumnAmountRQC.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnAmountRQC.Visible = True
-        Me.GridColumnAmountRQC.VisibleIndex = 13
-        '
-        'GridColumnClassTrf
-        '
-        Me.GridColumnClassTrf.Caption = "Class"
-        Me.GridColumnClassTrf.FieldName = "class"
-        Me.GridColumnClassTrf.Name = "GridColumnClassTrf"
-        Me.GridColumnClassTrf.Visible = True
-        Me.GridColumnClassTrf.VisibleIndex = 5
-        Me.GridColumnClassTrf.Width = 63
-        '
-        'GridColumnClassRec
-        '
-        Me.GridColumnClassRec.Caption = "Class"
-        Me.GridColumnClassRec.FieldName = "class"
-        Me.GridColumnClassRec.Name = "GridColumnClassRec"
-        Me.GridColumnClassRec.Visible = True
-        Me.GridColumnClassRec.VisibleIndex = 7
-        Me.GridColumnClassRec.Width = 57
         '
         'FormFGTransList
         '
