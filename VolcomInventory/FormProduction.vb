@@ -22,10 +22,17 @@
         viewSeasonWO()
         viewSeasonMRS()
         '
+        viewStatusPD()
         viewVendor()
-
-        viewProdDemand()
         checkFormAccess(Name)
+    End Sub
+    Sub viewStatusPD()
+        Dim query As String = "SELECT '0' as id_statuspd, 'All' as status_pd 
+                                UNION
+                              SELECT '1' as id_statuspd, 'Already Created' as status_pd 
+                                UNION
+                              SELECT '2' as id_statuspd, 'Not yet created' as status_pd"
+        viewSearchLookupQuery(SLEStatusPD, query, "id_statuspd", "status_pd", "id_statuspd")
     End Sub
     'view season
     Sub viewVendor()
@@ -252,7 +259,9 @@
     '=== prod demand ====
     'View Production Demand
     Sub viewProdDemand()
-        Dim query As String = "CALL view_design_demand_all(0)"
+        Dim status_pd As String = SLEStatusPD.EditValue.ToString
+
+        Dim query As String = "CALL view_design_demand_po(" & status_pd & ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesign.DataSource = data
         If data.Rows.Count > 0 Then
@@ -507,5 +516,9 @@
         FormProductionMRS.TEDesign.Text = GVMRS.GetFocusedRowCellValue("design_display_name").ToString
         FormProductionMRS.TEDesignCode.Text = GVMRS.GetFocusedRowCellValue("design_code").ToString
         FormProductionMRS.ShowDialog()
+    End Sub
+
+    Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
+        viewProdDemand()
     End Sub
 End Class
