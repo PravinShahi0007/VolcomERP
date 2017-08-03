@@ -39,6 +39,7 @@ Public Class FormSalesReturnDet
     Dim is_scan_prob As String = "-1"
     Public id_ret_type As String = ""
     Public is_view As String = "-1"
+    Dim id_store_type As String = "-1"
 
     Private Sub FormSalesReturnDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -177,7 +178,7 @@ Public Class FormSalesReturnDet
         End If
     End Sub
     Sub viewSalesReturnOrder()
-        Dim query As String = "SELECT a.id_sales_return_order, a.id_store_contact_to, (d.comp_name) AS store_name_to, (d.id_drawer_def) AS `id_wh_drawer_store`, IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`,a.id_report_status, f.report_status, "
+        Dim query As String = "SELECT a.id_sales_return_order, a.id_store_contact_to, d.id_store_type,(d.comp_name) AS store_name_to, (d.id_drawer_def) AS `id_wh_drawer_store`, IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`,a.id_report_status, f.report_status, "
         query += "a.sales_return_order_note, a.sales_return_order_note, a.sales_return_order_number, "
         query += "DATE_FORMAT(a.sales_return_order_date,'%d %M %Y') AS sales_return_order_date, "
         query += "DATE_FORMAT(a.sales_return_order_est_date,'%d %M %Y') AS sales_return_order_est_date "
@@ -200,6 +201,7 @@ Public Class FormSalesReturnDet
         Dim id_comp_from As String = execute_query(query_comp_to, 0, True, "", "", "", "")
         id_store = id_comp_from
         id_store_contact_from = data.Rows(0)("id_store_contact_to").ToString
+        id_store_type = data.Rows(0)("id_store_type").ToString
         TxtCodeCompFrom.Text = get_company_x(id_comp_from, 2)
         TxtNameCompFrom.Text = get_company_x(id_comp_from, 1)
         id_wh_drawer_store = data.Rows(0)("id_wh_drawer_store").ToString
@@ -1217,6 +1219,7 @@ Public Class FormSalesReturnDet
         Dim id_pl_prod_order_rec_det_unique As String = ""
         Dim id_product As String = ""
         Dim product_name As String = ""
+        Dim id_design_cat As String = ""
         Dim size As String = ""
         Dim bom_unit_price As Decimal = 0.0
         Dim index_atas As Integer = -100
@@ -1229,6 +1232,7 @@ Public Class FormSalesReturnDet
             id_pl_prod_order_rec_det_unique = dt_filter(0)("id_pl_prod_order_rec_det_unique").ToString
             id_product = dt_filter(0)("id_product").ToString
             product_name = dt_filter(0)("name").ToString
+            id_design_cat = dt_filter(0)("id_design_cat").ToString
             size = dt_filter(0)("size").ToString
             bom_unit_price = Decimal.Parse(dt_filter(0)("bom_unit_price").ToString)
             is_old = dt_filter(0)("is_old_design").ToString
