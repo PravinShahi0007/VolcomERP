@@ -217,7 +217,7 @@ Public Class ClassSendEmail
             Dim query_appr As String = "SELECT rm.*,emp.employee_name FROM tb_report_mark rm INNER JOIN tb_m_user usr ON usr.id_user=rm.id_user INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee WHERE rm.report_mark_type='" & report_mark_type & "' AND rm.id_report='" & id_leave & "' AND rm.id_mark='2'"
             Dim data_appr As DataTable = execute_query(query_appr, -1, True, "", "", "", "")
             If data_appr.Rows.Count <= 0 Then
-                appr_note = "-"
+                appr_note = ""
             Else
                 For i As Integer = 0 To data_appr.Rows.Count - 1
                     If Not data_appr.Rows(i)("report_mark_note").ToString = "" Then
@@ -393,8 +393,9 @@ Public Class ClassSendEmail
                           <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>The request has been <b><u>approved</u></b>.</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
                           </div>
                           </td>
-                         </tr>
-                         <tr>
+                         </tr>"
+            If Not appr_note = "" Then
+                body_temp += "<tr>
                           <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
                         
                             <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Note
@@ -422,6 +423,7 @@ Public Class ClassSendEmail
                           </div>
                           </td>
                          </tr>"
+            End If
         Else
             body_temp += "<tr>
                               <td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
