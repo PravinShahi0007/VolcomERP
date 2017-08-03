@@ -1181,9 +1181,7 @@ Public Class FormMain
                 FormSalesReturnDet.action = "ins"
                 FormSalesReturnDet.ShowDialog()
             ElseIf FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 1 Then
-                FormSalesReturnDet.id_sales_return_order = FormSalesReturn.GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
-                FormSalesReturnDet.action = "ins"
-                FormSalesReturnDet.ShowDialog()
+                FormSalesReturnDetNew.ShowDialog()
             End If
         ElseIf formName = "FormSalesPOS" Then
             'SALES POS

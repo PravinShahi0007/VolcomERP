@@ -102,6 +102,14 @@
         If id_pop_up = "38" Then
             query += "AND (tb_m_comp.id_comp_cat = '2' OR tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') "
         End If
+
+        If id_pop_up = "41" Then
+            Dim id_ret_type = FormSalesReturnDet.id_ret_type
+            If id_ret_type = "3" Then 'return direct/khusus
+                query += "AND tb_m_comp.id_comp<>" + get_setup_field("wh_temp") + " "
+            End If
+        End If
+
         If id_pop_up = "47" Then
             query += "AND (tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') "
         End If

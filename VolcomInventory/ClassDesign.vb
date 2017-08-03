@@ -7,9 +7,12 @@
         Dim query As String = ""
         query += "Select CAST(prod.id_product AS CHAR(15)) AS `id_product`, ('0') AS `id_pl_prod_order_rec_det_unique`, "
         query += "(prod.product_full_code) As `product_code`, ('') As `product_counting_code`, "
-        query += "(prod.product_full_code) AS `product_full_code`, ('1') AS `is_old_design`, ('2') AS `is_rec`, "
+        query += "(prod.product_full_code) AS `product_full_code`, (dsg.design_display_name) AS `name`,  cod.display_name AS `size`, ('1') AS `is_old_design`, ('2') AS `is_rec`, "
         query += "(dsg.design_cop) AS `bom_unit_price`, CAST(prc.id_design_price AS CHAR(15)) AS `id_design_price`, prc.design_price, prc.id_design_price_type, prc.design_price_type, prc.id_design_cat, prc.design_cat, ('0') AS `id_sales_return_det_counting` "
         query += "From tb_m_product prod "
+        query += "JOIN tb_opt o
+        INNER JOIN tb_m_product_code cc ON cc.id_product = prod.id_product 
+        INNER JOIN tb_m_code_detail cod ON cod.id_code_detail = cc.id_code_detail AND cod.id_code = o.id_code_product_size "
         query += "INNER Join tb_m_design dsg ON dsg.id_design = prod.id_design "
         query += "Left Join( "
         query += "Select * FROM ( "
@@ -18,7 +21,7 @@
         query += "INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type "
         query += "INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat "
         query += "WHERE price.is_active_wh ='1' AND price.design_price_start_date <= NOW() "
-        query += "ORDER BY price.design_price_start_date DESC ) a "
+        query += "ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a "
         query += "GROUP BY a.id_design "
         query += ") prc ON prc.id_design = dsg.id_design "
         query += "WHERE dsg.is_old_design = '1' AND ("
