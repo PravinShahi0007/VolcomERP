@@ -429,6 +429,12 @@
     <Compile Include="FormBOMDuplicate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBOMDuplicateDesign.Designer.vb">
+      <DependentUpon>FormBOMDuplicateDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBOMDuplicateDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBomSingle.Designer.vb">
       <DependentUpon>FormBomSingle.vb</DependentUpon>
     </Compile>
@@ -2697,6 +2703,12 @@
     <Compile Include="FormSalesPromoSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnDetNew.Designer.vb">
+      <DependentUpon>FormSalesReturnDetNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnDetNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnDetProblem.Designer.vb">
       <DependentUpon>FormSalesReturnDetProblem.vb</DependentUpon>
     </Compile>
@@ -4954,6 +4966,9 @@
       <DependentUpon>FormBOMDuplicate.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormBOMDuplicateDesign.resx">
+      <DependentUpon>FormBOMDuplicateDesign.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBomSingle.resx">
       <DependentUpon>FormBomSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -6348,6 +6363,9 @@
     <EmbeddedResource Include="FormSalesPromoSingle.resx">
       <DependentUpon>FormSalesPromoSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnDetNew.resx">
+      <DependentUpon>FormSalesReturnDetNew.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnDetProblem.resx">
       <DependentUpon>FormSalesReturnDetProblem.vb</DependentUpon>

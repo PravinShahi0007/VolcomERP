@@ -205,7 +205,7 @@
         ElseIf report_mark_type = "45" Then
             'SALES RETURN ORDER
             query = String.Format("SELECT id_report_status, sales_return_order_number AS report_number FROM tb_sales_return_order WHERE id_sales_return_order = '{0}'", id_report)
-        ElseIf report_mark_type = "46" Then
+        ElseIf report_mark_type = "46" Or report_mark_type = "111" Then
             'SALES RETURN
             query = String.Format("SELECT id_report_status,sales_return_number as report_number FROM tb_sales_return WHERE id_sales_return = '{0}'", id_report)
         ElseIf report_mark_type = "47" Then
@@ -2026,8 +2026,12 @@
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "46" Then
+        ElseIf report_mark_type = "46" Or report_mark_type = "111" Then
             'SALES RETURN
+            If id_status_reportx = "3" And report_mark_type = "111" Then
+                id_status_reportx = "6"
+            End If
+
             Dim stt As ClassSalesReturn = New ClassSalesReturn()
             stt.changeStatus(id_report, id_status_reportx)
             infoCustom("Status changed.")

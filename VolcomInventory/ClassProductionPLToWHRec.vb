@@ -46,6 +46,12 @@
         Return query
     End Function
 
+    Public Function transactionList(ByVal condition As String, ByVal order_type As String) As DataTable
+        Dim query As String = "CALL view_pl_prod_rec_main(""" + condition + """, " + order_type + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return data
+    End Function
+
     Public Sub changeStatus(ByVal id_report_par As String, ByVal id_status_reportx_par As String)
         If id_status_reportx_par = "6" Then
             'insert stock
