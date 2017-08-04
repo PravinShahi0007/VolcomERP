@@ -64,6 +64,10 @@
                     execute_non_query(query_ins, True, "", "", "", "")
                     FormSalesReturnOrderDet.viewDetail()
 
+                    'log
+                    Dim ret As New ClassSalesReturn()
+                    ret.orderLog(FormSalesReturnOrderDet.id_sales_return_order, "1", addSlashes(TxtCode.Text) + " " + addSlashes(TxtDesign.Text) + " : " + TxtAdd.Text.ToString)
+
                     'reset
                     TxtCode.Text = ""
                     TxtDesign.Text = ""

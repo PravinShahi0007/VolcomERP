@@ -186,4 +186,10 @@
         'stc_in.insStockFG()
     End Sub
 
+    Public Sub orderLog(ByVal id_order As String, ByVal log_type As String, ByVal log As String)
+        Dim query As String = "INSERT INTO tb_sales_return_order_log (id_sales_return_order, id_user, ret_order_log_type, log, log_time)
+        VALUES ('" + id_order + "', '" + id_user + "','" + log_type + "','" + log + "', NOW()) "
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
 End Class
