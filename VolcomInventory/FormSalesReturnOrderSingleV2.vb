@@ -84,6 +84,7 @@
                         newRow("code") = GVProduct.GetRowCellValue(i, "code").ToString
                         newRow("size") = GVProduct.GetRowCellValue(i, "size").ToString
                         newRow("sales_return_order_det_qty") = GVProduct.GetRowCellValue(i, "qty_ord")
+                        newRow("qty_avail") = GVProduct.GetRowCellValue(i, "qty_all_product")
                         newRow("design_price_type") = ""
                         newRow("id_design_price") = GVProduct.GetRowCellValue(i, "id_design_price_retail").ToString
                         newRow("design_price") = GVProduct.GetRowCellValue(i, "design_price_retail")
