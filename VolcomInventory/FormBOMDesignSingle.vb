@@ -89,8 +89,12 @@
 
                 id_bom_approve = data.Rows(0)("id_bom_approve").ToString
             End If
+            BDuplicate.Visible = True
+            BDupDesign.Visible = True
         Else
             DEBOM.EditValue = Now()
+            BDuplicate.Visible = False
+            BDupDesign.Visible = False
         End If
 
         view_bom_det()
@@ -534,5 +538,9 @@
         infoCustom("BOM duplicate success.")
         '
         id_bom_approve = id_bom_approve_new
+    End Sub
+
+    Private Sub BDupDesign_Click(sender As Object, e As EventArgs) Handles BDupDesign.Click
+        FormBOMDuplicateDesign.ShowDialog()
     End Sub
 End Class

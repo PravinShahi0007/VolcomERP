@@ -429,6 +429,12 @@
     <Compile Include="FormBOMDuplicate.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormBOMDuplicateDesign.Designer.vb">
+      <DependentUpon>FormBOMDuplicateDesign.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormBOMDuplicateDesign.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBomSingle.Designer.vb">
       <DependentUpon>FormBomSingle.vb</DependentUpon>
     </Compile>
@@ -4917,6 +4923,9 @@
     <EmbeddedResource Include="FormBOMDuplicate.resx">
       <DependentUpon>FormBOMDuplicate.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormBOMDuplicateDesign.resx">
+      <DependentUpon>FormBOMDuplicateDesign.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBomSingle.resx">
       <DependentUpon>FormBomSingle.vb</DependentUpon>
