@@ -411,8 +411,10 @@ Public Class FormSalesReturnDet
 
     Sub allow_status()
         Dim rm As String = ""
-        If id_ret_type = "1" Or id_ret_type = "3" Then
+        If id_ret_type = "1" Then
             rm = "46"
+        ElseIf id_ret_type = "3" Then
+            rm = "113"
         Else
             rm = "111"
         End If
@@ -667,8 +669,10 @@ Public Class FormSalesReturnDet
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
         FormReportMark.id_report = id_sales_return
-        If id_ret_type = "1" Or id_ret_type = "3" Then
+        If id_ret_type = "1" Then
             FormReportMark.report_mark_type = "46"
+        ElseIf id_ret_type = "3" Then
+            FormReportMark.report_mark_type = "113"
         Else
             FormReportMark.report_mark_type = "111"
         End If
@@ -810,10 +814,14 @@ Public Class FormSalesReturnDet
                     query_main += "VALUES('" + id_store_contact_from + "', '" + id_comp_contact_to + "', '" + id_sales_return_order + "', '" + sales_return_number + "', '" + sales_return_store_number + "', NOW(), '" + sales_return_note + "','" + id_drawer + "', '1', NOW(), " + id_user + ",'" + id_ret_type + "');SELECT LAST_INSERT_ID(); "
                     id_sales_return = execute_query(query_main, 0, True, "", "", "", "")
 
-                    If id_ret_type = "1" Or id_ret_type = "3" Then
+                    If id_ret_type = "1" Then
                         increase_inc_sales("5")
                         'insert who prepared
                         insert_who_prepared("46", id_sales_return, id_user)
+                    ElseIf id_ret_type = "3" Then
+                        increase_inc_sales("5")
+                        'insert who prepared
+                        insert_who_prepared("113", id_sales_return, id_user)
                     Else
                         increase_inc_sales("32")
                         'insert who prepared
@@ -908,9 +916,12 @@ Public Class FormSalesReturnDet
                     Dim stc_rev As ClassSalesReturn = New ClassSalesReturn()
                     stc_rev.reservedStock(id_sales_return)
 
-                    If id_ret_type = "1" Or id_ret_type = "3" Then
+                    If id_ret_type = "1" Then
                         'submit who prepared
                         submit_who_prepared("46", id_sales_return, id_user)
+                    ElseIf id_ret_type = "3" Then
+                        'submit who prepared
+                        submit_who_prepared("113", id_sales_return, id_user)
                     Else
                         'submit who prepared
                         submit_who_prepared("111", id_sales_return, id_user)
@@ -1567,8 +1578,10 @@ Public Class FormSalesReturnDet
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_sales_return
-        If id_ret_type = "1" Or id_ret_type = "3" Then
+        If id_ret_type = "1" Then
             FormDocumentUpload.report_mark_type = "46"
+        ElseIf id_ret_type = "3" Then
+            FormDocumentUpload.report_mark_type = "113"
         Else
             FormDocumentUpload.report_mark_type = "111"
         End If
