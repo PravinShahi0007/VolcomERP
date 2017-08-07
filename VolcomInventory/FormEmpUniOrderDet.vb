@@ -19,6 +19,9 @@
         MENote.Text = data.Rows(0)("sales_order_note").ToString
         TxtBudget.EditValue = data.Rows(0)("budget")
         TxtTolerance.EditValue = data.Rows(0)("tolerance")
+        TxtDiscount.EditValue = data.Rows(0)("discount")
+
+
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
 
         If data.Rows(0)("id_report_status").ToString = 5 Or data.Rows(0)("id_report_status").ToString = 6 Then
