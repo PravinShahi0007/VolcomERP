@@ -24,42 +24,42 @@ Public Class FormImportExcel
         Dim oledbconn As New OleDbConnection
         Dim strConn As String = ""
         Dim ExcelTables As DataTable
-        'Try
-        Dim extension As String = IO.Path.GetExtension(TBFileAddress.Text)
-        If extension.ToLower = ".xlsx" Then
-            strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & TBFileAddress.Text.ToLower & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text;"""
-        ElseIf extension.ToLower = ".xls" Then
-            strConn = String.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text;""", TBFileAddress.Text.ToLower)
-            'strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & TBFileAddress.Text.ToLower & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text;"""
-        Else
-            stopCustom("Make sure your file in .xls or .xlsx format.")
-            Exit Sub
-        End If
+        Try
+            Dim extension As String = IO.Path.GetExtension(TBFileAddress.Text)
+            If extension.ToLower = ".xlsx" Then
+                strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & TBFileAddress.Text.ToLower & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text;"""
+            ElseIf extension.ToLower = ".xls" Then
+                strConn = String.Format("Provider=Microsoft.ACE.OLEDB.12.0;Data Source={0};Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text;""", TBFileAddress.Text.ToLower)
+                'strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & TBFileAddress.Text.ToLower & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=YES;TypeGuessRows=0;ImportMixedTypes=Text;"""
+            Else
+                stopCustom("Make sure your file in .xls or .xlsx format.")
+                Exit Sub
+            End If
 
-        oledbconn.ConnectionString = strConn
-        oledbconn.Open()
-        ExcelTables = oledbconn.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Tables, New Object() {Nothing, Nothing, Nothing, "TABLE"})
-        oledbconn.Close()
-        oledbconn.Dispose()
-        Dim dr As DataRow
-        Dim i As Integer = 0
-        CBWorksheetName.Properties.Items.Clear()
-        CBWorksheetName.EditValue = ""
-        For Each dr In ExcelTables.Rows
-            If dr.Item(3).ToString = "TABLE" Then
-                If InStr(dr.Item(2), "$") > 0 Then
-                    i += 1
-                    CBWorksheetName.Properties.Items.Add(dr.Item(2).ToString)
-                    If i = 1 Then
-                        CBWorksheetName.SelectedItem = dr.Item(2).ToString
+            oledbconn.ConnectionString = strConn
+            oledbconn.Open()
+            ExcelTables = oledbconn.GetOleDbSchemaTable(System.Data.OleDb.OleDbSchemaGuid.Tables, New Object() {Nothing, Nothing, Nothing, "TABLE"})
+            oledbconn.Close()
+            oledbconn.Dispose()
+            Dim dr As DataRow
+            Dim i As Integer = 0
+            CBWorksheetName.Properties.Items.Clear()
+            CBWorksheetName.EditValue = ""
+            For Each dr In ExcelTables.Rows
+                If dr.Item(3).ToString = "TABLE" Then
+                    If InStr(dr.Item(2), "$") > 0 Then
+                        i += 1
+                        CBWorksheetName.Properties.Items.Add(dr.Item(2).ToString)
+                        If i = 1 Then
+                            CBWorksheetName.SelectedItem = dr.Item(2).ToString
+                        End If
                     End If
                 End If
-            End If
-        Next
-        ExcelTables.Dispose()
-        'Catch ex As Exception
-        '    stopCustom("Please make sure your file not open and available to read.")
-        'End Try
+            Next
+            ExcelTables.Dispose()
+        Catch ex As Exception
+            stopCustom("Please make sure your file not open and available to read.")
+        End Try
     End Sub
     Sub fill_field_grid()
         Dim oledbconn As New OleDbConnection
@@ -2761,6 +2761,7 @@ Public Class FormImportExcel
                     makeSafeGV(GVData)
                     GVData.ActiveFilterString = "[Status] = 'OK'"
                     If GVData.RowCount > 0 Then
+                        FormSalesReturnOrderDet.delNotFoundMyRow()
                         For i As Integer = 0 To GVData.RowCount - 1
                             Dim newRow As DataRow = (TryCast(FormSalesReturnOrderDet.GCItemList.DataSource, DataTable)).NewRow()
                             newRow("id_sales_return_order_det") = "0"
@@ -2768,6 +2769,7 @@ Public Class FormImportExcel
                             newRow("code") = GVData.GetRowCellValue(i, "Code").ToString
                             newRow("size") = GVData.GetRowCellValue(i, "Size").ToString
                             newRow("sales_return_order_det_qty") = GVData.GetRowCellValue(i, "Qty")
+                            newRow("qty_avail") = GVData.GetRowCellValue(i, "SOH")
                             newRow("design_price_type") = ""
                             newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price_retail").ToString
                             newRow("design_price") = GVData.GetRowCellValue(i, "Price")

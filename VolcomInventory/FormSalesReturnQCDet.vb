@@ -385,6 +385,8 @@ Public Class FormSalesReturnQCDet
         End If
         PanelNavBarcode.Enabled = False
         BtnVerify.Enabled = False
+        GridColumnStt.Visible = False
+        GridColumnQtyLimit.Visible = False
 
         'attachment
         If check_attach_report_status(id_report_status, report_mark_type_loc, id_sales_return_qc) Then
@@ -629,15 +631,9 @@ Public Class FormSalesReturnQCDet
             End If
 
             If qty_cek > qty_limit Then
-                Dim diff As Integer = qty_cek - qty_limit
-                GVItemList.SetRowCellValue(c, "status", "+" + diff.ToString)
                 cond = False
-            ElseIf qty_cek < qty_limit
-                Dim diff As Integer = qty_cek - qty_limit
-                GVItemList.SetRowCellValue(c, "status", diff.ToString)
-            Else
-                GVItemList.SetRowCellValue(c, "status", "0")
             End If
+            GVItemList.SetRowCellValue(c, "sales_return_qc_det_qty_limit", qty_limit)
         Next
         Return cond
     End Function
@@ -913,6 +909,7 @@ Public Class FormSalesReturnQCDet
         'FormRejectType.ShowDialog()
         If GVItemList.RowCount > 0 And id_wh_type <> "-1" Then
             loadCodeDetail()
+            verifyTrans()
             disableControl()
             newRowsBc()
         Else
@@ -1613,10 +1610,10 @@ Public Class FormSalesReturnQCDet
             GridColumnName.VisibleIndex = 2
             GridColumnSize.VisibleIndex = 3
             GridColumnQty.VisibleIndex = 4
-            GridColumnPrice.VisibleIndex = 5
-            GridColumnAmount.VisibleIndex = 6
-            GridColumnRemark.VisibleIndex = 7
-            GridColumnStt.VisibleIndex = 8
+            GridColumnPriceType.VisibleIndex = 5
+            GridColumnPrice.VisibleIndex = 6
+            GridColumnAmount.VisibleIndex = 7
+            GridColumnRemark.VisibleIndex = 8
             GridColumnStt.Visible = False
             GridColumnNumber.Visible = False
             GridColumnFrom.Visible = False
@@ -1741,6 +1738,21 @@ Public Class FormSalesReturnQCDet
             e.Value = TxtCodeCompTo.Text.ToString
         ElseIf e.Column.FieldName = "number" AndAlso e.IsGetData Then
             e.Value = TxtSalesReturnQCNumber.Text.ToString
+        ElseIf e.Column.FieldName = "status" AndAlso e.IsGetData Then
+            e.Value = getDiff(view, e.ListSourceRowIndex)
         End If
     End Sub
+
+    Private Function getDiff(view As DevExpress.XtraGrid.Views.Grid.GridView, listSourceRowIndex As Integer) As String
+        Dim qty As Integer = Convert.ToInt32(view.GetListSourceRowCellValue(listSourceRowIndex, "sales_return_qc_det_qty"))
+        Dim limit As Integer = Convert.ToInt32(view.GetListSourceRowCellValue(listSourceRowIndex, "sales_return_qc_det_qty_limit"))
+        Dim diff As Integer = qty - limit
+        Dim stt As String = ""
+        If diff > 0 Then
+            stt = "+" + diff.ToString
+        Else
+            stt = diff.ToString
+        End If
+        Return stt
+    End Function
 End Class

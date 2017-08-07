@@ -5,6 +5,13 @@ Public Class ClassSendEmail
     Public id_report As String = "-1"
     Public report_mark_type As String = "-1"
 
+    'comment mail
+    Public season As String = ""
+    Public date_string As String = ""
+    Public comment_by As String = ""
+    Public comment As String = ""
+    Public design As String = ""
+
     Sub send_email_html(ByVal send_to As String, ByVal email_to As String, ByVal subject As String, ByVal number As String, ByVal body As String)
         If report_mark_type = "95" Then
             ' Create a new report. 
@@ -101,6 +108,35 @@ Public Class ClassSendEmail
                 mail.Body = email_temp_monthly(data_dept.Rows(i)("employee_name").ToString)
                 client.Send(mail)
             Next
+        End If
+    End Sub
+    Sub send_email()
+        If report_mark_type = "design_comment" Then
+            ' Create a new report. 
+            Dim query_send_mail As String = "SELECT emp.`email_lokal`,emp.`employee_name` FROM tb_mail_dsg_cmnt md
+                                                INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+                                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`"
+            Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
+
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Volcom ERP")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+
+            For i As Integer = 0 To data_send_mail.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_lokal").ToString, data_send_mail.Rows(i)("employee_name").ToString)
+                mail.To.Add(to_mail)
+            Next
+
+            Dim client As SmtpClient = New SmtpClient()
+            client.Port = 25
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = "192.168.1.4"
+            client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
+            mail.Subject = "New comment on design " & design & " (Season : " & season & ")"
+            mail.IsBodyHtml = True
+            mail.Body = email_body_comment(season, design, comment_by, date_string, comment)
+            client.Send(mail)
         End If
     End Sub
     Sub send_email_appr(ByVal report_mark_type As String, ByVal id_leave As String, ByVal is_appr As Boolean)
@@ -207,11 +243,28 @@ Public Class ClassSendEmail
         Dim report_mark_type As String = data.Rows(0)("report_mark_type").ToString
         Dim reject_by_user As String = ""
         Dim reject_reason As String = ""
+        Dim appr_note As String = ""
         If is_appr = False Then
             Dim query_appr As String = "SELECT rm.*,emp.employee_name FROM tb_report_mark rm INNER JOIN tb_m_user usr ON usr.id_user=rm.id_user INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee WHERE rm.report_mark_type='" & report_mark_type & "' AND rm.id_report='" & id_leave & "' AND rm.id_mark='3'"
             Dim data_appr As DataTable = execute_query(query_appr, -1, True, "", "", "", "")
             reject_by_user = data_appr.Rows(0)("employee_name").ToString
             reject_reason = data_appr.Rows(0)("report_mark_note").ToString
+        Else
+            Dim query_appr As String = "SELECT rm.*,emp.employee_name FROM tb_report_mark rm INNER JOIN tb_m_user usr ON usr.id_user=rm.id_user INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee WHERE rm.report_mark_type='" & report_mark_type & "' AND rm.id_report='" & id_leave & "' AND rm.id_mark='2'"
+            Dim data_appr As DataTable = execute_query(query_appr, -1, True, "", "", "", "")
+            If data_appr.Rows.Count <= 0 Then
+                appr_note = ""
+            Else
+                For i As Integer = 0 To data_appr.Rows.Count - 1
+                    If Not data_appr.Rows(i)("report_mark_note").ToString = "" Then
+                        If Not appr_note = "" Then
+                            appr_note += "<br/>"
+                        End If
+                        appr_note += "(" & data_appr.Rows(i)("employee_name").ToString & ")" & data_appr.Rows(i)("report_mark_note").ToString
+                    End If
+                Next
+            End If
+
         End If
         '
         Dim leave_no As String = data.Rows(0)("emp_leave_number").ToString
@@ -377,6 +430,36 @@ Public Class ClassSendEmail
                           </div>
                           </td>
                          </tr>"
+            If Not appr_note = "" Then
+                body_temp += "<tr>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+                        
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Note
+                              
+                            </span>
+
+                          
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & appr_note & "
+                            </span>
+                          </p>
+                          </div>
+                          </td>
+                         </tr>"
+            End If
         Else
             body_temp += "<tr>
                               <td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
@@ -440,6 +523,220 @@ Public Class ClassSendEmail
         End If
 
         body_temp += "<tr>
+                          <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
+
+                          </div>
+                          </td>
+                         </tr>
+                        </tbody></table>
+                        <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+                        <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                        <div align='center'>
+                        <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+                         <tbody><tr>
+                          <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+                            <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
+                          <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><img border='0' width='300' id='m_1811720018273078822_x0000_i1028' src='https://ci6.googleusercontent.com/proxy/xq6o45mp_D9Z7DHCK5WT7GKuQ2QDaLg1hyMxoHX5ofUIv_m7GwasoczpbAOn6l6Ze-UfLuIUAndSokPvO633nnO9=s0-d-e1-ft#http://www.volcom.co.id/enews/img/footer.jpg' class='CToWUd'><u></u><u></u></p>
+                          </td>
+                         </tr>
+                        </tbody></table>
+                        </div>
+                        </td>
+                       </tr>
+                      </tbody></table>
+                      </div>
+                      </td>
+                     </tr>
+                    </tbody></table>"
+        Return body_temp
+    End Function
+    Function email_body_comment(ByVal season As String, ByVal design_name As String, ByVal comment_by As String, ByVal date_string As String, ByVal comment As String)
+        Dim body_temp As String = ""
+        body_temp = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+                     <tbody><tr>
+                      <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+                      <div align='center'>
+
+                      <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+                       <tbody><tr>
+                        <td style='padding:0in 0in 0in 0in'></td>
+                       </tr>
+                       <tr>
+                        <td style='padding:0in 0in 0in 0in'>
+                        <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://ci3.googleusercontent.com/proxy/x-zXDZUS-2knkEkbTh3HzgyAAusw1Wz7dqV-lbnl39W_4F6T97fJ2_b9doP3nYi0B6KHstdb-tK8VAF_kOaLt2OH=s0-d-e1-ft#http://www.volcom.co.id/enews/img/volcom.jpg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+                        </td>
+                       </tr>
+                       <tr>
+                        <td style='padding:0in 0in 0in 0in'></td>
+                       </tr>
+                       <tr>
+                        <td style='padding:0in 0in 0in 0in'>
+                        <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+                         <tbody><tr>
+                          <td style='padding:0in 0in 0in 0in'>
+      
+                          </td>
+                         </tr>
+                        </tbody></table>
+                        <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+                        <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+                        <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+                         <tbody>
+                         <tr>
+                          <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'><b><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dear All,</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+                          </div>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td style='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>New comment with detail below, </span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+                          </div>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Datetime
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & date_string & "
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                         </tr>
+			 <tr>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Season
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & season & "
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Design
+                            </span>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_name & "
+                            </span>
+                          </p>
+                          </div>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>By
+                            </span>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & comment_by & "
+                            </span>
+                          </p>
+                          </div>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Comment
+                            </span>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt;text-align:justify''>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & comment & "
+			    
+			    </span>
+                          </p>
+
+                          </div>
+                          </td>
+                         </tr>
+                         <tr>
                           <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
                           <div>
                           <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>

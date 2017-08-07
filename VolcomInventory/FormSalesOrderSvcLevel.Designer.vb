@@ -190,6 +190,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSelReturn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnTotalRet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalNonStock = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateReturn = New DevExpress.XtraEditors.SimpleButton()
         Me.SLEStatusReturn = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -292,7 +293,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromNonStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnTotalNonStock = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRetType = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1899,7 +1900,7 @@ Partial Class FormSalesOrderSvcLevel
         '
         'GVSalesReturn
         '
-        Me.GVSalesReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnNumber, Me.GridColumnReturnOrderNumber, Me.GridColumnStore, Me.GridColumnCompNameTo, Me.GridColumnStoreRetNumber, Me.GridColumnCreatedDate, Me.GridColumn29, Me.GridColumn30, Me.GridColumnLastUser, Me.GridColumnSelReturn, Me.GridColumnTotalRet, Me.GridColumnTotalNonStock})
+        Me.GVSalesReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnNumber, Me.GridColumnReturnOrderNumber, Me.GridColumnStore, Me.GridColumnCompNameTo, Me.GridColumnStoreRetNumber, Me.GridColumnCreatedDate, Me.GridColumn29, Me.GridColumn30, Me.GridColumnLastUser, Me.GridColumnSelReturn, Me.GridColumnTotalRet, Me.GridColumnTotalNonStock, Me.GridColumnRetType})
         Me.GVSalesReturn.GridControl = Me.GCSalesReturn
         Me.GVSalesReturn.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotalRet, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_nsi", Me.GridColumnTotalNonStock, "{0:N0}")})
         Me.GVSalesReturn.Name = "GVSalesReturn"
@@ -1923,7 +1924,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnReturnOrderNumber.Name = "GridColumnReturnOrderNumber"
         Me.GridColumnReturnOrderNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnReturnOrderNumber.Visible = True
-        Me.GridColumnReturnOrderNumber.VisibleIndex = 1
+        Me.GridColumnReturnOrderNumber.VisibleIndex = 2
         Me.GridColumnReturnOrderNumber.Width = 91
         '
         'GridColumnStore
@@ -1933,7 +1934,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnStore.Name = "GridColumnStore"
         Me.GridColumnStore.OptionsColumn.AllowEdit = False
         Me.GridColumnStore.Visible = True
-        Me.GridColumnStore.VisibleIndex = 2
+        Me.GridColumnStore.VisibleIndex = 3
         Me.GridColumnStore.Width = 91
         '
         'GridColumnCompNameTo
@@ -1943,7 +1944,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnCompNameTo.Name = "GridColumnCompNameTo"
         Me.GridColumnCompNameTo.OptionsColumn.AllowEdit = False
         Me.GridColumnCompNameTo.Visible = True
-        Me.GridColumnCompNameTo.VisibleIndex = 3
+        Me.GridColumnCompNameTo.VisibleIndex = 4
         Me.GridColumnCompNameTo.Width = 91
         '
         'GridColumnStoreRetNumber
@@ -1953,7 +1954,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnStoreRetNumber.Name = "GridColumnStoreRetNumber"
         Me.GridColumnStoreRetNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnStoreRetNumber.Visible = True
-        Me.GridColumnStoreRetNumber.VisibleIndex = 4
+        Me.GridColumnStoreRetNumber.VisibleIndex = 5
         Me.GridColumnStoreRetNumber.Width = 91
         '
         'GridColumnCreatedDate
@@ -1965,7 +1966,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnCreatedDate.Name = "GridColumnCreatedDate"
         Me.GridColumnCreatedDate.OptionsColumn.AllowEdit = False
         Me.GridColumnCreatedDate.Visible = True
-        Me.GridColumnCreatedDate.VisibleIndex = 7
+        Me.GridColumnCreatedDate.VisibleIndex = 8
         Me.GridColumnCreatedDate.Width = 86
         '
         'GridColumn29
@@ -1975,7 +1976,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.OptionsColumn.AllowEdit = False
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 10
+        Me.GridColumn29.VisibleIndex = 11
         Me.GridColumn29.Width = 86
         '
         'GridColumn30
@@ -1987,7 +1988,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 8
+        Me.GridColumn30.VisibleIndex = 9
         Me.GridColumn30.Width = 86
         '
         'GridColumnLastUser
@@ -1997,7 +1998,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnLastUser.Name = "GridColumnLastUser"
         Me.GridColumnLastUser.OptionsColumn.AllowEdit = False
         Me.GridColumnLastUser.Visible = True
-        Me.GridColumnLastUser.VisibleIndex = 9
+        Me.GridColumnLastUser.VisibleIndex = 10
         Me.GridColumnLastUser.Width = 86
         '
         'GridColumnSelReturn
@@ -2011,7 +2012,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSelReturn.FieldName = "is_select"
         Me.GridColumnSelReturn.Name = "GridColumnSelReturn"
         Me.GridColumnSelReturn.Visible = True
-        Me.GridColumnSelReturn.VisibleIndex = 11
+        Me.GridColumnSelReturn.VisibleIndex = 12
         Me.GridColumnSelReturn.Width = 100
         '
         'RepositoryItemCheckEdit3
@@ -2030,8 +2031,20 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTotalRet.Name = "GridColumnTotalRet"
         Me.GridColumnTotalRet.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:n0}")})
         Me.GridColumnTotalRet.Visible = True
-        Me.GridColumnTotalRet.VisibleIndex = 5
+        Me.GridColumnTotalRet.VisibleIndex = 6
         Me.GridColumnTotalRet.Width = 80
+        '
+        'GridColumnTotalNonStock
+        '
+        Me.GridColumnTotalNonStock.Caption = "Total Non Stock"
+        Me.GridColumnTotalNonStock.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotalNonStock.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalNonStock.FieldName = "total_nsi"
+        Me.GridColumnTotalNonStock.Name = "GridColumnTotalNonStock"
+        Me.GridColumnTotalNonStock.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_nsi", "{0:N0}")})
+        Me.GridColumnTotalNonStock.Visible = True
+        Me.GridColumnTotalNonStock.VisibleIndex = 7
+        Me.GridColumnTotalNonStock.Width = 99
         '
         'GroupControl2
         '
@@ -3025,17 +3038,13 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24.TabIndex = 8892
         Me.LabelControl24.Text = "From"
         '
-        'GridColumnTotalNonStock
+        'GridColumnRetType
         '
-        Me.GridColumnTotalNonStock.Caption = "Total Non Stock"
-        Me.GridColumnTotalNonStock.DisplayFormat.FormatString = "N0"
-        Me.GridColumnTotalNonStock.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotalNonStock.FieldName = "total_nsi"
-        Me.GridColumnTotalNonStock.Name = "GridColumnTotalNonStock"
-        Me.GridColumnTotalNonStock.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_nsi", "{0:N0}")})
-        Me.GridColumnTotalNonStock.Visible = True
-        Me.GridColumnTotalNonStock.VisibleIndex = 6
-        Me.GridColumnTotalNonStock.Width = 99
+        Me.GridColumnRetType.Caption = "Type"
+        Me.GridColumnRetType.FieldName = "ret_type"
+        Me.GridColumnRetType.Name = "GridColumnRetType"
+        Me.GridColumnRetType.Visible = True
+        Me.GridColumnRetType.VisibleIndex = 1
         '
         'FormSalesOrderSvcLevel
         '
@@ -3442,4 +3451,5 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents RepositoryItemCheckEdit7 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridView11 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnTotalNonStock As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRetType As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -623,7 +623,7 @@ Partial Class FormViewSalesReturn
         Me.GridColumnNo.OptionsColumn.ReadOnly = True
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 38
+        Me.GridColumnNo.Width = 48
         '
         'GridColumnCode
         '
@@ -633,7 +633,7 @@ Partial Class FormViewSalesReturn
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 65
+        Me.GridColumnCode.Width = 82
         '
         'GridColumnEanCode
         '
@@ -653,7 +653,7 @@ Partial Class FormViewSalesReturn
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 131
+        Me.GridColumnName.Width = 166
         '
         'GridColumnSize
         '
@@ -668,7 +668,7 @@ Partial Class FormViewSalesReturn
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 50
+        Me.GridColumnSize.Width = 63
         '
         'GridColumnPriceType
         '
@@ -676,7 +676,9 @@ Partial Class FormViewSalesReturn
         Me.GridColumnPriceType.FieldName = "design_price_type"
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.OptionsColumn.ReadOnly = True
-        Me.GridColumnPriceType.Width = 80
+        Me.GridColumnPriceType.Visible = True
+        Me.GridColumnPriceType.VisibleIndex = 5
+        Me.GridColumnPriceType.Width = 85
         '
         'GridColumnUOM
         '
@@ -704,6 +706,7 @@ Partial Class FormViewSalesReturn
         Me.GridColumnQtyWH.Name = "GridColumnQtyWH"
         Me.GridColumnQtyWH.OptionsColumn.AllowEdit = False
         Me.GridColumnQtyWH.OptionsColumn.ReadOnly = True
+        Me.GridColumnQtyWH.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnQtyWH.Width = 97
         '
         'GridColumnQty
@@ -722,8 +725,8 @@ Partial Class FormViewSalesReturn
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty", "{0:f2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
-        Me.GridColumnQty.Width = 82
+        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.Width = 106
         '
         'GridColumnPrice
         '
@@ -739,8 +742,8 @@ Partial Class FormViewSalesReturn
         Me.GridColumnPrice.OptionsColumn.AllowEdit = False
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 4
-        Me.GridColumnPrice.Width = 100
+        Me.GridColumnPrice.VisibleIndex = 6
+        Me.GridColumnPrice.Width = 130
         '
         'GridColumnAmount
         '
@@ -757,8 +760,8 @@ Partial Class FormViewSalesReturn
         Me.GridColumnAmount.OptionsColumn.ReadOnly = True
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 6
-        Me.GridColumnAmount.Width = 103
+        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.Width = 134
         '
         'GridColumnRemark
         '
@@ -766,8 +769,8 @@ Partial Class FormViewSalesReturn
         Me.GridColumnRemark.FieldName = "sales_return_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 7
-        Me.GridColumnRemark.Width = 198
+        Me.GridColumnRemark.VisibleIndex = 8
+        Me.GridColumnRemark.Width = 264
         '
         'GridColumnIdSalesOrderDet
         '
@@ -833,7 +836,7 @@ Partial Class FormViewSalesReturn
         '
         Me.XTPProblemItem.Controls.Add(Me.GCProbSum)
         Me.XTPProblemItem.Name = "XTPProblemItem"
-        Me.XTPProblemItem.Size = New System.Drawing.Size(882, 169)
+        Me.XTPProblemItem.Size = New System.Drawing.Size(883, 169)
         Me.XTPProblemItem.Text = "Non Stock Item"
         '
         'GCProbSum
@@ -843,7 +846,7 @@ Partial Class FormViewSalesReturn
         Me.GCProbSum.MainView = Me.GVProbSum
         Me.GCProbSum.Name = "GCProbSum"
         Me.GCProbSum.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit3, Me.RepositoryItemSpinEdit4})
-        Me.GCProbSum.Size = New System.Drawing.Size(882, 169)
+        Me.GCProbSum.Size = New System.Drawing.Size(883, 169)
         Me.GCProbSum.TabIndex = 8
         Me.GCProbSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProbSum})
         '
