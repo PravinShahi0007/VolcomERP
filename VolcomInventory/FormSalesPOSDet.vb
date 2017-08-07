@@ -612,12 +612,12 @@ Public Class FormSalesPOSDet
         Dim bof_xls_temp_path As String = get_setup_field("bof_xls_bill_temp_path")
         Dim bof_xls_ws As String = get_setup_field("bof_xls_bill_path_worksheet")
 
-        File.Copy(bof_xls_path, bof_xls_temp_path)
+        File.Copy(bof_xls_path, bof_xls_temp_path, True)
 
         strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & bof_xls_temp_path & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text;"""
         oledbconn.ConnectionString = strConn
         Dim MyCommand As OleDbDataAdapter
-        MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as sales_pos_det_qty from [" & bof_xls_ws & "] WHERE NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2]", oledbconn)
+        MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty from [" & bof_xls_ws & "] WHERE NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2]", oledbconn)
 
         'Try
         MyCommand.Fill(data_temp)
@@ -636,7 +636,6 @@ Public Class FormSalesPOSDet
                         .Code = table1.Field(Of String)("code"),
                         .Description = If(y1 Is Nothing, "", y1("name")),
                         .Size = If(y1 Is Nothing, "", y1("size")),
-                        .UOM = If(y1 Is Nothing, "", y1("uom")),
                         .Amount = If(y1 Is Nothing, "", table1("qty") * y1("design_price_retail")),
                         .Qty = CType(table1("qty"), Decimal),
                         .Qty_Volcom = If(y1 Is Nothing, 0.0, y1("qty_all_product")),
