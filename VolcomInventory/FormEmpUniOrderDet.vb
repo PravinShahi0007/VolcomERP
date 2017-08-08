@@ -20,15 +20,33 @@
         TxtBudget.EditValue = data.Rows(0)("budget")
         TxtTolerance.EditValue = data.Rows(0)("tolerance")
         TxtDiscount.EditValue = data.Rows(0)("discount")
-
-
+        TxtGross.EditValue = data.Rows(0)("amount")
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+        getTotal()
+        TxtDesign.Focus()
 
         If data.Rows(0)("id_report_status").ToString = 5 Or data.Rows(0)("id_report_status").ToString = 6 Then
             BtnAccept.Visible = False
             BtnCancelOrder.Visible = False
+            PanelControl4.Visible = False
         End If
         viewDetail()
+    End Sub
+
+    Sub getTotal()
+        Dim gross As Decimal = 0
+        Try
+            gross = TxtGross.EditValue
+        Catch ex As Exception
+        End Try
+        Dim disc As Decimal = 0
+        Try
+            disc = TxtDiscount.EditValue
+        Catch ex As Exception
+        End Try
+        Dim discount_val As Decimal = (disc / 100) * gross
+        TxtDiscountValue.EditValue = discount_val
+        TxtTotal.EditValue = gross - discount_val
     End Sub
 
 
@@ -63,7 +81,10 @@
     End Sub
 
     Sub addRow()
-        FormEmpUniOrderSingle.ShowDialog()
+        Cursor = Cursors.WaitCursor
+        TxtDesign.Text = ""
+        TxtDesign.Focus()
+        Cursor = Cursors.Default
     End Sub
 
     Sub deleteRow()

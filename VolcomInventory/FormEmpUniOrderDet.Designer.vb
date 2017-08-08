@@ -84,6 +84,9 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControlDesign = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
@@ -118,6 +121,9 @@ Partial Class FormEmpUniOrderDet
         Me.GroupControl3.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.PanelControlDesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlDesign.SuspendLayout()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -141,7 +147,7 @@ Partial Class FormEmpUniOrderDet
         'TxtLevel
         '
         Me.TxtLevel.Enabled = False
-        Me.TxtLevel.Location = New System.Drawing.Point(309, 35)
+        Me.TxtLevel.Location = New System.Drawing.Point(316, 35)
         Me.TxtLevel.Name = "TxtLevel"
         Me.TxtLevel.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtLevel.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -150,7 +156,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl11
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(278, 38)
+        Me.LabelControl11.Location = New System.Drawing.Point(285, 38)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl11.TabIndex = 153
@@ -159,7 +165,7 @@ Partial Class FormEmpUniOrderDet
         'TxtDept
         '
         Me.TxtDept.Enabled = False
-        Me.TxtDept.Location = New System.Drawing.Point(73, 35)
+        Me.TxtDept.Location = New System.Drawing.Point(80, 35)
         Me.TxtDept.Name = "TxtDept"
         Me.TxtDept.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtDept.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -225,7 +231,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(195, 12)
+        Me.LabelControl8.Location = New System.Drawing.Point(202, 12)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(27, 13)
         Me.LabelControl8.TabIndex = 149
@@ -234,7 +240,7 @@ Partial Class FormEmpUniOrderDet
         'TxtName
         '
         Me.TxtName.Enabled = False
-        Me.TxtName.Location = New System.Drawing.Point(231, 9)
+        Me.TxtName.Location = New System.Drawing.Point(238, 9)
         Me.TxtName.Name = "TxtName"
         Me.TxtName.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtName.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -244,7 +250,7 @@ Partial Class FormEmpUniOrderDet
         'TxtNIK
         '
         Me.TxtNIK.Enabled = False
-        Me.TxtNIK.Location = New System.Drawing.Point(73, 9)
+        Me.TxtNIK.Location = New System.Drawing.Point(80, 9)
         Me.TxtNIK.Name = "TxtNIK"
         Me.TxtNIK.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtNIK.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -453,6 +459,7 @@ Partial Class FormEmpUniOrderDet
         '
         'TxtDiscount
         '
+        Me.TxtDiscount.Enabled = False
         Me.TxtDiscount.Location = New System.Drawing.Point(314, 37)
         Me.TxtDiscount.Name = "TxtDiscount"
         Me.TxtDiscount.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
@@ -475,6 +482,7 @@ Partial Class FormEmpUniOrderDet
         '
         'TxtGross
         '
+        Me.TxtGross.Enabled = False
         Me.TxtGross.Location = New System.Drawing.Point(314, 11)
         Me.TxtGross.Name = "TxtGross"
         Me.TxtGross.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
@@ -772,6 +780,7 @@ Partial Class FormEmpUniOrderDet
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.PanelControlDesign)
         Me.PanelControl4.Controls.Add(Me.BtnFocusRow)
         Me.PanelControl4.Controls.Add(Me.BtnDelOrder)
         Me.PanelControl4.Controls.Add(Me.BtnAddOrder)
@@ -780,6 +789,38 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(912, 40)
         Me.PanelControl4.TabIndex = 6
+        '
+        'PanelControlDesign
+        '
+        Me.PanelControlDesign.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlDesign.Controls.Add(Me.TxtDesign)
+        Me.PanelControlDesign.Controls.Add(Me.LabelControl6)
+        Me.PanelControlDesign.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControlDesign.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControlDesign.Name = "PanelControlDesign"
+        Me.PanelControlDesign.Size = New System.Drawing.Size(470, 40)
+        Me.PanelControlDesign.TabIndex = 5
+        '
+        'TxtDesign
+        '
+        Me.TxtDesign.EditValue = ""
+        Me.TxtDesign.Location = New System.Drawing.Point(60, 10)
+        Me.TxtDesign.Name = "TxtDesign"
+        Me.TxtDesign.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDesign.Properties.Appearance.Options.UseFont = True
+        Me.TxtDesign.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDesign.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDesign.Size = New System.Drawing.Size(243, 20)
+        Me.TxtDesign.TabIndex = 155
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(14, 13)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl6.TabIndex = 155
+        Me.LabelControl6.Text = "Design"
         '
         'BtnFocusRow
         '
@@ -820,6 +861,7 @@ Partial Class FormEmpUniOrderDet
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.GroupControl1)
+        Me.KeyPreview = True
         Me.MinimizeBox = False
         Me.Name = "FormEmpUniOrderDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -860,6 +902,10 @@ Partial Class FormEmpUniOrderDet
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        CType(Me.PanelControlDesign, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlDesign.ResumeLayout(False)
+        Me.PanelControlDesign.PerformLayout()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -931,4 +977,7 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents BtnFocusRow As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDelOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAddOrder As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControlDesign As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class
