@@ -1,5 +1,9 @@
 ﻿Public Class FormEmpUniOrderDet
     Public id_sales_order As String = "-1"
+    Dim id_wh As String = "-1"
+    Dim id_locator As String = "-1"
+    Dim id_rack As String = "-1"
+    Dim id_drawer As String = "-1"
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -8,7 +12,7 @@
 
     Sub actionLoad()
         Dim query_c As New ClassEmpUni()
-        Dim query As String = query_c.queryMainOrder("AND so.id_sales_order=" + id_sales_order + " ", "1")
+        Dim query As String = query_c.queryMainOrder("And so.id_sales_order=" + id_sales_order + " ", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         TxtNIK.Text = data.Rows(0)("employee_code").ToString
         TxtName.Text = data.Rows(0)("employee_name").ToString
@@ -24,6 +28,18 @@
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         getTotal()
         TxtDesign.Focus()
+
+        'get drawer
+        id_wh = get_setup_field("wh_uni")
+        Dim query_wh As String = "SELECT l.id_wh_locator, r.id_wh_rack, d.id_wh_drawer 
+        FROM tb_m_wh_locator l 
+        INNER JOIN tb_m_wh_rack r ON r.id_wh_locator = l.id_wh_locator
+        INNER JOIN tb_m_wh_drawer d ON d.id_wh_rack = r.id_wh_rack
+        WHERE l.id_comp=" + id_wh + " "
+        Dim dt_wh As DataTable = execute_query(query_wh, -1, True, "", "", "", "")
+        id_locator = dt_wh(0)("id_wh_locator").ToString
+        id_rack = dt_wh(0)("id_wh_rack").ToString
+        id_drawer = dt_wh(0)("id_wh_drawer").ToString
 
         If data.Rows(0)("id_report_status").ToString = 5 Or data.Rows(0)("id_report_status").ToString = 6 Then
             BtnAccept.Visible = False
@@ -51,7 +67,7 @@
 
 
     Sub viewReportStatus()
-        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim query As String = "Select * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
         viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
     End Sub
 
@@ -67,9 +83,9 @@
     End Sub
 
     Private Sub BtnCancelOrder_Click(sender As Object, e As EventArgs) Handles BtnCancelOrder.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancell this order?", "Cancell Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want To cancell this order?", "Cancell Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim query As String = "UPDATE tb_sales_order SET id_report_status=5 WHERE id_sales_order=" + id_sales_order + " "
+            Dim query As String = "UPDATE tb_sales_order Set id_report_status=5 WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
             FormEmpUniPeriodDet.viewOrder()
             actionLoad()
@@ -88,7 +104,7 @@
     End Sub
 
     Sub deleteRow()
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this detail order?", "Delete Detail Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want To delete this detail order?", "Delete Detail Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
 
         End If
@@ -118,6 +134,21 @@
 
     Private Sub BtnFocusRow_Click(sender As Object, e As EventArgs) Handles BtnFocusRow.Click
         focusRow()
+    End Sub
+
+    Private Sub TxtDesign_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDesign.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim key As String = addSlashes(TxtDesign.Text)
+            Dim dt As DataTable = execute_query("CALL view_stock_fg('" + id_wh + "', '" + id_locator + "', '" + id_rack + "', '" + id_drawer + "', '0', '4', '9999-01-01') ", -1, True, "", "", "", "")
+            Dim dt2 As DataTable = execute_query("CALL view_emp_uni_design('" + FormEmpUniPeriodDet.id_emp_uni_period + "') ", -1, True, "", "", "", "")
+            Dim t1 = dt.AsEnumerable()
+            Dim t2 = dt2.AsEnumerable()
+            Dim dtf As DataTable = (From _t1 In t1
+                                    Join _t2 In t2
+                                    On _t1("id_product") Equals _t2("id_product")
+                                    Select _t1).CopyToDataTable
+            MsgBox(dtf.Rows.Count)
+        End If
     End Sub
 
     'Private Sub TxtCode_KeyDown(sender As Object, e As KeyEventArgs)
