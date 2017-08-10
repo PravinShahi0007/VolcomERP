@@ -138,16 +138,21 @@
 
     Private Sub TxtDesign_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDesign.KeyDown
         If e.KeyCode = Keys.Enter Then
+            Cursor = Cursors.WaitCursor
             Dim key As String = addSlashes(TxtDesign.Text)
-            Dim dt As DataTable = execute_query("CALL view_stock_fg('" + id_wh + "', '" + id_locator + "', '" + id_rack + "', '" + id_drawer + "', '0', '4', '9999-01-01') ", -1, True, "", "", "", "")
-            Dim dt2 As DataTable = execute_query("CALL view_emp_uni_design('" + FormEmpUniPeriodDet.id_emp_uni_period + "') ", -1, True, "", "", "", "")
-            Dim t1 = dt.AsEnumerable()
-            Dim t2 = dt2.AsEnumerable()
-            Dim dtf As DataTable = (From _t1 In t1
-                                    Join _t2 In t2
-                                    On _t1("id_product") Equals _t2("id_product")
-                                    Select _t1).CopyToDataTable
-            MsgBox(dtf.Rows.Count)
+            Dim condition As String = "AND so.id_emp_uni_period=" + FormEmpUniPeriodDet.id_emp_uni_period + " AND (prod.design_code LIKE '%" + key + "%' OR prod.product_full_code LIKE '%" + key + "%' OR prod.design_display_name LIKE '%" + key + "%') "
+            Dim dt As DataTable = execute_query("CALL view_emp_uni_stock(""" + condition + """,1) ", -1, True, "", "", "", "")
+            If dt.Rows.Count <= 0 Then
+                stopCustom("Product not found")
+                TxtDesign.Text = ""
+                TxtDesign.Focus()
+            Else
+                FormEmpUniOrderSingle.dt = dt
+                FormEmpUniOrderSingle.ShowDialog()
+                TxtDesign.Text = ""
+                TxtDesign.Focus()
+            End If
+            Cursor = Cursors.Default
         End If
     End Sub
 

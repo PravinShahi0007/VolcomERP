@@ -47,8 +47,10 @@ Partial Class FormEmpUniOrderSingle
         Me.GVDesign.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnBarcode, Me.GridColumnSize, Me.GridColumnAvail, Me.GridColumnSelect, Me.GridColumnCode, Me.GridColumnDesign, Me.GridColumnPrice})
         Me.GVDesign.GridControl = Me.GCDesign
         Me.GVDesign.GroupCount = 1
+        Me.GVDesign.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_avail", Me.GridColumnAvail, "{0:N0}")})
         Me.GVDesign.Name = "GVDesign"
         Me.GVDesign.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVDesign.OptionsView.ShowFooter = True
         Me.GVDesign.OptionsView.ShowGroupedColumns = True
         Me.GVDesign.OptionsView.ShowGroupPanel = False
         Me.GVDesign.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnDesign, DevExpress.Data.ColumnSortOrder.Ascending)})
@@ -61,7 +63,7 @@ Partial Class FormEmpUniOrderSingle
         Me.GridColumnBarcode.OptionsColumn.AllowEdit = False
         Me.GridColumnBarcode.Visible = True
         Me.GridColumnBarcode.VisibleIndex = 1
-        Me.GridColumnBarcode.Width = 219
+        Me.GridColumnBarcode.Width = 217
         '
         'GridColumnSize
         '
@@ -71,17 +73,20 @@ Partial Class FormEmpUniOrderSingle
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 2
-        Me.GridColumnSize.Width = 60
+        Me.GridColumnSize.Width = 59
         '
         'GridColumnAvail
         '
         Me.GridColumnAvail.Caption = "Available"
-        Me.GridColumnAvail.FieldName = "qty_all_product"
+        Me.GridColumnAvail.DisplayFormat.FormatString = "N0"
+        Me.GridColumnAvail.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnAvail.FieldName = "qty_avail"
         Me.GridColumnAvail.Name = "GridColumnAvail"
         Me.GridColumnAvail.OptionsColumn.AllowEdit = False
+        Me.GridColumnAvail.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_avail", "{0:N0}")})
         Me.GridColumnAvail.Visible = True
         Me.GridColumnAvail.VisibleIndex = 4
-        Me.GridColumnAvail.Width = 82
+        Me.GridColumnAvail.Width = 118
         '
         'GridColumnSelect
         '
@@ -98,7 +103,7 @@ Partial Class FormEmpUniOrderSingle
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 0
-        Me.GridColumnCode.Width = 164
+        Me.GridColumnCode.Width = 162
         '
         'GridColumnDesign
         '
@@ -108,7 +113,7 @@ Partial Class FormEmpUniOrderSingle
         Me.GridColumnDesign.OptionsColumn.AllowEdit = False
         Me.GridColumnDesign.Visible = True
         Me.GridColumnDesign.VisibleIndex = 3
-        Me.GridColumnDesign.Width = 485
+        Me.GridColumnDesign.Width = 408
         '
         'GridColumnPrice
         '
@@ -119,6 +124,7 @@ Partial Class FormEmpUniOrderSingle
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 5
+        Me.GridColumnPrice.Width = 114
         '
         'FormEmpUniOrderSingle
         '
