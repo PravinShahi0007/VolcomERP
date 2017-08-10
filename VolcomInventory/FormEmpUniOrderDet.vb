@@ -111,7 +111,7 @@
         If confirm = Windows.Forms.DialogResult.Yes Then
             Dim query As String = "DELETE FROM tb_sales_order_det WHERE id_sales_order_det=" + GVItemList.GetFocusedRowCellValue("id_sales_order_det").ToString + " "
             execute_non_query(query, True, "", "", "", "")
-            viewDetail()
+            actionLoad()
         End If
     End Sub
 

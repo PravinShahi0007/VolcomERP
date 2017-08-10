@@ -41,17 +41,23 @@
                 check_avail_stc = False
             End If
 
+            'cek budget
+            Dim gross_check As Decimal = FormEmpUniOrderDet.TxtGross.EditValue + GVDesign.GetFocusedRowCellValue("design_price")
+            Dim total As Decimal = gross_check - (gross_check * (FormEmpUniOrderDet.TxtDiscount.EditValue / 100))
+
             If check_existing Then
                 stopCustom("Product already order")
             ElseIf Not check_avail_stc Then
                 stopCustom("There is no available quantity")
+            ElseIf total > FormEmpUniOrderDet.TxtOrderMax.EditValue
+                stopCustom("Exceed maximum order : " + FormEmpUniOrderDet.TxtOrderMax.Text.ToString)
             Else
                 Dim query As String = "INSERT INTO tb_sales_order_det(id_sales_order, id_product, id_design_price, design_price, sales_order_det_qty, sales_order_det_note) VALUES 
                 ('" + FormEmpUniOrderDet.id_sales_order + "','" + id_product + "','" + id_design_price + "','" + design_price + "','1','') "
                 execute_non_query(query, True, "", "", "", "")
 
                 'refresh
-                FormEmpUniOrderDet.viewDetail()
+                FormEmpUniOrderDet.actionLoad()
                 Close()
             End If
 
