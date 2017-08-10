@@ -42,6 +42,8 @@ Partial Class FormEmpUniOrderDet
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtOrderMax = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtTolerance = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTotal = New DevExpress.XtraEditors.TextEdit()
@@ -107,6 +109,7 @@ Partial Class FormEmpUniOrderDet
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TxtOrderMax.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTolerance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -347,6 +350,8 @@ Partial Class FormEmpUniOrderDet
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.LabelControl14)
+        Me.PanelControl2.Controls.Add(Me.TxtOrderMax)
         Me.PanelControl2.Controls.Add(Me.LabelControl13)
         Me.PanelControl2.Controls.Add(Me.TxtTolerance)
         Me.PanelControl2.Controls.Add(Me.TxtTotal)
@@ -365,9 +370,29 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl2.Size = New System.Drawing.Size(480, 99)
         Me.PanelControl2.TabIndex = 141
         '
+        'LabelControl14
+        '
+        Me.LabelControl14.Location = New System.Drawing.Point(21, 66)
+        Me.LabelControl14.Name = "LabelControl14"
+        Me.LabelControl14.Size = New System.Drawing.Size(51, 13)
+        Me.LabelControl14.TabIndex = 157
+        Me.LabelControl14.Text = "Order Max"
+        '
+        'TxtOrderMax
+        '
+        Me.TxtOrderMax.Enabled = False
+        Me.TxtOrderMax.Location = New System.Drawing.Point(78, 63)
+        Me.TxtOrderMax.Name = "TxtOrderMax"
+        Me.TxtOrderMax.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtOrderMax.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtOrderMax.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtOrderMax.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtOrderMax.Size = New System.Drawing.Size(155, 20)
+        Me.TxtOrderMax.TabIndex = 156
+        '
         'LabelControl13
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(25, 40)
+        Me.LabelControl13.Location = New System.Drawing.Point(21, 40)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl13.TabIndex = 155
@@ -423,7 +448,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(25, 14)
+        Me.LabelControl1.Location = New System.Drawing.Point(21, 13)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl1.TabIndex = 142
@@ -539,7 +564,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 42
+        Me.GridColumnNo.Width = 43
         '
         'GridColumnCode
         '
@@ -548,7 +573,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 69
+        Me.GridColumnCode.Width = 122
         '
         'GridColumnName
         '
@@ -560,7 +585,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 142
+        Me.GridColumnName.Width = 253
         '
         'GridColumnSize
         '
@@ -575,7 +600,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 53
+        Me.GridColumnSize.Width = 94
         '
         'GridColumnPriceType
         '
@@ -603,7 +628,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 4
-        Me.GridColumnQty.Width = 88
+        Me.GridColumnQty.Width = 156
         '
         'RepositoryItemSpinEdit1
         '
@@ -628,7 +653,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 5
-        Me.GridColumnPrice.Width = 106
+        Me.GridColumnPrice.Width = 189
         '
         'GridColumnAmount
         '
@@ -646,7 +671,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 6
-        Me.GridColumnAmount.Width = 121
+        Me.GridColumnAmount.Width = 221
         '
         'GridColumnRemark
         '
@@ -888,6 +913,7 @@ Partial Class FormEmpUniOrderDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TxtOrderMax.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTolerance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtDiscountValue.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -980,4 +1006,6 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents PanelControlDesign As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtOrderMax As DevExpress.XtraEditors.TextEdit
 End Class

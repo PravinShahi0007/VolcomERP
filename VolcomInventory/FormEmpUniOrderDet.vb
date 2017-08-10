@@ -3,7 +3,7 @@
     Dim id_wh As String = "-1"
     Dim id_locator As String = "-1"
     Dim id_rack As String = "-1"
-    Dim id_drawer As String = "-1"
+    Public id_drawer As String = "-1"
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -21,8 +21,9 @@
         TxtOrderNumber.Text = data.Rows(0)("sales_order_number").ToString
         TxtPeriodName.Text = data.Rows(0)("period_name").ToString
         MENote.Text = data.Rows(0)("sales_order_note").ToString
-        TxtBudget.EditValue = data.Rows(0)("budget")
+        TxtBudget.EditValue = data.Rows(0)("budget_rmg")
         TxtTolerance.EditValue = data.Rows(0)("tolerance")
+        TxtOrderMax.EditValue = TxtBudget.EditValue + TxtTolerance.EditValue
         TxtDiscount.EditValue = data.Rows(0)("discount")
         TxtGross.EditValue = data.Rows(0)("amount")
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
@@ -72,7 +73,9 @@
     End Sub
 
     Sub viewDetail()
-
+        Dim query As String = "CALL view_sales_order('" + id_sales_order + "') "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCItemList.DataSource = data
     End Sub
     Private Sub FormEmpUniOrderDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -106,7 +109,9 @@
     Sub deleteRow()
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want To delete this detail order?", "Delete Detail Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-
+            Dim query As String = "DELETE FROM tb_sales_order_det WHERE id_sales_order_det=" + GVItemList.GetFocusedRowCellValue("id_sales_order_det").ToString + " "
+            execute_non_query(query, True, "", "", "", "")
+            viewDetail()
         End If
     End Sub
 
@@ -153,6 +158,12 @@
                 TxtDesign.Focus()
             End If
             Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
 
