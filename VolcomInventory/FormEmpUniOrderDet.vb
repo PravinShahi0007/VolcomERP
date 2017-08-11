@@ -4,6 +4,7 @@
     Dim id_locator As String = "-1"
     Dim id_rack As String = "-1"
     Public id_drawer As String = "-1"
+    Public id_emp_uni_budget As String = "-1"
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -12,8 +13,9 @@
 
     Sub actionLoad()
         Dim query_c As New ClassEmpUni()
-        Dim query As String = query_c.queryMainOrder("And so.id_sales_order=" + id_sales_order + " ", "1")
+        Dim query As String = query_c.queryMainOrder("And so.id_sales_order=" + id_sales_order + " ", "1", id_sales_order)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        id_emp_uni_budget = data.Rows(0)("id_emp_uni_budget").ToString
         TxtNIK.Text = data.Rows(0)("employee_code").ToString
         TxtName.Text = data.Rows(0)("employee_name").ToString
         TxtDept.Text = data.Rows(0)("departement").ToString
@@ -21,13 +23,14 @@
         TxtOrderNumber.Text = data.Rows(0)("sales_order_number").ToString
         TxtPeriodName.Text = data.Rows(0)("period_name").ToString
         MENote.Text = data.Rows(0)("sales_order_note").ToString
-        TxtBudget.EditValue = data.Rows(0)("budget_rmg")
+        TxtBudget.EditValue = data.Rows(0)("budget")
         TxtTolerance.EditValue = data.Rows(0)("tolerance")
-        TxtOrderMax.EditValue = TxtBudget.EditValue + TxtTolerance.EditValue
+        TxtOrderMax.EditValue = data.Rows(0)("order_max")
         TxtDiscount.EditValue = data.Rows(0)("discount")
         TxtGross.EditValue = data.Rows(0)("amount")
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         getTotal()
+        TxtDiff.EditValue = TxtOrderMax.EditValue - TxtTotal.EditValue
         TxtDesign.Focus()
 
         'get drawer
@@ -82,12 +85,21 @@
     End Sub
 
     Private Sub BtnAccept_Click(sender As Object, e As EventArgs) Handles BtnAccept.Click
-
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to accept this order?", "Accept Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim query As String = "UPDATE tb_sales_order Set id_report_status=6 WHERE id_sales_order=" + id_sales_order + " "
+            execute_non_query(query, True, "", "", "", "")
+            FormEmpUniPeriodDet.viewOrder()
+            actionLoad()
+        End If
     End Sub
 
     Private Sub BtnCancelOrder_Click(sender As Object, e As EventArgs) Handles BtnCancelOrder.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want To cancell this order?", "Cancell Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
+            Dim so As New ClassSalesOrder()
+            so.cancelReservedStock(id_sales_order)
+
             Dim query As String = "UPDATE tb_sales_order Set id_report_status=5 WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
             FormEmpUniPeriodDet.viewOrder()
@@ -124,7 +136,7 @@
             addRow()
         ElseIf e.KeyCode = Keys.Delete Then
             deleteRow()
-        ElseIf e.KeyCode = Keys.Control Then
+        ElseIf (e.KeyCode = Keys.R AndAlso e.Modifiers = Keys.Control) Then
             focusRow()
         End If
     End Sub

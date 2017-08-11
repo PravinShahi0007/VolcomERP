@@ -92,6 +92,8 @@ Partial Class FormEmpUniOrderDet
         Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtDiff = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,6 +129,7 @@ Partial Class FormEmpUniOrderDet
         CType(Me.PanelControlDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlDesign.SuspendLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -293,7 +296,7 @@ Partial Class FormEmpUniOrderDet
         '
         Me.BtnCancelOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancelOrder.Image = CType(resources.GetObject("BtnCancelOrder.Image"), System.Drawing.Image)
-        Me.BtnCancelOrder.Location = New System.Drawing.Point(734, 2)
+        Me.BtnCancelOrder.Location = New System.Drawing.Point(703, 2)
         Me.BtnCancelOrder.Name = "BtnCancelOrder"
         Me.BtnCancelOrder.Size = New System.Drawing.Size(111, 37)
         Me.BtnCancelOrder.TabIndex = 1
@@ -303,11 +306,11 @@ Partial Class FormEmpUniOrderDet
         '
         Me.BtnAccept.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAccept.Image = CType(resources.GetObject("BtnAccept.Image"), System.Drawing.Image)
-        Me.BtnAccept.Location = New System.Drawing.Point(845, 2)
+        Me.BtnAccept.Location = New System.Drawing.Point(814, 2)
         Me.BtnAccept.Name = "BtnAccept"
-        Me.BtnAccept.Size = New System.Drawing.Size(87, 37)
+        Me.BtnAccept.Size = New System.Drawing.Size(118, 37)
         Me.BtnAccept.TabIndex = 0
-        Me.BtnAccept.Text = "Accept"
+        Me.BtnAccept.Text = "Accept Order"
         '
         'GroupControl2
         '
@@ -318,9 +321,9 @@ Partial Class FormEmpUniOrderDet
         Me.GroupControl2.Controls.Add(Me.MENote)
         Me.GroupControl2.Controls.Add(Me.LabelControl18)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 418)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 396)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(934, 103)
+        Me.GroupControl2.Size = New System.Drawing.Size(934, 125)
         Me.GroupControl2.TabIndex = 2
         '
         'LEReportStatus
@@ -336,7 +339,7 @@ Partial Class FormEmpUniOrderDet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(201, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(237, 20)
         Me.LEReportStatus.TabIndex = 145
         '
         'LabelControl21
@@ -350,6 +353,8 @@ Partial Class FormEmpUniOrderDet
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.LabelControl15)
+        Me.PanelControl2.Controls.Add(Me.TxtDiff)
         Me.PanelControl2.Controls.Add(Me.LabelControl14)
         Me.PanelControl2.Controls.Add(Me.TxtOrderMax)
         Me.PanelControl2.Controls.Add(Me.LabelControl13)
@@ -367,12 +372,12 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl2.Location = New System.Drawing.Point(452, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(480, 99)
+        Me.PanelControl2.Size = New System.Drawing.Size(480, 121)
         Me.PanelControl2.TabIndex = 141
         '
         'LabelControl14
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(21, 66)
+        Me.LabelControl14.Location = New System.Drawing.Point(13, 66)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(51, 13)
         Me.LabelControl14.TabIndex = 157
@@ -392,7 +397,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl13
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(21, 40)
+        Me.LabelControl13.Location = New System.Drawing.Point(13, 40)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl13.TabIndex = 155
@@ -428,7 +433,7 @@ Partial Class FormEmpUniOrderDet
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(249, 66)
+        Me.LabelControl5.Location = New System.Drawing.Point(253, 66)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(43, 19)
         Me.LabelControl5.TabIndex = 150
@@ -448,7 +453,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(21, 13)
+        Me.LabelControl1.Location = New System.Drawing.Point(13, 13)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl1.TabIndex = 142
@@ -476,7 +481,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(251, 40)
+        Me.LabelControl3.Location = New System.Drawing.Point(255, 40)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(41, 13)
         Me.LabelControl3.TabIndex = 147
@@ -499,7 +504,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(251, 14)
+        Me.LabelControl2.Location = New System.Drawing.Point(255, 14)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl2.TabIndex = 145
@@ -522,7 +527,7 @@ Partial Class FormEmpUniOrderDet
         Me.MENote.Location = New System.Drawing.Point(73, 14)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(334, 45)
+        Me.MENote.Size = New System.Drawing.Size(237, 45)
         Me.MENote.TabIndex = 139
         '
         'LabelControl18
@@ -541,7 +546,7 @@ Partial Class FormEmpUniOrderDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(912, 305)
+        Me.GCItemList.Size = New System.Drawing.Size(912, 283)
         Me.GCItemList.TabIndex = 5
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -799,7 +804,7 @@ Partial Class FormEmpUniOrderDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(0, 69)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(934, 349)
+        Me.GroupControl3.Size = New System.Drawing.Size(934, 327)
         Me.GroupControl3.TabIndex = 6
         '
         'PanelControl4
@@ -851,11 +856,11 @@ Partial Class FormEmpUniOrderDet
         '
         Me.BtnFocusRow.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnFocusRow.Image = CType(resources.GetObject("BtnFocusRow.Image"), System.Drawing.Image)
-        Me.BtnFocusRow.Location = New System.Drawing.Point(575, 0)
+        Me.BtnFocusRow.Location = New System.Drawing.Point(587, 0)
         Me.BtnFocusRow.Name = "BtnFocusRow"
-        Me.BtnFocusRow.Size = New System.Drawing.Size(129, 40)
+        Me.BtnFocusRow.Size = New System.Drawing.Size(117, 40)
         Me.BtnFocusRow.TabIndex = 4
-        Me.BtnFocusRow.Text = "Select Row (Ctrl)"
+        Me.BtnFocusRow.Text = "Row (Ctrl+R)"
         '
         'BtnDelOrder
         '
@@ -876,6 +881,29 @@ Partial Class FormEmpUniOrderDet
         Me.BtnAddOrder.Size = New System.Drawing.Size(99, 40)
         Me.BtnAddOrder.TabIndex = 2
         Me.BtnAddOrder.Text = "Add (Ins)"
+        '
+        'TxtDiff
+        '
+        Me.TxtDiff.Enabled = False
+        Me.TxtDiff.Location = New System.Drawing.Point(78, 89)
+        Me.TxtDiff.Name = "TxtDiff"
+        Me.TxtDiff.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDiff.Properties.Appearance.Options.UseFont = True
+        Me.TxtDiff.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDiff.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDiff.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtDiff.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtDiff.Size = New System.Drawing.Size(155, 20)
+        Me.TxtDiff.TabIndex = 158
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl15.Location = New System.Drawing.Point(13, 92)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl15.TabIndex = 159
+        Me.LabelControl15.Text = "Difference"
         '
         'FormEmpUniOrderDet
         '
@@ -932,6 +960,7 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControlDesign.ResumeLayout(False)
         Me.PanelControlDesign.PerformLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1008,4 +1037,6 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtOrderMax As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtDiff As DevExpress.XtraEditors.TextEdit
 End Class

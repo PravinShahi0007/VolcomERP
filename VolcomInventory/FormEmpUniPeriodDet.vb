@@ -45,7 +45,7 @@
     Sub viewOrder()
         Cursor = Cursors.WaitCursor
         Dim query_c As New ClassEmpUni()
-        Dim query As String = query_c.queryMainOrder("AND p.id_emp_uni_period=" + id_emp_uni_period + " ", "2")
+        Dim query As String = query_c.queryMainOrder("AND p.id_emp_uni_period=" + id_emp_uni_period + " ", "2", "-1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesOrder.DataSource = data
         Cursor = Cursors.Default

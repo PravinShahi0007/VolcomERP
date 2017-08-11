@@ -26,8 +26,9 @@
             'cek in so
             Dim check_existing As Boolean = False
             Dim query_sod As String = "SELECT * FROM tb_sales_order_det sod 
+            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
             INNER JOIN tb_m_product p ON p.id_product = sod.id_product 
-            WHERE sod.id_sales_order =" + FormEmpUniOrderDet.id_sales_order + " AND p.id_design=" + id_design + " "
+            WHERE so.id_emp_uni_budget =" + FormEmpUniOrderDet.id_emp_uni_budget + " AND p.id_design=" + id_design + " AND so.id_report_status!=5 "
             Dim data_sod As DataTable = execute_query(query_sod, -1, True, "", "", "", "")
             If data_sod.Rows.Count > 0 Then
                 check_existing = True
