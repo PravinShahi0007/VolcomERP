@@ -5,6 +5,7 @@
     Dim id_rack As String = "-1"
     Public id_drawer As String = "-1"
     Public id_emp_uni_budget As String = "-1"
+    Dim prepared_by As String = ""
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -23,6 +24,8 @@
         TxtOrderNumber.Text = data.Rows(0)("sales_order_number").ToString
         TxtPeriodName.Text = data.Rows(0)("period_name").ToString
         MENote.Text = data.Rows(0)("sales_order_note").ToString
+        prepared_by = data.Rows(0)("prepared_by").ToString
+        DECreated.EditValue = data.Rows(0)("sales_order_date")
         TxtBudget.EditValue = data.Rows(0)("budget")
         TxtTolerance.EditValue = data.Rows(0)("tolerance")
         TxtOrderMax.EditValue = data.Rows(0)("order_max")
@@ -208,6 +211,7 @@
         Report.LabelGrossTotal.Text = TxtGross.Text.ToUpper
         Report.LabelDiscount.Text = TxtDiscountValue.Text.ToUpper
         Report.LabelTotal.Text = TxtTotal.Text.ToUpper
+        Report.LabelPrepared.Text = "PREPARED BY " + prepared_by.ToUpper + " (" + DECreated.Text + ")"
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

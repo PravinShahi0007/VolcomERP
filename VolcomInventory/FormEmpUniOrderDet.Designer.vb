@@ -94,6 +94,8 @@ Partial Class FormEmpUniOrderDet
         Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,6 +132,8 @@ Partial Class FormEmpUniOrderDet
         CType(Me.PanelControlDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlDesign.SuspendLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -315,6 +319,8 @@ Partial Class FormEmpUniOrderDet
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.LabelControl16)
+        Me.GroupControl2.Controls.Add(Me.DECreated)
         Me.GroupControl2.Controls.Add(Me.LEReportStatus)
         Me.GroupControl2.Controls.Add(Me.LabelControl21)
         Me.GroupControl2.Controls.Add(Me.PanelControl2)
@@ -329,7 +335,7 @@ Partial Class FormEmpUniOrderDet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(73, 65)
+        Me.LEReportStatus.Location = New System.Drawing.Point(117, 91)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -339,12 +345,12 @@ Partial Class FormEmpUniOrderDet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(237, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(256, 20)
         Me.LEReportStatus.TabIndex = 145
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(34, 68)
+        Me.LabelControl21.Location = New System.Drawing.Point(34, 94)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 146
@@ -547,10 +553,10 @@ Partial Class FormEmpUniOrderDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(73, 14)
+        Me.MENote.Location = New System.Drawing.Point(117, 14)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(237, 45)
+        Me.MENote.Size = New System.Drawing.Size(256, 45)
         Me.MENote.TabIndex = 139
         '
         'LabelControl18
@@ -905,6 +911,29 @@ Partial Class FormEmpUniOrderDet
         Me.BtnAddOrder.TabIndex = 2
         Me.BtnAddOrder.Text = "Add (Ins)"
         '
+        'DECreated
+        '
+        Me.DECreated.EditValue = Nothing
+        Me.DECreated.Enabled = False
+        Me.DECreated.Location = New System.Drawing.Point(117, 65)
+        Me.DECreated.Name = "DECreated"
+        Me.DECreated.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.DECreated.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreated.Size = New System.Drawing.Size(256, 20)
+        Me.DECreated.TabIndex = 147
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Location = New System.Drawing.Point(34, 68)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl16.TabIndex = 148
+        Me.LabelControl16.Text = "Created Date"
+        '
         'FormEmpUniOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -961,6 +990,8 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControlDesign.ResumeLayout(False)
         Me.PanelControlDesign.PerformLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1039,4 +1070,6 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents TxtOrderMax As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtDiff As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
 End Class

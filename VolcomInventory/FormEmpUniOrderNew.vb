@@ -51,6 +51,7 @@
                 query += "VALUES('" + id_store_contact_to + "', '" + id_warehouse_contact_to + "', '" + header_number_sales("2") + "', NOW(), '', '0', '1', '7', '" + id_user + "'," + id_emp_uni_budget + ",'" + tolerance + "','" + decimalSQL(discount.ToString) + "'); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
                 increase_inc_sales("2")
+                submit_who_prepared("39", id_new, id_user)
                 FormEmpUniPeriodDet.viewOrder()
                 FormEmpUniPeriodDet.GVSalesOrder.FocusedRowHandle = find_row(FormEmpUniPeriodDet.GVSalesOrder, "id_sales_order", id_new)
 
