@@ -87,7 +87,7 @@
     Private Sub BtnAccept_Click(sender As Object, e As EventArgs) Handles BtnAccept.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to accept this order?", "Accept Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim query As String = "UPDATE tb_sales_order Set id_report_status=6 WHERE id_sales_order=" + id_sales_order + " "
+            Dim query As String = "UPDATE tb_sales_order Set id_report_status=6, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
             FormEmpUniPeriodDet.viewOrder()
             actionLoad()
@@ -100,7 +100,7 @@
             Dim so As New ClassSalesOrder()
             so.cancelReservedStock(id_sales_order)
 
-            Dim query As String = "UPDATE tb_sales_order Set id_report_status=5 WHERE id_sales_order=" + id_sales_order + " "
+            Dim query As String = "UPDATE tb_sales_order Set id_report_status=5,sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
             FormEmpUniPeriodDet.viewOrder()
             actionLoad()
@@ -177,6 +177,42 @@
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+
+    Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles SimpleButton3.Click
+        Cursor = Cursors.WaitCursor
+        ReportEmpUniOrder.dt = GCItemList.DataSource
+        Dim Report As New ReportEmpUniOrder()
+
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+
+        'Grid Detail
+        ReportStyleGridview(Report.GVItemList)
+
+        'Parse val
+        Report.LabelTitle.Text = "UNIFORM ORDER - " + TxtPeriodName.Text.ToUpper
+        Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
+        Report.LabelNIK.Text = TxtNIK.Text.ToUpper
+        Report.LabelName.Text = TxtName.Text.ToUpper
+        Report.LabelDept.Text = TxtDept.Text.ToUpper
+        Report.LabelLevel.Text = TxtLevel.Text.ToUpper
+        Report.LabelBudget.Text = TxtBudget.Text.ToUpper
+        Report.LabelTolerance.Text = TxtTolerance.Text.ToUpper
+        Report.LabelGrossTotal.Text = TxtGross.Text.ToUpper
+        Report.LabelDiscount.Text = TxtDiscountValue.Text.ToUpper
+        Report.LabelTotal.Text = TxtTotal.Text.ToUpper
+
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
     End Sub
 
     'Private Sub TxtCode_KeyDown(sender As Object, e As KeyEventArgs)

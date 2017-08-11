@@ -42,6 +42,8 @@ Partial Class FormEmpUniOrderDet
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtDiff = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtOrderMax = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
@@ -92,8 +94,6 @@ Partial Class FormEmpUniOrderDet
         Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.TxtDiff = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +111,7 @@ Partial Class FormEmpUniOrderDet
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOrderMax.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTolerance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,7 +130,6 @@ Partial Class FormEmpUniOrderDet
         CType(Me.PanelControlDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlDesign.SuspendLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -374,6 +374,29 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(480, 121)
         Me.PanelControl2.TabIndex = 141
+        '
+        'LabelControl15
+        '
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl15.Location = New System.Drawing.Point(13, 92)
+        Me.LabelControl15.Name = "LabelControl15"
+        Me.LabelControl15.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl15.TabIndex = 159
+        Me.LabelControl15.Text = "Difference"
+        '
+        'TxtDiff
+        '
+        Me.TxtDiff.Enabled = False
+        Me.TxtDiff.Location = New System.Drawing.Point(78, 89)
+        Me.TxtDiff.Name = "TxtDiff"
+        Me.TxtDiff.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDiff.Properties.Appearance.Options.UseFont = True
+        Me.TxtDiff.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDiff.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDiff.Properties.DisplayFormat.FormatString = "n2"
+        Me.TxtDiff.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TxtDiff.Size = New System.Drawing.Size(155, 20)
+        Me.TxtDiff.TabIndex = 158
         '
         'LabelControl14
         '
@@ -882,29 +905,6 @@ Partial Class FormEmpUniOrderDet
         Me.BtnAddOrder.TabIndex = 2
         Me.BtnAddOrder.Text = "Add (Ins)"
         '
-        'TxtDiff
-        '
-        Me.TxtDiff.Enabled = False
-        Me.TxtDiff.Location = New System.Drawing.Point(78, 89)
-        Me.TxtDiff.Name = "TxtDiff"
-        Me.TxtDiff.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDiff.Properties.Appearance.Options.UseFont = True
-        Me.TxtDiff.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TxtDiff.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TxtDiff.Properties.DisplayFormat.FormatString = "n2"
-        Me.TxtDiff.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtDiff.Size = New System.Drawing.Size(155, 20)
-        Me.TxtDiff.TabIndex = 158
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl15.Location = New System.Drawing.Point(13, 92)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(58, 13)
-        Me.LabelControl15.TabIndex = 159
-        Me.LabelControl15.Text = "Difference"
-        '
         'FormEmpUniOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -941,6 +941,7 @@ Partial Class FormEmpUniOrderDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOrderMax.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTolerance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -960,7 +961,6 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControlDesign.ResumeLayout(False)
         Me.PanelControlDesign.PerformLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDiff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
