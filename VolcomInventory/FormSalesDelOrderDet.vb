@@ -1177,6 +1177,8 @@ Public Class FormSalesDelOrderDet
         Report.LabelNote.Text = MENote.Text
         Report.LabelPrepare.Text = TxtSalesOrder.Text
         Report.LabelCat.Text = LEStatusSO.Text
+        Report.LabelUni3.Text = TxtNIK.Text
+        Report.LabelUni6.Text = TxtEmployee.Text
 
 
         'Show the report's preview. 
