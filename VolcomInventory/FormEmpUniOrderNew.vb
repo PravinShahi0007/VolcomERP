@@ -47,8 +47,8 @@
             ElseIf id_warehouse_contact_to = "-1" Then
                 stopCustom("WH account is not found")
             Else
-                Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_budget, tolerance, discount) "
-                query += "VALUES('" + id_store_contact_to + "', '" + id_warehouse_contact_to + "', '" + header_number_sales("2") + "', NOW(), '', '0', '1', '7', '" + id_user + "'," + id_emp_uni_budget + ",'" + tolerance + "','" + decimalSQL(discount.ToString) + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_emp_uni_budget, tolerance, discount) "
+                query += "VALUES('" + id_store_contact_to + "', '" + id_warehouse_contact_to + "', '" + header_number_sales("2") + "', NOW(), '', '0', '1', '7', '" + id_user + "','" + FormEmpUniPeriodDet.id_emp_uni_period + "'," + id_emp_uni_budget + ",'" + tolerance + "','" + decimalSQL(discount.ToString) + "'); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
                 increase_inc_sales("2")
                 submit_who_prepared("39", id_new, id_user)
