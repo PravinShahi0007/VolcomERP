@@ -311,7 +311,6 @@ Partial Class FormFGTransList
         '
         Me.GVPL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnIdPLSample, Me.GridColumnIdContactFrom, Me.GridColumnIdCompContactTo, Me.GridColumnIdReportStatus, Me.GridColumn15, Me.GridColumnPLNote, Me.GridColumnSeasno, Me.GridColumnPLNumber, Me.GridColumnSRNumber, Me.GridColumnFrom, Me.GridColumn16, Me.GridColumnPLDate, Me.GridColumnStatus, Me.GridColumnPLCategory, Me.GridColumnDesignMain, Me.GridColumnVendor, Me.GridColumn17, Me.GridColumnSelectRec, Me.GridColumnLastUpdate, Me.GridColumnLastUserRec, Me.GridColumnCodeRec, Me.GridColumnQtyRec, Me.GridColumnSizeRec, Me.GridColumnClassRec})
         Me.GVPL.GridControl = Me.GCPL
-        Me.GVPL.GroupCount = 1
         Me.GVPL.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyRec, "{0:n0}")})
         Me.GVPL.Name = "GVPL"
         Me.GVPL.OptionsBehavior.AutoExpandAllGroups = True
@@ -321,7 +320,7 @@ Partial Class FormFGTransList
         Me.GVPL.OptionsView.ShowFooter = True
         Me.GVPL.OptionsView.ShowGroupedColumns = True
         Me.GVPL.OptionsView.ShowGroupPanel = False
-        Me.GVPL.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnPLNumber, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdPLSample, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVPL.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdPLSample, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnNo
         '
@@ -677,7 +676,6 @@ Partial Class FormFGTransList
         '
         Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumn26, Me.GridColumnUpdBy, Me.GridColumnSelect, Me.GridColumnGroupStoreDel, Me.GridColumnCodeDel, Me.GridColumnNameDel, Me.GridColumnSizeDel, Me.GridColumnClass, Me.GridColumnQtyDel, Me.GridColumnPriceDel, Me.GridColumnPriceTypeDel, Me.GridColumnAmountDel})
         Me.GVSalesDelOrder.GridControl = Me.GCSalesDelOrder
-        Me.GVSalesDelOrder.GroupCount = 1
         Me.GVSalesDelOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "pl_sales_order_del_det_qty", Me.GridColumnQtyDel, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmountDel, "{0:n2}")})
         Me.GVSalesDelOrder.Name = "GVSalesDelOrder"
         Me.GVSalesDelOrder.OptionsBehavior.AutoExpandAllGroups = True
@@ -687,7 +685,6 @@ Partial Class FormFGTransList
         Me.GVSalesDelOrder.OptionsView.ShowFooter = True
         Me.GVSalesDelOrder.OptionsView.ShowGroupedColumns = True
         Me.GVSalesDelOrder.OptionsView.ShowGroupPanel = False
-        Me.GVSalesDelOrder.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn20, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn20
         '
@@ -1024,7 +1021,6 @@ Partial Class FormFGTransList
         '
         Me.GVSalesReturn.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnNumber, Me.GridColumnReturnOrderNumber, Me.GridColumnStore, Me.GridColumnCompNameTo, Me.GridColumnStoreRetNumber, Me.GridColumnCreatedDate, Me.GridColumn29, Me.GridColumn30, Me.GridColumnLastUser, Me.GridColumnSelReturn, Me.GridColumnCodeRet, Me.GridColumnNameRet, Me.GridColumnClassRet, Me.GridColumnSizeRet, Me.GridColumnQtyRet, Me.GridColumnPriceRet, Me.GridColumnAmountRet, Me.GridColumnPriceTypeRet, Me.GridColumnTypeRet, Me.GridColumnIdRet})
         Me.GVSalesReturn.GridControl = Me.GCSalesReturn
-        Me.GVSalesReturn.GroupCount = 1
         Me.GVSalesReturn.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyRet, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmountRet, "{0:n0}")})
         Me.GVSalesReturn.Name = "GVSalesReturn"
         Me.GVSalesReturn.OptionsBehavior.AutoExpandAllGroups = True
@@ -1034,7 +1030,7 @@ Partial Class FormFGTransList
         Me.GVSalesReturn.OptionsView.ShowFooter = True
         Me.GVSalesReturn.OptionsView.ShowGroupedColumns = True
         Me.GVSalesReturn.OptionsView.ShowGroupPanel = False
-        Me.GVSalesReturn.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnSalesReturnNumber, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdRet, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVSalesReturn.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdRet, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnSalesReturnNumber
         '
@@ -1356,7 +1352,6 @@ Partial Class FormFGTransList
         '
         Me.GVNonStock.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn18, Me.GridColumn31, Me.GridColumn32, Me.GridColumnRemarkNonStock})
         Me.GVNonStock.GridControl = Me.GCNonStock
-        Me.GVNonStock.GroupCount = 1
         Me.GVNonStock.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumn18, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Nothing, "{0:n0}")})
         Me.GVNonStock.Name = "GVNonStock"
         Me.GVNonStock.OptionsBehavior.AutoExpandAllGroups = True
@@ -1366,7 +1361,7 @@ Partial Class FormFGTransList
         Me.GVNonStock.OptionsView.ShowFooter = True
         Me.GVNonStock.OptionsView.ShowGroupedColumns = True
         Me.GVNonStock.OptionsView.ShowGroupPanel = False
-        Me.GVNonStock.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn1, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn32, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVNonStock.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumn32, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn1
         '
@@ -1661,7 +1656,6 @@ Partial Class FormFGTransList
         '
         Me.GVSalesReturnQC.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesReturnQCNumber, Me.GridColumn33, Me.GridColumnStoreNameFrom, Me.GridColumn34, Me.GridColumnQCCategory, Me.GridColumn35, Me.GridColumnCompTo, Me.GridColumn36, Me.GridColumn37, Me.GridColumn38, Me.GridColumnCodeRQC, Me.GridColumnNameRetQC, Me.GridColumnSizeRQC, Me.GridColumnClassRQC, Me.GridColumnPrcTypeRQC, Me.GridColumnPriceRQC, Me.GridColumnQtyRQC, Me.GridColumnAmountRQC})
         Me.GVSalesReturnQC.GridControl = Me.GCSalesReturnQC
-        Me.GVSalesReturnQC.GroupCount = 1
         Me.GVSalesReturnQC.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyRQC, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmountRQC, "{0:n2}")})
         Me.GVSalesReturnQC.Name = "GVSalesReturnQC"
         Me.GVSalesReturnQC.OptionsBehavior.AutoExpandAllGroups = True
@@ -1670,7 +1664,6 @@ Partial Class FormFGTransList
         Me.GVSalesReturnQC.OptionsView.ShowFooter = True
         Me.GVSalesReturnQC.OptionsView.ShowGroupedColumns = True
         Me.GVSalesReturnQC.OptionsView.ShowGroupPanel = False
-        Me.GVSalesReturnQC.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnSalesReturnQCNumber, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnSalesReturnQCNumber
         '
@@ -1972,7 +1965,6 @@ Partial Class FormFGTransList
         '
         Me.GVFGTrf.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnFGTrfNumber, Me.GridColumnCompNameFrom, Me.GridColumn41, Me.GridColumnFGTrfDate, Me.GridColumn42, Me.GridColumnPrepOrder, Me.GridColumnIdFgTrf, Me.GridColumn43, Me.GridColumnUpdatedBy, Me.GridColumnSelTrf, Me.GridColumnCodeTrf, Me.GridColumnNameTrf, Me.GridColumnSizeTrf, Me.GridColumnQtyTrf, Me.GridColumnClassTrf})
         Me.GVFGTrf.GridControl = Me.GCFGTrf
-        Me.GVFGTrf.GroupCount = 1
         Me.GVFGTrf.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQtyTrf, "{0:n0}")})
         Me.GVFGTrf.Name = "GVFGTrf"
         Me.GVFGTrf.OptionsBehavior.AutoExpandAllGroups = True
@@ -1982,7 +1974,7 @@ Partial Class FormFGTransList
         Me.GVFGTrf.OptionsView.ShowFooter = True
         Me.GVFGTrf.OptionsView.ShowGroupedColumns = True
         Me.GVFGTrf.OptionsView.ShowGroupPanel = False
-        Me.GVFGTrf.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnFGTrfNumber, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdFgTrf, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GVFGTrf.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdFgTrf, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumnFGTrfNumber
         '
