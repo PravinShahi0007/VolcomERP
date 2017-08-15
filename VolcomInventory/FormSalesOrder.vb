@@ -14,6 +14,12 @@
 
         'viewSalesOrder()
         'viewSalesOrderGen()
+        'VIEW OPTION
+        If id_type = "1" Then 'prepare uniform
+            XTPPrepareGenerate.PageVisible = False
+            GridColumnPeriodUni.VisibleIndex = 2
+            GridColumnPrepareType.VisibleIndex = 3
+        End If
     End Sub
 
     Sub viewSalesOrderGen()
@@ -64,6 +70,9 @@
         End Try
         cond += "AND (a.sales_order_date>='" + date_from_selected + "' AND a.sales_order_date<='" + date_until_selected + "') "
 
+        If id_type = "1" Then 'prepare uniform
+            cond += "AND !ISNULL(a.id_emp_uni_period) "
+        End If
         Dim query As String = query_c.queryMain(cond, "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesOrder.DataSource = data
