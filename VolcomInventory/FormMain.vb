@@ -1497,6 +1497,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpUniPeriod" Then
             FormEmpUniPeriodDet.action = "ins"
             FormEmpUniPeriodDet.ShowDialog()
+        ElseIf formName = "FormDepartementSub" Then
+            FormDepartementSubdet.id_subdep = "-1"
+            FormDepartementSubdet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7862,6 +7865,8 @@ Public Class FormMain
             FormWHDelEmpty.viewDel()
         ElseIf formName = "FormEmpUniPeriod" Then
             FormEmpUniPeriod.viewUniformPeriod()
+        ElseIf formName = "FormDepartementSub" Then
+            FormDepartementSub.view_departement()
         End If
     End Sub
     'Switch
@@ -10644,6 +10649,18 @@ Public Class FormMain
             FormSalesOrder.Show()
             FormSalesOrder.WindowState = FormWindowState.Maximized
             FormSalesOrder.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBSubDept_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSubDept.LinkClicked
+        Try
+            FormDepartementSub.MdiParent = Me
+            FormDepartementSub.Show()
+            FormDepartementSub.WindowState = FormWindowState.Maximized
+            FormDepartementSub.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
