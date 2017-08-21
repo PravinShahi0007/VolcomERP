@@ -100,6 +100,16 @@ Public Class FormSalesDelOrderDet
             id_sales_order = data.Rows(0)("id_sales_order").ToString
             id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
 
+            'uniform
+            Dim id_so_status As String = data.Rows(0)("id_so_status").ToString
+            If id_so_status = "7" Then
+                GroupUni.Visible = True
+                TxtPeriod.Text = data.Rows(0)("period_name").ToString
+                TxtNIK.Text = data.Rows(0)("employee_code").ToString
+                TxtEmployee.Text = data.Rows(0)("employee_name").ToString
+            End If
+
+
             'detail2
             viewDetail()
             view_barcode_list()
@@ -146,6 +156,15 @@ Public Class FormSalesDelOrderDet
         'tipe & status SO
         LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
         LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", data.Rows(0)("id_so_status").ToString)
+
+        'uniform
+        Dim id_so_status As String = data.Rows(0)("id_so_status").ToString
+        If id_so_status = "7" Then
+            GroupUni.Visible = True
+            TxtPeriod.Text = data.Rows(0)("period_name").ToString
+            TxtNIK.Text = data.Rows(0)("employee_code").ToString
+            TxtEmployee.Text = data.Rows(0)("employee_name").ToString
+        End If
 
         'general
         viewDetail()
@@ -1158,6 +1177,8 @@ Public Class FormSalesDelOrderDet
         Report.LabelNote.Text = MENote.Text
         Report.LabelPrepare.Text = TxtSalesOrder.Text
         Report.LabelCat.Text = LEStatusSO.Text
+        Report.LabelUni3.Text = TxtNIK.Text
+        Report.LabelUni6.Text = TxtEmployee.Text
 
 
         'Show the report's preview. 

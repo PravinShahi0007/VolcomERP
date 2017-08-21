@@ -185,6 +185,7 @@
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
+    <Compile Include="ClassEmpUni.vb" />
     <Compile Include="ClassFGBorrowQCReq.vb" />
     <Compile Include="ClassFGCodeReplace.vb" />
     <Compile Include="ClassFGMissingInv.vb" />
@@ -721,6 +722,48 @@
       <DependentUpon>FormEmpStoreSchCompareHistory.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpStoreSchCompareHistory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniOrderDet.Designer.vb">
+      <DependentUpon>FormEmpUniOrderDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniOrderDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniOrderNew.Designer.vb">
+      <DependentUpon>FormEmpUniOrderNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniOrderNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniOrderSearch.Designer.vb">
+      <DependentUpon>FormEmpUniOrderSearch.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniOrderSearch.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniOrderSingle.Designer.vb">
+      <DependentUpon>FormEmpUniOrderSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniOrderSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniPeriod.Designer.vb">
+      <DependentUpon>FormEmpUniPeriod.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniPeriod.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniPeriodDet.Designer.vb">
+      <DependentUpon>FormEmpUniPeriodDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniPeriodDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniPeriodSingle.Designer.vb">
+      <DependentUpon>FormEmpUniPeriodSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniPeriodSingle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGBorrowQCReq.Designer.vb">
@@ -4173,6 +4216,12 @@
     <Compile Include="ReportEmpLeaveStock.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpUniOrder.Designer.vb">
+      <DependentUpon>ReportEmpUniOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpUniOrder.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportFGAdjIn.Designer.vb">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>
     </Compile>
@@ -5115,6 +5164,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpStoreSchCompareHistory.resx">
       <DependentUpon>FormEmpStoreSchCompareHistory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniOrderDet.resx">
+      <DependentUpon>FormEmpUniOrderDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniOrderNew.resx">
+      <DependentUpon>FormEmpUniOrderNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniOrderSearch.resx">
+      <DependentUpon>FormEmpUniOrderSearch.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniOrderSingle.resx">
+      <DependentUpon>FormEmpUniOrderSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniPeriod.resx">
+      <DependentUpon>FormEmpUniPeriod.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniPeriodDet.resx">
+      <DependentUpon>FormEmpUniPeriodDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniPeriodSingle.resx">
+      <DependentUpon>FormEmpUniPeriodSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGBorrowQCReq.resx">
       <DependentUpon>FormFGBorrowQCReq.vb</DependentUpon>
@@ -7282,6 +7352,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpLeaveStock.resx">
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpUniOrder.resx">
+      <DependentUpon>ReportEmpUniOrder.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportFGAdjIn.resx">
       <DependentUpon>ReportFGAdjIn.vb</DependentUpon>

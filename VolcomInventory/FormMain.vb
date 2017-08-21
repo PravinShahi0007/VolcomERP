@@ -1487,13 +1487,16 @@ Public Class FormMain
             FormProductionAssemblyNew.ShowDialog()
         ElseIf formName = "FormMasterCargoRate" Then
             FormMasterCargoRateAdd.ShowDialog()
-	ElseIf formName = "FormWHDelEmpty" Then
+        ElseIf formName = "FormWHDelEmpty" Then
             FormPopUpContact.id_cat = "6"
             FormPopUpContact.id_pop_up = "77"
             FormPopUpContact.ShowDialog()
         ElseIf formName = "FormDeliveryCargo" Then
             FormDeliveryCargoDet.id_awbill = "-1"
             FormDeliveryCargoDet.ShowDialog()
+        ElseIf formName = "FormEmpUniPeriod" Then
+            FormEmpUniPeriodDet.action = "ins"
+            FormEmpUniPeriodDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2375,6 +2378,10 @@ Public Class FormMain
             ElseIf formName = "FormDeliveryCargo" Then
                 FormDeliveryCargoDet.id_awbill = FormDeliveryCargo.GVDeliverySlip.GetFocusedRowCellValue("id_awbill").ToString
                 FormDeliveryCargoDet.ShowDialog()
+            ElseIf formName = "FormEmpUniPeriod" Then
+                FormEmpUniPeriodDet.action = "upd"
+                FormEmpUniPeriodDet.id_emp_uni_period = FormEmpUniPeriod.GVUni.GetFocusedRowCellValue("id_emp_uni_period").ToString
+                FormEmpUniPeriodDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5398,6 +5405,19 @@ Public Class FormMain
             Else
                 stopCustom("This report already appoved.")
             End If
+        ElseIf formName = "FormEmpUniPeriod" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Try
+                    Dim id_emp_uni_period As String = FormEmpUniPeriod.GVUni.GetFocusedRowCellValue("id_emp_uni_period").ToString
+
+                    query = String.Format("DELETE FROM tb_emp_uni_period WHERE id_emp_uni_period='{0}'", id_emp_uni_period)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormEmpUniPeriod.viewUniformPeriod()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -6607,20 +6627,22 @@ Public Class FormMain
         ElseIf formName = "FormWHDelEmptyStock" Then
             'command print here
             print(FormWHDelEmptyStock.GCData, "NON STOCK INVENTORY - " + FormWHDelEmptyStock.store)
+        ElseIf formName = "FormEmpUniPeriod" Then
+            print(FormEmpUniPeriod.GCUni, "Uniform Period")
         ElseIf formName = "FormFGTransList" Then
             Dim page As String = FormFGTransList.page_active
             If page = "rec" Then
-                print(FormFGTransList.GCPL, "RECEIVED PRODUCT (" + FormFGTransList.DEFromRec.Text + " - " + FormFGTransList.DEUntilRec.Text + ")")
+                print_raw(FormFGTransList.GCPL, "RECEIVED PRODUCT (" + FormFGTransList.DEFromRec.Text + " - " + FormFGTransList.DEUntilRec.Text + ")")
             ElseIf page = "del" Then
-                print(FormFGTransList.GCSalesDelOrder, "DELIVERY (" + FormFGTransList.DEFromDO.Text + " - " + FormFGTransList.DEUntilDO.Text + ")")
+                print_raw(FormFGTransList.GCSalesDelOrder, "DELIVERY (" + FormFGTransList.DEFromDO.Text + " - " + FormFGTransList.DEUntilDO.Text + ")")
             ElseIf page = "ret" Then
-                print(FormFGTransList.GCSalesReturn, "RETURN (" + FormFGTransList.DEFromReturn.Text + " - " + FormFGTransList.DEUntilReturn.Text + ")")
+                print_raw(FormFGTransList.GCSalesReturn, "RETURN (" + FormFGTransList.DEFromReturn.Text + " - " + FormFGTransList.DEUntilReturn.Text + ")")
             ElseIf page = "nsr" Then
-                print(FormFGTransList.GCNonStock, "NON STOCK (" + FormFGTransList.DEFromNonStock.Text + " - " + FormFGTransList.DEUntilNonStock.Text + ")")
+                print_raw(FormFGTransList.GCNonStock, "NON STOCK (" + FormFGTransList.DEFromNonStock.Text + " - " + FormFGTransList.DEUntilNonStock.Text + ")")
             ElseIf page = "ret_trf" Then
-                print(FormFGTransList.GCSalesReturnQC, "RETURN TRANSFER (" + FormFGTransList.DEFromReturnQC.Text + " - " + FormFGTransList.DEUntilReturnQC.Text + ")")
+                print_raw(FormFGTransList.GCSalesReturnQC, "RETURN TRANSFER (" + FormFGTransList.DEFromReturnQC.Text + " - " + FormFGTransList.DEUntilReturnQC.Text + ")")
             ElseIf page = "trf" Then
-                print(FormFGTransList.GCFGTrf, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
+                print_raw(FormFGTransList.GCFGTrf, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
             End If
         Else
             RPSubMenu.Visible = False
@@ -7179,6 +7201,8 @@ Public Class FormMain
         ElseIf formName = "FormWHDelEmptyStock" Then
             FormWHDelEmptyStock.Close()
             FormWHDelEmptyStock.Dispose()
+        ElseIf formName = "FormEmpUniPeriod" Then
+            FormEmpUniPeriod.Close()
         ElseIf formName = "FormFGTransList" Then
             FormFGTransList.Close()
             FormFGTransList.Dispose()
@@ -7836,6 +7860,8 @@ Public Class FormMain
             FormProductionAssembly.viewData()
         ElseIf formName = "FormWHDelEmpty" Then
             FormWHDelEmpty.viewDel()
+        ElseIf formName = "FormEmpUniPeriod" Then
+            FormEmpUniPeriod.viewUniformPeriod()
         End If
     End Sub
     'Switch
@@ -8934,14 +8960,19 @@ Public Class FormMain
 
     Private Sub NBSalesOrder_LinkClicked(ByVal sender As System.Object, ByVal e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesOrder.LinkClicked
         Cursor = Cursors.WaitCursor
-        'Try
-        FormSalesOrder.MdiParent = Me
-        FormSalesOrder.Show()
-        FormSalesOrder.WindowState = FormWindowState.Maximized
-        FormSalesOrder.Focus()
-        'Catch ex As Exception
-        'errorProcess()
-        'End Try
+        Try
+            FormSalesOrder.Close()
+            FormSalesOrder.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesOrder.MdiParent = Me
+            FormSalesOrder.Show()
+            FormSalesOrder.WindowState = FormWindowState.Maximized
+            FormSalesOrder.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
         Cursor = Cursors.Default
     End Sub
 
@@ -10576,6 +10607,20 @@ Public Class FormMain
         Cursor = Cursors.Default
     End Sub
 
+
+    Private Sub NBEmpUniPeriod_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpUniPeriod.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpUniPeriod.MdiParent = Me
+            FormEmpUniPeriod.Show()
+            FormEmpUniPeriod.WindowState = FormWindowState.Maximized
+            FormEmpUniPeriod.Focus()
+            Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
     Private Sub NBRateManagement_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBRateManagement.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
@@ -10589,7 +10634,16 @@ Public Class FormMain
     Private Sub NBPrepareOrderUni_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPrepareOrderUni.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
-            FormSalesOrder.ShowDialog()
+            FormSalesOrder.Close()
+            FormSalesOrder.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesOrder.MdiParent = Me
+            FormSalesOrder.id_type = "1"
+            FormSalesOrder.Show()
+            FormSalesOrder.WindowState = FormWindowState.Maximized
+            FormSalesOrder.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
