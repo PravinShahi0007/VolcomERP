@@ -48,6 +48,7 @@
         Else
             BSave.Enabled = False
         End If
+        GVProdWO.BestFitColumns()
     End Sub
     Sub view_wo(ByVal id_prod_wo As String)
         Dim query = "CALL view_prod_order_wo_det('" & id_prod_wo & "','1')"

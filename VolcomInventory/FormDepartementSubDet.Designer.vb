@@ -22,21 +22,21 @@ Partial Class FormDepartementSubDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDepartementSubDet))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.LETypeSO = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LEDepartement = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LEUser = New DevExpress.XtraEditors.LookUpEdit()
+        Me.TESubDept = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LETypeSO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TESubDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -48,6 +48,18 @@ Partial Class FormDepartementSubDet
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(416, 36)
         Me.PanelControl1.TabIndex = 0
+        '
+        'BtnCancel
+        '
+        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancel.ImageIndex = 5
+        Me.BtnCancel.ImageList = Me.LargeImageCollection
+        Me.BtnCancel.Location = New System.Drawing.Point(264, 2)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 32)
+        Me.BtnCancel.TabIndex = 12
+        Me.BtnCancel.TabStop = False
+        Me.BtnCancel.Text = "Cancel"
         '
         'LargeImageCollection
         '
@@ -70,18 +82,6 @@ Partial Class FormDepartementSubDet
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "1417618546_Blue tag.png")
         Me.LargeImageCollection.Images.SetKeyName(16, "attachment-icon.png")
-        '
-        'BtnCancel
-        '
-        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancel.ImageIndex = 5
-        Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(264, 2)
-        Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 32)
-        Me.BtnCancel.TabIndex = 12
-        Me.BtnCancel.TabStop = False
-        Me.BtnCancel.Text = "Cancel"
         '
         'BtnSave
         '
@@ -119,47 +119,47 @@ Partial Class FormDepartementSubDet
         Me.LabelControl3.TabIndex = 3
         Me.LabelControl3.Text = "Head Sub Departement"
         '
-        'LETypeSO
+        'LEDepartement
         '
-        Me.LETypeSO.Location = New System.Drawing.Point(153, 12)
-        Me.LETypeSO.Name = "LETypeSO"
-        Me.LETypeSO.Properties.Appearance.Options.UseTextOptions = True
-        Me.LETypeSO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LETypeSO.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LETypeSO.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_so_type", "ID SO Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("so_type", "Type")})
-        Me.LETypeSO.Properties.NullText = ""
-        Me.LETypeSO.Properties.ShowFooter = False
-        Me.LETypeSO.Size = New System.Drawing.Size(234, 20)
-        Me.LETypeSO.TabIndex = 4
+        Me.LEDepartement.Location = New System.Drawing.Point(153, 12)
+        Me.LEDepartement.Name = "LEDepartement"
+        Me.LEDepartement.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEDepartement.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEDepartement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEDepartement.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "ID Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departement")})
+        Me.LEDepartement.Properties.NullText = ""
+        Me.LEDepartement.Properties.ShowFooter = False
+        Me.LEDepartement.Size = New System.Drawing.Size(234, 20)
+        Me.LEDepartement.TabIndex = 4
         '
-        'LookUpEdit1
+        'LEUser
         '
-        Me.LookUpEdit1.Location = New System.Drawing.Point(153, 64)
-        Me.LookUpEdit1.Name = "LookUpEdit1"
-        Me.LookUpEdit1.Properties.Appearance.Options.UseTextOptions = True
-        Me.LookUpEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_so_type", "ID SO Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("so_type", "Type")})
-        Me.LookUpEdit1.Properties.NullText = ""
-        Me.LookUpEdit1.Properties.ShowFooter = False
-        Me.LookUpEdit1.Size = New System.Drawing.Size(234, 20)
-        Me.LookUpEdit1.TabIndex = 5
+        Me.LEUser.Location = New System.Drawing.Point(153, 64)
+        Me.LEUser.Name = "LEUser"
+        Me.LEUser.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEUser.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEUser.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEUser.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_user", "ID User", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("username", "User"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_name", "Name")})
+        Me.LEUser.Properties.NullText = ""
+        Me.LEUser.Properties.ShowFooter = False
+        Me.LEUser.Size = New System.Drawing.Size(234, 20)
+        Me.LEUser.TabIndex = 5
         '
-        'TextEdit1
+        'TESubDept
         '
-        Me.TextEdit1.Location = New System.Drawing.Point(153, 38)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(197, 20)
-        Me.TextEdit1.TabIndex = 6
+        Me.TESubDept.Location = New System.Drawing.Point(153, 38)
+        Me.TESubDept.Name = "TESubDept"
+        Me.TESubDept.Size = New System.Drawing.Size(197, 20)
+        Me.TESubDept.TabIndex = 6
         '
         'FormDepartementSubDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(416, 134)
-        Me.Controls.Add(Me.TextEdit1)
-        Me.Controls.Add(Me.LookUpEdit1)
-        Me.Controls.Add(Me.LETypeSO)
+        Me.Controls.Add(Me.TESubDept)
+        Me.Controls.Add(Me.LEUser)
+        Me.Controls.Add(Me.LEDepartement)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.LabelControl1)
@@ -172,9 +172,9 @@ Partial Class FormDepartementSubDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LETypeSO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEUser.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TESubDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -187,7 +187,7 @@ Partial Class FormDepartementSubDet
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LETypeSO As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LEDepartement As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LEUser As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents TESubDept As DevExpress.XtraEditors.TextEdit
 End Class

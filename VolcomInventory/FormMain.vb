@@ -1498,8 +1498,8 @@ Public Class FormMain
             FormEmpUniPeriodDet.action = "ins"
             FormEmpUniPeriodDet.ShowDialog()
         ElseIf formName = "FormDepartementSub" Then
-            FormDepartementSubdet.id_subdep = "-1"
-            FormDepartementSubdet.ShowDialog()
+            FormDepartementSubDet.id_subdept = "-1"
+            FormDepartementSubDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2385,6 +2385,9 @@ Public Class FormMain
                 FormEmpUniPeriodDet.action = "upd"
                 FormEmpUniPeriodDet.id_emp_uni_period = FormEmpUniPeriod.GVUni.GetFocusedRowCellValue("id_emp_uni_period").ToString
                 FormEmpUniPeriodDet.ShowDialog()
+            ElseIf formName = "FormDepartementSub" Then
+                FormDepartementSubDet.id_subdept = FormDepartementSub.GVDepartment.GetFocusedRowCellValue("id_departement_sub").ToString
+                FormDepartementSubDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If

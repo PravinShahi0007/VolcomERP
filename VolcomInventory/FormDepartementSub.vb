@@ -24,6 +24,7 @@
                                                 LEFT JOIN tb_m_user usr ON usr.id_user = subdept.`id_usr_head_sub_dept`	 
                                                 LEFT JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee 
                                                 ORDER BY subdept.departement_sub", -1, True, "", "", "", "")
+
         GCDepartement.DataSource = data
         If data.Rows.Count > 0 Then
             'show all
