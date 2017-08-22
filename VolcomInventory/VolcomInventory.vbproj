@@ -3502,6 +3502,12 @@
     <Compile Include="FormSuperUserDept.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSuperUserSubDept.Designer.vb">
+      <DependentUpon>FormSuperUserSubDept.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSuperUserSubDept.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormTemplateCode.Designer.vb">
       <DependentUpon>FormTemplateCode.vb</DependentUpon>
     </Compile>
@@ -6931,6 +6937,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSuperUserDept.resx">
       <DependentUpon>FormSuperUserDept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSuperUserSubDept.resx">
+      <DependentUpon>FormSuperUserSubDept.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormTemplateCode.resx">
       <DependentUpon>FormTemplateCode.vb</DependentUpon>

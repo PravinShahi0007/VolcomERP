@@ -18,7 +18,7 @@
     End Sub
 
     Sub view_departement()
-        Dim data As DataTable = execute_query("SELECT subdept.*,dep.`departement`,emp.employee_name AS sub_dept_head
+        Dim data As DataTable = execute_query("SELECT subdept.*,dep.`departement`,emp.employee_name AS sub_dept_head,id_usr_head_sub_dept
                                                 FROM tb_m_departement_sub subdept
                                                 INNER JOIN tb_m_departement dep ON dep.`id_departement`=subdept.`id_departement` 
                                                 LEFT JOIN tb_m_user usr ON usr.id_user = subdept.`id_usr_head_sub_dept`	 
