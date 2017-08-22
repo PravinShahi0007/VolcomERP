@@ -14,6 +14,7 @@ Module Common
     Public id_employee_user As String
     Public id_role_login As String
     Public id_departement_user As String
+    Public id_departement_sub_user As String
     Public username_user As String
     Public name_user As String
     Public code_user As String
@@ -2483,9 +2484,10 @@ Module Common
         report_detail.load_detail()
         'get id_employee
         Dim id_empx As String = id_employee
-        'get id_employee
-        Dim query_dep As String = "SELECT id_departement FROM tb_m_employee WHERE id_employee='" & id_employee & "' LIMIT 1"
+        'get id_dep
+        Dim query_dep As String = "SELECT id_departement,IFNULL(id_departement_sub,"") AS id_departement_sub FROM tb_m_employee WHERE id_employee='" & id_employee & "' LIMIT 1"
         Dim id_deptx As String = execute_query(query_dep, 0, True, "", "", "", "")
+        Dim id_sub_deptx As String = execute_query(query_dep, 1, True, "", "", "", "")
         '
         Dim query As String = ""
         If report_mark_is_bom = "1" Then
@@ -2502,7 +2504,7 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         End If
 
-        Dim query_cek As String = "SELECT HOUR(a.lead_time) AS hourx,MINUTE(a.lead_time) AS minutex,SECOND(a.lead_time) AS secondx,a.lead_time,a.level,b.id_mark_asg,b.report_mark_type,b.id_report_status,a.id_user,a.is_head_dept,a.is_asst_head_dept "
+        Dim query_cek As String = "SELECT HOUR(a.lead_time) AS hourx,MINUTE(a.lead_time) AS minutex,SECOND(a.lead_time) AS secondx,a.lead_time,a.level,b.id_mark_asg,b.report_mark_type,b.id_report_status,a.id_user,a.is_head_dept,a.is_asst_head_dept,a.is_sub_head "
         query_cek += "FROM tb_mark_asg_user a INNER JOIN tb_mark_asg b ON a.id_mark_asg=b.id_mark_asg "
         query_cek += "WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,a.level"
         Dim data As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
@@ -2517,6 +2519,16 @@ Module Common
                 Dim query_dept As String = "SELECT dept.id_user_asst_head FROM tb_m_departement dept
                                                 WHERE dept.id_departement='" & id_deptx & "'"
                 id_user_mark = execute_query(query_dept, 0, True, "", "", "", "")
+            ElseIf data.Rows(i)("is_sub_head").ToString = "1" Then 'search sub head dept
+                Dim query_dept As String = "SELECT IFNULL(dept.id_usr_head_sub_dept,'') as id_usr_head_sub_dept FROM tb_m_departement_sub dept
+                                                WHERE dept.id_departement_sub='" & id_sub_deptx & "'"
+                Dim datax As DataTable = execute_query(query_dept, -1, True, "", "", "", "")
+
+                If datax.Rows.Count = 0 Or datax.Rows(0)("id_usr_head_sub_dept").ToString = "" Then
+                    Continue For
+                Else
+                    id_user_mark = execute_query(query_dept, 0, True, "", "", "", "")
+                End If
             Else
                 id_user_mark = data.Rows(i)("id_user").ToString
             End If
@@ -2566,9 +2578,9 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         End If
 
-        Dim query_cek As String = "SELECT HOUR(a.lead_time) AS hourx,MINUTE(a.lead_time) AS minutex,SECOND(a.lead_time) AS secondx,a.lead_time,a.level,b.id_mark_asg,b.report_mark_type,b.id_report_status,a.id_user,a.is_head_dept,a.is_asst_head_dept "
-        query_cek += "FROM tb_mark_asg_user a INNER JOIN tb_mark_asg b ON a.id_mark_asg=b.id_mark_asg "
-        query_cek += "WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,a.level"
+        Dim query_cek As String = "SELECT HOUR(a.lead_time) AS hourx,MINUTE(a.lead_time) AS minutex,SECOND(a.lead_time) AS secondx,a.lead_time,a.level,b.id_mark_asg,b.report_mark_type,b.id_report_status,a.id_user,a.is_head_dept,a.is_asst_head_dept,a.is_sub_head 
+FROM tb_mark_asg_user a INNER JOIN tb_mark_asg b ON a.id_mark_asg=b.id_mark_asg 
+WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,a.level"
         Dim data As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
 
         For i As Integer = 0 To (data.Rows.Count - 1)
@@ -2580,6 +2592,13 @@ Module Common
             ElseIf data.Rows(i)("is_asst_head_dept").ToString = "1" Then 'search asst head dept
                 Dim query_dept As String = "SELECT dept.id_user_asst_head FROM tb_m_departement dept
                                                 WHERE dept.id_departement='" & id_departement_user & "'"
+                id_user_mark = execute_query(query_dept, 0, True, "", "", "", "")
+            ElseIf data.Rows(i)("is_sub_head").ToString = "1" Then 'search sub head dept
+                Dim query_dept As String = "SELECT IFNULL(dept.id_usr_head_sub_dept,'') as id_usr_head_sub_dept FROM tb_m_departement_sub dept
+                                                WHERE dept.id_departement_sub='" & id_departement_sub_user & "'"
+                Dim datax As DataTable = execute_query(query_dept, -1, True, "", "", "", "")
+
+                If datax.Rows.Count = 0 Or datax.Rows(0)("id_usr_head_sub_dept").ToString = "" Then Continue For
                 id_user_mark = execute_query(query_dept, 0, True, "", "", "", "")
             Else
                 id_user_mark = data.Rows(i)("id_user").ToString
