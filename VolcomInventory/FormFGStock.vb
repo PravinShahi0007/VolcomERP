@@ -1037,7 +1037,6 @@
     Private Sub DEUntil_KeyDown(sender As Object, e As KeyEventArgs) Handles DEUntil.KeyDown
         If e.KeyCode = Keys.Enter Then
             BtnTracking.Focus()
-            viewStockCard()
         End If
     End Sub
 
