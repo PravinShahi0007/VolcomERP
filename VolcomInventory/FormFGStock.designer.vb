@@ -27,15 +27,11 @@ Partial Class FormFGStock
         Me.BGVFGStock = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
+        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDesignCode = New DevExpress.XtraEditors.TextEdit()
         Me.DEUntilStockFG = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.SLEDesignStockSum = New DevExpress.XtraEditors.SearchLookUpEdit()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.SLELocatorStockSum = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView13 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -168,10 +164,11 @@ Partial Class FormFGStock
         CType(Me.BGVFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilStockFG.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilStockFG.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SLEDesignStockSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLELocatorStockSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEWHStockSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -264,9 +261,9 @@ Partial Class FormFGStock
         Me.GroupControlStockSum.Controls.Add(Me.GCFGStock)
         Me.GroupControlStockSum.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlStockSum.Enabled = False
-        Me.GroupControlStockSum.Location = New System.Drawing.Point(0, 58)
+        Me.GroupControlStockSum.Location = New System.Drawing.Point(0, 56)
         Me.GroupControlStockSum.Name = "GroupControlStockSum"
-        Me.GroupControlStockSum.Size = New System.Drawing.Size(1164, 412)
+        Me.GroupControlStockSum.Size = New System.Drawing.Size(1164, 414)
         Me.GroupControlStockSum.TabIndex = 19
         Me.GroupControlStockSum.Text = "Finished Goods"
         '
@@ -276,7 +273,7 @@ Partial Class FormFGStock
         Me.GCFGStock.Location = New System.Drawing.Point(20, 2)
         Me.GCFGStock.MainView = Me.BGVFGStock
         Me.GCFGStock.Name = "GCFGStock"
-        Me.GCFGStock.Size = New System.Drawing.Size(1142, 408)
+        Me.GCFGStock.Size = New System.Drawing.Size(1142, 410)
         Me.GCFGStock.TabIndex = 38
         Me.GCFGStock.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.BGVFGStock})
         '
@@ -305,9 +302,11 @@ Partial Class FormFGStock
         '
         Me.GroupControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.GroupControl4.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl4.Controls.Add(Me.CheckEdit1)
+        Me.GroupControl4.Controls.Add(Me.TxtDesign)
+        Me.GroupControl4.Controls.Add(Me.TxtDesignCode)
         Me.GroupControl4.Controls.Add(Me.DEUntilStockFG)
         Me.GroupControl4.Controls.Add(Me.LabelControl24)
-        Me.GroupControl4.Controls.Add(Me.SLEDesignStockSum)
         Me.GroupControl4.Controls.Add(Me.LabelControl8)
         Me.GroupControl4.Controls.Add(Me.SLELocatorStockSum)
         Me.GroupControl4.Controls.Add(Me.SLEWHStockSum)
@@ -321,14 +320,42 @@ Partial Class FormFGStock
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl4.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(1164, 58)
+        Me.GroupControl4.Size = New System.Drawing.Size(1164, 56)
         Me.GroupControl4.TabIndex = 18
         Me.GroupControl4.Text = "Filter"
+        '
+        'CheckEdit1
+        '
+        Me.CheckEdit1.Location = New System.Drawing.Point(27, 21)
+        Me.CheckEdit1.Name = "CheckEdit1"
+        Me.CheckEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.CheckEdit1.Properties.Appearance.Options.UseFont = True
+        Me.CheckEdit1.Properties.Caption = "All Design | "
+        Me.CheckEdit1.Size = New System.Drawing.Size(83, 19)
+        Me.CheckEdit1.TabIndex = 8903
+        '
+        'TxtDesign
+        '
+        Me.TxtDesign.EditValue = ""
+        Me.TxtDesign.Location = New System.Drawing.Point(234, 21)
+        Me.TxtDesign.Name = "TxtDesign"
+        Me.TxtDesign.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TxtDesign.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TxtDesign.Properties.ReadOnly = True
+        Me.TxtDesign.Size = New System.Drawing.Size(235, 20)
+        Me.TxtDesign.TabIndex = 8902
+        '
+        'TxtDesignCode
+        '
+        Me.TxtDesignCode.Location = New System.Drawing.Point(116, 21)
+        Me.TxtDesignCode.Name = "TxtDesignCode"
+        Me.TxtDesignCode.Size = New System.Drawing.Size(114, 20)
+        Me.TxtDesignCode.TabIndex = 8900
         '
         'DEUntilStockFG
         '
         Me.DEUntilStockFG.EditValue = Nothing
-        Me.DEUntilStockFG.Location = New System.Drawing.Point(786, 21)
+        Me.DEUntilStockFG.Location = New System.Drawing.Point(642, 21)
         Me.DEUntilStockFG.Name = "DEUntilStockFG"
         Me.DEUntilStockFG.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilStockFG.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -340,65 +367,16 @@ Partial Class FormFGStock
         '
         'LabelControl24
         '
-        Me.LabelControl24.Location = New System.Drawing.Point(786, 5)
+        Me.LabelControl24.Location = New System.Drawing.Point(642, 5)
         Me.LabelControl24.Name = "LabelControl24"
         Me.LabelControl24.Size = New System.Drawing.Size(72, 13)
         Me.LabelControl24.TabIndex = 8899
         Me.LabelControl24.Text = "Stock Per-Date"
         '
-        'SLEDesignStockSum
-        '
-        Me.SLEDesignStockSum.Location = New System.Drawing.Point(27, 21)
-        Me.SLEDesignStockSum.Name = "SLEDesignStockSum"
-        Me.SLEDesignStockSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SLEDesignStockSum.Properties.View = Me.GridView2
-        Me.SLEDesignStockSum.Size = New System.Drawing.Size(183, 20)
-        Me.SLEDesignStockSum.TabIndex = 8894
-        '
-        'GridView2
-        '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6})
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Description"
-        Me.GridColumn1.FieldName = "label_design"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 0
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Color"
-        Me.GridColumn3.FieldName = "color"
-        Me.GridColumn3.Name = "GridColumn3"
-        '
-        'GridColumn4
-        '
-        Me.GridColumn4.Caption = "Division"
-        Me.GridColumn4.FieldName = "product_division"
-        Me.GridColumn4.Name = "GridColumn4"
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "Source"
-        Me.GridColumn5.FieldName = "product_source"
-        Me.GridColumn5.Name = "GridColumn5"
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Branding"
-        Me.GridColumn6.FieldName = "product_branding"
-        Me.GridColumn6.Name = "GridColumn6"
-        '
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(27, 5)
+        Me.LabelControl8.Location = New System.Drawing.Point(116, 5)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(32, 13)
         Me.LabelControl8.TabIndex = 11
@@ -406,7 +384,7 @@ Partial Class FormFGStock
         '
         'SLELocatorStockSum
         '
-        Me.SLELocatorStockSum.Location = New System.Drawing.Point(388, 21)
+        Me.SLELocatorStockSum.Location = New System.Drawing.Point(33, 82)
         Me.SLELocatorStockSum.Name = "SLELocatorStockSum"
         Me.SLELocatorStockSum.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLELocatorStockSum.Properties.Appearance.Options.UseFont = True
@@ -424,7 +402,7 @@ Partial Class FormFGStock
         '
         'SLEWHStockSum
         '
-        Me.SLEWHStockSum.Location = New System.Drawing.Point(216, 21)
+        Me.SLEWHStockSum.Location = New System.Drawing.Point(472, 21)
         Me.SLEWHStockSum.Name = "SLEWHStockSum"
         Me.SLEWHStockSum.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEWHStockSum.Properties.Appearance.Options.UseFont = True
@@ -443,7 +421,7 @@ Partial Class FormFGStock
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(662, 5)
+        Me.LabelControl6.Location = New System.Drawing.Point(305, 66)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl6.TabIndex = 5
@@ -452,7 +430,7 @@ Partial Class FormFGStock
         'LabelControl20
         '
         Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl20.Location = New System.Drawing.Point(388, 5)
+        Me.LabelControl20.Location = New System.Drawing.Point(33, 66)
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl20.TabIndex = 3
@@ -460,7 +438,7 @@ Partial Class FormFGStock
         '
         'SLEDrawerStockSum
         '
-        Me.SLEDrawerStockSum.Location = New System.Drawing.Point(662, 21)
+        Me.SLEDrawerStockSum.Location = New System.Drawing.Point(305, 82)
         Me.SLEDrawerStockSum.Name = "SLEDrawerStockSum"
         Me.SLEDrawerStockSum.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEDrawerStockSum.Properties.Appearance.Options.UseFont = True
@@ -479,7 +457,7 @@ Partial Class FormFGStock
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(216, 5)
+        Me.LabelControl7.Location = New System.Drawing.Point(472, 5)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(17, 13)
         Me.LabelControl7.TabIndex = 2
@@ -489,7 +467,7 @@ Partial Class FormFGStock
         '
         Me.BtnViewStockSum.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnViewStockSum.Appearance.Options.UseFont = True
-        Me.BtnViewStockSum.Location = New System.Drawing.Point(945, 18)
+        Me.BtnViewStockSum.Location = New System.Drawing.Point(801, 18)
         Me.BtnViewStockSum.Name = "BtnViewStockSum"
         Me.BtnViewStockSum.Size = New System.Drawing.Size(60, 23)
         Me.BtnViewStockSum.TabIndex = 6
@@ -497,7 +475,7 @@ Partial Class FormFGStock
         '
         'SLERackStockSum
         '
-        Me.SLERackStockSum.Location = New System.Drawing.Point(534, 21)
+        Me.SLERackStockSum.Location = New System.Drawing.Point(177, 82)
         Me.SLERackStockSum.Name = "SLERackStockSum"
         Me.SLERackStockSum.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLERackStockSum.Properties.Appearance.Options.UseFont = True
@@ -516,7 +494,7 @@ Partial Class FormFGStock
         'LabelControl22
         '
         Me.LabelControl22.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl22.Location = New System.Drawing.Point(534, 5)
+        Me.LabelControl22.Location = New System.Drawing.Point(177, 66)
         Me.LabelControl22.Name = "LabelControl22"
         Me.LabelControl22.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl22.TabIndex = 4
@@ -558,7 +536,7 @@ Partial Class FormFGStock
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewDel})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(159, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(159, 26)
         '
         'SMViewDel
         '
@@ -1675,10 +1653,11 @@ Partial Class FormFGStock
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         Me.GroupControl4.PerformLayout()
+        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilStockFG.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilStockFG.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SLEDesignStockSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLELocatorStockSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEWHStockSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1806,13 +1785,6 @@ Partial Class FormFGStock
     Friend WithEvents BGVFGStock As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents SLEDesignStockSum As DevExpress.XtraEditors.SearchLookUpEdit
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents SLEDesignStockStore As DevExpress.XtraEditors.SearchLookUpEdit
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -1891,4 +1863,7 @@ Partial Class FormFGStock
     Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtDesignCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
 End Class
