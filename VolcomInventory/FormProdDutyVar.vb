@@ -14,6 +14,7 @@
             TEPO.Text = FormProdDuty.GVProd.GetFocusedRowCellValue("prod_order_number").ToString
             TEPOLama.Text = FormProdDuty.GVProd.GetFocusedRowCellValue("po_lama_no").ToString
             TEStyle.Text = FormProdDuty.GVProd.GetFocusedRowCellValue("design_display_name").ToString & " " & FormProdDuty.GVProd.GetFocusedRowCellValue("color").ToString
+            TECode.Text = FormProdDuty.GVProd.GetFocusedRowCellValue("design_code").ToString
             '
             TEPIBNo.Text = data.Rows(0)("pib_no").ToString
             TEAju.Text = data.Rows(0)("aju_no").ToString
@@ -24,6 +25,7 @@
             TESalesVAT.EditValue = data.Rows(0)("duty_sales_vat")
             TESalesThrough.EditValue = data.Rows(0)("duty_sales_thru")
             TEStoreDisc.EditValue = data.Rows(0)("duty_store_disc")
+            TEPPH.EditValue = data.Rows(0)("duty_pph")
             '
             If data.Rows(0)("duty_is_pr_proposed").ToString = "1" Then
                 CEPayCreated.Checked = True
@@ -71,7 +73,7 @@
             is_pr = "2"
         End If
 
-        Dim query_upd As String = "UPDATE tb_prod_order SET pib_no='" & TEPIBNo.Text & "'" & pib_date & ",duty_percent='" & TEDuty.EditValue.ToString & "',duty_royalty='" & TERoyalty.EditValue.ToString & "',duty_sales_vat='" & TESalesVAT.EditValue.ToString & "',duty_sales_thru='" & TESalesThrough.EditValue.ToString & "',duty_store_disc='" & TEStoreDisc.EditValue.ToString & "',aju_no='" & TEAju.EditValue.ToString & "',po_lama_no='" & TEPOLama.EditValue.ToString & "',duty_is_pr_proposed='" & is_pr & "',duty_is_pay='" & is_paid & "' WHERE id_prod_order='" & id_prod_order & "'"
+        Dim query_upd As String = "UPDATE tb_prod_order SET pib_no='" & TEPIBNo.Text & "'" & pib_date & ",duty_percent='" & decimalSQL(TEDuty.EditValue.ToString) & "',duty_royalty='" & decimalSQL(TERoyalty.EditValue.ToString) & "',duty_sales_vat='" & decimalSQL(TESalesVAT.EditValue.ToString) & "',duty_sales_thru='" & decimalSQL(TESalesThrough.EditValue.ToString) & "',duty_store_disc='" & decimalSQL(TEStoreDisc.EditValue.ToString) & "',duty_pph='" & decimalSQL(TEPPH.EditValue.ToString) & "',aju_no='" & TEAju.EditValue.ToString & "',po_lama_no='" & TEPOLama.EditValue.ToString & "',duty_is_pr_proposed='" & is_pr & "',duty_is_pay='" & is_paid & "' WHERE id_prod_order='" & id_prod_order & "'"
         execute_non_query(query_upd, True, "", "", "", "")
         '
         infoCustom("Variable set !")
