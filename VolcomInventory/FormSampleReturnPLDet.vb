@@ -372,7 +372,7 @@
 
                     'refresh data
                     FormSampleReturnPL.viewSamplePL()
-                    FormSampleReturnPL.GVSamplePL.FocusedRowHandle = find_row(FormSamplePLToWH.GVSamplePL, "id_sample_pl", id_sample_pl)
+                    FormSampleReturnPL.GVSamplePL.FocusedRowHandle = find_row(FormSampleReturnPL.GVSamplePL, "id_sample_pl_ret", id_sample_pl)
                     action = "upd"
                     actionLoad()
                     infoCustom("Document #" + TxtNumber.Text + " was created successfully.")
@@ -384,7 +384,7 @@
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
                     'main query
-                    Dim query As String = "UPDATE tb_sample_pl SET sample_pl_note ='" + sample_pl_note + "' WHERE id_sample_pl='" + id_sample_pl + "' "
+                    Dim query As String = "UPDATE tb_sample_pl_ret SET sample_pl_ret_note ='" + sample_pl_note + "' WHERE id_sample_pl_ret='" + id_sample_pl + "' "
                     execute_non_query(query, True, "", "", "", "")
 
                     'detail
@@ -393,14 +393,14 @@
                         Dim sample_pl_det_note As String = GVItemList.GetRowCellValue(j, "sample_pl_det_note").ToString
 
                         If id_sample_pl_det <> "0" Then
-                            Dim query_detail_upd As String = "UPDATE tb_sample_pl_det SET sample_pl_det_note='" + sample_pl_det_note + "' WHERE id_sample_pl_det='" + id_sample_pl_det + "' "
+                            Dim query_detail_upd As String = "UPDATE tb_sample_pl_ret_det SET sample_pl_ret_det_note='" + sample_pl_det_note + "' WHERE id_sample_pl_ret_det='" + id_sample_pl_det + "' "
                             execute_non_query(query_detail_upd, True, "", "", "", "")
                         End If
                     Next
 
                     'refresh data
-                    FormSamplePLToWH.viewSamplePL()
-                    FormSamplePLToWH.GVSamplePL.FocusedRowHandle = find_row(FormSamplePLToWH.GVSamplePL, "id_sample_pl", id_sample_pl)
+                    FormSampleReturnPL.viewSamplePL()
+                    FormSampleReturnPL.GVSamplePL.FocusedRowHandle = find_row(FormSampleReturnPL.GVSamplePL, "id_sample_pl_ret", id_sample_pl)
                     action = "upd"
                     actionLoad()
                     infoCustom("Document #" + TxtNumber.Text + " was edited successfully.")
