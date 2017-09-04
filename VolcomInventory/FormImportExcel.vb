@@ -58,7 +58,7 @@ Public Class FormImportExcel
             Next
             ExcelTables.Dispose()
         Catch ex As Exception
-            stopCustom("Please make sure your file not open and available to read.")
+            stopCustom("- Please make sure your file not open and available to read." & vbNewLine & ex.ToString)
         End Try
     End Sub
     Sub fill_field_grid()
@@ -1540,24 +1540,43 @@ Public Class FormImportExcel
             GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
             GVData.Columns("SOH").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("SOH").DisplayFormat.FormatString = "{0:n0}"
-        ElseIf id_pop_up = "30" Then
-            'vendor code 
-            Dim queryx As String = "SELECT id_product,product_full_code,product_name FROM tb_m_product"
+        ElseIf id_pop_up = "30" Then 'import duty
+            Dim queryx As String = "SELECT po.`prod_order_number`,po.`id_prod_order`,dsg.`design_code_import`,dsg.`design_display_name`,dsg.`design_code`,comp.`comp_name`,comp.`comp_number`
+                                    FROM tb_prod_order po
+                                    INNER JOIN
+                                    (
+	                                    SELECT wo.*,ovhp.`id_comp_contact` FROM tb_prod_order_wo wo 
+	                                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
+	                                    WHERE wo.`is_main_vendor`='1'
+                                    ) wo ON wo.id_prod_order=po.`id_prod_order`
+                                    INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=wo.`id_comp_contact`
+                                    INNER JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp`
+                                    INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+                                    INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+                                    WHERE po.`id_report_status`!='5' AND po.`id_po_type`='2'"
             Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
             Dim tb1 = data_temp.AsEnumerable()
             Dim tb2 = dt.AsEnumerable()
 
             Dim query = From table1 In tb1
-                        Group Join table_tmp In tb2 On table1("pr_code").ToString Equals table_tmp("product_full_code").ToString
+                        Group Join table_tmp In tb2 On table1("kode").ToString Equals table_tmp("design_code").ToString
                             Into Group
                         From y1 In Group.DefaultIfEmpty()
                         Select New With
                             {
-                                .IdProduct = If(y1 Is Nothing, "0", y1("id_product")),
-                                .Code = If(y1 Is Nothing, "0", y1("product_full_code")),
-                                .Description = If(y1 Is Nothing, "0", y1("product_name")),
-                                .Color = table1("pr_colnm"),
-                                .UPC = table1("pr_upc")
+                                .IdPO = If(y1 Is Nothing, "0", y1("id_prod_order")),
+                                .CodeImport = If(y1 Is Nothing, "0", y1("design_code_import")),
+                                .Code = If(y1 Is Nothing, "0", y1("design_code")),
+                                .Description = If(y1 Is Nothing, "0", y1("design_display_name")),
+                                .POOldSistem = table1("po_sistem_lama"),
+                                .AjuNumber = table1("aju_number"),
+                                .PibNumber = table1("pib_number"),
+                                .PibDate = table1("pib_date"),
+                                .Duty = table1("duty"),
+                                .Royalty = table1("royalty"),
+                                .SalesVat = table1("sales_vat"),
+                                .StoreDiscount = table1("store_discount"),
+                                .SalesThru = table1("sales_through")
                             }
 
             GCData.DataSource = Nothing
@@ -1566,7 +1585,19 @@ Public Class FormImportExcel
             GVData.PopulateColumns()
 
             'Customize column
-            GVData.Columns("IdProduct").Visible = False
+            GVData.Columns("IdPO").Visible = False
+            GVData.Columns("CodeImport").Caption = "Code Import"
+            GVData.Columns("POOldSistem").Caption = "PO Reff #"
+            GVData.Columns("AjuNumber").Caption = "Aju Number"
+            GVData.Columns("PibNumber").Caption = "PIB Number"
+            GVData.Columns("PibDate").Caption = "PIB Date"
+            GVData.Columns("PibDate").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+            GVData.Columns("PibDate").DisplayFormat.FormatString = "dd MMM yyyy"
+            GVData.Columns("SalesVat").Caption = "Sales VAT"
+            GVData.Columns("StoreDiscount").Caption = "Store Discount"
+            GVData.Columns("SalesThru").Caption = "Sales Through"
+            'GVData.Columns("Qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            'GVData.Columns("Qty").DisplayFormat.FormatString = "{0:n0}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -2030,7 +2061,7 @@ Public Class FormImportExcel
                         query_str += "WHERE comp.comp_number='" + code + "' AND comp.comp_name='" + name + "' "
                         If id_pop_up = "9" Then
                             query_str += "AND str.id_season='" + FormFGDistScheme.SLESeason.EditValue.ToString + "' LIMIT 1 "
-                        ElseIf id_pop_up = "10"
+                        ElseIf id_pop_up = "10" Then
                             query_str += "AND str.id_season='" + FormFGSalesOrderReffDet.SLESeason.EditValue.ToString + "' LIMIT 1 "
                         End If
 
@@ -2084,7 +2115,7 @@ Public Class FormImportExcel
                     FormFGSalesOrderReffDet.viewDetail()
                 End If
                 Close()
-            ElseIf id_pop_up = "11"
+            ElseIf id_pop_up = "11" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will include in order list." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     makeSafeGV(GVData)
@@ -2459,7 +2490,7 @@ Public Class FormImportExcel
                     End If
                     Cursor = Cursors.Default
                 End If
-            ElseIf id_pop_up = "19"
+            ElseIf id_pop_up = "19" Then
                 ' MASTER SAMPLE PRICE
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
@@ -2793,6 +2824,39 @@ Public Class FormImportExcel
                         stopCustom("There is no data for import process, please make sure your input !")
                         makeSafeGV(GVData)
                     End If
+                End If
+            ElseIf id_pop_up = "30" Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+                    '
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        MsgBox(GVData.GetRowCellValue(i, "IdPO").ToString)
+
+                        If Not GVData.GetRowCellValue(i, "IdPO").ToString = "0" Then
+                            Dim query_exec As String = "UPDATE tb_prod_order SET 
+                                                        po_lama_no='" & GVData.GetRowCellValue(i, "POOldSistem").ToString & "',
+                                                        aju_no='" & GVData.GetRowCellValue(i, "AjuNumber").ToString & "',
+                                                        pib_no='" & GVData.GetRowCellValue(i, "PibNumber").ToString & "', 
+                                                        pib_date='" & DateTime.Parse(GVData.GetRowCellValue(i, "PibDate").ToString()).ToString("yyyy-MM-dd") & "', 
+                                                        duty_percent='" & GVData.GetRowCellValue(i, "Duty").ToString & "', 
+                                                        duty_royalty='" & GVData.GetRowCellValue(i, "Royalty").ToString & "', 
+                                                        duty_sales_vat='" & GVData.GetRowCellValue(i, "SalesVat").ToString & "', 
+                                                        duty_store_disc='" & GVData.GetRowCellValue(i, "StoreDiscount").ToString & "', 
+                                                        duty_sales_thru='" & GVData.GetRowCellValue(i, "SalesThru").ToString & "'
+                                                        WHERE id_prod_order='" & GVData.GetRowCellValue(i, "IdPO").ToString & "'"
+                            execute_non_query(query_exec, True, "", "", "", "")
+                        End If
+                        '
+                        PBC.PerformStep()
+                        PBC.Update()
+                    Next
+                    infoCustom("Import Success")
+                    FormProdDuty.view_production_order()
+                    Close()
                 End If
             End If
         End If

@@ -95,4 +95,8 @@
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        print_raw(GCProd, "Royalty")
+    End Sub
 End Class
