@@ -1,6 +1,8 @@
 ﻿Public Class FormProdDutyVar
     Public id_prod_order As String = "-1"
     Private Sub FormProdDutyVar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        view_currency(LECurrency)
+
         TEDuty.EditValue = 0
         TERoyalty.EditValue = 0
         TESalesVAT.EditValue = 0
@@ -27,6 +29,23 @@
             TEStoreDisc.EditValue = data.Rows(0)("duty_store_disc")
             TEPPH.EditValue = data.Rows(0)("duty_pph")
             '
+            TEFrom.Text = data.Rows(0)("country_source").ToString
+            TEDestPort.Text = data.Rows(0)("dest_port").ToString
+            TEHSCode.Text = data.Rows(0)("hs_code").ToString
+            TEPPJK.Text = data.Rows(0)("ppjk").ToString
+            TEInvNo.Text = data.Rows(0)("ppjk_inv_no").ToString
+            TEVolume.EditValue = data.Rows(0)("pib_volume")
+            TEUOM.EditValue = data.Rows(0)("pib_uom").ToString
+            TEKurs.EditValue = data.Rows(0)("pib_kurs")
+            LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", data.Rows(0)("pib_id_currency").ToString)
+            TECIF.EditValue = data.Rows(0)("cif")
+            TECOONumber.Text = data.Rows(0)("coo_no").ToString
+            TELSNumber.Text = data.Rows(0)("ls_no").ToString
+            DELSDate.EditValue = data.Rows(0)("ls_date")
+            TEFreightUSD.EditValue = data.Rows(0)("freight_usd")
+            TESalesActual.EditValue = data.Rows(0)("act_sales_qty")
+            TEPenalty.EditValue = data.Rows(0)("penalty_percent")
+            '
             If data.Rows(0)("duty_is_pr_proposed").ToString = "1" Then
                 CEPayCreated.Checked = True
             Else
@@ -40,7 +59,16 @@
             End If
         End If
     End Sub
+    Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
+        Dim query As String = "SELECT id_currency,currency FROM tb_lookup_currency"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+        lookup.Properties.DataSource = data
+
+        lookup.Properties.DisplayMember = "currency"
+        lookup.Properties.ValueMember = "id_currency"
+        lookup.ItemIndex = 0
+    End Sub
     Private Sub FormProdDutyVar_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
@@ -59,6 +87,12 @@
             pib_date = ",pib_date=NULL"
         Else
             pib_date = ",pib_date='" & Date.Parse(DEDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+        End If
+
+        If DELSDate.Text = "" Then
+            pib_date = ",ls_date=NULL"
+        Else
+            pib_date = ",ls_date='" & Date.Parse(DELSDate.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         End If
 
         If CEPaid.Checked = True Then
