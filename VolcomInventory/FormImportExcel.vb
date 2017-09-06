@@ -1689,6 +1689,48 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "31" Then
+            Dim id_emp_uni_period As String = FormEmpUniPeriodDet.id_emp_uni_period
+
+            'master emp
+            Dim queryx As String = "SELECT e.id_employee, so.id_sales_order, e.employee_code, e.employee_name, e.employee_position, dept.departement 
+            FROM tb_m_employee e 
+            LEFT JOIN tb_emp_uni_budget b ON b.id_employee = e.id_employee AND b.id_emp_uni_period=" + id_emp_uni_period + "
+            LEFT JOIN(
+	            SELECT so.id_sales_order,so.id_emp_uni_budget  
+	            FROM tb_sales_order so
+	            WHERE !ISNULL(so.id_emp_uni_budget) AND so.id_emp_uni_period = " + id_emp_uni_period + "
+	            GROUP BY so.id_emp_uni_budget
+            ) so ON so.id_emp_uni_budget = b.id_emp_uni_budget
+            INNER JOIN tb_m_departement dept ON dept.id_departement = e.id_departement
+            WHERE e.id_employee_active=1 "
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("nik").ToString Equals table_tmp("employee_code").ToString
+                            Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                            {
+                                .IdEmp = If(y1 Is Nothing, "0", y1("id_employee").ToString),
+                                .IdSO = If(y1 Is Nothing, "0", y1("id_sales_order").ToString),
+                                .NIK = table1("nik"),
+                                .Name = If(y1 Is Nothing, "-", y1("employee_name").ToString),
+                                .Dept = If(y1 Is Nothing, "-", y1("departement").ToString),
+                                .Position = If(y1 Is Nothing, "-", y1("employee_position").ToString),
+                                .Budget = table1("budget"),
+                                .Status = If(y1 Is Nothing, "Not Found", "OK")
+                            }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("IdEmp").Visible = False
+             GVData.Columns("IdSO").Visible = False
         End If
         data_temp.Dispose()
         oledbconn.Close()

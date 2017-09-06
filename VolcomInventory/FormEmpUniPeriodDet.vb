@@ -171,4 +171,11 @@
             Cursor = Cursors.Default
         End If
     End Sub
+
+    Private Sub BtnImportExcel_Click(sender As Object, e As EventArgs) Handles BtnImportExcel.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "31"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class

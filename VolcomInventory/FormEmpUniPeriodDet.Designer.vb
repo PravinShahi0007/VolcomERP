@@ -23,8 +23,6 @@ Partial Class FormEmpUniPeriodDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniPeriodDet))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl5 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtTolerance = New DevExpress.XtraEditors.TextEdit()
         Me.DEDist = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
@@ -33,6 +31,8 @@ Partial Class FormEmpUniPeriodDet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtPeriodName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtTolerance = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
@@ -54,6 +54,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintBudget = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
@@ -100,7 +101,6 @@ Partial Class FormEmpUniPeriodDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtTolerance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDist.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDist.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,6 +108,7 @@ Partial Class FormEmpUniPeriodDet
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtPeriodName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtTolerance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.XTCUni, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,24 +159,6 @@ Partial Class FormEmpUniPeriodDet
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(214, 101)
         Me.PanelControl5.TabIndex = 8
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Location = New System.Drawing.Point(9, 12)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(47, 13)
-        Me.LabelControl5.TabIndex = 8
-        Me.LabelControl5.Text = "Tolerance"
-        '
-        'TxtTolerance
-        '
-        Me.TxtTolerance.Location = New System.Drawing.Point(62, 9)
-        Me.TxtTolerance.Name = "TxtTolerance"
-        Me.TxtTolerance.Properties.Mask.EditMask = "n2"
-        Me.TxtTolerance.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TxtTolerance.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtTolerance.Size = New System.Drawing.Size(143, 20)
-        Me.TxtTolerance.TabIndex = 8
         '
         'DEDist
         '
@@ -251,6 +234,24 @@ Partial Class FormEmpUniPeriodDet
         Me.LabelControl1.Size = New System.Drawing.Size(60, 13)
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Period Name"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(9, 12)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl5.TabIndex = 8
+        Me.LabelControl5.Text = "Tolerance"
+        '
+        'TxtTolerance
+        '
+        Me.TxtTolerance.Location = New System.Drawing.Point(62, 9)
+        Me.TxtTolerance.Name = "TxtTolerance"
+        Me.TxtTolerance.Properties.Mask.EditMask = "n2"
+        Me.TxtTolerance.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TxtTolerance.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TxtTolerance.Size = New System.Drawing.Size(143, 20)
+        Me.TxtTolerance.TabIndex = 8
         '
         'PanelControl1
         '
@@ -439,6 +440,7 @@ Partial Class FormEmpUniPeriodDet
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.BtnImportExcel)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.BtnPrintBudget)
         Me.PanelControl2.Controls.Add(Me.TxtTolerance)
@@ -450,6 +452,16 @@ Partial Class FormEmpUniPeriodDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(764, 37)
         Me.PanelControl2.TabIndex = 0
+        '
+        'BtnImportExcel
+        '
+        Me.BtnImportExcel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnImportExcel.Image = CType(resources.GetObject("BtnImportExcel.Image"), System.Drawing.Image)
+        Me.BtnImportExcel.Location = New System.Drawing.Point(218, 0)
+        Me.BtnImportExcel.Name = "BtnImportExcel"
+        Me.BtnImportExcel.Size = New System.Drawing.Size(110, 37)
+        Me.BtnImportExcel.TabIndex = 9
+        Me.BtnImportExcel.Text = "Import Excel"
         '
         'BtnPrintBudget
         '
@@ -861,7 +873,6 @@ Partial Class FormEmpUniPeriodDet
         Me.GroupControl1.ResumeLayout(False)
         Me.GroupControl1.PerformLayout()
         CType(Me.PanelControl5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtTolerance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDist.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDist.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -869,6 +880,7 @@ Partial Class FormEmpUniPeriodDet
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtPeriodName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtTolerance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.XTCUni, System.ComponentModel.ISupportInitialize).EndInit()
@@ -972,4 +984,5 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents TxtTolerance As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnImportExcel As DevExpress.XtraEditors.SimpleButton
 End Class
