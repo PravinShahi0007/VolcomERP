@@ -201,7 +201,7 @@
         query += "SELECT recd.id_prod_order_det,SUM(recd.prod_order_rec_det_qty) AS prod_order_rec_det_qty "
         query += "FROM "
         query += "tb_prod_order_rec rec "
-        query += "LEFT JOIN tb_prod_order_rec_det recd On recd.id_prod_order_rec=rec.id_prod_order_rec "
+        query += "LEFT JOIN tb_prod_order_rec_det recd On recd.id_prod_order_rec=rec.id_prod_order_rec AND rec.id_report_status != 5 "
         query += "GROUP BY recd.id_prod_order_det "
         query += ") rec On rec.id_prod_order_det=pod.id_prod_order_det "
         query += "LEFT JOIN
