@@ -100,13 +100,13 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSalesPOSDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceRetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMin = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnMin = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -353,7 +353,7 @@ Partial Class FormSalesPOSDet
         'LabelControl6
         '
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(8, 6)
+        Me.LabelControl6.Location = New System.Drawing.Point(8, 7)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl6.TabIndex = 8894
@@ -409,7 +409,7 @@ Partial Class FormSalesPOSDet
         'LabelControl8
         '
         Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(8, 54)
+        Me.LabelControl8.Location = New System.Drawing.Point(8, 58)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl8.TabIndex = 8930
@@ -1090,6 +1090,11 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPriceRetail.Name = "GridColumnIdDesignPriceRetail"
         Me.GridColumnIdDesignPriceRetail.OptionsColumn.ShowInCustomizationForm = False
         '
+        'GridColumnMin
+        '
+        Me.GridColumnMin.Caption = "Store Stock"
+        Me.GridColumnMin.Name = "GridColumnMin"
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1154,11 +1159,6 @@ Partial Class FormSalesPOSDet
         'EPForm
         '
         Me.EPForm.ContainerControl = Me
-        '
-        'GridColumnMin
-        '
-        Me.GridColumnMin.Caption = "Store Stock"
-        Me.GridColumnMin.Name = "GridColumnMin"
         '
         'FormSalesPOSDet
         '
