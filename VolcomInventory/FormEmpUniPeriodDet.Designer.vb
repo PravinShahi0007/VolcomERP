@@ -413,8 +413,6 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnActual.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnActual.FieldName = "amount"
         Me.GridColumnActual.Name = "GridColumnActual"
-        Me.GridColumnActual.Visible = True
-        Me.GridColumnActual.VisibleIndex = 6
         Me.GridColumnActual.Width = 99
         '
         'GridColumn1
@@ -424,8 +422,6 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn1.FieldName = "total_qty"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 7
         Me.GridColumn1.Width = 64
         '
         'GridColumnStatus
@@ -433,8 +429,6 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnStatus.Caption = "Delivery Status"
         Me.GridColumnStatus.FieldName = "del_report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
-        Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 8
         Me.GridColumnStatus.Width = 150
         '
         'PanelControl2
