@@ -109,15 +109,19 @@
         Dim query_bom As String = "SELECT * FROM tb_bom_det bomd
                                     INNER JOIN tb_bom bom ON bom.`id_bom`=bomd.`id_bom`
                                     INNER JOIN tb_m_product prod ON prod.`id_product`=bom.`id_product`
-                                    WHERE bom.`is_default`='1' AND id_component_category='2' AND id_ovh_price='" & id_ovh_price & "' AND prod.`id_design`='" & id_design & "'
+                                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=bomd.id_ovh_price
+                                    WHERE bom.`is_default`='1' 
+                                    AND id_component_category='2' 
+                                    AND ovhp.id_ovh=(SELECT id_ovh FROM tb_m_ovh_price WHERE id_ovh_price='" & id_ovh_price & "')
+                                    AND prod.`id_design`='" & id_design & "'
                                     GROUP BY id_design"
         Dim datatable As DataTable = execute_query(query_bom, -1, True, "", "", "", "")
-        TEBOMUnitPrice.EditValue = datatable.Rows(0)("bom_price")
-        If GVListPurchase.RowCount > 0 Then
-            TEBOMDiff.EditValue = TEBOMUnitPrice.EditValue - GVListPurchase.GetFocusedRowCellValue("estimate_cost")
+        If datatable.Rows.Count > 0 Then
+            TEBOMUnitPrice.EditValue = datatable.Rows(0)("bom_price")
+            If GVListPurchase.RowCount > 0 Then
+                TEBOMDiff.EditValue = TEBOMUnitPrice.EditValue - GVListPurchase.GetFocusedRowCellValue("estimate_cost")
+            End If
         End If
-
-        '
     End Sub
 
     Sub load_po(ByVal id_po As String)

@@ -34,6 +34,7 @@ Partial Class FormSuperUser
         Me.BSendMessage = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnOutlet = New DevExpress.XtraEditors.SimpleButton()
         Me.BSubDep = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMockMark = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -76,7 +77,7 @@ Partial Class FormSuperUser
         'PictureEdit1
         '
         Me.PictureEdit1.EditValue = CType(resources.GetObject("PictureEdit1.EditValue"), Object)
-        Me.PictureEdit1.Location = New System.Drawing.Point(102, 79)
+        Me.PictureEdit1.Location = New System.Drawing.Point(103, 31)
         Me.PictureEdit1.Name = "PictureEdit1"
         Me.PictureEdit1.Properties.Appearance.BackColor = System.Drawing.Color.Transparent
         Me.PictureEdit1.Properties.Appearance.Options.UseBackColor = True
@@ -87,7 +88,7 @@ Partial Class FormSuperUser
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(166, 91)
+        Me.LabelControl1.Location = New System.Drawing.Point(167, 43)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(22, 13)
         Me.LabelControl1.TabIndex = 5
@@ -95,7 +96,7 @@ Partial Class FormSuperUser
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(166, 110)
+        Me.LabelControl4.Location = New System.Drawing.Point(167, 62)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(46, 13)
         Me.LabelControl4.TabIndex = 8
@@ -103,7 +104,7 @@ Partial Class FormSuperUser
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(220, 91)
+        Me.LabelControl5.Location = New System.Drawing.Point(221, 43)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl5.TabIndex = 9
@@ -111,7 +112,7 @@ Partial Class FormSuperUser
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(220, 110)
+        Me.LabelControl6.Location = New System.Drawing.Point(221, 62)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(4, 13)
         Me.LabelControl6.TabIndex = 11
@@ -119,7 +120,7 @@ Partial Class FormSuperUser
         '
         'TxtHost
         '
-        Me.TxtHost.Location = New System.Drawing.Point(230, 91)
+        Me.TxtHost.Location = New System.Drawing.Point(231, 43)
         Me.TxtHost.Name = "TxtHost"
         Me.TxtHost.Size = New System.Drawing.Size(60, 13)
         Me.TxtHost.TabIndex = 12
@@ -127,7 +128,7 @@ Partial Class FormSuperUser
         '
         'TxtDB
         '
-        Me.TxtDB.Location = New System.Drawing.Point(230, 110)
+        Me.TxtDB.Location = New System.Drawing.Point(231, 62)
         Me.TxtDB.Name = "TxtDB"
         Me.TxtDB.Size = New System.Drawing.Size(75, 13)
         Me.TxtDB.TabIndex = 14
@@ -160,11 +161,21 @@ Partial Class FormSuperUser
         Me.BSubDep.TabIndex = 17
         Me.BSubDep.Text = "Change Sub Departement"
         '
+        'BMockMark
+        '
+        Me.BMockMark.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BMockMark.Location = New System.Drawing.Point(0, 105)
+        Me.BMockMark.Name = "BMockMark"
+        Me.BMockMark.Size = New System.Drawing.Size(430, 23)
+        Me.BMockMark.TabIndex = 18
+        Me.BMockMark.Text = "Mock Mark"
+        '
         'FormSuperUser
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(430, 289)
+        Me.Controls.Add(Me.BMockMark)
         Me.Controls.Add(Me.BtnConn)
         Me.Controls.Add(Me.BtnDepartement)
         Me.Controls.Add(Me.BSubDep)
@@ -204,4 +215,5 @@ Partial Class FormSuperUser
     Friend WithEvents BSendMessage As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnOutlet As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSubDep As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BMockMark As DevExpress.XtraEditors.SimpleButton
 End Class
