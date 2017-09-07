@@ -136,28 +136,28 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub viewStockStore()
-        dt_stock_store.Clear()
-        '
-        Try
-            Dim queryx As String = "SELECT dr.id_wh_drawer,rack.id_wh_rack,loc.id_wh_locator FROM tb_m_comp c
-                                INNER Join tb_m_wh_drawer dr On dr.id_wh_drawer=c.id_drawer_def
-                                INNER JOIN tb_m_wh_rack rack On rack.id_wh_rack=dr.id_wh_rack
-                                INNER Join tb_m_wh_locator loc On loc.id_wh_locator=rack.id_wh_locator
-                                WHERE c.id_comp='" & id_comp & "'"
-            Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
-            id_wh_drawer = datax.Rows(0)("id_wh_drawer").ToString
-            id_wh_rack = datax.Rows(0)("id_wh_rack").ToString
-            id_wh_locator = datax.Rows(0)("id_wh_locator").ToString
-        Catch ex As Exception
-        End Try
-        '
-        Dim end_period As String = "9999-12-01"
-        Try
-            end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
-        Catch ex As Exception
-        End Try
-        Dim query As String = "CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '" + end_period + "') "
-        dt_stock_store = execute_query(query, -1, True, "", "", "", "")
+        'dt_stock_store.Clear()
+        ''
+        'Try
+        '    Dim queryx As String = "SELECT dr.id_wh_drawer,rack.id_wh_rack,loc.id_wh_locator FROM tb_m_comp c
+        '                        INNER Join tb_m_wh_drawer dr On dr.id_wh_drawer=c.id_drawer_def
+        '                        INNER JOIN tb_m_wh_rack rack On rack.id_wh_rack=dr.id_wh_rack
+        '                        INNER Join tb_m_wh_locator loc On loc.id_wh_locator=rack.id_wh_locator
+        '                        WHERE c.id_comp='" & id_comp & "'"
+        '    Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+        '    id_wh_drawer = datax.Rows(0)("id_wh_drawer").ToString
+        '    id_wh_rack = datax.Rows(0)("id_wh_rack").ToString
+        '    id_wh_locator = datax.Rows(0)("id_wh_locator").ToString
+        'Catch ex As Exception
+        'End Try
+        ''
+        'Dim end_period As String = "9999-12-01"
+        'Try
+        '    end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        'Catch ex As Exception
+        'End Try
+        'Dim query As String = "CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '" + end_period + "') "
+        'dt_stock_store = execute_query(query, -1, True, "", "", "", "")
     End Sub
 
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
@@ -623,41 +623,35 @@ Public Class FormSalesPOSDet
         MyCommand.Fill(data_temp)
         MyCommand.Dispose()
 
-        Dim dt As DataTable = dt_stock_store
+        Dim per_date As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim query_price As String = "call view_product_price('AND d.id_active = 1', '" + per_date + "') "
+        Dim dt As DataTable = execute_query(query_price, -1, True, "", "", "", "")
         Dim tb1 = data_temp.AsEnumerable()
         Dim tb2 = dt.AsEnumerable()
 
         Dim query = From table1 In tb1
-                    Group Join table_tmp In tb2 On table1("code") Equals table_tmp("code")
-                    Into Group
-                    From y1 In Group.DefaultIfEmpty()
+                    Join table_tmp In tb2 On table1("code").ToString Equals table_tmp("product_full_code").ToString
                     Select New With
                     {
-                        .Code = table1.Field(Of String)("code"),
-                        .Description = If(y1 Is Nothing, "", y1("name")),
-                        .Size = If(y1 Is Nothing, "", y1("size")),
-                        .Amount = If(y1 Is Nothing, "", table1("qty") * y1("design_price_retail")),
-                        .Qty = CType(table1("qty"), Decimal),
-                        .Qty_Volcom = If(y1 Is Nothing, 0.0, y1("qty_all_product")),
-                        .Price = If(y1 Is Nothing, 0.0, y1("design_price_retail")),
-                        .id_design_price_retail = If(y1 Is Nothing, 0, y1("id_design_price_retail")),
-                        .design_price_type = If(y1 Is Nothing, "", y1("design_price_type")),
-                        .design_price = If(y1 Is Nothing, 0.0, y1("design_price")),
-                        .sales_pos_det_note = If(y1 Is Nothing, "", ""),
-                        .id_design = If(y1 Is Nothing, 0, y1("id_design")),
-                        .id_product = If(y1 Is Nothing, 0, y1("id_product")),
-                        .id_sample = If(y1 Is Nothing, 0, y1("id_sample")),
-                        .id_design_price = If(y1 Is Nothing, 0, y1("id_design_price")),
-                        .Type = If(y1 Is Nothing, "", y1("design_price_type")),
-                        .id_sales_pos_det = If(y1 Is Nothing, "", "0"),
-                        .Color = If(y1 Is Nothing, "", y1("color")),
-                        .Diff = If((CType(table1("qty"), Decimal) - If(y1 Is Nothing, 0.0, y1("qty_all_product"))) <= 0, 0.0, (CType(table1("qty"), Decimal) - If(y1 Is Nothing, 0.0, y1("qty_all_product"))))
+                        .code = table_tmp("product_full_code").ToString,
+                        .name = table_tmp("design_display_name").ToString,
+                        .size = table_tmp("size").ToString,
+                        .sales_pos_det_amount = table_tmp("design_price") * table1("qty"),
+                        .sales_pos_det_qty = table1("qty"),
+                        .id_design_price = table_tmp("id_design_price").ToString,
+                        .design_price = table_tmp("design_price"),
+                        .design_price_type = table_tmp("design_price_type").ToString,
+                        .id_design_price_retail = table_tmp("id_design_price").ToString,
+                        .design_price_retail = table_tmp("design_price"),
+                        .id_design = table_tmp("id_design").ToString,
+                        .id_product = table_tmp("id_product").ToString,
+                        .id_sample = table_tmp("id_sample").ToString,
+                        .id_sales_pos_det = 0
                     }
 
         GCItemList.DataSource = Nothing
         GCItemList.DataSource = query.ToList()
         GCItemList.RefreshDataSource()
-        GVItemList.PopulateColumns()
 
         'Catch ex As Exception
         'stopCustom("Input must be in accordance with the format specified !")
@@ -847,5 +841,9 @@ Public Class FormSalesPOSDet
         getNetto()
         getVat()
         getTaxBase()
+    End Sub
+
+    Private Sub DEEnd_EditValueChanged(sender As Object, e As EventArgs) Handles DEEnd.EditValueChanged
+        viewDetail()
     End Sub
 End Class

@@ -894,7 +894,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnNo.OptionsColumn.ReadOnly = True
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 43
+        Me.GridColumnNo.Width = 48
         '
         'GridColumnCode
         '
@@ -905,11 +905,11 @@ Partial Class FormSalesPOSDet
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 72
+        Me.GridColumnCode.Width = 124
         '
         'GridColumnName
         '
-        Me.GridColumnName.Caption = "Name"
+        Me.GridColumnName.Caption = "Description"
         Me.GridColumnName.FieldName = "name"
         Me.GridColumnName.FieldNameSortGroup = "id_design"
         Me.GridColumnName.Name = "GridColumnName"
@@ -917,7 +917,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 142
+        Me.GridColumnName.Width = 147
         '
         'GridColumnSize
         '
@@ -931,8 +931,8 @@ Partial Class FormSalesPOSDet
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
-        Me.GridColumnSize.VisibleIndex = 4
-        Me.GridColumnSize.Width = 56
+        Me.GridColumnSize.VisibleIndex = 3
+        Me.GridColumnSize.Width = 57
         '
         'GridColumnQty
         '
@@ -951,7 +951,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_qty", "{0:f0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 6
-        Me.GridColumnQty.Width = 121
+        Me.GridColumnQty.Width = 50
         '
         'RepositoryItemSpinEdit1
         '
@@ -976,7 +976,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 7
-        Me.GridColumnAmount.Width = 106
+        Me.GridColumnAmount.Width = 170
         '
         'GridColumnDesignPriceRetail
         '
@@ -992,6 +992,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnDesignPriceRetail.OptionsColumn.ReadOnly = True
         Me.GridColumnDesignPriceRetail.Visible = True
         Me.GridColumnDesignPriceRetail.VisibleIndex = 5
+        Me.GridColumnDesignPriceRetail.Width = 100
         '
         'GridColumnColor
         '
@@ -999,8 +1000,6 @@ Partial Class FormSalesPOSDet
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.OptionsColumn.ReadOnly = True
-        Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 3
         Me.GridColumnColor.Width = 71
         '
         'GridColumnDesignPriceType
@@ -1010,6 +1009,8 @@ Partial Class FormSalesPOSDet
         Me.GridColumnDesignPriceType.Name = "GridColumnDesignPriceType"
         Me.GridColumnDesignPriceType.OptionsColumn.ReadOnly = True
         Me.GridColumnDesignPriceType.OptionsColumn.ShowInCustomizationForm = False
+        Me.GridColumnDesignPriceType.Visible = True
+        Me.GridColumnDesignPriceType.VisibleIndex = 4
         Me.GridColumnDesignPriceType.Width = 71
         '
         'GridColumnUOM
