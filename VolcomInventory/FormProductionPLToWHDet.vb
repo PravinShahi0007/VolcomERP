@@ -416,12 +416,12 @@ Public Class FormProductionPLToWHDet
         'sample_check_unique = ""
         Dim query_check_exist As String = "SELECT d.pl_prod_order_number, CONCAT(b.product_full_code, a.pl_prod_order_det_counting) AS `barcode` FROM tb_pl_prod_order_det_counting a "
         query_check_exist += "INNER JOIN tb_m_product b ON a.id_product = b.id_product "
+        query_check_exist += "INNER JOIN tb_m_design dsg ON dsg.id_design = b.id_design "
         query_check_exist += "INNER JOIN tb_pl_prod_order_det c ON a.id_pl_prod_order_det = c.id_pl_prod_order_det "
         query_check_exist += "INNER JOIN tb_pl_prod_order d ON c.id_pl_prod_order = d.id_pl_prod_order 
         INNER JOIN tb_prod_order_det pod ON pod.id_prod_order_det = c.id_prod_order_det
-        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pod.id_prod_demand_product
-        INNER JOIN tb_m_product p ON p.id_product = pdp.id_product "
-        query_check_exist += "WHERE d.id_pl_prod_order!='" + id_pl_prod_order + "' AND d.id_report_status != '5' AND p.id_design='" + id_design + "' "
+        INNER JOIN tb_prod_demand_product pdp ON pdp.id_prod_demand_product = pod.id_prod_demand_product "
+        query_check_exist += "WHERE d.id_pl_prod_order!='" + id_pl_prod_order + "' AND d.id_report_status != '5' AND b.id_design='" + id_design + "' AND dsg.is_old_design=2 "
         Dim data_check_exist As DataTable = execute_query(query_check_exist, True, -1, "", "", "", "")
         For j As Integer = 0 To (GVBarcode.RowCount - 1)
             Dim barcode_check As String = GVBarcode.GetRowCellValue(j, "code")
