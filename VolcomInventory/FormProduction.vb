@@ -271,7 +271,11 @@
         check_but()
     End Sub
     Sub view_prod_demand_product()
-        Dim query As String = "CALL view_prod_demand_product('" + GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString + "',1)"
+        Dim id_pdd As String = ""
+        If GVDesign.RowCount > 0 Then
+            id_pdd = GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString()
+        End If
+        Dim query As String = "CALL view_prod_demand_product('" + id_pdd + "',1)"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCListProduct.DataSource = data
     End Sub
