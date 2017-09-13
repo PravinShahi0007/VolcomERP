@@ -2970,6 +2970,11 @@ Public Class FormImportExcel
                     '
                     For i As Integer = 0 To GVData.RowCount - 1
                         If Not GVData.GetRowCellValue(i, "IdPO").ToString = "0" Then
+                            Dim date_ls_string As String = ""
+                            If Not GVData.GetRowCellValue(i, "ls_date").ToString() = "" Then
+                                date_ls_string = DateTime.Parse(GVData.GetRowCellValue(i, "ls_date").ToString()).ToString("yyyy-MM-dd")
+                            End If
+
                             Dim query_exec As String = "UPDATE tb_prod_order SET 
                                                         po_lama_no='" & GVData.GetRowCellValue(i, "POOldSistem").ToString & "',
                                                         hs_code='" & GVData.GetRowCellValue(i, "hs_code").ToString & "',
@@ -2992,7 +2997,7 @@ Public Class FormImportExcel
                                                         pib_uom='" & GVData.GetRowCellValue(i, "uom").ToString & "',
                                                         cif='" & decimalSQL(GVData.GetRowCellValue(i, "cif").ToString) & "',
                                                         ls_no='" & GVData.GetRowCellValue(i, "ls_no").ToString & "',
-                                                        ls_date='" & DateTime.Parse(GVData.GetRowCellValue(i, "ls_date").ToString()).ToString("yyyy-MM-dd") & "',
+                                                        ls_date='" & date_ls_string & "',
                                                         coo_no='" & GVData.GetRowCellValue(i, "coo").ToString & "',
                                                         pib_kurs='" & decimalSQL(GVData.GetRowCellValue(i, "kurs").ToString) & "',
                                                         pib_id_currency='" & GVData.GetRowCellValue(i, "id_currency").ToString & "',

@@ -682,7 +682,7 @@ Partial Class FormProduction
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GCListProduct)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
         Me.SplitContainerControl1.Size = New System.Drawing.Size(939, 283)
-        Me.SplitContainerControl1.SplitterPosition = 306
+        Me.SplitContainerControl1.SplitterPosition = 212
         Me.SplitContainerControl1.TabIndex = 4
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
@@ -692,7 +692,7 @@ Partial Class FormProduction
         Me.GCDesign.Location = New System.Drawing.Point(0, 0)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.Size = New System.Drawing.Size(939, 278)
+        Me.GCDesign.Size = New System.Drawing.Size(939, 212)
         Me.GCDesign.TabIndex = 3
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign, Me.GridView4})
         '
@@ -836,7 +836,7 @@ Partial Class FormProduction
         Me.GCListProduct.MainView = Me.GVListProduct
         Me.GCListProduct.Margin = New System.Windows.Forms.Padding(0)
         Me.GCListProduct.Name = "GCListProduct"
-        Me.GCListProduct.Size = New System.Drawing.Size(0, 0)
+        Me.GCListProduct.Size = New System.Drawing.Size(939, 66)
         Me.GCListProduct.TabIndex = 1
         Me.GCListProduct.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListProduct})
         '
