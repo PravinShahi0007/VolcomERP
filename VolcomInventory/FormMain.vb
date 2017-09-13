@@ -5797,8 +5797,8 @@ Public Class FormMain
             'SALES REUTNR
             If FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 0 Then
                 print(FormSalesReturn.GCSalesReturn, "List Return From Store")
-            ElseIf FormSalesDelOrder.XTCSalesDelOrder.SelectedTabPageIndex = 1 Then
-                'print(FormSalesDelOrder.GCSalesOrder, "List Waiting To Delivery Order")
+            ElseIf FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 1 Then
+                print(FormSalesReturn.GCSalesReturnOrder, "List Waiting To Return")
                 'FormSalesDelOrderPrintOpt.ShowDialog()
             End If
         ElseIf formName = "FormSalesPOS" Then
@@ -6555,7 +6555,7 @@ Public Class FormMain
             ElseIf FormWHSvcLevel.XTCSvcLelel.SelectedTabPageIndex = 2 Then
                 print(FormWHSvcLevel.GCByAcco, "SERVICE LEVEL BY ACCOUNT" + System.Environment.NewLine + "PERIOD : " + FormWHSvcLevel.DEFromAcc.Text + " - " + FormWHSvcLevel.DEUntilAcc.Text)
             ElseIf FormWHSvcLevel.XTCSvcLelel.SelectedTabPageIndex = 3 Then
-                print(FormWHSvcLevel.GCByAcco, "RETURN" + System.Environment.NewLine + "PERIOD : " + FormWHSvcLevel.DEFromReturn.Text + " - " + FormWHSvcLevel.DEUntilReturn.Text)
+                print(FormWHSvcLevel.GCReturn, "RETURN" + System.Environment.NewLine + "PERIOD : " + FormWHSvcLevel.DEFromReturn.Text + " - " + FormWHSvcLevel.DEUntilReturn.Text)
             End If
         ElseIf formName = "FormSamplePLToWH" Then
             'PL SAMPLE
