@@ -1689,6 +1689,50 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "31" Then
+            Dim id_emp_uni_period As String = FormEmpUniPeriodDet.id_emp_uni_period
+
+            'master emp
+            Dim queryx As String = "SELECT e.id_employee, IFNULL(so.id_sales_order,0) AS `id_sales_order`, e.employee_code, e.employee_name, e.employee_position, dept.departement 
+            FROM tb_m_employee e 
+            LEFT JOIN tb_emp_uni_budget b ON b.id_employee = e.id_employee AND b.id_emp_uni_period=" + id_emp_uni_period + "
+            LEFT JOIN(
+	            SELECT so.id_sales_order,so.id_emp_uni_budget  
+	            FROM tb_sales_order so
+	            WHERE !ISNULL(so.id_emp_uni_budget) AND so.id_emp_uni_period = " + id_emp_uni_period + "
+	            GROUP BY so.id_emp_uni_budget
+            ) so ON so.id_emp_uni_budget = b.id_emp_uni_budget
+            INNER JOIN tb_m_departement dept ON dept.id_departement = e.id_departement
+            WHERE e.id_employee_active=1 "
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("nik").ToString Equals table_tmp("employee_code").ToString
+                            Into Group
+                        From y1 In Group.DefaultIfEmpty()
+                        Select New With
+                            {
+                                .IdEmp = If(y1 Is Nothing, "0", y1("id_employee").ToString),
+                                .IdSO = If(y1 Is Nothing, "0", y1("id_sales_order").ToString),
+                                .NIK = table1("nik"),
+                                .Name = If(y1 Is Nothing, "-", y1("employee_name").ToString),
+                                .Dept = If(y1 Is Nothing, "-", y1("departement").ToString),
+                                .Position = If(y1 Is Nothing, "-", y1("employee_position").ToString),
+                                .Budget = table1("budget"),
+                                .Status = If(y1 Is Nothing, "Not Found", If(y1("id_sales_order").ToString = 0, "OK", "Order already processed"))
+                            }
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+
+            'Customize column
+            GVData.Columns("IdEmp").Visible = False
+            GVData.Columns("IdSO").Visible = False
+            GVData.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GVData.Columns("Budget").DisplayFormat.FormatString = "{0:n2}"
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -1735,7 +1779,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -2970,6 +3014,51 @@ Public Class FormImportExcel
                     infoCustom("Import Success")
                     FormProdDuty.view_production_order()
                     Close()
+                End If
+            ElseIf id_pop_up = "31" Then
+                'uniform budget
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+                    If GVData.RowCount > 0 Then
+                        Cursor = Cursors.WaitCursor
+                        'del
+                        Dim id_emp_uni_period As String = FormEmpUniPeriodDet.id_emp_uni_period
+                        Dim query_del As String = "DELETE FROM tb_emp_uni_budget WHERE id_emp_uni_budget IN (
+	                    SELECT * FROM (
+		                    SELECT b.id_emp_uni_budget FROM tb_emp_uni_budget b
+		                    LEFT JOIN tb_sales_order so ON so.id_emp_uni_budget = b.id_emp_uni_budget
+		                    WHERE b.id_emp_uni_period=" + id_emp_uni_period + " AND ISNULL(so.id_emp_uni_budget)
+	                    ) AS p
+) "
+                        execute_non_query(query_del, True, "", "", "", "")
+
+                        'ins
+                        Dim l_i As Integer = 0
+                        Dim query_ins As String = "INSERT INTO tb_emp_uni_budget(id_emp_uni_period, id_employee, budget) VALUES "
+                        For l As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_employee As String = GVData.GetRowCellValue(l, "IdEmp").ToString
+                            Dim budget As String = decimalSQL(GVData.GetRowCellValue(l, "Budget").ToString)
+
+                            If l_i > 0 Then
+                                query_ins += ", "
+                            End If
+                            query_ins += "('" + id_emp_uni_period + "', '" + id_employee + "', '" + budget + "') "
+                            l_i += 1
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        If l_i > 0 Then
+                            execute_non_query(query_ins, True, "", "", "", "")
+                        End If
+                        FormEmpUniPeriodDet.viewDetail()
+                        Close()
+                        Cursor = Cursors.Default
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
                 End If
             End If
         End If
