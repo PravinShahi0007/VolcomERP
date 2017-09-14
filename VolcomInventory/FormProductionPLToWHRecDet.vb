@@ -933,7 +933,7 @@ Public Class FormProductionPLToWHRecDet
             GVBarcode.SetFocusedRowCellValue("counting_code", counting_code)
             countQty(id_pl_prod_order_det)
             newRowsBc()
-        ElseIf is_old = "2" Then 'new system product
+        ElseIf is_old = "2" Or is_old = "3" Then 'new system product
             'check duplicate code
             If GVBarcode.RowCount <= 0 Then
                 code_duplicate = False
