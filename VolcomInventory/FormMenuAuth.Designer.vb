@@ -56,6 +56,7 @@ Partial Class FormMenuAuth
         '
         Me.TxtPass.Location = New System.Drawing.Point(90, 44)
         Me.TxtPass.Name = "TxtPass"
+        Me.TxtPass.Properties.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TxtPass.Size = New System.Drawing.Size(180, 20)
         Me.TxtPass.TabIndex = 1
         '

@@ -11,7 +11,7 @@
 
         Dim query As String = "SELECT * FROM tb_m_user u 
         INNER JOIN tb_menu_single_acc ms ON ms.id_user = u.id_user AND ms.type=" + type + "
-        WHERE u.username='" + username + "' AND password='" + password + "' "
+        WHERE u.username='" + username + "' AND password=MD5('" + password + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
             allowed()
