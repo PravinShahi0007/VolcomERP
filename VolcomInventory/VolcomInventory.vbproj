@@ -1150,6 +1150,12 @@
     <Compile Include="FormMasterSampleNR.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMenuAuth.Designer.vb">
+      <DependentUpon>FormMenuAuth.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMenuAuth.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormNotification.designer.vb">
       <DependentUpon>FormNotification.vb</DependentUpon>
     </Compile>
@@ -5415,6 +5421,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterSampleNR.resx">
       <DependentUpon>FormMasterSampleNR.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMenuAuth.resx">
+      <DependentUpon>FormMenuAuth.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormNotification.resx">
       <DependentUpon>FormNotification.vb</DependentUpon>

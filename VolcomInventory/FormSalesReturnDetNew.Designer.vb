@@ -76,6 +76,7 @@ Partial Class FormSalesReturnDetNew
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormSalesReturnDetNew"
+        Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Select Return Type"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
