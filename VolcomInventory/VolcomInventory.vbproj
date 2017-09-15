@@ -3490,6 +3490,12 @@
     <Compile Include="FormSOHSum.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSUMockMark.Designer.vb">
+      <DependentUpon>FormSUMockMark.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSUMockMark.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSuperUser.Designer.vb">
       <DependentUpon>FormSuperUser.vb</DependentUpon>
     </Compile>
@@ -6931,6 +6937,9 @@
     <EmbeddedResource Include="FormSOHSum.resx">
       <DependentUpon>FormSOHSum.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSUMockMark.resx">
+      <DependentUpon>FormSUMockMark.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSuperUser.resx">
       <DependentUpon>FormSuperUser.vb</DependentUpon>
