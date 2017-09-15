@@ -40,6 +40,7 @@ Public Class FormSalesPOSDet
         'view data
         viewReportStatus()
         viewSoType()
+        viewInvType()
         If action = "ins" Then
             TxtDiscount.EditValue = 0.0
             TxtNetto.EditValue = 0.0
@@ -109,6 +110,12 @@ Public Class FormSalesPOSDet
                 TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
             End If
         End If
+    End Sub
+
+    Sub viewInvType()
+        Dim query As String = "SELECT * FROM tb_lookup_inv_type i ORDER BY i.id_inv_type ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEInvType, query, 0, "inv_type_display", "id_inv_type")
     End Sub
 
     Sub viewReportStatus()
@@ -713,7 +720,7 @@ Public Class FormSalesPOSDet
                 calculate()
                 check_do()
                 '
-                LETypeSO.Focus()
+                DEDueDate.Focus()
                 'Else
                 '    stopCustom("Store not registered for auto posting journal.")
                 'End If
@@ -738,11 +745,22 @@ Public Class FormSalesPOSDet
     End Function
     Private Sub TEDO_KeyDown(sender As Object, e As KeyEventArgs) Handles TEDO.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query As String = "SELECT * FROM tb_pl_sales_order_del pldel"
+            Dim so_cat As String = ""
+            Dim typ As String = LEInvType.EditValue.ToString
+            If typ = "4" Then
+                so_cat = "AND so.id_so_status=3 "
+            ElseIf typ = "7" Or typ = "8" Then
+                so_cat = "And (so.id_so_status = 6 Or so.id_so_status = 7) "
+            Else
+                so_cat = "AND so.id_so_status=0 "
+            End If
+
+            Dim query As String = "SELECT * FROM tb_pl_sales_order_del pldel 
+            INNER JOIN tb_sales_order so ON so.id_so_status = pldel.id_so_status "
             query += " INNER JOIN tb_m_comp_contact cc On cc.id_comp_contact=pldel.id_store_contact_to"
             query += " INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp"
             query += " LEFT JOIN tb_sales_pos sp ON sp.id_pl_sales_order_del=pldel.id_pl_sales_order_del"
-            query += " WHERE pldel.id_report_status='6' AND comp.id_comp='" + id_comp + "' AND pldel.pl_sales_order_del_number='" + TEDO.Text + "'"
+            query += " WHERE pldel.id_report_status='6' AND comp.id_comp='" + id_comp + "' AND pldel.pl_sales_order_del_number='" + TEDO.Text + "' " + so_cat + " "
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
             If data.Rows.Count <= 0 Then
@@ -772,13 +790,11 @@ Public Class FormSalesPOSDet
         id_do = "-1"
         TEDO.Text = ""
         If LETypeSO.EditValue.ToString = "2" Then
-            LDO.Visible = True
             TEDO.Visible = True
             BDO.Visible = True
             '
             PanelControlNav.Visible = False
         Else
-            LDO.Visible = False
             TEDO.Visible = False
             BDO.Visible = False
             '
@@ -845,5 +861,15 @@ Public Class FormSalesPOSDet
 
     Private Sub DEEnd_EditValueChanged(sender As Object, e As EventArgs) Handles DEEnd.EditValueChanged
         viewDetail()
+    End Sub
+
+    Private Sub LEInvType_KeyDown(sender As Object, e As KeyEventArgs) Handles LEInvType.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If LEInvType.EditValue.ToString = "0" Then
+                TxtCodeCompFrom.Focus()
+            Else
+                TEDO.Focus()
+            End If
+        End If
     End Sub
 End Class
