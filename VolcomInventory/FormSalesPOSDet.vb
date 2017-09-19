@@ -611,36 +611,44 @@ Public Class FormSalesPOSDet
         strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & bof_xls_temp_path & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text;"""
         oledbconn.ConnectionString = strConn
         Dim MyCommand As OleDbDataAdapter
-        MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty from [" & bof_xls_ws & "] WHERE NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2]", oledbconn)
+        MyCommand = New OleDbDataAdapter("select [F2] as code,SUM([F3]) as qty,SUM([F4]) AS price from [" & bof_xls_ws & "] WHERE NOT [F2] IS NULL AND NOT [F3]  IS NULL GROUP BY [F2]", oledbconn)
 
         'Try
         MyCommand.Fill(data_temp)
         MyCommand.Dispose()
 
-        Dim per_date As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
-        Dim query_price As String = "call view_product_price('AND d.id_active = 1', '" + per_date + "') "
-        Dim dt As DataTable = execute_query(query_price, -1, True, "", "", "", "")
+        'get price master
+        Dim price_per_date As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        Dim query_price As String = "call view_product_price('AND d.id_active = 1', '" + price_per_date + "') "
+        Dim dt_prc As DataTable = execute_query(query_price, -1, True, "", "", "", "")
+
         Dim tb1 = data_temp.AsEnumerable()
         Dim tb2 = dt_stock_store
-        Dim tb3 = dt.AsEnumerable()
+        Dim tb3 = dt_prc.AsEnumerable()
 
         Dim query = From table1 In tb1
-                    Join table_tmp In tb2 On table1("code").ToString Equals table_tmp("product_full_code").ToString
+                    Group Join table_tmp In tb2
+                    On table1("code").ToString Equals table_tmp("code").ToString Into sjoin = Group
+                    From rs In sjoin.DefaultIfEmpty()
+                    Group Join tb_price In tb3
+                    On table1("code").ToString Equals tb_price("product_full_code").ToString Into pjoin = Group
+                    From rp In pjoin.DefaultIfEmpty()
                     Select New With
                     {
-                        .code = table_tmp("code").ToString,
-                        .name = table_tmp("name").ToString,
-                        .size = table_tmp("size").ToString,
-                        .sales_pos_det_amount = table_tmp("design_price_retail") * table1("qty"),
+                        .code = table1("code").ToString,
+                        .name = If(rs Is Nothing, "", rs("name").ToString),
+                        .size = If(rs Is Nothing, "", rs("size").ToString),
                         .sales_pos_det_qty = table1("qty"),
-                        .id_design_price = table_tmp("id_design_price_retail").ToString,
-                        .design_price = table_tmp("design_price_retail"),
-                        .design_price_type = table_tmp("design_price_type_retail").ToString,
-                        .id_design_price_retail = table_tmp("id_design_price_retail").ToString,
-                        .design_price_retail = table_tmp("design_price_retail"),
-                        .id_design = table_tmp("id_design").ToString,
-                        .id_product = table_tmp("id_product").ToString,
-                        .id_sales_pos_det = 0
+                        .limit_qty = If(rs Is Nothing, 0, rs("qty_all_product")),
+                        .id_design_price = If(rp Is Nothing, "0", rp("id_design_price").ToString),
+                        .design_price = If(rp Is Nothing, 0, rp("design_price")),
+                        .design_price_type = If(rp Is Nothing, "", rp("design_price_type").ToString),
+                        .id_design_price_retail = If(rp Is Nothing, "0", rp("id_design_price").ToString),
+                        .design_price_retail = If(table1("price").ToString = "", If(rp Is Nothing, 0, rp("design_price")), table1("price")),
+                        .id_design = If(rs Is Nothing, "0", rs("id_design").ToString),
+                        .id_product = If(rs Is Nothing, "0", rs("id_product").ToString),
+                        .note = If(rs Is Nothing, "-", If(table1("qty") > rs("qty_all_product"), "+" + (table1("qty") - rs("qty_all_product")).ToString, "OK")),
+                        .id_sales_pos_det = "0"
                     }
 
         GCItemList.DataSource = Nothing
@@ -673,7 +681,7 @@ Public Class FormSalesPOSDet
             query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
             query += " INNER JOIN tb_m_wh_rack rack ON rack.id_wh_rack=dr.id_wh_rack"
             query += " INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator=rack.id_wh_locator"
-            query += " where cc.is_default=1 and c.id_comp_cat='" + id_comp_cat_store + "' AND c.comp_number='" + TxtCodeCompFrom.Text + "'"
+            query += " where cc.is_default=1 And c.id_comp_cat='" + id_comp_cat_store + "' AND c.comp_number='" + TxtCodeCompFrom.Text + "'"
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
             If data.Rows.Count <= 0 Then
@@ -702,7 +710,6 @@ Public Class FormSalesPOSDet
                 LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
                 '
                 viewDetail()
-                viewStockStore()
                 check_but()
                 GroupControlList.Enabled = True
                 calculate()
@@ -829,6 +836,7 @@ Public Class FormSalesPOSDet
 
     Private Sub DEEnd_KeyDown(sender As Object, e As KeyEventArgs) Handles DEEnd.KeyDown
         next_control_enter(e)
+        viewDetail()
     End Sub
 
     Private Sub DEDueDate_KeyDown(sender As Object, e As KeyEventArgs) Handles DEDueDate.KeyDown
@@ -912,4 +920,7 @@ Public Class FormSalesPOSDet
         GCItemList.DataSource = Nothing
     End Sub
 
+    Private Sub CheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEdit1.CheckedChanged
+        viewDetail()
+    End Sub
 End Class

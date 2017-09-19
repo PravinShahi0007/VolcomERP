@@ -102,13 +102,13 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdSalesPOSDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPriceRetail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnMin = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -996,6 +996,8 @@ Partial Class FormSalesPOSDet
         Me.GridColumnAmount.Name = "GridColumnAmount"
         Me.GridColumnAmount.OptionsColumn.ReadOnly = True
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_amount", "{0:n2}")})
+        Me.GridColumnAmount.UnboundExpression = "[design_price_retail] * [sales_pos_det_qty]"
+        Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 7
         Me.GridColumnAmount.Width = 170
@@ -1118,6 +1120,15 @@ Partial Class FormSalesPOSDet
         Me.GridColumnMin.Caption = "Store Stock"
         Me.GridColumnMin.Name = "GridColumnMin"
         '
+        'GridColumnNote
+        '
+        Me.GridColumnNote.Caption = "Note"
+        Me.GridColumnNote.FieldName = "note"
+        Me.GridColumnNote.Name = "GridColumnNote"
+        Me.GridColumnNote.OptionsColumn.AllowEdit = False
+        Me.GridColumnNote.Visible = True
+        Me.GridColumnNote.VisibleIndex = 8
+        '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1182,15 +1193,6 @@ Partial Class FormSalesPOSDet
         'EPForm
         '
         Me.EPForm.ContainerControl = Me
-        '
-        'GridColumnNote
-        '
-        Me.GridColumnNote.Caption = "Note"
-        Me.GridColumnNote.FieldName = "note"
-        Me.GridColumnNote.Name = "GridColumnNote"
-        Me.GridColumnNote.OptionsColumn.AllowEdit = False
-        Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 8
         '
         'FormSalesPOSDet
         '
