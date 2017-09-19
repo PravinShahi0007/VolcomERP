@@ -20,6 +20,9 @@ Partial Class FormProdDutyVar
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label31 = New System.Windows.Forms.Label()
+        Me.TEPenalty = New DevExpress.XtraEditors.TextEdit()
+        Me.Label30 = New System.Windows.Forms.Label()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -87,11 +90,9 @@ Partial Class FormProdDutyVar
         Me.TESalesActual = New DevExpress.XtraEditors.TextEdit()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.TEFreightUSD = New DevExpress.XtraEditors.TextEdit()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.TEPenalty = New DevExpress.XtraEditors.TextEdit()
-        Me.Label31 = New System.Windows.Forms.Label()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.TEPenalty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEPaid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEPayCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDuty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,7 +125,6 @@ Partial Class FormProdDutyVar
         CType(Me.TELSNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TESalesActual.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEFreightUSD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEPenalty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -143,6 +143,33 @@ Partial Class FormProdDutyVar
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(572, 38)
         Me.PanelControl1.TabIndex = 0
+        '
+        'Label31
+        '
+        Me.Label31.AutoSize = True
+        Me.Label31.Location = New System.Drawing.Point(409, 12)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(18, 13)
+        Me.Label31.TabIndex = 219
+        Me.Label31.Text = "%"
+        '
+        'TEPenalty
+        '
+        Me.TEPenalty.Location = New System.Drawing.Point(327, 9)
+        Me.TEPenalty.Name = "TEPenalty"
+        Me.TEPenalty.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEPenalty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPenalty.Size = New System.Drawing.Size(76, 20)
+        Me.TEPenalty.TabIndex = 219
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(278, 12)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(43, 13)
+        Me.Label30.TabIndex = 186
+        Me.Label30.Text = "Penalty"
         '
         'BCancel
         '
@@ -743,39 +770,12 @@ Partial Class FormProdDutyVar
         Me.TEFreightUSD.Properties.Appearance.Options.UseTextOptions = True
         Me.TEFreightUSD.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEFreightUSD.Properties.EditValueChangedDelay = 1
-        Me.TEFreightUSD.Properties.Mask.EditMask = "N2"
+        Me.TEFreightUSD.Properties.Mask.EditMask = "N4"
         Me.TEFreightUSD.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEFreightUSD.Properties.Mask.SaveLiteral = False
         Me.TEFreightUSD.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEFreightUSD.Size = New System.Drawing.Size(177, 20)
         Me.TEFreightUSD.TabIndex = 218
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(278, 12)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(43, 13)
-        Me.Label30.TabIndex = 186
-        Me.Label30.Text = "Penalty"
-        '
-        'TEPenalty
-        '
-        Me.TEPenalty.Location = New System.Drawing.Point(327, 9)
-        Me.TEPenalty.Name = "TEPenalty"
-        Me.TEPenalty.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEPenalty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEPenalty.Size = New System.Drawing.Size(76, 20)
-        Me.TEPenalty.TabIndex = 219
-        '
-        'Label31
-        '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(409, 12)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(18, 13)
-        Me.Label31.TabIndex = 219
-        Me.Label31.Text = "%"
         '
         'FormProdDutyVar
         '
@@ -853,6 +853,7 @@ Partial Class FormProdDutyVar
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.TEPenalty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEPaid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEPayCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDuty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -885,7 +886,6 @@ Partial Class FormProdDutyVar
         CType(Me.TELSNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TESalesActual.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEFreightUSD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEPenalty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

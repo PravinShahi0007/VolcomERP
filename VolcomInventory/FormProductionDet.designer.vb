@@ -63,6 +63,17 @@ Partial Class FormProductionDet
         Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEBOMNote = New DevExpress.XtraEditors.MemoEdit()
+        Me.BMDD = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarLargeButtonItem1 = New DevExpress.XtraBars.BarLargeButtonItem()
+        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
         Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
@@ -74,14 +85,6 @@ Partial Class FormProductionDet
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.DDBPrint = New DevExpress.XtraEditors.DropDownButton()
         Me.PUDD = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.BarLargeButtonItem1 = New DevExpress.XtraBars.BarLargeButtonItem()
-        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
-        Me.BMDD = New DevExpress.XtraBars.BarManager(Me.components)
-        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
@@ -129,6 +132,7 @@ Partial Class FormProductionDet
         Me.GVProdWO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdMatPurchase = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOVH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColShipFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColShipTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSamplePurcDate = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -138,6 +142,9 @@ Partial Class FormProductionDet
         Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColIDStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColIdWoType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnGT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVAT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColWoType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnProgress = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PGBProg = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
@@ -168,9 +175,6 @@ Partial Class FormProductionDet
         Me.BDeleteMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BEditMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMRS = New DevExpress.XtraEditors.SimpleButton()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.MEBOMNote = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,6 +193,10 @@ Partial Class FormProductionDet
         Me.XTPBOM.SuspendLayout()
         CType(Me.GCBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBOM, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.MEBOMNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralFooter.SuspendLayout()
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,7 +205,6 @@ Partial Class FormProductionDet
         Me.GroupControl3.SuspendLayout()
         CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TETolerance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -231,9 +238,6 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
-        CType(Me.MEBOMNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPProdOrder
@@ -711,6 +715,87 @@ Partial Class FormProductionDet
         Me.GridColumnIsCost.FieldName = "is_cost"
         Me.GridColumnIsCost.Name = "GridColumnIsCost"
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.LabelControl16)
+        Me.PanelControl3.Controls.Add(Me.MEBOMNote)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 195)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(943, 58)
+        Me.PanelControl3.TabIndex = 4
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Location = New System.Drawing.Point(14, 12)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl16.TabIndex = 139
+        Me.LabelControl16.Text = "BOM Note : "
+        '
+        'MEBOMNote
+        '
+        Me.MEBOMNote.Location = New System.Drawing.Point(81, 10)
+        Me.MEBOMNote.MenuManager = Me.BMDD
+        Me.MEBOMNote.Name = "MEBOMNote"
+        Me.MEBOMNote.Size = New System.Drawing.Size(849, 38)
+        Me.MEBOMNote.TabIndex = 0
+        '
+        'BMDD
+        '
+        Me.BMDD.DockControls.Add(Me.barDockControlTop)
+        Me.BMDD.DockControls.Add(Me.barDockControlBottom)
+        Me.BMDD.DockControls.Add(Me.barDockControlLeft)
+        Me.BMDD.DockControls.Add(Me.barDockControlRight)
+        Me.BMDD.Form = Me
+        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarLargeButtonItem1, Me.BarButtonItem2})
+        Me.BMDD.MaxItemId = 3
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(977, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 559)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(977, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 559)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(977, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 559)
+        '
+        'BarButtonItem1
+        '
+        Me.BarButtonItem1.Id = 0
+        Me.BarButtonItem1.Name = "BarButtonItem1"
+        '
+        'BarLargeButtonItem1
+        '
+        Me.BarLargeButtonItem1.Caption = "Print F. G. Purchase Order"
+        Me.BarLargeButtonItem1.Id = 1
+        Me.BarLargeButtonItem1.Name = "BarLargeButtonItem1"
+        '
+        'BarButtonItem2
+        '
+        Me.BarButtonItem2.Caption = "Print BOM"
+        Me.BarButtonItem2.Id = 2
+        Me.BarButtonItem2.Name = "BarButtonItem2"
+        '
         'GroupGeneralFooter
         '
         Me.GroupGeneralFooter.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -831,61 +916,6 @@ Partial Class FormProductionDet
         Me.PUDD.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarLargeButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2)})
         Me.PUDD.Manager = Me.BMDD
         Me.PUDD.Name = "PUDD"
-        '
-        'BarLargeButtonItem1
-        '
-        Me.BarLargeButtonItem1.Caption = "Print F. G. Purchase Order"
-        Me.BarLargeButtonItem1.Id = 1
-        Me.BarLargeButtonItem1.Name = "BarLargeButtonItem1"
-        '
-        'BarButtonItem2
-        '
-        Me.BarButtonItem2.Caption = "Print BOM"
-        Me.BarButtonItem2.Id = 2
-        Me.BarButtonItem2.Name = "BarButtonItem2"
-        '
-        'BMDD
-        '
-        Me.BMDD.DockControls.Add(Me.barDockControlTop)
-        Me.BMDD.DockControls.Add(Me.barDockControlBottom)
-        Me.BMDD.DockControls.Add(Me.barDockControlLeft)
-        Me.BMDD.DockControls.Add(Me.barDockControlRight)
-        Me.BMDD.Form = Me
-        Me.BMDD.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarLargeButtonItem1, Me.BarButtonItem2})
-        Me.BMDD.MaxItemId = 3
-        '
-        'barDockControlTop
-        '
-        Me.barDockControlTop.CausesValidation = False
-        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(977, 0)
-        '
-        'barDockControlBottom
-        '
-        Me.barDockControlBottom.CausesValidation = False
-        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 559)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(977, 0)
-        '
-        'barDockControlLeft
-        '
-        Me.barDockControlLeft.CausesValidation = False
-        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 559)
-        '
-        'barDockControlRight
-        '
-        Me.barDockControlRight.CausesValidation = False
-        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(977, 0)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 559)
-        '
-        'BarButtonItem1
-        '
-        Me.BarButtonItem1.Id = 0
-        Me.BarButtonItem1.Name = "BarButtonItem1"
         '
         'BCancel
         '
@@ -1346,7 +1376,7 @@ Partial Class FormProductionDet
         '
         'GVProdWO
         '
-        Me.GVProdWO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMatPurchase, Me.ColPONumber, Me.ColShipFrom, Me.ColShipTo, Me.ColSamplePurcDate, Me.ColRecDate, Me.ColDueDate, Me.ColPayment, Me.ColStatus, Me.ColIDStatus, Me.ColIdWoType, Me.ColWoType, Me.GridColumnProgress, Me.GridColumnIsOVHMain})
+        Me.GVProdWO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdMatPurchase, Me.ColPONumber, Me.GridColumnOVH, Me.ColShipFrom, Me.ColShipTo, Me.ColSamplePurcDate, Me.ColRecDate, Me.ColDueDate, Me.ColPayment, Me.ColStatus, Me.ColIDStatus, Me.ColIdWoType, Me.GridColumnGT, Me.GridColumnVAT, Me.GridColumnAmount, Me.ColWoType, Me.GridColumnProgress, Me.GridColumnIsOVHMain})
         Me.GVProdWO.GridControl = Me.GCProdWO
         Me.GVProdWO.Name = "GVProdWO"
         Me.GVProdWO.OptionsBehavior.Editable = False
@@ -1367,6 +1397,12 @@ Partial Class FormProductionDet
         Me.ColPONumber.Visible = True
         Me.ColPONumber.VisibleIndex = 1
         Me.ColPONumber.Width = 120
+        '
+        'GridColumnOVH
+        '
+        Me.GridColumnOVH.Caption = "Overhead"
+        Me.GridColumnOVH.FieldName = "overhead"
+        Me.GridColumnOVH.Name = "GridColumnOVH"
         '
         'ColShipFrom
         '
@@ -1446,6 +1482,21 @@ Partial Class FormProductionDet
         Me.ColIdWoType.Name = "ColIdWoType"
         Me.ColIdWoType.Width = 80
         '
+        'GridColumnGT
+        '
+        Me.GridColumnGT.Caption = "Gross Total"
+        Me.GridColumnGT.Name = "GridColumnGT"
+        '
+        'GridColumnVAT
+        '
+        Me.GridColumnVAT.Caption = "VAT"
+        Me.GridColumnVAT.Name = "GridColumnVAT"
+        '
+        'GridColumnAmount
+        '
+        Me.GridColumnAmount.Caption = "Amount"
+        Me.GridColumnAmount.Name = "GridColumnAmount"
+        '
         'ColWoType
         '
         Me.ColWoType.Caption = "WO Type"
@@ -1464,8 +1515,6 @@ Partial Class FormProductionDet
         Me.GridColumnProgress.ColumnEdit = Me.PGBProg
         Me.GridColumnProgress.FieldName = "progress"
         Me.GridColumnProgress.Name = "GridColumnProgress"
-        Me.GridColumnProgress.Visible = True
-        Me.GridColumnProgress.VisibleIndex = 8
         '
         'PGBProg
         '
@@ -1734,32 +1783,6 @@ Partial Class FormProductionDet
         Me.BAddMRS.TabIndex = 21
         Me.BAddMRS.Text = "Add"
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.LabelControl16)
-        Me.PanelControl3.Controls.Add(Me.MEBOMNote)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 195)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(943, 58)
-        Me.PanelControl3.TabIndex = 4
-        '
-        'MEBOMNote
-        '
-        Me.MEBOMNote.Location = New System.Drawing.Point(81, 10)
-        Me.MEBOMNote.MenuManager = Me.BMDD
-        Me.MEBOMNote.Name = "MEBOMNote"
-        Me.MEBOMNote.Size = New System.Drawing.Size(849, 38)
-        Me.MEBOMNote.TabIndex = 0
-        '
-        'LabelControl16
-        '
-        Me.LabelControl16.Location = New System.Drawing.Point(14, 12)
-        Me.LabelControl16.Name = "LabelControl16"
-        Me.LabelControl16.Size = New System.Drawing.Size(58, 13)
-        Me.LabelControl16.TabIndex = 139
-        Me.LabelControl16.Text = "BOM Note : "
-        '
         'FormProductionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1795,6 +1818,11 @@ Partial Class FormProductionDet
         Me.XTPBOM.ResumeLayout(False)
         CType(Me.GCBOM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBOM, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.MEBOMNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralFooter.ResumeLayout(False)
         Me.GroupGeneralFooter.PerformLayout()
@@ -1804,7 +1832,6 @@ Partial Class FormProductionDet
         Me.GroupControl3.ResumeLayout(False)
         CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BMDD, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
@@ -1839,10 +1866,6 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
-        CType(Me.MEBOMNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1997,4 +2020,8 @@ Partial Class FormProductionDet
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MEBOMNote As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents GridColumnOVH As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVAT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnGT As DevExpress.XtraGrid.Columns.GridColumn
 End Class

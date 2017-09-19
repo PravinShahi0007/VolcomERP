@@ -65,15 +65,6 @@
     End Sub
 
     Private Sub BMockMark_Click(sender As Object, e As EventArgs) Handles BMockMark.Click
-        Dim report_mark_type As String = "-1"
-        Dim id_report As String = "-1"
-
-        report_mark_type = "23"
-        id_report = "3997"
-
-        Dim showpopup As ClassShowPopUp = New ClassShowPopUp()
-        showpopup.report_mark_type = report_mark_type
-        showpopup.id_report = id_report
-        showpopup.show()
+        FormSUMockMark.ShowDialog()
     End Sub
 End Class
