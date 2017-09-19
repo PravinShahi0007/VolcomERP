@@ -47,7 +47,7 @@ Public Class FormSalesPOSDet
             TxtVatTot.EditValue = 0.0
             TxtTaxBase.EditValue = 0.0
 
-            TxtVirtualPosNumber.Text = header_number_sales("6")
+            'TxtVirtualPosNumber.Text = header_number_sales("6")
             BtnPrint.Enabled = False
             BtnAttachment.Enabled = False
             BMark.Enabled = False
@@ -143,28 +143,15 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub viewStockStore()
-        'dt_stock_store.Clear()
-        ''
-        'Try
-        '    Dim queryx As String = "SELECT dr.id_wh_drawer,rack.id_wh_rack,loc.id_wh_locator FROM tb_m_comp c
-        '                        INNER Join tb_m_wh_drawer dr On dr.id_wh_drawer=c.id_drawer_def
-        '                        INNER JOIN tb_m_wh_rack rack On rack.id_wh_rack=dr.id_wh_rack
-        '                        INNER Join tb_m_wh_locator loc On loc.id_wh_locator=rack.id_wh_locator
-        '                        WHERE c.id_comp='" & id_comp & "'"
-        '    Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
-        '    id_wh_drawer = datax.Rows(0)("id_wh_drawer").ToString
-        '    id_wh_rack = datax.Rows(0)("id_wh_rack").ToString
-        '    id_wh_locator = datax.Rows(0)("id_wh_locator").ToString
-        'Catch ex As Exception
-        'End Try
-        ''
-        'Dim end_period As String = "9999-12-01"
-        'Try
-        '    end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
-        'Catch ex As Exception
-        'End Try
-        'Dim query As String = "CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '" + end_period + "') "
-        'dt_stock_store = execute_query(query, -1, True, "", "", "", "")
+        dt_stock_store.Clear()
+
+        Dim end_period As String = "9999-12-01"
+        Try
+            end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+        Dim query As String = "CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '" + end_period + "') "
+        dt_stock_store = execute_query(query, -1, True, "", "", "", "")
     End Sub
 
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
@@ -634,25 +621,25 @@ Public Class FormSalesPOSDet
         Dim query_price As String = "call view_product_price('AND d.id_active = 1', '" + per_date + "') "
         Dim dt As DataTable = execute_query(query_price, -1, True, "", "", "", "")
         Dim tb1 = data_temp.AsEnumerable()
-        Dim tb2 = dt.AsEnumerable()
+        Dim tb2 = dt_stock_store
+        Dim tb3 = dt.AsEnumerable()
 
         Dim query = From table1 In tb1
                     Join table_tmp In tb2 On table1("code").ToString Equals table_tmp("product_full_code").ToString
                     Select New With
                     {
-                        .code = table_tmp("product_full_code").ToString,
-                        .name = table_tmp("design_display_name").ToString,
+                        .code = table_tmp("code").ToString,
+                        .name = table_tmp("name").ToString,
                         .size = table_tmp("size").ToString,
-                        .sales_pos_det_amount = table_tmp("design_price") * table1("qty"),
+                        .sales_pos_det_amount = table_tmp("design_price_retail") * table1("qty"),
                         .sales_pos_det_qty = table1("qty"),
-                        .id_design_price = table_tmp("id_design_price").ToString,
-                        .design_price = table_tmp("design_price"),
-                        .design_price_type = table_tmp("design_price_type").ToString,
-                        .id_design_price_retail = table_tmp("id_design_price").ToString,
-                        .design_price_retail = table_tmp("design_price"),
+                        .id_design_price = table_tmp("id_design_price_retail").ToString,
+                        .design_price = table_tmp("design_price_retail"),
+                        .design_price_type = table_tmp("design_price_type_retail").ToString,
+                        .id_design_price_retail = table_tmp("id_design_price_retail").ToString,
+                        .design_price_retail = table_tmp("design_price_retail"),
                         .id_design = table_tmp("id_design").ToString,
                         .id_product = table_tmp("id_product").ToString,
-                        .id_sample = table_tmp("id_sample").ToString,
                         .id_sales_pos_det = 0
                     }
 
@@ -691,11 +678,12 @@ Public Class FormSalesPOSDet
 
             If data.Rows.Count <= 0 Then
                 stopCustom("Store not found.")
+                defaultReset()
                 TxtCodeCompFrom.Focus()
             ElseIf data.Rows.Count > 1 Then
                 FormPopUpContact.id_pop_up = "42"
                 FormPopUpContact.id_cat = id_comp_cat_store
-                FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + TxtCodeCompFrom.Text + "'"
+                FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + addSlashes(TxtCodeCompFrom.Text) + "'"
                 FormPopUpContact.ShowDialog()
             Else
                 'If check_acc(data.Rows(0)("id_comp").ToString) Then
@@ -725,6 +713,8 @@ Public Class FormSalesPOSDet
                 '    stopCustom("Store not registered for auto posting journal.")
                 'End If
             End If
+        Else
+            defaultReset()
         End If
     End Sub
     Function check_acc(ByVal id_cc As String)
@@ -750,35 +740,55 @@ Public Class FormSalesPOSDet
             If typ = "4" Then
                 so_cat = "AND so.id_so_status=3 "
             ElseIf typ = "7" Or typ = "8" Then
-                so_cat = "And (so.id_so_status = 6 Or so.id_so_status = 7) "
+                so_cat = "And so.id_so_status = 6 "
+            ElseIf typ = "9" Then
+                so_cat = "And so.id_so_status = 7 "
             Else
                 so_cat = "AND so.id_so_status=0 "
             End If
 
-            Dim query As String = "SELECT * FROM tb_pl_sales_order_del pldel 
-            INNER JOIN tb_sales_order so ON so.id_so_status = pldel.id_so_status "
+            Dim query As String = "SELECT pldel.id_pl_sales_order_del, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos
+            FROM tb_pl_sales_order_del pldel 
+            INNER JOIN tb_sales_order so ON so.id_sales_order = pldel.id_sales_order "
             query += " INNER JOIN tb_m_comp_contact cc On cc.id_comp_contact=pldel.id_store_contact_to"
-            query += " INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp"
+            query += " INNER JOIN tb_m_comp comp ON comp.id_comp=cc.id_comp 
+            INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = comp.id_drawer_def 
+            INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack 
+            INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
             query += " LEFT JOIN tb_sales_pos sp ON sp.id_pl_sales_order_del=pldel.id_pl_sales_order_del"
-            query += " WHERE pldel.id_report_status='6' AND comp.id_comp='" + id_comp + "' AND pldel.pl_sales_order_del_number='" + TEDO.Text + "' " + so_cat + " "
+            query += " WHERE pldel.id_report_status='6' AND pldel.pl_sales_order_del_number='" + addSlashes(TEDO.Text) + "' " + so_cat + " "
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
             If data.Rows.Count <= 0 Then
                 stopCustom("Delivery order is not found for this store.")
+                defaultReset()
                 TEDO.Focus()
             ElseIf Not data.Rows(0)("id_sales_pos").ToString = "" Then
                 stopCustom("Invoice is already created.")
+                defaultReset()
                 TEDO.Focus()
             Else
                 'id DO
                 id_do = data.Rows(0)("id_pl_sales_order_del").ToString
+                id_comp = data.Rows(0)("id_comp").ToString
+                id_wh_locator = data.Rows(0)("id_wh_locator").ToString
+                id_wh_rack = data.Rows(0)("id_wh_rack").ToString
+                id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
+                TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
+                TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
+                MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
+                TENPWP.Text = data.Rows(0)("npwp").ToString
+
                 ' fill GV
                 view_do()
                 '
                 calculate()
                 '
-                MENote.Focus()
+                DEDueDate.Focus()
             End If
+        Else
+            TxtCodeCompFrom.Text = ""
+            defaultReset()
         End If
     End Sub
     Sub view_do()
@@ -788,18 +798,18 @@ Public Class FormSalesPOSDet
     End Sub
     Sub check_do()
         id_do = "-1"
-        TEDO.Text = ""
-        If LETypeSO.EditValue.ToString = "2" Then
-            TEDO.Visible = True
-            BDO.Visible = True
-            '
-            PanelControlNav.Visible = False
-        Else
-            TEDO.Visible = False
-            BDO.Visible = False
-            '
-            PanelControlNav.Visible = True
-        End If
+        'TEDO.Text = ""
+        'If LETypeSO.EditValue.ToString = "2" Then
+        '    TEDO.Visible = True
+        '    BDO.Visible = True
+        '    '
+        '    PanelControlNav.Visible = False
+        'Else
+        '    TEDO.Visible = False
+        '    BDO.Visible = False
+        '    '
+        '    PanelControlNav.Visible = True
+        'End If
     End Sub
 
     Sub next_control_enter(e As KeyEventArgs)
@@ -860,7 +870,7 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub DEEnd_EditValueChanged(sender As Object, e As EventArgs) Handles DEEnd.EditValueChanged
-        viewDetail()
+        'viewDetail()
     End Sub
 
     Private Sub LEInvType_KeyDown(sender As Object, e As KeyEventArgs) Handles LEInvType.KeyDown
@@ -872,4 +882,34 @@ Public Class FormSalesPOSDet
             End If
         End If
     End Sub
+
+    Private Sub LEInvType_EditValueChanged(sender As Object, e As EventArgs) Handles LEInvType.EditValueChanged
+        TEDO.Text = ""
+        TxtCodeCompFrom.Text = ""
+        defaultReset()
+
+        If LEInvType.EditValue.ToString = "0" Then
+            TEDO.Enabled = False
+            TxtCodeCompFrom.Enabled = True
+            BtnBrowseContactFrom.Enabled = True
+            PanelControlNav.Visible = True
+        Else
+            TEDO.Enabled = True
+            TxtCodeCompFrom.Enabled = False
+            BtnBrowseContactFrom.Enabled = False
+            PanelControlNav.Visible = False
+        End If
+    End Sub
+
+    Sub defaultReset()
+        id_comp = "-1"
+        id_wh_locator = "-1"
+        id_wh_rack = "-1"
+        id_wh_drawer = "-1"
+        TxtNameCompFrom.Text = ""
+        MEAdrressCompFrom.Text = ""
+        TENPWP.Text = ""
+        GCItemList.DataSource = Nothing
+    End Sub
+
 End Class

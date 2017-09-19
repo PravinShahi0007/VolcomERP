@@ -23,7 +23,6 @@ Partial Class FormSalesPOSDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOSDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.BDO = New DevExpress.XtraEditors.SimpleButton()
         Me.LEInvType = New DevExpress.XtraEditors.LookUpEdit()
         Me.TEDO = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
@@ -36,6 +35,7 @@ Partial Class FormSalesPOSDet
         Me.BtnBrowseContactFrom = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopMiddle = New DevExpress.XtraEditors.PanelControl()
+        Me.BDO = New DevExpress.XtraEditors.SimpleButton()
         Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
@@ -108,6 +108,7 @@ Partial Class FormSalesPOSDet
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,18 +195,6 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(426, 146)
         Me.PanelControlTopLeft.TabIndex = 8933
         '
-        'BDO
-        '
-        Me.BDO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.BDO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BDO.Appearance.Options.UseFont = True
-        Me.BDO.Location = New System.Drawing.Point(18, 155)
-        Me.BDO.Name = "BDO"
-        Me.BDO.Size = New System.Drawing.Size(23, 20)
-        Me.BDO.TabIndex = 8937
-        Me.BDO.TabStop = False
-        Me.BDO.Text = "..."
-        '
         'LEInvType
         '
         Me.LEInvType.Location = New System.Drawing.Point(78, 10)
@@ -223,6 +212,8 @@ Partial Class FormSalesPOSDet
         Me.TEDO.Name = "TEDO"
         Me.TEDO.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEDO.Properties.Appearance.Options.UseFont = True
+        Me.TEDO.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TEDO.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TEDO.Properties.EditValueChangedDelay = 1
         Me.TEDO.Size = New System.Drawing.Size(240, 20)
         Me.TEDO.TabIndex = 6
@@ -293,6 +284,8 @@ Partial Class FormSalesPOSDet
         Me.TxtCodeCompFrom.Name = "TxtCodeCompFrom"
         Me.TxtCodeCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtCodeCompFrom.Properties.Appearance.Options.UseFont = True
+        Me.TxtCodeCompFrom.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtCodeCompFrom.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtCodeCompFrom.Properties.EditValueChangedDelay = 1
         Me.TxtCodeCompFrom.Size = New System.Drawing.Size(82, 20)
         Me.TxtCodeCompFrom.TabIndex = 2
@@ -355,6 +348,18 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopMiddle.Size = New System.Drawing.Size(330, 146)
         Me.PanelControlTopMiddle.TabIndex = 8934
         '
+        'BDO
+        '
+        Me.BDO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BDO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BDO.Appearance.Options.UseFont = True
+        Me.BDO.Location = New System.Drawing.Point(18, 155)
+        Me.BDO.Name = "BDO"
+        Me.BDO.Size = New System.Drawing.Size(23, 20)
+        Me.BDO.TabIndex = 8937
+        Me.BDO.TabStop = False
+        Me.BDO.Text = "..."
+        '
         'CheckEdit1
         '
         Me.CheckEdit1.Location = New System.Drawing.Point(220, 10)
@@ -372,6 +377,7 @@ Partial Class FormSalesPOSDet
         Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDueDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEDueDate.Size = New System.Drawing.Size(151, 20)
         Me.DEDueDate.TabIndex = 3
         '
@@ -384,6 +390,7 @@ Partial Class FormSalesPOSDet
         Me.DEEnd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEEnd.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEEnd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEEnd.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEEnd.Size = New System.Drawing.Size(128, 20)
         Me.DEEnd.TabIndex = 5
         '
@@ -409,7 +416,7 @@ Partial Class FormSalesPOSDet
         Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Properties.Mask.EditMask = "dd-MM-yyyy"
+        Me.DEStart.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEStart.Size = New System.Drawing.Size(108, 20)
         Me.DEStart.TabIndex = 4
         '
@@ -869,7 +876,6 @@ Partial Class FormSalesPOSDet
         Me.GroupControlList.Controls.Add(Me.GCItemList)
         Me.GroupControlList.Controls.Add(Me.PanelControlNav)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlList.Enabled = False
         Me.GroupControlList.Location = New System.Drawing.Point(0, 150)
         Me.GroupControlList.Name = "GroupControlList"
         Me.GroupControlList.Size = New System.Drawing.Size(954, 295)
@@ -890,7 +896,7 @@ Partial Class FormSalesPOSDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnAmount, Me.GridColumnDesignPriceRetail, Me.GridColumnColor, Me.GridColumnDesignPriceType, Me.GridColumnUOM, Me.GridColumnPrice, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnIdDesignPriceRetail, Me.GridColumnMin, Me.GridColumnNote})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -1177,6 +1183,15 @@ Partial Class FormSalesPOSDet
         '
         Me.EPForm.ContainerControl = Me
         '
+        'GridColumnNote
+        '
+        Me.GridColumnNote.Caption = "Note"
+        Me.GridColumnNote.FieldName = "note"
+        Me.GridColumnNote.Name = "GridColumnNote"
+        Me.GridColumnNote.OptionsColumn.AllowEdit = False
+        Me.GridColumnNote.Visible = True
+        Me.GridColumnNote.VisibleIndex = 8
+        '
         'FormSalesPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1339,4 +1354,5 @@ Partial Class FormSalesPOSDet
     Friend WithEvents GridColumnMin As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LEInvType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
 End Class
