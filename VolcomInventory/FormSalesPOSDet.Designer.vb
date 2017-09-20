@@ -507,7 +507,7 @@ Partial Class FormSalesPOSDet
         Me.MENote.Location = New System.Drawing.Point(57, 34)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(288, 60)
+        Me.MENote.Size = New System.Drawing.Size(268, 60)
         Me.MENote.TabIndex = 6
         '
         'LabelControl18
@@ -649,7 +649,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlBottomLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlBottomLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlBottomLeft.Name = "PanelControlBottomLeft"
-        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(365, 108)
+        Me.PanelControlBottomLeft.Size = New System.Drawing.Size(345, 108)
         Me.PanelControlBottomLeft.TabIndex = 170
         '
         'LabelControl21
@@ -673,7 +673,7 @@ Partial Class FormSalesPOSDet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(288, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(268, 20)
         Me.LEReportStatus.TabIndex = 7
         '
         'PanelControlBottomMiddle
@@ -682,7 +682,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlBottomMiddle.Controls.Add(Me.METotSay)
         Me.PanelControlBottomMiddle.Controls.Add(Me.LabelControl19)
         Me.PanelControlBottomMiddle.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomMiddle.Location = New System.Drawing.Point(385, 2)
+        Me.PanelControlBottomMiddle.Location = New System.Drawing.Point(365, 2)
         Me.PanelControlBottomMiddle.Name = "PanelControlBottomMiddle"
         Me.PanelControlBottomMiddle.Size = New System.Drawing.Size(329, 108)
         Me.PanelControlBottomMiddle.TabIndex = 171
@@ -693,7 +693,7 @@ Partial Class FormSalesPOSDet
         Me.METotSay.Name = "METotSay"
         Me.METotSay.Properties.MaxLength = 100
         Me.METotSay.Properties.ReadOnly = True
-        Me.METotSay.Size = New System.Drawing.Size(290, 87)
+        Me.METotSay.Size = New System.Drawing.Size(280, 87)
         Me.METotSay.TabIndex = 145
         Me.METotSay.TabStop = False
         '
@@ -721,14 +721,14 @@ Partial Class FormSalesPOSDet
         Me.PanelControlBottomRight.Controls.Add(Me.SPVat)
         Me.PanelControlBottomRight.Controls.Add(Me.LabelControl22)
         Me.PanelControlBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlBottomRight.Location = New System.Drawing.Point(714, 2)
+        Me.PanelControlBottomRight.Location = New System.Drawing.Point(694, 2)
         Me.PanelControlBottomRight.Name = "PanelControlBottomRight"
-        Me.PanelControlBottomRight.Size = New System.Drawing.Size(238, 108)
+        Me.PanelControlBottomRight.Size = New System.Drawing.Size(258, 108)
         Me.PanelControlBottomRight.TabIndex = 172
         '
         'TxtTaxBase
         '
-        Me.TxtTaxBase.Location = New System.Drawing.Point(65, 80)
+        Me.TxtTaxBase.Location = New System.Drawing.Point(80, 80)
         Me.TxtTaxBase.Name = "TxtTaxBase"
         Me.TxtTaxBase.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtTaxBase.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -744,7 +744,7 @@ Partial Class FormSalesPOSDet
         '
         'TxtVatTot
         '
-        Me.TxtVatTot.Location = New System.Drawing.Point(141, 55)
+        Me.TxtVatTot.Location = New System.Drawing.Point(156, 55)
         Me.TxtVatTot.Name = "TxtVatTot"
         Me.TxtVatTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtVatTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -760,7 +760,7 @@ Partial Class FormSalesPOSDet
         '
         'TxtNetto
         '
-        Me.TxtNetto.Location = New System.Drawing.Point(65, 29)
+        Me.TxtNetto.Location = New System.Drawing.Point(80, 29)
         Me.TxtNetto.Name = "TxtNetto"
         Me.TxtNetto.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtNetto.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -777,7 +777,7 @@ Partial Class FormSalesPOSDet
         'SPDiscount
         '
         Me.SPDiscount.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.SPDiscount.Location = New System.Drawing.Point(65, 5)
+        Me.SPDiscount.Location = New System.Drawing.Point(80, 5)
         Me.SPDiscount.Name = "SPDiscount"
         Me.SPDiscount.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SPDiscount.Properties.Appearance.Options.UseFont = True
@@ -792,7 +792,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl14
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(3, 56)
+        Me.LabelControl14.Location = New System.Drawing.Point(18, 56)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(16, 13)
         Me.LabelControl14.TabIndex = 160
@@ -800,7 +800,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(122, 6)
+        Me.LabelControl9.Location = New System.Drawing.Point(137, 6)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(11, 13)
         Me.LabelControl9.TabIndex = 168
@@ -808,7 +808,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl15
         '
-        Me.LabelControl15.Location = New System.Drawing.Point(3, 30)
+        Me.LabelControl15.Location = New System.Drawing.Point(18, 30)
         Me.LabelControl15.Name = "LabelControl15"
         Me.LabelControl15.Size = New System.Drawing.Size(27, 13)
         Me.LabelControl15.TabIndex = 161
@@ -816,7 +816,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl10
         '
-        Me.LabelControl10.Location = New System.Drawing.Point(3, 6)
+        Me.LabelControl10.Location = New System.Drawing.Point(18, 6)
         Me.LabelControl10.Name = "LabelControl10"
         Me.LabelControl10.Size = New System.Drawing.Size(41, 13)
         Me.LabelControl10.TabIndex = 167
@@ -824,7 +824,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl17
         '
-        Me.LabelControl17.Location = New System.Drawing.Point(3, 81)
+        Me.LabelControl17.Location = New System.Drawing.Point(18, 81)
         Me.LabelControl17.Name = "LabelControl17"
         Me.LabelControl17.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl17.TabIndex = 163
@@ -832,7 +832,7 @@ Partial Class FormSalesPOSDet
         '
         'TxtDiscount
         '
-        Me.TxtDiscount.Location = New System.Drawing.Point(141, 5)
+        Me.TxtDiscount.Location = New System.Drawing.Point(156, 5)
         Me.TxtDiscount.Name = "TxtDiscount"
         Me.TxtDiscount.Properties.Appearance.Options.UseTextOptions = True
         Me.TxtDiscount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -849,7 +849,7 @@ Partial Class FormSalesPOSDet
         'SPVat
         '
         Me.SPVat.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.SPVat.Location = New System.Drawing.Point(65, 55)
+        Me.SPVat.Location = New System.Drawing.Point(80, 55)
         Me.SPVat.Name = "SPVat"
         Me.SPVat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SPVat.Properties.Appearance.Options.UseFont = True
@@ -864,7 +864,7 @@ Partial Class FormSalesPOSDet
         '
         'LabelControl22
         '
-        Me.LabelControl22.Location = New System.Drawing.Point(122, 56)
+        Me.LabelControl22.Location = New System.Drawing.Point(137, 56)
         Me.LabelControl22.Name = "LabelControl22"
         Me.LabelControl22.Size = New System.Drawing.Size(11, 13)
         Me.LabelControl22.TabIndex = 165
@@ -916,7 +916,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnNo.OptionsColumn.ReadOnly = True
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 48
+        Me.GridColumnNo.Width = 61
         '
         'GridColumnCode
         '
@@ -927,7 +927,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 124
+        Me.GridColumnCode.Width = 158
         '
         'GridColumnName
         '
@@ -939,7 +939,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 147
+        Me.GridColumnName.Width = 188
         '
         'GridColumnSize
         '
@@ -954,7 +954,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 57
+        Me.GridColumnSize.Width = 72
         '
         'GridColumnQty
         '
@@ -973,7 +973,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_qty", "{0:f0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 6
-        Me.GridColumnQty.Width = 50
+        Me.GridColumnQty.Width = 54
         '
         'RepositoryItemSpinEdit1
         '
@@ -1000,7 +1000,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 7
-        Me.GridColumnAmount.Width = 170
+        Me.GridColumnAmount.Width = 175
         '
         'GridColumnDesignPriceRetail
         '
@@ -1016,7 +1016,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnDesignPriceRetail.OptionsColumn.ReadOnly = True
         Me.GridColumnDesignPriceRetail.Visible = True
         Me.GridColumnDesignPriceRetail.VisibleIndex = 5
-        Me.GridColumnDesignPriceRetail.Width = 100
+        Me.GridColumnDesignPriceRetail.Width = 109
         '
         'GridColumnColor
         '
@@ -1035,7 +1035,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnDesignPriceType.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnDesignPriceType.Visible = True
         Me.GridColumnDesignPriceType.VisibleIndex = 4
-        Me.GridColumnDesignPriceType.Width = 71
+        Me.GridColumnDesignPriceType.Width = 90
         '
         'GridColumnUOM
         '
@@ -1098,7 +1098,6 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPrice.Caption = "Id Design Price Del"
         Me.GridColumnIdDesignPrice.FieldName = "id_design_price"
         Me.GridColumnIdDesignPrice.Name = "GridColumnIdDesignPrice"
-        Me.GridColumnIdDesignPrice.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnIdDesignPrice.Width = 84
         '
         'GridColumnIdSalesPOSDet
@@ -1113,7 +1112,6 @@ Partial Class FormSalesPOSDet
         Me.GridColumnIdDesignPriceRetail.Caption = "Id Design Price"
         Me.GridColumnIdDesignPriceRetail.FieldName = "id_design_price_retail"
         Me.GridColumnIdDesignPriceRetail.Name = "GridColumnIdDesignPriceRetail"
-        Me.GridColumnIdDesignPriceRetail.OptionsColumn.ShowInCustomizationForm = False
         '
         'GridColumnMin
         '
@@ -1128,6 +1126,7 @@ Partial Class FormSalesPOSDet
         Me.GridColumnNote.OptionsColumn.AllowEdit = False
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 8
+        Me.GridColumnNote.Width = 171
         '
         'PanelControlNav
         '
@@ -1208,6 +1207,7 @@ Partial Class FormSalesPOSDet
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Billing"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()

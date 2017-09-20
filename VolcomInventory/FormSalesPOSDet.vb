@@ -23,6 +23,7 @@ Public Class FormSalesPOSDet
     Dim last_end_period_select As String = "9999-12-01"
     '
     Public id_do As String = "-1"
+    Public id_memo_type As String = "-1"
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
@@ -60,6 +61,7 @@ Public Class FormSalesPOSDet
             '
             BtnAttachment.Enabled = True
             BMark.Enabled = True
+            GridColumnNote.Visible = False
 
             'query view based on edit id's
             Dim query As String = ""
@@ -590,6 +592,7 @@ Public Class FormSalesPOSDet
         Else
             viewStockStore()
             load_excel_data()
+            calculate()
             'join
 
             'FormImportExcel.id_pop_up = "6"
@@ -630,14 +633,13 @@ Public Class FormSalesPOSDet
                     Group Join table_tmp In tb2
                     On table1("code").ToString Equals table_tmp("code").ToString Into sjoin = Group
                     From rs In sjoin.DefaultIfEmpty()
-                    Group Join tb_price In tb3
-                    On table1("code").ToString Equals tb_price("product_full_code").ToString Into pjoin = Group
-                    From rp In pjoin.DefaultIfEmpty()
+                    Join rp In tb3
+                    On table1("code").ToString Equals rp("product_full_code").ToString
                     Select New With
                     {
                         .code = table1("code").ToString,
-                        .name = If(rs Is Nothing, "", rs("name").ToString),
-                        .size = If(rs Is Nothing, "", rs("size").ToString),
+                        .name = If(rp Is Nothing, "", rp("design_display_name").ToString),
+                        .size = If(rp Is Nothing, "", rp("size").ToString),
                         .sales_pos_det_qty = table1("qty"),
                         .limit_qty = If(rs Is Nothing, 0, rs("qty_all_product")),
                         .id_design_price = If(rp Is Nothing, "0", rp("id_design_price").ToString),
@@ -645,9 +647,9 @@ Public Class FormSalesPOSDet
                         .design_price_type = If(rp Is Nothing, "", rp("design_price_type").ToString),
                         .id_design_price_retail = If(rp Is Nothing, "0", rp("id_design_price").ToString),
                         .design_price_retail = If(table1("price").ToString = "", If(rp Is Nothing, 0, rp("design_price")), table1("price")),
-                        .id_design = If(rs Is Nothing, "0", rs("id_design").ToString),
-                        .id_product = If(rs Is Nothing, "0", rs("id_product").ToString),
-                        .note = If(rs Is Nothing, "-", If(table1("qty") > rs("qty_all_product"), "+" + (table1("qty") - rs("qty_all_product")).ToString, "OK")),
+                        .id_design = If(rp Is Nothing, "0", rp("id_design").ToString),
+                        .id_product = If(rp Is Nothing, "0", rp("id_product").ToString),
+                        .note = If(rp Is Nothing, "Product not found", If(table1("qty") > If(rs Is Nothing, 0, rs("qty_all_product")), "+" + (table1("qty") - If(rs Is Nothing, 0, rs("qty_all_product"))).ToString, "OK")),
                         .id_sales_pos_det = "0"
                     }
 
