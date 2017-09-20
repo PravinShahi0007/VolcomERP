@@ -1648,10 +1648,11 @@
             '
             If id_status_reportx = 5 Then 'Cancel
                 'stock
-                Dim query_cancel As String = "SELECT * FROM tb_pl_mrs a "
-                query_cancel += "INNER JOIN tb_pl_mrs_det b ON a.id_pl_mrs = b.id_pl_mrs "
-                query_cancel += "INNER JOIN tb_prod_order_mrs_det c ON b.id_prod_order_mrs_det = c.id_prod_order_mrs_det "
-                query_cancel += "WHERE a.id_pl_mrs = '" + id_report + "' "
+                Dim query_cancel As String = "SELECT b.*,p.`id_mat_det`,a.`pl_mrs_number` FROM tb_pl_mrs a 
+                                                INNER JOIN tb_pl_mrs_det b ON a.id_pl_mrs = b.id_pl_mrs 
+                                                INNER JOIN tb_m_mat_det_price p ON b.`id_mat_det_price`=p.`id_mat_det_price`
+                                                INNER JOIN tb_prod_order_mrs_det c ON b.id_prod_order_mrs_det = c.id_prod_order_mrs_det 
+                                                WHERE a.id_pl_mrs ='" + id_report + "' "
                 Dim data As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
                 For i As Integer = 0 To (data.Rows.Count - 1)
                     Dim id_wh_drawer As String = data.Rows(i)("id_wh_drawer").ToString
@@ -1666,10 +1667,11 @@
                 Next
             ElseIf id_status_reportx = 6 Then 'completed
                 'stock
-                Dim query_cancel As String = "SELECT * FROM tb_pl_mrs a "
-                query_cancel += "INNER JOIN tb_pl_mrs_det b ON a.id_pl_mrs = b.id_pl_mrs "
-                query_cancel += "INNER JOIN tb_prod_order_mrs_det c ON b.id_prod_order_mrs_det = c.id_prod_order_mrs_det "
-                query_cancel += "WHERE a.id_pl_mrs = '" + id_report + "' "
+                Dim query_cancel As String = "SELECT b.*,p.`id_mat_det`,a.`pl_mrs_number` FROM tb_pl_mrs a 
+                                                INNER JOIN tb_pl_mrs_det b ON a.id_pl_mrs = b.id_pl_mrs 
+                                                INNER JOIN tb_m_mat_det_price p ON b.`id_mat_det_price`=p.`id_mat_det_price`
+                                                INNER JOIN tb_prod_order_mrs_det c ON b.id_prod_order_mrs_det = c.id_prod_order_mrs_det 
+                                                WHERE a.id_pl_mrs = '" + id_report + "' "
                 Dim data As DataTable = execute_query(query_cancel, -1, True, "", "", "", "")
                 For i As Integer = 0 To (data.Rows.Count - 1)
                     Dim id_wh_drawer As String = data.Rows(i)("id_wh_drawer").ToString

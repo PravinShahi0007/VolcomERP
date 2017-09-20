@@ -194,7 +194,7 @@ Partial Class FormSuperUser
         Me.Name = "FormSuperUser"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "FormSuperUser"
+        Me.Text = "Super User"
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
