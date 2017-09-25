@@ -39,7 +39,6 @@ Partial Class FormProdClosing
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BClosingFGPO = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
@@ -76,6 +75,7 @@ Partial Class FormProdClosing
         Me.GridColumnPercentageClaim = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmoClaim = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnClaimProcessed = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnClosingRec = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,8 +86,6 @@ Partial Class FormProdClosing
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCSelAll.SuspendLayout()
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -274,7 +272,8 @@ Partial Class FormProdClosing
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.PanelControl3)
+        Me.PanelControl2.Controls.Add(Me.BtnClosingRec)
+        Me.PanelControl2.Controls.Add(Me.BClosingFGPO)
         Me.PanelControl2.Controls.Add(Me.PCSelAll)
         Me.PanelControl2.Controls.Add(Me.PBCLineList)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -283,21 +282,12 @@ Partial Class FormProdClosing
         Me.PanelControl2.Size = New System.Drawing.Size(788, 37)
         Me.PanelControl2.TabIndex = 1
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl3.Controls.Add(Me.BClosingFGPO)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl3.Location = New System.Drawing.Point(231, 2)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(114, 33)
-        Me.PanelControl3.TabIndex = 106
-        '
         'BClosingFGPO
         '
-        Me.BClosingFGPO.Location = New System.Drawing.Point(6, 5)
+        Me.BClosingFGPO.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BClosingFGPO.Location = New System.Drawing.Point(688, 2)
         Me.BClosingFGPO.Name = "BClosingFGPO"
-        Me.BClosingFGPO.Size = New System.Drawing.Size(98, 23)
+        Me.BClosingFGPO.Size = New System.Drawing.Size(98, 33)
         Me.BClosingFGPO.TabIndex = 0
         Me.BClosingFGPO.Text = "Closing FG PO"
         '
@@ -662,6 +652,15 @@ Partial Class FormProdClosing
         Me.GridColumnClaimProcessed.Visible = True
         Me.GridColumnClaimProcessed.VisibleIndex = 17
         '
+        'BtnClosingRec
+        '
+        Me.BtnClosingRec.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnClosingRec.Location = New System.Drawing.Point(588, 2)
+        Me.BtnClosingRec.Name = "BtnClosingRec"
+        Me.BtnClosingRec.Size = New System.Drawing.Size(100, 33)
+        Me.BtnClosingRec.TabIndex = 106
+        Me.BtnClosingRec.Text = "Closing Receiving"
+        '
         'FormProdClosing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -687,8 +686,6 @@ Partial Class FormProdClosing
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
         CType(Me.PCSelAll, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCSelAll.ResumeLayout(False)
         CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -748,7 +745,6 @@ Partial Class FormProdClosing
     Friend WithEvents PBCLineList As DevExpress.XtraEditors.ProgressBarControl
     Friend WithEvents GridColumnCE As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICESelect As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BClosingFGPO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnidProdOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDiffPercentage As DevExpress.XtraGrid.Columns.GridColumn
@@ -758,4 +754,5 @@ Partial Class FormProdClosing
     Friend WithEvents GridColumnPriceWO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPercentageClaim As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIDWO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnClosingRec As DevExpress.XtraEditors.SimpleButton
 End Class
