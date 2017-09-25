@@ -39,6 +39,7 @@ Partial Class FormProdClosing
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnClosingRec = New DevExpress.XtraEditors.SimpleButton()
         Me.BClosingFGPO = New DevExpress.XtraEditors.SimpleButton()
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
@@ -75,7 +76,7 @@ Partial Class FormProdClosing
         Me.GridColumnPercentageClaim = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmoClaim = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnClaimProcessed = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnClosingRec = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnRecStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -282,6 +283,16 @@ Partial Class FormProdClosing
         Me.PanelControl2.Size = New System.Drawing.Size(788, 37)
         Me.PanelControl2.TabIndex = 1
         '
+        'BtnClosingRec
+        '
+        Me.BtnClosingRec.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnClosingRec.Location = New System.Drawing.Point(588, 2)
+        Me.BtnClosingRec.Name = "BtnClosingRec"
+        Me.BtnClosingRec.Size = New System.Drawing.Size(100, 33)
+        Me.BtnClosingRec.TabIndex = 106
+        Me.BtnClosingRec.Text = "Closing Receiving"
+        Me.BtnClosingRec.Visible = False
+        '
         'BClosingFGPO
         '
         Me.BClosingFGPO.Dock = System.Windows.Forms.DockStyle.Right
@@ -290,6 +301,7 @@ Partial Class FormProdClosing
         Me.BClosingFGPO.Size = New System.Drawing.Size(98, 33)
         Me.BClosingFGPO.TabIndex = 0
         Me.BClosingFGPO.Text = "Closing FG PO"
+        Me.BClosingFGPO.Visible = False
         '
         'PCSelAll
         '
@@ -331,7 +343,7 @@ Partial Class FormProdClosing
         '
         'GVProd
         '
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnidProdOrder, Me.GridColumnIDWO, Me.GridColumnCE, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnPriceWO, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumnPicture, Me.GridColumnDiff, Me.GridColumnDiffPercentage, Me.GridColumnStatus, Me.GridColumnPercentageClaim, Me.GridColumnAmoClaim, Me.GridColumnClaimProcessed})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnidProdOrder, Me.GridColumnIDWO, Me.GridColumnCE, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnPriceWO, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumnPicture, Me.GridColumnDiff, Me.GridColumnDiffPercentage, Me.GridColumnStatus, Me.GridColumnPercentageClaim, Me.GridColumnAmoClaim, Me.GridColumnClaimProcessed, Me.GridColumnRecStatus})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 2
         Me.GVProd.Name = "GVProd"
@@ -394,7 +406,7 @@ Partial Class FormProdClosing
         '
         'GridColumnReportStatus
         '
-        Me.GridColumnReportStatus.Caption = "Status"
+        Me.GridColumnReportStatus.Caption = "Order Status"
         Me.GridColumnReportStatus.FieldName = "report_status"
         Me.GridColumnReportStatus.Name = "GridColumnReportStatus"
         Me.GridColumnReportStatus.OptionsColumn.AllowEdit = False
@@ -480,7 +492,7 @@ Partial Class FormProdClosing
         '
         'GridColumnCode
         '
-        Me.GridColumnCode.Caption = "Design Code"
+        Me.GridColumnCode.Caption = "Code"
         Me.GridColumnCode.FieldName = "design_code"
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
@@ -501,7 +513,7 @@ Partial Class FormProdClosing
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.OptionsColumn.AllowEdit = False
         Me.GridColumnOrderQty.Visible = True
-        Me.GridColumnOrderQty.VisibleIndex = 9
+        Me.GridColumnOrderQty.VisibleIndex = 11
         Me.GridColumnOrderQty.Width = 89
         '
         'GridColumnRecQty
@@ -517,7 +529,7 @@ Partial Class FormProdClosing
         Me.GridColumnRecQty.Name = "GridColumnRecQty"
         Me.GridColumnRecQty.OptionsColumn.AllowEdit = False
         Me.GridColumnRecQty.Visible = True
-        Me.GridColumnRecQty.VisibleIndex = 11
+        Me.GridColumnRecQty.VisibleIndex = 12
         Me.GridColumnRecQty.Width = 96
         '
         'GridColumnIdPO
@@ -586,7 +598,7 @@ Partial Class FormProdClosing
         Me.GridColumnDiff.UnboundExpression = "[qty_rec] - [qty_order]"
         Me.GridColumnDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumnDiff.Visible = True
-        Me.GridColumnDiff.VisibleIndex = 12
+        Me.GridColumnDiff.VisibleIndex = 13
         '
         'GridColumnDiffPercentage
         '
@@ -613,8 +625,6 @@ Partial Class FormProdClosing
         Me.GridColumnStatus.Caption = "Status"
         Me.GridColumnStatus.FieldName = "claim_discount"
         Me.GridColumnStatus.Name = "GridColumnStatus"
-        Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 13
         '
         'GridColumnPercentageClaim
         '
@@ -629,6 +639,7 @@ Partial Class FormProdClosing
         Me.GridColumnPercentageClaim.Name = "GridColumnPercentageClaim"
         Me.GridColumnPercentageClaim.Visible = True
         Me.GridColumnPercentageClaim.VisibleIndex = 15
+        Me.GridColumnPercentageClaim.Width = 98
         '
         'GridColumnAmoClaim
         '
@@ -643,6 +654,7 @@ Partial Class FormProdClosing
         Me.GridColumnAmoClaim.Name = "GridColumnAmoClaim"
         Me.GridColumnAmoClaim.Visible = True
         Me.GridColumnAmoClaim.VisibleIndex = 16
+        Me.GridColumnAmoClaim.Width = 100
         '
         'GridColumnClaimProcessed
         '
@@ -652,14 +664,14 @@ Partial Class FormProdClosing
         Me.GridColumnClaimProcessed.Visible = True
         Me.GridColumnClaimProcessed.VisibleIndex = 17
         '
-        'BtnClosingRec
+        'GridColumnRecStatus
         '
-        Me.BtnClosingRec.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnClosingRec.Location = New System.Drawing.Point(588, 2)
-        Me.BtnClosingRec.Name = "BtnClosingRec"
-        Me.BtnClosingRec.Size = New System.Drawing.Size(100, 33)
-        Me.BtnClosingRec.TabIndex = 106
-        Me.BtnClosingRec.Text = "Closing Receiving"
+        Me.GridColumnRecStatus.Caption = "Rec. Status"
+        Me.GridColumnRecStatus.FieldName = "rec_status"
+        Me.GridColumnRecStatus.Name = "GridColumnRecStatus"
+        Me.GridColumnRecStatus.Visible = True
+        Me.GridColumnRecStatus.VisibleIndex = 9
+        Me.GridColumnRecStatus.Width = 68
         '
         'FormProdClosing
         '
@@ -755,4 +767,5 @@ Partial Class FormProdClosing
     Friend WithEvents GridColumnPercentageClaim As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIDWO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnClosingRec As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnRecStatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class

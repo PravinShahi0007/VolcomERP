@@ -6,6 +6,11 @@
         viewSeason()
         '
         viewVendor()
+        If id_pop_up = "1" Then
+            BtnClosingRec.Visible = True
+        Else
+            BClosingFGPO.Visible = True
+        End If
     End Sub
     Sub viewVendor()
         Dim query As String = ""
@@ -75,7 +80,7 @@
                         a.prod_order_date,a.id_report_status,c.report_status, 
                         b.id_design,b.id_delivery, e.delivery, f.season, e.id_season , wod.prod_order_wo_det_price
                         ,wo.id_prod_order_wo, IF(wo.claim_discount=1,'Claim',IF(wo.claim_discount=2,'Discount','-')) as claim_discount,(wo.claim_disc_percentage/100) as claim_disc_percentage,wo.claim_disc_value
-                        ,IF(wo.is_proc_disc_claim=1,'Yes','No') as is_proc_disc_claim
+                        ,IF(wo.is_proc_disc_claim=1,'Yes','No') as is_proc_disc_claim, IF(a.is_closing_rec=1,'Closed','Opened') AS `rec_status`
                         FROM tb_prod_order a 
                         INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
                         INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
@@ -139,6 +144,34 @@
                     execute_non_query(query, True, "", "", "", "")
                 Next
                 infoCustom("FG PO Closed.")
+            End If
+        End If
+
+        GVProd.ActiveFilterString = ""
+        view_production_order()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnClosingRec_Click(sender As Object, e As EventArgs) Handles BtnClosingRec.Click
+        Cursor = Cursors.WaitCursor
+        GVProd.ActiveFilterString = ""
+        GVProd.ActiveFilterString = "[check]='yes' "
+        If GVProd.RowCount = 0 Then
+            stopCustom("Please select FG PO first.")
+            GVProd.ActiveFilterString = ""
+        Else
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to close receiving for this FG PO?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim prod_order As String = ""
+                For i As Integer = 0 To (GVProd.RowCount - 1) - GetGroupRowCount(GVProd)
+                    If i > 0 Then
+                        prod_order += "OR "
+                    End If
+                    prod_order += "id_prod_order=" + GVProd.GetRowCellValue(i, "id_prod_order").ToString + " "
+                Next
+                Dim query As String = "UPDATE tb_prod_order SET is_closing_rec=1 WHERE (" + prod_order + ") "
+                execute_non_query(query, True, "", "", "", "")
             End If
         End If
 
