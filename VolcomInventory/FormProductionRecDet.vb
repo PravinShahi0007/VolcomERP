@@ -10,6 +10,11 @@ Public Class FormProductionRecDet
     Dim is_start As Boolean = False
     Public bof_column As String = get_setup_field("bof_column")
     Public bof_xls As String = get_setup_field("bof_xls_rcvqc")
+    Dim total_min As Integer = 0
+    Dim total_max As Integer = 0
+    Dim total_rec As Integer = 0
+    Dim is_special_rec As String = "-1"
+
 
 
     Private Sub FormProductionRecDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -144,7 +149,7 @@ Public Class FormProductionRecDet
 
     Sub view_po()
         Dim query As String = "SELECT b.id_design,d.id_sample, d.design_name, d.design_display_name, a.id_report_status, a.prod_order_number, a.id_po_type, DATE_FORMAT(a.prod_order_date,'%Y-%m-%d') as prod_order_datex, "
-        query += "a.prod_order_lead_time, a.prod_order_note, g.po_type "
+        query += "a.prod_order_lead_time, a.prod_order_note, g.po_type, get_total_po(" + id_order + ", 2) AS `total_min`, g.po_type, get_total_po(" + id_order + ", 3) AS `total_max`, get_total_po(" + id_order + ", 4) AS `total_rec`, a.is_special_rec, a.special_rec_memo "
         query += "FROM tb_prod_order a "
         query += "INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design "
         query += "INNER JOIN tb_lookup_report_status c ON a.id_report_status = c.id_report_status "
@@ -163,9 +168,12 @@ Public Class FormProductionRecDet
         TEEstRecDate.Text = view_date_from(data.Rows(0)("prod_order_datex").ToString, Integer.Parse(data.Rows(0)("prod_order_lead_time").ToString))
         TEDesign.Text = data.Rows(0)("design_display_name").ToString
         TxtPOType.Text = data.Rows(0)("po_type").ToString
+        is_special_rec = data.Rows(0)("is_special_rec").ToString
+        total_min = Integer.Parse(data.Rows(0)("total_min").ToString)
+        total_max = Integer.Parse(data.Rows(0)("total_max").ToString)
+        total_rec = Integer.Parse(data.Rows(0)("total_rec").ToString)
         pre_viewImages("2", PEView, id_design, False)
         mainVendor()
-
     End Sub
 
     Sub mainVendor()
@@ -582,6 +590,7 @@ Public Class FormProductionRecDet
     End Sub
 
     Private Sub BScan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BScan.Click
+        Cursor = Cursors.WaitCursor
         MENote.Enabled = False
         TEDONumber.Enabled = False
         TEDODate.Enabled = False
@@ -595,7 +604,9 @@ Public Class FormProductionRecDet
         BCancel.Enabled = False
         GVListPurchase.OptionsBehavior.Editable = False
         ControlBox = False
+        view_po()
         newRows()
+        Cursor = Cursors.Default
         'allowDelete()
     End Sub
 
@@ -644,6 +655,12 @@ Public Class FormProductionRecDet
         Dim code_check As String = GVBarcode.GetFocusedRowCellValue("ean_code").ToString
         Dim code_found As Boolean = False
         Dim id_prod_order_det As String = ""
+        Dim cur_total As Integer = 0
+        Try
+            cur_total = GVListPurchase.Columns("prod_order_rec_det_qty").SummaryItem.SummaryValue.ToString
+        Catch ex As Exception
+        End Try
+
         For i As Integer = 0 To (GVListPurchase.RowCount - 1)
             Dim code As String = GVListPurchase.GetRowCellValue(i, "ean_code").ToString
             id_prod_order_det = GVListPurchase.GetRowCellValue(i, "id_prod_order_det").ToString
@@ -656,11 +673,22 @@ Public Class FormProductionRecDet
             GVBarcode.SetFocusedRowCellValue("ean_code", "")
             stopCustom("Data not found !")
         Else
-            GVBarcode.SetFocusedRowCellValue("is_fix", "2")
-            GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
-            countQty(id_prod_order_det)
-            newRows()
-            'allowDelete()
+            If is_special_rec = "1" Then
+                GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
+                countQty(id_prod_order_det)
+                newRows()
+            Else
+                If (total_rec + cur_total + 1) <= total_max Then
+                    GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                    GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
+                    countQty(id_prod_order_det)
+                    newRows()
+                Else
+                    GVBarcode.SetFocusedRowCellValue("ean_code", "")
+                    stopCustom("Maximum receive : " + (total_max - total_rec).ToString)
+                End If
+            End If
         End If
     End Sub
 
