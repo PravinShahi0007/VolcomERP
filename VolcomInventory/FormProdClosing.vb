@@ -1,4 +1,5 @@
 ﻿Public Class FormProdClosing
+    Public id_pop_up As String = "-1"
     Private Sub FormProdClosing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewDesign()
         '
