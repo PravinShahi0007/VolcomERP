@@ -48,16 +48,18 @@
 
     Private Sub TxtOutstanding_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtOutstanding.KeyDown
         If e.KeyCode = Keys.Enter Then
+            Cursor = Cursors.WaitCursor
             If id_product = "-1" Then
                 stopCustom("Please input spesific product !")
             Else
-                Dim qty As Integer = TxtAdd.EditValue
+                Dim qty As Integer = TxtOutstanding.EditValue
+                Dim qty_total As Integer = TxtAdd.EditValue
                 Dim dt As DataTable = execute_query("CALL view_stock_fg('" + FormSalesReturnOrderDet.id_comp + "', '" + FormSalesReturnOrderDet.id_wh_locator + "', '" + FormSalesReturnOrderDet.id_wh_rack + "', '" + FormSalesReturnOrderDet.id_wh_drawer + "', '" + id_product + "', '4', '9999-01-01') ", -1, True, "", "", "", "")
                 Dim qty_limit As Integer = dt.Rows(0)("qty_all_product")
                 If qty > qty_limit Then
                     stopCustom("Can't exceed " + qty_limit.ToString)
                 Else
-                    Dim query_upd = "UPDATE tb_sales_return_order_det SET sales_return_order_det_qty='" + decimalSQL(qty.ToString) + "' WHERE id_sales_return_order_det='" + id_sales_return_order_det + "' "
+                    Dim query_upd = "UPDATE tb_sales_return_order_det SET sales_return_order_det_qty='" + decimalSQL(qty_total.ToString) + "' WHERE id_sales_return_order_det='" + id_sales_return_order_det + "' "
                     execute_non_query(query_upd, True, "", "", "", "")
                     FormSalesReturnOrderDet.viewDetail()
 
@@ -68,6 +70,7 @@
                     Close()
                 End If
             End If
+            Cursor = Cursors.Default
         End If
     End Sub
 End Class
