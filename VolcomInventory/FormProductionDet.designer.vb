@@ -90,9 +90,6 @@ Partial Class FormProductionDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
-        Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
-        Me.TETolerance = New DevExpress.XtraEditors.SpinEdit()
-        Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
         Me.DEDate = New DevExpress.XtraEditors.DateEdit()
         Me.DERecDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
@@ -207,7 +204,6 @@ Partial Class FormProductionDet
         CType(Me.PUDD, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
-        CType(Me.TETolerance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -966,9 +962,6 @@ Partial Class FormProductionDet
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl15)
-        Me.GroupGeneralHeader.Controls.Add(Me.TETolerance)
-        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl14)
         Me.GroupGeneralHeader.Controls.Add(Me.DEDate)
         Me.GroupGeneralHeader.Controls.Add(Me.DERecDate)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl11)
@@ -1002,36 +995,6 @@ Partial Class FormProductionDet
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(971, 135)
         Me.GroupGeneralHeader.TabIndex = 1
-        '
-        'LabelControl15
-        '
-        Me.LabelControl15.Location = New System.Drawing.Point(505, 98)
-        Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(11, 13)
-        Me.LabelControl15.TabIndex = 176
-        Me.LabelControl15.Text = "%"
-        '
-        'TETolerance
-        '
-        Me.TETolerance.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.TETolerance.Location = New System.Drawing.Point(442, 95)
-        Me.TETolerance.Name = "TETolerance"
-        Me.TETolerance.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TETolerance.Properties.Appearance.Options.UseFont = True
-        Me.TETolerance.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.TETolerance.Properties.IsFloatValue = False
-        Me.TETolerance.Properties.Mask.EditMask = "N00"
-        Me.TETolerance.Properties.MaxValue = New Decimal(New Integer() {2147483647, 0, 0, 0})
-        Me.TETolerance.Size = New System.Drawing.Size(57, 22)
-        Me.TETolerance.TabIndex = 176
-        '
-        'LabelControl14
-        '
-        Me.LabelControl14.Location = New System.Drawing.Point(381, 99)
-        Me.LabelControl14.Name = "LabelControl14"
-        Me.LabelControl14.Size = New System.Drawing.Size(47, 13)
-        Me.LabelControl14.TabIndex = 175
-        Me.LabelControl14.Text = "Tolerance"
         '
         'DEDate
         '
@@ -1073,7 +1036,7 @@ Partial Class FormProductionDet
         'TELeadTime
         '
         Me.TELeadTime.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.TELeadTime.Location = New System.Drawing.Point(598, 95)
+        Me.TELeadTime.Location = New System.Drawing.Point(454, 95)
         Me.TELeadTime.Name = "TELeadTime"
         Me.TELeadTime.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TELeadTime.Properties.Appearance.Options.UseFont = True
@@ -1081,12 +1044,12 @@ Partial Class FormProductionDet
         Me.TELeadTime.Properties.IsFloatValue = False
         Me.TELeadTime.Properties.Mask.EditMask = "N00"
         Me.TELeadTime.Properties.MaxValue = New Decimal(New Integer() {2147483647, 0, 0, 0})
-        Me.TELeadTime.Size = New System.Drawing.Size(87, 22)
+        Me.TELeadTime.Size = New System.Drawing.Size(231, 22)
         Me.TELeadTime.TabIndex = 160
         '
         'LabelControl13
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(535, 99)
+        Me.LabelControl13.Location = New System.Drawing.Point(400, 99)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(48, 13)
         Me.LabelControl13.TabIndex = 161
@@ -1103,17 +1066,17 @@ Partial Class FormProductionDet
         'TEDesignCode
         '
         Me.TEDesignCode.EditValue = ""
-        Me.TEDesignCode.Location = New System.Drawing.Point(84, 70)
+        Me.TEDesignCode.Location = New System.Drawing.Point(84, 68)
         Me.TEDesignCode.Name = "TEDesignCode"
         Me.TEDesignCode.Properties.EditValueChangedDelay = 1
         Me.TEDesignCode.Properties.ReadOnly = True
-        Me.TEDesignCode.Size = New System.Drawing.Size(268, 20)
+        Me.TEDesignCode.Size = New System.Drawing.Size(299, 20)
         Me.TEDesignCode.TabIndex = 157
         Me.TEDesignCode.TabStop = False
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(25, 73)
+        Me.LabelControl9.Location = New System.Drawing.Point(25, 71)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl9.TabIndex = 156
@@ -1121,7 +1084,7 @@ Partial Class FormProductionDet
         '
         'LECategory
         '
-        Me.LECategory.Location = New System.Drawing.Point(442, 68)
+        Me.LECategory.Location = New System.Drawing.Point(454, 68)
         Me.LECategory.Name = "LECategory"
         Me.LECategory.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.WhiteSmoke
         Me.LECategory.Properties.AppearanceReadOnly.ForeColor = System.Drawing.Color.Black
@@ -1131,7 +1094,7 @@ Partial Class FormProductionDet
         Me.LECategory.Properties.NullText = ""
         Me.LECategory.Properties.ShowFooter = False
         Me.LECategory.Properties.View = Me.GridView1
-        Me.LECategory.Size = New System.Drawing.Size(243, 20)
+        Me.LECategory.Size = New System.Drawing.Size(231, 20)
         Me.LECategory.TabIndex = 154
         '
         'GridView1
@@ -1158,7 +1121,7 @@ Partial Class FormProductionDet
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(381, 71)
+        Me.LabelControl5.Location = New System.Drawing.Point(400, 71)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl5.TabIndex = 155
@@ -1166,7 +1129,7 @@ Partial Class FormProductionDet
         '
         'BPickPD
         '
-        Me.BPickPD.Location = New System.Drawing.Point(329, 9)
+        Me.BPickPD.Location = New System.Drawing.Point(360, 9)
         Me.BPickPD.Name = "BPickPD"
         Me.BPickPD.Size = New System.Drawing.Size(23, 20)
         Me.BPickPD.TabIndex = 152
@@ -1179,7 +1142,7 @@ Partial Class FormProductionDet
         Me.TEPDNo.Name = "TEPDNo"
         Me.TEPDNo.Properties.EditValueChangedDelay = 1
         Me.TEPDNo.Properties.ReadOnly = True
-        Me.TEPDNo.Size = New System.Drawing.Size(239, 20)
+        Me.TEPDNo.Size = New System.Drawing.Size(270, 20)
         Me.TEPDNo.TabIndex = 151
         Me.TEPDNo.TabStop = False
         '
@@ -1198,7 +1161,7 @@ Partial Class FormProductionDet
         Me.TEUSCOde.Name = "TEUSCOde"
         Me.TEUSCOde.Properties.EditValueChangedDelay = 1
         Me.TEUSCOde.Properties.ReadOnly = True
-        Me.TEUSCOde.Size = New System.Drawing.Size(268, 20)
+        Me.TEUSCOde.Size = New System.Drawing.Size(299, 20)
         Me.TEUSCOde.TabIndex = 150
         Me.TEUSCOde.TabStop = False
         '
@@ -1223,26 +1186,26 @@ Partial Class FormProductionDet
         'TESeason
         '
         Me.TESeason.EditValue = ""
-        Me.TESeason.Location = New System.Drawing.Point(442, 39)
+        Me.TESeason.Location = New System.Drawing.Point(454, 39)
         Me.TESeason.Name = "TESeason"
         Me.TESeason.Properties.EditValueChangedDelay = 1
         Me.TESeason.Properties.ReadOnly = True
-        Me.TESeason.Size = New System.Drawing.Size(243, 20)
+        Me.TESeason.Size = New System.Drawing.Size(231, 20)
         Me.TESeason.TabIndex = 146
         '
         'TERange
         '
         Me.TERange.EditValue = ""
-        Me.TERange.Location = New System.Drawing.Point(442, 9)
+        Me.TERange.Location = New System.Drawing.Point(454, 9)
         Me.TERange.Name = "TERange"
         Me.TERange.Properties.EditValueChangedDelay = 1
         Me.TERange.Properties.ReadOnly = True
-        Me.TERange.Size = New System.Drawing.Size(87, 20)
+        Me.TERange.Size = New System.Drawing.Size(75, 20)
         Me.TERange.TabIndex = 145
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(381, 12)
+        Me.LabelControl2.Location = New System.Drawing.Point(402, 12)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl2.TabIndex = 144
@@ -1250,7 +1213,7 @@ Partial Class FormProductionDet
         '
         'LabelControl12
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(381, 42)
+        Me.LabelControl12.Location = New System.Drawing.Point(402, 42)
         Me.LabelControl12.Name = "LabelControl12"
         Me.LabelControl12.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl12.TabIndex = 139
@@ -1312,7 +1275,7 @@ Partial Class FormProductionDet
         'BPickDesign
         '
         Me.BPickDesign.Enabled = False
-        Me.BPickDesign.Location = New System.Drawing.Point(329, 39)
+        Me.BPickDesign.Location = New System.Drawing.Point(360, 39)
         Me.BPickDesign.Name = "BPickDesign"
         Me.BPickDesign.Size = New System.Drawing.Size(23, 20)
         Me.BPickDesign.TabIndex = 1
@@ -1325,7 +1288,7 @@ Partial Class FormProductionDet
         Me.TEDesign.Name = "TEDesign"
         Me.TEDesign.Properties.EditValueChangedDelay = 1
         Me.TEDesign.Properties.ReadOnly = True
-        Me.TEDesign.Size = New System.Drawing.Size(239, 20)
+        Me.TEDesign.Size = New System.Drawing.Size(270, 20)
         Me.TEDesign.TabIndex = 0
         Me.TEDesign.TabStop = False
         '
@@ -1835,7 +1798,6 @@ Partial Class FormProductionDet
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
-        CType(Me.TETolerance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2014,9 +1976,6 @@ Partial Class FormProductionDet
     Friend WithEvents GridColumnUPC As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DERecDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEDate As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents LabelControl15 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TETolerance As DevExpress.XtraEditors.SpinEdit
-    Friend WithEvents LabelControl14 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MEBOMNote As DevExpress.XtraEditors.MemoEdit
