@@ -79,8 +79,10 @@
                         comp.comp_name,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, 
                         a.prod_order_date,a.id_report_status,c.report_status, 
                         b.id_design,b.id_delivery, e.delivery, f.season, e.id_season , wod.prod_order_wo_det_price
-                        ,wo.id_prod_order_wo, IF(wo.claim_discount=1,'Claim',IF(wo.claim_discount=2,'Discount','-')) as claim_discount,(wo.claim_disc_percentage/100) as claim_disc_percentage,wo.claim_disc_value
-                        ,IF(wo.is_proc_disc_claim=1,'Yes','No') as is_proc_disc_claim, IF(a.is_closing_rec=1,'Closed','Opened') AS `rec_status`
+                        ,wo.id_prod_order_wo, a.claim_discount,(a.tolerance_minus * -1) AS `tolerance_minus`, a.tolerance_over, 
+                        ((IFNULL(SUM(rec.prod_order_rec_det_qty),0)-IFNULL(SUM(pod.prod_order_qty),0))/IFNULL(SUM(pod.prod_order_qty),0))*100 AS diff_percent,
+                         If(( ((IFNULL(SUM(rec.prod_order_rec_det_qty),0)-IFNULL(SUM(pod.prod_order_qty),0))/IFNULL(SUM(pod.prod_order_qty),0))*100) > a.tolerance_over, a.claim_discount, If(( ((IFNULL(SUM(rec.prod_order_rec_det_qty),0)-IFNULL(SUM(pod.prod_order_qty),0))/IFNULL(SUM(pod.prod_order_qty),0))*100) < (a.tolerance_minus*-1), a.claim_discount, 0)) AS claim_disc_percentage,
+                        IF(wo.is_proc_disc_claim=1,'Yes','No') as is_proc_disc_claim, IF(a.is_closing_rec=1,'Closed','Opened') AS `rec_status`
                         FROM tb_prod_order a 
                         INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
                         INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 

@@ -72,11 +72,13 @@ Partial Class FormProdClosing
         Me.RIPictureEdit = New DevExpress.XtraEditors.Repository.RepositoryItemPictureEdit()
         Me.GridColumnDiff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDiffPercentage = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPercentageClaim = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAmoClaim = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnClaimProcessed = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRecStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnClaim = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnToleranceOver = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnToleranceMinus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -343,7 +345,7 @@ Partial Class FormProdClosing
         '
         'GVProd
         '
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnidProdOrder, Me.GridColumnIDWO, Me.GridColumnCE, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnPriceWO, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumnPicture, Me.GridColumnDiff, Me.GridColumnDiffPercentage, Me.GridColumnStatus, Me.GridColumnPercentageClaim, Me.GridColumnAmoClaim, Me.GridColumnClaimProcessed, Me.GridColumnRecStatus})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnidProdOrder, Me.GridColumnIDWO, Me.GridColumnCE, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnPriceWO, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumnPicture, Me.GridColumnDiff, Me.GridColumnDiffPercentage, Me.GridColumnPercentageClaim, Me.GridColumnAmoClaim, Me.GridColumnClaimProcessed, Me.GridColumnRecStatus, Me.GridColumnClaim, Me.GridColumnToleranceOver, Me.GridColumnToleranceMinus})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 2
         Me.GVProd.Name = "GVProd"
@@ -607,24 +609,12 @@ Partial Class FormProdClosing
         Me.GridColumnDiffPercentage.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnDiffPercentage.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnDiffPercentage.Caption = "Different (%)"
-        Me.GridColumnDiffPercentage.DisplayFormat.FormatString = "p2"
+        Me.GridColumnDiffPercentage.DisplayFormat.FormatString = "n2"
         Me.GridColumnDiffPercentage.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnDiffPercentage.FieldName = "diff_percent"
         Me.GridColumnDiffPercentage.Name = "GridColumnDiffPercentage"
-        Me.GridColumnDiffPercentage.UnboundExpression = "([qty_rec] - [qty_order]) / [qty_order]"
-        Me.GridColumnDiffPercentage.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffPercentage.Visible = True
         Me.GridColumnDiffPercentage.VisibleIndex = 14
-        '
-        'GridColumnStatus
-        '
-        Me.GridColumnStatus.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnStatus.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnStatus.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnStatus.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnStatus.Caption = "Status"
-        Me.GridColumnStatus.FieldName = "claim_discount"
-        Me.GridColumnStatus.Name = "GridColumnStatus"
         '
         'GridColumnPercentageClaim
         '
@@ -633,7 +623,7 @@ Partial Class FormProdClosing
         Me.GridColumnPercentageClaim.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnPercentageClaim.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnPercentageClaim.Caption = "Claim/Discount %"
-        Me.GridColumnPercentageClaim.DisplayFormat.FormatString = "p0"
+        Me.GridColumnPercentageClaim.DisplayFormat.FormatString = "N2"
         Me.GridColumnPercentageClaim.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPercentageClaim.FieldName = "claim_disc_percentage"
         Me.GridColumnPercentageClaim.Name = "GridColumnPercentageClaim"
@@ -672,6 +662,28 @@ Partial Class FormProdClosing
         Me.GridColumnRecStatus.Visible = True
         Me.GridColumnRecStatus.VisibleIndex = 9
         Me.GridColumnRecStatus.Width = 68
+        '
+        'GridColumnClaim
+        '
+        Me.GridColumnClaim.Caption = "Claim Discount"
+        Me.GridColumnClaim.FieldName = "claim_discount"
+        Me.GridColumnClaim.Name = "GridColumnClaim"
+        '
+        'GridColumnToleranceOver
+        '
+        Me.GridColumnToleranceOver.Caption = "Tolerance Over"
+        Me.GridColumnToleranceOver.FieldName = "tolerance_over"
+        Me.GridColumnToleranceOver.Name = "GridColumnToleranceOver"
+        Me.GridColumnToleranceOver.Visible = True
+        Me.GridColumnToleranceOver.VisibleIndex = 18
+        '
+        'GridColumnToleranceMinus
+        '
+        Me.GridColumnToleranceMinus.Caption = "Tolerance Minus"
+        Me.GridColumnToleranceMinus.FieldName = "tolerance_minus"
+        Me.GridColumnToleranceMinus.Name = "GridColumnToleranceMinus"
+        Me.GridColumnToleranceMinus.Visible = True
+        Me.GridColumnToleranceMinus.VisibleIndex = 19
         '
         'FormProdClosing
         '
@@ -760,7 +772,6 @@ Partial Class FormProdClosing
     Friend WithEvents BClosingFGPO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnidProdOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDiffPercentage As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnAmoClaim As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnClaimProcessed As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPriceWO As DevExpress.XtraGrid.Columns.GridColumn
@@ -768,4 +779,7 @@ Partial Class FormProdClosing
     Friend WithEvents GridColumnIDWO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnClosingRec As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnRecStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnClaim As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnToleranceOver As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnToleranceMinus As DevExpress.XtraGrid.Columns.GridColumn
 End Class
