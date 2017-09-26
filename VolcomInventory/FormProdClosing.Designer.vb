@@ -613,6 +613,8 @@ Partial Class FormProdClosing
         Me.GridColumnDiffPercentage.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnDiffPercentage.FieldName = "diff_percent"
         Me.GridColumnDiffPercentage.Name = "GridColumnDiffPercentage"
+        Me.GridColumnDiffPercentage.UnboundExpression = "([qty_rec] - [qty_order]) / [qty_order] * 100"
+        Me.GridColumnDiffPercentage.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffPercentage.Visible = True
         Me.GridColumnDiffPercentage.VisibleIndex = 14
         '
@@ -627,6 +629,9 @@ Partial Class FormProdClosing
         Me.GridColumnPercentageClaim.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPercentageClaim.FieldName = "claim_disc_percentage"
         Me.GridColumnPercentageClaim.Name = "GridColumnPercentageClaim"
+        Me.GridColumnPercentageClaim.UnboundExpression = "Iif([diff_percent] > [tolerance_over], [claim_discount], Iif([diff_percent] < [to" &
+    "lerance_minus], [claim_discount], 0))"
+        Me.GridColumnPercentageClaim.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnPercentageClaim.Visible = True
         Me.GridColumnPercentageClaim.VisibleIndex = 15
         Me.GridColumnPercentageClaim.Width = 98
@@ -637,11 +642,13 @@ Partial Class FormProdClosing
         Me.GridColumnAmoClaim.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnAmoClaim.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnAmoClaim.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnAmoClaim.Caption = "Total Amount Claim/Discount"
+        Me.GridColumnAmoClaim.Caption = "Total Amount Claim"
         Me.GridColumnAmoClaim.DisplayFormat.FormatString = "N2"
         Me.GridColumnAmoClaim.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAmoClaim.FieldName = "claim_disc_value"
         Me.GridColumnAmoClaim.Name = "GridColumnAmoClaim"
+        Me.GridColumnAmoClaim.UnboundExpression = "[prod_order_wo_det_price] * ((100 - [claim_disc_percentage]) / 100)"
+        Me.GridColumnAmoClaim.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmoClaim.Visible = True
         Me.GridColumnAmoClaim.VisibleIndex = 16
         Me.GridColumnAmoClaim.Width = 100
