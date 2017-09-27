@@ -389,7 +389,7 @@ Partial Class FormMatRet
         Me.GridColumn23.FieldName = "comp_from"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 4
+        Me.GridColumn23.VisibleIndex = 3
         Me.GridColumn23.Width = 126
         '
         'GridColumn25
@@ -400,7 +400,7 @@ Partial Class FormMatRet
         Me.GridColumn25.FieldName = "mat_prod_ret_in_date"
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 5
+        Me.GridColumn25.VisibleIndex = 4
         Me.GridColumn25.Width = 104
         '
         'GridColumn26
@@ -418,7 +418,7 @@ Partial Class FormMatRet
         Me.GridColumn27.FieldName = "report_status"
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 6
+        Me.GridColumn27.VisibleIndex = 5
         Me.GridColumn27.Width = 71
         '
         'GridColumn28
@@ -432,8 +432,6 @@ Partial Class FormMatRet
         Me.GridColumn10.Caption = "WO Number"
         Me.GridColumn10.FieldName = "prod_order_wo_number"
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 2
         Me.GridColumn10.Width = 78
         '
         'GridColumnDesign
@@ -442,7 +440,7 @@ Partial Class FormMatRet
         Me.GridColumnDesign.FieldName = "design_name"
         Me.GridColumnDesign.Name = "GridColumnDesign"
         Me.GridColumnDesign.Visible = True
-        Me.GridColumnDesign.VisibleIndex = 3
+        Me.GridColumnDesign.VisibleIndex = 2
         Me.GridColumnDesign.Width = 79
         '
         'FormMatRet
