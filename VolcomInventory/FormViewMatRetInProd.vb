@@ -1,7 +1,6 @@
 ﻿Public Class FormViewMatRetInProd 
     Public id_mat_prod_ret_in As String = ""
     Public id_prod_order As String = ""
-    Public id_prod_order_wo As String = ""
     Public id_comp_contact_from As String = ""
     Dim date_start As Date
     Public id_report_status As String = ""
@@ -12,12 +11,11 @@
 
         'View data
         Try
-            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,b.id_prod_order_wo,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,b.prod_order_wo_number,desg.design_name,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
+            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_name,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
             query += "a.mat_prod_ret_in_number  "
             query += ",drw.id_wh_drawer,rck.id_wh_rack,loc.id_wh_locator,comp.id_comp "
             query += "FROM tb_mat_prod_ret_in a "
-            query += "INNER JOIN tb_prod_order_wo b ON a.id_prod_order_wo = b.id_prod_order_wo "
-            query += "INNER JOIN tb_prod_order h ON b.id_prod_order = h.id_prod_order "
+            query += "INNER JOIN tb_prod_order h ON a.id_prod_order = h.id_prod_order "
             query += "INNER JOIN tb_prod_demand_design pd_desg ON pd_desg.id_prod_demand_design = h.id_prod_demand_design "
             query += "INNER JOIN tb_m_design desg ON desg.id_design = pd_desg.id_design "
             query += "INNER JOIN tb_m_comp_contact d ON d.id_comp_contact = a.id_comp_contact_from "
@@ -39,9 +37,7 @@
             End Try
 
             id_prod_order = data.Rows(0)("id_prod_order").ToString
-            id_prod_order_wo = data.Rows(0)("id_prod_order_wo").ToString
-            TEWONumber.Text = data.Rows(0)("prod_order_number").ToString
-            TEPONumber.Text = data.Rows(0)("prod_order_wo_number").ToString
+            TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
             id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
             TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
             TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
