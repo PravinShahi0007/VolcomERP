@@ -633,7 +633,7 @@ Partial Class FormProdClosing
     "lerance_minus], [claim_discount], 0))"
         Me.GridColumnPercentageClaim.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnPercentageClaim.Visible = True
-        Me.GridColumnPercentageClaim.VisibleIndex = 15
+        Me.GridColumnPercentageClaim.VisibleIndex = 17
         Me.GridColumnPercentageClaim.Width = 98
         '
         'GridColumnAmoClaim
@@ -642,7 +642,7 @@ Partial Class FormProdClosing
         Me.GridColumnAmoClaim.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnAmoClaim.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnAmoClaim.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnAmoClaim.Caption = "Total Amount Claim"
+        Me.GridColumnAmoClaim.Caption = "Claim Value"
         Me.GridColumnAmoClaim.DisplayFormat.FormatString = "N2"
         Me.GridColumnAmoClaim.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAmoClaim.FieldName = "claim_disc_value"
@@ -650,7 +650,7 @@ Partial Class FormProdClosing
         Me.GridColumnAmoClaim.UnboundExpression = "[prod_order_wo_det_price] * ((100 - [claim_disc_percentage]) / 100)"
         Me.GridColumnAmoClaim.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmoClaim.Visible = True
-        Me.GridColumnAmoClaim.VisibleIndex = 16
+        Me.GridColumnAmoClaim.VisibleIndex = 18
         Me.GridColumnAmoClaim.Width = 100
         '
         'GridColumnClaimProcessed
@@ -659,7 +659,7 @@ Partial Class FormProdClosing
         Me.GridColumnClaimProcessed.FieldName = "is_proc_disc_claim"
         Me.GridColumnClaimProcessed.Name = "GridColumnClaimProcessed"
         Me.GridColumnClaimProcessed.Visible = True
-        Me.GridColumnClaimProcessed.VisibleIndex = 17
+        Me.GridColumnClaimProcessed.VisibleIndex = 19
         '
         'GridColumnRecStatus
         '
@@ -678,19 +678,19 @@ Partial Class FormProdClosing
         '
         'GridColumnToleranceOver
         '
-        Me.GridColumnToleranceOver.Caption = "Tolerance Over"
+        Me.GridColumnToleranceOver.Caption = "Tolerance Over %"
         Me.GridColumnToleranceOver.FieldName = "tolerance_over"
         Me.GridColumnToleranceOver.Name = "GridColumnToleranceOver"
         Me.GridColumnToleranceOver.Visible = True
-        Me.GridColumnToleranceOver.VisibleIndex = 18
+        Me.GridColumnToleranceOver.VisibleIndex = 15
         '
         'GridColumnToleranceMinus
         '
-        Me.GridColumnToleranceMinus.Caption = "Tolerance Minus"
+        Me.GridColumnToleranceMinus.Caption = "Tolerance Minus %"
         Me.GridColumnToleranceMinus.FieldName = "tolerance_minus"
         Me.GridColumnToleranceMinus.Name = "GridColumnToleranceMinus"
         Me.GridColumnToleranceMinus.Visible = True
-        Me.GridColumnToleranceMinus.VisibleIndex = 19
+        Me.GridColumnToleranceMinus.VisibleIndex = 16
         '
         'FormProdClosing
         '
