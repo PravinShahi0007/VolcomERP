@@ -21,6 +21,7 @@ Partial Class FormProductionSpecialRecSingle
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BOpenLock = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.TEMemoNumber = New DevExpress.XtraEditors.TextEdit()
@@ -35,6 +36,7 @@ Partial Class FormProductionSpecialRecSingle
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BClose)
+        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.BOpenLock)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 57)
@@ -45,11 +47,20 @@ Partial Class FormProductionSpecialRecSingle
         'BClose
         '
         Me.BClose.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BClose.Location = New System.Drawing.Point(186, 2)
+        Me.BClose.Location = New System.Drawing.Point(106, 2)
         Me.BClose.Name = "BClose"
         Me.BClose.Size = New System.Drawing.Size(68, 30)
         Me.BClose.TabIndex = 1
         Me.BClose.Text = "Cancel"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Location = New System.Drawing.Point(174, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(80, 30)
+        Me.SimpleButton1.TabIndex = 2
+        Me.SimpleButton1.Text = "Attachment"
         '
         'BOpenLock
         '
@@ -114,4 +125,5 @@ Partial Class FormProductionSpecialRecSingle
     Friend WithEvents BOpenLock As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEMemoNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class
