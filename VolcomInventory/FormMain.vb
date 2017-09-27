@@ -10683,4 +10683,18 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBClaimFGPO_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBClaimFGPO.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProdClosing.MdiParent = Me
+            FormProdClosing.id_pop_up = "2"
+            FormProdClosing.Show()
+            FormProdClosing.WindowState = FormWindowState.Maximized
+            FormProdClosing.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
