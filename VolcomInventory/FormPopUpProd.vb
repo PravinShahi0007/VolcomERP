@@ -43,7 +43,7 @@
         If id_pop_up = "4" Then 'PL QC TO WH
             'query += "AND id_prod_demand_design_line_upd_lock='2' "
         End If
-        If id_pop_up = "5" Then 'Return MRS
+        If id_pop_up = "8" Then 'Return MRS
             query += " OR a.id_report_status='5' OR a.id_report_status='6' "
         End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
