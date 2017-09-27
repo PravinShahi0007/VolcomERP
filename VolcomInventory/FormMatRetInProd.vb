@@ -228,11 +228,11 @@
             Catch ex As Exception
             End Try
             If action = "ins" Then
-                Try
-                    'Main tbale
-                    query = "INSERT INTO tb_mat_prod_ret_in(id_prod_order_wo, mat_prod_ret_in_number, id_comp_contact_from, mat_prod_ret_in_date, mat_prod_ret_in_note, id_report_status, id_wh_drawer);SELECT LAST_INSERT_ID() "
-                    query += "VALUES('" + id_prod_order_wo + "', '" + mat_prod_ret_in_number + "', '" + id_comp_contact_from + "', NOW(), '" + mat_prod_ret_in_note + "', '" + id_report_status + "','" + id_wh_drawer + "') "
-                    id_mat_prod_ret_in = execute_query(query, 0, True, "", "", "", "")
+                'Try
+                'Main tbale
+                query = "INSERT INTO tb_mat_prod_ret_in(id_prod_order_wo, mat_prod_ret_in_number, id_comp_contact_from, mat_prod_ret_in_date, mat_prod_ret_in_note, id_report_status, id_wh_drawer) "
+                query += "VALUES('" + id_prod_order_wo + "', '" + mat_prod_ret_in_number + "', '" + id_comp_contact_from + "', NOW(), '" + mat_prod_ret_in_note + "', '" + id_report_status + "','" + id_wh_drawer + "');SELECT LAST_INSERT_ID() "
+                id_mat_prod_ret_in = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_mat("6")
 
                     'insert who prepared
@@ -255,9 +255,9 @@
                     FormMatRet.viewRetInProd()
                     FormMatRet.GVRetInProd.FocusedRowHandle = find_row(FormMatRet.GVRetInProd, "id_mat_prod_ret_in", id_mat_prod_ret_in)
                     Close()
-                Catch ex As Exception
-                    errorConnection()
-                End Try
+                'Catch ex As Exception
+                'errorConnection()
+                'End Try
             ElseIf action = "upd" Then
                 'Try
                 'edit main table
