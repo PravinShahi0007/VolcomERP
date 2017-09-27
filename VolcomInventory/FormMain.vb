@@ -10669,4 +10669,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBCloseRecQC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCloseRecQC.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProdClosing.MdiParent = Me
+            FormProdClosing.Show()
+            FormProdClosing.WindowState = FormWindowState.Maximized
+            FormProdClosing.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
