@@ -316,6 +316,7 @@ Partial Class FormMasterOVHSingle
         Me.BtnEdit.Size = New System.Drawing.Size(84, 42)
         Me.BtnEdit.TabIndex = 1
         Me.BtnEdit.Text = "Edit"
+        Me.BtnEdit.Visible = False
         '
         'BtnDelete
         '
@@ -326,6 +327,7 @@ Partial Class FormMasterOVHSingle
         Me.BtnDelete.Size = New System.Drawing.Size(91, 42)
         Me.BtnDelete.TabIndex = 2
         Me.BtnDelete.Text = "Delete"
+        Me.BtnDelete.Visible = False
         '
         'XtraTabControl1
         '
