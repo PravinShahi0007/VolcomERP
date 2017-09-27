@@ -10674,6 +10674,7 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormProdClosing.MdiParent = Me
+            FormProdClosing.id_pop_up = "1"
             FormProdClosing.Show()
             FormProdClosing.WindowState = FormWindowState.Maximized
             FormProdClosing.Focus()
