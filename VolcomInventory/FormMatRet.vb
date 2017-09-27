@@ -39,6 +39,7 @@
                     bedit_active = 0
                     bdel_active = 0
                 End If
+                checkFormAccess(Name)
                 button_main(bnew_active, bedit_active, bdel_active)
             Else  'Return In
                 If GVRetIn.RowCount > 0 Then
@@ -50,6 +51,7 @@
                     bedit_active = 0
                     bdel_active = 0
                 End If
+                checkFormAccess(Name)
                 button_main(bnew_active, bedit_active, bdel_active)
             End If
         Else
@@ -62,9 +64,9 @@
                 bedit_active = 0
                 bdel_active = 0
             End If
+            checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
         End If
-
     End Sub
     'View Data
     Sub viewRetOut()
@@ -131,11 +133,10 @@
     End Sub
     Sub viewRetInProd()
         Try
-            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,b.prod_order_wo_number,desg.design_name,  "
+            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_name,  "
             query += "a.mat_prod_ret_in_number , (e.comp_name) AS comp_from "
             query += "FROM tb_mat_prod_ret_in a "
-            query += "INNER JOIN tb_prod_order_wo b ON a.id_prod_order_wo = b.id_prod_order_wo "
-            query += "INNER JOIN tb_prod_order h ON b.id_prod_order = h.id_prod_order "
+            query += "INNER JOIN tb_prod_order h ON a.id_prod_order = h.id_prod_order "
             query += "INNER JOIN tb_prod_demand_design pd_desg ON pd_desg.id_prod_demand_design = h.id_prod_demand_design "
             query += "INNER JOIN tb_m_design desg ON desg.id_design = pd_desg.id_design "
             query += "INNER JOIN tb_m_comp_contact d ON d.id_comp_contact = a.id_comp_contact_from "
