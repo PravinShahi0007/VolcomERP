@@ -44,6 +44,7 @@ Partial Class FormProdClosing
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.PBCLineList = New DevExpress.XtraEditors.ProgressBarControl()
+        Me.BtnTol = New DevExpress.XtraEditors.SimpleButton()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnidProdOrder = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -79,6 +80,10 @@ Partial Class FormProdClosing
         Me.GridColumnClaim = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnToleranceOver = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnToleranceMinus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalClaim = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRecAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTolerance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotalPay = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -279,6 +284,7 @@ Partial Class FormProdClosing
         Me.PanelControl2.Controls.Add(Me.BClosingFGPO)
         Me.PanelControl2.Controls.Add(Me.PCSelAll)
         Me.PanelControl2.Controls.Add(Me.PBCLineList)
+        Me.PanelControl2.Controls.Add(Me.BtnTol)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 279)
         Me.PanelControl2.Name = "PanelControl2"
@@ -288,7 +294,7 @@ Partial Class FormProdClosing
         'BtnClosingRec
         '
         Me.BtnClosingRec.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnClosingRec.Location = New System.Drawing.Point(588, 2)
+        Me.BtnClosingRec.Location = New System.Drawing.Point(462, 2)
         Me.BtnClosingRec.Name = "BtnClosingRec"
         Me.BtnClosingRec.Size = New System.Drawing.Size(100, 33)
         Me.BtnClosingRec.TabIndex = 106
@@ -298,7 +304,7 @@ Partial Class FormProdClosing
         'BClosingFGPO
         '
         Me.BClosingFGPO.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BClosingFGPO.Location = New System.Drawing.Point(688, 2)
+        Me.BClosingFGPO.Location = New System.Drawing.Point(562, 2)
         Me.BClosingFGPO.Name = "BClosingFGPO"
         Me.BClosingFGPO.Size = New System.Drawing.Size(98, 33)
         Me.BClosingFGPO.TabIndex = 0
@@ -332,6 +338,16 @@ Partial Class FormProdClosing
         Me.PBCLineList.Size = New System.Drawing.Size(121, 33)
         Me.PBCLineList.TabIndex = 104
         '
+        'BtnTol
+        '
+        Me.BtnTol.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnTol.Location = New System.Drawing.Point(660, 2)
+        Me.BtnTol.Name = "BtnTol"
+        Me.BtnTol.Size = New System.Drawing.Size(126, 33)
+        Me.BtnTol.TabIndex = 107
+        Me.BtnTol.Text = "Tolerance && Discount"
+        Me.BtnTol.Visible = False
+        '
         'GCProd
         '
         Me.GCProd.Dock = System.Windows.Forms.DockStyle.Fill
@@ -345,12 +361,16 @@ Partial Class FormProdClosing
         '
         'GVProd
         '
-        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnidProdOrder, Me.GridColumnIDWO, Me.GridColumnCE, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnPriceWO, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumnPicture, Me.GridColumnDiff, Me.GridColumnDiffPercentage, Me.GridColumnPercentageClaim, Me.GridColumnAmoClaim, Me.GridColumnClaimProcessed, Me.GridColumnRecStatus, Me.GridColumnClaim, Me.GridColumnToleranceOver, Me.GridColumnToleranceMinus})
+        Me.GVProd.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnidProdOrder, Me.GridColumnIDWO, Me.GridColumnCE, Me.GridColumnCompName, Me.GridColumnProdNo, Me.GridColumnReportStatus, Me.GridColumnIdReportStatus, Me.GridColumnProdDate, Me.GridColumnPOType, Me.GridColumnTerm, Me.GridColumnDesignCOP, Me.GridColumnPriceWO, Me.GridColumnDesign, Me.GridColumnCode, Me.GridColumnOrderQty, Me.GridColumnRecQty, Me.GridColumnIdPO, Me.GridColumnIdSeason, Me.GridColumnSeason, Me.GridColumnIdDelivery, Me.GridColumnDelivery, Me.GridColumnPicture, Me.GridColumnDiff, Me.GridColumnDiffPercentage, Me.GridColumnPercentageClaim, Me.GridColumnAmoClaim, Me.GridColumnClaimProcessed, Me.GridColumnRecStatus, Me.GridColumnClaim, Me.GridColumnToleranceOver, Me.GridColumnToleranceMinus, Me.GridColumnTotalClaim, Me.GridColumnRecAmount, Me.GridColumnTolerance, Me.GridColumnTotalPay})
         Me.GVProd.GridControl = Me.GCProd
         Me.GVProd.GroupCount = 2
+        Me.GVProd.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", Me.GridColumnOrderQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", Me.GridColumnRecQty, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec_amount", Me.GridColumnRecAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_claim", Me.GridColumnTotalClaim, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_pay", Me.GridColumnTotalPay, "{0:N2}")})
         Me.GVProd.Name = "GVProd"
+        Me.GVProd.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVProd.OptionsFind.AlwaysVisible = True
         Me.GVProd.OptionsView.ColumnAutoWidth = False
+        Me.GVProd.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVProd.OptionsView.ShowFooter = True
         Me.GVProd.OptionsView.ShowGroupPanel = False
         Me.GVProd.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnSeason, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnDelivery, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdPO, DevExpress.Data.ColumnSortOrder.Descending)})
         '
@@ -372,7 +392,7 @@ Partial Class FormProdClosing
         Me.GridColumnCE.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.GridColumnCE.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnCE.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnCE.Caption = "Closed"
+        Me.GridColumnCE.Caption = "Select"
         Me.GridColumnCE.ColumnEdit = Me.RICESelect
         Me.GridColumnCE.FieldName = "check"
         Me.GridColumnCE.Name = "GridColumnCE"
@@ -514,6 +534,7 @@ Partial Class FormProdClosing
         Me.GridColumnOrderQty.FieldName = "qty_order"
         Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
         Me.GridColumnOrderQty.OptionsColumn.AllowEdit = False
+        Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_order", "{0:N0}")})
         Me.GridColumnOrderQty.Visible = True
         Me.GridColumnOrderQty.VisibleIndex = 11
         Me.GridColumnOrderQty.Width = 89
@@ -530,6 +551,7 @@ Partial Class FormProdClosing
         Me.GridColumnRecQty.FieldName = "qty_rec"
         Me.GridColumnRecQty.Name = "GridColumnRecQty"
         Me.GridColumnRecQty.OptionsColumn.AllowEdit = False
+        Me.GridColumnRecQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_rec", "{0:N0}")})
         Me.GridColumnRecQty.Visible = True
         Me.GridColumnRecQty.VisibleIndex = 12
         Me.GridColumnRecQty.Width = 96
@@ -600,7 +622,8 @@ Partial Class FormProdClosing
         Me.GridColumnDiff.UnboundExpression = "[qty_rec] - [qty_order]"
         Me.GridColumnDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.GridColumnDiff.Visible = True
-        Me.GridColumnDiff.VisibleIndex = 13
+        Me.GridColumnDiff.VisibleIndex = 14
+        Me.GridColumnDiff.Width = 68
         '
         'GridColumnDiffPercentage
         '
@@ -616,7 +639,8 @@ Partial Class FormProdClosing
         Me.GridColumnDiffPercentage.UnboundExpression = "([qty_rec] - [qty_order]) / [qty_order] * 100"
         Me.GridColumnDiffPercentage.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnDiffPercentage.Visible = True
-        Me.GridColumnDiffPercentage.VisibleIndex = 14
+        Me.GridColumnDiffPercentage.VisibleIndex = 15
+        Me.GridColumnDiffPercentage.Width = 63
         '
         'GridColumnPercentageClaim
         '
@@ -629,8 +653,8 @@ Partial Class FormProdClosing
         Me.GridColumnPercentageClaim.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPercentageClaim.FieldName = "claim_disc_percentage"
         Me.GridColumnPercentageClaim.Name = "GridColumnPercentageClaim"
-        Me.GridColumnPercentageClaim.UnboundExpression = "Iif([diff_percent] > [tolerance_over], [claim_discount], Iif([diff_percent] < [to" &
-    "lerance_minus], [claim_discount], 0))"
+        Me.GridColumnPercentageClaim.UnboundExpression = "Iif([diff_percent] > [tolerance], [claim_discount], Iif([diff_percent] < [toleran" &
+    "ce], [claim_discount], 0))"
         Me.GridColumnPercentageClaim.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnPercentageClaim.Visible = True
         Me.GridColumnPercentageClaim.VisibleIndex = 17
@@ -642,16 +666,16 @@ Partial Class FormProdClosing
         Me.GridColumnAmoClaim.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnAmoClaim.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnAmoClaim.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnAmoClaim.Caption = "Claim Value"
+        Me.GridColumnAmoClaim.Caption = "Discount"
         Me.GridColumnAmoClaim.DisplayFormat.FormatString = "N2"
         Me.GridColumnAmoClaim.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAmoClaim.FieldName = "claim_disc_value"
         Me.GridColumnAmoClaim.Name = "GridColumnAmoClaim"
-        Me.GridColumnAmoClaim.UnboundExpression = "[prod_order_wo_det_price] * ((100 - [claim_disc_percentage]) / 100)"
+        Me.GridColumnAmoClaim.UnboundExpression = "[prod_order_wo_det_price] * ([claim_disc_percentage] / 100)"
         Me.GridColumnAmoClaim.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmoClaim.Visible = True
         Me.GridColumnAmoClaim.VisibleIndex = 18
-        Me.GridColumnAmoClaim.Width = 100
+        Me.GridColumnAmoClaim.Width = 66
         '
         'GridColumnClaimProcessed
         '
@@ -659,7 +683,7 @@ Partial Class FormProdClosing
         Me.GridColumnClaimProcessed.FieldName = "is_proc_disc_claim"
         Me.GridColumnClaimProcessed.Name = "GridColumnClaimProcessed"
         Me.GridColumnClaimProcessed.Visible = True
-        Me.GridColumnClaimProcessed.VisibleIndex = 19
+        Me.GridColumnClaimProcessed.VisibleIndex = 21
         '
         'GridColumnRecStatus
         '
@@ -681,16 +705,65 @@ Partial Class FormProdClosing
         Me.GridColumnToleranceOver.Caption = "Tolerance Over %"
         Me.GridColumnToleranceOver.FieldName = "tolerance_over"
         Me.GridColumnToleranceOver.Name = "GridColumnToleranceOver"
-        Me.GridColumnToleranceOver.Visible = True
-        Me.GridColumnToleranceOver.VisibleIndex = 15
+        Me.GridColumnToleranceOver.Width = 58
         '
         'GridColumnToleranceMinus
         '
         Me.GridColumnToleranceMinus.Caption = "Tolerance Minus %"
         Me.GridColumnToleranceMinus.FieldName = "tolerance_minus"
         Me.GridColumnToleranceMinus.Name = "GridColumnToleranceMinus"
-        Me.GridColumnToleranceMinus.Visible = True
-        Me.GridColumnToleranceMinus.VisibleIndex = 16
+        Me.GridColumnToleranceMinus.Width = 58
+        '
+        'GridColumnTotalClaim
+        '
+        Me.GridColumnTotalClaim.Caption = "Total Claim"
+        Me.GridColumnTotalClaim.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotalClaim.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalClaim.FieldName = "total_claim"
+        Me.GridColumnTotalClaim.Name = "GridColumnTotalClaim"
+        Me.GridColumnTotalClaim.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_claim", "{0:N2}")})
+        Me.GridColumnTotalClaim.UnboundExpression = "[claim_disc_value] * Abs([GridColumnDiff])"
+        Me.GridColumnTotalClaim.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnTotalClaim.Visible = True
+        Me.GridColumnTotalClaim.VisibleIndex = 19
+        '
+        'GridColumnRecAmount
+        '
+        Me.GridColumnRecAmount.Caption = "Received Amount"
+        Me.GridColumnRecAmount.DisplayFormat.FormatString = "N2"
+        Me.GridColumnRecAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnRecAmount.FieldName = "rec_amount"
+        Me.GridColumnRecAmount.Name = "GridColumnRecAmount"
+        Me.GridColumnRecAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec_amount", "{0:N2}")})
+        Me.GridColumnRecAmount.UnboundExpression = "[qty_rec] * [prod_order_wo_det_price]"
+        Me.GridColumnRecAmount.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnRecAmount.Visible = True
+        Me.GridColumnRecAmount.VisibleIndex = 13
+        Me.GridColumnRecAmount.Width = 88
+        '
+        'GridColumnTolerance
+        '
+        Me.GridColumnTolerance.Caption = "Tolerance %"
+        Me.GridColumnTolerance.FieldName = "tolerance"
+        Me.GridColumnTolerance.Name = "GridColumnTolerance"
+        Me.GridColumnTolerance.UnboundExpression = "Iif([diff_percent] >= 0, [tolerance_over], [tolerance_minus])"
+        Me.GridColumnTolerance.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnTolerance.Visible = True
+        Me.GridColumnTolerance.VisibleIndex = 16
+        Me.GridColumnTolerance.Width = 65
+        '
+        'GridColumnTotalPay
+        '
+        Me.GridColumnTotalPay.Caption = "Total Payment"
+        Me.GridColumnTotalPay.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotalPay.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotalPay.FieldName = "total_pay"
+        Me.GridColumnTotalPay.Name = "GridColumnTotalPay"
+        Me.GridColumnTotalPay.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_pay", "{0:N2}")})
+        Me.GridColumnTotalPay.UnboundExpression = "[rec_amount] - [total_claim]"
+        Me.GridColumnTotalPay.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumnTotalPay.Visible = True
+        Me.GridColumnTotalPay.VisibleIndex = 20
         '
         'FormProdClosing
         '
@@ -789,4 +862,9 @@ Partial Class FormProdClosing
     Friend WithEvents GridColumnClaim As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnToleranceOver As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnToleranceMinus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalClaim As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRecAmount As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTolerance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotalPay As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnTol As DevExpress.XtraEditors.SimpleButton
 End Class

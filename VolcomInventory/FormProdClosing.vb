@@ -180,4 +180,28 @@
         view_production_order()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnTol_Click(sender As Object, e As EventArgs) Handles BtnTol.Click
+        Cursor = Cursors.WaitCursor
+        GVProd.ActiveFilterString = ""
+        GVProd.ActiveFilterString = "[check]='yes' "
+        If GVProd.RowCount = 0 Then
+            stopCustom("Please select FG PO first.")
+            GVProd.ActiveFilterString = ""
+        Else
+            Dim prod_order As String = ""
+            For i As Integer = 0 To (GVProd.RowCount - 1) - GetGroupRowCount(GVProd)
+                If i > 0 Then
+                    prod_order += "OR "
+                End If
+                prod_order += "id_prod_order=" + GVProd.GetRowCellValue(i, "id_prod_order").ToString + " "
+            Next
+            FormProdClosingTolerance.cond = "(" + prod_order + ")"
+            FormProdClosingTolerance.ShowDialog()
+        End If
+
+        GVProd.ActiveFilterString = ""
+        view_production_order()
+        Cursor = Cursors.Default
+    End Sub
 End Class

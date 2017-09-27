@@ -1216,6 +1216,12 @@
     <Compile Include="FormProdClosing.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdClosingTolerance.Designer.vb">
+      <DependentUpon>FormProdClosingTolerance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdClosingTolerance.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdDuty.Designer.vb">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
     </Compile>
@@ -5461,6 +5467,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdClosing.resx">
       <DependentUpon>FormProdClosing.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdClosingTolerance.resx">
+      <DependentUpon>FormProdClosingTolerance.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDuty.resx">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
