@@ -1230,7 +1230,7 @@
                 query += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = b.id_prod_demand_design "
                 query += "INNER JOIN tb_m_design dsg ON dsg.id_design = pd_dsg.id_design "
                 query += "INNER JOIN tb_lookup_po_type po_type ON po_type.id_po_type = b.id_po_type "
-                query += "WHERE a.id_prod_order_ret_in=" + id_report + " "
+                query += "WHERE a.id_mat_prod_ret_in=" + id_report + " "
                 Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If datax.Rows.Count > 0 Then
                     info_col = datax.Rows(0)("po_type").ToString
