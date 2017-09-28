@@ -13,7 +13,7 @@
         ElseIf id_pop_up = "2" Then 'all 
             BClosingFGPO.Visible = True
             BtnClosingRec.Visible = True
-            BtnTol.Visible = True
+            SMTolerance.Visible = True
             SMOpenLock.Visible = True
         Else 'only view
             GVProd.OptionsBehavior.ReadOnly = True
@@ -189,7 +189,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BtnTol_Click(sender As Object, e As EventArgs) Handles BtnTol.Click
+    Private Sub BtnTol_Click(sender As Object, e As EventArgs)
         Cursor = Cursors.WaitCursor
         GVProd.ActiveFilterString = ""
         GVProd.ActiveFilterString = "[check]='yes' "
@@ -230,5 +230,18 @@
 
     Private Sub FormProdClosing_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
+    End Sub
+
+    Private Sub SMTolerance_Click(sender As Object, e As EventArgs) Handles SMTolerance.Click
+        Cursor = Cursors.WaitCursor
+        If GVProd.RowCount > 0 And GVProd.FocusedRowHandle >= 0 Then
+            Dim prod_order As String = "id_prod_order=" + GVProd.GetFocusedRowCellValue("id_prod_order").ToString + " "
+            FormProdClosingTolerance.TxtTolOver.EditValue = GVProd.GetFocusedRowCellValue("tolerance_over")
+            FormProdClosingTolerance.TxtTolMinus.EditValue = -1 * GVProd.GetFocusedRowCellValue("tolerance_minus")
+            FormProdClosingTolerance.TxtTolDiscount.EditValue = GVProd.GetFocusedRowCellValue("claim_discount")
+            FormProdClosingTolerance.cond = "(" + prod_order + ")"
+            FormProdClosingTolerance.ShowDialog()
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class
