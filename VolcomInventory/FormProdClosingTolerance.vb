@@ -2,9 +2,9 @@
     Public cond As String = ""
 
     Private Sub FormProdClosingTolerance_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TxtTolOver.EditValue = 0.00
-        TxtTolMinus.EditValue = 0.00
-        TxtTolDiscount.EditValue = 0.00
+        'TxtTolOver.EditValue = 0.00
+        'TxtTolMinus.EditValue = 0.00
+        'TxtTolDiscount.EditValue = 0.00
     End Sub
 
     Private Sub FormProdClosingTolerance_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -21,11 +21,22 @@
             tolerance_minus='" + tolerance_minus + "', claim_discount='" + claim_discount + "' 
             WHERE 1=1 AND " + cond
             execute_non_query(query, True, "", "", "", "")
+            Dim id_prod_order As String = FormProdClosing.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+            FormProdClosing.view_production_order()
+            FormProdClosing.GVProd.FocusedRowHandle = find_row(FormProdClosing.GVProd, "id_prod_order", id_prod_order)
             Close()
         End If
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
         Close()
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = FormProdClosing.GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+        FormDocumentUpload.report_mark_type = "115"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
