@@ -15,8 +15,6 @@
         view_term_production(LECategory)
         view_po_type(LEPOType)
         '
-        TETolerance.EditValue = 0
-        '
         date_created = Now
         DEDate.EditValue = date_created
         DERecDate.EditValue = date_created
@@ -56,8 +54,6 @@
 
             LEPOType.EditValue = data.Rows(0)("id_po_type").ToString()
             LECategory.EditValue = data.Rows(0)("id_term_production").ToString()
-            '
-            TETolerance.EditValue = data.Rows(0)("tolerance")
             '
             date_created = data.Rows(0)("prod_order_date")
             TELeadTime.Text = data.Rows(0)("prod_order_lead_time").ToString
@@ -203,10 +199,14 @@
             If Not formIsValidInGroup(EPProdOrder, GroupGeneralHeader) Or id_prod_demand_design = "-1" Then
                 errorInput()
             Else
+                Dim tolerance_over_def As String = decimalSQL(get_opt_prod_field("tolerance_over").ToString)
+                Dim tolerance_minus_def As String = decimalSQL(get_opt_prod_field("tolerance_minus").ToString)
+                Dim tolerance_claim_def As String = decimalSQL(get_opt_prod_field("tolerance_claim").ToString)
+                '
                 Dim po_number As String = header_number_prod(1)
-                query = String.Format("INSERT INTO tb_prod_order(id_prod_demand_design,prod_order_number,id_po_type,id_term_production,prod_order_date,prod_order_note,id_delivery,prod_order_lead_time,tolerance) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}','{7}');SELECT LAST_INSERT_ID() ", id_prod_demand_design, po_number, LEPOType.EditValue.ToString, LECategory.EditValue.ToString, MENote.Text, id_delivery, TELeadTime.Text, TETolerance.EditValue.ToString)
+                query = String.Format("INSERT INTO tb_prod_order(id_prod_demand_design,prod_order_number,id_po_type,id_term_production,prod_order_date,prod_order_note,id_delivery,prod_order_lead_time,tolerance_over,tolerance_minus,claim_discount) VALUES('{0}','{1}','{2}','{3}',NOW(),'{4}','{5}','{6}','{7}','{8}','{9}');SELECT LAST_INSERT_ID() ", id_prod_demand_design, po_number, LEPOType.EditValue.ToString, LECategory.EditValue.ToString, MENote.Text, id_delivery, TELeadTime.Text, tolerance_over_def, tolerance_minus_def, tolerance_claim_def)
                 Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
-
+                '
                 If GVListProduct.RowCount > 0 Then
                     For i As Integer = 0 To GVListProduct.RowCount - 1
                         If Not GVListProduct.GetRowCellValue(i, "id_prod_demand_product").ToString = "" Then
@@ -216,7 +216,6 @@
                         End If
                     Next
                 End If
-
                 'insert who prepared
                 insert_who_prepared("22", last_id, id_user)
                 'end insert who prepared
@@ -231,9 +230,8 @@
             If Not formIsValidInGroup(EPProdOrder, GroupGeneralHeader) Or id_prod_demand_design = "-1" Then
                 errorInput()
             Else
-                query = String.Format("UPDATE tb_prod_order SET id_prod_demand_design='{0}',prod_order_number='{1}',id_po_type='{2}',id_term_production='{3}',prod_order_note='{4}',id_delivery='{6}',prod_order_lead_time='{7}',tolerance='{8}' WHERE id_prod_order='{5}'", id_prod_demand_design, TEPONumber.Text, LEPOType.EditValue, LECategory.EditValue, MENote.Text, id_prod_order, id_delivery, TELeadTime.Text, TETolerance.EditValue.ToString)
+                query = String.Format("UPDATE tb_prod_order SET id_prod_demand_design='{0}',prod_order_number='{1}',id_po_type='{2}',id_term_production='{3}',prod_order_note='{4}',id_delivery='{6}',prod_order_lead_time='{7}' WHERE id_prod_order='{5}'", id_prod_demand_design, TEPONumber.Text, LEPOType.EditValue, LECategory.EditValue, MENote.Text, id_prod_order, id_delivery, TELeadTime.Text)
                 execute_non_query(query, True, "", "", "", "")
-
                 'update mark
                 query = String.Format("UPDATE tb_report_mark SET info='{0}' WHERE id_report='{1}' AND report_mark_type='22'", LEPOType.Text, id_prod_order)
                 execute_non_query(query, True, "", "", "", "")
@@ -583,5 +581,4 @@
             '
         End Try
     End Sub
-
 End Class

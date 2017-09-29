@@ -1,10 +1,23 @@
 ﻿Public Class FormProdClosing
+    Public id_pop_up As String = "-1"
     Private Sub FormProdClosing_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewDesign()
         '
         viewSeason()
         '
         viewVendor()
+        If id_pop_up = "-1" Then 'only closing po
+            BClosingFGPO.Visible = True
+        ElseIf id_pop_up = "1" Then ' only closing rec
+            BtnClosingRec.Visible = True
+        ElseIf id_pop_up = "2" Then 'all 
+            BClosingFGPO.Visible = True
+            BtnClosingRec.Visible = True
+            SMTolerance.Visible = True
+            SMOpenLock.Visible = True
+        Else 'only view
+            GVProd.OptionsBehavior.ReadOnly = True
+        End If
     End Sub
     Sub viewVendor()
         Dim query As String = ""
@@ -70,11 +83,13 @@
         Dim query = "SELECT 'no' AS `check`,
                         IFNULL(SUM(rec.prod_order_rec_det_qty),0) AS qty_rec, 
                         IFNULL(SUM(pod.prod_order_qty),0) AS qty_order, 
-                        comp.comp_name,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, 
+                        CONCAT(comp.comp_number,' - ',comp.comp_name) AS `comp_name`,a.id_prod_order,d.id_sample, a.prod_order_number, d.design_display_name, d.design_code, h.term_production, g.po_type,d.design_cop, 
                         a.prod_order_date,a.id_report_status,c.report_status, 
                         b.id_design,b.id_delivery, e.delivery, f.season, e.id_season , wod.prod_order_wo_det_price
-                        ,wo.id_prod_order_wo, IF(wo.claim_discount=1,'Claim',IF(wo.claim_discount=2,'Discount','-')) as claim_discount,(wo.claim_disc_percentage/100) as claim_disc_percentage,wo.claim_disc_value
-                        ,IF(wo.is_proc_disc_claim=1,'Yes','No') as is_proc_disc_claim
+                        ,wo.id_prod_order_wo, a.claim_discount,(a.tolerance_minus * -1) AS `tolerance_minus`, a.tolerance_over,
+                        IF(wo.is_proc_disc_claim=1,'Yes','No') as is_proc_disc_claim, 
+                        IF(a.is_closing_rec=1,'Closed','Opened') AS `rec_status`,
+                        a.is_special_rec, a.special_rec_memo, a.special_rec_datetime
                         FROM tb_prod_order a 
                         INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
                         INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
@@ -143,6 +158,90 @@
 
         GVProd.ActiveFilterString = ""
         view_production_order()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnClosingRec_Click(sender As Object, e As EventArgs) Handles BtnClosingRec.Click
+        Cursor = Cursors.WaitCursor
+        GVProd.ActiveFilterString = ""
+        GVProd.ActiveFilterString = "[check]='yes' "
+        If GVProd.RowCount = 0 Then
+            stopCustom("Please select FG PO first.")
+            GVProd.ActiveFilterString = ""
+        Else
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to close receiving for this FG PO?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim prod_order As String = ""
+                For i As Integer = 0 To (GVProd.RowCount - 1) - GetGroupRowCount(GVProd)
+                    If i > 0 Then
+                        prod_order += "OR "
+                    End If
+                    prod_order += "id_prod_order=" + GVProd.GetRowCellValue(i, "id_prod_order").ToString + " "
+                Next
+                Dim query As String = "UPDATE tb_prod_order SET is_closing_rec=1 WHERE (" + prod_order + ") "
+                execute_non_query(query, True, "", "", "", "")
+            End If
+        End If
+
+        GVProd.ActiveFilterString = ""
+        view_production_order()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnTol_Click(sender As Object, e As EventArgs)
+        Cursor = Cursors.WaitCursor
+        GVProd.ActiveFilterString = ""
+        GVProd.ActiveFilterString = "[check]='yes' "
+        If GVProd.RowCount = 0 Then
+            stopCustom("Please select FG PO first.")
+            GVProd.ActiveFilterString = ""
+        Else
+            Dim prod_order As String = ""
+            For i As Integer = 0 To (GVProd.RowCount - 1) - GetGroupRowCount(GVProd)
+                If i > 0 Then
+                    prod_order += "OR "
+                End If
+                prod_order += "id_prod_order=" + GVProd.GetRowCellValue(i, "id_prod_order").ToString + " "
+            Next
+            FormProdClosingTolerance.cond = "(" + prod_order + ")"
+            FormProdClosingTolerance.ShowDialog()
+        End If
+
+        GVProd.ActiveFilterString = ""
+        view_production_order()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SMOpenLock_Click(sender As Object, e As EventArgs) Handles SMOpenLock.Click
+        If GVProd.RowCount > 0 And GVProd.FocusedRowHandle >= 0 Then
+            If GVProd.GetFocusedRowCellValue("id_report_status").ToString <> "5" Then
+                FormProductionSpecialRecSingle.id_pop_up = "1"
+                FormProductionSpecialRecSingle.TEMemoNumber.Text = GVProd.GetFocusedRowCellValue("special_rec_memo").ToString
+                FormProductionSpecialRecSingle.ShowDialog()
+            End If
+        End If
+    End Sub
+
+    Private Sub FormProdClosing_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        checkFormAccess(Name)
+    End Sub
+
+    Private Sub FormProdClosing_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
+
+    Private Sub SMTolerance_Click(sender As Object, e As EventArgs) Handles SMTolerance.Click
+        Cursor = Cursors.WaitCursor
+        If GVProd.RowCount > 0 And GVProd.FocusedRowHandle >= 0 Then
+            Dim prod_order As String = "id_prod_order=" + GVProd.GetFocusedRowCellValue("id_prod_order").ToString + " "
+            FormProdClosingTolerance.TxtTolOver.EditValue = GVProd.GetFocusedRowCellValue("tolerance_over")
+            FormProdClosingTolerance.TxtTolMinus.EditValue = -1 * GVProd.GetFocusedRowCellValue("tolerance_minus")
+            FormProdClosingTolerance.TxtTolDiscount.EditValue = GVProd.GetFocusedRowCellValue("claim_discount")
+            FormProdClosingTolerance.cond = "(" + prod_order + ")"
+            FormProdClosingTolerance.ShowDialog()
+        End If
         Cursor = Cursors.Default
     End Sub
 End Class

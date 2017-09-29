@@ -35,13 +35,11 @@
             GroupControlRet.Enabled = True
 
             'View data
-            Try
-                Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,b.id_prod_order_wo,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,b.prod_order_wo_number,desg.design_name,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
+            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_name,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
                 query += "a.mat_prod_ret_in_number "
                 query += ",drw.id_wh_drawer,rck.id_wh_rack,loc.id_wh_locator,comp.id_comp "
                 query += "FROM tb_mat_prod_ret_in a "
-                query += "INNER JOIN tb_prod_order_wo b ON a.id_prod_order_wo = b.id_prod_order_wo "
-                query += "INNER JOIN tb_prod_order h ON b.id_prod_order = h.id_prod_order "
+                query += "INNER JOIN tb_prod_order h ON a.id_prod_order = h.id_prod_order "
                 query += "INNER JOIN tb_prod_demand_design pd_desg ON pd_desg.id_prod_demand_design = h.id_prod_demand_design "
                 query += "INNER JOIN tb_m_design desg ON desg.id_design = pd_desg.id_design "
                 query += "INNER JOIN tb_m_comp_contact d ON d.id_comp_contact = a.id_comp_contact_from "
@@ -62,11 +60,10 @@
                 Catch ex As Exception
                 End Try
 
-                id_prod_order = data.Rows(0)("id_prod_order").ToString
-                id_prod_order_wo = data.Rows(0)("id_prod_order_wo").ToString
-                'TEWONumber.Text = data.Rows(0)("prod_order_number").ToString
-                TEPONumber.Text = data.Rows(0)("prod_order_wo_number").ToString
-                id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
+            id_prod_order = data.Rows(0)("id_prod_order").ToString
+            'TEWONumber.Text = data.Rows(0)("prod_order_number").ToString
+            TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
+            id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
                 TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
                 TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
                 MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
@@ -77,10 +74,7 @@
                 MENote.Text = data.Rows(0)("mat_prod_ret_in_note").ToString
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
                 id_report_status = data.Rows(0)("id_report_status").ToString
-                'Constraint Status
-            Catch ex As Exception
-                errorConnection()
-            End Try
+            'Constraint Status
             viewDetailReturn()
             allow_status()
         End If
@@ -228,18 +222,18 @@
             Catch ex As Exception
             End Try
             If action = "ins" Then
-                Try
-                    'Main tbale
-                    query = "INSERT INTO tb_mat_prod_ret_in(id_prod_order_wo, mat_prod_ret_in_number, id_comp_contact_from, mat_prod_ret_in_date, mat_prod_ret_in_note, id_report_status, id_wh_drawer);SELECT LAST_INSERT_ID() "
-                    query += "VALUES('" + id_prod_order_wo + "', '" + mat_prod_ret_in_number + "', '" + id_comp_contact_from + "', NOW(), '" + mat_prod_ret_in_note + "', '" + id_report_status + "','" + id_wh_drawer + "') "
-                    id_mat_prod_ret_in = execute_query(query, 0, True, "", "", "", "")
+                'Try
+                'Main tbale
+                query = "INSERT INTO tb_mat_prod_ret_in(id_prod_order_wo,id_prod_order, mat_prod_ret_in_number, id_comp_contact_from, mat_prod_ret_in_date, mat_prod_ret_in_note, id_report_status, id_wh_drawer) "
+                query += "VALUES('" + id_prod_order_wo + "','" + id_prod_order + "', '" + mat_prod_ret_in_number + "', '" + id_comp_contact_from + "', NOW(), '" + mat_prod_ret_in_note + "', '" + id_report_status + "','" + id_wh_drawer + "');SELECT LAST_INSERT_ID() "
+                id_mat_prod_ret_in = execute_query(query, 0, True, "", "", "", "")
                     increase_inc_mat("6")
 
-                    'insert who prepared
-                    insert_who_prepared("47", id_mat_prod_ret_in, id_user)
+                'insert who prepared
+                submit_who_prepared("47", id_mat_prod_ret_in, id_user)
 
-                    'Detail return
-                    For j As Integer = 0 To (GVRetDetail.RowCount - 1)
+                'Detail return
+                For j As Integer = 0 To (GVRetDetail.RowCount - 1)
                         'Try
                         id_pl_mrs_det = GVRetDetail.GetRowCellValue(j, "id_pl_mrs_det").ToString
                         mat_purc_ret_in_det_qty = GVRetDetail.GetRowCellValue(j, "mat_prod_ret_in_det_qty")
@@ -255,9 +249,9 @@
                     FormMatRet.viewRetInProd()
                     FormMatRet.GVRetInProd.FocusedRowHandle = find_row(FormMatRet.GVRetInProd, "id_mat_prod_ret_in", id_mat_prod_ret_in)
                     Close()
-                Catch ex As Exception
-                    errorConnection()
-                End Try
+                'Catch ex As Exception
+                'errorConnection()
+                'End Try
             ElseIf action = "upd" Then
                 'Try
                 'edit main table

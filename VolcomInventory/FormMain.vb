@@ -279,7 +279,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Then
             RGAreaManage.Visible = False
         End If
 
@@ -397,7 +397,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Then
             RGAreaManage.Visible = True
         End If
 
@@ -6650,6 +6650,8 @@ Public Class FormMain
             ElseIf page = "trf" Then
                 print_raw(FormFGTransList.GCFGTrf, "TRANSFER (" + FormFGTransList.DEFromTrf.Text + " - " + FormFGTransList.DEUntilTrf.Text + ")")
             End If
+        ElseIf formName = "FormProdClosing" Then
+            print_raw(FormProdClosing.GCProd, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7212,6 +7214,9 @@ Public Class FormMain
         ElseIf formName = "FormFGTransList" Then
             FormFGTransList.Close()
             FormFGTransList.Dispose()
+        ElseIf formName = "FormProdClosing" Then
+            FormProdClosing.Close()
+            FormProdClosing.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10514,6 +10519,11 @@ Public Class FormMain
     Private Sub NBCloseFGPO_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCloseFGPO.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormProdClosing.Close()
+            FormProdClosing.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
             FormProdClosing.MdiParent = Me
             FormProdClosing.Show()
             FormProdClosing.WindowState = FormWindowState.Maximized
@@ -10664,6 +10674,44 @@ Public Class FormMain
             FormDepartementSub.Show()
             FormDepartementSub.WindowState = FormWindowState.Maximized
             FormDepartementSub.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCloseRecQC_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCloseRecQC.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProdClosing.Close()
+            FormProdClosing.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormProdClosing.MdiParent = Me
+            FormProdClosing.id_pop_up = "1"
+            FormProdClosing.Show()
+            FormProdClosing.WindowState = FormWindowState.Maximized
+            FormProdClosing.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBClaimFGPO_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBClaimFGPO.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProdClosing.Close()
+            FormProdClosing.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormProdClosing.MdiParent = Me
+            FormProdClosing.id_pop_up = "2"
+            FormProdClosing.Show()
+            FormProdClosing.WindowState = FormWindowState.Maximized
+            FormProdClosing.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
