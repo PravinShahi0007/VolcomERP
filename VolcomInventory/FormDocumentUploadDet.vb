@@ -39,7 +39,7 @@
     Private Sub BUpload_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BUpload.Click
         Try
             'save db
-            Dim query As String = "INSERT INTO tb_doc(doc_desc,report_mark_type,id_report,datetime,ext) VALUES('" & TEFileName.Text & "','" & report_mark_type & "','" & id_report & "',NOW(),'" & file_ext & "');SELECT LAST_INSERT_ID() "
+            Dim query As String = "INSERT INTO tb_doc(doc_desc,report_mark_type,id_report,datetime,ext) VALUES('" & addSlashes(TEFileName.Text) & "','" & report_mark_type & "','" & id_report & "',NOW(),'" & file_ext & "');SELECT LAST_INSERT_ID() "
             Dim last_id As String = execute_query(query, 0, True, "", "", "", "")
             'upload
             Dim path As String = directory_upload & report_mark_type & "\"
@@ -50,7 +50,7 @@
             FormDocumentUpload.view_file()
             Close()
         Catch ex As Exception
-            stopCustom("Connection failed.")
+            stopCustom(ex.ToString)
         End Try
     End Sub
 
