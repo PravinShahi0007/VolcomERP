@@ -1790,14 +1790,14 @@ Module Common
     'get company info by code
     Public Function get_company_by_code(ByVal code_par As String, ByVal cond_par As String)
         code_par = addSlashes(code_par)
-        Dim query As String = "SELECT comp.*, cont.id_comp_contact, getCompByContact(cont.id_comp_contact,4) AS `id_wh_drawer`,getCompByContact(cont.id_comp_contact,6) AS `id_wh_rack`, getCompByContact(cont.id_comp_contact,7) AS `id_wh_locator`, cont.contact_person, cont.contact_number, cont.is_default "
+        Dim query As String = "SELECT comp.comp_commission,comp.id_comp as id_comp,comp.comp_number as comp_number,comp.comp_name as comp_name,comp.address_primary as address_primary,comp.is_active as is_active, comp.id_comp_cat, comp.id_wh_type, IFNULL(comp.id_commerce_type,1) AS `id_commerce_type`, 
+        cont.id_comp_contact, getCompByContact(cont.id_comp_contact,4) AS `id_wh_drawer`,getCompByContact(cont.id_comp_contact,6) AS `id_wh_rack`, getCompByContact(cont.id_comp_contact,7) AS `id_wh_locator`, cont.contact_person, cont.contact_number, cont.is_default "
         query += "FROM tb_m_comp comp "
         query += "INNER JOIN tb_m_comp_contact cont ON cont.id_comp = comp.id_comp AND cont.is_default='1' "
         query += "WHERE comp.comp_number='" + code_par + "' "
         If cond_par <> "-1" Then
             query += cond_par + " "
         End If
-        query += "LIMIT 1 "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Return data
     End Function

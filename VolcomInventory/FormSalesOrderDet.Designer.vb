@@ -1052,12 +1052,13 @@ Partial Class FormSalesOrderDet
         Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl10.Location = New System.Drawing.Point(6, 38)
         Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl10.Size = New System.Drawing.Size(62, 13)
         Me.LabelControl10.TabIndex = 8895
-        Me.LabelControl10.Text = "OL Shop No."
+        Me.LabelControl10.Text = "OL Store No."
         '
         'TxtOLShopNumber
         '
+        Me.TxtOLShopNumber.Enabled = False
         Me.TxtOLShopNumber.Location = New System.Drawing.Point(72, 35)
         Me.TxtOLShopNumber.Name = "TxtOLShopNumber"
         Me.TxtOLShopNumber.Size = New System.Drawing.Size(166, 20)
