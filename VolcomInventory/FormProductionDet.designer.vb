@@ -814,6 +814,7 @@ Partial Class FormProductionDet
         '
         Me.XTPListWO.Controls.Add(Me.GCFGPOOVH)
         Me.XTPListWO.Name = "XTPListWO"
+        Me.XTPListWO.PageVisible = False
         Me.XTPListWO.Size = New System.Drawing.Size(943, 253)
         Me.XTPListWO.Text = "Overhead"
         '
