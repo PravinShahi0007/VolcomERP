@@ -102,6 +102,8 @@ Partial Class FormSalesOrderDet
         Me.GroupUni = New DevExpress.XtraEditors.GroupControl()
         Me.LEUniType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LEPeriodx = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtOLShopNumber = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,6 +144,7 @@ Partial Class FormSalesOrderDet
         Me.GroupUni.SuspendLayout()
         CType(Me.LEUniType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -174,7 +177,7 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(439, 132)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(385, 132)
         Me.PanelControlTopLeft.TabIndex = 8896
         '
         'LabelControl9
@@ -209,7 +212,7 @@ Partial Class FormSalesOrderDet
         Me.TxtNameCompTo.Properties.Appearance.Options.UseFont = True
         Me.TxtNameCompTo.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompTo.Properties.ReadOnly = True
-        Me.TxtNameCompTo.Size = New System.Drawing.Size(227, 20)
+        Me.TxtNameCompTo.Size = New System.Drawing.Size(170, 20)
         Me.TxtNameCompTo.TabIndex = 8888
         Me.TxtNameCompTo.TabStop = False
         '
@@ -225,7 +228,7 @@ Partial Class FormSalesOrderDet
         Me.LETypeSO.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_so_type", "ID SO Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("so_type", "Type")})
         Me.LETypeSO.Properties.NullText = ""
         Me.LETypeSO.Properties.ShowFooter = False
-        Me.LETypeSO.Size = New System.Drawing.Size(318, 20)
+        Me.LETypeSO.Size = New System.Drawing.Size(265, 20)
         Me.LETypeSO.TabIndex = 0
         '
         'TxtWHNameTo
@@ -240,7 +243,7 @@ Partial Class FormSalesOrderDet
         Me.TxtWHNameTo.Properties.Appearance.Options.UseFont = True
         Me.TxtWHNameTo.Properties.EditValueChangedDelay = 1
         Me.TxtWHNameTo.Properties.ReadOnly = True
-        Me.TxtWHNameTo.Size = New System.Drawing.Size(227, 20)
+        Me.TxtWHNameTo.Size = New System.Drawing.Size(170, 20)
         Me.TxtWHNameTo.TabIndex = 8906
         Me.TxtWHNameTo.TabStop = False
         '
@@ -258,7 +261,7 @@ Partial Class FormSalesOrderDet
         Me.BtnBrowseWH.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowseWH.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseWH.Appearance.Options.UseFont = True
-        Me.BtnBrowseWH.Location = New System.Drawing.Point(400, 100)
+        Me.BtnBrowseWH.Location = New System.Drawing.Point(346, 100)
         Me.BtnBrowseWH.Name = "BtnBrowseWH"
         Me.BtnBrowseWH.Size = New System.Drawing.Size(20, 20)
         Me.BtnBrowseWH.TabIndex = 2
@@ -275,7 +278,7 @@ Partial Class FormSalesOrderDet
         Me.MEAdrressCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAdrressCompTo.Properties.Appearance.Options.UseFont = True
         Me.MEAdrressCompTo.Properties.ReadOnly = True
-        Me.MEAdrressCompTo.Size = New System.Drawing.Size(318, 35)
+        Me.MEAdrressCompTo.Size = New System.Drawing.Size(265, 35)
         Me.MEAdrressCompTo.TabIndex = 4444
         Me.MEAdrressCompTo.TabStop = False
         '
@@ -304,7 +307,7 @@ Partial Class FormSalesOrderDet
         Me.BtnBrowseContactTo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BtnBrowseContactTo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BtnBrowseContactTo.Appearance.Options.UseFont = True
-        Me.BtnBrowseContactTo.Location = New System.Drawing.Point(400, 35)
+        Me.BtnBrowseContactTo.Location = New System.Drawing.Point(346, 35)
         Me.BtnBrowseContactTo.Name = "BtnBrowseContactTo"
         Me.BtnBrowseContactTo.Size = New System.Drawing.Size(20, 20)
         Me.BtnBrowseContactTo.TabIndex = 1
@@ -323,17 +326,19 @@ Partial Class FormSalesOrderDet
         'PanelControlTopMain
         '
         Me.PanelControlTopMain.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopMain.Controls.Add(Me.TxtOLShopNumber)
+        Me.PanelControlTopMain.Controls.Add(Me.LabelControl10)
         Me.PanelControlTopMain.Controls.Add(Me.LEStatusSO)
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl8)
         Me.PanelControlTopMain.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopMain.Location = New System.Drawing.Point(459, 2)
+        Me.PanelControlTopMain.Location = New System.Drawing.Point(405, 2)
         Me.PanelControlTopMain.Name = "PanelControlTopMain"
-        Me.PanelControlTopMain.Size = New System.Drawing.Size(184, 132)
+        Me.PanelControlTopMain.Size = New System.Drawing.Size(254, 132)
         Me.PanelControlTopMain.TabIndex = 8897
         '
         'LEStatusSO
         '
-        Me.LEStatusSO.Location = New System.Drawing.Point(65, 10)
+        Me.LEStatusSO.Location = New System.Drawing.Point(72, 9)
         Me.LEStatusSO.Name = "LEStatusSO"
         Me.LEStatusSO.Properties.Appearance.Options.UseTextOptions = True
         Me.LEStatusSO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -341,7 +346,7 @@ Partial Class FormSalesOrderDet
         Me.LEStatusSO.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_so_status", "ID SO Staus", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("so_status", "Status")})
         Me.LEStatusSO.Properties.NullText = ""
         Me.LEStatusSO.Properties.ShowFooter = False
-        Me.LEStatusSO.Size = New System.Drawing.Size(113, 20)
+        Me.LEStatusSO.Size = New System.Drawing.Size(166, 20)
         Me.LEStatusSO.TabIndex = 3
         '
         'LabelControl8
@@ -363,16 +368,16 @@ Partial Class FormSalesOrderDet
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Controls.Add(Me.DEForm)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(643, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(659, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(197, 132)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(181, 132)
         Me.PanelControlTopRight.TabIndex = 8898
         '
         'TxtReff
         '
         Me.TxtReff.EditValue = ""
         Me.TxtReff.Enabled = False
-        Me.TxtReff.Location = New System.Drawing.Point(58, 32)
+        Me.TxtReff.Location = New System.Drawing.Point(47, 32)
         Me.TxtReff.Name = "TxtReff"
         Me.TxtReff.Properties.EditValueChangedDelay = 1
         Me.TxtReff.Properties.ReadOnly = True
@@ -383,7 +388,7 @@ Partial Class FormSalesOrderDet
         'LabelControl2
         '
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl2.Location = New System.Drawing.Point(15, 35)
+        Me.LabelControl2.Location = New System.Drawing.Point(4, 35)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl2.TabIndex = 163
@@ -393,7 +398,7 @@ Partial Class FormSalesOrderDet
         '
         Me.TxtSalesOrderNumber.EditValue = ""
         Me.TxtSalesOrderNumber.Enabled = False
-        Me.TxtSalesOrderNumber.Location = New System.Drawing.Point(58, 56)
+        Me.TxtSalesOrderNumber.Location = New System.Drawing.Point(47, 56)
         Me.TxtSalesOrderNumber.Name = "TxtSalesOrderNumber"
         Me.TxtSalesOrderNumber.Properties.EditValueChangedDelay = 1
         Me.TxtSalesOrderNumber.Properties.ReadOnly = True
@@ -404,7 +409,7 @@ Partial Class FormSalesOrderDet
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(15, 59)
+        Me.LabelControl5.Location = New System.Drawing.Point(4, 59)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(37, 13)
         Me.LabelControl5.TabIndex = 155
@@ -413,7 +418,7 @@ Partial Class FormSalesOrderDet
         'LabelControl7
         '
         Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(15, 12)
+        Me.LabelControl7.Location = New System.Drawing.Point(4, 12)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl7.TabIndex = 159
@@ -423,7 +428,7 @@ Partial Class FormSalesOrderDet
         '
         Me.DEForm.EditValue = ""
         Me.DEForm.Enabled = False
-        Me.DEForm.Location = New System.Drawing.Point(58, 8)
+        Me.DEForm.Location = New System.Drawing.Point(47, 8)
         Me.DEForm.Name = "DEForm"
         Me.DEForm.Properties.EditValueChangedDelay = 1
         Me.DEForm.Properties.ReadOnly = True
@@ -1042,6 +1047,22 @@ Partial Class FormSalesOrderDet
         Me.LEPeriodx.Size = New System.Drawing.Size(172, 20)
         Me.LEPeriodx.TabIndex = 8901
         '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(6, 38)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(60, 13)
+        Me.LabelControl10.TabIndex = 8895
+        Me.LabelControl10.Text = "OL Shop No."
+        '
+        'TxtOLShopNumber
+        '
+        Me.TxtOLShopNumber.Location = New System.Drawing.Point(72, 35)
+        Me.TxtOLShopNumber.Name = "TxtOLShopNumber"
+        Me.TxtOLShopNumber.Size = New System.Drawing.Size(166, 20)
+        Me.TxtOLShopNumber.TabIndex = 8896
+        '
         'FormSalesOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1103,6 +1124,7 @@ Partial Class FormSalesOrderDet
         Me.GroupUni.PerformLayout()
         CType(Me.LEUniType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1187,4 +1209,6 @@ Partial Class FormSalesOrderDet
     Friend WithEvents GroupUni As DevExpress.XtraEditors.GroupControl
     Friend WithEvents LEPeriodx As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LEUniType As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents TxtOLShopNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class
