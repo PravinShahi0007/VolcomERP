@@ -24,6 +24,7 @@
             TEPONumber.Text = header_number_prod("1")
 
             XTPWorkOrder.PageVisible = False
+            XTPListWO.PageVisible = False
             XTPMRS.PageVisible = False
             DDBPrint.Visible = False
             BtnAttachment.Visible = False
@@ -80,6 +81,7 @@
             view_bom()
             allow_status()
             XTPWorkOrder.PageVisible = True
+            XTPListWO.PageVisible = True
             XTPMRS.PageVisible = True
             'wo
             view_wo()
