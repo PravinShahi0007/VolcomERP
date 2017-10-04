@@ -127,17 +127,19 @@ Partial Class FormSalesDelOrderDet
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.XTCDO = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPOutBoundItem = New DevExpress.XtraTab.XtraTabPage()
+        Me.GroupUni = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtEmployee = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtNIK = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtPeriod = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelPeriod = New DevExpress.XtraEditors.LabelControl()
         Me.XTPOutboundScan = New DevExpress.XtraTab.XtraTabPage()
         Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
         Me.GCTest = New DevExpress.XtraGrid.GridControl()
         Me.GVTest = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GroupUni = New DevExpress.XtraEditors.GroupControl()
-        Me.LabelPeriod = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtPeriod = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtNIK = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtEmployee = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtOLShopNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -194,14 +196,15 @@ Partial Class FormSalesDelOrderDet
         CType(Me.XTCDO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCDO.SuspendLayout()
         Me.XTPOutBoundItem.SuspendLayout()
+        CType(Me.GroupUni, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupUni.SuspendLayout()
+        CType(Me.TxtEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.GCTest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVTest, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GroupUni, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupUni.SuspendLayout()
-        CType(Me.TxtPeriod.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtEmployee.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -425,6 +428,8 @@ Partial Class FormSalesDelOrderDet
         'PanelControlTopMiddle
         '
         Me.PanelControlTopMiddle.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl12)
+        Me.PanelControlTopMiddle.Controls.Add(Me.TxtOLShopNumber)
         Me.PanelControlTopMiddle.Controls.Add(Me.LEStatusSO)
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl10)
         Me.PanelControlTopMiddle.Controls.Add(Me.LETypeSO)
@@ -438,7 +443,7 @@ Partial Class FormSalesDelOrderDet
         'LEStatusSO
         '
         Me.LEStatusSO.Enabled = False
-        Me.LEStatusSO.Location = New System.Drawing.Point(76, 34)
+        Me.LEStatusSO.Location = New System.Drawing.Point(84, 34)
         Me.LEStatusSO.Name = "LEStatusSO"
         Me.LEStatusSO.Properties.Appearance.Options.UseTextOptions = True
         Me.LEStatusSO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -446,7 +451,7 @@ Partial Class FormSalesDelOrderDet
         Me.LEStatusSO.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_so_status", "ID SO Staus", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("so_status", "Status")})
         Me.LEStatusSO.Properties.NullText = ""
         Me.LEStatusSO.Properties.ShowFooter = False
-        Me.LEStatusSO.Size = New System.Drawing.Size(176, 20)
+        Me.LEStatusSO.Size = New System.Drawing.Size(168, 20)
         Me.LEStatusSO.TabIndex = 7
         '
         'LabelControl10
@@ -461,7 +466,7 @@ Partial Class FormSalesDelOrderDet
         'LETypeSO
         '
         Me.LETypeSO.Enabled = False
-        Me.LETypeSO.Location = New System.Drawing.Point(76, 8)
+        Me.LETypeSO.Location = New System.Drawing.Point(84, 8)
         Me.LETypeSO.Name = "LETypeSO"
         Me.LETypeSO.Properties.Appearance.Options.UseTextOptions = True
         Me.LETypeSO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -469,7 +474,7 @@ Partial Class FormSalesDelOrderDet
         Me.LETypeSO.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_so_type", "ID SO Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("so_type", "Type")})
         Me.LETypeSO.Properties.NullText = ""
         Me.LETypeSO.Properties.ShowFooter = False
-        Me.LETypeSO.Size = New System.Drawing.Size(176, 20)
+        Me.LETypeSO.Size = New System.Drawing.Size(168, 20)
         Me.LETypeSO.TabIndex = 6
         '
         'LabelControl6
@@ -1353,35 +1358,6 @@ Partial Class FormSalesDelOrderDet
         Me.XTPOutBoundItem.Size = New System.Drawing.Size(948, 541)
         Me.XTPOutBoundItem.Text = "Outbond Item"
         '
-        'XTPOutboundScan
-        '
-        Me.XTPOutboundScan.Name = "XTPOutboundScan"
-        Me.XTPOutboundScan.Size = New System.Drawing.Size(948, 365)
-        Me.XTPOutboundScan.Text = "Outbound Scan"
-        '
-        'XtraTabPage1
-        '
-        Me.XtraTabPage1.Controls.Add(Me.GCTest)
-        Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.PageVisible = False
-        Me.XtraTabPage1.Size = New System.Drawing.Size(948, 365)
-        Me.XtraTabPage1.Text = "XtraTabPage1"
-        '
-        'GCTest
-        '
-        Me.GCTest.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCTest.Location = New System.Drawing.Point(0, 0)
-        Me.GCTest.MainView = Me.GVTest
-        Me.GCTest.Name = "GCTest"
-        Me.GCTest.Size = New System.Drawing.Size(948, 365)
-        Me.GCTest.TabIndex = 0
-        Me.GCTest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTest})
-        '
-        'GVTest
-        '
-        Me.GVTest.GridControl = Me.GCTest
-        Me.GVTest.Name = "GVTest"
-        '
         'GroupUni
         '
         Me.GroupUni.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -1398,36 +1374,27 @@ Partial Class FormSalesDelOrderDet
         Me.GroupUni.TabIndex = 188
         Me.GroupUni.Visible = False
         '
-        'LabelPeriod
+        'TxtEmployee
         '
-        Me.LabelPeriod.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelPeriod.Location = New System.Drawing.Point(31, 11)
-        Me.LabelPeriod.Name = "LabelPeriod"
-        Me.LabelPeriod.Size = New System.Drawing.Size(30, 13)
-        Me.LabelPeriod.TabIndex = 8895
-        Me.LabelPeriod.Text = "Period"
+        Me.TxtEmployee.EditValue = ""
+        Me.TxtEmployee.Location = New System.Drawing.Point(527, 8)
+        Me.TxtEmployee.Name = "TxtEmployee"
+        Me.TxtEmployee.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtEmployee.Properties.Appearance.Options.UseFont = True
+        Me.TxtEmployee.Properties.EditValueChangedDelay = 1
+        Me.TxtEmployee.Properties.ReadOnly = True
+        Me.TxtEmployee.Size = New System.Drawing.Size(361, 20)
+        Me.TxtEmployee.TabIndex = 8908
+        Me.TxtEmployee.TabStop = False
         '
-        'TxtPeriod
+        'LabelControl11
         '
-        Me.TxtPeriod.EditValue = ""
-        Me.TxtPeriod.Location = New System.Drawing.Point(71, 8)
-        Me.TxtPeriod.Name = "TxtPeriod"
-        Me.TxtPeriod.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtPeriod.Properties.Appearance.Options.UseFont = True
-        Me.TxtPeriod.Properties.EditValueChangedDelay = 1
-        Me.TxtPeriod.Properties.ReadOnly = True
-        Me.TxtPeriod.Size = New System.Drawing.Size(151, 20)
-        Me.TxtPeriod.TabIndex = 8904
-        Me.TxtPeriod.TabStop = False
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl4.Location = New System.Drawing.Point(228, 11)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(17, 13)
-        Me.LabelControl4.TabIndex = 8905
-        Me.LabelControl4.Text = "NIK"
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(475, 11)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(46, 13)
+        Me.LabelControl11.TabIndex = 8907
+        Me.LabelControl11.Text = "Employee"
         '
         'TxtNIK
         '
@@ -1442,27 +1409,84 @@ Partial Class FormSalesDelOrderDet
         Me.TxtNIK.TabIndex = 8906
         Me.TxtNIK.TabStop = False
         '
-        'LabelControl11
+        'LabelControl4
         '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(475, 11)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(46, 13)
-        Me.LabelControl11.TabIndex = 8907
-        Me.LabelControl11.Text = "Employee"
+        Me.LabelControl4.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl4.Location = New System.Drawing.Point(228, 11)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(17, 13)
+        Me.LabelControl4.TabIndex = 8905
+        Me.LabelControl4.Text = "NIK"
         '
-        'TxtEmployee
+        'TxtPeriod
         '
-        Me.TxtEmployee.EditValue = ""
-        Me.TxtEmployee.Location = New System.Drawing.Point(527, 8)
-        Me.TxtEmployee.Name = "TxtEmployee"
-        Me.TxtEmployee.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtEmployee.Properties.Appearance.Options.UseFont = True
-        Me.TxtEmployee.Properties.EditValueChangedDelay = 1
-        Me.TxtEmployee.Properties.ReadOnly = True
-        Me.TxtEmployee.Size = New System.Drawing.Size(361, 20)
-        Me.TxtEmployee.TabIndex = 8908
-        Me.TxtEmployee.TabStop = False
+        Me.TxtPeriod.EditValue = ""
+        Me.TxtPeriod.Location = New System.Drawing.Point(71, 8)
+        Me.TxtPeriod.Name = "TxtPeriod"
+        Me.TxtPeriod.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtPeriod.Properties.Appearance.Options.UseFont = True
+        Me.TxtPeriod.Properties.EditValueChangedDelay = 1
+        Me.TxtPeriod.Properties.ReadOnly = True
+        Me.TxtPeriod.Size = New System.Drawing.Size(151, 20)
+        Me.TxtPeriod.TabIndex = 8904
+        Me.TxtPeriod.TabStop = False
+        '
+        'LabelPeriod
+        '
+        Me.LabelPeriod.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPeriod.Location = New System.Drawing.Point(31, 11)
+        Me.LabelPeriod.Name = "LabelPeriod"
+        Me.LabelPeriod.Size = New System.Drawing.Size(30, 13)
+        Me.LabelPeriod.TabIndex = 8895
+        Me.LabelPeriod.Text = "Period"
+        '
+        'XTPOutboundScan
+        '
+        Me.XTPOutboundScan.Name = "XTPOutboundScan"
+        Me.XTPOutboundScan.Size = New System.Drawing.Size(948, 541)
+        Me.XTPOutboundScan.Text = "Outbound Scan"
+        '
+        'XtraTabPage1
+        '
+        Me.XtraTabPage1.Controls.Add(Me.GCTest)
+        Me.XtraTabPage1.Name = "XtraTabPage1"
+        Me.XtraTabPage1.PageVisible = False
+        Me.XtraTabPage1.Size = New System.Drawing.Size(948, 541)
+        Me.XtraTabPage1.Text = "XtraTabPage1"
+        '
+        'GCTest
+        '
+        Me.GCTest.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCTest.Location = New System.Drawing.Point(0, 0)
+        Me.GCTest.MainView = Me.GVTest
+        Me.GCTest.Name = "GCTest"
+        Me.GCTest.Size = New System.Drawing.Size(948, 541)
+        Me.GCTest.TabIndex = 0
+        Me.GCTest.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVTest})
+        '
+        'GVTest
+        '
+        Me.GVTest.GridControl = Me.GCTest
+        Me.GVTest.Name = "GVTest"
+        '
+        'TxtOLShopNumber
+        '
+        Me.TxtOLShopNumber.EditValue = ""
+        Me.TxtOLShopNumber.Location = New System.Drawing.Point(84, 60)
+        Me.TxtOLShopNumber.Name = "TxtOLShopNumber"
+        Me.TxtOLShopNumber.Properties.EditValueChangedDelay = 1
+        Me.TxtOLShopNumber.Properties.ReadOnly = True
+        Me.TxtOLShopNumber.Size = New System.Drawing.Size(168, 20)
+        Me.TxtOLShopNumber.TabIndex = 163
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(14, 63)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(62, 13)
+        Me.LabelControl12.TabIndex = 8902
+        Me.LabelControl12.Text = "OL Store No."
         '
         'FormSalesDelOrderDet
         '
@@ -1545,15 +1569,16 @@ Partial Class FormSalesDelOrderDet
         CType(Me.XTCDO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTCDO.ResumeLayout(False)
         Me.XTPOutBoundItem.ResumeLayout(False)
-        Me.XtraTabPage1.ResumeLayout(False)
-        CType(Me.GCTest, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVTest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupUni, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupUni.ResumeLayout(False)
         Me.GroupUni.PerformLayout()
-        CType(Me.TxtPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtEmployee.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNIK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtPeriod.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XtraTabPage1.ResumeLayout(False)
+        CType(Me.GCTest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVTest, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1675,4 +1700,6 @@ Partial Class FormSalesDelOrderDet
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtPeriod As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelPeriod As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtOLShopNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
 End Class

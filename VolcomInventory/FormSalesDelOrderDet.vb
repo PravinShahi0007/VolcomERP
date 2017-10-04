@@ -156,6 +156,7 @@ Public Class FormSalesDelOrderDet
         'tipe & status SO
         LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
         LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", data.Rows(0)("id_so_status").ToString)
+        TxtOLShopNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
 
         'uniform
         Dim id_so_status As String = data.Rows(0)("id_so_status").ToString
