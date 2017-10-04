@@ -24,6 +24,7 @@ Public Class FormSalesPOSDet
     '
     Public id_do As String = "-1"
     Public id_memo_type As String = "-1"
+    Dim report_mark_type As String = "-1"
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
@@ -48,6 +49,11 @@ Public Class FormSalesPOSDet
             TxtVatTot.EditValue = 0.0
             TxtTaxBase.EditValue = 0.0
 
+
+            'get vat default
+            Dim dtv As DataTable = execute_query("SELECT vat_inv_default FROM tb_opt ", -1, True, "", "", "", "")
+            SPVat.EditValue = dtv.Rows(0)("vat_inv_default")
+
             'TxtVirtualPosNumber.Text = header_number_sales("6")
             BtnPrint.Enabled = False
             BtnAttachment.Enabled = False
@@ -68,7 +74,7 @@ Public Class FormSalesPOSDet
             query += "SELECT pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
             query += "a.sales_pos_number, (c.comp_name) AS store_name_from,c.npwp, "
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat "
+            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, IF(a.id_memo_type=1,48,54) AS `report_mark_type`, a.id_inv_type "
             query += "FROM tb_sales_pos a "
             query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
             query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -99,18 +105,23 @@ Public Class FormSalesPOSDet
             SPDiscount.EditValue = data.Rows(0)("sales_pos_discount")
             SPVat.EditValue = data.Rows(0)("sales_pos_vat")
 
+            'updated 04 ocktobertr 2017
+            id_memo_type = data.Rows(0)("id_memo_type").ToString
+            report_mark_type = data.Rows(0)("report_mark_type").ToString
+            LEInvType.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
+            TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
+            If id_memo_type = "1" Then
+                CheckEditInvType.EditValue = False
+            ElseIf id_memo_type = "3" Then
+                CheckEditInvType.EditValue = True
+            End If
+
             ''detail2
             viewDetail()
             viewStockStore()
             check_but()
-            allow_status()
             calculate()
-
-            'DO
-            check_do()
-            If Not data.Rows(0)("id_pl_sales_order_del").ToString = "" Then
-                TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
-            End If
+            allow_status()
         End If
     End Sub
 
@@ -198,7 +209,6 @@ Public Class FormSalesPOSDet
             'ElseIf Not valid_stock Then
             'stopCustom(err_str.ToString)
         Else
-            Dim sales_pos_number As String = TxtVirtualPosNumber.Text
             Dim sales_pos_note As String = MENote.Text
             Dim id_report_status As String = LEReportStatus.EditValue
             Dim id_so_type As String = LETypeSO.EditValue
@@ -208,43 +218,60 @@ Public Class FormSalesPOSDet
             Dim sales_pos_discount As String = decimalSQL(SPDiscount.EditValue.ToString)
             Dim sales_pos_vat As String = decimalSQL(SPVat.EditValue.ToString)
             total_amount = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
-
+            Dim rmt As String = ""
+            Dim id_memo_type As String = ""
+            Dim sales_pos_number As String = ""
+            If CheckEditInvType.EditValue = True Then
+                rmt = "54"
+                id_memo_type = "3"
+                sales_pos_number = header_number_sales("10")
+            Else
+                rmt = "48"
+                id_memo_type = "1"
+                sales_pos_number = header_number_sales("6")
+            End If
+            Dim id_inv_type As String = LEInvType.EditValue.ToString
 
             If action = "ins" Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Cursor = Cursors.WaitCursor
-                    Try
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Cursor = Cursors.WaitCursor
+                        Try
                         'Main tbale
-                        Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from, sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_vat, id_pl_sales_order_del) "
-                        query += "VALUES('" + id_store_contact_from + "', '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_vat + "'," + do_q + "); SELECT LAST_INSERT_ID(); "
+                        Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from, sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type) "
+                        query += "VALUES('" + id_store_contact_from + "', '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "); SELECT LAST_INSERT_ID(); "
                         id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
                         increase_inc_sales("6")
+                        If report_mark_type = "48" Then
+                            increase_inc_sales("6")
+                        ElseIf report_mark_type = "54" Then
+                            increase_inc_sales("10")
+                        End If
 
                         'insert who prepared
-                        insert_who_prepared("48", id_sales_pos, id_user)
+                        insert_who_prepared(rmt, id_sales_pos, id_user)
 
                         'Detail 
                         Dim jum_ins_i As Integer = 0
-                        Dim query_detail As String = ""
-                        If GVItemList.RowCount > 0 Then
-                            query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail) VALUES "
+                            Dim query_detail As String = ""
+                            If GVItemList.RowCount > 0 Then
+                            query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note) VALUES "
                         End If
-                        For i As Integer = 0 To (GVItemList.RowCount - 1)
+                        For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                             Try
                                 Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
                                 Dim id_design_price As String = GVItemList.GetRowCellValue(i, "id_design_price").ToString
                                 Dim design_price As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price").ToString)
                                 Dim sales_pos_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "sales_pos_det_qty").ToString)
-                                'Dim sales_pos_det_note As String = GVItemList.GetRowCellValue(i, "sales_return_order_det_note").ToString
                                 Dim id_design_price_retail As String = GVItemList.GetRowCellValue(i, "id_design_price_retail").ToString
                                 Dim design_price_retail As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price_retail").ToString)
+                                Dim note As String = GVItemList.GetRowCellValue(i, "note").ToString
 
                                 If jum_ins_i > 0 Then
                                     query_detail += ", "
                                 End If
-                                query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "') "
+                                query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "') "
                                 jum_ins_i = jum_ins_i + 1
                             Catch ex As Exception
 
@@ -256,83 +283,82 @@ Public Class FormSalesPOSDet
 
                         'reserved stock
                         Dim rsv_stock As ClassSalesInv = New ClassSalesInv()
-                        rsv_stock.reservedStock(id_sales_pos, "48")
+                        rsv_stock.reservedStock(id_sales_pos, rmt)
 
                         FormSalesPOS.viewSalesPOS()
-                        FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_sales_pos)
-                        infoCustom("Data inserted")
+                            FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_sales_pos)
+                            action = "upd"
+                            actionLoad()
+                            infoCustom("Invoice " + TxtVirtualPosNumber.Text + " created succesfully")
+                        Catch ex As Exception
+                            errorConnection()
+                        End Try
+                        Cursor = Cursors.Default
+                    End If
+                ElseIf action = "upd" Then
+                    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Cursor = Cursors.WaitCursor
+                        Try
+                            Dim query As String = "UPDATE tb_sales_pos SET id_store_contact_from ='" + id_store_contact_from + "', sales_pos_number = '" + sales_pos_number + "', sales_pos_note='" + sales_pos_note + "', id_so_type = '" + id_so_type + "', sales_pos_total = '" + decimalSQL(total_amount.ToString) + "', sales_pos_due_date='" + sales_pos_due_date + "', sales_pos_start_period='" + sales_pos_start_period + "', sales_pos_end_period = '" + sales_pos_end_period + "', sales_pos_discount='" + sales_pos_discount + "', sales_pos_vat='" + sales_pos_vat + "' WHERE id_sales_pos ='" + id_sales_pos + "' "
+                            execute_non_query(query, True, "", "", "", "")
 
-                        action = "upd"
-                        actionLoad()
-                    Catch ex As Exception
-                        errorConnection()
-                    End Try
-                    Cursor = Cursors.Default
-                End If
-            ElseIf action = "upd" Then
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data changes ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Cursor = Cursors.WaitCursor
-                    Try
-                        Dim query As String = "UPDATE tb_sales_pos SET id_store_contact_from ='" + id_store_contact_from + "', sales_pos_number = '" + sales_pos_number + "', sales_pos_note='" + sales_pos_note + "', id_so_type = '" + id_so_type + "', sales_pos_total = '" + decimalSQL(total_amount.ToString) + "', sales_pos_due_date='" + sales_pos_due_date + "', sales_pos_start_period='" + sales_pos_start_period + "', sales_pos_end_period = '" + sales_pos_end_period + "', sales_pos_discount='" + sales_pos_discount + "', sales_pos_vat='" + sales_pos_vat + "' WHERE id_sales_pos ='" + id_sales_pos + "' "
-                        execute_non_query(query, True, "", "", "", "")
+                            'edit detail table
+                            Dim jum_ins_i As Integer = 0
+                            Dim query_detail As String = ""
+                            If GVItemList.RowCount > 0 Then
+                                query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail) VALUES "
+                            End If
+                            For i As Integer = 0 To (GVItemList.RowCount - 1)
+                                Try
+                                    Dim id_sales_pos_det As String = GVItemList.GetRowCellValue(i, "id_sales_pos_det").ToString
+                                    Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
+                                    Dim id_design_price As String = GVItemList.GetRowCellValue(i, "id_design_price").ToString
+                                    Dim design_price As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price").ToString)
+                                    Dim sales_pos_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "sales_pos_det_qty").ToString)
+                                    'Dim sales_pos_det_note As String = GVItemList.GetRowCellValue(i, "sales_pos_det_note").ToString
+                                    Dim id_design_price_retail As String = GVItemList.GetRowCellValue(i, "id_design_price_retail").ToString
+                                    Dim design_price_retail As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price_retail").ToString)
 
-                        'edit detail table
-                        Dim jum_ins_i As Integer = 0
-                        Dim query_detail As String = ""
-                        If GVItemList.RowCount > 0 Then
-                            query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail) VALUES "
-                        End If
-                        For i As Integer = 0 To (GVItemList.RowCount - 1)
-                            Try
-                                Dim id_sales_pos_det As String = GVItemList.GetRowCellValue(i, "id_sales_pos_det").ToString
-                                Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
-                                Dim id_design_price As String = GVItemList.GetRowCellValue(i, "id_design_price").ToString
-                                Dim design_price As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price").ToString)
-                                Dim sales_pos_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "sales_pos_det_qty").ToString)
-                                'Dim sales_pos_det_note As String = GVItemList.GetRowCellValue(i, "sales_pos_det_note").ToString
-                                Dim id_design_price_retail As String = GVItemList.GetRowCellValue(i, "id_design_price_retail").ToString
-                                Dim design_price_retail As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price_retail").ToString)
-
-                                If id_sales_pos_det = "0" Then
-                                    If jum_ins_i > 0 Then
-                                        query_detail += ", "
+                                    If id_sales_pos_det = "0" Then
+                                        If jum_ins_i > 0 Then
+                                            query_detail += ", "
+                                        End If
+                                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "') "
+                                        jum_ins_i = jum_ins_i + 1
+                                    Else
+                                        Dim query_edit As String = "UPDATE tb_sales_pos_det SET id_product = '" + id_product + "', id_design_price='" + id_design_price + "', design_price = '" + design_price + "', sales_pos_det_qty = '" + sales_pos_det_qty + "', id_design_price_retail = '" + id_design_price_retail + "', design_price_retail = '" + design_price_retail + "'  WHERE id_sales_pos_det = '" + id_sales_pos_det + "' "
+                                        execute_non_query(query_edit, True, "", "", "", "")
+                                        id_sales_pos_det_list.Remove(id_sales_pos_det)
                                     End If
-                                    query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "') "
-                                    jum_ins_i = jum_ins_i + 1
-                                Else
-                                    Dim query_edit As String = "UPDATE tb_sales_pos_det SET id_product = '" + id_product + "', id_design_price='" + id_design_price + "', design_price = '" + design_price + "', sales_pos_det_qty = '" + sales_pos_det_qty + "', id_design_price_retail = '" + id_design_price_retail + "', design_price_retail = '" + design_price_retail + "'  WHERE id_sales_pos_det = '" + id_sales_pos_det + "' "
-                                    execute_non_query(query_edit, True, "", "", "", "")
-                                    id_sales_pos_det_list.Remove(id_sales_pos_det)
-                                End If
-                            Catch ex As Exception
-                                ex.ToString()
-                            End Try
-                        Next
-                        If jum_ins_i > 0 Then
-                            execute_non_query(query_detail, True, "", "", "", "")
-                        End If
+                                Catch ex As Exception
+                                    ex.ToString()
+                                End Try
+                            Next
+                            If jum_ins_i > 0 Then
+                                execute_non_query(query_detail, True, "", "", "", "")
+                            End If
 
-                        'delete sisa
-                        For k As Integer = 0 To (id_sales_pos_det_list.Count - 1)
-                            Try
-                                Dim querydel As String = "DELETE FROM tb_sales_pos_det WHERE id_sales_pos_det = '" + id_sales_pos_det_list(k) + "' "
-                                execute_non_query(querydel, True, "", "", "", "")
-                            Catch ex As Exception
-                                ex.ToString()
-                            End Try
-                        Next
+                            'delete sisa
+                            For k As Integer = 0 To (id_sales_pos_det_list.Count - 1)
+                                Try
+                                    Dim querydel As String = "DELETE FROM tb_sales_pos_det WHERE id_sales_pos_det = '" + id_sales_pos_det_list(k) + "' "
+                                    execute_non_query(querydel, True, "", "", "", "")
+                                Catch ex As Exception
+                                    ex.ToString()
+                                End Try
+                            Next
 
-                        FormSalesPOS.viewSalesPOS()
-                        FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_sales_pos)
-                        infoCustom("Data updated")
-                    Catch ex As Exception
-                        errorConnection()
-                    End Try
-                    Cursor = Cursors.Default
+                            FormSalesPOS.viewSalesPOS()
+                            FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_sales_pos)
+                            infoCustom("Data updated")
+                        Catch ex As Exception
+                            errorConnection()
+                        End Try
+                        Cursor = Cursors.Default
+                    End If
                 End If
             End If
-        End If
     End Sub
 
     'sub check_but
@@ -357,38 +383,28 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub allow_status()
-        If check_edit_report_status(id_report_status, "48", id_sales_pos) Then
-            'BtnBrowseContactFrom.Enabled = True
-            GVItemList.OptionsBehavior.Editable = True
-            PanelControlNav.Enabled = False
-            MENote.Properties.ReadOnly = False
-            LETypeSO.Enabled = True
-            BtnSave.Enabled = True
+        GVItemList.OptionsBehavior.Editable = False
+        PanelControlNav.Enabled = False
+        MENote.Properties.ReadOnly = True
+        LETypeSO.Enabled = False
 
-            'update 8 oktocer 2014
-            DEDueDate.Properties.ReadOnly = False
-            SPDiscount.Properties.ReadOnly = False
-            SPVat.Properties.ReadOnly = False
-            DEStart.Properties.ReadOnly = True
-            DEEnd.Properties.ReadOnly = True
-        Else
-            'BtnBrowseContactFrom.Enabled = False
-            GVItemList.OptionsBehavior.Editable = False
-            PanelControlNav.Enabled = False
-            MENote.Properties.ReadOnly = True
-            LETypeSO.Enabled = False
-            BtnSave.Enabled = False
+        'update 8 oktocer 2014
+        DEDueDate.Properties.ReadOnly = True
+        SPDiscount.Properties.ReadOnly = True
+        SPVat.Properties.ReadOnly = True
+        DEStart.Properties.ReadOnly = True
+        DEEnd.Properties.ReadOnly = True
+        BtnSave.Enabled = False
 
-            'update 8 oktocer 2014
-            DEDueDate.Properties.ReadOnly = True
-            SPDiscount.Properties.ReadOnly = True
-            SPVat.Properties.ReadOnly = True
-            DEStart.Properties.ReadOnly = True
-            DEEnd.Properties.ReadOnly = True
-        End If
+        'update 04 oktober 2017
+        LEInvType.Enabled = False
+        TEDO.Properties.ReadOnly = True
+        TxtCodeCompFrom.Enabled = False
+        TxtNameCompFrom.Enabled = False
+        BtnBrowseContactFrom.Enabled = False
+        CheckEditInvType.Enabled = False
 
-
-        If check_attach_report_status(id_report_status, "48", id_sales_pos) Then
+        If check_attach_report_status(id_report_status, report_mark_type, id_sales_pos) Then
             BtnAttachment.Enabled = True
         Else
             BtnAttachment.Enabled = False
@@ -512,19 +528,12 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub SimpleButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SimpleButton1.Click
-        For i As Integer = 0 To (GVItemList.RowCount - 1)
-            Try
-                Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
-                MsgBox(id_product)
-            Catch ex As Exception
 
-            End Try
-        Next
     End Sub
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_sales_pos
-        FormReportMark.report_mark_type = "48"
+        FormReportMark.report_mark_type = report_mark_type
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
         CType(GCItemList.DataSource, DataTable).AcceptChanges()
@@ -570,7 +579,7 @@ Public Class FormSalesPOSDet
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_sales_pos
-        FormDocumentUpload.report_mark_type = "48"
+        FormDocumentUpload.report_mark_type = report_mark_type
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -922,7 +931,7 @@ Public Class FormSalesPOSDet
         GCItemList.DataSource = Nothing
     End Sub
 
-    Private Sub CheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEdit1.CheckedChanged
+    Private Sub CheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditInvType.CheckedChanged
         viewDetail()
     End Sub
 End Class

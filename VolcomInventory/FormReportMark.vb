@@ -2096,7 +2096,7 @@
             ElseIf id_status_reportx = "6" Then
                 'completed
                 Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
-                complete_rsv_stock.completeReservedStock(id_report, "48")
+                complete_rsv_stock.completedStock(id_report, "48")
             End If
 
             'update status
@@ -2204,7 +2204,7 @@
                 ElseIf id_status_reportx = "6" Then
                     'completed
                     Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
-                    complete_rsv_stock.completeReservedStock(id_report, "54")
+                    complete_rsv_stock.completedStock(id_report, "54")
                 End If
 
                 query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
@@ -2864,7 +2864,7 @@
             ElseIf id_status_reportx = "6" Then
                 'completed
                 Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
-                complete_rsv_stock.completeReservedStock(id_report, "76")
+                complete_rsv_stock.completedStock(id_report, "76")
             End If
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)

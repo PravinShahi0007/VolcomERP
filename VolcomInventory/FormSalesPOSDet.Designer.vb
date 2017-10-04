@@ -36,7 +36,7 @@ Partial Class FormSalesPOSDet
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopMiddle = New DevExpress.XtraEditors.PanelControl()
         Me.BDO = New DevExpress.XtraEditors.SimpleButton()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.CheckEditInvType = New DevExpress.XtraEditors.CheckEdit()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.LETypeSO = New DevExpress.XtraEditors.LookUpEdit()
@@ -121,7 +121,7 @@ Partial Class FormSalesPOSDet
         CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMiddle.SuspendLayout()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckEditInvType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -334,7 +334,7 @@ Partial Class FormSalesPOSDet
         '
         Me.PanelControlTopMiddle.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControlTopMiddle.Controls.Add(Me.BDO)
-        Me.PanelControlTopMiddle.Controls.Add(Me.CheckEdit1)
+        Me.PanelControlTopMiddle.Controls.Add(Me.CheckEditInvType)
         Me.PanelControlTopMiddle.Controls.Add(Me.DEDueDate)
         Me.PanelControlTopMiddle.Controls.Add(Me.DEEnd)
         Me.PanelControlTopMiddle.Controls.Add(Me.LETypeSO)
@@ -360,13 +360,13 @@ Partial Class FormSalesPOSDet
         Me.BDO.TabStop = False
         Me.BDO.Text = "..."
         '
-        'CheckEdit1
+        'CheckEditInvType
         '
-        Me.CheckEdit1.Location = New System.Drawing.Point(220, 10)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = "Invoice Missing"
-        Me.CheckEdit1.Size = New System.Drawing.Size(95, 19)
-        Me.CheckEdit1.TabIndex = 8931
+        Me.CheckEditInvType.Location = New System.Drawing.Point(220, 10)
+        Me.CheckEditInvType.Name = "CheckEditInvType"
+        Me.CheckEditInvType.Properties.Caption = "Invoice Missing"
+        Me.CheckEditInvType.Size = New System.Drawing.Size(95, 19)
+        Me.CheckEditInvType.TabIndex = 8931
         '
         'DEDueDate
         '
@@ -1222,7 +1222,7 @@ Partial Class FormSalesPOSDet
         CType(Me.PanelControlTopMiddle, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMiddle.ResumeLayout(False)
         Me.PanelControlTopMiddle.PerformLayout()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckEditInvType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1355,6 +1355,6 @@ Partial Class FormSalesPOSDet
     Friend WithEvents TEDO As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnMin As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LEInvType As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CheckEditInvType As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
 End Class

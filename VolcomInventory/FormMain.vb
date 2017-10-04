@@ -4166,31 +4166,31 @@ Public Class FormMain
                 stopCustom("This data already marked")
             End If
         ElseIf formName = "FormSalesPOS" Then
-            'SALES POS
-            If check_edit_report_status(FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_report_status"), "48", FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_sales_pos")) Then
-                confirm = XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Try
-                        Dim id_sales_pos As String = FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_sales_pos")
+            'SALES POS pakai fitur cancell
+            'If check_edit_report_status(FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_report_status"), "48", FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_sales_pos")) Then
+            '    confirm = XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            '    If confirm = Windows.Forms.DialogResult.Yes Then
+            '        Try
+            '            Dim id_sales_pos As String = FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_sales_pos")
 
-                        'rollback stock
-                        Dim rsv_stock As ClassSalesInv = New ClassSalesInv()
-                        rsv_stock.cancelReservedStock(id_sales_pos, "48")
+            '            'rollback stock
+            '            Dim rsv_stock As ClassSalesInv = New ClassSalesInv()
+            '            rsv_stock.cancelReservedStock(id_sales_pos, "48")
 
-                        'del data
-                        query = String.Format("DELETE FROM tb_sales_pos WHERE id_sales_pos ='{0}'", id_sales_pos)
-                        execute_non_query(query, True, "", "", "", "")
+            '            'del data
+            '            query = String.Format("DELETE FROM tb_sales_pos WHERE id_sales_pos ='{0}'", id_sales_pos)
+            '            execute_non_query(query, True, "", "", "", "")
 
-                        'del mark
-                        delete_all_mark_related("48", id_sales_pos)
-                        FormSalesPOS.viewSalesPOS()
-                    Catch ex As Exception
-                        errorDelete()
-                    End Try
-                End If
-            Else
-                stopCustom("This data already marked")
-            End If
+            '            'del mark
+            '            delete_all_mark_related("48", id_sales_pos)
+            '            FormSalesPOS.viewSalesPOS()
+            '        Catch ex As Exception
+            '            errorDelete()
+            '        End Try
+            '    End If
+            'Else
+            '    stopCustom("This data already marked")
+            'End If
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
             If check_edit_report_status(FormSalesReturnQC.GVSalesReturnQC.GetFocusedRowCellValue("id_report_status"), "49", FormSalesReturnQC.GVSalesReturnQC.GetFocusedRowCellValue("id_sales_return_qc")) Then
