@@ -19,7 +19,7 @@ Partial Class FormSalesPOS
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -348,9 +348,9 @@ Partial Class FormSalesPOS
         'GCSalesPOS
         '
         Me.GCSalesPOS.Dock = System.Windows.Forms.DockStyle.Fill
-        GridLevelNode2.LevelTemplate = Me.GVSalesPOSDet
-        GridLevelNode2.RelationName = "Detail Transaction"
-        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
+        GridLevelNode1.LevelTemplate = Me.GVSalesPOSDet
+        GridLevelNode1.RelationName = "Detail Transaction"
+        Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.GCSalesPOS.Location = New System.Drawing.Point(20, 2)
         Me.GCSalesPOS.MainView = Me.GVSalesPOS
         Me.GCSalesPOS.Name = "GCSalesPOS"
@@ -416,8 +416,6 @@ Partial Class FormSalesPOS
         Me.GridColumnType.Caption = "TYPE"
         Me.GridColumnType.FieldName = "so_type"
         Me.GridColumnType.Name = "GridColumnType"
-        Me.GridColumnType.Visible = True
-        Me.GridColumnType.VisibleIndex = 4
         Me.GridColumnType.Width = 68
         '
         'GridColumnQty
@@ -429,7 +427,7 @@ Partial Class FormSalesPOS
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_qty", "{0:n2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 4
         Me.GridColumnQty.Width = 68
         '
         'GridColumnTotal
@@ -441,7 +439,7 @@ Partial Class FormSalesPOS
         Me.GridColumnTotal.Name = "GridColumnTotal"
         Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_total", "{0:n2}")})
         Me.GridColumnTotal.Visible = True
-        Me.GridColumnTotal.VisibleIndex = 8
+        Me.GridColumnTotal.VisibleIndex = 7
         Me.GridColumnTotal.Width = 68
         '
         'GridColumnDiscount
@@ -450,7 +448,7 @@ Partial Class FormSalesPOS
         Me.GridColumnDiscount.FieldName = "sales_pos_discount"
         Me.GridColumnDiscount.Name = "GridColumnDiscount"
         Me.GridColumnDiscount.Visible = True
-        Me.GridColumnDiscount.VisibleIndex = 6
+        Me.GridColumnDiscount.VisibleIndex = 5
         Me.GridColumnDiscount.Width = 97
         '
         'GridColumnSalesTax
@@ -459,7 +457,7 @@ Partial Class FormSalesPOS
         Me.GridColumnSalesTax.FieldName = "sales_pos_vat"
         Me.GridColumnSalesTax.Name = "GridColumnSalesTax"
         Me.GridColumnSalesTax.Visible = True
-        Me.GridColumnSalesTax.VisibleIndex = 7
+        Me.GridColumnSalesTax.VisibleIndex = 6
         '
         'GridColumnNetto
         '
@@ -470,7 +468,7 @@ Partial Class FormSalesPOS
         Me.GridColumnNetto.Name = "GridColumnNetto"
         Me.GridColumnNetto.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_netto", "{0:n2}")})
         Me.GridColumnNetto.Visible = True
-        Me.GridColumnNetto.VisibleIndex = 9
+        Me.GridColumnNetto.VisibleIndex = 8
         Me.GridColumnNetto.Width = 65
         '
         'GridColumnSalesPosRev
@@ -482,7 +480,7 @@ Partial Class FormSalesPOS
         Me.GridColumnSalesPosRev.Name = "GridColumnSalesPosRev"
         Me.GridColumnSalesPosRev.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_revenue", "{0:n2}")})
         Me.GridColumnSalesPosRev.Visible = True
-        Me.GridColumnSalesPosRev.VisibleIndex = 10
+        Me.GridColumnSalesPosRev.VisibleIndex = 9
         '
         'GridColumnStatus
         '
@@ -490,7 +488,7 @@ Partial Class FormSalesPOS
         Me.GridColumnStatus.FieldName = "report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 13
+        Me.GridColumnStatus.VisibleIndex = 12
         '
         'GridColumnDueDate
         '
@@ -500,7 +498,7 @@ Partial Class FormSalesPOS
         Me.GridColumnDueDate.FieldName = "sales_pos_due_date"
         Me.GridColumnDueDate.Name = "GridColumnDueDate"
         Me.GridColumnDueDate.Visible = True
-        Me.GridColumnDueDate.VisibleIndex = 11
+        Me.GridColumnDueDate.VisibleIndex = 10
         Me.GridColumnDueDate.Width = 65
         '
         'GridColumnAge
@@ -509,7 +507,7 @@ Partial Class FormSalesPOS
         Me.GridColumnAge.FieldName = "sales_pos_age"
         Me.GridColumnAge.Name = "GridColumnAge"
         Me.GridColumnAge.Visible = True
-        Me.GridColumnAge.VisibleIndex = 12
+        Me.GridColumnAge.VisibleIndex = 11
         Me.GridColumnAge.Width = 65
         '
         'GridColumnRemark

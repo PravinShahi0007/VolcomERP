@@ -38,7 +38,7 @@
     Sub viewSalesPOS()
         Try
             Dim query_c As ClassSalesInv = New ClassSalesInv()
-            Dim query As String = query_c.queryMain("AND a.id_memo_type=''1'' AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
+            Dim query As String = query_c.queryMain("AND (a.id_memo_type=''1'' OR a.id_memo_type=''3'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
             'Dim query As String = query_c.queryMain("AND a.id_memo_type=''1'' ", "2")
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCSalesPOS.DataSource = data
