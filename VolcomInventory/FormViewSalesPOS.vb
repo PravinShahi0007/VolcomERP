@@ -11,6 +11,9 @@
     Dim id_memo_type As String = "-1"
     Dim report_mark_type As String = "-1"
 
+    'menu : 1=invoice 2=credit note
+    Public id_menu As String = "1"
+
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         'get currency default
@@ -24,6 +27,18 @@
         viewReportStatus()
         viewSoType()
         viewInvType()
+        'setting menu
+        If id_menu = "1" Then
+            Text = "Invoice"
+            LEInvType.Focus()
+        ElseIf id_menu = "2" Then
+            Text = "Credit Note"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Text = "Credit Note Missing"
+            TxtCodeCompFrom.Focus()
+        End If
+
         actionLoad()
     End Sub
 
@@ -40,7 +55,7 @@
         query += "SELECT pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
         query += "a.sales_pos_number, (c.comp_name) AS store_name_from,c.npwp, "
         query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, IF(a.id_memo_type=1,48,54) AS `report_mark_type`, a.id_inv_type "
+        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type "
         query += "FROM tb_sales_pos a "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -73,12 +88,20 @@
 
         'updated 04 ocktobertr 2017
         id_memo_type = data.Rows(0)("id_memo_type").ToString
-        report_mark_type = data.Rows(0)("report_mark_type").ToString
+        If id_memo_type = "1" Then 'sales invoice
+            report_mark_type = "48"
+        ElseIf id_memo_type = "2" Then 'sales cn
+            report_mark_type = "66"
+        ElseIf id_memo_type = "3" Then 'missing invoice
+            report_mark_type = "54"
+        ElseIf id_memo_type = "4" Then 'missing cn
+            report_mark_type = "67"
+        End If
         LEInvType.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
         TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
-        If id_memo_type = "1" Then
+        If id_memo_type = "1" Or id_memo_type = "2" Then
             CheckEditInvType.EditValue = False
-        ElseIf id_memo_type = "3" Then
+        ElseIf id_memo_type = "3" Or id_memo_type = "4" Then
             CheckEditInvType.EditValue = True
         End If
 

@@ -2211,12 +2211,12 @@
                 execute_non_query(query, True, "", "", "", "")
                 infoCustom("Status changed.")
 
-                If form_origin = "FormFGMissingDet" Then
-                    FormFGMissingDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormFGMissingDet.check_but()
-                    FormFGMissingDet.actionLoad()
-                    FormFGMissing.viewFGMissing()
-                    FormFGMissing.GVFGMissing.FocusedRowHandle = find_row(FormFGMissing.GVFGMissing, "id_sales_pos", id_report)
+                If form_origin = "FormSalesPOSDet" Then
+                    FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                    FormSalesPOSDet.check_but()
+                    FormSalesPOSDet.actionLoad()
+                    FormSalesPOS.viewSalesPOS()
+                    FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
                 Else
                     'code here
                 End If
@@ -2540,50 +2540,46 @@
             End If
         ElseIf report_mark_type = "66" Then
             'SALES CREDIT NOTE
-            Try
-                If id_status_reportx = "6" Then
-                    'completed
-                    Dim stc_in As ClassSalesInv = New ClassSalesInv()
-                    stc_in.completeInStock(id_report, "66")
-                End If
+            If id_status_reportx = "6" Then
+                'completed
+                Dim stc_in As ClassSalesInv = New ClassSalesInv()
+                stc_in.completeInStock(id_report, "66")
+            End If
 
-                query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
-                execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+            query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
 
-                If form_origin = "FormSalesCreditNoteDet" Then
-                    FormSalesCreditNoteDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormSalesCreditNoteDet.check_but()
-                    FormSalesCreditNoteDet.actionLoad()
-                    FormSalesCreditNote.viewSalesPOS()
-                    FormSalesCreditNote.GVSalesPOS.FocusedRowHandle = find_row(FormSalesCreditNote.GVSalesPOS, "id_sales_pos", id_report)
-                Else
-                    'code here
-                End If
-            Catch ex As Exception
-                errorConnection()
-                Close()
-            End Try
+            If form_origin = "FormSalesPOSDet" Then
+                FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesPOSDet.check_but()
+                FormSalesPOSDet.actionLoad()
+                FormSalesPOS.viewSalesPOS()
+                FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            Else
+                'code here
+            End If
         ElseIf report_mark_type = "67" Then
             'MISSING CREDIT NOTE
-            Try
-                query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
-                execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+            If id_status_reportx = "6" Then
+                'completed
+                Dim stc_in As ClassSalesInv = New ClassSalesInv()
+                stc_in.completeInStock(id_report, "67")
+            End If
 
-                If form_origin = "FormFGMissingCreditNoteStoreDet" Then
-                    FormFGMissingCreditNoteStoreDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormFGMissingCreditNoteStoreDet.check_but()
-                    FormFGMissingCreditNoteStoreDet.actionLoad()
-                    FormFGMissingCreditNote.viewFGMissingStoreCN()
-                    FormFGMissingCreditNote.GVFGMissingCNStore.FocusedRowHandle = find_row(FormFGMissingCreditNote.GVFGMissingCNStore, "id_sales_pos", id_report)
-                Else
-                    'code here
-                End If
-            Catch ex As Exception
-                errorConnection()
-                Close()
-            End Try
+            query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+
+            If form_origin = "FormSalesPOSDet" Then
+                FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesPOSDet.check_but()
+                FormSalesPOSDet.actionLoad()
+                FormSalesPOS.viewSalesPOS()
+                FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            Else
+                'code here
+            End If
         ElseIf report_mark_type = "68" Then
             'CODE REPLACEMENT WH
             'action complete

@@ -26,9 +26,11 @@ Public Class FormSalesPOSDet
     Public id_memo_type As String = "-1"
     Dim report_mark_type As String = "-1"
 
+    'menu : 1=invoice 2=credit note
+    Public id_menu As String = "1"
+
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
-        LEInvType.Focus()
     End Sub
 
     Sub actionLoad()
@@ -43,6 +45,20 @@ Public Class FormSalesPOSDet
         viewReportStatus()
         viewSoType()
         viewInvType()
+
+        'setting menu
+        If id_menu = "1" Then
+            Text = "Invoice"
+            LEInvType.Focus()
+        ElseIf id_menu = "2" Then
+            Text = "Credit Note"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Text = "Credit Note Missing"
+            TxtCodeCompFrom.Focus()
+        End If
+
+
         If action = "ins" Then
             TxtDiscount.EditValue = 0.0
             TxtNetto.EditValue = 0.0
@@ -74,7 +90,7 @@ Public Class FormSalesPOSDet
             query += "SELECT pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
             query += "a.sales_pos_number, (c.comp_name) AS store_name_from,c.npwp, "
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, IF(a.id_memo_type=1,48,54) AS `report_mark_type`, a.id_inv_type "
+            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type "
             query += "FROM tb_sales_pos a "
             query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
             query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -107,12 +123,20 @@ Public Class FormSalesPOSDet
 
             'updated 04 ocktobertr 2017
             id_memo_type = data.Rows(0)("id_memo_type").ToString
-            report_mark_type = data.Rows(0)("report_mark_type").ToString
+            If id_memo_type = "1" Then 'sales invoice
+                report_mark_type = "48"
+            ElseIf id_memo_type = "2" Then 'sales cn
+                report_mark_type = "66"
+            ElseIf id_memo_type = "3" Then 'missing invoice
+                report_mark_type = "54"
+            ElseIf id_memo_type = "4" Then 'missing cn
+                report_mark_type = "67"
+            End If
             LEInvType.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
             TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
-            If id_memo_type = "1" Then
+            If id_memo_type = "1" Or id_memo_type = "2" Then
                 CheckEditInvType.EditValue = False
-            ElseIf id_memo_type = "3" Then
+            ElseIf id_memo_type = "3" Or id_memo_type = "4" Then
                 CheckEditInvType.EditValue = True
             End If
 
@@ -156,15 +180,17 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub viewStockStore()
-        dt_stock_store.Clear()
+        If id_menu = "1" Then
+            dt_stock_store.Clear()
 
-        Dim end_period As String = "9999-12-01"
-        Try
-            end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
-        Catch ex As Exception
-        End Try
-        Dim query As String = "CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '" + end_period + "') "
-        dt_stock_store = execute_query(query, -1, True, "", "", "", "")
+            Dim end_period As String = "9999-12-01"
+            Try
+                end_period = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
+            Catch ex As Exception
+            End Try
+            Dim query As String = "CALL view_stock_fg('" + id_comp + "', '" + id_wh_locator + "', '" + id_wh_rack + "', '" + id_wh_drawer + "', '0', '4', '" + end_period + "') "
+            dt_stock_store = execute_query(query, -1, True, "", "", "", "")
+        End If
     End Sub
 
     Private Sub BtnSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnSave.Click
@@ -218,17 +244,28 @@ Public Class FormSalesPOSDet
             Dim sales_pos_discount As String = decimalSQL(SPDiscount.EditValue.ToString)
             Dim sales_pos_vat As String = decimalSQL(SPVat.EditValue.ToString)
             total_amount = Double.Parse(GVItemList.Columns("sales_pos_det_amount").SummaryItem.SummaryValue.ToString)
-            Dim rmt As String = ""
             Dim id_memo_type As String = ""
             Dim sales_pos_number As String = ""
-            If CheckEditInvType.EditValue = True Then
-                rmt = "54"
-                id_memo_type = "3"
-                sales_pos_number = header_number_sales("10")
-            Else
-                rmt = "48"
-                id_memo_type = "1"
-                sales_pos_number = header_number_sales("6")
+            If id_menu = "1" Then
+                If CheckEditInvType.EditValue = True Then
+                    report_mark_type = "54"
+                    id_memo_type = "3"
+                    sales_pos_number = header_number_sales("10")
+                Else
+                    report_mark_type = "48"
+                    id_memo_type = "1"
+                    sales_pos_number = header_number_sales("6")
+                End If
+            ElseIf id_menu = "2" Then
+                If CheckEditInvType.EditValue = True Then
+                    report_mark_type = "67"
+                    id_memo_type = "4"
+                    sales_pos_number = header_number_sales("18")
+                Else
+                    report_mark_type = "66"
+                    id_memo_type = "2"
+                    sales_pos_number = header_number_sales("17")
+                End If
             End If
             Dim id_inv_type As String = LEInvType.EditValue.ToString
 
@@ -242,15 +279,19 @@ Public Class FormSalesPOSDet
                     query += "VALUES('" + id_store_contact_from + "', '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
-                    increase_inc_sales("6")
+
                     If report_mark_type = "48" Then
                         increase_inc_sales("6")
                     ElseIf report_mark_type = "54" Then
                         increase_inc_sales("10")
+                    ElseIf report_mark_type = "66" Then
+                        increase_inc_sales("17")
+                    ElseIf report_mark_type = "67" Then
+                        increase_inc_sales("18")
                     End If
 
                     'insert who prepared
-                    insert_who_prepared(rmt, id_sales_pos, id_user)
+                    insert_who_prepared(report_mark_type, id_sales_pos, id_user)
 
                     'Detail 
                     Dim jum_ins_i As Integer = 0
@@ -263,6 +304,9 @@ Public Class FormSalesPOSDet
                         Dim id_design_price As String = GVItemList.GetRowCellValue(i, "id_design_price").ToString
                         Dim design_price As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price").ToString)
                         Dim sales_pos_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "sales_pos_det_qty").ToString)
+                        If id_menu = "2" Then
+                            sales_pos_det_qty = sales_pos_det_qty * -1
+                        End If
                         Dim id_design_price_retail As String = GVItemList.GetRowCellValue(i, "id_design_price_retail").ToString
                         Dim design_price_retail As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price_retail").ToString)
                         Dim note As String = GVItemList.GetRowCellValue(i, "note").ToString
@@ -277,15 +321,23 @@ Public Class FormSalesPOSDet
                         execute_non_query(query_detail, True, "", "", "", "")
                     End If
 
-                    'reserved stock
-                    Dim rsv_stock As ClassSalesInv = New ClassSalesInv()
-                    rsv_stock.reservedStock(id_sales_pos, rmt)
+                    If id_menu = "1" Then
+                        'reserved stock
+                        Dim rsv_stock As ClassSalesInv = New ClassSalesInv()
+                        rsv_stock.reservedStock(id_sales_pos, report_mark_type)
+                    End If
 
                     FormSalesPOS.viewSalesPOS()
                     FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_sales_pos)
                     action = "upd"
                     actionLoad()
-                    infoCustom("Invoice " + TxtVirtualPosNumber.Text + " created succesfully")
+
+                    If id_menu = "1" Then
+                        infoCustom("Invoice " + TxtVirtualPosNumber.Text + " created succesfully")
+                    ElseIf id_menu = "2" Then
+                        infoCustom("Credit Note " + TxtVirtualPosNumber.Text + " created succesfully")
+                    End If
+
 
                     Cursor = Cursors.Default
                 End If
@@ -632,33 +684,60 @@ Public Class FormSalesPOSDet
         Dim tb2 = dt_stock_store
         Dim tb3 = dt_prc.AsEnumerable()
 
-        Dim query = From table1 In tb1
-                    Group Join table_tmp In tb2
-                    On table1("code").ToString Equals table_tmp("code").ToString Into sjoin = Group
-                    From rs In sjoin.DefaultIfEmpty()
-                    Join rp In tb3
-                    On table1("code").ToString Equals rp("product_full_code").ToString
-                    Select New With
-                    {
-                        .code = table1("code").ToString,
-                        .name = If(rp Is Nothing, "", rp("design_display_name").ToString),
-                        .size = If(rp Is Nothing, "", rp("size").ToString),
-                        .sales_pos_det_qty = table1("qty"),
-                        .limit_qty = If(rs Is Nothing, 0, rs("qty_all_product")),
-                        .id_design_price = If(rp Is Nothing, "0", rp("id_design_price").ToString),
-                        .design_price = If(rp Is Nothing, 0, rp("design_price")),
-                        .design_price_type = If(rp Is Nothing, "", rp("design_price_type").ToString),
-                        .id_design_price_retail = If(rp Is Nothing, "0", rp("id_design_price").ToString),
-                        .design_price_retail = If(table1("price").ToString = "", If(rp Is Nothing, 0, rp("design_price")), table1("price")),
-                        .id_design = If(rp Is Nothing, "0", rp("id_design").ToString),
-                        .id_product = If(rp Is Nothing, "0", rp("id_product").ToString),
-                        .note = If(rp Is Nothing, "Product not found", If(table1("qty") > If(rs Is Nothing, 0, rs("qty_all_product")), "+" + (table1("qty") - If(rs Is Nothing, 0, rs("qty_all_product"))).ToString, "OK")),
-                        .id_sales_pos_det = "0"
-                    }
+        If id_menu = "1" Then
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2
+                        On table1("code").ToString Equals table_tmp("code").ToString Into sjoin = Group
+                        From rs In sjoin.DefaultIfEmpty()
+                        Join rp In tb3
+                        On table1("code").ToString Equals rp("product_full_code").ToString
+                        Select New With
+                        {
+                            .code = table1("code").ToString,
+                            .name = If(rp Is Nothing, "", rp("design_display_name").ToString),
+                            .size = If(rp Is Nothing, "", rp("size").ToString),
+                            .sales_pos_det_qty = table1("qty"),
+                            .limit_qty = If(rs Is Nothing, 0, rs("qty_all_product")),
+                            .id_design_price = If(rp Is Nothing, "0", rp("id_design_price").ToString),
+                            .design_price = If(rp Is Nothing, 0, rp("design_price")),
+                            .design_price_type = If(rp Is Nothing, "", rp("design_price_type").ToString),
+                            .id_design_price_retail = If(rp Is Nothing, "0", rp("id_design_price").ToString),
+                            .design_price_retail = If(table1("price").ToString = "", If(rp Is Nothing, 0, rp("design_price")), table1("price")),
+                            .id_design = If(rp Is Nothing, "0", rp("id_design").ToString),
+                            .id_product = If(rp Is Nothing, "0", rp("id_product").ToString),
+                            .note = If(rp Is Nothing, "Product not found", If(table1("qty") > If(rs Is Nothing, 0, rs("qty_all_product")), "+" + (table1("qty") - If(rs Is Nothing, 0, rs("qty_all_product"))).ToString, "OK")),
+                            .id_sales_pos_det = "0"
+                        }
 
-        GCItemList.DataSource = Nothing
-        GCItemList.DataSource = query.ToList()
-        GCItemList.RefreshDataSource()
+            GCItemList.DataSource = Nothing
+            GCItemList.DataSource = query.ToList()
+            GCItemList.RefreshDataSource()
+        ElseIf id_menu = "2" Then
+            Dim query = From table1 In tb1
+                        Join rp In tb3
+                        On table1("code").ToString Equals rp("product_full_code").ToString
+                        Select New With
+                        {
+                            .code = table1("code").ToString,
+                            .name = If(rp Is Nothing, "", rp("design_display_name").ToString),
+                            .size = If(rp Is Nothing, "", rp("size").ToString),
+                            .sales_pos_det_qty = table1("qty"),
+                            .id_design_price = If(rp Is Nothing, "0", rp("id_design_price").ToString),
+                            .design_price = If(rp Is Nothing, 0, rp("design_price")),
+                            .design_price_type = If(rp Is Nothing, "", rp("design_price_type").ToString),
+                            .id_design_price_retail = If(rp Is Nothing, "0", rp("id_design_price").ToString),
+                            .design_price_retail = If(table1("price").ToString = "", If(rp Is Nothing, 0, rp("design_price")), table1("price")),
+                            .id_design = If(rp Is Nothing, "0", rp("id_design").ToString),
+                            .id_product = If(rp Is Nothing, "0", rp("id_product").ToString),
+                            .note = If(rp Is Nothing, "Product not found", "OK"),
+                            .id_sales_pos_det = "0"
+                        }
+
+            GCItemList.DataSource = Nothing
+            GCItemList.DataSource = query.ToList()
+            GCItemList.RefreshDataSource()
+        End If
+
 
         'Catch ex As Exception
         'stopCustom("Input must be in accordance with the format specified !")

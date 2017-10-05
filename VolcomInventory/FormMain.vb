@@ -1186,6 +1186,7 @@ Public Class FormMain
         ElseIf formName = "FormSalesPOS" Then
             'SALES POS
             FormSalesPOSDet.action = "ins"
+            FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
             FormSalesPOSDet.ShowDialog()
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
@@ -2053,6 +2054,7 @@ Public Class FormMain
                 FormSalesReturnDet.ShowDialog()
             ElseIf formName = "FormSalesPOS" Then
                 'SALES POS
+                FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
                 FormSalesPOSDet.action = "upd"
                 FormSalesPOSDet.id_sales_pos = FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_sales_pos").ToString
                 FormSalesPOSDet.ShowDialog()
@@ -9056,6 +9058,11 @@ Public Class FormMain
     Private Sub NBSalesPOS_LinkClicked(ByVal sender As System.Object, ByVal e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesPOS.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormSalesPOS.Close()
+            FormSalesPOS.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
             FormSalesPOS.MdiParent = Me
             FormSalesPOS.Show()
             FormSalesPOS.WindowState = FormWindowState.Maximized
@@ -9447,10 +9454,16 @@ Public Class FormMain
     Private Sub NBSalesCreditNote_LinkClicked(ByVal sender As System.Object, ByVal e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesCreditNote.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
-            FormSalesCreditNote.MdiParent = Me
-            FormSalesCreditNote.Show()
-            FormSalesCreditNote.WindowState = FormWindowState.Maximized
-            FormSalesCreditNote.Focus()
+            FormSalesPOS.Close()
+            FormSalesPOS.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesPOS.MdiParent = Me
+            FormSalesPOS.id_menu = "2"
+            FormSalesPOS.Show()
+            FormSalesPOS.WindowState = FormWindowState.Maximized
+            FormSalesPOS.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

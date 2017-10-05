@@ -20,6 +20,10 @@ Partial Class FormViewSalesPOS
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.TENPWP = New DevExpress.XtraEditors.TextEdit()
+        Me.CheckEditInvType = New DevExpress.XtraEditors.CheckEdit()
+        Me.LEInvType = New DevExpress.XtraEditors.LookUpEdit()
         Me.TEDO = New DevExpress.XtraEditors.TextEdit()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
@@ -80,13 +84,12 @@ Partial Class FormViewSalesPOS
         Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSalesPOSDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LEInvType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.CheckEditInvType = New DevExpress.XtraEditors.CheckEdit()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TENPWP = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TENPWP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckEditInvType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEInvType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,9 +121,6 @@ Partial Class FormViewSalesPOS
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEInvType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEditInvType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TENPWP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -153,6 +153,48 @@ Partial Class FormViewSalesPOS
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(954, 161)
         Me.GroupGeneralHeader.TabIndex = 185
+        '
+        'LabelControl11
+        '
+        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl11.Location = New System.Drawing.Point(32, 121)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(29, 13)
+        Me.LabelControl11.TabIndex = 8943
+        Me.LabelControl11.Text = "NPWP"
+        '
+        'TENPWP
+        '
+        Me.TENPWP.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TENPWP.EditValue = ""
+        Me.TENPWP.Location = New System.Drawing.Point(79, 118)
+        Me.TENPWP.Name = "TENPWP"
+        Me.TENPWP.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TENPWP.Properties.Appearance.Options.UseFont = True
+        Me.TENPWP.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TENPWP.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TENPWP.Properties.EditValueChangedDelay = 1
+        Me.TENPWP.Properties.ReadOnly = True
+        Me.TENPWP.Size = New System.Drawing.Size(298, 20)
+        Me.TENPWP.TabIndex = 8944
+        Me.TENPWP.TabStop = False
+        '
+        'CheckEditInvType
+        '
+        Me.CheckEditInvType.Location = New System.Drawing.Point(567, 17)
+        Me.CheckEditInvType.Name = "CheckEditInvType"
+        Me.CheckEditInvType.Properties.Caption = "Invoice Missing"
+        Me.CheckEditInvType.Size = New System.Drawing.Size(136, 19)
+        Me.CheckEditInvType.TabIndex = 8942
+        '
+        'LEInvType
+        '
+        Me.LEInvType.Location = New System.Drawing.Point(79, 15)
+        Me.LEInvType.Name = "LEInvType"
+        Me.LEInvType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEInvType.Size = New System.Drawing.Size(82, 20)
+        Me.LEInvType.TabIndex = 8941
         '
         'TEDO
         '
@@ -209,7 +251,7 @@ Partial Class FormViewSalesPOS
         Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDueDate.Size = New System.Drawing.Size(115, 20)
+        Me.DEDueDate.Size = New System.Drawing.Size(94, 20)
         Me.DEDueDate.TabIndex = 8935
         '
         'LabelControl4
@@ -806,22 +848,6 @@ Partial Class FormViewSalesPOS
         Me.GridColumnColor.VisibleIndex = 3
         Me.GridColumnColor.Width = 71
         '
-        'LEInvType
-        '
-        Me.LEInvType.Location = New System.Drawing.Point(79, 15)
-        Me.LEInvType.Name = "LEInvType"
-        Me.LEInvType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEInvType.Size = New System.Drawing.Size(82, 20)
-        Me.LEInvType.TabIndex = 8941
-        '
-        'CheckEditInvType
-        '
-        Me.CheckEditInvType.Location = New System.Drawing.Point(588, 16)
-        Me.CheckEditInvType.Name = "CheckEditInvType"
-        Me.CheckEditInvType.Properties.Caption = "Invoice Missing"
-        Me.CheckEditInvType.Size = New System.Drawing.Size(95, 19)
-        Me.CheckEditInvType.TabIndex = 8942
-        '
         'GridColumnNote
         '
         Me.GridColumnNote.Caption = "Note"
@@ -829,32 +855,6 @@ Partial Class FormViewSalesPOS
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 9
-        '
-        'LabelControl11
-        '
-        Me.LabelControl11.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl11.Location = New System.Drawing.Point(32, 121)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(29, 13)
-        Me.LabelControl11.TabIndex = 8943
-        Me.LabelControl11.Text = "NPWP"
-        '
-        'TENPWP
-        '
-        Me.TENPWP.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TENPWP.EditValue = ""
-        Me.TENPWP.Location = New System.Drawing.Point(79, 118)
-        Me.TENPWP.Name = "TENPWP"
-        Me.TENPWP.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TENPWP.Properties.Appearance.Options.UseFont = True
-        Me.TENPWP.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
-        Me.TENPWP.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.TENPWP.Properties.EditValueChangedDelay = 1
-        Me.TENPWP.Properties.ReadOnly = True
-        Me.TENPWP.Size = New System.Drawing.Size(298, 20)
-        Me.TENPWP.TabIndex = 8944
-        Me.TENPWP.TabStop = False
         '
         'FormViewSalesPOS
         '
@@ -877,6 +877,9 @@ Partial Class FormViewSalesPOS
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TENPWP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckEditInvType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEInvType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -909,9 +912,6 @@ Partial Class FormViewSalesPOS
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEInvType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEditInvType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TENPWP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

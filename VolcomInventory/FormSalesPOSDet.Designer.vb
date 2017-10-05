@@ -362,10 +362,10 @@ Partial Class FormSalesPOSDet
         '
         'CheckEditInvType
         '
-        Me.CheckEditInvType.Location = New System.Drawing.Point(220, 10)
+        Me.CheckEditInvType.Location = New System.Drawing.Point(174, 10)
         Me.CheckEditInvType.Name = "CheckEditInvType"
         Me.CheckEditInvType.Properties.Caption = "Invoice Missing"
-        Me.CheckEditInvType.Size = New System.Drawing.Size(95, 19)
+        Me.CheckEditInvType.Size = New System.Drawing.Size(138, 19)
         Me.CheckEditInvType.TabIndex = 8931
         '
         'DEDueDate
@@ -378,7 +378,7 @@ Partial Class FormSalesPOSDet
         Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEDueDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEDueDate.Size = New System.Drawing.Size(151, 20)
+        Me.DEDueDate.Size = New System.Drawing.Size(108, 20)
         Me.DEDueDate.TabIndex = 3
         '
         'DEEnd

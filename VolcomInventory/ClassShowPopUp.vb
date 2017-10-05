@@ -269,12 +269,14 @@
             FormViewFGCodeReplaceStore.ShowDialog()
         ElseIf report_mark_type = "66" Then
             'CREDIT NOTE
-            FormViewSalesCreditNote.id_sales_pos = id_report
-            FormViewSalesCreditNote.ShowDialog()
+            FormViewSalesPOS.id_menu = "2"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         ElseIf report_mark_type = "67" Then
             'MISSING CREDIT NOTE
-            FormViewFGMissingCreditNoteStore.id_sales_pos = id_report
-            FormViewFGMissingCreditNoteStore.ShowDialog()
+            FormViewSalesPOS.id_menu = "2"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         ElseIf report_mark_type = "68" Then
             'CODE REPLACEMENT WH
             FormViewFGCodeReplaceWH.id_fg_code_replace_wh = id_report
