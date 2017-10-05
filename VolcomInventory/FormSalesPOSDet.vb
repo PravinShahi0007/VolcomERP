@@ -589,9 +589,19 @@ Public Class FormSalesPOSDet
         Cursor = Cursors.WaitCursor
         ReportSalesInvoice.id_sales_pos = id_sales_pos
         Dim Report As New ReportSalesInvoice()
+        If id_memo_type = "1" Then
+            Report.LTitle.Text = "SALES INVOICE"
+        ElseIf id_memo_type = "2" Then
+            Report.LTitle.Text = "SALES CREDIT NOTE"
+        ElseIf id_memo_type = "3" Then
+            Report.LTitle.Text = "MISSING INVOICE"
+        ElseIf id_memo_type = "4" Then
+            Report.LTitle.Text = "MISSING CREDIT NOTE"
+        End If
+
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+        Tool.ShowPreviewDialog()
         Cursor = Cursors.Default
     End Sub
 
