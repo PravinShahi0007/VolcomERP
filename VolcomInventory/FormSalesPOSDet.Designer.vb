@@ -849,6 +849,7 @@ Partial Class FormSalesPOSDet
         'SPVat
         '
         Me.SPVat.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.SPVat.Enabled = False
         Me.SPVat.Location = New System.Drawing.Point(80, 55)
         Me.SPVat.Name = "SPVat"
         Me.SPVat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
