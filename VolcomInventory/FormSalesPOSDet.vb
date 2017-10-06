@@ -132,7 +132,7 @@ Public Class FormSalesPOSDet
             ElseIf id_memo_type = "4" Then 'missing cn
                 report_mark_type = "67"
             End If
-            LEInvType.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
+            LEInvType.ItemIndex = LEInvType.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
             TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
             If id_memo_type = "1" Or id_memo_type = "2" Then
                 CheckEditInvType.EditValue = False
@@ -477,7 +477,11 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub getVat()
-        Dim netto As Double = Double.Parse(TxtNetto.EditValue.ToString)
+        Dim netto As Double = 0
+        Try
+            netto = Double.Parse(TxtNetto.EditValue.ToString)
+        Catch ex As Exception
+        End Try
         Dim vat As Double = Double.Parse(SPVat.EditValue.ToString)
         Dim vat_total As Double = (vat / (100 + vat)) * netto
         TxtVatTot.EditValue = vat_total
@@ -495,7 +499,11 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub getTaxBase()
-        Dim netto As Double = Double.Parse(TxtNetto.EditValue.ToString)
+        Dim netto As Double = 0
+        Try
+            netto = Double.Parse(TxtNetto.EditValue.ToString)
+        Catch ex As Exception
+        End Try
         Dim vat As Double = Double.Parse(SPVat.EditValue.ToString)
         Dim tax_base_total As Double = (100 / (100 + vat)) * netto
         TxtTaxBase.EditValue = tax_base_total
@@ -895,7 +903,7 @@ Public Class FormSalesPOSDet
         End If
     End Sub
     Sub view_do()
-        Dim query_det As String = "CALL view_pl_sales_order_del_inv('" + id_do + "')"
+        Dim query_det As String = "CALL view_pl_sales_order_del_inv('" + id_do + "', '" + LEInvType.EditValue.ToString + "')"
         Dim data_det As DataTable = execute_query(query_det, "-1", True, "", "", "", "")
         GCItemList.DataSource = data_det
     End Sub
@@ -990,20 +998,22 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub LEInvType_EditValueChanged(sender As Object, e As EventArgs) Handles LEInvType.EditValueChanged
-        TEDO.Text = ""
-        TxtCodeCompFrom.Text = ""
-        defaultReset()
+        If action = "ins" Then
+            TEDO.Text = ""
+            TxtCodeCompFrom.Text = ""
+            defaultReset()
 
-        If LEInvType.EditValue.ToString = "0" Then
-            TEDO.Enabled = False
-            TxtCodeCompFrom.Enabled = True
-            BtnBrowseContactFrom.Enabled = True
-            PanelControlNav.Visible = True
-        Else
-            TEDO.Enabled = True
-            TxtCodeCompFrom.Enabled = False
-            BtnBrowseContactFrom.Enabled = False
-            PanelControlNav.Visible = False
+            If LEInvType.EditValue.ToString = "0" Then
+                TEDO.Enabled = False
+                TxtCodeCompFrom.Enabled = True
+                BtnBrowseContactFrom.Enabled = True
+                PanelControlNav.Visible = True
+            Else
+                TEDO.Enabled = True
+                TxtCodeCompFrom.Enabled = False
+                BtnBrowseContactFrom.Enabled = False
+                PanelControlNav.Visible = False
+            End If
         End If
     End Sub
 
