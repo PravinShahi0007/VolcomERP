@@ -34,6 +34,8 @@
             Text = "Invoice"
         ElseIf id_menu = "2" Then
             Text = "Credit Note"
+        ElseIf id_menu = "3" Then
+            Text = "Invoice Missing Promo"
         End If
 
         'Tab Daily
@@ -53,6 +55,8 @@
                 query = query_c.queryMain("AND (a.id_memo_type=''1'' OR a.id_memo_type=''3'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
             ElseIf id_menu = "2" Then
                 query = query_c.queryMain("AND (a.id_memo_type=''2'' OR a.id_memo_type=''4'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
+            ElseIf id_menu = "3" Then
+                query = query_c.queryMain("AND (a.id_memo_type=''5'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
             End If
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

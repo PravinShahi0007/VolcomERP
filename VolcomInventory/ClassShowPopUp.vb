@@ -434,6 +434,11 @@
             FormSalesReturnDet.action = "upd"
             FormSalesReturnDet.is_view = "1"
             FormSalesReturnDet.ShowDialog()
+        ElseIf report_mark_type = "116" Then
+            'INVOICE MISSING PROMO
+            FormViewSalesPOS.id_menu = "3"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")

@@ -56,6 +56,12 @@ Public Class FormSalesPOSDet
             TEDO.Enabled = False
             CheckEditInvType.Text = "Credit Note Missing"
             TxtCodeCompFrom.Focus()
+        ElseIf id_menu = "3" Then
+            Text = "Invoice Missing Promo"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Visible = False
+            TxtCodeCompFrom.Focus()
         End If
 
 
@@ -131,10 +137,12 @@ Public Class FormSalesPOSDet
                 report_mark_type = "54"
             ElseIf id_memo_type = "4" Then 'missing cn
                 report_mark_type = "67"
+            ElseIf id_memo_type = "5" Then 'missing promo
+                report_mark_type = "116"
             End If
             LEInvType.ItemIndex = LEInvType.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
             TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
-            If id_memo_type = "1" Or id_memo_type = "2" Then
+            If id_memo_type = "1" Or id_memo_type = "2" Or id_memo_type = "5" Then
                 CheckEditInvType.EditValue = False
             ElseIf id_memo_type = "3" Or id_memo_type = "4" Then
                 CheckEditInvType.EditValue = True
@@ -266,6 +274,10 @@ Public Class FormSalesPOSDet
                     id_memo_type = "2"
                     sales_pos_number = header_number_sales("17")
                 End If
+            ElseIf id_menu = "3" Then
+                report_mark_type = "116"
+                id_memo_type = "5"
+                sales_pos_number = header_number_sales("33")
             End If
             Dim id_inv_type As String = LEInvType.EditValue.ToString
 
@@ -288,6 +300,8 @@ Public Class FormSalesPOSDet
                         increase_inc_sales("17")
                     ElseIf report_mark_type = "67" Then
                         increase_inc_sales("18")
+                    ElseIf report_mark_type = "116" Then
+                        increase_inc_sales("33")
                     End If
 
                     'insert who prepared
@@ -336,6 +350,8 @@ Public Class FormSalesPOSDet
                         infoCustom("Invoice " + TxtVirtualPosNumber.Text + " created succesfully")
                     ElseIf id_menu = "2" Then
                         infoCustom("Credit Note " + TxtVirtualPosNumber.Text + " created succesfully")
+                    ElseIf id_menu = "3" Then
+                        infoCustom("Invoice Missing Promo " + TxtVirtualPosNumber.Text + " created succesfully")
                     End If
 
 
@@ -605,6 +621,8 @@ Public Class FormSalesPOSDet
             Report.LTitle.Text = "MISSING INVOICE"
         ElseIf id_memo_type = "4" Then
             Report.LTitle.Text = "MISSING CREDIT NOTE"
+        ElseIf id_memo_type = "5" Then
+            Report.LTitle.Text = "MISSING INVOICE PROMO"
         End If
 
         'Show the report's preview. 
@@ -730,7 +748,7 @@ Public Class FormSalesPOSDet
             GCItemList.DataSource = Nothing
             GCItemList.DataSource = query.ToList()
             GCItemList.RefreshDataSource()
-        ElseIf id_menu = "2" Then
+        ElseIf id_menu = "2" Or id_menu = "3" Then
             Dim query = From table1 In tb1
                         Join rp In tb3
                         On table1("code").ToString Equals rp("product_full_code").ToString

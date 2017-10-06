@@ -3504,6 +3504,21 @@
                 FormWHDelEmpty.GVDel.FocusedRowHandle = find_row(FormWHDelEmpty.GVDel, "id_wh_del_empty", id_report)
             End If
             Cursor = Cursors.Default
+        ElseIf report_mark_type = "116" Then
+            'Invoice missing promo
+            query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+
+            If form_origin = "FormSalesPOSDet" Then
+                FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesPOSDet.check_but()
+                FormSalesPOSDet.actionLoad()
+                FormSalesPOS.viewSalesPOS()
+                FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            Else
+                'code here
+            End If
         End If
 
         'adding lead time

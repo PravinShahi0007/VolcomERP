@@ -9114,12 +9114,19 @@ Public Class FormMain
     End Sub
 
     Private Sub NBFGMissing_LinkClicked(ByVal sender As System.Object, ByVal e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFGMissing.LinkClicked
+        'missung invoice promo
         Cursor = Cursors.WaitCursor
         Try
-            FormFGMissing.MdiParent = Me
-            FormFGMissing.Show()
-            FormFGMissing.WindowState = FormWindowState.Maximized
-            FormFGMissing.Focus()
+            FormSalesPOS.Close()
+            FormSalesPOS.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesPOS.MdiParent = Me
+            FormSalesPOS.id_menu = "3"
+            FormSalesPOS.Show()
+            FormSalesPOS.WindowState = FormWindowState.Maximized
+            FormSalesPOS.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
