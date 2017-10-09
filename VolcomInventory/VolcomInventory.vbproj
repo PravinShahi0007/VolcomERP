@@ -1336,6 +1336,12 @@
     <Compile Include="FormSalesDelOrderCombine.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesDelOrderSlip.designer.vb">
+      <DependentUpon>FormSalesDelOrderSlip.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesDelOrderSlip.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesOrderCat.Designer.vb">
       <DependentUpon>FormSalesOrderCat.vb</DependentUpon>
     </Compile>
@@ -5535,6 +5541,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesDelOrderCombine.resx">
       <DependentUpon>FormSalesDelOrderCombine.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesDelOrderSlip.resx">
+      <DependentUpon>FormSalesDelOrderSlip.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesOrderCat.resx">
       <DependentUpon>FormSalesOrderCat.vb</DependentUpon>

@@ -877,6 +877,20 @@
                 FormWHDelEmptyDet.id_wh_del_empty = id
                 FormWHDelEmptyDet.ShowDialog()
             End If
+        ElseIf id_pop_up = "78" Then
+            'WH DEL COMBINE
+            FormSalesDelOrderSlip.id_comp_contact_from = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
+            FormSalesDelOrderSlip.TxtCodeCompFrom.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormSalesDelOrderSlip.TxtNameCompFrom.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
+            Close()
+        ElseIf id_pop_up = "79" Then
+            'STORE DEL COMBINE
+            FormSalesDelOrderSlip.id_store_contact_to = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
+            FormSalesDelOrderSlip.TxtCodeCompTo.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormSalesDelOrderSlip.TxtNameCompTo.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
+            FormSalesDelOrderSlip.MEAdrressCompTo.Text = GVCompany.GetFocusedRowCellValue("address_primary").ToString
+            FormSalesDelOrderSlip.viewSalesDelOrder()
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub

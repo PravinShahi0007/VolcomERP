@@ -298,7 +298,7 @@
 
     Private Sub BtnCombineDel_Click(sender As Object, e As EventArgs) Handles BtnCombineDel.Click
         Cursor = Cursors.WaitCursor
-
+        FormSalesDelOrderSlip.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 End Class

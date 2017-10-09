@@ -68,6 +68,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnCreatedProcess = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReference = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.BtnCombineDel = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlNavPrepare = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditRefresh = New DevExpress.XtraEditors.CheckEdit()
         Me.XTPSORef = New DevExpress.XtraTab.XtraTabPage()
@@ -78,7 +79,6 @@ Partial Class FormSalesDelOrder
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
-        Me.BtnCombineDel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -546,6 +546,25 @@ Partial Class FormSalesDelOrder
         Me.GridView2.GridControl = Me.GCSalesOrder
         Me.GridView2.Name = "GridView2"
         '
+        'BtnCombineDel
+        '
+        Me.BtnCombineDel.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnCombineDel.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnCombineDel.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnCombineDel.Appearance.Options.UseBackColor = True
+        Me.BtnCombineDel.Appearance.Options.UseFont = True
+        Me.BtnCombineDel.Appearance.Options.UseForeColor = True
+        Me.BtnCombineDel.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnCombineDel.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnCombineDel.Location = New System.Drawing.Point(0, 406)
+        Me.BtnCombineDel.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnCombineDel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnCombineDel.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCombineDel.Name = "BtnCombineDel"
+        Me.BtnCombineDel.Size = New System.Drawing.Size(793, 28)
+        Me.BtnCombineDel.TabIndex = 139
+        Me.BtnCombineDel.Text = "Combine Delivery"
+        '
         'PanelControlNavPrepare
         '
         Me.PanelControlNavPrepare.Controls.Add(Me.CheckEditRefresh)
@@ -630,25 +649,6 @@ Partial Class FormSalesDelOrder
         '
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
-        '
-        'BtnCombineDel
-        '
-        Me.BtnCombineDel.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.BtnCombineDel.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BtnCombineDel.Appearance.ForeColor = System.Drawing.Color.White
-        Me.BtnCombineDel.Appearance.Options.UseBackColor = True
-        Me.BtnCombineDel.Appearance.Options.UseFont = True
-        Me.BtnCombineDel.Appearance.Options.UseForeColor = True
-        Me.BtnCombineDel.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnCombineDel.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BtnCombineDel.Location = New System.Drawing.Point(0, 406)
-        Me.BtnCombineDel.LookAndFeel.SkinName = "Metropolis"
-        Me.BtnCombineDel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
-        Me.BtnCombineDel.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.BtnCombineDel.Name = "BtnCombineDel"
-        Me.BtnCombineDel.Size = New System.Drawing.Size(793, 28)
-        Me.BtnCombineDel.TabIndex = 139
-        Me.BtnCombineDel.Text = "Combine Delivery"
         '
         'FormSalesDelOrder
         '
