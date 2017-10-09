@@ -372,10 +372,12 @@ Public Class FormSalesDelOrderDet
             MENote.Properties.ReadOnly = False
             GVItemList.OptionsCustomization.AllowQuickHideColumns = False
             GVItemList.OptionsCustomization.AllowGroup = False
+            BtnCombineDel.Visible = True
         Else
             MENote.Properties.ReadOnly = True
             GVItemList.OptionsCustomization.AllowQuickHideColumns = True
             GVItemList.OptionsCustomization.AllowGroup = True
+            BtnCombineDel.Visible = False
         End If
         PanelNavBarcode.Enabled = False
         BtnSave.Enabled = False
@@ -1516,4 +1518,13 @@ Public Class FormSalesDelOrderDet
         End If
         Return stt
     End Function
+
+    Private Sub BtnCombineDel_Click(sender As Object, e As EventArgs) Handles BtnCombineDel.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesDelOrderSlip.action = "ins"
+        FormSalesDelOrderSlip.direct_menu = True
+        FormSalesDelOrderSlip.ShowDialog()
+        Close()
+        Cursor = Cursors.Default
+    End Sub
 End Class

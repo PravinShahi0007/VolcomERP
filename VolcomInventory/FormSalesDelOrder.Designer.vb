@@ -79,6 +79,8 @@ Partial Class FormSalesDelOrder
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
+        Me.GridColumnCombineNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ViewCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -161,7 +163,7 @@ Partial Class FormSalesDelOrder
         '
         'GVSalesDelOrder
         '
-        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumnLastUpdate, Me.GridColumnUpdBy, Me.GridColumnTotal})
+        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn8, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumnLastUpdate, Me.GridColumnUpdBy, Me.GridColumnTotal, Me.GridColumnCombineNumber})
         Me.GVSalesDelOrder.GridControl = Me.GCSalesDelOrder
         Me.GVSalesDelOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotal, "{0:n0}")})
         Me.GVSalesDelOrder.Name = "GVSalesDelOrder"
@@ -179,7 +181,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 0
-        Me.GridColumn1.Width = 83
+        Me.GridColumn1.Width = 65
         '
         'GridColumn2
         '
@@ -187,7 +189,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumn2.FieldName = "store"
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
+        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.Width = 53
         '
         'GridColumn3
         '
@@ -197,7 +200,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumn3.FieldName = "pl_sales_order_del_date"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 6
+        Me.GridColumn3.VisibleIndex = 7
+        Me.GridColumn3.Width = 53
         '
         'GridColumn4
         '
@@ -211,7 +215,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumn5.FieldName = "report_status"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 9
+        Me.GridColumn5.VisibleIndex = 10
+        Me.GridColumn5.Width = 99
         '
         'GridColumn8
         '
@@ -220,7 +225,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumn8.FieldNameSortGroup = "id_pl_sales_order_del"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 3
+        Me.GridColumn8.VisibleIndex = 4
+        Me.GridColumn8.Width = 53
         '
         'GridColumnIdSalesDelOrder
         '
@@ -236,7 +242,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumnWHName.FieldNameSortGroup = "id_wh"
         Me.GridColumnWHName.Name = "GridColumnWHName"
         Me.GridColumnWHName.Visible = True
-        Me.GridColumnWHName.VisibleIndex = 1
+        Me.GridColumnWHName.VisibleIndex = 2
+        Me.GridColumnWHName.Width = 53
         '
         'GridColumnCategory
         '
@@ -245,7 +252,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumnCategory.FieldNameSortGroup = "id_so_status"
         Me.GridColumnCategory.Name = "GridColumnCategory"
         Me.GridColumnCategory.Visible = True
-        Me.GridColumnCategory.VisibleIndex = 4
+        Me.GridColumnCategory.VisibleIndex = 5
+        Me.GridColumnCategory.Width = 53
         '
         'GridColumnLastUpdate
         '
@@ -255,7 +263,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumnLastUpdate.FieldName = "last_update"
         Me.GridColumnLastUpdate.Name = "GridColumnLastUpdate"
         Me.GridColumnLastUpdate.Visible = True
-        Me.GridColumnLastUpdate.VisibleIndex = 7
+        Me.GridColumnLastUpdate.VisibleIndex = 8
+        Me.GridColumnLastUpdate.Width = 53
         '
         'GridColumnUpdBy
         '
@@ -263,7 +272,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumnUpdBy.FieldName = "last_user"
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 8
+        Me.GridColumnUpdBy.VisibleIndex = 9
+        Me.GridColumnUpdBy.Width = 53
         '
         'GridColumnTotal
         '
@@ -275,7 +285,8 @@ Partial Class FormSalesDelOrder
         Me.GridColumnTotal.OptionsColumn.AllowEdit = False
         Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GridColumnTotal.Visible = True
-        Me.GridColumnTotal.VisibleIndex = 5
+        Me.GridColumnTotal.VisibleIndex = 6
+        Me.GridColumnTotal.Width = 53
         '
         'GridView3
         '
@@ -392,9 +403,9 @@ Partial Class FormSalesDelOrder
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMPrePrint, Me.SMPrint})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewCombinedDeliveryToolStripMenuItem, Me.SMPrePrint, Me.SMPrint})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(137, 48)
+        Me.ViewMenu.Size = New System.Drawing.Size(204, 92)
         '
         'SMPrePrint
         '
@@ -650,6 +661,21 @@ Partial Class FormSalesDelOrder
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
         '
+        'GridColumnCombineNumber
+        '
+        Me.GridColumnCombineNumber.Caption = "Combine Del."
+        Me.GridColumnCombineNumber.FieldName = "combine_number"
+        Me.GridColumnCombineNumber.Name = "GridColumnCombineNumber"
+        Me.GridColumnCombineNumber.Visible = True
+        Me.GridColumnCombineNumber.VisibleIndex = 1
+        Me.GridColumnCombineNumber.Width = 65
+        '
+        'ViewCombinedDeliveryToolStripMenuItem
+        '
+        Me.ViewCombinedDeliveryToolStripMenuItem.Name = "ViewCombinedDeliveryToolStripMenuItem"
+        Me.ViewCombinedDeliveryToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.ViewCombinedDeliveryToolStripMenuItem.Text = "View Combined Delivery"
+        '
         'FormSalesDelOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -757,4 +783,6 @@ Partial Class FormSalesDelOrder
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnCombineDel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnCombineNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ViewCombinedDeliveryToolStripMenuItem As ToolStripMenuItem
 End Class

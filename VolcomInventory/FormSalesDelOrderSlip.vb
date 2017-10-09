@@ -40,6 +40,7 @@ Public Class FormSalesDelOrderSlip
                 TxtCodeCompFrom.Properties.ReadOnly = True
                 TxtCodeCompTo.Properties.ReadOnly = True
                 viewSalesDelOrder()
+                GCItemList.DataSource = Nothing
                 GCSalesDelOrder.Focus()
             Else
                 TxtCodeCompFrom.Focus()
@@ -52,7 +53,7 @@ Public Class FormSalesDelOrderSlip
 
             'query view based on edit id's
             Dim query_c As New ClassSalesDelOrder()
-            Dim query As String = ""
+            Dim query As String = query_c.queryCombine("AND ac.id_combine=" + id_pl_sales_order_del_slip + " ", "1")
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
             id_store_contact_to = data.Rows(0)("id_store_contact_to").ToString
@@ -63,33 +64,25 @@ Public Class FormSalesDelOrderSlip
             TxtNameCompTo.Text = data.Rows(0)("store_name_to").ToString
             TxtCodeCompTo.Text = data.Rows(0)("store_number_to").ToString
             MEAdrressCompTo.Text = data.Rows(0)("store_address_to").ToString
-            DEForm.Text = view_date_from(data.Rows(0)("pl_sales_order_del_slip_datex").ToString, 0)
-            TxtSalesDelOrderNumber.Text = data.Rows(0)("pl_sales_order_del_slip_number").ToString
-            MENote.Text = data.Rows(0)("pl_sales_order_del_slip_note").ToString
+            DEForm.Text = view_date_from(data.Rows(0)("combine_datex").ToString, 0)
+            TxtSalesDelOrderNumber.Text = data.Rows(0)("combine_number").ToString
+            MENote.Text = data.Rows(0)("combine_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
-
-            'detail2
-            Dim qd As String = "SELECT * FROM tb_pl_sales_order_del_slip_det a WHERE a.id_pl_sales_order_del_slip=" + id_pl_sales_order_del_slip + " "
-            Dim dtd As DataTable = execute_query(qd, -1, True, "", "", "", "")
-
-            Dim del_list As String = ""
-            Dim predel As String = ""
-            For i As Integer = 0 To dtd.Rows.Count - 1
-                If i > 0 Then
-                    del_list += "OR "
-                    predel += "OR "
-                End If
-                del_list += "a.id_pl_sales_order_del=" + dtd.Rows(i)("id_pl_sales_order_del").ToString + " "
-                predel += "k.id_pl_sales_order_del=" + dtd.Rows(i)("id_pl_sales_order_del").ToString + " "
-            Next
 
             'main
             Dim query_cd As ClassSalesDelOrder = New ClassSalesDelOrder()
-            Dim queryd As String = query_cd.queryMain("AND (" + del_list + ") ", "1")
+            Dim queryd As String = query_cd.queryMain("AND a.id_combine='" + id_pl_sales_order_del_slip + "' ", "1")
             Dim datad As DataTable = execute_query(queryd, -1, True, "", "", "", "")
             GCSalesDelOrder.DataSource = datad
 
             'detail
+            Dim predel As String = ""
+            For i As Integer = 0 To ((GVSalesDelOrder.RowCount - 1) - GetGroupRowCount(GVSalesDelOrder))
+                If i > 0 Then
+                    predel += "OR "
+                End If
+                predel += "k.id_pl_sales_order_del=" + GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString + " "
+            Next
             viewDetail(predel)
             allow_status()
             XTCDel.SelectedTabPageIndex = 1
@@ -346,58 +339,43 @@ Public Class FormSalesDelOrderSlip
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
                 Cursor = Cursors.WaitCursor
-                Dim pl_sales_order_del_slip_note As String = MENote.Text.ToString
+                Dim combine_note As String = MENote.Text.ToString
                 If action = "ins" Then
                     'query main table
                     Dim pl_sales_order_del_slip_number As String = ""
-                    Dim query_main As String = "INSERT tb_pl_sales_order_del_slip(pl_sales_order_del_slip_number, id_comp_contact_from, id_store_contact_to, pl_sales_order_del_slip_date, pl_sales_order_del_slip_note, id_report_status, last_update, last_update_by, id_wh_drawer) "
-                    query_main += "VALUES('" + header_number_sales("31") + "', '" + id_comp_contact_from + "', '" + id_store_contact_to + "', NOW(), '" + pl_sales_order_del_slip_note + "', '1', NOW(), " + id_user + ", '" + id_wh_drawer + "'); SELECT LAST_INSERT_ID(); "
+                    Dim query_main As String = "INSERT tb_pl_sales_order_del_combine(combine_number, id_comp_contact_from, id_store_contact_to, combine_date, combine_note, id_report_status, last_update, last_update_by, id_wh_drawer) "
+                    query_main += "VALUES('" + header_number_sales("3") + "', '" + id_comp_contact_from + "', '" + id_store_contact_to + "', NOW(), '" + combine_note + "', '1', NOW(), " + id_user + ", '" + id_wh_drawer + "'); SELECT LAST_INSERT_ID(); "
                     id_pl_sales_order_del_slip = execute_query(query_main, 0, True, "", "", "", "")
-                    increase_inc_sales("31")
+                    increase_inc_sales("3")
 
                     'Detail return
                     Dim jum_ins_j As Integer = 0
                     Dim query_detail As String = ""
                     If GVSalesDelOrder.RowCount > 0 Then
-                        query_detail = "INSERT tb_pl_sales_order_del_slip_det(id_pl_sales_order_del_slip, id_pl_sales_order_del) VALUES "
+                        query_detail = "UPDATE tb_pl_sales_order_del SET is_combine=1 , id_combine='" + id_pl_sales_order_del_slip + "' WHERE ("
                     End If
                     For j As Integer = 0 To ((GVSalesDelOrder.RowCount - 1) - GetGroupRowCount(GVSalesDelOrder))
-                        Try
-                            Dim id_pl_sales_order_del As String = GVSalesDelOrder.GetRowCellValue(j, "id_pl_sales_order_del").ToString
+                        Dim id_pl_sales_order_del As String = GVSalesDelOrder.GetRowCellValue(j, "id_pl_sales_order_del").ToString
 
-                            If jum_ins_j > 0 Then
-                                query_detail += ", "
-                            End If
-                            query_detail += "('" + id_pl_sales_order_del_slip + "','" + id_pl_sales_order_del + "') "
-                            jum_ins_j = jum_ins_j + 1
-                        Catch ex As Exception
-                        End Try
+                        If jum_ins_j > 0 Then
+                            query_detail += "OR "
+                        End If
+                        query_detail += "id_pl_sales_order_del='" + id_pl_sales_order_del + "' "
+                        jum_ins_j = jum_ins_j + 1
                     Next
-                    If GVSalesDelOrder.RowCount > 0 Then
+                    query_detail += ") "
+                    If jum_ins_j > 0 Then
                         execute_non_query(query_detail, True, "", "", "", "")
                     End If
 
                     'insert who prepared
                     submit_who_prepared("103", id_pl_sales_order_del_slip, id_user)
 
-                    'FormSalesDelOrder.viewSalesDelSlip()
-                    'FormSalesDelOrder.GVDel.FocusedRowHandle = find_row(FormSalesDelOrder.GVDel, "id_pl_sales_order_del_slip", id_pl_sales_order_del_slip)
+                    FormSalesDelOrder.viewSalesDelOrder()
                     action = "upd"
                     actionLoad()
                     exportToBOF(False)
                     infoCustom("Delivery Slip : " + TxtSalesDelOrderNumber.Text + " was created successfully.")
-                ElseIf action = "upd" Then
-                    'update main table
-                    Dim pl_sales_order_del_slip_number As String = TxtSalesDelOrderNumber.Text
-                    Dim query_main As String = "UPDATE tb_pl_sales_order_del_slip SET pl_sales_order_del_slip_note = '" + pl_sales_order_del_slip_note + "', last_update=NOW(), last_update_by=" + id_user + " WHERE id_pl_sales_order_del_slip = '" + id_pl_sales_order_del_slip + "'"
-                    execute_non_query(query_main, True, "", "", "", "")
-
-                    'FormSalesDelOrder.viewSalesDelSlip()
-                    'FormSalesDelOrder.GVDel.FocusedRowHandle = find_row(FormSalesDelOrder.GVDel, "id_pl_sales_order_del_slip", id_pl_sales_order_del_slip)
-                    action = "upd"
-                    actionLoad()
-                    exportToBOF(False)
-                    infoCustom("Delivery Slip : " + TxtSalesDelOrderNumber.Text + " was edited successfully.")
                 End If
                 Cursor = Cursors.Default
             End If
