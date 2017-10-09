@@ -1,4 +1,6 @@
 ﻿Public Class FormPopUpSalesDel
+    Public id_so_status As String = "-1"
+
     Sub view_detail()
         If GVSalesDelOrder.RowCount > 0 Then
             Dim query_det As String = "CALL view_pl_sales_order_del_inv('" + GVSalesDelOrder.GetFocusedRowCellValue("id_pl_sales_order_del").ToString + "')"
@@ -17,7 +19,7 @@
 
     Sub viewSalesDelOrder()
         Dim query_c As ClassSalesDelOrder = New ClassSalesDelOrder()
-        Dim query As String = query_c.queryMainInvoice(" AND c.id_comp='" + FormSalesPOSDet.id_comp + "' AND a.id_report_status='6' ", "2")
+        Dim query As String = query_c.queryMainInvoice(id_so_status + "AND a.id_report_status='6' ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesDelOrder.DataSource = data
     End Sub
