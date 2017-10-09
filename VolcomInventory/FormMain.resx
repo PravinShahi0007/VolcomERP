@@ -1366,7 +1366,7 @@
 </value>
   </data>
   <metadata name="LargeImageCollection.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 56</value>
+    <value>624, 17</value>
   </metadata>
   <assembly alias="DevExpress.Utils.v15.1" name="DevExpress.Utils.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
   <data name="LargeImageCollection.ImageStream" type="DevExpress.Utils.ImageCollectionStreamer, DevExpress.Utils.v15.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -3263,18 +3263,18 @@
   </data>
   <data name="NBClaimFGPO.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        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
+        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
 </value>
   </data>
   <data name="NBProdAss.SmallImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -3714,7 +3714,7 @@
 </value>
   </data>
   <metadata name="MenuImages.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>275, 56</value>
+    <value>882, 17</value>
   </metadata>
   <data name="MenuImages.ImageStream" type="DevExpress.Utils.ImageCollectionStreamer, DevExpress.Utils.v15.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -5357,7 +5357,7 @@
 </value>
   </data>
   <metadata name="XTMDI.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>187, 56</value>
+    <value>794, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>87</value>
@@ -5922,12 +5922,12 @@
 </value>
   </data>
   <metadata name="AlertControlNotif.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>397, 56</value>
+    <value>1004, 17</value>
   </metadata>
   <metadata name="TimerNotif.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>543, 56</value>
+    <value>1150, 17</value>
   </metadata>
   <metadata name="AdornerUIManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 95</value>
+    <value>17, 56</value>
   </metadata>
 </root>
