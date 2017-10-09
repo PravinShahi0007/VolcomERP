@@ -49,6 +49,9 @@ Partial Class FormSalesDelOrder
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.XTPSOList = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesOrder = New DevExpress.XtraGrid.GridControl()
+        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnSalesTargetNumb = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -74,10 +77,8 @@ Partial Class FormSalesDelOrder
         Me.TxtNoParam = New DevExpress.XtraEditors.ButtonEdit()
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMPrePrint = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SMPrint = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
+        Me.BtnCombineDel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -95,6 +96,7 @@ Partial Class FormSalesDelOrder
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSOList.SuspendLayout()
         CType(Me.GCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewMenu.SuspendLayout()
         CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,7 +109,6 @@ Partial Class FormSalesDelOrder
         CType(Me.PanelControlNavNewProd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavNewProd.SuspendLayout()
         CType(Me.TxtNoParam.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ViewMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCSalesDelOrder
@@ -371,6 +372,7 @@ Partial Class FormSalesDelOrder
         'XTPSOList
         '
         Me.XTPSOList.Controls.Add(Me.GCSalesOrder)
+        Me.XTPSOList.Controls.Add(Me.BtnCombineDel)
         Me.XTPSOList.Controls.Add(Me.PanelControlNavPrepare)
         Me.XTPSOList.Name = "XTPSOList"
         Me.XTPSOList.Size = New System.Drawing.Size(793, 456)
@@ -384,9 +386,27 @@ Partial Class FormSalesDelOrder
         Me.GCSalesOrder.MainView = Me.GVSalesOrder
         Me.GCSalesOrder.Name = "GCSalesOrder"
         Me.GCSalesOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
-        Me.GCSalesOrder.Size = New System.Drawing.Size(793, 434)
+        Me.GCSalesOrder.Size = New System.Drawing.Size(793, 406)
         Me.GCSalesOrder.TabIndex = 5
         Me.GCSalesOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesOrder, Me.GridView2})
+        '
+        'ViewMenu
+        '
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMPrePrint, Me.SMPrint})
+        Me.ViewMenu.Name = "ContextMenuStripYM"
+        Me.ViewMenu.Size = New System.Drawing.Size(137, 48)
+        '
+        'SMPrePrint
+        '
+        Me.SMPrePrint.Name = "SMPrePrint"
+        Me.SMPrePrint.Size = New System.Drawing.Size(136, 22)
+        Me.SMPrePrint.Text = "Pre Printing"
+        '
+        'SMPrint
+        '
+        Me.SMPrint.Name = "SMPrint"
+        Me.SMPrint.Size = New System.Drawing.Size(136, 22)
+        Me.SMPrint.Text = "Print"
         '
         'GVSalesOrder
         '
@@ -606,28 +626,29 @@ Partial Class FormSalesDelOrder
         Me.LabelControl1.TabIndex = 0
         Me.LabelControl1.Text = "Ref."
         '
-        'ViewMenu
-        '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMPrePrint, Me.SMPrint})
-        Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(137, 48)
-        '
-        'SMPrePrint
-        '
-        Me.SMPrePrint.Name = "SMPrePrint"
-        Me.SMPrePrint.Size = New System.Drawing.Size(136, 22)
-        Me.SMPrePrint.Text = "Pre Printing"
-        '
-        'SMPrint
-        '
-        Me.SMPrint.Name = "SMPrint"
-        Me.SMPrint.Size = New System.Drawing.Size(136, 22)
-        Me.SMPrint.Text = "Print"
-        '
         'TimerMonitor
         '
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
+        '
+        'BtnCombineDel
+        '
+        Me.BtnCombineDel.Appearance.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.BtnCombineDel.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnCombineDel.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnCombineDel.Appearance.Options.UseBackColor = True
+        Me.BtnCombineDel.Appearance.Options.UseFont = True
+        Me.BtnCombineDel.Appearance.Options.UseForeColor = True
+        Me.BtnCombineDel.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnCombineDel.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnCombineDel.Location = New System.Drawing.Point(0, 406)
+        Me.BtnCombineDel.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnCombineDel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnCombineDel.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnCombineDel.Name = "BtnCombineDel"
+        Me.BtnCombineDel.Size = New System.Drawing.Size(793, 28)
+        Me.BtnCombineDel.TabIndex = 139
+        Me.BtnCombineDel.Text = "Combine Delivery"
         '
         'FormSalesDelOrder
         '
@@ -660,6 +681,7 @@ Partial Class FormSalesDelOrder
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSOList.ResumeLayout(False)
         CType(Me.GCSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -673,7 +695,6 @@ Partial Class FormSalesDelOrder
         Me.PanelControlNavNewProd.ResumeLayout(False)
         Me.PanelControlNavNewProd.PerformLayout()
         CType(Me.TxtNoParam.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ViewMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -735,4 +756,5 @@ Partial Class FormSalesDelOrder
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnCombineDel As DevExpress.XtraEditors.SimpleButton
 End Class

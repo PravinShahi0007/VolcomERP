@@ -295,4 +295,10 @@
         viewSalesDelOrder()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnCombineDel_Click(sender As Object, e As EventArgs) Handles BtnCombineDel.Click
+        Cursor = Cursors.WaitCursor
+
+        Cursor = Cursors.Default
+    End Sub
 End Class
