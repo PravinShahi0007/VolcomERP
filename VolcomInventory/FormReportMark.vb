@@ -3421,6 +3421,14 @@
             execute_non_query(query, True, "", "", "", "")
             'FormEmpLeave.load_sum()
             infoCustom("Status changed.")
+        ElseIf report_mark_type = "103" Then
+            'combine del
+            Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+            stt.changeStatusHead(id_report, id_status_reportx)
+            infoCustom("Status changed.")
+
+            FormSalesDelOrderSlip.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormSalesDelOrderSlip.actionLoad()
         ElseIf report_mark_type = "104" Then
             'LEAVE PROPOSE
             If id_status_reportx = "3" Or id_status_reportx = "6" Then
