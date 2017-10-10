@@ -354,13 +354,16 @@ Public Class FormSalesDelOrderSlip
                     If GVSalesDelOrder.RowCount > 0 Then
                         query_detail = "UPDATE tb_pl_sales_order_del SET is_combine=1 , id_combine='" + id_pl_sales_order_del_slip + "' WHERE ("
                     End If
+                    Dim del As String = ""
                     For j As Integer = 0 To ((GVSalesDelOrder.RowCount - 1) - GetGroupRowCount(GVSalesDelOrder))
                         Dim id_pl_sales_order_del As String = GVSalesDelOrder.GetRowCellValue(j, "id_pl_sales_order_del").ToString
 
                         If jum_ins_j > 0 Then
                             query_detail += "OR "
+                            del += "OR "
                         End If
                         query_detail += "id_pl_sales_order_del='" + id_pl_sales_order_del + "' "
+                        del += "r.id_report='" + id_pl_sales_order_del + "' "
                         jum_ins_j = jum_ins_j + 1
                     Next
                     query_detail += ") "
@@ -370,6 +373,13 @@ Public Class FormSalesDelOrderSlip
 
                     'insert who prepared
                     submit_who_prepared("103", id_pl_sales_order_del_slip, id_user)
+
+                    'update mark in delivery single
+                    If del <> "" Then
+                        Dim query_mark_single As String = "UPDATE tb_report_mark r SET r.report_mark_start_datetime=NULL 
+                        WHERE r.report_mark_type=43 AND (" + del + ") AND r.id_report_status=3 "
+                        execute_non_query(query_mark_single, True, "", "", "", "")
+                    End If
 
                     FormSalesDelOrder.viewSalesDelOrder()
                     action = "upd"
@@ -530,6 +540,7 @@ Public Class FormSalesDelOrderSlip
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_pl_sales_order_del_slip
         FormDocumentUpload.report_mark_type = "103"
+        FormDocumentUpload.is_view = is_view
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
