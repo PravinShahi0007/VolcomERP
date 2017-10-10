@@ -513,6 +513,7 @@ Partial Public Class ReportSalesInvoice
         Me.XrLabel30.StylePriority.UseTextAlignment = False
         Me.XrLabel30.Text = ":"
         Me.XrLabel30.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrLabel30.Visible = False
         '
         'LabelType
         '
@@ -526,6 +527,7 @@ Partial Public Class ReportSalesInvoice
         Me.LabelType.StylePriority.UseFont = False
         Me.LabelType.StylePriority.UseTextAlignment = False
         Me.LabelType.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.LabelType.Visible = False
         '
         'XrLabel20
         '
@@ -540,6 +542,7 @@ Partial Public Class ReportSalesInvoice
         Me.XrLabel20.StylePriority.UseTextAlignment = False
         Me.XrLabel20.Text = "Sales Type"
         Me.XrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrLabel20.Visible = False
         '
         'XrLabel19
         '

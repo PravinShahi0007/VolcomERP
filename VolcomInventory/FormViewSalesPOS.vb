@@ -8,6 +8,11 @@
     Dim total_amount As Decimal = 0.0
     Dim currency As String = "-1"
     Dim id_comp_cat_store As String = "-1"
+    Dim id_memo_type As String = "-1"
+    Dim report_mark_type As String = "-1"
+
+    'menu : 1=invoice 2=credit note
+    Public id_menu As String = "1"
 
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -21,19 +26,42 @@
         'view data
         viewReportStatus()
         viewSoType()
+        viewInvType()
+        'setting menu
+        If id_menu = "1" Then
+            Text = "Invoice"
+            LEInvType.Focus()
+        ElseIf id_menu = "2" Then
+            Text = "Credit Note"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Text = "Credit Note Missing"
+            TxtCodeCompFrom.Focus()
+        ElseIf id_menu = "3" Then
+            Text = "Invoice Missing Promo"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Visible = False
+            TxtCodeCompFrom.Focus()
+        End If
+
         actionLoad()
     End Sub
 
     Sub actionLoad()
         GroupControlList.Enabled = True
         GVItemList.OptionsBehavior.AutoExpandAllGroups = True
+        '
+        BtnAttachment.Enabled = True
+        BMark.Enabled = True
+        GridColumnNote.Visible = False
 
         'query view based on edit id's
         Dim query As String = ""
         query += "SELECT pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
         query += "a.sales_pos_number, (c.comp_name) AS store_name_from,c.npwp, "
         query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat "
+        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type "
         query += "FROM tb_sales_pos a "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
@@ -48,6 +76,8 @@
         TxtNameCompFrom.Text = data.Rows(0)("store_name_from").ToString
         TxtCodeCompFrom.Text = data.Rows(0)("store_number_from").ToString
         MEAdrressCompFrom.Text = data.Rows(0)("store_address_from").ToString
+        TENPWP.Text = data.Rows(0)("npwp").ToString
+
         DEForm.Text = view_date_from(data.Rows(0)("sales_pos_datex").ToString, 0)
         TxtVirtualPosNumber.Text = data.Rows(0)("sales_pos_number").ToString
         MENote.Text = data.Rows(0)("sales_pos_note").ToString
@@ -62,30 +92,57 @@
         SPDiscount.EditValue = data.Rows(0)("sales_pos_discount")
         SPVat.EditValue = data.Rows(0)("sales_pos_vat")
 
-        check_do()
-        If Not data.Rows(0)("id_pl_sales_order_del").ToString = "" Then
-            TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
+        'updated 04 ocktobertr 2017
+        id_memo_type = data.Rows(0)("id_memo_type").ToString
+        If id_memo_type = "1" Then 'sales invoice
+            report_mark_type = "48"
+        ElseIf id_memo_type = "2" Then 'sales cn
+            report_mark_type = "66"
+        ElseIf id_memo_type = "3" Then 'missing invoice
+            report_mark_type = "54"
+        ElseIf id_memo_type = "4" Then 'missing cn
+            report_mark_type = "67"
+        ElseIf id_memo_type = "5" Then 'missing promo
+            report_mark_type = "116"
+        End If
+        LEInvType.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
+        TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
+        If id_memo_type = "1" Or id_memo_type = "2" Then
+            CheckEditInvType.EditValue = False
+        ElseIf id_memo_type = "3" Or id_memo_type = "4" Then
+            CheckEditInvType.EditValue = True
         End If
 
         ''detail2
         viewDetail()
         check_but()
+        calculate()
         allow_status()
+    End Sub
+    Sub check_do()
+        'TEDO.Text = ""
+        'If LETypeSO.EditValue.ToString = "1" Then
+        '    LDO.Visible = False
+        '    TEDO.Visible = False
+        'Else
+        '    LDO.Visible = True
+        '    TEDO.Visible = True
+        'End If
+    End Sub
+
+    Sub viewInvType()
+        Dim query As String = "SELECT * FROM tb_lookup_inv_type i ORDER BY i.id_inv_type ASC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEInvType, query, 0, "inv_type_display", "id_inv_type")
+    End Sub
+
+    Sub calculate()
         getDiscount()
         getNetto()
         getVat()
         getTaxBase()
     End Sub
-    Sub check_do()
-        TEDO.Text = ""
-        If LETypeSO.EditValue.ToString = "1" Then
-            LDO.Visible = False
-            TEDO.Visible = False
-        Else
-            LDO.Visible = True
-            TEDO.Visible = True
-        End If
-    End Sub
+
     Sub viewReportStatus()
         Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -117,7 +174,6 @@
     End Sub
 
     Sub allow_status()
-        'BtnBrowseContactFrom.Enabled = False
         GVItemList.OptionsBehavior.Editable = False
         MENote.Properties.ReadOnly = True
         LETypeSO.Enabled = False
@@ -129,6 +185,14 @@
         DEStart.Properties.ReadOnly = True
         DEEnd.Properties.ReadOnly = True
 
+        'update 04 oktober 2017
+        LEInvType.Enabled = False
+        TEDO.Properties.ReadOnly = True
+        TxtCodeCompFrom.Enabled = False
+        TxtNameCompFrom.Enabled = False
+        CheckEditInvType.Enabled = False
+
+        BtnAttachment.Enabled = True
         TxtVirtualPosNumber.Focus()
     End Sub
 
@@ -204,7 +268,7 @@
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
         FormReportMark.id_report = id_sales_pos
-        FormReportMark.report_mark_type = "48"
+        FormReportMark.report_mark_type = report_mark_type
         FormReportMark.form_origin = Name
         FormReportMark.is_view = "1"
         FormReportMark.ShowDialog()
@@ -214,7 +278,7 @@
     Private Sub BtnAttachment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_sales_pos
-        FormDocumentUpload.report_mark_type = "48"
+        FormDocumentUpload.report_mark_type = report_mark_type
         FormDocumentUpload.is_view = "1"
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default

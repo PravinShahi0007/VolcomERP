@@ -45,10 +45,10 @@ Partial Class FormProdClosing
         Me.PCSelAll = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
         Me.PBCLineList = New DevExpress.XtraEditors.ProgressBarControl()
-        Me.BtnTol = New DevExpress.XtraEditors.SimpleButton()
         Me.GCProd = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMOpenLock = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SMTolerance = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVProd = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIDWO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCE = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -289,7 +289,6 @@ Partial Class FormProdClosing
         Me.PanelControl2.Controls.Add(Me.BClosingFGPO)
         Me.PanelControl2.Controls.Add(Me.PCSelAll)
         Me.PanelControl2.Controls.Add(Me.PBCLineList)
-        Me.PanelControl2.Controls.Add(Me.BtnTol)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 279)
         Me.PanelControl2.Name = "PanelControl2"
@@ -299,7 +298,7 @@ Partial Class FormProdClosing
         'BtnClosingRec
         '
         Me.BtnClosingRec.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnClosingRec.Location = New System.Drawing.Point(462, 2)
+        Me.BtnClosingRec.Location = New System.Drawing.Point(588, 2)
         Me.BtnClosingRec.Name = "BtnClosingRec"
         Me.BtnClosingRec.Size = New System.Drawing.Size(100, 33)
         Me.BtnClosingRec.TabIndex = 106
@@ -309,7 +308,7 @@ Partial Class FormProdClosing
         'BClosingFGPO
         '
         Me.BClosingFGPO.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BClosingFGPO.Location = New System.Drawing.Point(562, 2)
+        Me.BClosingFGPO.Location = New System.Drawing.Point(688, 2)
         Me.BClosingFGPO.Name = "BClosingFGPO"
         Me.BClosingFGPO.Size = New System.Drawing.Size(98, 33)
         Me.BClosingFGPO.TabIndex = 0
@@ -343,16 +342,6 @@ Partial Class FormProdClosing
         Me.PBCLineList.Size = New System.Drawing.Size(121, 33)
         Me.PBCLineList.TabIndex = 104
         '
-        'BtnTol
-        '
-        Me.BtnTol.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnTol.Location = New System.Drawing.Point(660, 2)
-        Me.BtnTol.Name = "BtnTol"
-        Me.BtnTol.Size = New System.Drawing.Size(126, 33)
-        Me.BtnTol.TabIndex = 107
-        Me.BtnTol.Text = "Tolerance && Discount"
-        Me.BtnTol.Visible = False
-        '
         'GCProd
         '
         Me.GCProd.ContextMenuStrip = Me.ContextMenuStrip1
@@ -367,16 +356,23 @@ Partial Class FormProdClosing
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMOpenLock})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMOpenLock, Me.SMTolerance})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(191, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(205, 48)
         '
         'SMOpenLock
         '
         Me.SMOpenLock.Name = "SMOpenLock"
-        Me.SMOpenLock.Size = New System.Drawing.Size(190, 22)
+        Me.SMOpenLock.Size = New System.Drawing.Size(204, 22)
         Me.SMOpenLock.Text = "Disable tolerance over"
         Me.SMOpenLock.Visible = False
+        '
+        'SMTolerance
+        '
+        Me.SMTolerance.Name = "SMTolerance"
+        Me.SMTolerance.Size = New System.Drawing.Size(204, 22)
+        Me.SMTolerance.Text = "Set tolerance && discount"
+        Me.SMTolerance.Visible = False
         '
         'GVProd
         '
@@ -906,9 +902,9 @@ Partial Class FormProdClosing
     Friend WithEvents GridColumnRecAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTolerance As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotalPay As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BtnTol As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents SMOpenLock As ToolStripMenuItem
     Friend WithEvents GridColumnBAP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMemoDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SMTolerance As ToolStripMenuItem
 End Class

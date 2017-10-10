@@ -269,12 +269,14 @@
             FormViewFGCodeReplaceStore.ShowDialog()
         ElseIf report_mark_type = "66" Then
             'CREDIT NOTE
-            FormViewSalesCreditNote.id_sales_pos = id_report
-            FormViewSalesCreditNote.ShowDialog()
+            FormViewSalesPOS.id_menu = "2"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         ElseIf report_mark_type = "67" Then
             'MISSING CREDIT NOTE
-            FormViewFGMissingCreditNoteStore.id_sales_pos = id_report
-            FormViewFGMissingCreditNoteStore.ShowDialog()
+            FormViewSalesPOS.id_menu = "2"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         ElseIf report_mark_type = "68" Then
             'CODE REPLACEMENT WH
             FormViewFGCodeReplaceWH.id_fg_code_replace_wh = id_report
@@ -432,6 +434,11 @@
             FormSalesReturnDet.action = "upd"
             FormSalesReturnDet.is_view = "1"
             FormSalesReturnDet.ShowDialog()
+        ElseIf report_mark_type = "116" Then
+            'INVOICE MISSING PROMO
+            FormViewSalesPOS.id_menu = "3"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1255,6 +1262,22 @@
                     info_col = datax.Rows(0)("total_qty").ToString
                     info_report = datax.Rows(0)("store").ToString
                     info_design = datax.Rows(0)("return").ToString
+                End If
+            ElseIf report_mark_type = "50" Then
+                'PR Production
+                query = "SELECT desg.design_code,desg.design_display_name,po.prod_order_number 
+                        FROM tb_pr_prod_order pr
+                        INNER JOIN `tb_prod_order_wo` wo ON wo.id_prod_order_wo=pr.id_prod_order_wo
+                        INNER JOIN tb_prod_order po ON po.id_prod_order=wo.id_prod_order
+                        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+                        INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design  
+                        WHERE pr.id_pr_prod_order='" & id_report & "'"
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = ""
+                    info_report = datax.Rows(0)("prod_order_number").ToString
+                    info_design_code = datax.Rows(0)("design_code").ToString
+                    info_design = datax.Rows(0)("design_display_name").ToString
                 End If
             ElseIf report_mark_type = "57" Then
                 'transfer
