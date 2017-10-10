@@ -86,6 +86,8 @@
             'wo
             view_wo()
             view_mrs()
+            '
+
         End If
     End Sub
 
@@ -313,28 +315,48 @@
     End Sub
     '======================= begin WO ===============================
     Sub view_wo()
-        Dim query = "SELECT a.id_report_status,h.report_status,a.id_prod_order_wo,a.id_ovh_price 
-                    ,(SELECT IFNULL(MAX(prod_order_wo_prog_percent),0) FROM tb_prod_order_wo_prog WHERE id_prod_order_wo = a.id_prod_order_wo) AS progress,
-                    g.payment,a.is_main_vendor, 
-                    d.comp_name AS comp_name_to, 
-                    f.comp_name AS comp_name_ship_to, 
-                    a.prod_order_wo_number,a.id_ovh_price,j.overhead, 
-                    a.prod_order_wo_date, 
-                    DATE_ADD(a.prod_order_wo_date,INTERVAL a.prod_order_wo_lead_time DAY) AS prod_order_wo_lead_time, 
-                    DATE_ADD(a.prod_order_wo_date,INTERVAL (a.prod_order_wo_top+a.prod_order_wo_lead_time) DAY) AS prod_order_wo_top 
-                    FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price 
-                    INNER JOIN tb_m_comp_contact c ON b.id_comp_contact = c.id_comp_contact 
-                    INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
-                    INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_ship_to = e.id_comp_contact 
-                    INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp
-                    INNER JOIN tb_lookup_payment g ON a.id_payment = g.id_payment 
-                    INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status 
-                    INNER JOIN tb_m_ovh j ON b.id_ovh = j.id_ovh "
-        query += "WHERE a.id_prod_order='" & id_prod_order & "'"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCProdWO.DataSource = data
+        'Dim query = "SELECT a.id_report_status,h.report_status,a.id_prod_order_wo,a.id_ovh_price 
+        '            ,(SELECT IFNULL(MAX(prod_order_wo_prog_percent),0) FROM tb_prod_order_wo_prog WHERE id_prod_order_wo = a.id_prod_order_wo) AS progress,
+        '            g.payment,a.is_main_vendor, 
+        '            d.comp_name AS comp_name_to, 
+        '            f.comp_name AS comp_name_ship_to, 
+        '            a.prod_order_wo_number,a.id_ovh_price,j.overhead, 
+        '            a.prod_order_wo_date, 
+        '            DATE_ADD(a.prod_order_wo_date,INTERVAL a.prod_order_wo_lead_time DAY) AS prod_order_wo_lead_time, 
+        '            DATE_ADD(a.prod_order_wo_date,INTERVAL (a.prod_order_wo_top+a.prod_order_wo_lead_time) DAY) AS prod_order_wo_top 
+        '            FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price 
+        '            INNER JOIN tb_m_comp_contact c ON b.id_comp_contact = c.id_comp_contact 
+        '            INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+        '            INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_ship_to = e.id_comp_contact 
+        '            INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp
+        '            INNER JOIN tb_lookup_payment g ON a.id_payment = g.id_payment 
+        '            INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status 
+        '            INNER JOIN tb_m_ovh j ON b.id_ovh = j.id_ovh "
+        'query += "WHERE a.id_prod_order='" & id_prod_order & "'"
+        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'GCProdWO.DataSource = data
+        'show_but_wo()
+        Dim query_wo_list = "SELECT wo.id_report_status,h.report_status,wo.id_prod_order_wo,wo.id_ovh_price,wo.id_payment,
+                            g.payment,wo.is_main_vendor, 
+                            d.comp_name AS comp_name_to, 
+                            f.comp_name AS comp_name_ship_to, 
+                            wo.prod_order_wo_number,wo.id_ovh_price,j.overhead, 
+                            wo.prod_order_wo_date, 
+                            DATE_ADD(wo.prod_order_wo_date,INTERVAL wo.prod_order_wo_lead_time DAY) AS prod_order_wo_lead_time, 
+                            DATE_ADD(wo.prod_order_wo_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY) AS prod_order_wo_top 
+                            FROM tb_prod_order_wo wo 
+                            INNER JOIN tb_m_ovh_price b ON wo.id_ovh_price=b.id_ovh_price 
+                            INNER JOIN tb_m_comp_contact c ON b.id_comp_contact = c.id_comp_contact 
+                            INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+                            INNER JOIN tb_m_comp_contact e ON wo.id_comp_contact_ship_to = e.id_comp_contact 
+                            INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp
+                            INNER JOIN tb_lookup_payment g ON wo.id_payment = g.id_payment 
+                            INNER JOIN tb_lookup_report_status h ON h.id_report_status = wo.id_report_status 
+                            INNER JOIN tb_m_ovh j ON b.id_ovh = j.id_ovh
+                            WHERE id_prod_order='" & id_prod_order & "'"
+        Dim data As DataTable = execute_query(query_wo_list, -1, True, "", "", "", "")
+        GCWO.DataSource = data
 
-        show_but_wo()
     End Sub
 
     Private Sub BEditWO_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BEditWO.Click
