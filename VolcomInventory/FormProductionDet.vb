@@ -12,6 +12,9 @@
         RCIMainVendor.ValueChecked = Convert.ToSByte(1)
         RCIMainVendor.ValueUnchecked = Convert.ToSByte(2)
         '
+        RCIMainVendorWO.ValueChecked = Convert.ToSByte(1)
+        RCIMainVendorWO.ValueUnchecked = Convert.ToSByte(2)
+        '
         view_term_production(LECategory)
         view_po_type(LEPOType)
         '
