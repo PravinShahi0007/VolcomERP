@@ -68,6 +68,7 @@ Public Class FormSalesPOSDet
             TEDO.Enabled = False
             CheckEditInvType.Visible = False
             TxtCodeCompFrom.Focus()
+            LabelStore.Text = "Missing From"
         End If
 
 
