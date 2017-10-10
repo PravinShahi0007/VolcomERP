@@ -62,6 +62,12 @@ Public Class FormSalesPOSDet
             TEDO.Enabled = False
             CheckEditInvType.Visible = False
             TxtCodeCompFrom.Focus()
+        ElseIf id_menu = "4" Then
+            Text = "Invoice Missing Staff"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Visible = False
+            TxtCodeCompFrom.Focus()
         End If
 
 
@@ -139,6 +145,8 @@ Public Class FormSalesPOSDet
                 report_mark_type = "67"
             ElseIf id_memo_type = "5" Then 'missing promo
                 report_mark_type = "116"
+            ElseIf id_memo_type = "8" Then ' missing staff
+                report_mark_type = "117"
             End If
             LEInvType.ItemIndex = LEInvType.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
             TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
@@ -278,6 +286,10 @@ Public Class FormSalesPOSDet
                 report_mark_type = "116"
                 id_memo_type = "5"
                 sales_pos_number = header_number_sales("33")
+            ElseIf id_menu = "4" Then
+                report_mark_type = "117"
+                id_memo_type = "8"
+                sales_pos_number = header_number_sales("34")
             End If
             Dim id_inv_type As String = LEInvType.EditValue.ToString
 
