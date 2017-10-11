@@ -99,6 +99,7 @@ Public Class FormSalesDelOrderDet
             LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", data.Rows(0)("id_so_status").ToString)
             id_sales_order = data.Rows(0)("id_sales_order").ToString
             id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
+            TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
 
             'uniform
             Dim id_so_status As String = data.Rows(0)("id_so_status").ToString
