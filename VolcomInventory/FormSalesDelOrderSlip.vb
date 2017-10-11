@@ -170,43 +170,43 @@ Public Class FormSalesDelOrderSlip
     End Sub
 
     Sub getReport()
-        'GridColumnNo.VisibleIndex = 0
-        'GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
-        'For i As Integer = 0 To GVItemList.RowCount - 1
-        '    GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
-        'Next
-        'GCItemList.RefreshDataSource()
-        'GVItemList.RefreshData()
-        'ReportSalesDelOrderSlip.dt = GCItemList.DataSource
-        'ReportSalesDelOrderSlip.id_pl_sales_order_del = id_pl_sales_order_del_slip
-        'Dim Report As New ReportSalesDelOrderSlip()
+        GridColumnNo.VisibleIndex = 0
+        GVItemList.ActiveFilterString = "[pl_sales_order_del_det_qty]>0"
+        For i As Integer = 0 To GVItemList.RowCount - 1
+            GVItemList.SetRowCellValue(i, "no", (i + 1).ToString)
+        Next
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
+        ReportSalesDelOrderSlip.dt = GCItemList.DataSource
+        ReportSalesDelOrderSlip.id_pl_sales_order_del = id_pl_sales_order_del_slip
+        Dim Report As New ReportSalesDelOrderSlip()
 
-        '' '... 
-        '' ' creating and saving the view's layout to a new memory stream 
-        'Dim str As System.IO.Stream
-        'str = New System.IO.MemoryStream()
-        'GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
-        'Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        ''Grid Detail
-        'ReportStyleGridview(Report.GVItemList)
+        'Grid Detail
+        ReportStyleGridview(Report.GVItemList)
 
-        ''Parse val
-        'Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
-        'Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
-        'Report.LabelAddress.Text = MEAdrressCompTo.Text
-        'Report.LRecDate.Text = DEForm.Text
-        'Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
-        'Report.LabelNote.Text = MENote.Text
+        'Parse val
+        Report.LabelTo.Text = TxtCodeCompTo.Text + "-" + TxtNameCompTo.Text
+        Report.LabelFrom.Text = TxtCodeCompFrom.Text + "-" + TxtNameCompFrom.Text
+        Report.LabelAddress.Text = MEAdrressCompTo.Text
+        Report.LRecDate.Text = DEForm.Text
+        Report.LRecNumber.Text = TxtSalesDelOrderNumber.Text
+        Report.LabelNote.Text = MENote.Text
 
 
-        ''Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreview()
-        'GVItemList.ActiveFilterString = ""
-        'GridColumnNo.Visible = False
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        GVItemList.ActiveFilterString = ""
+        GridColumnNo.Visible = False
     End Sub
 
     Private Sub BtnPrePrinting_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BtnPrePrinting.ItemClick
@@ -215,7 +215,7 @@ Public Class FormSalesDelOrderSlip
 
     Sub prePrinting()
         Cursor = Cursors.WaitCursor
-        ReportSalesDelOrderDet.id_pre = "1"
+        ReportSalesDelOrderSlip.id_pre = "1"
         getReport()
         Cursor = Cursors.Default
     End Sub
@@ -226,7 +226,7 @@ Public Class FormSalesDelOrderSlip
 
     Sub printing()
         Cursor = Cursors.WaitCursor
-        ReportSalesDelOrderDet.id_pre = "-1"
+        ReportSalesDelOrderSlip.id_pre = "-1"
         getReport()
         Cursor = Cursors.Default
     End Sub

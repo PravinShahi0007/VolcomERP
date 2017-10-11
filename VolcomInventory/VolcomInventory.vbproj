@@ -4690,6 +4690,10 @@
     <Compile Include="ReportSalesDelOrderDet.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalesDelOrderSlip.Designer.vb" />
+    <Compile Include="ReportSalesDelOrderSlip.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesInvoice.designer.vb">
       <DependentUpon>ReportSalesInvoice.vb</DependentUpon>
     </Compile>
@@ -7694,6 +7698,7 @@
       <DependentUpon>ReportSalesDelOrderDet.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalesDelOrderSlip.resx" />
     <EmbeddedResource Include="ReportSalesInvoice.resx">
       <DependentUpon>ReportSalesInvoice.vb</DependentUpon>
       <SubType>Designer</SubType>
