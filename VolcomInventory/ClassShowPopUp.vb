@@ -413,6 +413,7 @@
         ElseIf report_mark_type = "103" Then
             'delivery combine
             FormSalesDelOrderSlip.action = "upd"
+            FormSalesDelOrderSlip.id_pl_sales_order_del_slip = id_report
             FormSalesDelOrderSlip.is_view = "1"
             FormSalesDelOrderSlip.ShowDialog()
         ElseIf report_mark_type = "104" Then
