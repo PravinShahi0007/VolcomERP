@@ -124,7 +124,13 @@
                                 insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx, note)
                             Else
                                 'jika delivery combine
-
+                                Dim id_del As String = FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                                Dim del_stt As String = execute_query("SELECT id_report_status FROM tb_pl_sales_order_del WHERE id_pl_sales_order_del=" + id_del + " ", 0, True, "", "", "", "")
+                                If del_stt <> SLEStatusRec.EditValue.ToString Then
+                                    stt.changeStatusHead(id_combine, SLEStatusRec.EditValue.ToString)
+                                    removeAppListCombine("103", id_combine, id_status_reportx)
+                                    insertFinalCommentCombine("103", id_combine, id_status_reportx, note)
+                                End If
                             End If
                             PBC.PerformStep()
                             PBC.Update()
@@ -281,10 +287,37 @@
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
+    Private Sub insertFinalCommentCombine(ByVal rmt As String, ByVal id_report As String, ByVal id_report_status As String, ByVal comment As String)
+        'head 
+        Dim query As String = "INSERT INTO tb_report_mark_final_comment(report_mark_type, id_report, id_report_status, id_user, final_comment, final_comment_date) 
+        SELECT '" + rmt + "', '" + id_report + "', '" + id_report_status + "', '" + id_user + "', '" + comment + "', NOW() 
+        UNION ALL
+        SELECT '43',del.id_pl_sales_order_del,  '" + id_report_status + "', '" + id_user + "',  '" + comment + "', NOW() 
+        FROM tb_pl_sales_order_del del WHERE del.id_combine=" + id_report + " "
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
     Private Sub removeAppList(ByVal report_mark_type As String, ByVal id_report As String, ByVal id_status_reportx As String)
         If SLEStatusRec.EditValue.ToString = "5" Then
             Dim query As String = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", report_mark_type, id_report, id_status_reportx)
             execute_non_query(query, True, "", "", "", "")
+        End If
+    End Sub
+
+    Private Sub removeAppListCombine(ByVal report_mark_type As String, ByVal id_report As String, ByVal id_status_reportx As String)
+        If SLEStatusRec.EditValue.ToString = "5" Then
+            'head
+            Dim query As String = String.Format("UPDATE tb_report_mark SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status>'1'", report_mark_type, id_report, id_status_reportx)
+            execute_non_query(query, True, "", "", "", "")
+
+            'single
+            Dim query_single As String = "UPDATE tb_report_mark rm 
+                                         INNER JOIN (
+                                            SELECT del.id_pl_sales_order_del FROM tb_pl_sales_order_del del WHERE del.id_combine=" + id_report + "
+                                         ) src ON src.id_pl_sales_order_del = rm.id_report
+                                         SET report_mark_lead_time=NULL,report_mark_start_datetime=NULL 
+                                         WHERE rm.report_mark_type='43' AND rm.id_report_status>'1' "
+            execute_non_query(query_single, True, "", "", "", "")
         End If
     End Sub
 End Class

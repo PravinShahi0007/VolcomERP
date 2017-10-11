@@ -100,7 +100,7 @@ Public Class FormSalesDelOrderSlip
 
     Sub viewSalesDelOrder()
         Dim del As New ClassSalesDelOrder()
-        Dim query As String = del.queryMain("AND a.id_report_status=1 AND a.is_combine=2 AND a.id_comp_contact_from='" + id_comp_contact_from + "' AND a.id_store_contact_to='" + id_store_contact_to + "' ", "2")
+        Dim query As String = del.queryMain("AND a.id_report_status=1 AND a.is_combine=2 AND a.id_comp_contact_from='" + id_comp_contact_from + "' AND a.id_store_contact_to='" + id_store_contact_to + "' AND a.last_update_by=" + id_user + " ", "2")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesDelOrder.DataSource = data
     End Sub
