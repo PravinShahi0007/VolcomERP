@@ -115,10 +115,17 @@
                     If confirm = Windows.Forms.DialogResult.Yes Then
                         Cursor = Cursors.WaitCursor
                         For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVSalesDelOrder.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVSalesDelOrder))
+                            Dim id_combine As String = FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_combine").ToString
                             Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
-                            stt.changeStatus(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, SLEStatusRec.EditValue.ToString)
-                            removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx)
-                            insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx, note)
+                            If id_combine = "0" Then
+                                'jika delivery single
+                                stt.changeStatus(FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, SLEStatusRec.EditValue.ToString)
+                                removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx)
+                                insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesDelOrder.GetRowCellValue(i, "id_pl_sales_order_del").ToString, id_status_reportx, note)
+                            Else
+                                'jika delivery combine
+
+                            End If
                             PBC.PerformStep()
                             PBC.Update()
                         Next
