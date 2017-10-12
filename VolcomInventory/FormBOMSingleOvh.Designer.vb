@@ -38,6 +38,7 @@ Partial Class FormBOMSingleOvh
         Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColCurrenct = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIDCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.CEOVHMain = New DevExpress.XtraEditors.CheckEdit()
@@ -60,7 +61,6 @@ Partial Class FormBOMSingleOvh
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnIDCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -241,7 +241,7 @@ Partial Class FormBOMSingleOvh
         Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPrice.Caption = "Price"
-        Me.ColPrice.DisplayFormat.FormatString = "N2"
+        Me.ColPrice.DisplayFormat.FormatString = "N4"
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "ovh_price"
         Me.ColPrice.Name = "ColPrice"
@@ -270,6 +270,15 @@ Partial Class FormBOMSingleOvh
         Me.ColCurrenct.Visible = True
         Me.ColCurrenct.VisibleIndex = 2
         Me.ColCurrenct.Width = 60
+        '
+        'GridColumnIDCurrency
+        '
+        Me.GridColumnIDCurrency.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnIDCurrency.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnIDCurrency.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnIDCurrency.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnIDCurrency.Caption = "ID Currency"
+        Me.GridColumnIDCurrency.Name = "GridColumnIDCurrency"
         '
         'GridView1
         '
@@ -333,7 +342,7 @@ Partial Class FormBOMSingleOvh
         Me.TEPrice.Name = "TEPrice"
         Me.TEPrice.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEPrice.Properties.Mask.EditMask = "N2"
+        Me.TEPrice.Properties.Mask.EditMask = "N4"
         Me.TEPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPrice.Properties.Mask.SaveLiteral = False
         Me.TEPrice.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -516,15 +525,6 @@ Partial Class FormBOMSingleOvh
         Me.BSave.TabIndex = 1
         Me.BSave.Text = " Save"
         '
-        'GridColumnIDCurrency
-        '
-        Me.GridColumnIDCurrency.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnIDCurrency.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnIDCurrency.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnIDCurrency.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnIDCurrency.Caption = "ID Currency"
-        Me.GridColumnIDCurrency.Name = "GridColumnIDCurrency"
-        '
         'FormBOMSingleOvh
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -537,7 +537,6 @@ Partial Class FormBOMSingleOvh
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormBOMSingleOvh"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Overhead"
