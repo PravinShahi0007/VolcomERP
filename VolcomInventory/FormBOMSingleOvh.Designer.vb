@@ -321,7 +321,7 @@ Partial Class FormBOMSingleOvh
         Me.TEPriceTot.Name = "TEPriceTot"
         Me.TEPriceTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPriceTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.TEPriceTot.Properties.Mask.EditMask = "N2"
+        Me.TEPriceTot.Properties.Mask.EditMask = "N4"
         Me.TEPriceTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPriceTot.Properties.Mask.SaveLiteral = False
         Me.TEPriceTot.Properties.Mask.UseMaskAsDisplayFormat = True
