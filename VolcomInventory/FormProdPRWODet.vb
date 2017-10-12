@@ -415,7 +415,7 @@
                     For i As Integer = 0 To GVListPurchase.RowCount - 1
                         Try
                             If Not GVListPurchase.GetRowCellValue(i, "id_det").ToString = "" Then
-                                If GVListPurchase.GetRowCellValue(i, "total").ToString = "" Or GVListPurchase.GetRowCellValue(i, "total").ToString = "0" Then
+                                If GVListPurchase.GetRowCellValue(i, "total").ToString = "" OrElse GVListPurchase.GetRowCellValue(i, "total").ToString = "0" OrElse GVListPurchase.GetRowCellValue(i, "total") = 0 Then
                                     id_dc = 1
                                 Else
                                     id_dc = 2
@@ -484,34 +484,34 @@
 
                     For i As Integer = 0 To GVListPurchase.RowCount - 1
                         If Not GVListPurchase.GetRowCellValue(i, "id_det").ToString = "" Then
-                            If GVListPurchase.GetRowCellValue(i, "id_pr_prod_order_det").ToString = "" Then
-                                'insert new
-                                If GVListPurchase.GetRowCellValue(i, "total").ToString = "" Or GVListPurchase.GetRowCellValue(i, "total").ToString = "0" Then
-                                    id_dc = 1
-                                Else
-                                    id_dc = 2
-                                End If
-                                If GVListPurchase.GetRowCellValue(i, "type").ToString = "1" Then
-                                    'dp
-                                    query = String.Format("INSERT INTO tb_pr_prod_order_det(id_pr_prod_order,id_pr_det_type,id_pr_prod_order_dp,pr_prod_order_det_note,pr_prod_order_det_price,pr_prod_order_det_qty,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", id_pr, GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc)
-                                    execute_non_query(query, True, "", "", "", "")
-                                ElseIf GVListPurchase.GetRowCellValue(i, "type").ToString = "2" Then
-                                    'purchase
-                                    query = String.Format("INSERT INTO tb_pr_prod_order_det(id_pr_prod_order,id_pr_det_type,id_prod_order_wo_det,pr_prod_order_det_note,pr_prod_order_det_price,pr_prod_order_det_qty,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", id_pr, GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc)
-                                    execute_non_query(query, True, "", "", "", "")
-                                ElseIf GVListPurchase.GetRowCellValue(i, "type").ToString = "3" Then
-                                    'ovh
-                                    query = String.Format("INSERT INTO tb_pr_prod_order_det(id_pr_prod_order,id_pr_det_type,id_ovh,pr_prod_order_det_note,pr_prod_order_det_price,pr_prod_order_det_qty,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", id_pr, GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc)
-                                    execute_non_query(query, True, "", "", "", "")
-                                End If
+                        If GVListPurchase.GetRowCellValue(i, "id_pr_prod_order_det").ToString = "" Then
+                            'insert new
+                            If GVListPurchase.GetRowCellValue(i, "total").ToString = "" OrElse GVListPurchase.GetRowCellValue(i, "total").ToString = "0" OrElse GVListPurchase.GetRowCellValue(i, "total") = 0 Then
+                                id_dc = 1
                             Else
-                                'update
-                                If GVListPurchase.GetRowCellValue(i, "total").ToString = "" Or GVListPurchase.GetRowCellValue(i, "total").ToString = "0" Then
-                                    id_dc = 1
-                                Else
-                                    id_dc = 2
-                                End If
-                                If GVListPurchase.GetRowCellValue(i, "type").ToString = "1" Then
+                                id_dc = 2
+                            End If
+                            If GVListPurchase.GetRowCellValue(i, "type").ToString = "1" Then
+                                'dp
+                                query = String.Format("INSERT INTO tb_pr_prod_order_det(id_pr_prod_order,id_pr_det_type,id_pr_prod_order_dp,pr_prod_order_det_note,pr_prod_order_det_price,pr_prod_order_det_qty,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", id_pr, GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc)
+                                execute_non_query(query, True, "", "", "", "")
+                            ElseIf GVListPurchase.GetRowCellValue(i, "type").ToString = "2" Then
+                                'purchase
+                                query = String.Format("INSERT INTO tb_pr_prod_order_det(id_pr_prod_order,id_pr_det_type,id_prod_order_wo_det,pr_prod_order_det_note,pr_prod_order_det_price,pr_prod_order_det_qty,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", id_pr, GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc)
+                                execute_non_query(query, True, "", "", "", "")
+                            ElseIf GVListPurchase.GetRowCellValue(i, "type").ToString = "3" Then
+                                'ovh
+                                query = String.Format("INSERT INTO tb_pr_prod_order_det(id_pr_prod_order,id_pr_det_type,id_ovh,pr_prod_order_det_note,pr_prod_order_det_price,pr_prod_order_det_qty,id_dc) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}')", id_pr, GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc)
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
+                        Else
+                            'update
+                            If GVListPurchase.GetRowCellValue(i, "total").ToString = "" OrElse GVListPurchase.GetRowCellValue(i, "total").ToString = "0" OrElse GVListPurchase.GetRowCellValue(i, "total") = 0 Then
+                                id_dc = 1
+                            Else
+                                id_dc = 2
+                            End If
+                            If GVListPurchase.GetRowCellValue(i, "type").ToString = "1" Then
                                     'dp
                                     query = String.Format("UPDATE tb_pr_prod_order_det SET id_pr_det_type='{0}',id_pr_prod_order_dp='{1}',id_prod_order_wo_det=NULL,id_ovh=NULL,pr_prod_order_det_note='{2}',pr_prod_order_det_price='{3}',pr_prod_order_det_qty='{4}',id_dc='{5}' WHERE id_pr_prod_order_det='{6}'", GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc, GVListPurchase.GetRowCellValue(i, "id_pr_prod_order_det").ToString)
                                     execute_non_query(query, True, "", "", "", "")

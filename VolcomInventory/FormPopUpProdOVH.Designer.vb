@@ -34,13 +34,13 @@ Partial Class FormPopUpProdOVH
         Me.GridColumnIdCurrency = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIsMainVendor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RCIMainVendor = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEditOVH = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BShowBOM = New DevExpress.XtraEditors.SimpleButton()
         Me.CEBOM = New DevExpress.XtraEditors.CheckEdit()
         Me.BCancelOvh = New DevExpress.XtraEditors.SimpleButton()
         Me.BSaveOvh = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnKurs = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCOVH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVOVH, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RCIMainVendor, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -150,7 +150,7 @@ Partial Class FormPopUpProdOVH
         Me.GridColumnPriceOri.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnPriceOri.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnPriceOri.Caption = "Vendor Price"
-        Me.GridColumnPriceOri.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPriceOri.DisplayFormat.FormatString = "N4"
         Me.GridColumnPriceOri.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPriceOri.FieldName = "price_ori"
         Me.GridColumnPriceOri.Name = "GridColumnPriceOri"
@@ -194,6 +194,18 @@ Partial Class FormPopUpProdOVH
         Me.RCIMainVendor.Name = "RCIMainVendor"
         Me.RCIMainVendor.ValueChecked = CType(1, Byte)
         Me.RCIMainVendor.ValueUnchecked = CType(2, Byte)
+        '
+        'GridColumnKurs
+        '
+        Me.GridColumnKurs.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnKurs.Caption = "Kurs"
+        Me.GridColumnKurs.DisplayFormat.FormatString = "N2"
+        Me.GridColumnKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnKurs.FieldName = "kurs"
+        Me.GridColumnKurs.Name = "GridColumnKurs"
         '
         'RepositoryItemCheckEditOVH
         '
@@ -252,18 +264,6 @@ Partial Class FormPopUpProdOVH
         Me.BSaveOvh.TabIndex = 1
         Me.BSaveOvh.Text = "Choose"
         '
-        'GridColumnKurs
-        '
-        Me.GridColumnKurs.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnKurs.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnKurs.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnKurs.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnKurs.Caption = "Kurs"
-        Me.GridColumnKurs.DisplayFormat.FormatString = "N2"
-        Me.GridColumnKurs.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnKurs.FieldName = "kurs"
-        Me.GridColumnKurs.Name = "GridColumnKurs"
-        '
         'FormPopUpProdOVH
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -275,7 +275,6 @@ Partial Class FormPopUpProdOVH
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpProdOVH"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Overhead"

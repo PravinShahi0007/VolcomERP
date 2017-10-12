@@ -396,6 +396,8 @@ Partial Class FormMasterOVHSingle
         'ColPrice
         '
         Me.ColPrice.Caption = "Price"
+        Me.ColPrice.DisplayFormat.FormatString = "N4"
+        Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "ovh_price"
         Me.ColPrice.Name = "ColPrice"
         Me.ColPrice.Visible = True

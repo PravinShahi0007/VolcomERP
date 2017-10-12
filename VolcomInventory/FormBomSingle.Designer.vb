@@ -24,6 +24,8 @@ Partial Class FormBOMSingle
         Me.EPBOM = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GroupGeneral = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.MEBOMNote = New DevExpress.XtraEditors.MemoEdit()
         Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
@@ -102,12 +104,11 @@ Partial Class FormBOMSingle
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.LTitleProduct = New DevExpress.XtraEditors.LabelControl()
-        Me.MEBOMNote = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneral.SuspendLayout()
+        CType(Me.MEBOMNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -136,7 +137,6 @@ Partial Class FormBOMSingle
         Me.PCLotTitle.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.MEBOMNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPBOM
@@ -174,6 +174,21 @@ Partial Class FormBOMSingle
         Me.GroupGeneral.Size = New System.Drawing.Size(250, 369)
         Me.GroupGeneral.TabIndex = 24
         Me.GroupGeneral.Text = "General"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(35, 233)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl1.TabIndex = 151
+        Me.LabelControl1.Text = "Note"
+        '
+        'MEBOMNote
+        '
+        Me.MEBOMNote.Location = New System.Drawing.Point(35, 252)
+        Me.MEBOMNote.Name = "MEBOMNote"
+        Me.MEBOMNote.Size = New System.Drawing.Size(179, 103)
+        Me.MEBOMNote.TabIndex = 150
         '
         'TEKurs
         '
@@ -707,7 +722,7 @@ Partial Class FormBOMSingle
         Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn8.Caption = "Price"
-        Me.GridColumn8.DisplayFormat.FormatString = "N2"
+        Me.GridColumn8.DisplayFormat.FormatString = "N4"
         Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn8.FieldName = "price"
         Me.GridColumn8.Name = "GridColumn8"
@@ -1038,21 +1053,6 @@ Partial Class FormBOMSingle
         Me.LTitleProduct.TabIndex = 12
         Me.LTitleProduct.Text = "Product : "
         '
-        'MEBOMNote
-        '
-        Me.MEBOMNote.Location = New System.Drawing.Point(35, 252)
-        Me.MEBOMNote.Name = "MEBOMNote"
-        Me.MEBOMNote.Size = New System.Drawing.Size(179, 103)
-        Me.MEBOMNote.TabIndex = 150
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(35, 233)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl1.TabIndex = 151
-        Me.LabelControl1.Text = "Note"
-        '
         'FormBOMSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1074,6 +1074,7 @@ Partial Class FormBOMSingle
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneral.ResumeLayout(False)
         Me.GroupGeneral.PerformLayout()
+        CType(Me.MEBOMNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1105,7 +1106,6 @@ Partial Class FormBOMSingle
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.MEBOMNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
