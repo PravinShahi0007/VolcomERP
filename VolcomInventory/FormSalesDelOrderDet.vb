@@ -99,6 +99,7 @@ Public Class FormSalesDelOrderDet
             LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", data.Rows(0)("id_so_status").ToString)
             id_sales_order = data.Rows(0)("id_sales_order").ToString
             id_wh_drawer = data.Rows(0)("id_wh_drawer").ToString
+            TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
 
             'uniform
             Dim id_so_status As String = data.Rows(0)("id_so_status").ToString
@@ -372,10 +373,12 @@ Public Class FormSalesDelOrderDet
             MENote.Properties.ReadOnly = False
             GVItemList.OptionsCustomization.AllowQuickHideColumns = False
             GVItemList.OptionsCustomization.AllowGroup = False
+            BtnCombineDel.Visible = True
         Else
             MENote.Properties.ReadOnly = True
             GVItemList.OptionsCustomization.AllowQuickHideColumns = True
             GVItemList.OptionsCustomization.AllowGroup = True
+            BtnCombineDel.Visible = False
         End If
         PanelNavBarcode.Enabled = False
         BtnSave.Enabled = False
@@ -1516,4 +1519,13 @@ Public Class FormSalesDelOrderDet
         End If
         Return stt
     End Function
+
+    Private Sub BtnCombineDel_Click(sender As Object, e As EventArgs) Handles BtnCombineDel.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesDelOrderSlip.action = "ins"
+        FormSalesDelOrderSlip.direct_menu = True
+        FormSalesDelOrderSlip.ShowDialog()
+        Close()
+        Cursor = Cursors.Default
+    End Sub
 End Class

@@ -9,6 +9,30 @@
         MEComment.Text = data.Rows(0)("report_mark_note").ToString
     End Sub
 
+    Sub updateMarkSingle(ByVal id_mark_var As String)
+        'for deliverycombine
+        If FormReportMark.report_mark_type = "103" Then
+            'combine delivery
+            Dim id_user_combine_app As String = FormReportMark.GVMark.GetFocusedRowCellValue("id_user").ToString
+            Dim query_get_app_single As String = "SELECT rm.id_report_mark FROM tb_report_mark rm
+            INNER JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = rm.id_report AND del.id_combine=" + FormReportMark.id_report + " 
+            WHERE rm.id_user=" + id_user_combine_app + " AND rm.report_mark_type=43 "
+            Dim data As DataTable = execute_query(query_get_app_single, -1, True, "", "", "", "")
+            Dim rm As String = ""
+            For i As Integer = 0 To data.Rows.Count - 1
+                If i > 0 Then
+                    rm += "OR "
+                End If
+                rm += "id_report_mark=" + data.Rows(i)("id_report_mark").ToString + " "
+            Next
+            If rm <> "" Then
+                Dim query_upd_single As String = String.Format("UPDATE tb_report_mark SET id_mark='{0}',is_use='1',report_mark_note='{1}',report_mark_datetime=NOW() WHERE (" + rm + ") ", id_mark_var, addSlashes(MEComment.Text))
+                execute_non_query(query_upd_single, True, "", "", "", "")
+            End If
+        End If
+    End Sub
+
+
     Private Sub BAccept_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAccept.Click
         Dim confirm As DialogResult
         confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to accept this report ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -22,6 +46,7 @@
                 'set accept or refuse is use to 1
                 query = String.Format("UPDATE tb_report_mark SET id_mark='2',is_use='1',report_mark_note='{1}',report_mark_datetime=NOW() WHERE id_report_mark='{0}'", FormReportMark.GVMark.GetFocusedRowCellDisplayText("id_report_mark").ToString, addSlashes(MEComment.Text))
                 execute_non_query(query, True, "", "", "", "")
+                updateMarkSingle(2)
                 ' here auto approve
                 Dim id_status_reportx As String = FormReportMark.GVMark.GetFocusedRowCellValue("id_report_status").ToString
                 Dim query_jml As String = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status = '{2}' AND is_use='1'", FormReportMark.report_mark_type, FormReportMark.id_report, id_status_reportx)
@@ -69,6 +94,7 @@
             'set accept or refuse is use to 1
             query = String.Format("UPDATE tb_report_mark SET id_mark='3',is_use='1',report_mark_note='{1}',report_mark_datetime=NOW() WHERE id_report_mark='{0}'", FormReportMark.GVMark.GetFocusedRowCellDisplayText("id_report_mark").ToString, addSlashes(MEComment.Text))
             execute_non_query(query, True, "", "", "", "")
+            updateMarkSingle(3)
             FormReportMark.view_mark()
             FormReportMark.sendNotif("2")
             FormReportMark.GVMark.FocusedRowHandle = find_row(FormReportMark.GVMark, "id_report_mark", id_report_mark)
