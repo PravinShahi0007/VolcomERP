@@ -154,6 +154,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GCSalesDelOrder = New DevExpress.XtraGrid.GridControl()
         Me.ViewPreDel = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintUniqueCodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesDelOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -171,6 +172,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnTotalDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSORemainign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCombineDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateDO = New DevExpress.XtraEditors.SimpleButton()
@@ -305,8 +307,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.DEFromNonStock = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnCombineDel = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ViewCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.PanelSelect, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -680,8 +680,11 @@ Partial Class FormSalesOrderSvcLevel
         'RepositoryItemProgressBar1
         '
         Me.RepositoryItemProgressBar1.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.RepositoryItemProgressBar1.DisplayFormat.FormatString = "{0:n2}%"
+        Me.RepositoryItemProgressBar1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemProgressBar1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.RepositoryItemProgressBar1.Name = "RepositoryItemProgressBar1"
+        Me.RepositoryItemProgressBar1.PercentView = False
         Me.RepositoryItemProgressBar1.ShowTitle = True
         '
         'GridColumnIdSalesOrder
@@ -1026,7 +1029,10 @@ Partial Class FormSalesOrderSvcLevel
         '
         'RepositoryItemProgressBar2
         '
+        Me.RepositoryItemProgressBar2.DisplayFormat.FormatString = "{0:n2}%"
+        Me.RepositoryItemProgressBar2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemProgressBar2.Name = "RepositoryItemProgressBar2"
+        Me.RepositoryItemProgressBar2.PercentView = False
         Me.RepositoryItemProgressBar2.ReadOnly = True
         Me.RepositoryItemProgressBar2.ShowTitle = True
         '
@@ -1684,13 +1690,19 @@ Partial Class FormSalesOrderSvcLevel
         '
         Me.ViewPreDel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewCombinedDeliveryToolStripMenuItem, Me.PrintUniqueCodeToolStripMenuItem})
         Me.ViewPreDel.Name = "ViewPreDel"
-        Me.ViewPreDel.Size = New System.Drawing.Size(204, 92)
+        Me.ViewPreDel.Size = New System.Drawing.Size(204, 70)
         '
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
         Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Detail"
+        '
+        'ViewCombinedDeliveryToolStripMenuItem
+        '
+        Me.ViewCombinedDeliveryToolStripMenuItem.Name = "ViewCombinedDeliveryToolStripMenuItem"
+        Me.ViewCombinedDeliveryToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.ViewCombinedDeliveryToolStripMenuItem.Text = "View Combined Delivery"
         '
         'PrintUniqueCodeToolStripMenuItem
         '
@@ -1877,6 +1889,14 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSORemainign.Visible = True
         Me.GridColumnSORemainign.VisibleIndex = 6
         Me.GridColumnSORemainign.Width = 92
+        '
+        'GridColumnCombineDel
+        '
+        Me.GridColumnCombineDel.Caption = "Combined Delivery"
+        Me.GridColumnCombineDel.FieldName = "combine_number"
+        Me.GridColumnCombineDel.Name = "GridColumnCombineDel"
+        Me.GridColumnCombineDel.Visible = True
+        Me.GridColumnCombineDel.VisibleIndex = 1
         '
         'GridView6
         '
@@ -3187,20 +3207,6 @@ Partial Class FormSalesOrderSvcLevel
         Me.LabelControl24.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl24.TabIndex = 8892
         Me.LabelControl24.Text = "From"
-        '
-        'GridColumnCombineDel
-        '
-        Me.GridColumnCombineDel.Caption = "Combined Delivery"
-        Me.GridColumnCombineDel.FieldName = "combine_number"
-        Me.GridColumnCombineDel.Name = "GridColumnCombineDel"
-        Me.GridColumnCombineDel.Visible = True
-        Me.GridColumnCombineDel.VisibleIndex = 1
-        '
-        'ViewCombinedDeliveryToolStripMenuItem
-        '
-        Me.ViewCombinedDeliveryToolStripMenuItem.Name = "ViewCombinedDeliveryToolStripMenuItem"
-        Me.ViewCombinedDeliveryToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
-        Me.ViewCombinedDeliveryToolStripMenuItem.Text = "View Combined Delivery"
         '
         'FormSalesOrderSvcLevel
         '
