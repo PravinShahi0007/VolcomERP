@@ -2,6 +2,7 @@
     Public action As String
     Public id_sales_pos As String = "0"
     Public id_store_contact_from As String = "-1"
+    Public id_comp_contact_bill As String = "-1"
     Public id_report_status As String
     Public id_sales_pos_det_list As New List(Of String)
     Public id_comp As String = "-1"
@@ -43,6 +44,16 @@
             TEDO.Enabled = False
             CheckEditInvType.Visible = False
             TxtCodeCompFrom.Focus()
+        ElseIf id_menu = "4" Then
+            Text = "Invoice Missing Staff"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Visible = False
+            TxtCodeCompFrom.Focus()
+            LabelControl1.Text = "Missing From"
+            LabelBillTo.Visible = True
+            TxtCodeBillTo.Visible = True
+            TxtNameBillTo.Visible = True
         End If
 
         actionLoad()
@@ -60,11 +71,15 @@
         Dim query As String = ""
         query += "SELECT pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
         query += "a.sales_pos_number, (c.comp_name) AS store_name_from,c.npwp, "
-        query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
+        query += "a.id_store_contact_from, a.id_comp_contact_bill, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
+        (cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
+        d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
         query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type "
         query += "FROM tb_sales_pos a "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
+        query += "LEFT JOIN tb_m_comp_contact bb ON a.id_comp_contact_bill = bb.id_comp_contact
+        LEFT JOIN tb_m_comp cb ON cb.id_comp = bb.id_comp "
         query += "LEFT JOIN tb_pl_sales_order_del pld ON pld.id_pl_sales_order_del=a.id_pl_sales_order_del "
         query += "INNER JOIN tb_lookup_report_status d ON d.id_report_status = a.id_report_status "
         query += "WHERE a.id_sales_pos = '" + id_sales_pos + "' "
@@ -104,14 +119,19 @@
             report_mark_type = "67"
         ElseIf id_memo_type = "5" Then 'missing promo
             report_mark_type = "116"
+        ElseIf id_memo_type = "8" Then ' missing staff
+            report_mark_type = "117"
         End If
         LEInvType.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
         TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
-        If id_memo_type = "1" Or id_memo_type = "2" Then
+        If id_memo_type = "1" Or id_memo_type = "2" Or id_memo_type = "5" Or id_memo_type = "8" Then
             CheckEditInvType.EditValue = False
         ElseIf id_memo_type = "3" Or id_memo_type = "4" Then
             CheckEditInvType.EditValue = True
         End If
+        id_comp_contact_bill = data.Rows(0)("id_comp_contact_bill").ToString
+        TxtCodeBillTo.Text = data.Rows(0)("comp_number_bill").ToString
+        TxtNameBillTo.Text = data.Rows(0)("comp_name_bill").ToString
 
         ''detail2
         viewDetail()
@@ -191,6 +211,9 @@
         TxtCodeCompFrom.Enabled = False
         TxtNameCompFrom.Enabled = False
         CheckEditInvType.Enabled = False
+
+        TxtCodeBillTo.Enabled = False
+        TxtNameBillTo.Enabled = False
 
         BtnAttachment.Enabled = True
         TxtVirtualPosNumber.Focus()

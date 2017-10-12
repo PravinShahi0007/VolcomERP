@@ -23,12 +23,16 @@ Partial Class FormSalesPOSDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesPOSDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelBillTo = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnBrowseBillTo = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtNameBillTo = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCodeBillTo = New DevExpress.XtraEditors.TextEdit()
         Me.LEInvType = New DevExpress.XtraEditors.LookUpEdit()
         Me.TEDO = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
         Me.TENPWP = New DevExpress.XtraEditors.TextEdit()
         Me.MEAdrressCompFrom = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelStore = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
@@ -113,6 +117,8 @@ Partial Class FormSalesPOSDet
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
+        CType(Me.TxtNameBillTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCodeBillTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEInvType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENPWP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -172,18 +178,22 @@ Partial Class FormSalesPOSDet
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(954, 150)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(954, 182)
         Me.GroupGeneralHeader.TabIndex = 184
         '
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopLeft.Controls.Add(Me.LabelBillTo)
+        Me.PanelControlTopLeft.Controls.Add(Me.BtnBrowseBillTo)
+        Me.PanelControlTopLeft.Controls.Add(Me.TxtNameBillTo)
+        Me.PanelControlTopLeft.Controls.Add(Me.TxtCodeBillTo)
         Me.PanelControlTopLeft.Controls.Add(Me.LEInvType)
         Me.PanelControlTopLeft.Controls.Add(Me.TEDO)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl11)
         Me.PanelControlTopLeft.Controls.Add(Me.TENPWP)
         Me.PanelControlTopLeft.Controls.Add(Me.MEAdrressCompFrom)
-        Me.PanelControlTopLeft.Controls.Add(Me.LabelControl1)
+        Me.PanelControlTopLeft.Controls.Add(Me.LabelStore)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl6)
         Me.PanelControlTopLeft.Controls.Add(Me.TxtCodeCompFrom)
         Me.PanelControlTopLeft.Controls.Add(Me.TxtNameCompFrom)
@@ -192,8 +202,65 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(426, 146)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(426, 178)
         Me.PanelControlTopLeft.TabIndex = 8933
+        '
+        'LabelBillTo
+        '
+        Me.LabelBillTo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelBillTo.Location = New System.Drawing.Point(9, 143)
+        Me.LabelBillTo.Name = "LabelBillTo"
+        Me.LabelBillTo.Size = New System.Drawing.Size(25, 13)
+        Me.LabelBillTo.TabIndex = 8898
+        Me.LabelBillTo.Text = "Bill to"
+        Me.LabelBillTo.Visible = False
+        '
+        'BtnBrowseBillTo
+        '
+        Me.BtnBrowseBillTo.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.BtnBrowseBillTo.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnBrowseBillTo.Appearance.Options.UseFont = True
+        Me.BtnBrowseBillTo.Location = New System.Drawing.Point(380, 140)
+        Me.BtnBrowseBillTo.Name = "BtnBrowseBillTo"
+        Me.BtnBrowseBillTo.Size = New System.Drawing.Size(23, 20)
+        Me.BtnBrowseBillTo.TabIndex = 8897
+        Me.BtnBrowseBillTo.TabStop = False
+        Me.BtnBrowseBillTo.Text = "..."
+        Me.BtnBrowseBillTo.Visible = False
+        '
+        'TxtNameBillTo
+        '
+        Me.TxtNameBillTo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtNameBillTo.EditValue = ""
+        Me.TxtNameBillTo.Location = New System.Drawing.Point(163, 140)
+        Me.TxtNameBillTo.Name = "TxtNameBillTo"
+        Me.TxtNameBillTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNameBillTo.Properties.Appearance.Options.UseFont = True
+        Me.TxtNameBillTo.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtNameBillTo.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtNameBillTo.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TxtNameBillTo.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TxtNameBillTo.Properties.EditValueChangedDelay = 1
+        Me.TxtNameBillTo.Properties.ReadOnly = True
+        Me.TxtNameBillTo.Size = New System.Drawing.Size(211, 20)
+        Me.TxtNameBillTo.TabIndex = 8896
+        Me.TxtNameBillTo.TabStop = False
+        Me.TxtNameBillTo.Visible = False
+        '
+        'TxtCodeBillTo
+        '
+        Me.TxtCodeBillTo.EditValue = ""
+        Me.TxtCodeBillTo.Location = New System.Drawing.Point(78, 140)
+        Me.TxtCodeBillTo.Name = "TxtCodeBillTo"
+        Me.TxtCodeBillTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCodeBillTo.Properties.Appearance.Options.UseFont = True
+        Me.TxtCodeBillTo.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtCodeBillTo.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtCodeBillTo.Properties.EditValueChangedDelay = 1
+        Me.TxtCodeBillTo.Size = New System.Drawing.Size(82, 20)
+        Me.TxtCodeBillTo.TabIndex = 8895
+        Me.TxtCodeBillTo.Visible = False
         '
         'LEInvType
         '
@@ -259,14 +326,14 @@ Partial Class FormSalesPOSDet
         Me.MEAdrressCompFrom.TabIndex = 4444
         Me.MEAdrressCompFrom.TabStop = False
         '
-        'LabelControl1
+        'LabelStore
         '
-        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl1.Location = New System.Drawing.Point(9, 39)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(26, 13)
-        Me.LabelControl1.TabIndex = 145
-        Me.LabelControl1.Text = "Store"
+        Me.LabelStore.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelStore.Location = New System.Drawing.Point(9, 39)
+        Me.LabelStore.Name = "LabelStore"
+        Me.LabelStore.Size = New System.Drawing.Size(26, 13)
+        Me.LabelStore.TabIndex = 145
+        Me.LabelStore.Text = "Store"
         '
         'LabelControl6
         '
@@ -345,7 +412,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopMiddle.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopMiddle.Location = New System.Drawing.Point(446, 2)
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
-        Me.PanelControlTopMiddle.Size = New System.Drawing.Size(330, 146)
+        Me.PanelControlTopMiddle.Size = New System.Drawing.Size(330, 178)
         Me.PanelControlTopMiddle.TabIndex = 8934
         '
         'BDO
@@ -353,7 +420,7 @@ Partial Class FormSalesPOSDet
         Me.BDO.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.BDO.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.BDO.Appearance.Options.UseFont = True
-        Me.BDO.Location = New System.Drawing.Point(18, 155)
+        Me.BDO.Location = New System.Drawing.Point(18, 183)
         Me.BDO.Name = "BDO"
         Me.BDO.Size = New System.Drawing.Size(23, 20)
         Me.BDO.TabIndex = 8937
@@ -457,7 +524,7 @@ Partial Class FormSalesPOSDet
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(776, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(176, 146)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(176, 178)
         Me.PanelControlTopRight.TabIndex = 8935
         '
         'TxtVirtualPosNumber
@@ -877,9 +944,9 @@ Partial Class FormSalesPOSDet
         Me.GroupControlList.Controls.Add(Me.GCItemList)
         Me.GroupControlList.Controls.Add(Me.PanelControlNav)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControlList.Location = New System.Drawing.Point(0, 150)
+        Me.GroupControlList.Location = New System.Drawing.Point(0, 182)
         Me.GroupControlList.Name = "GroupControlList"
-        Me.GroupControlList.Size = New System.Drawing.Size(954, 295)
+        Me.GroupControlList.Size = New System.Drawing.Size(954, 263)
         Me.GroupControlList.TabIndex = 187
         Me.GroupControlList.Text = "Item List"
         '
@@ -891,7 +958,7 @@ Partial Class FormSalesPOSDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(932, 261)
+        Me.GCItemList.Size = New System.Drawing.Size(932, 229)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1214,6 +1281,8 @@ Partial Class FormSalesPOSDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
+        CType(Me.TxtNameBillTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCodeBillTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEInvType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENPWP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1280,7 +1349,7 @@ Partial Class FormSalesPOSDet
     Friend WithEvents BtnBrowseContactFrom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtNameCompFrom As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtCodeCompFrom As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelStore As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
@@ -1358,4 +1427,8 @@ Partial Class FormSalesPOSDet
     Friend WithEvents LEInvType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents CheckEditInvType As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnBrowseBillTo As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtNameBillTo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtCodeBillTo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelBillTo As DevExpress.XtraEditors.LabelControl
 End Class

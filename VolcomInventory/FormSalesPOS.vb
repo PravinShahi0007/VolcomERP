@@ -36,6 +36,8 @@
             Text = "Credit Note"
         ElseIf id_menu = "3" Then
             Text = "Invoice Missing Promo"
+        ElseIf id_menu = "4" Then
+            Text = "Invoice Missing Staff"
         End If
 
         'Tab Daily

@@ -895,6 +895,18 @@
             FormSalesDelOrderSlip.viewSalesDelOrder()
             FormSalesDelOrderSlip.GCItemList.DataSource = Nothing
             Close()
+        ElseIf id_pop_up = "80" Then
+            'missing staff bil
+            FormSalesPOSDet.SPDiscount.EditValue = Decimal.Parse(GVCompany.GetFocusedRowCellValue("comp_commission").ToString)
+            FormSalesPOSDet.id_comp_contact_bill = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
+            FormSalesPOSDet.TxtNameBillTo.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "1")
+            FormSalesPOSDet.TxtCodeBillTo.Text = get_company_x(GVCompany.GetFocusedRowCellDisplayText("id_comp").ToString, "2")
+            FormSalesPOSDet.getDiscount()
+            FormSalesPOSDet.getNetto()
+            FormSalesPOSDet.getVat()
+            FormSalesPOSDet.getTaxBase()
+            FormSalesPOSDet.check_do()
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub
