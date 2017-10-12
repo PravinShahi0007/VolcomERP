@@ -213,6 +213,7 @@ Partial Class FormSalesPOSDet
         Me.LabelBillTo.Size = New System.Drawing.Size(25, 13)
         Me.LabelBillTo.TabIndex = 8898
         Me.LabelBillTo.Text = "Bill to"
+        Me.LabelBillTo.Visible = False
         '
         'BtnBrowseBillTo
         '
@@ -225,6 +226,7 @@ Partial Class FormSalesPOSDet
         Me.BtnBrowseBillTo.TabIndex = 8897
         Me.BtnBrowseBillTo.TabStop = False
         Me.BtnBrowseBillTo.Text = "..."
+        Me.BtnBrowseBillTo.Visible = False
         '
         'TxtNameBillTo
         '
@@ -244,6 +246,7 @@ Partial Class FormSalesPOSDet
         Me.TxtNameBillTo.Size = New System.Drawing.Size(211, 20)
         Me.TxtNameBillTo.TabIndex = 8896
         Me.TxtNameBillTo.TabStop = False
+        Me.TxtNameBillTo.Visible = False
         '
         'TxtCodeBillTo
         '
@@ -257,6 +260,7 @@ Partial Class FormSalesPOSDet
         Me.TxtCodeBillTo.Properties.EditValueChangedDelay = 1
         Me.TxtCodeBillTo.Size = New System.Drawing.Size(82, 20)
         Me.TxtCodeBillTo.TabIndex = 8895
+        Me.TxtCodeBillTo.Visible = False
         '
         'LEInvType
         '

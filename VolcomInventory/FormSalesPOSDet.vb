@@ -5,6 +5,7 @@ Public Class FormSalesPOSDet
     Public action As String
     Public id_sales_pos As String = "-1"
     Public id_store_contact_from As String = "-1"
+    Public id_comp_contact_bill As String = "-1"
     Public id_report_status As String
     Public id_sales_pos_det_list As New List(Of String)
     Public id_comp As String = "-1"
@@ -69,6 +70,10 @@ Public Class FormSalesPOSDet
             CheckEditInvType.Visible = False
             TxtCodeCompFrom.Focus()
             LabelStore.Text = "Missing From"
+            LabelBillTo.Visible = True
+            TxtCodeBillTo.Visible = True
+            TxtNameBillTo.Visible = True
+            BtnBrowseBillTo.Visible = True
         End If
 
 
@@ -102,11 +107,15 @@ Public Class FormSalesPOSDet
             Dim query As String = ""
             query += "SELECT pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
             query += "a.sales_pos_number, (c.comp_name) AS store_name_from,c.npwp, "
-            query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
+            query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
+            IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
+            d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
             query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type "
             query += "FROM tb_sales_pos a "
             query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
             query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
+            query += "LEFT JOIN tb_m_comp_contact bb ON a.id_comp_contact_bill = bb.id_comp_contact
+            LEFT JOIN tb_m_comp cb ON cb.id_comp = bb.id_comp "
             query += "LEFT JOIN tb_pl_sales_order_del pld ON pld.id_pl_sales_order_del=a.id_pl_sales_order_del "
             query += "INNER JOIN tb_lookup_report_status d ON d.id_report_status = a.id_report_status "
             query += "WHERE a.id_sales_pos = '" + id_sales_pos + "' "
@@ -151,11 +160,14 @@ Public Class FormSalesPOSDet
             End If
             LEInvType.ItemIndex = LEInvType.Properties.GetDataSourceRowIndex("id_inv_type", data.Rows(0)("id_inv_type").ToString)
             TEDO.Text = data.Rows(0)("pl_sales_order_del_number").ToString
-            If id_memo_type = "1" Or id_memo_type = "2" Or id_memo_type = "5" Then
+            If id_memo_type = "1" Or id_memo_type = "2" Or id_memo_type = "5" Or id_memo_type = "8" Then
                 CheckEditInvType.EditValue = False
             ElseIf id_memo_type = "3" Or id_memo_type = "4" Then
                 CheckEditInvType.EditValue = True
             End If
+            id_comp_contact_bill = data.Rows(0)("id_comp_contact_bill").ToString
+            TxtCodeBillTo.Text = data.Rows(0)("comp_number_bill").ToString
+            TxtNameBillTo.Text = data.Rows(0)("comp_name_bill").ToString
 
             ''detail2
             viewDetail()
@@ -197,7 +209,7 @@ Public Class FormSalesPOSDet
     End Sub
 
     Sub viewStockStore()
-        If id_menu = "1" Then
+        If id_menu = "1" Or id_menu = "4" Then
             dt_stock_store.Clear()
 
             Dim end_period As String = "9999-12-01"
@@ -241,6 +253,12 @@ Public Class FormSalesPOSDet
             do_q = "'" + id_do + "'"
         End If
 
+        'cek bill
+        Dim cond_bill_to As Boolean = True
+        If id_menu = "4" And id_comp_contact_bill = "-1" Then
+            cond_bill_to = False
+        End If
+
         ValidateChildren()
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMiddle) Then
             errorInput()
@@ -251,6 +269,8 @@ Public Class FormSalesPOSDet
             'check stock
             'ElseIf Not valid_stock Then
             'stopCustom(err_str.ToString)
+        ElseIf Not cond_bill_to Then
+            stopCustom("Bill to can't blank")
         Else
             Dim sales_pos_note As String = MENote.Text
             Dim id_report_status As String = LEReportStatus.EditValue
@@ -293,6 +313,9 @@ Public Class FormSalesPOSDet
                 sales_pos_number = header_number_sales("34")
             End If
             Dim id_inv_type As String = LEInvType.EditValue.ToString
+            If id_comp_contact_bill = "-1" Then
+                id_comp_contact_bill = "NULL "
+            End If
 
             If action = "ins" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -300,8 +323,8 @@ Public Class FormSalesPOSDet
                     Cursor = Cursors.WaitCursor
 
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from, sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type) "
-                    query += "VALUES('" + id_store_contact_from + "', '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
 
@@ -315,6 +338,8 @@ Public Class FormSalesPOSDet
                         increase_inc_sales("18")
                     ElseIf report_mark_type = "116" Then
                         increase_inc_sales("33")
+                    ElseIf report_mark_type = "117" Then
+                        increase_inc_sales("34")
                     End If
 
                     'insert who prepared
@@ -348,7 +373,7 @@ Public Class FormSalesPOSDet
                         execute_non_query(query_detail, True, "", "", "", "")
                     End If
 
-                    If id_menu = "1" Then
+                    If id_menu = "1" Or id_menu = "4" Then
                         'reserved stock
                         Dim rsv_stock As ClassSalesInv = New ClassSalesInv()
                         rsv_stock.reservedStock(id_sales_pos, report_mark_type)
@@ -365,6 +390,8 @@ Public Class FormSalesPOSDet
                         infoCustom("Credit Note " + TxtVirtualPosNumber.Text + " created succesfully")
                     ElseIf id_menu = "3" Then
                         infoCustom("Invoice Missing Promo " + TxtVirtualPosNumber.Text + " created succesfully")
+                    ElseIf id_menu = "4" Then
+                        infoCustom("Invoice Missing Staff " + TxtVirtualPosNumber.Text + " created succesfully")
                     End If
 
 
@@ -478,6 +505,10 @@ Public Class FormSalesPOSDet
         TxtNameCompFrom.Enabled = False
         BtnBrowseContactFrom.Enabled = False
         CheckEditInvType.Enabled = False
+
+        TxtCodeBillTo.Enabled = False
+        TxtNameBillTo.Enabled = False
+        BtnBrowseBillTo.Enabled = False
 
         If check_attach_report_status(id_report_status, report_mark_type, id_sales_pos) Then
             BtnAttachment.Enabled = True
@@ -733,7 +764,7 @@ Public Class FormSalesPOSDet
         Dim tb2 = dt_stock_store
         Dim tb3 = dt_prc.AsEnumerable()
 
-        If id_menu = "1" Then
+        If id_menu = "1" Or id_menu = "4" Then
             Dim query = From table1 In tb1
                         Group Join table_tmp In tb2
                         On table1("code").ToString Equals table_tmp("code").ToString Into sjoin = Group
@@ -848,7 +879,11 @@ Public Class FormSalesPOSDet
                 calculate()
                 check_do()
                 '
-                DEDueDate.Focus()
+                If id_menu = "4" Then
+                    TxtCodeBillTo.Focus()
+                Else
+                    DEDueDate.Focus()
+                End If
                 'Else
                 '    stopCustom("Store not registered for auto posting journal.")
                 'End If
@@ -1059,7 +1094,57 @@ Public Class FormSalesPOSDet
         GCItemList.DataSource = Nothing
     End Sub
 
+    Sub defaultResetBillTo()
+        id_comp_contact_bill = "-1"
+        TxtNameBillTo.Text = ""
+    End Sub
+
     Private Sub CheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditInvType.CheckedChanged
         viewDetail()
+    End Sub
+
+    Private Sub BtnBrowseBillTo_Click(sender As Object, e As EventArgs) Handles BtnBrowseBillTo.Click
+        FormPopUpContact.id_pop_up = "80"
+        FormPopUpContact.id_cat = id_comp_cat_store
+        FormPopUpContact.ShowDialog()
+    End Sub
+
+    Private Sub TxtCodeBillTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeBillTo.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim query As String = "SELECT dr.id_wh_drawer,rack.id_wh_rack,loc.id_wh_locator,cc.id_comp_contact,cc.id_comp,c.npwp,c.comp_number,c.comp_name,c.comp_commission,c.address_primary,c.id_so_type "
+            query += " From tb_m_comp_contact cc "
+            query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
+            query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
+            query += " INNER JOIN tb_m_wh_rack rack ON rack.id_wh_rack=dr.id_wh_rack"
+            query += " INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator=rack.id_wh_locator"
+            query += " where cc.is_default=1 And c.id_comp_cat='" + id_comp_cat_store + "' AND c.comp_number='" + addSlashes(TxtCodeBillTo.Text) + "'"
+            Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+
+            If data.Rows.Count <= 0 Then
+                stopCustom("Store not found.")
+                defaultResetBillTo()
+                TxtCodeBillTo.Focus()
+            ElseIf data.Rows.Count > 1 Then
+                FormPopUpContact.id_pop_up = "80"
+                FormPopUpContact.id_cat = id_comp_cat_store
+                FormPopUpContact.GVCompany.ActiveFilterString = "[comp_number]='" + addSlashes(TxtCodeBillTo.Text) + "'"
+                FormPopUpContact.ShowDialog()
+            Else
+                'If check_acc(data.Rows(0)("id_comp").ToString) Then
+                SPDiscount.EditValue = data.Rows(0)("comp_commission")
+                id_comp_contact_bill = data.Rows(0)("id_comp_contact").ToString
+                TxtNameBillTo.Text = data.Rows(0)("comp_name").ToString
+                TxtCodeBillTo.Text = data.Rows(0)("comp_number").ToString
+                calculate()
+                check_do()
+                '
+                DEDueDate.Focus()
+                'Else
+                '    stopCustom("Store not registered for auto posting journal.")
+                'End If
+            End If
+        Else
+            defaultResetBillTo()
+        End If
     End Sub
 End Class
