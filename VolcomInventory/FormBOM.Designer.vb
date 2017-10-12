@@ -1221,7 +1221,7 @@ Partial Class FormBOM
         Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn24.Caption = "Cost"
-        Me.GridColumn24.DisplayFormat.FormatString = "N2"
+        Me.GridColumn24.DisplayFormat.FormatString = "N4"
         Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn24.FieldName = "price"
         Me.GridColumn24.Name = "GridColumn24"
@@ -1237,7 +1237,7 @@ Partial Class FormBOM
         Me.ColTotal.AppearanceHeader.Options.UseTextOptions = True
         Me.ColTotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColTotal.Caption = "Total"
-        Me.ColTotal.DisplayFormat.FormatString = "N2"
+        Me.ColTotal.DisplayFormat.FormatString = "N4"
         Me.ColTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColTotal.FieldName = "total"
         Me.ColTotal.Name = "ColTotal"
