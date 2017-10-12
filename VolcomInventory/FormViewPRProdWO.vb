@@ -236,4 +236,7 @@
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+    Private Sub TEDP_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TEDP.EditValueChanged
+        calculate()
+    End Sub
 End Class

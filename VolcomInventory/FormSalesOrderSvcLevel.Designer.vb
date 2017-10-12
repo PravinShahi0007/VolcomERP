@@ -154,6 +154,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GCSalesDelOrder = New DevExpress.XtraGrid.GridControl()
         Me.ViewPreDel = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewCombinedDeliveryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PrintUniqueCodeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVSalesDelOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -171,6 +172,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumnTotalDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSORemainign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCombineDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateDO = New DevExpress.XtraEditors.SimpleButton()
@@ -678,8 +680,11 @@ Partial Class FormSalesOrderSvcLevel
         'RepositoryItemProgressBar1
         '
         Me.RepositoryItemProgressBar1.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.RepositoryItemProgressBar1.DisplayFormat.FormatString = "{0:n2}%"
+        Me.RepositoryItemProgressBar1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemProgressBar1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.RepositoryItemProgressBar1.Name = "RepositoryItemProgressBar1"
+        Me.RepositoryItemProgressBar1.PercentView = False
         Me.RepositoryItemProgressBar1.ShowTitle = True
         '
         'GridColumnIdSalesOrder
@@ -1024,7 +1029,10 @@ Partial Class FormSalesOrderSvcLevel
         '
         'RepositoryItemProgressBar2
         '
+        Me.RepositoryItemProgressBar2.DisplayFormat.FormatString = "{0:n2}%"
+        Me.RepositoryItemProgressBar2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.RepositoryItemProgressBar2.Name = "RepositoryItemProgressBar2"
+        Me.RepositoryItemProgressBar2.PercentView = False
         Me.RepositoryItemProgressBar2.ReadOnly = True
         Me.RepositoryItemProgressBar2.ShowTitle = True
         '
@@ -1680,31 +1688,41 @@ Partial Class FormSalesOrderSvcLevel
         '
         'ViewPreDel
         '
-        Me.ViewPreDel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.PrintUniqueCodeToolStripMenuItem})
+        Me.ViewPreDel.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.ViewCombinedDeliveryToolStripMenuItem, Me.PrintUniqueCodeToolStripMenuItem})
         Me.ViewPreDel.Name = "ViewPreDel"
-        Me.ViewPreDel.Size = New System.Drawing.Size(172, 48)
+        Me.ViewPreDel.Size = New System.Drawing.Size(204, 70)
         '
         'ViewDetailToolStripMenuItem
         '
         Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
-        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.ViewDetailToolStripMenuItem.Text = "View Detail"
+        '
+        'ViewCombinedDeliveryToolStripMenuItem
+        '
+        Me.ViewCombinedDeliveryToolStripMenuItem.Name = "ViewCombinedDeliveryToolStripMenuItem"
+        Me.ViewCombinedDeliveryToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
+        Me.ViewCombinedDeliveryToolStripMenuItem.Text = "View Combined Delivery"
         '
         'PrintUniqueCodeToolStripMenuItem
         '
         Me.PrintUniqueCodeToolStripMenuItem.Name = "PrintUniqueCodeToolStripMenuItem"
-        Me.PrintUniqueCodeToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.PrintUniqueCodeToolStripMenuItem.Size = New System.Drawing.Size(203, 22)
         Me.PrintUniqueCodeToolStripMenuItem.Text = "Print Unique Code"
         '
         'GVSalesDelOrder
         '
-        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumn26, Me.GridColumnUpdBy, Me.GridColumnSelect, Me.GridColumnTotalDel, Me.GridColumnSORemainign})
+        Me.GVSalesDelOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumnIdSalesDelOrder, Me.GridColumnWHName, Me.GridColumnCategory, Me.GridColumn26, Me.GridColumnUpdBy, Me.GridColumnSelect, Me.GridColumnTotalDel, Me.GridColumnSORemainign, Me.GridColumnCombineDel})
         Me.GVSalesDelOrder.GridControl = Me.GCSalesDelOrder
-        Me.GVSalesDelOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnSelect, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_remaining", Me.GridColumnSORemainign, "{0:n0}")})
+        Me.GVSalesDelOrder.GroupCount = 1
+        Me.GVSalesDelOrder.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumnTotalDel, "{0:n0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_remaining", Me.GridColumnSORemainign, "{0:n0}")})
         Me.GVSalesDelOrder.Name = "GVSalesDelOrder"
         Me.GVSalesDelOrder.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSalesDelOrder.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVSalesDelOrder.OptionsView.ShowFooter = True
+        Me.GVSalesDelOrder.OptionsView.ShowGroupedColumns = True
         Me.GVSalesDelOrder.OptionsView.ShowGroupPanel = False
+        Me.GVSalesDelOrder.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnCombineDel, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn20
         '
@@ -1723,7 +1741,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 2
+        Me.GridColumn21.VisibleIndex = 3
         Me.GridColumn21.Width = 61
         '
         'GridColumn22
@@ -1735,7 +1753,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.OptionsColumn.AllowEdit = False
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 7
+        Me.GridColumn22.VisibleIndex = 8
         Me.GridColumn22.Width = 54
         '
         'GridColumn23
@@ -1752,7 +1770,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.OptionsColumn.AllowEdit = False
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 10
+        Me.GridColumn24.VisibleIndex = 11
         Me.GridColumn24.Width = 54
         '
         'GridColumn25
@@ -1763,7 +1781,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.OptionsColumn.AllowEdit = False
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 3
+        Me.GridColumn25.VisibleIndex = 4
         Me.GridColumn25.Width = 61
         '
         'GridColumnIdSalesDelOrder
@@ -1782,7 +1800,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnWHName.Name = "GridColumnWHName"
         Me.GridColumnWHName.OptionsColumn.AllowEdit = False
         Me.GridColumnWHName.Visible = True
-        Me.GridColumnWHName.VisibleIndex = 1
+        Me.GridColumnWHName.VisibleIndex = 2
         Me.GridColumnWHName.Width = 61
         '
         'GridColumnCategory
@@ -1793,7 +1811,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnCategory.Name = "GridColumnCategory"
         Me.GridColumnCategory.OptionsColumn.AllowEdit = False
         Me.GridColumnCategory.Visible = True
-        Me.GridColumnCategory.VisibleIndex = 4
+        Me.GridColumnCategory.VisibleIndex = 5
         Me.GridColumnCategory.Width = 61
         '
         'GridColumn26
@@ -1805,7 +1823,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.OptionsColumn.AllowEdit = False
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 8
+        Me.GridColumn26.VisibleIndex = 9
         Me.GridColumn26.Width = 54
         '
         'GridColumnUpdBy
@@ -1815,7 +1833,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnUpdBy.Name = "GridColumnUpdBy"
         Me.GridColumnUpdBy.OptionsColumn.AllowEdit = False
         Me.GridColumnUpdBy.Visible = True
-        Me.GridColumnUpdBy.VisibleIndex = 9
+        Me.GridColumnUpdBy.VisibleIndex = 10
         Me.GridColumnUpdBy.Width = 54
         '
         'GridColumnSelect
@@ -1829,7 +1847,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSelect.FieldName = "is_select"
         Me.GridColumnSelect.Name = "GridColumnSelect"
         Me.GridColumnSelect.Visible = True
-        Me.GridColumnSelect.VisibleIndex = 11
+        Me.GridColumnSelect.VisibleIndex = 12
         Me.GridColumnSelect.Width = 60
         '
         'RepositoryItemCheckEdit2
@@ -1853,7 +1871,7 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnTotalDel.OptionsColumn.AllowEdit = False
         Me.GridColumnTotalDel.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:n0}")})
         Me.GridColumnTotalDel.Visible = True
-        Me.GridColumnTotalDel.VisibleIndex = 6
+        Me.GridColumnTotalDel.VisibleIndex = 7
         Me.GridColumnTotalDel.Width = 61
         '
         'GridColumnSORemainign
@@ -1869,8 +1887,16 @@ Partial Class FormSalesOrderSvcLevel
         Me.GridColumnSORemainign.Name = "GridColumnSORemainign"
         Me.GridColumnSORemainign.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_remaining", "{0:N0}")})
         Me.GridColumnSORemainign.Visible = True
-        Me.GridColumnSORemainign.VisibleIndex = 5
+        Me.GridColumnSORemainign.VisibleIndex = 6
         Me.GridColumnSORemainign.Width = 92
+        '
+        'GridColumnCombineDel
+        '
+        Me.GridColumnCombineDel.Caption = "Combined Delivery"
+        Me.GridColumnCombineDel.FieldName = "combine_number"
+        Me.GridColumnCombineDel.Name = "GridColumnCombineDel"
+        Me.GridColumnCombineDel.Visible = True
+        Me.GridColumnCombineDel.VisibleIndex = 1
         '
         'GridView6
         '
@@ -3605,4 +3631,6 @@ Partial Class FormSalesOrderSvcLevel
     Friend WithEvents RepositoryItemTextEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents ViewCombinedDeliveryToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GridColumnCombineDel As DevExpress.XtraGrid.Columns.GridColumn
 End Class

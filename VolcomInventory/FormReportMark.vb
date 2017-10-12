@@ -292,22 +292,22 @@
         ElseIf report_mark_type = "79" Then
             'BOM Approve
             query = String.Format("SELECT id_report_status,'-' as report_number FROM tb_bom_approve WHERE id_bom_approve = '{0}'", id_report)
-        ElseIf report_mark_type = "82"
+        ElseIf report_mark_type = "82" Then
             'PRICE EXCEL
             query = String.Format("SELECT id_report_status,fg_price_number as report_number FROM tb_fg_price WHERE id_fg_price = '{0}'", id_report)
-        ElseIf report_mark_type = "85"
+        ElseIf report_mark_type = "85" Then
             'SAMPLE PL
             query = String.Format("SELECT id_report_status,sample_pl_number as report_number FROM tb_sample_pl WHERE id_sample_pl = '{0}'", id_report)
-        ElseIf report_mark_type = "86"
+        ElseIf report_mark_type = "86" Then
             'PRICE SAMPLE EXCEL
             query = String.Format("SELECT id_report_status,sample_price_number as report_number FROM tb_sample_price WHERE id_sample_price = '{0}'", id_report)
-        ElseIf report_mark_type = "87"
+        ElseIf report_mark_type = "87" Then
             'INVENTORY ALLOCATION
             query = String.Format("SELECT id_report_status, fg_wh_alloc_number as report_number FROM tb_fg_wh_alloc WHERE id_fg_wh_alloc = '{0}'", id_report)
-        ElseIf report_mark_type = "88"
+        ElseIf report_mark_type = "88" Then
             'GENERATE SO
             query = String.Format("SELECT id_report_status, sales_order_gen_reff as report_number FROM tb_sales_order_gen WHERE id_sales_order_gen = '{0}'", id_report)
-        ElseIf report_mark_type = "89"
+        ElseIf report_mark_type = "89" Then
             'Return Internal Sale
             query = String.Format("SELECT id_report_status, sample_pl_ret_number as report_number FROM tb_sample_pl_ret WHERE id_sample_pl_ret = '{0}'", id_report)
         ElseIf report_mark_type = "91" Then
@@ -346,6 +346,9 @@
         ElseIf report_mark_type = "102" Then
             'Leave Propose HRD
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
+        ElseIf report_mark_type = "103" Then
+            'combine ddel
+            query = String.Format("SELECT id_report_status, combine_number as report_number FROM tb_pl_sales_order_del_combine WHERE id_combine = '{0}'", id_report)
         ElseIf report_mark_type = "104" Then
             'Leave Propose For Admin Manager
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
@@ -3418,6 +3421,14 @@
             execute_non_query(query, True, "", "", "", "")
             'FormEmpLeave.load_sum()
             infoCustom("Status changed.")
+        ElseIf report_mark_type = "103" Then
+            'combine del
+            Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+            stt.changeStatusHead(id_report, id_status_reportx)
+            infoCustom("Status changed.")
+
+            FormSalesDelOrderSlip.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormSalesDelOrderSlip.actionLoad()
         ElseIf report_mark_type = "104" Then
             'LEAVE PROPOSE
             If id_status_reportx = "3" Or id_status_reportx = "6" Then

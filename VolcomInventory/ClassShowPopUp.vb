@@ -410,6 +410,12 @@
             FormEmpLeaveDet.report_mark_type = "102"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "103" Then
+            'delivery combine
+            FormSalesDelOrderSlip.action = "upd"
+            FormSalesDelOrderSlip.id_pl_sales_order_del_slip = id_report
+            FormSalesDelOrderSlip.is_view = "1"
+            FormSalesDelOrderSlip.ShowDialog()
         ElseIf report_mark_type = "104" Then
             'propose leave HRD
             FormEmpLeaveDet.id_emp_leave = id_report
@@ -999,6 +1005,12 @@
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
+        ElseIf report_mark_type = "103" Then
+            'combine delivery
+            table_name = "tb_pl_sales_order_del_combine"
+            field_id = "id_combine"
+            field_number = "combine_number"
+            field_date = "combine_date"
         ElseIf report_mark_type = "104" Then
             'Propose leave
             table_name = "tb_emp_leave"
@@ -1302,6 +1314,22 @@
                 Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If datax.Rows.Count > 0 Then
                     info_col = datax.Rows(0)("employee_name").ToString
+                End If
+            ElseIf report_mark_type = "103" Then
+                'combine delivery
+                query = "SELECT CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, 
+                CAST(IFNULL(SUM(delt.pl_sales_order_del_det_qty),0) AS DECIMAL(10,0)) AS `total_qty`
+                FROM tb_pl_sales_order_del del
+                LEFT JOIN tb_pl_sales_order_del_det delt ON delt.id_pl_sales_order_del = del.id_pl_sales_order_del
+                INNER JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = del.id_combine
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = comb.id_store_contact_to
+                INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp 
+                WHERE del.id_combine=" + id_report + "
+                GROUP BY del.id_combine "
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("total_qty").ToString
+                    info_report = datax.Rows(0)("store").ToString
                 End If
             ElseIf report_mark_type = "105" Then
                 'final clearance
