@@ -291,7 +291,7 @@ Partial Class FormViewPRProdWO
         Me.TEDPTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEDPTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEDPTot.Properties.EditValueChangedDelay = 1
-        Me.TEDPTot.Properties.Mask.EditMask = "N2"
+        Me.TEDPTot.Properties.Mask.EditMask = "N4"
         Me.TEDPTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEDPTot.Properties.Mask.SaveLiteral = False
         Me.TEDPTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -355,7 +355,7 @@ Partial Class FormViewPRProdWO
         Me.TEGrossTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEGrossTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEGrossTot.Properties.EditValueChangedDelay = 1
-        Me.TEGrossTot.Properties.Mask.EditMask = "N2"
+        Me.TEGrossTot.Properties.Mask.EditMask = "N4"
         Me.TEGrossTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEGrossTot.Properties.Mask.SaveLiteral = False
         Me.TEGrossTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -386,7 +386,7 @@ Partial Class FormViewPRProdWO
         Me.TETot.Properties.Appearance.Options.UseTextOptions = True
         Me.TETot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TETot.Properties.EditValueChangedDelay = 1
-        Me.TETot.Properties.Mask.EditMask = "N2"
+        Me.TETot.Properties.Mask.EditMask = "N4"
         Me.TETot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TETot.Properties.Mask.SaveLiteral = False
         Me.TETot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -401,7 +401,7 @@ Partial Class FormViewPRProdWO
         Me.TEVatTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEVatTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEVatTot.Properties.EditValueChangedDelay = 1
-        Me.TEVatTot.Properties.Mask.EditMask = "N2"
+        Me.TEVatTot.Properties.Mask.EditMask = "N4"
         Me.TEVatTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEVatTot.Properties.Mask.SaveLiteral = False
         Me.TEVatTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -568,7 +568,7 @@ Partial Class FormViewPRProdWO
         Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPrice.Caption = "Price"
-        Me.ColPrice.DisplayFormat.FormatString = "N2"
+        Me.ColPrice.DisplayFormat.FormatString = "N4"
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "price"
         Me.ColPrice.Name = "ColPrice"
@@ -614,12 +614,12 @@ Partial Class FormViewPRProdWO
         Me.ColTotal.AppearanceHeader.Options.UseTextOptions = True
         Me.ColTotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColTotal.Caption = "Credit"
-        Me.ColTotal.DisplayFormat.FormatString = "N2"
+        Me.ColTotal.DisplayFormat.FormatString = "N4"
         Me.ColTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColTotal.FieldName = "total"
         Me.ColTotal.Name = "ColTotal"
         Me.ColTotal.OptionsColumn.AllowEdit = False
-        Me.ColTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
+        Me.ColTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N4}")})
         Me.ColTotal.Visible = True
         Me.ColTotal.VisibleIndex = 7
         Me.ColTotal.Width = 89
@@ -631,12 +631,12 @@ Partial Class FormViewPRProdWO
         Me.ColDebit.AppearanceHeader.Options.UseTextOptions = True
         Me.ColDebit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColDebit.Caption = "Debit"
-        Me.ColDebit.DisplayFormat.FormatString = "N2"
+        Me.ColDebit.DisplayFormat.FormatString = "N4"
         Me.ColDebit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColDebit.FieldName = "debit"
         Me.ColDebit.Name = "ColDebit"
         Me.ColDebit.OptionsColumn.AllowEdit = False
-        Me.ColDebit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
+        Me.ColDebit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N4}")})
         Me.ColDebit.Visible = True
         Me.ColDebit.VisibleIndex = 6
         Me.ColDebit.Width = 88
