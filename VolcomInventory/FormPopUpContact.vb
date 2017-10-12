@@ -93,7 +93,7 @@
     End Sub
 
     Sub view_company()
-        Dim query As String = "SELECT tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active, tb_m_comp.id_comp_cat, tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group, tb_m_comp.id_wh_type "
+        Dim query As String = "SELECT tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active, tb_m_comp.id_comp_cat, tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group, tb_m_comp.id_wh_type, tb_m_comp.id_drawer_def "
         query += " FROM tb_m_comp INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat "
         query += " INNER JOIN tb_m_comp_group ON tb_m_comp_group.id_comp_group=tb_m_comp.id_comp_group "
         If id_cat <> "-1" Then
@@ -877,6 +877,24 @@
                 FormWHDelEmptyDet.id_wh_del_empty = id
                 FormWHDelEmptyDet.ShowDialog()
             End If
+        ElseIf id_pop_up = "78" Then
+            'WH DEL COMBINE
+            FormSalesDelOrderSlip.id_comp_contact_from = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
+            FormSalesDelOrderSlip.TxtCodeCompFrom.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormSalesDelOrderSlip.TxtNameCompFrom.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
+            FormSalesDelOrderSlip.id_wh_drawer = GVCompany.GetFocusedRowCellValue("id_drawer_def").ToString
+            FormSalesDelOrderSlip.viewSalesDelOrder()
+            FormSalesDelOrderSlip.GCItemList.DataSource = Nothing
+            Close()
+        ElseIf id_pop_up = "79" Then
+            'STORE DEL COMBINE
+            FormSalesDelOrderSlip.id_store_contact_to = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
+            FormSalesDelOrderSlip.TxtCodeCompTo.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormSalesDelOrderSlip.TxtNameCompTo.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
+            FormSalesDelOrderSlip.MEAdrressCompTo.Text = GVCompany.GetFocusedRowCellValue("address_primary").ToString
+            FormSalesDelOrderSlip.viewSalesDelOrder()
+            FormSalesDelOrderSlip.GCItemList.DataSource = Nothing
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub

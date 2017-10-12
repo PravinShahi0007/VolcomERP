@@ -850,4 +850,22 @@
         GVSalesReturnOrder.ActiveFilterString = ""
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub ViewCombinedDeliveryToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewCombinedDeliveryToolStripMenuItem.Click
+        Dim id_combine As String = ""
+        Try
+            id_combine = GVSalesDelOrder.GetFocusedRowCellValue("id_combine").ToString
+        Catch ex As Exception
+        End Try
+        If id_combine <> "" Then
+            Cursor = Cursors.WaitCursor
+            FormSalesDelOrderSlip.is_view = "1"
+            FormSalesDelOrderSlip.action = "upd"
+            FormSalesDelOrderSlip.id_pl_sales_order_del_slip = id_combine
+            FormSalesDelOrderSlip.ShowDialog()
+            Cursor = Cursors.Default
+        Else
+            stopCustom("Combined delivery not found")
+        End If
+    End Sub
 End Class
