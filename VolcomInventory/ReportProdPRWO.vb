@@ -35,9 +35,9 @@ Public Class ReportProdPRWO
         Catch ex As Exception
         End Try
 
-        LDP.Text = dp.ToString("N2")
-        LVatTot.Text = vat.ToString("N2")
-        LGrossTot.Text = gross_tot.ToString("N2")
+        LDP.Text = dp.ToString("N4")
+        LVatTot.Text = vat.ToString("N4")
+        LGrossTot.Text = gross_tot.ToString("N4")
 
         If dp.ToString = "" Or dp = 0 Or dp = 0.0 Then
             total = gross_tot + vat
@@ -45,7 +45,7 @@ Public Class ReportProdPRWO
             total = dp + vat
         End If
 
-        LTot.Text = total.ToString("N2")
+        LTot.Text = total.ToString("N4")
         Try
             LSay.Text = ConvertCurrencyToEnglish(Double.Parse(total.ToString), id_curr)
         Catch ex As Exception
@@ -58,7 +58,7 @@ Public Class ReportProdPRWO
 
         LWONumber.Text = data.Rows(0)("prod_order_wo_number").ToString
         Dim kurs As Decimal = data.Rows(0)("prod_order_wo_kurs")
-        LKurs.Text = kurs.ToString("N2")
+        LKurs.Text = kurs.ToString("N4")
         'LDueDate.Text = view_date_from(data.Rows(0)("prod_order_wo_datex").ToString, (Integer.Parse(data.Rows(0)("prod_order_wo_lead_time").ToString) + Integer.Parse(data.Rows(0)("prod_order_wo_top").ToString)))
     End Sub
     Private Sub GVListPurchase_CustomColumnDisplayText(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVListPurchase.CustomColumnDisplayText
@@ -67,12 +67,12 @@ Public Class ReportProdPRWO
         End If
         If e.Column.FieldName = "total" Then
             If Not e.DisplayText = "" Then
-                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N2")
+                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N4")
             End If
         End If
         If e.Column.FieldName = "debit" Then
             If Not e.DisplayText = "" Then
-                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N2")
+                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N4")
             End If
         End If
     End Sub

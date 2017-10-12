@@ -38,6 +38,12 @@ Partial Public Class ReportProdPRWO
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XrPanel1 = New DevExpress.XtraReports.UI.XRPanel()
+        Me.XrLabel33 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel34 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel35 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel28 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel29 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel32 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel31 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel30 = New DevExpress.XtraReports.UI.XRLabel()
         Me.LAju = New DevExpress.XtraReports.UI.XRLabel()
@@ -95,12 +101,6 @@ Partial Public Class ReportProdPRWO
         Me.LNotex = New DevExpress.XtraReports.UI.XRLabel()
         Me.LGrossTot = New DevExpress.XtraReports.UI.XRLabel()
         Me.LDP = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel28 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel29 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel32 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel33 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel34 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel35 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -209,7 +209,7 @@ Partial Public Class ReportProdPRWO
         Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPrice.Caption = "Price"
-        Me.ColPrice.DisplayFormat.FormatString = "N2"
+        Me.ColPrice.DisplayFormat.FormatString = "N4"
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "price"
         Me.ColPrice.Name = "ColPrice"
@@ -255,12 +255,12 @@ Partial Public Class ReportProdPRWO
         Me.ColTotal.AppearanceHeader.Options.UseTextOptions = True
         Me.ColTotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColTotal.Caption = "Credit"
-        Me.ColTotal.DisplayFormat.FormatString = "N2"
+        Me.ColTotal.DisplayFormat.FormatString = "N4"
         Me.ColTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColTotal.FieldName = "total"
         Me.ColTotal.Name = "ColTotal"
         Me.ColTotal.OptionsColumn.AllowEdit = False
-        Me.ColTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
+        Me.ColTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N4}")})
         Me.ColTotal.Visible = True
         Me.ColTotal.VisibleIndex = 7
         Me.ColTotal.Width = 89
@@ -272,12 +272,12 @@ Partial Public Class ReportProdPRWO
         Me.ColDebit.AppearanceHeader.Options.UseTextOptions = True
         Me.ColDebit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColDebit.Caption = "Debit"
-        Me.ColDebit.DisplayFormat.FormatString = "N2"
+        Me.ColDebit.DisplayFormat.FormatString = "N4"
         Me.ColDebit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColDebit.FieldName = "debit"
         Me.ColDebit.Name = "ColDebit"
         Me.ColDebit.OptionsColumn.AllowEdit = False
-        Me.ColDebit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
+        Me.ColDebit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N4}")})
         Me.ColDebit.Visible = True
         Me.ColDebit.VisibleIndex = 6
         Me.ColDebit.Width = 88
@@ -316,6 +316,66 @@ Partial Public Class ReportProdPRWO
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(649.9999!, 113.25!)
         Me.XrPanel1.StylePriority.UseBorderColor = False
         Me.XrPanel1.StylePriority.UseBorders = False
+        '
+        'XrLabel33
+        '
+        Me.XrLabel33.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(353.1252!, 83.49998!)
+        Me.XrLabel33.Name = "XrLabel33"
+        Me.XrLabel33.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel33.SizeF = New System.Drawing.SizeF(85.41647!, 13.58337!)
+        Me.XrLabel33.StylePriority.UseBorders = False
+        Me.XrLabel33.Text = "Invoice No"
+        '
+        'XrLabel34
+        '
+        Me.XrLabel34.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(438.5418!, 83.50008!)
+        Me.XrLabel34.Name = "XrLabel34"
+        Me.XrLabel34.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel34.SizeF = New System.Drawing.SizeF(11.45837!, 13.58337!)
+        Me.XrLabel34.StylePriority.UseBorders = False
+        Me.XrLabel34.Text = ":"
+        '
+        'XrLabel35
+        '
+        Me.XrLabel35.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel35.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.XrLabel35.LocationFloat = New DevExpress.Utils.PointFloat(450.0002!, 83.50008!)
+        Me.XrLabel35.Name = "XrLabel35"
+        Me.XrLabel35.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel35.SizeF = New System.Drawing.SizeF(189.9998!, 13.58335!)
+        Me.XrLabel35.StylePriority.UseBorders = False
+        Me.XrLabel35.StylePriority.UseFont = False
+        '
+        'XrLabel28
+        '
+        Me.XrLabel28.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(97.83338!, 83.49991!)
+        Me.XrLabel28.Name = "XrLabel28"
+        Me.XrLabel28.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel28.SizeF = New System.Drawing.SizeF(11.45834!, 13.58335!)
+        Me.XrLabel28.StylePriority.UseBorders = False
+        Me.XrLabel28.Text = ":"
+        '
+        'XrLabel29
+        '
+        Me.XrLabel29.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel29.LocationFloat = New DevExpress.Utils.PointFloat(2.000109!, 83.50002!)
+        Me.XrLabel29.Name = "XrLabel29"
+        Me.XrLabel29.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel29.SizeF = New System.Drawing.SizeF(95.83327!, 13.58334!)
+        Me.XrLabel29.StylePriority.UseBorders = False
+        Me.XrLabel29.Text = "Tax Invoice No"
+        '
+        'XrLabel32
+        '
+        Me.XrLabel32.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(109.2917!, 83.49991!)
+        Me.XrLabel32.Name = "XrLabel32"
+        Me.XrLabel32.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel32.SizeF = New System.Drawing.SizeF(219.8719!, 13.58335!)
+        Me.XrLabel32.StylePriority.UseBorders = False
         '
         'XrLabel31
         '
@@ -1000,66 +1060,6 @@ Partial Public Class ReportProdPRWO
         Me.LDP.StylePriority.UseFont = False
         Me.LDP.StylePriority.UseTextAlignment = False
         Me.LDP.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight
-        '
-        'XrLabel28
-        '
-        Me.XrLabel28.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(97.83338!, 83.49991!)
-        Me.XrLabel28.Name = "XrLabel28"
-        Me.XrLabel28.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel28.SizeF = New System.Drawing.SizeF(11.45834!, 13.58335!)
-        Me.XrLabel28.StylePriority.UseBorders = False
-        Me.XrLabel28.Text = ":"
-        '
-        'XrLabel29
-        '
-        Me.XrLabel29.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel29.LocationFloat = New DevExpress.Utils.PointFloat(2.000109!, 83.50002!)
-        Me.XrLabel29.Name = "XrLabel29"
-        Me.XrLabel29.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel29.SizeF = New System.Drawing.SizeF(95.83327!, 13.58334!)
-        Me.XrLabel29.StylePriority.UseBorders = False
-        Me.XrLabel29.Text = "Tax Invoice No"
-        '
-        'XrLabel32
-        '
-        Me.XrLabel32.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(109.2917!, 83.49991!)
-        Me.XrLabel32.Name = "XrLabel32"
-        Me.XrLabel32.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel32.SizeF = New System.Drawing.SizeF(219.8719!, 13.58335!)
-        Me.XrLabel32.StylePriority.UseBorders = False
-        '
-        'XrLabel33
-        '
-        Me.XrLabel33.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(353.1252!, 83.49998!)
-        Me.XrLabel33.Name = "XrLabel33"
-        Me.XrLabel33.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel33.SizeF = New System.Drawing.SizeF(85.41647!, 13.58337!)
-        Me.XrLabel33.StylePriority.UseBorders = False
-        Me.XrLabel33.Text = "Invoice No"
-        '
-        'XrLabel34
-        '
-        Me.XrLabel34.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(438.5418!, 83.50008!)
-        Me.XrLabel34.Name = "XrLabel34"
-        Me.XrLabel34.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel34.SizeF = New System.Drawing.SizeF(11.45837!, 13.58337!)
-        Me.XrLabel34.StylePriority.UseBorders = False
-        Me.XrLabel34.Text = ":"
-        '
-        'XrLabel35
-        '
-        Me.XrLabel35.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel35.Font = New System.Drawing.Font("Times New Roman", 9.75!)
-        Me.XrLabel35.LocationFloat = New DevExpress.Utils.PointFloat(450.0002!, 83.50008!)
-        Me.XrLabel35.Name = "XrLabel35"
-        Me.XrLabel35.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel35.SizeF = New System.Drawing.SizeF(189.9998!, 13.58335!)
-        Me.XrLabel35.StylePriority.UseBorders = False
-        Me.XrLabel35.StylePriority.UseFont = False
         '
         'ReportProdPRWO
         '
