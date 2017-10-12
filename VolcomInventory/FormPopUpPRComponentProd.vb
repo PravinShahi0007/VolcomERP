@@ -12,9 +12,9 @@
         view_mat_pr()
         view_ovh()
         view_dc(LETerm)
-        TEPriceOvh.EditValue = 0.0
-        TEQtyOvh.EditValue = 0.0
-        TEPriceTotOvh.EditValue = 0.0
+        TEPriceOvh.EditValue = 0.0000
+        TEQtyOvh.EditValue = 0.00
+        TEPriceTotOvh.EditValue = 0.0000
         If id_rec <> "-1" Then
             'rec selected
             XTPReceive.PageVisible = True

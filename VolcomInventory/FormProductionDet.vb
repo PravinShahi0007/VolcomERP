@@ -355,7 +355,7 @@
                             j.overhead,
                             wo.prod_order_wo_date,
                             wo.prod_order_wo_lead_time,
-                            wo.`prod_order_wo_top`,
+                            wo.`prod_order_wo_top`,wo.prod_order_wo_vat,
                             cur.`currency`,cur.`id_currency`,
                             DATE_ADD(wo.prod_order_wo_date,INTERVAL wo.prod_order_wo_lead_time DAY) AS prod_order_wo_lead_time_date, 
                             DATE_ADD(wo.prod_order_wo_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY) AS prod_order_wo_top_date 

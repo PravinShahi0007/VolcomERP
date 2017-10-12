@@ -543,7 +543,7 @@ Partial Class FormProductionDet
         Me.XTPBOM.Controls.Add(Me.GCBOM)
         Me.XTPBOM.Controls.Add(Me.PanelControl3)
         Me.XTPBOM.Name = "XTPBOM"
-        Me.XTPBOM.Size = New System.Drawing.Size(943, 253)
+        Me.XTPBOM.Size = New System.Drawing.Size(943, 249)
         Me.XTPBOM.Text = "Bill Of Material"
         '
         'GCBOM
@@ -552,7 +552,7 @@ Partial Class FormProductionDet
         Me.GCBOM.Location = New System.Drawing.Point(0, 0)
         Me.GCBOM.MainView = Me.GVBOM
         Me.GCBOM.Name = "GCBOM"
-        Me.GCBOM.Size = New System.Drawing.Size(943, 195)
+        Me.GCBOM.Size = New System.Drawing.Size(943, 191)
         Me.GCBOM.TabIndex = 3
         Me.GCBOM.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBOM})
         '
@@ -756,7 +756,7 @@ Partial Class FormProductionDet
         Me.PanelControl3.Controls.Add(Me.LabelControl16)
         Me.PanelControl3.Controls.Add(Me.MEBOMNote)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 195)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 191)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(943, 58)
         Me.PanelControl3.TabIndex = 4
@@ -837,7 +837,6 @@ Partial Class FormProductionDet
         Me.XTPListWO.Controls.Add(Me.GCWO)
         Me.XTPListWO.Controls.Add(Me.PanelControl4)
         Me.XTPListWO.Name = "XTPListWO"
-        Me.XTPListWO.PageVisible = False
         Me.XTPListWO.Size = New System.Drawing.Size(943, 249)
         Me.XTPListWO.Text = "Overhead"
         '
@@ -971,7 +970,7 @@ Partial Class FormProductionDet
         Me.GridColumn20.ColumnEdit = Me.RIVat
         Me.GridColumn20.DisplayFormat.FormatString = "N2"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "prod_order_wo_top"
+        Me.GridColumn20.FieldName = "prod_order_wo_vat"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 13

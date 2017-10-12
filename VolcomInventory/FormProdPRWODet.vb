@@ -214,7 +214,7 @@
             gross_tot = tot_credit - tot_debit
             dp = (Decimal.Parse(TEDP.EditValue) / 100) * gross_tot
 
-            TEDPTot.EditValue = Decimal.Parse(dp.ToString("N2"))
+            TEDPTot.EditValue = Decimal.Parse(dp.ToString("N4"))
 
             dp = Decimal.Parse(TEDPTot.EditValue)
             'MsgBox("3-" & dp.ToString)
@@ -253,12 +253,12 @@
         End If
         If e.Column.FieldName = "total" Then
             If Not e.DisplayText = "" Then
-                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N2")
+                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N4")
             End If
         End If
         If e.Column.FieldName = "debit" Then
             If Not e.DisplayText = "" Then
-                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N2")
+                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N4")
             End If
         End If
     End Sub
