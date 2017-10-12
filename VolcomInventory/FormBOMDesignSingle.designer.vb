@@ -750,7 +750,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumnVendPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumnVendPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnVendPrice.Caption = "Price"
-        Me.GridColumnVendPrice.DisplayFormat.FormatString = "N2"
+        Me.GridColumnVendPrice.DisplayFormat.FormatString = "N4"
         Me.GridColumnVendPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnVendPrice.FieldName = "price"
         Me.GridColumnVendPrice.Name = "GridColumnVendPrice"

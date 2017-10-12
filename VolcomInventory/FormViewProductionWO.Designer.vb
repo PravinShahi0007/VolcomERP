@@ -64,6 +64,10 @@ Partial Class FormViewProductionWO
         Me.ColColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.TEBOMDiff = New DevExpress.XtraEditors.TextEdit()
+        Me.LBOMDiff = New DevExpress.XtraEditors.LabelControl()
+        Me.TEBOMUnitPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LBOMUnitPrice = New DevExpress.XtraEditors.LabelControl()
         Me.CheckEditMainVendor = New DevExpress.XtraEditors.CheckEdit()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.DEDateNow = New DevExpress.XtraEditors.DateEdit()
@@ -105,10 +109,6 @@ Partial Class FormViewProductionWO
         Me.TEWONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.EPMatWO = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.TEBOMDiff = New DevExpress.XtraEditors.TextEdit()
-        Me.LBOMDiff = New DevExpress.XtraEditors.LabelControl()
-        Me.TEBOMUnitPrice = New DevExpress.XtraEditors.TextEdit()
-        Me.LBOMUnitPrice = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,6 +133,8 @@ Partial Class FormViewProductionWO
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TEBOMDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEBOMUnitPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckEditMainVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -159,8 +161,6 @@ Partial Class FormViewProductionWO
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPMatWO, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEBOMDiff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEBOMUnitPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -580,7 +580,7 @@ Partial Class FormViewProductionWO
         Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPrice.Caption = "Unit Cost"
-        Me.ColPrice.DisplayFormat.FormatString = "N2"
+        Me.ColPrice.DisplayFormat.FormatString = "N4"
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "estimate_cost"
         Me.ColPrice.Name = "ColPrice"
@@ -706,6 +706,54 @@ Partial Class FormViewProductionWO
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 195)
         Me.GroupGeneralHeader.TabIndex = 57
+        '
+        'TEBOMDiff
+        '
+        Me.TEBOMDiff.EditValue = ""
+        Me.TEBOMDiff.Location = New System.Drawing.Point(706, 159)
+        Me.TEBOMDiff.Name = "TEBOMDiff"
+        Me.TEBOMDiff.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEBOMDiff.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEBOMDiff.Properties.EditValueChangedDelay = 1
+        Me.TEBOMDiff.Properties.Mask.EditMask = "N2"
+        Me.TEBOMDiff.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEBOMDiff.Properties.Mask.SaveLiteral = False
+        Me.TEBOMDiff.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEBOMDiff.Properties.ReadOnly = True
+        Me.TEBOMDiff.Size = New System.Drawing.Size(191, 20)
+        Me.TEBOMDiff.TabIndex = 181
+        '
+        'LBOMDiff
+        '
+        Me.LBOMDiff.Location = New System.Drawing.Point(634, 162)
+        Me.LBOMDiff.Name = "LBOMDiff"
+        Me.LBOMDiff.Size = New System.Drawing.Size(43, 13)
+        Me.LBOMDiff.TabIndex = 180
+        Me.LBOMDiff.Text = "BOM Diff"
+        '
+        'TEBOMUnitPrice
+        '
+        Me.TEBOMUnitPrice.EditValue = ""
+        Me.TEBOMUnitPrice.Location = New System.Drawing.Point(454, 159)
+        Me.TEBOMUnitPrice.Name = "TEBOMUnitPrice"
+        Me.TEBOMUnitPrice.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEBOMUnitPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEBOMUnitPrice.Properties.EditValueChangedDelay = 1
+        Me.TEBOMUnitPrice.Properties.Mask.EditMask = "N2"
+        Me.TEBOMUnitPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEBOMUnitPrice.Properties.Mask.SaveLiteral = False
+        Me.TEBOMUnitPrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEBOMUnitPrice.Properties.ReadOnly = True
+        Me.TEBOMUnitPrice.Size = New System.Drawing.Size(163, 20)
+        Me.TEBOMUnitPrice.TabIndex = 179
+        '
+        'LBOMUnitPrice
+        '
+        Me.LBOMUnitPrice.Location = New System.Drawing.Point(357, 162)
+        Me.LBOMUnitPrice.Name = "LBOMUnitPrice"
+        Me.LBOMUnitPrice.Size = New System.Drawing.Size(70, 13)
+        Me.LBOMUnitPrice.TabIndex = 178
+        Me.LBOMUnitPrice.Text = "BOM Unit Price"
         '
         'CheckEditMainVendor
         '
@@ -1116,54 +1164,6 @@ Partial Class FormViewProductionWO
         '
         Me.EPMatWO.ContainerControl = Me
         '
-        'TEBOMDiff
-        '
-        Me.TEBOMDiff.EditValue = ""
-        Me.TEBOMDiff.Location = New System.Drawing.Point(706, 159)
-        Me.TEBOMDiff.Name = "TEBOMDiff"
-        Me.TEBOMDiff.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEBOMDiff.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEBOMDiff.Properties.EditValueChangedDelay = 1
-        Me.TEBOMDiff.Properties.Mask.EditMask = "N2"
-        Me.TEBOMDiff.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEBOMDiff.Properties.Mask.SaveLiteral = False
-        Me.TEBOMDiff.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEBOMDiff.Properties.ReadOnly = True
-        Me.TEBOMDiff.Size = New System.Drawing.Size(191, 20)
-        Me.TEBOMDiff.TabIndex = 181
-        '
-        'LBOMDiff
-        '
-        Me.LBOMDiff.Location = New System.Drawing.Point(634, 162)
-        Me.LBOMDiff.Name = "LBOMDiff"
-        Me.LBOMDiff.Size = New System.Drawing.Size(43, 13)
-        Me.LBOMDiff.TabIndex = 180
-        Me.LBOMDiff.Text = "BOM Diff"
-        '
-        'TEBOMUnitPrice
-        '
-        Me.TEBOMUnitPrice.EditValue = ""
-        Me.TEBOMUnitPrice.Location = New System.Drawing.Point(454, 159)
-        Me.TEBOMUnitPrice.Name = "TEBOMUnitPrice"
-        Me.TEBOMUnitPrice.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEBOMUnitPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEBOMUnitPrice.Properties.EditValueChangedDelay = 1
-        Me.TEBOMUnitPrice.Properties.Mask.EditMask = "N2"
-        Me.TEBOMUnitPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEBOMUnitPrice.Properties.Mask.SaveLiteral = False
-        Me.TEBOMUnitPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEBOMUnitPrice.Properties.ReadOnly = True
-        Me.TEBOMUnitPrice.Size = New System.Drawing.Size(163, 20)
-        Me.TEBOMUnitPrice.TabIndex = 179
-        '
-        'LBOMUnitPrice
-        '
-        Me.LBOMUnitPrice.Location = New System.Drawing.Point(357, 162)
-        Me.LBOMUnitPrice.Name = "LBOMUnitPrice"
-        Me.LBOMUnitPrice.Size = New System.Drawing.Size(70, 13)
-        Me.LBOMUnitPrice.TabIndex = 178
-        Me.LBOMUnitPrice.Text = "BOM Unit Price"
-        '
         'FormViewProductionWO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1206,6 +1206,8 @@ Partial Class FormViewProductionWO
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TEBOMDiff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEBOMUnitPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckEditMainVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1232,8 +1234,6 @@ Partial Class FormViewProductionWO
         CType(Me.TECompCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPMatWO, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEBOMDiff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEBOMUnitPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

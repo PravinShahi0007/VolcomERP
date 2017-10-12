@@ -203,6 +203,9 @@ Partial Class FormProductionDet
         Me.BDeleteMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BEditMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMRS = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -593,7 +596,7 @@ Partial Class FormProductionDet
         Me.GVBOM.AppearancePrint.HeaderPanel.Options.UseFont = True
         Me.GVBOM.AppearancePrint.HeaderPanel.Options.UseForeColor = True
         Me.GVBOM.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Office2003
-        Me.GVBOM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn18, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.ColTotal, Me.Cat, Me.ColIDCat, Me.GridColumn25, Me.GridColumnUOM, Me.GridColumn26, Me.GridColumnIsCost})
+        Me.GVBOM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn14, Me.GridColumn18, Me.GridColumn22, Me.GridColumn23, Me.GridColumn36, Me.GridColumn35, Me.GridColumn34, Me.GridColumn24, Me.ColTotal, Me.Cat, Me.ColIDCat, Me.GridColumn25, Me.GridColumnUOM, Me.GridColumn26, Me.GridColumnIsCost})
         Me.GVBOM.GridControl = Me.GCBOM
         Me.GVBOM.GroupCount = 1
         Me.GVBOM.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.ColTotal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Custom, "price", Me.GridColumn24, "Sub Total{0}")})
@@ -657,7 +660,7 @@ Partial Class FormProductionDet
         Me.GridColumn23.FieldName = "qty"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 4
+        Me.GridColumn23.VisibleIndex = 7
         Me.GridColumn23.Width = 77
         '
         'GridColumn24
@@ -666,14 +669,14 @@ Partial Class FormProductionDet
         Me.GridColumn24.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn24.Caption = "Cost"
-        Me.GridColumn24.DisplayFormat.FormatString = "N4"
+        Me.GridColumn24.Caption = "Price After Kurs"
+        Me.GridColumn24.DisplayFormat.FormatString = "N2"
         Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn24.FieldName = "price"
+        Me.GridColumn24.FieldName = "unit_price"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "price", "Total")})
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 6
+        Me.GridColumn24.VisibleIndex = 9
         Me.GridColumn24.Width = 160
         '
         'ColTotal
@@ -689,7 +692,7 @@ Partial Class FormProductionDet
         Me.ColTotal.Name = "ColTotal"
         Me.ColTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N4}")})
         Me.ColTotal.Visible = True
-        Me.ColTotal.VisibleIndex = 7
+        Me.ColTotal.VisibleIndex = 10
         Me.ColTotal.Width = 178
         '
         'Cat
@@ -729,7 +732,7 @@ Partial Class FormProductionDet
         Me.GridColumnUOM.FieldName = "uom"
         Me.GridColumnUOM.Name = "GridColumnUOM"
         Me.GridColumnUOM.Visible = True
-        Me.GridColumnUOM.VisibleIndex = 5
+        Me.GridColumnUOM.VisibleIndex = 8
         Me.GridColumnUOM.Width = 69
         '
         'GridColumn26
@@ -989,7 +992,7 @@ Partial Class FormProductionDet
         Me.GridColumn33.FieldName = "id_currency"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 12
+        Me.GridColumn33.VisibleIndex = 8
         '
         'RICECurrency
         '
@@ -1011,7 +1014,7 @@ Partial Class FormProductionDet
         Me.GridColumn31.FieldName = "prod_order_wo_kurs"
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 9
+        Me.GridColumn31.VisibleIndex = 10
         '
         'GridColumn30
         '
@@ -1022,7 +1025,7 @@ Partial Class FormProductionDet
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 8
+        Me.GridColumn30.VisibleIndex = 9
         '
         'GridColumn15
         '
@@ -1033,7 +1036,7 @@ Partial Class FormProductionDet
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 10
+        Me.GridColumn15.VisibleIndex = 11
         '
         'GridColumn21
         '
@@ -1044,7 +1047,7 @@ Partial Class FormProductionDet
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.OptionsColumn.AllowEdit = False
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 11
+        Me.GridColumn21.VisibleIndex = 12
         '
         'GridColumn27
         '
@@ -2072,6 +2075,42 @@ Partial Class FormProductionDet
         Me.BAddMRS.TabIndex = 21
         Me.BAddMRS.Text = "Add"
         '
+        'GridColumn34
+        '
+        Me.GridColumn34.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn34.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn34.Caption = "Kurs"
+        Me.GridColumn34.DisplayFormat.FormatString = "N2"
+        Me.GridColumn34.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn34.FieldName = "kurs"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 6
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn35.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn35.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn35.Caption = "Price"
+        Me.GridColumn35.DisplayFormat.FormatString = "N4"
+        Me.GridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn35.FieldName = "price"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 5
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Currency"
+        Me.GridColumn36.FieldName = "currency"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 4
+        '
         'FormProductionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2349,4 +2388,7 @@ Partial Class FormProductionDet
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BTestWO As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents RIVat As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

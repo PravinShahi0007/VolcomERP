@@ -1951,7 +1951,7 @@ Partial Class FormBOM
         Me.GridColumn53.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn53.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn53.Caption = "Price"
-        Me.GridColumn53.DisplayFormat.FormatString = "N2"
+        Me.GridColumn53.DisplayFormat.FormatString = "N4"
         Me.GridColumn53.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn53.FieldName = "vend_price"
         Me.GridColumn53.Name = "GridColumn53"
