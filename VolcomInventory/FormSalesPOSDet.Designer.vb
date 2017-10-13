@@ -604,7 +604,7 @@ Partial Class FormSalesPOSDet
         'BtnAttachment
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.ImageIndex = 16
+        Me.BtnAttachment.ImageIndex = 15
         Me.BtnAttachment.ImageList = Me.LargeImageCollection
         Me.BtnAttachment.Location = New System.Drawing.Point(624, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
@@ -632,8 +632,7 @@ Partial Class FormSalesPOSDet
         Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
         Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "1417618546_Blue tag.png")
-        Me.LargeImageCollection.Images.SetKeyName(16, "attachment-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
         '
         'BtnPrint
         '
