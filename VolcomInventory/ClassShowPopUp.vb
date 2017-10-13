@@ -445,6 +445,11 @@
             FormViewSalesPOS.id_menu = "3"
             FormViewSalesPOS.id_sales_pos = id_report
             FormViewSalesPOS.ShowDialog()
+        ElseIf report_mark_type = "117" Then
+            'INVOICE MISSING staaff
+            FormViewSalesPOS.id_menu = "4"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1035,6 +1040,18 @@
             field_id = "id_sales_return"
             field_number = "sales_return_number"
             field_date = "sales_return_date"
+        ElseIf report_mark_type = "116" Then
+            'missing promo
+            table_name = "tb_sales_pos"
+            field_id = "id_sales_pos"
+            field_number = "sales_pos_number"
+            field_date = "sales_pos_date"
+        ElseIf report_mark_type = "117" Then
+            'missing staff
+            table_name = "tb_sales_pos"
+            field_id = "id_sales_pos"
+            field_number = "sales_pos_number"
+            field_date = "sales_pos_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
