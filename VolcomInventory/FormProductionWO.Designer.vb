@@ -660,7 +660,7 @@ Partial Class FormProductionWO
         Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPrice.Caption = "Unit Cost"
-        Me.ColPrice.DisplayFormat.FormatString = "N2"
+        Me.ColPrice.DisplayFormat.FormatString = "N4"
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "estimate_cost"
         Me.ColPrice.Name = "ColPrice"
@@ -698,7 +698,7 @@ Partial Class FormProductionWO
         Me.ColSubtotal.FieldName = "total_cost"
         Me.ColSubtotal.Name = "ColSubtotal"
         Me.ColSubtotal.OptionsColumn.AllowEdit = False
-        Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:N2}")})
+        Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_cost", "{0:N4}")})
         Me.ColSubtotal.Visible = True
         Me.ColSubtotal.VisibleIndex = 8
         Me.ColSubtotal.Width = 132

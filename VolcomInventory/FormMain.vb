@@ -1186,6 +1186,7 @@ Public Class FormMain
         ElseIf formName = "FormSalesPOS" Then
             'SALES POS
             FormSalesPOSDet.action = "ins"
+            FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
             FormSalesPOSDet.ShowDialog()
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
@@ -2053,6 +2054,7 @@ Public Class FormMain
                 FormSalesReturnDet.ShowDialog()
             ElseIf formName = "FormSalesPOS" Then
                 'SALES POS
+                FormSalesPOSDet.id_menu = FormSalesPOS.id_menu
                 FormSalesPOSDet.action = "upd"
                 FormSalesPOSDet.id_sales_pos = FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_sales_pos").ToString
                 FormSalesPOSDet.ShowDialog()
@@ -4166,31 +4168,31 @@ Public Class FormMain
                 stopCustom("This data already marked")
             End If
         ElseIf formName = "FormSalesPOS" Then
-            'SALES POS
-            If check_edit_report_status(FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_report_status"), "48", FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_sales_pos")) Then
-                confirm = XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-                If confirm = Windows.Forms.DialogResult.Yes Then
-                    Try
-                        Dim id_sales_pos As String = FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_sales_pos")
+            'SALES POS pakai fitur cancell
+            'If check_edit_report_status(FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_report_status"), "48", FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_sales_pos")) Then
+            '    confirm = XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            '    If confirm = Windows.Forms.DialogResult.Yes Then
+            '        Try
+            '            Dim id_sales_pos As String = FormSalesPOS.GVSalesPOS.GetFocusedRowCellValue("id_sales_pos")
 
-                        'rollback stock
-                        Dim rsv_stock As ClassSalesInv = New ClassSalesInv()
-                        rsv_stock.cancelReservedStock(id_sales_pos, "48")
+            '            'rollback stock
+            '            Dim rsv_stock As ClassSalesInv = New ClassSalesInv()
+            '            rsv_stock.cancelReservedStock(id_sales_pos, "48")
 
-                        'del data
-                        query = String.Format("DELETE FROM tb_sales_pos WHERE id_sales_pos ='{0}'", id_sales_pos)
-                        execute_non_query(query, True, "", "", "", "")
+            '            'del data
+            '            query = String.Format("DELETE FROM tb_sales_pos WHERE id_sales_pos ='{0}'", id_sales_pos)
+            '            execute_non_query(query, True, "", "", "", "")
 
-                        'del mark
-                        delete_all_mark_related("48", id_sales_pos)
-                        FormSalesPOS.viewSalesPOS()
-                    Catch ex As Exception
-                        errorDelete()
-                    End Try
-                End If
-            Else
-                stopCustom("This data already marked")
-            End If
+            '            'del mark
+            '            delete_all_mark_related("48", id_sales_pos)
+            '            FormSalesPOS.viewSalesPOS()
+            '        Catch ex As Exception
+            '            errorDelete()
+            '        End Try
+            '    End If
+            'Else
+            '    stopCustom("This data already marked")
+            'End If
         ElseIf formName = "FormSalesReturnQC" Then
             'SALES RETURN QC
             If check_edit_report_status(FormSalesReturnQC.GVSalesReturnQC.GetFocusedRowCellValue("id_report_status"), "49", FormSalesReturnQC.GVSalesReturnQC.GetFocusedRowCellValue("id_sales_return_qc")) Then
@@ -9056,6 +9058,11 @@ Public Class FormMain
     Private Sub NBSalesPOS_LinkClicked(ByVal sender As System.Object, ByVal e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesPOS.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormSalesPOS.Close()
+            FormSalesPOS.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
             FormSalesPOS.MdiParent = Me
             FormSalesPOS.Show()
             FormSalesPOS.WindowState = FormWindowState.Maximized
@@ -9107,12 +9114,19 @@ Public Class FormMain
     End Sub
 
     Private Sub NBFGMissing_LinkClicked(ByVal sender As System.Object, ByVal e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFGMissing.LinkClicked
+        'missung invoice promo
         Cursor = Cursors.WaitCursor
         Try
-            FormFGMissing.MdiParent = Me
-            FormFGMissing.Show()
-            FormFGMissing.WindowState = FormWindowState.Maximized
-            FormFGMissing.Focus()
+            FormSalesPOS.Close()
+            FormSalesPOS.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesPOS.MdiParent = Me
+            FormSalesPOS.id_menu = "3"
+            FormSalesPOS.Show()
+            FormSalesPOS.WindowState = FormWindowState.Maximized
+            FormSalesPOS.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
@@ -9447,10 +9461,16 @@ Public Class FormMain
     Private Sub NBSalesCreditNote_LinkClicked(ByVal sender As System.Object, ByVal e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesCreditNote.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
-            FormSalesCreditNote.MdiParent = Me
-            FormSalesCreditNote.Show()
-            FormSalesCreditNote.WindowState = FormWindowState.Maximized
-            FormSalesCreditNote.Focus()
+            FormSalesPOS.Close()
+            FormSalesPOS.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesPOS.MdiParent = Me
+            FormSalesPOS.id_menu = "2"
+            FormSalesPOS.Show()
+            FormSalesPOS.WindowState = FormWindowState.Maximized
+            FormSalesPOS.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
@@ -10712,6 +10732,26 @@ Public Class FormMain
             FormProdClosing.Show()
             FormProdClosing.WindowState = FormWindowState.Maximized
             FormProdClosing.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBInvoiceStaff_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBInvoiceStaff.LinkClicked
+        'invoice missing staff
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesPOS.Close()
+            FormSalesPOS.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesPOS.MdiParent = Me
+            FormSalesPOS.id_menu = "4"
+            FormSalesPOS.Show()
+            FormSalesPOS.WindowState = FormWindowState.Maximized
+            FormSalesPOS.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

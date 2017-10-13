@@ -292,22 +292,22 @@
         ElseIf report_mark_type = "79" Then
             'BOM Approve
             query = String.Format("SELECT id_report_status,'-' as report_number FROM tb_bom_approve WHERE id_bom_approve = '{0}'", id_report)
-        ElseIf report_mark_type = "82"
+        ElseIf report_mark_type = "82" Then
             'PRICE EXCEL
             query = String.Format("SELECT id_report_status,fg_price_number as report_number FROM tb_fg_price WHERE id_fg_price = '{0}'", id_report)
-        ElseIf report_mark_type = "85"
+        ElseIf report_mark_type = "85" Then
             'SAMPLE PL
             query = String.Format("SELECT id_report_status,sample_pl_number as report_number FROM tb_sample_pl WHERE id_sample_pl = '{0}'", id_report)
-        ElseIf report_mark_type = "86"
+        ElseIf report_mark_type = "86" Then
             'PRICE SAMPLE EXCEL
             query = String.Format("SELECT id_report_status,sample_price_number as report_number FROM tb_sample_price WHERE id_sample_price = '{0}'", id_report)
-        ElseIf report_mark_type = "87"
+        ElseIf report_mark_type = "87" Then
             'INVENTORY ALLOCATION
             query = String.Format("SELECT id_report_status, fg_wh_alloc_number as report_number FROM tb_fg_wh_alloc WHERE id_fg_wh_alloc = '{0}'", id_report)
-        ElseIf report_mark_type = "88"
+        ElseIf report_mark_type = "88" Then
             'GENERATE SO
             query = String.Format("SELECT id_report_status, sales_order_gen_reff as report_number FROM tb_sales_order_gen WHERE id_sales_order_gen = '{0}'", id_report)
-        ElseIf report_mark_type = "89"
+        ElseIf report_mark_type = "89" Then
             'Return Internal Sale
             query = String.Format("SELECT id_report_status, sample_pl_ret_number as report_number FROM tb_sample_pl_ret WHERE id_sample_pl_ret = '{0}'", id_report)
         ElseIf report_mark_type = "91" Then
@@ -346,6 +346,9 @@
         ElseIf report_mark_type = "102" Then
             'Leave Propose HRD
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
+        ElseIf report_mark_type = "103" Then
+            'combine ddel
+            query = String.Format("SELECT id_report_status, combine_number as report_number FROM tb_pl_sales_order_del_combine WHERE id_combine = '{0}'", id_report)
         ElseIf report_mark_type = "104" Then
             'Leave Propose For Admin Manager
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
@@ -358,6 +361,12 @@
         ElseIf report_mark_type = "111" Then
             'out non inventory
             query = String.Format("SELECT id_report_status, wh_del_empty_number as report_number FROM tb_wh_del_empty WHERE id_wh_del_empty = '{0}'", id_report)
+        ElseIf report_mark_type = "116" Then
+            'missing promo
+            query = String.Format("SELECT id_report_status,sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
+        ElseIf report_mark_type = "117" Then
+            'missing staff
+            query = String.Format("SELECT id_report_status,sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -2096,7 +2105,7 @@
             ElseIf id_status_reportx = "6" Then
                 'completed
                 Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
-                complete_rsv_stock.completeReservedStock(id_report, "48")
+                complete_rsv_stock.completedStock(id_report, "48")
             End If
 
             'update status
@@ -2204,19 +2213,19 @@
                 ElseIf id_status_reportx = "6" Then
                     'completed
                     Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
-                    complete_rsv_stock.completeReservedStock(id_report, "54")
+                    complete_rsv_stock.completedStock(id_report, "54")
                 End If
 
                 query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
                 infoCustom("Status changed.")
 
-                If form_origin = "FormFGMissingDet" Then
-                    FormFGMissingDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormFGMissingDet.check_but()
-                    FormFGMissingDet.actionLoad()
-                    FormFGMissing.viewFGMissing()
-                    FormFGMissing.GVFGMissing.FocusedRowHandle = find_row(FormFGMissing.GVFGMissing, "id_sales_pos", id_report)
+                If form_origin = "FormSalesPOSDet" Then
+                    FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                    FormSalesPOSDet.check_but()
+                    FormSalesPOSDet.actionLoad()
+                    FormSalesPOS.viewSalesPOS()
+                    FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
                 Else
                     'code here
                 End If
@@ -2540,50 +2549,46 @@
             End If
         ElseIf report_mark_type = "66" Then
             'SALES CREDIT NOTE
-            Try
-                If id_status_reportx = "6" Then
-                    'completed
-                    Dim stc_in As ClassSalesInv = New ClassSalesInv()
-                    stc_in.completeInStock(id_report, "66")
-                End If
+            If id_status_reportx = "6" Then
+                'completed
+                Dim stc_in As ClassSalesInv = New ClassSalesInv()
+                stc_in.completeInStock(id_report, "66")
+            End If
 
-                query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
-                execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+            query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
 
-                If form_origin = "FormSalesCreditNoteDet" Then
-                    FormSalesCreditNoteDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormSalesCreditNoteDet.check_but()
-                    FormSalesCreditNoteDet.actionLoad()
-                    FormSalesCreditNote.viewSalesPOS()
-                    FormSalesCreditNote.GVSalesPOS.FocusedRowHandle = find_row(FormSalesCreditNote.GVSalesPOS, "id_sales_pos", id_report)
-                Else
-                    'code here
-                End If
-            Catch ex As Exception
-                errorConnection()
-                Close()
-            End Try
+            If form_origin = "FormSalesPOSDet" Then
+                FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesPOSDet.check_but()
+                FormSalesPOSDet.actionLoad()
+                FormSalesPOS.viewSalesPOS()
+                FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            Else
+                'code here
+            End If
         ElseIf report_mark_type = "67" Then
             'MISSING CREDIT NOTE
-            Try
-                query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
-                execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+            If id_status_reportx = "6" Then
+                'completed
+                Dim stc_in As ClassSalesInv = New ClassSalesInv()
+                stc_in.completeInStock(id_report, "67")
+            End If
 
-                If form_origin = "FormFGMissingCreditNoteStoreDet" Then
-                    FormFGMissingCreditNoteStoreDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormFGMissingCreditNoteStoreDet.check_but()
-                    FormFGMissingCreditNoteStoreDet.actionLoad()
-                    FormFGMissingCreditNote.viewFGMissingStoreCN()
-                    FormFGMissingCreditNote.GVFGMissingCNStore.FocusedRowHandle = find_row(FormFGMissingCreditNote.GVFGMissingCNStore, "id_sales_pos", id_report)
-                Else
-                    'code here
-                End If
-            Catch ex As Exception
-                errorConnection()
-                Close()
-            End Try
+            query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+
+            If form_origin = "FormSalesPOSDet" Then
+                FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesPOSDet.check_but()
+                FormSalesPOSDet.actionLoad()
+                FormSalesPOS.viewSalesPOS()
+                FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            Else
+                'code here
+            End If
         ElseIf report_mark_type = "68" Then
             'CODE REPLACEMENT WH
             'action complete
@@ -2864,7 +2869,7 @@
             ElseIf id_status_reportx = "6" Then
                 'completed
                 Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
-                complete_rsv_stock.completeReservedStock(id_report, "76")
+                complete_rsv_stock.completedStock(id_report, "76")
             End If
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
@@ -3422,6 +3427,14 @@
             execute_non_query(query, True, "", "", "", "")
             'FormEmpLeave.load_sum()
             infoCustom("Status changed.")
+        ElseIf report_mark_type = "103" Then
+            'combine del
+            Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
+            stt.changeStatusHead(id_report, id_status_reportx)
+            infoCustom("Status changed.")
+
+            FormSalesDelOrderSlip.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormSalesDelOrderSlip.actionLoad()
         ElseIf report_mark_type = "104" Then
             'LEAVE PROPOSE
             If id_status_reportx = "3" Or id_status_reportx = "6" Then
@@ -3508,6 +3521,47 @@
                 FormWHDelEmpty.GVDel.FocusedRowHandle = find_row(FormWHDelEmpty.GVDel, "id_wh_del_empty", id_report)
             End If
             Cursor = Cursors.Default
+        ElseIf report_mark_type = "116" Then
+            'Invoice missing promo
+            query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+
+            If form_origin = "FormSalesPOSDet" Then
+                FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesPOSDet.check_but()
+                FormSalesPOSDet.actionLoad()
+                FormSalesPOS.viewSalesPOS()
+                FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            Else
+                'code here
+            End If
+        ElseIf report_mark_type = "117" Then
+            'imvoice missing staff
+            If id_status_reportx = "5" Then
+                'cancelled
+                Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
+                cancel_rsv_stock.cancelReservedStock(id_report, "117")
+            ElseIf id_status_reportx = "6" Then
+                'completed
+                Dim complete_rsv_stock As ClassSalesInv = New ClassSalesInv()
+                complete_rsv_stock.completedStockMissingStaff(id_report, "117")
+            End If
+
+            'update status
+            query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+
+            If form_origin = "FormSalesPOSDet" Then
+                FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesPOSDet.check_but()
+                FormSalesPOSDet.actionLoad()
+                FormSalesPOS.viewSalesPOS()
+                FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            Else
+                'code here
+            End If
         End If
 
         'adding lead time

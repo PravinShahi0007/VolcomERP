@@ -96,6 +96,8 @@ Partial Class FormViewSalesDelOrder
         Me.GVTest = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtOLShopNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCombineNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.XTCDO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,6 +147,7 @@ Partial Class FormViewSalesDelOrder
         CType(Me.GCTest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVTest, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -678,7 +681,7 @@ Partial Class FormViewSalesDelOrder
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(406, 151)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(388, 143)
         Me.PanelControlTopLeft.TabIndex = 10002
         '
         'MEAdrressCompTo
@@ -690,7 +693,7 @@ Partial Class FormViewSalesDelOrder
         Me.MEAdrressCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAdrressCompTo.Properties.Appearance.Options.UseFont = True
         Me.MEAdrressCompTo.Properties.ReadOnly = True
-        Me.MEAdrressCompTo.Size = New System.Drawing.Size(273, 43)
+        Me.MEAdrressCompTo.Size = New System.Drawing.Size(255, 43)
         Me.MEAdrressCompTo.TabIndex = 4444
         '
         'LabelControl1
@@ -726,7 +729,7 @@ Partial Class FormViewSalesDelOrder
         Me.TxtNameCompTo.Properties.Appearance.Options.UseFont = True
         Me.TxtNameCompTo.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompTo.Properties.ReadOnly = True
-        Me.TxtNameCompTo.Size = New System.Drawing.Size(200, 20)
+        Me.TxtNameCompTo.Size = New System.Drawing.Size(182, 20)
         Me.TxtNameCompTo.TabIndex = 8888
         Me.TxtNameCompTo.TabStop = False
         '
@@ -768,7 +771,7 @@ Partial Class FormViewSalesDelOrder
         Me.TxtSalesOrder.Properties.Appearance.Options.UseFont = True
         Me.TxtSalesOrder.Properties.EditValueChangedDelay = 1
         Me.TxtSalesOrder.Properties.ReadOnly = True
-        Me.TxtSalesOrder.Size = New System.Drawing.Size(273, 20)
+        Me.TxtSalesOrder.Size = New System.Drawing.Size(255, 20)
         Me.TxtSalesOrder.TabIndex = 8898
         Me.TxtSalesOrder.TabStop = False
         '
@@ -796,7 +799,7 @@ Partial Class FormViewSalesDelOrder
         Me.TxtNameCompFrom.Properties.Appearance.Options.UseFont = True
         Me.TxtNameCompFrom.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompFrom.Properties.ReadOnly = True
-        Me.TxtNameCompFrom.Size = New System.Drawing.Size(200, 20)
+        Me.TxtNameCompFrom.Size = New System.Drawing.Size(182, 20)
         Me.TxtNameCompFrom.TabIndex = 8897
         Me.TxtNameCompFrom.TabStop = False
         '
@@ -810,7 +813,7 @@ Partial Class FormViewSalesDelOrder
         Me.PanelControlTopMiddle.Controls.Add(Me.LETypeSO)
         Me.PanelControlTopMiddle.Controls.Add(Me.LabelControl6)
         Me.PanelControlTopMiddle.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopMiddle.Location = New System.Drawing.Point(426, 2)
+        Me.PanelControlTopMiddle.Location = New System.Drawing.Point(408, 2)
         Me.PanelControlTopMiddle.Name = "PanelControlTopMiddle"
         Me.PanelControlTopMiddle.Size = New System.Drawing.Size(314, 151)
         Me.PanelControlTopMiddle.TabIndex = 10003
@@ -864,14 +867,16 @@ Partial Class FormViewSalesDelOrder
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl2)
+        Me.PanelControlTopRight.Controls.Add(Me.TxtCombineNumber)
         Me.PanelControlTopRight.Controls.Add(Me.TxtSalesDelOrderNumber)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Controls.Add(Me.DEForm)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(740, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(722, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(206, 151)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(224, 143)
         Me.PanelControlTopRight.TabIndex = 10004
         '
         'TxtSalesDelOrderNumber
@@ -881,7 +886,7 @@ Partial Class FormViewSalesDelOrder
         Me.TxtSalesDelOrderNumber.Name = "TxtSalesDelOrderNumber"
         Me.TxtSalesDelOrderNumber.Properties.EditValueChangedDelay = 1
         Me.TxtSalesDelOrderNumber.Properties.ReadOnly = True
-        Me.TxtSalesDelOrderNumber.Size = New System.Drawing.Size(98, 20)
+        Me.TxtSalesDelOrderNumber.Size = New System.Drawing.Size(110, 20)
         Me.TxtSalesDelOrderNumber.TabIndex = 8
         '
         'LabelControl5
@@ -909,7 +914,7 @@ Partial Class FormViewSalesDelOrder
         Me.DEForm.Name = "DEForm"
         Me.DEForm.Properties.EditValueChangedDelay = 1
         Me.DEForm.Properties.ReadOnly = True
-        Me.DEForm.Size = New System.Drawing.Size(98, 20)
+        Me.DEForm.Size = New System.Drawing.Size(110, 20)
         Me.DEForm.TabIndex = 162
         '
         'XTPOutboundScan
@@ -959,6 +964,24 @@ Partial Class FormViewSalesDelOrder
         Me.TxtOLShopNumber.Properties.ReadOnly = True
         Me.TxtOLShopNumber.Size = New System.Drawing.Size(198, 20)
         Me.TxtOLShopNumber.TabIndex = 8903
+        'TxtCombineNumber
+        '
+        Me.TxtCombineNumber.EditValue = ""
+        Me.TxtCombineNumber.Location = New System.Drawing.Point(95, 62)
+        Me.TxtCombineNumber.Name = "TxtCombineNumber"
+        Me.TxtCombineNumber.Properties.EditValueChangedDelay = 1
+        Me.TxtCombineNumber.Properties.ReadOnly = True
+        Me.TxtCombineNumber.Size = New System.Drawing.Size(110, 20)
+        Me.TxtCombineNumber.TabIndex = 164
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl2.Location = New System.Drawing.Point(8, 65)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(67, 13)
+        Me.LabelControl2.TabIndex = 165
+        Me.LabelControl2.Text = "Combined No."
         '
         'FormViewSalesDelOrder
         '
@@ -1026,6 +1049,7 @@ Partial Class FormViewSalesDelOrder
         CType(Me.GCTest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVTest, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCombineNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1106,4 +1130,6 @@ Partial Class FormViewSalesDelOrder
     Friend WithEvents GridColumnPriceType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtOLShopNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtCombineNumber As DevExpress.XtraEditors.TextEdit
 End Class

@@ -21,7 +21,7 @@ Partial Class FormMatRetInProd
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMatRetInProd))
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollectionOld = New DevExpress.Utils.ImageCollection(Me.components)
         Me.EPRet = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupControlRet = New DevExpress.XtraEditors.GroupControl()
         Me.GCRetDetail = New DevExpress.XtraGrid.GridControl()
@@ -104,7 +104,8 @@ Partial Class FormMatRetInProd
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        CType(Me.LargeImageCollectionOld, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlRet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlRet.SuspendLayout()
@@ -139,15 +140,16 @@ Partial Class FormMatRetInProd
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'LargeImageCollection
+        'LargeImageCollectionOld
         '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollectionOld.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollectionOld.ImageStream = CType(resources.GetObject("LargeImageCollectionOld.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollectionOld.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollectionOld.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollectionOld.Images.SetKeyName(2, "23_24x24.png")
         '
         'EPRet
         '
@@ -165,7 +167,7 @@ Partial Class FormMatRetInProd
         Me.GroupControlRet.Enabled = False
         Me.GroupControlRet.Location = New System.Drawing.Point(0, 127)
         Me.GroupControlRet.Name = "GroupControlRet"
-        Me.GroupControlRet.Size = New System.Drawing.Size(904, 262)
+        Me.GroupControlRet.Size = New System.Drawing.Size(904, 257)
         Me.GroupControlRet.TabIndex = 177
         Me.GroupControlRet.Text = "Return List"
         '
@@ -178,7 +180,7 @@ Partial Class FormMatRetInProd
         Me.GCRetDetail.MainView = Me.GVRetDetail
         Me.GCRetDetail.Name = "GCRetDetail"
         Me.GCRetDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCRetDetail.Size = New System.Drawing.Size(882, 180)
+        Me.GCRetDetail.Size = New System.Drawing.Size(882, 175)
         Me.GCRetDetail.TabIndex = 1
         Me.GCRetDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRetDetail})
         '
@@ -870,7 +872,7 @@ Partial Class FormMatRetInProd
         Me.GroupControl3.Controls.Add(Me.MENote)
         Me.GroupControl3.Controls.Add(Me.LabelControl18)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 389)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 384)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(904, 90)
         Me.GroupControl3.TabIndex = 175
@@ -921,57 +923,89 @@ Partial Class FormMatRetInProd
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Controls.Add(Me.BMark)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 479)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 474)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(904, 33)
+        Me.PanelControl3.Size = New System.Drawing.Size(904, 38)
         Me.PanelControl3.TabIndex = 174
         '
         'BAttach
         '
         Me.BAttach.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAttach.Location = New System.Drawing.Point(589, 2)
+        Me.BAttach.ImageIndex = 16
+        Me.BAttach.ImageList = Me.LargeImageCollection
+        Me.BAttach.Location = New System.Drawing.Point(574, 2)
         Me.BAttach.Name = "BAttach"
-        Me.BAttach.Size = New System.Drawing.Size(88, 29)
+        Me.BAttach.Size = New System.Drawing.Size(103, 34)
         Me.BAttach.TabIndex = 17
         Me.BAttach.Text = "Attachment"
         '
         'BtnPrint
         '
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.ImageIndex = 6
+        Me.BtnPrint.ImageList = Me.LargeImageCollection
         Me.BtnPrint.Location = New System.Drawing.Point(677, 2)
         Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(75, 29)
+        Me.BtnPrint.Size = New System.Drawing.Size(75, 34)
         Me.BtnPrint.TabIndex = 14
         Me.BtnPrint.Text = "Print"
         '
         'BtnCancel
         '
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancel.ImageIndex = 5
+        Me.BtnCancel.ImageList = Me.LargeImageCollection
         Me.BtnCancel.Location = New System.Drawing.Point(752, 2)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 29)
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
         Me.BtnCancel.TabIndex = 15
         Me.BtnCancel.Text = "Cancel"
         '
         'BtnSave
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSave.ImageIndex = 7
+        Me.BtnSave.ImageList = Me.LargeImageCollection
         Me.BtnSave.Location = New System.Drawing.Point(827, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(75, 29)
+        Me.BtnSave.Size = New System.Drawing.Size(75, 34)
         Me.BtnSave.TabIndex = 13
         Me.BtnSave.Text = "Save"
         '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.LargeImageCollection
         Me.BMark.Location = New System.Drawing.Point(2, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 29)
+        Me.BMark.Size = New System.Drawing.Size(75, 34)
         Me.BMark.TabIndex = 16
         Me.BMark.Text = "Mark"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "1417618546_Blue tag.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "attachment-icon.png")
         '
         'FormMatRetInProd
         '
@@ -989,7 +1023,7 @@ Partial Class FormMatRetInProd
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Material Return In Production"
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LargeImageCollectionOld, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPRet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlRet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlRet.ResumeLayout(False)
@@ -1027,10 +1061,11 @@ Partial Class FormMatRetInProd
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Public WithEvents LargeImageCollectionOld As DevExpress.Utils.ImageCollection
     Friend WithEvents EPRet As System.Windows.Forms.ErrorProvider
     Friend WithEvents GroupControlRet As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCRetDetail As DevExpress.XtraGrid.GridControl
@@ -1113,4 +1148,5 @@ Partial Class FormMatRetInProd
     Friend WithEvents TEDesignCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BtnBrowseComp As DevExpress.XtraEditors.SimpleButton
+    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
 End Class

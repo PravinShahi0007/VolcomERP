@@ -21,14 +21,20 @@ Partial Class FormProdPRWODet
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdPRWODet))
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.LargeImageCollectionOld = New DevExpress.Utils.ImageCollection(Me.components)
         Me.EPSamplePR = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.TEInvNo = New DevExpress.XtraEditors.TextEdit()
+        Me.TETaxInvNo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
@@ -74,6 +80,7 @@ Partial Class FormProdPRWODet
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.DEPRDate = New DevExpress.XtraEditors.DateEdit()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.TEAju = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
@@ -97,13 +104,15 @@ Partial Class FormProdPRWODet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEWONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.DEPRDate = New DevExpress.XtraEditors.DateEdit()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LargeImageCollectionOld, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPSamplePR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TETaxInvNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,6 +136,8 @@ Partial Class FormProdPRWODet
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.DEPRDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEPRDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEAju.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,17 +149,15 @@ Partial Class FormProdPRWODet
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEPRDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEPRDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'LargeImageCollection
+        'LargeImageCollectionOld
         '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollectionOld.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollectionOld.ImageStream = CType(resources.GetObject("LargeImageCollectionOld.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollectionOld.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollectionOld.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollectionOld.Images.SetKeyName(2, "23_24x24.png")
         '
         'EPSamplePR
         '
@@ -157,22 +166,59 @@ Partial Class FormProdPRWODet
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.BAttachment)
         Me.GroupControl1.Controls.Add(Me.BMark)
         Me.GroupControl1.Controls.Add(Me.BPrint)
         Me.GroupControl1.Controls.Add(Me.BCancel)
         Me.GroupControl1.Controls.Add(Me.BSave)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 570)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 564)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(909, 34)
+        Me.GroupControl1.Size = New System.Drawing.Size(909, 40)
         Me.GroupControl1.TabIndex = 40
+        '
+        'BAttachment
+        '
+        Me.BAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAttachment.Enabled = False
+        Me.BAttachment.ImageIndex = 14
+        Me.BAttachment.ImageList = Me.LargeImageCollection
+        Me.BAttachment.Location = New System.Drawing.Point(573, 2)
+        Me.BAttachment.Name = "BAttachment"
+        Me.BAttachment.Size = New System.Drawing.Size(109, 36)
+        Me.BAttachment.TabIndex = 5
+        Me.BAttachment.Text = "Attachment"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "10_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "18_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "31_32x32.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "1417618546_Blue tag.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "attachment-icon.png")
         '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BMark.ImageIndex = 4
+        Me.BMark.ImageList = Me.LargeImageCollection
         Me.BMark.Location = New System.Drawing.Point(20, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 30)
+        Me.BMark.Size = New System.Drawing.Size(75, 36)
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Mark"
         '
@@ -180,18 +226,22 @@ Partial Class FormProdPRWODet
         '
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.Enabled = False
+        Me.BPrint.ImageIndex = 6
+        Me.BPrint.ImageList = Me.LargeImageCollection
         Me.BPrint.Location = New System.Drawing.Point(682, 2)
         Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(75, 30)
+        Me.BPrint.Size = New System.Drawing.Size(75, 36)
         Me.BPrint.TabIndex = 3
         Me.BPrint.Text = "Print"
         '
         'BCancel
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.ImageIndex = 5
+        Me.BCancel.ImageList = Me.LargeImageCollection
         Me.BCancel.Location = New System.Drawing.Point(757, 2)
         Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(75, 30)
+        Me.BCancel.Size = New System.Drawing.Size(75, 36)
         Me.BCancel.TabIndex = 2
         Me.BCancel.Text = "Cancel"
         '
@@ -199,15 +249,21 @@ Partial Class FormProdPRWODet
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.Enabled = False
+        Me.BSave.ImageIndex = 7
+        Me.BSave.ImageList = Me.LargeImageCollection
         Me.BSave.Location = New System.Drawing.Point(832, 2)
         Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(75, 30)
+        Me.BSave.Size = New System.Drawing.Size(75, 36)
         Me.BSave.TabIndex = 1
         Me.BSave.Text = "Save"
         '
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.TEInvNo)
+        Me.GroupControl3.Controls.Add(Me.TETaxInvNo)
+        Me.GroupControl3.Controls.Add(Me.LabelControl24)
+        Me.GroupControl3.Controls.Add(Me.LabelControl23)
         Me.GroupControl3.Controls.Add(Me.LabelControl20)
         Me.GroupControl3.Controls.Add(Me.TEKurs)
         Me.GroupControl3.Controls.Add(Me.LabelControl11)
@@ -233,12 +289,46 @@ Partial Class FormProdPRWODet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl3.Location = New System.Drawing.Point(0, 390)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(909, 180)
+        Me.GroupControl3.Size = New System.Drawing.Size(909, 174)
         Me.GroupControl3.TabIndex = 39
+        '
+        'TEInvNo
+        '
+        Me.TEInvNo.EditValue = ""
+        Me.TEInvNo.Location = New System.Drawing.Point(111, 63)
+        Me.TEInvNo.Name = "TEInvNo"
+        Me.TEInvNo.Properties.EditValueChangedDelay = 1
+        Me.TEInvNo.Size = New System.Drawing.Size(314, 20)
+        Me.TEInvNo.TabIndex = 177
+        '
+        'TETaxInvNo
+        '
+        Me.TETaxInvNo.EditValue = ""
+        Me.TETaxInvNo.Location = New System.Drawing.Point(111, 37)
+        Me.TETaxInvNo.Name = "TETaxInvNo"
+        Me.TETaxInvNo.Properties.EditValueChangedDelay = 1
+        Me.TETaxInvNo.Size = New System.Drawing.Size(357, 20)
+        Me.TETaxInvNo.TabIndex = 176
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(29, 66)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(51, 13)
+        Me.LabelControl24.TabIndex = 169
+        Me.LabelControl24.Text = "Invoice No"
+        '
+        'LabelControl23
+        '
+        Me.LabelControl23.Location = New System.Drawing.Point(29, 40)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(72, 13)
+        Me.LabelControl23.TabIndex = 168
+        Me.LabelControl23.Text = "Tax Invoice No"
         '
         'LabelControl20
         '
-        Me.LabelControl20.Location = New System.Drawing.Point(29, 40)
+        Me.LabelControl20.Location = New System.Drawing.Point(241, 14)
         Me.LabelControl20.Name = "LabelControl20"
         Me.LabelControl20.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl20.TabIndex = 167
@@ -246,7 +336,7 @@ Partial Class FormProdPRWODet
         '
         'TEKurs
         '
-        Me.TEKurs.Location = New System.Drawing.Point(93, 37)
+        Me.TEKurs.Location = New System.Drawing.Point(272, 11)
         Me.TEKurs.Name = "TEKurs"
         Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
         Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -256,7 +346,7 @@ Partial Class FormProdPRWODet
         Me.TEKurs.Properties.Mask.SaveLiteral = False
         Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEKurs.Properties.ReadOnly = True
-        Me.TEKurs.Size = New System.Drawing.Size(182, 20)
+        Me.TEKurs.Size = New System.Drawing.Size(196, 20)
         Me.TEKurs.TabIndex = 166
         '
         'LabelControl11
@@ -270,7 +360,7 @@ Partial Class FormProdPRWODet
         'LECurrency
         '
         Me.LECurrency.Enabled = False
-        Me.LECurrency.Location = New System.Drawing.Point(93, 11)
+        Me.LECurrency.Location = New System.Drawing.Point(111, 11)
         Me.LECurrency.Name = "LECurrency"
         Me.LECurrency.Properties.Appearance.Options.UseTextOptions = True
         Me.LECurrency.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -278,7 +368,7 @@ Partial Class FormProdPRWODet
         Me.LECurrency.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_currency", "Id Currency", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("currency", "Currency")})
         Me.LECurrency.Properties.NullText = ""
         Me.LECurrency.Properties.ShowFooter = False
-        Me.LECurrency.Size = New System.Drawing.Size(142, 20)
+        Me.LECurrency.Size = New System.Drawing.Size(124, 20)
         Me.LECurrency.TabIndex = 165
         '
         'LabelControl7
@@ -319,7 +409,7 @@ Partial Class FormProdPRWODet
         Me.TEDPTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEDPTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEDPTot.Properties.EditValueChangedDelay = 1
-        Me.TEDPTot.Properties.Mask.EditMask = "N2"
+        Me.TEDPTot.Properties.Mask.EditMask = "N4"
         Me.TEDPTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEDPTot.Properties.Mask.SaveLiteral = False
         Me.TEDPTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -381,7 +471,7 @@ Partial Class FormProdPRWODet
         Me.TEGrossTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEGrossTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEGrossTot.Properties.EditValueChangedDelay = 1
-        Me.TEGrossTot.Properties.Mask.EditMask = "N2"
+        Me.TEGrossTot.Properties.Mask.EditMask = "N4"
         Me.TEGrossTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEGrossTot.Properties.Mask.SaveLiteral = False
         Me.TEGrossTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -412,7 +502,7 @@ Partial Class FormProdPRWODet
         Me.TETot.Properties.Appearance.Options.UseTextOptions = True
         Me.TETot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TETot.Properties.EditValueChangedDelay = 1
-        Me.TETot.Properties.Mask.EditMask = "N2"
+        Me.TETot.Properties.Mask.EditMask = "N4"
         Me.TETot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TETot.Properties.Mask.SaveLiteral = False
         Me.TETot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -427,7 +517,7 @@ Partial Class FormProdPRWODet
         Me.TEVatTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEVatTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEVatTot.Properties.EditValueChangedDelay = 1
-        Me.TEVatTot.Properties.Mask.EditMask = "N2"
+        Me.TEVatTot.Properties.Mask.EditMask = "N4"
         Me.TEVatTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEVatTot.Properties.Mask.SaveLiteral = False
         Me.TEVatTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -438,7 +528,7 @@ Partial Class FormProdPRWODet
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(93, 90)
+        Me.LEReportStatus.Location = New System.Drawing.Point(111, 90)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -446,7 +536,7 @@ Partial Class FormProdPRWODet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(225, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(207, 20)
         Me.LEReportStatus.TabIndex = 145
         '
         'LabelControl21
@@ -459,10 +549,10 @@ Partial Class FormProdPRWODet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(93, 115)
+        Me.MENote.Location = New System.Drawing.Point(111, 115)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(375, 50)
+        Me.MENote.Size = New System.Drawing.Size(357, 50)
         Me.MENote.TabIndex = 137
         '
         'LabelControl18
@@ -629,7 +719,7 @@ Partial Class FormProdPRWODet
         Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPrice.Caption = "Price"
-        Me.ColPrice.DisplayFormat.FormatString = "N2"
+        Me.ColPrice.DisplayFormat.FormatString = "N4"
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "price"
         Me.ColPrice.Name = "ColPrice"
@@ -675,12 +765,12 @@ Partial Class FormProdPRWODet
         Me.ColTotal.AppearanceHeader.Options.UseTextOptions = True
         Me.ColTotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColTotal.Caption = "Credit"
-        Me.ColTotal.DisplayFormat.FormatString = "N2"
+        Me.ColTotal.DisplayFormat.FormatString = "N4"
         Me.ColTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColTotal.FieldName = "total"
         Me.ColTotal.Name = "ColTotal"
         Me.ColTotal.OptionsColumn.AllowEdit = False
-        Me.ColTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
+        Me.ColTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N4}")})
         Me.ColTotal.Visible = True
         Me.ColTotal.VisibleIndex = 7
         Me.ColTotal.Width = 89
@@ -692,12 +782,12 @@ Partial Class FormProdPRWODet
         Me.ColDebit.AppearanceHeader.Options.UseTextOptions = True
         Me.ColDebit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColDebit.Caption = "Debit"
-        Me.ColDebit.DisplayFormat.FormatString = "N2"
+        Me.ColDebit.DisplayFormat.FormatString = "N4"
         Me.ColDebit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColDebit.FieldName = "debit"
         Me.ColDebit.Name = "ColDebit"
         Me.ColDebit.OptionsColumn.AllowEdit = False
-        Me.ColDebit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
+        Me.ColDebit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N4}")})
         Me.ColDebit.Visible = True
         Me.ColDebit.VisibleIndex = 6
         Me.ColDebit.Width = 88
@@ -748,6 +838,20 @@ Partial Class FormProdPRWODet
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 116)
         Me.GroupGeneralHeader.TabIndex = 37
+        '
+        'DEPRDate
+        '
+        Me.DEPRDate.EditValue = Nothing
+        Me.DEPRDate.Location = New System.Drawing.Point(768, 59)
+        Me.DEPRDate.Name = "DEPRDate"
+        Me.DEPRDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPRDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPRDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEPRDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEPRDate.Properties.Mask.EditMask = ""
+        Me.DEPRDate.Properties.ReadOnly = True
+        Me.DEPRDate.Size = New System.Drawing.Size(131, 20)
+        Me.DEPRDate.TabIndex = 178
         '
         'DEDueDate
         '
@@ -810,9 +914,9 @@ Partial Class FormProdPRWODet
         '
         Me.LabelControl12.Location = New System.Drawing.Point(410, 36)
         Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl12.Size = New System.Drawing.Size(67, 13)
         Me.LabelControl12.TabIndex = 168
-        Me.LabelControl12.Text = "PO Number"
+        Me.LabelControl12.Text = "FGPO Number"
         '
         'BPickWO
         '
@@ -955,20 +1059,6 @@ Partial Class FormProdPRWODet
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "WO Number"
         '
-        'DEPRDate
-        '
-        Me.DEPRDate.EditValue = Nothing
-        Me.DEPRDate.Location = New System.Drawing.Point(768, 59)
-        Me.DEPRDate.Name = "DEPRDate"
-        Me.DEPRDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEPRDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEPRDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEPRDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEPRDate.Properties.Mask.EditMask = ""
-        Me.DEPRDate.Properties.ReadOnly = True
-        Me.DEPRDate.Size = New System.Drawing.Size(131, 20)
-        Me.DEPRDate.TabIndex = 178
-        '
         'FormProdPRWODet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -985,13 +1075,16 @@ Partial Class FormProdPRWODet
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Detail Payment Request"
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LargeImageCollectionOld, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPSamplePR, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TETaxInvNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1016,6 +1109,8 @@ Partial Class FormProdPRWODet
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.DEPRDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEPRDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEAju.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1027,12 +1122,10 @@ Partial Class FormProdPRWODet
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEPRDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEPRDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Public WithEvents LargeImageCollectionOld As DevExpress.Utils.ImageCollection
     Friend WithEvents EPSamplePR As System.Windows.Forms.ErrorProvider
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
@@ -1109,4 +1202,10 @@ Partial Class FormProdPRWODet
     Friend WithEvents TEKurs As DevExpress.XtraEditors.TextEdit
     Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEPRDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents TEInvNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TETaxInvNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
+    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
 End Class

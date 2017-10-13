@@ -35,45 +35,46 @@
             GroupControlRet.Enabled = True
 
             'View data
-            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_name,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
-                query += "a.mat_prod_ret_in_number "
-                query += ",drw.id_wh_drawer,rck.id_wh_rack,loc.id_wh_locator,comp.id_comp "
-                query += "FROM tb_mat_prod_ret_in a "
-                query += "INNER JOIN tb_prod_order h ON a.id_prod_order = h.id_prod_order "
-                query += "INNER JOIN tb_prod_demand_design pd_desg ON pd_desg.id_prod_demand_design = h.id_prod_demand_design "
-                query += "INNER JOIN tb_m_design desg ON desg.id_design = pd_desg.id_design "
-                query += "INNER JOIN tb_m_comp_contact d ON d.id_comp_contact = a.id_comp_contact_from "
-                query += "INNER JOIN tb_m_comp e ON d.id_comp = e.id_comp "
-                query += "INNER JOIN tb_lookup_report_status i ON i.id_report_status = a.id_report_status "
-                query += "LEFT JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = a.id_wh_drawer "
-                query += "LEFT JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack "
-                query += "LEFT JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
-                query += "LEFT JOIN tb_m_comp comp ON comp.id_comp = loc.id_comp "
-                query += "WHERE a.id_mat_prod_ret_in = '" & id_mat_prod_ret_in & "'"
-                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_name,desg.design_code,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, 
+            a.mat_prod_ret_in_number
+            , drw.id_wh_drawer, rck.id_wh_rack, Loc.id_wh_locator, comp.id_comp 
+            From tb_mat_prod_ret_in a 
+            INNER Join tb_prod_order h On a.id_prod_order = h.id_prod_order 
+            INNER JOIN tb_prod_demand_design pd_desg On pd_desg.id_prod_demand_design = h.id_prod_demand_design 
+            INNER Join tb_m_design desg On desg.id_design = pd_desg.id_design 
+            INNER JOIN tb_m_comp_contact d On d.id_comp_contact = a.id_comp_contact_from 
+            INNER Join tb_m_comp e On d.id_comp = e.id_comp 
+            INNER JOIN tb_lookup_report_status i On i.id_report_status = a.id_report_status 
+            Left Join tb_m_wh_drawer drw On drw.id_wh_drawer = a.id_wh_drawer 
+            Left JOIN tb_m_wh_rack rck On rck.id_wh_rack = drw.id_wh_rack 
+            Left Join tb_m_wh_locator loc On loc.id_wh_locator = rck.id_wh_locator 
+            Left JOIN tb_m_comp comp On comp.id_comp = loc.id_comp 
+            WHERE a.id_mat_prod_ret_in = '" & id_mat_prod_ret_in & "'"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-                Try
-                    SLEStorage.EditValue = data.Rows(0)("id_comp").ToString
-                    SLELocator.EditValue = data.Rows(0)("id_wh_locator").ToString
-                    SLERack.EditValue = data.Rows(0)("id_wh_rack").ToString
-                    SLEDrawer.EditValue = data.Rows(0)("id_wh_drawer").ToString
-                Catch ex As Exception
-                End Try
+            Try
+                SLEStorage.EditValue = data.Rows(0)("id_comp").ToString
+                SLELocator.EditValue = data.Rows(0)("id_wh_locator").ToString
+                SLERack.EditValue = data.Rows(0)("id_wh_rack").ToString
+                SLEDrawer.EditValue = data.Rows(0)("id_wh_drawer").ToString
+            Catch ex As Exception
+            End Try
 
             id_prod_order = data.Rows(0)("id_prod_order").ToString
-            'TEWONumber.Text = data.Rows(0)("prod_order_number").ToString
             TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
             id_comp_contact_from = data.Rows(0)("id_comp_contact_from").ToString
-                TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
-                TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
-                MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
-                TEDesign.Text = data.Rows(0)("design_name").ToString
-                Dim start_date_arr() As String = data.Rows(0)("mat_prod_ret_in_date").ToString.Split(" ")
-                DERet.Text = start_date_arr(0).ToString
-                TxtRetOutNumber.Text = data.Rows(0)("mat_prod_ret_in_number").ToString
-                MENote.Text = data.Rows(0)("mat_prod_ret_in_note").ToString
-                LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
-                id_report_status = data.Rows(0)("id_report_status").ToString
+            TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
+            TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
+            MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
+            TEDesign.Text = data.Rows(0)("design_name").ToString
+            TEDesignCode.Text = data.Rows(0)("design_code").ToString
+            Dim start_date_arr() As String = data.Rows(0)("mat_prod_ret_in_date").ToString.Split(" ")
+            DERet.Text = start_date_arr(0).ToString
+            TxtRetOutNumber.Text = data.Rows(0)("mat_prod_ret_in_number").ToString
+            MENote.Text = data.Rows(0)("mat_prod_ret_in_note").ToString
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+            id_report_status = data.Rows(0)("id_report_status").ToString
+
             'Constraint Status
             viewDetailReturn()
             allow_status()

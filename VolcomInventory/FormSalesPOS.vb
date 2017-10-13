@@ -12,6 +12,9 @@
     Public label_type_selected As String = "1"
     Public dt As DataTable
 
+    'menu : 1=invoice 2=credit note
+    Public id_menu As String = "1"
+
     Private Sub FormSalesPOS_Activated(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         check_menu()
@@ -26,6 +29,17 @@
         'Dim query_curr_year As String = "SELECT YEAR(NOW())"
         'current_year = execute_query(query_curr_year, 0, True, "", "", "", "")
 
+        'setting menu
+        If id_menu = "1" Then
+            Text = "Invoice"
+        ElseIf id_menu = "2" Then
+            Text = "Credit Note"
+        ElseIf id_menu = "3" Then
+            Text = "Invoice Missing Promo"
+        ElseIf id_menu = "4" Then
+            Text = "Invoice Missing Staff"
+        End If
+
         'Tab Daily
         viewStore()
         viewOption()
@@ -38,8 +52,17 @@
     Sub viewSalesPOS()
         Try
             Dim query_c As ClassSalesInv = New ClassSalesInv()
-            Dim query As String = query_c.queryMain("AND a.id_memo_type=''1'' AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
-            'Dim query As String = query_c.queryMain("AND a.id_memo_type=''1'' ", "2")
+            Dim query As String = ""
+            If id_menu = "1" Then
+                query = query_c.queryMain("AND (a.id_memo_type=''1'' OR a.id_memo_type=''3'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
+            ElseIf id_menu = "2" Then
+                query = query_c.queryMain("AND (a.id_memo_type=''2'' OR a.id_memo_type=''4'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
+            ElseIf id_menu = "3" Then
+                query = query_c.queryMain("AND (a.id_memo_type=''5'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
+            ElseIf id_menu = "4" Then
+                query = query_c.queryMain("AND (a.id_memo_type=''8'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
+            End If
+
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCSalesPOS.DataSource = data
             dt = data

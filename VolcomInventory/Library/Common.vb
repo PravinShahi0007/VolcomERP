@@ -599,6 +599,7 @@ Module Common
         '30 = rec return repair FG
 
 
+
         Dim header_number_x As String
         header_number_x = ""
 
@@ -668,6 +669,10 @@ Module Common
             header_number_x = combine_header_number(get_opt_sales_field("sales_del_emp_code_head"), Integer.Parse(get_opt_sales_field("sales_del_emp_code_inc")), Integer.Parse(get_opt_sales_field("sales_del_emp_code_digit")))
         ElseIf opt = "32" Then
             header_number_x = combine_header_number(get_opt_sales_field("fg_non_stock_code_head"), Integer.Parse(get_opt_sales_field("fg_non_stock_code_inc")), Integer.Parse(get_opt_sales_field("fg_non_stock_code_digit")))
+        ElseIf opt = "33" Then
+            header_number_x = combine_header_number(get_opt_sales_field("fg_inv_prm_code_head"), Integer.Parse(get_opt_sales_field("fg_inv_prm_code_inc")), Integer.Parse(get_opt_sales_field("fg_inv_prm_code_digit")))
+        ElseIf opt = "34" Then
+            header_number_x = combine_header_number(get_opt_sales_field("fg_inv_staff_code_head"), Integer.Parse(get_opt_sales_field("fg_inv_staff_code_inc")), Integer.Parse(get_opt_sales_field("fg_inv_staff_code_digit")))
         End If
         Return header_number_x
     End Function
@@ -800,6 +805,12 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "32" Then
             query = "UPDATE tb_opt_sales SET fg_non_stock_code_inc  = (tb_opt_sales.fg_non_stock_code_inc +1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "33" Then
+            query = "UPDATE tb_opt_sales SET fg_inv_prm_code_inc  = (tb_opt_sales.fg_inv_prm_code_inc +1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "34" Then
+            query = "UPDATE tb_opt_sales SET fg_inv_staff_code_inc  = (tb_opt_sales.fg_inv_staff_code_inc +1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub

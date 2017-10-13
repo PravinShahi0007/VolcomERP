@@ -269,12 +269,14 @@
             FormViewFGCodeReplaceStore.ShowDialog()
         ElseIf report_mark_type = "66" Then
             'CREDIT NOTE
-            FormViewSalesCreditNote.id_sales_pos = id_report
-            FormViewSalesCreditNote.ShowDialog()
+            FormViewSalesPOS.id_menu = "2"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         ElseIf report_mark_type = "67" Then
             'MISSING CREDIT NOTE
-            FormViewFGMissingCreditNoteStore.id_sales_pos = id_report
-            FormViewFGMissingCreditNoteStore.ShowDialog()
+            FormViewSalesPOS.id_menu = "2"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         ElseIf report_mark_type = "68" Then
             'CODE REPLACEMENT WH
             FormViewFGCodeReplaceWH.id_fg_code_replace_wh = id_report
@@ -408,6 +410,12 @@
             FormEmpLeaveDet.report_mark_type = "102"
             FormEmpLeaveDet.is_view = "1"
             FormEmpLeaveDet.ShowDialog()
+        ElseIf report_mark_type = "103" Then
+            'delivery combine
+            FormSalesDelOrderSlip.action = "upd"
+            FormSalesDelOrderSlip.id_pl_sales_order_del_slip = id_report
+            FormSalesDelOrderSlip.is_view = "1"
+            FormSalesDelOrderSlip.ShowDialog()
         ElseIf report_mark_type = "104" Then
             'propose leave HRD
             FormEmpLeaveDet.id_emp_leave = id_report
@@ -432,6 +440,16 @@
             FormSalesReturnDet.action = "upd"
             FormSalesReturnDet.is_view = "1"
             FormSalesReturnDet.ShowDialog()
+        ElseIf report_mark_type = "116" Then
+            'INVOICE MISSING PROMO
+            FormViewSalesPOS.id_menu = "3"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
+        ElseIf report_mark_type = "117" Then
+            'INVOICE MISSING staaff
+            FormViewSalesPOS.id_menu = "4"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -992,6 +1010,12 @@
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
+        ElseIf report_mark_type = "103" Then
+            'combine delivery
+            table_name = "tb_pl_sales_order_del_combine"
+            field_id = "id_combine"
+            field_number = "combine_number"
+            field_date = "combine_date"
         ElseIf report_mark_type = "104" Then
             'Propose leave
             table_name = "tb_emp_leave"
@@ -1016,6 +1040,18 @@
             field_id = "id_sales_return"
             field_number = "sales_return_number"
             field_date = "sales_return_date"
+        ElseIf report_mark_type = "116" Then
+            'missing promo
+            table_name = "tb_sales_pos"
+            field_id = "id_sales_pos"
+            field_number = "sales_pos_number"
+            field_date = "sales_pos_date"
+        ElseIf report_mark_type = "117" Then
+            'missing staff
+            table_name = "tb_sales_pos"
+            field_id = "id_sales_pos"
+            field_number = "sales_pos_number"
+            field_date = "sales_pos_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1256,6 +1292,22 @@
                     info_report = datax.Rows(0)("store").ToString
                     info_design = datax.Rows(0)("return").ToString
                 End If
+            ElseIf report_mark_type = "50" Then
+                'PR Production
+                query = "SELECT desg.design_code,desg.design_display_name,po.prod_order_number 
+                        FROM tb_pr_prod_order pr
+                        INNER JOIN `tb_prod_order_wo` wo ON wo.id_prod_order_wo=pr.id_prod_order_wo
+                        INNER JOIN tb_prod_order po ON po.id_prod_order=wo.id_prod_order
+                        INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design
+                        INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design  
+                        WHERE pr.id_pr_prod_order='" & id_report & "'"
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = ""
+                    info_report = datax.Rows(0)("prod_order_number").ToString
+                    info_design_code = datax.Rows(0)("design_code").ToString
+                    info_design = datax.Rows(0)("design_display_name").ToString
+                End If
             ElseIf report_mark_type = "57" Then
                 'transfer
                 query = "SELECT 
@@ -1279,6 +1331,22 @@
                 Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
                 If datax.Rows.Count > 0 Then
                     info_col = datax.Rows(0)("employee_name").ToString
+                End If
+            ElseIf report_mark_type = "103" Then
+                'combine delivery
+                query = "SELECT CONCAT(c.comp_number,' - ', c.comp_name) AS `store`, 
+                CAST(IFNULL(SUM(delt.pl_sales_order_del_det_qty),0) AS DECIMAL(10,0)) AS `total_qty`
+                FROM tb_pl_sales_order_del del
+                LEFT JOIN tb_pl_sales_order_del_det delt ON delt.id_pl_sales_order_del = del.id_pl_sales_order_del
+                INNER JOIN tb_pl_sales_order_del_combine comb ON comb.id_combine = del.id_combine
+                INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = comb.id_store_contact_to
+                INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp 
+                WHERE del.id_combine=" + id_report + "
+                GROUP BY del.id_combine "
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("total_qty").ToString
+                    info_report = datax.Rows(0)("store").ToString
                 End If
             ElseIf report_mark_type = "105" Then
                 'final clearance

@@ -19,32 +19,32 @@ Partial Class FormMasterOVHPrcSingle
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterOVHPrcSingle))
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdComp = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCompNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCompName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCompAddress = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCompCat = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.PictureSeason = New DevExpress.XtraEditors.PictureEdit
-        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton
-        Me.TxtPrice = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.TxtPriceName = New DevExpress.XtraEditors.TextEdit
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompAddress = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PictureSeason = New DevExpress.XtraEditors.PictureEdit()
+        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtPriceName = New DevExpress.XtraEditors.TextEdit()
         Me.EPPrice = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdCompContact = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCompContact = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.SLEVendorContact = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdCompContact = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCompContact = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SLEVendorContact = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -140,11 +140,11 @@ Partial Class FormMasterOVHPrcSingle
         Me.TxtPrice.Name = "TxtPrice"
         Me.TxtPrice.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.TxtPrice.Properties.Appearance.Options.UseFont = True
-        Me.TxtPrice.Properties.Mask.EditMask = "N2"
+        Me.TxtPrice.Properties.Mask.EditMask = "N4"
         Me.TxtPrice.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TxtPrice.Properties.Mask.SaveLiteral = False
         Me.TxtPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TxtPrice.Size = New System.Drawing.Size(197, 23)
+        Me.TxtPrice.Size = New System.Drawing.Size(197, 22)
         Me.TxtPrice.TabIndex = 4
         Me.TxtPrice.ToolTip = "Example : 65000"
         Me.TxtPrice.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
@@ -166,7 +166,7 @@ Partial Class FormMasterOVHPrcSingle
         Me.TxtPriceName.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 10.0!)
         Me.TxtPriceName.Properties.Appearance.Options.UseFont = True
         Me.TxtPriceName.Properties.MaxLength = 50
-        Me.TxtPriceName.Size = New System.Drawing.Size(384, 23)
+        Me.TxtPriceName.Size = New System.Drawing.Size(384, 22)
         Me.TxtPriceName.TabIndex = 2
         Me.TxtPriceName.ToolTip = "Example : Price Estimation, Regular, etc. Max : 50 character."
         Me.TxtPriceName.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
@@ -300,7 +300,6 @@ Partial Class FormMasterOVHPrcSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterOVHPrcSingle"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Overhead Price"
