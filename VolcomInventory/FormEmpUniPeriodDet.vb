@@ -178,4 +178,13 @@
         FormImportExcel.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub PrintFormToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PrintFormToolStripMenuItem.Click
+        'print form here
+        If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
+            Cursor = Cursors.WaitCursor
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
 End Class
