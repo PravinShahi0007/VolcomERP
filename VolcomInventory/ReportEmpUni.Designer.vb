@@ -1385,7 +1385,7 @@ Partial Public Class ReportEmpUni
         Me.LabelPeriode.SizeF = New System.Drawing.SizeF(361.4583!, 15.70834!)
         Me.LabelPeriode.StylePriority.UseFont = False
         Me.LabelPeriode.StylePriority.UseTextAlignment = False
-        Me.LabelPeriode.Text = "PERIODE "
+        Me.LabelPeriode.Text = "OKTOBER 2017"
         Me.LabelPeriode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel2

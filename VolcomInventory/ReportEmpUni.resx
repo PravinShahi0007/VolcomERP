@@ -120,7 +120,7 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="XrPictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        R0lGODlhzAArAPcAAP////v7+/Pz8+rq6uHi4uLi4unp6fHx8fn5+cfHx5aWlWZlZUpKSjU1NS4uLjM0
+        R0lGODlhzAArAIcAAP////v7+/Pz8+rq6uHi4uLi4unp6fHx8fn5+cfHx5aWlWZlZUpKSjU1NS4uLjM0
         NERERV5dXYiHiL29vefn5+3t7ZmZmUhHRxAQEAAAAAICAgcHB4B/f9nZ2aOiojIyMQoKCo6Njauqqru7
         u8LCwr6+vqysrIuLi1VVVR4eHhUVFYGBge/v74CAgI+Pj6+vr8/Pz9/f30BAQHBwcL+/v5+fn1BQUGBg
         YNrZ2VdXVyMjI2RkZKioqPf39+Pj46ChoQQEBLi4uCAgICkoKbSztOzr7NTV1by8vP7+/g8PD5GQkPz9
