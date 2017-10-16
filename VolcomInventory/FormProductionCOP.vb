@@ -385,4 +385,13 @@
     Private Sub BSameCost_Click(sender As Object, e As EventArgs) Handles BSameCost.Click
         TEUnitPrice.EditValue = TEUnitCostActual.EditValue
     End Sub
+
+    Private Sub ViewLogToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewLogToolStripMenuItem.Click
+        If GVCostMan.RowCount > 0 Then
+            If GVCostMan.GetFocusedRowCellValue("id_category").ToString = "2" Then
+                FormProductionCOPOVHLog.id_wo = GVCostMan.GetFocusedRowCellValue("id_report").ToString
+                FormProductionCOPOVHLog.ShowDialog()
+            End If
+        End If
+    End Sub
 End Class
