@@ -40,7 +40,7 @@ Partial Class FormEmpUniPeriodDet
         Me.XTPBudget = New DevExpress.XtraTab.XtraTabPage()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PrintFormToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdBudget = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -316,15 +316,15 @@ Partial Class FormEmpUniPeriodDet
         '
         'ContextMenuStrip1
         '
-        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EditToolStripMenuItem})
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrintFormToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(136, 26)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(131, 26)
         '
-        'EditToolStripMenuItem
+        'PrintFormToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(135, 22)
-        Me.EditToolStripMenuItem.Text = "Edit Budget"
+        Me.PrintFormToolStripMenuItem.Name = "PrintFormToolStripMenuItem"
+        Me.PrintFormToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
+        Me.PrintFormToolStripMenuItem.Text = "Print Form"
         '
         'GVDetail
         '
@@ -924,7 +924,6 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents BtnPrintBudget As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCDetail As DevExpress.XtraGrid.GridControl
     Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
-    Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GVDetail As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnIdEmployee As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNik As DevExpress.XtraGrid.Columns.GridColumn
@@ -983,4 +982,5 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnImportExcel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PrintFormToolStripMenuItem As ToolStripMenuItem
 End Class
