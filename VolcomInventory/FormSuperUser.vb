@@ -33,6 +33,19 @@
         'Dim t As ClassDepartement = New ClassDepartement("3")
         't.test()
         'FormFingerPrint.ShowDialog()
+        'Show the report's preview. 
+        'load data
+
+
+        Dim Report As New ReportEmpUni()
+        '
+
+        ' Create a data binding.
+        ' Add the created binding to the binding collection of the lbUnitPrice label.
+        'XrRichText1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", dsNew, "customQuery.employee_name")})
+
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 
     Private Sub BtnDepartement_Click(sender As Object, e As EventArgs) Handles BtnDepartement.Click

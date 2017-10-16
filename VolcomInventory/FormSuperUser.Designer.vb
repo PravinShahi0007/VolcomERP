@@ -168,7 +168,7 @@ Partial Class FormSuperUser
         Me.BMockMark.Name = "BMockMark"
         Me.BMockMark.Size = New System.Drawing.Size(430, 23)
         Me.BMockMark.TabIndex = 18
-        Me.BMockMark.Text = "Mock Mark"
+        Me.BMockMark.Text = "Emulate Mark"
         '
         'FormSuperUser
         '
