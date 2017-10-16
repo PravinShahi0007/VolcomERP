@@ -41,6 +41,10 @@ Partial Class FormViewSalesOrder
         Me.TxtNameCompTo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopMain = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelUni2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelUni1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtUni2 = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtUni1 = New DevExpress.XtraEditors.TextEdit()
         Me.LEStatusSO = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LETypeSO = New DevExpress.XtraEditors.LookUpEdit()
@@ -73,10 +77,8 @@ Partial Class FormViewSalesOrder
         Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSalesOrderDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TxtUni1 = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtUni2 = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelUni1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelUni2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtOLShopNumber = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,6 +99,8 @@ Partial Class FormViewSalesOrder
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopMain.SuspendLayout()
+        CType(Me.TxtUni2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtUni1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEStatusSO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LETypeSO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,8 +113,7 @@ Partial Class FormViewSalesOrder
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtUni1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtUni2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -249,7 +252,7 @@ Partial Class FormViewSalesOrder
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(21, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(374, 121)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(365, 121)
         Me.PanelControlTopLeft.TabIndex = 8896
         '
         'LabelControl9
@@ -285,7 +288,7 @@ Partial Class FormViewSalesOrder
         Me.TxtWHNameTo.Properties.Appearance.Options.UseFont = True
         Me.TxtWHNameTo.Properties.EditValueChangedDelay = 1
         Me.TxtWHNameTo.Properties.ReadOnly = True
-        Me.TxtWHNameTo.Size = New System.Drawing.Size(210, 20)
+        Me.TxtWHNameTo.Size = New System.Drawing.Size(201, 20)
         Me.TxtWHNameTo.TabIndex = 8909
         Me.TxtWHNameTo.TabStop = False
         '
@@ -298,7 +301,7 @@ Partial Class FormViewSalesOrder
         Me.MEAdrressCompTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAdrressCompTo.Properties.Appearance.Options.UseFont = True
         Me.MEAdrressCompTo.Properties.ReadOnly = True
-        Me.MEAdrressCompTo.Size = New System.Drawing.Size(273, 46)
+        Me.MEAdrressCompTo.Size = New System.Drawing.Size(264, 46)
         Me.MEAdrressCompTo.TabIndex = 4444
         '
         'LabelControl1
@@ -334,7 +337,7 @@ Partial Class FormViewSalesOrder
         Me.TxtNameCompTo.Properties.Appearance.Options.UseFont = True
         Me.TxtNameCompTo.Properties.EditValueChangedDelay = 1
         Me.TxtNameCompTo.Properties.ReadOnly = True
-        Me.TxtNameCompTo.Size = New System.Drawing.Size(210, 20)
+        Me.TxtNameCompTo.Size = New System.Drawing.Size(201, 20)
         Me.TxtNameCompTo.TabIndex = 8888
         Me.TxtNameCompTo.TabStop = False
         '
@@ -359,10 +362,52 @@ Partial Class FormViewSalesOrder
         Me.PanelControlTopMain.Controls.Add(Me.LETypeSO)
         Me.PanelControlTopMain.Controls.Add(Me.LabelControl6)
         Me.PanelControlTopMain.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopMain.Location = New System.Drawing.Point(395, 2)
+        Me.PanelControlTopMain.Location = New System.Drawing.Point(386, 2)
         Me.PanelControlTopMain.Name = "PanelControlTopMain"
         Me.PanelControlTopMain.Size = New System.Drawing.Size(273, 121)
         Me.PanelControlTopMain.TabIndex = 8897
+        '
+        'LabelUni2
+        '
+        Me.LabelUni2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelUni2.Location = New System.Drawing.Point(8, 90)
+        Me.LabelUni2.Name = "LabelUni2"
+        Me.LabelUni2.Size = New System.Drawing.Size(27, 13)
+        Me.LabelUni2.TabIndex = 8897
+        Me.LabelUni2.Text = "Name"
+        Me.LabelUni2.Visible = False
+        '
+        'LabelUni1
+        '
+        Me.LabelUni1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelUni1.Location = New System.Drawing.Point(8, 64)
+        Me.LabelUni1.Name = "LabelUni1"
+        Me.LabelUni1.Size = New System.Drawing.Size(17, 13)
+        Me.LabelUni1.TabIndex = 8896
+        Me.LabelUni1.Text = "NIK"
+        Me.LabelUni1.Visible = False
+        '
+        'TxtUni2
+        '
+        Me.TxtUni2.EditValue = ""
+        Me.TxtUni2.Location = New System.Drawing.Point(66, 87)
+        Me.TxtUni2.Name = "TxtUni2"
+        Me.TxtUni2.Properties.EditValueChangedDelay = 1
+        Me.TxtUni2.Properties.ReadOnly = True
+        Me.TxtUni2.Size = New System.Drawing.Size(192, 20)
+        Me.TxtUni2.TabIndex = 8895
+        Me.TxtUni2.Visible = False
+        '
+        'TxtUni1
+        '
+        Me.TxtUni1.EditValue = ""
+        Me.TxtUni1.Location = New System.Drawing.Point(66, 61)
+        Me.TxtUni1.Name = "TxtUni1"
+        Me.TxtUni1.Properties.EditValueChangedDelay = 1
+        Me.TxtUni1.Properties.ReadOnly = True
+        Me.TxtUni1.Size = New System.Drawing.Size(192, 20)
+        Me.TxtUni1.TabIndex = 167
+        Me.TxtUni1.Visible = False
         '
         'LEStatusSO
         '
@@ -411,22 +456,24 @@ Partial Class FormViewSalesOrder
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.TxtOLShopNumber)
         Me.PanelControlTopRight.Controls.Add(Me.TxtReff)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl10)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl2)
         Me.PanelControlTopRight.Controls.Add(Me.TxtSalesOrderNumber)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
         Me.PanelControlTopRight.Controls.Add(Me.DEForm)
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(668, 2)
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(659, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(172, 121)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(181, 121)
         Me.PanelControlTopRight.TabIndex = 8898
         '
         'TxtReff
         '
         Me.TxtReff.EditValue = ""
-        Me.TxtReff.Location = New System.Drawing.Point(73, 35)
+        Me.TxtReff.Location = New System.Drawing.Point(81, 35)
         Me.TxtReff.Name = "TxtReff"
         Me.TxtReff.Properties.EditValueChangedDelay = 1
         Me.TxtReff.Properties.ReadOnly = True
@@ -445,7 +492,7 @@ Partial Class FormViewSalesOrder
         'TxtSalesOrderNumber
         '
         Me.TxtSalesOrderNumber.EditValue = ""
-        Me.TxtSalesOrderNumber.Location = New System.Drawing.Point(73, 61)
+        Me.TxtSalesOrderNumber.Location = New System.Drawing.Point(81, 61)
         Me.TxtSalesOrderNumber.Name = "TxtSalesOrderNumber"
         Me.TxtSalesOrderNumber.Properties.EditValueChangedDelay = 1
         Me.TxtSalesOrderNumber.Properties.ReadOnly = True
@@ -473,7 +520,7 @@ Partial Class FormViewSalesOrder
         'DEForm
         '
         Me.DEForm.EditValue = ""
-        Me.DEForm.Location = New System.Drawing.Point(73, 8)
+        Me.DEForm.Location = New System.Drawing.Point(81, 8)
         Me.DEForm.Name = "DEForm"
         Me.DEForm.Properties.EditValueChangedDelay = 1
         Me.DEForm.Properties.ReadOnly = True
@@ -709,47 +756,24 @@ Partial Class FormViewSalesOrder
         Me.GridColumnIdDesignPrice.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnIdDesignPrice.Width = 80
         '
-        'TxtUni1
+        'LabelControl10
         '
-        Me.TxtUni1.EditValue = ""
-        Me.TxtUni1.Location = New System.Drawing.Point(66, 61)
-        Me.TxtUni1.Name = "TxtUni1"
-        Me.TxtUni1.Properties.EditValueChangedDelay = 1
-        Me.TxtUni1.Properties.ReadOnly = True
-        Me.TxtUni1.Size = New System.Drawing.Size(192, 20)
-        Me.TxtUni1.TabIndex = 167
-        Me.TxtUni1.Visible = False
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(13, 90)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(62, 13)
+        Me.LabelControl10.TabIndex = 8897
+        Me.LabelControl10.Text = "OL Store No."
         '
-        'TxtUni2
+        'TxtOLShopNumber
         '
-        Me.TxtUni2.EditValue = ""
-        Me.TxtUni2.Location = New System.Drawing.Point(66, 87)
-        Me.TxtUni2.Name = "TxtUni2"
-        Me.TxtUni2.Properties.EditValueChangedDelay = 1
-        Me.TxtUni2.Properties.ReadOnly = True
-        Me.TxtUni2.Size = New System.Drawing.Size(192, 20)
-        Me.TxtUni2.TabIndex = 8895
-        Me.TxtUni2.Visible = False
-        '
-        'LabelUni1
-        '
-        Me.LabelUni1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelUni1.Location = New System.Drawing.Point(8, 64)
-        Me.LabelUni1.Name = "LabelUni1"
-        Me.LabelUni1.Size = New System.Drawing.Size(17, 13)
-        Me.LabelUni1.TabIndex = 8896
-        Me.LabelUni1.Text = "NIK"
-        Me.LabelUni1.Visible = False
-        '
-        'LabelUni2
-        '
-        Me.LabelUni2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelUni2.Location = New System.Drawing.Point(8, 90)
-        Me.LabelUni2.Name = "LabelUni2"
-        Me.LabelUni2.Size = New System.Drawing.Size(27, 13)
-        Me.LabelUni2.TabIndex = 8897
-        Me.LabelUni2.Text = "Name"
-        Me.LabelUni2.Visible = False
+        Me.TxtOLShopNumber.EditValue = ""
+        Me.TxtOLShopNumber.Location = New System.Drawing.Point(81, 87)
+        Me.TxtOLShopNumber.Name = "TxtOLShopNumber"
+        Me.TxtOLShopNumber.Properties.EditValueChangedDelay = 1
+        Me.TxtOLShopNumber.Properties.ReadOnly = True
+        Me.TxtOLShopNumber.Size = New System.Drawing.Size(86, 20)
+        Me.TxtOLShopNumber.TabIndex = 8898
         '
         'FormViewSalesOrder
         '
@@ -791,6 +815,8 @@ Partial Class FormViewSalesOrder
         CType(Me.PanelControlTopMain, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopMain.ResumeLayout(False)
         Me.PanelControlTopMain.PerformLayout()
+        CType(Me.TxtUni2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtUni1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEStatusSO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LETypeSO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
@@ -804,8 +830,7 @@ Partial Class FormViewSalesOrder
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtUni1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtUni2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtOLShopNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -867,4 +892,6 @@ Partial Class FormViewSalesOrder
     Friend WithEvents LabelUni1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtUni2 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtUni1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtOLShopNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class
