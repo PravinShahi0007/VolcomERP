@@ -16,7 +16,6 @@
                                 INNER JOIN tb_lookup_currency cur ON cur.id_currency=ovhp.id_currency
                                 INNER JOIN tb_m_uom uom ON uom.id_uom=ovh.id_uom
                                 WHERE ovhp.`id_ovh` = (SELECT id_ovh FROM tb_m_ovh_price WHERE id_ovh_price='" & FormProductionCOPDet.old_id_ovh_price & "')"
-        Console.WriteLine(query)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCOVH.DataSource = data
         If data.Rows.Count > 0 Then
