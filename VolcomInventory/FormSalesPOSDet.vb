@@ -931,7 +931,7 @@ Public Class FormSalesPOSDet
             INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack 
             INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
             query += " LEFT JOIN tb_sales_pos sp ON sp.id_pl_sales_order_del=pldel.id_pl_sales_order_del AND sp.id_report_status !=5 "
-            query += " WHERE pldel.id_report_status='6' AND pldel.pl_sales_order_del_number='" + addSlashes(TEDO.Text) + "' " + so_cat + " "
+            query += " WHERE pldel.id_report_status='6' AND pldel.is_combine='2' AND pldel.pl_sales_order_del_number='" + addSlashes(TEDO.Text) + "' " + so_cat + " "
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
             If data.Rows.Count <= 0 Then
