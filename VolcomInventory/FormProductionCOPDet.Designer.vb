@@ -38,6 +38,9 @@ Partial Class FormProductionCOPDet
         Me.TEVendor = New DevExpress.XtraEditors.TextEdit()
         Me.TEVendorName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.BPickOVH = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.BUploadFile = New DevExpress.XtraEditors.ButtonEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEEcop.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEKurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,6 +51,7 @@ Partial Class FormProductionCOPDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BUploadFile.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -180,7 +184,7 @@ Partial Class FormProductionCOPDet
         Me.TEDesc.Properties.Appearance.Options.UseFont = True
         Me.TEDesc.Properties.EditValueChangedDelay = 1
         Me.TEDesc.Properties.ReadOnly = True
-        Me.TEDesc.Size = New System.Drawing.Size(268, 20)
+        Me.TEDesc.Size = New System.Drawing.Size(266, 20)
         Me.TEDesc.TabIndex = 8915
         Me.TEDesc.TabStop = False
         '
@@ -189,7 +193,7 @@ Partial Class FormProductionCOPDet
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 150)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 172)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
@@ -251,7 +255,7 @@ Partial Class FormProductionCOPDet
         Me.TEVendorName.Properties.Appearance.Options.UseFont = True
         Me.TEVendorName.Properties.EditValueChangedDelay = 1
         Me.TEVendorName.Properties.ReadOnly = True
-        Me.TEVendorName.Size = New System.Drawing.Size(296, 20)
+        Me.TEVendorName.Size = New System.Drawing.Size(262, 20)
         Me.TEVendorName.TabIndex = 8912
         Me.TEVendorName.TabStop = False
         '
@@ -264,11 +268,40 @@ Partial Class FormProductionCOPDet
         Me.LabelControl5.TabIndex = 8919
         Me.LabelControl5.Text = "Type"
         '
+        'BPickOVH
+        '
+        Me.BPickOVH.Location = New System.Drawing.Point(489, 35)
+        Me.BPickOVH.Name = "BPickOVH"
+        Me.BPickOVH.Size = New System.Drawing.Size(28, 23)
+        Me.BPickOVH.TabIndex = 8920
+        Me.BPickOVH.Text = "..."
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(12, 144)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(56, 13)
+        Me.LabelControl6.TabIndex = 8921
+        Me.LabelControl6.Text = "Attachment"
+        '
+        'BUploadFile
+        '
+        Me.BUploadFile.Location = New System.Drawing.Point(85, 141)
+        Me.BUploadFile.Name = "BUploadFile"
+        Me.BUploadFile.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.BUploadFile.Properties.ReadOnly = True
+        Me.BUploadFile.Size = New System.Drawing.Size(432, 20)
+        Me.BUploadFile.TabIndex = 8922
+        '
         'FormProductionCOPDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(529, 188)
+        Me.ClientSize = New System.Drawing.Size(529, 210)
+        Me.Controls.Add(Me.BUploadFile)
+        Me.Controls.Add(Me.LabelControl6)
+        Me.Controls.Add(Me.BPickOVH)
         Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.TEEcop)
@@ -299,6 +332,7 @@ Partial Class FormProductionCOPDet
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEVendorName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BUploadFile.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -321,4 +355,7 @@ Partial Class FormProductionCOPDet
     Friend WithEvents TEVendor As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEVendorName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BPickOVH As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BUploadFile As DevExpress.XtraEditors.ButtonEdit
 End Class

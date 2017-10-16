@@ -143,6 +143,7 @@ Partial Class FormProductionCOP
         Me.BUpdateCOP = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMEditCost = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1657,15 +1658,21 @@ Partial Class FormProductionCOP
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditCost})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditCost, Me.ViewLogToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(122, 26)
+        Me.ViewMenu.Size = New System.Drawing.Size(153, 70)
         '
         'SMEditCost
         '
         Me.SMEditCost.Name = "SMEditCost"
-        Me.SMEditCost.Size = New System.Drawing.Size(121, 22)
-        Me.SMEditCost.Text = "Edit Cost"
+        Me.SMEditCost.Size = New System.Drawing.Size(152, 22)
+        Me.SMEditCost.Text = "Edit"
+        '
+        'ViewLogToolStripMenuItem
+        '
+        Me.ViewLogToolStripMenuItem.Name = "ViewLogToolStripMenuItem"
+        Me.ViewLogToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewLogToolStripMenuItem.Text = "View Log"
         '
         'FormProductionCOP
         '
@@ -1868,4 +1875,5 @@ Partial Class FormProductionCOP
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEUnitCostActual As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BSameCost As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ViewLogToolStripMenuItem As ToolStripMenuItem
 End Class
