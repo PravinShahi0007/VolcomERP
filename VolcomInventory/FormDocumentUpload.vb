@@ -53,6 +53,8 @@
                 open_folder.FileName = "explorer.exe"
                 open_folder.Arguments = "/select,""" & path & GVFileList.GetFocusedRowCellValue("doc_desc").ToString & "_" & GVFileList.GetFocusedRowCellValue("filename").ToString & """"
                 Process.Start(open_folder)
+            Else
+                stopCustom("No Supporting Document !")
             End If
         Catch ex As Exception
         End Try
