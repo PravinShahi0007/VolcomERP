@@ -39,17 +39,11 @@
 
         Dim Report As New ReportEmpUni()
         '
-        Dim id_period As String = "4"
-        Dim query As String = "CALL view_emp_uni_budget(" & id_period & ")"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        '
-        Report.DataSource = data
 
         ' Create a data binding.
         ' Add the created binding to the binding collection of the lbUnitPrice label.
         'XrRichText1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", dsNew, "customQuery.employee_name")})
-        Report.XrLabel1.DataBindings.Add("Text", Nothing, "employee_name")
-        '
+
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
     End Sub

@@ -4271,6 +4271,12 @@
     <Compile Include="ReportEmpUni.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpUniMain.Designer.vb">
+      <DependentUpon>ReportEmpUniMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpUniMain.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpUniOrder.Designer.vb">
       <DependentUpon>ReportEmpUniOrder.vb</DependentUpon>
     </Compile>
@@ -4899,10 +4905,6 @@
     <Compile Include="ReportSampleStockOpname.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ReportTest.Designer.vb">
-      <DependentUpon>ReportTest.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ReportTest.vb" />
     <Compile Include="ReportWHDelEmpty.Designer.vb">
       <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>
     </Compile>
@@ -7443,6 +7445,9 @@
     <EmbeddedResource Include="ReportEmpUni.resx">
       <DependentUpon>ReportEmpUni.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpUniMain.resx">
+      <DependentUpon>ReportEmpUniMain.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUniOrder.resx">
       <DependentUpon>ReportEmpUniOrder.vb</DependentUpon>
     </EmbeddedResource>
@@ -7840,9 +7845,6 @@
     <EmbeddedResource Include="ReportSampleStockOpname.resx">
       <DependentUpon>ReportSampleStockOpname.vb</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ReportTest.resx">
-      <DependentUpon>ReportTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportWHDelEmpty.resx">
       <DependentUpon>ReportWHDelEmpty.vb</DependentUpon>
