@@ -407,7 +407,7 @@
 
                     id_pr_new = execute_query(query, 0, True, "", "", "", "")
                     'insert who prepared
-                    insert_who_prepared("50", id_pr_new, id_user)
+                    submit_who_prepared("50", id_pr_new, id_user)
                     'end insert who prepared
                     '
                     increase_inc_prod("9")
@@ -440,8 +440,16 @@
                         End Try
                     Next
 
+                    Dim act_fil As String = FormProdPRWO.GVMatPR.ActiveFilterString.ToString
+                    Dim act_find As String = FormProdPRWO.GVMatPR.FindFilterText.ToString
+
                     FormProdPRWO.view_pr()
-                    FormProdPRWO.GVMatPR.FocusedRowHandle = find_row(FormProdPRWO.GVMatPR, "id_pr_prod_order", id_pr_new)
+                    FormProdPRWO.check_but()
+
+                    FormProdPRWO.GVMatPR.ActiveFilterString = act_fil
+                    FormProdPRWO.GVMatPR.ApplyFindFilter(act_find)
+
+                    FormProdPRWO.GVMatPR.FocusedRowHandle = find_row_as_is(FormProdPRWO.GVMatPR, "id_pr_prod_order", id_pr_new)
                     Close()
                 Catch ex As Exception
                     errorConnection()
