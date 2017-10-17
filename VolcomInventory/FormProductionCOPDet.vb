@@ -95,7 +95,48 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If Not file_name = "" Then
+        If Not id_ovh_price = old_id_ovh_price Then
+            If Not file_name = "" Then
+                Cursor = Cursors.WaitCursor
+                Dim id_log As String = ""
+                Dim query As String = ""
+                Dim total As Decimal = 0.0
+                'update detail
+                query = "UPDATE tb_prod_order_wo_det SET prod_order_wo_det_price='" & decimalSQL(TEEcop.EditValue.ToString) & "' WHERE id_prod_order_wo='" & id_wo & "'"
+                execute_non_query(query, True, "", "", "", "")
+                'get total
+                query = "SELECT SUM(prod_order_wo_det_qty*prod_order_wo_det_price) AS sub_total FROM tb_prod_order_wo_det
+                    WHERE id_prod_order_wo='" & id_wo & "'
+                    GROUP BY id_prod_order_wo"
+                Dim data_tot As DataTable = execute_query(query, -1, True, "", "", "", "")
+                total = data_tot.Rows(0)("sub_total")
+                'update kurs dan curr
+                query = "UPDATE tb_prod_order_wo SET id_ovh_price='" & id_ovh_price & "',id_currency='" & LECurrency.EditValue.ToString & "',prod_order_wo_kurs='" & decimalSQL(TEKurs.EditValue.ToString) & "',prod_order_wo_amount='" & decimalSQL(total.ToString) & "' WHERE id_prod_order_wo='" & id_wo & "'"
+                execute_non_query(query, True, "", "", "", "")
+                'insert log
+                query = "INSERT INTO tb_prod_order_wo_log(id_wo,old_curr,old_price,old_kurs,new_price,new_curr,new_kurs,id_user,datetime_log,doc_desc,ext,old_id_ovh_price,new_id_ovh_price)
+                VALUES('" & id_wo & "','" & old_curr.ToString & "','" & decimalSQL(old_price.ToString) & "','" & decimalSQL(old_kurs.ToString) & "','" & decimalSQL(TEEcop.EditValue.ToString) & "','" & LECurrency.EditValue.ToString & "','" & decimalSQL(TEKurs.EditValue.ToString) & "','" & id_user & "',NOW(),'" & addSlashes(file_name) & "','" & file_ext & "','" & old_id_ovh_price & "','" & id_ovh_price & "'); SELECT LAST_INSERT_ID(); "
+                id_log = execute_query(query, 0, True, "", "", "", "")
+                '
+                'upload
+                Dim path As String = directory_upload & "ProdCOP" & "\"
+                If Not IO.Directory.Exists(path) Then
+                    System.IO.Directory.CreateDirectory(path)
+                End If
+                My.Computer.Network.UploadFile(file_address, path & id_log & file_ext, "", "", True, 100, True)
+                '
+                FormProductionCOP.view_list_cost(FormProductionCOP.id_design)
+                FormProductionCOP.calculate_cost_management()
+                FormProductionCOP.calculate_man()
+
+                infoCustom("Data updated")
+
+                Cursor = Cursors.Default
+                Close()
+            Else
+                stopCustom("Please attach supporting document for changing vendor !")
+            End If
+        Else
             Cursor = Cursors.WaitCursor
             Dim id_log As String = ""
             Dim query As String = ""
@@ -113,16 +154,9 @@
             query = "UPDATE tb_prod_order_wo SET id_ovh_price='" & id_ovh_price & "',id_currency='" & LECurrency.EditValue.ToString & "',prod_order_wo_kurs='" & decimalSQL(TEKurs.EditValue.ToString) & "',prod_order_wo_amount='" & decimalSQL(total.ToString) & "' WHERE id_prod_order_wo='" & id_wo & "'"
             execute_non_query(query, True, "", "", "", "")
             'insert log
-            query = "INSERT INTO tb_prod_order_wo_log(id_wo,old_curr,old_price,old_kurs,new_price,new_curr,new_kurs,id_user,datetime_log,doc_desc,ext,old_id_ovh_price,new_id_ovh_price)
-                VALUES('" & id_wo & "','" & old_curr.ToString & "','" & decimalSQL(old_price.ToString) & "','" & decimalSQL(old_kurs.ToString) & "','" & decimalSQL(TEEcop.EditValue.ToString) & "','" & LECurrency.EditValue.ToString & "','" & decimalSQL(TEKurs.EditValue.ToString) & "','" & id_user & "',NOW(),'" & addSlashes(file_name) & "','" & file_ext & "','" & old_id_ovh_price & "','" & id_ovh_price & "'); SELECT LAST_INSERT_ID(); "
+            query = "INSERT INTO tb_prod_order_wo_log(id_wo,old_curr,old_price,old_kurs,new_price,new_curr,new_kurs,id_user,datetime_log,old_id_ovh_price,new_id_ovh_price)
+                VALUES('" & id_wo & "','" & old_curr.ToString & "','" & decimalSQL(old_price.ToString) & "','" & decimalSQL(old_kurs.ToString) & "','" & decimalSQL(TEEcop.EditValue.ToString) & "','" & LECurrency.EditValue.ToString & "','" & decimalSQL(TEKurs.EditValue.ToString) & "','" & id_user & "',NOW(),'" & old_id_ovh_price & "','" & id_ovh_price & "'); SELECT LAST_INSERT_ID(); "
             id_log = execute_query(query, 0, True, "", "", "", "")
-            '
-            'upload
-            Dim path As String = directory_upload & "ProdCOP" & "\"
-            If Not IO.Directory.Exists(path) Then
-                System.IO.Directory.CreateDirectory(path)
-            End If
-            My.Computer.Network.UploadFile(file_address, path & id_log & file_ext, "", "", True, 100, True)
             '
             FormProductionCOP.view_list_cost(FormProductionCOP.id_design)
             FormProductionCOP.calculate_cost_management()
@@ -132,8 +166,6 @@
 
             Cursor = Cursors.Default
             Close()
-        Else
-            stopCustom("Please attach supporting document")
         End If
     End Sub
 

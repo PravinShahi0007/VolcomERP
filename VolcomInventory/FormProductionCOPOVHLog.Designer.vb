@@ -162,9 +162,11 @@ Partial Class FormProductionCOPOVHLog
         Me.RICE.CheckStyle = DevExpress.XtraEditors.Controls.CheckStyles.UserDefined
         Me.RICE.ImageIndexChecked = 2
         Me.RICE.ImageIndexGrayed = 2
-        Me.RICE.ImageIndexUnchecked = 2
+        Me.RICE.ImageIndexUnchecked = 4
         Me.RICE.Images = Me.LargeImageCollection
         Me.RICE.Name = "RICE"
+        Me.RICE.ValueChecked = "yes"
+        Me.RICE.ValueUnchecked = "no"
         '
         'LargeImageCollection
         '

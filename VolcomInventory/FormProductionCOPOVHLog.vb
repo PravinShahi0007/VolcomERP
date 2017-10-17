@@ -5,7 +5,10 @@
         load_log()
     End Sub
     Sub load_log()
-        Dim query As String = "SELECT logd.`id_wo_log`,logd.`datetime_log`,logd.`old_kurs`,logd.`old_price`,logd.`new_kurs`,logd.`new_price`,comp_old.`comp_name` AS old_vendor,comp_new.`comp_name` AS new_vendor,cur_old.`currency` AS old_curr,cur_new.`currency` AS new_curr,emp.`employee_name`,CONCAT(id_wo_log,ext) AS filename,logd.`doc_desc` FROM `tb_prod_order_wo_log` logd
+        Dim query As String = "SELECT logd.`id_wo_log`,logd.`datetime_log`,logd.`old_kurs`,logd.`old_price`,logd.`new_kurs`,logd.`new_price`,comp_old.`comp_name` AS old_vendor,comp_new.`comp_name` AS new_vendor,cur_old.`currency` AS old_curr,cur_new.`currency` AS new_curr,emp.`employee_name`
+                                ,CONCAT(logd.id_wo_log,logd.ext) AS filename,logd.`doc_desc`
+                                ,IF(ISNULL(logd.ext),'no','yes') AS is_download
+                                FROM `tb_prod_order_wo_log` logd
                                 LEFT JOIN tb_m_ovh_price ovhp_old ON logd.`old_id_ovh_price`=`ovhp_old`.`id_ovh_price`
                                 LEFT JOIN tb_m_comp_contact cc_old ON cc_old.`id_comp_contact`=ovhp_old.`id_comp_contact`
                                 LEFT JOIN tb_m_comp comp_old ON comp_old.`id_comp`=cc_old.`id_comp`

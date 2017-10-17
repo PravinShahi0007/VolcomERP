@@ -47,10 +47,14 @@ Public Class ReportProductionWO
     End Sub
 
     Private Sub Detail_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles Detail.BeforePrint
-        view_wo()
+
     End Sub
 
     Private Sub TopMargin_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles TopMargin.BeforePrint
+
+    End Sub
+
+    Sub view_top()
         Dim query = "SELECT a.id_report_status,h.report_status,a.id_prod_order,a.id_prod_order_wo,a.id_ovh_price,a.id_payment, "
         query += "g.payment,a.id_currency,a.prod_order_wo_kurs,a.prod_order_wo_note, "
         query += "d.comp_name AS comp_name_to, "
@@ -71,7 +75,7 @@ Public Class ReportProductionWO
         load_po(id_po)
 
         If is_main = "1" Then
-            LTitle.Text = "PURCHASE ORDER"
+            LTitle.Text = "F.G. PURCHASE ORDER"
         Else
             LTitle.Text = "WORK ORDER"
         End If
@@ -133,10 +137,13 @@ Public Class ReportProductionWO
     End Sub
 
     Private Sub ReportMatWO_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles MyBase.BeforePrint
+        view_wo()
+        view_top()
+
         If is_pre = "1" Then
-            pre_load_mark_horz("23", id_prod_wo, "2", "1", XrTable1)
+            pre_load_mark_horz("23", id_prod_wo, LToName.Text, "2", XrTable1)
         Else
-            load_mark_horz("23", id_prod_wo, "2", "1", XrTable1)
+            load_mark_horz("23", id_prod_wo, LToName.Text, "2", XrTable1)
         End If
     End Sub
 
