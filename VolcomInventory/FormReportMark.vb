@@ -2098,6 +2098,10 @@
             End Try
         ElseIf report_mark_type = "48" Then
             'SALES POS
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
                 'cancelled
                 Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
@@ -2205,6 +2209,10 @@
             End Try
         ElseIf report_mark_type = "54" Then
             'FG MISSING
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             Try
                 If id_status_reportx = "5" Then
                     'cancelled
@@ -2549,6 +2557,10 @@
             End If
         ElseIf report_mark_type = "66" Then
             'SALES CREDIT NOTE
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 'completed
                 Dim stc_in As ClassSalesInv = New ClassSalesInv()
@@ -2570,6 +2582,10 @@
             End If
         ElseIf report_mark_type = "67" Then
             'MISSING CREDIT NOTE
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 'completed
                 Dim stc_in As ClassSalesInv = New ClassSalesInv()
@@ -3523,6 +3539,10 @@
             Cursor = Cursors.Default
         ElseIf report_mark_type = "116" Then
             'Invoice missing promo
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             infoCustom("Status changed.")
@@ -3538,6 +3558,10 @@
             End If
         ElseIf report_mark_type = "117" Then
             'imvoice missing staff
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
                 'cancelled
                 Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
