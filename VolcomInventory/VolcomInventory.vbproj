@@ -100,6 +100,7 @@
     <Reference Include="DevExpress.BonusSkins.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Charts.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Mvvm.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Printing.v15.1.Core, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -1204,6 +1205,12 @@
     <Compile Include="FormPopUpInvoiceMissing.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormPopUpOVH.Designer.vb">
+      <DependentUpon>FormPopUpOVH.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPopUpOVH.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormPopUpSalesDel.designer.vb">
       <DependentUpon>FormPopUpSalesDel.vb</DependentUpon>
     </Compile>
@@ -1268,6 +1275,12 @@
       <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProductionCOPDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProductionCOPOVHLog.Designer.vb">
+      <DependentUpon>FormProductionCOPOVHLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProductionCOPOVHLog.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionFinalClear.Designer.vb">
@@ -4264,6 +4277,18 @@
     <Compile Include="ReportEmpLeaveStock.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportEmpUni.Designer.vb">
+      <DependentUpon>ReportEmpUni.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpUni.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportEmpUniMain.Designer.vb">
+      <DependentUpon>ReportEmpUniMain.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportEmpUniMain.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpUniOrder.Designer.vb">
       <DependentUpon>ReportEmpUniOrder.vb</DependentUpon>
     </Compile>
@@ -5478,6 +5503,9 @@
       <DependentUpon>FormPopUpInvoiceMissing.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormPopUpOVH.resx">
+      <DependentUpon>FormPopUpOVH.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormPopUpSalesDel.resx">
       <DependentUpon>FormPopUpSalesDel.vb</DependentUpon>
     </EmbeddedResource>
@@ -5510,6 +5538,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionCOPDet.resx">
       <DependentUpon>FormProductionCOPDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProductionCOPOVHLog.resx">
+      <DependentUpon>FormProductionCOPOVHLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionFinalClear.resx">
       <DependentUpon>FormProductionFinalClear.vb</DependentUpon>
@@ -7428,6 +7459,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpLeaveStock.resx">
       <DependentUpon>ReportEmpLeaveStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpUni.resx">
+      <DependentUpon>ReportEmpUni.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportEmpUniMain.resx">
+      <DependentUpon>ReportEmpUniMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpUniOrder.resx">
       <DependentUpon>ReportEmpUniOrder.vb</DependentUpon>

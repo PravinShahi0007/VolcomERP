@@ -358,8 +358,9 @@
                             wo.prod_order_wo_lead_time,
                             wo.`prod_order_wo_top`,wo.prod_order_wo_vat,
                             cur.`currency`,cur.`id_currency`,
-                            DATE_ADD(wo.prod_order_wo_date,INTERVAL wo.prod_order_wo_lead_time DAY) AS prod_order_wo_lead_time_date, 
-                            DATE_ADD(wo.prod_order_wo_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY) AS prod_order_wo_top_date 
+                            wo.prod_order_wo_del_date,
+                            DATE_ADD(wo.prod_order_wo_del_date,INTERVAL wo.prod_order_wo_lead_time DAY) AS prod_order_wo_lead_time_date, 
+                            DATE_ADD(wo.prod_order_wo_del_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY) AS prod_order_wo_top_date 
                             ,wod.price,wo.prod_order_wo_kurs,(wod.price*wo.`prod_order_wo_kurs`) AS act_price,((SELECT act_price)*wod.qty) AS act_amount
                             FROM tb_prod_order_wo wo 
                             LEFT JOIN 
@@ -390,6 +391,7 @@
         FormProductionWO.id_po = id_prod_order
         FormProductionWO.ShowDialog()
     End Sub
+
     Private Sub Bdel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Bdel.Click
         Dim confirm As DialogResult
         Dim query As String
@@ -455,6 +457,7 @@
             '
         End Try
     End Sub
+
     '================ view MRS ====================
     Sub view_mrs()
         Dim query = "SELECT a.id_prod_order_mrs,a.prod_order_mrs_number,a.id_report_status,h.report_status,a.id_prod_order_wo,b.prod_order_wo_number, "
@@ -474,6 +477,7 @@
 
         show_but_mrs()
     End Sub
+
     Sub show_but_mrs()
         If GVMRS.RowCount > 0 Then
             BEditMRS.Visible = True
@@ -627,11 +631,5 @@
         Catch ex As Exception
             '
         End Try
-    End Sub
-
-    Private Sub BTestWO_Click(sender As Object, e As EventArgs) Handles BTestWO.Click
-        For i As Integer = 0 To GVWO.RowCount - 1
-
-        Next
     End Sub
 End Class

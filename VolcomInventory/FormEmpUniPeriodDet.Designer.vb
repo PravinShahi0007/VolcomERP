@@ -54,6 +54,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrintForm = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrintBudget = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
@@ -148,14 +149,14 @@ Partial Class FormEmpUniPeriodDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(793, 105)
+        Me.GroupControl1.Size = New System.Drawing.Size(1011, 105)
         Me.GroupControl1.TabIndex = 0
         '
         'PanelControl5
         '
         Me.PanelControl5.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl5.Location = New System.Drawing.Point(577, 2)
+        Me.PanelControl5.Location = New System.Drawing.Point(795, 2)
         Me.PanelControl5.Name = "PanelControl5"
         Me.PanelControl5.Size = New System.Drawing.Size(214, 101)
         Me.PanelControl5.TabIndex = 8
@@ -260,14 +261,14 @@ Partial Class FormEmpUniPeriodDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 411)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(793, 40)
+        Me.PanelControl1.Size = New System.Drawing.Size(1011, 40)
         Me.PanelControl1.TabIndex = 1
         '
         'BtnClose
         '
         Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
-        Me.BtnClose.Location = New System.Drawing.Point(586, 2)
+        Me.BtnClose.Location = New System.Drawing.Point(804, 2)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(86, 36)
         Me.BtnClose.TabIndex = 1
@@ -277,7 +278,7 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.Image = CType(resources.GetObject("BtnSave.Image"), System.Drawing.Image)
-        Me.BtnSave.Location = New System.Drawing.Point(672, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(890, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(119, 36)
         Me.BtnSave.TabIndex = 0
@@ -291,7 +292,7 @@ Partial Class FormEmpUniPeriodDet
         Me.XTCUni.Location = New System.Drawing.Point(0, 105)
         Me.XTCUni.Name = "XTCUni"
         Me.XTCUni.SelectedTabPage = Me.XTPBudget
-        Me.XTCUni.Size = New System.Drawing.Size(793, 306)
+        Me.XTCUni.Size = New System.Drawing.Size(1011, 306)
         Me.XTCUni.TabIndex = 2
         Me.XTCUni.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget, Me.XTPDesign, Me.XTPOrder})
         '
@@ -300,7 +301,7 @@ Partial Class FormEmpUniPeriodDet
         Me.XTPBudget.Controls.Add(Me.GCDetail)
         Me.XTPBudget.Controls.Add(Me.PanelControl2)
         Me.XTPBudget.Name = "XTPBudget"
-        Me.XTPBudget.Size = New System.Drawing.Size(764, 300)
+        Me.XTPBudget.Size = New System.Drawing.Size(982, 300)
         Me.XTPBudget.Text = "Detail && Budget"
         '
         'GCDetail
@@ -310,7 +311,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GCDetail.Location = New System.Drawing.Point(0, 37)
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
-        Me.GCDetail.Size = New System.Drawing.Size(764, 263)
+        Me.GCDetail.Size = New System.Drawing.Size(982, 263)
         Me.GCDetail.TabIndex = 1
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
@@ -439,6 +440,7 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.PanelControl2.Controls.Add(Me.BtnImportExcel)
+        Me.PanelControl2.Controls.Add(Me.BtnPrintForm)
         Me.PanelControl2.Controls.Add(Me.LabelControl5)
         Me.PanelControl2.Controls.Add(Me.BtnPrintBudget)
         Me.PanelControl2.Controls.Add(Me.TxtTolerance)
@@ -448,14 +450,24 @@ Partial Class FormEmpUniPeriodDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(764, 37)
+        Me.PanelControl2.Size = New System.Drawing.Size(982, 37)
         Me.PanelControl2.TabIndex = 0
+        '
+        'BtnPrintForm
+        '
+        Me.BtnPrintForm.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrintForm.Image = CType(resources.GetObject("BtnPrintForm.Image"), System.Drawing.Image)
+        Me.BtnPrintForm.Location = New System.Drawing.Point(436, 0)
+        Me.BtnPrintForm.Name = "BtnPrintForm"
+        Me.BtnPrintForm.Size = New System.Drawing.Size(110, 37)
+        Me.BtnPrintForm.TabIndex = 10
+        Me.BtnPrintForm.Text = "Print Form"
         '
         'BtnImportExcel
         '
         Me.BtnImportExcel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnImportExcel.Image = CType(resources.GetObject("BtnImportExcel.Image"), System.Drawing.Image)
-        Me.BtnImportExcel.Location = New System.Drawing.Point(218, 0)
+        Me.BtnImportExcel.Location = New System.Drawing.Point(326, 0)
         Me.BtnImportExcel.Name = "BtnImportExcel"
         Me.BtnImportExcel.Size = New System.Drawing.Size(110, 37)
         Me.BtnImportExcel.TabIndex = 9
@@ -465,17 +477,17 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.BtnPrintBudget.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrintBudget.Image = CType(resources.GetObject("BtnPrintBudget.Image"), System.Drawing.Image)
-        Me.BtnPrintBudget.Location = New System.Drawing.Point(328, 0)
+        Me.BtnPrintBudget.Location = New System.Drawing.Point(546, 0)
         Me.BtnPrintBudget.Name = "BtnPrintBudget"
         Me.BtnPrintBudget.Size = New System.Drawing.Size(110, 37)
         Me.BtnPrintBudget.TabIndex = 2
-        Me.BtnPrintBudget.Text = "Print Budget"
+        Me.BtnPrintBudget.Text = "Print List"
         '
         'BtnDelete
         '
         Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(438, 0)
+        Me.BtnDelete.Location = New System.Drawing.Point(656, 0)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(115, 37)
         Me.BtnDelete.TabIndex = 7
@@ -485,7 +497,7 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnEdit.Image = CType(resources.GetObject("BtnEdit.Image"), System.Drawing.Image)
-        Me.BtnEdit.Location = New System.Drawing.Point(553, 0)
+        Me.BtnEdit.Location = New System.Drawing.Point(771, 0)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(107, 37)
         Me.BtnEdit.TabIndex = 6
@@ -496,7 +508,7 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(660, 0)
+        Me.BtnAdd.Location = New System.Drawing.Point(878, 0)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(104, 37)
         Me.BtnAdd.TabIndex = 5
@@ -507,7 +519,7 @@ Partial Class FormEmpUniPeriodDet
         Me.XTPDesign.Controls.Add(Me.GCDesignList)
         Me.XTPDesign.Controls.Add(Me.PanelControl3)
         Me.XTPDesign.Name = "XTPDesign"
-        Me.XTPDesign.Size = New System.Drawing.Size(764, 300)
+        Me.XTPDesign.Size = New System.Drawing.Size(982, 300)
         Me.XTPDesign.Text = "Design List"
         '
         'GCDesignList
@@ -516,7 +528,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GCDesignList.Location = New System.Drawing.Point(0, 37)
         Me.GCDesignList.MainView = Me.GVDesignList
         Me.GCDesignList.Name = "GCDesignList"
-        Me.GCDesignList.Size = New System.Drawing.Size(764, 263)
+        Me.GCDesignList.Size = New System.Drawing.Size(982, 263)
         Me.GCDesignList.TabIndex = 2
         Me.GCDesignList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesignList})
         '
@@ -619,14 +631,14 @@ Partial Class FormEmpUniPeriodDet
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(764, 37)
+        Me.PanelControl3.Size = New System.Drawing.Size(982, 37)
         Me.PanelControl3.TabIndex = 1
         '
         'SimpleButton1
         '
         Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
         Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(574, 0)
+        Me.SimpleButton1.Location = New System.Drawing.Point(792, 0)
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(86, 37)
         Me.SimpleButton1.TabIndex = 2
@@ -636,7 +648,7 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.SimpleButton6.Dock = System.Windows.Forms.DockStyle.Right
         Me.SimpleButton6.Image = CType(resources.GetObject("SimpleButton6.Image"), System.Drawing.Image)
-        Me.SimpleButton6.Location = New System.Drawing.Point(660, 0)
+        Me.SimpleButton6.Location = New System.Drawing.Point(878, 0)
         Me.SimpleButton6.Name = "SimpleButton6"
         Me.SimpleButton6.Size = New System.Drawing.Size(104, 37)
         Me.SimpleButton6.TabIndex = 5
@@ -647,7 +659,7 @@ Partial Class FormEmpUniPeriodDet
         Me.XTPOrder.Controls.Add(Me.GCSalesOrder)
         Me.XTPOrder.Controls.Add(Me.PanelControl4)
         Me.XTPOrder.Name = "XTPOrder"
-        Me.XTPOrder.Size = New System.Drawing.Size(764, 300)
+        Me.XTPOrder.Size = New System.Drawing.Size(982, 300)
         Me.XTPOrder.Text = "Order"
         '
         'GCSalesOrder
@@ -657,7 +669,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GCSalesOrder.MainView = Me.GVSalesOrder
         Me.GCSalesOrder.Name = "GCSalesOrder"
         Me.GCSalesOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
-        Me.GCSalesOrder.Size = New System.Drawing.Size(764, 263)
+        Me.GCSalesOrder.Size = New System.Drawing.Size(982, 263)
         Me.GCSalesOrder.TabIndex = 3
         Me.GCSalesOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesOrder, Me.GridView2})
         '
@@ -831,14 +843,14 @@ Partial Class FormEmpUniPeriodDet
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl4.Name = "PanelControl4"
-        Me.PanelControl4.Size = New System.Drawing.Size(764, 37)
+        Me.PanelControl4.Size = New System.Drawing.Size(982, 37)
         Me.PanelControl4.TabIndex = 2
         '
         'BtnPrintOrder
         '
         Me.BtnPrintOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrintOrder.Image = CType(resources.GetObject("BtnPrintOrder.Image"), System.Drawing.Image)
-        Me.BtnPrintOrder.Location = New System.Drawing.Point(574, 0)
+        Me.BtnPrintOrder.Location = New System.Drawing.Point(792, 0)
         Me.BtnPrintOrder.Name = "BtnPrintOrder"
         Me.BtnPrintOrder.Size = New System.Drawing.Size(86, 37)
         Me.BtnPrintOrder.TabIndex = 6
@@ -848,7 +860,7 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.BtnCreateNewOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCreateNewOrder.Image = CType(resources.GetObject("BtnCreateNewOrder.Image"), System.Drawing.Image)
-        Me.BtnCreateNewOrder.Location = New System.Drawing.Point(660, 0)
+        Me.BtnCreateNewOrder.Location = New System.Drawing.Point(878, 0)
         Me.BtnCreateNewOrder.Name = "BtnCreateNewOrder"
         Me.BtnCreateNewOrder.Size = New System.Drawing.Size(104, 37)
         Me.BtnCreateNewOrder.TabIndex = 5
@@ -858,7 +870,7 @@ Partial Class FormEmpUniPeriodDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(793, 451)
+        Me.ClientSize = New System.Drawing.Size(1011, 451)
         Me.Controls.Add(Me.XTCUni)
         Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.GroupControl1)
@@ -983,4 +995,5 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents PanelControl5 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnImportExcel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PrintFormToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents BtnPrintForm As DevExpress.XtraEditors.SimpleButton
 End Class
