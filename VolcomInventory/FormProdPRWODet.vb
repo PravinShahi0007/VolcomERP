@@ -456,34 +456,34 @@
                 'update pr
                 query = String.Format("UPDATE tb_pr_prod_order SET pr_prod_order_number='{0}',pr_prod_order_note='{1}',id_report_status='{2}',pr_prod_order_vat='{4}',pr_prod_order_dp='{5}',pr_prod_order_total='{6}',id_comp_contact_to='{7}',pr_prod_order_pib='{8}',pr_prod_order_aju='{9}',pr_prod_order_due_date='{10}',inv_no='{11}',tax_inv_no='{12}' WHERE id_pr_prod_order='{3}'", pr_number, pr_note, pr_stats, id_pr, pr_vat, pr_dp, pr_tot, id_comp_contact_pay_to, pib, aju, Date.Parse(due_date.ToString).ToString("yyyy-MM-dd"), addSlashes(inv_no), addSlashes(tax_inv_no))
                 execute_non_query(query, True, "", "", "", "")
-                    'pr detail
-                    'delete first
-                    Dim sp_check As Boolean = False
-                    Dim query_del As String = "SELECT id_pr_prod_order_det FROM tb_pr_prod_order_det WHERE id_pr_prod_order='" & id_pr & "'"
-                    Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
-                    If data_del.Rows.Count > 0 Then
-                        For i As Integer = 0 To data_del.Rows.Count - 1
-                            sp_check = False
-                            ' false mean not found, believe me
-                            For j As Integer = 0 To GVListPurchase.RowCount - 1
-                                If Not GVListPurchase.GetRowCellValue(j, "id_pr_prod_order_det").ToString = "" Then
-                                    '
-                                    If GVListPurchase.GetRowCellValue(j, "id_pr_prod_order_det").ToString = data_del.Rows(i)("id_pr_prod_order_det").ToString() Then
-                                        sp_check = True
-                                    End If
+                'pr detail
+                'delete first
+                Dim sp_check As Boolean = False
+                Dim query_del As String = "SELECT id_pr_prod_order_det FROM tb_pr_prod_order_det WHERE id_pr_prod_order='" & id_pr & "'"
+                Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
+                If data_del.Rows.Count > 0 Then
+                    For i As Integer = 0 To data_del.Rows.Count - 1
+                        sp_check = False
+                        ' false mean not found, believe me
+                        For j As Integer = 0 To GVListPurchase.RowCount - 1
+                            If Not GVListPurchase.GetRowCellValue(j, "id_pr_prod_order_det").ToString = "" Then
+                                '
+                                If GVListPurchase.GetRowCellValue(j, "id_pr_prod_order_det").ToString = data_del.Rows(i)("id_pr_prod_order_det").ToString() Then
+                                    sp_check = True
                                 End If
-                            Next
-                            'end loop check on gv
-                            If sp_check = False Then
-                                'Because not found, it's only mean already deleted
-                                query = String.Format("DELETE FROM tb_pr_prod_order_det WHERE id_pr_prod_order_det='{0}'", data_del.Rows(i)("id_pr_prod_order_det").ToString())
-                                execute_non_query(query, True, "", "", "", "")
                             End If
                         Next
-                    End If
+                        'end loop check on gv
+                        If sp_check = False Then
+                            'Because not found, it's only mean already deleted
+                            query = String.Format("DELETE FROM tb_pr_prod_order_det WHERE id_pr_prod_order_det='{0}'", data_del.Rows(i)("id_pr_prod_order_det").ToString())
+                            execute_non_query(query, True, "", "", "", "")
+                        End If
+                    Next
+                End If
 
-                    For i As Integer = 0 To GVListPurchase.RowCount - 1
-                        If Not GVListPurchase.GetRowCellValue(i, "id_det").ToString = "" Then
+                For i As Integer = 0 To GVListPurchase.RowCount - 1
+                    If Not GVListPurchase.GetRowCellValue(i, "id_det").ToString = "" Then
                         If GVListPurchase.GetRowCellValue(i, "id_pr_prod_order_det").ToString = "" Then
                             'insert new
                             If GVListPurchase.GetRowCellValue(i, "total").ToString = "" OrElse GVListPurchase.GetRowCellValue(i, "total").ToString = "0" OrElse GVListPurchase.GetRowCellValue(i, "total") = 0 Then
@@ -512,26 +512,33 @@
                                 id_dc = 2
                             End If
                             If GVListPurchase.GetRowCellValue(i, "type").ToString = "1" Then
-                                    'dp
-                                    query = String.Format("UPDATE tb_pr_prod_order_det SET id_pr_det_type='{0}',id_pr_prod_order_dp='{1}',id_prod_order_wo_det=NULL,id_ovh=NULL,pr_prod_order_det_note='{2}',pr_prod_order_det_price='{3}',pr_prod_order_det_qty='{4}',id_dc='{5}' WHERE id_pr_prod_order_det='{6}'", GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc, GVListPurchase.GetRowCellValue(i, "id_pr_prod_order_det").ToString)
-                                    execute_non_query(query, True, "", "", "", "")
-                                ElseIf GVListPurchase.GetRowCellValue(i, "type").ToString = "2" Then
-                                    'purchase
-                                    query = String.Format("UPDATE tb_pr_prod_order_det SET id_pr_det_type='{0}',id_pr_prod_order_dp=NULL,id_prod_order_wo_det='{1}',id_ovh=NULL,pr_prod_order_det_note='{2}',pr_prod_order_det_price='{3}',pr_prod_order_det_qty='{4}',id_dc='{5}' WHERE id_pr_prod_order_det='{6}'", GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc, GVListPurchase.GetRowCellValue(i, "id_pr_prod_order_det").ToString)
-                                    execute_non_query(query, True, "", "", "", "")
-                                ElseIf GVListPurchase.GetRowCellValue(i, "type").ToString = "3" Then
-                                    'ovh
-                                    query = String.Format("UPDATE tb_pr_prod_order_det SET id_pr_det_type='{0}',id_pr_prod_order_dp=NULL,id_prod_order_wo_det=NULL,id_ovh='{1}',pr_prod_order_det_note='{2}',pr_prod_order_det_price='{3}',pr_prod_order_det_qty='{4}',id_dc='{5}' WHERE id_pr_prod_order_det='{6}'", GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc, GVListPurchase.GetRowCellValue(i, "id_pr_prod_order_det").ToString)
-                                    execute_non_query(query, True, "", "", "", "")
-                                End If
+                                'dp
+                                query = String.Format("UPDATE tb_pr_prod_order_det SET id_pr_det_type='{0}',id_pr_prod_order_dp='{1}',id_prod_order_wo_det=NULL,id_ovh=NULL,pr_prod_order_det_note='{2}',pr_prod_order_det_price='{3}',pr_prod_order_det_qty='{4}',id_dc='{5}' WHERE id_pr_prod_order_det='{6}'", GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc, GVListPurchase.GetRowCellValue(i, "id_pr_prod_order_det").ToString)
+                                execute_non_query(query, True, "", "", "", "")
+                            ElseIf GVListPurchase.GetRowCellValue(i, "type").ToString = "2" Then
+                                'purchase
+                                query = String.Format("UPDATE tb_pr_prod_order_det SET id_pr_det_type='{0}',id_pr_prod_order_dp=NULL,id_prod_order_wo_det='{1}',id_ovh=NULL,pr_prod_order_det_note='{2}',pr_prod_order_det_price='{3}',pr_prod_order_det_qty='{4}',id_dc='{5}' WHERE id_pr_prod_order_det='{6}'", GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc, GVListPurchase.GetRowCellValue(i, "id_pr_prod_order_det").ToString)
+                                execute_non_query(query, True, "", "", "", "")
+                            ElseIf GVListPurchase.GetRowCellValue(i, "type").ToString = "3" Then
+                                'ovh
+                                query = String.Format("UPDATE tb_pr_prod_order_det SET id_pr_det_type='{0}',id_pr_prod_order_dp=NULL,id_prod_order_wo_det=NULL,id_ovh='{1}',pr_prod_order_det_note='{2}',pr_prod_order_det_price='{3}',pr_prod_order_det_qty='{4}',id_dc='{5}' WHERE id_pr_prod_order_det='{6}'", GVListPurchase.GetRowCellValue(i, "type").ToString, GVListPurchase.GetRowCellValue(i, "id_det").ToString, GVListPurchase.GetRowCellValue(i, "note").ToString, decimalSQL(GVListPurchase.GetRowCellValue(i, "price").ToString), decimalSQL(GVListPurchase.GetRowCellValue(i, "qty").ToString), id_dc, GVListPurchase.GetRowCellValue(i, "id_pr_prod_order_det").ToString)
+                                execute_non_query(query, True, "", "", "", "")
                             End If
                         End If
-                    Next
+                    End If
+                Next
+                '
+                Dim act_fil As String = FormProdPRWO.GVMatPR.ActiveFilterString.ToString
+                Dim act_find As String = FormProdPRWO.GVMatPR.FindFilterText.ToString
 
-                    FormProdPRWO.view_pr()
-                    FormProdPRWO.check_but()
-                    FormProdPRWO.GVMatPR.FocusedRowHandle = find_row(FormProdPRWO.GVMatPR, "id_pr_prod_order", id_pr)
-                    Close()
+                FormProdPRWO.view_pr()
+                FormProdPRWO.check_but()
+
+                FormProdPRWO.GVMatPR.ActiveFilterString = act_fil
+                FormProdPRWO.GVMatPR.ApplyFindFilter(act_find)
+
+                FormProdPRWO.GVMatPR.FocusedRowHandle = find_row_as_is(FormProdPRWO.GVMatPR, "id_pr_prod_order", id_pr)
+                Close()
                 'Catch ex As Exception
                 'errorConnection()
                 'End Try

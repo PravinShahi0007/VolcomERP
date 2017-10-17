@@ -436,11 +436,16 @@
                                     execute_non_query(query_gen_new, True, "", "", "", "")
                                 End If
                                 Dim act_fil As String = FormFGProdList.GVProdList.ActiveFilterString.ToString
+                                Dim act_find As String = FormFGProdList.GVProdList.FindFilterText.ToString
                                 FormFGProdList.viewProd()
                                 FormFGProdList.GVProdList.ActiveFilterString = act_fil
-                                If act_fil = "" Then
-                                    FormFGProdList.GVProdList.FocusedRowHandle = find_row(FormFGProdList.GVProdList, "id_product", id_product)
-                                End If
+                                FormFGProdList.GVProdList.ApplyFindFilter(act_find)
+
+                                FormFGProdList.GVProdList.FocusedRowHandle = find_row_as_is(FormFGProdList.GVProdList, "id_product", id_product)
+
+                                'If act_fil = "" Then
+                                '    FormFGProdList.GVProdList.FocusedRowHandle = find_row(FormFGProdList.GVProdList, "id_product", id_product)
+                                'End If
                             Else
                                 FormMasterDesignSingle.view_product(id_design)
                                 FormMasterDesignSingle.GVProduct.FocusedRowHandle = find_row(FormMasterDesignSingle.GVProduct, "id_product", id_product)

@@ -96,6 +96,7 @@
 
         If data.Rows(0)("is_main_vendor").ToString = "1" Then
             is_main_vendor = True
+            Text = "View F.G. Purchase Order"
         Else
             is_main_vendor = False
         End If

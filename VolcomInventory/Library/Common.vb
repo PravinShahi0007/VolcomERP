@@ -3023,7 +3023,7 @@ WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
-            cell.Text = ""
+            cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
         If Not opt = "2" Then 'opt
@@ -3216,7 +3216,7 @@ WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,
         'Approved by CEO
         If data_ceo.Rows(0)("is_need_ceo_appr").ToString = "1" Then 'need approve
             Dim cell As New XRTableCell()
-            cell.Text = ""
+            cell.Text = "Director"
             row_role.Cells.Add(cell)
         End If
         If Not opt = "2" Then 'opt
