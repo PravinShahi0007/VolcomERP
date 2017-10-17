@@ -179,16 +179,16 @@ Partial Class FormViewProductionWO
         Me.BAttach.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BAttach.Location = New System.Drawing.Point(20, 2)
         Me.BAttach.Name = "BAttach"
-        Me.BAttach.Size = New System.Drawing.Size(887, 37)
+        Me.BAttach.Size = New System.Drawing.Size(887, 32)
         Me.BAttach.TabIndex = 5
         Me.BAttach.Text = "Attachment"
         '
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BMark.Location = New System.Drawing.Point(20, 39)
+        Me.BMark.Location = New System.Drawing.Point(20, 34)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(887, 29)
+        Me.BMark.Size = New System.Drawing.Size(887, 34)
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Mark"
         '
@@ -757,7 +757,7 @@ Partial Class FormViewProductionWO
         '
         'CheckEditMainVendor
         '
-        Me.CheckEditMainVendor.Location = New System.Drawing.Point(223, 157)
+        Me.CheckEditMainVendor.Location = New System.Drawing.Point(223, 159)
         Me.CheckEditMainVendor.Name = "CheckEditMainVendor"
         Me.CheckEditMainVendor.Properties.Caption = "Set as main vendor"
         Me.CheckEditMainVendor.Size = New System.Drawing.Size(115, 19)

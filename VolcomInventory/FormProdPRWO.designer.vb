@@ -37,6 +37,8 @@ Partial Class FormProdPRWO
         Me.GridColumnPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIDPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPListPO = New DevExpress.XtraTab.XtraTabPage()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -59,6 +61,8 @@ Partial Class FormProdPRWO
         Me.GridColumnIDCompTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPONumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedPR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
         Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -73,10 +77,6 @@ Partial Class FormProdPRWO
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabPR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabPR.SuspendLayout()
         Me.XTPListPR.SuspendLayout()
@@ -103,7 +103,7 @@ Partial Class FormProdPRWO
         Me.XTCTabPR.Location = New System.Drawing.Point(0, 0)
         Me.XTCTabPR.Name = "XTCTabPR"
         Me.XTCTabPR.SelectedTabPage = Me.XTPListPR
-        Me.XTCTabPR.Size = New System.Drawing.Size(891, 325)
+        Me.XTCTabPR.Size = New System.Drawing.Size(891, 395)
         Me.XTCTabPR.TabIndex = 6
         Me.XTCTabPR.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListPR, Me.XTPListPO})
         '
@@ -111,7 +111,7 @@ Partial Class FormProdPRWO
         '
         Me.XTPListPR.Controls.Add(Me.GCMatPR)
         Me.XTPListPR.Name = "XTPListPR"
-        Me.XTPListPR.Size = New System.Drawing.Size(885, 297)
+        Me.XTPListPR.Size = New System.Drawing.Size(885, 367)
         Me.XTPListPR.Text = "List Payment Requisition"
         '
         'GCMatPR
@@ -120,7 +120,7 @@ Partial Class FormProdPRWO
         Me.GCMatPR.Location = New System.Drawing.Point(0, 0)
         Me.GCMatPR.MainView = Me.GVMatPR
         Me.GCMatPR.Name = "GCMatPR"
-        Me.GCMatPR.Size = New System.Drawing.Size(885, 297)
+        Me.GCMatPR.Size = New System.Drawing.Size(885, 367)
         Me.GCMatPR.TabIndex = 2
         Me.GCMatPR.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMatPR})
         '
@@ -168,7 +168,7 @@ Partial Class FormProdPRWO
         Me.ColMatPurcDate.FieldName = "pr_prod_order_date"
         Me.ColMatPurcDate.Name = "ColMatPurcDate"
         Me.ColMatPurcDate.Visible = True
-        Me.ColMatPurcDate.VisibleIndex = 8
+        Me.ColMatPurcDate.VisibleIndex = 7
         Me.ColMatPurcDate.Width = 100
         '
         'ColDueDate
@@ -179,7 +179,7 @@ Partial Class FormProdPRWO
         Me.ColDueDate.FieldName = "pr_prod_order_due_date"
         Me.ColDueDate.Name = "ColDueDate"
         Me.ColDueDate.Visible = True
-        Me.ColDueDate.VisibleIndex = 9
+        Me.ColDueDate.VisibleIndex = 8
         Me.ColDueDate.Width = 103
         '
         'ColPONumber
@@ -204,7 +204,7 @@ Partial Class FormProdPRWO
         Me.ColStatus.FieldName = "report_status"
         Me.ColStatus.Name = "ColStatus"
         Me.ColStatus.Visible = True
-        Me.ColStatus.VisibleIndex = 10
+        Me.ColStatus.VisibleIndex = 9
         '
         'ColIDStatus
         '
@@ -218,7 +218,7 @@ Partial Class FormProdPRWO
         Me.GridColumnDOPRNumber.FieldName = "delivery_order_number"
         Me.GridColumnDOPRNumber.Name = "GridColumnDOPRNumber"
         Me.GridColumnDOPRNumber.Visible = True
-        Me.GridColumnDOPRNumber.VisibleIndex = 7
+        Me.GridColumnDOPRNumber.VisibleIndex = 6
         '
         'GridColumnRecNumber
         '
@@ -228,7 +228,7 @@ Partial Class FormProdPRWO
         Me.GridColumnRecNumber.FieldName = "prod_order_rec_number"
         Me.GridColumnRecNumber.Name = "GridColumnRecNumber"
         Me.GridColumnRecNumber.Visible = True
-        Me.GridColumnRecNumber.VisibleIndex = 6
+        Me.GridColumnRecNumber.VisibleIndex = 5
         '
         'GridColumnPO
         '
@@ -247,6 +247,22 @@ Partial Class FormProdPRWO
         Me.GridColumnIdRec.Caption = "ID Rec"
         Me.GridColumnIdRec.FieldName = "id_prod_order_rec"
         Me.GridColumnIdRec.Name = "GridColumnIdRec"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Design Code"
+        Me.GridColumn10.FieldName = "design_code"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Description"
+        Me.GridColumn11.FieldName = "design_display_name"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 4
         '
         'XTPListPO
         '
@@ -464,6 +480,24 @@ Partial Class FormProdPRWO
         Me.GridColumnCreatedPR.VisibleIndex = 11
         Me.GridColumnCreatedPR.Width = 66
         '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Design Code"
+        Me.GridColumn7.FieldName = "design_code"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 2
+        Me.GridColumn7.Width = 62
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "Description"
+        Me.GridColumn8.FieldName = "design_display_name"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 3
+        Me.GridColumn8.Width = 56
+        '
         'GroupControl2
         '
         Me.GroupControl2.Controls.Add(Me.GCListPurchase)
@@ -628,45 +662,11 @@ Partial Class FormProdPRWO
         Me.ColSize.VisibleIndex = 4
         Me.ColSize.Width = 56
         '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Design Code"
-        Me.GridColumn7.FieldName = "design_code"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 2
-        Me.GridColumn7.Width = 62
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "Description"
-        Me.GridColumn8.FieldName = "design_display_name"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 3
-        Me.GridColumn8.Width = 56
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Design Code"
-        Me.GridColumn10.FieldName = "design_code"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 4
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Description"
-        Me.GridColumn11.FieldName = "design_display_name"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 5
-        '
         'FormProdPRWO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(891, 325)
+        Me.ClientSize = New System.Drawing.Size(891, 395)
         Me.Controls.Add(Me.XTCTabPR)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
