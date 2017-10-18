@@ -29,6 +29,7 @@ Public Class FormSalesPOSDet
 
     'menu : 1=invoice 2=credit note
     Public id_menu As String = "1"
+    Public id_sales_pos_ref As String = "-1"
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
@@ -74,6 +75,15 @@ Public Class FormSalesPOSDet
             TxtCodeBillTo.Visible = True
             TxtNameBillTo.Visible = True
             BtnBrowseBillTo.Visible = True
+        ElseIf id_menu = "5" Then
+            Text = "Credit Note Online Store"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Visible = False
+            LabelInvoice.Visible = True
+            TxtInvoice.Visible = True
+            BtnBrowseInvoice.Visible = True
+            TxtCodeCompFrom.Focus()
         End If
 
 
@@ -110,14 +120,23 @@ Public Class FormSalesPOSDet
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type "
+            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
+            If id_menu = "5" Then
+                query += ", IFNULL(ar.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number_ref "
+            End If
             query += "FROM tb_sales_pos a "
             query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
             query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
             query += "LEFT JOIN tb_m_comp_contact bb ON a.id_comp_contact_bill = bb.id_comp_contact
             LEFT JOIN tb_m_comp cb ON cb.id_comp = bb.id_comp "
             query += "LEFT JOIN tb_pl_sales_order_del pld ON pld.id_pl_sales_order_del=a.id_pl_sales_order_del "
+            query += "LEFT JOIN tb_sales_order so ON so.id_sales_order = pld.id_sales_order "
             query += "INNER JOIN tb_lookup_report_status d ON d.id_report_status = a.id_report_status "
+            If id_menu = "5" Then
+                query += "LEFT JOIN tb_sales_pos ar ON ar.id_sales_pos = a.id_sales_pos_ref "
+                query += "LEFT JOIN tb_pl_sales_order_del pldr ON pldr.id_pl_sales_order_del=ar.id_pl_sales_order_del "
+                query += "LEFT JOIN tb_sales_order sor ON sor.id_sales_order = pldr.id_sales_order "
+            End If
             query += "WHERE a.id_sales_pos = '" + id_sales_pos + "' "
             query += "ORDER BY a.id_sales_pos ASC "
 
@@ -131,6 +150,12 @@ Public Class FormSalesPOSDet
 
             DEForm.Text = view_date_from(data.Rows(0)("sales_pos_datex").ToString, 0)
             TxtVirtualPosNumber.Text = data.Rows(0)("sales_pos_number").ToString
+            If id_menu = "5" Then
+                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number_ref").ToString
+                TxtInvoice.Text = data.Rows(0)("sales_pos_number_ref").ToString
+            Else
+                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+            End If
             MENote.Text = data.Rows(0)("sales_pos_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
@@ -509,6 +534,7 @@ Public Class FormSalesPOSDet
         TxtCodeBillTo.Enabled = False
         TxtNameBillTo.Enabled = False
         BtnBrowseBillTo.Enabled = False
+        BtnBrowseInvoice.Enabled = False
 
         If check_attach_report_status(id_report_status, report_mark_type, id_sales_pos) Then
             BtnAttachment.Enabled = True
@@ -922,7 +948,7 @@ Public Class FormSalesPOSDet
                 so_cat = "AND so.id_so_status=0 "
             End If
 
-            Dim query As String = "SELECT pldel.id_pl_sales_order_del, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos
+            Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos
             FROM tb_pl_sales_order_del pldel 
             INNER JOIN tb_sales_order so ON so.id_sales_order = pldel.id_sales_order "
             query += " INNER JOIN tb_m_comp_contact cc On cc.id_comp_contact=pldel.id_store_contact_to"
@@ -936,10 +962,12 @@ Public Class FormSalesPOSDet
 
             If data.Rows.Count <= 0 Then
                 stopCustom("Delivery order is not found for this store.")
+                TxtOLStoreNumber.Text = ""
                 defaultReset()
                 TEDO.Focus()
             ElseIf Not data.Rows(0)("id_sales_pos").ToString = "" Then
                 stopCustom("Invoice is already created.")
+                TxtOLStoreNumber.Text = ""
                 defaultReset()
                 TEDO.Focus()
             Else
@@ -950,6 +978,7 @@ Public Class FormSalesPOSDet
                 id_wh_locator = data.Rows(0)("id_wh_locator").ToString
                 id_wh_rack = data.Rows(0)("id_wh_rack").ToString
                 id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
+                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
                 TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
                 TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
                 MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
@@ -1066,6 +1095,7 @@ Public Class FormSalesPOSDet
     Private Sub LEInvType_EditValueChanged(sender As Object, e As EventArgs) Handles LEInvType.EditValueChanged
         If action = "ins" Then
             TEDO.Text = ""
+            TxtOLStoreNumber.Text = ""
             TxtCodeCompFrom.Text = ""
             defaultReset()
 
@@ -1146,5 +1176,21 @@ Public Class FormSalesPOSDet
         Else
             defaultResetBillTo()
         End If
+    End Sub
+
+    Private Sub BtnBrowseInvoice_Click(sender As Object, e As EventArgs) Handles BtnBrowseInvoice.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesCreditNotePopInv.id_pop_up = "4"
+        FormSalesCreditNotePopInv.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnListProduct_Click(sender As Object, e As EventArgs) Handles BtnListProduct.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesCreditNoteSingle.id_sales_pos_ref = id_sales_pos_ref
+        FormSalesCreditNoteSingle.action_pop = "ins"
+        FormSalesCreditNoteSingle.id_pop_up = "2"
+        FormSalesCreditNoteSingle.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
