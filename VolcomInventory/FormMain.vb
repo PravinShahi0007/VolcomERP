@@ -10802,9 +10802,9 @@ Public Class FormMain
         Cursor = Cursors.WaitCursor
         Try
             FormSalesReturnOrderOL.MdiParent = Me
-            FormSalesPOS.Show()
-            FormSalesPOS.WindowState = FormWindowState.Maximized
-            FormSalesPOS.Focus()
+            FormSalesReturnOrderOL.Show()
+            FormSalesReturnOrderOL.WindowState = FormWindowState.Maximized
+            FormSalesReturnOrderOL.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
