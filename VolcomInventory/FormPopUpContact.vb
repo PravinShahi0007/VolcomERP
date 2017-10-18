@@ -115,6 +115,10 @@
             query += "AND (tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') "
         End If
 
+        If id_pop_up = "81" Then
+            query += "AND tb_m_comp.id_commerce_type = 2 "
+        End If
+
         If id_departement <> "-1" Then
             query += "AND tb_m_comp.id_departement = '" + id_departement + "' "
         End If
@@ -917,6 +921,20 @@
             FormSalesPOSDet.getVat()
             FormSalesPOSDet.getTaxBase()
             FormSalesPOSDet.check_do()
+            Close()
+        ElseIf id_pop_up = "81" Then
+            'store ol store - return order
+            FormSalesReturnOrderOLDet.id_store_contact_to = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
+            FormSalesReturnOrderOLDet.TxtStoreCode.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormSalesReturnOrderOLDet.TxtStoreName.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
+            FormSalesReturnOrderOLDet.id_wh_drawer = GVCompany.GetFocusedRowCellValue("id_drawer_def").ToString
+            FormSalesReturnOrderOLDet.viewDetail()
+            Close()
+        ElseIf id_pop_up = "82" Then
+            'wh ol store - return order
+            FormSalesReturnOrderOLDet.id_wh_contact_to = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
+            FormSalesReturnOrderOLDet.TxtWHCode.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormSalesReturnOrderOLDet.TxtWHName.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
             Close()
         End If
         Cursor = Cursors.Default
