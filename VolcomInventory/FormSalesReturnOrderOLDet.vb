@@ -211,4 +211,11 @@
         FormPopUpContact.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnBrowseOrder_Click(sender As Object, e As EventArgs) Handles BtnBrowseOrder.Click
+        Cursor = Cursors.WaitCursor
+        FormPopUpSalesOrder.id_pop_up = "4"
+        FormPopUpSalesOrder.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
