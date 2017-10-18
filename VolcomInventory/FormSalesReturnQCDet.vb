@@ -730,7 +730,7 @@ Public Class FormSalesReturnQCDet
                         End If
                         Dim sales_return_qc_det_counting As String = GVBarcode.GetRowCellValue(p, "counting_code").ToString
                         For p1 As Integer = 0 To (data_get_detail_id.Rows.Count - 1)
-                            If id_product_counting = data_get_detail_id.Rows(p1)("id_product").ToString And id_design_price_counting = data_get_detail_id.Rows(p1)("id_design_price").ToString And design_price_counting = Decimal.Parse(data_get_detail_id.Rows(p1)("design_price").ToString) Then
+                            If id_product_counting = data_get_detail_id.Rows(p1)("id_product").ToString Then
                                 If jum_ins_p > 0 Then
                                     query_counting += ", "
                                 End If
