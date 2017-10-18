@@ -2813,6 +2813,18 @@
     <Compile Include="FormSalesReturnOrderDetEdit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnOrderOL.Designer.vb">
+      <DependentUpon>FormSalesReturnOrderOL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderOL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderOLDet.Designer.vb">
+      <DependentUpon>FormSalesReturnOrderOLDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderOLDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnOrderRevise.Designer.vb">
       <DependentUpon>FormSalesReturnOrderRevise.vb</DependentUpon>
     </Compile>
@@ -6543,6 +6555,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderDetEdit.resx">
       <DependentUpon>FormSalesReturnOrderDetEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOrderOL.resx">
+      <DependentUpon>FormSalesReturnOrderOL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOrderOLDet.resx">
+      <DependentUpon>FormSalesReturnOrderOLDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderRevise.resx">
       <DependentUpon>FormSalesReturnOrderRevise.vb</DependentUpon>
