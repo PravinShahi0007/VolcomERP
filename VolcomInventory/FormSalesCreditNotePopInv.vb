@@ -51,7 +51,7 @@
     Sub viewInvoiceDet()
         Dim id_sales_pos_param As String = "-1"
         Try
-            id_sales_pos_param = GVSalesPOS.GetFocusedRowCellValue("id_sales_pos")
+            id_sales_pos_param = GVSalesPOS.GetFocusedRowCellValue("id_sales_pos").ToString
         Catch ex As Exception
         End Try
 
