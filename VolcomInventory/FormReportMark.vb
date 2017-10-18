@@ -262,7 +262,7 @@
         ElseIf report_mark_type = "65" Then
             'FG CODE REPLACEMENT STORE
             query = String.Format("SELECT id_report_status, fg_code_replace_store_number as report_number FROM tb_fg_code_replace_store WHERE id_fg_code_replace_store = '{0}'", id_report)
-        ElseIf report_mark_type = "66" Then
+        ElseIf report_mark_type = "66" Or report_mark_type = "118" Then
             'SALES CREDIT NOTE
             query = String.Format("SELECT id_report_status,sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
         ElseIf report_mark_type = "67" Then
@@ -2555,7 +2555,7 @@
             Else
                 'no code
             End If
-        ElseIf report_mark_type = "66" Then
+        ElseIf report_mark_type = "66" Or report_mark_type = "118" Then
             'SALES CREDIT NOTE
             If id_status_reportx = "3" Then
                 id_status_reportx = "6"
@@ -2564,7 +2564,7 @@
             If id_status_reportx = "6" Then
                 'completed
                 Dim stc_in As ClassSalesInv = New ClassSalesInv()
-                stc_in.completeInStock(id_report, "66")
+                stc_in.completeInStock(id_report, report_mark_type)
             End If
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)

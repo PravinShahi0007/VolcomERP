@@ -450,6 +450,11 @@
             FormViewSalesPOS.id_menu = "4"
             FormViewSalesPOS.id_sales_pos = id_report
             FormViewSalesPOS.ShowDialog()
+        ElseIf report_mark_type = "118" Then
+            'CREDIT NOTE OL STORE
+            FormViewSalesPOS.id_menu = "5"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1048,6 +1053,12 @@
             field_date = "sales_pos_date"
         ElseIf report_mark_type = "117" Then
             'missing staff
+            table_name = "tb_sales_pos"
+            field_id = "id_sales_pos"
+            field_number = "sales_pos_number"
+            field_date = "sales_pos_date"
+        ElseIf report_mark_type = "118" Then
+            'SALES CREDIT NOTE
             table_name = "tb_sales_pos"
             field_id = "id_sales_pos"
             field_number = "sales_pos_number"

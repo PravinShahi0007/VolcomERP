@@ -83,6 +83,8 @@ Public Class FormSalesPOSDet
             LabelInvoice.Visible = True
             TxtInvoice.Visible = True
             BtnBrowseInvoice.Visible = True
+            BtnDel.Visible = True
+            BtnListProduct.Visible = True
             TxtCodeCompFrom.Focus()
         End If
 
@@ -122,7 +124,7 @@ Public Class FormSalesPOSDet
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
             query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
             If id_menu = "5" Then
-                query += ", IFNULL(ar.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number_ref "
+                query += ", IFNULL(ar.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
             End If
             query += "FROM tb_sales_pos a "
             query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
@@ -173,7 +175,11 @@ Public Class FormSalesPOSDet
             If id_memo_type = "1" Then 'sales invoice
                 report_mark_type = "48"
             ElseIf id_memo_type = "2" Then 'sales cn
-                report_mark_type = "66"
+                If id_menu = "2" Then
+                    report_mark_type = "66"
+                ElseIf id_menu = "5" Then
+                    report_mark_type = "118"
+                End If
             ElseIf id_memo_type = "3" Then 'missing invoice
                 report_mark_type = "54"
             ElseIf id_memo_type = "4" Then 'missing cn
@@ -336,10 +342,17 @@ Public Class FormSalesPOSDet
                 report_mark_type = "117"
                 id_memo_type = "8"
                 sales_pos_number = header_number_sales("34")
+            ElseIf id_menu = "5" Then
+                report_mark_type = "118"
+                id_memo_type = "2"
+                sales_pos_number = header_number_sales("17")
             End If
             Dim id_inv_type As String = LEInvType.EditValue.ToString
             If id_comp_contact_bill = "-1" Then
                 id_comp_contact_bill = "NULL "
+            End If
+            If id_sales_pos_ref = "-1" Then
+                id_sales_pos_ref = "NULL "
             End If
 
             If action = "ins" Then
@@ -348,8 +361,8 @@ Public Class FormSalesPOSDet
                     Cursor = Cursors.WaitCursor
 
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + "); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
 
@@ -357,7 +370,7 @@ Public Class FormSalesPOSDet
                         increase_inc_sales("6")
                     ElseIf report_mark_type = "54" Then
                         increase_inc_sales("10")
-                    ElseIf report_mark_type = "66" Then
+                    ElseIf report_mark_type = "66" Or report_mark_type = "118" Then
                         increase_inc_sales("17")
                     ElseIf report_mark_type = "67" Then
                         increase_inc_sales("18")
@@ -374,24 +387,29 @@ Public Class FormSalesPOSDet
                     Dim jum_ins_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note) VALUES "
+                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                         Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
                         Dim id_design_price As String = GVItemList.GetRowCellValue(i, "id_design_price").ToString
                         Dim design_price As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price").ToString)
                         Dim sales_pos_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "sales_pos_det_qty").ToString)
-                        If id_menu = "2" Then
+                        If id_menu = "2" Or id_menu = "5" Then
                             sales_pos_det_qty = sales_pos_det_qty * -1
                         End If
                         Dim id_design_price_retail As String = GVItemList.GetRowCellValue(i, "id_design_price_retail").ToString
                         Dim design_price_retail As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price_retail").ToString)
                         Dim note As String = GVItemList.GetRowCellValue(i, "note").ToString
+                        Dim id_sales_pos_det_ref As String = "NULL "
+                        Try
+                            id_sales_pos_det_ref = GVItemList.GetRowCellValue(i, "id_sales_pos_det_ref").ToString
+                        Catch ex As Exception
+                        End Try
 
                         If jum_ins_i > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "') "
+                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + ") "
                         jum_ins_i = jum_ins_i + 1
                     Next
                     If jum_ins_i > 0 Then
@@ -411,7 +429,7 @@ Public Class FormSalesPOSDet
 
                     If id_menu = "1" Then
                         infoCustom("Invoice " + TxtVirtualPosNumber.Text + " created succesfully")
-                    ElseIf id_menu = "2" Then
+                    ElseIf id_menu = "2" Or id_menu = "5" Then
                         infoCustom("Credit Note " + TxtVirtualPosNumber.Text + " created succesfully")
                     ElseIf id_menu = "3" Then
                         infoCustom("Invoice Missing Promo " + TxtVirtualPosNumber.Text + " created succesfully")
@@ -1189,7 +1207,7 @@ Public Class FormSalesPOSDet
         Cursor = Cursors.WaitCursor
         FormSalesCreditNoteSingle.id_sales_pos_ref = id_sales_pos_ref
         FormSalesCreditNoteSingle.action_pop = "ins"
-        FormSalesCreditNoteSingle.id_pop_up = "2"
+        FormSalesCreditNoteSingle.id_pop_up = "3"
         FormSalesCreditNoteSingle.ShowDialog()
         Cursor = Cursors.Default
     End Sub
