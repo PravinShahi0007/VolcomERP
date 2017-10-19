@@ -347,7 +347,7 @@
         GCProdWO.DataSource = data
         show_but_wo()
         'list overhead
-        Dim query_wo_list = "SELECT wo.id_report_status,h.report_status,wo.id_ovh_price,wo.id_payment,
+        Dim query_wo_list = "SELECT wo.id_prod_order_wo,wo.id_report_status,h.report_status,wo.id_ovh_price,wo.id_payment,
                             g.payment,wo.is_main_vendor, 
                             d.comp_name AS comp_name_to, 
                             f.comp_name AS comp_name_ship_to, 
@@ -359,9 +359,8 @@
                             wo.`prod_order_wo_top`,wo.prod_order_wo_vat,
                             cur.`currency`,cur.`id_currency`,
                             wo.prod_order_wo_del_date,
-                            DATE_ADD(wo.prod_order_wo_del_date,INTERVAL wo.prod_order_wo_lead_time DAY) AS prod_order_wo_lead_time_date, 
-                            DATE_ADD(wo.prod_order_wo_del_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY) AS prod_order_wo_top_date 
-                            ,wod.price,wo.prod_order_wo_kurs,(wod.price*wo.`prod_order_wo_kurs`) AS act_price,((SELECT act_price)*wod.qty) AS act_amount
+                            wod.qty,
+                            wod.price,wo.prod_order_wo_kurs
                             FROM tb_prod_order_wo wo 
                             LEFT JOIN 
                             (
@@ -631,5 +630,42 @@
         Catch ex As Exception
             '
         End Try
+    End Sub
+
+    Private Sub GVWO_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVWO.PopupMenuShowing
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
+        If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
+            view.FocusedRowHandle = hitInfo.RowHandle
+            ViewMenu.Show(view.GridControl, e.Point)
+        End If
+    End Sub
+
+    Private Sub SMMainVendor_Click(sender As Object, e As EventArgs) Handles SMMainVendor.Click
+        Dim confirm As DialogResult
+        Dim query As String
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Set this WO as main vendor ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        Dim id_wo As String = GVWO.GetFocusedRowCellDisplayText("id_prod_order_wo").ToString
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Try
+                query = "UPDATE tb_prod_order_wo SET is_main_vendor='2' WHERE id_prod_order='" & id_prod_order & "';UPDATE tb_prod_order_wo SET is_main_vendor='1' WHERE id_prod_order_wo='" & id_wo & "';"
+                execute_non_query(query, True, "", "", "", "")
+
+                view_wo()
+            Catch ex As Exception
+                DevExpress.XtraEditors.XtraMessageBox.Show(ex.ToString, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BSaveWO_Click(sender As Object, e As EventArgs) Handles BSaveWO.Click
+        Dim query As String = ""
+        For i As Integer = 0 To GVWO.RowCount - 1
+            Dim price, kurs, vat, mat_sent_date, top, lead_time As String
+            infoCustom(Date.Parse(GVWO.GetRowCellValue(i, "prod_order_wo_del_date").ToString()).ToString("yyyy-MM-dd"))
+        Next
     End Sub
 End Class
