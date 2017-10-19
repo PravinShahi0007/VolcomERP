@@ -38,8 +38,8 @@ Partial Class FormSalesReturnOrderOL
         Me.GridColumnPrepareStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLStoreNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnWH = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.GCFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GCFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -239,11 +239,6 @@ Partial Class FormSalesReturnOrderOL
         Me.GridColumnWH.VisibleIndex = 3
         Me.GridColumnWH.Width = 178
         '
-        'GridView2
-        '
-        Me.GridView2.GridControl = Me.GCSalesReturnOrder
-        Me.GridView2.Name = "GridView2"
-        '
         'GridColumnTotal
         '
         Me.GridColumnTotal.Caption = "Total Qty"
@@ -255,6 +250,11 @@ Partial Class FormSalesReturnOrderOL
         Me.GridColumnTotal.Visible = True
         Me.GridColumnTotal.VisibleIndex = 6
         Me.GridColumnTotal.Width = 53
+        '
+        'GridView2
+        '
+        Me.GridView2.GridControl = Me.GCSalesReturnOrder
+        Me.GridView2.Name = "GridView2"
         '
         'FormSalesReturnOrderOL
         '

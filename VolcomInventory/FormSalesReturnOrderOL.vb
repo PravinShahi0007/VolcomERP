@@ -67,4 +67,10 @@
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         viewSalesReturnOrder()
     End Sub
+
+    Private Sub GVSalesReturnOrder_DoubleClick(sender As Object, e As EventArgs) Handles GVSalesReturnOrder.DoubleClick
+        If GVSalesReturnOrder.RowCount > 0 And GVSalesReturnOrder.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
 End Class

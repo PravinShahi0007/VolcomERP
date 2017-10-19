@@ -458,6 +458,7 @@
         ElseIf report_mark_type = "119" Then
             'return order onlince
             FormSalesReturnOrderOLDet.is_view = "1"
+            FormSalesReturnOrderOLDet.action = "upd"
             FormSalesReturnOrderOLDet.id_sales_return_order = id_report
             FormSalesReturnOrderOLDet.ShowDialog()
         Else

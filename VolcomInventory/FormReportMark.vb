@@ -3597,7 +3597,7 @@
             execute_non_query(query, True, "", "", "", "")
             infoCustom("Status changed.")
 
-            If form_origin = "FormSalesReturnOrderDet" Then
+            If form_origin = "FormSalesReturnOrderOLDet" Then
                 FormSalesReturnOrderOLDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSalesReturnOrderOLDet.check_but()
                 FormSalesReturnOrderOLDet.actionLoad()

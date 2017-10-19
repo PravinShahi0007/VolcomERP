@@ -8,6 +8,7 @@
     Public id_report_status As String
     Public id_wh_drawer As String = "-1"
     Public is_view = "-1"
+    Dim store_address As String = ""
 
     Private Sub FormSalesReturnOrderOLDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -35,13 +36,14 @@
 
             'query view based on edit id's
             Dim ro As New ClassSalesReturnOrder()
-            Dim query As String = ro.queryMain("a.id_sales_return_order=" + id_sales_return_order + " ", "1")
+            Dim query As String = ro.queryMain("AND a.id_sales_return_order=" + id_sales_return_order + " ", "1")
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
             id_store_contact_to = data.Rows(0)("id_store_contact_to").ToString
             id_wh_contact_to = data.Rows(0)("id_wh_contact_to").ToString
             TxtStoreName.Text = data.Rows(0)("store_name_to").ToString
             TxtStoreCode.Text = data.Rows(0)("store_number_to").ToString
+            store_address = data.Rows(0)("store_address").ToString
             TxtWHName.Text = data.Rows(0)("wh_name_to").ToString
             TxtWHCode.Text = data.Rows(0)("wh_number_to").ToString
             TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
@@ -50,6 +52,7 @@
             MENote.Text = data.Rows(0)("sales_return_order_note").ToString
             DERetDueDate.EditValue = data.Rows(0)("sales_return_order_est_date")
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+
 
             'detail2
             viewDetail()
@@ -158,36 +161,38 @@
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
-        'Cursor = Cursors.WaitCursor
-        'ReportSalesReturnOrder.id_sales_return_order = id_sales_return_order
-        'ReportSalesReturnOrder.dt = GCItemList.DataSource
-        'Dim Report As New ReportSalesReturnOrder()
+        Cursor = Cursors.WaitCursor
+        ReportSalesReturnOrder.id_sales_return_order = id_sales_return_order
+        ReportSalesReturnOrder.dt = GCItemList.DataSource
+        Dim Report As New ReportSalesReturnOrder()
 
-        '' '... 
-        '' ' creating and saving the view's layout to a new memory stream 
-        'Dim str As System.IO.Stream
-        'str = New System.IO.MemoryStream()
-        'GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
-        'Report.GridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-        'str.Seek(0, System.IO.SeekOrigin.Begin)
+        ' '... 
+        ' ' creating and saving the view's layout to a new memory stream 
+        Dim str As System.IO.Stream
+        str = New System.IO.MemoryStream()
+        GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
+        Report.GridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+        str.Seek(0, System.IO.SeekOrigin.Begin)
 
-        ''Grid Detail
-        'ReportStyleGridview(Report.GridView1)
+        'Grid Detail
+        ReportStyleGridview(Report.GridView1)
 
-        ''Parse val
-        'Report.LRecNumber.Text = TxtSalesOrderNumber.Text
-        'Report.LRecDate.Text = DEForm.Text
-        'Report.LabelTo.Text = TxtCodeCompTo.Text + " - " + TxtNameCompTo.Text
-        'Report.LabelAddress.Text = MEAdrressCompTo.Text
-        'Report.LabelEstReturn.Text = DERetDueDate.Text
-        'Report.LabelNote.Text = MENote.Text
+        'Parse val
+        Report.LRecNumber.Text = TxtSalesOrderNumber.Text
+        Report.LRecDate.Text = DEForm.Text
+        Report.LabelTo.Text = TxtStoreCode.Text + " - " + TxtStoreName.Text
+        Report.LabelWH.Text = TxtWHCode.Text + " - " + TxtWHName.Text
+        Report.LabelOLStoreOrder.Text = TxtOLStoreNumber.Text
+        Report.LabelAddress.Text = store_address
+        Report.LabelEstReturn.Text = DERetDueDate.Text
+        Report.LabelNote.Text = MENote.Text
 
 
-        ''Show the report's preview. 
-        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        'Tool.ShowPreview()
-        'Cursor = Cursors.Default
+        'Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click

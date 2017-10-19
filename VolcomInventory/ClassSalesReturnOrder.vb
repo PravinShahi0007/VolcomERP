@@ -13,13 +13,13 @@
         End If
 
         Dim query As String = "SELECT a.id_sales_return_order, 
-        a.id_store_contact_to, d.comp_number AS `store_number_to`,(d.comp_name) AS store_name_to, CONCAT(d.comp_number,' - ', d.comp_name) AS `store`,
+        a.id_store_contact_to, d.comp_number AS `store_number_to`,(d.comp_name) AS store_name_to, CONCAT(d.comp_number,' - ', d.comp_name) AS `store`, d.address_primary as `store_address`,
         a.id_wh_contact_to, wh.comp_number AS `wh_number_to`,(wh.comp_name) AS wh_name_to, CONCAT(wh.comp_number,' - ', wh.comp_name) AS `wh`,
         a.id_report_status, f.report_status, 
         a.sales_return_order_note, a.sales_return_order_note, a.sales_return_order_number, so.sales_order_ol_shop_number, 
-        DATE_FORMAT(a.sales_return_order_date,'%d %M %Y') AS sales_return_order_date, 
+        DATE_FORMAT(a.sales_return_order_date,'%d %M %Y') AS sales_return_order_date, DATE_FORMAT(a.sales_return_order_date,'%Y-%m-%d') AS sales_return_order_datex,
         DATE_FORMAT(a.sales_return_order_est_date,'%d %M %Y') AS sales_return_order_est_date, a.id_prepare_status, ps.prepare_status, 
-        IFNULL(SUM(b.sales_return_order_det_qty),0) AS `total_qty`, a.id_wh_drawer
+        IFNULL(SUM(b.sales_return_order_det_qty),0) AS `total_qty`
         FROM tb_sales_return_order a 
         INNER JOIN tb_sales_return_order_det b ON a.id_sales_return_order = b.id_sales_return_order 
         INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to 
