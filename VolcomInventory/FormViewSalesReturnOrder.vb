@@ -55,8 +55,8 @@
         If is_detail_soh <> "-1" Then
             TxtOrderStatus.Visible = True
             LabelOrderStatus.Visible = True
-            GroupControl3.Visible = False
-            BtnOrderStatus.Visible = True
+            GroupControl3.Visible = True
+            BtnOrderStatus.Visible = False
             GridColumnRemark.Visible = False
             GridColumnAmount.Visible = False
             GridColumnPrice.Visible = False

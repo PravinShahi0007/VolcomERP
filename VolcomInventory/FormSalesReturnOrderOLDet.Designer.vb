@@ -19,12 +19,13 @@ Partial Class FormSalesReturnOrderOLDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReturnOrderOLDet))
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddAnotherProductToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReviseQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EPForm = New System.Windows.Forms.ErrorProvider()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
+        Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.BtnBrowseOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseWH = New DevExpress.XtraEditors.SimpleButton()
@@ -87,6 +88,7 @@ Partial Class FormSalesReturnOrderOLDet
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnQtyReturn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -550,9 +552,9 @@ Partial Class FormSalesReturnOrderOLDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesTarget, Me.GridColumnUOM, Me.GridColumnReturnCategory, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnProductName, Me.GridColumnIdReturnCat, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesTarget, Me.GridColumnUOM, Me.GridColumnReturnCategory, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnProductName, Me.GridColumnIdReturnCat, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound, Me.GridColumnQtyReturn})
         Me.GVItemList.GridControl = Me.GCItemList
-        Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", Me.GridColumnQty, "{0:f2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n2}")})
+        Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", Me.GridColumnQty, "{0:f2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_view_completed", Me.GridColumnQtyReturn, "{0:N0}")})
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -828,6 +830,15 @@ Partial Class FormSalesReturnOrderOLDet
         Me.BtnAdd.TabIndex = 2
         Me.BtnAdd.Text = "Add"
         '
+        'GridColumnQtyReturn
+        '
+        Me.GridColumnQtyReturn.Caption = "Return"
+        Me.GridColumnQtyReturn.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyReturn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyReturn.FieldName = "sales_return_det_qty_view_completed"
+        Me.GridColumnQtyReturn.Name = "GridColumnQtyReturn"
+        Me.GridColumnQtyReturn.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_view_completed", "{0:N0}")})
+        '
         'FormSalesReturnOrderOLDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -948,4 +959,5 @@ Partial Class FormSalesReturnOrderOLDet
     Friend WithEvents BtnBrowseOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnBrowseWH As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnBrowseStore As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnQtyReturn As DevExpress.XtraGrid.Columns.GridColumn
 End Class

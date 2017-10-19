@@ -9,6 +9,9 @@
     Public id_wh_drawer As String = "-1"
     Public is_view = "-1"
     Dim store_address As String = ""
+    Public is_print As String = "-1"
+    Public is_detail_soh As String = "-1"
+
 
     Private Sub FormSalesReturnOrderOLDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -53,6 +56,20 @@
             DERetDueDate.EditValue = data.Rows(0)("sales_return_order_est_date")
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
 
+            If is_detail_soh <> "-1" Then
+                GridColumnRemark.Visible = False
+                GridColumnAmount.Visible = False
+                GridColumnPrice.Visible = False
+                GridColumnPriceType.Visible = False
+                GridColumnQty.Visible = True
+                GridColumnNo.VisibleIndex = 0
+                GridColumnCode.VisibleIndex = 1
+                GridColumnName.VisibleIndex = 2
+                GridColumnSize.VisibleIndex = 3
+                GridColumnQty.VisibleIndex = 4
+                GridColumnQty.Caption = "Order"
+                GridColumnQtyReturn.VisibleIndex = 5
+            End If
 
             'detail2
             viewDetail()
@@ -60,13 +77,24 @@
             noEdit()
             check_but()
             allow_status()
+
+            If is_print = "1" Then
+                printOrder()
+                Close()
+            End If
         End If
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_sales_return_order('" + id_sales_return_order + "')"
-        Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
-        GCItemList.DataSource = data
+        If is_detail_soh <> "-1" Then
+            Dim query As String = "CALL view_sales_return_order_limit('" + id_sales_return_order + "',0,0)"
+            Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+            GCItemList.DataSource = data
+        Else
+            Dim query As String = "CALL view_sales_return_order('" + id_sales_return_order + "')"
+            Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
+            GCItemList.DataSource = data
+        End If
     End Sub
 
     Sub checkStockAvail()
@@ -160,7 +188,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+    Sub printOrder()
         Cursor = Cursors.WaitCursor
         ReportSalesReturnOrder.id_sales_return_order = id_sales_return_order
         ReportSalesReturnOrder.dt = GCItemList.DataSource
@@ -193,6 +221,10 @@
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        printOrder()
     End Sub
 
     Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
