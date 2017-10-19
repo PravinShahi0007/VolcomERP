@@ -19,13 +19,12 @@ Partial Class FormSalesReturnOrderOLDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReturnOrderOLDet))
-        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip()
         Me.AddAnotherProductToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReviseQtyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.EPForm = New System.Windows.Forms.ErrorProvider()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.BtnBrowseOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnBrowseWH = New DevExpress.XtraEditors.SimpleButton()
@@ -569,7 +568,7 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 41
+        Me.GridColumnNo.Width = 90
         '
         'GridColumnCode
         '
@@ -578,7 +577,7 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 55
+        Me.GridColumnCode.Width = 121
         '
         'GridColumnName
         '
@@ -588,7 +587,7 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 103
+        Me.GridColumnName.Width = 227
         '
         'GridColumnSize
         '
@@ -602,7 +601,7 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnSize.OptionsColumn.AllowEdit = False
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 43
+        Me.GridColumnSize.Width = 95
         '
         'GridColumnQty
         '
@@ -620,7 +619,7 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 4
-        Me.GridColumnQty.Width = 74
+        Me.GridColumnQty.Width = 163
         '
         'RepositoryItemSpinEdit1
         '
@@ -639,8 +638,8 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.AllowEdit = False
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 5
-        Me.GridColumnPrice.Width = 89
+        Me.GridColumnPrice.VisibleIndex = 6
+        Me.GridColumnPrice.Width = 210
         '
         'GridColumnAmount
         '
@@ -652,8 +651,8 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnAmount.OptionsColumn.AllowEdit = False
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
-        Me.GridColumnAmount.VisibleIndex = 6
-        Me.GridColumnAmount.Width = 103
+        Me.GridColumnAmount.VisibleIndex = 7
+        Me.GridColumnAmount.Width = 244
         '
         'GridColumnRemark
         '
@@ -661,8 +660,8 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnRemark.FieldName = "sales_return_order_det_note"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 7
-        Me.GridColumnRemark.Width = 155
+        Me.GridColumnRemark.VisibleIndex = 8
+        Me.GridColumnRemark.Width = 375
         '
         'GridColumnIdSalesTarget
         '
@@ -752,6 +751,9 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnPriceType.FieldName = "design_price_type"
         Me.GridColumnPriceType.Name = "GridColumnPriceType"
         Me.GridColumnPriceType.OptionsColumn.AllowEdit = False
+        Me.GridColumnPriceType.Visible = True
+        Me.GridColumnPriceType.VisibleIndex = 5
+        Me.GridColumnPriceType.Width = 107
         '
         'GridColumnQtyAvail
         '

@@ -924,6 +924,7 @@
             Close()
         ElseIf id_pop_up = "81" Then
             'store ol store - return order
+            FormSalesReturnOrderOLDet.id_store = GVCompany.GetFocusedRowCellValue("id_comp").ToString
             FormSalesReturnOrderOLDet.id_store_contact_to = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
             FormSalesReturnOrderOLDet.TxtStoreCode.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
             FormSalesReturnOrderOLDet.TxtStoreName.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString

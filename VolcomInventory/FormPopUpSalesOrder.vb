@@ -207,7 +207,9 @@
             FormFGTrfNewDet.viewSalesOrderDetail()
             Close()
         ElseIf id_pop_up = "4" Then
-
+            FormSalesReturnOrderOLDet.id_sales_order = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+            FormSalesReturnOrderOLDet.TxtOLStoreNumber.Text = GVSalesOrder.GetFocusedRowCellValue("sales_order_ol_shop_number").ToString
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub

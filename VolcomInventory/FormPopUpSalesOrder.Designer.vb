@@ -57,6 +57,7 @@ Partial Class FormPopUpSalesOrder
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCNav.SuspendLayout()
         CType(Me.SCCSO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -143,7 +144,7 @@ Partial Class FormPopUpSalesOrder
         '
         'GVSalesOrder
         '
-        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumnPreparedFor})
+        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumnPreparedFor, Me.GridColumnOLStoreOrder})
         Me.GVSalesOrder.GridControl = Me.GCSalesOrder
         Me.GVSalesOrder.Name = "GVSalesOrder"
         Me.GVSalesOrder.OptionsBehavior.ReadOnly = True
@@ -159,7 +160,7 @@ Partial Class FormPopUpSalesOrder
         Me.GridColumnSalesTargetNumb.Name = "GridColumnSalesTargetNumb"
         Me.GridColumnSalesTargetNumb.Visible = True
         Me.GridColumnSalesTargetNumb.VisibleIndex = 0
-        Me.GridColumnSalesTargetNumb.Width = 123
+        Me.GridColumnSalesTargetNumb.Width = 118
         '
         'GridColumnTo
         '
@@ -167,8 +168,8 @@ Partial Class FormPopUpSalesOrder
         Me.GridColumnTo.FieldName = "store_name_to"
         Me.GridColumnTo.Name = "GridColumnTo"
         Me.GridColumnTo.Visible = True
-        Me.GridColumnTo.VisibleIndex = 2
-        Me.GridColumnTo.Width = 111
+        Me.GridColumnTo.VisibleIndex = 3
+        Me.GridColumnTo.Width = 232
         '
         'GridColumnSalesTargetDate
         '
@@ -178,8 +179,8 @@ Partial Class FormPopUpSalesOrder
         Me.GridColumnSalesTargetDate.FieldName = "sales_order_date"
         Me.GridColumnSalesTargetDate.Name = "GridColumnSalesTargetDate"
         Me.GridColumnSalesTargetDate.Visible = True
-        Me.GridColumnSalesTargetDate.VisibleIndex = 6
-        Me.GridColumnSalesTargetDate.Width = 111
+        Me.GridColumnSalesTargetDate.VisibleIndex = 7
+        Me.GridColumnSalesTargetDate.Width = 226
         '
         'GridColumnDSalesTargetNote
         '
@@ -201,7 +202,8 @@ Partial Class FormPopUpSalesOrder
         Me.GridColumnPrepareStatus.FieldName = "prepare_status"
         Me.GridColumnPrepareStatus.Name = "GridColumnPrepareStatus"
         Me.GridColumnPrepareStatus.Visible = True
-        Me.GridColumnPrepareStatus.VisibleIndex = 7
+        Me.GridColumnPrepareStatus.VisibleIndex = 8
+        Me.GridColumnPrepareStatus.Width = 151
         '
         'GridColumn9
         '
@@ -210,8 +212,8 @@ Partial Class FormPopUpSalesOrder
         Me.GridColumn9.FieldName = "so_completness"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 8
-        Me.GridColumn9.Width = 85
+        Me.GridColumn9.VisibleIndex = 9
+        Me.GridColumn9.Width = 200
         '
         'RepositoryItemProgressBar1
         '
@@ -234,7 +236,8 @@ Partial Class FormPopUpSalesOrder
         Me.GridColumn1Category.FieldNameSortGroup = "id_so_status"
         Me.GridColumn1Category.Name = "GridColumn1Category"
         Me.GridColumn1Category.Visible = True
-        Me.GridColumn1Category.VisibleIndex = 4
+        Me.GridColumn1Category.VisibleIndex = 5
+        Me.GridColumn1Category.Width = 151
         '
         'GridColumn10
         '
@@ -242,7 +245,8 @@ Partial Class FormPopUpSalesOrder
         Me.GridColumn10.FieldName = "warehouse_name_to"
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.VisibleIndex = 4
+        Me.GridColumn10.Width = 175
         '
         'GridColumnReff
         '
@@ -250,7 +254,8 @@ Partial Class FormPopUpSalesOrder
         Me.GridColumnReff.FieldName = "fg_so_reff_number"
         Me.GridColumnReff.Name = "GridColumnReff"
         Me.GridColumnReff.Visible = True
-        Me.GridColumnReff.VisibleIndex = 1
+        Me.GridColumnReff.VisibleIndex = 2
+        Me.GridColumnReff.Width = 105
         '
         'GridColumnPreparedFor
         '
@@ -259,7 +264,8 @@ Partial Class FormPopUpSalesOrder
         Me.GridColumnPreparedFor.FieldNameSortGroup = "id_so_cat"
         Me.GridColumnPreparedFor.Name = "GridColumnPreparedFor"
         Me.GridColumnPreparedFor.Visible = True
-        Me.GridColumnPreparedFor.VisibleIndex = 5
+        Me.GridColumnPreparedFor.VisibleIndex = 6
+        Me.GridColumnPreparedFor.Width = 151
         '
         'GridView2
         '
@@ -439,6 +445,15 @@ Partial Class FormPopUpSalesOrder
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
+        'GridColumnOLStoreOrder
+        '
+        Me.GridColumnOLStoreOrder.Caption = "OL Store Order#"
+        Me.GridColumnOLStoreOrder.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
+        Me.GridColumnOLStoreOrder.Visible = True
+        Me.GridColumnOLStoreOrder.VisibleIndex = 1
+        Me.GridColumnOLStoreOrder.Width = 123
+        '
         'FormPopUpSalesOrder
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -509,4 +524,5 @@ Partial Class FormPopUpSalesOrder
     Friend WithEvents GridColumnReff As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPreparedFor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnOLStoreOrder As DevExpress.XtraGrid.Columns.GridColumn
 End Class

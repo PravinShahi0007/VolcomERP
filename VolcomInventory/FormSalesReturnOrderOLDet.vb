@@ -1,11 +1,13 @@
 ﻿Public Class FormSalesReturnOrderOLDet
     Public id_sales_return_order As String = ""
+    Public id_store As String = "-1"
     Public id_store_contact_to As String = "-1"
     Public id_wh_contact_to As String = "-1"
     Public id_sales_order As String = "-1"
     Public action As String = "-1"
     Public id_report_status As String
     Public id_wh_drawer As String = "-1"
+    Public is_view = "-1"
 
     Private Sub FormSalesReturnOrderOLDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -37,8 +39,12 @@
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
             id_store_contact_to = data.Rows(0)("id_store_contact_to").ToString
+            id_wh_contact_to = data.Rows(0)("id_wh_contact_to").ToString
             TxtStoreName.Text = data.Rows(0)("store_name_to").ToString
             TxtStoreCode.Text = data.Rows(0)("store_number_to").ToString
+            TxtWHName.Text = data.Rows(0)("wh_name_to").ToString
+            TxtWHCode.Text = data.Rows(0)("wh_number_to").ToString
+            TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
             DEForm.Text = view_date_from(data.Rows(0)("sales_return_order_datex").ToString, 0)
             TxtSalesOrderNumber.Text = data.Rows(0)("sales_return_order_number").ToString
             MENote.Text = data.Rows(0)("sales_return_order_note").ToString
@@ -118,12 +124,6 @@
         MENote.Properties.ReadOnly = True
         DERetDueDate.Enabled = False
 
-        If id_report_status = "6" Then
-            GCItemList.ContextMenuStrip = ContextMenuStrip1
-        Else
-            GCItemList.ContextMenuStrip = Nothing
-        End If
-
         If check_attach_report_status(id_report_status, "119", id_sales_return_order) Then
             BtnAttachment.Enabled = True
         Else
@@ -140,6 +140,7 @@
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
         Cursor = Cursors.WaitCursor
+        FormReportMark.is_view = is_view
         FormReportMark.id_report = id_sales_return_order
         FormReportMark.report_mark_type = "119"
         FormReportMark.form_origin = Name
@@ -149,6 +150,7 @@
 
     Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
         Cursor = Cursors.WaitCursor
+        FormDocumentUpload.is_view = is_view
         FormDocumentUpload.id_report = id_sales_return_order
         FormDocumentUpload.report_mark_type = "119"
         FormDocumentUpload.ShowDialog()
@@ -217,5 +219,119 @@
         FormPopUpSalesOrder.id_pop_up = "4"
         FormPopUpSalesOrder.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesReturnOrderOLSingle.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Sub delNotFoundMyRow()
+        GVItemList.ActiveFilterString = "[is_found]='2'"
+        Dim i As Integer = GVItemList.RowCount - 1
+        While (i >= 0)
+            GVItemList.DeleteRow(i)
+            i = i - 1
+        End While
+        makeSafeGV(GVItemList)
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
+    End Sub
+
+    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+        GVItemList.CloseEditor()
+        makeSafeGV(GVItemList)
+        ValidateChildren()
+
+        'del not found - suatu saat dipake
+        'delNotFoundMyRow()
+
+        If id_store_contact_to = "-1" Or id_wh_contact_to = "-1" Then
+            stopCustom("Store/WH can't blank ")
+        ElseIf GVItemList.RowCount <= 0 Then
+            stopCustom("Item list can't blank !")
+        Else
+            Dim sales_return_order_number As String = TxtSalesOrderNumber.Text
+            Dim sales_return_order_note As String = MENote.Text
+            Dim sales_return_order_est_date As String = DateTime.Parse(DERetDueDate.EditValue.ToString).ToString("yyyy-MM-dd")
+            Dim id_report_status As String = LEReportStatus.EditValue
+
+            If action = "ins" Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    Cursor = Cursors.WaitCursor
+                    'Main tbale
+                    Dim query As String = "INSERT INTO tb_sales_return_order(id_store_contact_to, id_wh_contact_to, id_sales_order, sales_return_order_number, sales_return_order_date, sales_return_order_note, id_report_status, sales_return_order_est_date) "
+                    query += "VALUES('" + id_store_contact_to + "','" + id_wh_contact_to + "', '" + id_sales_order + "', '" + header_number_sales("4") + "', NOW(), '" + sales_return_order_note + "', '" + id_report_status + "', '" + sales_return_order_est_date + "'); SELECT LAST_INSERT_ID(); "
+                    id_sales_return_order = execute_query(query, 0, True, "", "", "", "")
+                    increase_inc_sales("4")
+
+                    'insert who prepared
+                    insert_who_prepared("119", id_sales_return_order, id_user)
+
+                    'Detail 
+                    Dim jum_ins_i As Integer = 0
+                    Dim query_detail As String = ""
+                    If GVItemList.RowCount > 0 Then
+                        query_detail = "INSERT INTO tb_sales_return_order_det(id_sales_return_order, id_product, id_design_price, design_price, sales_return_order_det_qty, sales_return_order_det_note, id_return_cat) VALUES "
+                    End If
+                    For i As Integer = 0 To (GVItemList.RowCount - 1)
+                        Try
+                            Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
+                            Dim id_design_price As String = GVItemList.GetRowCellValue(i, "id_design_price").ToString
+                            Dim design_price As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price").ToString)
+                            Dim sales_return_order_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "sales_return_order_det_qty").ToString)
+                            Dim sales_return_order_det_note As String = GVItemList.GetRowCellValue(i, "sales_return_order_det_note").ToString
+                            Dim id_return_cat As String = "1"
+
+                            If jum_ins_i > 0 Then
+                                query_detail += ", "
+                            End If
+                            query_detail += "('" + id_sales_return_order + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_return_order_det_qty + "', '" + sales_return_order_det_note + "', '" + id_return_cat + "')"
+                            jum_ins_i = jum_ins_i + 1
+                        Catch ex As Exception
+                        End Try
+                    Next
+                    If jum_ins_i > 0 Then
+                        execute_non_query(query_detail, True, "", "", "", "")
+                    End If
+
+                    'reserved qty
+                    Dim ro As New ClassSalesReturnOrder
+                    ro.reservedStock(id_sales_return_order)
+
+                    FormSalesReturnOrderOL.viewSalesReturnOrder()
+                    FormSalesReturnOrderOL.GVSalesReturnOrder.FocusedRowHandle = find_row(FormSalesReturnOrderOL.GVSalesReturnOrder, "id_sales_return_order", id_sales_return_order)
+                    action = "upd"
+                    actionLoad()
+                    infoCustom("Document #" + TxtSalesOrderNumber.Text + " was created successfully.")
+                    Cursor = Cursors.Default
+                End If
+            ElseIf action = "upd" Then
+                'cant update
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnDel_Click(sender As Object, e As EventArgs) Handles BtnDel.Click
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
+                CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                check_but()
+                Cursor = Cursors.Default
+            End If
+        End If
     End Sub
 End Class

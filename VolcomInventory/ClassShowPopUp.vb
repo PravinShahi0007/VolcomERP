@@ -455,6 +455,11 @@
             FormViewSalesPOS.id_menu = "5"
             FormViewSalesPOS.id_sales_pos = id_report
             FormViewSalesPOS.ShowDialog()
+        ElseIf report_mark_type = "119" Then
+            'return order onlince
+            FormSalesReturnOrderOLDet.is_view = "1"
+            FormSalesReturnOrderOLDet.id_sales_return_order = id_report
+            FormSalesReturnOrderOLDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -725,7 +730,7 @@
             field_id = "id_prod_order_mrs"
             field_number = "prod_order_mrs_number"
             field_date = "prod_order_mrs_date"
-        ElseIf report_mark_type = "45" Then
+        ElseIf report_mark_type = "45" Or report_mark_type = "119" Then
             'SALES RETURN ORDER
             table_name = "tb_sales_return_order"
             field_id = "id_sales_return_order"

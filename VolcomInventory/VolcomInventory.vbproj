@@ -2826,6 +2826,12 @@
     <Compile Include="FormSalesReturnOrderOLDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormSalesReturnOrderOLSingle.Designer.vb">
+      <DependentUpon>FormSalesReturnOrderOLSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderOLSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormSalesReturnOrderRevise.Designer.vb">
       <DependentUpon>FormSalesReturnOrderRevise.vb</DependentUpon>
     </Compile>
@@ -6563,6 +6569,9 @@
     <EmbeddedResource Include="FormSalesReturnOrderOLDet.resx">
       <DependentUpon>FormSalesReturnOrderOLDet.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOrderOLSingle.resx">
+      <DependentUpon>FormSalesReturnOrderOLSingle.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderRevise.resx">
       <DependentUpon>FormSalesReturnOrderRevise.vb</DependentUpon>
     </EmbeddedResource>
@@ -7754,7 +7763,6 @@
       <DependentUpon>ReportSalesDelOrderDet.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportSalesDelOrderSlip.resx" />
     <EmbeddedResource Include="ReportSalesInvoice.resx">
       <DependentUpon>ReportSalesInvoice.vb</DependentUpon>
       <SubType>Designer</SubType>

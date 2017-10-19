@@ -202,7 +202,7 @@
         ElseIf report_mark_type = "44" Then
             'Mat MRS
             query = String.Format("SELECT id_report_status FROM tb_prod_order_mrs WHERE id_prod_order_mrs = '{0}'", id_report)
-        ElseIf report_mark_type = "45" Then
+        ElseIf report_mark_type = "45" Or report_mark_type = "119" Then
             'SALES RETURN ORDER
             query = String.Format("SELECT id_report_status, sales_return_order_number AS report_number FROM tb_sales_return_order WHERE id_sales_return_order = '{0}'", id_report)
         ElseIf report_mark_type = "46" Or report_mark_type = "111" Then
@@ -3583,6 +3583,26 @@
                 FormSalesPOSDet.actionLoad()
                 FormSalesPOS.viewSalesPOS()
                 FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            Else
+                'code here
+            End If
+        ElseIf report_mark_type = "119" Then
+            'return Order ol
+            If id_status_reportx = "5" Then
+                Dim ro As New ClassSalesReturnOrder()
+                ro.cancelReservedStock(id_report)
+            End If
+
+            query = String.Format("UPDATE tb_sales_return_order SET id_report_status='{0}' WHERE id_sales_return_order ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+
+            If form_origin = "FormSalesReturnOrderDet" Then
+                FormSalesReturnOrderOLDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesReturnOrderOLDet.check_but()
+                FormSalesReturnOrderOLDet.actionLoad()
+                FormSalesReturnOrderOL.viewSalesReturnOrder()
+                FormSalesReturnOrderOL.GVSalesReturnOrder.FocusedRowHandle = find_row(FormSalesReturnOrderOL.GVSalesReturnOrder, "id_sales_return_order", id_report)
             Else
                 'code here
             End If
