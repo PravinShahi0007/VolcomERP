@@ -2,8 +2,18 @@
     Public allow As Boolean = True
 
     Private Sub FormSalesReturnDetNew_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim query As String = "SELECT * FROM tb_lookup_ret_type a ORDER BY a.id_ret_type ASC "
+        Dim query As String = ""
+        'jika return ol store
+        If FormSalesReturn.GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_order") <> "0" Then
+            query = "SELECT * FROM tb_lookup_ret_type a WHERE a.id_ret_type=4 ORDER BY a.id_ret_type ASC "
+        Else
+            query = "SELECT * FROM tb_lookup_ret_type a WHERE a.id_ret_type<>4 ORDER BY a.id_ret_type ASC "
+        End If
+
         viewLookupQuery(LookUpEdit1, query, 0, "ret_type", "id_ret_type")
+
+
+
         ActiveControl = LookUpEdit1
     End Sub
 

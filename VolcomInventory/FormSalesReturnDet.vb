@@ -178,10 +178,13 @@ Public Class FormSalesReturnDet
         End If
     End Sub
     Sub viewSalesReturnOrder()
-        Dim query As String = "SELECT a.id_sales_return_order, a.id_store_contact_to, d.id_store_type,(d.comp_name) AS store_name_to, (d.id_drawer_def) AS `id_wh_drawer_store`, IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`,a.id_report_status, f.report_status, "
+        Dim query As String = "SELECT a.id_sales_return_order, a.id_store_contact_to, a.id_wh_contact_to, d.id_store_type,(d.comp_name) AS store_name_to, (d.id_drawer_def) AS `id_wh_drawer_store`, IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`,a.id_report_status, f.report_status, "
         query += "a.sales_return_order_note, a.sales_return_order_note, a.sales_return_order_number, "
         query += "DATE_FORMAT(a.sales_return_order_date,'%d %M %Y') AS sales_return_order_date, "
         query += "DATE_FORMAT(a.sales_return_order_est_date,'%d %M %Y') AS sales_return_order_est_date "
+        If id_ret_type = "4" Then
+            query += ", wh.id_comp AS `id_wh`,wh.comp_number AS `wh_number`, wh.comp_name AS `wh_name`, wh.id_drawer_def AS `wh_drawer` "
+        End If
         query += "FROM tb_sales_return_order a "
         'query += "INNER JOIN tb_sales_return_order_det b ON a.id_sales_return_order = b.id_sales_return_order "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
@@ -189,6 +192,10 @@ Public Class FormSalesReturnDet
         query += "INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status "
         query += "INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = d.id_drawer_def "
         query += "INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack "
+        If id_ret_type = "4" Then
+            query += "INNER JOIN tb_m_comp_contact whc ON whc.id_comp_contact = a.id_wh_contact_to "
+            query += "INNER JOIN tb_m_comp wh ON wh.id_comp = whc.id_comp "
+        End If
         query += "WHERE a.id_sales_return_order ='" + id_sales_return_order + "' "
         query += "ORDER BY a.id_sales_return_order ASC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -209,14 +216,22 @@ Public Class FormSalesReturnDet
         id_wh_locator_store = data.Rows(0)("id_wh_locator_store").ToString
         'MEAdrressCompTo.Text = get_company_x(id_comp_to, 3)
 
-        'default for non stock
-        If id_ret_type = "2" Then
+        If id_ret_type = "2" Then 'for non stock
             id_comp_contact_to = id_store_contact_from
             TxtNameCompTo.Text = TxtNameCompFrom.Text
             TxtCodeCompTo.Text = TxtCodeCompFrom.Text
             id_comp_user = id_store
             setDefDrawer()
+        ElseIf id_ret_type = "4" Then 'for ol store
+            BtnBrowseContactTo.Enabled = False
+            id_comp_contact_to = data.Rows(0)("id_wh_contact_to").ToString
+            TxtNameCompTo.Text = data.Rows(0)("wh_name").ToString
+            TxtCodeCompTo.Text = data.Rows(0)("wh_number").ToString
+            setDefDrawer()
         End If
+
+
+
 
         'general
         viewDetail()
@@ -427,7 +442,7 @@ Public Class FormSalesReturnDet
             TxtStoreReturnNumber.Properties.ReadOnly = False
             BtnInfoSrs.Enabled = True
             GridColumnQtyLimit.Visible = False
-            BtnBrowseContactTo.Enabled = True
+            BtnBrowseContactTo.Enabled = False
             BPickDrawer.Enabled = True
         Else
             PanelControlNav.Enabled = False
@@ -805,7 +820,7 @@ Public Class FormSalesReturnDet
                 If action = "ins" Then
                     'query main table
                     Dim sales_return_number As String = ""
-                    If id_ret_type = "1" Or id_ret_type = "3" Then
+                    If id_ret_type = "1" Or id_ret_type = "3" Or id_ret_type = "4" Then
                         sales_return_number = header_number_sales("5")
                     Else
                         sales_return_number = header_number_sales("32")
@@ -818,7 +833,7 @@ Public Class FormSalesReturnDet
                         increase_inc_sales("5")
                         'insert who prepared
                         insert_who_prepared("46", id_sales_return, id_user)
-                    ElseIf id_ret_type = "3" Then
+                    ElseIf id_ret_type = "3" Or id_ret_type = "4" Then
                         increase_inc_sales("5")
                         'insert who prepared
                         insert_who_prepared("113", id_sales_return, id_user)
@@ -913,13 +928,16 @@ Public Class FormSalesReturnDet
                     End If
 
                     'reserved stock
-                    Dim stc_rev As ClassSalesReturn = New ClassSalesReturn()
-                    stc_rev.reservedStock(id_sales_return)
+                    If id_ret_type <> "4" Then 'ol store reserved di ro
+                        Dim stc_rev As ClassSalesReturn = New ClassSalesReturn()
+                        stc_rev.reservedStock(id_sales_return)
+                    End If
+
 
                     If id_ret_type = "1" Then
                         'submit who prepared
                         submit_who_prepared("46", id_sales_return, id_user)
-                    ElseIf id_ret_type = "3" Then
+                    ElseIf id_ret_type = "3" Or id_ret_type = "4" Then
                         'submit who prepared
                         submit_who_prepared("113", id_sales_return, id_user)
                     Else
