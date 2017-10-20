@@ -1175,6 +1175,11 @@ Public Class FormMain
             FormSalesReturnOrderDet.action = "ins"
             FormSalesReturnOrderDet.id_sales_return_order = "-1"
             FormSalesReturnOrderDet.ShowDialog()
+        ElseIf formName = "FormSalesReturnOrderOL" Then
+            'SALES RETURN ORDER OL
+            FormSalesReturnOrderOLDet.action = "ins"
+            FormSalesReturnOrderOLDet.id_sales_return_order = "-1"
+            FormSalesReturnOrderOLDet.ShowDialog()
         ElseIf formName = "FormSalesReturn" Then
             'SALES RETURN
             If FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 0 Then
@@ -2047,6 +2052,11 @@ Public Class FormMain
                 FormSalesReturnOrderDet.action = "upd"
                 FormSalesReturnOrderDet.id_sales_return_order = FormSalesReturnOrder.GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
                 FormSalesReturnOrderDet.ShowDialog()
+            ElseIf formName = "FormSalesReturnOrderOL" Then
+                'SALES RETURN ORDER OL
+                FormSalesReturnOrderOLDet.action = "upd"
+                FormSalesReturnOrderOLDet.id_sales_return_order = FormSalesReturnOrderOL.GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
+                FormSalesReturnOrderOLDet.ShowDialog()
             ElseIf formName = "FormSalesReturn" Then
                 'SALES RETURN
                 FormSalesReturnDet.action = "upd"
@@ -5795,6 +5805,9 @@ Public Class FormMain
         ElseIf formName = "FormSalesReturnOrder" Then
             'SALES RETURN ORDER
             print(FormSalesReturnOrder.GCSalesReturnOrder, "List Return Order")
+        ElseIf formName = "FormSalesReturnOrderOL" Then
+            'SALES RETURN ORDER OL
+            print(FormSalesReturnOrderOL.GCSalesReturnOrder, "List Return Order")
         ElseIf formName = "FormSalesReturn" Then
             'SALES REUTNR
             If FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 0 Then
@@ -6865,6 +6878,10 @@ Public Class FormMain
             'SALEES RETURN ORDER
             FormSalesReturnOrder.Close()
             FormSalesReturnOrder.Dispose()
+        ElseIf formName = "FormSalesReturnOrderOL" Then
+            'SALEES RETURN ORDER OL
+            FormSalesReturnOrderOL.Close()
+            FormSalesReturnOrderOL.Dispose()
         ElseIf formName = "FormSalesReturn" Then
             'SALES RETURN
             FormSalesReturn.Close()
@@ -7589,6 +7606,9 @@ Public Class FormMain
         ElseIf formName = "FormSalesReturnOrder" Then
             'SALES RETURN Order
             FormSalesReturnOrder.viewSalesReturnOrder()
+        ElseIf formName = "FormSalesReturnOrderOL" Then
+            'SALES RETURN Order OL
+            FormSalesReturnOrderOL.viewSalesReturnOrder()
         ElseIf formName = "FormSalesReturn" Then
             'SALES RETURN
             If FormSalesReturn.XTCSalesReturn.SelectedTabPageIndex = 0 Then
@@ -10752,6 +10772,39 @@ Public Class FormMain
             FormSalesPOS.Show()
             FormSalesPOS.WindowState = FormWindowState.Maximized
             FormSalesPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCreditNoteOLStore_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCreditNoteOLStore.LinkClicked
+        'cn onlince store
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesPOS.Close()
+            FormSalesPOS.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormSalesPOS.MdiParent = Me
+            FormSalesPOS.id_menu = "5"
+            FormSalesPOS.Show()
+            FormSalesPOS.WindowState = FormWindowState.Maximized
+            FormSalesPOS.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBROOLStore_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBSalesReturnOrderOL.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormSalesReturnOrderOL.MdiParent = Me
+            FormSalesReturnOrderOL.Show()
+            FormSalesReturnOrderOL.WindowState = FormWindowState.Maximized
+            FormSalesReturnOrderOL.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

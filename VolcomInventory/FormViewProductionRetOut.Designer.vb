@@ -35,6 +35,17 @@ Partial Class FormViewProductionRetOut
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PEView = New DevExpress.XtraEditors.PictureEdit()
+        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtSeason = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtRetOutNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.DERetDueDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.DERet = New DevExpress.XtraEditors.TextEdit()
         Me.GCRetDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVRetDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdRet = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -54,17 +65,6 @@ Partial Class FormViewProductionRetOut
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
-        Me.DERet = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
-        Me.DERetDueDate = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtRetOutNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
-        Me.TxtSeason = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -78,6 +78,14 @@ Partial Class FormViewProductionRetOut
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtRetOutNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERetDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERetDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCRetDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVRetDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,14 +95,6 @@ Partial Class FormViewProductionRetOut
         Me.PanelControlBottomRight.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DERetDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DERetDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtRetOutNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlTopRight.SuspendLayout()
-        CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -286,6 +286,128 @@ Partial Class FormViewProductionRetOut
         Me.PEView.Size = New System.Drawing.Size(114, 136)
         Me.PEView.TabIndex = 10002
         '
+        'PanelControlTopRight
+        '
+        Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl9)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl8)
+        Me.PanelControlTopRight.Controls.Add(Me.TxtSeason)
+        Me.PanelControlTopRight.Controls.Add(Me.TxtRetOutNumber)
+        Me.PanelControlTopRight.Controls.Add(Me.TxtDesign)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
+        Me.PanelControlTopRight.Controls.Add(Me.DERetDueDate)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl6)
+        Me.PanelControlTopRight.Controls.Add(Me.DERet)
+        Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControlTopRight.Location = New System.Drawing.Point(557, 2)
+        Me.PanelControlTopRight.Name = "PanelControlTopRight"
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(314, 136)
+        Me.PanelControlTopRight.TabIndex = 10001
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(6, 35)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(35, 13)
+        Me.LabelControl9.TabIndex = 10005
+        Me.LabelControl9.Text = "Season"
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl8.Location = New System.Drawing.Point(6, 9)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(32, 13)
+        Me.LabelControl8.TabIndex = 10004
+        Me.LabelControl8.Text = "Design"
+        '
+        'TxtSeason
+        '
+        Me.TxtSeason.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtSeason.EditValue = ""
+        Me.TxtSeason.Location = New System.Drawing.Point(94, 29)
+        Me.TxtSeason.Name = "TxtSeason"
+        Me.TxtSeason.Properties.EditValueChangedDelay = 1
+        Me.TxtSeason.Properties.ReadOnly = True
+        Me.TxtSeason.Size = New System.Drawing.Size(210, 20)
+        Me.TxtSeason.TabIndex = 10003
+        Me.TxtSeason.TabStop = False
+        '
+        'TxtRetOutNumber
+        '
+        Me.TxtRetOutNumber.EditValue = ""
+        Me.TxtRetOutNumber.Location = New System.Drawing.Point(94, 106)
+        Me.TxtRetOutNumber.Name = "TxtRetOutNumber"
+        Me.TxtRetOutNumber.Properties.EditValueChangedDelay = 1
+        Me.TxtRetOutNumber.Properties.ReadOnly = True
+        Me.TxtRetOutNumber.Size = New System.Drawing.Size(210, 20)
+        Me.TxtRetOutNumber.TabIndex = 8
+        '
+        'TxtDesign
+        '
+        Me.TxtDesign.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtDesign.EditValue = ""
+        Me.TxtDesign.Location = New System.Drawing.Point(94, 6)
+        Me.TxtDesign.Name = "TxtDesign"
+        Me.TxtDesign.Properties.EditValueChangedDelay = 1
+        Me.TxtDesign.Properties.ReadOnly = True
+        Me.TxtDesign.Size = New System.Drawing.Size(210, 20)
+        Me.TxtDesign.TabIndex = 10002
+        Me.TxtDesign.TabStop = False
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl5.Location = New System.Drawing.Point(6, 109)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(82, 13)
+        Me.LabelControl5.TabIndex = 155
+        Me.LabelControl5.Text = "Ret. Out Number"
+        '
+        'DERetDueDate
+        '
+        Me.DERetDueDate.EditValue = Nothing
+        Me.DERetDueDate.Location = New System.Drawing.Point(94, 55)
+        Me.DERetDueDate.Name = "DERetDueDate"
+        Me.DERetDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERetDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DERetDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DERetDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERetDueDate.Size = New System.Drawing.Size(210, 20)
+        Me.DERetDueDate.TabIndex = 4
+        '
+        'LabelControl7
+        '
+        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl7.Location = New System.Drawing.Point(6, 84)
+        Me.LabelControl7.Name = "LabelControl7"
+        Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl7.TabIndex = 159
+        Me.LabelControl7.Text = "Date"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(6, 58)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(68, 13)
+        Me.LabelControl6.TabIndex = 161
+        Me.LabelControl6.Text = "Est. Return In"
+        '
+        'DERet
+        '
+        Me.DERet.EditValue = ""
+        Me.DERet.Location = New System.Drawing.Point(94, 81)
+        Me.DERet.Name = "DERet"
+        Me.DERet.Properties.EditValueChangedDelay = 1
+        Me.DERet.Properties.ReadOnly = True
+        Me.DERet.Size = New System.Drawing.Size(210, 20)
+        Me.DERet.TabIndex = 162
+        '
         'GCRetDetail
         '
         Me.GCRetDetail.Dock = System.Windows.Forms.DockStyle.Fill
@@ -302,10 +424,12 @@ Partial Class FormViewProductionRetOut
         '
         Me.GVRetDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdRet, Me.GridColumnIdSamplePurcDet, Me.GridColumnCode, Me.GridColumnEanCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnRemark, Me.GridColumnNox})
         Me.GVRetDetail.GridControl = Me.GCRetDetail
+        Me.GVRetDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_ret_out_det_qty", Me.GridColumnRemark, "{0:N0}")})
         Me.GVRetDetail.Name = "GVRetDetail"
         Me.GVRetDetail.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVRetDetail.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVRetDetail.OptionsCustomization.AllowGroup = False
+        Me.GVRetDetail.OptionsView.ShowFooter = True
         Me.GVRetDetail.OptionsView.ShowGroupPanel = False
         '
         'GridColumnIdRet
@@ -388,12 +512,13 @@ Partial Class FormViewProductionRetOut
         Me.GridColumnQty.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnQty.Caption = "Qty"
         Me.GridColumnQty.ColumnEdit = Me.RepositoryItemSpinEdit1
-        Me.GridColumnQty.DisplayFormat.FormatString = "F2"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "prod_order_ret_out_det_qty"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.OptionsColumn.ReadOnly = True
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "prod_order_ret_out_det_qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 6
         Me.GridColumnQty.Width = 120
@@ -485,128 +610,6 @@ Partial Class FormViewProductionRetOut
         Me.LabelControl18.TabIndex = 138
         Me.LabelControl18.Text = "Note"
         '
-        'DERet
-        '
-        Me.DERet.EditValue = ""
-        Me.DERet.Location = New System.Drawing.Point(94, 81)
-        Me.DERet.Name = "DERet"
-        Me.DERet.Properties.EditValueChangedDelay = 1
-        Me.DERet.Properties.ReadOnly = True
-        Me.DERet.Size = New System.Drawing.Size(210, 20)
-        Me.DERet.TabIndex = 162
-        '
-        'LabelControl6
-        '
-        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl6.Location = New System.Drawing.Point(6, 58)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(68, 13)
-        Me.LabelControl6.TabIndex = 161
-        Me.LabelControl6.Text = "Est. Return In"
-        '
-        'LabelControl7
-        '
-        Me.LabelControl7.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl7.Location = New System.Drawing.Point(6, 84)
-        Me.LabelControl7.Name = "LabelControl7"
-        Me.LabelControl7.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl7.TabIndex = 159
-        Me.LabelControl7.Text = "Date"
-        '
-        'DERetDueDate
-        '
-        Me.DERetDueDate.EditValue = Nothing
-        Me.DERetDueDate.Location = New System.Drawing.Point(94, 55)
-        Me.DERetDueDate.Name = "DERetDueDate"
-        Me.DERetDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DERetDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DERetDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DERetDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DERetDueDate.Size = New System.Drawing.Size(210, 20)
-        Me.DERetDueDate.TabIndex = 4
-        '
-        'LabelControl5
-        '
-        Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(6, 109)
-        Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(82, 13)
-        Me.LabelControl5.TabIndex = 155
-        Me.LabelControl5.Text = "Ret. Out Number"
-        '
-        'TxtRetOutNumber
-        '
-        Me.TxtRetOutNumber.EditValue = ""
-        Me.TxtRetOutNumber.Location = New System.Drawing.Point(94, 106)
-        Me.TxtRetOutNumber.Name = "TxtRetOutNumber"
-        Me.TxtRetOutNumber.Properties.EditValueChangedDelay = 1
-        Me.TxtRetOutNumber.Properties.ReadOnly = True
-        Me.TxtRetOutNumber.Size = New System.Drawing.Size(210, 20)
-        Me.TxtRetOutNumber.TabIndex = 8
-        '
-        'PanelControlTopRight
-        '
-        Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTopRight.Controls.Add(Me.LabelControl9)
-        Me.PanelControlTopRight.Controls.Add(Me.LabelControl8)
-        Me.PanelControlTopRight.Controls.Add(Me.TxtSeason)
-        Me.PanelControlTopRight.Controls.Add(Me.TxtRetOutNumber)
-        Me.PanelControlTopRight.Controls.Add(Me.TxtDesign)
-        Me.PanelControlTopRight.Controls.Add(Me.LabelControl5)
-        Me.PanelControlTopRight.Controls.Add(Me.DERetDueDate)
-        Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
-        Me.PanelControlTopRight.Controls.Add(Me.LabelControl6)
-        Me.PanelControlTopRight.Controls.Add(Me.DERet)
-        Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControlTopRight.Location = New System.Drawing.Point(557, 2)
-        Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(314, 136)
-        Me.PanelControlTopRight.TabIndex = 10001
-        '
-        'TxtSeason
-        '
-        Me.TxtSeason.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtSeason.EditValue = ""
-        Me.TxtSeason.Location = New System.Drawing.Point(94, 29)
-        Me.TxtSeason.Name = "TxtSeason"
-        Me.TxtSeason.Properties.EditValueChangedDelay = 1
-        Me.TxtSeason.Properties.ReadOnly = True
-        Me.TxtSeason.Size = New System.Drawing.Size(210, 20)
-        Me.TxtSeason.TabIndex = 10003
-        Me.TxtSeason.TabStop = False
-        '
-        'TxtDesign
-        '
-        Me.TxtDesign.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtDesign.EditValue = ""
-        Me.TxtDesign.Location = New System.Drawing.Point(94, 6)
-        Me.TxtDesign.Name = "TxtDesign"
-        Me.TxtDesign.Properties.EditValueChangedDelay = 1
-        Me.TxtDesign.Properties.ReadOnly = True
-        Me.TxtDesign.Size = New System.Drawing.Size(210, 20)
-        Me.TxtDesign.TabIndex = 10002
-        Me.TxtDesign.TabStop = False
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(6, 35)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(35, 13)
-        Me.LabelControl9.TabIndex = 10005
-        Me.LabelControl9.Text = "Season"
-        '
-        'LabelControl8
-        '
-        Me.LabelControl8.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl8.Location = New System.Drawing.Point(6, 9)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(32, 13)
-        Me.LabelControl8.TabIndex = 10004
-        Me.LabelControl8.Text = "Design"
-        '
         'FormViewProductionRetOut
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -636,6 +639,15 @@ Partial Class FormViewProductionRetOut
         CType(Me.TxtCodeCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameCompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControlTopRight.ResumeLayout(False)
+        Me.PanelControlTopRight.PerformLayout()
+        CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtRetOutNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERetDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERetDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCRetDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVRetDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -647,15 +659,6 @@ Partial Class FormViewProductionRetOut
         Me.PanelControlBottomRight.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DERet.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DERetDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DERetDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtRetOutNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlTopRight.ResumeLayout(False)
-        Me.PanelControlTopRight.PerformLayout()
-        CType(Me.TxtSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

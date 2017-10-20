@@ -38,6 +38,8 @@
             Text = "Invoice Missing Promo"
         ElseIf id_menu = "4" Then
             Text = "Invoice Missing Staff"
+        ElseIf id_menu = "5" Then
+            Text = "Credit Note Online Store"
         End If
 
         'Tab Daily
@@ -54,13 +56,15 @@
             Dim query_c As ClassSalesInv = New ClassSalesInv()
             Dim query As String = ""
             If id_menu = "1" Then
-                query = query_c.queryMain("AND (a.id_memo_type=''1'' OR a.id_memo_type=''3'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
+                query = query_c.queryMain("And (a.id_memo_type=''1'' OR a.id_memo_type=''3'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
             ElseIf id_menu = "2" Then
                 query = query_c.queryMain("AND (a.id_memo_type=''2'' OR a.id_memo_type=''4'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
             ElseIf id_menu = "3" Then
                 query = query_c.queryMain("AND (a.id_memo_type=''5'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
             ElseIf id_menu = "4" Then
                 query = query_c.queryMain("AND (a.id_memo_type=''8'') AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
+            ElseIf id_menu = "5" Then
+                query = query_c.queryMain("AND a.id_memo_type=''2'' AND !ISNULL(a.id_sales_pos_ref) AND c.id_comp LIKE ''" + id_store_selected + "'' AND (a.sales_pos_end_period >=''" + date_from_selected + "'' AND a.sales_pos_end_period <=''" + date_until_selected + "'') ", "2")
             End If
 
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
