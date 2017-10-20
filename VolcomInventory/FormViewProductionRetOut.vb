@@ -103,7 +103,6 @@
         Dim query As String = "CALL view_return_out_prod('" + id_prod_order_ret_out + "', '0')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCRetDetail.DataSource = data
-        GVRetDetail.ActiveFilterString = "[prod_order_ret_out_det_qty] >0.00"
     End Sub
   
 
