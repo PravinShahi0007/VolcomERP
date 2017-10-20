@@ -231,6 +231,8 @@
                         End If
                     Next
                 End If
+                'insert wo
+
                 'insert who prepared
                 insert_who_prepared("22", last_id, id_user)
                 'end insert who prepared
@@ -664,8 +666,19 @@
     Private Sub BSaveWO_Click(sender As Object, e As EventArgs) Handles BSaveWO.Click
         Dim query As String = ""
         For i As Integer = 0 To GVWO.RowCount - 1
-            Dim price, kurs, vat, mat_sent_date, top, lead_time As String
-            infoCustom(Date.Parse(GVWO.GetRowCellValue(i, "prod_order_wo_del_date").ToString()).ToString("yyyy-MM-dd"))
+            Dim price, kurs, vat, mat_sent_date, top, lead_time, id_wo, gross_amount, id_curr As String
+            price = decimalSQL(GVWO.GetRowCellValue(i, "price").ToString())
+            kurs = decimalSQL(GVWO.GetRowCellValue(i, "prod_order_wo_kurs").ToString())
+            vat = decimalSQL(GVWO.GetRowCellValue(i, "prod_order_wo_vat").ToString())
+            mat_sent_date = Date.Parse(GVWO.GetRowCellValue(i, "prod_order_wo_del_date").ToString()).ToString("yyyy-MM-dd")
+            top = GVWO.GetRowCellValue(i, "prod_order_wo_top").ToString()
+            lead_time = GVWO.GetRowCellValue(i, "prod_order_wo_lead_time").ToString()
+            id_wo = GVWO.GetRowCellValue(i, "id_prod_order_wo").ToString()
+            gross_amount = decimalSQL(GVWO.GetRowCellValue(i, "gross_amount").ToString)
+            id_curr = GVWO.GetRowCellValue(i, "id_currency").ToString
+            '
+            query += "UPDATE tb_prod_order_wo SET prod_order_wo_del_date='" & mat_sent_date & "',id_currency='" & id_curr & "',prod_order_wo_kurs='" & kurs & "',prod_order_wo_vat='" & vat & "',prod_order_wo_top='" & top & "',prod_order_wo_lead_time='" & lead_time & "',prod_order_wo_amount='" & gross_amount & "' WHERE id_prod_order_wo='" & id_wo & "';UPDATE SET prod_order_wo_det_price='" & price & "' WHERE id_prod_order_wo='" & id_wo & "';"
         Next
+        execute_non_query(query, True, "", "", "", "")
     End Sub
 End Class

@@ -942,6 +942,7 @@ Partial Class FormProductionDet
         Me.GridColumn5.Caption = "ID WO"
         Me.GridColumn5.FieldName = "id_prod_order_wo"
         Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
         '
         'GridColumn7
         '

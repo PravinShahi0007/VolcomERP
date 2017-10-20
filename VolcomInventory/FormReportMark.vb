@@ -1434,6 +1434,10 @@
             'Production Order
             query = String.Format("UPDATE tb_prod_order SET id_report_status='{0}' WHERE id_prod_order='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
+            '
+            query = String.Format("UPDATE tb_prod_order_wo SET id_report_status='{0}' WHERE id_prod_order='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            '
             infoCustom("Status changed.")
             Try
                 FormProductionDet.id_report_status_g = id_status_reportx
@@ -1444,29 +1448,30 @@
             End Try
         ElseIf report_mark_type = "23" Then
             'Production Work Order 
-            Try
-                If id_status_reportx = "6" Then
-                    Dim query_upd_contact As String = ""
-                    query_upd_contact += "Update tb_prod_order pdo INNER JOIN ( "
-                    query_upd_contact += "Select If(wo.is_main_vendor ='1', ovh_prc.id_comp_contact,NULL) AS id_comp_contact, wo.id_prod_order "
-                    query_upd_contact += "From tb_prod_order_wo wo "
-                    query_upd_contact += "INNER Join tb_m_ovh_price ovh_prc On wo.id_ovh_price = ovh_prc.id_ovh_price "
-                    query_upd_contact += "WHERE wo.id_prod_order_wo ='" + id_report + "' "
-                    query_upd_contact += ") wo On pdo.id_prod_order = wo.id_prod_order "
-                    query_upd_contact += "SET pdo.id_comp_contact_main=wo.id_comp_contact "
-                    execute_non_query(query_upd_contact, True, "", "", "", "")
-                End If
+            'only on PO (after linked with BOM)
+            'Try
+            '    If id_status_reportx = "6" Then
+            '        Dim query_upd_contact As String = ""
+            '        query_upd_contact += "Update tb_prod_order pdo INNER JOIN ( "
+            '        query_upd_contact += "Select If(wo.is_main_vendor ='1', ovh_prc.id_comp_contact,NULL) AS id_comp_contact, wo.id_prod_order "
+            '        query_upd_contact += "From tb_prod_order_wo wo "
+            '        query_upd_contact += "INNER Join tb_m_ovh_price ovh_prc On wo.id_ovh_price = ovh_prc.id_ovh_price "
+            '        query_upd_contact += "WHERE wo.id_prod_order_wo ='" + id_report + "' "
+            '        query_upd_contact += ") wo On pdo.id_prod_order = wo.id_prod_order "
+            '        query_upd_contact += "SET pdo.id_comp_contact_main=wo.id_comp_contact "
+            '        execute_non_query(query_upd_contact, True, "", "", "", "")
+            '    End If
 
-                query = String.Format("UPDATE tb_prod_order_wo Set id_report_status='{0}' WHERE id_prod_order_wo='{1}'", id_status_reportx, id_report)
-                execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+            '    query = String.Format("UPDATE tb_prod_order_wo Set id_report_status='{0}' WHERE id_prod_order_wo='{1}'", id_status_reportx, id_report)
+            '    execute_non_query(query, True, "", "", "", "")
+            '    infoCustom("Status changed.")
 
-                FormProductionWO.id_report_status_g = id_status_reportx
-                FormProductionWO.allow_status()
-                FormProductionDet.view_wo()
-                FormProductionDet.GVProdWO.FocusedRowHandle = find_row(FormProductionDet.GVProdWO, "id_prod_order_wo", id_report)
-            Catch ex As Exception
-            End Try
+            '    FormProductionWO.id_report_status_g = id_status_reportx
+            '    FormProductionWO.allow_status()
+            '    FormProductionDet.view_wo()
+            '    FormProductionDet.GVProdWO.FocusedRowHandle = find_row(FormProductionDet.GVProdWO, "id_prod_order_wo", id_report)
+            'Catch ex As Exception
+            'End Try
         ElseIf report_mark_type = "24" Then
             'Material PO PR
             query = String.Format("UPDATE tb_pr_mat_purc SET id_report_status='{0}' WHERE id_pr_mat_purc='{1}'", id_status_reportx, id_report)
