@@ -98,7 +98,7 @@ Public Class FormSalesReturnDet
             'query view based on edit id's
             Dim query As String = "SELECT a.id_wh_drawer,dw.wh_drawer_code,b.id_sales_return_order, a.id_store_contact_from, (d.id_drawer_def) AS `id_wh_drawer_store`,IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`, a.id_comp_contact_to, (d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to, (d.comp_number) AS store_number_from, (d1.comp_number) AS comp_number_to, (d.address_primary) AS store_address_from, a.id_report_status, f.report_status, "
             query += "a.sales_return_note,a.sales_return_date, a.sales_return_number, sales_return_store_number,b.sales_return_order_number, "
-            query += "DATE_FORMAT(a.sales_return_date,'%Y-%m-%d') AS sales_return_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, dw.wh_drawer, rc.wh_rack, loc.wh_locator, a.id_ret_type, rt.ret_type "
+            query += "DATE_FORMAT(a.sales_return_date,'%Y-%m-%d') AS sales_return_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, dw.wh_drawer, rc.wh_rack, loc.wh_locator, a.id_ret_type, rt.ret_type, so.sales_order_ol_shop_number "
             query += "FROM tb_sales_return a "
             query += "INNER JOIN tb_sales_return_order b ON a.id_sales_return_order = b.id_sales_return_order "
             query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_from "
@@ -112,6 +112,7 @@ Public Class FormSalesReturnDet
             query += "INNER JOIN tb_m_wh_drawer drw ON drw.id_wh_drawer = d.id_drawer_def "
             query += "INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack "
             query += "LEFT JOIN tb_lookup_ret_type rt ON rt.id_ret_type = a.id_ret_type "
+            query += "LEFT JOIN tb_sales_order so ON so.id_sales_order = b.id_sales_order "
             query += "WHERE a.id_sales_return = '" + id_sales_return + "' "
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             id_report_status = data.Rows(0)("id_report_status").ToString
@@ -149,6 +150,7 @@ Public Class FormSalesReturnDet
             TEDrawer.Text = data.Rows(0)("wh_drawer_code").ToString
             id_ret_type = data.Rows(0)("id_ret_type").ToString
             TxtReturnType.Text = data.Rows(0)("ret_type").ToString
+            TxtOLStoreOrder.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
 
             'detail2
             viewDetail()
@@ -183,7 +185,7 @@ Public Class FormSalesReturnDet
         query += "DATE_FORMAT(a.sales_return_order_date,'%d %M %Y') AS sales_return_order_date, "
         query += "DATE_FORMAT(a.sales_return_order_est_date,'%d %M %Y') AS sales_return_order_est_date "
         If id_ret_type = "4" Then
-            query += ", wh.id_comp AS `id_wh`,wh.comp_number AS `wh_number`, wh.comp_name AS `wh_name`, wh.id_drawer_def AS `wh_drawer` "
+            query += ", wh.id_comp AS `id_wh`,wh.comp_number AS `wh_number`, wh.comp_name AS `wh_name`, wh.id_drawer_def AS `wh_drawer`, so.sales_order_ol_shop_number "
         End If
         query += "FROM tb_sales_return_order a "
         'query += "INNER JOIN tb_sales_return_order_det b ON a.id_sales_return_order = b.id_sales_return_order "
@@ -195,6 +197,7 @@ Public Class FormSalesReturnDet
         If id_ret_type = "4" Then
             query += "INNER JOIN tb_m_comp_contact whc ON whc.id_comp_contact = a.id_wh_contact_to "
             query += "INNER JOIN tb_m_comp wh ON wh.id_comp = whc.id_comp "
+            query += "INNER JOIN tb_sales_order so ON so.id_sales_order = a.id_sales_order "
         End If
         query += "WHERE a.id_sales_return_order ='" + id_sales_return_order + "' "
         query += "ORDER BY a.id_sales_return_order ASC "
@@ -224,6 +227,8 @@ Public Class FormSalesReturnDet
             setDefDrawer()
         ElseIf id_ret_type = "4" Then 'for ol store
             BtnBrowseContactTo.Enabled = False
+            BPickDrawer.Enabled = False
+            TxtOLStoreOrder.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
             id_comp_contact_to = data.Rows(0)("id_wh_contact_to").ToString
             TxtNameCompTo.Text = data.Rows(0)("wh_name").ToString
             TxtCodeCompTo.Text = data.Rows(0)("wh_number").ToString
@@ -688,6 +693,8 @@ Public Class FormSalesReturnDet
             FormReportMark.report_mark_type = "46"
         ElseIf id_ret_type = "3" Then
             FormReportMark.report_mark_type = "113"
+        ElseIf id_ret_type = "4" Then
+            FormReportMark.report_mark_type = "120"
         Else
             FormReportMark.report_mark_type = "111"
         End If
@@ -833,10 +840,14 @@ Public Class FormSalesReturnDet
                         increase_inc_sales("5")
                         'insert who prepared
                         insert_who_prepared("46", id_sales_return, id_user)
-                    ElseIf id_ret_type = "3" Or id_ret_type = "4" Then
+                    ElseIf id_ret_type = "3" Then
                         increase_inc_sales("5")
                         'insert who prepared
                         insert_who_prepared("113", id_sales_return, id_user)
+                    ElseIf id_ret_type = "4" Then
+                        increase_inc_sales("5")
+                        'insert who prepared
+                        insert_who_prepared("120", id_sales_return, id_user)
                     Else
                         increase_inc_sales("32")
                         'insert who prepared
@@ -937,9 +948,12 @@ Public Class FormSalesReturnDet
                     If id_ret_type = "1" Then
                         'submit who prepared
                         submit_who_prepared("46", id_sales_return, id_user)
-                    ElseIf id_ret_type = "3" Or id_ret_type = "4" Then
+                    ElseIf id_ret_type = "3" Then
                         'submit who prepared
                         submit_who_prepared("113", id_sales_return, id_user)
+                    ElseIf id_ret_type = "4" Then
+                        'submit who prepared
+                        submit_who_prepared("120", id_sales_return, id_user)
                     Else
                         'submit who prepared
                         submit_who_prepared("111", id_sales_return, id_user)
@@ -1619,6 +1633,8 @@ Public Class FormSalesReturnDet
             FormDocumentUpload.report_mark_type = "46"
         ElseIf id_ret_type = "3" Then
             FormDocumentUpload.report_mark_type = "113"
+        ElseIf id_ret_type = "4" Then
+            FormDocumentUpload.report_mark_type = "120"
         Else
             FormDocumentUpload.report_mark_type = "111"
         End If

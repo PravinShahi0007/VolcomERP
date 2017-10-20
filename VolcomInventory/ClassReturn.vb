@@ -13,7 +13,7 @@
         End If
 
         Dim query As String = ""
-        query += "SELECT a.id_sales_return_order, a.id_store_contact_to, IFNULL(d.id_drawer_def,-1) AS `id_wh_drawer_store`, IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to,a.id_report_status, f.report_status, "
+        query += "SELECT a.id_sales_return_order, a.id_store_contact_to, a.id_wh_contact_to, IFNULL(d.id_drawer_def,-1) AS `id_wh_drawer_store`, IFNULL(rck.id_wh_rack,-1) AS `id_wh_rack_store`, IFNULL(rck.id_wh_locator,-1) AS `id_wh_locator_store`, CONCAT(d.comp_number,' - ',d.comp_name) AS store_name_to, CONCAT(wh.comp_number,' - ',wh.comp_name) AS wh_name_to,a.id_report_status, f.report_status, "
         query += "a.sales_return_order_note, a.sales_return_order_note, a.sales_return_order_number, "
         query += "a.sales_return_order_date, "
         query += "a.sales_return_order_est_date, "
@@ -25,6 +25,8 @@
         query += "FROM tb_sales_return_order a "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
+        query += "LEFT JOIN tb_m_comp_contact whc ON whc.id_comp_contact = a.id_wh_contact_to "
+        query += "LEFT JOIN tb_m_comp wh ON wh.id_comp = whc.id_comp "
         query += "INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status "
         query += "LEFT JOIN( "
         query += "SELECT a_sub.id_sales_return_order, COUNT(a_sub.id_sales_return) AS created_return FROM tb_sales_return a_sub WHERE a_sub.id_report_status!='5' GROUP BY a_sub.id_sales_return_order "
