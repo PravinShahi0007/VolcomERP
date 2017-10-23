@@ -5506,6 +5506,9 @@
     <EmbeddedResource Include="FormNotification.resx">
       <DependentUpon>FormNotification.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreSummary.resx">
+      <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOptView.resx">
       <DependentUpon>FormOptView.vb</DependentUpon>
     </EmbeddedResource>

@@ -19,24 +19,24 @@ Partial Class FormDocumentUpload
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormDocumentUpload))
-        Me.PCNav = New DevExpress.XtraEditors.PanelControl
-        Me.BDelete = New DevExpress.XtraEditors.SimpleButton
+        Me.PCNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.Bupload = New DevExpress.XtraEditors.SimpleButton
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.BClose = New DevExpress.XtraEditors.SimpleButton
-        Me.GCFileList = New DevExpress.XtraGrid.GridControl
-        Me.GVFileList = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdUpload = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnFile = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnOpt = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RICE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.GridColumnFilename = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView
+        Me.Bupload = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCFileList = New DevExpress.XtraGrid.GridControl()
+        Me.GVFileList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdUpload = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFile = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOpt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICE = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumnFilename = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.PCNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCNav.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
