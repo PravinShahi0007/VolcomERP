@@ -12,7 +12,15 @@
     Public info_design As String = ""
     Public info_design_code As String = ""
     '
-
+    Sub close()
+        If report_mark_type = "22" Then
+            'Production Order
+            FormViewProduction.Close()
+        ElseIf report_mark_type = "23" Then
+            'Production Work Order
+            FormViewProductionWO.Close()
+        End If
+    End Sub
     Sub show()
         If report_mark_type = "1" Then
             'sample purchase

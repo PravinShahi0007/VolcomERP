@@ -1443,7 +1443,7 @@
             'Production Order
             query = String.Format("UPDATE tb_prod_order SET id_report_status='{0}' WHERE id_prod_order='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormProductionDet.id_report_status_g = id_status_reportx
                 FormProductionDet.allow_status()
@@ -1468,7 +1468,7 @@
 
                 query = String.Format("UPDATE tb_prod_order_wo Set id_report_status='{0}' WHERE id_prod_order_wo='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 FormProductionWO.id_report_status_g = id_status_reportx
                 FormProductionWO.allow_status()
@@ -4337,6 +4337,7 @@
         End If
         insert_who_prepared("36", last_id, id_user)
         increase_inc_acc("1")
+        '
     End Sub
     Private Sub BLeadTime_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BLeadTime.Click
         If check_available_lead_time(GVMark.GetFocusedRowCellDisplayText("id_report_mark").ToString) Then
