@@ -72,6 +72,11 @@
                 'slow but..
                 FormWork.view_mark_need()
                 'FormWork.view_mark_history()
+                '
+
+                '
+                close_form(FormReportMark.report_mark_type)
+                FormReportMark.Close()
                 Close()
             Catch ex As Exception
                 MsgBox(ex.ToString())
@@ -79,7 +84,14 @@
             Cursor = Cursors.Default
         End If
     End Sub
-
+    Sub close_form(ByVal report_mark_type)
+        Try
+            Dim popup As ClassShowPopUp = New ClassShowPopUp()
+            popup.report_mark_type = report_mark_type
+            popup.close()
+        Catch ex As Exception
+        End Try
+    End Sub
     Private Sub BRefuse_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BRefuse.Click
         Dim confirm As DialogResult
         confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to refuse this report ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -114,6 +126,8 @@
                 mail.report_mark_type = report_mark_type
                 mail.send_email_appr(report_mark_type, id_report, False)
             End If
+            close_form(FormReportMark.report_mark_type)
+            FormReportMark.Close()
             Close()
             'Catch ex As Exception
             '    errorConnection(ex.ToString)
