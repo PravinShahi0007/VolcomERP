@@ -10810,4 +10810,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBOLStoreReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBOLStoreReport.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormOLStoreSummary.MdiParent = Me
+            FormOLStoreSummary.Show()
+            FormOLStoreSummary.WindowState = FormWindowState.Maximized
+            FormOLStoreSummary.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
