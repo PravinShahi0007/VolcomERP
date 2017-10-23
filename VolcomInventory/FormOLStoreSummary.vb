@@ -35,29 +35,76 @@
 
     Sub viewData()
         Cursor = Cursors.WaitCursor
+        'Prepare paramater
+        Dim date_from_selected As String = "0000-01-01"
+        Dim date_until_selected As String = "9999-01-01"
+        Try
+            date_from_selected = DateTime.Parse(DEFrom.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
+        Try
+            date_until_selected = DateTime.Parse(DEUntil.EditValue.ToString).ToString("yyyy-MM-dd")
+        Catch ex As Exception
+        End Try
+
         Dim id_comp As String = SLEComp.EditValue.ToString
-        Dim query As String = "SELECT so.sales_order_number, so.sales_order_ol_shop_number, 
-        GROUP_CONCAT(DISTINCT del.pl_sales_order_del_number ORDER BY del.id_pl_sales_order_del ASC SEPARATOR ', ') AS `pl_sales_order_del_number`,
-        GROUP_CONCAT(DISTINCT ro.sales_return_order_number ORDER BY ro.id_sales_return_order ASC SEPARATOR ', ') AS `sales_return_order_number`,
-        GROUP_CONCAT(DISTINCT r.sales_return_number ORDER BY r.id_sales_return ASC SEPARATOR ', ') AS `sales_return_number`,
-        GROUP_CONCAT(DISTINCT inv.sales_pos_number ORDER BY inv.id_sales_pos ASC SEPARATOR ', ') AS `sales_pos_number`,
-        GROUP_CONCAT(DISTINCT cn.sales_pos_number ORDER BY cn.id_sales_pos ASC SEPARATOR ', ') AS `sales_pos_cn_number`,
+        Dim query As String = "SELECT so.sales_order_number, so.sales_order_ol_shop_number, del.pl_sales_order_del_number,ro.sales_return_order_number, r.sales_return_number, inv.sales_pos_number, cn.sales_pos_cn_number,
         IF(ISNULL(inv.id_sales_pos),'Pending','Paid') AS `paid_status`, '0' AS `report_mark_type`,
-        so.id_sales_order, 
-        IF(ISNULL(del.id_pl_sales_order_del),0,GROUP_CONCAT(DISTINCT del.id_pl_sales_order_del ORDER BY del.id_pl_sales_order_del ASC SEPARATOR '#')) AS `id_del`,
-        IF(ISNULL(ro.id_sales_return_order),0,GROUP_CONCAT(DISTINCT ro.id_sales_return_order ORDER BY ro.id_sales_return_order ASC SEPARATOR '#')) AS `id_ro`,
-        IF(ISNULL(r.id_sales_return),0,GROUP_CONCAT(DISTINCT r.id_sales_return ORDER BY r.id_sales_return ASC SEPARATOR '#')) AS `id_ret`,
-        IF(ISNULL(inv.id_sales_pos),0,GROUP_CONCAT(DISTINCT inv.id_sales_pos ORDER BY inv.id_sales_pos ASC SEPARATOR '#')) AS `id_inv`,
-        IF(ISNULL(cn.id_sales_pos),0,GROUP_CONCAT(DISTINCT cn.id_sales_pos ORDER BY cn.id_sales_pos ASC SEPARATOR '#')) AS `id_cn`
+        so.id_sales_order, del.id_del,ro.id_ro, r.id_ret, inv.id_inv, cn.id_cn
         FROM tb_sales_order so 
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
-        LEFT JOIN tb_pl_sales_order_del del ON del.id_sales_order = so.id_sales_order AND del.id_report_status=6
-        LEFT JOIN tb_sales_return_order ro ON ro.id_sales_order = so.id_sales_order  AND ro.id_report_status=6
-        LEFT JOIN tb_sales_return r ON r.id_sales_return_order = ro.id_sales_return_order  AND r.id_report_status=6
-        LEFT JOIN tb_sales_pos inv ON inv.id_pl_sales_order_del = del.id_pl_sales_order_del AND inv.id_report_status=6 AND inv.id_memo_type=1
-        LEFT JOIN tb_sales_pos cn ON cn.id_sales_pos_ref = inv.id_sales_pos AND cn.id_report_status=6 AND cn.id_memo_type=2
-        WHERE c.id_comp=" + id_comp + " AND so.id_report_status=6 "
+        LEFT JOIN (
+            SELECT del.id_pl_sales_order_del,
+            IF(ISNULL(del.id_pl_sales_order_del),0,GROUP_CONCAT(DISTINCT del.id_pl_sales_order_del ORDER BY del.id_pl_sales_order_del ASC SEPARATOR '#')) AS `id_del`,
+            GROUP_CONCAT(DISTINCT del.pl_sales_order_del_number ORDER BY del.id_pl_sales_order_del ASC SEPARATOR ', ') AS `pl_sales_order_del_number`,
+            del.id_sales_order
+            FROM tb_pl_sales_order_del del
+            WHERE del.id_report_status=6
+            GROUP BY del.id_sales_order
+        ) del ON del.id_sales_order = so.id_sales_order
+        LEFT JOIN (
+            SELECT ro.id_sales_return_order,
+            GROUP_CONCAT(DISTINCT ro.sales_return_order_number ORDER BY ro.id_sales_return_order ASC SEPARATOR ', ') AS `sales_return_order_number`,
+            IF(ISNULL(ro.id_sales_return_order),0,GROUP_CONCAT(DISTINCT ro.id_sales_return_order ORDER BY ro.id_sales_return_order ASC SEPARATOR '#')) AS `id_ro`,
+            ro.id_sales_order
+            FROM tb_sales_return_order ro
+            WHERE ro.id_report_status=6
+            GROUP BY ro.id_sales_order                    
+        ) ro ON ro.id_sales_order = so.id_sales_order  
+        LEFT JOIN (
+            SELECT r.id_sales_return,
+            GROUP_CONCAT(DISTINCT r.sales_return_number ORDER BY r.id_sales_return ASC SEPARATOR ', ') AS `sales_return_number`,
+            IF(ISNULL(r.id_sales_return),0,GROUP_CONCAT(DISTINCT r.id_sales_return ORDER BY r.id_sales_return ASC SEPARATOR '#')) AS `id_ret`,
+            ro.id_sales_order
+            FROM tb_sales_return r
+            INNER JOIN tb_sales_return_order ro ON ro.id_sales_return_order = r.id_sales_return_order
+            WHERE r.id_report_status=6
+            GROUP BY ro.id_sales_order      
+        ) r ON r.id_sales_order = so.id_sales_order 
+        LEFT JOIN (
+            SELECT inv.id_sales_pos,
+            GROUP_CONCAT(DISTINCT inv.sales_pos_number ORDER BY inv.id_sales_pos ASC SEPARATOR ', ') AS `sales_pos_number`,
+            IF(ISNULL(inv.id_sales_pos),0,GROUP_CONCAT(DISTINCT inv.id_sales_pos ORDER BY inv.id_sales_pos ASC SEPARATOR '#')) AS `id_inv`,
+            del.id_sales_order
+            FROM tb_sales_pos inv
+            INNER JOIN tb_pl_sales_order_del del ON inv.id_pl_sales_order_del = del.id_pl_sales_order_del
+            WHERE inv.id_report_status=6 AND inv.id_memo_type=1
+            GROUP BY del.id_sales_order  
+        ) inv ON inv.id_sales_order = so.id_sales_order 
+        LEFT JOIN (
+            SELECT cn.id_sales_pos,
+            GROUP_CONCAT(DISTINCT cn.sales_pos_number ORDER BY cn.id_sales_pos ASC SEPARATOR ', ') AS `sales_pos_cn_number`,
+            IF(ISNULL(cn.id_sales_pos),0,GROUP_CONCAT(DISTINCT cn.id_sales_pos ORDER BY cn.id_sales_pos ASC SEPARATOR '#')) AS `id_cn`,
+            del.id_sales_order
+            FROM tb_sales_pos cn
+            INNER JOIN tb_sales_pos inv ON inv.id_sales_pos = cn.id_sales_pos_ref
+            INNER JOIN tb_pl_sales_order_del del ON inv.id_pl_sales_order_del = del.id_pl_sales_order_del
+            WHERE cn.id_report_status=6 AND cn.id_memo_type=2
+            GROUP BY del.id_sales_order  
+        ) cn ON cn.id_sales_order = so.id_sales_order 
+        WHERE c.id_comp=" + id_comp + " AND so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
         Cursor = Cursors.Default

@@ -6667,6 +6667,8 @@ Public Class FormMain
             End If
         ElseIf formName = "FormProdClosing" Then
             print_raw(FormProdClosing.GCProd, "")
+        ElseIf formName = "FormOLStoreSummary" Then
+            print_raw(FormOLStoreSummary.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7236,6 +7238,9 @@ Public Class FormMain
         ElseIf formName = "FormProdClosing" Then
             FormProdClosing.Close()
             FormProdClosing.Dispose()
+        ElseIf formName = "FormOLStoreSummary" Then
+            FormOLStoreSummary.Close()
+            FormOLStoreSummary.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
