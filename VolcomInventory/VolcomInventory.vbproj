@@ -1163,6 +1163,12 @@
     <Compile Include="FormNotification.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormOLStoreSummary.Designer.vb">
+      <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormOLStoreSummary.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormOptView.Designer.vb">
       <DependentUpon>FormOptView.vb</DependentUpon>
     </Compile>
@@ -7753,7 +7759,6 @@
       <DependentUpon>ReportSalesDelOrderDet.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReportSalesDelOrderSlip.resx" />
     <EmbeddedResource Include="ReportSalesInvoice.resx">
       <DependentUpon>ReportSalesInvoice.vb</DependentUpon>
       <SubType>Designer</SubType>
