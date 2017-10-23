@@ -25,6 +25,7 @@
         view_departement(LEDepartement)
         view_store_type()
         view_store_area()
+        viewCommerceType()
         viewSalesRep()
         viewPDAlloc()
         viewWHType()
@@ -33,6 +34,7 @@
         TxtCommission.EditValue = 0.0
         LEStoreType.EditValue = Nothing
         LEArea.EditValue = Nothing
+        LECommerceType.EditValue = Nothing
         SLESalesRep.EditValue = Nothing
         LEAllocation.EditValue = Nothing
         LESOType.EditValue = Nothing
@@ -134,6 +136,7 @@
             TxtCommission.EditValue = data.Rows(0)("comp_commission")
             LEStoreType.ItemIndex = LEStoreType.Properties.GetDataSourceRowIndex("id_store_type", data.Rows(0)("id_store_type"))
             LEArea.ItemIndex = LEArea.Properties.GetDataSourceRowIndex("id_area", data.Rows(0)("id_area"))
+            LECommerceType.ItemIndex = LECommerceType.Properties.GetDataSourceRowIndex("id_commerce_type", data.Rows(0)("id_commerce_type"))
             SLESalesRep.EditValue = data.Rows(0)("id_employee_rep")
             LEAllocation.ItemIndex = LEAllocation.Properties.GetDataSourceRowIndex("id_pd_alloc", data.Rows(0)("id_pd_alloc"))
             LEWHType.ItemIndex = LEWHType.Properties.GetDataSourceRowIndex("id_wh_type", data.Rows(0)("id_wh_type"))
@@ -168,6 +171,11 @@
     Sub view_store_type()
         Dim query As String = "SELECT * FROM tb_lookup_store_type ORDER BY id_store_type ASC "
         viewLookupQuery(LEStoreType, query, 0, "store_type", "id_store_type")
+    End Sub
+
+    Sub viewCommerceType()
+        Dim query As String = "SELECT * FROM tb_lookup_commerce_type ct ORDER BY ct.id_commerce_type ASC "
+        viewLookupQuery(LECommerceType, query, 0, "commerce_type", "id_commerce_type")
     End Sub
 
     Sub view_store_area()
@@ -265,6 +273,12 @@
         Dim id_area As String = Nothing
         Try
             id_area = LEArea.EditValue.ToString
+        Catch ex As Exception
+        End Try
+
+        Dim id_commerce_type As String = Nothing
+        Try
+            id_commerce_type = LECommerceType.EditValue.ToString
         Catch ex As Exception
         End Try
 
@@ -403,6 +417,11 @@
                     query += "id_area = NULL, "
                 Else
                     query += "id_area = '" + id_area + "', "
+                End If
+                If id_commerce_type = Nothing Then
+                    query += "id_commerce_type = NULL, "
+                Else
+                    query += "id_commerce_type = '" + id_commerce_type + "', "
                 End If
                 If id_employee_rep = Nothing Then
                     query += "id_employee_rep = NULL, "
@@ -710,4 +729,11 @@
         id_def_drawer = "-1"
     End Sub
 
+    Private Sub BClearSOType_Click(sender As Object, e As EventArgs) Handles BClearSOType.Click
+
+    End Sub
+
+    Private Sub BCommerceType_Click(sender As Object, e As EventArgs) Handles BCommerceType.Click
+        setNothingLE(LECommerceType)
+    End Sub
 End Class

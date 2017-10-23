@@ -19,70 +19,72 @@ Partial Class FormSalesCreditNotePopInv
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode
-        Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDesignPriceRetail = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDesignPriceType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSalesPOSDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDesignPriceRetail = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GCSalesPOS = New DevExpress.XtraGrid.GridControl
-        Me.GVSalesPOS = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnStore = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSalesPOSDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSalesStore = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDiscount = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSalesTax = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnNetto = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSalesPosRev = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDueDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnAge = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.PanelControlChoose = New DevExpress.XtraEditors.PanelControl
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnChoose = New DevExpress.XtraEditors.SimpleButton
-        Me.SCCInvoice = New DevExpress.XtraEditors.SplitContainerControl
-        Me.GroupControlSummary = New DevExpress.XtraEditors.GroupControl
-        Me.GroupControlDetail = New DevExpress.XtraEditors.GroupControl
-        Me.GCItemList = New DevExpress.XtraGrid.GridControl
-        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Me.GVSalesPOSDet = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUOM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAmount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesignPriceRetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesignPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesign = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdProduct = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesignPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSalesPOSDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDesignPriceRetail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCSalesPOS = New DevExpress.XtraGrid.GridControl()
+        Me.GVSalesPOS = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnStore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSalesPOSDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSalesStore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDiscount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSalesTax = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNetto = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSalesPosRev = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAge = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControlChoose = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnChoose = New DevExpress.XtraEditors.SimpleButton()
+        Me.SCCInvoice = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupControlSummary = New DevExpress.XtraEditors.GroupControl()
+        Me.GroupControlDetail = New DevExpress.XtraEditors.GroupControl()
+        Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDELNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -301,16 +303,16 @@ Partial Class FormSalesCreditNotePopInv
         GridLevelNode1.LevelTemplate = Me.GVSalesPOSDet
         GridLevelNode1.RelationName = "Detail Transaction"
         Me.GCSalesPOS.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-        Me.GCSalesPOS.Location = New System.Drawing.Point(22, 2)
+        Me.GCSalesPOS.Location = New System.Drawing.Point(20, 2)
         Me.GCSalesPOS.MainView = Me.GVSalesPOS
         Me.GCSalesPOS.Name = "GCSalesPOS"
-        Me.GCSalesPOS.Size = New System.Drawing.Size(728, 241)
+        Me.GCSalesPOS.Size = New System.Drawing.Size(730, 241)
         Me.GCSalesPOS.TabIndex = 1
         Me.GCSalesPOS.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesPOS, Me.GVSalesPOSDet})
         '
         'GVSalesPOS
         '
-        Me.GVSalesPOS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnStore, Me.GridColumnSalesPOSDate, Me.GridColumn1, Me.GridColumnSalesStore, Me.GridColumnType, Me.GridColumnQty, Me.GridColumnTotal, Me.GridColumnDiscount, Me.GridColumnSalesTax, Me.GridColumnNetto, Me.GridColumnSalesPosRev, Me.GridColumnDueDate, Me.GridColumnStatus, Me.GridColumnAge, Me.GridColumnRemark})
+        Me.GVSalesPOS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnStore, Me.GridColumnSalesPOSDate, Me.GridColumn1, Me.GridColumnSalesStore, Me.GridColumnType, Me.GridColumnQty, Me.GridColumnTotal, Me.GridColumnDiscount, Me.GridColumnSalesTax, Me.GridColumnNetto, Me.GridColumnSalesPosRev, Me.GridColumnDueDate, Me.GridColumnStatus, Me.GridColumnAge, Me.GridColumnRemark, Me.GridColumnOLStoreNo, Me.GridColumnDELNo})
         Me.GVSalesPOS.GridControl = Me.GCSalesPOS
         Me.GVSalesPOS.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "", Nothing, "")})
         Me.GVSalesPOS.Name = "GVSalesPOS"
@@ -339,7 +341,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnSalesPOSDate.FieldName = "sales_pos_date"
         Me.GridColumnSalesPOSDate.Name = "GridColumnSalesPOSDate"
         Me.GridColumnSalesPOSDate.Visible = True
-        Me.GridColumnSalesPOSDate.VisibleIndex = 1
+        Me.GridColumnSalesPOSDate.VisibleIndex = 3
         Me.GridColumnSalesPOSDate.Width = 84
         '
         'GridColumn1
@@ -348,7 +350,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumn1.FieldName = "sales_pos_period"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.VisibleIndex = 4
         Me.GridColumn1.Width = 68
         '
         'GridColumnSalesStore
@@ -357,7 +359,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnSalesStore.FieldName = "store_name_from"
         Me.GridColumnSalesStore.Name = "GridColumnSalesStore"
         Me.GridColumnSalesStore.Visible = True
-        Me.GridColumnSalesStore.VisibleIndex = 3
+        Me.GridColumnSalesStore.VisibleIndex = 5
         Me.GridColumnSalesStore.Width = 68
         '
         'GridColumnType
@@ -366,7 +368,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnType.FieldName = "so_type"
         Me.GridColumnType.Name = "GridColumnType"
         Me.GridColumnType.Visible = True
-        Me.GridColumnType.VisibleIndex = 4
+        Me.GridColumnType.VisibleIndex = 6
         Me.GridColumnType.Width = 68
         '
         'GridColumnQty
@@ -378,7 +380,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_qty", "{0:n2}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 7
         Me.GridColumnQty.Width = 68
         '
         'GridColumnTotal
@@ -390,7 +392,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnTotal.Name = "GridColumnTotal"
         Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_total", "{0:n2}")})
         Me.GridColumnTotal.Visible = True
-        Me.GridColumnTotal.VisibleIndex = 8
+        Me.GridColumnTotal.VisibleIndex = 10
         Me.GridColumnTotal.Width = 68
         '
         'GridColumnDiscount
@@ -399,7 +401,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnDiscount.FieldName = "sales_pos_discount"
         Me.GridColumnDiscount.Name = "GridColumnDiscount"
         Me.GridColumnDiscount.Visible = True
-        Me.GridColumnDiscount.VisibleIndex = 6
+        Me.GridColumnDiscount.VisibleIndex = 8
         Me.GridColumnDiscount.Width = 97
         '
         'GridColumnSalesTax
@@ -408,7 +410,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnSalesTax.FieldName = "sales_pos_vat"
         Me.GridColumnSalesTax.Name = "GridColumnSalesTax"
         Me.GridColumnSalesTax.Visible = True
-        Me.GridColumnSalesTax.VisibleIndex = 7
+        Me.GridColumnSalesTax.VisibleIndex = 9
         '
         'GridColumnNetto
         '
@@ -419,7 +421,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnNetto.Name = "GridColumnNetto"
         Me.GridColumnNetto.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_netto", "{0:n2}")})
         Me.GridColumnNetto.Visible = True
-        Me.GridColumnNetto.VisibleIndex = 9
+        Me.GridColumnNetto.VisibleIndex = 11
         Me.GridColumnNetto.Width = 92
         '
         'GridColumnSalesPosRev
@@ -431,7 +433,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnSalesPosRev.Name = "GridColumnSalesPosRev"
         Me.GridColumnSalesPosRev.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_revenue", "{0:n2}")})
         Me.GridColumnSalesPosRev.Visible = True
-        Me.GridColumnSalesPosRev.VisibleIndex = 10
+        Me.GridColumnSalesPosRev.VisibleIndex = 12
         Me.GridColumnSalesPosRev.Width = 85
         '
         'GridColumnDueDate
@@ -442,7 +444,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnDueDate.FieldName = "sales_pos_due_date"
         Me.GridColumnDueDate.Name = "GridColumnDueDate"
         Me.GridColumnDueDate.Visible = True
-        Me.GridColumnDueDate.VisibleIndex = 11
+        Me.GridColumnDueDate.VisibleIndex = 13
         Me.GridColumnDueDate.Width = 65
         '
         'GridColumnStatus
@@ -536,12 +538,12 @@ Partial Class FormSalesCreditNotePopInv
         'GCItemList
         '
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemList.Location = New System.Drawing.Point(22, 2)
+        Me.GCItemList.Location = New System.Drawing.Point(20, 2)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(728, 178)
+        Me.GCItemList.Size = New System.Drawing.Size(730, 178)
         Me.GCItemList.TabIndex = 3
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -636,7 +638,7 @@ Partial Class FormSalesCreditNotePopInv
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
@@ -751,6 +753,22 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumn21.FieldName = "id_design_price_retail"
         Me.GridColumn21.Name = "GridColumn21"
         '
+        'GridColumnOLStoreNo
+        '
+        Me.GridColumnOLStoreNo.Caption = "OL STORE NO"
+        Me.GridColumnOLStoreNo.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnOLStoreNo.Name = "GridColumnOLStoreNo"
+        Me.GridColumnOLStoreNo.Visible = True
+        Me.GridColumnOLStoreNo.VisibleIndex = 1
+        '
+        'GridColumnDELNo
+        '
+        Me.GridColumnDELNo.Caption = "DEL NO"
+        Me.GridColumnDELNo.FieldName = "pl_sales_order_del_number"
+        Me.GridColumnDELNo.Name = "GridColumnDELNo"
+        Me.GridColumnDELNo.Visible = True
+        Me.GridColumnDELNo.VisibleIndex = 2
+        '
         'FormSalesCreditNotePopInv
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -844,4 +862,6 @@ Partial Class FormSalesCreditNotePopInv
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOLStoreNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDELNo As DevExpress.XtraGrid.Columns.GridColumn
 End Class

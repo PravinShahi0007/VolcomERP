@@ -32,7 +32,7 @@
         'query view based on edit id's
         Dim query As String = "SELECT a.id_so_status, a.id_sales_order, a.id_store_contact_to, (d.id_comp) AS id_store,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, a.id_warehouse_contact_to, (wh.id_comp) AS id_comp_par,(wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to, a.id_report_status, f.report_status, "
         query += "a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, "
-        query += "DATE_FORMAT(a.sales_order_date,'%Y-%m-%d') AS sales_order_datex, a.id_so_type, IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`, ps.id_prepare_status, ps.prepare_status, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name "
+        query += "DATE_FORMAT(a.sales_order_date,'%Y-%m-%d') AS sales_order_datex, a.id_so_type, IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`, ps.id_prepare_status, ps.prepare_status, eu.period_name, ut.uni_type, ube.employee_code, ube.employee_name, a.sales_order_ol_shop_number "
         query += "FROM tb_sales_order a "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_to "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
@@ -66,6 +66,7 @@
 
         DEForm.Text = view_date_from(data.Rows(0)("sales_order_datex").ToString, 0)
         TxtSalesOrderNumber.Text = data.Rows(0)("sales_order_number").ToString
+        TxtOLShopNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
         MENote.Text = data.Rows(0)("sales_order_note").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)

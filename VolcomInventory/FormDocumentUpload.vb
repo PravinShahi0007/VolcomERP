@@ -2,6 +2,7 @@
     Public is_view As String = "-1"
     Public id_report As String = "0"
     Public report_mark_type As String = "0"
+    Public cond As String = ""
 
     Dim source_path As String = get_setup_field("upload_dir")
     Private Sub FormDocumentUpload_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
@@ -22,7 +23,7 @@
     End Sub
 
     Sub view_file()
-        Dim query As String = "SELECT id_doc,doc_desc,datetime,'yes' as is_download,CONCAT(id_doc,'_" & report_mark_type & "_" & id_report & "',ext) AS filename FROM tb_doc WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_report & "'"
+        Dim query As String = "SELECT id_doc,doc_desc,datetime,'yes' as is_download,CONCAT(id_doc,'_" & report_mark_type & "_" & id_report & "',ext) AS filename FROM tb_doc WHERE report_mark_type='" & report_mark_type & "' AND id_report='" & id_report & "' " + cond
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCFileList.DataSource = data
 

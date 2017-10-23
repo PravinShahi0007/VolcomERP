@@ -54,6 +54,14 @@
             LabelBillTo.Visible = True
             TxtCodeBillTo.Visible = True
             TxtNameBillTo.Visible = True
+        ElseIf id_menu = "5" Then
+            Text = "Credit Note Online Store"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Visible = False
+            LabelInvoice.Visible = True
+            TxtInvoice.Visible = True
+            TxtCodeCompFrom.Focus()
         End If
 
         actionLoad()
@@ -71,17 +79,26 @@
         Dim query As String = ""
         query += "SELECT pld.pl_sales_order_del_number,a.id_pl_sales_order_del,a.id_so_type, a.id_report_status, a.id_sales_pos, a.sales_pos_date, a.sales_pos_note, "
         query += "a.sales_pos_number, (c.comp_name) AS store_name_from,c.npwp, "
-        query += "a.id_store_contact_from, a.id_comp_contact_bill, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
-        (cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
-        d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type "
+        query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
+            IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
+            d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
+        query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
+        If id_menu = "5" Then
+            query += ", IFNULL(ar.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
+        End If
         query += "FROM tb_sales_pos a "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
         query += "LEFT JOIN tb_m_comp_contact bb ON a.id_comp_contact_bill = bb.id_comp_contact
-        LEFT JOIN tb_m_comp cb ON cb.id_comp = bb.id_comp "
+            LEFT JOIN tb_m_comp cb ON cb.id_comp = bb.id_comp "
         query += "LEFT JOIN tb_pl_sales_order_del pld ON pld.id_pl_sales_order_del=a.id_pl_sales_order_del "
+        query += "LEFT JOIN tb_sales_order so ON so.id_sales_order = pld.id_sales_order "
         query += "INNER JOIN tb_lookup_report_status d ON d.id_report_status = a.id_report_status "
+        If id_menu = "5" Then
+            query += "LEFT JOIN tb_sales_pos ar ON ar.id_sales_pos = a.id_sales_pos_ref "
+            query += "LEFT JOIN tb_pl_sales_order_del pldr ON pldr.id_pl_sales_order_del=ar.id_pl_sales_order_del "
+            query += "LEFT JOIN tb_sales_order sor ON sor.id_sales_order = pldr.id_sales_order "
+        End If
         query += "WHERE a.id_sales_pos = '" + id_sales_pos + "' "
         query += "ORDER BY a.id_sales_pos ASC "
 
@@ -95,6 +112,12 @@
 
         DEForm.Text = view_date_from(data.Rows(0)("sales_pos_datex").ToString, 0)
         TxtVirtualPosNumber.Text = data.Rows(0)("sales_pos_number").ToString
+        If id_menu = "5" Then
+            TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number_ref").ToString
+            TxtInvoice.Text = data.Rows(0)("sales_pos_number_ref").ToString
+        Else
+            TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+        End If
         MENote.Text = data.Rows(0)("sales_pos_note").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
@@ -112,7 +135,11 @@
         If id_memo_type = "1" Then 'sales invoice
             report_mark_type = "48"
         ElseIf id_memo_type = "2" Then 'sales cn
-            report_mark_type = "66"
+            If id_menu = "2" Then
+                report_mark_type = "66"
+            ElseIf id_menu = "5" Then
+                report_mark_type = "118"
+            End If
         ElseIf id_memo_type = "3" Then 'missing invoice
             report_mark_type = "54"
         ElseIf id_memo_type = "4" Then 'missing cn
