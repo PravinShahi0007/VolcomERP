@@ -44,9 +44,14 @@ Partial Class FormOLStoreSummary
         Me.GridColumnIsPaid = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnInvNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCNNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdSalesOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAttach = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepoAttach = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumnId = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdRO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdRet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdInv = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdCN = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemImageEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemImageEdit()
         Me.RepositoryItemHyperLinkEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -203,7 +208,7 @@ Partial Class FormOLStoreSummary
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnOLStoreOrder, Me.GridColumnSONumber, Me.GridColumnDelNumber, Me.GridColumnReturnOrder, Me.GridColumnReturnNumber, Me.GridColumnIsPaid, Me.GridColumnInvNumber, Me.GridColumnCNNumber, Me.GridColumnIdSalesOrder, Me.GridColumnAttach})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnOLStoreOrder, Me.GridColumnSONumber, Me.GridColumnDelNumber, Me.GridColumnReturnOrder, Me.GridColumnReturnNumber, Me.GridColumnIsPaid, Me.GridColumnInvNumber, Me.GridColumnCNNumber, Me.GridColumnAttach, Me.GridColumnId, Me.GridColumnIdDel, Me.GridColumnIdRO, Me.GridColumnIdRet, Me.GridColumnIdInv, Me.GridColumnIdCN})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
@@ -297,12 +302,6 @@ Partial Class FormOLStoreSummary
         Me.GridColumnCNNumber.VisibleIndex = 7
         Me.GridColumnCNNumber.Width = 201
         '
-        'GridColumnIdSalesOrder
-        '
-        Me.GridColumnIdSalesOrder.Caption = "id_sales_order"
-        Me.GridColumnIdSalesOrder.FieldName = "id_sales_order"
-        Me.GridColumnIdSalesOrder.Name = "GridColumnIdSalesOrder"
-        '
         'GridColumnAttach
         '
         Me.GridColumnAttach.Caption = "Attachment"
@@ -318,6 +317,42 @@ Partial Class FormOLStoreSummary
         Me.RepoAttach.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.RepoAttach.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_mark_type_name", "Transaction")})
         Me.RepoAttach.Name = "RepoAttach"
+        '
+        'GridColumnId
+        '
+        Me.GridColumnId.Caption = "Id SO"
+        Me.GridColumnId.FieldName = "id_sales_order"
+        Me.GridColumnId.Name = "GridColumnId"
+        '
+        'GridColumnIdDel
+        '
+        Me.GridColumnIdDel.Caption = "Id Del"
+        Me.GridColumnIdDel.FieldName = "id_del"
+        Me.GridColumnIdDel.Name = "GridColumnIdDel"
+        '
+        'GridColumnIdRO
+        '
+        Me.GridColumnIdRO.Caption = "Id Ro"
+        Me.GridColumnIdRO.FieldName = "id_ro"
+        Me.GridColumnIdRO.Name = "GridColumnIdRO"
+        '
+        'GridColumnIdRet
+        '
+        Me.GridColumnIdRet.Caption = "Id Ret"
+        Me.GridColumnIdRet.FieldName = "id_ret"
+        Me.GridColumnIdRet.Name = "GridColumnIdRet"
+        '
+        'GridColumnIdInv
+        '
+        Me.GridColumnIdInv.Caption = "Id Inv"
+        Me.GridColumnIdInv.FieldName = "id_inv"
+        Me.GridColumnIdInv.Name = "GridColumnIdInv"
+        '
+        'GridColumnIdCN
+        '
+        Me.GridColumnIdCN.Caption = "Id CN"
+        Me.GridColumnIdCN.FieldName = "id_cn"
+        Me.GridColumnIdCN.Name = "GridColumnIdCN"
         '
         'RepositoryItemImageEdit1
         '
@@ -411,7 +446,6 @@ Partial Class FormOLStoreSummary
     Friend WithEvents GridColumnInvNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCNNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-    Friend WithEvents GridColumnIdSalesOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemHyperLinkEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit
     Friend WithEvents RepositoryItemImageEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemImageEdit
     Friend WithEvents GridColumnAttach As DevExpress.XtraGrid.Columns.GridColumn
@@ -419,4 +453,10 @@ Partial Class FormOLStoreSummary
     Friend WithEvents RepoAttach As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents RepoSLEAttach As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
     Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnId As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdRO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdRet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdInv As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdCN As DevExpress.XtraGrid.Columns.GridColumn
 End Class

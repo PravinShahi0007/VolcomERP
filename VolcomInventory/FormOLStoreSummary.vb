@@ -37,12 +37,18 @@
         Cursor = Cursors.WaitCursor
         Dim id_comp As String = SLEComp.EditValue.ToString
         Dim query As String = "SELECT so.sales_order_number, so.sales_order_ol_shop_number, 
-        GROUP_CONCAT(DISTINCT del.pl_sales_order_del_number ORDER BY del.pl_sales_order_del_number ASC SEPARATOR ', ') AS `pl_sales_order_del_number`,
+        GROUP_CONCAT(DISTINCT del.pl_sales_order_del_number ORDER BY del.id_pl_sales_order_del ASC SEPARATOR ', ') AS `pl_sales_order_del_number`,
         GROUP_CONCAT(DISTINCT ro.sales_return_order_number ORDER BY ro.id_sales_return_order ASC SEPARATOR ', ') AS `sales_return_order_number`,
         GROUP_CONCAT(DISTINCT r.sales_return_number ORDER BY r.id_sales_return ASC SEPARATOR ', ') AS `sales_return_number`,
         GROUP_CONCAT(DISTINCT inv.sales_pos_number ORDER BY inv.id_sales_pos ASC SEPARATOR ', ') AS `sales_pos_number`,
         GROUP_CONCAT(DISTINCT cn.sales_pos_number ORDER BY cn.id_sales_pos ASC SEPARATOR ', ') AS `sales_pos_cn_number`,
-        IF(ISNULL(inv.id_sales_pos),'Pending','Paid') AS `paid_status`, '0' AS `report_mark_type`
+        IF(ISNULL(inv.id_sales_pos),'Pending','Paid') AS `paid_status`, '0' AS `report_mark_type`,
+        so.id_sales_order, 
+        IF(ISNULL(del.id_pl_sales_order_del),0,GROUP_CONCAT(DISTINCT del.id_pl_sales_order_del ORDER BY del.id_pl_sales_order_del ASC SEPARATOR '#')) AS `id_del`,
+        IF(ISNULL(ro.id_sales_return_order),0,GROUP_CONCAT(DISTINCT ro.id_sales_return_order ORDER BY ro.id_sales_return_order ASC SEPARATOR '#')) AS `id_ro`,
+        IF(ISNULL(r.id_sales_return),0,GROUP_CONCAT(DISTINCT r.id_sales_return ORDER BY r.id_sales_return ASC SEPARATOR '#')) AS `id_ret`,
+        IF(ISNULL(inv.id_sales_pos),0,GROUP_CONCAT(DISTINCT inv.id_sales_pos ORDER BY inv.id_sales_pos ASC SEPARATOR '#')) AS `id_inv`,
+        IF(ISNULL(cn.id_sales_pos),0,GROUP_CONCAT(DISTINCT cn.id_sales_pos ORDER BY cn.id_sales_pos ASC SEPARATOR '#')) AS `id_cn`
         FROM tb_sales_order so 
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
         INNER JOIN tb_m_comp c ON c.id_comp = socc.id_comp
@@ -73,14 +79,56 @@
         RepoAttach.ValueMember = "report_mark_type"
     End Sub
 
-    Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanging
+    Private Sub GVData_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVData.CellValueChanged
         If e.Column.FieldName = "report_mark_type" Then
             Dim rh As Integer = e.RowHandle
             Dim val As String = e.Value.ToString
             If val <> "0" Then
-                MsgBox(val)
-                GVData.SetRowCellValue(rh, "report_mark_type", 0)
+                'MsgBox(val)
+                FormSuperUser.ShowDialog()
+                GVData.SetFocusedRowCellValue("report_mark_type", 0)
             End If
         End If
     End Sub
+
+
+    Private Sub RepoAttach_EditValueChanged(sender As Object, e As EventArgs) Handles RepoAttach.EditValueChanged
+        Cursor = Cursors.WaitCursor
+        Dim LE As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
+        Dim val As String = LE.EditValue.ToString
+        Dim id As String = ""
+        Dim id_arr() As String
+        Dim cond As String = ""
+        If val <> "0" Then
+            If val = "39" Then
+                id = GVData.GetFocusedRowCellValue("id_sales_order").ToString
+            ElseIf val = "43" Then
+                id = GVData.GetFocusedRowCellValue("id_del").ToString
+            ElseIf val = "48" Then
+                id = GVData.GetFocusedRowCellValue("id_inv").ToString
+            ElseIf val = "118" Then
+                id = GVData.GetFocusedRowCellValue("id_cn").ToString
+            ElseIf val = "119" Then
+                id = GVData.GetFocusedRowCellValue("id_ro").ToString
+            ElseIf val = "120" Then
+                id = GVData.GetFocusedRowCellValue("id_ret").ToString
+            End If
+
+            id_arr = id.Split("#")
+            FormDocumentUpload.is_view = "1"
+            For i = 0 To id_arr.Length - 1
+                If i = 0 Then
+                    FormDocumentUpload.id_report = id_arr(i).ToString
+                Else
+                    cond += "OR id_report='" + id_arr(i).ToString + "' "
+                End If
+            Next
+            FormDocumentUpload.report_mark_type = val
+            FormDocumentUpload.cond = cond
+            FormDocumentUpload.ShowDialog()
+            LE.ItemIndex = 0
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
 End Class
