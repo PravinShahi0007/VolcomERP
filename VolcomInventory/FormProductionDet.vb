@@ -225,18 +225,19 @@
                 If GVListProduct.RowCount > 0 Then
                     For i As Integer = 0 To GVListProduct.RowCount - 1
                         If Not GVListProduct.GetRowCellValue(i, "id_prod_demand_product").ToString = "" Then
-                            'dp
+                            'det
                             query = String.Format("INSERT INTO tb_prod_order_det(id_prod_order,id_prod_demand_product,prod_order_qty,prod_order_det_note) VALUES('{0}','{1}','{2}','{3}')", last_id, GVListProduct.GetRowCellValue(i, "id_prod_demand_product").ToString(), GVListProduct.GetRowCellValue(i, "prod_order_qty").ToString(), GVListProduct.GetRowCellValue(i, "note").ToString())
                             execute_non_query(query, True, "", "", "", "")
                         End If
                     Next
                 End If
-                'insert wo
-
                 'insert who prepared
                 insert_who_prepared("22", last_id, id_user)
                 'end insert who prepared
                 increase_inc_prod("1")
+                '
+                add_wo(last_id)
+                '
                 FormProduction.XTCTabProduction.SelectedTabPageIndex = 0
                 FormProduction.view_production_order()
                 FormProduction.GVProd.FocusedRowHandle = find_row(FormProduction.GVProd, "id_prod_order", last_id)
@@ -266,6 +267,10 @@
             End If
         End If
         'universal save bom
+    End Sub
+
+    Sub add_wo(ByVal id_po As String)
+        Dim query As String = ""
     End Sub
 
     Sub save_id_bom()
