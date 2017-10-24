@@ -18,7 +18,7 @@
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
         query += "INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status "
         query += "INNER JOIN tb_lookup_prepare_status ps ON ps.id_prepare_status = a.id_prepare_status "
-        query += "WHERE d.id_commerce_type=1 OR ISNULL(d.id_commerce_type) "
+        query += "WHERE ISNULL(a.id_sales_order) "
         query += "ORDER BY a.id_sales_return_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesReturnOrder.DataSource = data

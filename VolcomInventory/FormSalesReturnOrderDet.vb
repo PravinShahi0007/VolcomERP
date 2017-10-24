@@ -495,7 +495,7 @@
 
     Private Sub TxtCodeCompTo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodeCompTo.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, "AND comp.id_comp_cat=6 ")
+            Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, "AND comp.id_comp_cat=6 AND comp.id_commerce_type=1 ")
             If data.Rows.Count = 0 Then
                 stopCustom("Account not found !")
                 id_comp = "-1"
