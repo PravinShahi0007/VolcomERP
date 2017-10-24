@@ -118,6 +118,8 @@ Partial Class FormAccountingFakturScanSingle
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.GridColumnFAPR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTglApproval = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -787,7 +789,7 @@ Partial Class FormAccountingFakturScanSingle
         '
         'GVDM
         '
-        Me.GVDM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDet, Me.GridColumnIdx, Me.GridColumnJenisTransaksi, Me.GridColumnJenisDokumen, Me.GridColumnKdJenisTransaksi, Me.GridColumnFGPengganti, Me.GridColumnNomorDokLainGanti, Me.GridColumnNomorDokLain, Me.GridColumnTanggalDokLain, Me.GridColumnMasaPajakDK, Me.GridColumnTahunPajakDK, Me.GridColumnNPWPDK, Me.GridColumnNamaDK, Me.GridColumnAlamatLengkapDK, Me.GridColumnJumlahDppDK, Me.GridColumnJumlahPPNDK, Me.GridColumnJumlahPPNBMDK, Me.GridColumnKeteranganDK, Me.GridColumnDM})
+        Me.GVDM.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDet, Me.GridColumnIdx, Me.GridColumnJenisTransaksi, Me.GridColumnJenisDokumen, Me.GridColumnKdJenisTransaksi, Me.GridColumnFGPengganti, Me.GridColumnNomorDokLainGanti, Me.GridColumnNomorDokLain, Me.GridColumnTanggalDokLain, Me.GridColumnMasaPajakDK, Me.GridColumnTahunPajakDK, Me.GridColumnNPWPDK, Me.GridColumnNamaDK, Me.GridColumnAlamatLengkapDK, Me.GridColumnJumlahDppDK, Me.GridColumnJumlahPPNDK, Me.GridColumnJumlahPPNBMDK, Me.GridColumnKeteranganDK, Me.GridColumnDM, Me.GridColumnFAPR, Me.GridColumnTglApproval})
         Me.GVDM.GridControl = Me.GCDM
         Me.GVDM.Name = "GVDM"
         Me.GVDM.OptionsCustomization.AllowColumnMoving = False
@@ -995,6 +997,22 @@ Partial Class FormAccountingFakturScanSingle
         Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.DeleteRowToolStripMenuItem.Text = "Delete row"
         '
+        'GridColumnFAPR
+        '
+        Me.GridColumnFAPR.Caption = "FAPR"
+        Me.GridColumnFAPR.FieldName = "fapr"
+        Me.GridColumnFAPR.Name = "GridColumnFAPR"
+        Me.GridColumnFAPR.Visible = True
+        Me.GridColumnFAPR.VisibleIndex = 17
+        '
+        'GridColumnTglApproval
+        '
+        Me.GridColumnTglApproval.Caption = "TGL_APPROVAL"
+        Me.GridColumnTglApproval.FieldName = "tgl_approval"
+        Me.GridColumnTglApproval.Name = "GridColumnTglApproval"
+        Me.GridColumnTglApproval.Visible = True
+        Me.GridColumnTglApproval.VisibleIndex = 18
+        '
         'FormAccountingFakturScanSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1146,4 +1164,6 @@ Partial Class FormAccountingFakturScanSingle
     Friend WithEvents AddRowToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents DeleteRowToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents BtnImportFKDetail As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnFAPR As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTglApproval As DevExpress.XtraGrid.Columns.GridColumn
 End Class
