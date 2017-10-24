@@ -56,6 +56,8 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAge = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRemark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDELNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlChoose = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnChoose = New DevExpress.XtraEditors.SimpleButton()
@@ -83,8 +85,6 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnOLStoreNo = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDELNo = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -467,6 +467,22 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.OptionsColumn.ShowInCustomizationForm = False
         '
+        'GridColumnOLStoreNo
+        '
+        Me.GridColumnOLStoreNo.Caption = "OL STORE NO"
+        Me.GridColumnOLStoreNo.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnOLStoreNo.Name = "GridColumnOLStoreNo"
+        Me.GridColumnOLStoreNo.Visible = True
+        Me.GridColumnOLStoreNo.VisibleIndex = 1
+        '
+        'GridColumnDELNo
+        '
+        Me.GridColumnDELNo.Caption = "DEL NO"
+        Me.GridColumnDELNo.FieldName = "pl_sales_order_del_number"
+        Me.GridColumnDELNo.Name = "GridColumnDELNo"
+        Me.GridColumnDELNo.Visible = True
+        Me.GridColumnDELNo.VisibleIndex = 2
+        '
         'PanelControlChoose
         '
         Me.PanelControlChoose.Controls.Add(Me.BtnCancel)
@@ -495,7 +511,7 @@ Partial Class FormSalesCreditNotePopInv
         Me.BtnChoose.Name = "BtnChoose"
         Me.BtnChoose.Size = New System.Drawing.Size(75, 33)
         Me.BtnChoose.TabIndex = 0
-        Me.BtnChoose.Text = "Save"
+        Me.BtnChoose.Text = "Choose"
         '
         'SCCInvoice
         '
@@ -752,22 +768,6 @@ Partial Class FormSalesCreditNotePopInv
         Me.GridColumn21.Caption = "Id Design Price"
         Me.GridColumn21.FieldName = "id_design_price_retail"
         Me.GridColumn21.Name = "GridColumn21"
-        '
-        'GridColumnOLStoreNo
-        '
-        Me.GridColumnOLStoreNo.Caption = "OL STORE NO"
-        Me.GridColumnOLStoreNo.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumnOLStoreNo.Name = "GridColumnOLStoreNo"
-        Me.GridColumnOLStoreNo.Visible = True
-        Me.GridColumnOLStoreNo.VisibleIndex = 1
-        '
-        'GridColumnDELNo
-        '
-        Me.GridColumnDELNo.Caption = "DEL NO"
-        Me.GridColumnDELNo.FieldName = "pl_sales_order_del_number"
-        Me.GridColumnDELNo.Name = "GridColumnDELNo"
-        Me.GridColumnDELNo.Visible = True
-        Me.GridColumnDELNo.VisibleIndex = 2
         '
         'FormSalesCreditNotePopInv
         '

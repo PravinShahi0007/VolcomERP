@@ -104,6 +104,10 @@
             query += "AND (tb_m_comp.id_comp_cat = '2' OR tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') AND tb_m_comp.is_active=1 "
         End If
 
+        If id_pop_up = "40" Then 'ret order ofline
+            query += "AND tb_m_comp.id_commerce_type=1 "
+        End If
+
         If id_pop_up = "41" Then
             Dim id_ret_type = FormSalesReturnDet.id_ret_type
             If id_ret_type = "3" Then 'return direct/khusus

@@ -85,6 +85,7 @@ Public Class FormSalesPOSDet
             BtnBrowseInvoice.Visible = True
             BtnDel.Visible = True
             BtnListProduct.Visible = True
+            BtnImport.Visible = False
             TxtCodeCompFrom.Focus()
         End If
 
