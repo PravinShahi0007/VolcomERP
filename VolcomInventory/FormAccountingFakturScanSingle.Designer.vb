@@ -111,6 +111,8 @@ Partial Class FormAccountingFakturScanSingle
         Me.GridColumnJumlahPPNBMDK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnKeteranganDK = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDM = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnFAPR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTglApproval = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDeleteDM = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddDM = New DevExpress.XtraEditors.SimpleButton()
@@ -118,8 +120,6 @@ Partial Class FormAccountingFakturScanSingle
         Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteRowToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.GridColumnFAPR = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTglApproval = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -946,6 +946,20 @@ Partial Class FormAccountingFakturScanSingle
         Me.GridColumnDM.Visible = True
         Me.GridColumnDM.VisibleIndex = 0
         '
+        'GridColumnFAPR
+        '
+        Me.GridColumnFAPR.Caption = "FAPR"
+        Me.GridColumnFAPR.FieldName = "fapr"
+        Me.GridColumnFAPR.Name = "GridColumnFAPR"
+        Me.GridColumnFAPR.Visible = True
+        Me.GridColumnFAPR.VisibleIndex = 17
+        '
+        'GridColumnTglApproval
+        '
+        Me.GridColumnTglApproval.Caption = "TGL_APPROVAL"
+        Me.GridColumnTglApproval.FieldName = "tgl_approval"
+        Me.GridColumnTglApproval.Name = "GridColumnTglApproval"
+        '
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -996,22 +1010,6 @@ Partial Class FormAccountingFakturScanSingle
         Me.DeleteRowToolStripMenuItem.Name = "DeleteRowToolStripMenuItem"
         Me.DeleteRowToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.DeleteRowToolStripMenuItem.Text = "Delete row"
-        '
-        'GridColumnFAPR
-        '
-        Me.GridColumnFAPR.Caption = "FAPR"
-        Me.GridColumnFAPR.FieldName = "fapr"
-        Me.GridColumnFAPR.Name = "GridColumnFAPR"
-        Me.GridColumnFAPR.Visible = True
-        Me.GridColumnFAPR.VisibleIndex = 17
-        '
-        'GridColumnTglApproval
-        '
-        Me.GridColumnTglApproval.Caption = "TGL_APPROVAL"
-        Me.GridColumnTglApproval.FieldName = "tgl_approval"
-        Me.GridColumnTglApproval.Name = "GridColumnTglApproval"
-        Me.GridColumnTglApproval.Visible = True
-        Me.GridColumnTglApproval.VisibleIndex = 18
         '
         'FormAccountingFakturScanSingle
         '
