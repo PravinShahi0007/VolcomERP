@@ -202,7 +202,7 @@
         ElseIf report_mark_type = "44" Then
             'Mat MRS
             query = String.Format("SELECT id_report_status FROM tb_prod_order_mrs WHERE id_prod_order_mrs = '{0}'", id_report)
-        ElseIf report_mark_type = "45" Then
+        ElseIf report_mark_type = "45" Or report_mark_type = "119" Then
             'SALES RETURN ORDER
             query = String.Format("SELECT id_report_status, sales_return_order_number AS report_number FROM tb_sales_return_order WHERE id_sales_return_order = '{0}'", id_report)
         ElseIf report_mark_type = "46" Or report_mark_type = "111" Then
@@ -262,7 +262,7 @@
         ElseIf report_mark_type = "65" Then
             'FG CODE REPLACEMENT STORE
             query = String.Format("SELECT id_report_status, fg_code_replace_store_number as report_number FROM tb_fg_code_replace_store WHERE id_fg_code_replace_store = '{0}'", id_report)
-        ElseIf report_mark_type = "66" Then
+        ElseIf report_mark_type = "66" Or report_mark_type = "118" Then
             'SALES CREDIT NOTE
             query = String.Format("SELECT id_report_status,sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
         ElseIf report_mark_type = "67" Then
@@ -2098,6 +2098,10 @@
             End Try
         ElseIf report_mark_type = "48" Then
             'SALES POS
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
                 'cancelled
                 Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
@@ -2205,6 +2209,10 @@
             End Try
         ElseIf report_mark_type = "54" Then
             'FG MISSING
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             Try
                 If id_status_reportx = "5" Then
                     'cancelled
@@ -2547,12 +2555,16 @@
             Else
                 'no code
             End If
-        ElseIf report_mark_type = "66" Then
+        ElseIf report_mark_type = "66" Or report_mark_type = "118" Then
             'SALES CREDIT NOTE
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 'completed
                 Dim stc_in As ClassSalesInv = New ClassSalesInv()
-                stc_in.completeInStock(id_report, "66")
+                stc_in.completeInStock(id_report, report_mark_type)
             End If
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
@@ -2570,6 +2582,10 @@
             End If
         ElseIf report_mark_type = "67" Then
             'MISSING CREDIT NOTE
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "6" Then
                 'completed
                 Dim stc_in As ClassSalesInv = New ClassSalesInv()
@@ -3523,6 +3539,10 @@
             Cursor = Cursors.Default
         ElseIf report_mark_type = "116" Then
             'Invoice missing promo
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             infoCustom("Status changed.")
@@ -3538,6 +3558,10 @@
             End If
         ElseIf report_mark_type = "117" Then
             'imvoice missing staff
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
                 'cancelled
                 Dim cancel_rsv_stock As ClassSalesInv = New ClassSalesInv()
@@ -3559,6 +3583,26 @@
                 FormSalesPOSDet.actionLoad()
                 FormSalesPOS.viewSalesPOS()
                 FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_report)
+            Else
+                'code here
+            End If
+        ElseIf report_mark_type = "119" Then
+            'return Order ol
+            If id_status_reportx = "5" Then
+                Dim ro As New ClassSalesReturnOrder()
+                ro.cancelReservedStock(id_report)
+            End If
+
+            query = String.Format("UPDATE tb_sales_return_order SET id_report_status='{0}' WHERE id_sales_return_order ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            infoCustom("Status changed.")
+
+            If form_origin = "FormSalesReturnOrderOLDet" Then
+                FormSalesReturnOrderOLDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormSalesReturnOrderOLDet.check_but()
+                FormSalesReturnOrderOLDet.actionLoad()
+                FormSalesReturnOrderOL.viewSalesReturnOrder()
+                FormSalesReturnOrderOL.GVSalesReturnOrder.FocusedRowHandle = find_row(FormSalesReturnOrderOL.GVSalesReturnOrder, "id_sales_return_order", id_report)
             Else
                 'code here
             End If

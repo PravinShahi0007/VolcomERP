@@ -17,6 +17,7 @@
     Public id_prepare_status As String = "-1"
     Public is_detail_soh As String = "-1"
     'Dim is_scan As Boolean = False
+    Dim id_ret_type As String = "-1"
 
     'var check qty
     Public cond_check As Boolean = True
@@ -37,7 +38,7 @@
         'query view based on edit id's
         Dim query As String = "SELECT a.id_wh_drawer,dw.wh_drawer_code,b.id_sales_return_order, a.id_store_contact_from, a.id_comp_contact_to, (d.comp_name) AS store_name_from, (d1.comp_name) AS comp_name_to, (d.comp_number) AS store_number_from, (d1.comp_number) AS comp_number_to, (d.address_primary) AS store_address_from, a.id_report_status, f.report_status, "
         query += "a.sales_return_note,a.sales_return_date, a.sales_return_number, sales_return_store_number,b.sales_return_order_number, "
-        query += "DATE_FORMAT(a.sales_return_date,'%Y-%m-%d') AS sales_return_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, b.id_prepare_status, prep_stt.prepare_status  "
+        query += "DATE_FORMAT(a.sales_return_date,'%Y-%m-%d') AS sales_return_datex, (c.id_comp) AS id_store, (c1.id_comp) AS id_comp_to, b.id_prepare_status, prep_stt.prepare_status, a.id_ret_type, rt.ret_type, so.sales_order_ol_shop_number   "
         query += "FROM tb_sales_return a "
         query += "INNER JOIN tb_sales_return_order b ON a.id_sales_return_order = b.id_sales_return_order "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_store_contact_from "
@@ -47,6 +48,8 @@
         query += "INNER JOIN tb_lookup_report_status f ON f.id_report_status = a.id_report_status "
         query += "LEFT JOIN tb_m_wh_drawer dw ON dw.id_wh_drawer=a.id_wh_drawer "
         query += "LEFT JOIN tb_lookup_prepare_status prep_stt ON prep_stt.id_prepare_status = b.id_prepare_status "
+        query += "LEFT JOIN tb_lookup_ret_type rt ON rt.id_ret_type = a.id_ret_type "
+        query += "LEFT JOIN tb_sales_order so ON so.id_sales_order = b.id_sales_order "
         query += "WHERE a.id_sales_return = '" + id_sales_return + "' "
         Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
         id_report_status = data.Rows(0)("id_report_status").ToString
@@ -77,6 +80,9 @@
         TEDrawer.Text = data.Rows(0)("wh_drawer_code").ToString
         id_prepare_status = data.Rows(0)("id_prepare_status").ToString
         TxtOrderStatus.Text = data.Rows(0)("prepare_status").ToString
+        id_ret_type = data.Rows(0)("id_ret_type").ToString
+        TxtRetType.Text = data.Rows(0)("ret_type").ToString
+        TxtOLStoreOrder.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
 
         If is_detail_soh <> "-1" Then
             TxtOrderStatus.Visible = True
@@ -386,7 +392,15 @@
         Cursor = Cursors.WaitCursor
         FormReportMark.id_report = id_sales_return
         FormReportMark.is_view = "1"
-        FormReportMark.report_mark_type = "46"
+        If id_ret_type = "1" Then
+            FormReportMark.report_mark_type = "46"
+        ElseIf id_ret_type = "3" Then
+            FormReportMark.report_mark_type = "113"
+        ElseIf id_ret_type = "4" Then
+            FormReportMark.report_mark_type = "120"
+        Else
+            FormReportMark.report_mark_type = "111"
+        End If
         FormReportMark.form_origin = Name
         FormReportMark.is_view_finalize = "1"
         FormReportMark.ShowDialog()
@@ -590,7 +604,15 @@
         Cursor = Cursors.WaitCursor
         FormDocumentUpload.id_report = id_sales_return
         FormDocumentUpload.is_view = "1"
-        FormDocumentUpload.report_mark_type = "46"
+        If id_ret_type = "1" Then
+            FormDocumentUpload.report_mark_type = "46"
+        ElseIf id_ret_type = "3" Then
+            FormDocumentUpload.report_mark_type = "113"
+        ElseIf id_ret_type = "4" Then
+            FormDocumentUpload.report_mark_type = "120"
+        Else
+            FormDocumentUpload.report_mark_type = "111"
+        End If
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub

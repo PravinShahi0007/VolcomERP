@@ -360,9 +360,18 @@
             Cursor = Cursors.Default
         ElseIf XTCSvcLevel.SelectedTabPageIndex = 1 Then
             Cursor = Cursors.WaitCursor
-            FormViewSalesReturnOrder.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
-            FormViewSalesReturnOrder.is_detail_soh = "1"
-            FormViewSalesReturnOrder.ShowDialog()
+            Dim id_so As String = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_order").ToString
+            If id_so = "0" Then
+                FormViewSalesReturnOrder.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
+                FormViewSalesReturnOrder.is_detail_soh = "1"
+                FormViewSalesReturnOrder.ShowDialog()
+            Else
+                FormSalesReturnOrderOLDet.is_view = "1"
+                FormSalesReturnOrderOLDet.action = "upd"
+                FormSalesReturnOrderOLDet.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString()
+                FormSalesReturnOrderOLDet.is_detail_soh = "1"
+                FormSalesReturnOrderOLDet.ShowDialog()
+            End If
             Cursor = Cursors.Default
         End If
     End Sub
@@ -383,10 +392,10 @@
             Dim id_prepare As String = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
             Dim id_cur_stt As String = GVSalesReturnOrder.GetFocusedRowCellValue("id_prepare_status").ToString
             If id_cur_stt = "1" Then
-                FormSalesOrderPacking.id_trans = id_prepare
-                FormSalesOrderPacking.id_cur_status = id_cur_stt
-                FormSalesOrderPacking.id_pop_up = "2"
-                FormSalesOrderPacking.ShowDialog()
+                'FormSalesOrderPacking.id_trans = id_prepare
+                'FormSalesOrderPacking.id_cur_status = id_cur_stt
+                'FormSalesOrderPacking.id_pop_up = "2"
+                'FormSalesOrderPacking.ShowDialog()
             Else
                 stopCustom("Data already locked.")
             End If
@@ -753,10 +762,20 @@
         ElseIf XTCSvcLevel.SelectedTabPageIndex = 1 Then
             If GVSalesReturnOrder.FocusedRowHandle >= 0 And GVSalesReturnOrder.RowCount > 0 Then
                 Cursor = Cursors.WaitCursor
-                FormViewSalesReturnOrder.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
-                FormViewSalesReturnOrder.is_detail_soh = "1"
-                FormViewSalesReturnOrder.is_print = "1"
-                FormViewSalesReturnOrder.ShowDialog()
+                Dim id_so As String = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_order").ToString
+                If id_so = "0" Then
+                    FormViewSalesReturnOrder.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString
+                    FormViewSalesReturnOrder.is_detail_soh = "1"
+                    FormViewSalesReturnOrder.is_print = "1"
+                    FormViewSalesReturnOrder.ShowDialog()
+                Else
+                    FormSalesReturnOrderOLDet.is_view = "1"
+                    FormSalesReturnOrderOLDet.action = "upd"
+                    FormSalesReturnOrderOLDet.id_sales_return_order = GVSalesReturnOrder.GetFocusedRowCellValue("id_sales_return_order").ToString()
+                    FormSalesReturnOrderOLDet.is_detail_soh = "1"
+                    FormSalesReturnOrderOLDet.is_print = "1"
+                    FormSalesReturnOrderOLDet.ShowDialog()
+                End If
                 Cursor = Cursors.Default
             End If
         End If

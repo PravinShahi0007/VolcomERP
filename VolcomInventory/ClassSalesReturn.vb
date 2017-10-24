@@ -17,13 +17,16 @@
         query += "a.sales_return_note, a.sales_return_number, a.sales_return_store_number,  "
         query += "CONCAT(c.comp_number,' - ',c.comp_name) AS store_name_from, (c.comp_name) AS store_name_to, "
         query += "CONCAT(e.comp_number,' - ',e.comp_name) AS comp_name_to, (e.comp_number) AS comp_number_to, "
-        query += "f.sales_return_order_number, g.report_status, a.last_update, getUserEmp(a.last_update_by, '1') AS `last_user`, ('No') AS `is_select`, a.id_ret_type, rty.ret_type, IFNULL(det.`total`,0) AS `total`, IFNULL(nsi.total_nsi,0) AS `total_nsi` "
+        query += "f.sales_return_order_number, g.report_status, a.last_update, getUserEmp(a.last_update_by, '1') AS `last_user`, ('No') AS `is_select`, 
+        a.id_ret_type, rty.ret_type, IFNULL(det.`total`,0) AS `total`, IFNULL(nsi.total_nsi,0) AS `total_nsi`, 
+        so.sales_order_ol_shop_number, IFNULL(f.id_sales_order,0) AS `id_sales_order`, IF(a.id_ret_type=1,'46',IF(a.id_ret_type=3,113,IF(a.id_ret_type=4,120,111))) AS `rmt` "
         query += "FROM tb_sales_return a  "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
         query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
         query += "INNER JOIN tb_m_comp_contact d ON a.id_comp_contact_to = d.id_comp_contact "
         query += "INNER JOIN tb_m_comp e ON e.id_comp = d.id_comp "
-        query += "INNER JOIN tb_sales_return_order f ON f.id_sales_return_order = a.id_sales_return_order "
+        query += "INNER JOIN tb_sales_return_order f ON f.id_sales_return_order = a.id_sales_return_order 
+        LEFT JOIN tb_sales_order so ON so.id_sales_order = f.id_sales_order "
         query += "INNER JOIN tb_lookup_report_status g ON g.id_report_status = a.id_report_status "
         query += "LEFT JOIN (
         SELECT r.id_sales_return, SUM(rd.sales_return_det_qty) AS `total`
@@ -63,6 +66,40 @@
             execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",3)", True, "", "", "", "")
         End If
 
+        Dim query As String = String.Format("UPDATE tb_sales_return SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_sales_return ='{1}'", id_status_reportx_par, id_report_par)
+        execute_non_query(query, True, "", "", "", "")
+    End Sub
+
+    Public Sub changeStatusOLStore(ByVal id_report_par As String, ByVal id_status_reportx_par As String)
+        If id_status_reportx_par = "6" Then
+            ' jika complete
+            Dim query_stc As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status) 
+            SELECT getCompByContact(ro.id_store_contact_to, 4), '1', rd.id_product, IFNULL(dsg.design_cop,0), '119', ro.id_sales_return_order, rd.sales_return_det_qty, NOW(), '', '2' 
+            FROM tb_sales_return r 
+            INNER JOIN tb_sales_return_order ro ON ro.id_sales_return_order = r.id_sales_return_order
+            INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return 
+            INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
+            WHERE r.id_sales_return=" + id_report_par + " AND rd.sales_return_det_qty>0 
+            UNION ALL 
+            SELECT getCompByContact(r.id_store_contact_from, 4), '2', rd.id_product, IFNULL(dsg.design_cop,0), '120', '" + id_report_par + "', rd.sales_return_det_qty, NOW(), '', '1' 
+            FROM tb_sales_return r 
+            INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return 
+            INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
+            WHERE r.id_sales_return=" + id_report_par + " AND rd.sales_return_det_qty>0 
+            UNION ALL 
+            SELECT getCompByContact(r.id_comp_contact_to, 4), '1', rd.id_product, IFNULL(dsg.design_cop,0), '120', '" + id_report_par + "', rd.sales_return_det_qty, NOW(), '', '1' 
+            FROM tb_sales_return r 
+            INNER JOIN tb_sales_return_det rd ON rd.id_sales_return = r.id_sales_return 
+            INNER JOIN tb_m_product prod ON prod.id_product = rd.id_product
+            INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design 
+            WHERE r.id_sales_return=" + id_report_par + " AND rd.sales_return_det_qty>0 "
+            execute_non_query(query_stc, True, "", "", "", "")
+
+            'save unreg unique
+            execute_non_query("CALL generate_unreg_barcode(" + id_report_par + ",3)", True, "", "", "", "")
+        End If
         Dim query As String = String.Format("UPDATE tb_sales_return SET id_report_status='{0}', last_update=NOW(), last_update_by=" + id_user + " WHERE id_sales_return ='{1}'", id_status_reportx_par, id_report_par)
         execute_non_query(query, True, "", "", "", "")
     End Sub

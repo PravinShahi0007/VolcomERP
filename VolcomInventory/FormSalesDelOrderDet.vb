@@ -93,6 +93,7 @@ Public Class FormSalesDelOrderDet
             TxtDrawer.Text = data.Rows(0)("wh_drawer").ToString
             DEForm.Text = view_date_from(data.Rows(0)("pl_sales_order_del_datex").ToString, 0)
             TxtSalesDelOrderNumber.Text = data.Rows(0)("pl_sales_order_del_number").ToString
+            TxtOLShopNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
             MENote.Text = data.Rows(0)("pl_sales_order_del_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
@@ -157,6 +158,7 @@ Public Class FormSalesDelOrderDet
         'tipe & status SO
         LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
         LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", data.Rows(0)("id_so_status").ToString)
+        TxtOLShopNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
 
         'uniform
         Dim id_so_status As String = data.Rows(0)("id_so_status").ToString

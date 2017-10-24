@@ -210,6 +210,7 @@
     <Compile Include="ClassSalesInv.vb" />
     <Compile Include="ClassSalesOrder.vb" />
     <Compile Include="ClassSalesReturn.vb" />
+    <Compile Include="ClassSalesReturnOrder.vb" />
     <Compile Include="ClassSalesReturnQC.vb" />
     <Compile Include="ClassSample.vb" />
     <Compile Include="ClassSampleDel.vb" />
@@ -2829,6 +2830,12 @@
       <DependentUpon>FormSalesReturnOrderOLDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesReturnOrderOLDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderOLSingle.Designer.vb">
+      <DependentUpon>FormSalesReturnOrderOLSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderOLSingle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesReturnOrderRevise.Designer.vb">
@@ -5499,6 +5506,9 @@
     <EmbeddedResource Include="FormNotification.resx">
       <DependentUpon>FormNotification.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreSummary.resx">
+      <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormOptView.resx">
       <DependentUpon>FormOptView.vb</DependentUpon>
     </EmbeddedResource>
@@ -6567,6 +6577,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderOLDet.resx">
       <DependentUpon>FormSalesReturnOrderOLDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOrderOLSingle.resx">
+      <DependentUpon>FormSalesReturnOrderOLSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderRevise.resx">
       <DependentUpon>FormSalesReturnOrderRevise.vb</DependentUpon>

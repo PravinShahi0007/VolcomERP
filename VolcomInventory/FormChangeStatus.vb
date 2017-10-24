@@ -56,7 +56,12 @@
 
         For c As Integer = 0 To ((gv.RowCount - 1) - GetGroupRowCount(gv))
             Dim id_report As String = gv.GetRowCellValue(c, id).ToString
-            Dim query_jml As String = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status <= '3' AND id_mark != '2' AND is_use='1'", report_mark_type, id_report)
+            Dim query_jml As String = ""
+            If id_pop_up = "3" Then 'return krn byk rmt
+                query_jml = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status <= '3' AND id_mark != '2' AND is_use='1'", gv.GetRowCellValue(c, "rmt").ToString, id_report)
+            Else
+                query_jml = String.Format("SELECT count(id_report_mark) FROM tb_report_mark WHERE report_mark_type='{0}' AND id_report='{1}' AND id_report_status <= '3' AND id_mark != '2' AND is_use='1'", report_mark_type, id_report)
+            End If
             Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
             If jml >= 1 Then
                 assigned = False
@@ -161,8 +166,14 @@
                     If confirm = Windows.Forms.DialogResult.Yes Then
                         Cursor = Cursors.WaitCursor
                         For i As Integer = 0 To ((FormSalesOrderSvcLevel.GVSalesReturn.RowCount - 1) - GetGroupRowCount(FormSalesOrderSvcLevel.GVSalesReturn))
+                            Dim id_so As String = FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "id_sales_order").ToString
+                            report_mark_type = FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "rmt").ToString
                             Dim stt As ClassSalesReturn = New ClassSalesReturn()
-                            stt.changeStatus(FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "id_sales_return").ToString, SLEStatusRec.EditValue.ToString)
+                            If id_so = "0" Then
+                                stt.changeStatus(FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "id_sales_return").ToString, SLEStatusRec.EditValue.ToString)
+                            Else
+                                stt.changeStatusOLStore(FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "id_sales_return").ToString, SLEStatusRec.EditValue.ToString)
+                            End If
                             removeAppList(report_mark_type, FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "id_sales_return").ToString, id_status_reportx)
                             insertFinalComment(report_mark_type, FormSalesOrderSvcLevel.GVSalesReturn.GetRowCellValue(i, "id_sales_return").ToString, id_status_reportx, note)
                             PBC.PerformStep()

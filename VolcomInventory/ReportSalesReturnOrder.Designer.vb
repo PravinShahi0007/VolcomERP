@@ -49,6 +49,12 @@ Partial Public Class ReportSalesReturnOrder
         Me.XrLabel9 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel14 = New DevExpress.XtraReports.UI.XRLabel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
+        Me.LabelWH = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelWHDot = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelWHTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelOLStoreOrderTitle = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelOLStoreOrderDot = New DevExpress.XtraReports.UI.XRLabel()
+        Me.LabelOLStoreOrder = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,7 +94,7 @@ Partial Public Class ReportSalesReturnOrder
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPanel1, Me.LRecDate, Me.LTitle, Me.LRecNumber, Me.XrLabel12, Me.XrLabel1})
-        Me.TopMargin.HeightF = 115.0!
+        Me.TopMargin.HeightF = 141.6667!
         Me.TopMargin.Name = "TopMargin"
         Me.TopMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -99,10 +105,10 @@ Partial Public Class ReportSalesReturnOrder
         Me.XrPanel1.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right), DevExpress.XtraPrinting.BorderSide)
         Me.XrPanel1.CanGrow = False
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel15, Me.LabelEstReturn, Me.XrLabel21, Me.XrLabel11, Me.XrLabel10, Me.LabelTo, Me.LabelAddress, Me.XrLabel2, Me.XrLabel3})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LabelOLStoreOrder, Me.LabelOLStoreOrderDot, Me.LabelOLStoreOrderTitle, Me.LabelWHTitle, Me.LabelWHDot, Me.LabelWH, Me.XrLabel15, Me.LabelEstReturn, Me.XrLabel21, Me.XrLabel11, Me.XrLabel10, Me.LabelTo, Me.LabelAddress, Me.XrLabel2, Me.XrLabel3})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 25.08334!)
         Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(780.9999!, 88.45834!)
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(780.9999!, 116.5834!)
         Me.XrPanel1.StylePriority.UseBorderColor = False
         Me.XrPanel1.StylePriority.UseBorders = False
         '
@@ -130,10 +136,10 @@ Partial Public Class ReportSalesReturnOrder
         'XrLabel21
         '
         Me.XrLabel21.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(481.9583!, 1.999998!)
+        Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(450.7083!, 2.000013!)
         Me.XrLabel21.Name = "XrLabel21"
         Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel21.SizeF = New System.Drawing.SizeF(85.41647!, 13.58337!)
+        Me.XrLabel21.SizeF = New System.Drawing.SizeF(116.6664!, 13.58337!)
         Me.XrLabel21.StylePriority.UseBorders = False
         Me.XrLabel21.Text = "Est. Return"
         '
@@ -358,10 +364,78 @@ Partial Public Class ReportSalesReturnOrder
         Me.ReportFooter.HeightF = 72.91666!
         Me.ReportFooter.Name = "ReportFooter"
         '
+        'LabelWH
+        '
+        Me.LabelWH.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelWH.Font = New System.Drawing.Font("Times New Roman", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelWH.LocationFloat = New DevExpress.Utils.PointFloat(95.74995!, 69.91679!)
+        Me.LabelWH.Name = "LabelWH"
+        Me.LabelWH.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelWH.SizeF = New System.Drawing.SizeF(295.8334!, 13.58335!)
+        Me.LabelWH.StylePriority.UseBorders = False
+        Me.LabelWH.StylePriority.UseFont = False
+        Me.LabelWH.Visible = False
+        '
+        'LabelWHDot
+        '
+        Me.LabelWHDot.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelWHDot.LocationFloat = New DevExpress.Utils.PointFloat(84.29162!, 69.91679!)
+        Me.LabelWHDot.Name = "LabelWHDot"
+        Me.LabelWHDot.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelWHDot.SizeF = New System.Drawing.SizeF(11.45834!, 13.58335!)
+        Me.LabelWHDot.StylePriority.UseBorders = False
+        Me.LabelWHDot.Text = ":"
+        Me.LabelWHDot.Visible = False
+        '
+        'LabelWHTitle
+        '
+        Me.LabelWHTitle.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelWHTitle.LocationFloat = New DevExpress.Utils.PointFloat(2.000014!, 69.91679!)
+        Me.LabelWHTitle.Name = "LabelWHTitle"
+        Me.LabelWHTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelWHTitle.SizeF = New System.Drawing.SizeF(82.2916!, 13.58335!)
+        Me.LabelWHTitle.StylePriority.UseBorders = False
+        Me.LabelWHTitle.Text = "Warehouse"
+        Me.LabelWHTitle.Visible = False
+        '
+        'LabelOLStoreOrderTitle
+        '
+        Me.LabelOLStoreOrderTitle.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelOLStoreOrderTitle.LocationFloat = New DevExpress.Utils.PointFloat(450.7083!, 15.58337!)
+        Me.LabelOLStoreOrderTitle.Name = "LabelOLStoreOrderTitle"
+        Me.LabelOLStoreOrderTitle.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelOLStoreOrderTitle.SizeF = New System.Drawing.SizeF(116.6666!, 13.58337!)
+        Me.LabelOLStoreOrderTitle.StylePriority.UseBorders = False
+        Me.LabelOLStoreOrderTitle.Text = "OL Store Order#"
+        Me.LabelOLStoreOrderTitle.Visible = False
+        '
+        'LabelOLStoreOrderDot
+        '
+        Me.LabelOLStoreOrderDot.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelOLStoreOrderDot.LocationFloat = New DevExpress.Utils.PointFloat(567.3748!, 15.58326!)
+        Me.LabelOLStoreOrderDot.Name = "LabelOLStoreOrderDot"
+        Me.LabelOLStoreOrderDot.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelOLStoreOrderDot.SizeF = New System.Drawing.SizeF(11.45837!, 13.58337!)
+        Me.LabelOLStoreOrderDot.StylePriority.UseBorders = False
+        Me.LabelOLStoreOrderDot.Text = ":"
+        Me.LabelOLStoreOrderDot.Visible = False
+        '
+        'LabelOLStoreOrder
+        '
+        Me.LabelOLStoreOrder.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.LabelOLStoreOrder.Font = New System.Drawing.Font("Times New Roman", 9.75!)
+        Me.LabelOLStoreOrder.LocationFloat = New DevExpress.Utils.PointFloat(578.8332!, 15.58326!)
+        Me.LabelOLStoreOrder.Name = "LabelOLStoreOrder"
+        Me.LabelOLStoreOrder.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.LabelOLStoreOrder.SizeF = New System.Drawing.SizeF(192.1669!, 13.58337!)
+        Me.LabelOLStoreOrder.StylePriority.UseBorders = False
+        Me.LabelOLStoreOrder.StylePriority.UseFont = False
+        Me.LabelOLStoreOrder.Visible = False
+        '
         'ReportSalesReturnOrder
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportFooter})
-        Me.Margins = New System.Drawing.Printing.Margins(21, 25, 115, 19)
+        Me.Margins = New System.Drawing.Printing.Margins(21, 25, 142, 19)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -402,4 +476,10 @@ Partial Public Class ReportSalesReturnOrder
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ReportFooter As DevExpress.XtraReports.UI.ReportFooterBand
+    Friend WithEvents LabelWHTitle As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelWHDot As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelWH As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelOLStoreOrder As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelOLStoreOrderDot As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents LabelOLStoreOrderTitle As DevExpress.XtraReports.UI.XRLabel
 End Class

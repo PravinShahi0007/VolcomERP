@@ -23,6 +23,8 @@
             cond += "AND a.id_report_status='6' AND a.id_prepare_status='1' AND a.id_so_status!=5 "
         ElseIf id_pop_up = "3" Then
             cond += "AND a.id_report_status='6' AND a.id_prepare_status='1' AND a.id_so_status=5 "
+        ElseIf id_pop_up = "4" Then
+            cond += "AND a.id_report_status='6' AND a.id_so_status!=5 And a.id_store_contact_to=" + FormSalesReturnOrderOLDet.id_store_contact_to + " "
         End If
         query = query_c.queryMain(cond, "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -52,6 +54,10 @@
 
     '1 : delivery order
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
+        choose()
+    End Sub
+
+    Sub choose()
         Cursor = Cursors.WaitCursor
         If id_pop_up = "1" Then
             'SO
@@ -200,6 +206,10 @@
             'general
             FormFGTrfNewDet.viewSalesOrderDetail()
             Close()
+        ElseIf id_pop_up = "4" Then
+            FormSalesReturnOrderOLDet.id_sales_order = GVSalesOrder.GetFocusedRowCellValue("id_sales_order").ToString
+            FormSalesReturnOrderOLDet.TxtOLStoreNumber.Text = GVSalesOrder.GetFocusedRowCellValue("sales_order_ol_shop_number").ToString
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub
@@ -254,5 +264,11 @@
             BSave.Enabled = False
         End If
         viewListSalesOrderDet(id_sales_order)
+    End Sub
+
+    Private Sub GVSalesOrder_DoubleClick(sender As Object, e As EventArgs) Handles GVSalesOrder.DoubleClick
+        If GVSalesOrder.RowCount > 0 And GVSalesOrder.FocusedRowHandle >= 0 Then
+            choose()
+        End If
     End Sub
 End Class
