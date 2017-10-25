@@ -451,11 +451,12 @@ Public Class FormSalesOrderDet
         End If
 
         'attachment
-        If check_attach_report_status(id_report_status, "39", id_sales_order) Then
-            BtnAttachment.Enabled = True
-        Else
-            BtnAttachment.Enabled = False
-        End If
+        BtnAttachment.Enabled = True
+        'If check_attach_report_status(id_report_status, "39", id_sales_order) Then
+        'BtnAttachment.Enabled = True
+        'Else
+        'BtnAttachment.Enabled = False
+        'End If
 
         If check_print_report_status(id_report_status) Then
             BtnPrint.Enabled = True
