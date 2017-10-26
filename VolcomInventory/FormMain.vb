@@ -10828,4 +10828,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBPromoTrf_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPromoTrf.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGTrfPromo.MdiParent = Me
+            FormFGTrfPromo.Show()
+            FormFGTrfPromo.WindowState = FormWindowState.Maximized
+            FormFGTrfPromo.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
