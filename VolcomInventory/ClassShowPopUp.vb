@@ -19,6 +19,21 @@
         ElseIf report_mark_type = "23" Then
             'Production Work Order
             FormViewProductionWO.Close()
+        ElseIf report_mark_type = "95" Then
+            'propose leave
+            FormEmpLeaveDet.Close()
+        ElseIf report_mark_type = "96" Then
+            'propose leave need management approval
+            FormEmpLeaveDet.Close()
+        ElseIf report_mark_type = "99" Then
+            'propose leave
+            FormEmpLeaveDet.Close()
+        ElseIf report_mark_type = "102" Then
+            'propose leave HRD
+            FormEmpLeaveDet.Close()
+        ElseIf report_mark_type = "104" Then
+            'propose leave HRD
+            FormEmpLeaveDet.Close()
         End If
     End Sub
     Sub show()
