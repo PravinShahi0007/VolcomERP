@@ -984,6 +984,12 @@
     <Compile Include="FormFGTrfNewDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGTrfPromo.Designer.vb">
+      <DependentUpon>FormFGTrfPromo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGTrfPromo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGWHAlloc.Designer.vb">
       <DependentUpon>FormFGWHAlloc.vb</DependentUpon>
     </Compile>
@@ -5415,6 +5421,9 @@
     <EmbeddedResource Include="FormFGTrfNewDet.resx">
       <DependentUpon>FormFGTrfNewDet.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGTrfPromo.resx">
+      <DependentUpon>FormFGTrfPromo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGWHAlloc.resx">
       <DependentUpon>FormFGWHAlloc.vb</DependentUpon>

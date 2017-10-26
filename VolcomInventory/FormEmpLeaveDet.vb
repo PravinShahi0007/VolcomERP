@@ -13,6 +13,8 @@
     Public is_hrd As String = "-1"
     Public is_reload As String = "2"
 
+    Public adv_leave As Integer = 0
+
     Private Sub FormEmpLeaveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
     End Sub
@@ -22,6 +24,7 @@
         is_hrd = FormEmpLeave.is_hrd
         '
         TERemainingLeave.EditValue = 0
+        TEAdvLeaveTot.EditValue = 0
         TETotLeave.EditValue = 0
         TERemainingLeaveAfter.EditValue = 0
         '
@@ -66,6 +69,7 @@
                                     WHERE empl.id_emp_leave='" & id_emp_leave & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
+            id_employee = data.Rows(0)("id_employee").ToString
             TENumber.Text = data.Rows(0)("emp_leave_number").ToString
             DEDateCreated.EditValue = data.Rows(0)("emp_leave_date")
             '
@@ -90,6 +94,27 @@
             '
             TERemainingLeave.EditValue = data.Rows(0)("leave_remaining") / 60
             TETotLeave.EditValue = data.Rows(0)("leave_total") / 60
+            'search adv leave this report and before
+            Dim query_adv As String = "SELECT id_adv_leave FROM tb_emp_stock_leave_adv WHERE id_emp_leave='" & id_emp_leave & "'"
+            Dim data_adv As DataTable = execute_query(query_adv, -1, True, "", "", "", "")
+            If data_adv.Rows.Count > 0 Then
+                Dim query_adv2 As String = "SELECT id_emp,SUM(qty) AS qty FROM `tb_emp_stock_leave_adv`
+                                        WHERE id_emp='" & id_employee & "' AND id_adv_leave<='" & data_adv.Rows(0)("id_adv_leave").ToString & "'
+                                        GROUP BY id_emp;"
+
+                Dim data_adv2 As DataTable = execute_query(query_adv2, -1, True, "", "", "", "")
+                If data_adv2.Rows.Count > 0 Then
+                    adv_leave = data_adv2.Rows(0)("qty") / 60
+                    TEAdvLeaveTot.EditValue = adv_leave
+                    If TEAdvLeaveTot.EditValue > Integer.Parse(get_opt_emp_field("notif_max_adv_hour")) Then
+                        ToolTipController1.ShowHint("Advance Leave sudah melebihi batas yang ditentukan.", TEAdvLeaveTot, DevExpress.Utils.ToolTipLocation.RightCenter)
+                    Else
+                        ToolTipController1.HideHint()
+                    End If
+                End If
+            End If
+
+            '
             If LELeaveType.EditValue.ToString = "1" Then
                 TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue - TETotLeave.EditValue
             Else
@@ -137,7 +162,16 @@
             TERemainingLeave.EditValue = GVLeaveRemaining.Columns("qty").SummaryItem.SummaryValue
         End If
     End Sub
-
+    Sub load_adv_leave()
+        Dim query As String = "SELECT id_emp,SUM(qty)/60 AS qty FROM `tb_emp_stock_leave_adv`
+                                WHERE id_emp='" & id_employee & "'
+                                GROUP BY id_emp"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            adv_leave = data.Rows(0)("qty")
+            TEAdvLeaveTot.EditValue = adv_leave
+        End If
+    End Sub
     Private Sub BPickEmployee_Click(sender As Object, e As EventArgs) Handles BPickEmployee.Click
         FormPopUpEmployee.id_popup = "1"
         FormPopUpEmployee.ShowDialog()
@@ -191,8 +225,25 @@
                             Exit For
                         End If
                     Next
+                    TEAdvLeaveTot.EditValue = 0
                 End If
-            Else 'sick, special leave, advance leave, dinas
+            ElseIf LELeaveType.EditValue.ToString = "4" Then 'advance leave
+                clear_grid()
+                TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue
+
+                If id_emp_leave = "-1" Then 'new
+                    TEAdvLeaveTot.EditValue = TETotLeave.EditValue + adv_leave
+
+                    Dim query_adv As String = "SELECT notif_max_adv_hour FROM tb_opt_emp"
+                    Dim data_adv As DataTable = execute_query(query_adv, -1, True, "", "", "", "")
+
+                    If TEAdvLeaveTot.EditValue > data_adv.Rows(0)("notif_max_adv_hour") Then
+                        ToolTipController1.ShowHint("Advance Leave sudah melebihi batas yang ditentukan.", TEAdvLeaveTot, DevExpress.Utils.ToolTipLocation.RightCenter)
+                    Else
+                        ToolTipController1.HideHint()
+                    End If
+                End If
+            Else 'sick, special leave, dinas
                 '
                 clear_grid()
                 TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue
@@ -254,6 +305,7 @@
             id_employee = data.Rows(0)("id_employee").ToString
             DEJoinDate.EditValue = data.Rows(0)("employee_join_date")
             load_remaining()
+            load_adv_leave()
             load_emp_leave()
             load_but_calc()
             '
