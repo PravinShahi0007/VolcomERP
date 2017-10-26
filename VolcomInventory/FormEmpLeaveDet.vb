@@ -90,12 +90,13 @@
             '
             TERemainingLeave.EditValue = data.Rows(0)("leave_remaining") / 60
             TETotLeave.EditValue = data.Rows(0)("leave_total") / 60
+            '
             If LELeaveType.EditValue.ToString = "1" Then
                 TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue - TETotLeave.EditValue
             Else
                 TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue
             End If
-
+            '
             If data.Rows(0)("id_report_status").ToString = "5" Or data.Rows(0)("id_report_status").ToString = "6" Then
                 BMark.Visible = False
                 If data.Rows(0)("id_report_status").ToString = "6" Then
@@ -107,7 +108,6 @@
                 BMark.Visible = True
                 BCancelPropose.Visible = False
             End If
-
         End If
         '
     End Sub

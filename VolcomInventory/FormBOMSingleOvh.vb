@@ -56,6 +56,13 @@
             If Not id_ovh = "-1" Then
                 GVOVH.FocusedRowHandle = find_row(GVOVH, "id_ovh", FormBOMDesignSingle.GVBomDetOvh.GetFocusedRowCellValue("id_component").ToString)
                 load_ovh_price()
+                '
+                Dim query As String = String.Format("SELECT * FROM tb_bom_det WHERE id_bom_det = '{0}'", id_bom_det)
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                GVOVHPrice.FocusedRowHandle = find_row(GVOVHPrice, "id_ovh_price", data.Rows(0)("id_ovh_price").ToString)
+                '
+                TEPrice.EditValue = FormBOMDesignSingle.GVBomDetOvh.GetFocusedRowCellValue("price")
                 TEQty.EditValue = FormBOMDesignSingle.GVBomDetOvh.GetFocusedRowCellValue("qty")
                 TEKurs.EditValue = FormBOMDesignSingle.GVBomDetOvh.GetFocusedRowCellValue("kurs")
 
@@ -68,6 +75,7 @@
                 TEKurs.EditValue = FormBOMDesignSingle.TEKurs.EditValue
             End If
         ElseIf id_pop_up = "2" Then 'per Design
+            Console.WriteLine(id_bom_det)
             If Not id_bom_det = "-1" Then
                 '
                 id_ovh = get_id_ovh(id_bom_det)
