@@ -1758,8 +1758,8 @@ Public Class FormMain
                         stopCustom("No BOM selected.")
                     End If
                 Else ' per PD
-                    Try
-                        If FormBOM.GVDesign.FocusedRowHandle < 0 Then
+                    'Try
+                    If FormBOM.GVDesign.FocusedRowHandle < 0 Then
                             stopCustom("Please select proper design first!")
                         Else
                             FormBOMDesignSingle.id_pop_up = "1"
@@ -1768,9 +1768,9 @@ Public Class FormMain
                             FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
                             FormBOMDesignSingle.ShowDialog()
                         End If
-                    Catch ex As Exception
-                        stopCustom("Please select proper design first!")
-                    End Try
+                    'Catch ex As Exception
+                    'stopCustom("Please select proper design first!")
+                    'End Try
                 End If
             ElseIf formName = "FormSamplePL" Then
                 'PACKING LIST SAMPLE

@@ -207,6 +207,7 @@
     End Sub
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
+        SplashScreenManager1.ShowWaitForm()
         Dim query As String = ""
 
         If id_prod_order = "-1" Then
@@ -266,11 +267,48 @@
                 Close()
             End If
         End If
-        'universal save bom
+        SplashScreenManager1.CloseWaitForm()
     End Sub
 
     Sub add_wo(ByVal id_po As String)
-        Dim query As String = ""
+        Dim query As String = "SELECT bomd.id_ovh_price,ovhp.id_comp_contact,bomd.kurs,ovhp.id_currency,bomd.is_ovh_main,SUM(bomd.bom_price*pod.prod_order_qty) AS amount FROM tb_prod_order_det pod
+                                INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
+                                INNER JOIN tb_bom bom ON bom.`id_product`=pdp.`id_product` AND bom.is_default='1'
+                                INNER JOIN tb_bom_det bomd ON bomd.`id_bom`=bom.`id_bom` 
+                                INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=bomd.`id_ovh_price`
+                                WHERE pod.`id_prod_order`='" & id_po & "' AND bomd.`id_component_category`='2'
+                                GROUP BY bomd.id_ovh_price"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        For i As Integer = 0 To data.Rows.Count - 1
+            Dim id_ovh_price, wo_number, id_comp_ship_to, payment_type, lead_time, Top, notex, vat, del_date, kurs, id_currency, is_main_vendor, amount As String
+            id_ovh_price = data.Rows(i)("id_ovh_price").ToString
+            wo_number = header_number_prod(2)
+            id_comp_ship_to = data.Rows(i)("id_comp_contact").ToString
+            payment_type = "1"
+            lead_time = "0"
+            Top = "0"
+            notex = ""
+            vat = "0"
+            del_date = Date.Parse(Now().ToString).ToString("yyyy-MM-dd")
+            kurs = data.Rows(i)("kurs").ToString
+            id_currency = data.Rows(i)("id_currency").ToString
+            is_main_vendor = data.Rows(i)("is_ovh_main").ToString
+            amount = decimalSQL(data.Rows(i)("amount").ToString)
+            '
+            Dim query_ins_wo As String = String.Format("INSERT INTO tb_prod_order_wo(id_prod_order,id_ovh_price,prod_order_wo_number,id_comp_contact_ship_to,id_payment,prod_order_wo_date,prod_order_wo_lead_time,prod_order_wo_top,prod_order_wo_note,prod_order_wo_vat,prod_order_wo_del_date,prod_order_wo_kurs,id_currency,is_main_vendor) VALUES('{0}','{1}','{2}','{3}','{4}',DATE(NOW()),'{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}'); SELECT LAST_INSERT_ID()", id_po, id_ovh_price, wo_number, id_comp_ship_to, payment_type, lead_time, Top, notex, vat, del_date, decimalSQL(kurs.ToString), id_currency, is_main_vendor)
+            Dim id_wo_new As String = execute_query(query_ins_wo, 0, True, "", "", "", "")
+            increase_inc_prod("2")
+            'detail wo
+            Dim query_is_wod As String = "INSERT INTO tb_prod_order_wo_det(`id_prod_order_wo`,`id_prod_order_det`,`prod_order_wo_det_price`,`prod_order_wo_det_qty`,`prod_order_wo_det_note`)
+                                        SELECT '" & id_wo_new & "' AS id_prod_order_wo,pod.`id_prod_order_det`,bomd.`bom_price` AS price,pod.`prod_order_qty`,'' AS note FROM tb_prod_order_det pod
+                                        INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
+                                        INNER JOIN tb_bom bom ON bom.`id_product`=pdp.`id_product` AND bom.is_default='1'
+                                        INNER JOIN tb_bom_det bomd ON bomd.`id_bom`=bom.`id_bom` 
+                                        INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=bomd.`id_ovh_price`
+                                        WHERE pod.`id_prod_order`='" & id_po & "' AND bomd.`id_component_category`='2' AND bomd.`id_ovh_price`='" & id_ovh_price & "'
+                                        GROUP BY bomd.id_ovh_price,pdp.`id_product`"
+            execute_non_query(query_is_wod, True, "", "", "", "")
+        Next
     End Sub
 
     Sub save_id_bom()

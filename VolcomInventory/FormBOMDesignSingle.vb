@@ -301,7 +301,25 @@
                 infoCustom("BOM updated")
                 act_load()
             End If
+            'sync the F.G.PO with same PD
+            sync_po(id_prod_demand_design)
         End If
+    End Sub
+
+    Sub sync_po(ByVal id_pd As String)
+        'po first
+        Dim query As String = "SELECT id_prod_order FROM tb_prod_order WHERE id_report_status!='5' AND id_prod_demand_design='" & id_pd & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        For i As Integer = 0 To data.Rows.Count - 1
+            Dim id_po As String = data.Rows(i)("id_prod_order").ToString
+            'then look the wo
+            Dim query_wo As String = "SELECT * FROM tb_prod_order_wo"
+            'delete first
+            'update
+            'insert
+
+        Next
     End Sub
 
     Private Sub FormBOMSingle_FormClosed(ByVal sender As System.Object, ByVal e As System.Windows.Forms.FormClosedEventArgs) Handles MyBase.FormClosed
@@ -367,7 +385,8 @@
         '
         FormBOMSingleOvh.id_pop_up = "1"
         FormBOMSingleOvh.TEQty.EditValue = GVBomDetOvh.GetFocusedRowCellValue("qty")
-        FormBOMSingleOvh.id_ovh = GVBomDetOvh.GetFocusedRowCellDisplayText("id_component").ToString
+        FormBOMSingleOvh.id_bom_det = GVBomDetOvh.GetFocusedRowCellValue("id_bom_det").ToString
+        FormBOMSingleOvh.id_ovh = GVBomDetOvh.GetFocusedRowCellValue("id_component").ToString
         FormBOMSingleOvh.ShowDialog()
     End Sub
 
