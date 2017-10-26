@@ -115,6 +115,7 @@ Partial Class FormEmpLeaveDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.ToolTipController1 = New DevExpress.Utils.ToolTipController(Me.components)
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1167,6 +1168,14 @@ Partial Class FormEmpLeaveDet
         Me.BSave.TabIndex = 0
         Me.BSave.Text = "Save"
         '
+        'ToolTipController1
+        '
+        Me.ToolTipController1.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.ToolTipController1.Appearance.Options.UseForeColor = True
+        Me.ToolTipController1.AutoPopDelay = 100000
+        Me.ToolTipController1.CloseOnClick = DevExpress.Utils.DefaultBoolean.[True]
+        Me.ToolTipController1.ShowBeak = True
+        '
         'FormEmpLeaveDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1334,4 +1343,5 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents Label8 As Label
     Friend WithEvents TEAdvLeaveTot As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label9 As Label
+    Friend WithEvents ToolTipController1 As DevExpress.Utils.ToolTipController
 End Class

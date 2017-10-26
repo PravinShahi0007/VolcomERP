@@ -13,6 +13,8 @@
     Public is_hrd As String = "-1"
     Public is_reload As String = "2"
 
+    Public adv_leave As Integer = 0
+
     Private Sub FormEmpLeaveDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_form()
     End Sub
@@ -102,7 +104,13 @@
 
                 Dim data_adv2 As DataTable = execute_query(query_adv2, -1, True, "", "", "", "")
                 If data_adv2.Rows.Count > 0 Then
-                    TEAdvLeaveTot.EditValue = data_adv2.Rows(0)("qty") / 60
+                    adv_leave = data_adv2.Rows(0)("qty") / 60
+                    TEAdvLeaveTot.EditValue = adv_leave
+                    If TEAdvLeaveTot.EditValue > Integer.Parse(get_opt_emp_field("notif_max_adv_hour")) Then
+                        ToolTipController1.ShowHint("Advance Leave sudah melebihi batas yang ditentukan.", TEAdvLeaveTot, DevExpress.Utils.ToolTipLocation.RightCenter)
+                    Else
+                        ToolTipController1.HideHint()
+                    End If
                 End If
             End If
 
@@ -160,7 +168,8 @@
                                 GROUP BY id_emp"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
-            TEAdvLeaveTot.EditValue = data.Rows(0)("qty")
+            adv_leave = data.Rows(0)("qty")
+            TEAdvLeaveTot.EditValue = adv_leave
         End If
     End Sub
     Private Sub BPickEmployee_Click(sender As Object, e As EventArgs) Handles BPickEmployee.Click
@@ -223,7 +232,16 @@
                 TERemainingLeaveAfter.EditValue = TERemainingLeave.EditValue
 
                 If id_emp_leave = "-1" Then 'new
-                    TEAdvLeaveTot.EditValue = TETotLeave.EditValue + TEAdvLeaveTot.EditValue
+                    TEAdvLeaveTot.EditValue = TETotLeave.EditValue + adv_leave
+
+                    Dim query_adv As String = "SELECT notif_max_adv_hour FROM tb_opt_emp"
+                    Dim data_adv As DataTable = execute_query(query_adv, -1, True, "", "", "", "")
+
+                    If TEAdvLeaveTot.EditValue > data_adv.Rows(0)("notif_max_adv_hour") Then
+                        ToolTipController1.ShowHint("Advance Leave sudah melebihi batas yang ditentukan.", TEAdvLeaveTot, DevExpress.Utils.ToolTipLocation.RightCenter)
+                    Else
+                        ToolTipController1.HideHint()
+                    End If
                 End If
             Else 'sick, special leave, dinas
                 '
