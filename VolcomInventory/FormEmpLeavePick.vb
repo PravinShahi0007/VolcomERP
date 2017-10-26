@@ -12,6 +12,8 @@
         DEStart.EditValue = Now
         DEUntil.EditValue = Now
         '
+        view_schedule()
+        '
         If opt = "1" Or opt = "2" Then 'change schedule
             BPickAll.Visible = False
             LPropose.Visible = False
@@ -25,13 +27,15 @@
     End Sub
 
     Private Sub BViewSchedule_Click(sender As Object, e As EventArgs) Handles BViewSchedule.Click
+        view_schedule()
+    End Sub
+    Sub view_schedule()
         load_schedule()
         load_total()
         load_date()
         GVSchedule.BestFitColumns()
         GVSchedule.Focus()
     End Sub
-
     Sub load_schedule()
         Dim query As String = ""
         Dim date_start, date_until As String
@@ -266,8 +270,15 @@
     Private Sub DEStart_EditValueChanged(sender As Object, e As EventArgs) Handles DEStart.EditValueChanged
         Try
             DEUntil.Properties.MinValue = DEStart.EditValue
+            view_schedule()
         Catch ex As Exception
         End Try
     End Sub
 
+    Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
+        Try
+            view_schedule()
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class

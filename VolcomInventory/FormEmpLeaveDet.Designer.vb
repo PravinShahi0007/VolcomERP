@@ -98,6 +98,9 @@ Partial Class FormEmpLeaveDet
         Me.TEEMployeeChange = New DevExpress.XtraEditors.TextEdit()
         Me.TEEmployeeChangeName = New DevExpress.XtraEditors.TextEdit()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TEAdvLeaveTot = New DevExpress.XtraEditors.TextEdit()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TETotLeave = New DevExpress.XtraEditors.TextEdit()
         Me.TERemainingLeaveAfter = New DevExpress.XtraEditors.TextEdit()
@@ -157,6 +160,7 @@ Partial Class FormEmpLeaveDet
         CType(Me.TEEmployeeChangeName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.TEAdvLeaveTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotLeave.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERemainingLeaveAfter.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -847,7 +851,7 @@ Partial Class FormEmpLeaveDet
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(216, 50)
+        Me.Label3.Location = New System.Drawing.Point(216, 37)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(24, 13)
         Me.Label3.TabIndex = 5
@@ -856,7 +860,7 @@ Partial Class FormEmpLeaveDet
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(66, 50)
+        Me.Label1.Location = New System.Drawing.Point(66, 37)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(61, 13)
         Me.Label1.TabIndex = 3
@@ -950,6 +954,9 @@ Partial Class FormEmpLeaveDet
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.Label8)
+        Me.PanelControl4.Controls.Add(Me.TEAdvLeaveTot)
+        Me.PanelControl4.Controls.Add(Me.Label9)
         Me.PanelControl4.Controls.Add(Me.Label2)
         Me.PanelControl4.Controls.Add(Me.TETotLeave)
         Me.PanelControl4.Controls.Add(Me.Label3)
@@ -965,10 +972,44 @@ Partial Class FormEmpLeaveDet
         Me.PanelControl4.Size = New System.Drawing.Size(260, 116)
         Me.PanelControl4.TabIndex = 97
         '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(216, 89)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(24, 13)
+        Me.Label8.TabIndex = 101
+        Me.Label8.Text = "jam"
+        '
+        'TEAdvLeaveTot
+        '
+        Me.TEAdvLeaveTot.EditValue = ""
+        Me.TEAdvLeaveTot.Location = New System.Drawing.Point(138, 86)
+        Me.TEAdvLeaveTot.Name = "TEAdvLeaveTot"
+        Me.TEAdvLeaveTot.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEAdvLeaveTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEAdvLeaveTot.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEAdvLeaveTot.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEAdvLeaveTot.Properties.DisplayFormat.FormatString = "N0"
+        Me.TEAdvLeaveTot.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEAdvLeaveTot.Properties.EditValueChangedDelay = 1
+        Me.TEAdvLeaveTot.Properties.ReadOnly = True
+        Me.TEAdvLeaveTot.Size = New System.Drawing.Size(72, 20)
+        Me.TEAdvLeaveTot.TabIndex = 102
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(29, 89)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(98, 13)
+        Me.Label9.TabIndex = 100
+        Me.Label9.Text = "Total Hutang Cuti :"
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(216, 83)
+        Me.Label2.Location = New System.Drawing.Point(216, 63)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(24, 13)
         Me.Label2.TabIndex = 98
@@ -977,7 +1018,7 @@ Partial Class FormEmpLeaveDet
         'TETotLeave
         '
         Me.TETotLeave.EditValue = ""
-        Me.TETotLeave.Location = New System.Drawing.Point(138, 47)
+        Me.TETotLeave.Location = New System.Drawing.Point(138, 34)
         Me.TETotLeave.Name = "TETotLeave"
         Me.TETotLeave.Properties.Appearance.Options.UseTextOptions = True
         Me.TETotLeave.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -993,7 +1034,7 @@ Partial Class FormEmpLeaveDet
         'TERemainingLeaveAfter
         '
         Me.TERemainingLeaveAfter.EditValue = ""
-        Me.TERemainingLeaveAfter.Location = New System.Drawing.Point(138, 80)
+        Me.TERemainingLeaveAfter.Location = New System.Drawing.Point(138, 60)
         Me.TERemainingLeaveAfter.Name = "TERemainingLeaveAfter"
         Me.TERemainingLeaveAfter.Properties.Appearance.Options.UseTextOptions = True
         Me.TERemainingLeaveAfter.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -1009,7 +1050,7 @@ Partial Class FormEmpLeaveDet
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(16, 83)
+        Me.Label4.Location = New System.Drawing.Point(16, 63)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(111, 13)
         Me.Label4.TabIndex = 97
@@ -1018,7 +1059,7 @@ Partial Class FormEmpLeaveDet
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(216, 17)
+        Me.Label5.Location = New System.Drawing.Point(216, 11)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(24, 13)
         Me.Label5.TabIndex = 95
@@ -1027,7 +1068,7 @@ Partial Class FormEmpLeaveDet
         'TERemainingLeave
         '
         Me.TERemainingLeave.EditValue = ""
-        Me.TERemainingLeave.Location = New System.Drawing.Point(138, 14)
+        Me.TERemainingLeave.Location = New System.Drawing.Point(138, 8)
         Me.TERemainingLeave.Name = "TERemainingLeave"
         Me.TERemainingLeave.Properties.Appearance.Options.UseTextOptions = True
         Me.TERemainingLeave.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -1043,7 +1084,7 @@ Partial Class FormEmpLeaveDet
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(72, 17)
+        Me.Label6.Location = New System.Drawing.Point(72, 11)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(55, 13)
         Me.Label6.TabIndex = 94
@@ -1189,6 +1230,7 @@ Partial Class FormEmpLeaveDet
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.TEAdvLeaveTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotLeave.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TERemainingLeaveAfter.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TERemainingLeave.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1289,4 +1331,7 @@ Partial Class FormEmpLeaveDet
     Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEDateCreated As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label8 As Label
+    Friend WithEvents TEAdvLeaveTot As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label9 As Label
 End Class

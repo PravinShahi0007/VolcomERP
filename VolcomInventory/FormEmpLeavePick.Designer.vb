@@ -203,7 +203,7 @@ Partial Class FormEmpLeavePick
         '
         'BPickAll
         '
-        Me.BPickAll.Location = New System.Drawing.Point(407, 7)
+        Me.BPickAll.Location = New System.Drawing.Point(342, 7)
         Me.BPickAll.Name = "BPickAll"
         Me.BPickAll.Size = New System.Drawing.Size(74, 23)
         Me.BPickAll.TabIndex = 13
@@ -211,11 +211,12 @@ Partial Class FormEmpLeavePick
         '
         'BViewSchedule
         '
-        Me.BViewSchedule.Location = New System.Drawing.Point(342, 7)
+        Me.BViewSchedule.Location = New System.Drawing.Point(422, 7)
         Me.BViewSchedule.Name = "BViewSchedule"
         Me.BViewSchedule.Size = New System.Drawing.Size(59, 23)
         Me.BViewSchedule.TabIndex = 12
         Me.BViewSchedule.Text = "Tampilkan"
+        Me.BViewSchedule.Visible = False
         '
         'Label6
         '
