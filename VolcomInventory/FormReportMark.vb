@@ -2138,10 +2138,9 @@
                 'code here
             End If
         ElseIf report_mark_type = "50" Then
-            'Return Production
+            'PR Production
             query = String.Format("UPDATE tb_pr_prod_order SET id_report_status='{0}' WHERE id_pr_prod_order ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
             Try
                 FormProdPRWODet.id_report_status = id_status_reportx
                 FormProdPRWODet.allow_status()
@@ -3184,7 +3183,6 @@
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'FormEmpLeave.load_sum()
-            infoCustom("Status changed.")
         ElseIf report_mark_type = "96" Then
             'LEAVE PROPOSE
             If id_status_reportx = "3" Then
@@ -3222,7 +3220,6 @@
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'FormEmpLeave.load_sum()
-            infoCustom("Status changed.")
         ElseIf report_mark_type = "97" Then
             'DP
             If id_status_reportx = "3" Then
@@ -3309,7 +3306,6 @@
             End If
             query = String.Format("UPDATE tb_emp_ch_schedule SET id_report_status='{0}' WHERE id_emp_ch_schedule ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
         ElseIf report_mark_type = "99" Then
             'LEAVE PROPOSE
             If id_status_reportx = "3" Then
@@ -3347,7 +3343,6 @@
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'FormEmpLeave.load_sum()
-            infoCustom("Status changed.")
         ElseIf report_mark_type = "100" Then
             'Schedule PROPOSE with approval
             If id_status_reportx = "3" Then
@@ -3426,7 +3421,6 @@
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'FormEmpLeave.load_sum()
-            infoCustom("Status changed.")
         ElseIf report_mark_type = "103" Then
             'combine del
             Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
@@ -3473,7 +3467,6 @@
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'FormEmpLeave.load_sum()
-            infoCustom("Status changed.")
         ElseIf report_mark_type = "105" Then
             'Final Clear
             If id_status_reportx = "3" Then
