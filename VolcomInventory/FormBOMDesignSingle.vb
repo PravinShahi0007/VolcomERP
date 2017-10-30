@@ -344,7 +344,7 @@
                                         )bom ON bom.id_ovh_price=wo.`id_ovh_price`
                                         SET wod.prod_order_wo_det_price=bom.price
                                         WHERE wo.`id_prod_order`='" & id_po & "' AND NOT ISNULL(bom.`id_bom`);"
-            execute_non_query(query, True, "", "", "", "")
+            execute_non_query(query_upd, True, "", "", "", "")
             'insert
             Dim query_ins As String = "SELECT po.id_report_status,bom.id_bom,bomd.id_ovh_price,ovh.overhead,ovhp.id_comp_contact,bomd.kurs,ovhp.id_currency,bomd.is_ovh_main,pod.prod_order_qty,bomd.bom_price,SUM(bomd.bom_price*pod.prod_order_qty) AS amount,
                                         wo.`id_prod_order_wo`,wo.`prod_order_wo_kurs`,wo.`id_currency`,wo.`is_main_vendor`,wo.`prod_order_wo_amount` FROM tb_prod_order_det pod
@@ -361,13 +361,30 @@
             For j As Integer = 0 To data_ins.Rows.Count - 1
                 Dim wo_number As String = header_number_prod(2)
                 Dim query_ins_wo As String = "INSERT INTO tb_prod_order_wo(id_prod_order,prod_order_wo_number,id_ovh_price,id_comp_contact_ship_to,id_payment,prod_order_wo_del_date,prod_order_wo_date,prod_order_wo_amount,id_currency,kurs,is_main_vendor,id_report_status)
-                                                VALUES('" & id_po & "','" & wo_number & "','" & data_ins.Rows(j)("id_ovh_price").ToString & "','" & data_ins.Rows(j)("id_comp_contact").ToString & "','1',NOW(),NOW(),'" & data_ins.Rows(j)("amount").ToString & "','" & data_ins.Rows(j)("id_currency").ToString & "','" & data_ins.Rows(j)("kurs").ToString & "','" & data_ins.Rows(j)("is_ovh_main").ToString & "','" & data_ins.Rows(j)("id_report_status").ToString & "'); SELECT LAST_INSERT_ID()"
-                Dim id_wo_new As String = execute_query(query, 0, True, "", "", "", "")
+                                                VALUES('" & id_po & "','" & wo_number & "','" & data_ins.Rows(j)("id_ovh_price").ToString & "','" & data_ins.Rows(j)("id_comp_contact").ToString & "','1',NOW(),NOW(),'" & decimalSQL(data_ins.Rows(j)("amount").ToString) & "','" & data_ins.Rows(j)("id_currency").ToString & "','" & decimalSQL(data_ins.Rows(j)("kurs").ToString) & "','" & data_ins.Rows(j)("is_ovh_main").ToString & "','" & data_ins.Rows(j)("id_report_status").ToString & "'); SELECT LAST_INSERT_ID()"
+                Dim id_wo_new As String = execute_query(query_ins_wo, 0, True, "", "", "", "")
                 increase_inc_prod("2")
-
+                Dim query_ins_wo_det As String = "INSERT INTO tb_prod_order_wo_det(id_prod_order_wo,id_prod_order_det,prod_order_wo_det_price,prod_order_wo_det_qty)
+                                                    SELECT '" & id_wo_new & "' AS id_prod_order_wo,id_prod_order_det,'" & decimalSQL(data_ins.Rows(j)("bom_price").ToString) & "' AS price,pod.prod_order_qty 
+                                                    FROM tb_prod_order_det pod
+                                                    WHERE pod.id_prod_order='" & id_po & "'"
+                execute_non_query(query_ins_wo_det, True, "", "", "", "")
             Next
             'delete
-
+            Dim query_del As String = "DELETE FROM tb_prod_order_wo wo
+                                        LEFT JOIN 
+                                        (
+	                                        SELECT bom.id_bom,bomd.id_ovh_price,ovh.overhead,ovhp.id_comp_contact,bomd.kurs,ovhp.id_currency,bomd.is_ovh_main,SUM(bomd.bom_price*pod.prod_order_qty) AS amount FROM tb_prod_order_det pod
+	                                        INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
+	                                        INNER JOIN tb_bom bom ON bom.`id_product`=pdp.`id_product` AND bom.is_default='1'
+	                                        INNER JOIN tb_bom_det bomd ON bomd.`id_bom`=bom.`id_bom` 
+	                                        INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=bomd.`id_ovh_price`
+	                                        INNER JOIN tb_m_ovh ovh ON ovh.id_ovh=ovhp.`id_ovh`
+	                                        WHERE pod.`id_prod_order`='1119' AND bomd.`id_component_category`='2'
+	                                        GROUP BY bomd.id_ovh_price
+                                        )bom ON bom.id_ovh_price=wo.`id_ovh_price`
+                                        WHERE wo.`id_prod_order`='" & id_po & "' AND ISNULL(bom.`id_bom`)"
+            execute_non_query(query_del, True, "", "", "", "")
         Next
     End Sub
 
