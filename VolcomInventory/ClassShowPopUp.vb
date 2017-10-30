@@ -21,8 +21,7 @@
             FormViewProductionWO.Close()
         ElseIf report_mark_type = "50" Then
             'PR Prod Order
-            FormViewPRProdWO.id_pr = id_report
-            FormViewPRProdWO.ShowDialog()
+            FormViewPRProdWO.Close()
         ElseIf report_mark_type = "95" Then
             'propose leave
             FormEmpLeaveDet.Close()
