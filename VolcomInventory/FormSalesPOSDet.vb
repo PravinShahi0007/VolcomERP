@@ -30,6 +30,8 @@ Public Class FormSalesPOSDet
     'menu : 1=invoice 2=credit note
     Public id_menu As String = "1"
     Public id_sales_pos_ref As String = "-1"
+    Public ol_store_order_cn As String = ""
+    Dim vat_def As Decimal = 0
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
@@ -80,13 +82,15 @@ Public Class FormSalesPOSDet
             LEInvType.Enabled = False
             TEDO.Enabled = False
             CheckEditInvType.Visible = False
-            LabelInvoice.Visible = True
-            TxtInvoice.Visible = True
-            BtnBrowseInvoice.Visible = True
+            PanelCN.Visible = True
             BtnDel.Visible = True
             BtnListProduct.Visible = True
             BtnImport.Visible = False
+            BtnImportOLStore.Visible = False
             TxtCodeCompFrom.Focus()
+            TxtOLStoreNumber.Properties.ReadOnly = False
+            GridColumnOrder.Visible = False
+            GridColumnDel.Visible = False
         End If
 
 
@@ -99,7 +103,8 @@ Public Class FormSalesPOSDet
 
             'get vat default
             Dim dtv As DataTable = execute_query("SELECT vat_inv_default FROM tb_opt ", -1, True, "", "", "", "")
-            SPVat.EditValue = dtv.Rows(0)("vat_inv_default")
+            vat_def = dtv.Rows(0)("vat_inv_default")
+            SPVat.EditValue = vat_def
 
             'TxtVirtualPosNumber.Text = header_number_sales("6")
             BtnPrint.Enabled = False
@@ -125,7 +130,7 @@ Public Class FormSalesPOSDet
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
             query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
             If id_menu = "5" Then
-                query += ", IFNULL(ar.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
+                query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
             End If
             query += "FROM tb_sales_pos a "
             query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
@@ -136,9 +141,17 @@ Public Class FormSalesPOSDet
             query += "LEFT JOIN tb_sales_order so ON so.id_sales_order = pld.id_sales_order "
             query += "INNER JOIN tb_lookup_report_status d ON d.id_report_status = a.id_report_status "
             If id_menu = "5" Then
-                query += "LEFT JOIN tb_sales_pos ar ON ar.id_sales_pos = a.id_sales_pos_ref "
-                query += "LEFT JOIN tb_pl_sales_order_del pldr ON pldr.id_pl_sales_order_del=ar.id_pl_sales_order_del "
-                query += "LEFT JOIN tb_sales_order sor ON sor.id_sales_order = pldr.id_sales_order "
+                query += "LEFT JOIN (
+                    SELECT pd.id_sales_pos, pr.sales_pos_number, so.sales_order_ol_shop_number 
+                    FROM tb_sales_pos_det pd
+                    INNER JOIN tb_sales_pos_det pdr ON pdr.id_sales_pos_det = pd.id_sales_pos_det_ref
+                    INNER JOIN tb_sales_pos pr ON pr.id_sales_pos = pdr.id_sales_pos
+                    INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del_det = pdr.id_pl_sales_order_del_det
+                    INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = deld.id_sales_order_det
+                    INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+                    WHERE pd.id_sales_pos=" + id_sales_pos + "
+                    GROUP BY pd.id_sales_pos
+                ) sor ON sor.id_sales_pos = a.id_sales_pos "
             End If
             query += "WHERE a.id_sales_pos = '" + id_sales_pos + "' "
             query += "ORDER BY a.id_sales_pos ASC "
@@ -554,11 +567,11 @@ Public Class FormSalesPOSDet
         TxtNameCompFrom.Enabled = False
         BtnBrowseContactFrom.Enabled = False
         CheckEditInvType.Enabled = False
+        TxtOLStoreNumber.Properties.ReadOnly = True
 
         TxtCodeBillTo.Enabled = False
         TxtNameBillTo.Enabled = False
         BtnBrowseBillTo.Enabled = False
-        BtnBrowseInvoice.Enabled = False
 
         If check_attach_report_status(id_report_status, report_mark_type, id_sales_pos) Then
             BtnAttachment.Enabled = True
@@ -1121,6 +1134,12 @@ Public Class FormSalesPOSDet
         If id_do = "-1" Then
             viewDetail()
         End If
+
+        If e.KeyCode = Keys.Enter Then
+            If id_menu = "5" Then
+                TxtOLStoreNumber.Focus()
+            End If
+        End If
     End Sub
 
     Private Sub DEDueDate_KeyDown(sender As Object, e As KeyEventArgs) Handles DEDueDate.KeyDown
@@ -1261,7 +1280,11 @@ Public Class FormSalesPOSDet
         End If
     End Sub
 
-    Private Sub BtnBrowseInvoice_Click(sender As Object, e As EventArgs) Handles BtnBrowseInvoice.Click
+    Private Sub BtnBrowseInvoice_Click(sender As Object, e As EventArgs)
+        showInv()
+    End Sub
+
+    Sub showInv()
         Cursor = Cursors.WaitCursor
         FormSalesCreditNotePopInv.id_pop_up = "4"
         FormSalesCreditNotePopInv.ShowDialog()
@@ -1286,5 +1309,60 @@ Public Class FormSalesPOSDet
             calculate()
         End If
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TxtOLStoreNumber_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtOLStoreNumber.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim query As String = "SELECT inv.id_sales_pos, inv.sales_pos_number, so.sales_order_ol_shop_number, inv.sales_pos_discount, inv.sales_pos_vat
+            FROM tb_sales_pos_det ind
+            INNER JOIN tb_sales_pos inv ON inv.id_sales_pos = ind.id_sales_pos
+            INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del_det = ind.id_pl_sales_order_del_det
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = deld.id_sales_order_det
+            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+            WHERE so.sales_order_ol_shop_number='" + addSlashes(TxtOLStoreNumber.Text) + "' AND inv.id_report_status=6
+            GROUP BY inv.id_sales_pos "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count = 1 Then
+                id_sales_pos_ref = data.Rows(0)("id_sales_pos").ToString
+                TxtInvoice.Text = data.Rows(0)("sales_pos_number").ToString
+                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+                SPDiscount.EditValue = data.Rows(0)("sales_pos_discount")
+                SPVat.EditValue = data.Rows(0)("sales_pos_vat")
+                calculate()
+                viewDetail()
+                BtnListProduct.Focus()
+            ElseIf data.Rows.Count > 1 Then
+                Dim cond As String = ""
+                For i As Integer = 0 To data.Rows.Count - 1
+                    If i > 0 Then
+                        cond += "OR "
+                    ElseIf i = 0 Then
+                        cond += "AND ( "
+                    End If
+                    cond += "a.id_sales_pos=" + data.Rows(i)("id_sales_pos").ToString + " "
+                Next
+                If cond <> "" Then
+                    cond += ") "
+                End If
+                FormSalesCreditNotePopInv.cond = cond
+                showInv()
+            Else
+                stopCustom("Invoice order not found.")
+                id_sales_pos_ref = "-1"
+                TxtInvoice.Text = ""
+                TxtOLStoreNumber.Text = ""
+                SPDiscount.EditValue = 0
+                SPVat.EditValue = vat_def
+                calculate()
+                viewDetail()
+            End If
+        Else
+            id_sales_pos_ref = "-1"
+            TxtInvoice.Text = ""
+            SPDiscount.EditValue = 0
+            SPVat.EditValue = vat_def
+            calculate()
+            viewDetail()
+        End If
     End Sub
 End Class
