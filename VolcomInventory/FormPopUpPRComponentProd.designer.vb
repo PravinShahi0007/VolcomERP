@@ -66,6 +66,12 @@ Partial Class FormPopUpPRComponentProd
         Me.ColSubtotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColUom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEAmountWO = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPriceWO = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEQtyWO = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancelPurc = New DevExpress.XtraEditors.SimpleButton()
         Me.BSavePurc = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPReceive = New DevExpress.XtraTab.XtraTabPage()
@@ -107,6 +113,9 @@ Partial Class FormPopUpPRComponentProd
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TEAmountWO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPriceWO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEQtyWO.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPReceive.SuspendLayout()
         CType(Me.GCListReceive, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListReceive, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -515,7 +524,7 @@ Partial Class FormPopUpPRComponentProd
         Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPrice.Caption = "Price"
-        Me.ColPrice.DisplayFormat.FormatString = "N2"
+        Me.ColPrice.DisplayFormat.FormatString = "N4"
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "price"
         Me.ColPrice.Name = "ColPrice"
@@ -584,6 +593,12 @@ Partial Class FormPopUpPRComponentProd
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.TEAmountWO)
+        Me.PanelControl2.Controls.Add(Me.LabelControl6)
+        Me.PanelControl2.Controls.Add(Me.TEPriceWO)
+        Me.PanelControl2.Controls.Add(Me.LabelControl5)
+        Me.PanelControl2.Controls.Add(Me.TEQtyWO)
+        Me.PanelControl2.Controls.Add(Me.LabelControl3)
         Me.PanelControl2.Controls.Add(Me.BCancelPurc)
         Me.PanelControl2.Controls.Add(Me.BSavePurc)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -591,6 +606,73 @@ Partial Class FormPopUpPRComponentProd
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(798, 45)
         Me.PanelControl2.TabIndex = 28
+        '
+        'TEAmountWO
+        '
+        Me.TEAmountWO.Enabled = False
+        Me.TEAmountWO.Location = New System.Drawing.Point(412, 12)
+        Me.TEAmountWO.Name = "TEAmountWO"
+        Me.TEAmountWO.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEAmountWO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEAmountWO.Properties.Mask.EditMask = "N4"
+        Me.TEAmountWO.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEAmountWO.Properties.Mask.SaveLiteral = False
+        Me.TEAmountWO.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEAmountWO.Properties.ReadOnly = True
+        Me.TEAmountWO.Size = New System.Drawing.Size(199, 20)
+        Me.TEAmountWO.TabIndex = 126
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(356, 15)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(45, 13)
+        Me.LabelControl6.TabIndex = 127
+        Me.LabelControl6.Text = "Sub Total"
+        '
+        'TEPriceWO
+        '
+        Me.TEPriceWO.Location = New System.Drawing.Point(189, 12)
+        Me.TEPriceWO.Name = "TEPriceWO"
+        Me.TEPriceWO.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEPriceWO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPriceWO.Properties.Mask.EditMask = "N4"
+        Me.TEPriceWO.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPriceWO.Properties.Mask.SaveLiteral = False
+        Me.TEPriceWO.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEPriceWO.Properties.ReadOnly = True
+        Me.TEPriceWO.Size = New System.Drawing.Size(161, 20)
+        Me.TEPriceWO.TabIndex = 124
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(160, 15)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl5.TabIndex = 125
+        Me.LabelControl5.Text = "Price"
+        '
+        'TEQtyWO
+        '
+        Me.TEQtyWO.Location = New System.Drawing.Point(35, 12)
+        Me.TEQtyWO.Name = "TEQtyWO"
+        Me.TEQtyWO.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEQtyWO.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEQtyWO.Properties.EditValueChangedDelay = 1
+        Me.TEQtyWO.Properties.Mask.EditMask = "N2"
+        Me.TEQtyWO.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEQtyWO.Properties.Mask.SaveLiteral = False
+        Me.TEQtyWO.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEQtyWO.Size = New System.Drawing.Size(119, 20)
+        Me.TEQtyWO.TabIndex = 122
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 15)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(18, 13)
+        Me.LabelControl3.TabIndex = 123
+        Me.LabelControl3.Text = "Qty"
         '
         'BCancelPurc
         '
@@ -813,6 +895,10 @@ Partial Class FormPopUpPRComponentProd
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.TEAmountWO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPriceWO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEQtyWO.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPReceive.ResumeLayout(False)
         CType(Me.GCListReceive, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListReceive, System.ComponentModel.ISupportInitialize).EndInit()
@@ -886,4 +972,10 @@ Partial Class FormPopUpPRComponentProd
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BCancelRec As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSaveRec As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEQtyWO As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEPriceWO As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEAmountWO As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class

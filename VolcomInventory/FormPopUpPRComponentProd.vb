@@ -15,6 +15,9 @@
         TEPriceOvh.EditValue = 0.0000
         TEQtyOvh.EditValue = 0.00
         TEPriceTotOvh.EditValue = 0.0000
+        TEQtyWO.EditValue = 0.00
+        TEPriceWO.EditValue = 0.0000
+        TEAmountWO.EditValue = 0.00
         If id_rec <> "-1" Then
             'rec selected
             XTPReceive.PageVisible = True
@@ -61,6 +64,7 @@
         Else
             BSavePurc.Enabled = False
         End If
+        calculate_wo()
     End Sub
 
     Sub view_dc(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
@@ -226,11 +230,11 @@
                 newRow("id_det") = GVListPurchase.GetFocusedRowCellDisplayText("id_prod_order_wo_det").ToString
                 newRow("name") = GVListPurchase.GetFocusedRowCellDisplayText("name").ToString
                 newRow("code") = GVListPurchase.GetFocusedRowCellDisplayText("code").ToString
-                newRow("qty") = GVListPurchase.GetFocusedRowCellDisplayText("qty").ToString
+                newRow("qty") = TEQtyWO.EditValue
                 newRow("type") = "2"
                 newRow("uom") = GVListPurchase.GetFocusedRowCellDisplayText("uom").ToString
                 newRow("price") = GVListPurchase.GetFocusedRowCellDisplayText("price").ToString
-                newRow("total") = GVListPurchase.GetFocusedRowCellValue("total")
+                newRow("total") = TEAmountWO.EditValue
 
                 TryCast(FormProdPRWODet.GCListPurchase.DataSource, DataTable).Rows.Add(newRow)
                 FormProdPRWODet.GCListPurchase.RefreshDataSource()
@@ -245,11 +249,12 @@
                 FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "id_det", GVListPurchase.GetFocusedRowCellDisplayText("id_prod_order_wo_det").ToString)
                 FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "name", GVListPurchase.GetFocusedRowCellDisplayText("name").ToString)
                 FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "code", GVListPurchase.GetFocusedRowCellDisplayText("code").ToString)
-                FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "qty", GVListPurchase.GetFocusedRowCellDisplayText("qty"))
+                FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "qty", TEQtyWO.EditValue)
                 FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "type", "2")
                 FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "price", GVListPurchase.GetFocusedRowCellDisplayText("price"))
-                FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "total", GVListPurchase.GetFocusedRowCellValue("total"))
+                FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "total", TEAmountWO.EditValue)
                 FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "uom", GVListPurchase.GetFocusedRowCellDisplayText("uom").ToString)
+                FormProdPRWODet.GVListPurchase.RefreshData()
                 FormProdPRWODet.calculate()
                 Close()
             End If
@@ -391,5 +396,23 @@
                 view.FocusedRowHandle = focusedRowHandle
             End If
         End If
+    End Sub
+    Sub calculate_wo()
+        If GVListPurchase.RowCount > 0 Then
+            Try
+                TEAmountWO.EditValue = TEQtyWO.EditValue * TEPriceWO.EditValue
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+    Private Sub GVListPurchase_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVListPurchase.FocusedRowChanged
+        TEQtyWO.EditValue = GVListPurchase.GetFocusedRowCellValue("qty")
+        TEPriceWO.EditValue = GVListPurchase.GetFocusedRowCellValue("price")
+        calculate_wo()
+    End Sub
+
+    Private Sub TEQtyWO_EditValueChanged(sender As Object, e As EventArgs) Handles TEQtyWO.EditValueChanged
+        calculate_wo()
     End Sub
 End Class
