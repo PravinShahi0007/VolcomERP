@@ -89,7 +89,9 @@
             IF(ISNULL(inv.id_sales_pos),0,GROUP_CONCAT(DISTINCT inv.id_sales_pos ORDER BY inv.id_sales_pos ASC SEPARATOR '#')) AS `id_inv`,
             del.id_sales_order
             FROM tb_sales_pos inv
-            INNER JOIN tb_pl_sales_order_del del ON inv.id_pl_sales_order_del = del.id_pl_sales_order_del
+            INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos = inv.id_sales_pos
+            INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
+            INNER JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = deld.id_pl_sales_order_del
             WHERE inv.id_report_status=6 AND inv.id_memo_type=1
             GROUP BY del.id_sales_order  
         ) inv ON inv.id_sales_order = so.id_sales_order 

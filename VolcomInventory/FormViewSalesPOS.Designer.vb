@@ -20,6 +20,10 @@ Partial Class FormViewSalesPOS
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtOLStoreNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelOLStoreNumber = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtInvoice = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelInvoice = New DevExpress.XtraEditors.LabelControl()
         Me.LabelBillTo = New DevExpress.XtraEditors.LabelControl()
         Me.TxtNameBillTo = New DevExpress.XtraEditors.TextEdit()
         Me.TxtCodeBillTo = New DevExpress.XtraEditors.TextEdit()
@@ -88,12 +92,12 @@ Partial Class FormViewSalesPOS
         Me.GridColumnIdSalesPOSDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.TxtInvoice = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelInvoice = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtOLStoreNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelOLStoreNumber = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.TxtOLStoreNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtNameBillTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtCodeBillTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENPWP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,8 +134,6 @@ Partial Class FormViewSalesPOS
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtInvoice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtOLStoreNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -171,6 +173,52 @@ Partial Class FormViewSalesPOS
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(954, 185)
         Me.GroupGeneralHeader.TabIndex = 185
+        '
+        'TxtOLStoreNumber
+        '
+        Me.TxtOLStoreNumber.EditValue = ""
+        Me.TxtOLStoreNumber.Location = New System.Drawing.Point(796, 65)
+        Me.TxtOLStoreNumber.Name = "TxtOLStoreNumber"
+        Me.TxtOLStoreNumber.Properties.EditValueChangedDelay = 1
+        Me.TxtOLStoreNumber.Properties.ReadOnly = True
+        Me.TxtOLStoreNumber.Size = New System.Drawing.Size(151, 20)
+        Me.TxtOLStoreNumber.TabIndex = 8952
+        Me.TxtOLStoreNumber.TabStop = False
+        '
+        'LabelOLStoreNumber
+        '
+        Me.LabelOLStoreNumber.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelOLStoreNumber.Location = New System.Drawing.Point(724, 68)
+        Me.LabelOLStoreNumber.Name = "LabelOLStoreNumber"
+        Me.LabelOLStoreNumber.Size = New System.Drawing.Size(58, 13)
+        Me.LabelOLStoreNumber.TabIndex = 8951
+        Me.LabelOLStoreNumber.Text = "OL Store No"
+        '
+        'TxtInvoice
+        '
+        Me.TxtInvoice.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.TxtInvoice.EditValue = ""
+        Me.TxtInvoice.Location = New System.Drawing.Point(467, 69)
+        Me.TxtInvoice.Name = "TxtInvoice"
+        Me.TxtInvoice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtInvoice.Properties.Appearance.Options.UseFont = True
+        Me.TxtInvoice.Properties.EditValueChangedDelay = 1
+        Me.TxtInvoice.Properties.ReadOnly = True
+        Me.TxtInvoice.Size = New System.Drawing.Size(218, 20)
+        Me.TxtInvoice.TabIndex = 8950
+        Me.TxtInvoice.TabStop = False
+        Me.TxtInvoice.Visible = False
+        '
+        'LabelInvoice
+        '
+        Me.LabelInvoice.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelInvoice.Location = New System.Drawing.Point(416, 72)
+        Me.LabelInvoice.Name = "LabelInvoice"
+        Me.LabelInvoice.Size = New System.Drawing.Size(35, 13)
+        Me.LabelInvoice.TabIndex = 8948
+        Me.LabelInvoice.Text = "Invoice"
+        Me.LabelInvoice.Visible = False
         '
         'LabelBillTo
         '
@@ -725,7 +773,7 @@ Partial Class FormViewSalesPOS
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnDesignPriceType, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnColor, Me.GridColumnNote})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnUOM, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnDesignPriceType, Me.GridColumnRemark, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdDesignPrice, Me.GridColumnIdSalesPOSDet, Me.GridColumnColor, Me.GridColumnNote, Me.GridColumnDel, Me.GridColumnOLOrder})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -918,51 +966,21 @@ Partial Class FormViewSalesPOS
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 9
         '
-        'TxtInvoice
+        'GridColumnDel
         '
-        Me.TxtInvoice.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtInvoice.EditValue = ""
-        Me.TxtInvoice.Location = New System.Drawing.Point(467, 69)
-        Me.TxtInvoice.Name = "TxtInvoice"
-        Me.TxtInvoice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtInvoice.Properties.Appearance.Options.UseFont = True
-        Me.TxtInvoice.Properties.EditValueChangedDelay = 1
-        Me.TxtInvoice.Properties.ReadOnly = True
-        Me.TxtInvoice.Size = New System.Drawing.Size(218, 20)
-        Me.TxtInvoice.TabIndex = 8950
-        Me.TxtInvoice.TabStop = False
-        Me.TxtInvoice.Visible = False
+        Me.GridColumnDel.Caption = "Delivery#"
+        Me.GridColumnDel.FieldName = "del"
+        Me.GridColumnDel.Name = "GridColumnDel"
+        Me.GridColumnDel.Visible = True
+        Me.GridColumnDel.VisibleIndex = 10
         '
-        'LabelInvoice
+        'GridColumnOLOrder
         '
-        Me.LabelInvoice.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelInvoice.Location = New System.Drawing.Point(416, 72)
-        Me.LabelInvoice.Name = "LabelInvoice"
-        Me.LabelInvoice.Size = New System.Drawing.Size(35, 13)
-        Me.LabelInvoice.TabIndex = 8948
-        Me.LabelInvoice.Text = "Invoice"
-        Me.LabelInvoice.Visible = False
-        '
-        'TxtOLStoreNumber
-        '
-        Me.TxtOLStoreNumber.EditValue = ""
-        Me.TxtOLStoreNumber.Location = New System.Drawing.Point(796, 65)
-        Me.TxtOLStoreNumber.Name = "TxtOLStoreNumber"
-        Me.TxtOLStoreNumber.Properties.EditValueChangedDelay = 1
-        Me.TxtOLStoreNumber.Properties.ReadOnly = True
-        Me.TxtOLStoreNumber.Size = New System.Drawing.Size(151, 20)
-        Me.TxtOLStoreNumber.TabIndex = 8952
-        Me.TxtOLStoreNumber.TabStop = False
-        '
-        'LabelOLStoreNumber
-        '
-        Me.LabelOLStoreNumber.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelOLStoreNumber.Location = New System.Drawing.Point(724, 68)
-        Me.LabelOLStoreNumber.Name = "LabelOLStoreNumber"
-        Me.LabelOLStoreNumber.Size = New System.Drawing.Size(58, 13)
-        Me.LabelOLStoreNumber.TabIndex = 8951
-        Me.LabelOLStoreNumber.Text = "OL Store No"
+        Me.GridColumnOLOrder.Caption = "OL Store Order#"
+        Me.GridColumnOLOrder.FieldName = "ol_store_order"
+        Me.GridColumnOLOrder.Name = "GridColumnOLOrder"
+        Me.GridColumnOLOrder.Visible = True
+        Me.GridColumnOLOrder.VisibleIndex = 11
         '
         'FormViewSalesPOS
         '
@@ -985,6 +1003,8 @@ Partial Class FormViewSalesPOS
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.TxtOLStoreNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtNameBillTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtCodeBillTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENPWP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1022,8 +1042,6 @@ Partial Class FormViewSalesPOS
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtInvoice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtOLStoreNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1100,4 +1118,6 @@ Partial Class FormViewSalesPOS
     Friend WithEvents LabelInvoice As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtOLStoreNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelOLStoreNumber As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridColumnDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOLOrder As DevExpress.XtraGrid.Columns.GridColumn
 End Class

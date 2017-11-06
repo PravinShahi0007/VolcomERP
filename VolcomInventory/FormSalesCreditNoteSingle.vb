@@ -8,8 +8,13 @@
         viewSalesInv()
 
         If id_pop_up = "3" Then
+            GridColumn4.Visible = False
             GridColumnIsSelect.Visible = False
             CheckEditSelectAll.Visible = False
+            If FormSalesPOSDet.TxtOLStoreNumber.Text <> "" Then
+                GVItemList.ActiveFilterString = "[ol_store_order]='" + FormSalesPOSDet.TxtOLStoreNumber.Text + "'"
+            End If
+            GVItemList.FocusedColumn = GridColumn1
         End If
 
         'inisialisasi jika blm ada
