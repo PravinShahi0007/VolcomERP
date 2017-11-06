@@ -13,7 +13,16 @@
     Public info_design_code As String = ""
     '
     Sub close()
-        If report_mark_type = "22" Then
+        If report_mark_type = "13" Then
+            'Mat PO
+            FormViewMatPurc.Close()
+        ElseIf report_mark_type = "15" Then
+            'Mat WO
+            FormViewMatWO.Close()
+        ElseIf report_mark_type = "24" Then
+            'MAT PR
+            FormViewMatPR.Close()
+        ElseIf report_mark_type = "22" Then
             'Production Order
             FormViewProduction.Close()
         ElseIf report_mark_type = "23" Then
@@ -22,6 +31,7 @@
         ElseIf report_mark_type = "50" Then
             'PR Prod Order
             FormViewPRProdWO.Close()
+
         ElseIf report_mark_type = "95" Then
             'propose leave
             FormEmpLeaveDet.Close()
