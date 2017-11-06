@@ -94,7 +94,7 @@ Partial Class FormProdPRWODet
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.MECompAddress = New DevExpress.XtraEditors.MemoEdit()
         Me.TERecNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.LRecCaption = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPRNumber = New DevExpress.XtraEditors.TextEdit()
@@ -103,7 +103,8 @@ Partial Class FormProdPRWODet
         Me.TECompTo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEWONumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LWOCaption = New DevExpress.XtraEditors.LabelControl()
+        Me.BPickVendor = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollectionOld, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPSamplePR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -809,6 +810,7 @@ Partial Class FormProdPRWODet
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.BPickVendor)
         Me.GroupGeneralHeader.Controls.Add(Me.DEPRDate)
         Me.GroupGeneralHeader.Controls.Add(Me.DEDueDate)
         Me.GroupGeneralHeader.Controls.Add(Me.TEAju)
@@ -823,7 +825,7 @@ Partial Class FormProdPRWODet
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl2)
         Me.GroupGeneralHeader.Controls.Add(Me.MECompAddress)
         Me.GroupGeneralHeader.Controls.Add(Me.TERecNumber)
-        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl9)
+        Me.GroupGeneralHeader.Controls.Add(Me.LRecCaption)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl8)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl6)
         Me.GroupGeneralHeader.Controls.Add(Me.TEPRNumber)
@@ -832,7 +834,7 @@ Partial Class FormProdPRWODet
         Me.GroupGeneralHeader.Controls.Add(Me.TECompTo)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl4)
         Me.GroupGeneralHeader.Controls.Add(Me.TEWONumber)
-        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl3)
+        Me.GroupGeneralHeader.Controls.Add(Me.LWOCaption)
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
@@ -972,13 +974,13 @@ Partial Class FormProdPRWODet
         Me.TERecNumber.Size = New System.Drawing.Size(134, 20)
         Me.TERecNumber.TabIndex = 157
         '
-        'LabelControl9
+        'LRecCaption
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(410, 10)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(78, 13)
-        Me.LabelControl9.TabIndex = 158
-        Me.LabelControl9.Text = "Receive Number"
+        Me.LRecCaption.Location = New System.Drawing.Point(410, 10)
+        Me.LRecCaption.Name = "LRecCaption"
+        Me.LRecCaption.Size = New System.Drawing.Size(78, 13)
+        Me.LRecCaption.TabIndex = 158
+        Me.LRecCaption.Text = "Receive Number"
         '
         'LabelControl8
         '
@@ -1029,7 +1031,7 @@ Partial Class FormProdPRWODet
         Me.TECompTo.Name = "TECompTo"
         Me.TECompTo.Properties.EditValueChangedDelay = 1
         Me.TECompTo.Properties.ReadOnly = True
-        Me.TECompTo.Size = New System.Drawing.Size(278, 20)
+        Me.TECompTo.Size = New System.Drawing.Size(249, 20)
         Me.TECompTo.TabIndex = 0
         Me.TECompTo.TabStop = False
         '
@@ -1051,13 +1053,21 @@ Partial Class FormProdPRWODet
         Me.TEWONumber.Size = New System.Drawing.Size(249, 20)
         Me.TEWONumber.TabIndex = 3
         '
-        'LabelControl3
+        'LWOCaption
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(29, 10)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(58, 13)
-        Me.LabelControl3.TabIndex = 86
-        Me.LabelControl3.Text = "WO Number"
+        Me.LWOCaption.Location = New System.Drawing.Point(29, 10)
+        Me.LWOCaption.Name = "LWOCaption"
+        Me.LWOCaption.Size = New System.Drawing.Size(58, 13)
+        Me.LWOCaption.TabIndex = 86
+        Me.LWOCaption.Text = "WO Number"
+        '
+        'BPickVendor
+        '
+        Me.BPickVendor.Location = New System.Drawing.Point(366, 33)
+        Me.BPickVendor.Name = "BPickVendor"
+        Me.BPickVendor.Size = New System.Drawing.Size(23, 20)
+        Me.BPickVendor.TabIndex = 179
+        Me.BPickVendor.Text = "..."
         '
         'FormProdPRWODet
         '
@@ -1182,7 +1192,7 @@ Partial Class FormProdPRWODet
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MECompAddress As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents TERecNumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LRecCaption As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPRNumber As DevExpress.XtraEditors.TextEdit
@@ -1191,7 +1201,7 @@ Partial Class FormProdPRWODet
     Friend WithEvents TECompTo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEWONumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LWOCaption As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPONumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEAju As DevExpress.XtraEditors.TextEdit
@@ -1208,4 +1218,5 @@ Partial Class FormProdPRWODet
     Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents BPickVendor As DevExpress.XtraEditors.SimpleButton
 End Class

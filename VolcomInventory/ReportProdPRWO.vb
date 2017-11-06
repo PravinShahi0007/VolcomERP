@@ -109,6 +109,7 @@ Public Class ReportProdPRWO
 
         LDONumber.Text = data.Rows(0)("delivery_order_number").ToString
         LRecNumber.Text = data.Rows(0)("prod_order_rec_number").ToString
+
         If data.Rows(0)("id_prod_order_rec") <= 0 Then
             id_rec = "-1"
         Else

@@ -5,8 +5,22 @@
     Public id_pr As String = "-1"
     Public id_comp_contact_pay_to As String = "-1"
     Public id_report_status As String = "-1"
+
+    Public is_po_pr As String = "-1"
+
     Private Sub FormSamplePRDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         TEKurs.EditValue = 0.0
+
+        If is_po_pr = "1" Then
+            LWOCaption.Text = "PO Number"
+            LRecCaption.Visible = False
+            TERecNumber.Visible = False
+            BPickRec.Visible = False
+            BPickVendor.Visible = True
+        Else
+            BPickVendor.Visible = False
+        End If
+
         If id_prod_order_wo = "-1" Then 'there is wo
             view_currency(LECurrency)
         Else
@@ -283,10 +297,15 @@
     End Sub
 
     Private Sub BPickPO_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPickWO.Click
-        FormPopUpWOProd.id_prod_order = id_prod_order
-        FormPopUpWOProd.id_wo = id_prod_order_wo
-        FormPopUpWOProd.id_popup = "2"
-        FormPopUpWOProd.ShowDialog()
+        If is_po_pr = "1" Then
+            FormPopUpProd.id_pop_up = "10"
+            FormPopUpProd.ShowDialog()
+        Else
+            FormPopUpWOProd.id_prod_order = id_prod_order
+            FormPopUpWOProd.id_wo = id_prod_order_wo
+            FormPopUpWOProd.id_popup = "2"
+            FormPopUpWOProd.ShowDialog()
+        End If
     End Sub
 
     Private Sub BAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BAdd.Click
