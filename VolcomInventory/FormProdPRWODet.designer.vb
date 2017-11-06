@@ -80,6 +80,7 @@ Partial Class FormProdPRWODet
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.BPickVendor = New DevExpress.XtraEditors.SimpleButton()
         Me.DEPRDate = New DevExpress.XtraEditors.DateEdit()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.TEAju = New DevExpress.XtraEditors.TextEdit()
@@ -104,7 +105,6 @@ Partial Class FormProdPRWODet
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEWONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LWOCaption = New DevExpress.XtraEditors.LabelControl()
-        Me.BPickVendor = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollectionOld, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPSamplePR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -841,6 +841,14 @@ Partial Class FormProdPRWODet
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 116)
         Me.GroupGeneralHeader.TabIndex = 37
         '
+        'BPickVendor
+        '
+        Me.BPickVendor.Location = New System.Drawing.Point(366, 33)
+        Me.BPickVendor.Name = "BPickVendor"
+        Me.BPickVendor.Size = New System.Drawing.Size(23, 20)
+        Me.BPickVendor.TabIndex = 179
+        Me.BPickVendor.Text = "..."
+        '
         'DEPRDate
         '
         Me.DEPRDate.EditValue = Nothing
@@ -1060,14 +1068,6 @@ Partial Class FormProdPRWODet
         Me.LWOCaption.Size = New System.Drawing.Size(58, 13)
         Me.LWOCaption.TabIndex = 86
         Me.LWOCaption.Text = "WO Number"
-        '
-        'BPickVendor
-        '
-        Me.BPickVendor.Location = New System.Drawing.Point(366, 33)
-        Me.BPickVendor.Name = "BPickVendor"
-        Me.BPickVendor.Size = New System.Drawing.Size(23, 20)
-        Me.BPickVendor.TabIndex = 179
-        Me.BPickVendor.Text = "..."
         '
         'FormProdPRWODet
         '

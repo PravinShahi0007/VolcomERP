@@ -649,4 +649,8 @@
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BPickVendor_Click(sender As Object, e As EventArgs) Handles BPickVendor.Click
+
+    End Sub
 End Class
