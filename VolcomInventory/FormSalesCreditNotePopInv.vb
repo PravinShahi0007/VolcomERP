@@ -1,5 +1,6 @@
-﻿Public Class FormSalesCreditNotePopInv 
+﻿Public Class FormSalesCreditNotePopInv
     Public id_pop_up As String = "-1"
+    Public cond As String = ""
 
     Private Sub FormSalesCreditNotePopInv_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewInvoice()
@@ -20,7 +21,12 @@
         Me.WindowState = FormWindowState.Maximized
 
         'update 3 September 2015
-        query = query_c.queryMain("AND (a.id_memo_type=''1'' OR a.id_memo_type=''3'' OR a.id_memo_type=''5'') AND a.id_report_status=''6'' ", "1")
+        If id_pop_up = "4" Then
+            query = query_c.queryMain("AND a.id_memo_type=''1'' AND a.id_store_contact_from=" + FormSalesPOSDet.id_store_contact_from + "  AND c.id_commerce_type=2 AND a.id_report_status=''6'' " + cond, "1")
+        Else
+            query = query_c.queryMain("AND (a.id_memo_type=''1'' OR a.id_memo_type=''3'' OR a.id_memo_type=''5'') AND a.id_report_status=''6'' ", "1")
+        End If
+
 
         'If id_pop_up = "1" Then
         '    query = query_c.queryMain("AND a.id_memo_type=''1'' AND a.id_report_status=''6'' ", "1")
@@ -46,7 +52,7 @@
     Sub viewInvoiceDet()
         Dim id_sales_pos_param As String = "-1"
         Try
-            id_sales_pos_param = GVSalesPOS.GetFocusedRowCellValue("id_sales_pos")
+            id_sales_pos_param = GVSalesPOS.GetFocusedRowCellValue("id_sales_pos").ToString
         Catch ex As Exception
         End Try
 
@@ -143,6 +149,14 @@
             Next
             FormBillingDet.calculate()
 
+            Close()
+        ElseIf id_pop_up = "4" Then
+            FormSalesPOSDet.id_sales_pos_ref = GVSalesPOS.GetFocusedRowCellValue("id_sales_pos").ToString
+            FormSalesPOSDet.TxtInvoice.Text = GVSalesPOS.GetFocusedRowCellValue("sales_pos_number").ToString
+            FormSalesPOSDet.SPDiscount.EditValue = GVSalesPOS.GetFocusedRowCellValue("sales_pos_discount")
+            FormSalesPOSDet.SPVat.EditValue = GVSalesPOS.GetFocusedRowCellValue("sales_pos_vat")
+            FormSalesPOSDet.calculate()
+            FormSalesPOSDet.viewDetail()
             Close()
         End If
         Cursor = Cursors.Default

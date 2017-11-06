@@ -7,6 +7,16 @@
     Private Sub FormSalesCreditNoteSingle_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewSalesInv()
 
+        If id_pop_up = "3" Then
+            GridColumn4.Visible = False
+            GridColumnIsSelect.Visible = False
+            CheckEditSelectAll.Visible = False
+            If FormSalesPOSDet.TxtOLStoreNumber.Text <> "" Then
+                GVItemList.ActiveFilterString = "[ol_store_order]='" + FormSalesPOSDet.TxtOLStoreNumber.Text + "'"
+            End If
+            GVItemList.FocusedColumn = GridColumn1
+        End If
+
         'inisialisasi jika blm ada
         Try
             dt.Columns.Add("code")
@@ -305,6 +315,59 @@
             Else
                 stopCustom("Input not valid. Make sure Qty Credit Note is not zero.")
             End If
+        ElseIf id_pop_up = "3" Then
+            GVItemList.ActiveFilterString = "[sales_pos_det_qty_credit_note]>0 "
+            If GVItemList.RowCount > 0 Then
+                'check exist item
+                Dim cond_exists As Boolean = False
+                Dim err_exist As String = ""
+                For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                    Dim id_product_cek As String = GVItemList.GetRowCellValue(i, "id_product").ToString
+                    Dim code_cek As String = GVItemList.GetRowCellValue(i, "code").ToString
+                    Dim name_cek As String = GVItemList.GetRowCellValue(i, "name").ToString
+                    Dim size_cek As String = GVItemList.GetRowCellValue(i, "size").ToString
+                    FormSalesPOSDet.GVItemList.ActiveFilterString = "[id_product]='" + id_product_cek + "'"
+                    If FormSalesPOSDet.GVItemList.RowCount > 0 Then
+                        cond_exists = True
+                        err_exist = code_cek + "/" + name_cek + "/ Size " + size_cek + " already exist. "
+                        Exit For
+                    End If
+                Next
+                FormSalesPOSDet.GVItemList.ActiveFilterString = ""
+
+                If cond_exists Then
+                    stopCustom(err_exist)
+                    GVItemList.ActiveFilterString = ""
+                Else
+                    For ls As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+                        Dim newRow As DataRow = (TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable)).NewRow()
+                        newRow("code") = GVItemList.GetRowCellValue(ls, "code").ToString
+                        newRow("name") = GVItemList.GetRowCellValue(ls, "name").ToString
+                        newRow("size") = GVItemList.GetRowCellValue(ls, "size").ToString
+                        newRow("color") = GVItemList.GetRowCellValue(ls, "color").ToString
+                        newRow("sales_pos_det_qty") = GVItemList.GetRowCellValue(ls, "sales_pos_det_qty_credit_note")
+                        newRow("sales_pos_det_amount") = GVItemList.GetRowCellValue(ls, "sales_pos_det_qty_credit_note") * GVItemList.GetRowCellValue(ls, "design_price_retail")
+                        newRow("design_price_retail") = GVItemList.GetRowCellValue(ls, "design_price_retail")
+                        newRow("design_price_type") = GVItemList.GetRowCellValue(ls, "design_price_type")
+                        newRow("design_price") = GVItemList.GetRowCellValue(ls, "design_price")
+                        newRow("id_design") = GVItemList.GetRowCellValue(ls, "id_design").ToString
+                        newRow("id_product") = GVItemList.GetRowCellValue(ls, "id_product").ToString
+                        newRow("id_design_price") = GVItemList.GetRowCellValue(ls, "id_design_price").ToString
+                        newRow("id_design_price_retail") = GVItemList.GetRowCellValue(ls, "id_design_price_retail").ToString
+                        newRow("id_sales_pos_det_ref") = GVItemList.GetRowCellValue(ls, "id_sales_pos_det").ToString
+                        newRow("id_sales_pos_det") = "0"
+
+                        TryCast(FormSalesPOSDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
+                        FormSalesPOSDet.GCItemList.RefreshDataSource()
+                        FormSalesPOSDet.GVItemList.RefreshData()
+                        FormSalesPOSDet.calculate()
+                    Next
+                    Close()
+                End If
+            Else
+                stopCustom("Input can't blank")
+                GVItemList.ActiveFilterString = ""
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
@@ -312,10 +375,10 @@
     Private Sub SPQtyCreditNote_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SPQtyCreditNote.EditValueChanged
         'aktifkan jika dipakai (ada pembatasan berdasarkan limit)
         Dim SpQty As DevExpress.XtraEditors.SpinEdit = CType(sender, DevExpress.XtraEditors.SpinEdit)
-        Dim qty_rec As Decimal = Decimal.Parse(SpQty.Text.ToString)
-        Dim qty_limit As Decimal = Decimal.Parse(GVItemList.GetFocusedRowCellValue("sales_pos_det_qty_limit").ToString)
+        Dim qty_rec As Decimal = SpQty.EditValue
+        Dim qty_limit As Decimal = GVItemList.GetFocusedRowCellValue("sales_pos_det_qty_limit")
         If qty_rec > qty_limit Then
-            DevExpress.XtraEditors.XtraMessageBox.Show("Qty Credit Note cannot exceed " + qty_limit.ToString + "", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            stopCustom("Qty Credit Note cannot exceed " + qty_limit.ToString + "")
             GVItemList.SetFocusedRowCellValue("sales_pos_det_qty_credit_note", 0)
         End If
     End Sub
@@ -326,32 +389,13 @@
         End If
     End Sub
 
-    Private Sub BtnViewImg_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnViewImg.Click
-        Dim id_designx As String = "0"
-        Try
-            id_designx = GVItemList.GetFocusedRowCellValue("id_design").ToString
-        Catch ex As Exception
-        End Try
-        pre_viewImages("2", PictureEdit1, id_designx, True)
-    End Sub
+
 
     Private Sub GVItemList_FocusedRowChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVItemList.FocusedRowChanged
-        'images
-        Dim id_designx As String = "0"
-        Try
-            id_designx = GVItemList.GetFocusedRowCellValue("id_design").ToString
-        Catch ex As Exception
-        End Try
-        pre_viewImages("2", PictureEdit1, id_designx, False)
+
     End Sub
 
     Private Sub GVItemList_ColumnFilterChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GVItemList.ColumnFilterChanged
-        'images
-        Dim id_designx As String = "0"
-        Try
-            id_designx = GVItemList.GetFocusedRowCellValue("id_design").ToString
-        Catch ex As Exception
-        End Try
-        pre_viewImages("2", PictureEdit1, id_designx, False)
+
     End Sub
 End Class

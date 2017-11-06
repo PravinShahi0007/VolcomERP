@@ -48,7 +48,7 @@
 
         'query view based on edit id's
         Dim query As String = "SELECT b.id_so_status, b.id_sales_order, a.id_store_contact_to, a.id_comp_contact_from, (d.comp_name) AS store_name_to, (d1.comp_name) AS comp_name_from, (d.comp_number) AS store_number_to, (d1.comp_number) AS comp_number_from, (d.address_primary) AS store_address_to, a.id_report_status, f.report_status, "
-        query += "a.pl_sales_order_del_note, a.pl_sales_order_del_date, a.pl_sales_order_del_number, b.sales_order_number, "
+        query += "a.pl_sales_order_del_note, a.pl_sales_order_del_date, a.pl_sales_order_del_number, b.sales_order_number, b.sales_order_ol_shop_number, "
         query += "DATE_FORMAT(a.pl_sales_order_del_date,'%Y-%m-%d') AS pl_sales_order_del_datex, b.id_so_type, IFNULL(ac.combine_number,'-') AS `combine_number` "
         query += "FROM tb_pl_sales_order_del a "
         query += "LEFT JOIN tb_pl_sales_order_del_combine ac ON ac.id_combine = a.id_combine "
@@ -78,6 +78,7 @@
         LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
         LEStatusSO.ItemIndex = LEStatusSO.Properties.GetDataSourceRowIndex("id_so_status", data.Rows(0)("id_so_status").ToString)
         id_sales_order = data.Rows(0)("id_sales_order").ToString
+        TxtOLShopNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
         TxtCombineNumber.Text = data.Rows(0)("combine_number").ToString
 
         'detail2

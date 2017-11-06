@@ -210,6 +210,7 @@
     <Compile Include="ClassSalesInv.vb" />
     <Compile Include="ClassSalesOrder.vb" />
     <Compile Include="ClassSalesReturn.vb" />
+    <Compile Include="ClassSalesReturnOrder.vb" />
     <Compile Include="ClassSalesReturnQC.vb" />
     <Compile Include="ClassSample.vb" />
     <Compile Include="ClassSampleDel.vb" />
@@ -981,6 +982,12 @@
       <DependentUpon>FormFGTrfNewDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGTrfNewDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGTrfPromo.Designer.vb">
+      <DependentUpon>FormFGTrfPromo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGTrfPromo.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGWHAlloc.Designer.vb">
@@ -2829,6 +2836,12 @@
       <DependentUpon>FormSalesReturnOrderOLDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormSalesReturnOrderOLDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderOLSingle.Designer.vb">
+      <DependentUpon>FormSalesReturnOrderOLSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormSalesReturnOrderOLSingle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormSalesReturnOrderRevise.Designer.vb">
@@ -5409,6 +5422,9 @@
       <DependentUpon>FormFGTrfNewDet.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFGTrfPromo.resx">
+      <DependentUpon>FormFGTrfPromo.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFGWHAlloc.resx">
       <DependentUpon>FormFGWHAlloc.vb</DependentUpon>
     </EmbeddedResource>
@@ -5498,6 +5514,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormNotification.resx">
       <DependentUpon>FormNotification.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormOLStoreSummary.resx">
+      <DependentUpon>FormOLStoreSummary.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormOptView.resx">
       <DependentUpon>FormOptView.vb</DependentUpon>
@@ -6567,6 +6586,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderOLDet.resx">
       <DependentUpon>FormSalesReturnOrderOLDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSalesReturnOrderOLSingle.resx">
+      <DependentUpon>FormSalesReturnOrderOLSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSalesReturnOrderRevise.resx">
       <DependentUpon>FormSalesReturnOrderRevise.vb</DependentUpon>

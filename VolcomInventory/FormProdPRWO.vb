@@ -13,30 +13,100 @@
     End Sub
 
     Private Sub FormProdPRWO_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        view_pr()
-        view_wo()
-        check_but()
-    End Sub
+        viewDesign()
+        viewSeason()
+        viewVendor()
 
+        'view_pr()
+        view_wo()
+    End Sub
+    Sub viewDesign()
+        Dim query As String = ""
+        query += "CALL view_design_order(TRUE)"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        SLEDesignStockStore.Properties.DataSource = Nothing
+        SLEDesignStockStore.Properties.DataSource = data
+        SLEDesignStockStore.Properties.DisplayMember = "display_name"
+        SLEDesignStockStore.Properties.ValueMember = "id_design"
+        If data.Rows.Count.ToString >= 1 Then
+            SLEDesignStockStore.EditValue = data.Rows(0)("id_design").ToString
+        Else
+            SLEDesignStockStore.EditValue = Nothing
+        End If
+    End Sub
+    Sub viewVendor()
+        Dim query As String = ""
+        query += "SELECT ('0') AS id_comp, ('-') AS comp_number, ('All Vendor') AS comp_name, ('ALL Vendor') AS comp_name_label UNION ALL "
+        query += "SELECT comp.id_comp,comp.comp_number, comp.comp_name, CONCAT_WS(' - ', comp.comp_number,comp.comp_name) AS comp_name_label FROM tb_m_comp comp "
+        query += "WHERE comp.id_comp_cat='1'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        SLEVendor.Properties.DataSource = Nothing
+        SLEVendor.Properties.DataSource = data
+        SLEVendor.Properties.DisplayMember = "comp_name_label"
+        SLEVendor.Properties.ValueMember = "id_comp"
+        If data.Rows.Count.ToString >= 1 Then
+            SLEVendor.EditValue = data.Rows(0)("id_comp").ToString
+        Else
+            SLEVendor.EditValue = Nothing
+        End If
+    End Sub
+    Sub viewSeason()
+        Dim query As String = "SELECT '-1' AS id_season, 'All Season' as season UNION "
+        query += "(SELECT id_season,season FROM tb_season a "
+        query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
+        query += "ORDER BY b.range ASC)"
+        viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
+    End Sub
     Sub view_pr()
+        Dim query_where As String = " WHERE 1=1 "
+
+        If Not SLEDesignStockStore.EditValue.ToString = "0" Then
+            query_where += " AND desg.id_design='" & SLEDesignStockStore.EditValue.ToString & "'"
+        End If
+
+        If Not SLESeason.EditValue.ToString = "-1" Then
+            query_where += " AND e.id_season='" & SLESeason.EditValue.ToString & "'"
+        End If
+
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            query_where += " AND d.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+
         Dim query As String = "SELECT desg.design_code,desg.design_display_name,po.id_prod_order,po.prod_order_number,rec.id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,rec.delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,rec.prod_order_rec_date, d.comp_name AS comp_to, "
-        query += "z.pr_prod_order_due_date "
+        query += "z.pr_prod_order_due_date,maxd.employee_name as last_mark "
         query += " ,wo.id_currency,wo.prod_order_wo_kurs "
         query += "FROM tb_pr_prod_order z "
         query += "INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo = z.id_prod_order_wo "
         query += "INNER JOIN tb_prod_order po ON po.id_prod_order = wo.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design "
         query += "INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design "
+        query += "INNER JOIN tb_season_delivery e On desg.id_delivery=e.id_delivery "
         query += "LEFT JOIN tb_prod_order_rec rec ON z.id_prod_order_rec = rec.id_prod_order_rec "
         query += "INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price "
         query += "INNER JOIN tb_m_ovh l ON ovh_p.id_ovh = l.id_ovh "
         query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=z.id_comp_contact_to "
         query += "INNER JOIN tb_m_comp d ON d.id_comp=c.id_comp "
         query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status=z.id_report_status "
+        query += "LEFT JOIN
+                 (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
+                    FROM tb_report_mark mark
+                    INNER JOIN tb_m_employee emp ON emp.`id_employee`=mark.id_employee
+                    INNER JOIN 
+                    (
+	                    SELECT mark.id_report,mark.report_mark_type,MAX(report_mark_datetime) AS report_mark_datetime
+	                    FROM tb_report_mark mark
+	                    WHERE mark.id_mark='2' AND NOT ISNULL(report_mark_start_datetime) AND report_mark_type='50'
+	                    GROUP BY report_mark_type,id_report
+                    ) maxd ON maxd.id_report=mark.id_report AND maxd.report_mark_type=mark.report_mark_type AND maxd.report_mark_datetime=mark.report_mark_datetime
+                    WHERE mark.id_mark='2' AND NOT ISNULL(mark.report_mark_start_datetime) AND mark.report_mark_type='50'
+                  ) maxd ON maxd.id_report = z.id_pr_prod_order "
+        query += query_where & " "
         query += "ORDER BY z.id_pr_prod_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCMatPR.DataSource = data
         GVMatPR.BestFitColumns()
+
+        check_but()
     End Sub
 
     Sub check_but()
@@ -184,5 +254,9 @@
 
     Private Sub XTCTabPR_SelectedPageChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCTabPR.SelectedPageChanged
         check_but()
+    End Sub
+
+    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        view_pr()
     End Sub
 End Class

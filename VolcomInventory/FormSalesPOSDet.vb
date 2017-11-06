@@ -29,6 +29,9 @@ Public Class FormSalesPOSDet
 
     'menu : 1=invoice 2=credit note
     Public id_menu As String = "1"
+    Public id_sales_pos_ref As String = "-1"
+    Public ol_store_order_cn As String = ""
+    Dim vat_def As Decimal = 0
 
     Private Sub FormSalesPOSDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         actionLoad()
@@ -74,6 +77,20 @@ Public Class FormSalesPOSDet
             TxtCodeBillTo.Visible = True
             TxtNameBillTo.Visible = True
             BtnBrowseBillTo.Visible = True
+        ElseIf id_menu = "5" Then
+            Text = "Credit Note Online Store"
+            LEInvType.Enabled = False
+            TEDO.Enabled = False
+            CheckEditInvType.Visible = False
+            PanelCN.Visible = True
+            BtnDel.Visible = True
+            BtnListProduct.Visible = True
+            BtnImport.Visible = False
+            BtnImportOLStore.Visible = False
+            TxtCodeCompFrom.Focus()
+            TxtOLStoreNumber.Properties.ReadOnly = False
+            GridColumnOrder.Visible = False
+            GridColumnDel.Visible = False
         End If
 
 
@@ -86,7 +103,8 @@ Public Class FormSalesPOSDet
 
             'get vat default
             Dim dtv As DataTable = execute_query("SELECT vat_inv_default FROM tb_opt ", -1, True, "", "", "", "")
-            SPVat.EditValue = dtv.Rows(0)("vat_inv_default")
+            vat_def = dtv.Rows(0)("vat_inv_default")
+            SPVat.EditValue = vat_def
 
             'TxtVirtualPosNumber.Text = header_number_sales("6")
             BtnPrint.Enabled = False
@@ -110,14 +128,31 @@ Public Class FormSalesPOSDet
             query += "a.id_store_contact_from, (c.comp_number) AS store_number_from, (c.address_primary) AS store_address_from,
             IFNULL(a.id_comp_contact_bill,'-1') AS `id_comp_contact_bill`,(cb.comp_number) AS `comp_number_bill`, (cb.comp_name) AS `comp_name_bill`,
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
-            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type "
+            query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
+            If id_menu = "5" Then
+                query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
+            End If
             query += "FROM tb_sales_pos a "
             query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
             query += "INNER JOIN tb_m_comp c ON c.id_comp = b.id_comp "
             query += "LEFT JOIN tb_m_comp_contact bb ON a.id_comp_contact_bill = bb.id_comp_contact
             LEFT JOIN tb_m_comp cb ON cb.id_comp = bb.id_comp "
             query += "LEFT JOIN tb_pl_sales_order_del pld ON pld.id_pl_sales_order_del=a.id_pl_sales_order_del "
+            query += "LEFT JOIN tb_sales_order so ON so.id_sales_order = pld.id_sales_order "
             query += "INNER JOIN tb_lookup_report_status d ON d.id_report_status = a.id_report_status "
+            If id_menu = "5" Then
+                query += "LEFT JOIN (
+                    SELECT pd.id_sales_pos, pr.sales_pos_number, so.sales_order_ol_shop_number 
+                    FROM tb_sales_pos_det pd
+                    INNER JOIN tb_sales_pos_det pdr ON pdr.id_sales_pos_det = pd.id_sales_pos_det_ref
+                    INNER JOIN tb_sales_pos pr ON pr.id_sales_pos = pdr.id_sales_pos
+                    INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del_det = pdr.id_pl_sales_order_del_det
+                    INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = deld.id_sales_order_det
+                    INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+                    WHERE pd.id_sales_pos=" + id_sales_pos + "
+                    GROUP BY pd.id_sales_pos
+                ) sor ON sor.id_sales_pos = a.id_sales_pos "
+            End If
             query += "WHERE a.id_sales_pos = '" + id_sales_pos + "' "
             query += "ORDER BY a.id_sales_pos ASC "
 
@@ -131,6 +166,12 @@ Public Class FormSalesPOSDet
 
             DEForm.Text = view_date_from(data.Rows(0)("sales_pos_datex").ToString, 0)
             TxtVirtualPosNumber.Text = data.Rows(0)("sales_pos_number").ToString
+            If id_menu = "5" Then
+                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number_ref").ToString
+                TxtInvoice.Text = data.Rows(0)("sales_pos_number_ref").ToString
+            Else
+                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+            End If
             MENote.Text = data.Rows(0)("sales_pos_note").ToString
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             LETypeSO.ItemIndex = LETypeSO.Properties.GetDataSourceRowIndex("id_so_type", data.Rows(0)("id_so_type").ToString)
@@ -148,7 +189,11 @@ Public Class FormSalesPOSDet
             If id_memo_type = "1" Then 'sales invoice
                 report_mark_type = "48"
             ElseIf id_memo_type = "2" Then 'sales cn
-                report_mark_type = "66"
+                If id_menu = "2" Then
+                    report_mark_type = "66"
+                ElseIf id_menu = "5" Then
+                    report_mark_type = "118"
+                End If
             ElseIf id_memo_type = "3" Then 'missing invoice
                 report_mark_type = "54"
             ElseIf id_memo_type = "4" Then 'missing cn
@@ -311,10 +356,17 @@ Public Class FormSalesPOSDet
                 report_mark_type = "117"
                 id_memo_type = "8"
                 sales_pos_number = header_number_sales("34")
+            ElseIf id_menu = "5" Then
+                report_mark_type = "118"
+                id_memo_type = "2"
+                sales_pos_number = header_number_sales("17")
             End If
             Dim id_inv_type As String = LEInvType.EditValue.ToString
             If id_comp_contact_bill = "-1" Then
                 id_comp_contact_bill = "NULL "
+            End If
+            If id_sales_pos_ref = "-1" Then
+                id_sales_pos_ref = "NULL "
             End If
 
             If action = "ins" Then
@@ -323,8 +375,8 @@ Public Class FormSalesPOSDet
                     Cursor = Cursors.WaitCursor
 
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type) "
-                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_pos(id_store_contact_from,id_comp_contact_bill , sales_pos_number, sales_pos_date, sales_pos_note, id_report_status, id_so_type, sales_pos_total, sales_pos_due_date, sales_pos_start_period, sales_pos_end_period, sales_pos_discount, sales_pos_vat, id_pl_sales_order_del,id_memo_type,id_inv_type, id_sales_pos_ref) "
+                    query += "VALUES('" + id_store_contact_from + "'," + id_comp_contact_bill + ", '" + sales_pos_number + "', NOW(), '" + sales_pos_note + "', '" + id_report_status + "', '" + id_so_type + "', '" + decimalSQL(total_amount.ToString) + "', '" + sales_pos_due_date + "', '" + sales_pos_start_period + "', '" + sales_pos_end_period + "', '" + sales_pos_discount + "', '" + sales_pos_vat + "'," + do_q + "," + id_memo_type + "," + id_inv_type + "," + id_sales_pos_ref + "); SELECT LAST_INSERT_ID(); "
                     id_sales_pos = execute_query(query, 0, True, "", "", "", "")
 
 
@@ -332,7 +384,7 @@ Public Class FormSalesPOSDet
                         increase_inc_sales("6")
                     ElseIf report_mark_type = "54" Then
                         increase_inc_sales("10")
-                    ElseIf report_mark_type = "66" Then
+                    ElseIf report_mark_type = "66" Or report_mark_type = "118" Then
                         increase_inc_sales("17")
                     ElseIf report_mark_type = "67" Then
                         increase_inc_sales("18")
@@ -349,24 +401,37 @@ Public Class FormSalesPOSDet
                     Dim jum_ins_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note) VALUES "
+                        query_detail = "INSERT INTO tb_sales_pos_det(id_sales_pos, id_product, id_design_price, design_price, sales_pos_det_qty, id_design_price_retail, design_price_retail, note, id_sales_pos_det_ref, id_pl_sales_order_del_det) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
                         Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
                         Dim id_design_price As String = GVItemList.GetRowCellValue(i, "id_design_price").ToString
                         Dim design_price As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price").ToString)
                         Dim sales_pos_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "sales_pos_det_qty").ToString)
-                        If id_menu = "2" Then
+                        If id_menu = "2" Or id_menu = "5" Then
                             sales_pos_det_qty = sales_pos_det_qty * -1
                         End If
                         Dim id_design_price_retail As String = GVItemList.GetRowCellValue(i, "id_design_price_retail").ToString
                         Dim design_price_retail As String = decimalSQL(GVItemList.GetRowCellValue(i, "design_price_retail").ToString)
                         Dim note As String = GVItemList.GetRowCellValue(i, "note").ToString
+                        Dim id_sales_pos_det_ref As String = "NULL "
+                        Try
+                            id_sales_pos_det_ref = GVItemList.GetRowCellValue(i, "id_sales_pos_det_ref").ToString
+                        Catch ex As Exception
+                        End Try
+                        Dim id_pl_sales_order_del_det As String = "NULL "
+                        Try
+                            id_pl_sales_order_del_det = GVItemList.GetRowCellValue(i, "id_pl_sales_order_del_det").ToString
+                            If id_pl_sales_order_del_det = "0" Or id_pl_sales_order_del_det = "" Then
+                                id_pl_sales_order_del_det = "NULL "
+                            End If
+                        Catch ex As Exception
+                        End Try
 
                         If jum_ins_i > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "') "
+                        query_detail += "('" + id_sales_pos + "', '" + id_product + "', '" + id_design_price + "', '" + design_price + "', '" + sales_pos_det_qty + "', '" + id_design_price_retail + "', '" + design_price_retail + "','" + note + "'," + id_sales_pos_det_ref + "," + id_pl_sales_order_del_det + ") "
                         jum_ins_i = jum_ins_i + 1
                     Next
                     If jum_ins_i > 0 Then
@@ -386,7 +451,7 @@ Public Class FormSalesPOSDet
 
                     If id_menu = "1" Then
                         infoCustom("Invoice " + TxtVirtualPosNumber.Text + " created succesfully")
-                    ElseIf id_menu = "2" Then
+                    ElseIf id_menu = "2" Or id_menu = "5" Then
                         infoCustom("Credit Note " + TxtVirtualPosNumber.Text + " created succesfully")
                     ElseIf id_menu = "3" Then
                         infoCustom("Invoice Missing Promo " + TxtVirtualPosNumber.Text + " created succesfully")
@@ -505,6 +570,7 @@ Public Class FormSalesPOSDet
         TxtNameCompFrom.Enabled = False
         BtnBrowseContactFrom.Enabled = False
         CheckEditInvType.Enabled = False
+        TxtOLStoreNumber.Properties.ReadOnly = True
 
         TxtCodeBillTo.Enabled = False
         TxtNameBillTo.Enabled = False
@@ -825,10 +891,69 @@ Public Class FormSalesPOSDet
         'End Try
     End Sub
 
+    Sub load_excel_ol_store()
+        Dim oledbconn As New OleDbConnection
+        Dim strConn As String
+        Dim data_temp As New DataTable
+        Dim bof_xls_path As String = get_setup_field("bof_xls_bill_order_path")
+        Dim bof_xls_temp_path As String = get_setup_field("bof_xls_bill_order_temp_path")
+        Dim bof_xls_ws As String = get_setup_field("bof_xls_bill_order_path_worksheet")
+
+        File.Copy(bof_xls_path, bof_xls_temp_path, True)
+
+        strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source='" & bof_xls_temp_path & "';Extended Properties=""Excel 12.0 XML; IMEX=1;HDR=NO;TypeGuessRows=0;ImportMixedTypes=Text;"""
+        oledbconn.ConnectionString = strConn
+        Dim MyCommand As OleDbDataAdapter
+        MyCommand = New OleDbDataAdapter("select [F1] as ol_store_order from [" & bof_xls_ws & "] WHERE NOT [F1] IS NULL GROUP BY [F1]", oledbconn)
+
+
+        MyCommand.Fill(data_temp)
+        MyCommand.Dispose()
+
+        'get del
+        Dim query_del As String = "SELECT dd.id_pl_sales_order_del_det, d.pl_sales_order_del_number AS `del`, so.sales_order_ol_shop_number AS `ol_store_order`,p.id_product, p.id_design, p.product_full_code AS `code`, dsg.design_display_name AS `name`, cd.code_detail_name AS `size`,
+        dd.pl_sales_order_del_det_qty AS `sales_pos_det_qty`, dd.id_design_price, dd.design_price, dd.id_design_price AS `id_design_price_retail`, dd.design_price AS `design_price_retail`, prct.design_price_type, '' AS `note`,'0' AS `id_sales_pos_det`
+        FROM tb_pl_sales_order_del_det dd
+        INNER JOIN tb_pl_sales_order_del d ON d.id_pl_sales_order_del = dd.id_pl_sales_order_del
+        INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+        INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+        LEFT JOIN (
+	        SELECT ind.id_sales_pos_det, ind.id_pl_sales_order_del_det
+	        FROM tb_sales_pos_det ind 
+	        INNER JOIN tb_sales_pos inv ON inv.id_sales_pos = ind.id_sales_pos
+	        WHERE inv.id_report_status!=5
+        ) ind ON ind.id_pl_sales_order_del_det = dd.id_pl_sales_order_del_det
+        INNER JOIN tb_m_product p ON p.id_product = dd.id_product
+        INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product 
+        INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail AND cd.id_code=33
+        INNER JOIN tb_m_design dsg ON dsg.id_design = p.id_design
+        INNER JOIN tb_m_design_price prc ON prc.id_design_price = dd.id_design_price
+        INNER JOIN tb_lookup_design_price_type prct ON prct.id_design_price_type = prc.id_design_price_type
+        WHERE d.id_store_contact_to='" + id_store_contact_from + "' AND d.id_report_status=6 AND !ISNULL(so.sales_order_ol_shop_number) AND so.sales_order_ol_shop_number!='' AND ISNULL(ind.id_sales_pos_det) "
+        Dim dtd As DataTable = execute_query(query_del, -1, True, "", "", "", "")
+
+        Dim tb1 = data_temp.AsEnumerable()
+        Dim tb2 = dtd.AsEnumerable()
+
+        Try
+            Dim dtr As DataTable = (From table1 In tb1
+                                    Join rd In tb2
+                                   On table1("ol_store_order").ToString Equals rd("ol_store_order").ToString
+                                    Select rd).CopyToDataTable
+
+
+            GCItemList.DataSource = Nothing
+            GCItemList.DataSource = dtr
+            GCItemList.RefreshDataSource()
+        Catch ex As Exception
+            stopCustom("Order not found or invoice is already created".ToUpper + System.Environment.NewLine + "Error Detail : " + ex.ToString)
+        End Try
+    End Sub
+
     Private Sub DEEnd_EditValueChanging(ByVal sender As System.Object, ByVal e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles DEEnd.EditValueChanging
         'If end_load Then
         '    Cursor = Cursors.WaitCursor
-        '    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Changing end period will reset the list, are you sure to continue??", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        '    Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Changing end period will reset the list, are you sure To Continue??", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         '    If confirm = Windows.Forms.DialogResult.Yes Then
         '        viewDetail()
         '    Else
@@ -839,7 +964,7 @@ Public Class FormSalesPOSDet
     End Sub
     Private Sub TxtCodeCompFrom_KeyUp(sender As Object, e As KeyEventArgs) Handles TxtCodeCompFrom.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim query As String = "SELECT dr.id_wh_drawer,rack.id_wh_rack,loc.id_wh_locator,cc.id_comp_contact,cc.id_comp,c.npwp,c.comp_number,c.comp_name,c.comp_commission,c.address_primary,c.id_so_type "
+            Dim query As String = "Select dr.id_wh_drawer, rack.id_wh_rack, Loc.id_wh_locator, cc.id_comp_contact, cc.id_comp, c.npwp, c.comp_number, c.comp_name, c.comp_commission, c.address_primary, c.id_so_type "
             query += " From tb_m_comp_contact cc "
             query += " INNER JOIN tb_m_comp c On c.id_comp=cc.id_comp"
             query += " INNER JOIN tb_m_wh_drawer dr ON dr.id_wh_drawer=c.id_drawer_def"
@@ -922,7 +1047,7 @@ Public Class FormSalesPOSDet
                 so_cat = "AND so.id_so_status=0 "
             End If
 
-            Dim query As String = "SELECT pldel.id_pl_sales_order_del, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos
+            Dim query As String = "SELECT pldel.id_pl_sales_order_del, so.sales_order_ol_shop_number, pldel.id_store_contact_to, comp.id_comp, comp.comp_name, comp.comp_number, comp.address_primary, comp.npwp, comp.id_drawer_def, comp.comp_commission, rck.id_wh_rack, loc.id_wh_locator, sp.id_sales_pos
             FROM tb_pl_sales_order_del pldel 
             INNER JOIN tb_sales_order so ON so.id_sales_order = pldel.id_sales_order "
             query += " INNER JOIN tb_m_comp_contact cc On cc.id_comp_contact=pldel.id_store_contact_to"
@@ -931,15 +1056,17 @@ Public Class FormSalesPOSDet
             INNER JOIN tb_m_wh_rack rck ON rck.id_wh_rack = drw.id_wh_rack 
             INNER JOIN tb_m_wh_locator loc ON loc.id_wh_locator = rck.id_wh_locator "
             query += " LEFT JOIN tb_sales_pos sp ON sp.id_pl_sales_order_del=pldel.id_pl_sales_order_del AND sp.id_report_status !=5 "
-            query += " WHERE pldel.id_report_status='6' AND pldel.pl_sales_order_del_number='" + addSlashes(TEDO.Text) + "' " + so_cat + " "
+            query += " WHERE pldel.id_report_status='6' AND pldel.is_combine='2' AND pldel.pl_sales_order_del_number='" + addSlashes(TEDO.Text) + "' " + so_cat + " "
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
             If data.Rows.Count <= 0 Then
                 stopCustom("Delivery order is not found for this store.")
+                TxtOLStoreNumber.Text = ""
                 defaultReset()
                 TEDO.Focus()
             ElseIf Not data.Rows(0)("id_sales_pos").ToString = "" Then
                 stopCustom("Invoice is already created.")
+                TxtOLStoreNumber.Text = ""
                 defaultReset()
                 TEDO.Focus()
             Else
@@ -950,6 +1077,7 @@ Public Class FormSalesPOSDet
                 id_wh_locator = data.Rows(0)("id_wh_locator").ToString
                 id_wh_rack = data.Rows(0)("id_wh_rack").ToString
                 id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
+                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
                 TxtCodeCompFrom.Text = data.Rows(0)("comp_number").ToString
                 TxtNameCompFrom.Text = data.Rows(0)("comp_name").ToString
                 MEAdrressCompFrom.Text = data.Rows(0)("address_primary").ToString
@@ -1009,6 +1137,12 @@ Public Class FormSalesPOSDet
         If id_do = "-1" Then
             viewDetail()
         End If
+
+        If e.KeyCode = Keys.Enter Then
+            If id_menu = "5" Then
+                TxtOLStoreNumber.Focus()
+            End If
+        End If
     End Sub
 
     Private Sub DEDueDate_KeyDown(sender As Object, e As KeyEventArgs) Handles DEDueDate.KeyDown
@@ -1066,6 +1200,7 @@ Public Class FormSalesPOSDet
     Private Sub LEInvType_EditValueChanged(sender As Object, e As EventArgs) Handles LEInvType.EditValueChanged
         If action = "ins" Then
             TEDO.Text = ""
+            TxtOLStoreNumber.Text = ""
             TxtCodeCompFrom.Text = ""
             defaultReset()
 
@@ -1145,6 +1280,92 @@ Public Class FormSalesPOSDet
             End If
         Else
             defaultResetBillTo()
+        End If
+    End Sub
+
+    Private Sub BtnBrowseInvoice_Click(sender As Object, e As EventArgs)
+        showInv()
+    End Sub
+
+    Sub showInv()
+        Cursor = Cursors.WaitCursor
+        FormSalesCreditNotePopInv.id_pop_up = "4"
+        FormSalesCreditNotePopInv.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnListProduct_Click(sender As Object, e As EventArgs) Handles BtnListProduct.Click
+        Cursor = Cursors.WaitCursor
+        FormSalesCreditNoteSingle.id_sales_pos_ref = id_sales_pos_ref
+        FormSalesCreditNoteSingle.action_pop = "ins"
+        FormSalesCreditNoteSingle.id_pop_up = "3"
+        FormSalesCreditNoteSingle.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnImportOLStore_Click(sender As Object, e As EventArgs) Handles BtnImportOLStore.Click
+        Cursor = Cursors.WaitCursor
+        If id_store_contact_from = "-1" Then
+            stopCustom("Store can't blank")
+        Else
+            load_excel_ol_store()
+            calculate()
+        End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TxtOLStoreNumber_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtOLStoreNumber.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim query As String = "SELECT inv.id_sales_pos, inv.sales_pos_number, so.sales_order_ol_shop_number, inv.sales_pos_discount, inv.sales_pos_vat
+            FROM tb_sales_pos_det ind
+            INNER JOIN tb_sales_pos inv ON inv.id_sales_pos = ind.id_sales_pos
+            INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del_det = ind.id_pl_sales_order_del_det
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = deld.id_sales_order_det
+            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+            WHERE so.sales_order_ol_shop_number='" + addSlashes(TxtOLStoreNumber.Text) + "' AND inv.id_report_status=6
+            GROUP BY inv.id_sales_pos "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count = 1 Then
+                id_sales_pos_ref = data.Rows(0)("id_sales_pos").ToString
+                TxtInvoice.Text = data.Rows(0)("sales_pos_number").ToString
+                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+                SPDiscount.EditValue = data.Rows(0)("sales_pos_discount")
+                SPVat.EditValue = data.Rows(0)("sales_pos_vat")
+                calculate()
+                viewDetail()
+                BtnListProduct.Focus()
+            ElseIf data.Rows.Count > 1 Then
+                Dim cond As String = ""
+                For i As Integer = 0 To data.Rows.Count - 1
+                    If i > 0 Then
+                        cond += "OR "
+                    ElseIf i = 0 Then
+                        cond += "AND ( "
+                    End If
+                    cond += "a.id_sales_pos=" + data.Rows(i)("id_sales_pos").ToString + " "
+                Next
+                If cond <> "" Then
+                    cond += ") "
+                End If
+                FormSalesCreditNotePopInv.cond = cond
+                showInv()
+            Else
+                stopCustom("Invoice order not found.")
+                id_sales_pos_ref = "-1"
+                TxtInvoice.Text = ""
+                TxtOLStoreNumber.Text = ""
+                SPDiscount.EditValue = 0
+                SPVat.EditValue = vat_def
+                calculate()
+                viewDetail()
+            End If
+        Else
+            id_sales_pos_ref = "-1"
+            TxtInvoice.Text = ""
+            SPDiscount.EditValue = 0
+            SPVat.EditValue = vat_def
+            calculate()
+            viewDetail()
         End If
     End Sub
 End Class

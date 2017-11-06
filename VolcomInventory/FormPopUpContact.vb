@@ -4,6 +4,7 @@
     Public id_cat As String = "-1"
     Public id_departement As String = "-1"
     Public id_so_type As String = "-1"
+    Public comp_number As String = "-1"
     'id use of pop up
     'awb = awbill
     '1 = comp_to sample purchase det
@@ -93,14 +94,18 @@
     End Sub
 
     Sub view_company()
-        Dim query As String = "SELECT tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active, tb_m_comp.id_comp_cat, tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group, tb_m_comp.id_wh_type, tb_m_comp.id_drawer_def "
+        Dim query As String = "SELECT tb_m_comp.comp_commission,tb_m_comp.id_comp as id_comp,tb_m_comp.comp_number as comp_number,tb_m_comp.comp_name as comp_name,tb_m_comp.address_primary as address_primary,tb_m_comp.is_active as is_active, tb_m_comp.id_comp_cat, tb_m_comp_cat.comp_cat_name as company_category,tb_m_comp_group.comp_group, tb_m_comp.id_wh_type, IFNULL(tb_m_comp.id_commerce_type,1) AS `id_commerce_type`,tb_m_comp.id_drawer_def "
         query += " FROM tb_m_comp INNER JOIN tb_m_comp_cat ON tb_m_comp.id_comp_cat=tb_m_comp_cat.id_comp_cat "
         query += " INNER JOIN tb_m_comp_group ON tb_m_comp_group.id_comp_group=tb_m_comp.id_comp_group "
         If id_cat <> "-1" Then
             query += "AND tb_m_comp.id_comp_cat = '" + id_cat + "' "
         End If
         If id_pop_up = "38" Then
-            query += "AND (tb_m_comp.id_comp_cat = '2' OR tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') "
+            query += "AND (tb_m_comp.id_comp_cat = '2' OR tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') AND tb_m_comp.is_active=1 "
+        End If
+
+        If id_pop_up = "40" Then 'ret order ofline
+            query += "AND tb_m_comp.id_commerce_type=1 "
         End If
 
         If id_pop_up = "41" Then
@@ -114,6 +119,10 @@
             query += "AND (tb_m_comp.id_comp_cat = '5' OR tb_m_comp.id_comp_cat = '6') "
         End If
 
+        If id_pop_up = "81" Then
+            query += "AND tb_m_comp.id_commerce_type = 2 "
+        End If
+
         If id_departement <> "-1" Then
             query += "AND tb_m_comp.id_departement = '" + id_departement + "' "
         End If
@@ -124,6 +133,12 @@
                 query += "AND tb_m_comp.id_so_type = '" + id_so_type + "' "
             End If
         End If
+
+        'filter by comp_number
+        If comp_number <> "-1" Then
+            query += "AND tb_m_comp.comp_number='" + addSlashes(comp_number) + "' "
+        End If
+
         query += "ORDER BY comp_name "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCCompany.DataSource = data
@@ -394,6 +409,8 @@
                     FormSalesOrderDet.viewDetail("-1")
                     FormSalesOrderDet.id_store = GVCompany.GetFocusedRowCellValue("id_comp").ToString
                     FormSalesOrderDet.id_store_cat = GVCompany.GetFocusedRowCellValue("id_comp_cat").ToString
+                    FormSalesOrderDet.id_commerce_type = GVCompany.GetFocusedRowCellValue("id_commerce_type").ToString
+                    FormSalesOrderDet.checkCommerceType()
                     FormSalesOrderDet.id_store_contact_to = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
                     FormSalesOrderDet.TxtNameCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
                     FormSalesOrderDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
@@ -405,6 +422,8 @@
                 Cursor = Cursors.WaitCursor
                 FormSalesOrderDet.id_store = GVCompany.GetFocusedRowCellValue("id_comp").ToString
                 FormSalesOrderDet.id_store_cat = GVCompany.GetFocusedRowCellValue("id_comp_cat").ToString
+                FormSalesOrderDet.id_commerce_type = GVCompany.GetFocusedRowCellValue("id_commerce_type").ToString
+                FormSalesOrderDet.checkCommerceType()
                 FormSalesOrderDet.id_store_contact_to = GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString
                 FormSalesOrderDet.TxtNameCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "1")
                 FormSalesOrderDet.TxtCodeCompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
@@ -906,6 +925,21 @@
             FormSalesPOSDet.getVat()
             FormSalesPOSDet.getTaxBase()
             FormSalesPOSDet.check_do()
+            Close()
+        ElseIf id_pop_up = "81" Then
+            'store ol store - return order
+            FormSalesReturnOrderOLDet.id_store = GVCompany.GetFocusedRowCellValue("id_comp").ToString
+            FormSalesReturnOrderOLDet.id_store_contact_to = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
+            FormSalesReturnOrderOLDet.TxtStoreCode.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormSalesReturnOrderOLDet.TxtStoreName.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
+            FormSalesReturnOrderOLDet.id_wh_drawer = GVCompany.GetFocusedRowCellValue("id_drawer_def").ToString
+            FormSalesReturnOrderOLDet.viewDetail()
+            Close()
+        ElseIf id_pop_up = "82" Then
+            'wh ol store - return order
+            FormSalesReturnOrderOLDet.id_wh_contact_to = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
+            FormSalesReturnOrderOLDet.TxtWHCode.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormSalesReturnOrderOLDet.TxtWHName.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
             Close()
         End If
         Cursor = Cursors.Default

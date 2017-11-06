@@ -476,6 +476,12 @@
             FormSalesReturnDet.action = "upd"
             FormSalesReturnDet.is_view = "1"
             FormSalesReturnDet.ShowDialog()
+        ElseIf report_mark_type = "113" Then
+            'return khusus
+            FormSalesReturnDet.id_sales_return = id_report
+            FormSalesReturnDet.action = "upd"
+            FormSalesReturnDet.is_view = "1"
+            FormSalesReturnDet.ShowDialog()
         ElseIf report_mark_type = "116" Then
             'INVOICE MISSING PROMO
             FormViewSalesPOS.id_menu = "3"
@@ -486,6 +492,23 @@
             FormViewSalesPOS.id_menu = "4"
             FormViewSalesPOS.id_sales_pos = id_report
             FormViewSalesPOS.ShowDialog()
+        ElseIf report_mark_type = "118" Then
+            'CREDIT NOTE OL STORE
+            FormViewSalesPOS.id_menu = "5"
+            FormViewSalesPOS.id_sales_pos = id_report
+            FormViewSalesPOS.ShowDialog()
+        ElseIf report_mark_type = "119" Then
+            'return order onlince
+            FormSalesReturnOrderOLDet.is_view = "1"
+            FormSalesReturnOrderOLDet.action = "upd"
+            FormSalesReturnOrderOLDet.id_sales_return_order = id_report
+            FormSalesReturnOrderOLDet.ShowDialog()
+        ElseIf report_mark_type = "120" Then
+            'return online
+            FormSalesReturnDet.id_sales_return = id_report
+            FormSalesReturnDet.action = "upd"
+            FormSalesReturnDet.is_view = "1"
+            FormSalesReturnDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -756,7 +779,7 @@
             field_id = "id_prod_order_mrs"
             field_number = "prod_order_mrs_number"
             field_date = "prod_order_mrs_date"
-        ElseIf report_mark_type = "45" Then
+        ElseIf report_mark_type = "45" Or report_mark_type = "119" Then
             'SALES RETURN ORDER
             table_name = "tb_sales_return_order"
             field_id = "id_sales_return_order"
@@ -1076,6 +1099,12 @@
             field_id = "id_sales_return"
             field_number = "sales_return_number"
             field_date = "sales_return_date"
+        ElseIf report_mark_type = "113" Then
+            'return khusus
+            table_name = "tb_sales_return"
+            field_id = "id_sales_return"
+            field_number = "sales_return_number"
+            field_date = "sales_return_date"
         ElseIf report_mark_type = "116" Then
             'missing promo
             table_name = "tb_sales_pos"
@@ -1088,6 +1117,18 @@
             field_id = "id_sales_pos"
             field_number = "sales_pos_number"
             field_date = "sales_pos_date"
+        ElseIf report_mark_type = "118" Then
+            'SALES CREDIT NOTE
+            table_name = "tb_sales_pos"
+            field_id = "id_sales_pos"
+            field_number = "sales_pos_number"
+            field_date = "sales_pos_date"
+        ElseIf report_mark_type = "120" Then
+            'return ol store
+            table_name = "tb_sales_return"
+            field_id = "id_sales_return"
+            field_number = "sales_return_number"
+            field_date = "sales_return_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
@@ -1277,7 +1318,7 @@
                     info_col = datax.Rows(0)("total_qty").ToString
                     info_report = datax.Rows(0)("store").ToString
                 End If
-            ElseIf report_mark_type = "46" Then
+            ElseIf report_mark_type = "46" Or report_mark_type = "113" Or report_mark_type = "120" Then
                 'return
                 query = "SELECT CONCAT(c.comp_number,' - ', c.comp_name) AS `store`,
                 CAST(IFNULL(SUM(rd.sales_return_det_qty),0) AS DECIMAL(10,0)) AS `total_qty`

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormSalesCreditNoteSingle
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,40 +17,37 @@ Partial Class FormSalesCreditNoteSingle
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.PanelControlChoose = New DevExpress.XtraEditors.PanelControl
-        Me.CheckEditSelectAll = New DevExpress.XtraEditors.CheckEdit
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnChoose = New DevExpress.XtraEditors.SimpleButton
-        Me.GCItemList = New DevExpress.XtraGrid.GridControl
-        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.SPQtyCreditNote = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.CheckItemList = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl
-        Me.BtnViewImg = New DevExpress.XtraEditors.SimpleButton
+        Me.PanelControlChoose = New DevExpress.XtraEditors.PanelControl()
+        Me.CheckEditSelectAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnChoose = New DevExpress.XtraEditors.SimpleButton()
+        Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.SPQtyCreditNote = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsSelect = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CheckItemList = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         CType(Me.PanelControlChoose, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlChoose.SuspendLayout()
         CType(Me.CheckEditSelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,9 +56,6 @@ Partial Class FormSalesCreditNoteSingle
         CType(Me.SPQtyCreditNote, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CheckItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelControlChoose
@@ -75,7 +69,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.PanelControlChoose.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControlChoose.Name = "PanelControlChoose"
         Me.PanelControlChoose.Size = New System.Drawing.Size(884, 38)
-        Me.PanelControlChoose.TabIndex = 0
+        Me.PanelControlChoose.TabIndex = 1
         '
         'CheckEditSelectAll
         '
@@ -91,7 +85,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.BtnCancel.Location = New System.Drawing.Point(732, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
-        Me.BtnCancel.TabIndex = 1
+        Me.BtnCancel.TabIndex = 3
         Me.BtnCancel.Text = "Cancel"
         '
         'BtnChoose
@@ -100,19 +94,19 @@ Partial Class FormSalesCreditNoteSingle
         Me.BtnChoose.Location = New System.Drawing.Point(807, 2)
         Me.BtnChoose.Name = "BtnChoose"
         Me.BtnChoose.Size = New System.Drawing.Size(75, 34)
-        Me.BtnChoose.TabIndex = 0
+        Me.BtnChoose.TabIndex = 2
         Me.BtnChoose.Text = "Choose"
         '
         'GCItemList
         '
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemList.Location = New System.Drawing.Point(214, 0)
+        Me.GCItemList.Location = New System.Drawing.Point(0, 0)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.CheckItemList, Me.SPQtyCreditNote})
-        Me.GCItemList.Size = New System.Drawing.Size(670, 286)
-        Me.GCItemList.TabIndex = 4
+        Me.GCItemList.Size = New System.Drawing.Size(884, 286)
+        Me.GCItemList.TabIndex = 0
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
         'GVItemList
@@ -124,6 +118,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsCustomization.AllowGroup = False
         Me.GVItemList.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVItemList.OptionsView.ShowFilterPanelMode = DevExpress.XtraGrid.Views.Base.ShowFilterPanelMode.Never
         Me.GVItemList.OptionsView.ShowFooter = True
         Me.GVItemList.OptionsView.ShowGroupPanel = False
         '
@@ -132,6 +127,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn4.Caption = "No"
         Me.GridColumn4.FieldName = "no"
         Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 0
         Me.GridColumn4.Width = 40
@@ -180,6 +176,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn8.Caption = "UOM"
         Me.GridColumn8.FieldName = "uom"
         Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
         Me.GridColumn8.Width = 71
         '
         'GridColumn9
@@ -188,14 +185,14 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn9.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn9.Caption = "Qty Invoice"
-        Me.GridColumn9.DisplayFormat.FormatString = "F2"
+        Me.GridColumn9.Caption = "Available Qty"
+        Me.GridColumn9.DisplayFormat.FormatString = "N0"
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "sales_pos_det_qty_limit"
         Me.GridColumn9.Name = "GridColumn9"
         Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
-        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_qty_limit", "{0:f2}")})
+        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_qty_limit", "{0:n0}")})
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 7
         Me.GridColumn9.Width = 114
@@ -208,7 +205,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn1.Caption = "Qty Credit Note"
         Me.GridColumn1.ColumnEdit = Me.SPQtyCreditNote
-        Me.GridColumn1.DisplayFormat.FormatString = "{0:n2}"
+        Me.GridColumn1.DisplayFormat.FormatString = "{0:n0}"
         Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn1.FieldName = "sales_pos_det_qty_credit_note"
         Me.GridColumn1.Name = "GridColumn1"
@@ -219,7 +216,7 @@ Partial Class FormSalesCreditNoteSingle
         'SPQtyCreditNote
         '
         Me.SPQtyCreditNote.AutoHeight = False
-        Me.SPQtyCreditNote.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.SPQtyCreditNote.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.SPQtyCreditNote.EditValueChangedDelay = 50
         Me.SPQtyCreditNote.IsFloatValue = False
         Me.SPQtyCreditNote.Mask.EditMask = "N00"
@@ -237,6 +234,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "sales_pos_det_amount"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_amount", "{0:n2}")})
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 8
@@ -253,6 +251,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn11.FieldName = "design_price_retail"
         Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 6
         Me.GridColumn11.Width = 71
@@ -262,6 +261,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn12.Caption = "Price Type"
         Me.GridColumn12.FieldName = "design_price_type"
         Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
         Me.GridColumn12.Visible = True
         Me.GridColumn12.VisibleIndex = 5
         Me.GridColumn12.Width = 67
@@ -277,6 +277,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn13.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn13.FieldName = "design_price"
         Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
         Me.GridColumn13.Width = 117
         '
         'GridColumn14
@@ -284,6 +285,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn14.Caption = "Remark"
         Me.GridColumn14.FieldName = "sales_pos_det_note"
         Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.OptionsColumn.AllowEdit = False
         Me.GridColumn14.Width = 255
         '
         'GridColumn15
@@ -291,6 +293,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn15.Caption = "id design"
         Me.GridColumn15.FieldName = "id_design"
         Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
         Me.GridColumn15.OptionsColumn.ShowInCustomizationForm = False
         '
         'GridColumn16
@@ -298,6 +301,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn16.Caption = "Id Product"
         Me.GridColumn16.FieldName = "id_product"
         Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.AllowEdit = False
         Me.GridColumn16.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn16.Width = 92
         '
@@ -306,6 +310,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn17.Caption = "Id Sample"
         Me.GridColumn17.FieldName = "id_sample"
         Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
         Me.GridColumn17.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumn17.OptionsColumn.ShowInCustomizationForm = False
         '
@@ -314,18 +319,22 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn18.Caption = "Id Design Price Del"
         Me.GridColumn18.FieldName = "id_design_price"
         Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.Width = 84
         '
         'GridColumn19
         '
         Me.GridColumn19.Caption = "Id Sales POS Det"
+        Me.GridColumn19.FieldName = "id_sales_pos_det"
         Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
         '
         'GridColumn20
         '
         Me.GridColumn20.Caption = "Color"
         Me.GridColumn20.FieldName = "color"
         Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 3
         Me.GridColumn20.Width = 67
@@ -335,6 +344,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumn21.Caption = "Id Design Price"
         Me.GridColumn21.FieldName = "id_design_price_retail"
         Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.OptionsColumn.AllowEdit = False
         '
         'GridColumnIsSelect
         '
@@ -346,6 +356,7 @@ Partial Class FormSalesCreditNoteSingle
         Me.GridColumnIsSelect.ColumnEdit = Me.CheckItemList
         Me.GridColumnIsSelect.FieldName = "is_select"
         Me.GridColumnIsSelect.Name = "GridColumnIsSelect"
+        Me.GridColumnIsSelect.OptionsColumn.AllowEdit = False
         Me.GridColumnIsSelect.OptionsColumn.AllowShowHide = False
         Me.GridColumnIsSelect.Visible = True
         Me.GridColumnIsSelect.VisibleIndex = 10
@@ -361,40 +372,10 @@ Partial Class FormSalesCreditNoteSingle
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
-        '
-        'PictureEdit1
-        '
-        Me.PictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PictureEdit1.Location = New System.Drawing.Point(2, 2)
-        Me.PictureEdit1.Name = "PictureEdit1"
-        Me.PictureEdit1.Properties.LookAndFeel.SkinName = "Office 2010 Silver"
-        Me.PictureEdit1.Properties.ShowMenu = False
-        Me.PictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.PictureEdit1.Size = New System.Drawing.Size(210, 282)
-        Me.PictureEdit1.TabIndex = 5
-        '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.BtnViewImg)
-        Me.PanelControl1.Controls.Add(Me.PictureEdit1)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(214, 286)
-        Me.PanelControl1.TabIndex = 6
-        '
-        'BtnViewImg
-        '
-        Me.BtnViewImg.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.BtnViewImg.Location = New System.Drawing.Point(2, 253)
-        Me.BtnViewImg.Name = "BtnViewImg"
-        Me.BtnViewImg.Size = New System.Drawing.Size(210, 31)
-        Me.BtnViewImg.TabIndex = 6
-        Me.BtnViewImg.Text = "View Image"
         '
         'FormSalesCreditNoteSingle
         '
@@ -402,7 +383,6 @@ Partial Class FormSalesCreditNoteSingle
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(884, 324)
         Me.Controls.Add(Me.GCItemList)
-        Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PanelControlChoose)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -418,9 +398,6 @@ Partial Class FormSalesCreditNoteSingle
         CType(Me.SPQtyCreditNote, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CheckItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -453,7 +430,4 @@ Partial Class FormSalesCreditNoteSingle
     Friend WithEvents CheckItemList As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SPQtyCreditNote As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents PictureEdit1 As DevExpress.XtraEditors.PictureEdit
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnViewImg As DevExpress.XtraEditors.SimpleButton
 End Class

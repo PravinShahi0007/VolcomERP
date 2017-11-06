@@ -131,6 +131,10 @@ Partial Class FormViewSalesReturn
         Me.RepositoryItemSpinEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
         Me.GroupControlStatus = New DevExpress.XtraEditors.GroupControl()
         Me.BtnUpdateStatus = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtOLStoreOrder = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtRetType = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -189,6 +193,8 @@ Partial Class FormViewSalesReturn
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlStatus.SuspendLayout()
+        CType(Me.TxtOLStoreOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtRetType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl3
@@ -299,12 +305,16 @@ Partial Class FormViewSalesReturn
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(911, 128)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(911, 177)
         Me.GroupGeneralHeader.TabIndex = 190
         '
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl10)
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl6)
+        Me.PanelControlTopRight.Controls.Add(Me.TxtRetType)
+        Me.PanelControlTopRight.Controls.Add(Me.TxtOLStoreOrder)
         Me.PanelControlTopRight.Controls.Add(Me.TxtOrderStatus)
         Me.PanelControlTopRight.Controls.Add(Me.LabelOrderStatus)
         Me.PanelControlTopRight.Controls.Add(Me.TxtStoreReturnNumber)
@@ -316,12 +326,12 @@ Partial Class FormViewSalesReturn
         Me.PanelControlTopRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControlTopRight.Location = New System.Drawing.Point(606, 2)
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
-        Me.PanelControlTopRight.Size = New System.Drawing.Size(303, 124)
+        Me.PanelControlTopRight.Size = New System.Drawing.Size(303, 173)
         Me.PanelControlTopRight.TabIndex = 10009
         '
         'TxtOrderStatus
         '
-        Me.TxtOrderStatus.Location = New System.Drawing.Point(104, 84)
+        Me.TxtOrderStatus.Location = New System.Drawing.Point(104, 140)
         Me.TxtOrderStatus.Name = "TxtOrderStatus"
         Me.TxtOrderStatus.Properties.ReadOnly = True
         Me.TxtOrderStatus.Size = New System.Drawing.Size(182, 20)
@@ -331,7 +341,7 @@ Partial Class FormViewSalesReturn
         'LabelOrderStatus
         '
         Me.LabelOrderStatus.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelOrderStatus.Location = New System.Drawing.Point(7, 87)
+        Me.LabelOrderStatus.Location = New System.Drawing.Point(7, 143)
         Me.LabelOrderStatus.Name = "LabelOrderStatus"
         Me.LabelOrderStatus.Size = New System.Drawing.Size(62, 13)
         Me.LabelOrderStatus.TabIndex = 10003
@@ -410,12 +420,12 @@ Partial Class FormViewSalesReturn
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControlTopLeft.Location = New System.Drawing.Point(21, 2)
         Me.PanelControlTopLeft.Name = "PanelControlTopLeft"
-        Me.PanelControlTopLeft.Size = New System.Drawing.Size(450, 124)
+        Me.PanelControlTopLeft.Size = New System.Drawing.Size(450, 173)
         Me.PanelControlTopLeft.TabIndex = 10008
         '
         'MEAdrressCompFrom
         '
-        Me.MEAdrressCompFrom.Location = New System.Drawing.Point(89, 141)
+        Me.MEAdrressCompFrom.Location = New System.Drawing.Point(89, 177)
         Me.MEAdrressCompFrom.Name = "MEAdrressCompFrom"
         Me.MEAdrressCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.MEAdrressCompFrom.Properties.Appearance.Options.UseFont = True
@@ -484,7 +494,7 @@ Partial Class FormViewSalesReturn
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl3.Location = New System.Drawing.Point(11, 143)
+        Me.LabelControl3.Location = New System.Drawing.Point(11, 179)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl3.TabIndex = 153
@@ -552,13 +562,13 @@ Partial Class FormViewSalesReturn
         '
         Me.SplitContainerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SplitContainerControl1.Horizontal = False
-        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 128)
+        Me.SplitContainerControl1.Location = New System.Drawing.Point(0, 177)
         Me.SplitContainerControl1.Name = "SplitContainerControl1"
         Me.SplitContainerControl1.Panel1.Controls.Add(Me.GroupControlListItem)
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.XTCReturn)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(911, 500)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(911, 451)
         Me.SplitContainerControl1.SplitterPosition = 201
         Me.SplitContainerControl1.TabIndex = 191
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -1000,7 +1010,7 @@ Partial Class FormViewSalesReturn
         Me.XTCReturn.Location = New System.Drawing.Point(0, 0)
         Me.XTCReturn.Name = "XTCReturn"
         Me.XTCReturn.SelectedTabPage = Me.XTPScan
-        Me.XTCReturn.Size = New System.Drawing.Size(911, 293)
+        Me.XTCReturn.Size = New System.Drawing.Size(911, 244)
         Me.XTCReturn.TabIndex = 0
         Me.XTCReturn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPProblem})
         '
@@ -1008,7 +1018,7 @@ Partial Class FormViewSalesReturn
         '
         Me.XTPScan.Controls.Add(Me.GroupControlScannedItem)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(905, 265)
+        Me.XTPScan.Size = New System.Drawing.Size(905, 216)
         Me.XTPScan.Text = "Return Product Detail"
         '
         'GroupControlScannedItem
@@ -1019,7 +1029,7 @@ Partial Class FormViewSalesReturn
         Me.GroupControlScannedItem.Enabled = False
         Me.GroupControlScannedItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlScannedItem.Name = "GroupControlScannedItem"
-        Me.GroupControlScannedItem.Size = New System.Drawing.Size(905, 265)
+        Me.GroupControlScannedItem.Size = New System.Drawing.Size(905, 216)
         Me.GroupControlScannedItem.TabIndex = 3
         Me.GroupControlScannedItem.Text = "Scanned Code"
         '
@@ -1030,7 +1040,7 @@ Partial Class FormViewSalesReturn
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(882, 261)
+        Me.GCBarcode.Size = New System.Drawing.Size(882, 212)
         Me.GCBarcode.TabIndex = 6
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -1312,6 +1322,40 @@ Partial Class FormViewSalesReturn
         Me.BtnUpdateStatus.TabIndex = 5
         Me.BtnUpdateStatus.Text = "Update Order Status"
         '
+        'TxtOLStoreOrder
+        '
+        Me.TxtOLStoreOrder.Location = New System.Drawing.Point(104, 86)
+        Me.TxtOLStoreOrder.Name = "TxtOLStoreOrder"
+        Me.TxtOLStoreOrder.Properties.ReadOnly = True
+        Me.TxtOLStoreOrder.Size = New System.Drawing.Size(182, 20)
+        Me.TxtOLStoreOrder.TabIndex = 10005
+        '
+        'TxtRetType
+        '
+        Me.TxtRetType.Location = New System.Drawing.Point(104, 112)
+        Me.TxtRetType.Name = "TxtRetType"
+        Me.TxtRetType.Properties.ReadOnly = True
+        Me.TxtRetType.Size = New System.Drawing.Size(182, 20)
+        Me.TxtRetType.TabIndex = 10006
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(7, 115)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(48, 13)
+        Me.LabelControl6.TabIndex = 10007
+        Me.LabelControl6.Text = "Ret. Type"
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(7, 89)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(81, 13)
+        Me.LabelControl10.TabIndex = 10008
+        Me.LabelControl10.Text = "OL Store Order#"
+        '
         'FormViewSalesReturn
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1391,6 +1435,8 @@ Partial Class FormViewSalesReturn
         CType(Me.RepositoryItemSpinEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlStatus, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlStatus.ResumeLayout(False)
+        CType(Me.TxtOLStoreOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtRetType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1506,4 +1552,8 @@ Partial Class FormViewSalesReturn
     Friend WithEvents GridColumnQtyProbSum As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemSpinEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtRetType As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtOLStoreOrder As DevExpress.XtraEditors.TextEdit
 End Class

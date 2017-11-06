@@ -16,6 +16,7 @@ Public Class FormSalesOrderDet
     Public bof_xls_so As String = get_setup_field("bof_xls_so")
     Public dt As DataTable
     Public id_type As String
+    Public id_commerce_type As String = "-1"
 
     Private Sub FormSalesOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         id_type = FormSalesOrder.id_type
@@ -60,7 +61,7 @@ Public Class FormSalesOrderDet
             BMark.Enabled = True
 
             'query view based on edit id's
-            Dim query As String = "SELECT a.id_so_status, a.id_sales_order, a.id_store_contact_to, (d.id_comp) AS id_store,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, a.id_warehouse_contact_to, (wh.id_comp) AS id_comp_par,(wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to, a.id_report_status, f.report_status, "
+            Dim query As String = "SELECT a.id_so_status, a.id_sales_order, a.id_store_contact_to, (d.id_comp) AS id_store,(d.comp_name) AS store_name_to, (d.comp_number) AS store_number_to, (d.address_primary) AS store_address_to, IFNULL(d.id_commerce_type,1) AS `id_commerce_type`, a.sales_order_ol_shop_number, a.id_warehouse_contact_to, (wh.id_comp) AS id_comp_par,(wh.comp_name) AS warehouse_name_to, (wh.comp_number) AS warehouse_number_to, a.id_report_status, f.report_status, "
             query += "a.sales_order_note, a.sales_order_date, a.sales_order_note, a.sales_order_number, "
             query += "DATE_FORMAT(a.sales_order_date,'%Y-%m-%d') AS sales_order_datex, a.id_so_type, IFNULL(an.fg_so_reff_number,'-') AS `fg_so_reff_number`, ps.id_prepare_status, ps.prepare_status, a.id_emp_uni_period, a.id_uni_type "
             query += "FROM tb_sales_order a "
@@ -99,6 +100,11 @@ Public Class FormSalesOrderDet
             LEPeriodx.ItemIndex = LEPeriodx.Properties.GetDataSourceRowIndex("id_emp_uni_period", data.Rows(0)("id_emp_uni_period").ToString)
             LEUniType.ItemIndex = LEUniType.Properties.GetDataSourceRowIndex("id_uni_type", data.Rows(0)("id_uni_type").ToString)
             TxtPackingStatus.Text = data.Rows(0)("prepare_status").ToString
+
+            'commertcce type
+            id_commerce_type = data.Rows(0)("id_commerce_type").ToString
+            checkCommerceType()
+            TxtOLShopNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
 
             'set type
             If Not IsDBNull(data.Rows(0)("id_emp_uni_period")) Then
@@ -225,6 +231,14 @@ Public Class FormSalesOrderDet
             cond_cat_str = False
         End If
 
+        'check number reference ol shop
+        Dim cond_ol_shop As Boolean = True
+        If id_commerce_type = "2" Then
+            If TxtOLShopNumber.Text = "" Then
+                cond_ol_shop = False
+            End If
+        End If
+
         If Not formIsValidInPanel(EPForm, PanelControlTopLeft) Or Not formIsValidInPanel(EPForm, PanelControlTopMain) Then
             errorInput()
         ElseIf Not cond_data Then
@@ -235,6 +249,9 @@ Public Class FormSalesOrderDet
             stopCustom("Please select category 'Transfer' !")
         ElseIf Not cond_cat_str Then
             stopCustom("Transfer order can't process, please select another category !")
+        ElseIf Not cond_ol_shop Then
+            stopCustom("Please input online store order number !")
+            TxtOLShopNumber.Focus()
         Else
             Dim sales_order_note As String = addSlashes(MENote.Text)
             Dim id_so_type As String = LETypeSO.EditValue.ToString
@@ -247,6 +264,7 @@ Public Class FormSalesOrderDet
                 id_emp_uni_period = LEPeriodx.EditValue.ToString
                 id_uni_type = LEUniType.EditValue.ToString
             End If
+            Dim sales_order_ol_shop_number As String = addSlashes(TxtOLShopNumber.Text)
 
             If action = "ins" Then
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -254,8 +272,8 @@ Public Class FormSalesOrderDet
                     Cursor = Cursors.WaitCursor
                     sales_order_number = header_number_sales("2")
                     'Main tbale
-                    Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type) "
-                    query += "VALUES('" + id_store_contact_to + "', '" + id_comp_contact_par + "', '" + sales_order_number + "', NOW(), '" + sales_order_note + "', '" + id_so_type + "', '" + id_report_status + "', '" + id_so_status + "', '" + id_user + "'," + id_emp_uni_period + ", " + id_uni_type + "); SELECT LAST_INSERT_ID(); "
+                    Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type, sales_order_ol_shop_number) "
+                    query += "VALUES('" + id_store_contact_to + "', '" + id_comp_contact_par + "', '" + sales_order_number + "', NOW(), '" + sales_order_note + "', '" + id_so_type + "', '" + id_report_status + "', '" + id_so_status + "', '" + id_user + "'," + id_emp_uni_period + ", " + id_uni_type + ",'" + sales_order_ol_shop_number + "'); SELECT LAST_INSERT_ID(); "
                     id_sales_order = execute_query(query, 0, True, "", "", "", "")
 
                     increase_inc_sales("2")
@@ -311,7 +329,7 @@ Public Class FormSalesOrderDet
                     Cursor = Cursors.WaitCursor
                     sales_order_number = TxtSalesOrderNumber.Text
                     Dim query As String = "UPDATE tb_sales_order SET id_store_contact_to='" + id_store_contact_to + "', id_warehouse_contact_to='" + id_comp_contact_par + "', sales_order_number = '" + sales_order_number + "', sales_order_note='" + sales_order_note + "', id_so_type='" + id_so_type + "', id_so_status = '" + id_so_status + "', 
-                    id_emp_uni_period=" + id_emp_uni_period + ", id_uni_type=" + id_uni_type + "
+                    id_emp_uni_period=" + id_emp_uni_period + ", id_uni_type=" + id_uni_type + ", sales_order_ol_shop_number='" + sales_order_ol_shop_number + "'
                     WHERE id_sales_order='" + id_sales_order + "' "
                     execute_non_query(query, True, "", "", "", "")
 
@@ -413,6 +431,9 @@ Public Class FormSalesOrderDet
             TxtWHCodeTo.Enabled = False
             LEPeriodx.Enabled = True
             LEUniType.Enabled = True
+            If id_commerce_type = "2" Then
+                TxtOLShopNumber.Enabled = True
+            End If
         Else
             BtnBrowseContactTo.Enabled = False
             BtnBrowseWH.Enabled = False
@@ -426,14 +447,16 @@ Public Class FormSalesOrderDet
             TxtWHCodeTo.Enabled = False
             LEPeriodx.Enabled = False
             LEUniType.Enabled = False
+            TxtOLShopNumber.Enabled = False
         End If
 
         'attachment
-        If check_attach_report_status(id_report_status, "39", id_sales_order) Then
-            BtnAttachment.Enabled = True
-        Else
-            BtnAttachment.Enabled = False
-        End If
+        BtnAttachment.Enabled = True
+        'If check_attach_report_status(id_report_status, "39", id_sales_order) Then
+        'BtnAttachment.Enabled = True
+        'Else
+        'BtnAttachment.Enabled = False
+        'End If
 
         If check_print_report_status(id_report_status) Then
             BtnPrint.Enabled = True
@@ -599,32 +622,71 @@ Public Class FormSalesOrderDet
             Dim id_so_type As String = LETypeSO.EditValue.ToString
             Dim query_cond As String = ""
             If id_so_type <> "0" Then
-                query_cond = "AND comp.id_so_type='" + id_so_type + "' AND (comp.id_comp_cat=2 OR comp.id_comp_cat=5 OR comp.id_comp_cat=6) "
+                query_cond = "AND comp.id_so_type='" + id_so_type + "' AND (comp.id_comp_cat=2 OR comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
             Else
-                query_cond = "AND (comp.id_so_type='" + id_so_type + "' OR ISNULL(comp.id_so_type)) AND (comp.id_comp_cat=2 OR comp.id_comp_cat=5 OR comp.id_comp_cat=6) "
+                query_cond = "AND (comp.id_so_type='" + id_so_type + "' OR ISNULL(comp.id_so_type)) AND (comp.id_comp_cat=2 OR comp.id_comp_cat=5 OR comp.id_comp_cat=6) AND comp.is_active=1 "
             End If
             Dim data As DataTable = get_company_by_code(TxtCodeCompTo.Text, query_cond)
             If data.Rows.Count = 0 Then
                 stopCustom("Account not found!")
-                viewDetail("-1")
-                id_store = "-1"
-                id_store_cat = "-1"
-                id_store_contact_to = "-1"
-                TxtNameCompTo.Text = ""
-                MEAdrressCompTo.Text = ""
+                resetStore()
+                TxtCodeCompTo.Text = ""
                 TxtCodeCompTo.Focus()
             Else
                 Cursor = Cursors.WaitCursor
-                viewDetail("-1")
-                noEdit()
-                id_store = data.Rows(0)("id_comp").ToString
-                id_store_cat = data.Rows(0)("id_comp_cat").ToString
-                id_store_contact_to = data.Rows(0)("id_comp_contact").ToString
-                TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
-                MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
-                TxtWHCodeTo.Focus()
+                If data.Rows.Count > 1 Then
+                    'jika ada 2 akun yang sama
+                    FormPopUpContact.id_pop_up = "38"
+                    FormPopUpContact.id_so_type = id_so_type
+                    FormPopUpContact.comp_number = TxtCodeCompTo.Text
+                    FormPopUpContact.ShowDialog()
+                    If id_store = "-1" Then
+                        TxtCodeCompTo.Text = ""
+                        resetStore()
+                        TxtCodeCompTo.Focus()
+                        Exit Sub
+                    Else
+                        TxtWHCodeTo.Focus()
+                    End If
+                Else
+                    viewDetail("-1")
+                    noEdit()
+                    id_store = data.Rows(0)("id_comp").ToString
+                    id_commerce_type = data.Rows(0)("id_commerce_type").ToString
+                    checkCommerceType()
+                    id_store_cat = data.Rows(0)("id_comp_cat").ToString
+                    id_store_contact_to = data.Rows(0)("id_comp_contact").ToString
+                    TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
+                    MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
+                    TxtWHCodeTo.Focus()
+                End If
                 Cursor = Cursors.Default
             End If
+        Else
+            'selain enter informasi store di reset
+            resetStore()
+        End If
+    End Sub
+
+    Sub resetStore()
+        If GVItemList.RowCount > 0 Then
+            viewDetail("-1")
+        End If
+        id_store = "-1"
+        id_commerce_type = "-1"
+        id_store_cat = "-1"
+        id_store_contact_to = "-1"
+        TxtNameCompTo.Text = ""
+        MEAdrressCompTo.Text = ""
+        TxtOLShopNumber.Text = ""
+        TxtOLShopNumber.Enabled = False
+    End Sub
+
+    Sub checkCommerceType()
+        If id_commerce_type = "1" Then
+            TxtOLShopNumber.Enabled = False
+        Else
+            TxtOLShopNumber.Enabled = True
         End If
     End Sub
 
@@ -733,8 +795,12 @@ Public Class FormSalesOrderDet
 
     Private Sub LEStatusSO_KeyDown(sender As Object, e As KeyEventArgs) Handles LEStatusSO.KeyDown
         If e.KeyCode = Keys.Enter Then
-            addMyRow()
-            GCItemList.Focus()
+            If id_commerce_type = "1" Then
+                addMyRow()
+                GCItemList.Focus()
+            Else
+                TxtOLShopNumber.Focus()
+            End If
         End If
     End Sub
 
@@ -1081,6 +1147,18 @@ Public Class FormSalesOrderDet
     Private Sub LEUniType_KeyDown(sender As Object, e As KeyEventArgs) Handles LEUniType.KeyDown
         If e.KeyCode = Keys.Enter Then
             LETypeSO.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtOLShopNumber_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtOLShopNumber.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            If TxtOLShopNumber.Text <> "" Then
+                addMyRow()
+                GCItemList.Focus()
+            Else
+                stopCustom("Please input online store order number !")
+                TxtOLShopNumber.Focus()
+            End If
         End If
     End Sub
 End Class

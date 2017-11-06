@@ -782,7 +782,7 @@ Partial Class FormSalesReturnOrderDet
         '
         Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddAnotherProductToolStripMenuItem, Me.ReviseQtyToolStripMenuItem})
         Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
-        Me.ContextMenuStrip1.Size = New System.Drawing.Size(186, 70)
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(186, 48)
         '
         'AddAnotherProductToolStripMenuItem
         '
