@@ -84,7 +84,7 @@
             d.report_status, DATE_FORMAT(a.sales_pos_date,'%Y-%m-%d') AS sales_pos_datex, c.id_comp, "
         query += "a.sales_pos_due_date, a.sales_pos_start_period, a.sales_pos_end_period, a.sales_pos_discount, a.sales_pos_vat, a.id_memo_type, a.id_inv_type, so.sales_order_ol_shop_number "
         If id_menu = "5" Then
-            query += ", IFNULL(ar.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
+            query += ", IFNULL(sor.sales_pos_number,'-') AS `sales_pos_number_ref`, sor.sales_order_ol_shop_number AS `sales_order_ol_shop_number_ref` "
         End If
         query += "FROM tb_sales_pos a "
         query += "INNER JOIN tb_m_comp_contact b ON a.id_store_contact_from = b.id_comp_contact "
@@ -95,9 +95,17 @@
         query += "LEFT JOIN tb_sales_order so ON so.id_sales_order = pld.id_sales_order "
         query += "INNER JOIN tb_lookup_report_status d ON d.id_report_status = a.id_report_status "
         If id_menu = "5" Then
-            query += "LEFT JOIN tb_sales_pos ar ON ar.id_sales_pos = a.id_sales_pos_ref "
-            query += "LEFT JOIN tb_pl_sales_order_del pldr ON pldr.id_pl_sales_order_del=ar.id_pl_sales_order_del "
-            query += "LEFT JOIN tb_sales_order sor ON sor.id_sales_order = pldr.id_sales_order "
+            query += "LEFT JOIN (
+                    SELECT pd.id_sales_pos, pr.sales_pos_number, so.sales_order_ol_shop_number 
+                    FROM tb_sales_pos_det pd
+                    INNER JOIN tb_sales_pos_det pdr ON pdr.id_sales_pos_det = pd.id_sales_pos_det_ref
+                    INNER JOIN tb_sales_pos pr ON pr.id_sales_pos = pdr.id_sales_pos
+                    INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del_det = pdr.id_pl_sales_order_del_det
+                    INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = deld.id_sales_order_det
+                    INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+                    WHERE pd.id_sales_pos=" + id_sales_pos + "
+                    GROUP BY pd.id_sales_pos
+                ) sor ON sor.id_sales_pos = a.id_sales_pos "
         End If
         query += "WHERE a.id_sales_pos = '" + id_sales_pos + "' "
         query += "ORDER BY a.id_sales_pos ASC "

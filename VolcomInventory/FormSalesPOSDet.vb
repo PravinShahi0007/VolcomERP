@@ -422,6 +422,9 @@ Public Class FormSalesPOSDet
                         Dim id_pl_sales_order_del_det As String = "NULL "
                         Try
                             id_pl_sales_order_del_det = GVItemList.GetRowCellValue(i, "id_pl_sales_order_del_det").ToString
+                            If id_pl_sales_order_del_det = "0" Or id_pl_sales_order_del_det = "" Then
+                                id_pl_sales_order_del_det = "NULL "
+                            End If
                         Catch ex As Exception
                         End Try
 
