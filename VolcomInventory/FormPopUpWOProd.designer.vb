@@ -42,6 +42,8 @@ Partial Class FormPopUpWOProd
         Me.PGBProg = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
         Me.GridColumnIDCompTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
         Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdPurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -55,8 +57,6 @@ Partial Class FormPopUpWOProd
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -291,6 +291,24 @@ Partial Class FormPopUpWOProd
         Me.GridColumnPONumber.VisibleIndex = 1
         Me.GridColumnPONumber.Width = 54
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Design Code"
+        Me.GridColumn1.FieldName = "design_code"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 2
+        Me.GridColumn1.Width = 79
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Design"
+        Me.GridColumn2.FieldName = "design_display_name"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 3
+        Me.GridColumn2.Width = 57
+        '
         'GCListPurchase
         '
         Me.GCListPurchase.Dock = System.Windows.Forms.DockStyle.Fill
@@ -365,7 +383,7 @@ Partial Class FormPopUpWOProd
         Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPrice.Caption = "Unit Cost"
-        Me.ColPrice.DisplayFormat.FormatString = "N2"
+        Me.ColPrice.DisplayFormat.FormatString = "N4"
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "cost"
         Me.ColPrice.Name = "ColPrice"
@@ -444,24 +462,6 @@ Partial Class FormPopUpWOProd
         Me.ColSize.Visible = True
         Me.ColSize.VisibleIndex = 4
         Me.ColSize.Width = 56
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Design Code"
-        Me.GridColumn1.FieldName = "design_code"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 2
-        Me.GridColumn1.Width = 79
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Design"
-        Me.GridColumn2.FieldName = "design_display_name"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 3
-        Me.GridColumn2.Width = 57
         '
         'FormPopUpWOProd
         '
