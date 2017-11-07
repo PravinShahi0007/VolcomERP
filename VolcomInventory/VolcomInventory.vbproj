@@ -5306,6 +5306,9 @@
     <EmbeddedResource Include="FormEmpUniPeriodSingle.resx">
       <DependentUpon>FormEmpUniPeriodSingle.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFGAging.resx">
+      <DependentUpon>FormFGAging.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFGBorrowQCReq.resx">
       <DependentUpon>FormFGBorrowQCReq.vb</DependentUpon>
     </EmbeddedResource>
