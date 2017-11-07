@@ -1733,6 +1733,57 @@ Public Class FormImportExcel
             GVData.Columns("IdSO").Visible = False
             GVData.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GVData.Columns("Budget").DisplayFormat.FormatString = "{0:n2}"
+        ElseIf id_pop_up = "32" Then 'import duty sales
+            Try
+                Dim queryx As String = "SELECT po.`prod_order_number`,po.`id_prod_order`,dsg.`design_code_import`,dsg.`design_display_name`,dsg.`design_code`,comp.`comp_name`,comp.`comp_number`
+                                    FROM tb_prod_order po
+                                    INNER JOIN
+                                    (
+	                                    SELECT wo.*,ovhp.`id_comp_contact` FROM tb_prod_order_wo wo 
+	                                    INNER JOIN tb_m_ovh_price ovhp ON ovhp.`id_ovh_price`=wo.`id_ovh_price`
+	                                    WHERE wo.`is_main_vendor`='1'
+                                    ) wo ON wo.id_prod_order=po.`id_prod_order`
+                                    INNER JOIN `tb_m_comp_contact` cc ON cc.`id_comp_contact`=wo.`id_comp_contact`
+                                    INNER JOIN tb_m_comp comp ON comp.`id_comp`=cc.`id_comp`
+                                    INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=po.`id_prod_demand_design`
+                                    INNER JOIN tb_m_design dsg ON dsg.`id_design`=pdd.`id_design`
+                                    WHERE po.`id_report_status`!='5' AND po.`id_po_type`='2'"
+                Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+                Dim tb1 = data_temp.AsEnumerable()
+                Dim tb2 = dt.AsEnumerable()
+
+                Dim query = From table1 In tb1
+                            Group Join table_tmp In tb2
+                            On table1("kode").ToString.ToLower Equals table_tmp("design_code").ToString.ToLower Into prod = Group
+                            From result_prod In prod.DefaultIfEmpty()
+                            Select New With
+                            {
+                                .IdPO = If(result_prod Is Nothing, "0", result_prod("id_prod_order")),
+                                .CodeImport = If(result_prod Is Nothing, "0", result_prod("design_code_import")),
+                                .Code = If(result_prod Is Nothing, "0", result_prod("design_code")),
+                                .Description = If(result_prod Is Nothing, "0", result_prod("design_display_name")),
+                                .sales_actual_qty = table1("sales_actual_qty")
+                            }
+
+                GCData.DataSource = Nothing
+                GCData.DataSource = query.ToList()
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+
+                'Customize column
+                GVData.Columns("IdPO").Visible = False
+                GVData.Columns("CodeImport").Caption = "Code Import"
+                GVData.Columns("sales_actual_qty").Caption = "Sales Actual Qty"
+                GVData.Columns("sales_actual_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("sales_actual_qty").DisplayFormat.FormatString = "{0:n0}"
+
+                GVData.OptionsView.ColumnAutoWidth = False
+                GVData.BestFitColumns()
+
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -3059,6 +3110,29 @@ Public Class FormImportExcel
                         stopCustom("There is no data for import process, please make sure your input !")
                         makeSafeGV(GVData)
                     End If
+                End If
+            ElseIf id_pop_up = "32" Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+                    '
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        If Not GVData.GetRowCellValue(i, "IdPO").ToString = "0" Then
+                            Dim query_exec As String = "UPDATE tb_prod_order SET 
+                                                        act_sales_qty='" & decimalSQL(GVData.GetRowCellValue(i, "sales_actual_qty").ToString) & "'
+                                                        WHERE id_prod_order='" & GVData.GetRowCellValue(i, "IdPO").ToString & "'"
+                            execute_non_query(query_exec, True, "", "", "", "")
+                        End If
+                        '
+                        PBC.PerformStep()
+                        PBC.Update()
+                    Next
+                    infoCustom("Import Success")
+                    FormProdDuty.view_production_order()
+                    Close()
                 End If
             End If
         End If
