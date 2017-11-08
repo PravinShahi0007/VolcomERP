@@ -10859,4 +10859,8 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBAgingFGReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAgingFGReport.LinkClicked
+
+    End Sub
 End Class
