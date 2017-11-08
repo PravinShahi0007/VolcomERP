@@ -28,6 +28,9 @@ Partial Class FormFGAging
         Me.GridColumnRange = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelDate = New DevExpress.XtraEditors.PanelControl()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelDate = New DevExpress.XtraEditors.LabelControl()
         Me.PanelOpt = New DevExpress.XtraEditors.PanelControl()
         Me.CheckImg = New DevExpress.XtraEditors.CheckEdit()
         Me.PanelControlFreeze = New DevExpress.XtraEditors.PanelControl()
@@ -80,20 +83,21 @@ Partial Class FormFGAging
         Me.GridColumnRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnExpiredDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemMemoEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemMemoEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LabelDate = New DevExpress.XtraEditors.LabelControl()
-        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelDate = New DevExpress.XtraEditors.PanelControl()
-        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelNavMain, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelNavMain.SuspendLayout()
         CType(Me.PCNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCNavLineList.SuspendLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelDate.SuspendLayout()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelOpt.SuspendLayout()
         CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,10 +115,6 @@ Partial Class FormFGAging
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelDate, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelDate.SuspendLayout()
         Me.SuspendLayout()
         '
         'PanelNavMain
@@ -194,6 +194,38 @@ Partial Class FormFGAging
         Me.LabelControl4.Size = New System.Drawing.Size(35, 13)
         Me.LabelControl4.TabIndex = 90
         Me.LabelControl4.Text = "Season"
+        '
+        'PanelDate
+        '
+        Me.PanelDate.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelDate.Controls.Add(Me.DEFrom)
+        Me.PanelDate.Controls.Add(Me.LabelDate)
+        Me.PanelDate.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelDate.Location = New System.Drawing.Point(121, 2)
+        Me.PanelDate.Name = "PanelDate"
+        Me.PanelDate.Size = New System.Drawing.Size(220, 35)
+        Me.PanelDate.TabIndex = 8896
+        '
+        'DEFrom
+        '
+        Me.DEFrom.EditValue = Nothing
+        Me.DEFrom.Location = New System.Drawing.Point(32, 8)
+        Me.DEFrom.Name = "DEFrom"
+        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFrom.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DEFrom.Size = New System.Drawing.Size(178, 20)
+        Me.DEFrom.TabIndex = 8895
+        '
+        'LabelDate
+        '
+        Me.LabelDate.Location = New System.Drawing.Point(3, 11)
+        Me.LabelDate.Name = "LabelDate"
+        Me.LabelDate.Size = New System.Drawing.Size(23, 13)
+        Me.LabelDate.TabIndex = 96
+        Me.LabelDate.Text = "Date"
         '
         'PanelOpt
         '
@@ -437,8 +469,6 @@ Partial Class FormFGAging
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.AllowEdit = False
-        Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 7
         Me.GridColumnPrice.Width = 108
         '
         'GridColumnActive
@@ -662,7 +692,7 @@ Partial Class FormFGAging
         Me.GridColumnAgingDesign.Name = "GridColumnAgingDesign"
         Me.GridColumnAgingDesign.OptionsColumn.AllowEdit = False
         Me.GridColumnAgingDesign.Visible = True
-        Me.GridColumnAgingDesign.VisibleIndex = 9
+        Me.GridColumnAgingDesign.VisibleIndex = 8
         '
         'RepositoryItemTextEdit3
         '
@@ -682,7 +712,7 @@ Partial Class FormFGAging
         Me.GridColumnRec.Name = "GridColumnRec"
         Me.GridColumnRec.OptionsColumn.AllowEdit = False
         Me.GridColumnRec.Visible = True
-        Me.GridColumnRec.VisibleIndex = 8
+        Me.GridColumnRec.VisibleIndex = 7
         Me.GridColumnRec.Width = 105
         '
         'RepositoryItemTextEdit4
@@ -705,8 +735,30 @@ Partial Class FormFGAging
         Me.GridColumnExpiredDate.UnboundExpression = "AddMonths([prod_order_rec_date], [aging_design])"
         Me.GridColumnExpiredDate.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumnExpiredDate.Visible = True
-        Me.GridColumnExpiredDate.VisibleIndex = 10
+        Me.GridColumnExpiredDate.VisibleIndex = 9
         Me.GridColumnExpiredDate.Width = 103
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Current Date"
+        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn3.FieldName = "current_date"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.AllowEdit = False
+        Me.GridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
+        '
+        'GridColumnNote
+        '
+        Me.GridColumnNote.Caption = "Note"
+        Me.GridColumnNote.FieldName = "note"
+        Me.GridColumnNote.Name = "GridColumnNote"
+        Me.GridColumnNote.OptionsColumn.AllowEdit = False
+        Me.GridColumnNote.UnboundExpression = "Iif([prod_order_rec_date] Is Null, '-', Iif([current_date] > [expired_date], 'Exp" &
+    "ired', '-'))"
+        Me.GridColumnNote.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnNote.Visible = True
+        Me.GridColumnNote.VisibleIndex = 10
         '
         'RepositoryItemCheckEdit1
         '
@@ -723,60 +775,6 @@ Partial Class FormFGAging
         '
         Me.GridView2.GridControl = Me.GCDesign
         Me.GridView2.Name = "GridView2"
-        '
-        'LabelDate
-        '
-        Me.LabelDate.Location = New System.Drawing.Point(3, 11)
-        Me.LabelDate.Name = "LabelDate"
-        Me.LabelDate.Size = New System.Drawing.Size(23, 13)
-        Me.LabelDate.TabIndex = 96
-        Me.LabelDate.Text = "Date"
-        '
-        'DEFrom
-        '
-        Me.DEFrom.EditValue = Nothing
-        Me.DEFrom.Location = New System.Drawing.Point(32, 8)
-        Me.DEFrom.Name = "DEFrom"
-        Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFrom.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DEFrom.Size = New System.Drawing.Size(178, 20)
-        Me.DEFrom.TabIndex = 8895
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Current Date"
-        Me.GridColumn3.DisplayFormat.FormatString = "dd MMMM yyyy"
-        Me.GridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn3.FieldName = "current_date"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.AllowEdit = False
-        Me.GridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
-        '
-        'PanelDate
-        '
-        Me.PanelDate.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelDate.Controls.Add(Me.DEFrom)
-        Me.PanelDate.Controls.Add(Me.LabelDate)
-        Me.PanelDate.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelDate.Location = New System.Drawing.Point(121, 2)
-        Me.PanelDate.Name = "PanelDate"
-        Me.PanelDate.Size = New System.Drawing.Size(220, 35)
-        Me.PanelDate.TabIndex = 8896
-        '
-        'GridColumnNote
-        '
-        Me.GridColumnNote.Caption = "Note"
-        Me.GridColumnNote.FieldName = "note"
-        Me.GridColumnNote.Name = "GridColumnNote"
-        Me.GridColumnNote.OptionsColumn.AllowEdit = False
-        Me.GridColumnNote.UnboundExpression = "Iif([prod_order_rec_date] Is Null, '-', Iif([current_date] > [expired_date], 'Exp" &
-    "ired', '-'))"
-        Me.GridColumnNote.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 11
         '
         'FormFGAging
         '
@@ -797,6 +795,11 @@ Partial Class FormFGAging
         Me.PCNavLineList.PerformLayout()
         CType(Me.SLESeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelDate, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelDate.ResumeLayout(False)
+        Me.PanelDate.PerformLayout()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelOpt, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelOpt.ResumeLayout(False)
         CType(Me.CheckImg.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -814,11 +817,6 @@ Partial Class FormFGAging
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelDate, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelDate.ResumeLayout(False)
-        Me.PanelDate.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub

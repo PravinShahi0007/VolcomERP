@@ -223,4 +223,16 @@
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub GVDesign_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVDesign.RowCellStyle
+        If GVDesign.GetRowCellValue(e.RowHandle, "note").ToString = "Expired" Then
+            e.Appearance.BackColor = Color.Red
+            e.Appearance.ForeColor = Color.White
+            e.Appearance.Font = New Font(e.Appearance.Font, FontStyle.Bold)
+        Else
+            e.Appearance.BackColor = Color.White
+            e.Appearance.ForeColor = Color.Black
+            e.Appearance.Font = New Font(e.Appearance.Font, FontStyle.Regular)
+        End If
+    End Sub
 End Class

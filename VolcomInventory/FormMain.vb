@@ -279,7 +279,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Then
             RGAreaManage.Visible = False
         End If
 
@@ -397,7 +397,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Then
             RGAreaManage.Visible = True
         End If
 
@@ -6669,6 +6669,8 @@ Public Class FormMain
             print_raw(FormProdClosing.GCProd, "")
         ElseIf formName = "FormOLStoreSummary" Then
             print_raw(FormOLStoreSummary.GCData, "")
+        ElseIf formName = "FormFGAging" Then
+            print_raw(FormFGAging.GCDesign, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7241,6 +7243,9 @@ Public Class FormMain
         ElseIf formName = "FormOLStoreSummary" Then
             FormOLStoreSummary.Close()
             FormOLStoreSummary.Dispose()
+        ElseIf formName = "FormFGAging" Then
+            FormFGAging.Close()
+            FormFGAging.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
