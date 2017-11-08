@@ -10850,6 +10850,11 @@ Public Class FormMain
     Private Sub NBAgingFG_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAgingFG.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
+            FormFGAging.Close()
+            FormFGAging.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
             FormFGAging.MdiParent = Me
             FormFGAging.Show()
             FormFGAging.WindowState = FormWindowState.Maximized
@@ -10861,6 +10866,21 @@ Public Class FormMain
     End Sub
 
     Private Sub NBAgingFGReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAgingFGReport.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGAging.Close()
+            FormFGAging.Dispose()
+        Catch ex As Exception
+        End Try
+        Try
+            FormFGAging.MdiParent = Me
+            FormFGAging.is_view = "1"
+            FormFGAging.Show()
+            FormFGAging.WindowState = FormWindowState.Maximized
+            FormFGAging.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
     End Sub
 End Class
