@@ -941,6 +941,11 @@
             FormSalesReturnOrderOLDet.TxtWHCode.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
             FormSalesReturnOrderOLDet.TxtWHName.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
             Close()
+        ElseIf id_pop_up = "83" Then
+            'PR Courier
+            FormProdPRWODet.id_comp_contact_pay_to = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
+            FormProdPRWODet.TECompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
+            FormProdPRWODet.MECompAddress.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
         End If
         Cursor = Cursors.Default
     End Sub
