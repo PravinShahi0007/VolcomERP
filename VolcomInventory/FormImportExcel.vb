@@ -1763,7 +1763,8 @@ Public Class FormImportExcel
                                 .CodeImport = If(result_prod Is Nothing, "0", result_prod("design_code_import")),
                                 .Code = If(result_prod Is Nothing, "0", result_prod("design_code")),
                                 .Description = If(result_prod Is Nothing, "0", result_prod("design_display_name")),
-                                .sales_actual_qty = table1("sales_actual_qty")
+                                .sales_actual_qty = table1("sales_actual_qty"),
+                                .amount_after_discount = table1("amount_after_discount")
                             }
 
                 GCData.DataSource = Nothing
@@ -1774,6 +1775,9 @@ Public Class FormImportExcel
                 'Customize column
                 GVData.Columns("IdPO").Visible = False
                 GVData.Columns("CodeImport").Caption = "Code Import"
+                GVData.Columns("amount_after_discount").Caption = "Amount After Discount"
+                GVData.Columns("amount_after_discount").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("amount_after_discount").DisplayFormat.FormatString = "{0:n0}"
                 GVData.Columns("sales_actual_qty").Caption = "Sales Actual Qty"
                 GVData.Columns("sales_actual_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GVData.Columns("sales_actual_qty").DisplayFormat.FormatString = "{0:n0}"
@@ -3123,6 +3127,7 @@ Public Class FormImportExcel
                         If Not GVData.GetRowCellValue(i, "IdPO").ToString = "0" Then
                             Dim query_exec As String = "UPDATE tb_prod_order SET 
                                                         act_sales_qty='" & decimalSQL(GVData.GetRowCellValue(i, "sales_actual_qty").ToString) & "'
+                                                        ,act_sales_amount_after_disc='" & decimalSQL(GVData.GetRowCellValue(i, "amount_after_discount").ToString) & "'
                                                         WHERE id_prod_order='" & GVData.GetRowCellValue(i, "IdPO").ToString & "'"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
