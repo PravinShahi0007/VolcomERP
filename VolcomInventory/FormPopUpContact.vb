@@ -946,6 +946,7 @@
             FormProdPRWODet.id_comp_contact_pay_to = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
             FormProdPRWODet.TECompTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "2")
             FormProdPRWODet.MECompAddress.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub

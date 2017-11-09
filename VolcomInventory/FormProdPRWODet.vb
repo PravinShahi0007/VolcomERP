@@ -15,6 +15,13 @@
             LWOCaption.Text = "PO Number"
             LRecCaption.Visible = False
             TERecNumber.Visible = False
+            '
+            TEPONumber.Visible = False
+            LFGPOCaption.Visible = False
+            '
+            LDOCaption.Visible = False
+            TEDONumber.Visible = False
+            '
             BPickRec.Visible = False
             BPickVendor.Visible = True
         Else
@@ -156,7 +163,7 @@
         Dim query As String = String.Format("SELECT a.id_prod_order,a.id_report_status, a.prod_order_wo_vat, a.prod_order_wo_number, b.id_comp_contact, DATE_FORMAT(a.prod_order_wo_date,'%Y-%m-%d') as prod_order_wo_datex, a.prod_order_wo_lead_time, a.prod_order_wo_top, a.id_currency, a.prod_order_wo_note, a.prod_order_wo_kurs FROM tb_prod_order_wo a INNER JOIN tb_m_ovh_price b ON a.id_ovh_price=b.id_ovh_price WHERE a.id_prod_order_wo = '{0}'", id_prod_order_wo)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
-        TEWONumber.Text = data.Rows(0)("prod_order_wo_number").ToString
+        TEWOPONumber.Text = data.Rows(0)("prod_order_wo_number").ToString
         id_prod_order = data.Rows(0)("id_prod_order").ToString
 
         view_currency(LECurrency)
@@ -190,7 +197,7 @@
 
         TERecNumber.Text = data.Rows(0)("prod_order_rec_number").ToString
         id_prod_order = data.Rows(0)("id_prod_order").ToString
-        TEWONumber.Text = data.Rows(0)("prod_order_rec_number").ToString
+        TEWOPONumber.Text = data.Rows(0)("prod_order_rec_number").ToString
         TEDONumber.Text = data.Rows(0)("delivery_order_number").ToString
         TECompTo.Text = data.Rows(0)("comp_name").ToString
     End Sub
@@ -410,6 +417,17 @@
             End Try
         Next
 
+        Dim id_po As String = "-1"
+        Dim id_wo As String = "-1"
+
+        If is_po_pr = "-1" Then
+            id_po = "NULL"
+            id_wo = "'" & id_prod_order_wo & "'"
+        Else
+            id_po = "'" & id_prod_order & "'"
+            id_wo = "NULL"
+        End If
+
         'end of validasi
         If id_pr = "-1" Then
             'new
@@ -420,9 +438,9 @@
                     pr_number = header_number_prod("9")
                     'insert pr
                     If id_rec = "-1" Then
-                        query = String.Format("INSERT INTO tb_pr_prod_order(id_prod_order_wo, pr_prod_order_number, pr_prod_order_date, pr_prod_order_note, id_report_status, pr_prod_order_vat, pr_prod_order_dp, pr_prod_order_total, id_currency,id_comp_contact_to,pr_prod_order_pib,pr_prod_order_aju,pr_prod_order_due_date,inv_no,tax_inv_no) VALUES('{0}','{1}',DATE(NOW()),'{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}');SELECT LAST_INSERT_ID(); ", id_prod_order_wo, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, LECurrency.EditValue, id_comp_contact_pay_to, pib, aju, Date.Parse(due_date.ToString).ToString("yyyy-MM-dd"), addSlashes(inv_no), addSlashes(tax_inv_no))
+                        query = String.Format("INSERT INTO tb_pr_prod_order(id_prod_order_wo, pr_prod_order_number, pr_prod_order_date, pr_prod_order_note, id_report_status, pr_prod_order_vat, pr_prod_order_dp, pr_prod_order_total, id_currency,id_comp_contact_to,pr_prod_order_pib,pr_prod_order_aju,pr_prod_order_due_date,inv_no,tax_inv_no,id_prod_order) VALUES('{0}','{1}',DATE(NOW()),'{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}',{14});SELECT LAST_INSERT_ID(); ", id_wo, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, LECurrency.EditValue, id_comp_contact_pay_to, pib, aju, Date.Parse(due_date.ToString).ToString("yyyy-MM-dd"), addSlashes(inv_no), addSlashes(tax_inv_no), id_po)
                     Else
-                        query = String.Format("INSERT INTO tb_pr_prod_order(id_prod_order_wo, id_prod_order_rec, pr_prod_order_number, pr_prod_order_date, pr_prod_order_note, id_report_status, pr_prod_order_vat, pr_prod_order_dp, pr_prod_order_total, id_currency,id_comp_contact_to,pr_prod_order_pib,pr_prod_order_aju,inv_no,tax_inv_no) VALUES('{0}','{1}','{2}',DATE(NOW()),'{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}');SELECT LAST_INSERT_ID(); ", id_prod_order_wo, id_rec, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, LECurrency.EditValue, id_comp_contact_pay_to, pib, aju, addSlashes(inv_no), addSlashes(tax_inv_no))
+                        query = String.Format("INSERT INTO tb_pr_prod_order(id_prod_order_wo, id_prod_order_rec, pr_prod_order_number, pr_prod_order_date, pr_prod_order_note, id_report_status, pr_prod_order_vat, pr_prod_order_dp, pr_prod_order_total, id_currency,id_comp_contact_to,pr_prod_order_pib,pr_prod_order_due_date,pr_prod_order_aju,inv_no,tax_inv_no,id_prod_order) VALUES('{0}','{1}','{2}',DATE(NOW()),'{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}','{14}',{15});SELECT LAST_INSERT_ID(); ", id_wo, id_rec, pr_number, pr_note, pr_stats, pr_vat, pr_dp, pr_tot, LECurrency.EditValue, id_comp_contact_pay_to, pib, aju, Date.Parse(due_date.ToString).ToString("yyyy-MM-dd"), addSlashes(inv_no), addSlashes(tax_inv_no), id_po)
                     End If
 
                     id_pr_new = execute_query(query, 0, True, "", "", "", "")

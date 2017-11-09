@@ -58,7 +58,7 @@
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
     Sub view_pr()
-        Dim query_where As String = " WHERE 1=1 "
+        Dim query_where As String = " WHERE ISNULL(z.id_prod_order) "
 
         If Not SLEDesignStockStore.EditValue.ToString = "0" Then
             query_where += " AND desg.id_design='" & SLEDesignStockStore.EditValue.ToString & "'"
@@ -109,7 +109,7 @@
         check_but()
     End Sub
     Sub view_pr_courier()
-        Dim query_where As String = " WHERE 1=1 "
+        Dim query_where As String = " WHERE NOT ISNULL(z.id_prod_order) "
 
         If Not SLEDesignStockStore.EditValue.ToString = "0" Then
             query_where += " AND desg.id_design='" & SLEDesignStockStore.EditValue.ToString & "'"
@@ -123,7 +123,7 @@
             query_where += " AND d.id_comp='" & SLEVendor.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "SELECT desg.design_code,desg.design_display_name,po.id_prod_order,po.prod_order_number,rec.id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,rec.delivery_order_date,rec.delivery_order_number,rec.prod_order_rec_date, d.comp_name AS comp_to, "
+        Dim query As String = "SELECT desg.design_code,desg.design_display_name,po.id_prod_order,po.prod_order_number,rec.id_prod_order_rec, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,rec.delivery_order_date,rec.delivery_order_number,rec.prod_order_rec_date, d.comp_name AS comp_to, "
         query += "z.pr_prod_order_due_date,maxd.employee_name as last_mark "
         query += "FROM tb_pr_prod_order z "
         query += "INNER JOIN tb_prod_order po ON po.id_prod_order = z.id_prod_order "
@@ -173,6 +173,16 @@
                 bdel_active = "0"
             Else
                 bnew_active = "0"
+                bedit_active = "0"
+                bdel_active = "0"
+            End If
+        ElseIf XTCTabPR.SelectedTabPageIndex = 2 Then 'list pr courier
+            If GVPRPO.RowCount > 0 Then
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+            Else
+                bnew_active = "1"
                 bedit_active = "0"
                 bdel_active = "0"
             End If

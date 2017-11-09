@@ -307,7 +307,10 @@
         ElseIf id_pop_up = "10" Then
             If GVProd.RowCount > 0 Then
                 FormProdPRWODet.id_prod_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                FormProdPRWODet.TEWOPONumber.Text = GVProd.GetFocusedRowCellDisplayText("prod_order_number").ToString
+                FormProdPRWODet.view_list_wo()
 
+                FormProdPRWODet.GConListPurchase.Enabled = True
                 Close()
             Else
                 warningCustom("No data selected.")
