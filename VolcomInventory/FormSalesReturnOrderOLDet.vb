@@ -33,6 +33,7 @@
             DEForm.Text = view_date(0)
             Dim data As DataTable = execute_query("SELECT DATE(NOW()) AS `tgl`", -1, True, "", "", "", "")
             DERetDueDate.EditValue = data.Rows(0)("tgl")
+            ActiveControl = TxtStoreCode
         ElseIf action = "upd" Then
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
             BMark.Enabled = True
@@ -154,6 +155,9 @@
         PanelControlNav.Enabled = False
         MENote.Properties.ReadOnly = True
         DERetDueDate.Enabled = False
+        TxtStoreCode.Properties.ReadOnly = True
+        TxtWHCode.Properties.ReadOnly = True
+        TxtOLStoreNumber.Properties.ReadOnly = True
 
         If check_attach_report_status(id_report_status, "119", id_sales_return_order) Then
             BtnAttachment.Enabled = True
@@ -252,6 +256,10 @@
     End Sub
 
     Private Sub BtnBrowseOrder_Click(sender As Object, e As EventArgs) Handles BtnBrowseOrder.Click
+        show_order()
+    End Sub
+
+    Sub show_order()
         Cursor = Cursors.WaitCursor
         FormPopUpSalesOrder.id_pop_up = "4"
         FormPopUpSalesOrder.ShowDialog()
@@ -287,14 +295,43 @@
         makeSafeGV(GVItemList)
         ValidateChildren()
 
-        'del not found - suatu saat dipake
-        'delNotFoundMyRow()
+        'del not found
+        delNotFoundMyRow()
+
+        'check stock
+        Cursor = Cursors.WaitCursor
+        Dim cond_data As Boolean = True
+        Dim dt As DataTable = execute_query("CALL view_stock_ol_store('" + addSlashes(TxtOLStoreNumber.Text) + "'," + id_store + ")", -1, True, "", "", "", "")
+        For c As Integer = 0 To ((GVItemList.RowCount - 1) - GetGroupRowCount(GVItemList))
+            Dim id_product_cek As String = GVItemList.GetRowCellValue(c, "id_product").ToString
+            Dim qty_cek As Integer = GVItemList.GetRowCellValue(c, "sales_return_order_det_qty")
+            Dim data_filter_cek As DataRow() = dt.Select("[id_product]='" + id_product_cek + "' ")
+            If data_filter_cek.Length <= 0 Then
+                GVItemList.SetRowCellValue(c, "error_status", "Product not found;")
+                cond_data = False
+            Else
+                If qty_cek > data_filter_cek(0)("qty") Then
+                    GVItemList.SetRowCellValue(c, "error_status", "Qty can't exceed " + data_filter_cek(0)("qty").ToString + ";")
+                    cond_data = False
+                Else
+                    GVItemList.SetRowCellValue(c, "error_status", "")
+                End If
+            End If
+        Next
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
+        Cursor = Cursors.Default
 
         If id_store_contact_to = "-1" Or id_wh_contact_to = "-1" Then
             stopCustom("Store/WH can't blank ")
         ElseIf GVItemList.RowCount <= 0 Then
             stopCustom("Item list can't blank !")
+        ElseIf Not cond_data Then
+            stopCustom("Please see error log in item list !")
+            GridColumnErr.Visible = True
+            GridColumnErr.VisibleIndex = 100
         Else
+            GridColumnErr.Visible = False
             Dim sales_return_order_number As String = TxtSalesOrderNumber.Text
             Dim sales_return_order_note As String = MENote.Text
             Dim sales_return_order_est_date As String = DateTime.Parse(DERetDueDate.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -369,6 +406,229 @@
                 check_but()
                 Cursor = Cursors.Default
             End If
+        End If
+    End Sub
+
+    Private Sub TxtStoreCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtStoreCode.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim data As DataTable = get_company_by_code(addSlashes(TxtStoreCode.Text), "AND comp.id_comp_cat=6 AND comp.id_commerce_type=2 ")
+            If data.Rows.Count = 0 Then
+                stopCustom("Account not found !")
+                resetStore(True)
+                TxtStoreCode.Focus()
+            Else
+                id_store = data.Rows(0)("id_comp").ToString
+                id_store_contact_to = data.Rows(0)("id_comp_contact").ToString
+                TxtStoreCode.Text = data.Rows(0)("comp_number").ToString
+                TxtStoreName.Text = data.Rows(0)("comp_name").ToString
+                id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
+                viewDetail()
+                check_but()
+                TxtWHCode.Focus()
+            End If
+        Else
+            resetStore(False)
+        End If
+    End Sub
+
+    Sub resetStore(ByVal include_code As Boolean)
+        id_store = "-1"
+        id_store_contact_to = "-1"
+        TxtStoreName.Text = ""
+        id_wh_drawer = "-1"
+        If GVItemList.RowCount > 0 Then
+            viewDetail()
+        End If
+        If include_code Then
+            TxtStoreCode.Text = ""
+        End If
+    End Sub
+
+    Private Sub TxtWHCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtWHCode.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim data As DataTable = get_company_by_code(addSlashes(TxtWHCode.Text), "AND comp.id_comp_cat=5 ")
+            If data.Rows.Count = 0 Then
+                stopCustom("Account not found !")
+                resetWH(True)
+                TxtWHCode.Focus()
+            Else
+                id_wh_contact_to = data.Rows(0)("id_comp_contact").ToString
+                TxtWHCode.Text = data.Rows(0)("comp_number").ToString
+                TxtWHName.Text = data.Rows(0)("comp_name").ToString
+                check_but()
+                TxtOLStoreNumber.Focus()
+            End If
+        Else
+            resetWH(False)
+        End If
+    End Sub
+
+    Sub resetWH(ByVal include_code As Boolean)
+        id_wh_contact_to = "-1"
+        TxtWHName.Text = ""
+        If include_code Then
+            TxtWHCode.Text = ""
+        End If
+    End Sub
+
+    Private Sub DERetDueDate_KeyDown(sender As Object, e As KeyEventArgs) Handles DERetDueDate.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            addMyRow()
+        End If
+    End Sub
+
+    Sub addMyRow()
+        Cursor = Cursors.WaitCursor
+        Dim newRow As DataRow = (TryCast(GCItemList.DataSource, DataTable)).NewRow()
+        newRow("code") = ""
+        newRow("name") = ""
+        newRow("size") = ""
+        newRow("sales_return_order_det_qty") = 0
+        newRow("amount") = 0
+        newRow("design_price_type") = ""
+        newRow("design_price") = 0
+        newRow("sales_return_order_det_note") = ""
+        newRow("id_design") = "0"
+        newRow("id_product") = "0"
+        newRow("id_design_price") = "0"
+        newRow("id_sales_return_order_det") = "0"
+        newRow("is_found") = "2"
+        newRow("error_status") = ""
+        TryCast(GCItemList.DataSource, DataTable).Rows.Add(newRow)
+        'CType(GCItemList.DataSource, DataTable).AcceptChanges()
+        GCItemList.RefreshDataSource()
+        GVItemList.RefreshData()
+        check_but()
+        GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+        GCItemList.Focus()
+        GVItemList.FocusedColumn = GridColumnCode
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnAddLine_Click(sender As Object, e As EventArgs) Handles BtnAddLine.Click
+        addMyRow()
+    End Sub
+
+    Sub setDefautMyRow(ByVal rh As Integer)
+        GVItemList.SetRowCellValue(rh, "id_sales_return_order_det", "0")
+        GVItemList.SetRowCellValue(rh, "name", "")
+        GVItemList.SetRowCellValue(rh, "code", "")
+        GVItemList.SetRowCellValue(rh, "size", "")
+        GVItemList.SetRowCellValue(rh, "sales_return_order_det_qty", 0)
+        GVItemList.SetRowCellValue(rh, "qty_avail", 0)
+        GVItemList.SetRowCellValue(rh, "design_price_type", "")
+        GVItemList.SetRowCellValue(rh, "id_design_price", "0")
+        GVItemList.SetRowCellValue(rh, "design_price", 0)
+        GVItemList.SetRowCellValue(rh, "id_return_cat", "1")
+        GVItemList.SetRowCellValue(rh, "amount", 0)
+        GVItemList.SetRowCellValue(rh, "sales_return_order_det_note", "")
+        GVItemList.SetRowCellValue(rh, "id_design", "0")
+        GVItemList.SetRowCellValue(rh, "id_product", "0")
+        GVItemList.SetRowCellValue(rh, "is_found", "2")
+        GVItemList.SetRowCellValue(rh, "error_status", "")
+    End Sub
+
+    Private Sub GVItemList_KeyDown(sender As Object, e As KeyEventArgs) Handles GVItemList.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim rh As Integer = GVItemList.FocusedRowHandle
+            Dim id_sales_return_order_det As String = GVItemList.GetRowCellValue(rh, "id_sales_return_order_det").ToString
+            If id_sales_return_order_det = "0" Then
+                If GVItemList.FocusedColumn.ToString = "Code" Then
+                    GVItemList.CloseEditor()
+                    Dim code_pas As String = addSlashes(GVItemList.GetRowCellValue(rh, "code").ToString)
+                    Dim dt As DataTable = execute_query("CALL view_stock_ol_store('" + addSlashes(TxtOLStoreNumber.Text) + "'," + id_store + ")", -1, True, "", "", "", "")
+                    Dim data_filter As DataRow() = dt.Select("[code]='" + code_pas + "' ")
+                    If data_filter.Length = 0 Then
+                        stopCustom("Product not found !")
+                        setDefautMyRow(rh)
+                        CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                    Else
+                        Dim dt_dupe As DataTable = GCItemList.DataSource
+                        Dim data_filter_dupe As DataRow() = dt_dupe.Select("[code]='" + code_pas + "' ")
+                        If data_filter_dupe.Length <= 0 Then
+                            GVItemList.SetRowCellValue(rh, "id_sales_return_order_det", "0")
+                            GVItemList.SetRowCellValue(rh, "name", data_filter(0)("name").ToString)
+                            GVItemList.SetRowCellValue(rh, "code", data_filter(0)("code").ToString)
+                            GVItemList.SetRowCellValue(rh, "size", data_filter(0)("size").ToString)
+                            GVItemList.SetRowCellValue(rh, "sales_return_order_det_qty", 0)
+                            GVItemList.SetRowCellValue(rh, "qty_avail", data_filter(0)("qty"))
+                            GVItemList.SetRowCellValue(rh, "design_price_type", data_filter(0)("design_price_type").ToString)
+                            GVItemList.SetRowCellValue(rh, "id_design_price", data_filter(0)("id_design_price").ToString)
+                            GVItemList.SetRowCellValue(rh, "design_price", data_filter(0)("design_price"))
+                            GVItemList.SetRowCellValue(rh, "id_return_cat", "1")
+                            GVItemList.SetRowCellValue(rh, "return_cat", "Return")
+                            GVItemList.SetRowCellValue(rh, "amount", 0)
+                            GVItemList.SetRowCellValue(rh, "sales_return_order_det_note", "")
+                            GVItemList.SetRowCellValue(rh, "id_design", data_filter(0)("id_design").ToString)
+                            GVItemList.SetRowCellValue(rh, "id_product", data_filter(0)("id_product").ToString)
+                            GVItemList.SetRowCellValue(rh, "is_found", "1")
+                            GVItemList.SetRowCellValue(rh, "error_status", "")
+                            GVItemList.FocusedColumn = GridColumnQty
+                            CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                        Else
+                            GVItemList.SetFocusedRowCellValue("code", "")
+                            GVItemList.ActiveFilterString = "[code]='" + code_pas + "'"
+                            FormSalesOrderDetEdit.id_pop_up = "2"
+                            FormSalesOrderDetEdit.ShowDialog()
+                            GVItemList.ActiveFilterString = ""
+                            GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+                            GVItemList.FocusedColumn = GridColumnCode
+                            'stopCustom("You already entry this product.")
+                            'setDefautMyRow(rh)
+                            'CType(GCItemList.DataSource, DataTable).AcceptChanges()
+                        End If
+                    End If
+                ElseIf GVItemList.FocusedColumn.ToString = "Qty" Then
+                    GVItemList.CloseEditor()
+                    Dim qty_par As Integer = GVItemList.GetRowCellValue(rh, "sales_return_order_det_qty")
+                    Dim qty_limit As Integer = GVItemList.GetRowCellValue(rh, "qty_avail")
+                    If qty_par > qty_limit Then
+                        stopCustom("Qty can't exceed " + qty_limit.ToString)
+                        GVItemList.SetRowCellValue(rh, "sales_return_order_det_qty", 0)
+                    Else
+                        GVItemList.SetRowCellValue(rh, "amount", qty_par * GVItemList.GetRowCellValue(rh, "design_price"))
+                        GVItemList.FocusedColumn = GridColumnRemark
+                    End If
+                ElseIf GVItemList.FocusedColumn.ToString = "Remark" Then 'for remark
+                    GVItemList.CloseEditor()
+                    If GVItemList.GetRowCellValue(GVItemList.RowCount - 1, "code").ToString <> "" Then
+                        addMyRow()
+                    End If
+                    GVItemList.FocusedRowHandle = GVItemList.RowCount - 1
+                    GVItemList.FocusedColumn = GridColumnCode
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub TxtOLStoreNumber_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtOLStoreNumber.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim query_c As ClassSalesOrder = New ClassSalesOrder()
+            Dim cond As String = "AND a.sales_order_ol_shop_number='" + addSlashes(TxtOLStoreNumber.Text) + "' AND a.id_report_status='6' AND a.id_so_status!=5 And a.id_store_contact_to=" + id_store_contact_to + " "
+            Dim query As String = query_c.queryMain(cond, "1")
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count = 0 Then
+                stopCustom("Order not found !")
+                resetOrder(True)
+                TxtOLStoreNumber.Focus()
+            ElseIf data.Rows.Count > 1 Then
+                TxtOLStoreNumber.Text = ""
+                show_order()
+            Else
+                id_sales_order = data.Rows(0)("id_sales_order").ToString
+                TxtOLStoreNumber.Text = data.Rows(0)("sales_order_ol_shop_number").ToString
+                check_but()
+                DERetDueDate.Focus()
+            End If
+        Else
+            resetOrder(False)
+        End If
+    End Sub
+
+    Sub resetOrder(ByVal include_order As Boolean)
+        id_sales_order = "-1"
+        If include_order Then
+            TxtOLStoreNumber.Text = ""
         End If
     End Sub
 End Class

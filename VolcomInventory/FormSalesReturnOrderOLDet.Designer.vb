@@ -83,12 +83,14 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQtyAvail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnFound = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyReturn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddLine = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport2 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnQtyReturn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnErr = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -223,9 +225,8 @@ Partial Class FormSalesReturnOrderOLDet
         Me.TxtOLStoreNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtOLStoreNumber.Properties.Appearance.Options.UseFont = True
         Me.TxtOLStoreNumber.Properties.EditValueChangedDelay = 1
-        Me.TxtOLStoreNumber.Properties.ReadOnly = True
         Me.TxtOLStoreNumber.Size = New System.Drawing.Size(322, 20)
-        Me.TxtOLStoreNumber.TabIndex = 0
+        Me.TxtOLStoreNumber.TabIndex = 2
         Me.TxtOLStoreNumber.TabStop = False
         '
         'LabelControl4
@@ -344,7 +345,6 @@ Partial Class FormSalesReturnOrderOLDet
         Me.TxtStoreCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtStoreCode.Properties.Appearance.Options.UseFont = True
         Me.TxtStoreCode.Properties.EditValueChangedDelay = 1
-        Me.TxtStoreCode.Properties.ReadOnly = True
         Me.TxtStoreCode.Size = New System.Drawing.Size(82, 20)
         Me.TxtStoreCode.TabIndex = 0
         Me.TxtStoreCode.TabStop = False
@@ -379,7 +379,6 @@ Partial Class FormSalesReturnOrderOLDet
         Me.TxtWHCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtWHCode.Properties.Appearance.Options.UseFont = True
         Me.TxtWHCode.Properties.EditValueChangedDelay = 1
-        Me.TxtWHCode.Properties.ReadOnly = True
         Me.TxtWHCode.Size = New System.Drawing.Size(82, 20)
         Me.TxtWHCode.TabIndex = 1
         Me.TxtWHCode.TabStop = False
@@ -552,7 +551,7 @@ Partial Class FormSalesReturnOrderOLDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesTarget, Me.GridColumnUOM, Me.GridColumnReturnCategory, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnProductName, Me.GridColumnIdReturnCat, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound, Me.GridColumnQtyReturn})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnIdSalesTarget, Me.GridColumnUOM, Me.GridColumnReturnCategory, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnProductName, Me.GridColumnIdReturnCat, Me.GridColumnIdDesignPrice, Me.GridColumnPriceType, Me.GridColumnQtyAvail, Me.GridColumnFound, Me.GridColumnQtyReturn, Me.GridColumnErr})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_order_det_qty", Me.GridColumnQty, "{0:f2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", Me.GridColumnAmount, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_view_completed", Me.GridColumnQtyReturn, "{0:N0}")})
         Me.GVItemList.Name = "GVItemList"
@@ -587,6 +586,7 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnName.FieldName = "name"
         Me.GridColumnName.FieldNameSortGroup = "id_design"
         Me.GridColumnName.Name = "GridColumnName"
+        Me.GridColumnName.OptionsColumn.AllowEdit = False
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 2
         Me.GridColumnName.Width = 227
@@ -764,25 +764,60 @@ Partial Class FormSalesReturnOrderOLDet
         Me.GridColumnQtyAvail.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQtyAvail.FieldName = "qty_avail"
         Me.GridColumnQtyAvail.Name = "GridColumnQtyAvail"
+        Me.GridColumnQtyAvail.OptionsColumn.AllowEdit = False
         '
         'GridColumnFound
         '
         Me.GridColumnFound.Caption = "Found"
         Me.GridColumnFound.FieldName = "is_found"
         Me.GridColumnFound.Name = "GridColumnFound"
+        Me.GridColumnFound.OptionsColumn.AllowEdit = False
+        '
+        'GridColumnQtyReturn
+        '
+        Me.GridColumnQtyReturn.Caption = "Return"
+        Me.GridColumnQtyReturn.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQtyReturn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQtyReturn.FieldName = "sales_return_det_qty_view_completed"
+        Me.GridColumnQtyReturn.Name = "GridColumnQtyReturn"
+        Me.GridColumnQtyReturn.OptionsColumn.AllowEdit = False
+        Me.GridColumnQtyReturn.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_view_completed", "{0:N0}")})
         '
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.BtnDel)
+        Me.PanelControlNav.Controls.Add(Me.BtnAddLine)
         Me.PanelControlNav.Controls.Add(Me.BtnImport2)
         Me.PanelControlNav.Controls.Add(Me.BtnImport)
-        Me.PanelControlNav.Controls.Add(Me.BtnDel)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(832, 35)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'BtnDel
+        '
+        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDel.ImageIndex = 1
+        Me.BtnDel.ImageList = Me.LargeImageCollection
+        Me.BtnDel.Location = New System.Drawing.Point(582, 0)
+        Me.BtnDel.Name = "BtnDel"
+        Me.BtnDel.Size = New System.Drawing.Size(80, 35)
+        Me.BtnDel.TabIndex = 4
+        Me.BtnDel.Text = "Delete"
+        '
+        'BtnAddLine
+        '
+        Me.BtnAddLine.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddLine.ImageIndex = 0
+        Me.BtnAddLine.ImageList = Me.LargeImageCollection
+        Me.BtnAddLine.Location = New System.Drawing.Point(662, 0)
+        Me.BtnAddLine.Name = "BtnAddLine"
+        Me.BtnAddLine.Size = New System.Drawing.Size(82, 35)
+        Me.BtnAddLine.TabIndex = 7
+        Me.BtnAddLine.Text = "Add"
         '
         'BtnImport2
         '
@@ -808,36 +843,23 @@ Partial Class FormSalesReturnOrderOLDet
         Me.BtnImport.Text = "Import Excel Per Size"
         Me.BtnImport.Visible = False
         '
-        'BtnDel
-        '
-        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDel.ImageIndex = 1
-        Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(674, 0)
-        Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(80, 35)
-        Me.BtnDel.TabIndex = 4
-        Me.BtnDel.Text = "Delete"
-        '
         'BtnAdd
         '
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.ImageIndex = 0
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
         Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(754, 0)
+        Me.BtnAdd.Location = New System.Drawing.Point(744, 0)
         Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(78, 35)
+        Me.BtnAdd.Size = New System.Drawing.Size(88, 35)
         Me.BtnAdd.TabIndex = 2
-        Me.BtnAdd.Text = "Add"
+        Me.BtnAdd.Text = "Browse"
         '
-        'GridColumnQtyReturn
+        'GridColumnErr
         '
-        Me.GridColumnQtyReturn.Caption = "Return"
-        Me.GridColumnQtyReturn.DisplayFormat.FormatString = "N0"
-        Me.GridColumnQtyReturn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQtyReturn.FieldName = "sales_return_det_qty_view_completed"
-        Me.GridColumnQtyReturn.Name = "GridColumnQtyReturn"
-        Me.GridColumnQtyReturn.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_return_det_qty_view_completed", "{0:N0}")})
+        Me.GridColumnErr.Caption = "Error"
+        Me.GridColumnErr.FieldName = "error_status"
+        Me.GridColumnErr.Name = "GridColumnErr"
+        Me.GridColumnErr.OptionsColumn.ShowInCustomizationForm = False
         '
         'FormSalesReturnOrderOLDet
         '
@@ -848,6 +870,7 @@ Partial Class FormSalesReturnOrderOLDet
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupGeneralHeader)
+        Me.KeyPreview = True
         Me.MinimizeBox = False
         Me.Name = "FormSalesReturnOrderOLDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -960,4 +983,6 @@ Partial Class FormSalesReturnOrderOLDet
     Friend WithEvents BtnBrowseWH As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnBrowseStore As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnQtyReturn As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnAddLine As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnErr As DevExpress.XtraGrid.Columns.GridColumn
 End Class
