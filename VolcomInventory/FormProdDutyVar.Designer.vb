@@ -90,6 +90,8 @@ Partial Class FormProdDutyVar
         Me.TESalesActual = New DevExpress.XtraEditors.TextEdit()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.TEFreightUSD = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TESalesAmount = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEPenalty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,6 +127,7 @@ Partial Class FormProdDutyVar
         CType(Me.TELSNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TESalesActual.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEFreightUSD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TESalesAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -139,7 +142,7 @@ Partial Class FormProdDutyVar
         Me.PanelControl1.Controls.Add(Me.CEPayCreated)
         Me.PanelControl1.Controls.Add(Me.Label14)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 377)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 403)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(572, 38)
         Me.PanelControl1.TabIndex = 0
@@ -777,11 +780,35 @@ Partial Class FormProdDutyVar
         Me.TEFreightUSD.Size = New System.Drawing.Size(177, 20)
         Me.TEFreightUSD.TabIndex = 218
         '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(14, 378)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(137, 13)
+        Me.LabelControl4.TabIndex = 220
+        Me.LabelControl4.Text = "Sales Amount After Discount"
+        '
+        'TESalesAmount
+        '
+        Me.TESalesAmount.Location = New System.Drawing.Point(162, 375)
+        Me.TESalesAmount.Name = "TESalesAmount"
+        Me.TESalesAmount.Properties.Appearance.Options.UseTextOptions = True
+        Me.TESalesAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TESalesAmount.Properties.EditValueChangedDelay = 1
+        Me.TESalesAmount.Properties.Mask.EditMask = "N0"
+        Me.TESalesAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TESalesAmount.Properties.Mask.SaveLiteral = False
+        Me.TESalesAmount.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TESalesAmount.Size = New System.Drawing.Size(398, 20)
+        Me.TESalesAmount.TabIndex = 219
+        '
         'FormProdDutyVar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(572, 415)
+        Me.ClientSize = New System.Drawing.Size(572, 441)
+        Me.Controls.Add(Me.LabelControl4)
+        Me.Controls.Add(Me.TESalesAmount)
         Me.Controls.Add(Me.TEFreightUSD)
         Me.Controls.Add(Me.Label29)
         Me.Controls.Add(Me.LabelControl3)
@@ -886,6 +913,7 @@ Partial Class FormProdDutyVar
         CType(Me.TELSNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TESalesActual.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEFreightUSD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TESalesAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -962,4 +990,6 @@ Partial Class FormProdDutyVar
     Friend WithEvents Label31 As Label
     Friend WithEvents TEPenalty As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label30 As Label
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TESalesAmount As DevExpress.XtraEditors.TextEdit
 End Class

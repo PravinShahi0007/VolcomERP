@@ -99,4 +99,11 @@
     Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
         print_raw(GCProd, "Royalty")
     End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Cursor = Cursors.WaitCursor
+        FormImportExcel.id_pop_up = "32"
+        FormImportExcel.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
