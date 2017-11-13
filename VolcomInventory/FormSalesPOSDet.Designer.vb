@@ -124,6 +124,7 @@ Partial Class FormSalesPOSDet
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnListProduct = New DevExpress.XtraEditors.SimpleButton()
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -660,6 +661,7 @@ Partial Class FormSalesPOSDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnDraftJournal)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.SimpleButton1)
@@ -1392,6 +1394,19 @@ Partial Class FormSalesPOSDet
         '
         Me.EPForm.ContainerControl = Me
         '
+        'BtnDraftJournal
+        '
+        Me.BtnDraftJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDraftJournal.Image = CType(resources.GetObject("BtnDraftJournal.Image"), System.Drawing.Image)
+        Me.BtnDraftJournal.ImageIndex = 13
+        Me.BtnDraftJournal.ImageList = Me.LargeImageCollection
+        Me.BtnDraftJournal.Location = New System.Drawing.Point(515, 2)
+        Me.BtnDraftJournal.Name = "BtnDraftJournal"
+        Me.BtnDraftJournal.Size = New System.Drawing.Size(109, 34)
+        Me.BtnDraftJournal.TabIndex = 14
+        Me.BtnDraftJournal.TabStop = False
+        Me.BtnDraftJournal.Text = "Draft Journal"
+        '
         'FormSalesPOSDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1578,4 +1593,5 @@ Partial Class FormSalesPOSDet
     Friend WithEvents GridColumnOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDelDet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelCN As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnDraftJournal As DevExpress.XtraEditors.SimpleButton
 End Class
