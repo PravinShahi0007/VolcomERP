@@ -10,6 +10,9 @@
         ElseIf id_pop_up = "1" Then
             gv = FormSalesReturnOrderDet.GVItemList
             column_qty_name = "sales_return_order_det_qty"
+        ElseIf id_pop_up = "2" Then
+            gv = FormSalesReturnOrderOLDet.GVItemList
+            column_qty_name = "sales_return_order_det_qty"
         End If
         TxtCode.Text = gv.GetFocusedRowCellValue("code").ToString
         TxtDesign.Text = gv.GetFocusedRowCellValue("name").ToString
