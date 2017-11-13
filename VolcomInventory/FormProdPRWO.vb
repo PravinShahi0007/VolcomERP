@@ -150,8 +150,8 @@
         query += query_where & " "
         query += "ORDER BY z.id_pr_prod_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCMatPR.DataSource = data
-        GVMatPR.BestFitColumns()
+        GCPRPO.DataSource = data
+        GVPRPO.BestFitColumns()
 
         check_but()
     End Sub

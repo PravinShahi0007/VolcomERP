@@ -722,7 +722,7 @@ Partial Class FormProdPRWO
         Me.XTPListCourier.Controls.Add(Me.GCPRPO)
         Me.XTPListCourier.Name = "XTPListCourier"
         Me.XTPListCourier.Size = New System.Drawing.Size(885, 329)
-        Me.XTPListCourier.Text = "List Payment Requisition Courier"
+        Me.XTPListCourier.Text = "List Payment Requisition (FGPO)"
         '
         'GCPRPO
         '
@@ -776,7 +776,7 @@ Partial Class FormProdPRWO
         Me.GridColumn22.FieldName = "pr_prod_order_date"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 7
+        Me.GridColumn22.VisibleIndex = 5
         Me.GridColumn22.Width = 100
         '
         'GridColumn23
@@ -787,13 +787,13 @@ Partial Class FormProdPRWO
         Me.GridColumn23.FieldName = "pr_prod_order_due_date"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 8
+        Me.GridColumn23.VisibleIndex = 6
         Me.GridColumn23.Width = 103
         '
         'GridColumn24
         '
-        Me.GridColumn24.Caption = "Work Order Number"
-        Me.GridColumn24.FieldName = "prod_order_wo_number"
+        Me.GridColumn24.Caption = "FG PO Number"
+        Me.GridColumn24.FieldName = "prod_order_number"
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Visible = True
         Me.GridColumn24.VisibleIndex = 2
@@ -812,7 +812,7 @@ Partial Class FormProdPRWO
         Me.GridColumn26.FieldName = "report_status"
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 9
+        Me.GridColumn26.VisibleIndex = 7
         '
         'GridColumn27
         '
@@ -848,7 +848,7 @@ Partial Class FormProdPRWO
         Me.GridColumn35.FieldName = "last_mark"
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 10
+        Me.GridColumn35.VisibleIndex = 8
         '
         'PanelControl1
         '
