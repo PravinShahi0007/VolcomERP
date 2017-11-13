@@ -58,6 +58,42 @@ Partial Class FormViewProduction
         Me.MEBOMNote = New DevExpress.XtraEditors.MemoEdit()
         Me.TEUnitCost = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPOverhead = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCWO = New DevExpress.XtraGrid.GridControl()
+        Me.GVWO = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIDESentDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIVat = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICECurrency = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RITEWOKurs = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIWOPrice = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemProgressBar2 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RCIMainVendorWO = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GroupGeneralFooter = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
         Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
@@ -98,42 +134,7 @@ Partial Class FormViewProduction
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.XTPOverhead = New DevExpress.XtraTab.XtraTabPage()
-        Me.GCWO = New DevExpress.XtraGrid.GridControl()
-        Me.GVWO = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RIDESentDate = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RIVat = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICECurrency = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
-        Me.GridColumn37 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RITEWOKurs = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RIWOPrice = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
-        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepositoryItemProgressBar2 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
-        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RCIMainVendorWO = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GConListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GConListPurchase.SuspendLayout()
         CType(Me.XTCDetailPO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -148,6 +149,17 @@ Partial Class FormViewProduction
         Me.PanelControl1.SuspendLayout()
         CType(Me.MEBOMNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUnitCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPOverhead.SuspendLayout()
+        CType(Me.GCWO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVWO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIDESentDate, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIDESentDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIVat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICECurrency, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEWOKurs, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIWOPrice, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RCIMainVendorWO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralFooter.SuspendLayout()
         CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,17 +182,6 @@ Partial Class FormViewProduction
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPOverhead.SuspendLayout()
-        CType(Me.GCWO, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVWO, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RIDESentDate, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RIDESentDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RIVat, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RICECurrency, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RITEWOKurs, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RIWOPrice, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RCIMainVendorWO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GConListPurchase
@@ -659,6 +660,376 @@ Partial Class FormViewProduction
         Me.LabelControl11.TabIndex = 151
         Me.LabelControl11.Text = "Unit Cost"
         '
+        'XTPOverhead
+        '
+        Me.XTPOverhead.Controls.Add(Me.GCWO)
+        Me.XTPOverhead.Name = "XTPOverhead"
+        Me.XTPOverhead.Size = New System.Drawing.Size(949, 356)
+        Me.XTPOverhead.Text = "Overhead"
+        '
+        'GCWO
+        '
+        Me.GCWO.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCWO.Location = New System.Drawing.Point(0, 0)
+        Me.GCWO.MainView = Me.GVWO
+        Me.GCWO.Name = "GCWO"
+        Me.GCWO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar2, Me.RCIMainVendorWO, Me.RICECurrency, Me.RIVat, Me.RITEWOKurs, Me.RIWOPrice, Me.RIDESentDate})
+        Me.GCWO.Size = New System.Drawing.Size(949, 356)
+        Me.GCWO.TabIndex = 9
+        Me.GCWO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWO})
+        '
+        'GVWO
+        '
+        Me.GVWO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn13, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn3, Me.GridColumn9, Me.GridColumn6, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn20, Me.GridColumn33, Me.GridColumn37, Me.GridColumn32, Me.GridColumn31, Me.GridColumn30, Me.GridColumn39, Me.GridColumn38, Me.GridColumn15, Me.GridColumn21, Me.GridColumn40, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
+        Me.GVWO.GridControl = Me.GCWO
+        Me.GVWO.Name = "GVWO"
+        Me.GVWO.OptionsView.ColumnAutoWidth = False
+        Me.GVWO.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "ID WO"
+        Me.GridColumn5.FieldName = "id_prod_order_wo"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Overhead"
+        Me.GridColumn7.FieldName = "overhead"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.Caption = "To"
+        Me.GridColumn8.FieldName = "comp_name_to"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 2
+        Me.GridColumn8.Width = 107
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Payment"
+        Me.GridColumn13.FieldName = "payment"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.OptionsColumn.AllowEdit = False
+        Me.GridColumn13.Width = 80
+        '
+        'GridColumn16
+        '
+        Me.GridColumn16.Caption = "ID Status"
+        Me.GridColumn16.FieldName = "id_report_status"
+        Me.GridColumn16.Name = "GridColumn16"
+        Me.GridColumn16.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "WO Type"
+        Me.GridColumn17.FieldName = "id_ovh_price"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.OptionsColumn.AllowEdit = False
+        Me.GridColumn17.Width = 80
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Gross Total"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "TOP Lead Time (days)"
+        Me.GridColumn9.FieldName = "prod_order_wo_top"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 6
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Lead Time (days)"
+        Me.GridColumn6.FieldName = "prod_order_wo_lead_time"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "Mat Sent Date"
+        Me.GridColumn10.ColumnEdit = Me.RIDESentDate
+        Me.GridColumn10.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn10.FieldName = "prod_order_wo_del_date"
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.OptionsColumn.AllowEdit = False
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        '
+        'RIDESentDate
+        '
+        Me.RIDESentDate.AutoHeight = False
+        Me.RIDESentDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIDESentDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIDESentDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.RIDESentDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.RIDESentDate.Name = "RIDESentDate"
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Est Rec Date"
+        Me.GridColumn11.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn11.FieldName = "prod_order_wo_lead_time_date"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.OptionsColumn.AllowEdit = False
+        Me.GridColumn11.UnboundExpression = "AddDays([prod_order_wo_del_date], [prod_order_wo_lead_time])"
+        Me.GridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 5
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Due Date"
+        Me.GridColumn12.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn12.FieldName = "prod_order_wo_top_date"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.OptionsColumn.AllowEdit = False
+        Me.GridColumn12.UnboundExpression = "AddDays([prod_order_wo_del_date], [prod_order_wo_lead_time] + [prod_order_wo_top]" &
+    ")"
+        Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 8
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "VAT (%)"
+        Me.GridColumn20.ColumnEdit = Me.RIVat
+        Me.GridColumn20.DisplayFormat.FormatString = "N2"
+        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn20.FieldName = "prod_order_wo_vat"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.OptionsColumn.AllowEdit = False
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 11
+        '
+        'RIVat
+        '
+        Me.RIVat.AutoHeight = False
+        Me.RIVat.Mask.EditMask = "n2"
+        Me.RIVat.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RIVat.Name = "RIVat"
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Currency"
+        Me.GridColumn33.ColumnEdit = Me.RICECurrency
+        Me.GridColumn33.FieldName = "id_currency"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.OptionsColumn.AllowEdit = False
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 9
+        '
+        'RICECurrency
+        '
+        Me.RICECurrency.AutoHeight = False
+        Me.RICECurrency.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RICECurrency.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_currency", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("currency", "Currency")})
+        Me.RICECurrency.Name = "RICECurrency"
+        '
+        'GridColumn37
+        '
+        Me.GridColumn37.Caption = "Qty"
+        Me.GridColumn37.FieldName = "qty"
+        Me.GridColumn37.Name = "GridColumn37"
+        Me.GridColumn37.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Currency"
+        Me.GridColumn32.FieldName = "currency"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "Kurs"
+        Me.GridColumn31.ColumnEdit = Me.RITEWOKurs
+        Me.GridColumn31.DisplayFormat.FormatString = "N2"
+        Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn31.FieldName = "prod_order_wo_kurs"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.OptionsColumn.AllowEdit = False
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 14
+        '
+        'RITEWOKurs
+        '
+        Me.RITEWOKurs.AutoHeight = False
+        Me.RITEWOKurs.Mask.EditMask = "n2"
+        Me.RITEWOKurs.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEWOKurs.Name = "RITEWOKurs"
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Price"
+        Me.GridColumn30.ColumnEdit = Me.RIWOPrice
+        Me.GridColumn30.DisplayFormat.FormatString = "N4"
+        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn30.FieldName = "price"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.AllowEdit = False
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 10
+        '
+        'RIWOPrice
+        '
+        Me.RIWOPrice.AutoHeight = False
+        Me.RIWOPrice.Mask.EditMask = "n4"
+        Me.RIWOPrice.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RIWOPrice.Name = "RIWOPrice"
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn39.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn39.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn39.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn39.Caption = "Gross Amount"
+        Me.GridColumn39.DisplayFormat.FormatString = "N2"
+        Me.GridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn39.FieldName = "gross_amount"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.OptionsColumn.AllowEdit = False
+        Me.GridColumn39.UnboundExpression = "[price] * [qty]"
+        Me.GridColumn39.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 12
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn38.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn38.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn38.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn38.Caption = "Amount (After Tax)"
+        Me.GridColumn38.DisplayFormat.FormatString = "N2"
+        Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn38.FieldName = "amount"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.OptionsColumn.AllowEdit = False
+        Me.GridColumn38.UnboundExpression = "[price] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
+        Me.GridColumn38.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn38.Visible = True
+        Me.GridColumn38.VisibleIndex = 13
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn15.Caption = "Actual Price (After Kurs)"
+        Me.GridColumn15.DisplayFormat.FormatString = "N2"
+        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn15.FieldName = "act_price"
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.OptionsColumn.AllowEdit = False
+        Me.GridColumn15.UnboundExpression = "[price] * [prod_order_wo_kurs]"
+        Me.GridColumn15.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn15.Visible = True
+        Me.GridColumn15.VisibleIndex = 15
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn21.Caption = "Actual Gross Amount"
+        Me.GridColumn21.DisplayFormat.FormatString = "N2"
+        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn21.FieldName = "act_amount"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.OptionsColumn.AllowEdit = False
+        Me.GridColumn21.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty]"
+        Me.GridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 16
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn40.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn40.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn40.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn40.Caption = "Actual Amount (After Tax)"
+        Me.GridColumn40.DisplayFormat.FormatString = "N2"
+        Me.GridColumn40.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn40.FieldName = "GridColumn40"
+        Me.GridColumn40.Name = "GridColumn40"
+        Me.GridColumn40.OptionsColumn.AllowEdit = False
+        Me.GridColumn40.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
+        Me.GridColumn40.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn40.Visible = True
+        Me.GridColumn40.VisibleIndex = 17
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "WO Type"
+        Me.GridColumn27.FieldName = "overhead"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.OptionsColumn.AllowEdit = False
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 1
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn28.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn28.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn28.Caption = "Progress"
+        Me.GridColumn28.ColumnEdit = Me.RepositoryItemProgressBar2
+        Me.GridColumn28.FieldName = "progress"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.OptionsColumn.AllowEdit = False
+        '
+        'RepositoryItemProgressBar2
+        '
+        Me.RepositoryItemProgressBar2.Appearance.BackColor = System.Drawing.Color.Lime
+        Me.RepositoryItemProgressBar2.EndColor = System.Drawing.Color.Green
+        Me.RepositoryItemProgressBar2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
+        Me.RepositoryItemProgressBar2.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.RepositoryItemProgressBar2.Name = "RepositoryItemProgressBar2"
+        Me.RepositoryItemProgressBar2.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Solid
+        Me.RepositoryItemProgressBar2.ShowTitle = True
+        Me.RepositoryItemProgressBar2.StartColor = System.Drawing.Color.Green
+        Me.RepositoryItemProgressBar2.Step = 1
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn29.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn29.Caption = "Main Vendor"
+        Me.GridColumn29.ColumnEdit = Me.RCIMainVendorWO
+        Me.GridColumn29.FieldName = "is_main_vendor"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.OptionsColumn.AllowEdit = False
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        '
+        'RCIMainVendorWO
+        '
+        Me.RCIMainVendorWO.AutoHeight = False
+        Me.RCIMainVendorWO.Name = "RCIMainVendorWO"
+        Me.RCIMainVendorWO.ValueChecked = CType(1, Byte)
+        Me.RCIMainVendorWO.ValueUnchecked = CType(2, Byte)
+        '
         'GroupGeneralFooter
         '
         Me.GroupGeneralFooter.CaptionLocation = DevExpress.Utils.Locations.Left
@@ -1054,375 +1425,13 @@ Partial Class FormViewProduction
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
         '
-        'XTPOverhead
-        '
-        Me.XTPOverhead.Controls.Add(Me.GCWO)
-        Me.XTPOverhead.Name = "XTPOverhead"
-        Me.XTPOverhead.Size = New System.Drawing.Size(949, 356)
-        Me.XTPOverhead.Text = "Overhead"
-        '
-        'GCWO
-        '
-        Me.GCWO.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCWO.Location = New System.Drawing.Point(0, 0)
-        Me.GCWO.MainView = Me.GVWO
-        Me.GCWO.Name = "GCWO"
-        Me.GCWO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar2, Me.RCIMainVendorWO, Me.RICECurrency, Me.RIVat, Me.RITEWOKurs, Me.RIWOPrice, Me.RIDESentDate})
-        Me.GCWO.Size = New System.Drawing.Size(949, 356)
-        Me.GCWO.TabIndex = 9
-        Me.GCWO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWO})
-        '
-        'GVWO
-        '
-        Me.GVWO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn13, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn9, Me.GridColumn6, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn20, Me.GridColumn33, Me.GridColumn37, Me.GridColumn32, Me.GridColumn31, Me.GridColumn30, Me.GridColumn39, Me.GridColumn38, Me.GridColumn15, Me.GridColumn21, Me.GridColumn40, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
-        Me.GVWO.GridControl = Me.GCWO
-        Me.GVWO.Name = "GVWO"
-        Me.GVWO.OptionsView.ColumnAutoWidth = False
-        Me.GVWO.OptionsView.ShowGroupPanel = False
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.Caption = "ID WO"
-        Me.GridColumn5.FieldName = "id_prod_order_wo"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.Caption = "Overhead"
-        Me.GridColumn7.FieldName = "overhead"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.Caption = "To"
-        Me.GridColumn8.FieldName = "comp_name_to"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.OptionsColumn.AllowEdit = False
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 2
-        Me.GridColumn8.Width = 107
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Payment"
-        Me.GridColumn13.FieldName = "payment"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.OptionsColumn.AllowEdit = False
-        Me.GridColumn13.Width = 80
-        '
-        'GridColumn16
-        '
-        Me.GridColumn16.Caption = "ID Status"
-        Me.GridColumn16.FieldName = "id_report_status"
-        Me.GridColumn16.Name = "GridColumn16"
-        Me.GridColumn16.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "WO Type"
-        Me.GridColumn17.FieldName = "id_ovh_price"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.OptionsColumn.AllowEdit = False
-        Me.GridColumn17.Width = 80
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Gross Total"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn9
-        '
-        Me.GridColumn9.Caption = "TOP Lead Time (days)"
-        Me.GridColumn9.FieldName = "prod_order_wo_top"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.OptionsColumn.AllowEdit = False
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 6
-        '
-        'GridColumn6
-        '
-        Me.GridColumn6.Caption = "Lead Time (days)"
-        Me.GridColumn6.FieldName = "prod_order_wo_lead_time"
-        Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.OptionsColumn.AllowEdit = False
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
-        '
-        'GridColumn10
-        '
-        Me.GridColumn10.Caption = "Mat Sent Date"
-        Me.GridColumn10.ColumnEdit = Me.RIDESentDate
-        Me.GridColumn10.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn10.FieldName = "prod_order_wo_del_date"
-        Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.OptionsColumn.AllowEdit = False
-        Me.GridColumn10.Visible = True
-        Me.GridColumn10.VisibleIndex = 3
-        '
-        'RIDESentDate
-        '
-        Me.RIDESentDate.AutoHeight = False
-        Me.RIDESentDate.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RIDESentDate.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RIDESentDate.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.RIDESentDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.RIDESentDate.Name = "RIDESentDate"
-        '
-        'GridColumn11
-        '
-        Me.GridColumn11.Caption = "Est Rec Date"
-        Me.GridColumn11.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn11.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn11.FieldName = "prod_order_wo_lead_time_date"
-        Me.GridColumn11.Name = "GridColumn11"
-        Me.GridColumn11.OptionsColumn.AllowEdit = False
-        Me.GridColumn11.UnboundExpression = "AddDays([prod_order_wo_del_date], [prod_order_wo_lead_time])"
-        Me.GridColumn11.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
-        Me.GridColumn11.Visible = True
-        Me.GridColumn11.VisibleIndex = 5
-        '
-        'GridColumn12
-        '
-        Me.GridColumn12.Caption = "Due Date"
-        Me.GridColumn12.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn12.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn12.FieldName = "prod_order_wo_top_date"
-        Me.GridColumn12.Name = "GridColumn12"
-        Me.GridColumn12.OptionsColumn.AllowEdit = False
-        Me.GridColumn12.UnboundExpression = "AddDays([prod_order_wo_del_date], [prod_order_wo_lead_time] + [prod_order_wo_top]" &
-    ")"
-        Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
-        Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 7
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "VAT (%)"
-        Me.GridColumn20.ColumnEdit = Me.RIVat
-        Me.GridColumn20.DisplayFormat.FormatString = "N2"
-        Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn20.FieldName = "prod_order_wo_vat"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.OptionsColumn.AllowEdit = False
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 10
-        '
-        'RIVat
-        '
-        Me.RIVat.AutoHeight = False
-        Me.RIVat.Mask.EditMask = "n2"
-        Me.RIVat.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RIVat.Name = "RIVat"
-        '
-        'GridColumn33
-        '
-        Me.GridColumn33.Caption = "Currency"
-        Me.GridColumn33.ColumnEdit = Me.RICECurrency
-        Me.GridColumn33.FieldName = "id_currency"
-        Me.GridColumn33.Name = "GridColumn33"
-        Me.GridColumn33.OptionsColumn.AllowEdit = False
-        Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 8
-        '
-        'RICECurrency
-        '
-        Me.RICECurrency.AutoHeight = False
-        Me.RICECurrency.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RICECurrency.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_currency", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("currency", "Currency")})
-        Me.RICECurrency.Name = "RICECurrency"
-        '
-        'GridColumn37
-        '
-        Me.GridColumn37.Caption = "Qty"
-        Me.GridColumn37.FieldName = "qty"
-        Me.GridColumn37.Name = "GridColumn37"
-        Me.GridColumn37.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn32
-        '
-        Me.GridColumn32.Caption = "Currency"
-        Me.GridColumn32.FieldName = "currency"
-        Me.GridColumn32.Name = "GridColumn32"
-        Me.GridColumn32.OptionsColumn.AllowEdit = False
-        '
-        'GridColumn31
-        '
-        Me.GridColumn31.Caption = "Kurs"
-        Me.GridColumn31.ColumnEdit = Me.RITEWOKurs
-        Me.GridColumn31.DisplayFormat.FormatString = "N2"
-        Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn31.FieldName = "prod_order_wo_kurs"
-        Me.GridColumn31.Name = "GridColumn31"
-        Me.GridColumn31.OptionsColumn.AllowEdit = False
-        Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 13
-        '
-        'RITEWOKurs
-        '
-        Me.RITEWOKurs.AutoHeight = False
-        Me.RITEWOKurs.Mask.EditMask = "n2"
-        Me.RITEWOKurs.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RITEWOKurs.Name = "RITEWOKurs"
-        '
-        'GridColumn30
-        '
-        Me.GridColumn30.Caption = "Price"
-        Me.GridColumn30.ColumnEdit = Me.RIWOPrice
-        Me.GridColumn30.DisplayFormat.FormatString = "N4"
-        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn30.FieldName = "price"
-        Me.GridColumn30.Name = "GridColumn30"
-        Me.GridColumn30.OptionsColumn.AllowEdit = False
-        Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 9
-        '
-        'RIWOPrice
-        '
-        Me.RIWOPrice.AutoHeight = False
-        Me.RIWOPrice.Mask.EditMask = "n4"
-        Me.RIWOPrice.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.RIWOPrice.Name = "RIWOPrice"
-        '
-        'GridColumn39
-        '
-        Me.GridColumn39.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn39.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn39.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn39.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn39.Caption = "Gross Amount"
-        Me.GridColumn39.DisplayFormat.FormatString = "N2"
-        Me.GridColumn39.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn39.FieldName = "gross_amount"
-        Me.GridColumn39.Name = "GridColumn39"
-        Me.GridColumn39.OptionsColumn.AllowEdit = False
-        Me.GridColumn39.UnboundExpression = "[price] * [qty]"
-        Me.GridColumn39.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 11
-        '
-        'GridColumn38
-        '
-        Me.GridColumn38.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn38.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn38.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn38.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn38.Caption = "Amount (After Tax)"
-        Me.GridColumn38.DisplayFormat.FormatString = "N2"
-        Me.GridColumn38.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn38.FieldName = "amount"
-        Me.GridColumn38.Name = "GridColumn38"
-        Me.GridColumn38.OptionsColumn.AllowEdit = False
-        Me.GridColumn38.UnboundExpression = "[price] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
-        Me.GridColumn38.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 12
-        '
-        'GridColumn15
-        '
-        Me.GridColumn15.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn15.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn15.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn15.Caption = "Actual Price (After Kurs)"
-        Me.GridColumn15.DisplayFormat.FormatString = "N2"
-        Me.GridColumn15.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn15.FieldName = "act_price"
-        Me.GridColumn15.Name = "GridColumn15"
-        Me.GridColumn15.OptionsColumn.AllowEdit = False
-        Me.GridColumn15.UnboundExpression = "[price] * [prod_order_wo_kurs]"
-        Me.GridColumn15.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 14
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn21.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn21.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn21.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn21.Caption = "Actual Gross Amount"
-        Me.GridColumn21.DisplayFormat.FormatString = "N2"
-        Me.GridColumn21.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn21.FieldName = "act_amount"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.OptionsColumn.AllowEdit = False
-        Me.GridColumn21.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty]"
-        Me.GridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 15
-        '
-        'GridColumn40
-        '
-        Me.GridColumn40.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn40.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn40.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn40.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn40.Caption = "Actual Amount (After Tax)"
-        Me.GridColumn40.DisplayFormat.FormatString = "N2"
-        Me.GridColumn40.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn40.FieldName = "GridColumn40"
-        Me.GridColumn40.Name = "GridColumn40"
-        Me.GridColumn40.OptionsColumn.AllowEdit = False
-        Me.GridColumn40.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
-        Me.GridColumn40.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 16
-        '
-        'GridColumn27
-        '
-        Me.GridColumn27.Caption = "WO Type"
-        Me.GridColumn27.FieldName = "overhead"
-        Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.OptionsColumn.AllowEdit = False
-        Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 1
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn28.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn28.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn28.Caption = "Progress"
-        Me.GridColumn28.ColumnEdit = Me.RepositoryItemProgressBar2
-        Me.GridColumn28.FieldName = "progress"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.OptionsColumn.AllowEdit = False
-        '
-        'RepositoryItemProgressBar2
-        '
-        Me.RepositoryItemProgressBar2.Appearance.BackColor = System.Drawing.Color.Lime
-        Me.RepositoryItemProgressBar2.EndColor = System.Drawing.Color.Green
-        Me.RepositoryItemProgressBar2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat
-        Me.RepositoryItemProgressBar2.LookAndFeel.UseDefaultLookAndFeel = False
-        Me.RepositoryItemProgressBar2.Name = "RepositoryItemProgressBar2"
-        Me.RepositoryItemProgressBar2.ProgressViewStyle = DevExpress.XtraEditors.Controls.ProgressViewStyle.Solid
-        Me.RepositoryItemProgressBar2.ShowTitle = True
-        Me.RepositoryItemProgressBar2.StartColor = System.Drawing.Color.Green
-        Me.RepositoryItemProgressBar2.Step = 1
-        '
-        'GridColumn29
-        '
-        Me.GridColumn29.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn29.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn29.Caption = "Main Vendor"
-        Me.GridColumn29.ColumnEdit = Me.RCIMainVendorWO
-        Me.GridColumn29.FieldName = "is_main_vendor"
-        Me.GridColumn29.Name = "GridColumn29"
-        Me.GridColumn29.OptionsColumn.AllowEdit = False
-        Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 0
-        '
-        'RCIMainVendorWO
-        '
-        Me.RCIMainVendorWO.AutoHeight = False
-        Me.RCIMainVendorWO.Name = "RCIMainVendorWO"
-        Me.RCIMainVendorWO.ValueChecked = CType(1, Byte)
-        Me.RCIMainVendorWO.ValueUnchecked = CType(2, Byte)
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Payment Type"
+        Me.GridColumn3.FieldName = "payment"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 7
         '
         'FormViewProduction
         '
@@ -1455,6 +1464,17 @@ Partial Class FormViewProduction
         Me.PanelControl1.PerformLayout()
         CType(Me.MEBOMNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUnitCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPOverhead.ResumeLayout(False)
+        CType(Me.GCWO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVWO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIDESentDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIDESentDate, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIVat, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICECurrency, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEWOKurs, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIWOPrice, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RCIMainVendorWO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupGeneralFooter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralFooter.ResumeLayout(False)
         Me.GroupGeneralFooter.PerformLayout()
@@ -1479,17 +1499,6 @@ Partial Class FormViewProduction
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPOverhead.ResumeLayout(False)
-        CType(Me.GCWO, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVWO, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RIDESentDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RIDESentDate, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RIVat, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RICECurrency, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RITEWOKurs, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RIWOPrice, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RCIMainVendorWO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1608,4 +1617,5 @@ Partial Class FormViewProduction
     Friend WithEvents RepositoryItemProgressBar2 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RCIMainVendorWO As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
