@@ -1217,6 +1217,10 @@ Public Class FormMain
                 FormProdPRWODet.id_pr = "-1"
                 FormProdPRWODet.id_prod_order_wo = FormProdPRWO.GVProdWO.GetFocusedRowCellValue("id_prod_order_wo").ToString
                 FormProdPRWODet.ShowDialog()
+            ElseIf FormProdPRWO.xtctabpr.SelectedTabPageIndex = 2 Then
+                FormProdPRWODet.id_pr = "-1"
+                FormProdPRWODet.is_po_pr = "1"
+                FormProdPRWODet.ShowDialog()
             End If
         ElseIf formName = "FormFGStockOpnameStore" Then
             'STORE STOCK OPNAME
@@ -2074,10 +2078,16 @@ Public Class FormMain
                 FormSalesReturnQCDet.id_sales_return_qc = FormSalesReturnQC.GVSalesReturnQC.GetFocusedRowCellValue("id_sales_return_qc").ToString
                 FormSalesReturnQCDet.ShowDialog()
             ElseIf formName = "FormProdPRWO" Then
-                FormProdPRWODet.id_pr = FormProdPRWO.GVMatPR.GetFocusedRowCellValue("id_pr_prod_order").ToString
-                'FormProdPRWODet.id_prod_order = FormProdPRWO.GVMatPR.GetFocusedRowCellValue("id_prod_order")
-                'FormProdPRWODet.id_prod_order_wo = FormProdPRWO.GVMatPR.GetFocusedRowCellValue("id_prod_order_wo")
-                FormProdPRWODet.ShowDialog()
+                If FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 0 Then
+                    FormProdPRWODet.id_pr = FormProdPRWO.GVMatPR.GetFocusedRowCellValue("id_pr_prod_order").ToString
+                    'FormProdPRWODet.id_prod_order = FormProdPRWO.GVMatPR.GetFocusedRowCellValue("id_prod_order")
+                    'FormProdPRWODet.id_prod_order_wo = FormProdPRWO.GVMatPR.GetFocusedRowCellValue("id_prod_order_wo")
+                    FormProdPRWODet.ShowDialog()
+                ElseIf FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 2 Then
+                    FormProdPRWODet.id_pr = FormProdPRWO.GVPRPO.GetFocusedRowCellValue("id_pr_prod_order").ToString
+                    FormProdPRWODet.is_po_pr = "1"
+                    FormProdPRWODet.ShowDialog()
+                End If
             ElseIf formName = "FormSalesInvoice" Then
                 'SALES INVOICE
                 FormSalesInvoiceDet.action = "upd"
@@ -4266,7 +4276,27 @@ Public Class FormMain
                 Else
                     stopCustom("This data already processed.")
                 End If
-            End If
+            ElseIf FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 2 Then
+                If check_edit_report_status(FormProdPRWO.GVPRPO.GetFocusedRowCellValue("id_report_status"), "50", FormProdPRWO.GVPRPO.GetFocusedRowCellDisplayText("id_pr_prod_order")) Then
+                    confirm = XtraMessageBox.Show("Are you sure want to delete this payment request?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Try
+                            Dim id_pr_prod_order As String = FormProdPRWO.GVPRPO.GetFocusedRowCellDisplayText("id_pr_prod_order")
+                            query = String.Format("DELETE FROM tb_pr_prod_order WHERE id_pr_prod_order ='{0}'", id_pr_prod_order)
+                            execute_non_query(query, True, "", "", "", "")
+
+                            'del mark
+                            delete_all_mark_related("50", id_pr_prod_order)
+
+                            FormProdPRWO.view_pr_courier()
+                        Catch ex As Exception
+                            errorDelete()
+                        End Try
+                    End If
+                Else
+                    stopCustom("This data already processed.")
+                    End If
+                End If
         ElseIf formName = "FormSalesInvoice" Then
             'SALES INVOICE
             If check_edit_report_status(FormSalesInvoice.GVSalesInvoice.GetFocusedRowCellValue("id_report_status"), "51", FormSalesInvoice.GVSalesInvoice.GetFocusedRowCellValue("id_sales_invoice")) Then

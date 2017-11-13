@@ -18,7 +18,7 @@
         viewVendor()
 
         'view_pr()
-        view_wo()
+        'view_wo()
     End Sub
     Sub viewDesign()
         Dim query As String = ""
@@ -58,7 +58,7 @@
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
     Sub view_pr()
-        Dim query_where As String = " WHERE 1=1 "
+        Dim query_where As String = " WHERE ISNULL(z.id_prod_order) "
 
         If Not SLEDesignStockStore.EditValue.ToString = "0" Then
             query_where += " AND desg.id_design='" & SLEDesignStockStore.EditValue.ToString & "'"
@@ -108,7 +108,53 @@
 
         check_but()
     End Sub
+    Sub view_pr_courier()
+        Dim query_where As String = " WHERE NOT ISNULL(z.id_prod_order) "
 
+        If Not SLEDesignStockStore.EditValue.ToString = "0" Then
+            query_where += " AND desg.id_design='" & SLEDesignStockStore.EditValue.ToString & "'"
+        End If
+
+        If Not SLESeason.EditValue.ToString = "-1" Then
+            query_where += " AND e.id_season='" & SLESeason.EditValue.ToString & "'"
+        End If
+
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            query_where += " AND d.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+
+        Dim query As String = "SELECT desg.design_code,desg.design_display_name,po.id_prod_order,po.prod_order_number,rec.id_prod_order_rec, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,rec.delivery_order_date,rec.delivery_order_number,rec.prod_order_rec_date, d.comp_name AS comp_to, "
+        query += "z.pr_prod_order_due_date,maxd.employee_name as last_mark "
+        query += "FROM tb_pr_prod_order z "
+        query += "INNER JOIN tb_prod_order po ON po.id_prod_order = z.id_prod_order "
+        query += "INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design "
+        query += "INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design "
+        query += "INNER JOIN tb_season_delivery e On desg.id_delivery=e.id_delivery "
+        query += "LEFT JOIN tb_prod_order_rec rec ON z.id_prod_order_rec = rec.id_prod_order_rec "
+        query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=z.id_comp_contact_to "
+        query += "INNER JOIN tb_m_comp d ON d.id_comp=c.id_comp "
+        query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status=z.id_report_status "
+        query += "LEFT JOIN
+                 (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
+                    FROM tb_report_mark mark
+                    INNER JOIN tb_m_employee emp ON emp.`id_employee`=mark.id_employee
+                    INNER JOIN 
+                    (
+	                    SELECT mark.id_report,mark.report_mark_type,MAX(report_mark_datetime) AS report_mark_datetime
+	                    FROM tb_report_mark mark
+	                    WHERE mark.id_mark='2' AND NOT ISNULL(report_mark_start_datetime) AND report_mark_type='50'
+	                    GROUP BY report_mark_type,id_report
+                    ) maxd ON maxd.id_report=mark.id_report AND maxd.report_mark_type=mark.report_mark_type AND maxd.report_mark_datetime=mark.report_mark_datetime
+                    WHERE mark.id_mark='2' AND NOT ISNULL(mark.report_mark_start_datetime) AND mark.report_mark_type='50'
+                  ) maxd ON maxd.id_report = z.id_pr_prod_order "
+        query += query_where & " "
+        query += "ORDER BY z.id_pr_prod_order DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPRPO.DataSource = data
+        GVPRPO.BestFitColumns()
+
+        check_but()
+    End Sub
     Sub check_but()
         If XTCTabPR.SelectedTabPageIndex = 0 Then 'list pr
             If GVMatPR.RowCount > 0 Then
@@ -127,6 +173,16 @@
                 bdel_active = "0"
             Else
                 bnew_active = "0"
+                bedit_active = "0"
+                bdel_active = "0"
+            End If
+        ElseIf XTCTabPR.SelectedTabPageIndex = 2 Then 'list pr courier
+            If GVPRPO.RowCount > 0 Then
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+            Else
+                bnew_active = "1"
                 bedit_active = "0"
                 bdel_active = "0"
             End If
@@ -169,6 +225,20 @@
         End If
     End Sub
     Sub view_wo()
+        Dim query_where As String = " "
+
+        If Not SLEDesignStockStore.EditValue.ToString = "0" Then
+            query_where += " AND desg.id_design='" & SLEDesignStockStore.EditValue.ToString & "'"
+        End If
+
+        If Not SLESeason.EditValue.ToString = "-1" Then
+            query_where += " AND del.id_season='" & SLESeason.EditValue.ToString & "'"
+        End If
+
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            query_where += " AND d.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+
         Dim query = "SELECT desg.design_display_name,desg.design_code,po.prod_order_number,a.id_report_status,h.report_status,a.id_prod_order_wo,a.id_ovh_price,a.id_prod_order "
         query += ",(SELECT IFNULL(MAX(prod_order_wo_prog_percent),0) FROM tb_prod_order_wo_prog WHERE id_prod_order_wo = a.id_prod_order_wo) as progress,"
         query += "g.payment,COUNT(pr.id_pr_prod_order) AS qty_pr, "
@@ -183,6 +253,7 @@
         query += "INNER JOIN tb_prod_order po ON po.id_prod_order=a.id_prod_order "
         query += "INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design=po.id_prod_demand_design "
         query += "INNER JOIN tb_m_design desg ON desg.id_design=pdd.id_design "
+        query += "INNER JOIN tb_season_delivery del On desg.id_delivery=del.id_delivery "
         query += "INNER JOIN tb_m_comp_contact c ON b.id_comp_contact = c.id_comp_contact "
         query += "INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp "
         query += "INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_ship_to = e.id_comp_contact "
@@ -191,7 +262,7 @@
         query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status "
         query += "INNER JOIN tb_m_ovh j ON b.id_ovh = j.id_ovh "
         query += "INNER JOIN tb_pr_prod_order pr ON pr.id_prod_order_wo=a.id_prod_order_wo "
-        query += "WHERE a.id_report_status='3' OR a.id_report_status='4' OR a.id_report_status='6' "
+        query += "WHERE (a.id_report_status='3' OR a.id_report_status='4' OR a.id_report_status='6') " & query_where
         query += "GROUP BY pr.id_prod_order_wo "
 
         GridColumnPONumber.Visible = True
@@ -257,6 +328,12 @@
     End Sub
 
     Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
-        view_pr()
+        If XTCTabPR.SelectedTabPageIndex = 0 Then
+            view_pr()
+        ElseIf XTCTabPR.SelectedTabPageIndex = 1 Then
+            view_wo()
+        Else
+            view_pr_courier()
+        End If
     End Sub
 End Class

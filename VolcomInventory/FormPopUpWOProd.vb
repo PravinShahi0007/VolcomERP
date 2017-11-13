@@ -84,7 +84,7 @@
             ElseIf id_popup = "2" Then
                 FormProdPRWODet.id_prod_order_wo = GVProdWO.GetFocusedRowCellValue("id_prod_order_wo").ToString
                 FormProdPRWODet.id_prod_order = GVProdWO.GetFocusedRowCellValue("id_prod_order").ToString
-                FormProdPRWODet.TEWONumber.Text = GVProdWO.GetFocusedRowCellValue("prod_order_wo_number").ToString
+                FormProdPRWODet.TEWOPONumber.Text = GVProdWO.GetFocusedRowCellValue("prod_order_wo_number").ToString
                 FormProdPRWODet.id_comp_contact_pay_to = GVProdWO.GetFocusedRowCellValue("id_comp_contact").ToString
                 FormProdPRWODet.TECompTo.Text = get_company_x(get_id_company(GVProdWO.GetFocusedRowCellValue("id_comp_contact").ToString), "1")
                 FormProdPRWODet.MECompAddress.Text = get_company_x(get_id_company(GVProdWO.GetFocusedRowCellValue("id_comp_contact").ToString), "3")
