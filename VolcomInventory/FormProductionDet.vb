@@ -207,6 +207,7 @@
     End Sub
 
     Private Sub BSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BSave.Click
+        SplashScreenManager1.ShowWaitForm()
         Dim query As String = ""
 
         If id_prod_order = "-1" Then
@@ -225,7 +226,7 @@
                 If GVListProduct.RowCount > 0 Then
                     For i As Integer = 0 To GVListProduct.RowCount - 1
                         If Not GVListProduct.GetRowCellValue(i, "id_prod_demand_product").ToString = "" Then
-                            'dp
+                            'det
                             query = String.Format("INSERT INTO tb_prod_order_det(id_prod_order,id_prod_demand_product,prod_order_qty,prod_order_det_note) VALUES('{0}','{1}','{2}','{3}')", last_id, GVListProduct.GetRowCellValue(i, "id_prod_demand_product").ToString(), GVListProduct.GetRowCellValue(i, "prod_order_qty").ToString(), GVListProduct.GetRowCellValue(i, "note").ToString())
                             execute_non_query(query, True, "", "", "", "")
                         End If
@@ -235,6 +236,9 @@
                 insert_who_prepared("22", last_id, id_user)
                 'end insert who prepared
                 increase_inc_prod("1")
+                '
+                add_wo(last_id)
+                '
                 FormProduction.XTCTabProduction.SelectedTabPageIndex = 0
                 FormProduction.view_production_order()
                 FormProduction.GVProd.FocusedRowHandle = find_row(FormProduction.GVProd, "id_prod_order", last_id)
@@ -263,7 +267,48 @@
                 Close()
             End If
         End If
-        'universal save bom
+        SplashScreenManager1.CloseWaitForm()
+    End Sub
+
+    Sub add_wo(ByVal id_po As String)
+        Dim query As String = "SELECT bomd.id_ovh_price,ovhp.id_comp_contact,bomd.kurs,ovhp.id_currency,bomd.is_ovh_main,SUM(bomd.bom_price*pod.prod_order_qty) AS amount FROM tb_prod_order_det pod
+                                INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
+                                INNER JOIN tb_bom bom ON bom.`id_product`=pdp.`id_product` AND bom.is_default='1'
+                                INNER JOIN tb_bom_det bomd ON bomd.`id_bom`=bom.`id_bom` 
+                                INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=bomd.`id_ovh_price`
+                                WHERE pod.`id_prod_order`='" & id_po & "' AND bomd.`id_component_category`='2'
+                                GROUP BY bomd.id_ovh_price"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        For i As Integer = 0 To data.Rows.Count - 1
+            Dim id_ovh_price, wo_number, id_comp_ship_to, payment_type, lead_time, Top, notex, vat, del_date, kurs, id_currency, is_main_vendor, amount As String
+            id_ovh_price = data.Rows(i)("id_ovh_price").ToString
+            wo_number = header_number_prod(2)
+            id_comp_ship_to = data.Rows(i)("id_comp_contact").ToString
+            payment_type = "1"
+            lead_time = "0"
+            Top = "0"
+            notex = ""
+            vat = "0"
+            del_date = Date.Parse(Now().ToString).ToString("yyyy-MM-dd")
+            kurs = data.Rows(i)("kurs").ToString
+            id_currency = data.Rows(i)("id_currency").ToString
+            is_main_vendor = data.Rows(i)("is_ovh_main").ToString
+            amount = decimalSQL(data.Rows(i)("amount").ToString)
+            '
+            Dim query_ins_wo As String = String.Format("INSERT INTO tb_prod_order_wo(id_prod_order,id_ovh_price,prod_order_wo_number,id_comp_contact_ship_to,id_payment,prod_order_wo_date,prod_order_wo_lead_time,prod_order_wo_top,prod_order_wo_note,prod_order_wo_vat,prod_order_wo_del_date,prod_order_wo_kurs,id_currency,is_main_vendor) VALUES('{0}','{1}','{2}','{3}','{4}',DATE(NOW()),'{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}'); SELECT LAST_INSERT_ID()", id_po, id_ovh_price, wo_number, id_comp_ship_to, payment_type, lead_time, Top, notex, vat, del_date, decimalSQL(kurs.ToString), id_currency, is_main_vendor)
+            Dim id_wo_new As String = execute_query(query_ins_wo, 0, True, "", "", "", "")
+            increase_inc_prod("2")
+            'detail wo
+            Dim query_is_wod As String = "INSERT INTO tb_prod_order_wo_det(`id_prod_order_wo`,`id_prod_order_det`,`prod_order_wo_det_price`,`prod_order_wo_det_qty`,`prod_order_wo_det_note`)
+                                        SELECT '" & id_wo_new & "' AS id_prod_order_wo,pod.`id_prod_order_det`,bomd.`bom_price` AS price,pod.`prod_order_qty`,'' AS note FROM tb_prod_order_det pod
+                                        INNER JOIN tb_prod_demand_product pdp ON pdp.`id_prod_demand_product`=pod.`id_prod_demand_product`
+                                        INNER JOIN tb_bom bom ON bom.`id_product`=pdp.`id_product` AND bom.is_default='1'
+                                        INNER JOIN tb_bom_det bomd ON bomd.`id_bom`=bom.`id_bom` 
+                                        INNER JOIN tb_m_ovh_price ovhp ON ovhp.id_ovh_price=bomd.`id_ovh_price`
+                                        WHERE pod.`id_prod_order`='" & id_po & "' AND bomd.`id_component_category`='2' AND bomd.`id_ovh_price`='" & id_ovh_price & "'
+                                        GROUP BY bomd.id_ovh_price,pdp.`id_product`"
+            execute_non_query(query_is_wod, True, "", "", "", "")
+        Next
     End Sub
 
     Sub save_id_bom()
@@ -347,7 +392,7 @@
         GCProdWO.DataSource = data
         show_but_wo()
         'list overhead
-        Dim query_wo_list = "SELECT wo.id_report_status,h.report_status,wo.id_ovh_price,wo.id_payment,
+        Dim query_wo_list = "SELECT wo.id_prod_order_wo,wo.id_report_status,h.report_status,wo.id_ovh_price,wo.id_payment,
                             g.payment,wo.is_main_vendor, 
                             d.comp_name AS comp_name_to, 
                             f.comp_name AS comp_name_ship_to, 
@@ -359,9 +404,8 @@
                             wo.`prod_order_wo_top`,wo.prod_order_wo_vat,
                             cur.`currency`,cur.`id_currency`,
                             wo.prod_order_wo_del_date,
-                            DATE_ADD(wo.prod_order_wo_del_date,INTERVAL wo.prod_order_wo_lead_time DAY) AS prod_order_wo_lead_time_date, 
-                            DATE_ADD(wo.prod_order_wo_del_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY) AS prod_order_wo_top_date 
-                            ,wod.price,wo.prod_order_wo_kurs,(wod.price*wo.`prod_order_wo_kurs`) AS act_price,((SELECT act_price)*wod.qty) AS act_amount
+                            wod.qty,
+                            wod.price,wo.prod_order_wo_kurs
                             FROM tb_prod_order_wo wo 
                             LEFT JOIN 
                             (
@@ -631,5 +675,53 @@
         Catch ex As Exception
             '
         End Try
+    End Sub
+
+    Private Sub GVWO_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVWO.PopupMenuShowing
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+        Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
+        If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
+            view.FocusedRowHandle = hitInfo.RowHandle
+            ViewMenu.Show(view.GridControl, e.Point)
+        End If
+    End Sub
+
+    Private Sub SMMainVendor_Click(sender As Object, e As EventArgs) Handles SMMainVendor.Click
+        Dim confirm As DialogResult
+        Dim query As String
+
+        confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Set this WO as main vendor ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        Dim id_wo As String = GVWO.GetFocusedRowCellDisplayText("id_prod_order_wo").ToString
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            Try
+                query = "UPDATE tb_prod_order_wo SET is_main_vendor='2' WHERE id_prod_order='" & id_prod_order & "';UPDATE tb_prod_order_wo SET is_main_vendor='1' WHERE id_prod_order_wo='" & id_wo & "';"
+                execute_non_query(query, True, "", "", "", "")
+
+                view_wo()
+            Catch ex As Exception
+                DevExpress.XtraEditors.XtraMessageBox.Show(ex.ToString, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub BSaveWO_Click(sender As Object, e As EventArgs) Handles BSaveWO.Click
+        Dim query As String = ""
+        For i As Integer = 0 To GVWO.RowCount - 1
+            Dim price, kurs, vat, mat_sent_date, top, lead_time, id_wo, gross_amount, id_curr As String
+            price = decimalSQL(GVWO.GetRowCellValue(i, "price").ToString())
+            kurs = decimalSQL(GVWO.GetRowCellValue(i, "prod_order_wo_kurs").ToString())
+            vat = decimalSQL(GVWO.GetRowCellValue(i, "prod_order_wo_vat").ToString())
+            mat_sent_date = Date.Parse(GVWO.GetRowCellValue(i, "prod_order_wo_del_date").ToString()).ToString("yyyy-MM-dd")
+            top = GVWO.GetRowCellValue(i, "prod_order_wo_top").ToString()
+            lead_time = GVWO.GetRowCellValue(i, "prod_order_wo_lead_time").ToString()
+            id_wo = GVWO.GetRowCellValue(i, "id_prod_order_wo").ToString()
+            gross_amount = decimalSQL(GVWO.GetRowCellValue(i, "gross_amount").ToString)
+            id_curr = GVWO.GetRowCellValue(i, "id_currency").ToString
+            '
+            query += "UPDATE tb_prod_order_wo SET prod_order_wo_del_date='" & mat_sent_date & "',id_currency='" & id_curr & "',prod_order_wo_kurs='" & kurs & "',prod_order_wo_vat='" & vat & "',prod_order_wo_top='" & top & "',prod_order_wo_lead_time='" & lead_time & "',prod_order_wo_amount='" & gross_amount & "' WHERE id_prod_order_wo='" & id_wo & "';UPDATE SET prod_order_wo_det_price='" & price & "' WHERE id_prod_order_wo='" & id_wo & "';"
+        Next
+        execute_non_query(query, True, "", "", "", "")
     End Sub
 End Class
