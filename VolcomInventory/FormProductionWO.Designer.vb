@@ -26,7 +26,6 @@ Partial Class FormProductionWO
         Me.BReviseWO = New DevExpress.XtraEditors.SimpleButton()
         Me.ImgBut = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
@@ -175,7 +174,6 @@ Partial Class FormProductionWO
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl3.Controls.Add(Me.BReviseWO)
         Me.GroupControl3.Controls.Add(Me.BtnAttachment)
-        Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Controls.Add(Me.BPrint)
         Me.GroupControl3.Controls.Add(Me.BCancel)
         Me.GroupControl3.Controls.Add(Me.BSave)
@@ -190,7 +188,7 @@ Partial Class FormProductionWO
         Me.BReviseWO.Dock = System.Windows.Forms.DockStyle.Left
         Me.BReviseWO.ImageIndex = 3
         Me.BReviseWO.ImageList = Me.ImgBut
-        Me.BReviseWO.Location = New System.Drawing.Point(112, 2)
+        Me.BReviseWO.Location = New System.Drawing.Point(20, 2)
         Me.BReviseWO.Name = "BReviseWO"
         Me.BReviseWO.Size = New System.Drawing.Size(92, 31)
         Me.BReviseWO.TabIndex = 17
@@ -223,17 +221,6 @@ Partial Class FormProductionWO
         Me.BtnAttachment.Size = New System.Drawing.Size(115, 31)
         Me.BtnAttachment.TabIndex = 16
         Me.BtnAttachment.Text = "Attachment"
-        '
-        'BMark
-        '
-        Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BMark.ImageIndex = 4
-        Me.BMark.ImageList = Me.ImgBut
-        Me.BMark.Location = New System.Drawing.Point(20, 2)
-        Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(92, 31)
-        Me.BMark.TabIndex = 4
-        Me.BMark.Text = "Mark"
         '
         'BPrint
         '
@@ -1263,7 +1250,6 @@ Partial Class FormProductionWO
     End Sub
     Friend WithEvents EPMatWO As System.Windows.Forms.ErrorProvider
     Friend WithEvents GroupControl3 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
