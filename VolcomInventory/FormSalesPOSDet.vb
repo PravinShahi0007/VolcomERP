@@ -1368,4 +1368,10 @@ Public Class FormSalesPOSDet
             viewDetail()
         End If
     End Sub
+
+    Private Sub BtnDraftJournal_Click(sender As Object, e As EventArgs) Handles BtnDraftJournal.Click
+        Cursor = Cursors.WaitCursor
+        FormAccountingDraftJournal.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
