@@ -23,6 +23,7 @@
         DERecDate.EditValue = date_created
         '
         view_currency(RICECurrency)
+        view_payment(RILETermOfPayment)
         '
         If id_prod_order = "-1" Then
             'new
@@ -101,6 +102,15 @@
 
         lookup.DisplayMember = "currency"
         lookup.ValueMember = "id_currency"
+    End Sub
+    Private Sub view_payment(ByVal lookup As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit)
+        Dim query As String = "SELECT id_payment,payment FROM tb_lookup_payment"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        lookup.DataSource = data
+
+        lookup.DisplayMember = "payment"
+        lookup.ValueMember = "id_payment"
     End Sub
     Sub view_bom()
         Try
@@ -709,7 +719,7 @@
     Private Sub BSaveWO_Click(sender As Object, e As EventArgs) Handles BSaveWO.Click
         Dim query As String = ""
         For i As Integer = 0 To GVWO.RowCount - 1
-            Dim price, kurs, vat, mat_sent_date, top, lead_time, id_wo, gross_amount, id_curr As String
+            Dim price, kurs, vat, mat_sent_date, top, lead_time, id_wo, gross_amount, id_curr, id_payment As String
             price = decimalSQL(GVWO.GetRowCellValue(i, "price").ToString())
             kurs = decimalSQL(GVWO.GetRowCellValue(i, "prod_order_wo_kurs").ToString())
             vat = decimalSQL(GVWO.GetRowCellValue(i, "prod_order_wo_vat").ToString())
@@ -719,8 +729,9 @@
             id_wo = GVWO.GetRowCellValue(i, "id_prod_order_wo").ToString()
             gross_amount = decimalSQL(GVWO.GetRowCellValue(i, "gross_amount").ToString)
             id_curr = GVWO.GetRowCellValue(i, "id_currency").ToString
+            id_payment = GVWO.GetRowCellValue(i, "id_currency").ToString
             '
-            query += "UPDATE tb_prod_order_wo SET prod_order_wo_del_date='" & mat_sent_date & "',id_currency='" & id_curr & "',prod_order_wo_kurs='" & kurs & "',prod_order_wo_vat='" & vat & "',prod_order_wo_top='" & top & "',prod_order_wo_lead_time='" & lead_time & "',prod_order_wo_amount='" & gross_amount & "' WHERE id_prod_order_wo='" & id_wo & "';UPDATE SET prod_order_wo_det_price='" & price & "' WHERE id_prod_order_wo='" & id_wo & "';"
+            query += "UPDATE tb_prod_order_wo SET prod_order_wo_del_date='" & mat_sent_date & "',id_currency='" & id_curr & "',id_payment='" & id_payment & "',prod_order_wo_kurs='" & kurs & "',prod_order_wo_vat='" & vat & "',prod_order_wo_top='" & top & "',prod_order_wo_lead_time='" & lead_time & "',prod_order_wo_amount='" & gross_amount & "' WHERE id_prod_order_wo='" & id_wo & "';UPDATE SET prod_order_wo_det_price='" & price & "' WHERE id_prod_order_wo='" & id_wo & "';"
         Next
         execute_non_query(query, True, "", "", "", "")
     End Sub
