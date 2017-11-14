@@ -9,6 +9,7 @@
     '6 = qc adj in
     '7 = qc adj out
     '8 = return in prod mat
+    '10 = pr production
 
     Private Sub FormPopUpProd_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         view_sample_purc()
@@ -299,6 +300,17 @@
                 FormProductionFinalClearDet.TxtStyle.Text = GVProd.GetFocusedRowCellValue("design_name").ToString
                 FormProductionFinalClearDet.viewDetail()
                 pre_viewImages("2", FormProductionFinalClearDet.PEView, FormProductionFinalClearDet.id_design, False)
+                Close()
+            Else
+                warningCustom("No data selected.")
+            End If
+        ElseIf id_pop_up = "10" Then
+            If GVProd.RowCount > 0 Then
+                FormProdPRWODet.id_prod_order = GVProd.GetFocusedRowCellValue("id_prod_order").ToString
+                FormProdPRWODet.TEWOPONumber.Text = GVProd.GetFocusedRowCellDisplayText("prod_order_number").ToString
+                FormProdPRWODet.view_list_po()
+
+                FormProdPRWODet.GConListPurchase.Enabled = True
                 Close()
             Else
                 warningCustom("No data selected.")

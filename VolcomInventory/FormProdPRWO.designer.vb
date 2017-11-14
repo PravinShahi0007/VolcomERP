@@ -39,6 +39,7 @@ Partial Class FormProdPRWO
         Me.GridColumnIdRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPListPO = New DevExpress.XtraTab.XtraTabPage()
         Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -77,7 +78,22 @@ Partial Class FormProdPRWO
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPListCourier = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPRPO = New DevExpress.XtraGrid.GridControl()
+        Me.GVPRPO = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn33 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn34 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn35 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SLEVendor = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView14 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -114,6 +130,9 @@ Partial Class FormProdPRWO
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPListCourier.SuspendLayout()
+        CType(Me.GCPRPO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPRPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -128,25 +147,24 @@ Partial Class FormProdPRWO
         '
         Me.XTCTabPR.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCTabPR.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
-        Me.XTCTabPR.Location = New System.Drawing.Point(0, 0)
+        Me.XTCTabPR.Location = New System.Drawing.Point(0, 38)
         Me.XTCTabPR.Name = "XTCTabPR"
         Me.XTCTabPR.SelectedTabPage = Me.XTPListPR
-        Me.XTCTabPR.Size = New System.Drawing.Size(891, 395)
+        Me.XTCTabPR.Size = New System.Drawing.Size(891, 357)
         Me.XTCTabPR.TabIndex = 6
-        Me.XTCTabPR.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListPR, Me.XTPListPO})
+        Me.XTCTabPR.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListPR, Me.XTPListPO, Me.XTPListCourier})
         '
         'XTPListPR
         '
         Me.XTPListPR.Controls.Add(Me.GCMatPR)
-        Me.XTPListPR.Controls.Add(Me.PanelControl1)
         Me.XTPListPR.Name = "XTPListPR"
-        Me.XTPListPR.Size = New System.Drawing.Size(885, 367)
+        Me.XTPListPR.Size = New System.Drawing.Size(885, 329)
         Me.XTPListPR.Text = "List Payment Requisition"
         '
         'GCMatPR
         '
         Me.GCMatPR.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCMatPR.Location = New System.Drawing.Point(0, 38)
+        Me.GCMatPR.Location = New System.Drawing.Point(0, 0)
         Me.GCMatPR.MainView = Me.GVMatPR
         Me.GCMatPR.Name = "GCMatPR"
         Me.GCMatPR.Size = New System.Drawing.Size(885, 329)
@@ -293,11 +311,19 @@ Partial Class FormProdPRWO
         Me.GridColumn11.Visible = True
         Me.GridColumn11.VisibleIndex = 4
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Last Mark By"
+        Me.GridColumn9.FieldName = "last_mark"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 10
+        '
         'XTPListPO
         '
         Me.XTPListPO.Controls.Add(Me.SplitContainerControl1)
         Me.XTPListPO.Name = "XTPListPO"
-        Me.XTPListPO.Size = New System.Drawing.Size(885, 367)
+        Me.XTPListPO.Size = New System.Drawing.Size(885, 329)
         Me.XTPListPO.Text = "List Production Work Order"
         '
         'SplitContainerControl1
@@ -310,7 +336,7 @@ Partial Class FormProdPRWO
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GroupControl2)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(885, 367)
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(885, 329)
         Me.SplitContainerControl1.SplitterPosition = 226
         Me.SplitContainerControl1.TabIndex = 28
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
@@ -533,7 +559,7 @@ Partial Class FormProdPRWO
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(885, 136)
+        Me.GroupControl2.Size = New System.Drawing.Size(885, 98)
         Me.GroupControl2.TabIndex = 1
         Me.GroupControl2.Text = "Detail"
         '
@@ -544,7 +570,7 @@ Partial Class FormProdPRWO
         Me.GCListPurchase.MainView = Me.GVListPurchase
         Me.GCListPurchase.Margin = New System.Windows.Forms.Padding(0)
         Me.GCListPurchase.Name = "GCListPurchase"
-        Me.GCListPurchase.Size = New System.Drawing.Size(881, 114)
+        Me.GCListPurchase.Size = New System.Drawing.Size(881, 76)
         Me.GCListPurchase.TabIndex = 2
         Me.GCListPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPurchase})
         '
@@ -691,13 +717,138 @@ Partial Class FormProdPRWO
         Me.ColSize.VisibleIndex = 4
         Me.ColSize.Width = 56
         '
-        'GridColumn9
+        'XTPListCourier
         '
-        Me.GridColumn9.Caption = "Last Mark By"
-        Me.GridColumn9.FieldName = "last_mark"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 10
+        Me.XTPListCourier.Controls.Add(Me.GCPRPO)
+        Me.XTPListCourier.Name = "XTPListCourier"
+        Me.XTPListCourier.Size = New System.Drawing.Size(885, 329)
+        Me.XTPListCourier.Text = "List Payment Requisition (FGPO)"
+        '
+        'GCPRPO
+        '
+        Me.GCPRPO.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPRPO.Location = New System.Drawing.Point(0, 0)
+        Me.GCPRPO.MainView = Me.GVPRPO
+        Me.GCPRPO.Name = "GCPRPO"
+        Me.GCPRPO.Size = New System.Drawing.Size(885, 329)
+        Me.GCPRPO.TabIndex = 3
+        Me.GCPRPO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPRPO})
+        '
+        'GVPRPO
+        '
+        Me.GVPRPO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn19, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn31, Me.GridColumn33, Me.GridColumn34, Me.GridColumn35})
+        Me.GVPRPO.GridControl = Me.GCPRPO
+        Me.GVPRPO.Name = "GVPRPO"
+        Me.GVPRPO.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPRPO.OptionsBehavior.Editable = False
+        Me.GVPRPO.OptionsFind.AlwaysVisible = True
+        Me.GVPRPO.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "ID PR"
+        Me.GridColumn19.FieldName = "id_pr_prod_order"
+        Me.GridColumn19.Name = "GridColumn19"
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Number"
+        Me.GridColumn20.FieldName = "pr_prod_order_number"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 0
+        Me.GridColumn20.Width = 73
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Pay To"
+        Me.GridColumn21.FieldName = "comp_to"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 1
+        Me.GridColumn21.Width = 113
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Create Date"
+        Me.GridColumn22.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn22.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn22.FieldName = "pr_prod_order_date"
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 5
+        Me.GridColumn22.Width = 100
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Due Date"
+        Me.GridColumn23.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn23.FieldName = "pr_prod_order_due_date"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 6
+        Me.GridColumn23.Width = 103
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "FG PO Number"
+        Me.GridColumn24.FieldName = "prod_order_number"
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 2
+        Me.GridColumn24.Width = 73
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Note"
+        Me.GridColumn25.FieldName = "pr_prod_order_note"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Width = 132
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Status"
+        Me.GridColumn26.FieldName = "report_status"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 7
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "ID Status"
+        Me.GridColumn27.FieldName = "id_report_status"
+        Me.GridColumn27.Name = "GridColumn27"
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.Caption = "ID PO"
+        Me.GridColumn31.FieldName = "id_prod_order"
+        Me.GridColumn31.Name = "GridColumn31"
+        '
+        'GridColumn33
+        '
+        Me.GridColumn33.Caption = "Design Code"
+        Me.GridColumn33.FieldName = "design_code"
+        Me.GridColumn33.Name = "GridColumn33"
+        Me.GridColumn33.Visible = True
+        Me.GridColumn33.VisibleIndex = 3
+        '
+        'GridColumn34
+        '
+        Me.GridColumn34.Caption = "Description"
+        Me.GridColumn34.FieldName = "design_display_name"
+        Me.GridColumn34.Name = "GridColumn34"
+        Me.GridColumn34.Visible = True
+        Me.GridColumn34.VisibleIndex = 4
+        '
+        'GridColumn35
+        '
+        Me.GridColumn35.Caption = "Last Mark By"
+        Me.GridColumn35.FieldName = "last_mark"
+        Me.GridColumn35.Name = "GridColumn35"
+        Me.GridColumn35.Visible = True
+        Me.GridColumn35.VisibleIndex = 8
         '
         'PanelControl1
         '
@@ -711,7 +862,7 @@ Partial Class FormProdPRWO
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(885, 38)
+        Me.PanelControl1.Size = New System.Drawing.Size(891, 38)
         Me.PanelControl1.TabIndex = 4
         '
         'SLEVendor
@@ -879,6 +1030,7 @@ Partial Class FormProdPRWO
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(891, 395)
         Me.Controls.Add(Me.XTCTabPR)
+        Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -903,6 +1055,9 @@ Partial Class FormProdPRWO
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPListCourier.ResumeLayout(False)
+        CType(Me.GCPRPO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPRPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -993,4 +1148,20 @@ Partial Class FormProdPRWO
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTPListCourier As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCPRPO As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPRPO As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn20 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn21 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

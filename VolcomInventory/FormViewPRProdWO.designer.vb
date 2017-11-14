@@ -74,21 +74,21 @@ Partial Class FormViewPRProdWO
         Me.TEPIB = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.LFGPOCaption = New DevExpress.XtraEditors.LabelControl()
         Me.TEDONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.MECompAddress = New DevExpress.XtraEditors.MemoEdit()
         Me.TERecNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LRecCaption = New DevExpress.XtraEditors.LabelControl()
+        Me.LDOCaption = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPRNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TECompTo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEWONumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEWOPONumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LWOCaption = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,7 +129,7 @@ Partial Class FormViewPRProdWO
         CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEWONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -665,21 +665,21 @@ Partial Class FormViewPRProdWO
         Me.GroupGeneralHeader.Controls.Add(Me.TEPIB)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl13)
         Me.GroupGeneralHeader.Controls.Add(Me.TEPONumber)
-        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl12)
+        Me.GroupGeneralHeader.Controls.Add(Me.LFGPOCaption)
         Me.GroupGeneralHeader.Controls.Add(Me.TEDONumber)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl5)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl2)
         Me.GroupGeneralHeader.Controls.Add(Me.MECompAddress)
         Me.GroupGeneralHeader.Controls.Add(Me.TERecNumber)
-        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl9)
-        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl8)
+        Me.GroupGeneralHeader.Controls.Add(Me.LRecCaption)
+        Me.GroupGeneralHeader.Controls.Add(Me.LDOCaption)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl6)
         Me.GroupGeneralHeader.Controls.Add(Me.TEPRNumber)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl1)
         Me.GroupGeneralHeader.Controls.Add(Me.TECompTo)
         Me.GroupGeneralHeader.Controls.Add(Me.LabelControl4)
-        Me.GroupGeneralHeader.Controls.Add(Me.TEWONumber)
-        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl3)
+        Me.GroupGeneralHeader.Controls.Add(Me.TEWOPONumber)
+        Me.GroupGeneralHeader.Controls.Add(Me.LWOCaption)
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
@@ -690,21 +690,21 @@ Partial Class FormViewPRProdWO
         '
         Me.DEPRDate.EditValue = Nothing
         Me.DEPRDate.Enabled = False
-        Me.DEPRDate.Location = New System.Drawing.Point(768, 59)
+        Me.DEPRDate.Location = New System.Drawing.Point(494, 33)
         Me.DEPRDate.Name = "DEPRDate"
         Me.DEPRDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPRDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPRDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEPRDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEPRDate.Properties.Mask.EditMask = ""
-        Me.DEPRDate.Size = New System.Drawing.Size(131, 20)
+        Me.DEPRDate.Size = New System.Drawing.Size(163, 20)
         Me.DEPRDate.TabIndex = 180
         '
         'DEDueDate
         '
         Me.DEDueDate.EditValue = Nothing
         Me.DEDueDate.Enabled = False
-        Me.DEDueDate.Location = New System.Drawing.Point(768, 33)
+        Me.DEDueDate.Location = New System.Drawing.Point(768, 7)
         Me.DEDueDate.Name = "DEDueDate"
         Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -753,25 +753,25 @@ Partial Class FormViewPRProdWO
         'TEPONumber
         '
         Me.TEPONumber.EditValue = ""
-        Me.TEPONumber.Location = New System.Drawing.Point(494, 33)
+        Me.TEPONumber.Location = New System.Drawing.Point(768, 59)
         Me.TEPONumber.Name = "TEPONumber"
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(163, 20)
+        Me.TEPONumber.Size = New System.Drawing.Size(131, 20)
         Me.TEPONumber.TabIndex = 167
         '
-        'LabelControl12
+        'LFGPOCaption
         '
-        Me.LabelControl12.Location = New System.Drawing.Point(410, 36)
-        Me.LabelControl12.Name = "LabelControl12"
-        Me.LabelControl12.Size = New System.Drawing.Size(67, 13)
-        Me.LabelControl12.TabIndex = 168
-        Me.LabelControl12.Text = "FGPO Number"
+        Me.LFGPOCaption.Location = New System.Drawing.Point(673, 62)
+        Me.LFGPOCaption.Name = "LFGPOCaption"
+        Me.LFGPOCaption.Size = New System.Drawing.Size(67, 13)
+        Me.LFGPOCaption.TabIndex = 168
+        Me.LFGPOCaption.Text = "FGPO Number"
         '
         'TEDONumber
         '
         Me.TEDONumber.EditValue = ""
-        Me.TEDONumber.Location = New System.Drawing.Point(768, 7)
+        Me.TEDONumber.Location = New System.Drawing.Point(768, 86)
         Me.TEDONumber.Name = "TEDONumber"
         Me.TEDONumber.Properties.EditValueChangedDelay = 1
         Me.TEDONumber.Properties.ReadOnly = True
@@ -780,7 +780,7 @@ Partial Class FormViewPRProdWO
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(683, 36)
+        Me.LabelControl5.Location = New System.Drawing.Point(673, 10)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl5.TabIndex = 162
@@ -807,32 +807,32 @@ Partial Class FormViewPRProdWO
         'TERecNumber
         '
         Me.TERecNumber.EditValue = ""
-        Me.TERecNumber.Location = New System.Drawing.Point(494, 7)
+        Me.TERecNumber.Location = New System.Drawing.Point(768, 33)
         Me.TERecNumber.Name = "TERecNumber"
         Me.TERecNumber.Properties.EditValueChangedDelay = 1
         Me.TERecNumber.Properties.ReadOnly = True
-        Me.TERecNumber.Size = New System.Drawing.Size(163, 20)
+        Me.TERecNumber.Size = New System.Drawing.Size(131, 20)
         Me.TERecNumber.TabIndex = 157
         '
-        'LabelControl9
+        'LRecCaption
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(410, 10)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(78, 13)
-        Me.LabelControl9.TabIndex = 158
-        Me.LabelControl9.Text = "Receive Number"
+        Me.LRecCaption.Location = New System.Drawing.Point(673, 36)
+        Me.LRecCaption.Name = "LRecCaption"
+        Me.LRecCaption.Size = New System.Drawing.Size(78, 13)
+        Me.LRecCaption.TabIndex = 158
+        Me.LRecCaption.Text = "Receive Number"
         '
-        'LabelControl8
+        'LDOCaption
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(683, 10)
-        Me.LabelControl8.Name = "LabelControl8"
-        Me.LabelControl8.Size = New System.Drawing.Size(79, 13)
-        Me.LabelControl8.TabIndex = 156
-        Me.LabelControl8.Text = "Delivery Number"
+        Me.LDOCaption.Location = New System.Drawing.Point(673, 89)
+        Me.LDOCaption.Name = "LDOCaption"
+        Me.LDOCaption.Size = New System.Drawing.Size(79, 13)
+        Me.LDOCaption.TabIndex = 156
+        Me.LDOCaption.Text = "Delivery Number"
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(683, 62)
+        Me.LabelControl6.Location = New System.Drawing.Point(409, 36)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl6.TabIndex = 147
@@ -841,16 +841,16 @@ Partial Class FormViewPRProdWO
         'TEPRNumber
         '
         Me.TEPRNumber.EditValue = ""
-        Me.TEPRNumber.Location = New System.Drawing.Point(768, 85)
+        Me.TEPRNumber.Location = New System.Drawing.Point(494, 7)
         Me.TEPRNumber.Name = "TEPRNumber"
         Me.TEPRNumber.Properties.EditValueChangedDelay = 1
         Me.TEPRNumber.Properties.ReadOnly = True
-        Me.TEPRNumber.Size = New System.Drawing.Size(131, 20)
+        Me.TEPRNumber.Size = New System.Drawing.Size(163, 20)
         Me.TEPRNumber.TabIndex = 144
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(683, 88)
+        Me.LabelControl1.Location = New System.Drawing.Point(409, 10)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl1.TabIndex = 146
@@ -875,23 +875,23 @@ Partial Class FormViewPRProdWO
         Me.LabelControl4.TabIndex = 88
         Me.LabelControl4.Text = "Paid To"
         '
-        'TEWONumber
+        'TEWOPONumber
         '
-        Me.TEWONumber.EditValue = ""
-        Me.TEWONumber.Location = New System.Drawing.Point(111, 7)
-        Me.TEWONumber.Name = "TEWONumber"
-        Me.TEWONumber.Properties.EditValueChangedDelay = 1
-        Me.TEWONumber.Properties.ReadOnly = True
-        Me.TEWONumber.Size = New System.Drawing.Size(278, 20)
-        Me.TEWONumber.TabIndex = 3
+        Me.TEWOPONumber.EditValue = ""
+        Me.TEWOPONumber.Location = New System.Drawing.Point(111, 7)
+        Me.TEWOPONumber.Name = "TEWOPONumber"
+        Me.TEWOPONumber.Properties.EditValueChangedDelay = 1
+        Me.TEWOPONumber.Properties.ReadOnly = True
+        Me.TEWOPONumber.Size = New System.Drawing.Size(278, 20)
+        Me.TEWOPONumber.TabIndex = 3
         '
-        'LabelControl3
+        'LWOCaption
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(29, 10)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(58, 13)
-        Me.LabelControl3.TabIndex = 86
-        Me.LabelControl3.Text = "WO Number"
+        Me.LWOCaption.Location = New System.Drawing.Point(29, 10)
+        Me.LWOCaption.Name = "LWOCaption"
+        Me.LWOCaption.Size = New System.Drawing.Size(58, 13)
+        Me.LWOCaption.TabIndex = 86
+        Me.LWOCaption.Text = "WO Number"
         '
         'FormViewPRProdWO
         '
@@ -951,7 +951,7 @@ Partial Class FormViewPRProdWO
         CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEWONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1003,21 +1003,21 @@ Partial Class FormViewPRProdWO
     Friend WithEvents TEPIB As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPONumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LFGPOCaption As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEDONumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MECompAddress As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents TERecNumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LRecCaption As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LDOCaption As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEPRNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TECompTo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TEWONumber As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEWOPONumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LWOCaption As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEPRDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEDueDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents TEInvNo As DevExpress.XtraEditors.TextEdit
