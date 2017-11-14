@@ -220,6 +220,8 @@ Partial Class FormProductionDet
         Me.BEditMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RILETermOfPayment = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -304,6 +306,7 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.RILETermOfPayment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPProdOrder
@@ -913,7 +916,7 @@ Partial Class FormProductionDet
         Me.GCWO.Location = New System.Drawing.Point(0, 0)
         Me.GCWO.MainView = Me.GVWO
         Me.GCWO.Name = "GCWO"
-        Me.GCWO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar2, Me.RCIMainVendorWO, Me.RICECurrency, Me.RIVat, Me.RITEWOKurs, Me.RIWOPrice, Me.RIDESentDate})
+        Me.GCWO.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar2, Me.RCIMainVendorWO, Me.RICECurrency, Me.RIVat, Me.RITEWOKurs, Me.RIWOPrice, Me.RIDESentDate, Me.RILETermOfPayment})
         Me.GCWO.Size = New System.Drawing.Size(943, 231)
         Me.GCWO.TabIndex = 8
         Me.GCWO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVWO})
@@ -932,7 +935,7 @@ Partial Class FormProductionDet
         '
         'GVWO
         '
-        Me.GVWO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn13, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn9, Me.GridColumn6, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn20, Me.GridColumn33, Me.GridColumn37, Me.GridColumn32, Me.GridColumn31, Me.GridColumn30, Me.GridColumn39, Me.GridColumn38, Me.GridColumn15, Me.GridColumn21, Me.GridColumn40, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
+        Me.GVWO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn13, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn41, Me.GridColumn9, Me.GridColumn6, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn20, Me.GridColumn33, Me.GridColumn37, Me.GridColumn32, Me.GridColumn31, Me.GridColumn30, Me.GridColumn39, Me.GridColumn38, Me.GridColumn15, Me.GridColumn21, Me.GridColumn40, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
         Me.GVWO.GridControl = Me.GCWO
         Me.GVWO.Name = "GVWO"
         Me.GVWO.OptionsView.ColumnAutoWidth = False
@@ -1052,7 +1055,7 @@ Partial Class FormProductionDet
     ")"
         Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 7
+        Me.GridColumn12.VisibleIndex = 8
         '
         'GridColumn20
         '
@@ -1063,7 +1066,7 @@ Partial Class FormProductionDet
         Me.GridColumn20.FieldName = "prod_order_wo_vat"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 10
+        Me.GridColumn20.VisibleIndex = 11
         '
         'RIVat
         '
@@ -1079,7 +1082,7 @@ Partial Class FormProductionDet
         Me.GridColumn33.FieldName = "id_currency"
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 8
+        Me.GridColumn33.VisibleIndex = 9
         '
         'RICECurrency
         '
@@ -1109,7 +1112,7 @@ Partial Class FormProductionDet
         Me.GridColumn31.FieldName = "prod_order_wo_kurs"
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 13
+        Me.GridColumn31.VisibleIndex = 14
         '
         'RITEWOKurs
         '
@@ -1127,7 +1130,7 @@ Partial Class FormProductionDet
         Me.GridColumn30.FieldName = "price"
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 9
+        Me.GridColumn30.VisibleIndex = 10
         '
         'RIWOPrice
         '
@@ -1150,7 +1153,7 @@ Partial Class FormProductionDet
         Me.GridColumn39.UnboundExpression = "[price] * [qty]"
         Me.GridColumn39.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 11
+        Me.GridColumn39.VisibleIndex = 12
         '
         'GridColumn38
         '
@@ -1166,7 +1169,7 @@ Partial Class FormProductionDet
         Me.GridColumn38.UnboundExpression = "[price] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
         Me.GridColumn38.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 12
+        Me.GridColumn38.VisibleIndex = 13
         '
         'GridColumn15
         '
@@ -1183,7 +1186,7 @@ Partial Class FormProductionDet
         Me.GridColumn15.UnboundExpression = "[price] * [prod_order_wo_kurs]"
         Me.GridColumn15.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 14
+        Me.GridColumn15.VisibleIndex = 15
         '
         'GridColumn21
         '
@@ -1200,7 +1203,7 @@ Partial Class FormProductionDet
         Me.GridColumn21.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty]"
         Me.GridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 15
+        Me.GridColumn21.VisibleIndex = 16
         '
         'GridColumn40
         '
@@ -1216,7 +1219,7 @@ Partial Class FormProductionDet
         Me.GridColumn40.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
         Me.GridColumn40.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 16
+        Me.GridColumn40.VisibleIndex = 17
         '
         'GridColumn27
         '
@@ -2299,6 +2302,22 @@ Partial Class FormProductionDet
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
+        'GridColumn41
+        '
+        Me.GridColumn41.Caption = "Term Of Payment"
+        Me.GridColumn41.ColumnEdit = Me.RILETermOfPayment
+        Me.GridColumn41.FieldName = "id_payment"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 7
+        '
+        'RILETermOfPayment
+        '
+        Me.RILETermOfPayment.AutoHeight = False
+        Me.RILETermOfPayment.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RILETermOfPayment.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payment", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payment", "Payment Type")})
+        Me.RILETermOfPayment.Name = "RILETermOfPayment"
+        '
         'FormProductionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2406,6 +2425,7 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.RILETermOfPayment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2609,4 +2629,6 @@ Partial Class FormProductionDet
     Friend WithEvents SMMainVendor As ToolStripMenuItem
     Friend WithEvents RIDESentDate As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
     Friend WithEvents SplashScreenManager1 As DevExpress.XtraSplashScreen.SplashScreenManager
+    Friend WithEvents GridColumn41 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RILETermOfPayment As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 End Class

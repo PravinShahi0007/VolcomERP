@@ -141,9 +141,9 @@ Public Class ReportProductionWO
         view_top()
 
         If is_pre = "1" Then
-            pre_load_mark_horz("23", id_prod_wo, LToName.Text, "2", XrTable1)
+            pre_load_mark_horz("22", id_po, LToName.Text, "2", XrTable1)
         Else
-            load_mark_horz("23", id_prod_wo, LToName.Text, "2", XrTable1)
+            load_mark_horz("22", id_po, LToName.Text, "2", XrTable1)
         End If
     End Sub
 

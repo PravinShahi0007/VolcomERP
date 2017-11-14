@@ -1612,7 +1612,7 @@ Public Class FormImportExcel
                                 .cif = table1("cif"),
                                 .freight_usd = table1("freight_usd"),
                                 .penalty_percent = table1("penalty_percent"),
-                                .sales_actual_qty = table1("sales_actual_qty")
+                                .royalty_pib = table1("royalty_pib_rp")
                             }
 
                 GCData.DataSource = Nothing
@@ -1657,7 +1657,7 @@ Public Class FormImportExcel
                 GVData.Columns("cif").Caption = "CIF"
                 GVData.Columns("freight_usd").Caption = "Freight (USD)"
                 GVData.Columns("penalty_percent").Caption = "Penalty %"
-                GVData.Columns("sales_actual_qty").Caption = "Sales Actual Qty"
+                GVData.Columns("royalty_pib").Caption = "Royalty PIB (Rp)"
                 GVData.Columns("Duty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GVData.Columns("Duty").DisplayFormat.FormatString = "{0:n4}"
                 GVData.Columns("Royalty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1680,8 +1680,8 @@ Public Class FormImportExcel
                 GVData.Columns("freight_usd").DisplayFormat.FormatString = "{0:n4}"
                 GVData.Columns("penalty_percent").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GVData.Columns("penalty_percent").DisplayFormat.FormatString = "{0:n4}"
-                GVData.Columns("sales_actual_qty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GVData.Columns("sales_actual_qty").DisplayFormat.FormatString = "{0:n0}"
+                GVData.Columns("royalty_pib").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("royalty_pib").DisplayFormat.FormatString = "{0:n4}"
 
                 GVData.OptionsView.ColumnAutoWidth = False
                 GVData.BestFitColumns()
@@ -3058,7 +3058,7 @@ Public Class FormImportExcel
                                                         pib_id_currency='" & GVData.GetRowCellValue(i, "id_currency").ToString & "',
                                                         freight_usd='" & decimalSQL(GVData.GetRowCellValue(i, "freight_usd").ToString) & "',
                                                         penalty_percent='" & decimalSQL(GVData.GetRowCellValue(i, "penalty_percent").ToString) & "',
-                                                        act_sales_qty='" & decimalSQL(GVData.GetRowCellValue(i, "sales_actual_qty").ToString) & "'
+                                                        royalty_pib='" & decimalSQL(GVData.GetRowCellValue(i, "royalty_pib").ToString) & "'
                                                         WHERE id_prod_order='" & GVData.GetRowCellValue(i, "IdPO").ToString & "'"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
