@@ -2,6 +2,7 @@
     Public id_report As String = "-1"
     Public report_mark_type As String = "-1"
     Public is_view As String = "-1"
+    Public id_pop_up As String = "-1"
 
     Private Sub FormAccountingDraftJournal_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -32,5 +33,10 @@
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
+    End Sub
+
+    Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
+        Cursor = Cursors.WaitCursor
+        Cursor = Cursors.Default
     End Sub
 End Class

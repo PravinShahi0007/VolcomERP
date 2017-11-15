@@ -283,6 +283,12 @@
     <Compile Include="FormAccountingDraftJournal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAccountingDraftJournalSingle.Designer.vb">
+      <DependentUpon>FormAccountingDraftJournalSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccountingDraftJournalSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAccountingFakturScan.Designer.vb">
       <DependentUpon>FormAccountingFakturScan.vb</DependentUpon>
     </Compile>
@@ -5037,6 +5043,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingDraftJournal.resx">
       <DependentUpon>FormAccountingDraftJournal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAccountingDraftJournalSingle.resx">
+      <DependentUpon>FormAccountingDraftJournalSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingFakturScan.resx">
       <DependentUpon>FormAccountingFakturScan.vb</DependentUpon>
