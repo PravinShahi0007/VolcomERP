@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormAccountingDraftJournal
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormAccountingDraftJournal
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAccountingDraftJournal))
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
@@ -27,6 +27,14 @@ Partial Class FormAccountingDraftJournal
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAcc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RSLEAcc = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdAcc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAccName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAccDesc2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnParent = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsDet = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAccDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReportNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -38,6 +46,8 @@ Partial Class FormAccountingDraftJournal
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RSLEAcc, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNav
@@ -76,6 +86,7 @@ Partial Class FormAccountingDraftJournal
         Me.GCData.Location = New System.Drawing.Point(0, 41)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RSLEAcc})
         Me.GCData.Size = New System.Drawing.Size(834, 441)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
@@ -101,11 +112,79 @@ Partial Class FormAccountingDraftJournal
         'GridColumnAcc
         '
         Me.GridColumnAcc.Caption = "Account"
-        Me.GridColumnAcc.FieldName = "acc_name"
+        Me.GridColumnAcc.ColumnEdit = Me.RSLEAcc
+        Me.GridColumnAcc.FieldName = "id_acc"
         Me.GridColumnAcc.Name = "GridColumnAcc"
         Me.GridColumnAcc.Visible = True
         Me.GridColumnAcc.VisibleIndex = 1
         Me.GridColumnAcc.Width = 162
+        '
+        'RSLEAcc
+        '
+        Me.RSLEAcc.AutoHeight = False
+        Me.RSLEAcc.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RSLEAcc.Name = "RSLEAcc"
+        Me.RSLEAcc.ShowClearButton = False
+        Me.RSLEAcc.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdAcc, Me.GridColumnAccName, Me.GridColumnAccDesc2, Me.GridColumnParent, Me.GridColumnCat, Me.GridColumnIsDet})
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIdAcc
+        '
+        Me.GridColumnIdAcc.Caption = "Id Acc"
+        Me.GridColumnIdAcc.FieldName = "id_acc"
+        Me.GridColumnIdAcc.Name = "GridColumnIdAcc"
+        '
+        'GridColumnAccName
+        '
+        Me.GridColumnAccName.Caption = "Account"
+        Me.GridColumnAccName.FieldName = "acc_name"
+        Me.GridColumnAccName.Name = "GridColumnAccName"
+        Me.GridColumnAccName.Visible = True
+        Me.GridColumnAccName.VisibleIndex = 0
+        Me.GridColumnAccName.Width = 309
+        '
+        'GridColumnAccDesc2
+        '
+        Me.GridColumnAccDesc2.Caption = "Description"
+        Me.GridColumnAccDesc2.FieldName = "acc_description"
+        Me.GridColumnAccDesc2.Name = "GridColumnAccDesc2"
+        Me.GridColumnAccDesc2.Visible = True
+        Me.GridColumnAccDesc2.VisibleIndex = 1
+        Me.GridColumnAccDesc2.Width = 735
+        '
+        'GridColumnParent
+        '
+        Me.GridColumnParent.Caption = "Parent"
+        Me.GridColumnParent.FieldName = "parent"
+        Me.GridColumnParent.Name = "GridColumnParent"
+        Me.GridColumnParent.Visible = True
+        Me.GridColumnParent.VisibleIndex = 2
+        Me.GridColumnParent.Width = 390
+        '
+        'GridColumnCat
+        '
+        Me.GridColumnCat.Caption = "Category"
+        Me.GridColumnCat.FieldName = "acc_cat"
+        Me.GridColumnCat.Name = "GridColumnCat"
+        Me.GridColumnCat.Visible = True
+        Me.GridColumnCat.VisibleIndex = 3
+        Me.GridColumnCat.Width = 103
+        '
+        'GridColumnIsDet
+        '
+        Me.GridColumnIsDet.Caption = "Type"
+        Me.GridColumnIsDet.FieldName = "is_det"
+        Me.GridColumnIsDet.Name = "GridColumnIsDet"
+        Me.GridColumnIsDet.Visible = True
+        Me.GridColumnIsDet.VisibleIndex = 4
+        Me.GridColumnIsDet.Width = 95
         '
         'GridColumnAccDesc
         '
@@ -190,6 +269,8 @@ Partial Class FormAccountingDraftJournal
         Me.PanelControlNav.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RSLEAcc, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -208,4 +289,12 @@ Partial Class FormAccountingDraftJournal
     Friend WithEvents BtnDelete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnIdDraft As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RSLEAcc As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnIdAcc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAccName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnAccDesc2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnParent As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIsDet As DevExpress.XtraGrid.Columns.GridColumn
 End Class

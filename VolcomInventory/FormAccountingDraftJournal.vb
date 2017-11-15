@@ -14,12 +14,24 @@
 
     Private Sub FormAccountingDraftJournal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewDraft()
+        viewAcc()
+
 
         'only view draft
         If is_view = "1" Then
             PanelControlNav.Visible = False
             GVData.OptionsBehavior.ReadOnly = True
         End If
+    End Sub
+
+    Sub viewAcc()
+        Dim acc As New ClassAccounting()
+        Dim query As String = acc.queryViewAcc("-1", "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        RSLEAcc.DataSource = Nothing
+        RSLEAcc.DataSource = data
+        RSLEAcc.DisplayMember = "acc_name"
+        RSLEAcc.ValueMember = "id_acc"
     End Sub
 
     Sub viewDraft()
@@ -37,6 +49,15 @@
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
+
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub RSLEAcc_EditValueChanged(sender As Object, e As EventArgs) Handles RSLEAcc.EditValueChanged
+
+    End Sub
+
+    Private Sub RSLEAcc_Popup(sender As Object, e As EventArgs) Handles RSLEAcc.Popup
+        MsgBox("a")
     End Sub
 End Class

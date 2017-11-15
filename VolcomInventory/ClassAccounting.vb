@@ -26,4 +26,28 @@
         query += "ORDER BY d.id_acc_trans_draft " + order_type
         Return query
     End Function
+
+    Public Function queryViewAcc(ByVal condition As String, ByVal order_type As String) As String
+        If order_type = "1" Then
+            order_type = "ASC "
+        ElseIf order_type = "2" Then
+            order_type = "DESC "
+        End If
+
+        If condition <> "-1" Then
+            condition = condition
+        Else
+            condition = ""
+        End If
+        Dim query As String = "SELECT a.id_acc, a.acc_name, a.acc_description, a.id_acc_parent, p.acc_name AS `parent`, a.id_acc_cat, cat.acc_cat, a.id_is_det, id.is_det, a.id_status, st.`status`, a.id_comp 
+        FROM tb_a_acc a 
+        INNER JOIN tb_lookup_status st ON st.id_status = a.id_status
+        INNER JOIN tb_lookup_is_det id ON id.id_is_det = a.id_is_det
+        INNER JOIN tb_a_acc p ON p.id_acc = a.id_acc
+        INNER JOIN tb_lookup_acc_cat cat ON cat.id_acc_cat = a.id_acc_cat
+        WHERE a.id_acc>0 "
+        query += condition
+        query += "ORDER BY a.acc_name " + order_type
+        Return query
+    End Function
 End Class
