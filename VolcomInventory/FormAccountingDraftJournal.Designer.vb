@@ -101,7 +101,7 @@ Partial Class FormAccountingDraftJournal
         'GridColumnAcc
         '
         Me.GridColumnAcc.Caption = "Account"
-        Me.GridColumnAcc.FieldNameSortGroup = "acc_name"
+        Me.GridColumnAcc.FieldName = "acc_name"
         Me.GridColumnAcc.Name = "GridColumnAcc"
         Me.GridColumnAcc.Visible = True
         Me.GridColumnAcc.VisibleIndex = 1
@@ -110,7 +110,7 @@ Partial Class FormAccountingDraftJournal
         'GridColumnAccDesc
         '
         Me.GridColumnAccDesc.Caption = "Account Description"
-        Me.GridColumnAccDesc.FieldNameSortGroup = "acc_description"
+        Me.GridColumnAccDesc.FieldName = "acc_description"
         Me.GridColumnAccDesc.Name = "GridColumnAccDesc"
         Me.GridColumnAccDesc.Visible = True
         Me.GridColumnAccDesc.VisibleIndex = 2
@@ -124,16 +124,16 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnReportNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnReportNumber.Visible = True
         Me.GridColumnReportNumber.VisibleIndex = 3
-        Me.GridColumnReportNumber.Width = 70
+        Me.GridColumnReportNumber.Width = 113
         '
         'GridColumnCompName
         '
         Me.GridColumnCompName.Caption = "Supplier/Customer"
-        Me.GridColumnCompName.FieldName = "comp_name"
+        Me.GridColumnCompName.FieldName = "comp"
         Me.GridColumnCompName.Name = "GridColumnCompName"
         Me.GridColumnCompName.Visible = True
         Me.GridColumnCompName.VisibleIndex = 5
-        Me.GridColumnCompName.Width = 158
+        Me.GridColumnCompName.Width = 151
         '
         'GridColumnDebit
         '
@@ -145,7 +145,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnDebit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumnDebit.Visible = True
         Me.GridColumnDebit.VisibleIndex = 6
-        Me.GridColumnDebit.Width = 248
+        Me.GridColumnDebit.Width = 238
         '
         'GridColumnCredit
         '
@@ -157,7 +157,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnCredit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumnCredit.Visible = True
         Me.GridColumnCredit.VisibleIndex = 7
-        Me.GridColumnCredit.Width = 289
+        Me.GridColumnCredit.Width = 279
         '
         'GridColumnNote
         '
@@ -166,7 +166,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 4
-        Me.GridColumnNote.Width = 377
+        Me.GridColumnNote.Width = 361
         '
         'GridColumnIdDraft
         '
