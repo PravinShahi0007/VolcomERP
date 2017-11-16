@@ -2474,6 +2474,7 @@ Public Class FormImportExcel
                             newRow("code") = GVData.GetRowCellValue(i, "Code").ToString
                             newRow("size") = GVData.GetRowCellValue(i, "Size").ToString
                             newRow("sales_order_det_qty") = GVData.GetRowCellValue(i, "Qty")
+                            newRow("qty_avail") = GVData.GetRowCellValue(i, "Available")
                             newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
                             newRow("design_price") = GVData.GetRowCellValue(i, "Price")
                             newRow("design_price_type") = GVData.GetRowCellValue(i, "design_price_type").ToString
