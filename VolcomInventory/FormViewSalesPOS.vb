@@ -267,7 +267,11 @@
     End Sub
 
     Sub getVat()
-        Dim netto As Double = Double.Parse(TxtNetto.EditValue.ToString)
+        Dim netto As Double = 0
+        Try
+            netto = Double.Parse(TxtNetto.EditValue.ToString)
+        Catch ex As Exception
+        End Try
         Dim vat As Double = Double.Parse(SPVat.EditValue.ToString)
         Dim vat_total As Double = (vat / (100 + vat)) * netto
         TxtVatTot.EditValue = vat_total
@@ -285,7 +289,12 @@
     End Sub
 
     Sub getTaxBase()
-        Dim netto As Double = Double.Parse(TxtNetto.EditValue.ToString)
+        Dim netto As Double = 0
+        Try
+            netto = Double.Parse(TxtNetto.EditValue.ToString)
+        Catch ex As Exception
+
+        End Try
         Dim vat As Double = Double.Parse(SPVat.EditValue.ToString)
         Dim tax_base_total As Double = (100 / (100 + vat)) * netto
         TxtTaxBase.EditValue = tax_base_total
