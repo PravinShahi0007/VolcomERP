@@ -1610,7 +1610,7 @@ Public Class FormImportExcel
                                 .id_currency = table1("currency"),
                                 .kurs = table1("kurs"),
                                 .cif = table1("cif"),
-                                .freight_usd = table1("freight_usd"),
+                                .freight_cost_rp = table1("freight_cost_rp"),
                                 .penalty_percent = table1("penalty_percent"),
                                 .royalty_pib = table1("royalty_pib_rp")
                             }
@@ -1655,7 +1655,7 @@ Public Class FormImportExcel
                 GVData.Columns("id_currency").Visible = False
                 GVData.Columns("kurs").Caption = "Kurs"
                 GVData.Columns("cif").Caption = "CIF"
-                GVData.Columns("freight_usd").Caption = "Freight (USD)"
+                GVData.Columns("freight_cost_rp").Caption = "Freight Cost (Rp)"
                 GVData.Columns("penalty_percent").Caption = "Penalty %"
                 GVData.Columns("royalty_pib").Caption = "Royalty PIB (Rp)"
                 GVData.Columns("Duty").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1676,8 +1676,8 @@ Public Class FormImportExcel
                 GVData.Columns("kurs").DisplayFormat.FormatString = "{0:n4}"
                 GVData.Columns("cif").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GVData.Columns("cif").DisplayFormat.FormatString = "{0:n4}"
-                GVData.Columns("freight_usd").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GVData.Columns("freight_usd").DisplayFormat.FormatString = "{0:n4}"
+                GVData.Columns("freight_cost_rp").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("freight_cost_rp").DisplayFormat.FormatString = "{0:n4}"
                 GVData.Columns("penalty_percent").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GVData.Columns("penalty_percent").DisplayFormat.FormatString = "{0:n4}"
                 GVData.Columns("royalty_pib").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -3056,7 +3056,7 @@ Public Class FormImportExcel
                                                         coo_no='" & GVData.GetRowCellValue(i, "coo").ToString & "',
                                                         pib_kurs='" & decimalSQL(GVData.GetRowCellValue(i, "kurs").ToString) & "',
                                                         pib_id_currency='" & GVData.GetRowCellValue(i, "id_currency").ToString & "',
-                                                        freight_usd='" & decimalSQL(GVData.GetRowCellValue(i, "freight_usd").ToString) & "',
+                                                        freight_cost_rp='" & decimalSQL(GVData.GetRowCellValue(i, "freight_cost_rp").ToString) & "',
                                                         penalty_percent='" & decimalSQL(GVData.GetRowCellValue(i, "penalty_percent").ToString) & "',
                                                         royalty_pib='" & decimalSQL(GVData.GetRowCellValue(i, "royalty_pib").ToString) & "'
                                                         WHERE id_prod_order='" & GVData.GetRowCellValue(i, "IdPO").ToString & "'"
