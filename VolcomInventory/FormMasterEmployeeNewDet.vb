@@ -274,8 +274,18 @@
         EP_DE_cant_blank(ErrorProvider1, DEDOB)
         EP_ME_cant_blank(ErrorProvider1, MEAddress)
 
+        'code check
+        Dim query_cek As String = "SELECT COUNT(*) as `jum` FROM tb_m_employee e WHERE e.employee_code='" + addSlashes(TxtCode.Text) + "' "
+        If action = "upd" Then
+            query_cek += "AND e.id_employee!='" + id_employee + "' "
+        End If
+        Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
+
+
         If Not formIsValidInPanel(ErrorProvider1, PanelControlTop) Or Not formIsValidInXTP(ErrorProvider1, XTPGeneral) Then
             errorInput()
+        ElseIf data_cek.Rows(0)("jum") > 0 Then
+            stopCustom("Employee code is already exist !")
         Else
             Dim id_employee_active As String = addSlashes(LEActive.EditValue.ToString)
             Dim employee_code As String = addSlashes(TxtCode.Text)
