@@ -155,6 +155,40 @@
 
         check_but()
     End Sub
+    Sub view_pr_no_reff()
+        Dim query_where As String = " WHERE (ISNULL(z.id_prod_order) AND ISNULL(z.id_prod_order_wo)) "
+
+        If Not SLEVendor.EditValue.ToString = "0" Then
+            query_where += " AND d.id_comp='" & SLEVendor.EditValue.ToString & "'"
+        End If
+
+        Dim query As String = "SELECT z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date, d.comp_name AS comp_to, "
+        query += "z.pr_prod_order_due_date,maxd.employee_name as last_mark "
+        query += "FROM tb_pr_prod_order z "
+        query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=z.id_comp_contact_to "
+        query += "INNER JOIN tb_m_comp d ON d.id_comp=c.id_comp "
+        query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status=z.id_report_status "
+        query += "LEFT JOIN
+                 (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
+                    FROM tb_report_mark mark
+                    INNER JOIN tb_m_employee emp ON emp.`id_employee`=mark.id_employee
+                    INNER JOIN 
+                    (
+	                    SELECT mark.id_report,mark.report_mark_type,MAX(report_mark_datetime) AS report_mark_datetime
+	                    FROM tb_report_mark mark
+	                    WHERE mark.id_mark='2' AND NOT ISNULL(report_mark_start_datetime) AND report_mark_type='50'
+	                    GROUP BY report_mark_type,id_report
+                    ) maxd ON maxd.id_report=mark.id_report AND maxd.report_mark_type=mark.report_mark_type AND maxd.report_mark_datetime=mark.report_mark_datetime
+                    WHERE mark.id_mark='2' AND NOT ISNULL(mark.report_mark_start_datetime) AND mark.report_mark_type='50'
+                  ) maxd ON maxd.id_report = z.id_pr_prod_order "
+        query += query_where & " "
+        query += "ORDER BY z.id_pr_prod_order DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCPRPO.DataSource = data
+        GVPRPO.BestFitColumns()
+
+        check_but()
+    End Sub
     Sub check_but()
         If XTCTabPR.SelectedTabPageIndex = 0 Then 'list pr
             If GVMatPR.RowCount > 0 Then
@@ -177,6 +211,16 @@
                 bdel_active = "0"
             End If
         ElseIf XTCTabPR.SelectedTabPageIndex = 2 Then 'list pr courier
+            If GVPRPO.RowCount > 0 Then
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+            Else
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+            End If
+        ElseIf XTCTabPR.SelectedTabPageIndex = 3 Then 'list pr no reff
             If GVPRPO.RowCount > 0 Then
                 bnew_active = "1"
                 bedit_active = "1"
@@ -332,8 +376,10 @@
             view_pr()
         ElseIf XTCTabPR.SelectedTabPageIndex = 1 Then
             view_wo()
-        Else
+        ElseIf XTCTabPR.SelectedTabPageIndex = 2 Then
             view_pr_courier()
+        ElseIf XTCTabPR.SelectedTabPageIndex = 3 Then
+            view_pr_no_reff()
         End If
     End Sub
 End Class
