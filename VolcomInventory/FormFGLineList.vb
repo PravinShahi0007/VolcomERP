@@ -208,8 +208,8 @@ Public Class FormFGLineList
                     BtnDesign.Visible = True
                 End If
             Else
-                'BtnProposePrice.Visible = True
-                'BtnActualCost.Visible = True
+                BtnProposePrice.Visible = False
+                BtnActualCost.Visible = False
                 BtnEstimateCost.Visible = False
                 BtnCopyFrom.Visible = False
                 BtnCreateNewPD.Visible = False
