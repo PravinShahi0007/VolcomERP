@@ -28,6 +28,9 @@
         ElseIf report_mark_type = "23" Then
             'Production Work Order
             FormViewProductionWO.Close()
+        ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Then
+            'invoice/missing/credit note
+            FormViewSalesPOS.Close()
         ElseIf report_mark_type = "50" Then
             'PR Prod Order
             FormViewPRProdWO.Close()
