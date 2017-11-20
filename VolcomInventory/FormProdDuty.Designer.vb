@@ -24,6 +24,7 @@ Partial Class FormProdDuty
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMEdit = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVProd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnProdNo = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnSeason = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDelivery = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -49,6 +50,7 @@ Partial Class FormProdDuty
         Me.GridColumnTerm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDesignCOP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnIdPO = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnFabrication = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnHSCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQtyPIB = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -80,6 +82,7 @@ Partial Class FormProdDuty
         Me.BandedGridColumnDutyP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSVATP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPPHPercent = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnEstRoyS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnCIFRp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQtySalesEst = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -88,6 +91,7 @@ Partial Class FormProdDuty
         Me.BandedGridColumnTotDeclareEst = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPPNEst = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPPHEst = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnRevAfterTax = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQtySalesActual = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -99,22 +103,24 @@ Partial Class FormProdDuty
         Me.BandedGridColumnTotDeclareF = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPPNF = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPPHF = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnDiffPrice = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnDiffRoyD = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnOutBM = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPPNDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnPPHDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnVPDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnFinal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn17 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn15 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn16 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn14 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn13 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn12 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn11 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -145,12 +151,6 @@ Partial Class FormProdDuty
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand6 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand7 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.GCProd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVProd, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,6 +203,39 @@ Partial Class FormProdDuty
         Me.GVProd.OptionsView.ColumnAutoWidth = False
         Me.GVProd.OptionsView.ShowGroupPanel = False
         Me.GVProd.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnSeason, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnDelivery, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdPO, DevExpress.Data.ColumnSortOrder.Descending)})
+        '
+        'GridBand1
+        '
+        Me.GridBand1.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridBand1.Columns.Add(Me.GridColumnProdNo)
+        Me.GridBand1.Columns.Add(Me.GridColumnSeason)
+        Me.GridBand1.Columns.Add(Me.GridColumnDelivery)
+        Me.GridBand1.Columns.Add(Me.GridColumnVendorCode)
+        Me.GridBand1.Columns.Add(Me.GridColumnCompName)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnPOVolpro)
+        Me.GridBand1.Columns.Add(Me.GridColumnDesign)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnCode)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnUSCode)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnColor)
+        Me.GridBand1.Columns.Add(Me.GridColumnOrderQty)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnQtyRec)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnRoyPib)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnPIBKurs)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnFOB)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnTotFOB)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnFreightUSD)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
+        Me.GridBand1.Columns.Add(Me.GridColumnReportStatus)
+        Me.GridBand1.Columns.Add(Me.GridColumnIdReportStatus)
+        Me.GridBand1.Columns.Add(Me.GridColumnProdDate)
+        Me.GridBand1.Columns.Add(Me.GridColumnPOType)
+        Me.GridBand1.Columns.Add(Me.GridColumnTerm)
+        Me.GridBand1.Columns.Add(Me.GridColumnDesignCOP)
+        Me.GridBand1.Columns.Add(Me.GridColumnIdPO)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 994
         '
         'GridColumnProdNo
         '
@@ -430,6 +463,44 @@ Partial Class FormProdDuty
         Me.GridColumnIdPO.Caption = "ID PO"
         Me.GridColumnIdPO.FieldName = "id_prod_order"
         Me.GridColumnIdPO.Name = "GridColumnIdPO"
+        '
+        'gridBand3
+        '
+        Me.gridBand3.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand3.Caption = "Import Realization"
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnFabrication)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnHSCode)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnQtyPIB)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBVolume)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBUOM)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBCur)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnCIF)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnImportFrom)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnDestPort)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnLSNo)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnLSDate)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBNo)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBDate)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnAJU)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnCOO)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPPJK)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPPJKInvNo)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnSDP)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnSRP)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnSTP)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBPRDueDate)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPRProposed)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBDueDate)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnDutyPaid)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnEst)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnRevAftDisc)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnDutyP)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnSVATP)
+        Me.gridBand3.Columns.Add(Me.BandedGridColumnPPHPercent)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 1
+        Me.gridBand3.Width = 2295
         '
         'BandedGridColumnFabrication
         '
@@ -736,6 +807,23 @@ Partial Class FormProdDuty
         Me.BandedGridColumnPPHPercent.Name = "BandedGridColumnPPHPercent"
         Me.BandedGridColumnPPHPercent.Visible = True
         '
+        'gridBand4
+        '
+        Me.gridBand4.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand4.Caption = "Pembayaran PIB"
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnEstRoyS)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnCIFRp)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnQtySalesEst)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnEstRoyD)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnBM1)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnTotDeclareEst)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnPPNEst)
+        Me.gridBand4.Columns.Add(Me.BandedGridColumnPPHEst)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 2
+        Me.gridBand4.Width = 375
+        '
         'BandedGridColumnEstRoyS
         '
         Me.BandedGridColumnEstRoyS.AppearanceCell.Options.UseTextOptions = True
@@ -835,6 +923,26 @@ Partial Class FormProdDuty
         Me.BandedGridColumnPPHEst.FieldName = "royalty_pph_pib"
         Me.BandedGridColumnPPHEst.Name = "BandedGridColumnPPHEst"
         Me.BandedGridColumnPPHEst.Visible = True
+        '
+        'gridBand6
+        '
+        Me.gridBand6.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.gridBand6.Caption = "Actual Penjualan Per Cut Off Date"
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnRevAfterTax)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnQtySalesActual)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumn3)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnAmoRoyaltySales)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnFinalRoyS)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnFinalRoyD)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnCIFFinal)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnBMFinal)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnTotDeclareF)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnPPNF)
+        Me.gridBand6.Columns.Add(Me.BandedGridColumnPPHF)
+        Me.gridBand6.Name = "gridBand6"
+        Me.gridBand6.VisibleIndex = 3
+        Me.gridBand6.Width = 812
         '
         'BandedGridColumnRevAfterTax
         '
@@ -979,6 +1087,19 @@ Partial Class FormProdDuty
         Me.BandedGridColumnPPHF.Name = "BandedGridColumnPPHF"
         Me.BandedGridColumnPPHF.Visible = True
         '
+        'gridBand7
+        '
+        Me.gridBand7.Caption = "Selisih"
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnDiffPrice)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnDiffRoyD)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnOutBM)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnPPNDiff)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnPPHDiff)
+        Me.gridBand7.Columns.Add(Me.BandedGridColumnVPDiff)
+        Me.gridBand7.Name = "gridBand7"
+        Me.gridBand7.VisibleIndex = 4
+        Me.gridBand7.Width = 399
+        '
         'BandedGridColumnDiffPrice
         '
         Me.BandedGridColumnDiffPrice.AppearanceCell.Options.UseTextOptions = True
@@ -1027,7 +1148,7 @@ Partial Class FormProdDuty
         Me.BandedGridColumnPPNDiff.Caption = "Outstanding PPN"
         Me.BandedGridColumnPPNDiff.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumnPPNDiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnPPNDiff.FieldName = "oustanding_ppn"
+        Me.BandedGridColumnPPNDiff.FieldName = "outstanding_ppn"
         Me.BandedGridColumnPPNDiff.Name = "BandedGridColumnPPNDiff"
         Me.BandedGridColumnPPNDiff.Visible = True
         Me.BandedGridColumnPPNDiff.Width = 93
@@ -1041,7 +1162,7 @@ Partial Class FormProdDuty
         Me.BandedGridColumnPPHDiff.Caption = "Outstanding PPH"
         Me.BandedGridColumnPPHDiff.DisplayFormat.FormatString = "N2"
         Me.BandedGridColumnPPHDiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnPPHDiff.FieldName = "oustanding_pph"
+        Me.BandedGridColumnPPHDiff.FieldName = "outstanding_pph"
         Me.BandedGridColumnPPHDiff.Name = "BandedGridColumnPPHDiff"
         Me.BandedGridColumnPPHDiff.Visible = True
         Me.BandedGridColumnPPHDiff.Width = 111
@@ -1058,6 +1179,27 @@ Partial Class FormProdDuty
         Me.BandedGridColumnVPDiff.FieldName = "total_outstanding"
         Me.BandedGridColumnVPDiff.Name = "BandedGridColumnVPDiff"
         Me.BandedGridColumnVPDiff.Visible = True
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "Estimasi Sisa Kurang Bayar (Penjualan 100%)"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnFinal)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn17)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn15)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn9)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn16)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn14)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn13)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn10)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn12)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn11)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn8)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn1)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn7)
+        Me.gridBand2.Columns.Add(Me.BandedGridColumn6)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 5
+        Me.gridBand2.Width = 749
         '
         'BandedGridColumnFinal
         '
@@ -1085,19 +1227,6 @@ Partial Class FormProdDuty
         Me.BandedGridColumn17.FieldName = "qty_remaining"
         Me.BandedGridColumn17.Name = "BandedGridColumn17"
         '
-        'BandedGridColumn16
-        '
-        Me.BandedGridColumn16.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn16.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn16.Caption = "Amount Royalty Sales Remaining"
-        Me.BandedGridColumn16.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn16.FieldName = "royalty_sales_remaining"
-        Me.BandedGridColumn16.Name = "BandedGridColumn16"
-        Me.BandedGridColumn16.Visible = True
-        '
         'BandedGridColumn15
         '
         Me.BandedGridColumn15.AppearanceCell.Options.UseTextOptions = True
@@ -1111,6 +1240,32 @@ Partial Class FormProdDuty
         Me.BandedGridColumn15.Name = "BandedGridColumn15"
         Me.BandedGridColumn15.Visible = True
         Me.BandedGridColumn15.Width = 103
+        '
+        'BandedGridColumn9
+        '
+        Me.BandedGridColumn9.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn9.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn9.Caption = "Total Remaining"
+        Me.BandedGridColumn9.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn9.FieldName = "amount_remaining"
+        Me.BandedGridColumn9.Name = "BandedGridColumn9"
+        Me.BandedGridColumn9.Visible = True
+        '
+        'BandedGridColumn16
+        '
+        Me.BandedGridColumn16.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn16.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn16.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn16.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn16.Caption = "Amount Royalty Sales Remaining"
+        Me.BandedGridColumn16.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn16.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn16.FieldName = "royalty_sales_remaining"
+        Me.BandedGridColumn16.Name = "BandedGridColumn16"
+        Me.BandedGridColumn16.Visible = True
         '
         'BandedGridColumn14
         '
@@ -1138,6 +1293,19 @@ Partial Class FormProdDuty
         Me.BandedGridColumn13.Name = "BandedGridColumn13"
         Me.BandedGridColumn13.Visible = True
         '
+        'BandedGridColumn10
+        '
+        Me.BandedGridColumn10.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn10.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn10.Caption = "Total"
+        Me.BandedGridColumn10.DisplayFormat.FormatString = "N2"
+        Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn10.FieldName = "tot_declare_remaining"
+        Me.BandedGridColumn10.Name = "BandedGridColumn10"
+        Me.BandedGridColumn10.Visible = True
+        '
         'BandedGridColumn12
         '
         Me.BandedGridColumn12.AppearanceCell.Options.UseTextOptions = True
@@ -1163,32 +1331,6 @@ Partial Class FormProdDuty
         Me.BandedGridColumn11.FieldName = "pph_remaining"
         Me.BandedGridColumn11.Name = "BandedGridColumn11"
         Me.BandedGridColumn11.Visible = True
-        '
-        'BandedGridColumn10
-        '
-        Me.BandedGridColumn10.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumn10.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn10.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn10.Caption = "Total"
-        Me.BandedGridColumn10.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn10.FieldName = "tot_declare_remaining"
-        Me.BandedGridColumn10.Name = "BandedGridColumn10"
-        Me.BandedGridColumn10.Visible = True
-        '
-        'BandedGridColumn9
-        '
-        Me.BandedGridColumn9.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumn9.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn9.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.BandedGridColumn9.Caption = "Total Remaining"
-        Me.BandedGridColumn9.DisplayFormat.FormatString = "N2"
-        Me.BandedGridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumn9.FieldName = "amount_remaining"
-        Me.BandedGridColumn9.Name = "BandedGridColumn9"
-        Me.BandedGridColumn9.Visible = True
         '
         'BandedGridColumn8
         '
@@ -1461,148 +1603,6 @@ Partial Class FormProdDuty
         Me.LabelControl9.Size = New System.Drawing.Size(32, 13)
         Me.LabelControl9.TabIndex = 8895
         Me.LabelControl9.Text = "Design"
-        '
-        'GridBand1
-        '
-        Me.GridBand1.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridBand1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridBand1.Columns.Add(Me.GridColumnProdNo)
-        Me.GridBand1.Columns.Add(Me.GridColumnSeason)
-        Me.GridBand1.Columns.Add(Me.GridColumnDelivery)
-        Me.GridBand1.Columns.Add(Me.GridColumnVendorCode)
-        Me.GridBand1.Columns.Add(Me.GridColumnCompName)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnPOVolpro)
-        Me.GridBand1.Columns.Add(Me.GridColumnDesign)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnCode)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnUSCode)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnColor)
-        Me.GridBand1.Columns.Add(Me.GridColumnOrderQty)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnQtyRec)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnRoyPib)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnPIBKurs)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnFOB)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnTotFOB)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnFreightUSD)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumn2)
-        Me.GridBand1.Columns.Add(Me.GridColumnReportStatus)
-        Me.GridBand1.Columns.Add(Me.GridColumnIdReportStatus)
-        Me.GridBand1.Columns.Add(Me.GridColumnProdDate)
-        Me.GridBand1.Columns.Add(Me.GridColumnPOType)
-        Me.GridBand1.Columns.Add(Me.GridColumnTerm)
-        Me.GridBand1.Columns.Add(Me.GridColumnDesignCOP)
-        Me.GridBand1.Columns.Add(Me.GridColumnIdPO)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 994
-        '
-        'gridBand3
-        '
-        Me.gridBand3.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand3.Caption = "Import Realization"
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnFabrication)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnHSCode)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnQtyPIB)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBVolume)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBUOM)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBCur)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnCIF)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnImportFrom)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnDestPort)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnLSNo)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnLSDate)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBNo)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBDate)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnAJU)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnCOO)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPPJK)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPPJKInvNo)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnSDP)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnSRP)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnSTP)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBPRDueDate)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPRProposed)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPIBDueDate)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnDutyPaid)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnEst)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnRevAftDisc)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnDutyP)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnSVATP)
-        Me.gridBand3.Columns.Add(Me.BandedGridColumnPPHPercent)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 1
-        Me.gridBand3.Width = 2295
-        '
-        'gridBand4
-        '
-        Me.gridBand4.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand4.Caption = "Pembayaran PIB"
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnEstRoyS)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnCIFRp)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnQtySalesEst)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnEstRoyD)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnBM1)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnTotDeclareEst)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnPPNEst)
-        Me.gridBand4.Columns.Add(Me.BandedGridColumnPPHEst)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 2
-        Me.gridBand4.Width = 375
-        '
-        'gridBand6
-        '
-        Me.gridBand6.AppearanceHeader.Options.UseTextOptions = True
-        Me.gridBand6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand6.Caption = "Actual Penjualan Per Cut Off Date"
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnRevAfterTax)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnQtySalesActual)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumn3)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnAmoRoyaltySales)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnFinalRoyS)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnFinalRoyD)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnCIFFinal)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnBMFinal)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnTotDeclareF)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnPPNF)
-        Me.gridBand6.Columns.Add(Me.BandedGridColumnPPHF)
-        Me.gridBand6.Name = "gridBand6"
-        Me.gridBand6.VisibleIndex = 3
-        Me.gridBand6.Width = 812
-        '
-        'gridBand7
-        '
-        Me.gridBand7.Caption = "Selisih"
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnDiffPrice)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnDiffRoyD)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnOutBM)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnPPNDiff)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnPPHDiff)
-        Me.gridBand7.Columns.Add(Me.BandedGridColumnVPDiff)
-        Me.gridBand7.Name = "gridBand7"
-        Me.gridBand7.VisibleIndex = 4
-        Me.gridBand7.Width = 399
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "Estimasi Sisa Kurang Bayar (Penjualan 100%)"
-        Me.gridBand2.Columns.Add(Me.BandedGridColumnFinal)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn17)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn15)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn9)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn16)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn14)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn13)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn10)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn12)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn11)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn8)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn1)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn7)
-        Me.gridBand2.Columns.Add(Me.BandedGridColumn6)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 5
-        Me.gridBand2.Width = 749
         '
         'FormProdDuty
         '
