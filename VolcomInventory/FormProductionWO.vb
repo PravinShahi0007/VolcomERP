@@ -40,14 +40,12 @@
             load_po(id_po)
             '
             BPrint.Visible = False
-            BMark.Visible = False
             BtnAttachment.Visible = False
             '
         Else
             load_po(id_po)
 
             BPrint.Visible = True
-            BMark.Visible = True
             BtnAttachment.Visible = True
 
             Dim query = "SELECT a.id_report_status,h.report_status,a.id_prod_order_wo,a.id_ovh_price,a.id_payment, "
@@ -337,7 +335,7 @@
                     query = String.Format("INSERT INTO tb_prod_order_wo(id_prod_order,id_ovh_price,prod_order_wo_number,id_comp_contact_ship_to,id_payment,prod_order_wo_date,prod_order_wo_lead_time,prod_order_wo_top,prod_order_wo_note,prod_order_wo_vat,prod_order_wo_del_date,prod_order_wo_kurs,id_currency,is_main_vendor) VALUES('{0}','{1}','{2}','{3}','{4}',DATE(NOW()),'{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}'); SELECT LAST_INSERT_ID()", id_po, id_ovh_price, wo_number, id_comp_ship_to, payment_type, lead_time, top, notex, vat, del_date, decimalSQL(kurs.ToString), id_currency, is_main_vendor)
                     id_wo_new = execute_query(query, 0, True, "", "", "", "")
                     '
-                    insert_who_prepared("23", id_wo_new, id_user)
+                    'insert_who_prepared("23", id_wo_new, id_user)
 
                     increase_inc_prod("2")
                     For i As Integer = 0 To GVListPurchase.RowCount - 1
@@ -418,7 +416,7 @@
     End Sub
 
     Private Sub LEpayment_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LEpayment.EditValueChanged
-        If LEpayment.EditValue = 1 Or LEpayment.EditValue = 4 Or LEpayment.EditValue = 5 Then
+        If LEpayment.EditValue = 1 Or LEpayment.EditValue = 4 Or LEpayment.EditValue = 5 Or LEpayment.EditValue = 6 Or LEpayment.EditValue = 7 Then
             TETOP.Enabled = True
         Else
             TETOP.Text = 0
@@ -490,7 +488,7 @@
         Tool.ShowPreview()
     End Sub
 
-    Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
+    Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         FormReportMark.id_report = id_wo
         FormReportMark.report_mark_type = "23"
         FormReportMark.ShowDialog()

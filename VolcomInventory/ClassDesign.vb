@@ -625,6 +625,10 @@
         Dim band_act As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVParam.Bands.AddBand("ACTUAL LINE LIST")
         band_act.AppearanceHeader.Font = New Font(BGVParam.Appearance.Row.Font.FontFamily, BGVParam.Appearance.Row.Font.Size, FontStyle.Bold)
 
+        'final line list band's
+        Dim band_final As DevExpress.XtraGrid.Views.BandedGrid.GridBand = BGVParam.Bands.AddBand("FINAL LINE LIST")
+        band_final.AppearanceHeader.Font = New Font(BGVParam.Appearance.Row.Font.FontFamily, BGVParam.Appearance.Row.Font.Size, FontStyle.Bold)
+
         'declare band for merge coluumn
         Dim band_arr() As DevExpress.XtraGrid.Views.BandedGrid.GridBand = Nothing
         Dim band_alloc_break() As DevExpress.XtraGrid.Views.BandedGrid.GridBand = Nothing
@@ -692,11 +696,11 @@
                 ElseIf data.Columns(i).ColumnName.ToString = "PROPOSE PRICE STATUS_sct" Or data.Columns(i).ColumnName.ToString = "PROPOSE PRICE NUMBER_sct" Or data.Columns(i).ColumnName.ToString = "id_report_status_sct" Then
                     BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
                     BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-                ElseIf data.Columns(i).ColumnName.ToString = "LAST UPDATED_sct"
+                ElseIf data.Columns(i).ColumnName.ToString = "LAST UPDATED_sct" Then
                     'display format for column date
                     BGVParam.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
                     BGVParam.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "dd MMMM yyyy '/' hh:mm tt"
-        Else
+                Else
                     BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
                     BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
                     BGVParam.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
@@ -935,6 +939,110 @@
                         BGVParam.GroupSummary.Add(item)
                     End If
                 End If
+            ElseIf data.Columns(i).ColumnName.ToString.Contains("_Final") Then
+                '==========NESTED BANDS FOR FINAL=============
+                If data.Columns(i).ColumnName.ToString = "TOTAL QTY_Breakdown_Final" Then
+                    '------TOTAL QTY
+                    Dim st_caption As String = data.Columns(i).ColumnName.ToString.Length - 16
+                    Dim found_band_2 As Boolean = False
+                    For Each gbc As DevExpress.XtraGrid.Views.BandedGrid.GridBand In band_final.Children
+                        If gbc.Caption.ToString = "TOTAL QTY" Then
+                            found_band_2 = True
+                            gbc.Columns.Add(BGVParam.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
+                            Exit For
+                        End If
+                    Next
+
+                    If Not found_band_2 Then
+                        Dim bandc_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = band_final.Children.AddBand("TOTAL QTY DESIGN")
+                        bandc_new.AppearanceHeader.Font = New Font(BGVParam.Appearance.Row.Font.FontFamily, BGVParam.Appearance.Row.Font.Size, FontStyle.Bold)
+                        bandc_new.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                        bandc_new.Columns.Add(BGVParam.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
+                        band_arr.AddMyMergeBand(bandc_new)
+                    End If
+
+                    'properties
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.Font = New Font(BGVParam.Appearance.Row.Font.FontFamily, BGVParam.Appearance.Row.Font.Size, FontStyle.Bold)
+
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n0}"
+
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n0}"
+
+                    Dim item As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
+                    item.FieldName = data.Columns(i).ColumnName.ToString
+                    item.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                    item.DisplayFormat = "{0:n0}"
+                    item.ShowInGroupColumnFooter = BGVParam.Columns(data.Columns(i).ColumnName.ToString)
+                    BGVParam.GroupSummary.Add(item)
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).AutoFillDown = True
+                Else
+                    '------PRC BAND
+                    Dim st_caption As String = data.Columns(i).ColumnName.ToString.Length - 10
+                    Dim found_band_2 As Boolean = False
+                    For Each gbc As DevExpress.XtraGrid.Views.BandedGrid.GridBand In band_final.Children
+                        If gbc.Caption.ToString = "TOTAL PRICE / COST" Then
+                            found_band_2 = True
+                            gbc.Columns.Add(BGVParam.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
+                            Exit For
+                        End If
+                    Next
+
+                    If Not found_band_2 Then
+                        Dim bandc_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = band_final.Children.AddBand("TOTAL PRICE / COST")
+                        bandc_new.AppearanceHeader.Font = New Font(BGVParam.Appearance.Row.Font.FontFamily, BGVParam.Appearance.Row.Font.Size, FontStyle.Bold)
+                        'bandc_new.OptionsBand.ShowCaption = False
+                        bandc_new.Columns.Add(BGVParam.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
+                        band_arr.AddMyMergeBand(bandc_new)
+                    End If
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.Font = New Font(BGVParam.Appearance.Row.Font.FontFamily, BGVParam.Appearance.Row.Font.Size, FontStyle.Bold)
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).DisplayFormat.FormatString = "{0:n2}"
+                    BGVParam.Columns(data.Columns(i).ColumnName.ToString).AutoFillDown = True
+                    If data.Columns(i).ColumnName.ToString = "MARK UP_Prc_Final" Then
+                        BGVParam.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Custom
+                        BGVParam.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n2}"
+                        BGVParam.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.Tag = 46
+                        CType(BGVParam.Columns(data.Columns(i).ColumnName.ToString).View, DevExpress.XtraGrid.Views.Grid.GridView).OptionsView.ShowFooter = True
+
+                        Dim item As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
+                        item.FieldName = data.Columns(i).ColumnName.ToString
+                        item.SummaryType = DevExpress.Data.SummaryItemType.Custom
+                        item.DisplayFormat = "{0:n2}"
+                        item.Tag = 47
+                        item.ShowInGroupColumnFooter = BGVParam.Columns(data.Columns(i).ColumnName.ToString)
+                        BGVParam.GroupSummary.Add(item)
+                    ElseIf Not data.Columns(i).ColumnName.ToString = "RATE IN RP_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "MSRP_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "MSRP IN RP_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "TARGET PRICE BASE ON MARKUP_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "RATE BOM_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "ORGANIC COST RATE BOM_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "RATE MANAGEMENT_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "ORGANIC COST RATE MANAGEMENT_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "RATE PD_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "ORGANIC COST RATE PD_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "id_cop_status_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "CURRENCY ORIGIN_Prc_Final" _
+                    And Not data.Columns(i).ColumnName.ToString = "COP STATUS_Prc_Final" Then
+                        'gx += 1
+                        'Console.WriteLine("GX = " + gx.ToString)
+                        BGVParam.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        BGVParam.Columns(data.Columns(i).ColumnName.ToString).SummaryItem.DisplayFormat = "{0:n2}"
+
+                        Dim item As DevExpress.XtraGrid.GridGroupSummaryItem = New DevExpress.XtraGrid.GridGroupSummaryItem()
+                        item.FieldName = data.Columns(i).ColumnName.ToString
+                        item.SummaryType = DevExpress.Data.SummaryItemType.Sum
+                        item.DisplayFormat = "{0:n2}"
+                        item.ShowInGroupColumnFooter = BGVParam.Columns(data.Columns(i).ColumnName.ToString)
+                        BGVParam.GroupSummary.Add(item)
+                    End If
+                End If
             Else
                 '==========NESTED BANDS FOR ACTUAL=============
                 If data.Columns(i).ColumnName.ToString.Contains("_Breakdown") And data.Columns(i).ColumnName.ToString <> "TOTAL QTY_Breakdown" Then
@@ -1091,7 +1199,7 @@
                     '------TOTAL ACTUAL RECEIVED
                     Dim st_caption As String = data.Columns(i).ColumnName.ToString.Length - 7
                     Dim found_band_2 As Boolean = False
-                    For Each gbc As DevExpress.XtraGrid.Views.BandedGrid.GridBand In band_act.Children
+                    For Each gbc As DevExpress.XtraGrid.Views.BandedGrid.GridBand In band_final.Children
                         If gbc.Caption.ToString = "TOTAL ACTUAL RECEIVED" Then
                             found_band_2 = True
                             gbc.Columns.Add(BGVParam.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))
@@ -1100,7 +1208,7 @@
                     Next
 
                     If Not found_band_2 Then
-                        Dim bandc_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = band_act.Children.AddBand("TOTAL ACTUAL RECEIVED")
+                        Dim bandc_new As DevExpress.XtraGrid.Views.BandedGrid.GridBand = band_final.Children.AddBand("TOTAL ACTUAL RECEIVED")
                         bandc_new.AppearanceHeader.Font = New Font(BGVParam.Appearance.Row.Font.FontFamily, BGVParam.Appearance.Row.Font.Size, FontStyle.Bold)
                         bandc_new.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
                         bandc_new.Columns.Add(BGVParam.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString.Substring(0, st_caption)))

@@ -102,6 +102,7 @@ Partial Class FormBOMDesignSingle
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -662,7 +663,7 @@ Partial Class FormBOMDesignSingle
         '
         'GVBomDetOvh
         '
-        Me.GVBomDetOvh.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn11, Me.GridColumnCat, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn13, Me.GridColumnVendPrice, Me.GridColumnKursOVH, Me.GridColumn20, Me.GridColumn21, Me.GridColumn10, Me.GridColumnOVHCenter})
+        Me.GVBomDetOvh.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn11, Me.GridColumn14, Me.GridColumnCat, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn13, Me.GridColumnVendPrice, Me.GridColumnKursOVH, Me.GridColumn20, Me.GridColumn21, Me.GridColumn10, Me.GridColumnOVHCenter})
         Me.GVBomDetOvh.CustomizationFormBounds = New System.Drawing.Rectangle(885, 289, 216, 178)
         Me.GVBomDetOvh.GridControl = Me.GCBomDetOvh
         Me.GVBomDetOvh.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn21, "{0:N2}")})
@@ -1021,6 +1022,12 @@ Partial Class FormBOMDesignSingle
         Me.BSave.TabIndex = 10
         Me.BSave.Text = "Save"
         '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Id BOM Det"
+        Me.GridColumn14.FieldName = "id_bom_det"
+        Me.GridColumn14.Name = "GridColumn14"
+        '
         'FormBOMDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1160,4 +1167,5 @@ Partial Class FormBOMDesignSingle
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents MEBOMNote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents BDupDesign As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

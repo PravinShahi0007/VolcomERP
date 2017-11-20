@@ -317,7 +317,7 @@ Public Class FormSalesPOSDet
         ElseIf Not cond_bill_to Then
             stopCustom("Bill to can't blank")
         Else
-            Dim sales_pos_note As String = MENote.Text
+            Dim sales_pos_note As String = addSlashes(MENote.Text)
             Dim id_report_status As String = LEReportStatus.EditValue
             Dim id_so_type As String = LETypeSO.EditValue
             Dim sales_pos_due_date As String = DateTime.Parse(DEDueDate.EditValue.ToString).ToString("yyyy-MM-dd")

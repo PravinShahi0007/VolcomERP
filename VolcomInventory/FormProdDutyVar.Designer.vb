@@ -89,9 +89,11 @@ Partial Class FormProdDutyVar
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TESalesActual = New DevExpress.XtraEditors.TextEdit()
         Me.Label29 = New System.Windows.Forms.Label()
-        Me.TEFreightUSD = New DevExpress.XtraEditors.TextEdit()
+        Me.TEFreightRp = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TESalesAmount = New DevExpress.XtraEditors.TextEdit()
+        Me.TERoyaltyPIB = New DevExpress.XtraEditors.TextEdit()
+        Me.Label32 = New System.Windows.Forms.Label()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEPenalty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -126,8 +128,9 @@ Partial Class FormProdDutyVar
         CType(Me.DELSDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TELSNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TESalesActual.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEFreightUSD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEFreightRp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TESalesAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TERoyaltyPIB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -144,7 +147,7 @@ Partial Class FormProdDutyVar
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 403)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(572, 38)
+        Me.PanelControl1.Size = New System.Drawing.Size(632, 38)
         Me.PanelControl1.TabIndex = 0
         '
         'Label31
@@ -177,7 +180,7 @@ Partial Class FormProdDutyVar
         'BCancel
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCancel.Location = New System.Drawing.Point(433, 2)
+        Me.BCancel.Location = New System.Drawing.Point(493, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(75, 34)
         Me.BCancel.TabIndex = 1
@@ -186,7 +189,7 @@ Partial Class FormProdDutyVar
         'BSave
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BSave.Location = New System.Drawing.Point(508, 2)
+        Me.BSave.Location = New System.Drawing.Point(568, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(62, 34)
         Me.BSave.TabIndex = 0
@@ -237,25 +240,25 @@ Partial Class FormProdDutyVar
         '
         'TEDuty
         '
-        Me.TEDuty.Location = New System.Drawing.Point(94, 267)
+        Me.TEDuty.Location = New System.Drawing.Point(107, 267)
         Me.TEDuty.Name = "TEDuty"
         Me.TEDuty.Properties.Appearance.Options.UseTextOptions = True
         Me.TEDuty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEDuty.Size = New System.Drawing.Size(76, 20)
+        Me.TEDuty.Size = New System.Drawing.Size(63, 20)
         Me.TEDuty.TabIndex = 2
         '
         'TERoyalty
         '
-        Me.TERoyalty.Location = New System.Drawing.Point(94, 293)
+        Me.TERoyalty.Location = New System.Drawing.Point(107, 293)
         Me.TERoyalty.Name = "TERoyalty"
         Me.TERoyalty.Properties.Appearance.Options.UseTextOptions = True
         Me.TERoyalty.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TERoyalty.Size = New System.Drawing.Size(76, 20)
+        Me.TERoyalty.Size = New System.Drawing.Size(63, 20)
         Me.TERoyalty.TabIndex = 3
         '
         'TESalesVAT
         '
-        Me.TESalesVAT.Location = New System.Drawing.Point(367, 293)
+        Me.TESalesVAT.Location = New System.Drawing.Point(422, 293)
         Me.TESalesVAT.Name = "TESalesVAT"
         Me.TESalesVAT.Properties.Appearance.Options.UseTextOptions = True
         Me.TESalesVAT.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -264,11 +267,11 @@ Partial Class FormProdDutyVar
         '
         'TEStoreDisc
         '
-        Me.TEStoreDisc.Location = New System.Drawing.Point(94, 319)
+        Me.TEStoreDisc.Location = New System.Drawing.Point(107, 319)
         Me.TEStoreDisc.Name = "TEStoreDisc"
         Me.TEStoreDisc.Properties.Appearance.Options.UseTextOptions = True
         Me.TEStoreDisc.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEStoreDisc.Size = New System.Drawing.Size(76, 20)
+        Me.TEStoreDisc.Size = New System.Drawing.Size(63, 20)
         Me.TEStoreDisc.TabIndex = 5
         '
         'Label2
@@ -309,7 +312,7 @@ Partial Class FormProdDutyVar
         '
         'TESalesThrough
         '
-        Me.TESalesThrough.Location = New System.Drawing.Point(367, 267)
+        Me.TESalesThrough.Location = New System.Drawing.Point(422, 267)
         Me.TESalesThrough.Name = "TESalesThrough"
         Me.TESalesThrough.Properties.Appearance.Options.UseTextOptions = True
         Me.TESalesThrough.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -337,7 +340,7 @@ Partial Class FormProdDutyVar
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(449, 296)
+        Me.Label8.Location = New System.Drawing.Point(504, 296)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(18, 13)
         Me.Label8.TabIndex = 13
@@ -355,7 +358,7 @@ Partial Class FormProdDutyVar
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(449, 270)
+        Me.Label10.Location = New System.Drawing.Point(504, 270)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(18, 13)
         Me.Label10.TabIndex = 15
@@ -372,18 +375,18 @@ Partial Class FormProdDutyVar
         '
         'TEPO
         '
-        Me.TEPO.Location = New System.Drawing.Point(94, 6)
+        Me.TEPO.Location = New System.Drawing.Point(107, 6)
         Me.TEPO.Name = "TEPO"
         Me.TEPO.Properties.ReadOnly = True
-        Me.TEPO.Size = New System.Drawing.Size(177, 20)
+        Me.TEPO.Size = New System.Drawing.Size(164, 20)
         Me.TEPO.TabIndex = 17
         '
         'TEStyle
         '
-        Me.TEStyle.Location = New System.Drawing.Point(223, 32)
+        Me.TEStyle.Location = New System.Drawing.Point(241, 32)
         Me.TEStyle.Name = "TEStyle"
         Me.TEStyle.Properties.ReadOnly = True
-        Me.TEStyle.Size = New System.Drawing.Size(335, 20)
+        Me.TEStyle.Size = New System.Drawing.Size(380, 20)
         Me.TEStyle.TabIndex = 19
         '
         'Label12
@@ -397,9 +400,9 @@ Partial Class FormProdDutyVar
         '
         'TEPIBNo
         '
-        Me.TEPIBNo.Location = New System.Drawing.Point(94, 84)
+        Me.TEPIBNo.Location = New System.Drawing.Point(107, 84)
         Me.TEPIBNo.Name = "TEPIBNo"
-        Me.TEPIBNo.Size = New System.Drawing.Size(177, 20)
+        Me.TEPIBNo.Size = New System.Drawing.Size(164, 20)
         Me.TEPIBNo.TabIndex = 21
         '
         'Label13
@@ -414,7 +417,7 @@ Partial Class FormProdDutyVar
         'DEDate
         '
         Me.DEDate.EditValue = Nothing
-        Me.DEDate.Location = New System.Drawing.Point(367, 84)
+        Me.DEDate.Location = New System.Drawing.Point(422, 84)
         Me.DEDate.Name = "DEDate"
         Me.DEDate.Properties.Appearance.Options.UseTextOptions = True
         Me.DEDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -422,7 +425,7 @@ Partial Class FormProdDutyVar
         Me.DEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDate.Size = New System.Drawing.Size(190, 20)
+        Me.DEDate.Size = New System.Drawing.Size(198, 20)
         Me.DEDate.TabIndex = 176
         '
         'LabelControl6
@@ -437,7 +440,7 @@ Partial Class FormProdDutyVar
         '
         Me.TEPOLama.Location = New System.Drawing.Point(346, 6)
         Me.TEPOLama.Name = "TEPOLama"
-        Me.TEPOLama.Size = New System.Drawing.Size(212, 20)
+        Me.TEPOLama.Size = New System.Drawing.Size(275, 20)
         Me.TEPOLama.TabIndex = 182
         '
         'Label16
@@ -451,9 +454,9 @@ Partial Class FormProdDutyVar
         '
         'TEAju
         '
-        Me.TEAju.Location = New System.Drawing.Point(94, 110)
+        Me.TEAju.Location = New System.Drawing.Point(107, 110)
         Me.TEAju.Name = "TEAju"
-        Me.TEAju.Size = New System.Drawing.Size(177, 20)
+        Me.TEAju.Size = New System.Drawing.Size(164, 20)
         Me.TEAju.TabIndex = 184
         '
         'Label17
@@ -467,7 +470,7 @@ Partial Class FormProdDutyVar
         '
         'TEPPH
         '
-        Me.TEPPH.Location = New System.Drawing.Point(367, 319)
+        Me.TEPPH.Location = New System.Drawing.Point(422, 319)
         Me.TEPPH.Name = "TEPPH"
         Me.TEPPH.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPPH.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -486,7 +489,7 @@ Partial Class FormProdDutyVar
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(449, 322)
+        Me.Label19.Location = New System.Drawing.Point(504, 322)
         Me.Label19.Name = "Label19"
         Me.Label19.Size = New System.Drawing.Size(18, 13)
         Me.Label19.TabIndex = 187
@@ -494,9 +497,9 @@ Partial Class FormProdDutyVar
         '
         'TEHSCode
         '
-        Me.TEHSCode.Location = New System.Drawing.Point(367, 110)
+        Me.TEHSCode.Location = New System.Drawing.Point(422, 110)
         Me.TEHSCode.Name = "TEHSCode"
-        Me.TEHSCode.Size = New System.Drawing.Size(190, 20)
+        Me.TEHSCode.Size = New System.Drawing.Size(198, 20)
         Me.TEHSCode.TabIndex = 189
         '
         'Label20
@@ -510,10 +513,10 @@ Partial Class FormProdDutyVar
         '
         'TECode
         '
-        Me.TECode.Location = New System.Drawing.Point(94, 32)
+        Me.TECode.Location = New System.Drawing.Point(107, 32)
         Me.TECode.Name = "TECode"
         Me.TECode.Properties.ReadOnly = True
-        Me.TECode.Size = New System.Drawing.Size(123, 20)
+        Me.TECode.Size = New System.Drawing.Size(128, 20)
         Me.TECode.TabIndex = 190
         '
         'Label21
@@ -527,9 +530,9 @@ Partial Class FormProdDutyVar
         '
         'TEFrom
         '
-        Me.TEFrom.Location = New System.Drawing.Point(94, 58)
+        Me.TEFrom.Location = New System.Drawing.Point(107, 58)
         Me.TEFrom.Name = "TEFrom"
-        Me.TEFrom.Size = New System.Drawing.Size(177, 20)
+        Me.TEFrom.Size = New System.Drawing.Size(164, 20)
         Me.TEFrom.TabIndex = 192
         '
         'Label22
@@ -543,16 +546,16 @@ Partial Class FormProdDutyVar
         '
         'TEDestPort
         '
-        Me.TEDestPort.Location = New System.Drawing.Point(367, 58)
+        Me.TEDestPort.Location = New System.Drawing.Point(422, 58)
         Me.TEDestPort.Name = "TEDestPort"
-        Me.TEDestPort.Size = New System.Drawing.Size(191, 20)
+        Me.TEDestPort.Size = New System.Drawing.Size(199, 20)
         Me.TEDestPort.TabIndex = 194
         '
         'TEPPJK
         '
-        Me.TEPPJK.Location = New System.Drawing.Point(94, 136)
+        Me.TEPPJK.Location = New System.Drawing.Point(107, 136)
         Me.TEPPJK.Name = "TEPPJK"
-        Me.TEPPJK.Size = New System.Drawing.Size(177, 20)
+        Me.TEPPJK.Size = New System.Drawing.Size(164, 20)
         Me.TEPPJK.TabIndex = 196
         '
         'Label24
@@ -575,16 +578,16 @@ Partial Class FormProdDutyVar
         '
         'TEInvNo
         '
-        Me.TEInvNo.Location = New System.Drawing.Point(367, 137)
+        Me.TEInvNo.Location = New System.Drawing.Point(422, 137)
         Me.TEInvNo.Name = "TEInvNo"
-        Me.TEInvNo.Size = New System.Drawing.Size(190, 20)
+        Me.TEInvNo.Size = New System.Drawing.Size(198, 20)
         Me.TEInvNo.TabIndex = 198
         '
         'TEVolume
         '
-        Me.TEVolume.Location = New System.Drawing.Point(94, 162)
+        Me.TEVolume.Location = New System.Drawing.Point(107, 162)
         Me.TEVolume.Name = "TEVolume"
-        Me.TEVolume.Size = New System.Drawing.Size(177, 20)
+        Me.TEVolume.Size = New System.Drawing.Size(164, 20)
         Me.TEVolume.TabIndex = 200
         '
         'Label23
@@ -598,9 +601,9 @@ Partial Class FormProdDutyVar
         '
         'TEUOM
         '
-        Me.TEUOM.Location = New System.Drawing.Point(367, 163)
+        Me.TEUOM.Location = New System.Drawing.Point(422, 163)
         Me.TEUOM.Name = "TEUOM"
-        Me.TEUOM.Size = New System.Drawing.Size(190, 20)
+        Me.TEUOM.Size = New System.Drawing.Size(198, 20)
         Me.TEUOM.TabIndex = 201
         '
         'Label26
@@ -622,7 +625,7 @@ Partial Class FormProdDutyVar
         '
         'TEKurs
         '
-        Me.TEKurs.Location = New System.Drawing.Point(367, 189)
+        Me.TEKurs.Location = New System.Drawing.Point(422, 189)
         Me.TEKurs.Name = "TEKurs"
         Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
         Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -631,12 +634,12 @@ Partial Class FormProdDutyVar
         Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEKurs.Properties.Mask.SaveLiteral = False
         Me.TEKurs.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEKurs.Size = New System.Drawing.Size(190, 20)
+        Me.TEKurs.Size = New System.Drawing.Size(198, 20)
         Me.TEKurs.TabIndex = 205
         '
         'LECurrency
         '
-        Me.LECurrency.Location = New System.Drawing.Point(94, 188)
+        Me.LECurrency.Location = New System.Drawing.Point(107, 188)
         Me.LECurrency.Name = "LECurrency"
         Me.LECurrency.Properties.Appearance.Options.UseTextOptions = True
         Me.LECurrency.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -648,7 +651,7 @@ Partial Class FormProdDutyVar
         Me.LECurrency.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_currency", "Id Currency", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("currency", "Currency")})
         Me.LECurrency.Properties.NullText = ""
         Me.LECurrency.Properties.ShowFooter = False
-        Me.LECurrency.Size = New System.Drawing.Size(177, 20)
+        Me.LECurrency.Size = New System.Drawing.Size(164, 20)
         Me.LECurrency.TabIndex = 204
         '
         'LabelControl13
@@ -669,7 +672,7 @@ Partial Class FormProdDutyVar
         '
         'TECIF
         '
-        Me.TECIF.Location = New System.Drawing.Point(94, 215)
+        Me.TECIF.Location = New System.Drawing.Point(107, 215)
         Me.TECIF.Name = "TECIF"
         Me.TECIF.Properties.Appearance.Options.UseTextOptions = True
         Me.TECIF.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -678,14 +681,14 @@ Partial Class FormProdDutyVar
         Me.TECIF.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TECIF.Properties.Mask.SaveLiteral = False
         Me.TECIF.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TECIF.Size = New System.Drawing.Size(177, 20)
+        Me.TECIF.Size = New System.Drawing.Size(164, 20)
         Me.TECIF.TabIndex = 207
         '
         'TECOONumber
         '
-        Me.TECOONumber.Location = New System.Drawing.Point(367, 215)
+        Me.TECOONumber.Location = New System.Drawing.Point(422, 215)
         Me.TECOONumber.Name = "TECOONumber"
-        Me.TECOONumber.Size = New System.Drawing.Size(190, 20)
+        Me.TECOONumber.Size = New System.Drawing.Size(198, 20)
         Me.TECOONumber.TabIndex = 210
         '
         'Label27
@@ -700,7 +703,7 @@ Partial Class FormProdDutyVar
         'DELSDate
         '
         Me.DELSDate.EditValue = Nothing
-        Me.DELSDate.Location = New System.Drawing.Point(367, 241)
+        Me.DELSDate.Location = New System.Drawing.Point(422, 241)
         Me.DELSDate.Name = "DELSDate"
         Me.DELSDate.Properties.Appearance.Options.UseTextOptions = True
         Me.DELSDate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -708,7 +711,7 @@ Partial Class FormProdDutyVar
         Me.DELSDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DELSDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DELSDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DELSDate.Size = New System.Drawing.Size(190, 20)
+        Me.DELSDate.Size = New System.Drawing.Size(198, 20)
         Me.DELSDate.TabIndex = 214
         '
         'LabelControl2
@@ -721,9 +724,9 @@ Partial Class FormProdDutyVar
         '
         'TELSNumber
         '
-        Me.TELSNumber.Location = New System.Drawing.Point(94, 241)
+        Me.TELSNumber.Location = New System.Drawing.Point(107, 241)
         Me.TELSNumber.Name = "TELSNumber"
-        Me.TELSNumber.Size = New System.Drawing.Size(177, 20)
+        Me.TELSNumber.Size = New System.Drawing.Size(164, 20)
         Me.TELSNumber.TabIndex = 212
         '
         'Label28
@@ -745,7 +748,7 @@ Partial Class FormProdDutyVar
         '
         'TESalesActual
         '
-        Me.TESalesActual.Location = New System.Drawing.Point(367, 345)
+        Me.TESalesActual.Location = New System.Drawing.Point(422, 345)
         Me.TESalesActual.Name = "TESalesActual"
         Me.TESalesActual.Properties.Appearance.Options.UseTextOptions = True
         Me.TESalesActual.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -754,7 +757,7 @@ Partial Class FormProdDutyVar
         Me.TESalesActual.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TESalesActual.Properties.Mask.SaveLiteral = False
         Me.TESalesActual.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TESalesActual.Size = New System.Drawing.Size(190, 20)
+        Me.TESalesActual.Size = New System.Drawing.Size(198, 20)
         Me.TESalesActual.TabIndex = 215
         '
         'Label29
@@ -762,27 +765,27 @@ Partial Class FormProdDutyVar
         Me.Label29.AutoSize = True
         Me.Label29.Location = New System.Drawing.Point(11, 348)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(72, 13)
+        Me.Label29.Size = New System.Drawing.Size(90, 13)
         Me.Label29.TabIndex = 217
-        Me.Label29.Text = "Freight (USD)"
+        Me.Label29.Text = "Freight Cost (Rp)"
         '
-        'TEFreightUSD
+        'TEFreightRp
         '
-        Me.TEFreightUSD.Location = New System.Drawing.Point(94, 345)
-        Me.TEFreightUSD.Name = "TEFreightUSD"
-        Me.TEFreightUSD.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEFreightUSD.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEFreightUSD.Properties.EditValueChangedDelay = 1
-        Me.TEFreightUSD.Properties.Mask.EditMask = "N4"
-        Me.TEFreightUSD.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEFreightUSD.Properties.Mask.SaveLiteral = False
-        Me.TEFreightUSD.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEFreightUSD.Size = New System.Drawing.Size(177, 20)
-        Me.TEFreightUSD.TabIndex = 218
+        Me.TEFreightRp.Location = New System.Drawing.Point(107, 345)
+        Me.TEFreightRp.Name = "TEFreightRp"
+        Me.TEFreightRp.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEFreightRp.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEFreightRp.Properties.EditValueChangedDelay = 1
+        Me.TEFreightRp.Properties.Mask.EditMask = "N4"
+        Me.TEFreightRp.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEFreightRp.Properties.Mask.SaveLiteral = False
+        Me.TEFreightRp.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEFreightRp.Size = New System.Drawing.Size(164, 20)
+        Me.TEFreightRp.TabIndex = 218
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(14, 378)
+        Me.LabelControl4.Location = New System.Drawing.Point(281, 378)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(137, 13)
         Me.LabelControl4.TabIndex = 220
@@ -790,7 +793,7 @@ Partial Class FormProdDutyVar
         '
         'TESalesAmount
         '
-        Me.TESalesAmount.Location = New System.Drawing.Point(162, 375)
+        Me.TESalesAmount.Location = New System.Drawing.Point(422, 375)
         Me.TESalesAmount.Name = "TESalesAmount"
         Me.TESalesAmount.Properties.Appearance.Options.UseTextOptions = True
         Me.TESalesAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -799,17 +802,42 @@ Partial Class FormProdDutyVar
         Me.TESalesAmount.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TESalesAmount.Properties.Mask.SaveLiteral = False
         Me.TESalesAmount.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TESalesAmount.Size = New System.Drawing.Size(398, 20)
+        Me.TESalesAmount.Size = New System.Drawing.Size(198, 20)
         Me.TESalesAmount.TabIndex = 219
+        '
+        'TERoyaltyPIB
+        '
+        Me.TERoyaltyPIB.Location = New System.Drawing.Point(107, 375)
+        Me.TERoyaltyPIB.Name = "TERoyaltyPIB"
+        Me.TERoyaltyPIB.Properties.Appearance.Options.UseTextOptions = True
+        Me.TERoyaltyPIB.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TERoyaltyPIB.Properties.EditValueChangedDelay = 1
+        Me.TERoyaltyPIB.Properties.Mask.EditMask = "N4"
+        Me.TERoyaltyPIB.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TERoyaltyPIB.Properties.Mask.SaveLiteral = False
+        Me.TERoyaltyPIB.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TERoyaltyPIB.Size = New System.Drawing.Size(164, 20)
+        Me.TERoyaltyPIB.TabIndex = 222
+        '
+        'Label32
+        '
+        Me.Label32.AutoSize = True
+        Me.Label32.Location = New System.Drawing.Point(11, 378)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(85, 13)
+        Me.Label32.TabIndex = 221
+        Me.Label32.Text = "Royalty PiB (Rp)"
         '
         'FormProdDutyVar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(572, 441)
+        Me.ClientSize = New System.Drawing.Size(632, 441)
+        Me.Controls.Add(Me.TERoyaltyPIB)
+        Me.Controls.Add(Me.Label32)
         Me.Controls.Add(Me.LabelControl4)
         Me.Controls.Add(Me.TESalesAmount)
-        Me.Controls.Add(Me.TEFreightUSD)
+        Me.Controls.Add(Me.TEFreightRp)
         Me.Controls.Add(Me.Label29)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.TESalesActual)
@@ -912,8 +940,9 @@ Partial Class FormProdDutyVar
         CType(Me.DELSDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TELSNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TESalesActual.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEFreightUSD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEFreightRp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TESalesAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TERoyaltyPIB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -986,10 +1015,12 @@ Partial Class FormProdDutyVar
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TESalesActual As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label29 As Label
-    Friend WithEvents TEFreightUSD As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEFreightRp As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label31 As Label
     Friend WithEvents TEPenalty As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label30 As Label
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TESalesAmount As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TERoyaltyPIB As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label32 As Label
 End Class

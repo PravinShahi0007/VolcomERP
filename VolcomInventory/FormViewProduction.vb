@@ -40,7 +40,45 @@
             '
             view_list_purchase()
             view_bom()
+            view_wo()
         End If
+    End Sub
+
+    Sub view_wo()
+        'list overhead
+        Dim query_wo_list = "SELECT wo.id_prod_order_wo,wo.id_report_status,h.report_status,wo.id_ovh_price,wo.id_payment,
+                            g.payment,wo.is_main_vendor, 
+                            d.comp_name AS comp_name_to, 
+                            f.comp_name AS comp_name_ship_to, 
+                            wo.prod_order_wo_number,
+                            wo.id_ovh_price,
+                            j.overhead,
+                            wo.prod_order_wo_date,
+                            wo.prod_order_wo_lead_time,
+                            wo.`prod_order_wo_top`,wo.prod_order_wo_vat,
+                            cur.`currency`,cur.`id_currency`,
+                            wo.prod_order_wo_del_date,
+                            wod.qty,
+                            wod.price,wo.prod_order_wo_kurs
+                            FROM tb_prod_order_wo wo 
+                            LEFT JOIN 
+                            (
+	                            SELECT id_prod_order_wo,prod_order_wo_det_price AS price,SUM(prod_order_wo_det_qty) AS qty FROM tb_prod_order_wo_det
+	                            GROUP BY id_prod_order_wo
+                            ) AS wod ON wod.id_prod_order_wo=wo.`id_prod_order_wo`
+                            INNER JOIN tb_m_ovh_price b ON wo.id_ovh_price=b.id_ovh_price 
+                            INNER JOIN tb_m_comp_contact c ON b.id_comp_contact = c.id_comp_contact 
+                            INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
+                            INNER JOIN tb_m_comp_contact e ON wo.id_comp_contact_ship_to = e.id_comp_contact
+                            INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp
+                            INNER JOIN tb_lookup_payment g ON wo.id_payment = g.id_payment 
+                            INNER JOIN tb_lookup_report_status h ON h.id_report_status = wo.id_report_status 
+                            INNER JOIN tb_lookup_currency cur ON cur.`id_currency`=wo.`id_currency`
+                            INNER JOIN tb_m_ovh j ON b.id_ovh = j.id_ovh
+                            WHERE id_prod_order='" & id_prod_order & "'"
+        Dim data_wo As DataTable = execute_query(query_wo_list, -1, True, "", "", "", "")
+        GCWO.DataSource = data_wo
+        GVWO.BestFitColumns()
     End Sub
 
     Sub view_bom()
