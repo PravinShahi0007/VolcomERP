@@ -54,10 +54,14 @@
     End Sub
 
     Private Sub RSLEAcc_EditValueChanged(sender As Object, e As EventArgs) Handles RSLEAcc.EditValueChanged
-
+        Dim SLE As DevExpress.XtraEditors.SearchLookUpEdit = CType(sender, DevExpress.XtraEditors.SearchLookUpEdit)
+        Dim view As DevExpress.XtraGrid.Views.Grid.GridView = SLE.Properties.View
+        Dim desc As String = view.GetRowCellValue(view.FocusedRowHandle, "acc_description").ToString
+        GVData.SetRowCellValue(GVData.FocusedRowHandle, "acc_description", desc)
+        GVData.SetRowCellValue(GVData.FocusedRowHandle, "acc_trans_det_note", "")
     End Sub
 
     Private Sub RSLEAcc_Popup(sender As Object, e As EventArgs) Handles RSLEAcc.Popup
-        MsgBox("a")
+
     End Sub
 End Class
