@@ -184,8 +184,8 @@
         query += query_where & " "
         query += "ORDER BY z.id_pr_prod_order DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCPRPO.DataSource = data
-        GVPRPO.BestFitColumns()
+        GCPRNoReff.DataSource = data
+        GVPRNoReff.BestFitColumns()
 
         check_but()
     End Sub
@@ -221,7 +221,7 @@
                 bdel_active = "0"
             End If
         ElseIf XTCTabPR.SelectedTabPageIndex = 3 Then 'list pr no reff
-            If GVPRPO.RowCount > 0 Then
+            If GVPRNoReff.RowCount > 0 Then
                 bnew_active = "1"
                 bedit_active = "1"
                 bdel_active = "1"

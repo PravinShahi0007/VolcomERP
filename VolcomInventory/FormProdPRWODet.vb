@@ -31,6 +31,18 @@
             '
             LWOCaption.Visible = False
             TEWOPONumber.Visible = False
+            '
+            TEPONumber.Visible = False
+            LFGPOCaption.Visible = False
+            '
+            LDOCaption.Visible = False
+            TEDONumber.Visible = False
+            '
+            BPickRec.Visible = False
+            BPickVendor.Visible = True
+            '
+            LRecCaption.Visible = False
+            TERecNumber.Visible = False
         Else
             BPickVendor.Visible = False
         End If
@@ -140,8 +152,6 @@
                 LEReportStatus.EditValue = Nothing
                 LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
                 id_report_status = data.Rows(0)("id_report_status").ToString
-                '
-                id_prod_order = data.Rows(0)("id_prod_order").ToString
                 '
                 id_comp_contact_pay_to = data.Rows(0)("id_comp_contact_to").ToString
                 TECompTo.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "1")
