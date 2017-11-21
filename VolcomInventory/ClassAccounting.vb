@@ -20,7 +20,7 @@
         d.acc_trans_det_note, d.report_mark_type, d.id_report, d.report_number, d.id_acc_src, d.id_status_open
         FROM tb_a_acc_trans_draft d
         INNER JOIN tb_a_acc acc ON acc.id_acc = d.id_acc
-        INNER JOIN tb_m_comp c ON c.id_comp = d.id_comp
+        LEFT JOIN tb_m_comp c ON c.id_comp = d.id_comp
         WHERE d.id_acc_trans_draft>0 "
         query += condition
         query += "ORDER BY d.id_acc_trans_draft " + order_type

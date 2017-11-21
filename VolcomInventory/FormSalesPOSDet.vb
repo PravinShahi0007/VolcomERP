@@ -1386,6 +1386,7 @@ Public Class FormSalesPOSDet
             FormAccountingDraftJournal.is_view = "1"
         End If
         FormAccountingDraftJournal.id_report = id_sales_pos
+        FormAccountingDraftJournal.report_number = TxtVirtualPosNumber.Text
         FormAccountingDraftJournal.report_mark_type = report_mark_type
         FormAccountingDraftJournal.ShowDialog()
         Cursor = Cursors.Default

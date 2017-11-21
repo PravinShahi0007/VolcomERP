@@ -65,6 +65,10 @@
         execute_non_query(query, True, "", "", "", "")
     End Sub
 
+    Public Sub postingJournal(ByVal id_report_param As String, ByVal report_mark_type_param As String)
+
+    End Sub
+
     Public Sub completedStockMissingStaff(ByVal id_report_param As String, ByVal report_mark_type_param As String)
         'completed stock
         Dim query As String = "INSERT INTO tb_storage_fg(id_wh_drawer, id_storage_category, id_product, bom_unit_price, report_mark_type, id_report, storage_product_qty, storage_product_datetime, storage_product_notes, id_stock_status)

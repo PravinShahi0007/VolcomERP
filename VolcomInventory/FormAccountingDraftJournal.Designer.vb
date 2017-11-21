@@ -21,8 +21,9 @@ Partial Class FormAccountingDraftJournal
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAccountingDraftJournal))
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -38,56 +39,77 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnAccDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReportNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCompName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RSLEComp = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCompNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDebit = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.REValue = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnCredit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDraft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PBC = New DevExpress.XtraEditors.ProgressBarControl()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RSLEAcc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RSLEComp, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.REValue, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNav
         '
-        Me.PanelControlNav.Controls.Add(Me.BtnDelete)
+        Me.PanelControlNav.Controls.Add(Me.SimpleButton1)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
+        Me.PanelControlNav.Controls.Add(Me.BtnDelete)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(834, 41)
         Me.PanelControlNav.TabIndex = 0
         '
-        'BtnDelete
+        'SimpleButton1
         '
-        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(670, 2)
-        Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(81, 37)
-        Me.BtnDelete.TabIndex = 3
-        Me.BtnDelete.Text = "Delete"
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(749, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(83, 37)
+        Me.SimpleButton1.TabIndex = 4
+        Me.SimpleButton1.Text = "Save"
         '
         'BtnAdd
         '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Left
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(751, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(83, 2)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(81, 37)
         Me.BtnAdd.TabIndex = 2
         Me.BtnAdd.Text = "Add"
         '
+        'BtnDelete
+        '
+        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
+        Me.BtnDelete.Location = New System.Drawing.Point(2, 2)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(81, 37)
+        Me.BtnDelete.TabIndex = 3
+        Me.BtnDelete.Text = "Delete"
+        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCData.Location = New System.Drawing.Point(0, 41)
+        Me.GCData.Location = New System.Drawing.Point(0, 46)
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
-        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RSLEAcc})
-        Me.GCData.Size = New System.Drawing.Size(834, 441)
+        Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RSLEAcc, Me.RSLEComp, Me.REValue})
+        Me.GCData.Size = New System.Drawing.Size(834, 436)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -191,6 +213,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnAccDesc.Caption = "Account Description"
         Me.GridColumnAccDesc.FieldName = "acc_description"
         Me.GridColumnAccDesc.Name = "GridColumnAccDesc"
+        Me.GridColumnAccDesc.OptionsColumn.AllowEdit = False
         Me.GridColumnAccDesc.Visible = True
         Me.GridColumnAccDesc.VisibleIndex = 2
         Me.GridColumnAccDesc.Width = 269
@@ -208,15 +231,47 @@ Partial Class FormAccountingDraftJournal
         'GridColumnCompName
         '
         Me.GridColumnCompName.Caption = "Supplier/Customer"
-        Me.GridColumnCompName.FieldName = "comp"
+        Me.GridColumnCompName.ColumnEdit = Me.RSLEComp
+        Me.GridColumnCompName.FieldName = "id_comp"
         Me.GridColumnCompName.Name = "GridColumnCompName"
         Me.GridColumnCompName.Visible = True
         Me.GridColumnCompName.VisibleIndex = 5
         Me.GridColumnCompName.Width = 151
         '
+        'RSLEComp
+        '
+        Me.RSLEComp.AutoHeight = False
+        Me.RSLEComp.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RSLEComp.Name = "RSLEComp"
+        Me.RSLEComp.NullText = "-"
+        Me.RSLEComp.View = Me.GridView1
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdComp, Me.GridColumnCompNumber})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIdComp
+        '
+        Me.GridColumnIdComp.Caption = "Id"
+        Me.GridColumnIdComp.FieldName = "id_comp"
+        Me.GridColumnIdComp.Name = "GridColumnIdComp"
+        '
+        'GridColumnCompNumber
+        '
+        Me.GridColumnCompNumber.Caption = "Supplier / Vendor"
+        Me.GridColumnCompNumber.FieldName = "comp"
+        Me.GridColumnCompNumber.Name = "GridColumnCompNumber"
+        Me.GridColumnCompNumber.Visible = True
+        Me.GridColumnCompNumber.VisibleIndex = 0
+        '
         'GridColumnDebit
         '
         Me.GridColumnDebit.Caption = "Debit"
+        Me.GridColumnDebit.ColumnEdit = Me.REValue
         Me.GridColumnDebit.DisplayFormat.FormatString = "N2"
         Me.GridColumnDebit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnDebit.FieldName = "debit"
@@ -226,9 +281,17 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnDebit.VisibleIndex = 6
         Me.GridColumnDebit.Width = 238
         '
+        'REValue
+        '
+        Me.REValue.AutoHeight = False
+        Me.REValue.Mask.EditMask = "n2"
+        Me.REValue.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.REValue.Name = "REValue"
+        '
         'GridColumnCredit
         '
         Me.GridColumnCredit.Caption = "Credit"
+        Me.GridColumnCredit.ColumnEdit = Me.REValue
         Me.GridColumnCredit.DisplayFormat.FormatString = "N2"
         Me.GridColumnCredit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnCredit.FieldName = "credit"
@@ -254,12 +317,21 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnIdDraft.Name = "GridColumnIdDraft"
         Me.GridColumnIdDraft.OptionsColumn.AllowEdit = False
         '
+        'PBC
+        '
+        Me.PBC.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PBC.Location = New System.Drawing.Point(0, 41)
+        Me.PBC.Name = "PBC"
+        Me.PBC.Size = New System.Drawing.Size(834, 5)
+        Me.PBC.TabIndex = 92
+        '
         'FormAccountingDraftJournal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(834, 482)
         Me.Controls.Add(Me.GCData)
+        Me.Controls.Add(Me.PBC)
         Me.Controls.Add(Me.PanelControlNav)
         Me.MinimizeBox = False
         Me.Name = "FormAccountingDraftJournal"
@@ -271,6 +343,10 @@ Partial Class FormAccountingDraftJournal
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RSLEAcc, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RSLEComp, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.REValue, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -297,4 +373,11 @@ Partial Class FormAccountingDraftJournal
     Friend WithEvents GridColumnParent As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnCat As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIsDet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents RSLEComp As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCompNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents REValue As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents PBC As DevExpress.XtraEditors.ProgressBarControl
 End Class
