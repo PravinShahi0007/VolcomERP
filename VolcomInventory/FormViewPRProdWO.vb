@@ -11,7 +11,7 @@
         view_report_status(LEReportStatus)
 
         '
-        Dim query_po As String = "SELECT IF(ISNULL(id_prod_order),1,2) as penanda FROM tb_pr_prod_order WHERE id_pr_prod_order ='" & id_pr & "'"
+        Dim query_po As String = "SELECT IF(ISNULL(id_prod_order),IF(ISNULL(id_prod_order_wo),3,1),2) FROM tb_pr_prod_order WHERE id_pr_prod_order ='" & id_pr & "'"
         Dim data_po As DataTable = execute_query(query_po, -1, True, "", "", "", "")
 
         If data_po.Rows(0)("penanda") = "1" Then 'wo
@@ -78,7 +78,7 @@
             If Not Decimal.Parse(data.Rows(0)("pr_prod_order_dp").ToString) <= 0 And Not Decimal.Parse(TEGrossTot.EditValue) <= 0 Then
                 TEDP.EditValue = ((Decimal.Parse(data.Rows(0)("pr_prod_order_dp").ToString) / Decimal.Parse(TEGrossTot.EditValue)) * 100).ToString("0")
             End If
-        Else 'po
+        ElseIf data_po.Rows(0)("penanda") = "2" Then 'po
             LWOCaption.Text = "PO Number"
             LRecCaption.Visible = False
             TERecNumber.Visible = False
@@ -114,6 +114,67 @@
             LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             '
             id_prod_order = data.Rows(0)("id_prod_order").ToString
+            '
+            id_comp_contact_pay_to = data.Rows(0)("id_comp_contact_to").ToString
+            TECompTo.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "1")
+            MECompAddress.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "3")
+            '
+            GConListPurchase.Enabled = True
+            view_list_pr()
+            '
+            view_currency(LECurrency)
+            LECurrency.EditValue = Nothing
+            LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", data.Rows(0)("id_currency").ToString)
+            LECurrency.Enabled = False
+            '
+            TEVat.EditValue = data.Rows(0)("pr_prod_order_vat")
+
+            TEDPTot.EditValue = data.Rows(0)("pr_prod_order_dp")
+
+            TEPIB.Text = data.Rows(0)("pr_prod_order_pib").ToString
+            TEAju.Text = data.Rows(0)("pr_prod_order_aju").ToString
+
+            'add due date
+            DEDueDate.EditValue = data.Rows(0)("pr_prod_order_due_date")
+            '
+            calculate()
+
+            If Not Decimal.Parse(data.Rows(0)("pr_prod_order_dp").ToString) <= 0 And Not Decimal.Parse(TEGrossTot.EditValue) <= 0 Then
+                TEDP.EditValue = ((Decimal.Parse(data.Rows(0)("pr_prod_order_dp").ToString) / Decimal.Parse(TEGrossTot.EditValue)) * 100).ToString("0")
+            End If
+        ElseIf data_po.Rows(0)("penanda") = "3" Then 'no reff
+            LWOCaption.Visible = False
+            TEWOPONumber.Visible = False
+
+            LRecCaption.Visible = False
+            TERecNumber.Visible = False
+            '
+            TEPONumber.Visible = False
+            LFGPOCaption.Visible = False
+            '
+            LDOCaption.Visible = False
+            TEDONumber.Visible = False
+
+            Dim query As String = "SELECT z.inv_no,z.tax_inv_no,z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,
+                                        IFNULL(z.id_prod_order_rec,0) AS id_prod_order_rec, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,
+                                        d.comp_name AS comp_to, 
+                                        z.pr_prod_order_due_date ,z.id_currency
+                                        FROM tb_pr_prod_order z 
+                                        INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=z.id_comp_contact_to 
+                                        INNER JOIN tb_m_comp d ON d.id_comp=c.id_comp 
+                                        INNER JOIN tb_lookup_report_status h ON h.id_report_status=z.id_report_status 
+                                        WHERE z.id_pr_prod_order ='" & id_pr & "'"
+
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            TEInvNo.Text = data.Rows(0)("inv_no").ToString
+            TETaxInvNo.Text = data.Rows(0)("tax_inv_no").ToString
+            TEPRNumber.Text = data.Rows(0)("pr_prod_order_number").ToString
+            DEPRDate.EditValue = data.Rows(0)("pr_prod_order_date")
+            MENote.Text = data.Rows(0)("pr_prod_order_note").ToString
+            '
+            LEReportStatus.EditValue = Nothing
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             '
             id_comp_contact_pay_to = data.Rows(0)("id_comp_contact_to").ToString
             TECompTo.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "1")
