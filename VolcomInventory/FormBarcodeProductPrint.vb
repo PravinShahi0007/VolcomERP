@@ -216,7 +216,7 @@ Public Class FormBarcodeProductPrint
                         print_command += "^FT3," & (add_zebra_vpx + 333).ToString & "^A0N,39,38^FH\^FD" & TECurPrice.Text & " " & TEPrice.Text & "^FS" & vbNewLine
                         print_command += "^FT3," & (add_zebra_vpx + 285).ToString & "^A0N,34,33^FH\^FD" & TERetCode.Text & "^FS" & vbNewLine
                         print_command += "^FT1," & (add_zebra_vpx + 215).ToString & "^A0N,17,16^FH\^FD" & TEDesignName.Text & "^FS" & vbNewLine
-                        print_command += "^FT2," & (add_zebra_vpx + 25).ToString & "^A0N,17,16^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
+                        print_command += "^FT2," & (add_zebra_vpx + 25).ToString & "^A0N,24,40^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
                         print_command += "^BY2,2,162^FT23," & (add_zebra_vpx + 194).ToString & "^B2N,,N,N" & vbNewLine
                         print_command += "^FD" & TEProdCode.Text & "^FS" & vbNewLine
                         print_command += "^FT159," & (add_zebra_vpx + 247).ToString & "^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
@@ -238,7 +238,7 @@ Public Class FormBarcodeProductPrint
                         print_command += "^FT3," & (add_zebra_vpx + 225).ToString & "^A0N,34,33^FH\^FD" & TERetCode.Text & "^FS" & vbNewLine
                         print_command += "^FT2," & (add_zebra_vpx + 161).ToString & "^A0N,17,16^FH\^FD" & TEDesignName.Text & "^FS" & vbNewLine
                         print_command += "^FT3," & (add_zebra_vpx + 307).ToString & "^A0N,17,16^FH\^FD" & i.ToString(format_string) & " ^FS" & vbNewLine
-                        print_command += "^FT3," & (add_zebra_vpx + 28).ToString & "^A0N,17,16^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
+                        print_command += "^FT3," & (add_zebra_vpx + 28).ToString & "^A0N,24,40^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
                         print_command += "^BY2,2,111^FT23," & (add_zebra_vpx + 143).ToString & "^B2N,,N,N" & vbNewLine
                         print_command += "^FD" & TEProdCode.Text & "^FS" & vbNewLine
                         print_command += "^FT159," & (add_zebra_vpx + 187).ToString & "^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
@@ -349,7 +349,7 @@ Public Class FormBarcodeProductPrint
                     print_command += "^FT3," & (add_zebra_vpx + 225).ToString & "^A0N,34,33^FH\^FD" & TERetCode.Text & "^FS" & vbNewLine
                     print_command += "^FT2," & (add_zebra_vpx + 161).ToString & "^A0N,17,16^FH\^FD" & TEDesignName.Text & "^FS" & vbNewLine
                     print_command += "^FT3," & (add_zebra_vpx + 307).ToString & "^A0N,17,16^FH\^FD" & i.ToString(format_string) & " ^FS" & vbNewLine
-                    print_command += "^FT3," & (add_zebra_vpx + 28).ToString & "^A0N,17,16^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
+                    print_command += "^FT3," & (add_zebra_vpx + 28).ToString & "^A0N,24,40^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
                     print_command += "^BY2,2,111^FT23," & (add_zebra_vpx + 143).ToString & "^B2N,,N,N" & vbNewLine
                     print_command += "^FD" & TEProdCode.Text & "^FS" & vbNewLine
                     print_command += "^FT159," & (add_zebra_vpx + 187).ToString & "^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
@@ -430,7 +430,7 @@ Public Class FormBarcodeProductPrint
                 print_command += "^FT3," & (add_zebra_vpx + 333).ToString & "^A0N,39,38^FH\^FD" & TECurPrice.Text & " " & TEPrice.Text & "^FS" & vbNewLine
                 print_command += "^FT3," & (add_zebra_vpx + 285).ToString & "^A0N,34,33^FH\^FD" & TERetCode.Text & "^FS" & vbNewLine
                 print_command += "^FT1," & (add_zebra_vpx + 215).ToString & "^A0N,17,16^FH\^FD" & TEDesignName.Text & "^FS" & vbNewLine
-                print_command += "^FT2," & (add_zebra_vpx + 25).ToString & "^A0N,17,16^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
+                print_command += "^FT2," & (add_zebra_vpx + 25).ToString & "^A0N,24,40^FH\^FD" & TEProdCode.Text & "^FS" & vbNewLine
                 print_command += "^BY2,2,162^FT23," & (add_zebra_vpx + 194).ToString & "^B2N,,N,N" & vbNewLine
                 print_command += "^FD" & TEProdCode.Text & "^FS" & vbNewLine
                 print_command += "^FT159," & (add_zebra_vpx + 247).ToString & "^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
