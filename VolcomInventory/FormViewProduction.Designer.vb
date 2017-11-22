@@ -523,7 +523,7 @@ Partial Class FormViewProduction
         Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn24.Caption = "Price After Kurs"
-        Me.GridColumn24.DisplayFormat.FormatString = "N2"
+        Me.GridColumn24.DisplayFormat.FormatString = "N4"
         Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn24.FieldName = "unit_price"
         Me.GridColumn24.Name = "GridColumn24"
