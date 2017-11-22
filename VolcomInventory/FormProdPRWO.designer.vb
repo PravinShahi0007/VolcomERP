@@ -78,7 +78,7 @@ Partial Class FormProdPRWO
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColColor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.XTPListCourier = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPListPRFGPO = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPRPO = New DevExpress.XtraGrid.GridControl()
         Me.GVPRPO = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -113,6 +113,18 @@ Partial Class FormProdPRWO
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.XTPPRNoReff = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCPRNoReff = New DevExpress.XtraGrid.GridControl()
+        Me.GVPRNoReff = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn32 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn36 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn38 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn39 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn40 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCTabPR, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCTabPR.SuspendLayout()
         Me.XTPListPR.SuspendLayout()
@@ -130,7 +142,7 @@ Partial Class FormProdPRWO
         Me.GroupControl2.SuspendLayout()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XTPListCourier.SuspendLayout()
+        Me.XTPListPRFGPO.SuspendLayout()
         CType(Me.GCPRPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPRPO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,6 +153,9 @@ Partial Class FormProdPRWO
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEDesignStockStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPPRNoReff.SuspendLayout()
+        CType(Me.GCPRNoReff, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPRNoReff, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCTabPR
@@ -152,7 +167,7 @@ Partial Class FormProdPRWO
         Me.XTCTabPR.SelectedTabPage = Me.XTPListPR
         Me.XTCTabPR.Size = New System.Drawing.Size(891, 357)
         Me.XTCTabPR.TabIndex = 6
-        Me.XTCTabPR.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListPR, Me.XTPListPO, Me.XTPListCourier})
+        Me.XTCTabPR.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListPR, Me.XTPListPO, Me.XTPListPRFGPO, Me.XTPPRNoReff})
         '
         'XTPListPR
         '
@@ -717,12 +732,12 @@ Partial Class FormProdPRWO
         Me.ColSize.VisibleIndex = 4
         Me.ColSize.Width = 56
         '
-        'XTPListCourier
+        'XTPListPRFGPO
         '
-        Me.XTPListCourier.Controls.Add(Me.GCPRPO)
-        Me.XTPListCourier.Name = "XTPListCourier"
-        Me.XTPListCourier.Size = New System.Drawing.Size(885, 329)
-        Me.XTPListCourier.Text = "List Payment Requisition (FGPO)"
+        Me.XTPListPRFGPO.Controls.Add(Me.GCPRPO)
+        Me.XTPListPRFGPO.Name = "XTPListPRFGPO"
+        Me.XTPListPRFGPO.Size = New System.Drawing.Size(885, 329)
+        Me.XTPListPRFGPO.Text = "List Payment Requisition (FGPO)"
         '
         'GCPRPO
         '
@@ -1024,6 +1039,108 @@ Partial Class FormProdPRWO
         Me.LabelControl9.TabIndex = 8895
         Me.LabelControl9.Text = "Design"
         '
+        'XTPPRNoReff
+        '
+        Me.XTPPRNoReff.Controls.Add(Me.GCPRNoReff)
+        Me.XTPPRNoReff.Name = "XTPPRNoReff"
+        Me.XTPPRNoReff.Size = New System.Drawing.Size(885, 329)
+        Me.XTPPRNoReff.Text = "List Payment Requisition (No Reff)"
+        '
+        'GCPRNoReff
+        '
+        Me.GCPRNoReff.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPRNoReff.Location = New System.Drawing.Point(0, 0)
+        Me.GCPRNoReff.MainView = Me.GVPRNoReff
+        Me.GCPRNoReff.Name = "GCPRNoReff"
+        Me.GCPRNoReff.Size = New System.Drawing.Size(885, 329)
+        Me.GCPRNoReff.TabIndex = 4
+        Me.GCPRNoReff.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPRNoReff})
+        '
+        'GVPRNoReff
+        '
+        Me.GVPRNoReff.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn32, Me.GridColumn36, Me.GridColumn38, Me.GridColumn39, Me.GridColumn40, Me.GridColumn44})
+        Me.GVPRNoReff.GridControl = Me.GCPRNoReff
+        Me.GVPRNoReff.Name = "GVPRNoReff"
+        Me.GVPRNoReff.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVPRNoReff.OptionsBehavior.Editable = False
+        Me.GVPRNoReff.OptionsFind.AlwaysVisible = True
+        Me.GVPRNoReff.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "ID PR"
+        Me.GridColumn28.FieldName = "id_pr_prod_order"
+        Me.GridColumn28.Name = "GridColumn28"
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Number"
+        Me.GridColumn29.FieldName = "pr_prod_order_number"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 0
+        Me.GridColumn29.Width = 73
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Pay To"
+        Me.GridColumn30.FieldName = "comp_to"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 1
+        Me.GridColumn30.Width = 113
+        '
+        'GridColumn32
+        '
+        Me.GridColumn32.Caption = "Create Date"
+        Me.GridColumn32.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn32.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn32.FieldName = "pr_prod_order_date"
+        Me.GridColumn32.Name = "GridColumn32"
+        Me.GridColumn32.Visible = True
+        Me.GridColumn32.VisibleIndex = 4
+        Me.GridColumn32.Width = 100
+        '
+        'GridColumn36
+        '
+        Me.GridColumn36.Caption = "Due Date"
+        Me.GridColumn36.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn36.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn36.FieldName = "pr_prod_order_due_date"
+        Me.GridColumn36.Name = "GridColumn36"
+        Me.GridColumn36.Visible = True
+        Me.GridColumn36.VisibleIndex = 5
+        Me.GridColumn36.Width = 103
+        '
+        'GridColumn38
+        '
+        Me.GridColumn38.Caption = "Note"
+        Me.GridColumn38.FieldName = "pr_prod_order_note"
+        Me.GridColumn38.Name = "GridColumn38"
+        Me.GridColumn38.Width = 132
+        '
+        'GridColumn39
+        '
+        Me.GridColumn39.Caption = "Status"
+        Me.GridColumn39.FieldName = "report_status"
+        Me.GridColumn39.Name = "GridColumn39"
+        Me.GridColumn39.Visible = True
+        Me.GridColumn39.VisibleIndex = 6
+        '
+        'GridColumn40
+        '
+        Me.GridColumn40.Caption = "ID Status"
+        Me.GridColumn40.FieldName = "id_report_status"
+        Me.GridColumn40.Name = "GridColumn40"
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "Last Mark By"
+        Me.GridColumn44.FieldName = "last_mark"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 7
+        '
         'FormProdPRWO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1055,7 +1172,7 @@ Partial Class FormProdPRWO
         Me.GroupControl2.ResumeLayout(False)
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XTPListCourier.ResumeLayout(False)
+        Me.XTPListPRFGPO.ResumeLayout(False)
         CType(Me.GCPRPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPRPO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1067,6 +1184,9 @@ Partial Class FormProdPRWO
         CType(Me.SearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEDesignStockStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSLEDesgSearch, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPPRNoReff.ResumeLayout(False)
+        CType(Me.GCPRNoReff, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPRNoReff, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1148,7 +1268,7 @@ Partial Class FormProdPRWO
     Friend WithEvents GridColumn17 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents XTPListCourier As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPListPRFGPO As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCPRPO As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVPRPO As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
@@ -1164,4 +1284,16 @@ Partial Class FormProdPRWO
     Friend WithEvents GridColumn33 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn34 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn35 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTPPRNoReff As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCPRNoReff As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPRNoReff As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn32 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn36 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn38 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn39 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn40 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -11,6 +11,7 @@ Public Class ReportProdPRWO
     Public Shared id_curr As String = "1"
 
     Public Shared is_po_pr As String = "-1"
+    Public Shared is_no_reff As String = "-1"
 
     Sub view_list_pr()
         Dim query = "CALL view_pr_prod_from_pr('" & id_pr & "',2)"
@@ -87,62 +88,7 @@ Public Class ReportProdPRWO
         calculate()
     End Sub
     Private Sub Detail_BeforePrint(ByVal sender As System.Object, ByVal e As System.Drawing.Printing.PrintEventArgs) Handles Detail.BeforePrint
-        If is_po_pr = "-1" Then
-            Dim query As String = "SELECT z.inv_no,z.tax_inv_no,z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,po.id_prod_order,po.prod_order_number,IFNULL(z.id_prod_order_rec,0) as id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,DATE_FORMAT(rec.delivery_order_date,'%Y-%m-%d') AS delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,DATE_FORMAT(rec.prod_order_rec_date,'%Y-%m-%d') AS prod_order_rec_date, d.comp_name AS comp_to, "
-            query += "DATE_FORMAT(DATE_ADD(wo.prod_order_wo_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY),'%Y-%m-%d') AS prod_order_wo_top,z.pr_prod_order_due_date "
-            query += "FROM tb_pr_prod_order z "
-            query += "INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo = z.id_prod_order_wo "
-            query += "INNER JOIN tb_prod_order po ON po.id_prod_order = wo.id_prod_order "
-            query += "LEFT JOIN tb_prod_order_rec rec ON z.id_prod_order_rec = rec.id_prod_order_rec "
-            query += "INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price "
-            query += "INNER JOIN tb_m_ovh l ON ovh_p.id_ovh = l.id_ovh "
-            query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=z.id_comp_contact_to "
-            query += "INNER JOIN tb_m_comp d ON d.id_comp=c.id_comp "
-            query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status=z.id_report_status "
-            query += "WHERE z.id_pr_prod_order ='" & id_pr & "'"
-
-            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-
-            LPONumber.Text = data.Rows(0)("prod_order_number").ToString
-            LPRNumber.Text = data.Rows(0)("pr_prod_order_number").ToString
-            LPRDate.Text = view_date_from(data.Rows(0)("pr_prod_order_date").ToString, 0)
-            LNote.Text = data.Rows(0)("pr_prod_order_note").ToString
-            '
-            id_curr = data.Rows(0)("id_currency").ToString
-            LCur.Text = get_currency(data.Rows(0)("id_currency").ToString)
-
-            LDONumber.Text = data.Rows(0)("delivery_order_number").ToString
-            LRecNumber.Text = data.Rows(0)("prod_order_rec_number").ToString
-
-            If data.Rows(0)("id_prod_order_rec") <= 0 Then
-                id_rec = "-1"
-            Else
-                id_rec = data.Rows(0)("id_prod_order_rec")
-            End If
-
-            id_prod_order_wo = data.Rows(0)("id_prod_order_wo").ToString
-            id_prod_order = data.Rows(0)("id_prod_order").ToString
-            view_wo()
-
-            id_comp_contact_pay_to = data.Rows(0)("id_comp_contact_to").ToString
-            LPayToName.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "1")
-            LPayToAddress.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "3")
-
-            view_list_pr()
-
-            LDueDate.Text = data.Rows(0)("pr_prod_order_due_date").ToString
-
-            LVat.Text = data.Rows(0)("pr_prod_order_vat").ToString
-
-            LDP.Text = data.Rows(0)("pr_prod_order_dp").ToString
-            LPIB.Text = data.Rows(0)("pr_prod_order_pib").ToString
-            LAju.Text = data.Rows(0)("pr_prod_order_aju").ToString
-
-            LinvNo.Text = data.Rows(0)("inv_no").ToString
-            LTaxInvNo.Text = data.Rows(0)("tax_inv_no").ToString
-
-            calculate()
-        Else
+        If is_po_pr = "1" Then
             LWOCaption.Visible = False
             LWOColon.Visible = False
             LWONumber.Visible = False
@@ -178,6 +124,115 @@ Public Class ReportProdPRWO
             LCur.Text = get_currency(data.Rows(0)("id_currency").ToString)
 
             id_prod_order = data.Rows(0)("id_prod_order").ToString
+
+            id_comp_contact_pay_to = data.Rows(0)("id_comp_contact_to").ToString
+            LPayToName.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "1")
+            LPayToAddress.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "3")
+
+            view_list_pr()
+
+            LDueDate.Text = data.Rows(0)("pr_prod_order_due_date").ToString
+
+            LVat.Text = data.Rows(0)("pr_prod_order_vat").ToString
+
+            LDP.Text = data.Rows(0)("pr_prod_order_dp").ToString
+            LPIB.Text = data.Rows(0)("pr_prod_order_pib").ToString
+            LAju.Text = data.Rows(0)("pr_prod_order_aju").ToString
+
+            LinvNo.Text = data.Rows(0)("inv_no").ToString
+            LTaxInvNo.Text = data.Rows(0)("tax_inv_no").ToString
+
+            calculate()
+        ElseIf is_no_reff = "1" Then
+            LWOCaption.Visible = False
+            LWOColon.Visible = False
+            LWONumber.Visible = False
+            '
+            LDOCaption.Visible = False
+            LDOColon.Visible = False
+            LDONumber.Visible = False
+            '
+            LRecCaption.Visible = False
+            LRecColon.Visible = False
+            LRecNumber.Visible = False
+
+            LFGPOCaption.Visible = False
+            LFGPOColon.Visible = False
+            LPONumber.Visible = False
+
+            Dim query As String = "SELECT z.inv_no,z.tax_inv_no,z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,
+                                        IFNULL(z.id_prod_order_rec,0) AS id_prod_order_rec, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,
+                                        d.comp_name AS comp_to, 
+                                        z.pr_prod_order_due_date ,z.id_currency
+                                        FROM tb_pr_prod_order z 
+                                        INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=z.id_comp_contact_to 
+                                        INNER JOIN tb_m_comp d ON d.id_comp=c.id_comp 
+                                        INNER JOIN tb_lookup_report_status h ON h.id_report_status=z.id_report_status 
+                                        WHERE z.id_pr_prod_order ='" & id_pr & "'"
+
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            LPRNumber.Text = data.Rows(0)("pr_prod_order_number").ToString
+            LPRDate.Text = view_date_from(data.Rows(0)("pr_prod_order_date").ToString, 0)
+            LNote.Text = data.Rows(0)("pr_prod_order_note").ToString
+            '
+            id_curr = data.Rows(0)("id_currency").ToString
+            LCur.Text = get_currency(data.Rows(0)("id_currency").ToString)
+
+            id_comp_contact_pay_to = data.Rows(0)("id_comp_contact_to").ToString
+            LPayToName.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "1")
+            LPayToAddress.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "3")
+
+            view_list_pr()
+
+            LDueDate.Text = data.Rows(0)("pr_prod_order_due_date").ToString
+
+            LVat.Text = data.Rows(0)("pr_prod_order_vat").ToString
+
+            LDP.Text = data.Rows(0)("pr_prod_order_dp").ToString
+            LPIB.Text = data.Rows(0)("pr_prod_order_pib").ToString
+            LAju.Text = data.Rows(0)("pr_prod_order_aju").ToString
+
+            LinvNo.Text = data.Rows(0)("inv_no").ToString
+            LTaxInvNo.Text = data.Rows(0)("tax_inv_no").ToString
+
+            calculate()
+        Else
+            Dim query As String = "SELECT z.inv_no,z.tax_inv_no,z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,po.id_prod_order,po.prod_order_number,IFNULL(z.id_prod_order_rec,0) as id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,DATE_FORMAT(rec.delivery_order_date,'%Y-%m-%d') AS delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,DATE_FORMAT(rec.prod_order_rec_date,'%Y-%m-%d') AS prod_order_rec_date, d.comp_name AS comp_to, "
+            query += "DATE_FORMAT(DATE_ADD(wo.prod_order_wo_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY),'%Y-%m-%d') AS prod_order_wo_top,z.pr_prod_order_due_date "
+            query += "FROM tb_pr_prod_order z "
+            query += "INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo = z.id_prod_order_wo "
+            query += "INNER JOIN tb_prod_order po ON po.id_prod_order = wo.id_prod_order "
+            query += "LEFT JOIN tb_prod_order_rec rec ON z.id_prod_order_rec = rec.id_prod_order_rec "
+            query += "INNER JOIN tb_m_ovh_price ovh_p ON ovh_p.id_ovh_price=wo.id_ovh_price "
+            query += "INNER JOIN tb_m_ovh l ON ovh_p.id_ovh = l.id_ovh "
+            query += "INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=z.id_comp_contact_to "
+            query += "INNER JOIN tb_m_comp d ON d.id_comp=c.id_comp "
+            query += "INNER JOIN tb_lookup_report_status h ON h.id_report_status=z.id_report_status "
+            query += "WHERE z.id_pr_prod_order ='" & id_pr & "'"
+
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            LPONumber.Text = data.Rows(0)("prod_order_number").ToString
+            LPRNumber.Text = data.Rows(0)("pr_prod_order_number").ToString
+            LPRDate.Text = view_date_from(data.Rows(0)("pr_prod_order_date").ToString, 0)
+            LNote.Text = data.Rows(0)("pr_prod_order_note").ToString
+            '
+            id_curr = data.Rows(0)("id_currency").ToString
+            LCur.Text = get_currency(data.Rows(0)("id_currency").ToString)
+
+            LDONumber.Text = data.Rows(0)("delivery_order_number").ToString
+            LRecNumber.Text = data.Rows(0)("prod_order_rec_number").ToString
+
+            If data.Rows(0)("id_prod_order_rec") <= 0 Then
+                id_rec = "-1"
+            Else
+                id_rec = data.Rows(0)("id_prod_order_rec")
+            End If
+
+            id_prod_order_wo = data.Rows(0)("id_prod_order_wo").ToString
+            id_prod_order = data.Rows(0)("id_prod_order").ToString
+            view_wo()
 
             id_comp_contact_pay_to = data.Rows(0)("id_comp_contact_to").ToString
             LPayToName.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "1")

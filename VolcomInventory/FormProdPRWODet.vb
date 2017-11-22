@@ -7,6 +7,7 @@
     Public id_report_status As String = "-1"
 
     Public is_po_pr As String = "-1"
+    Public is_no_reff As String = "-1"
 
     Private Sub FormSamplePRDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         TEKurs.EditValue = 0.0
@@ -24,10 +25,29 @@
             '
             BPickRec.Visible = False
             BPickVendor.Visible = True
+        ElseIf is_no_reff = "1" Then
+            BPickVendor.Visible = True
+            BPickWO.Visible = False
+            '
+            LWOCaption.Visible = False
+            TEWOPONumber.Visible = False
+            '
+            TEPONumber.Visible = False
+            LFGPOCaption.Visible = False
+            '
+            LDOCaption.Visible = False
+            TEDONumber.Visible = False
+            '
+            BPickRec.Visible = False
+            BPickVendor.Visible = True
+            '
+            LRecCaption.Visible = False
+            TERecNumber.Visible = False
         Else
             BPickVendor.Visible = False
         End If
-
+        '
+        '
         If id_prod_order_wo = "-1" Then 'there is wo
             view_currency(LECurrency)
         Else
@@ -83,6 +103,55 @@
                 id_report_status = data.Rows(0)("id_report_status").ToString
                 '
                 id_prod_order = data.Rows(0)("id_prod_order").ToString
+                '
+                id_comp_contact_pay_to = data.Rows(0)("id_comp_contact_to").ToString
+                TECompTo.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "1")
+                MECompAddress.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "3")
+                '
+                GConListPurchase.Enabled = True
+                view_list_pr()
+                '
+                view_currency(LECurrency)
+                LECurrency.EditValue = Nothing
+                LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", data.Rows(0)("id_currency").ToString)
+                LECurrency.Enabled = False
+                '
+                TEVat.EditValue = data.Rows(0)("pr_prod_order_vat")
+
+                TEDPTot.EditValue = data.Rows(0)("pr_prod_order_dp")
+
+                TEPIB.Text = data.Rows(0)("pr_prod_order_pib").ToString
+                TEAju.Text = data.Rows(0)("pr_prod_order_aju").ToString
+
+                'add due date
+                DEDueDate.EditValue = data.Rows(0)("pr_prod_order_due_date")
+                '
+                calculate()
+
+                If Not Decimal.Parse(data.Rows(0)("pr_prod_order_dp").ToString) <= 0 And Not Decimal.Parse(TEGrossTot.EditValue) <= 0 Then
+                    TEDP.EditValue = ((Decimal.Parse(data.Rows(0)("pr_prod_order_dp").ToString) / Decimal.Parse(TEGrossTot.EditValue)) * 100).ToString("0")
+                End If
+            ElseIf is_no_reff = "1" Then
+                Dim query As String = "SELECT z.inv_no,z.tax_inv_no,z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,
+                                        IFNULL(z.id_prod_order_rec,0) AS id_prod_order_rec, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,
+                                        d.comp_name AS comp_to, 
+                                        z.pr_prod_order_due_date ,z.id_currency
+                                        FROM tb_pr_prod_order z 
+                                        INNER JOIN tb_m_comp_contact c ON c.id_comp_contact=z.id_comp_contact_to 
+                                        INNER JOIN tb_m_comp d ON d.id_comp=c.id_comp 
+                                        INNER JOIN tb_lookup_report_status h ON h.id_report_status=z.id_report_status 
+                                        WHERE z.id_pr_prod_order ='" & id_pr & "'"
+                Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+                TEInvNo.Text = data.Rows(0)("inv_no").ToString
+                TETaxInvNo.Text = data.Rows(0)("tax_inv_no").ToString
+                TEPRNumber.Text = data.Rows(0)("pr_prod_order_number").ToString
+                DEPRDate.EditValue = data.Rows(0)("pr_prod_order_date")
+                MENote.Text = data.Rows(0)("pr_prod_order_note").ToString
+                '
+                LEReportStatus.EditValue = Nothing
+                LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
+                id_report_status = data.Rows(0)("id_report_status").ToString
                 '
                 id_comp_contact_pay_to = data.Rows(0)("id_comp_contact_to").ToString
                 TECompTo.Text = get_company_x(get_id_company(data.Rows(0)("id_comp_contact_to").ToString), "1")
@@ -189,6 +258,18 @@
         FormPopUpRecQC.id_prod_order = id_prod_order
         FormPopUpRecQC.id_rec = id_rec
         FormPopUpRecQC.ShowDialog()
+    End Sub
+
+    Sub view_list_no_reff()
+        If Not id_comp_contact_pay_to = "-1" Then
+            Dim query = "CALL view_pr_prod_no_reff()"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCListPurchase.DataSource = data
+
+            If data.Rows.Count > 0 Then
+                calculate()
+            End If
+        End If
     End Sub
 
     Sub view_list_po()
@@ -494,19 +575,21 @@
         Dim id_po As String = "-1"
         Dim id_wo As String = "-1"
 
-        If is_po_pr = "-1" Then
-            id_po = "NULL"
-            id_wo = "'" & id_prod_order_wo & "'"
-        Else
+        If is_po_pr = "1" Then
             id_po = "'" & id_prod_order & "'"
             id_wo = "NULL"
+        ElseIf is_no_reff = "1" Then
+            id_po = "NULL"
+            id_wo = "NULL"
+        Else
+            id_po = "NULL"
+            id_wo = "'" & id_prod_order_wo & "'"
         End If
 
         'end of validasi
         If id_pr = "-1" Then
             'new
-            'id_prod_order_wo harus hilang dari if
-            If err_txt = "1" Or Not formIsValidInGroup(EPSamplePR, GroupGeneralHeader) Or (is_po_pr = "-1" And id_prod_order_wo = "-1") Then
+            If err_txt = "1" Or Not formIsValidInGroup(EPSamplePR, GroupGeneralHeader) Or id_comp_contact_pay_to = "-1" Then
                 errorInput()
             Else
                 'Try
@@ -575,7 +658,7 @@
             End If
         Else
             'edit
-            If err_txt = "1" Or Not formIsValidInGroup(EPSamplePR, GroupGeneralHeader) Or (is_po_pr = "-1" And id_prod_order_wo = "-1") Then
+            If err_txt = "1" Or Not formIsValidInGroup(EPSamplePR, GroupGeneralHeader) Or id_comp_contact_pay_to = "-1" Then
                 stopCustom("Please check your input again")
             Else
                 Try
@@ -757,12 +840,18 @@
 
     Private Sub BPickVendor_Click(sender As Object, e As EventArgs) Handles BPickVendor.Click
         Cursor = Cursors.WaitCursor
-        If id_prod_order = "-1" Then
-            stopCustom("Please select PO first !")
-        Else
+        If is_no_reff = "1" Then
             FormPopUpContact.id_pop_up = "83"
             FormPopUpContact.id_cat = "1"
             FormPopUpContact.ShowDialog()
+        Else
+            If id_prod_order = "-1" Then
+                stopCustom("Please select PO first !")
+            Else
+                FormPopUpContact.id_pop_up = "83"
+                FormPopUpContact.id_cat = "1"
+                FormPopUpContact.ShowDialog()
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
