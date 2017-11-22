@@ -109,6 +109,7 @@ Public Class FormSalesPOSDet
             'TxtVirtualPosNumber.Text = header_number_sales("6")
             BtnPrint.Enabled = False
             BtnAttachment.Enabled = False
+            BtnDraftJournal.Enabled = False
             BMark.Enabled = False
             DEForm.Text = view_date(0)
             GCItemList.DataSource = Nothing
@@ -118,6 +119,7 @@ Public Class FormSalesPOSDet
             BtnBrowseContactFrom.Enabled = False
             '
             BtnAttachment.Enabled = True
+            BtnDraftJournal.Enabled = True
             BMark.Enabled = True
             GridColumnNote.Visible = False
 
@@ -446,7 +448,7 @@ Public Class FormSalesPOSDet
 
                     'draft journal
                     Dim acc As New ClassAccounting()
-                    If id_menu = "1" Then
+                    If id_menu = "1" Or id_menu = "2" Or id_menu = "5" Then
                         acc.generateJournalSalesDraft(id_sales_pos, report_mark_type)
                     End If
 
@@ -460,6 +462,7 @@ Public Class FormSalesPOSDet
                         viewDraft()
                     ElseIf id_menu = "2" Or id_menu = "5" Then
                         infoCustom("Credit Note " + TxtVirtualPosNumber.Text + " created succesfully")
+                        viewDraft()
                     ElseIf id_menu = "3" Then
                         infoCustom("Invoice Missing Promo " + TxtVirtualPosNumber.Text + " created succesfully")
                     ElseIf id_menu = "4" Then
