@@ -5,8 +5,15 @@
     Public id_delivery As String = "-1"
 
     Private Sub FormViewProduction_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        '
+        RCIMainVendorWO.ValueChecked = Convert.ToSByte(1)
+        RCIMainVendorWO.ValueUnchecked = Convert.ToSByte(2)
+        '
         view_term_production(LECategory)
         view_po_type(LEPOType)
+        '
+        view_currency(RICECurrency)
+
         If id_prod_order = "-1" Then
             'new
             TEPONumber.Text = header_number_prod("1")
@@ -43,7 +50,15 @@
             view_wo()
         End If
     End Sub
+    Private Sub view_currency(ByVal lookup As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit)
+        Dim query As String = "SELECT id_currency,currency FROM tb_lookup_currency"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
+        lookup.DataSource = data
+
+        lookup.DisplayMember = "currency"
+        lookup.ValueMember = "id_currency"
+    End Sub
     Sub view_wo()
         'list overhead
         Dim query_wo_list = "SELECT wo.id_prod_order_wo,wo.id_report_status,h.report_status,wo.id_ovh_price,wo.id_payment,
