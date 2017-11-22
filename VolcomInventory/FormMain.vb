@@ -1221,6 +1221,10 @@ Public Class FormMain
                 FormProdPRWODet.id_pr = "-1"
                 FormProdPRWODet.is_po_pr = "1"
                 FormProdPRWODet.ShowDialog()
+            ElseIf FormProdPRWO.xtctabpr.SelectedTabPageIndex = 3 Then
+                FormProdPRWODet.id_pr = "-1"
+                FormProdPRWODet.is_no_reff = "1"
+                FormProdPRWODet.ShowDialog()
             End If
         ElseIf formName = "FormFGStockOpnameStore" Then
             'STORE STOCK OPNAME
@@ -2086,6 +2090,10 @@ Public Class FormMain
                 ElseIf FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 2 Then
                     FormProdPRWODet.id_pr = FormProdPRWO.GVPRPO.GetFocusedRowCellValue("id_pr_prod_order").ToString
                     FormProdPRWODet.is_po_pr = "1"
+                    FormProdPRWODet.ShowDialog()
+                ElseIf FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 3 Then
+                    FormProdPRWODet.id_pr = FormProdPRWO.GVPRNoReff.GetFocusedRowCellValue("id_pr_prod_order").ToString
+                    FormProdPRWODet.is_no_reff = "1"
                     FormProdPRWODet.ShowDialog()
                 End If
             ElseIf formName = "FormSalesInvoice" Then
@@ -4295,8 +4303,28 @@ Public Class FormMain
                     End If
                 Else
                     stopCustom("This data already processed.")
-                    End If
                 End If
+            ElseIf FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 3 Then
+                If check_edit_report_status(FormProdPRWO.GVPRNoReff.GetFocusedRowCellValue("id_report_status"), "50", FormProdPRWO.GVPRNoReff.GetFocusedRowCellDisplayText("id_pr_prod_order")) Then
+                    confirm = XtraMessageBox.Show("Are you sure want to delete this payment request?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                    If confirm = Windows.Forms.DialogResult.Yes Then
+                        Try
+                            Dim id_pr_prod_order As String = FormProdPRWO.GVPRNoReff.GetFocusedRowCellDisplayText("id_pr_prod_order")
+                            query = String.Format("DELETE FROM tb_pr_prod_order WHERE id_pr_prod_order ='{0}'", id_pr_prod_order)
+                            execute_non_query(query, True, "", "", "", "")
+
+                            'del mark
+                            delete_all_mark_related("50", id_pr_prod_order)
+
+                            FormProdPRWO.view_pr_no_reff()
+                        Catch ex As Exception
+                            errorDelete()
+                        End Try
+                    End If
+                Else
+                    stopCustom("This data already processed.")
+                End If
+            End If
         ElseIf formName = "FormSalesInvoice" Then
             'SALES INVOICE
             If check_edit_report_status(FormSalesInvoice.GVSalesInvoice.GetFocusedRowCellValue("id_report_status"), "51", FormSalesInvoice.GVSalesInvoice.GetFocusedRowCellValue("id_sales_invoice")) Then
@@ -5858,6 +5886,10 @@ Public Class FormMain
                 print(FormProdPRWO.GCMatPR, "Payment Requisition WO Production")
             ElseIf FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 1 Then 'List WO
                 print(FormProdPRWO.GCProdWO, "WO Production Need Payment Requisition")
+            ElseIf FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 2 Then 'List PR FGPO
+                print(FormProdPRWO.GCPRPO, "Payment Requisition FGPO Production")
+            ElseIf FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 3 Then 'List PR No Reff
+                print(FormProdPRWO.GCPRNoReff, "Payment Requisition No Refference")
             End If
         ElseIf formName = "FormSalesInvoice" Then
             'SALES INVOICE
@@ -7672,6 +7704,10 @@ Public Class FormMain
                 FormProdPRWO.view_pr()
             ElseIf FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 1 Then 'wo
                 FormProdPRWO.view_wo()
+            ElseIf FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 1 Then 'list FGPO
+                FormProdPRWO.view_pr_courier()
+            ElseIf FormProdPRWO.XTCTabPR.SelectedTabPageIndex = 1 Then 'list no reff
+                FormProdPRWO.view_pr_no_reff()
             End If
         ElseIf formName = "FormSalesInvoice" Then
             'SALES INVOCIE
