@@ -350,4 +350,14 @@
         FormDocumentUpload.ShowDialog()
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub BtnDraft_Click(sender As Object, e As EventArgs) Handles BtnDraft.Click
+        Cursor = Cursors.WaitCursor
+        FormAccountingDraftJournal.is_view = "1"
+        FormAccountingDraftJournal.id_report = id_sales_pos
+        FormAccountingDraftJournal.report_number = TxtVirtualPosNumber.Text
+        FormAccountingDraftJournal.report_mark_type = report_mark_type
+        FormAccountingDraftJournal.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
