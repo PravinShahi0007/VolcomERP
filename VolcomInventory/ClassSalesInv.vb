@@ -122,6 +122,9 @@
         INNER JOIN tb_m_design dsg ON dsg.id_design = prod.id_design
         WHERE p.id_sales_pos=" + id_report_param + " AND pd.sales_pos_det_qty>0  "
         execute_non_query(query, True, "", "", "", "")
+
+        'posting
+        postingJournal(id_report_param, report_mark_type_param)
     End Sub
 
     'Public Sub completeReservedStock(ByVal id_report_param As String, ByVal report_mark_type_param As String)

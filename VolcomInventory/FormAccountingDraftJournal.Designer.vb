@@ -69,14 +69,14 @@ Partial Class FormAccountingDraftJournal
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(834, 41)
+        Me.PanelControlNav.Size = New System.Drawing.Size(983, 41)
         Me.PanelControlNav.TabIndex = 0
         '
         'SimpleButton1
         '
         Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
         Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(749, 2)
+        Me.SimpleButton1.Location = New System.Drawing.Point(898, 2)
         Me.SimpleButton1.Name = "SimpleButton1"
         Me.SimpleButton1.Size = New System.Drawing.Size(83, 37)
         Me.SimpleButton1.TabIndex = 4
@@ -109,7 +109,7 @@ Partial Class FormAccountingDraftJournal
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RSLEAcc, Me.RSLEComp, Me.REValue})
-        Me.GCData.Size = New System.Drawing.Size(834, 436)
+        Me.GCData.Size = New System.Drawing.Size(983, 436)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -129,7 +129,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 59
+        Me.GridColumnNo.Width = 58
         '
         'GridColumnAcc
         '
@@ -139,7 +139,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnAcc.Name = "GridColumnAcc"
         Me.GridColumnAcc.Visible = True
         Me.GridColumnAcc.VisibleIndex = 1
-        Me.GridColumnAcc.Width = 162
+        Me.GridColumnAcc.Width = 160
         '
         'RSLEAcc
         '
@@ -216,7 +216,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnAccDesc.OptionsColumn.AllowEdit = False
         Me.GridColumnAccDesc.Visible = True
         Me.GridColumnAccDesc.VisibleIndex = 2
-        Me.GridColumnAccDesc.Width = 269
+        Me.GridColumnAccDesc.Width = 340
         '
         'GridColumnReportNumber
         '
@@ -226,7 +226,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnReportNumber.OptionsColumn.AllowEdit = False
         Me.GridColumnReportNumber.Visible = True
         Me.GridColumnReportNumber.VisibleIndex = 3
-        Me.GridColumnReportNumber.Width = 113
+        Me.GridColumnReportNumber.Width = 102
         '
         'GridColumnCompName
         '
@@ -236,7 +236,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnCompName.Name = "GridColumnCompName"
         Me.GridColumnCompName.Visible = True
         Me.GridColumnCompName.VisibleIndex = 5
-        Me.GridColumnCompName.Width = 151
+        Me.GridColumnCompName.Width = 139
         '
         'RSLEComp
         '
@@ -279,7 +279,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnDebit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumnDebit.Visible = True
         Me.GridColumnDebit.VisibleIndex = 6
-        Me.GridColumnDebit.Width = 238
+        Me.GridColumnDebit.Width = 218
         '
         'REValue
         '
@@ -299,7 +299,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnCredit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumnCredit.Visible = True
         Me.GridColumnCredit.VisibleIndex = 7
-        Me.GridColumnCredit.Width = 279
+        Me.GridColumnCredit.Width = 266
         '
         'GridColumnNote
         '
@@ -308,7 +308,7 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 4
-        Me.GridColumnNote.Width = 361
+        Me.GridColumnNote.Width = 333
         '
         'GridColumnIdDraft
         '
@@ -322,14 +322,14 @@ Partial Class FormAccountingDraftJournal
         Me.PBC.Dock = System.Windows.Forms.DockStyle.Top
         Me.PBC.Location = New System.Drawing.Point(0, 41)
         Me.PBC.Name = "PBC"
-        Me.PBC.Size = New System.Drawing.Size(834, 5)
+        Me.PBC.Size = New System.Drawing.Size(983, 5)
         Me.PBC.TabIndex = 92
         '
         'FormAccountingDraftJournal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(834, 482)
+        Me.ClientSize = New System.Drawing.Size(983, 482)
         Me.Controls.Add(Me.GCData)
         Me.Controls.Add(Me.PBC)
         Me.Controls.Add(Me.PanelControlNav)

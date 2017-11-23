@@ -448,7 +448,7 @@ Public Class FormSalesPOSDet
 
                     'draft journal
                     Dim acc As New ClassAccounting()
-                    If id_menu = "1" Or id_menu = "2" Or id_menu = "5" Then
+                    If id_menu = "1" Or id_menu = "2" Or id_menu = "4" Or id_menu = "5" Then
                         acc.generateJournalSalesDraft(id_sales_pos, report_mark_type)
                     End If
 
@@ -467,6 +467,7 @@ Public Class FormSalesPOSDet
                         infoCustom("Invoice Missing Promo " + TxtVirtualPosNumber.Text + " created succesfully")
                     ElseIf id_menu = "4" Then
                         infoCustom("Invoice Missing Staff " + TxtVirtualPosNumber.Text + " created succesfully")
+                        viewDraft()
                     End If
 
 
