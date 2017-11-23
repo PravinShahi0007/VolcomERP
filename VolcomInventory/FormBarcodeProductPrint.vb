@@ -118,7 +118,7 @@ Public Class FormBarcodeProductPrint
     Private Sub BPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPrint.Click
         If SEPrintTo.EditValue < SEPrintFrom.EditValue Then
             stopCustom("Please make sure barcode unique on the left is before unique on the right.")
-        ElseIf TEPrice.Text.ToString = "" Or TEPrice.Text.ToString = "0"
+        ElseIf TEPrice.Text.ToString = "" Or TEPrice.Text.ToString = "0" Then
             stopCustom("Please make sure barcode price is not empty.")
         Else
             Dim print_command As String = ""
@@ -164,7 +164,7 @@ Public Class FormBarcodeProductPrint
                         print_command += "<ESC>A"
                         print_command += "<ESC>#E5"
                         print_command += "<ESC>H580<ESC>V00" & (add_sato_vpx + 10).ToString & "<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
-                        print_command += "<ESC>H580<ESC>V00" & (add_sato_vpx + 30).ToString & "<ESC>D202160" & TEProdCode.Text & vbNewLine
+                        print_command += "<ESC>H610<ESC>V00" & (add_sato_vpx + 30).ToString & "<ESC>D202160" & TEProdCode.Text & vbNewLine 'UBAH HXXX POSISI BARCODENYA
                         print_command += "<ESC>H580<ESC>V0" & (add_sato_vpx + 200).ToString & "<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
                         print_command += "<ESC>H650<ESC>V0" & (add_sato_vpx + 220).ToString & "<ESC>L0200<ESC>XUsize" & vbNewLine
                         print_command += "<ESC>H740<ESC>V0" & (add_sato_vpx + 220).ToString & "<ESC>L0200<ESC>XUcolor" & vbNewLine
@@ -181,7 +181,7 @@ Public Class FormBarcodeProductPrint
                         print_command += "<ESC>A"
                         print_command += "<ESC>#E5"
                         print_command += "<ESC>H580<ESC>V00" & (add_sato_vpx + 10).ToString & "<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
-                        print_command += "<ESC>H580<ESC>V00" & (add_sato_vpx + 30).ToString & "<ESC>D202100" & TEProdCode.Text & vbNewLine
+                        print_command += "<ESC>H610<ESC>V00" & (add_sato_vpx + 30).ToString & "<ESC>D202100" & TEProdCode.Text & vbNewLine
                         print_command += "<ESC>H580<ESC>V0" & (add_sato_vpx + 140).ToString & "<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
                         print_command += "<ESC>H650<ESC>V0" & (add_sato_vpx + 160).ToString & "<ESC>L0200<ESC>XUsize" & vbNewLine
                         print_command += "<ESC>H740<ESC>V0" & (add_sato_vpx + 160).ToString & "<ESC>L0200<ESC>XUcolor" & vbNewLine
@@ -199,7 +199,7 @@ Public Class FormBarcodeProductPrint
                     Next
                 Next
                 print_command = print_command.ToString().Replace("<ESC>", (ChrW(27)).ToString())
-            ElseIf LEPrinter.EditValue.ToString = "2" 'zebra
+            ElseIf LEPrinter.EditValue.ToString = "2" Then 'zebra
                 For j As Integer = 1 To SEQtyPrint.EditValue
                     For i As Integer = SEPrintFrom.EditValue To SEPrintTo.EditValue
                         'front new
@@ -287,7 +287,7 @@ Public Class FormBarcodeProductPrint
     Private Sub BtnPrintBack_Click(sender As Object, e As EventArgs) Handles BtnPrintBack.Click
         If SEPrintTo.EditValue < SEPrintFrom.EditValue Then
             stopCustom("Please make sure barcode unique on the left is before unique on the right.")
-        ElseIf TEPrice.Text.ToString = "" Or TEPrice.Text.ToString = "0"
+        ElseIf TEPrice.Text.ToString = "" Or TEPrice.Text.ToString = "0" Then
             stopCustom("Please make sure barcode price is not empty.")
         Else
             Dim print_command As String = ""
@@ -315,7 +315,7 @@ Public Class FormBarcodeProductPrint
                     print_command += "<ESC>A"
                     print_command += "<ESC>#E5"
                     print_command += "<ESC>H580<ESC>V00" & (add_sato_vpx + 10).ToString & "<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
-                    print_command += "<ESC>H580<ESC>V00" & (add_sato_vpx + 30).ToString & "<ESC>D202100" & TEProdCode.Text & vbNewLine
+                    print_command += "<ESC>H610<ESC>V00" & (add_sato_vpx + 30).ToString & "<ESC>D202100" & TEProdCode.Text & vbNewLine
                     print_command += "<ESC>H580<ESC>V0" & (add_sato_vpx + 140).ToString & "<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
                     print_command += "<ESC>H650<ESC>V0" & (add_sato_vpx + 160).ToString & "<ESC>L0200<ESC>XUsize" & vbNewLine
                     print_command += "<ESC>H740<ESC>V0" & (add_sato_vpx + 160).ToString & "<ESC>L0200<ESC>XUcolor" & vbNewLine
@@ -332,7 +332,7 @@ Public Class FormBarcodeProductPrint
                     '
                     print_command = print_command.ToString().Replace("<ESC>", (ChrW(27)).ToString())
                 Next
-            ElseIf LEPrinter.EditValue.ToString = "2" 'zebra
+            ElseIf LEPrinter.EditValue.ToString = "2" Then 'zebra
                 For i As Integer = SEPrintFrom.EditValue To SEPrintTo.EditValue
                     'back
                     print_command += "CT~~CD,~CC^~CT~" & vbNewLine
@@ -401,7 +401,7 @@ Public Class FormBarcodeProductPrint
                 print_command += "<ESC>A"
                 print_command += "<ESC>#E5"
                 print_command += "<ESC>H580<ESC>V00" & (add_sato_vpx + 10).ToString & "<ESC>L0200<ESC>S" & TEProdCode.Text & vbNewLine
-                print_command += "<ESC>H580<ESC>V00" & (add_sato_vpx + 30).ToString & "<ESC>D202160" & TEProdCode.Text & vbNewLine
+                print_command += "<ESC>H610<ESC>V00" & (add_sato_vpx + 30).ToString & "<ESC>D202160" & TEProdCode.Text & vbNewLine
                 print_command += "<ESC>H580<ESC>V0" & (add_sato_vpx + 200).ToString & "<ESC>L0200<ESC>S" & TEDesignName.Text & vbNewLine
                 print_command += "<ESC>H650<ESC>V0" & (add_sato_vpx + 220).ToString & "<ESC>L0200<ESC>XUsize" & vbNewLine
                 print_command += "<ESC>H740<ESC>V0" & (add_sato_vpx + 220).ToString & "<ESC>L0200<ESC>XUcolor" & vbNewLine
@@ -496,7 +496,7 @@ Public Class FormBarcodeProductPrint
             If LEPrinter.EditValue.ToString = "1" Then
                 add_sato_vpx = Integer.Parse(get_opt_prod_field("sato_add_vpx"))
                 TEHeightError.EditValue = add_sato_vpx
-            ElseIf LEPrinter.EditValue.ToString = "2"
+            ElseIf LEPrinter.EditValue.ToString = "2" Then
                 add_zebra_vpx = Integer.Parse(get_opt_prod_field("zebra_add_vpx"))
                 TEHeightError.EditValue = add_zebra_vpx
             End If
@@ -510,7 +510,7 @@ Public Class FormBarcodeProductPrint
                 execute_non_query(query, True, "", "", "", "")
                 add_sato_vpx = Integer.Parse(get_opt_prod_field("sato_add_vpx"))
                 infoCustom("SATO error height settled")
-            ElseIf LEPrinter.EditValue.ToString = "2"
+            ElseIf LEPrinter.EditValue.ToString = "2" Then
                 Dim query As String = "UPDATE tb_opt_prod SET zebra_add_vpx='" & TEHeightError.EditValue.ToString & "'"
                 execute_non_query(query, True, "", "", "", "")
                 add_zebra_vpx = Integer.Parse(get_opt_prod_field("zebra_add_vpx"))

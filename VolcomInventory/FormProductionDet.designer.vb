@@ -89,6 +89,8 @@ Partial Class FormProductionDet
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RILETermOfPayment = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -220,8 +222,6 @@ Partial Class FormProductionDet
         Me.BEditMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMRS = New DevExpress.XtraEditors.SimpleButton()
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
-        Me.GridColumn41 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RILETermOfPayment = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         CType(Me.EPProdOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCPageProduction, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -248,6 +248,7 @@ Partial Class FormProductionDet
         CType(Me.GCWO, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewMenu.SuspendLayout()
         CType(Me.GVWO, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RILETermOfPayment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIDESentDate, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIDESentDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RIVat, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -306,7 +307,6 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.RILETermOfPayment, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'EPProdOrder
@@ -736,7 +736,7 @@ Partial Class FormProductionDet
         Me.GridColumn24.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn24.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn24.Caption = "Price After Kurs"
-        Me.GridColumn24.DisplayFormat.FormatString = "N2"
+        Me.GridColumn24.DisplayFormat.FormatString = "N4"
         Me.GridColumn24.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn24.FieldName = "unit_price"
         Me.GridColumn24.Name = "GridColumn24"
@@ -993,6 +993,22 @@ Partial Class FormProductionDet
         Me.GridColumn19.Caption = "Gross Total"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn41
+        '
+        Me.GridColumn41.Caption = "Term Of Payment"
+        Me.GridColumn41.ColumnEdit = Me.RILETermOfPayment
+        Me.GridColumn41.FieldName = "id_payment"
+        Me.GridColumn41.Name = "GridColumn41"
+        Me.GridColumn41.Visible = True
+        Me.GridColumn41.VisibleIndex = 7
+        '
+        'RILETermOfPayment
+        '
+        Me.RILETermOfPayment.AutoHeight = False
+        Me.RILETermOfPayment.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RILETermOfPayment.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payment", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payment", "Payment Type")})
+        Me.RILETermOfPayment.Name = "RILETermOfPayment"
         '
         'GridColumn9
         '
@@ -2302,22 +2318,6 @@ Partial Class FormProductionDet
         '
         Me.SplashScreenManager1.ClosingDelay = 500
         '
-        'GridColumn41
-        '
-        Me.GridColumn41.Caption = "Term Of Payment"
-        Me.GridColumn41.ColumnEdit = Me.RILETermOfPayment
-        Me.GridColumn41.FieldName = "id_payment"
-        Me.GridColumn41.Name = "GridColumn41"
-        Me.GridColumn41.Visible = True
-        Me.GridColumn41.VisibleIndex = 7
-        '
-        'RILETermOfPayment
-        '
-        Me.RILETermOfPayment.AutoHeight = False
-        Me.RILETermOfPayment.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RILETermOfPayment.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payment", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("payment", "Payment Type")})
-        Me.RILETermOfPayment.Name = "RILETermOfPayment"
-        '
         'FormProductionDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2362,6 +2362,7 @@ Partial Class FormProductionDet
         CType(Me.GCWO, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewMenu.ResumeLayout(False)
         CType(Me.GVWO, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RILETermOfPayment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIDESentDate.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIDESentDate, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RIVat, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2425,7 +2426,6 @@ Partial Class FormProductionDet
         CType(Me.RepositoryItemProgressBar1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.RILETermOfPayment, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
