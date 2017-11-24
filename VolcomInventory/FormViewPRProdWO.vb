@@ -11,7 +11,7 @@
         view_report_status(LEReportStatus)
 
         '
-        Dim query_po As String = "SELECT IF(ISNULL(id_prod_order),IF(ISNULL(id_prod_order_wo),3,1),2) FROM tb_pr_prod_order WHERE id_pr_prod_order ='" & id_pr & "'"
+        Dim query_po As String = "SELECT IF(ISNULL(id_prod_order),IF(ISNULL(id_prod_order_wo),3,1),2) as penanda FROM tb_pr_prod_order WHERE id_pr_prod_order ='" & id_pr & "'"
         Dim data_po As DataTable = execute_query(query_po, -1, True, "", "", "", "")
 
         If data_po.Rows(0)("penanda") = "1" Then 'wo
