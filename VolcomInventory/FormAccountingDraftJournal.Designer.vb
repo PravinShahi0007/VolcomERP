@@ -49,6 +49,8 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDraft = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PBC = New DevExpress.XtraEditors.ProgressBarControl()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,13 +61,15 @@ Partial Class FormAccountingDraftJournal
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.REValue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNav
         '
-        Me.PanelControlNav.Controls.Add(Me.SimpleButton1)
-        Me.PanelControlNav.Controls.Add(Me.BtnAdd)
+        Me.PanelControlNav.Controls.Add(Me.LookUpEdit1)
+        Me.PanelControlNav.Controls.Add(Me.Label1)
         Me.PanelControlNav.Controls.Add(Me.BtnDelete)
+        Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlNav.Name = "PanelControlNav"
@@ -74,19 +78,26 @@ Partial Class FormAccountingDraftJournal
         '
         'SimpleButton1
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(898, 2)
+        Me.SimpleButton1.Appearance.BackColor = System.Drawing.Color.MediumSlateBlue
+        Me.SimpleButton1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.SimpleButton1.Appearance.ForeColor = System.Drawing.Color.White
+        Me.SimpleButton1.Appearance.Options.UseBackColor = True
+        Me.SimpleButton1.Appearance.Options.UseFont = True
+        Me.SimpleButton1.Appearance.Options.UseForeColor = True
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.SimpleButton1.Location = New System.Drawing.Point(0, 445)
+        Me.SimpleButton1.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.SimpleButton1.LookAndFeel.UseDefaultLookAndFeel = False
         Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(83, 37)
+        Me.SimpleButton1.Size = New System.Drawing.Size(983, 37)
         Me.SimpleButton1.TabIndex = 4
         Me.SimpleButton1.Text = "Save"
         '
         'BtnAdd
         '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(83, 2)
+        Me.BtnAdd.Location = New System.Drawing.Point(900, 2)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(81, 37)
         Me.BtnAdd.TabIndex = 2
@@ -94,9 +105,9 @@ Partial Class FormAccountingDraftJournal
         '
         'BtnDelete
         '
-        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(2, 2)
+        Me.BtnDelete.Location = New System.Drawing.Point(819, 2)
         Me.BtnDelete.Name = "BtnDelete"
         Me.BtnDelete.Size = New System.Drawing.Size(81, 37)
         Me.BtnDelete.TabIndex = 3
@@ -109,7 +120,7 @@ Partial Class FormAccountingDraftJournal
         Me.GCData.MainView = Me.GVData
         Me.GCData.Name = "GCData"
         Me.GCData.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RSLEAcc, Me.RSLEComp, Me.REValue})
-        Me.GCData.Size = New System.Drawing.Size(983, 436)
+        Me.GCData.Size = New System.Drawing.Size(983, 399)
         Me.GCData.TabIndex = 1
         Me.GCData.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVData})
         '
@@ -325,12 +336,30 @@ Partial Class FormAccountingDraftJournal
         Me.PBC.Size = New System.Drawing.Size(983, 5)
         Me.PBC.TabIndex = 92
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 14)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(69, 13)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Journal Type"
+        '
+        'LookUpEdit1
+        '
+        Me.LookUpEdit1.Location = New System.Drawing.Point(87, 11)
+        Me.LookUpEdit1.Name = "LookUpEdit1"
+        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LookUpEdit1.Size = New System.Drawing.Size(163, 20)
+        Me.LookUpEdit1.TabIndex = 5
+        '
         'FormAccountingDraftJournal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(983, 482)
         Me.Controls.Add(Me.GCData)
+        Me.Controls.Add(Me.SimpleButton1)
         Me.Controls.Add(Me.PBC)
         Me.Controls.Add(Me.PanelControlNav)
         Me.MinimizeBox = False
@@ -339,6 +368,7 @@ Partial Class FormAccountingDraftJournal
         Me.Text = "Draft Journal"
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
+        Me.PanelControlNav.PerformLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RSLEAcc, System.ComponentModel.ISupportInitialize).EndInit()
@@ -347,6 +377,7 @@ Partial Class FormAccountingDraftJournal
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.REValue, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -380,4 +411,6 @@ Partial Class FormAccountingDraftJournal
     Friend WithEvents GridColumnCompNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents REValue As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents PBC As DevExpress.XtraEditors.ProgressBarControl
+    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents Label1 As Label
 End Class
