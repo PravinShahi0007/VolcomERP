@@ -18,13 +18,19 @@
     End Sub
 
     Private Sub FormAccountingDraftJournal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        view_bill_type()
         viewDraft()
         viewAcc()
         viewComp()
 
+
+
         'only view draft
         If is_view = "1" Then
-            PanelControlNav.Visible = False
+            BtnAdd.Visible = False
+            BtnDelete.Visible = False
+            LEJournalType.Enabled = False
+            SimpleButton1.Visible = False
             GVData.OptionsBehavior.ReadOnly = True
         End If
 
@@ -33,6 +39,11 @@
             data_delete.Columns.Add("id_acc_trans_draft")
         Catch ex As Exception
         End Try
+    End Sub
+
+    Sub view_bill_type()
+        Dim query As String = "SELECT * FROM tb_lookup_bill_type b ORDER BY b.id_bill_type ASC "
+        viewLookupQuery(LEJournalType, query, 0, "bill_desc", "id_bill_type")
     End Sub
 
     Sub viewAcc()
@@ -61,6 +72,11 @@
         Dim query As String = acc.viewJournalSalesDraft("AND d.id_report=" + id_report + " AND d.report_mark_type =" + report_mark_type + " ", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data
+
+        'initial biill type
+        If GVData.RowCount > 0 Then
+            LEJournalType.ItemIndex = LEJournalType.Properties.GetDataSourceRowIndex("id_bill_type", data.Rows(0)("id_bill_type").ToString)
+        End If
     End Sub
 
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
@@ -134,15 +150,17 @@
                 Dim debit As String = decimalSQL(GVData.GetRowCellValue(i, "debit").ToString)
                 Dim credit As String = decimalSQL(GVData.GetRowCellValue(i, "credit").ToString)
                 Dim acc_trans_det_note As String = addSlashes(GVData.GetRowCellValue(i, "acc_trans_det_note").ToString)
+                Dim id_bill_type As String = LEJournalType.EditValue.ToString
                 report_number = addSlashes(report_number)
 
                 If id_acc_trans_draft = "0" Then 'insert
-                    Dim query As String = "INSERT INTO tb_a_acc_trans_draft(id_acc, id_comp, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number) 
-                    VALUES (" + id_acc + ", " + id_comp + ", " + debit + ", " + credit + ", '" + acc_trans_det_note + "', " + report_mark_type + ", " + id_report + ", '" + report_number + "') "
+                    Dim query As String = "INSERT INTO tb_a_acc_trans_draft(id_acc, id_comp, id_bill_type, debit, credit, acc_trans_det_note, report_mark_type, id_report, report_number) 
+                    VALUES (" + id_acc + ", " + id_comp + ", '" + id_bill_type + "', " + debit + ", " + credit + ", '" + acc_trans_det_note + "', " + report_mark_type + ", " + id_report + ", '" + report_number + "') "
                     execute_non_query(query, True, "", "", "", "")
                 Else 'edit
                     Dim query As String = "UPDATE tb_a_acc_trans_draft SET id_acc=" + id_acc + ", 
                     id_comp = " + id_comp + ", 
+                    id_bill_type ='" + id_bill_type + "',
                     debit = " + debit + ", 
                     credit = " + credit + ", 
                     acc_trans_det_note = '" + acc_trans_det_note + "', 

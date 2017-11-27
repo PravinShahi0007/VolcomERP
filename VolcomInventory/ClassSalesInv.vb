@@ -69,13 +69,22 @@
     End Sub
 
     Public Sub postingJournal(ByVal id_report_param As String, ByVal report_mark_type_param As String)
+        Dim id_bill_type As String = "NULL "
+        If report_mark_type_param = "48" Or report_mark_type_param = "54" Or report_mark_type_param = "117" Then
+            id_bill_type = "19"
+        ElseIf report_mark_type_param = "66" Or report_mark_type_param = "67" Or report_mark_type_param = "118" Then
+            id_bill_type = "13"
+        End If
+
         'select user prepared 
-        Dim qu As String = "SELECT rm.id_user FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type_param + " AND rm.id_report='" + id_report_param + "' AND rm.id_report_status=1 "
-        Dim id_user_prepared As String = execute_query(qu, 0, True, "", "", "", "")
+        Dim qu As String = "SELECT rm.id_user, rm.report_number FROM tb_report_mark rm WHERE rm.report_mark_type=" + report_mark_type_param + " AND rm.id_report='" + id_report_param + "' AND rm.id_report_status=1 "
+        Dim du As DataTable = execute_query(qu, -1, True, "", "", "", "")
+        Dim id_user_prepared As String = du.Rows(0)("id_user").ToString
+        Dim report_number As String = du.Rows(0)("report_number").ToString
 
         'main journal
-        Dim query As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, id_user, date_created, acc_trans_note, id_report_status) 
-        VALUES ('" + header_number_acc("1") + "','" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
+        Dim query As String = "INSERT INTO tb_a_acc_trans(acc_trans_number, report_number, id_bill_type, id_user, date_created, acc_trans_note, id_report_status) 
+        VALUES ('" + header_number_acc("1") + "','" + report_number + "'," + id_bill_type + ",'" + id_user_prepared + "', NOW(), 'Auto Posting', '6'); SELECT LAST_INSERT_ID(); "
         Dim id As String = execute_query(query, 0, True, "", "", "", "")
         increase_inc_acc("1")
 

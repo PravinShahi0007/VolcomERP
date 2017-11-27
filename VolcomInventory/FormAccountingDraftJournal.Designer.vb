@@ -21,9 +21,11 @@ Partial Class FormAccountingDraftJournal
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAccountingDraftJournal))
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.LEJournalType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.BtnDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -48,11 +50,11 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnCredit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDraft = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdBillType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PBC = New DevExpress.XtraEditors.ProgressBarControl()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.LookUpEdit1 = New DevExpress.XtraEditors.LookUpEdit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.LEJournalType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RSLEAcc, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,12 +63,11 @@ Partial Class FormAccountingDraftJournal
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.REValue, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlNav
         '
-        Me.PanelControlNav.Controls.Add(Me.LookUpEdit1)
+        Me.PanelControlNav.Controls.Add(Me.LEJournalType)
         Me.PanelControlNav.Controls.Add(Me.Label1)
         Me.PanelControlNav.Controls.Add(Me.BtnDelete)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
@@ -75,6 +76,44 @@ Partial Class FormAccountingDraftJournal
         Me.PanelControlNav.Name = "PanelControlNav"
         Me.PanelControlNav.Size = New System.Drawing.Size(983, 41)
         Me.PanelControlNav.TabIndex = 0
+        '
+        'LEJournalType
+        '
+        Me.LEJournalType.Location = New System.Drawing.Point(87, 11)
+        Me.LEJournalType.Name = "LEJournalType"
+        Me.LEJournalType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEJournalType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bill_type", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bill_type", "Type"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bill_desc", "Description")})
+        Me.LEJournalType.Size = New System.Drawing.Size(163, 20)
+        Me.LEJournalType.TabIndex = 5
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 14)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(69, 13)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Journal Type"
+        '
+        'BtnDelete
+        '
+        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
+        Me.BtnDelete.Location = New System.Drawing.Point(819, 2)
+        Me.BtnDelete.Name = "BtnDelete"
+        Me.BtnDelete.Size = New System.Drawing.Size(81, 37)
+        Me.BtnDelete.TabIndex = 3
+        Me.BtnDelete.Text = "Delete"
+        '
+        'BtnAdd
+        '
+        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
+        Me.BtnAdd.Location = New System.Drawing.Point(900, 2)
+        Me.BtnAdd.Name = "BtnAdd"
+        Me.BtnAdd.Size = New System.Drawing.Size(81, 37)
+        Me.BtnAdd.TabIndex = 2
+        Me.BtnAdd.Text = "Add"
         '
         'SimpleButton1
         '
@@ -93,26 +132,6 @@ Partial Class FormAccountingDraftJournal
         Me.SimpleButton1.TabIndex = 4
         Me.SimpleButton1.Text = "Save"
         '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.Image = CType(resources.GetObject("BtnAdd.Image"), System.Drawing.Image)
-        Me.BtnAdd.Location = New System.Drawing.Point(900, 2)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(81, 37)
-        Me.BtnAdd.TabIndex = 2
-        Me.BtnAdd.Text = "Add"
-        '
-        'BtnDelete
-        '
-        Me.BtnDelete.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDelete.Image = CType(resources.GetObject("BtnDelete.Image"), System.Drawing.Image)
-        Me.BtnDelete.Location = New System.Drawing.Point(819, 2)
-        Me.BtnDelete.Name = "BtnDelete"
-        Me.BtnDelete.Size = New System.Drawing.Size(81, 37)
-        Me.BtnDelete.TabIndex = 3
-        Me.BtnDelete.Text = "Delete"
-        '
         'GCData
         '
         Me.GCData.Dock = System.Windows.Forms.DockStyle.Fill
@@ -126,7 +145,7 @@ Partial Class FormAccountingDraftJournal
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnAcc, Me.GridColumnAccDesc, Me.GridColumnReportNumber, Me.GridColumnCompName, Me.GridColumnDebit, Me.GridColumnCredit, Me.GridColumnNote, Me.GridColumnIdDraft})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnAcc, Me.GridColumnAccDesc, Me.GridColumnReportNumber, Me.GridColumnCompName, Me.GridColumnDebit, Me.GridColumnCredit, Me.GridColumnNote, Me.GridColumnIdDraft, Me.GridColumnIdBillType})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsView.ShowFooter = True
@@ -328,6 +347,13 @@ Partial Class FormAccountingDraftJournal
         Me.GridColumnIdDraft.Name = "GridColumnIdDraft"
         Me.GridColumnIdDraft.OptionsColumn.AllowEdit = False
         '
+        'GridColumnIdBillType
+        '
+        Me.GridColumnIdBillType.Caption = "Id Bill type"
+        Me.GridColumnIdBillType.FieldName = "id_bill_type"
+        Me.GridColumnIdBillType.Name = "GridColumnIdBillType"
+        Me.GridColumnIdBillType.OptionsColumn.AllowEdit = False
+        '
         'PBC
         '
         Me.PBC.Dock = System.Windows.Forms.DockStyle.Top
@@ -335,23 +361,6 @@ Partial Class FormAccountingDraftJournal
         Me.PBC.Name = "PBC"
         Me.PBC.Size = New System.Drawing.Size(983, 5)
         Me.PBC.TabIndex = 92
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 14)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(69, 13)
-        Me.Label1.TabIndex = 4
-        Me.Label1.Text = "Journal Type"
-        '
-        'LookUpEdit1
-        '
-        Me.LookUpEdit1.Location = New System.Drawing.Point(87, 11)
-        Me.LookUpEdit1.Name = "LookUpEdit1"
-        Me.LookUpEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LookUpEdit1.Size = New System.Drawing.Size(163, 20)
-        Me.LookUpEdit1.TabIndex = 5
         '
         'FormAccountingDraftJournal
         '
@@ -369,6 +378,7 @@ Partial Class FormAccountingDraftJournal
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
         Me.PanelControlNav.PerformLayout()
+        CType(Me.LEJournalType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RSLEAcc, System.ComponentModel.ISupportInitialize).EndInit()
@@ -377,7 +387,6 @@ Partial Class FormAccountingDraftJournal
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.REValue, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LookUpEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -411,6 +420,7 @@ Partial Class FormAccountingDraftJournal
     Friend WithEvents GridColumnCompNumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents REValue As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents PBC As DevExpress.XtraEditors.ProgressBarControl
-    Friend WithEvents LookUpEdit1 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LEJournalType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Label1 As Label
+    Friend WithEvents GridColumnIdBillType As DevExpress.XtraGrid.Columns.GridColumn
 End Class
