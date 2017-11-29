@@ -1248,6 +1248,18 @@
     <Compile Include="FormProdClosingTolerance.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormProdDebitNote.Designer.vb">
+      <DependentUpon>FormProdDebitNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDebitNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdDebitNoteDet.Designer.vb">
+      <DependentUpon>FormProdDebitNoteDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDebitNoteDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormProdDuty.Designer.vb">
       <DependentUpon>FormProdDuty.vb</DependentUpon>
     </Compile>
@@ -5560,6 +5572,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdClosingTolerance.resx">
       <DependentUpon>FormProdClosingTolerance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDebitNote.resx">
+      <DependentUpon>FormProdDebitNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDebitNoteDet.resx">
+      <DependentUpon>FormProdDebitNoteDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDuty.resx">
       <DependentUpon>FormProdDuty.vb</DependentUpon>

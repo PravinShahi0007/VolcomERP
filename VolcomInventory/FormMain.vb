@@ -1514,6 +1514,9 @@ Public Class FormMain
         ElseIf formName = "FormDepartementSub" Then
             FormDepartementSubDet.id_subdept = "-1"
             FormDepartementSubDet.ShowDialog()
+        ElseIf formName = "FormProdDebitNote" Then
+            FormProdDebitNoteDet.id_dn = "-1"
+            FormProdDebitNoteDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -10944,6 +10947,18 @@ Public Class FormMain
             FormFGAging.Show()
             FormFGAging.WindowState = FormWindowState.Maximized
             FormFGAging.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+    Private Sub NBProdDebitNote_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBProdDebitNote.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormProdDebitNote.MdiParent = Me
+            FormProdDebitNote.Show()
+            FormProdDebitNote.WindowState = FormWindowState.Maximized
+            FormProdDebitNote.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
