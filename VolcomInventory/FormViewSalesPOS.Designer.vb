@@ -94,6 +94,7 @@ Partial Class FormViewSalesPOS
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOLOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnDraft = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.TxtOLStoreNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -500,6 +501,7 @@ Partial Class FormViewSalesPOS
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl3.Controls.Add(Me.BtnAttachment)
+        Me.GroupControl3.Controls.Add(Me.BtnDraft)
         Me.GroupControl3.Controls.Add(Me.BMark)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.GroupControl3.Location = New System.Drawing.Point(0, 559)
@@ -510,9 +512,9 @@ Partial Class FormViewSalesPOS
         'BtnAttachment
         '
         Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.BtnAttachment.Location = New System.Drawing.Point(459, 2)
+        Me.BtnAttachment.Location = New System.Drawing.Point(637, 2)
         Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(493, 32)
+        Me.BtnAttachment.Size = New System.Drawing.Size(315, 32)
         Me.BtnAttachment.TabIndex = 5
         Me.BtnAttachment.Text = "Attachment"
         '
@@ -521,7 +523,7 @@ Partial Class FormViewSalesPOS
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
         Me.BMark.Location = New System.Drawing.Point(21, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(438, 32)
+        Me.BMark.Size = New System.Drawing.Size(267, 32)
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Mark"
         '
@@ -982,6 +984,15 @@ Partial Class FormViewSalesPOS
         Me.GridColumnOLOrder.Visible = True
         Me.GridColumnOLOrder.VisibleIndex = 11
         '
+        'BtnDraft
+        '
+        Me.BtnDraft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnDraft.Location = New System.Drawing.Point(288, 2)
+        Me.BtnDraft.Name = "BtnDraft"
+        Me.BtnDraft.Size = New System.Drawing.Size(349, 32)
+        Me.BtnDraft.TabIndex = 6
+        Me.BtnDraft.Text = "Draft Journal"
+        '
         'FormViewSalesPOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1120,4 +1131,5 @@ Partial Class FormViewSalesPOS
     Friend WithEvents LabelOLStoreNumber As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnDel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOLOrder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnDraft As DevExpress.XtraEditors.SimpleButton
 End Class

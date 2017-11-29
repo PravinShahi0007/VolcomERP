@@ -183,6 +183,7 @@
     <Compile Include="barcodeaa.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ClassAccounting.vb" />
     <Compile Include="ClassDelEmpty.vb" />
     <Compile Include="ClassDepartement.vb" />
     <Compile Include="ClassDesign.vb" />
@@ -274,6 +275,18 @@
       <DependentUpon>FormAccountingAcc.vb</DependentUpon>
     </Compile>
     <Compile Include="FormAccountingAcc.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAccountingDraftJournal.Designer.vb">
+      <DependentUpon>FormAccountingDraftJournal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccountingDraftJournal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAccountingDraftJournalSingle.Designer.vb">
+      <DependentUpon>FormAccountingDraftJournalSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccountingDraftJournalSingle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAccountingFakturScan.Designer.vb">
@@ -1246,6 +1259,18 @@
       <DependentUpon>FormProdClosingTolerance.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProdClosingTolerance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdDebitNote.Designer.vb">
+      <DependentUpon>FormProdDebitNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDebitNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdDebitNoteDet.Designer.vb">
+      <DependentUpon>FormProdDebitNoteDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdDebitNoteDet.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProdDuty.Designer.vb">
@@ -5028,6 +5053,12 @@
       <DependentUpon>FormAccountingAcc.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAccountingDraftJournal.resx">
+      <DependentUpon>FormAccountingDraftJournal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAccountingDraftJournalSingle.resx">
+      <DependentUpon>FormAccountingDraftJournalSingle.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingFakturScan.resx">
       <DependentUpon>FormAccountingFakturScan.vb</DependentUpon>
     </EmbeddedResource>
@@ -5560,6 +5591,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdClosingTolerance.resx">
       <DependentUpon>FormProdClosingTolerance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDebitNote.resx">
+      <DependentUpon>FormProdDebitNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdDebitNoteDet.resx">
+      <DependentUpon>FormProdDebitNoteDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDuty.resx">
       <DependentUpon>FormProdDuty.vb</DependentUpon>

@@ -109,6 +109,7 @@ Public Class FormSalesPOSDet
             'TxtVirtualPosNumber.Text = header_number_sales("6")
             BtnPrint.Enabled = False
             BtnAttachment.Enabled = False
+            BtnDraftJournal.Enabled = False
             BMark.Enabled = False
             DEForm.Text = view_date(0)
             GCItemList.DataSource = Nothing
@@ -118,6 +119,7 @@ Public Class FormSalesPOSDet
             BtnBrowseContactFrom.Enabled = False
             '
             BtnAttachment.Enabled = True
+            BtnDraftJournal.Enabled = True
             BMark.Enabled = True
             GridColumnNote.Visible = False
 
@@ -444,6 +446,12 @@ Public Class FormSalesPOSDet
                         rsv_stock.reservedStock(id_sales_pos, report_mark_type)
                     End If
 
+                    'draft journal
+                    Dim acc As New ClassAccounting()
+                    If id_menu = "1" Or id_menu = "2" Or id_menu = "4" Or id_menu = "5" Then
+                        acc.generateJournalSalesDraft(id_sales_pos, report_mark_type)
+                    End If
+
                     FormSalesPOS.viewSalesPOS()
                     FormSalesPOS.GVSalesPOS.FocusedRowHandle = find_row(FormSalesPOS.GVSalesPOS, "id_sales_pos", id_sales_pos)
                     action = "upd"
@@ -451,12 +459,15 @@ Public Class FormSalesPOSDet
 
                     If id_menu = "1" Then
                         infoCustom("Invoice " + TxtVirtualPosNumber.Text + " created succesfully")
+                        viewDraft()
                     ElseIf id_menu = "2" Or id_menu = "5" Then
                         infoCustom("Credit Note " + TxtVirtualPosNumber.Text + " created succesfully")
+                        viewDraft()
                     ElseIf id_menu = "3" Then
                         infoCustom("Invoice Missing Promo " + TxtVirtualPosNumber.Text + " created succesfully")
                     ElseIf id_menu = "4" Then
                         infoCustom("Invoice Missing Staff " + TxtVirtualPosNumber.Text + " created succesfully")
+                        viewDraft()
                     End If
 
 
@@ -1367,5 +1378,21 @@ Public Class FormSalesPOSDet
             calculate()
             viewDetail()
         End If
+    End Sub
+
+    Private Sub BtnDraftJournal_Click(sender As Object, e As EventArgs) Handles BtnDraftJournal.Click
+        viewDraft()
+    End Sub
+
+    Sub viewDraft()
+        Cursor = Cursors.WaitCursor
+        If id_report_status <> "1" Then
+            FormAccountingDraftJournal.is_view = "1"
+        End If
+        FormAccountingDraftJournal.id_report = id_sales_pos
+        FormAccountingDraftJournal.report_number = TxtVirtualPosNumber.Text
+        FormAccountingDraftJournal.report_mark_type = report_mark_type
+        FormAccountingDraftJournal.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

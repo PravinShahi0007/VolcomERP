@@ -61,8 +61,9 @@ Partial Class FormSalesPOSDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDraftJournal = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
@@ -660,6 +661,7 @@ Partial Class FormSalesPOSDet
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BtnDraftJournal)
         Me.PanelControl3.Controls.Add(Me.BtnAttachment)
         Me.PanelControl3.Controls.Add(Me.BtnPrint)
         Me.PanelControl3.Controls.Add(Me.SimpleButton1)
@@ -674,17 +676,18 @@ Partial Class FormSalesPOSDet
         Me.PanelControl3.Size = New System.Drawing.Size(954, 38)
         Me.PanelControl3.TabIndex = 185
         '
-        'BtnAttachment
+        'BtnDraftJournal
         '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.ImageIndex = 16
-        Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(624, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(103, 34)
-        Me.BtnAttachment.TabIndex = 13
-        Me.BtnAttachment.TabStop = False
-        Me.BtnAttachment.Text = "Attachment"
+        Me.BtnDraftJournal.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDraftJournal.Image = CType(resources.GetObject("BtnDraftJournal.Image"), System.Drawing.Image)
+        Me.BtnDraftJournal.ImageIndex = 13
+        Me.BtnDraftJournal.ImageList = Me.LargeImageCollection
+        Me.BtnDraftJournal.Location = New System.Drawing.Point(515, 2)
+        Me.BtnDraftJournal.Name = "BtnDraftJournal"
+        Me.BtnDraftJournal.Size = New System.Drawing.Size(109, 34)
+        Me.BtnDraftJournal.TabIndex = 14
+        Me.BtnDraftJournal.TabStop = False
+        Me.BtnDraftJournal.Text = "Draft Journal"
         '
         'LargeImageCollection
         '
@@ -706,6 +709,18 @@ Partial Class FormSalesPOSDet
         Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
+        '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.ImageIndex = 16
+        Me.BtnAttachment.ImageList = Me.LargeImageCollection
+        Me.BtnAttachment.Location = New System.Drawing.Point(624, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(103, 34)
+        Me.BtnAttachment.TabIndex = 13
+        Me.BtnAttachment.TabStop = False
+        Me.BtnAttachment.Text = "Attachment"
         '
         'BtnPrint
         '
@@ -1578,4 +1593,5 @@ Partial Class FormSalesPOSDet
     Friend WithEvents GridColumnOrder As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdDelDet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PanelCN As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnDraftJournal As DevExpress.XtraEditors.SimpleButton
 End Class
