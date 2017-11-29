@@ -19,46 +19,47 @@ Partial Class FormAccountingJournal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GCAccTrans = New DevExpress.XtraGrid.GridControl
-        Me.GVAccTrans = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnBillType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdBillType = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.XTCJurnal = New DevExpress.XtraTab.XtraTabControl
-        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.LEBilling = New DevExpress.XtraEditors.LookUpEdit
-        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage
-        Me.GCJournalDet = New DevExpress.XtraGrid.GridControl
-        Me.GVJournalDet = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-        Me.GridColumnIdJurnal = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnJurnalNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnJournalDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.DETo = New DevExpress.XtraEditors.DateEdit
-        Me.DEFrom = New DevExpress.XtraEditors.DateEdit
-        Me.BView = New DevExpress.XtraEditors.SimpleButton
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.DEToViewJournal = New DevExpress.XtraEditors.DateEdit
-        Me.DEFromViewJournal = New DevExpress.XtraEditors.DateEdit
-        Me.BViewJournal = New DevExpress.XtraEditors.SimpleButton
+        Me.GCAccTrans = New DevExpress.XtraGrid.GridControl()
+        Me.GVAccTrans = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBillType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdBillType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTCJurnal = New DevExpress.XtraTab.XtraTabControl()
+        Me.XtraTabPage1 = New DevExpress.XtraTab.XtraTabPage()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BViewJournal = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEToViewJournal = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFromViewJournal = New DevExpress.XtraEditors.DateEdit()
+        Me.LEBilling = New DevExpress.XtraEditors.LookUpEdit()
+        Me.XtraTabPage2 = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCJournalDet = New DevExpress.XtraGrid.GridControl()
+        Me.GVJournalDet = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnIdJurnal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnJurnalNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnJournalDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.DETo = New DevExpress.XtraEditors.DateEdit()
+        Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnAccDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCAccTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAccTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCJurnal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,6 +67,10 @@ Partial Class FormAccountingJournal
         Me.XtraTabPage1.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.DEToViewJournal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEToViewJournal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromViewJournal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFromViewJournal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabPage2.SuspendLayout()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -74,14 +79,10 @@ Partial Class FormAccountingJournal
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.DETo.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFrom.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEToViewJournal.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEToViewJournal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFromViewJournal.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEFromViewJournal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCAccTrans
@@ -90,7 +91,7 @@ Partial Class FormAccountingJournal
         Me.GCAccTrans.Location = New System.Drawing.Point(0, 44)
         Me.GCAccTrans.MainView = Me.GVAccTrans
         Me.GCAccTrans.Name = "GCAccTrans"
-        Me.GCAccTrans.Size = New System.Drawing.Size(755, 304)
+        Me.GCAccTrans.Size = New System.Drawing.Size(753, 304)
         Me.GCAccTrans.TabIndex = 6
         Me.GCAccTrans.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAccTrans})
         '
@@ -193,7 +194,7 @@ Partial Class FormAccountingJournal
         Me.XtraTabPage1.Controls.Add(Me.GCAccTrans)
         Me.XtraTabPage1.Controls.Add(Me.PanelControl2)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(755, 348)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(753, 348)
         Me.XtraTabPage1.Text = "List Input"
         '
         'PanelControl2
@@ -207,8 +208,56 @@ Partial Class FormAccountingJournal
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(755, 44)
+        Me.PanelControl2.Size = New System.Drawing.Size(753, 44)
         Me.PanelControl2.TabIndex = 7
+        '
+        'BViewJournal
+        '
+        Me.BViewJournal.Location = New System.Drawing.Point(557, 11)
+        Me.BViewJournal.Name = "BViewJournal"
+        Me.BViewJournal.Size = New System.Drawing.Size(119, 22)
+        Me.BViewJournal.TabIndex = 152
+        Me.BViewJournal.Text = "View Transaction"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(344, 15)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(17, 13)
+        Me.LabelControl3.TabIndex = 151
+        Me.LabelControl3.Text = "to :"
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(120, 15)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl4.TabIndex = 150
+        Me.LabelControl4.Text = "From :"
+        '
+        'DEToViewJournal
+        '
+        Me.DEToViewJournal.EditValue = Nothing
+        Me.DEToViewJournal.Location = New System.Drawing.Point(371, 12)
+        Me.DEToViewJournal.Name = "DEToViewJournal"
+        Me.DEToViewJournal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEToViewJournal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEToViewJournal.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEToViewJournal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEToViewJournal.Size = New System.Drawing.Size(172, 20)
+        Me.DEToViewJournal.TabIndex = 149
+        '
+        'DEFromViewJournal
+        '
+        Me.DEFromViewJournal.EditValue = Nothing
+        Me.DEFromViewJournal.Location = New System.Drawing.Point(157, 12)
+        Me.DEFromViewJournal.Name = "DEFromViewJournal"
+        Me.DEFromViewJournal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFromViewJournal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DEFromViewJournal.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEFromViewJournal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEFromViewJournal.Size = New System.Drawing.Size(172, 20)
+        Me.DEFromViewJournal.TabIndex = 148
         '
         'LEBilling
         '
@@ -232,7 +281,7 @@ Partial Class FormAccountingJournal
         Me.XtraTabPage2.Controls.Add(Me.GCJournalDet)
         Me.XtraTabPage2.Controls.Add(Me.PanelControl1)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(755, 348)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(753, 348)
         Me.XtraTabPage2.Text = "View"
         '
         'GCJournalDet
@@ -242,13 +291,13 @@ Partial Class FormAccountingJournal
         Me.GCJournalDet.MainView = Me.GVJournalDet
         Me.GCJournalDet.Name = "GCJournalDet"
         Me.GCJournalDet.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1, Me.RepositoryItemTextEdit2})
-        Me.GCJournalDet.Size = New System.Drawing.Size(755, 305)
+        Me.GCJournalDet.Size = New System.Drawing.Size(753, 305)
         Me.GCJournalDet.TabIndex = 12
         Me.GCJournalDet.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVJournalDet})
         '
         'GVJournalDet
         '
-        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnIdJurnal, Me.GridColumnJurnalNumber, Me.GridColumnJournalDate})
+        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn9, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumnIdJurnal, Me.GridColumnJurnalNumber, Me.GridColumnJournalDate, Me.GridColumnAccDesc})
         Me.GVJournalDet.GridControl = Me.GCJournalDet
         Me.GVJournalDet.GroupCount = 1
         Me.GVJournalDet.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", Me.GridColumn13, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", Me.GridColumn14, "{0:N2}")})
@@ -289,7 +338,7 @@ Partial Class FormAccountingJournal
         Me.GridColumn12.FieldName = "note"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 2
+        Me.GridColumn12.VisibleIndex = 3
         Me.GridColumn12.Width = 190
         '
         'GridColumn13
@@ -306,7 +355,7 @@ Partial Class FormAccountingJournal
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 3
+        Me.GridColumn13.VisibleIndex = 4
         Me.GridColumn13.Width = 87
         '
         'RepositoryItemTextEdit1
@@ -335,7 +384,7 @@ Partial Class FormAccountingJournal
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "credit", "{0:N2}")})
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.VisibleIndex = 5
         Me.GridColumn14.Width = 84
         '
         'RepositoryItemTextEdit2
@@ -384,7 +433,7 @@ Partial Class FormAccountingJournal
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 305)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(755, 43)
+        Me.PanelControl1.Size = New System.Drawing.Size(753, 43)
         Me.PanelControl1.TabIndex = 13
         '
         'LabelControl2
@@ -409,9 +458,9 @@ Partial Class FormAccountingJournal
         Me.DETo.Location = New System.Drawing.Point(393, 11)
         Me.DETo.Name = "DETo"
         Me.DETo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DETo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DETo.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DETo.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DETo.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
         Me.DETo.Size = New System.Drawing.Size(172, 20)
         Me.DETo.TabIndex = 2
         '
@@ -421,9 +470,9 @@ Partial Class FormAccountingJournal
         Me.DEFrom.Location = New System.Drawing.Point(180, 11)
         Me.DEFrom.Name = "DEFrom"
         Me.DEFrom.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEFrom.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.DEFrom.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEFrom.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFrom.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
         Me.DEFrom.Size = New System.Drawing.Size(172, 20)
         Me.DEFrom.TabIndex = 1
         '
@@ -435,53 +484,13 @@ Partial Class FormAccountingJournal
         Me.BView.TabIndex = 0
         Me.BView.Text = "View Transaction"
         '
-        'LabelControl3
+        'GridColumnAccDesc
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(344, 15)
-        Me.LabelControl3.Name = "LabelControl3"
-        Me.LabelControl3.Size = New System.Drawing.Size(17, 13)
-        Me.LabelControl3.TabIndex = 151
-        Me.LabelControl3.Text = "to :"
-        '
-        'LabelControl4
-        '
-        Me.LabelControl4.Location = New System.Drawing.Point(120, 15)
-        Me.LabelControl4.Name = "LabelControl4"
-        Me.LabelControl4.Size = New System.Drawing.Size(31, 13)
-        Me.LabelControl4.TabIndex = 150
-        Me.LabelControl4.Text = "From :"
-        '
-        'DEToViewJournal
-        '
-        Me.DEToViewJournal.EditValue = Nothing
-        Me.DEToViewJournal.Location = New System.Drawing.Point(371, 12)
-        Me.DEToViewJournal.Name = "DEToViewJournal"
-        Me.DEToViewJournal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEToViewJournal.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEToViewJournal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEToViewJournal.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
-        Me.DEToViewJournal.Size = New System.Drawing.Size(172, 20)
-        Me.DEToViewJournal.TabIndex = 149
-        '
-        'DEFromViewJournal
-        '
-        Me.DEFromViewJournal.EditValue = Nothing
-        Me.DEFromViewJournal.Location = New System.Drawing.Point(157, 12)
-        Me.DEFromViewJournal.Name = "DEFromViewJournal"
-        Me.DEFromViewJournal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEFromViewJournal.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEFromViewJournal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEFromViewJournal.Properties.VistaTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
-        Me.DEFromViewJournal.Size = New System.Drawing.Size(172, 20)
-        Me.DEFromViewJournal.TabIndex = 148
-        '
-        'BViewJournal
-        '
-        Me.BViewJournal.Location = New System.Drawing.Point(557, 11)
-        Me.BViewJournal.Name = "BViewJournal"
-        Me.BViewJournal.Size = New System.Drawing.Size(119, 22)
-        Me.BViewJournal.TabIndex = 152
-        Me.BViewJournal.Text = "View Transaction"
+        Me.GridColumnAccDesc.Caption = "Acc. Description"
+        Me.GridColumnAccDesc.FieldName = "acc_description"
+        Me.GridColumnAccDesc.Name = "GridColumnAccDesc"
+        Me.GridColumnAccDesc.Visible = True
+        Me.GridColumnAccDesc.VisibleIndex = 2
         '
         'FormAccountingJournal
         '
@@ -504,6 +513,10 @@ Partial Class FormAccountingJournal
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.DEToViewJournal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEToViewJournal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromViewJournal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFromViewJournal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabPage2.ResumeLayout(False)
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).EndInit()
@@ -513,14 +526,10 @@ Partial Class FormAccountingJournal
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.DETo.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DETo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DETo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFrom.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEFrom.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEToViewJournal.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEToViewJournal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFromViewJournal.Properties.VistaTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEFromViewJournal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -564,4 +573,5 @@ Partial Class FormAccountingJournal
     Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEToViewJournal As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEFromViewJournal As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumnAccDesc As DevExpress.XtraGrid.Columns.GridColumn
 End Class

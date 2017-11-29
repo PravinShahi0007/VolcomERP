@@ -321,11 +321,31 @@
             Catch ex As Exception
             End Try
         Next
+
+        'validasi akun
+        Dim condv As Boolean = True
+        Dim optv As String = execute_query("SELECT is_check_vendor FROM tb_opt_mat", 0, True, "", "", "", "")
+        If optv = "1" Then
+            Dim qv As String = "SELECT a.id_acc, a.acc_name, a.acc_description 
+            FROM  tb_mat_purc p 
+            INNER JOIN tb_m_comp_contact cc ON cc.id_comp_contact = p.id_comp_contact_to
+            INNER JOIN tb_m_comp c ON c.id_comp = cc.id_comp
+            JOIN tb_a_acc a ON a.acc_name LIKE CONCAT('2112','%',c.comp_number) AND a.id_is_det=2
+            WHERE p.id_mat_purc=" + id_order + " "
+            Dim dtv As DataTable = execute_query(qv, -1, True, "", "", "", "")
+            If dtv.Rows.Count <= 0 Then
+                condv = False
+            End If
+        End If
+
+
         'end of validasi
         If id_receive = "-1" Then
             'new
             If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Or id_order = "-1" Or id_comp_to = "-1" Then
                 errorInput()
+            ElseIf Not condv Then
+                stopCustom("This vendor has not finished in setup. Please contact the administrator.")
             Else
                 Try
                     'insert rec
@@ -370,6 +390,8 @@
             'edit
             If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Then
                 errorInput()
+            ElseIf Not condv Then
+                stopCustom("This vendor has not finished in setup. Please contact the administrator.")
             Else
                 Try
                     'UPDATE rec
@@ -549,7 +571,7 @@
                 Next
                 GVListPurchase.SetRowCellValue(i, "mat_purc_rec_det_qty", qty_rec)
             Next
-            
+
         End If
         If GVRoll.RowCount > 0 Then
             BDelPieces.Visible = True
