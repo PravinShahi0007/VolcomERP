@@ -39,20 +39,16 @@ Partial Class FormProdDebitNoteDet
         Me.ColIdPRodOrderRecPurc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColRecNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColShipFrom = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColShipTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPSONumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColDONumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColIDStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDelRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStyleCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPoTypeRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnArriveDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
@@ -71,9 +67,9 @@ Partial Class FormProdDebitNoteDet
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton5 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -261,7 +257,7 @@ Partial Class FormProdDebitNoteDet
         '
         'GVProdRec
         '
-        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColSeason, Me.ColRecNumber, Me.ColShipFrom, Me.ColShipTo, Me.ColRecDate, Me.ColDueDate, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.ColStatus, Me.GridColumnIdDel, Me.GridColumnDelRec, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnPoTypeRec, Me.GridColumnQty, Me.GridColumnArriveDate})
+        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColSeason, Me.ColRecNumber, Me.ColRecDate, Me.ColDueDate, Me.GridColumn1, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.ColStatus, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnQty, Me.GridColumnArriveDate})
         Me.GVProdRec.GridControl = Me.GCProdRec
         Me.GVProdRec.GroupCount = 1
         Me.GVProdRec.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}")})
@@ -296,20 +292,6 @@ Partial Class FormProdDebitNoteDet
         Me.ColRecNumber.VisibleIndex = 0
         Me.ColRecNumber.Width = 67
         '
-        'ColShipFrom
-        '
-        Me.ColShipFrom.Caption = "From"
-        Me.ColShipFrom.FieldName = "comp_from"
-        Me.ColShipFrom.Name = "ColShipFrom"
-        Me.ColShipFrom.Width = 122
-        '
-        'ColShipTo
-        '
-        Me.ColShipTo.Caption = "To"
-        Me.ColShipTo.FieldName = "comp_to"
-        Me.ColShipTo.Name = "ColShipTo"
-        Me.ColShipTo.Width = 122
-        '
         'ColRecDate
         '
         Me.ColRecDate.Caption = "Receive Date"
@@ -318,7 +300,7 @@ Partial Class FormProdDebitNoteDet
         Me.ColRecDate.FieldName = "prod_order_rec_date"
         Me.ColRecDate.Name = "ColRecDate"
         Me.ColRecDate.Visible = True
-        Me.ColRecDate.VisibleIndex = 8
+        Me.ColRecDate.VisibleIndex = 9
         Me.ColRecDate.Width = 122
         '
         'ColDueDate
@@ -330,7 +312,7 @@ Partial Class FormProdDebitNoteDet
         Me.ColDueDate.FieldName = "delivery_order_date"
         Me.ColDueDate.Name = "ColDueDate"
         Me.ColDueDate.Visible = True
-        Me.ColDueDate.VisibleIndex = 6
+        Me.ColDueDate.VisibleIndex = 7
         Me.ColDueDate.Width = 124
         '
         'RepositoryItemTextEdit1
@@ -339,13 +321,21 @@ Partial Class FormProdDebitNoteDet
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         Me.RepositoryItemTextEdit1.NullText = "-"
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Receiving No"
+        Me.GridColumn1.FieldName = "prod_order_rec_number"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
+        '
         'ColPSONumber
         '
-        Me.ColPSONumber.Caption = "Prod No."
+        Me.ColPSONumber.Caption = "F.G. PO #"
         Me.ColPSONumber.FieldName = "prod_order_number"
         Me.ColPSONumber.Name = "ColPSONumber"
         Me.ColPSONumber.Visible = True
-        Me.ColPSONumber.VisibleIndex = 1
+        Me.ColPSONumber.VisibleIndex = 2
         Me.ColPSONumber.Width = 69
         '
         'ColDONumber
@@ -354,7 +344,7 @@ Partial Class FormProdDebitNoteDet
         Me.ColDONumber.FieldName = "delivery_order_number"
         Me.ColDONumber.Name = "ColDONumber"
         Me.ColDONumber.Visible = True
-        Me.ColDONumber.VisibleIndex = 5
+        Me.ColDONumber.VisibleIndex = 6
         Me.ColDONumber.Width = 63
         '
         'ColIDStatus
@@ -369,19 +359,8 @@ Partial Class FormProdDebitNoteDet
         Me.ColStatus.FieldName = "report_status"
         Me.ColStatus.Name = "ColStatus"
         Me.ColStatus.Visible = True
-        Me.ColStatus.VisibleIndex = 9
+        Me.ColStatus.VisibleIndex = 10
         Me.ColStatus.Width = 93
-        '
-        'GridColumnIdDel
-        '
-        Me.GridColumnIdDel.Caption = "Del"
-        Me.GridColumnIdDel.FieldName = "id_delivery"
-        Me.GridColumnIdDel.Name = "GridColumnIdDel"
-        '
-        'GridColumnDelRec
-        '
-        Me.GridColumnDelRec.Caption = "Delivery"
-        Me.GridColumnDelRec.Name = "GridColumnDelRec"
         '
         'GridColumnName
         '
@@ -389,7 +368,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnName.FieldName = "name"
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 3
+        Me.GridColumnName.VisibleIndex = 4
         Me.GridColumnName.Width = 112
         '
         'GridColumnStyleCode
@@ -398,15 +377,8 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnStyleCode.FieldName = "code"
         Me.GridColumnStyleCode.Name = "GridColumnStyleCode"
         Me.GridColumnStyleCode.Visible = True
-        Me.GridColumnStyleCode.VisibleIndex = 2
+        Me.GridColumnStyleCode.VisibleIndex = 3
         Me.GridColumnStyleCode.Width = 69
-        '
-        'GridColumnPoTypeRec
-        '
-        Me.GridColumnPoTypeRec.Caption = "PO Type"
-        Me.GridColumnPoTypeRec.FieldName = "po_type"
-        Me.GridColumnPoTypeRec.Name = "GridColumnPoTypeRec"
-        Me.GridColumnPoTypeRec.Width = 63
         '
         'GridColumnQty
         '
@@ -417,7 +389,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.VisibleIndex = 5
         Me.GridColumnQty.Width = 52
         '
         'GridColumnArriveDate
@@ -428,7 +400,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnArriveDate.FieldName = "arrive_date"
         Me.GridColumnArriveDate.Name = "GridColumnArriveDate"
         Me.GridColumnArriveDate.Visible = True
-        Me.GridColumnArriveDate.VisibleIndex = 7
+        Me.GridColumnArriveDate.VisibleIndex = 8
         '
         'RepositoryItemDateEdit1
         '
@@ -598,9 +570,9 @@ Partial Class FormProdDebitNoteDet
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl2.Controls.Add(Me.SimpleButton3)
-        Me.GroupControl2.Controls.Add(Me.SimpleButton4)
-        Me.GroupControl2.Controls.Add(Me.SimpleButton5)
+        Me.GroupControl2.Controls.Add(Me.BDelete)
+        Me.GroupControl2.Controls.Add(Me.BEdit)
+        Me.GroupControl2.Controls.Add(Me.BAdd)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl2.Location = New System.Drawing.Point(0, 96)
         Me.GroupControl2.Name = "GroupControl2"
@@ -608,39 +580,39 @@ Partial Class FormProdDebitNoteDet
         Me.GroupControl2.Size = New System.Drawing.Size(1010, 40)
         Me.GroupControl2.TabIndex = 193
         '
-        'SimpleButton3
+        'BDelete
         '
-        Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton3.Enabled = False
-        Me.SimpleButton3.ImageIndex = 1
-        Me.SimpleButton3.ImageList = Me.LargeImageCollection
-        Me.SimpleButton3.Location = New System.Drawing.Point(717, 2)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(100, 36)
-        Me.SimpleButton3.TabIndex = 19
-        Me.SimpleButton3.Text = "Delete"
+        Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelete.Enabled = False
+        Me.BDelete.ImageIndex = 1
+        Me.BDelete.ImageList = Me.LargeImageCollection
+        Me.BDelete.Location = New System.Drawing.Point(717, 2)
+        Me.BDelete.Name = "BDelete"
+        Me.BDelete.Size = New System.Drawing.Size(100, 36)
+        Me.BDelete.TabIndex = 19
+        Me.BDelete.Text = "Delete"
         '
-        'SimpleButton4
+        'BEdit
         '
-        Me.SimpleButton4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton4.ImageIndex = 2
-        Me.SimpleButton4.ImageList = Me.LargeImageCollection
-        Me.SimpleButton4.Location = New System.Drawing.Point(817, 2)
-        Me.SimpleButton4.Name = "SimpleButton4"
-        Me.SimpleButton4.Size = New System.Drawing.Size(98, 36)
-        Me.SimpleButton4.TabIndex = 18
-        Me.SimpleButton4.Text = "Edit"
+        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BEdit.ImageIndex = 2
+        Me.BEdit.ImageList = Me.LargeImageCollection
+        Me.BEdit.Location = New System.Drawing.Point(817, 2)
+        Me.BEdit.Name = "BEdit"
+        Me.BEdit.Size = New System.Drawing.Size(98, 36)
+        Me.BEdit.TabIndex = 18
+        Me.BEdit.Text = "Edit"
         '
-        'SimpleButton5
+        'BAdd
         '
-        Me.SimpleButton5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton5.ImageIndex = 0
-        Me.SimpleButton5.ImageList = Me.LargeImageCollection
-        Me.SimpleButton5.Location = New System.Drawing.Point(915, 2)
-        Me.SimpleButton5.Name = "SimpleButton5"
-        Me.SimpleButton5.Size = New System.Drawing.Size(93, 36)
-        Me.SimpleButton5.TabIndex = 17
-        Me.SimpleButton5.Text = "Add"
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.ImageIndex = 0
+        Me.BAdd.ImageList = Me.LargeImageCollection
+        Me.BAdd.Location = New System.Drawing.Point(915, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(93, 36)
+        Me.BAdd.TabIndex = 17
+        Me.BAdd.Text = "Add"
         '
         'FormProdDebitNoteDet
         '
@@ -652,7 +624,10 @@ Partial Class FormProdDebitNoteDet
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupGeneralHeader)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormProdDebitNoteDet"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Debit Note"
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
@@ -705,8 +680,6 @@ Partial Class FormProdDebitNoteDet
     Friend WithEvents ColIdPRodOrderRecPurc As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColSeason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColRecNumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ColShipFrom As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ColShipTo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColRecDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColDueDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
@@ -714,11 +687,8 @@ Partial Class FormProdDebitNoteDet
     Friend WithEvents ColDONumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColIDStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColStatus As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdDel As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnDelRec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStyleCode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPoTypeRec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnArriveDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
@@ -737,7 +707,8 @@ Partial Class FormProdDebitNoteDet
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton4 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton5 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

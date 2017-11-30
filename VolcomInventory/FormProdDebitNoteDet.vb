@@ -7,4 +7,24 @@
         Dim date_dn As Date = Now()
         DEForm.Text = date_dn.ToString("dd MMM yyyy")
     End Sub
+
+    Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
+        Close()
+    End Sub
+
+    Private Sub FormProdDebitNoteDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
+
+    Private Sub BtnBrowseContactFrom_Click(sender As Object, e As EventArgs) Handles BtnBrowseContactFrom.Click
+        FormPopUpContact.ShowDialog()
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+
+    End Sub
+
+    Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BDelete.Click
+
+    End Sub
 End Class
