@@ -23,10 +23,10 @@ Partial Class FormProdDebitNoteDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdDebitNoteDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.MEAdrressCompFrom = New DevExpress.XtraEditors.MemoEdit()
+        Me.MEAdrressCompDebitTo = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCodeCompDebitTo = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtNameCompDebitTo = New DevExpress.XtraEditors.TextEdit()
         Me.BtnBrowseContactFrom = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
@@ -74,9 +74,9 @@ Partial Class FormProdDebitNoteDet
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
-        CType(Me.MEAdrressCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEAdrressCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCodeCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNameCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
         CType(Me.TxtVirtualPosNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,10 +112,10 @@ Partial Class FormProdDebitNoteDet
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTopLeft.Controls.Add(Me.MEAdrressCompFrom)
+        Me.PanelControlTopLeft.Controls.Add(Me.MEAdrressCompDebitTo)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl1)
-        Me.PanelControlTopLeft.Controls.Add(Me.TxtCodeCompFrom)
-        Me.PanelControlTopLeft.Controls.Add(Me.TxtNameCompFrom)
+        Me.PanelControlTopLeft.Controls.Add(Me.TxtCodeCompDebitTo)
+        Me.PanelControlTopLeft.Controls.Add(Me.TxtNameCompDebitTo)
         Me.PanelControlTopLeft.Controls.Add(Me.BtnBrowseContactFrom)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl3)
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
@@ -124,17 +124,17 @@ Partial Class FormProdDebitNoteDet
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(697, 92)
         Me.PanelControlTopLeft.TabIndex = 8933
         '
-        'MEAdrressCompFrom
+        'MEAdrressCompDebitTo
         '
-        Me.MEAdrressCompFrom.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.MEAdrressCompDebitTo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MEAdrressCompFrom.Location = New System.Drawing.Point(54, 36)
-        Me.MEAdrressCompFrom.Name = "MEAdrressCompFrom"
-        Me.MEAdrressCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MEAdrressCompFrom.Properties.Appearance.Options.UseFont = True
-        Me.MEAdrressCompFrom.Properties.ReadOnly = True
-        Me.MEAdrressCompFrom.Size = New System.Drawing.Size(624, 46)
-        Me.MEAdrressCompFrom.TabIndex = 4444
+        Me.MEAdrressCompDebitTo.Location = New System.Drawing.Point(54, 36)
+        Me.MEAdrressCompDebitTo.Name = "MEAdrressCompDebitTo"
+        Me.MEAdrressCompDebitTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MEAdrressCompDebitTo.Properties.Appearance.Options.UseFont = True
+        Me.MEAdrressCompDebitTo.Properties.ReadOnly = True
+        Me.MEAdrressCompDebitTo.Size = New System.Drawing.Size(624, 46)
+        Me.MEAdrressCompDebitTo.TabIndex = 4444
         '
         'LabelControl1
         '
@@ -145,33 +145,33 @@ Partial Class FormProdDebitNoteDet
         Me.LabelControl1.TabIndex = 145
         Me.LabelControl1.Text = "Vendor"
         '
-        'TxtCodeCompFrom
+        'TxtCodeCompDebitTo
         '
-        Me.TxtCodeCompFrom.EditValue = ""
-        Me.TxtCodeCompFrom.Location = New System.Drawing.Point(54, 10)
-        Me.TxtCodeCompFrom.Name = "TxtCodeCompFrom"
-        Me.TxtCodeCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCodeCompFrom.Properties.Appearance.Options.UseFont = True
-        Me.TxtCodeCompFrom.Properties.EditValueChangedDelay = 1
-        Me.TxtCodeCompFrom.Properties.ReadOnly = True
-        Me.TxtCodeCompFrom.Size = New System.Drawing.Size(82, 20)
-        Me.TxtCodeCompFrom.TabIndex = 7777
-        Me.TxtCodeCompFrom.TabStop = False
+        Me.TxtCodeCompDebitTo.EditValue = ""
+        Me.TxtCodeCompDebitTo.Location = New System.Drawing.Point(54, 10)
+        Me.TxtCodeCompDebitTo.Name = "TxtCodeCompDebitTo"
+        Me.TxtCodeCompDebitTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCodeCompDebitTo.Properties.Appearance.Options.UseFont = True
+        Me.TxtCodeCompDebitTo.Properties.EditValueChangedDelay = 1
+        Me.TxtCodeCompDebitTo.Properties.ReadOnly = True
+        Me.TxtCodeCompDebitTo.Size = New System.Drawing.Size(82, 20)
+        Me.TxtCodeCompDebitTo.TabIndex = 7777
+        Me.TxtCodeCompDebitTo.TabStop = False
         '
-        'TxtNameCompFrom
+        'TxtNameCompDebitTo
         '
-        Me.TxtNameCompFrom.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TxtNameCompDebitTo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtNameCompFrom.EditValue = ""
-        Me.TxtNameCompFrom.Location = New System.Drawing.Point(142, 10)
-        Me.TxtNameCompFrom.Name = "TxtNameCompFrom"
-        Me.TxtNameCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNameCompFrom.Properties.Appearance.Options.UseFont = True
-        Me.TxtNameCompFrom.Properties.EditValueChangedDelay = 1
-        Me.TxtNameCompFrom.Properties.ReadOnly = True
-        Me.TxtNameCompFrom.Size = New System.Drawing.Size(507, 20)
-        Me.TxtNameCompFrom.TabIndex = 8888
-        Me.TxtNameCompFrom.TabStop = False
+        Me.TxtNameCompDebitTo.EditValue = ""
+        Me.TxtNameCompDebitTo.Location = New System.Drawing.Point(142, 10)
+        Me.TxtNameCompDebitTo.Name = "TxtNameCompDebitTo"
+        Me.TxtNameCompDebitTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNameCompDebitTo.Properties.Appearance.Options.UseFont = True
+        Me.TxtNameCompDebitTo.Properties.EditValueChangedDelay = 1
+        Me.TxtNameCompDebitTo.Properties.ReadOnly = True
+        Me.TxtNameCompDebitTo.Size = New System.Drawing.Size(507, 20)
+        Me.TxtNameCompDebitTo.TabIndex = 8888
+        Me.TxtNameCompDebitTo.TabStop = False
         '
         'BtnBrowseContactFrom
         '
@@ -634,9 +634,9 @@ Partial Class FormProdDebitNoteDet
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
-        CType(Me.MEAdrressCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEAdrressCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCodeCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNameCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
@@ -664,10 +664,10 @@ Partial Class FormProdDebitNoteDet
 
     Friend WithEvents GroupGeneralHeader As DevExpress.XtraEditors.GroupControl
     Friend WithEvents PanelControlTopLeft As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents MEAdrressCompFrom As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MEAdrressCompDebitTo As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtCodeCompFrom As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtNameCompFrom As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtCodeCompDebitTo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtNameCompDebitTo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnBrowseContactFrom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControlTopRight As DevExpress.XtraEditors.PanelControl
