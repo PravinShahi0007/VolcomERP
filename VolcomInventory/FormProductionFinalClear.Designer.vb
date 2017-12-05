@@ -31,6 +31,8 @@ Partial Class FormProductionFinalClear
         Me.GVFinalClear = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -63,7 +65,7 @@ Partial Class FormProductionFinalClear
         Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCFilter.Location = New System.Drawing.Point(0, 0)
         Me.GCFilter.Name = "GCFilter"
-        Me.GCFilter.Size = New System.Drawing.Size(754, 39)
+        Me.GCFilter.Size = New System.Drawing.Size(1066, 39)
         Me.GCFilter.TabIndex = 3
         '
         'BtnView
@@ -141,13 +143,13 @@ Partial Class FormProductionFinalClear
         Me.GCFinalClear.Location = New System.Drawing.Point(0, 39)
         Me.GCFinalClear.MainView = Me.GVFinalClear
         Me.GCFinalClear.Name = "GCFinalClear"
-        Me.GCFinalClear.Size = New System.Drawing.Size(754, 277)
+        Me.GCFinalClear.Size = New System.Drawing.Size(1066, 429)
         Me.GCFinalClear.TabIndex = 4
         Me.GCFinalClear.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFinalClear})
         '
         'GVFinalClear
         '
-        Me.GVFinalClear.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12})
+        Me.GVFinalClear.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn13, Me.GridColumn11, Me.GridColumn3, Me.GridColumn10, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn12})
         Me.GVFinalClear.GridControl = Me.GCFinalClear
         Me.GVFinalClear.GroupCount = 1
         Me.GVFinalClear.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", Me.GridColumn6, "{0:N0}")})
@@ -176,13 +178,29 @@ Partial Class FormProductionFinalClear
         Me.GridColumn2.VisibleIndex = 1
         Me.GridColumn2.Width = 106
         '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Code"
+        Me.GridColumn13.FieldName = "code"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 3
+        '
+        'GridColumn11
+        '
+        Me.GridColumn11.Caption = "Style"
+        Me.GridColumn11.FieldName = "name"
+        Me.GridColumn11.Name = "GridColumn11"
+        Me.GridColumn11.Visible = True
+        Me.GridColumn11.VisibleIndex = 4
+        '
         'GridColumn3
         '
         Me.GridColumn3.Caption = "Vendor"
         Me.GridColumn3.FieldName = "vendor"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.VisibleIndex = 5
         Me.GridColumn3.Width = 112
         '
         'GridColumn10
@@ -200,7 +218,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn4.FieldName = "name"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 4
+        Me.GridColumn4.VisibleIndex = 6
         Me.GridColumn4.Width = 112
         '
         'GridColumn5
@@ -209,7 +227,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn5.FieldName = "pl_category"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 7
         Me.GridColumn5.Width = 112
         '
         'GridColumn6
@@ -221,7 +239,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N0}")})
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 6
+        Me.GridColumn6.VisibleIndex = 8
         Me.GridColumn6.Width = 112
         '
         'GridColumn7
@@ -232,7 +250,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn7.FieldName = "prod_fc_date"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 7
+        Me.GridColumn7.VisibleIndex = 9
         Me.GridColumn7.Width = 112
         '
         'GridColumn8
@@ -241,7 +259,7 @@ Partial Class FormProductionFinalClear
         Me.GridColumn8.FieldName = "report_status"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 8
+        Me.GridColumn8.VisibleIndex = 10
         Me.GridColumn8.Width = 119
         '
         'GridColumn9
@@ -264,7 +282,7 @@ Partial Class FormProductionFinalClear
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(754, 316)
+        Me.ClientSize = New System.Drawing.Size(1066, 468)
         Me.Controls.Add(Me.GCFinalClear)
         Me.Controls.Add(Me.GCFilter)
         Me.MaximizeBox = False
@@ -306,4 +324,6 @@ Partial Class FormProductionFinalClear
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
