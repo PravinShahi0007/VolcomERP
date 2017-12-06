@@ -54,6 +54,7 @@
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
-
+        FormPopUpRecQC.id_pop_up = "2"
+        FormPopUpRecQC.ShowDialog()
     End Sub
 End Class
