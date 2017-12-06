@@ -432,6 +432,8 @@ Module Common
             header_number_x = combine_header_number(get_opt_prod_field("prod_fc_code_head"), Integer.Parse(get_opt_prod_field("prod_fc_code_inc")), Integer.Parse(get_opt_prod_field("prod_fc_code_digit")))
         ElseIf opt = "13" Then
             header_number_x = combine_header_number(get_opt_prod_field("prod_ass_code_head"), Integer.Parse(get_opt_prod_field("prod_ass_code_inc")), Integer.Parse(get_opt_prod_field("prod_ass_code_digit")))
+        ElseIf opt = "14" Then
+            header_number_x = combine_header_number(get_opt_prod_field("prod_debit_note_code_head"), Integer.Parse(get_opt_prod_field("prod_debit_note_code_inc")), Integer.Parse(get_opt_prod_field("prod_debit_note_code_digit")))
         End If
 
         Return header_number_x
@@ -488,6 +490,9 @@ Module Common
             execute_non_query(query, True, "", "", "", "")
         ElseIf opt = "13" Then
             query = "UPDATE tb_opt_prod SET prod_ass_code_inc = (tb_opt_prod.prod_ass_code_inc + 1)"
+            execute_non_query(query, True, "", "", "", "")
+        ElseIf opt = "14" Then
+            query = "UPDATE tb_opt_prod SET prod_debit_note_code_inc = (tb_opt_prod.prod_debit_note_code_inc +1)"
             execute_non_query(query, True, "", "", "", "")
         End If
     End Sub

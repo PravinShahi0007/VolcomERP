@@ -54,6 +54,8 @@ Partial Class FormPopUpRecQC
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,7 +109,7 @@ Partial Class FormPopUpRecQC
         '
         'GVProdRec
         '
-        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColSeason, Me.ColRecNumber, Me.ColShipFrom, Me.ColShipTo, Me.ColRecDate, Me.ColDueDate, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.ColStatus, Me.GridColumnIdDel, Me.GridColumnDelRec})
+        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColSeason, Me.ColRecNumber, Me.ColShipFrom, Me.ColShipTo, Me.ColRecDate, Me.ColDueDate, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.ColStatus, Me.GridColumnIdDel, Me.GridColumnDelRec, Me.GridColumn2, Me.GridColumn1})
         Me.GVProdRec.GridControl = Me.GCProdRec
         Me.GVProdRec.GroupCount = 2
         Me.GVProdRec.Name = "GVProdRec"
@@ -143,7 +145,7 @@ Partial Class FormPopUpRecQC
         Me.ColShipFrom.FieldName = "comp_from"
         Me.ColShipFrom.Name = "ColShipFrom"
         Me.ColShipFrom.Visible = True
-        Me.ColShipFrom.VisibleIndex = 4
+        Me.ColShipFrom.VisibleIndex = 5
         Me.ColShipFrom.Width = 125
         '
         'ColShipTo
@@ -156,19 +158,23 @@ Partial Class FormPopUpRecQC
         'ColRecDate
         '
         Me.ColRecDate.Caption = "Receive Date"
+        Me.ColRecDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColRecDate.FieldName = "prod_order_rec_date"
         Me.ColRecDate.Name = "ColRecDate"
         Me.ColRecDate.Visible = True
-        Me.ColRecDate.VisibleIndex = 5
+        Me.ColRecDate.VisibleIndex = 6
         Me.ColRecDate.Width = 123
         '
         'ColDueDate
         '
         Me.ColDueDate.Caption = "Delivery Order Date"
+        Me.ColDueDate.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.ColDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColDueDate.FieldName = "delivery_order_date"
         Me.ColDueDate.Name = "ColDueDate"
         Me.ColDueDate.Visible = True
-        Me.ColDueDate.VisibleIndex = 3
+        Me.ColDueDate.VisibleIndex = 4
         Me.ColDueDate.Width = 126
         '
         'ColPSONumber
@@ -186,7 +192,7 @@ Partial Class FormPopUpRecQC
         Me.ColDONumber.FieldName = "delivery_order_number"
         Me.ColDONumber.Name = "ColDONumber"
         Me.ColDONumber.Visible = True
-        Me.ColDONumber.VisibleIndex = 2
+        Me.ColDONumber.VisibleIndex = 3
         Me.ColDONumber.Width = 65
         '
         'ColIDStatus
@@ -390,6 +396,26 @@ Partial Class FormPopUpRecQC
         Me.BtnSave.TabIndex = 3
         Me.BtnSave.Text = "Choose"
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Arrive in QC"
+        Me.GridColumn2.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn2.FieldName = "arrive_date"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 7
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Est Receive Date"
+        Me.GridColumn1.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn1.FieldName = "est_rec_date"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 2
+        '
         'FormPopUpRecQC
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -455,4 +481,6 @@ Partial Class FormPopUpRecQC
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
     Friend WithEvents ColNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
