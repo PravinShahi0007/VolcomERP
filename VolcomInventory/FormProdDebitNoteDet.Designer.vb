@@ -39,6 +39,7 @@ Partial Class FormProdDebitNoteDet
         Me.ColIdPRodOrderRecPurc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColRecNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
@@ -46,12 +47,16 @@ Partial Class FormProdDebitNoteDet
         Me.ColPSONumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColDONumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColIDStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIClaimType = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStyleCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnArriveDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.RISClaimType = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
@@ -84,8 +89,11 @@ Partial Class FormProdDebitNoteDet
         CType(Me.GCProdRec, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProdRec, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIClaimType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISClaimType, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
@@ -250,19 +258,18 @@ Partial Class FormProdDebitNoteDet
         Me.GCProdRec.Location = New System.Drawing.Point(0, 136)
         Me.GCProdRec.MainView = Me.GVProdRec
         Me.GCProdRec.Name = "GCProdRec"
-        Me.GCProdRec.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemTextEdit1})
+        Me.GCProdRec.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemTextEdit1, Me.RISClaimType, Me.RIClaimType})
         Me.GCProdRec.Size = New System.Drawing.Size(1010, 304)
         Me.GCProdRec.TabIndex = 190
         Me.GCProdRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdRec, Me.GridView3})
         '
         'GVProdRec
         '
-        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColSeason, Me.ColRecNumber, Me.ColRecDate, Me.ColDueDate, Me.GridColumn1, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.ColStatus, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnQty, Me.GridColumnArriveDate})
+        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColSeason, Me.ColRecNumber, Me.GridColumn2, Me.ColRecDate, Me.ColDueDate, Me.GridColumn1, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.GridColumn3, Me.ColStatus, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnQty, Me.GridColumnArriveDate})
         Me.GVProdRec.GridControl = Me.GCProdRec
         Me.GVProdRec.GroupCount = 1
         Me.GVProdRec.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}")})
         Me.GVProdRec.Name = "GVProdRec"
-        Me.GVProdRec.OptionsBehavior.Editable = False
         Me.GVProdRec.OptionsFind.AlwaysVisible = True
         Me.GVProdRec.OptionsView.ShowFooter = True
         Me.GVProdRec.OptionsView.ShowGroupPanel = False
@@ -273,6 +280,7 @@ Partial Class FormProdDebitNoteDet
         Me.ColIdPRodOrderRecPurc.Caption = "ID Prod Order Rec"
         Me.ColIdPRodOrderRecPurc.FieldName = "id_prod_order_rec"
         Me.ColIdPRodOrderRecPurc.Name = "ColIdPRodOrderRecPurc"
+        Me.ColIdPRodOrderRecPurc.OptionsColumn.AllowEdit = False
         '
         'ColSeason
         '
@@ -280,6 +288,7 @@ Partial Class FormProdDebitNoteDet
         Me.ColSeason.FieldName = "season"
         Me.ColSeason.FieldNameSortGroup = "id_season"
         Me.ColSeason.Name = "ColSeason"
+        Me.ColSeason.OptionsColumn.AllowEdit = False
         Me.ColSeason.Visible = True
         Me.ColSeason.VisibleIndex = 11
         '
@@ -288,19 +297,34 @@ Partial Class FormProdDebitNoteDet
         Me.ColRecNumber.Caption = "Number"
         Me.ColRecNumber.FieldName = "prod_order_rec_number"
         Me.ColRecNumber.Name = "ColRecNumber"
+        Me.ColRecNumber.OptionsColumn.AllowEdit = False
         Me.ColRecNumber.Visible = True
         Me.ColRecNumber.VisibleIndex = 0
         Me.ColRecNumber.Width = 67
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "Color"
+        Me.GridColumn2.FieldName = "color"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 5
+        '
         'ColRecDate
         '
-        Me.ColRecDate.Caption = "Receive Date"
+        Me.ColRecDate.Caption = "Est Receive Date"
         Me.ColRecDate.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.ColRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.ColRecDate.FieldName = "prod_order_rec_date"
+        Me.ColRecDate.FieldName = "est_rec_date"
         Me.ColRecDate.Name = "ColRecDate"
+        Me.ColRecDate.OptionsColumn.AllowEdit = False
         Me.ColRecDate.Visible = True
-        Me.ColRecDate.VisibleIndex = 9
+        Me.ColRecDate.VisibleIndex = 11
         Me.ColRecDate.Width = 122
         '
         'ColDueDate
@@ -311,8 +335,9 @@ Partial Class FormProdDebitNoteDet
         Me.ColDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColDueDate.FieldName = "delivery_order_date"
         Me.ColDueDate.Name = "ColDueDate"
+        Me.ColDueDate.OptionsColumn.AllowEdit = False
         Me.ColDueDate.Visible = True
-        Me.ColDueDate.VisibleIndex = 7
+        Me.ColDueDate.VisibleIndex = 8
         Me.ColDueDate.Width = 124
         '
         'RepositoryItemTextEdit1
@@ -326,6 +351,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn1.Caption = "Receiving No"
         Me.GridColumn1.FieldName = "prod_order_rec_number"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
         '
@@ -334,6 +360,7 @@ Partial Class FormProdDebitNoteDet
         Me.ColPSONumber.Caption = "F.G. PO #"
         Me.ColPSONumber.FieldName = "prod_order_number"
         Me.ColPSONumber.Name = "ColPSONumber"
+        Me.ColPSONumber.OptionsColumn.AllowEdit = False
         Me.ColPSONumber.Visible = True
         Me.ColPSONumber.VisibleIndex = 2
         Me.ColPSONumber.Width = 69
@@ -343,8 +370,9 @@ Partial Class FormProdDebitNoteDet
         Me.ColDONumber.Caption = "DO Number"
         Me.ColDONumber.FieldName = "delivery_order_number"
         Me.ColDONumber.Name = "ColDONumber"
+        Me.ColDONumber.OptionsColumn.AllowEdit = False
         Me.ColDONumber.Visible = True
-        Me.ColDONumber.VisibleIndex = 6
+        Me.ColDONumber.VisibleIndex = 7
         Me.ColDONumber.Width = 63
         '
         'ColIDStatus
@@ -352,14 +380,30 @@ Partial Class FormProdDebitNoteDet
         Me.ColIDStatus.Caption = "ID Status"
         Me.ColIDStatus.FieldName = "id_report_status"
         Me.ColIDStatus.Name = "ColIDStatus"
+        Me.ColIDStatus.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Type"
+        Me.GridColumn3.ColumnEdit = Me.RIClaimType
+        Me.GridColumn3.FieldName = "id_claim_type"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 10
+        '
+        'RIClaimType
+        '
+        Me.RIClaimType.AutoHeight = False
+        Me.RIClaimType.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIClaimType.Name = "RIClaimType"
         '
         'ColStatus
         '
-        Me.ColStatus.Caption = "Status"
-        Me.ColStatus.FieldName = "report_status"
+        Me.ColStatus.Caption = "Note"
+        Me.ColStatus.FieldName = "note"
         Me.ColStatus.Name = "ColStatus"
         Me.ColStatus.Visible = True
-        Me.ColStatus.VisibleIndex = 10
+        Me.ColStatus.VisibleIndex = 12
         Me.ColStatus.Width = 93
         '
         'GridColumnName
@@ -367,6 +411,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnName.Caption = "Style"
         Me.GridColumnName.FieldName = "name"
         Me.GridColumnName.Name = "GridColumnName"
+        Me.GridColumnName.OptionsColumn.AllowEdit = False
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 4
         Me.GridColumnName.Width = 112
@@ -374,8 +419,9 @@ Partial Class FormProdDebitNoteDet
         'GridColumnStyleCode
         '
         Me.GridColumnStyleCode.Caption = "Code"
-        Me.GridColumnStyleCode.FieldName = "code"
+        Me.GridColumnStyleCode.FieldName = "design_code"
         Me.GridColumnStyleCode.Name = "GridColumnStyleCode"
+        Me.GridColumnStyleCode.OptionsColumn.AllowEdit = False
         Me.GridColumnStyleCode.Visible = True
         Me.GridColumnStyleCode.VisibleIndex = 3
         Me.GridColumnStyleCode.Width = 69
@@ -387,9 +433,10 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
+        Me.GridColumnQty.VisibleIndex = 6
         Me.GridColumnQty.Width = 52
         '
         'GridColumnArriveDate
@@ -399,8 +446,9 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnArriveDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnArriveDate.FieldName = "arrive_date"
         Me.GridColumnArriveDate.Name = "GridColumnArriveDate"
+        Me.GridColumnArriveDate.OptionsColumn.AllowEdit = False
         Me.GridColumnArriveDate.Visible = True
-        Me.GridColumnArriveDate.VisibleIndex = 8
+        Me.GridColumnArriveDate.VisibleIndex = 9
         '
         'RepositoryItemDateEdit1
         '
@@ -409,6 +457,20 @@ Partial Class FormProdDebitNoteDet
         Me.RepositoryItemDateEdit1.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
         Me.RepositoryItemDateEdit1.NullText = "-"
+        '
+        'RISClaimType
+        '
+        Me.RISClaimType.AutoHeight = False
+        Me.RISClaimType.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISClaimType.Name = "RISClaimType"
+        Me.RISClaimType.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
         'GridView3
         '
@@ -645,8 +707,11 @@ Partial Class FormProdDebitNoteDet
         CType(Me.GCProdRec, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProdRec, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIClaimType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISClaimType, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
@@ -711,4 +776,9 @@ Partial Class FormProdDebitNoteDet
     Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RISClaimType As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RIClaimType As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 End Class

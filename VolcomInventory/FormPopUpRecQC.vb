@@ -8,8 +8,8 @@
     Sub view_prod_order_rec()
         Dim query = "SELECT a.id_report_status,h.report_status,g.season,a.id_prod_order_rec,a.prod_order_rec_number,
                     DATE_ADD(wo.prod_order_wo_date, INTERVAL wo.`prod_order_wo_lead_time` DAY) AS est_rec_date,
-                    delivery_order_date,a.arrive_date,a.delivery_order_number,b.prod_order_number, 
-                    prod_order_rec_date, f.comp_name AS comp_from,d.comp_name AS comp_to 
+                    delivery_order_date,a.arrive_date,a.delivery_order_number,b.prod_order_number, rec_qty.sum_qty,
+                    prod_order_rec_date, f.comp_name AS comp_from,d.comp_name AS comp_to,dsg.design_code,CONCAT(LEFT(dsg.design_display_name,3),' ',dsg.design_name) AS design_display_name, RIGHT(dsg.design_display_name,3) AS color 
                     FROM tb_prod_order_rec a  
                     INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order 
                     LEFT JOIN 
@@ -21,7 +21,16 @@
                     INNER JOIN tb_season_delivery i ON b.id_delivery = i.id_delivery 
                     INNER JOIN tb_season g ON g.id_season = i.id_season 
                     INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status
-                    INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=b.`id_prod_demand_design`"
+                    INNER JOIN tb_prod_demand_design pdd ON pdd.`id_prod_demand_design`=b.`id_prod_demand_design`
+                    INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design 
+                    INNER JOIN
+                    (
+                        SELECT rec.id_prod_order_rec,SUM(recd.prod_order_rec_det_qty) AS sum_qty 
+	                    FROM 
+	                    tb_prod_order_rec rec 
+	                    LEFT JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec=rec.id_prod_order_rec
+	                    GROUP BY rec.id_prod_order_rec 
+                    ) rec_qty ON rec_qty.id_prod_order_rec=a.id_prod_order_rec "
         If Not id_prod_order = "-1" Then
             query += "WHERE a.id_prod_order='" & id_prod_order & "' "
         End If
@@ -36,7 +45,6 @@
             view_list_rec(GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString)
         End If
     End Sub
-
     Sub view_list_rec(ByVal id_prod_order_recx As String)
         Dim query = "CALL view_prod_order_rec_det('" & id_prod_order_recx & "', '0')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -78,7 +86,18 @@
             Dim newRow As DataRow = (TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable)).NewRow()
             newRow("id_prod_debit_note_det") = "0"
             newRow("id_prod_order_rec") = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
-            newRow("delivery_order_number") = GVProdRec.GetFocusedRowCellValue("name").ToString
+            newRow("prod_order_rec_number") = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
+            newRow("prod_order_number") = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
+            newRow("design_code") = GVProdRec.GetFocusedRowCellValue("design_code").ToString
+            newRow("name") = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
+            newRow("color") = GVProdRec.GetFocusedRowCellValue("color").ToString
+            newRow("name") = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
+            newRow("qty") = GVProdRec.GetFocusedRowCellValue("sum_qty").ToString
+            newRow("delivery_order_number") = GVProdRec.GetFocusedRowCellValue("delivery_order_number").ToString
+            newRow("delivery_order_date") = GVProdRec.GetFocusedRowCellValue("delivery_order_date").ToString
+            newRow("arrive_date") = GVProdRec.GetFocusedRowCellValue("arrive_date").ToString
+            newRow("est_rec_date") = GVProdRec.GetFocusedRowCellValue("est_rec_date").ToString
+            newRow("id_claim_type") = "1"
             TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable).Rows.Add(newRow)
             FormProdDebitNoteDet.GCProdRec.RefreshDataSource()
             FormProdDebitNoteDet.GVProdRec.RefreshData()
