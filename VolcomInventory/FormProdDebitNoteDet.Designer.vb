@@ -23,10 +23,10 @@ Partial Class FormProdDebitNoteDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormProdDebitNoteDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopLeft = New DevExpress.XtraEditors.PanelControl()
-        Me.MEAdrressCompFrom = New DevExpress.XtraEditors.MemoEdit()
+        Me.MEAdrressCompDebitTo = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TxtCodeCompFrom = New DevExpress.XtraEditors.TextEdit()
-        Me.TxtNameCompFrom = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCodeCompDebitTo = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtNameCompDebitTo = New DevExpress.XtraEditors.TextEdit()
         Me.BtnBrowseContactFrom = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
@@ -37,27 +37,27 @@ Partial Class FormProdDebitNoteDet
         Me.GCProdRec = New DevExpress.XtraGrid.GridControl()
         Me.GVProdRec = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdPRodOrderRecPurc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColRecNumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColShipFrom = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColShipTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColPSONumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColDONumber = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColIDStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RIClaimType = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnDelRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStyleCode = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPoTypeRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnArriveDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
+        Me.RISClaimType = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
+        Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -71,16 +71,16 @@ Partial Class FormProdDebitNoteDet
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton5 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopLeft.SuspendLayout()
-        CType(Me.MEAdrressCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEAdrressCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCodeCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtNameCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
         CType(Me.TxtVirtualPosNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,11 +88,16 @@ Partial Class FormProdDebitNoteDet
         CType(Me.GCProdRec, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProdRec, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RIClaimType, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RISClaimType, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -116,10 +121,10 @@ Partial Class FormProdDebitNoteDet
         'PanelControlTopLeft
         '
         Me.PanelControlTopLeft.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlTopLeft.Controls.Add(Me.MEAdrressCompFrom)
+        Me.PanelControlTopLeft.Controls.Add(Me.MEAdrressCompDebitTo)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl1)
-        Me.PanelControlTopLeft.Controls.Add(Me.TxtCodeCompFrom)
-        Me.PanelControlTopLeft.Controls.Add(Me.TxtNameCompFrom)
+        Me.PanelControlTopLeft.Controls.Add(Me.TxtCodeCompDebitTo)
+        Me.PanelControlTopLeft.Controls.Add(Me.TxtNameCompDebitTo)
         Me.PanelControlTopLeft.Controls.Add(Me.BtnBrowseContactFrom)
         Me.PanelControlTopLeft.Controls.Add(Me.LabelControl3)
         Me.PanelControlTopLeft.Dock = System.Windows.Forms.DockStyle.Fill
@@ -128,17 +133,17 @@ Partial Class FormProdDebitNoteDet
         Me.PanelControlTopLeft.Size = New System.Drawing.Size(697, 92)
         Me.PanelControlTopLeft.TabIndex = 8933
         '
-        'MEAdrressCompFrom
+        'MEAdrressCompDebitTo
         '
-        Me.MEAdrressCompFrom.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.MEAdrressCompDebitTo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MEAdrressCompFrom.Location = New System.Drawing.Point(54, 36)
-        Me.MEAdrressCompFrom.Name = "MEAdrressCompFrom"
-        Me.MEAdrressCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MEAdrressCompFrom.Properties.Appearance.Options.UseFont = True
-        Me.MEAdrressCompFrom.Properties.ReadOnly = True
-        Me.MEAdrressCompFrom.Size = New System.Drawing.Size(624, 46)
-        Me.MEAdrressCompFrom.TabIndex = 4444
+        Me.MEAdrressCompDebitTo.Location = New System.Drawing.Point(54, 36)
+        Me.MEAdrressCompDebitTo.Name = "MEAdrressCompDebitTo"
+        Me.MEAdrressCompDebitTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MEAdrressCompDebitTo.Properties.Appearance.Options.UseFont = True
+        Me.MEAdrressCompDebitTo.Properties.ReadOnly = True
+        Me.MEAdrressCompDebitTo.Size = New System.Drawing.Size(624, 46)
+        Me.MEAdrressCompDebitTo.TabIndex = 4444
         '
         'LabelControl1
         '
@@ -149,33 +154,33 @@ Partial Class FormProdDebitNoteDet
         Me.LabelControl1.TabIndex = 145
         Me.LabelControl1.Text = "Vendor"
         '
-        'TxtCodeCompFrom
+        'TxtCodeCompDebitTo
         '
-        Me.TxtCodeCompFrom.EditValue = ""
-        Me.TxtCodeCompFrom.Location = New System.Drawing.Point(54, 10)
-        Me.TxtCodeCompFrom.Name = "TxtCodeCompFrom"
-        Me.TxtCodeCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCodeCompFrom.Properties.Appearance.Options.UseFont = True
-        Me.TxtCodeCompFrom.Properties.EditValueChangedDelay = 1
-        Me.TxtCodeCompFrom.Properties.ReadOnly = True
-        Me.TxtCodeCompFrom.Size = New System.Drawing.Size(82, 20)
-        Me.TxtCodeCompFrom.TabIndex = 7777
-        Me.TxtCodeCompFrom.TabStop = False
+        Me.TxtCodeCompDebitTo.EditValue = ""
+        Me.TxtCodeCompDebitTo.Location = New System.Drawing.Point(54, 10)
+        Me.TxtCodeCompDebitTo.Name = "TxtCodeCompDebitTo"
+        Me.TxtCodeCompDebitTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtCodeCompDebitTo.Properties.Appearance.Options.UseFont = True
+        Me.TxtCodeCompDebitTo.Properties.EditValueChangedDelay = 1
+        Me.TxtCodeCompDebitTo.Properties.ReadOnly = True
+        Me.TxtCodeCompDebitTo.Size = New System.Drawing.Size(82, 20)
+        Me.TxtCodeCompDebitTo.TabIndex = 7777
+        Me.TxtCodeCompDebitTo.TabStop = False
         '
-        'TxtNameCompFrom
+        'TxtNameCompDebitTo
         '
-        Me.TxtNameCompFrom.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.TxtNameCompDebitTo.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.TxtNameCompFrom.EditValue = ""
-        Me.TxtNameCompFrom.Location = New System.Drawing.Point(142, 10)
-        Me.TxtNameCompFrom.Name = "TxtNameCompFrom"
-        Me.TxtNameCompFrom.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtNameCompFrom.Properties.Appearance.Options.UseFont = True
-        Me.TxtNameCompFrom.Properties.EditValueChangedDelay = 1
-        Me.TxtNameCompFrom.Properties.ReadOnly = True
-        Me.TxtNameCompFrom.Size = New System.Drawing.Size(507, 20)
-        Me.TxtNameCompFrom.TabIndex = 8888
-        Me.TxtNameCompFrom.TabStop = False
+        Me.TxtNameCompDebitTo.EditValue = ""
+        Me.TxtNameCompDebitTo.Location = New System.Drawing.Point(142, 10)
+        Me.TxtNameCompDebitTo.Name = "TxtNameCompDebitTo"
+        Me.TxtNameCompDebitTo.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtNameCompDebitTo.Properties.Appearance.Options.UseFont = True
+        Me.TxtNameCompDebitTo.Properties.EditValueChangedDelay = 1
+        Me.TxtNameCompDebitTo.Properties.ReadOnly = True
+        Me.TxtNameCompDebitTo.Size = New System.Drawing.Size(507, 20)
+        Me.TxtNameCompDebitTo.TabIndex = 8888
+        Me.TxtNameCompDebitTo.TabStop = False
         '
         'BtnBrowseContactFrom
         '
@@ -254,71 +259,62 @@ Partial Class FormProdDebitNoteDet
         Me.GCProdRec.Location = New System.Drawing.Point(0, 136)
         Me.GCProdRec.MainView = Me.GVProdRec
         Me.GCProdRec.Name = "GCProdRec"
-        Me.GCProdRec.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemTextEdit1})
+        Me.GCProdRec.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemTextEdit1, Me.RISClaimType, Me.RIClaimType})
         Me.GCProdRec.Size = New System.Drawing.Size(1010, 304)
         Me.GCProdRec.TabIndex = 190
         Me.GCProdRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdRec, Me.GridView3})
         '
         'GVProdRec
         '
-        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColSeason, Me.ColRecNumber, Me.ColShipFrom, Me.ColShipTo, Me.ColRecDate, Me.ColDueDate, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.ColStatus, Me.GridColumnIdDel, Me.GridColumnDelRec, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnPoTypeRec, Me.GridColumnQty, Me.GridColumnArriveDate})
+        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColRecNumber, Me.GridColumn2, Me.ColRecDate, Me.ColDueDate, Me.GridColumn1, Me.ColPSONumber, Me.ColDONumber, Me.GridColumn3, Me.ColStatus, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnQty, Me.GridColumnArriveDate})
         Me.GVProdRec.GridControl = Me.GCProdRec
-        Me.GVProdRec.GroupCount = 1
         Me.GVProdRec.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}")})
         Me.GVProdRec.Name = "GVProdRec"
-        Me.GVProdRec.OptionsBehavior.Editable = False
         Me.GVProdRec.OptionsFind.AlwaysVisible = True
         Me.GVProdRec.OptionsView.ShowFooter = True
         Me.GVProdRec.OptionsView.ShowGroupPanel = False
-        Me.GVProdRec.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColSeason, DevExpress.Data.ColumnSortOrder.Descending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColIdPRodOrderRecPurc, DevExpress.Data.ColumnSortOrder.Descending)})
+        Me.GVProdRec.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColIdPRodOrderRecPurc, DevExpress.Data.ColumnSortOrder.Descending)})
         '
         'ColIdPRodOrderRecPurc
         '
         Me.ColIdPRodOrderRecPurc.Caption = "ID Prod Order Rec"
         Me.ColIdPRodOrderRecPurc.FieldName = "id_prod_order_rec"
         Me.ColIdPRodOrderRecPurc.Name = "ColIdPRodOrderRecPurc"
-        '
-        'ColSeason
-        '
-        Me.ColSeason.Caption = "Season"
-        Me.ColSeason.FieldName = "season"
-        Me.ColSeason.FieldNameSortGroup = "id_season"
-        Me.ColSeason.Name = "ColSeason"
-        Me.ColSeason.Visible = True
-        Me.ColSeason.VisibleIndex = 11
+        Me.ColIdPRodOrderRecPurc.OptionsColumn.AllowEdit = False
         '
         'ColRecNumber
         '
         Me.ColRecNumber.Caption = "Number"
         Me.ColRecNumber.FieldName = "prod_order_rec_number"
         Me.ColRecNumber.Name = "ColRecNumber"
+        Me.ColRecNumber.OptionsColumn.AllowEdit = False
         Me.ColRecNumber.Visible = True
         Me.ColRecNumber.VisibleIndex = 0
         Me.ColRecNumber.Width = 67
         '
-        'ColShipFrom
+        'GridColumn2
         '
-        Me.ColShipFrom.Caption = "From"
-        Me.ColShipFrom.FieldName = "comp_from"
-        Me.ColShipFrom.Name = "ColShipFrom"
-        Me.ColShipFrom.Width = 122
-        '
-        'ColShipTo
-        '
-        Me.ColShipTo.Caption = "To"
-        Me.ColShipTo.FieldName = "comp_to"
-        Me.ColShipTo.Name = "ColShipTo"
-        Me.ColShipTo.Width = 122
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "Color"
+        Me.GridColumn2.FieldName = "color"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.AllowEdit = False
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 5
         '
         'ColRecDate
         '
-        Me.ColRecDate.Caption = "Receive Date"
+        Me.ColRecDate.Caption = "Est Receive Date"
         Me.ColRecDate.DisplayFormat.FormatString = "dd MMMM yyyy"
         Me.ColRecDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.ColRecDate.FieldName = "prod_order_rec_date"
+        Me.ColRecDate.FieldName = "est_rec_date"
         Me.ColRecDate.Name = "ColRecDate"
+        Me.ColRecDate.OptionsColumn.AllowEdit = False
         Me.ColRecDate.Visible = True
-        Me.ColRecDate.VisibleIndex = 8
+        Me.ColRecDate.VisibleIndex = 11
         Me.ColRecDate.Width = 122
         '
         'ColDueDate
@@ -329,8 +325,9 @@ Partial Class FormProdDebitNoteDet
         Me.ColDueDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.ColDueDate.FieldName = "delivery_order_date"
         Me.ColDueDate.Name = "ColDueDate"
+        Me.ColDueDate.OptionsColumn.AllowEdit = False
         Me.ColDueDate.Visible = True
-        Me.ColDueDate.VisibleIndex = 6
+        Me.ColDueDate.VisibleIndex = 8
         Me.ColDueDate.Width = 124
         '
         'RepositoryItemTextEdit1
@@ -339,13 +336,23 @@ Partial Class FormProdDebitNoteDet
         Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         Me.RepositoryItemTextEdit1.NullText = "-"
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Receiving No"
+        Me.GridColumn1.FieldName = "prod_order_rec_number"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.AllowEdit = False
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
+        '
         'ColPSONumber
         '
-        Me.ColPSONumber.Caption = "Prod No."
+        Me.ColPSONumber.Caption = "F.G. PO #"
         Me.ColPSONumber.FieldName = "prod_order_number"
         Me.ColPSONumber.Name = "ColPSONumber"
+        Me.ColPSONumber.OptionsColumn.AllowEdit = False
         Me.ColPSONumber.Visible = True
-        Me.ColPSONumber.VisibleIndex = 1
+        Me.ColPSONumber.VisibleIndex = 2
         Me.ColPSONumber.Width = 69
         '
         'ColDONumber
@@ -353,60 +360,54 @@ Partial Class FormProdDebitNoteDet
         Me.ColDONumber.Caption = "DO Number"
         Me.ColDONumber.FieldName = "delivery_order_number"
         Me.ColDONumber.Name = "ColDONumber"
+        Me.ColDONumber.OptionsColumn.AllowEdit = False
         Me.ColDONumber.Visible = True
-        Me.ColDONumber.VisibleIndex = 5
+        Me.ColDONumber.VisibleIndex = 7
         Me.ColDONumber.Width = 63
         '
-        'ColIDStatus
+        'GridColumn3
         '
-        Me.ColIDStatus.Caption = "ID Status"
-        Me.ColIDStatus.FieldName = "id_report_status"
-        Me.ColIDStatus.Name = "ColIDStatus"
+        Me.GridColumn3.Caption = "Type"
+        Me.GridColumn3.ColumnEdit = Me.RIClaimType
+        Me.GridColumn3.FieldName = "id_claim_type"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 10
+        '
+        'RIClaimType
+        '
+        Me.RIClaimType.AutoHeight = False
+        Me.RIClaimType.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RIClaimType.Name = "RIClaimType"
         '
         'ColStatus
         '
-        Me.ColStatus.Caption = "Status"
-        Me.ColStatus.FieldName = "report_status"
+        Me.ColStatus.Caption = "Note"
+        Me.ColStatus.FieldName = "note"
         Me.ColStatus.Name = "ColStatus"
         Me.ColStatus.Visible = True
-        Me.ColStatus.VisibleIndex = 9
+        Me.ColStatus.VisibleIndex = 12
         Me.ColStatus.Width = 93
-        '
-        'GridColumnIdDel
-        '
-        Me.GridColumnIdDel.Caption = "Del"
-        Me.GridColumnIdDel.FieldName = "id_delivery"
-        Me.GridColumnIdDel.Name = "GridColumnIdDel"
-        '
-        'GridColumnDelRec
-        '
-        Me.GridColumnDelRec.Caption = "Delivery"
-        Me.GridColumnDelRec.Name = "GridColumnDelRec"
         '
         'GridColumnName
         '
         Me.GridColumnName.Caption = "Style"
         Me.GridColumnName.FieldName = "name"
         Me.GridColumnName.Name = "GridColumnName"
+        Me.GridColumnName.OptionsColumn.AllowEdit = False
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 3
+        Me.GridColumnName.VisibleIndex = 4
         Me.GridColumnName.Width = 112
         '
         'GridColumnStyleCode
         '
         Me.GridColumnStyleCode.Caption = "Code"
-        Me.GridColumnStyleCode.FieldName = "code"
+        Me.GridColumnStyleCode.FieldName = "design_code"
         Me.GridColumnStyleCode.Name = "GridColumnStyleCode"
+        Me.GridColumnStyleCode.OptionsColumn.AllowEdit = False
         Me.GridColumnStyleCode.Visible = True
-        Me.GridColumnStyleCode.VisibleIndex = 2
+        Me.GridColumnStyleCode.VisibleIndex = 3
         Me.GridColumnStyleCode.Width = 69
-        '
-        'GridColumnPoTypeRec
-        '
-        Me.GridColumnPoTypeRec.Caption = "PO Type"
-        Me.GridColumnPoTypeRec.FieldName = "po_type"
-        Me.GridColumnPoTypeRec.Name = "GridColumnPoTypeRec"
-        Me.GridColumnPoTypeRec.Width = 63
         '
         'GridColumnQty
         '
@@ -415,9 +416,10 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 4
+        Me.GridColumnQty.VisibleIndex = 6
         Me.GridColumnQty.Width = 52
         '
         'GridColumnArriveDate
@@ -427,8 +429,9 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnArriveDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnArriveDate.FieldName = "arrive_date"
         Me.GridColumnArriveDate.Name = "GridColumnArriveDate"
+        Me.GridColumnArriveDate.OptionsColumn.AllowEdit = False
         Me.GridColumnArriveDate.Visible = True
-        Me.GridColumnArriveDate.VisibleIndex = 7
+        Me.GridColumnArriveDate.VisibleIndex = 9
         '
         'RepositoryItemDateEdit1
         '
@@ -438,6 +441,20 @@ Partial Class FormProdDebitNoteDet
         Me.RepositoryItemDateEdit1.Name = "RepositoryItemDateEdit1"
         Me.RepositoryItemDateEdit1.NullText = "-"
         '
+        'RISClaimType
+        '
+        Me.RISClaimType.AutoHeight = False
+        Me.RISClaimType.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RISClaimType.Name = "RISClaimType"
+        Me.RISClaimType.View = Me.RepositoryItemSearchLookUpEdit1View
+        '
+        'RepositoryItemSearchLookUpEdit1View
+        '
+        Me.RepositoryItemSearchLookUpEdit1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.RepositoryItemSearchLookUpEdit1View.Name = "RepositoryItemSearchLookUpEdit1View"
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
+        '
         'GridView3
         '
         Me.GridView3.GridControl = Me.GCProdRec
@@ -446,8 +463,7 @@ Partial Class FormProdDebitNoteDet
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl3.Controls.Add(Me.LEReportStatus)
-        Me.GroupControl3.Controls.Add(Me.LabelControl21)
+        Me.GroupControl3.Controls.Add(Me.PanelControl1)
         Me.GroupControl3.Controls.Add(Me.MENote)
         Me.GroupControl3.Controls.Add(Me.LabelControl18)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -456,10 +472,21 @@ Partial Class FormProdDebitNoteDet
         Me.GroupControl3.Size = New System.Drawing.Size(1010, 71)
         Me.GroupControl3.TabIndex = 191
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.LEReportStatus)
+        Me.PanelControl1.Controls.Add(Me.LabelControl21)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelControl1.Location = New System.Drawing.Point(675, 2)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(333, 67)
+        Me.PanelControl1.TabIndex = 8936
+        '
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
-        Me.LEReportStatus.Location = New System.Drawing.Point(721, 10)
+        Me.LEReportStatus.Location = New System.Drawing.Point(47, 8)
         Me.LEReportStatus.Name = "LEReportStatus"
         Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
         Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -472,7 +499,7 @@ Partial Class FormProdDebitNoteDet
         '
         'LabelControl21
         '
-        Me.LabelControl21.Location = New System.Drawing.Point(684, 13)
+        Me.LabelControl21.Location = New System.Drawing.Point(10, 11)
         Me.LabelControl21.Name = "LabelControl21"
         Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl21.TabIndex = 144
@@ -598,9 +625,9 @@ Partial Class FormProdDebitNoteDet
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl2.Controls.Add(Me.SimpleButton3)
-        Me.GroupControl2.Controls.Add(Me.SimpleButton4)
-        Me.GroupControl2.Controls.Add(Me.SimpleButton5)
+        Me.GroupControl2.Controls.Add(Me.BDelete)
+        Me.GroupControl2.Controls.Add(Me.BEdit)
+        Me.GroupControl2.Controls.Add(Me.BAdd)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl2.Location = New System.Drawing.Point(0, 96)
         Me.GroupControl2.Name = "GroupControl2"
@@ -608,39 +635,38 @@ Partial Class FormProdDebitNoteDet
         Me.GroupControl2.Size = New System.Drawing.Size(1010, 40)
         Me.GroupControl2.TabIndex = 193
         '
-        'SimpleButton3
+        'BDelete
         '
-        Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton3.Enabled = False
-        Me.SimpleButton3.ImageIndex = 1
-        Me.SimpleButton3.ImageList = Me.LargeImageCollection
-        Me.SimpleButton3.Location = New System.Drawing.Point(717, 2)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(100, 36)
-        Me.SimpleButton3.TabIndex = 19
-        Me.SimpleButton3.Text = "Delete"
+        Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDelete.ImageIndex = 1
+        Me.BDelete.ImageList = Me.LargeImageCollection
+        Me.BDelete.Location = New System.Drawing.Point(717, 2)
+        Me.BDelete.Name = "BDelete"
+        Me.BDelete.Size = New System.Drawing.Size(100, 36)
+        Me.BDelete.TabIndex = 19
+        Me.BDelete.Text = "Delete"
         '
-        'SimpleButton4
+        'BEdit
         '
-        Me.SimpleButton4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton4.ImageIndex = 2
-        Me.SimpleButton4.ImageList = Me.LargeImageCollection
-        Me.SimpleButton4.Location = New System.Drawing.Point(817, 2)
-        Me.SimpleButton4.Name = "SimpleButton4"
-        Me.SimpleButton4.Size = New System.Drawing.Size(98, 36)
-        Me.SimpleButton4.TabIndex = 18
-        Me.SimpleButton4.Text = "Edit"
+        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BEdit.ImageIndex = 2
+        Me.BEdit.ImageList = Me.LargeImageCollection
+        Me.BEdit.Location = New System.Drawing.Point(817, 2)
+        Me.BEdit.Name = "BEdit"
+        Me.BEdit.Size = New System.Drawing.Size(98, 36)
+        Me.BEdit.TabIndex = 18
+        Me.BEdit.Text = "Edit"
         '
-        'SimpleButton5
+        'BAdd
         '
-        Me.SimpleButton5.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton5.ImageIndex = 0
-        Me.SimpleButton5.ImageList = Me.LargeImageCollection
-        Me.SimpleButton5.Location = New System.Drawing.Point(915, 2)
-        Me.SimpleButton5.Name = "SimpleButton5"
-        Me.SimpleButton5.Size = New System.Drawing.Size(93, 36)
-        Me.SimpleButton5.TabIndex = 17
-        Me.SimpleButton5.Text = "Add"
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.ImageIndex = 0
+        Me.BAdd.ImageList = Me.LargeImageCollection
+        Me.BAdd.Location = New System.Drawing.Point(915, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(93, 36)
+        Me.BAdd.TabIndex = 17
+        Me.BAdd.Text = "Add"
         '
         'FormProdDebitNoteDet
         '
@@ -652,16 +678,20 @@ Partial Class FormProdDebitNoteDet
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupGeneralHeader)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormProdDebitNoteDet"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Debit Note"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopLeft.ResumeLayout(False)
         Me.PanelControlTopLeft.PerformLayout()
-        CType(Me.MEAdrressCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtCodeCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TxtNameCompFrom.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEAdrressCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCodeCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtNameCompDebitTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
@@ -670,12 +700,18 @@ Partial Class FormProdDebitNoteDet
         CType(Me.GCProdRec, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVProdRec, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RIClaimType, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RISClaimType, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSearchLookUpEdit1View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -689,10 +725,10 @@ Partial Class FormProdDebitNoteDet
 
     Friend WithEvents GroupGeneralHeader As DevExpress.XtraEditors.GroupControl
     Friend WithEvents PanelControlTopLeft As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents MEAdrressCompFrom As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MEAdrressCompDebitTo As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents TxtCodeCompFrom As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TxtNameCompFrom As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtCodeCompDebitTo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtNameCompDebitTo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnBrowseContactFrom As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControlTopRight As DevExpress.XtraEditors.PanelControl
@@ -703,22 +739,15 @@ Partial Class FormProdDebitNoteDet
     Friend WithEvents GCProdRec As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVProdRec As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ColIdPRodOrderRecPurc As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ColSeason As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColRecNumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ColShipFrom As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ColShipTo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColRecDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColDueDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents ColPSONumber As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColDONumber As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ColIDStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ColStatus As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnIdDel As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnDelRec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStyleCode As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnPoTypeRec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnArriveDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemDateEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemDateEdit
@@ -737,7 +766,14 @@ Partial Class FormProdDebitNoteDet
     Friend WithEvents BSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
-    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton4 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton5 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RISClaimType As DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit
+    Friend WithEvents RepositoryItemSearchLookUpEdit1View As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RIClaimType As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
 End Class
