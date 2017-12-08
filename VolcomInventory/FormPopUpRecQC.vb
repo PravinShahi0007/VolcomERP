@@ -101,6 +101,7 @@
             TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable).Rows.Add(newRow)
             FormProdDebitNoteDet.GCProdRec.RefreshDataSource()
             FormProdDebitNoteDet.GVProdRec.RefreshData()
+            FormProdDebitNoteDet.button_check()
             Close()
         End If
     End Sub

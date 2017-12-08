@@ -19,29 +19,29 @@ Partial Class FormMasterCode
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.XTCCode = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPCode = New DevExpress.XtraTab.XtraTabPage
-        Me.GCCode = New DevExpress.XtraGrid.GridControl
-        Me.GVCode = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColumnIdCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GCCodeName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GCCodeDesc = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIsIncludeName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.ColIsIncludeCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.XTPCodeDet = New DevExpress.XtraTab.XtraTabPage
-        Me.GCCodeDetail = New DevExpress.XtraGrid.GridControl
-        Me.GVCodeDetail = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColumnIdCodeDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColumnCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColumnCodeName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColumnDisplayName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.PCDeliveryTitle = New DevExpress.XtraEditors.PanelControl
-        Me.LabelCodeContent = New DevExpress.XtraEditors.LabelControl
-        Me.LabelCodeTitle = New DevExpress.XtraEditors.LabelControl
+        Me.XTCCode = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPCode = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCCode = New DevExpress.XtraGrid.GridControl()
+        Me.GVCode = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColumnIdCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCodeName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GCCodeDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIsIncludeName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.ColIsIncludeCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.XTPCodeDet = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCCodeDetail = New DevExpress.XtraGrid.GridControl()
+        Me.GVCodeDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColumnIdCodeDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColumnCodeName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColumnDisplayName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PCDeliveryTitle = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelCodeContent = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelCodeTitle = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCCode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCCode.SuspendLayout()
         Me.XTPCode.SuspendLayout()
@@ -63,22 +63,20 @@ Partial Class FormMasterCode
         Me.XTCCode.AppearancePage.Header.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XTCCode.AppearancePage.Header.Options.UseFont = True
         Me.XTCCode.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XTCCode.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XTCCode.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
         Me.XTCCode.HeaderOrientation = DevExpress.XtraTab.TabOrientation.Vertical
         Me.XTCCode.Location = New System.Drawing.Point(0, 0)
         Me.XTCCode.Name = "XTCCode"
         Me.XTCCode.SelectedTabPage = Me.XTPCode
-        Me.XTCCode.Size = New System.Drawing.Size(491, 373)
+        Me.XTCCode.Size = New System.Drawing.Size(711, 373)
         Me.XTCCode.TabIndex = 3
         Me.XTCCode.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPCode, Me.XTPCodeDet})
         '
         'XTPCode
         '
         Me.XTPCode.Controls.Add(Me.GCCode)
-        Me.XTPCode.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XTPCode.Name = "XTPCode"
-        Me.XTPCode.Size = New System.Drawing.Size(465, 367)
+        Me.XTPCode.Size = New System.Drawing.Size(682, 367)
         Me.XTPCode.Text = "Code"
         '
         'GCCode
@@ -88,7 +86,7 @@ Partial Class FormMasterCode
         Me.GCCode.MainView = Me.GVCode
         Me.GCCode.Name = "GCCode"
         Me.GCCode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit3, Me.RepositoryItemCheckEdit4})
-        Me.GCCode.Size = New System.Drawing.Size(465, 367)
+        Me.GCCode.Size = New System.Drawing.Size(682, 367)
         Me.GCCode.TabIndex = 0
         Me.GCCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCode})
         '
@@ -168,9 +166,8 @@ Partial Class FormMasterCode
         '
         Me.XTPCodeDet.Controls.Add(Me.GCCodeDetail)
         Me.XTPCodeDet.Controls.Add(Me.PCDeliveryTitle)
-        Me.XTPCodeDet.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XTPCodeDet.Name = "XTPCodeDet"
-        Me.XTPCodeDet.Size = New System.Drawing.Size(465, 367)
+        Me.XTPCodeDet.Size = New System.Drawing.Size(682, 367)
         Me.XTPCodeDet.Text = "Detail"
         '
         'GCCodeDetail
@@ -180,7 +177,7 @@ Partial Class FormMasterCode
         Me.GCCodeDetail.MainView = Me.GVCodeDetail
         Me.GCCodeDetail.Name = "GCCodeDetail"
         Me.GCCodeDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2})
-        Me.GCCodeDetail.Size = New System.Drawing.Size(465, 321)
+        Me.GCCodeDetail.Size = New System.Drawing.Size(682, 321)
         Me.GCCodeDetail.TabIndex = 6
         Me.GCCodeDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCodeDetail})
         '
@@ -212,7 +209,7 @@ Partial Class FormMasterCode
         '
         'ColumnCodeName
         '
-        Me.ColumnCodeName.Caption = "Name"
+        Me.ColumnCodeName.Caption = "Description"
         Me.ColumnCodeName.FieldName = "code_detail_name"
         Me.ColumnCodeName.Name = "ColumnCodeName"
         Me.ColumnCodeName.Visible = True
@@ -245,7 +242,7 @@ Partial Class FormMasterCode
         Me.PCDeliveryTitle.LookAndFeel.SkinName = "iMaginary"
         Me.PCDeliveryTitle.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PCDeliveryTitle.Name = "PCDeliveryTitle"
-        Me.PCDeliveryTitle.Size = New System.Drawing.Size(465, 46)
+        Me.PCDeliveryTitle.Size = New System.Drawing.Size(682, 46)
         Me.PCDeliveryTitle.TabIndex = 5
         '
         'LabelCodeContent
@@ -270,7 +267,7 @@ Partial Class FormMasterCode
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(491, 373)
+        Me.ClientSize = New System.Drawing.Size(711, 373)
         Me.Controls.Add(Me.XTCCode)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
