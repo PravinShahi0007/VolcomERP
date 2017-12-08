@@ -214,6 +214,9 @@
                 Dim queryx As String = String.Format("SELECT id_code,id_code_detail,CODE as Code,code_detail_name as Name,display_name as 'Printed Name',CONCAT(CODE,' - ',code_detail_name) AS value FROM tb_m_code_detail")
                 Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
                 RILEValCode.DataSource = datax
+                RILEValCode.View.Columns("Code").Caption = "Id"
+                RILEValCode.View.Columns("Printed Name").Caption = "Printed In Barcode"
+                RILEValCode.View.Columns("Name").Caption = "Description"
                 'view_value_code(GVCode, 1)
             Catch ex As Exception
             End Try
@@ -233,6 +236,9 @@
                 Dim queryx As String = String.Format("SELECT id_code,id_code_detail,CODE as Code,code_detail_name as Name,display_name as 'Printed Name',CONCAT(CODE,' - ',code_detail_name) AS value FROM tb_m_code_detail")
                 Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
                 RILEValDesg.DataSource = datax
+                RILEValDesg.View.Columns("Code").Caption = "Id"
+                RILEValDesg.View.Columns("Printed Name").Caption = "Printed In Barcode"
+                RILEValDesg.View.Columns("Name").Caption = "Description"
                 'view_value_code(GVCodeDsg, 1)
             Catch ex As Exception
             End Try
@@ -252,6 +258,9 @@
                 Dim queryx As String = String.Format("SELECT id_code,id_code_detail,CODE as Code,code_detail_name as Name,display_name as 'Printed Name',CONCAT(CODE,' - ',code_detail_name) AS value FROM tb_m_code_detail")
                 Dim datax As DataTable = execute_query(queryx, -1, True, "", "", "", "")
                 RILEValNon.DataSource = datax
+                RILEValNon.View.Columns("Code").Caption = "Id"
+                RILEValNon.View.Columns("Printed Name").Caption = "Printed In Barcode"
+                RILEValNon.View.Columns("Name").Caption = "Description"
                 'view_value_code(GVCodeNonMD, 1)
             Catch ex As Exception
             End Try
@@ -295,6 +304,10 @@
         lookup.DisplayMember = "value"
         lookup.ValueMember = "id_code_detail"
         lookup.View.Columns("Code").SortOrder = DevExpress.Data.ColumnSortOrder.Ascending
+        '
+        lookup.View.Columns("Code").Caption = "Id"
+        lookup.View.Columns("Printed Name").Caption = "Printed In Barcode"
+        lookup.View.Columns("Name").Caption = "Description"
 
         grid.Columns(col).ColumnEdit = lookup
     End Sub

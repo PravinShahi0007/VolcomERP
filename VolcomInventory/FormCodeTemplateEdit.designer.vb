@@ -253,7 +253,7 @@ Partial Class FormCodeTemplateEdit
         Me.ColumnCode.AppearanceCell.Options.UseFont = True
         Me.ColumnCode.AppearanceCell.Options.UseTextOptions = True
         Me.ColumnCode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.ColumnCode.Caption = "Code"
+        Me.ColumnCode.Caption = "Id"
         Me.ColumnCode.FieldName = "code"
         Me.ColumnCode.Name = "ColumnCode"
         Me.ColumnCode.Visible = True
@@ -262,7 +262,7 @@ Partial Class FormCodeTemplateEdit
         '
         'ColumnCodeName
         '
-        Me.ColumnCodeName.Caption = "Name"
+        Me.ColumnCodeName.Caption = "Description"
         Me.ColumnCodeName.FieldName = "code_detail_name"
         Me.ColumnCodeName.Name = "ColumnCodeName"
         Me.ColumnCodeName.Visible = True
@@ -271,7 +271,7 @@ Partial Class FormCodeTemplateEdit
         '
         'ColumnDisplayName
         '
-        Me.ColumnDisplayName.Caption = "Printed Name"
+        Me.ColumnDisplayName.Caption = "Printed in Barcode"
         Me.ColumnDisplayName.FieldName = "display_name"
         Me.ColumnDisplayName.Name = "ColumnDisplayName"
         Me.ColumnDisplayName.Visible = True

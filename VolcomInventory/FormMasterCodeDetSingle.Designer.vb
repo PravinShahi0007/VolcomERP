@@ -40,11 +40,11 @@ Partial Class FormMasterCodeDetSingle
         '
         'TECode
         '
-        Me.TECode.Location = New System.Drawing.Point(234, 12)
+        Me.TECode.Location = New System.Drawing.Point(267, 12)
         Me.TECode.Name = "TECode"
         Me.TECode.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECode.Properties.Appearance.Options.UseFont = True
-        Me.TECode.Size = New System.Drawing.Size(229, 22)
+        Me.TECode.Size = New System.Drawing.Size(257, 22)
         Me.TECode.TabIndex = 35
         Me.TECode.ToolTip = "Example : 01"
         Me.TECode.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
@@ -55,17 +55,17 @@ Partial Class FormMasterCodeDetSingle
         Me.LabelControl2.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl2.Location = New System.Drawing.Point(155, 15)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(27, 15)
+        Me.LabelControl2.Size = New System.Drawing.Size(11, 15)
         Me.LabelControl2.TabIndex = 41
-        Me.LabelControl2.Text = "Code"
+        Me.LabelControl2.Text = "Id"
         '
         'TEPrintedCode
         '
-        Me.TEPrintedCode.Location = New System.Drawing.Point(234, 40)
+        Me.TEPrintedCode.Location = New System.Drawing.Point(267, 40)
         Me.TEPrintedCode.Name = "TEPrintedCode"
         Me.TEPrintedCode.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEPrintedCode.Properties.Appearance.Options.UseFont = True
-        Me.TEPrintedCode.Size = New System.Drawing.Size(229, 22)
+        Me.TEPrintedCode.Size = New System.Drawing.Size(257, 22)
         Me.TEPrintedCode.TabIndex = 34
         Me.TEPrintedCode.ToolTip = "Example : BLK."
         Me.TEPrintedCode.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
@@ -86,7 +86,7 @@ Partial Class FormMasterCodeDetSingle
         'BtnCancel
         '
         Me.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnCancel.Location = New System.Drawing.Point(307, 96)
+        Me.BtnCancel.Location = New System.Drawing.Point(368, 97)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 23)
         Me.BtnCancel.TabIndex = 37
@@ -94,7 +94,7 @@ Partial Class FormMasterCodeDetSingle
         '
         'BtnSave
         '
-        Me.BtnSave.Location = New System.Drawing.Point(388, 96)
+        Me.BtnSave.Location = New System.Drawing.Point(449, 97)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 23)
         Me.BtnSave.TabIndex = 36
@@ -105,17 +105,17 @@ Partial Class FormMasterCodeDetSingle
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl1.Location = New System.Drawing.Point(155, 43)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(73, 15)
+        Me.LabelControl1.Size = New System.Drawing.Size(102, 15)
         Me.LabelControl1.TabIndex = 39
-        Me.LabelControl1.Text = "Printed name"
+        Me.LabelControl1.Text = "Printed in Barcode"
         '
         'TECodeDet
         '
-        Me.TECodeDet.Location = New System.Drawing.Point(234, 68)
+        Me.TECodeDet.Location = New System.Drawing.Point(267, 68)
         Me.TECodeDet.Name = "TECodeDet"
         Me.TECodeDet.Properties.Appearance.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TECodeDet.Properties.Appearance.Options.UseFont = True
-        Me.TECodeDet.Size = New System.Drawing.Size(229, 22)
+        Me.TECodeDet.Size = New System.Drawing.Size(257, 22)
         Me.TECodeDet.TabIndex = 33
         Me.TECodeDet.ToolTip = "Example : Black"
         Me.TECodeDet.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
@@ -141,7 +141,7 @@ Partial Class FormMasterCodeDetSingle
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.BtnCancel
-        Me.ClientSize = New System.Drawing.Size(475, 132)
+        Me.ClientSize = New System.Drawing.Size(536, 132)
         Me.Controls.Add(Me.TECode)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.TEPrintedCode)

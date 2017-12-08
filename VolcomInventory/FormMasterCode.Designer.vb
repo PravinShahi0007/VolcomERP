@@ -187,6 +187,7 @@ Partial Class FormMasterCode
         Me.GVCodeDetail.GridControl = Me.GCCodeDetail
         Me.GVCodeDetail.Name = "GVCodeDetail"
         Me.GVCodeDetail.OptionsBehavior.Editable = False
+        Me.GVCodeDetail.OptionsView.ShowGroupPanel = False
         '
         'ColumnIdCodeDet
         '
@@ -200,7 +201,7 @@ Partial Class FormMasterCode
         Me.ColumnCode.AppearanceCell.Options.UseFont = True
         Me.ColumnCode.AppearanceCell.Options.UseTextOptions = True
         Me.ColumnCode.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.ColumnCode.Caption = "Code"
+        Me.ColumnCode.Caption = "Id"
         Me.ColumnCode.FieldName = "code"
         Me.ColumnCode.Name = "ColumnCode"
         Me.ColumnCode.Visible = True
@@ -218,7 +219,7 @@ Partial Class FormMasterCode
         '
         'ColumnDisplayName
         '
-        Me.ColumnDisplayName.Caption = "Printed Name"
+        Me.ColumnDisplayName.Caption = "Printed in Barcode"
         Me.ColumnDisplayName.FieldName = "display_name"
         Me.ColumnDisplayName.Name = "ColumnDisplayName"
         Me.ColumnDisplayName.Visible = True
