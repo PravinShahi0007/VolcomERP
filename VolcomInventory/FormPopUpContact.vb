@@ -953,6 +953,13 @@
                 FormProdPRWODet.view_list_po()
             End If
             Close()
+        ElseIf id_pop_up = "84" Then
+            'Debit Note
+            FormProdDebitNoteDet.id_comp_contact_debit_to = GVCompanyContactList.GetFocusedRowCellValue("id_comp_contact").ToString
+            FormProdDebitNoteDet.TxtCodeCompDebitTo.Text = GVCompany.GetFocusedRowCellValue("comp_number").ToString
+            FormProdDebitNoteDet.TxtNameCompDebitTo.Text = GVCompany.GetFocusedRowCellValue("comp_name").ToString
+            FormProdDebitNoteDet.MEAdrressCompDebitTo.Text = get_company_x(get_id_company(GVCompanyContactList.GetFocusedRowCellDisplayText("id_comp_contact").ToString), "3")
+            Close()
         End If
         Cursor = Cursors.Default
     End Sub
