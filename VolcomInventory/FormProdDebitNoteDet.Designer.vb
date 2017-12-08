@@ -40,6 +40,7 @@ Partial Class FormProdDebitNoteDet
         Me.ColRecNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColRecDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -52,6 +53,10 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnStyleCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnArriveDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemDateEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemDateEdit()
         Me.RISClaimType = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -74,10 +79,6 @@ Partial Class FormProdDebitNoteDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -270,7 +271,7 @@ Partial Class FormProdDebitNoteDet
         '
         'GVProdRec
         '
-        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColRecNumber, Me.GridColumn2, Me.ColRecDate, Me.ColDueDate, Me.GridColumn1, Me.ColPSONumber, Me.ColDONumber, Me.GridColumn3, Me.ColStatus, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnQty, Me.GridColumnArriveDate, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8})
+        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColRecNumber, Me.GridColumn2, Me.ColRecDate, Me.GridColumn6, Me.ColDueDate, Me.GridColumn1, Me.ColPSONumber, Me.ColDONumber, Me.GridColumn3, Me.ColStatus, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnQty, Me.GridColumnArriveDate, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8})
         Me.GVProdRec.GridControl = Me.GCProdRec
         Me.GVProdRec.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}")})
         Me.GVProdRec.Name = "GVProdRec"
@@ -307,7 +308,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 5
+        Me.GridColumn2.VisibleIndex = 6
         '
         'ColRecDate
         '
@@ -320,6 +321,20 @@ Partial Class FormProdDebitNoteDet
         Me.ColRecDate.Visible = True
         Me.ColRecDate.VisibleIndex = 11
         Me.ColRecDate.Width = 122
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn6.Caption = "Receiving Qty"
+        Me.GridColumn6.DisplayFormat.FormatString = "N0"
+        Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn6.FieldName = "qty"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 4
         '
         'ColDueDate
         '
@@ -400,7 +415,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.OptionsColumn.AllowEdit = False
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 4
+        Me.GridColumnName.VisibleIndex = 5
         Me.GridColumnName.Width = 112
         '
         'GridColumnStyleCode
@@ -418,12 +433,12 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnQty.Caption = "Qty (Pcs)"
         Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.FieldName = "qty_pcs"
         Me.GridColumnQty.Name = "GridColumnQty"
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
-        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pcs", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 6
+        Me.GridColumnQty.VisibleIndex = 15
         Me.GridColumnQty.Width = 52
         '
         'GridColumnArriveDate
@@ -436,6 +451,68 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnArriveDate.OptionsColumn.AllowEdit = False
         Me.GridColumnArriveDate.Visible = True
         Me.GridColumnArriveDate.VisibleIndex = 9
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn4.Caption = "Discount"
+        Me.GridColumn4.DisplayFormat.FormatString = "N2"
+        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn4.FieldName = "discount"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 13
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn5.Caption = "Price/pcs"
+        Me.GridColumn5.DisplayFormat.FormatString = "N2"
+        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn5.FieldName = "price_pc"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 14
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn7.Caption = "Claim / Pcs"
+        Me.GridColumn7.DisplayFormat.FormatString = "N2"
+        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn7.FieldName = "claim_pc"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        Me.GridColumn7.UnboundExpression = "[price_pc] * ([discount] / 100)"
+        Me.GridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 16
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn8.Caption = "Total Amount (Rp)"
+        Me.GridColumn8.DisplayFormat.FormatString = "N2"
+        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn8.FieldName = "total_amount"
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.UnboundExpression = "[claim_pc] * [qty_pcs]"
+        Me.GridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
+        Me.GridColumn8.Visible = True
+        Me.GridColumn8.VisibleIndex = 17
         '
         'RepositoryItemDateEdit1
         '
@@ -672,62 +749,6 @@ Partial Class FormProdDebitNoteDet
         Me.BAdd.TabIndex = 17
         Me.BAdd.Text = "Add"
         '
-        'GridColumn4
-        '
-        Me.GridColumn4.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn4.Caption = "Discount"
-        Me.GridColumn4.DisplayFormat.FormatString = "N2"
-        Me.GridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn4.FieldName = "discount"
-        Me.GridColumn4.Name = "GridColumn4"
-        Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 13
-        '
-        'GridColumn5
-        '
-        Me.GridColumn5.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn5.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn5.Caption = "Price/pcs"
-        Me.GridColumn5.DisplayFormat.FormatString = "N2"
-        Me.GridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn5.FieldName = "price_pc"
-        Me.GridColumn5.Name = "GridColumn5"
-        Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 14
-        '
-        'GridColumn7
-        '
-        Me.GridColumn7.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn7.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn7.Caption = "Claim / Pcs"
-        Me.GridColumn7.DisplayFormat.FormatString = "N2"
-        Me.GridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn7.FieldName = "claim_pc"
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 15
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn8.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumn8.Caption = "Total Amount (Rp)"
-        Me.GridColumn8.DisplayFormat.FormatString = "N2"
-        Me.GridColumn8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn8.FieldName = "total_amount"
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 16
-        '
         'FormProdDebitNoteDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -738,7 +759,6 @@ Partial Class FormProdDebitNoteDet
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.GroupGeneralHeader)
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormProdDebitNoteDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -840,4 +860,5 @@ Partial Class FormProdDebitNoteDet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
