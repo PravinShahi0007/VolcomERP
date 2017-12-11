@@ -319,7 +319,7 @@ Partial Class FormProdDebitNoteDet
         Me.ColRecDate.Name = "ColRecDate"
         Me.ColRecDate.OptionsColumn.AllowEdit = False
         Me.ColRecDate.Visible = True
-        Me.ColRecDate.VisibleIndex = 11
+        Me.ColRecDate.VisibleIndex = 8
         Me.ColRecDate.Width = 122
         '
         'GridColumn6
@@ -346,7 +346,7 @@ Partial Class FormProdDebitNoteDet
         Me.ColDueDate.Name = "ColDueDate"
         Me.ColDueDate.OptionsColumn.AllowEdit = False
         Me.ColDueDate.Visible = True
-        Me.ColDueDate.VisibleIndex = 8
+        Me.ColDueDate.VisibleIndex = 10
         Me.ColDueDate.Width = 124
         '
         'RepositoryItemTextEdit1
@@ -391,7 +391,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn3.FieldName = "id_claim_type"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 10
+        Me.GridColumn3.VisibleIndex = 11
         '
         'RIClaimType
         '
