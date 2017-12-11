@@ -93,7 +93,12 @@
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
-        FormPopUpRecQC.id_pop_up = "2"
-        FormPopUpRecQC.ShowDialog()
+        If id_comp_contact_debit_to = "-1" Then
+            stopCustom("Please choose the vendor first")
+        Else
+            FormPopUpRecQC.id_contact_vendor = id_comp_contact_debit_to
+            FormPopUpRecQC.id_pop_up = "2"
+            FormPopUpRecQC.ShowDialog()
+        End If
     End Sub
 End Class

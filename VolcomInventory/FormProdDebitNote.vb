@@ -33,7 +33,6 @@
             checkFormAccess(Name)
             button_main(bnew_active, bedit_active, bdel_active)
         End If
-
     End Sub
 
     Sub viewDesign()

@@ -79,6 +79,7 @@ Partial Class FormProdDebitNoteDet
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -271,7 +272,7 @@ Partial Class FormProdDebitNoteDet
         '
         'GVProdRec
         '
-        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColRecNumber, Me.GridColumn2, Me.ColRecDate, Me.GridColumn6, Me.ColDueDate, Me.GridColumn1, Me.ColPSONumber, Me.ColDONumber, Me.GridColumn3, Me.ColStatus, Me.GridColumnName, Me.GridColumnStyleCode, Me.GridColumnQty, Me.GridColumnArriveDate, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8})
+        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColRecNumber, Me.GridColumn2, Me.ColRecDate, Me.GridColumn6, Me.ColDueDate, Me.GridColumn1, Me.ColPSONumber, Me.ColDONumber, Me.GridColumn3, Me.ColStatus, Me.GridColumnName, Me.GridColumn9, Me.GridColumnStyleCode, Me.GridColumnQty, Me.GridColumnArriveDate, Me.GridColumn4, Me.GridColumn5, Me.GridColumn7, Me.GridColumn8})
         Me.GVProdRec.GridControl = Me.GCProdRec
         Me.GVProdRec.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", Me.GridColumnQty, "{0:n0}")})
         Me.GVProdRec.Name = "GVProdRec"
@@ -405,7 +406,7 @@ Partial Class FormProdDebitNoteDet
         Me.ColStatus.FieldName = "note"
         Me.ColStatus.Name = "ColStatus"
         Me.ColStatus.Visible = True
-        Me.ColStatus.VisibleIndex = 12
+        Me.ColStatus.VisibleIndex = 13
         Me.ColStatus.Width = 93
         '
         'GridColumnName
@@ -438,7 +439,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pcs", "{0:N0}")})
         Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 15
+        Me.GridColumnQty.VisibleIndex = 16
         Me.GridColumnQty.Width = 52
         '
         'GridColumnArriveDate
@@ -464,7 +465,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn4.FieldName = "discount"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 13
+        Me.GridColumn4.VisibleIndex = 14
         '
         'GridColumn5
         '
@@ -478,7 +479,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn5.FieldName = "price_pc"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 14
+        Me.GridColumn5.VisibleIndex = 15
         '
         'GridColumn7
         '
@@ -495,7 +496,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn7.UnboundExpression = "[price_pc] * ([discount] / 100)"
         Me.GridColumn7.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 16
+        Me.GridColumn7.VisibleIndex = 17
         '
         'GridColumn8
         '
@@ -512,7 +513,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn8.UnboundExpression = "[claim_pc] * [qty_pcs]"
         Me.GridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 17
+        Me.GridColumn8.VisibleIndex = 18
         '
         'RepositoryItemDateEdit1
         '
@@ -749,6 +750,16 @@ Partial Class FormProdDebitNoteDet
         Me.BAdd.TabIndex = 17
         Me.BAdd.Text = "Add"
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Late (Days)"
+        Me.GridColumn9.DisplayFormat.FormatString = "N0"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "days_late"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 12
+        '
         'FormProdDebitNoteDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -861,4 +872,5 @@ Partial Class FormProdDebitNoteDet
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
