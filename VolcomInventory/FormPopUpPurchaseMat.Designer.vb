@@ -368,11 +368,11 @@ Partial Class FormPopUpPurchaseMat
         Me.ColSubtotal.AppearanceHeader.Options.UseTextOptions = True
         Me.ColSubtotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColSubtotal.Caption = "Sub Total"
-        Me.ColSubtotal.DisplayFormat.FormatString = "N2"
+        Me.ColSubtotal.DisplayFormat.FormatString = "N4"
         Me.ColSubtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColSubtotal.FieldName = "total"
         Me.ColSubtotal.Name = "ColSubtotal"
-        Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
+        Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N4}")})
         Me.ColSubtotal.Visible = True
         Me.ColSubtotal.VisibleIndex = 7
         Me.ColSubtotal.Width = 165
@@ -416,7 +416,6 @@ Partial Class FormPopUpPurchaseMat
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormPopUpPurchaseMat"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = " "

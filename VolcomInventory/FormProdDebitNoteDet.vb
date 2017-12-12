@@ -7,6 +7,9 @@
     End Sub
     Sub action_load()
         view_claim_type(RIClaimType)
+
+        view_report_status(LEReportStatus)
+
         If id_dn = "-1" Then 'new
             TxtVirtualPosNumber.Text = header_number_prod("14")
             Dim date_dn As Date = Now()
@@ -15,6 +18,17 @@
 
         End If
         load_gv()
+    End Sub
+
+    Private Sub view_report_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
+        Dim query As String = "SELECT id_report_status,report_status FROM tb_lookup_report_status"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        lookup.Properties.DataSource = data
+
+        lookup.Properties.DisplayMember = "report_status"
+        lookup.Properties.ValueMember = "id_report_status"
+        lookup.ItemIndex = 0
     End Sub
 
     Sub load_gv()
@@ -79,7 +93,12 @@
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
-        FormPopUpRecQC.id_pop_up = "2"
-        FormPopUpRecQC.ShowDialog()
+        If id_comp_contact_debit_to = "-1" Then
+            stopCustom("Please choose the vendor first")
+        Else
+            FormPopUpRecQC.id_contact_vendor = id_comp_contact_debit_to
+            FormPopUpRecQC.id_pop_up = "2"
+            FormPopUpRecQC.ShowDialog()
+        End If
     End Sub
 End Class

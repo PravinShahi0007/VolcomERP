@@ -2,21 +2,24 @@
     Public id_pop_up As String = "-1"
     Public id_prod_order As String = "-1"
     Public id_rec As String = "-1"
+    Public id_contact_vendor As String = "-1"
     Private Sub FormPopUpRecQC_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         view_prod_order_rec()
     End Sub
     Sub view_prod_order_rec()
-        Dim query = "SELECT a.id_report_status,h.report_status,g.season,a.id_prod_order_rec,a.prod_order_rec_number,
+        Dim query = "SELECT a.id_report_status,h.report_status,g.season,a.id_prod_order_rec,a.prod_order_rec_number,a.prod_order_rec_note,
                     DATE_ADD(wo.prod_order_wo_date, INTERVAL wo.`prod_order_wo_lead_time` DAY) AS est_rec_date,
-                    delivery_order_date,a.arrive_date,a.delivery_order_number,b.prod_order_number, rec_qty.sum_qty,
+                    delivery_order_date,a.arrive_date,a.delivery_order_number,b.prod_order_number, rec_qty.sum_qty,wo.price_pc,
                     prod_order_rec_date, f.comp_name AS comp_from,d.comp_name AS comp_to,dsg.design_code,CONCAT(LEFT(dsg.design_display_name,3),' ',dsg.design_name) AS design_display_name, RIGHT(dsg.design_display_name,3) AS color 
                     FROM tb_prod_order_rec a  
                     INNER JOIN tb_prod_order b ON a.id_prod_order=b.id_prod_order 
                     LEFT JOIN 
-                    (SELECT * FROM tb_prod_order_wo wo WHERE wo.`is_main_vendor`=1 GROUP BY wo.`id_prod_order`) wo ON wo.`id_prod_order`=b.`id_prod_order`
+                    (SELECT wo.*,wod.prod_order_wo_det_price AS price_pc FROM tb_prod_order_wo wo 
+                    INNER JOIN tb_prod_order_wo_det wod ON wod.id_prod_order_wo=wo.id_prod_order_wo
+                    WHERE wo.`is_main_vendor`=1 GROUP BY wo.`id_prod_order_wo`,wo.`id_prod_order`) wo ON wo.`id_prod_order`=b.`id_prod_order`
                     INNER JOIN tb_m_comp_contact c ON c.id_comp_contact = a.id_comp_contact_to 
                     INNER JOIN tb_m_comp d ON d.id_comp = c.id_comp 
-                    INNER JOIN tb_m_comp_contact e ON e.id_comp_contact = a.id_comp_contact_to  
+                    INNER JOIN tb_m_comp_contact e ON e.id_comp_contact = a.id_comp_contact_from 
                     INNER JOIN tb_m_comp f ON f.id_comp = e.id_comp 
                     INNER JOIN tb_season_delivery i ON b.id_delivery = i.id_delivery 
                     INNER JOIN tb_season g ON g.id_season = i.id_season 
@@ -25,14 +28,18 @@
                     INNER JOIN tb_m_design dsg ON dsg.id_design=pdd.id_design 
                     INNER JOIN
                     (
-                        SELECT rec.id_prod_order_rec,SUM(recd.prod_order_rec_det_qty) AS sum_qty 
+                        SELECT rec.id_prod_order_rec,SUM(recd.prod_order_rec_det_qty) AS sum_qty
 	                    FROM 
 	                    tb_prod_order_rec rec 
 	                    LEFT JOIN tb_prod_order_rec_det recd ON recd.id_prod_order_rec=rec.id_prod_order_rec
 	                    GROUP BY rec.id_prod_order_rec 
-                    ) rec_qty ON rec_qty.id_prod_order_rec=a.id_prod_order_rec "
+                    ) rec_qty ON rec_qty.id_prod_order_rec=a.id_prod_order_rec
+                    WHERE 1=1 "
         If Not id_prod_order = "-1" Then
-            query += "WHERE a.id_prod_order='" & id_prod_order & "' "
+            query += "AND a.id_prod_order='" & id_prod_order & "' "
+        End If
+        If Not id_contact_vendor = "-1" Then
+            query += "AND a.id_comp_contact_from='" & id_contact_vendor & "' "
         End If
         query += "ORDER BY g.date_season_start DESC, a.id_prod_order_rec DESC "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -83,6 +90,10 @@
             FormProdPRWODet.BPickWO.Enabled = False
             Close()
         ElseIf id_pop_up = "2" Then 'Debit Note Receiving
+            Dim date_do As Date = GVProdRec.GetFocusedRowCellValue("est_rec_date")
+            Dim arrive_qc As Date = GVProdRec.GetFocusedRowCellValue("arrive_date")
+            Dim span = arrive_qc - date_do
+
             Dim newRow As DataRow = (TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable)).NewRow()
             newRow("id_prod_debit_note_det") = "0"
             newRow("id_prod_order_rec") = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
@@ -92,15 +103,19 @@
             newRow("name") = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
             newRow("color") = GVProdRec.GetFocusedRowCellValue("color").ToString
             newRow("name") = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
-            newRow("qty") = GVProdRec.GetFocusedRowCellValue("sum_qty").ToString
+            newRow("qty") = GVProdRec.GetFocusedRowCellValue("sum_qty")
+            newRow("qty_pcs") = GVProdRec.GetFocusedRowCellValue("sum_qty")
             newRow("delivery_order_number") = GVProdRec.GetFocusedRowCellValue("delivery_order_number").ToString
-            newRow("delivery_order_date") = GVProdRec.GetFocusedRowCellValue("delivery_order_date").ToString
-            newRow("arrive_date") = GVProdRec.GetFocusedRowCellValue("arrive_date").ToString
-            newRow("est_rec_date") = GVProdRec.GetFocusedRowCellValue("est_rec_date").ToString
+            newRow("delivery_order_date") = GVProdRec.GetFocusedRowCellValue("delivery_order_date")
+            newRow("arrive_date") = GVProdRec.GetFocusedRowCellValue("arrive_date")
+            newRow("est_rec_date") = GVProdRec.GetFocusedRowCellValue("est_rec_date")
+            newRow("price_pc") = GVProdRec.GetFocusedRowCellValue("price_pc")
             newRow("id_claim_type") = "1"
+            newRow("days_late") = span.Days
             TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable).Rows.Add(newRow)
             FormProdDebitNoteDet.GCProdRec.RefreshDataSource()
             FormProdDebitNoteDet.GVProdRec.RefreshData()
+            FormProdDebitNoteDet.GVProdRec.BestFitColumns()
             FormProdDebitNoteDet.button_check()
             Close()
         End If
