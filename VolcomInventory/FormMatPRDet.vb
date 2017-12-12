@@ -247,12 +247,12 @@
         End If
         If e.Column.FieldName = "total" Then
             If Not e.DisplayText = "" Then
-                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N2")
+                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N4")
             End If
         End If
         If e.Column.FieldName = "debit" Then
             If Not e.DisplayText = "" Then
-                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N2")
+                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N4")
             End If
         End If
     End Sub
