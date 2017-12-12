@@ -33,9 +33,9 @@ Public Class ReportMatPR
         Catch ex As Exception
         End Try
 
-        LVatTot.Text = vat.ToString("N2")
-        LDP.Text = dp.ToString("N2")
-        LGrossTot.Text = gross_tot.ToString("N2")
+        LVatTot.Text = vat.ToString("N4")
+        LDP.Text = dp.ToString("N4")
+        LGrossTot.Text = gross_tot.ToString("N4")
 
         If dp.ToString = "" Or dp = 0 Or dp = 0.0 Then
             total = gross_tot + vat
@@ -43,7 +43,7 @@ Public Class ReportMatPR
             total = dp + vat
         End If
 
-        LTot.Text = total.ToString("N2")
+        LTot.Text = total.ToString("N4")
         Try
             LSay.Text = ConvertCurrencyToEnglish(Double.Parse(total.ToString), id_curr)
         Catch ex As Exception
@@ -71,12 +71,12 @@ Public Class ReportMatPR
         End If
         If e.Column.FieldName = "total" Then
             If Not e.DisplayText = "" Then
-                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N2")
+                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N4")
             End If
         End If
         If e.Column.FieldName = "debit" Then
             If Not e.DisplayText = "" Then
-                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N2")
+                e.DisplayText = Decimal.Parse(e.DisplayText).ToString("N4")
             End If
         End If
     End Sub

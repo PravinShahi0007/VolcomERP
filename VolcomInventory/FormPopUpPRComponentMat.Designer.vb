@@ -19,75 +19,75 @@ Partial Class FormPopUpPRComponentMat
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPOvh = New DevExpress.XtraTab.XtraTabPage
-        Me.GCOVH = New DevExpress.XtraGrid.GridControl
-        Me.GVOVH = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.id_ovh = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.overhead_code = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.overhead = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnUom = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemCheckEditOVH = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl
-        Me.LETerm = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.TEPriceTotOvh = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl
-        Me.TEPriceOvh = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.TEUOM = New DevExpress.XtraEditors.TextEdit
-        Me.TEQtyOvh = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.BCancelOvh = New DevExpress.XtraEditors.SimpleButton
-        Me.BSaveOvh = New DevExpress.XtraEditors.SimpleButton
-        Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage
-        Me.GCSamplePR = New DevExpress.XtraGrid.GridControl
-        Me.GVSamplePR = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdSamplePurchase = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPayTo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSamplePurcDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDp = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPRTot = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSeason = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDelliveryPR = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSeasonPR = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDelivery = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl
-        Me.GCancelPR = New DevExpress.XtraEditors.SimpleButton
-        Me.BSavePR = New DevExpress.XtraEditors.SimpleButton
-        Me.XTPPurchase = New DevExpress.XtraTab.XtraTabPage
-        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl
-        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDiscount = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSubtotal = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColUom = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.BCancelPurc = New DevExpress.XtraEditors.SimpleButton
-        Me.BSavePurc = New DevExpress.XtraEditors.SimpleButton
-        Me.XTPReceive = New DevExpress.XtraTab.XtraTabPage
-        Me.GCListReceive = New DevExpress.XtraGrid.GridControl
-        Me.GVListReceive = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColIdSamplePurcRecDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColIdSamplePurcDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.gridcolNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColQtyReceived = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPriceRec = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColUOMRec = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPriceSample = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl
-        Me.BCancelRec = New DevExpress.XtraEditors.SimpleButton
-        Me.BSaveRec = New DevExpress.XtraEditors.SimpleButton
+        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPOvh = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCOVH = New DevExpress.XtraGrid.GridControl()
+        Me.GVOVH = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.id_ovh = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.overhead_code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.overhead = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemCheckEditOVH = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.LETerm = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPriceTotOvh = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPriceOvh = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEUOM = New DevExpress.XtraEditors.TextEdit()
+        Me.TEQtyOvh = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BCancelOvh = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSaveOvh = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPPayment = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSamplePR = New DevExpress.XtraGrid.GridControl()
+        Me.GVSamplePR = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdSamplePurchase = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPayTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSamplePurcDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDueDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPRTot = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSeason = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDelliveryPR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSeasonPR = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDelivery = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.GCancelPR = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSavePR = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPPurchase = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
+        Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDiscount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSubtotal = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColUom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancelPurc = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSavePurc = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPReceive = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCListReceive = New DevExpress.XtraGrid.GridControl()
+        Me.GVListReceive = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColIdSamplePurcRecDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColIdSamplePurcDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.gridcolNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColQtyReceived = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPriceRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColUOMRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPriceSample = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancelRec = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSaveRec = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPOvh.SuspendLayout()
@@ -133,7 +133,7 @@ Partial Class FormPopUpPRComponentMat
         Me.XTPOvh.Controls.Add(Me.GCOVH)
         Me.XTPOvh.Controls.Add(Me.PanelControl4)
         Me.XTPOvh.Name = "XTPOvh"
-        Me.XTPOvh.Size = New System.Drawing.Size(798, 421)
+        Me.XTPOvh.Size = New System.Drawing.Size(798, 419)
         Me.XTPOvh.Text = "Overhead"
         '
         'GCOVH
@@ -143,7 +143,7 @@ Partial Class FormPopUpPRComponentMat
         Me.GCOVH.MainView = Me.GVOVH
         Me.GCOVH.Name = "GCOVH"
         Me.GCOVH.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEditOVH})
-        Me.GCOVH.Size = New System.Drawing.Size(798, 312)
+        Me.GCOVH.Size = New System.Drawing.Size(798, 310)
         Me.GCOVH.TabIndex = 30
         Me.GCOVH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVOVH})
         '
@@ -210,7 +210,7 @@ Partial Class FormPopUpPRComponentMat
         Me.PanelControl4.Controls.Add(Me.BCancelOvh)
         Me.PanelControl4.Controls.Add(Me.BSaveOvh)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl4.Location = New System.Drawing.Point(0, 312)
+        Me.PanelControl4.Location = New System.Drawing.Point(0, 310)
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(798, 109)
         Me.PanelControl4.TabIndex = 29
@@ -332,7 +332,7 @@ Partial Class FormPopUpPRComponentMat
         Me.XTPPayment.Controls.Add(Me.GCSamplePR)
         Me.XTPPayment.Controls.Add(Me.PanelControl3)
         Me.XTPPayment.Name = "XTPPayment"
-        Me.XTPPayment.Size = New System.Drawing.Size(798, 421)
+        Me.XTPPayment.Size = New System.Drawing.Size(798, 419)
         Me.XTPPayment.Text = "Payment"
         '
         'GCSamplePR
@@ -341,7 +341,7 @@ Partial Class FormPopUpPRComponentMat
         Me.GCSamplePR.Location = New System.Drawing.Point(0, 0)
         Me.GCSamplePR.MainView = Me.GVSamplePR
         Me.GCSamplePR.Name = "GCSamplePR"
-        Me.GCSamplePR.Size = New System.Drawing.Size(798, 376)
+        Me.GCSamplePR.Size = New System.Drawing.Size(798, 374)
         Me.GCSamplePR.TabIndex = 31
         Me.GCSamplePR.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSamplePR})
         '
@@ -458,7 +458,7 @@ Partial Class FormPopUpPRComponentMat
         Me.PanelControl3.Controls.Add(Me.GCancelPR)
         Me.PanelControl3.Controls.Add(Me.BSavePR)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 376)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 374)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(798, 45)
         Me.PanelControl3.TabIndex = 30
@@ -485,7 +485,7 @@ Partial Class FormPopUpPRComponentMat
         Me.XTPPurchase.Controls.Add(Me.GCListPurchase)
         Me.XTPPurchase.Controls.Add(Me.PanelControl2)
         Me.XTPPurchase.Name = "XTPPurchase"
-        Me.XTPPurchase.Size = New System.Drawing.Size(798, 421)
+        Me.XTPPurchase.Size = New System.Drawing.Size(798, 419)
         Me.XTPPurchase.Text = "Purchase List"
         '
         'GCListPurchase
@@ -494,7 +494,7 @@ Partial Class FormPopUpPRComponentMat
         Me.GCListPurchase.Location = New System.Drawing.Point(0, 0)
         Me.GCListPurchase.MainView = Me.GVListPurchase
         Me.GCListPurchase.Name = "GCListPurchase"
-        Me.GCListPurchase.Size = New System.Drawing.Size(798, 376)
+        Me.GCListPurchase.Size = New System.Drawing.Size(798, 374)
         Me.GCListPurchase.TabIndex = 29
         Me.GCListPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPurchase})
         '
@@ -549,7 +549,7 @@ Partial Class FormPopUpPRComponentMat
         Me.ColPrice.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPrice.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPrice.Caption = "Price"
-        Me.ColPrice.DisplayFormat.FormatString = "N2"
+        Me.ColPrice.DisplayFormat.FormatString = "N4"
         Me.ColPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPrice.FieldName = "price"
         Me.ColPrice.Name = "ColPrice"
@@ -595,7 +595,7 @@ Partial Class FormPopUpPRComponentMat
         Me.ColSubtotal.AppearanceHeader.Options.UseTextOptions = True
         Me.ColSubtotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColSubtotal.Caption = "Sub Total"
-        Me.ColSubtotal.DisplayFormat.FormatString = "N2"
+        Me.ColSubtotal.DisplayFormat.FormatString = "N4"
         Me.ColSubtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColSubtotal.FieldName = "total"
         Me.ColSubtotal.Name = "ColSubtotal"
@@ -623,7 +623,7 @@ Partial Class FormPopUpPRComponentMat
         Me.PanelControl2.Controls.Add(Me.BCancelPurc)
         Me.PanelControl2.Controls.Add(Me.BSavePurc)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 376)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 374)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(798, 45)
         Me.PanelControl2.TabIndex = 28
@@ -650,7 +650,7 @@ Partial Class FormPopUpPRComponentMat
         Me.XTPReceive.Controls.Add(Me.GCListReceive)
         Me.XTPReceive.Controls.Add(Me.PanelControl1)
         Me.XTPReceive.Name = "XTPReceive"
-        Me.XTPReceive.Size = New System.Drawing.Size(798, 421)
+        Me.XTPReceive.Size = New System.Drawing.Size(798, 419)
         Me.XTPReceive.Text = "Receive List"
         '
         'GCListReceive
@@ -659,7 +659,7 @@ Partial Class FormPopUpPRComponentMat
         Me.GCListReceive.Location = New System.Drawing.Point(0, 0)
         Me.GCListReceive.MainView = Me.GVListReceive
         Me.GCListReceive.Name = "GCListReceive"
-        Me.GCListReceive.Size = New System.Drawing.Size(798, 376)
+        Me.GCListReceive.Size = New System.Drawing.Size(798, 374)
         Me.GCListReceive.TabIndex = 29
         Me.GCListReceive.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListReceive})
         '
@@ -748,7 +748,7 @@ Partial Class FormPopUpPRComponentMat
         Me.ColPriceRec.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPriceRec.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPriceRec.Caption = "Sub Total"
-        Me.ColPriceRec.DisplayFormat.FormatString = "N2"
+        Me.ColPriceRec.DisplayFormat.FormatString = "N4"
         Me.ColPriceRec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPriceRec.FieldName = "total"
         Me.ColPriceRec.Name = "ColPriceRec"
@@ -776,7 +776,7 @@ Partial Class FormPopUpPRComponentMat
         Me.ColPriceSample.AppearanceHeader.Options.UseTextOptions = True
         Me.ColPriceSample.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColPriceSample.Caption = "Price"
-        Me.ColPriceSample.DisplayFormat.FormatString = "N2"
+        Me.ColPriceSample.DisplayFormat.FormatString = "N4"
         Me.ColPriceSample.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColPriceSample.FieldName = "price"
         Me.ColPriceSample.Name = "ColPriceSample"
@@ -790,7 +790,7 @@ Partial Class FormPopUpPRComponentMat
         Me.PanelControl1.Controls.Add(Me.BCancelRec)
         Me.PanelControl1.Controls.Add(Me.BSaveRec)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 376)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 374)
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(798, 45)
         Me.PanelControl1.TabIndex = 28

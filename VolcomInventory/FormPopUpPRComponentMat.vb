@@ -255,10 +255,10 @@
                     newRow("id_det") = GVListPurchase.GetFocusedRowCellDisplayText("id_mat_purc_det").ToString
                     newRow("name") = GVListPurchase.GetFocusedRowCellDisplayText("name").ToString
                     newRow("code") = GVListPurchase.GetFocusedRowCellDisplayText("code").ToString
-                    newRow("qty") = GVListPurchase.GetFocusedRowCellDisplayText("qty").ToString
+                    newRow("qty") = GVListPurchase.GetFocusedRowCellDisplayText("qty")
                     newRow("type") = "2"
                     newRow("uom") = GVListPurchase.GetFocusedRowCellDisplayText("uom").ToString
-                    newRow("price") = GVListPurchase.GetFocusedRowCellDisplayText("price").ToString
+                    newRow("price") = GVListPurchase.GetFocusedRowCellDisplayText("price")
                     newRow("total") = GVListPurchase.GetFocusedRowCellValue("total")
 
                     TryCast(FormMatPRDet.GCListPurchase.DataSource, DataTable).Rows.Add(newRow)

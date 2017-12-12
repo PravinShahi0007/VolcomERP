@@ -2204,6 +2204,8 @@ Module Common
         ' Clean up cents.
         Select Case Cents
             Case "" : Cents = " "
+                'Case "One" : Cents = " Point One"
+                'Case Else : Cents = " Point " & Cents
             Case "One" : Cents = " And One Cent"
             Case Else : Cents = " And " & Cents & " Cents"
         End Select
@@ -2282,6 +2284,22 @@ Module Common
             Case 8 : ConvertDigit = "Eight"
             Case 9 : ConvertDigit = "Nine"
             Case Else : ConvertDigit = ""
+        End Select
+    End Function
+
+    Private Function ConvertNumber(ByVal MyDigit As String) As String
+        Select Case Val(MyDigit)
+            Case 0 : ConvertNumber = "Zero"
+            Case 1 : ConvertNumber = "One"
+            Case 2 : ConvertNumber = "Two"
+            Case 3 : ConvertNumber = "Three"
+            Case 4 : ConvertNumber = "Four"
+            Case 5 : ConvertNumber = "Five"
+            Case 6 : ConvertNumber = "Six"
+            Case 7 : ConvertNumber = "Seven"
+            Case 8 : ConvertNumber = "Eight"
+            Case 9 : ConvertNumber = "Nine"
+            Case Else : ConvertNumber = ""
         End Select
     End Function
     'end of currency conversion
