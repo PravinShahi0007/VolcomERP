@@ -640,7 +640,6 @@ Partial Class FormPopUpPRComponentProd
         Me.TEPriceWO.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPriceWO.Properties.Mask.SaveLiteral = False
         Me.TEPriceWO.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEPriceWO.Properties.ReadOnly = True
         Me.TEPriceWO.Size = New System.Drawing.Size(161, 20)
         Me.TEPriceWO.TabIndex = 124
         '

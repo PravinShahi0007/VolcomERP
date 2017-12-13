@@ -50,6 +50,7 @@ Partial Class FormProdDebitNoteDet
         Me.RIClaimType = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStyleCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnArriveDate = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -68,7 +69,6 @@ Partial Class FormProdDebitNoteDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.BtnXlsBOF = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -77,9 +77,9 @@ Partial Class FormProdDebitNoteDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
-        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,6 +111,7 @@ Partial Class FormProdDebitNoteDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -266,7 +267,7 @@ Partial Class FormProdDebitNoteDet
         Me.GCProdRec.MainView = Me.GVProdRec
         Me.GCProdRec.Name = "GCProdRec"
         Me.GCProdRec.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemDateEdit1, Me.RepositoryItemTextEdit1, Me.RISClaimType, Me.RIClaimType})
-        Me.GCProdRec.Size = New System.Drawing.Size(1010, 304)
+        Me.GCProdRec.Size = New System.Drawing.Size(1010, 274)
         Me.GCProdRec.TabIndex = 190
         Me.GCProdRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdRec, Me.GridView3})
         '
@@ -419,6 +420,16 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnName.VisibleIndex = 5
         Me.GridColumnName.Width = 112
         '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Late (Days)"
+        Me.GridColumn9.DisplayFormat.FormatString = "N0"
+        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn9.FieldName = "days_late"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 12
+        '
         'GridColumnStyleCode
         '
         Me.GridColumnStyleCode.Caption = "Code"
@@ -510,6 +521,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn8.FieldName = "total_amount"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.OptionsColumn.AllowEdit = False
+        Me.GridColumn8.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_amount", "{0:N2}")})
         Me.GridColumn8.UnboundExpression = "[claim_pc] * [qty_pcs]"
         Me.GridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn8.Visible = True
@@ -549,20 +561,22 @@ Partial Class FormProdDebitNoteDet
         Me.GroupControl3.Controls.Add(Me.MENote)
         Me.GroupControl3.Controls.Add(Me.LabelControl18)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 440)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 410)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(1010, 71)
+        Me.GroupControl3.Size = New System.Drawing.Size(1010, 101)
         Me.GroupControl3.TabIndex = 191
         '
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.METotSay)
+        Me.PanelControl1.Controls.Add(Me.LabelControl2)
         Me.PanelControl1.Controls.Add(Me.LEReportStatus)
         Me.PanelControl1.Controls.Add(Me.LabelControl21)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(675, 2)
+        Me.PanelControl1.Location = New System.Drawing.Point(596, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(333, 67)
+        Me.PanelControl1.Size = New System.Drawing.Size(412, 97)
         Me.PanelControl1.TabIndex = 8936
         '
         'LEReportStatus
@@ -592,7 +606,7 @@ Partial Class FormProdDebitNoteDet
         Me.MENote.Location = New System.Drawing.Point(57, 11)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 100
-        Me.MENote.Size = New System.Drawing.Size(409, 45)
+        Me.MENote.Size = New System.Drawing.Size(379, 73)
         Me.MENote.TabIndex = 6
         '
         'LabelControl18
@@ -606,7 +620,6 @@ Partial Class FormProdDebitNoteDet
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControl1.Controls.Add(Me.BtnXlsBOF)
         Me.GroupControl1.Controls.Add(Me.BtnAttachment)
         Me.GroupControl1.Controls.Add(Me.BPrint)
         Me.GroupControl1.Controls.Add(Me.BCancel)
@@ -617,19 +630,6 @@ Partial Class FormProdDebitNoteDet
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(1010, 40)
         Me.GroupControl1.TabIndex = 192
-        '
-        'BtnXlsBOF
-        '
-        Me.BtnXlsBOF.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnXlsBOF.Image = CType(resources.GetObject("BtnXlsBOF.Image"), System.Drawing.Image)
-        Me.BtnXlsBOF.ImageIndex = 11
-        Me.BtnXlsBOF.ImageList = Me.LargeImageCollection
-        Me.BtnXlsBOF.Location = New System.Drawing.Point(571, 2)
-        Me.BtnXlsBOF.Name = "BtnXlsBOF"
-        Me.BtnXlsBOF.Size = New System.Drawing.Size(115, 36)
-        Me.BtnXlsBOF.TabIndex = 22
-        Me.BtnXlsBOF.Text = "Generate XLS"
-        Me.BtnXlsBOF.Visible = False
         '
         'LargeImageCollection
         '
@@ -708,7 +708,6 @@ Partial Class FormProdDebitNoteDet
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControl2.Controls.Add(Me.BDelete)
-        Me.GroupControl2.Controls.Add(Me.BEdit)
         Me.GroupControl2.Controls.Add(Me.BAdd)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl2.Location = New System.Drawing.Point(0, 96)
@@ -722,22 +721,11 @@ Partial Class FormProdDebitNoteDet
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelete.ImageIndex = 1
         Me.BDelete.ImageList = Me.LargeImageCollection
-        Me.BDelete.Location = New System.Drawing.Point(717, 2)
+        Me.BDelete.Location = New System.Drawing.Point(815, 2)
         Me.BDelete.Name = "BDelete"
         Me.BDelete.Size = New System.Drawing.Size(100, 36)
         Me.BDelete.TabIndex = 19
         Me.BDelete.Text = "Delete"
-        '
-        'BEdit
-        '
-        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BEdit.ImageIndex = 2
-        Me.BEdit.ImageList = Me.LargeImageCollection
-        Me.BEdit.Location = New System.Drawing.Point(817, 2)
-        Me.BEdit.Name = "BEdit"
-        Me.BEdit.Size = New System.Drawing.Size(98, 36)
-        Me.BEdit.TabIndex = 18
-        Me.BEdit.Text = "Edit"
         '
         'BAdd
         '
@@ -750,15 +738,21 @@ Partial Class FormProdDebitNoteDet
         Me.BAdd.TabIndex = 17
         Me.BAdd.Text = "Add"
         '
-        'GridColumn9
+        'METotSay
         '
-        Me.GridColumn9.Caption = "Late (Days)"
-        Me.GridColumn9.DisplayFormat.FormatString = "N0"
-        Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumn9.FieldName = "days_late"
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 12
+        Me.METotSay.Location = New System.Drawing.Point(47, 34)
+        Me.METotSay.Name = "METotSay"
+        Me.METotSay.Properties.MaxLength = 100
+        Me.METotSay.Size = New System.Drawing.Size(354, 51)
+        Me.METotSay.TabIndex = 146
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 36)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(18, 13)
+        Me.LabelControl2.TabIndex = 147
+        Me.LabelControl2.Text = "Say"
         '
         'FormProdDebitNoteDet
         '
@@ -810,6 +804,7 @@ Partial Class FormProdDebitNoteDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
+        CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -850,7 +845,6 @@ Partial Class FormProdDebitNoteDet
     Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents BtnXlsBOF As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
@@ -858,7 +852,6 @@ Partial Class FormProdDebitNoteDet
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents BDelete As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
@@ -873,4 +866,6 @@ Partial Class FormProdDebitNoteDet
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents METotSay As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class

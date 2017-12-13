@@ -80,16 +80,17 @@
 
     Sub button_check()
         If GVProdRec.RowCount > 0 Then
-            BEdit.Visible = True
             BDelete.Visible = True
         Else
-            BEdit.Visible = False
             BDelete.Visible = False
         End If
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
-
+        If id_dn = "-1" Then 'new
+            Dim query As String = "INSERT INTO tb_prod_debit_note(prod_debit_note_number,id_comp_contact_to,id_currency,prod_debit_note_date,note) VALUES('" & header_number_prod("14") & "','" & id_comp_contact_debit_to & "',id_currency,prod_debit_note_date,note)"
+        Else 'edit
+        End If
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
@@ -100,5 +101,20 @@
             FormPopUpRecQC.id_pop_up = "2"
             FormPopUpRecQC.ShowDialog()
         End If
+    End Sub
+
+    Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BDelete.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            GVProdRec.DeleteRow(GVProdRec.FocusedRowHandle)
+            GCProdRec.RefreshDataSource()
+            GVProdRec.RefreshData()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub GVProdRec_HiddenEditor(sender As Object, e As EventArgs) Handles GVProdRec.HiddenEditor
+        METotSay.Text = ConvertCurrencyToEnglish(GVProdRec.Columns("total_amount").SummaryItem.SummaryValue, "1")
     End Sub
 End Class
