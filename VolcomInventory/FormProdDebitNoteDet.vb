@@ -88,7 +88,13 @@
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         If id_dn = "-1" Then 'new
-            Dim query As String = "INSERT INTO tb_prod_debit_note(prod_debit_note_number,id_comp_contact_to,id_currency,prod_debit_note_date,note) VALUES('" & header_number_prod("14") & "','" & id_comp_contact_debit_to & "',id_currency,prod_debit_note_date,note)"
+            Dim query As String = "INSERT INTO tb_prod_debit_note(prod_debit_note_number,id_comp_contact_to,prod_debit_note_date,note) VALUES('" & header_number_prod("14") & "','" & id_comp_contact_debit_to & "',DATE(NOW()),'" & MENote.Text & "');SELECT LAST_INSERT_ID(); "
+            id_dn = execute_query(query, 0, True, "", "", "", "")
+            increase_inc_prod("14")
+            'detail
+            For i As Integer = 0 To GVProdRec.RowCount - 1
+                query = "INSERT INTO tb_prod_debit_note_det(id_prod_debit_note,id_prod_order_rec,id_claim_type,days_late,delivery_date_ko,note,qty_pcs,price_pc,discount,qty) VALUES('" & id_dn & "','" & GVProdRec.GetRowCellValue(i, "id_prod_order_rec").ToString & "','" & GVProdRec.GetRowCellValue(i, "id_claim_type").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "',note,qty_pcs,price_pc,discount,qty)"
+            Next
         Else 'edit
         End If
     End Sub
@@ -115,6 +121,10 @@
     End Sub
 
     Private Sub GVProdRec_HiddenEditor(sender As Object, e As EventArgs) Handles GVProdRec.HiddenEditor
+
+    End Sub
+
+    Private Sub GVProdRec_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVProdRec.CellValueChanged
         METotSay.Text = ConvertCurrencyToEnglish(GVProdRec.Columns("total_amount").SummaryItem.SummaryValue, "1")
     End Sub
 End Class
