@@ -90,34 +90,53 @@
             FormProdPRWODet.BPickWO.Enabled = False
             Close()
         ElseIf id_pop_up = "2" Then 'Debit Note Receiving
-            Dim date_do As Date = GVProdRec.GetFocusedRowCellValue("est_rec_date")
-            Dim arrive_qc As Date = GVProdRec.GetFocusedRowCellValue("arrive_date")
-            Dim span = arrive_qc - date_do
+            'check first
+            Dim check_dupe As String = "1"
+            For i As Integer = 0 To FormProdDebitNoteDet.GVProdRec.RowCount - 1
+                If GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString = FormProdDebitNoteDet.GVProdRec.GetRowCellValue(i, "id_prod_order_rec").ToString Then
+                    check_dupe = "2"
+                End If
+            Next
 
-            Dim newRow As DataRow = (TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable)).NewRow()
-            newRow("id_prod_debit_note_det") = "0"
-            newRow("id_prod_order_rec") = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
-            newRow("prod_order_rec_number") = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
-            newRow("prod_order_number") = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
-            newRow("design_code") = GVProdRec.GetFocusedRowCellValue("design_code").ToString
-            newRow("name") = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
-            newRow("color") = GVProdRec.GetFocusedRowCellValue("color").ToString
-            newRow("name") = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
-            newRow("qty") = GVProdRec.GetFocusedRowCellValue("sum_qty")
-            newRow("qty_pcs") = GVProdRec.GetFocusedRowCellValue("sum_qty")
-            newRow("delivery_order_number") = GVProdRec.GetFocusedRowCellValue("delivery_order_number").ToString
-            newRow("delivery_order_date") = GVProdRec.GetFocusedRowCellValue("delivery_order_date")
-            newRow("arrive_date") = GVProdRec.GetFocusedRowCellValue("arrive_date")
-            newRow("est_rec_date") = GVProdRec.GetFocusedRowCellValue("est_rec_date")
-            newRow("price_pc") = GVProdRec.GetFocusedRowCellValue("price_pc")
-            newRow("id_claim_type") = "1"
-            newRow("days_late") = span.Days
-            TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable).Rows.Add(newRow)
-            FormProdDebitNoteDet.GCProdRec.RefreshDataSource()
-            FormProdDebitNoteDet.GVProdRec.RefreshData()
-            FormProdDebitNoteDet.GVProdRec.BestFitColumns()
-            FormProdDebitNoteDet.button_check()
-            Close()
+            If check_dupe = "2" Then
+                stopCustom("This receiving already on list.")
+            Else
+                Dim date_do As Date = GVProdRec.GetFocusedRowCellValue("est_rec_date").ToString
+                Dim arrive_qc As Date
+
+                If GVProdRec.GetFocusedRowCellValue("arrive_date").ToString = "" Then
+                    arrive_qc = GVProdRec.GetFocusedRowCellValue("prod_order_rec_date")
+                Else
+                    arrive_qc = GVProdRec.GetFocusedRowCellValue("arrive_date")
+                End If
+
+                Dim span = arrive_qc - date_do
+
+                Dim newRow As DataRow = (TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable)).NewRow()
+                newRow("id_prod_debit_note_det") = "0"
+                newRow("id_prod_order_rec") = GVProdRec.GetFocusedRowCellValue("id_prod_order_rec").ToString
+                newRow("prod_order_rec_number") = GVProdRec.GetFocusedRowCellValue("prod_order_rec_number").ToString
+                newRow("prod_order_number") = GVProdRec.GetFocusedRowCellValue("prod_order_number").ToString
+                newRow("design_code") = GVProdRec.GetFocusedRowCellValue("design_code").ToString
+                newRow("name") = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
+                newRow("color") = GVProdRec.GetFocusedRowCellValue("color").ToString
+                newRow("name") = GVProdRec.GetFocusedRowCellValue("design_display_name").ToString
+                newRow("qty") = GVProdRec.GetFocusedRowCellValue("sum_qty")
+                newRow("qty_pcs") = GVProdRec.GetFocusedRowCellValue("sum_qty")
+                newRow("delivery_order_number") = GVProdRec.GetFocusedRowCellValue("delivery_order_number").ToString
+                newRow("delivery_order_date") = GVProdRec.GetFocusedRowCellValue("delivery_order_date")
+                newRow("arrive_date") = arrive_qc
+                newRow("est_rec_date") = GVProdRec.GetFocusedRowCellValue("est_rec_date")
+                newRow("price_pc") = GVProdRec.GetFocusedRowCellValue("price_pc")
+                newRow("id_claim_type") = "1"
+                newRow("days_late") = span.Days
+                TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable).Rows.Add(newRow)
+                FormProdDebitNoteDet.GCProdRec.RefreshDataSource()
+                FormProdDebitNoteDet.GVProdRec.RefreshData()
+                FormProdDebitNoteDet.GVProdRec.BestFitColumns()
+                FormProdDebitNoteDet.button_check()
+                Close()
+            End If
         End If
     End Sub
 End Class

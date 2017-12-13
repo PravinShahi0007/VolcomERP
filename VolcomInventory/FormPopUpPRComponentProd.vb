@@ -233,7 +233,7 @@
                 newRow("qty") = TEQtyWO.EditValue
                 newRow("type") = "2"
                 newRow("uom") = GVListPurchase.GetFocusedRowCellDisplayText("uom").ToString
-                newRow("price") = GVListPurchase.GetFocusedRowCellDisplayText("price").ToString
+                newRow("price") = TEPriceWO.EditValue
                 newRow("total") = TEAmountWO.EditValue
 
                 TryCast(FormProdPRWODet.GCListPurchase.DataSource, DataTable).Rows.Add(newRow)
@@ -251,7 +251,7 @@
                 FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "code", GVListPurchase.GetFocusedRowCellDisplayText("code").ToString)
                 FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "qty", TEQtyWO.EditValue)
                 FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "type", "2")
-                FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "price", GVListPurchase.GetFocusedRowCellDisplayText("price"))
+                FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "price", TEPriceWO.EditValue)
                 FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "total", TEAmountWO.EditValue)
                 FormProdPRWODet.GVListPurchase.SetRowCellValue(FormProdPRWODet.GVListPurchase.FocusedRowHandle, "uom", GVListPurchase.GetFocusedRowCellDisplayText("uom").ToString)
                 FormProdPRWODet.GVListPurchase.RefreshData()
@@ -413,6 +413,10 @@
     End Sub
 
     Private Sub TEQtyWO_EditValueChanged(sender As Object, e As EventArgs) Handles TEQtyWO.EditValueChanged
+        calculate_wo()
+    End Sub
+
+    Private Sub TEPriceWO_EditValueChanged(sender As Object, e As EventArgs) Handles TEPriceWO.EditValueChanged
         calculate_wo()
     End Sub
 End Class
