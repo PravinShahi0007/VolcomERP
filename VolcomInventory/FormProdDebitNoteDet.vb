@@ -120,11 +120,8 @@
         End If
     End Sub
 
-    Private Sub GVProdRec_HiddenEditor(sender As Object, e As EventArgs) Handles GVProdRec.HiddenEditor
-
-    End Sub
-
     Private Sub GVProdRec_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVProdRec.CellValueChanged
+        GVProdRec.UpdateTotalSummary()
         METotSay.Text = ConvertCurrencyToEnglish(GVProdRec.Columns("total_amount").SummaryItem.SummaryValue, "1")
     End Sub
 End Class

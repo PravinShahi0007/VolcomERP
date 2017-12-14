@@ -335,6 +335,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "qty"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
         '
@@ -427,6 +428,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "days_late"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 12
         '
@@ -447,7 +449,6 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "qty_pcs"
         Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pcs", "{0:N0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 16
@@ -584,6 +585,7 @@ Partial Class FormProdDebitNoteDet
         Me.METotSay.Location = New System.Drawing.Point(47, 34)
         Me.METotSay.Name = "METotSay"
         Me.METotSay.Properties.MaxLength = 100
+        Me.METotSay.Properties.ReadOnly = True
         Me.METotSay.Size = New System.Drawing.Size(354, 51)
         Me.METotSay.TabIndex = 146
         '

@@ -103,6 +103,7 @@
             Else
                 Dim date_do As Date = GVProdRec.GetFocusedRowCellValue("est_rec_date").ToString
                 Dim arrive_qc As Date
+                Dim day_late As Integer = 0
 
                 If GVProdRec.GetFocusedRowCellValue("arrive_date").ToString = "" Then
                     arrive_qc = GVProdRec.GetFocusedRowCellValue("prod_order_rec_date")
@@ -111,6 +112,12 @@
                 End If
 
                 Dim span = arrive_qc - date_do
+
+                If span.Days < 0 Then
+                    day_late = 0
+                Else
+                    day_late = span.Days
+                End If
 
                 Dim newRow As DataRow = (TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable)).NewRow()
                 newRow("id_prod_debit_note_det") = "0"
@@ -129,7 +136,7 @@
                 newRow("est_rec_date") = GVProdRec.GetFocusedRowCellValue("est_rec_date")
                 newRow("price_pc") = GVProdRec.GetFocusedRowCellValue("price_pc")
                 newRow("id_claim_type") = "1"
-                newRow("days_late") = span.Days
+                newRow("days_late") = day_late
                 TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable).Rows.Add(newRow)
                 FormProdDebitNoteDet.GCProdRec.RefreshDataSource()
                 FormProdDebitNoteDet.GVProdRec.RefreshData()
