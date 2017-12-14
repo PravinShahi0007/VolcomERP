@@ -435,7 +435,6 @@
 
     Private Sub BPickReqFrom_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPickReqFrom.Click
         FormPopUpContact.id_pop_up = "31"
-        FormPopUpContact.id_departement = id_departement_user
         FormPopUpContact.ShowDialog()
     End Sub
     '==================== from wo =========================
