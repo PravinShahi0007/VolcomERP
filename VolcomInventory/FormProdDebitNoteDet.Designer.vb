@@ -64,13 +64,15 @@ Partial Class FormProdDebitNoteDet
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnAttachment = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
@@ -78,8 +80,6 @@ Partial Class FormProdDebitNoteDet
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.BDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.METotSay = New DevExpress.XtraEditors.MemoEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -104,6 +104,7 @@ Partial Class FormProdDebitNoteDet
         Me.GroupControl3.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,7 +112,6 @@ Partial Class FormProdDebitNoteDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
-        CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -335,6 +335,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn6.FieldName = "qty"
         Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 4
         '
@@ -427,6 +428,7 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "days_late"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.OptionsColumn.AllowEdit = False
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 12
         '
@@ -447,7 +449,6 @@ Partial Class FormProdDebitNoteDet
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "qty_pcs"
         Me.GridColumnQty.Name = "GridColumnQty"
-        Me.GridColumnQty.OptionsColumn.AllowEdit = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_pcs", "{0:N0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 16
@@ -579,6 +580,23 @@ Partial Class FormProdDebitNoteDet
         Me.PanelControl1.Size = New System.Drawing.Size(412, 97)
         Me.PanelControl1.TabIndex = 8936
         '
+        'METotSay
+        '
+        Me.METotSay.Location = New System.Drawing.Point(47, 34)
+        Me.METotSay.Name = "METotSay"
+        Me.METotSay.Properties.MaxLength = 100
+        Me.METotSay.Properties.ReadOnly = True
+        Me.METotSay.Size = New System.Drawing.Size(354, 51)
+        Me.METotSay.TabIndex = 146
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(10, 36)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(18, 13)
+        Me.LabelControl2.TabIndex = 147
+        Me.LabelControl2.Text = "Say"
+        '
         'LEReportStatus
         '
         Me.LEReportStatus.Enabled = False
@@ -631,6 +649,18 @@ Partial Class FormProdDebitNoteDet
         Me.GroupControl1.Size = New System.Drawing.Size(1010, 40)
         Me.GroupControl1.TabIndex = 192
         '
+        'BtnAttachment
+        '
+        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAttachment.Enabled = False
+        Me.BtnAttachment.ImageIndex = 10
+        Me.BtnAttachment.ImageList = Me.LargeImageCollection
+        Me.BtnAttachment.Location = New System.Drawing.Point(686, 2)
+        Me.BtnAttachment.Name = "BtnAttachment"
+        Me.BtnAttachment.Size = New System.Drawing.Size(97, 36)
+        Me.BtnAttachment.TabIndex = 20
+        Me.BtnAttachment.Text = "Attachment"
+        '
         'LargeImageCollection
         '
         Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
@@ -646,18 +676,6 @@ Partial Class FormProdDebitNoteDet
         Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
         Me.LargeImageCollection.Images.SetKeyName(10, "attachment-icon.png")
-        '
-        'BtnAttachment
-        '
-        Me.BtnAttachment.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAttachment.Enabled = False
-        Me.BtnAttachment.ImageIndex = 10
-        Me.BtnAttachment.ImageList = Me.LargeImageCollection
-        Me.BtnAttachment.Location = New System.Drawing.Point(686, 2)
-        Me.BtnAttachment.Name = "BtnAttachment"
-        Me.BtnAttachment.Size = New System.Drawing.Size(97, 36)
-        Me.BtnAttachment.TabIndex = 20
-        Me.BtnAttachment.Text = "Attachment"
         '
         'BPrint
         '
@@ -738,22 +756,6 @@ Partial Class FormProdDebitNoteDet
         Me.BAdd.TabIndex = 17
         Me.BAdd.Text = "Add"
         '
-        'METotSay
-        '
-        Me.METotSay.Location = New System.Drawing.Point(47, 34)
-        Me.METotSay.Name = "METotSay"
-        Me.METotSay.Properties.MaxLength = 100
-        Me.METotSay.Size = New System.Drawing.Size(354, 51)
-        Me.METotSay.TabIndex = 146
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(10, 36)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(18, 13)
-        Me.LabelControl2.TabIndex = 147
-        Me.LabelControl2.Text = "Say"
-        '
         'FormProdDebitNoteDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -797,6 +799,7 @@ Partial Class FormProdDebitNoteDet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
+        CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -804,7 +807,6 @@ Partial Class FormProdDebitNoteDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
-        CType(Me.METotSay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
