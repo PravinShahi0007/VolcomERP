@@ -125,7 +125,7 @@
    
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
-        FormFGCodeReplaceStoreSingle.ShowDialog()
+        FormFGCodeReplaceStoreAdd.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 

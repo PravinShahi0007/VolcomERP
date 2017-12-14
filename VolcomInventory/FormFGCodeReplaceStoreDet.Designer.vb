@@ -19,50 +19,51 @@ Partial Class FormFGCodeReplaceStoreDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGCodeReplaceStoreDet))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.EPForm = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl
-        Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl
-        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl
-        Me.DEForm = New DevExpress.XtraEditors.TextEdit
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnTest = New DevExpress.XtraEditors.SimpleButton
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton
-        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl
-        Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl
-        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl
-        Me.GroupControlListItem = New DevExpress.XtraEditors.GroupControl
-        Me.GCItemList = New DevExpress.XtraGrid.GridControl
-        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDelNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnStore = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCountingStart = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCountingEnd = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdPLSalesOrderDelDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdDet = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl
-        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton
+        Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelHeaderLeft = New DevExpress.XtraEditors.PanelControl()
+        Me.TxtNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEForm = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnTest = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.GroupControlListItem = New DevExpress.XtraEditors.GroupControl()
+        Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDelNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStore = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStoreNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCountingStart = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCountingEnd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdPLSalesOrderDelDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdSample = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdComp = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -318,18 +319,18 @@ Partial Class FormFGCodeReplaceStoreDet
         'GCItemList
         '
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemList.Location = New System.Drawing.Point(22, 37)
+        Me.GCItemList.Location = New System.Drawing.Point(20, 37)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(750, 282)
+        Me.GCItemList.Size = New System.Drawing.Size(752, 282)
         Me.GCItemList.TabIndex = 3
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnColor, Me.GridColumnDelNumber, Me.GridColumnStore, Me.GridColumnCountingStart, Me.GridColumnCountingEnd, Me.GridColumn1, Me.GridColumnIdPLSalesOrderDelDet, Me.GridColumnIdSample, Me.GridColumnIdDet, Me.GridColumnIdComp})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnColor, Me.GridColumnDelNumber, Me.GridColumnStore, Me.GridColumnStoreNumber, Me.GridColumnCountingStart, Me.GridColumnCountingEnd, Me.GridColumn1, Me.GridColumnIdPLSalesOrderDelDet, Me.GridColumnIdSample, Me.GridColumnIdDet, Me.GridColumnIdComp})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -347,7 +348,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GridColumnNo.OptionsColumn.ReadOnly = True
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 43
+        Me.GridColumnNo.Width = 47
         '
         'GridColumnCode
         '
@@ -357,7 +358,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GridColumnCode.OptionsColumn.ReadOnly = True
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 3
-        Me.GridColumnCode.Width = 74
+        Me.GridColumnCode.Width = 178
         '
         'GridColumnName
         '
@@ -368,7 +369,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 4
-        Me.GridColumnName.Width = 142
+        Me.GridColumnName.Width = 342
         '
         'GridColumnSize
         '
@@ -382,7 +383,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 5
-        Me.GridColumnSize.Width = 57
+        Me.GridColumnSize.Width = 64
         '
         'GridColumnColor
         '
@@ -390,9 +391,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.OptionsColumn.ReadOnly = True
-        Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 6
-        Me.GridColumnColor.Width = 56
+        Me.GridColumnColor.Width = 124
         '
         'GridColumnDelNumber
         '
@@ -400,16 +399,24 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GridColumnDelNumber.FieldName = "pl_sales_order_del_number"
         Me.GridColumnDelNumber.Name = "GridColumnDelNumber"
         Me.GridColumnDelNumber.OptionsColumn.ReadOnly = True
-        Me.GridColumnDelNumber.Visible = True
-        Me.GridColumnDelNumber.VisibleIndex = 1
         '
         'GridColumnStore
         '
-        Me.GridColumnStore.Caption = "Store"
+        Me.GridColumnStore.Caption = "Store Name"
         Me.GridColumnStore.FieldName = "comp_name"
         Me.GridColumnStore.Name = "GridColumnStore"
         Me.GridColumnStore.Visible = True
         Me.GridColumnStore.VisibleIndex = 2
+        Me.GridColumnStore.Width = 180
+        '
+        'GridColumnStoreNumber
+        '
+        Me.GridColumnStoreNumber.Caption = "Store#"
+        Me.GridColumnStoreNumber.FieldName = "comp_number"
+        Me.GridColumnStoreNumber.Name = "GridColumnStoreNumber"
+        Me.GridColumnStoreNumber.Visible = True
+        Me.GridColumnStoreNumber.VisibleIndex = 1
+        Me.GridColumnStoreNumber.Width = 180
         '
         'GridColumnCountingStart
         '
@@ -418,7 +425,8 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GridColumnCountingStart.Name = "GridColumnCountingStart"
         Me.GridColumnCountingStart.OptionsColumn.ReadOnly = True
         Me.GridColumnCountingStart.Visible = True
-        Me.GridColumnCountingStart.VisibleIndex = 8
+        Me.GridColumnCountingStart.VisibleIndex = 7
+        Me.GridColumnCountingStart.Width = 243
         '
         'GridColumnCountingEnd
         '
@@ -426,7 +434,8 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GridColumnCountingEnd.FieldName = "counting_end"
         Me.GridColumnCountingEnd.Name = "GridColumnCountingEnd"
         Me.GridColumnCountingEnd.Visible = True
-        Me.GridColumnCountingEnd.VisibleIndex = 9
+        Me.GridColumnCountingEnd.VisibleIndex = 8
+        Me.GridColumnCountingEnd.Width = 264
         '
         'GridColumn1
         '
@@ -434,7 +443,8 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GridColumn1.FieldName = "fg_code_replace_store_det_qty"
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 7
+        Me.GridColumn1.VisibleIndex = 6
+        Me.GridColumn1.Width = 118
         '
         'GridColumnIdPLSalesOrderDelDet
         '
@@ -467,7 +477,7 @@ Partial Class FormFGCodeReplaceStoreDet
         'RepositoryItemSpinEdit1
         '
         Me.RepositoryItemSpinEdit1.AutoHeight = False
-        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton})
+        Me.RepositoryItemSpinEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
         Me.RepositoryItemSpinEdit1.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
@@ -479,9 +489,9 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.PanelControlNav.Controls.Add(Me.BtnEdit)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(22, 2)
+        Me.PanelControlNav.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(750, 35)
+        Me.PanelControlNav.Size = New System.Drawing.Size(752, 35)
         Me.PanelControlNav.TabIndex = 1
         '
         'BtnDel
@@ -489,9 +499,9 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.ImageIndex = 1
         Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(477, 0)
+        Me.BtnDel.Location = New System.Drawing.Point(469, 0)
         Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(91, 35)
+        Me.BtnDel.Size = New System.Drawing.Size(101, 35)
         Me.BtnDel.TabIndex = 5
         Me.BtnDel.Text = "Delete Item"
         '
@@ -500,7 +510,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnEdit.ImageIndex = 2
         Me.BtnEdit.ImageList = Me.LargeImageCollection
-        Me.BtnEdit.Location = New System.Drawing.Point(568, 0)
+        Me.BtnEdit.Location = New System.Drawing.Point(570, 0)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(91, 35)
         Me.BtnEdit.TabIndex = 4
@@ -512,7 +522,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.ImageIndex = 0
         Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(659, 0)
+        Me.BtnAdd.Location = New System.Drawing.Point(661, 0)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(91, 35)
         Me.BtnAdd.TabIndex = 3
@@ -532,6 +542,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Finished Goods Code Replacement"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
@@ -603,4 +614,5 @@ Partial Class FormFGCodeReplaceStoreDet
     Friend WithEvents GridColumnCountingEnd As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStoreNumber As DevExpress.XtraGrid.Columns.GridColumn
 End Class
