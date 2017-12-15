@@ -31,17 +31,19 @@ Partial Class FormFGCodeReplaceStoreAdd
         Me.TxtAvailable = New DevExpress.XtraEditors.TextEdit()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
+        Me.PEView = New DevExpress.XtraEditors.PictureEdit()
         CType(Me.TxtStoreCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStoreName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDesignName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAvailable.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(18, 19)
+        Me.LabelControl1.Location = New System.Drawing.Point(164, 24)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl1.TabIndex = 0
@@ -49,7 +51,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         '
         'TxtStoreCode
         '
-        Me.TxtStoreCode.Location = New System.Drawing.Point(102, 16)
+        Me.TxtStoreCode.Location = New System.Drawing.Point(248, 21)
         Me.TxtStoreCode.Name = "TxtStoreCode"
         Me.TxtStoreCode.Size = New System.Drawing.Size(56, 20)
         Me.TxtStoreCode.TabIndex = 1
@@ -57,14 +59,14 @@ Partial Class FormFGCodeReplaceStoreAdd
         'TxtStoreName
         '
         Me.TxtStoreName.Enabled = False
-        Me.TxtStoreName.Location = New System.Drawing.Point(160, 16)
+        Me.TxtStoreName.Location = New System.Drawing.Point(306, 21)
         Me.TxtStoreName.Name = "TxtStoreName"
         Me.TxtStoreName.Size = New System.Drawing.Size(225, 20)
         Me.TxtStoreName.TabIndex = 2
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(18, 45)
+        Me.LabelControl2.Location = New System.Drawing.Point(164, 50)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(65, 13)
         Me.LabelControl2.TabIndex = 3
@@ -72,7 +74,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         '
         'TxtDesignCode
         '
-        Me.TxtDesignCode.Location = New System.Drawing.Point(102, 42)
+        Me.TxtDesignCode.Location = New System.Drawing.Point(248, 47)
         Me.TxtDesignCode.Name = "TxtDesignCode"
         Me.TxtDesignCode.Size = New System.Drawing.Size(283, 20)
         Me.TxtDesignCode.TabIndex = 4
@@ -80,14 +82,14 @@ Partial Class FormFGCodeReplaceStoreAdd
         'TxtDesignName
         '
         Me.TxtDesignName.Enabled = False
-        Me.TxtDesignName.Location = New System.Drawing.Point(102, 68)
+        Me.TxtDesignName.Location = New System.Drawing.Point(248, 73)
         Me.TxtDesignName.Name = "TxtDesignName"
         Me.TxtDesignName.Size = New System.Drawing.Size(283, 20)
         Me.TxtDesignName.TabIndex = 5
         '
         'TxtQty
         '
-        Me.TxtQty.Location = New System.Drawing.Point(102, 94)
+        Me.TxtQty.Location = New System.Drawing.Point(248, 99)
         Me.TxtQty.Name = "TxtQty"
         Me.TxtQty.Properties.DisplayFormat.FormatString = "N0"
         Me.TxtQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -98,7 +100,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(18, 97)
+        Me.LabelControl3.Location = New System.Drawing.Point(164, 102)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(42, 13)
         Me.LabelControl3.TabIndex = 7
@@ -106,7 +108,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(216, 97)
+        Me.LabelControl4.Location = New System.Drawing.Point(362, 102)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(43, 13)
         Me.LabelControl4.TabIndex = 8
@@ -115,7 +117,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         'TxtAvailable
         '
         Me.TxtAvailable.Enabled = False
-        Me.TxtAvailable.Location = New System.Drawing.Point(265, 94)
+        Me.TxtAvailable.Location = New System.Drawing.Point(411, 99)
         Me.TxtAvailable.Name = "TxtAvailable"
         Me.TxtAvailable.Properties.DisplayFormat.FormatString = "N0"
         Me.TxtAvailable.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -124,7 +126,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         '
         'BtnAdd
         '
-        Me.BtnAdd.Location = New System.Drawing.Point(310, 124)
+        Me.BtnAdd.Location = New System.Drawing.Point(456, 125)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 23)
         Me.BtnAdd.TabIndex = 10
@@ -132,17 +134,30 @@ Partial Class FormFGCodeReplaceStoreAdd
         '
         'BtnClose
         '
-        Me.BtnClose.Location = New System.Drawing.Point(231, 124)
+        Me.BtnClose.Location = New System.Drawing.Point(375, 125)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(75, 23)
         Me.BtnClose.TabIndex = 11
         Me.BtnClose.Text = "Close"
         '
+        'PEView
+        '
+        Me.PEView.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PEView.Enabled = False
+        Me.PEView.Location = New System.Drawing.Point(0, 0)
+        Me.PEView.Name = "PEView"
+        Me.PEView.Properties.LookAndFeel.SkinName = "Office 2010 Silver"
+        Me.PEView.Properties.ShowMenu = False
+        Me.PEView.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        Me.PEView.Size = New System.Drawing.Size(145, 183)
+        Me.PEView.TabIndex = 10002
+        '
         'FormFGCodeReplaceStoreAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(408, 157)
+        Me.ClientSize = New System.Drawing.Size(556, 183)
+        Me.Controls.Add(Me.PEView)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me.BtnAdd)
         Me.Controls.Add(Me.TxtAvailable)
@@ -167,6 +182,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         CType(Me.TxtDesignName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAvailable.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -184,4 +200,5 @@ Partial Class FormFGCodeReplaceStoreAdd
     Friend WithEvents TxtAvailable As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PEView As DevExpress.XtraEditors.PictureEdit
 End Class

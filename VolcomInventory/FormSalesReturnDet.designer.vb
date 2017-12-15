@@ -23,6 +23,7 @@ Partial Class FormSalesReturnDet
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormSalesReturnDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelOLStoreOrder = New DevExpress.XtraEditors.LabelControl()
         Me.TxtOLStoreOrder = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtReturnType = New DevExpress.XtraEditors.TextEdit()
@@ -198,7 +199,6 @@ Partial Class FormSalesReturnDet
         Me.BStopProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BScanProb = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddManual = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelOLStoreOrder = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -311,6 +311,14 @@ Partial Class FormSalesReturnDet
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(303, 143)
         Me.PanelControlTopRight.TabIndex = 10009
+        '
+        'LabelOLStoreOrder
+        '
+        Me.LabelOLStoreOrder.Location = New System.Drawing.Point(7, 87)
+        Me.LabelOLStoreOrder.Name = "LabelOLStoreOrder"
+        Me.LabelOLStoreOrder.Size = New System.Drawing.Size(81, 13)
+        Me.LabelOLStoreOrder.TabIndex = 10006
+        Me.LabelOLStoreOrder.Text = "OL Store Order#"
         '
         'TxtOLStoreOrder
         '
@@ -883,7 +891,7 @@ Partial Class FormSalesReturnDet
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.XTCReturn)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
         Me.SplitContainerControl1.Size = New System.Drawing.Size(905, 376)
-        Me.SplitContainerControl1.SplitterPosition = 217
+        Me.SplitContainerControl1.SplitterPosition = 142
         Me.SplitContainerControl1.TabIndex = 188
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
@@ -896,7 +904,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlListItem.Enabled = False
         Me.GroupControlListItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListItem.Name = "GroupControlListItem"
-        Me.GroupControlListItem.Size = New System.Drawing.Size(905, 217)
+        Me.GroupControlListItem.Size = New System.Drawing.Size(905, 142)
         Me.GroupControlListItem.TabIndex = 3
         Me.GroupControlListItem.Text = "Return Item"
         '
@@ -908,7 +916,7 @@ Partial Class FormSalesReturnDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(883, 178)
+        Me.GCItemList.Size = New System.Drawing.Size(883, 103)
         Me.GCItemList.TabIndex = 5
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -1244,7 +1252,7 @@ Partial Class FormSalesReturnDet
         Me.XTCReturn.Location = New System.Drawing.Point(0, 0)
         Me.XTCReturn.Name = "XTCReturn"
         Me.XTCReturn.SelectedTabPage = Me.XTPScan
-        Me.XTCReturn.Size = New System.Drawing.Size(905, 154)
+        Me.XTCReturn.Size = New System.Drawing.Size(905, 229)
         Me.XTCReturn.TabIndex = 0
         Me.XTCReturn.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPScan, Me.XTPStorage})
         '
@@ -1252,7 +1260,7 @@ Partial Class FormSalesReturnDet
         '
         Me.XTPScan.Controls.Add(Me.GroupControlScannedItem)
         Me.XTPScan.Name = "XTPScan"
-        Me.XTPScan.Size = New System.Drawing.Size(899, 126)
+        Me.XTPScan.Size = New System.Drawing.Size(899, 201)
         Me.XTPScan.Text = "Return Product"
         '
         'GroupControlScannedItem
@@ -1264,7 +1272,7 @@ Partial Class FormSalesReturnDet
         Me.GroupControlScannedItem.Enabled = False
         Me.GroupControlScannedItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlScannedItem.Name = "GroupControlScannedItem"
-        Me.GroupControlScannedItem.Size = New System.Drawing.Size(899, 126)
+        Me.GroupControlScannedItem.Size = New System.Drawing.Size(899, 201)
         Me.GroupControlScannedItem.TabIndex = 3
         Me.GroupControlScannedItem.Text = "Scanned Code"
         '
@@ -1275,7 +1283,7 @@ Partial Class FormSalesReturnDet
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit2, Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(877, 89)
+        Me.GCBarcode.Size = New System.Drawing.Size(877, 164)
         Me.GCBarcode.TabIndex = 6
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
@@ -2038,14 +2046,6 @@ Partial Class FormSalesReturnDet
         Me.BtnAddManual.Size = New System.Drawing.Size(109, 36)
         Me.BtnAddManual.TabIndex = 22
         Me.BtnAddManual.Text = "Add Manually"
-        '
-        'LabelOLStoreOrder
-        '
-        Me.LabelOLStoreOrder.Location = New System.Drawing.Point(7, 87)
-        Me.LabelOLStoreOrder.Name = "LabelOLStoreOrder"
-        Me.LabelOLStoreOrder.Size = New System.Drawing.Size(81, 13)
-        Me.LabelOLStoreOrder.TabIndex = 10006
-        Me.LabelOLStoreOrder.Text = "OL Store Order#"
         '
         'FormSalesReturnDet
         '

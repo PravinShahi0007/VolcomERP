@@ -64,6 +64,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -485,6 +486,7 @@ Partial Class FormFGCodeReplaceStoreDet
         'PanelControlNav
         '
         Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlNav.Controls.Add(Me.BtnImportExcel)
         Me.PanelControlNav.Controls.Add(Me.BtnDel)
         Me.PanelControlNav.Controls.Add(Me.BtnEdit)
         Me.PanelControlNav.Controls.Add(Me.BtnAdd)
@@ -504,6 +506,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnDel.Size = New System.Drawing.Size(101, 35)
         Me.BtnDel.TabIndex = 5
         Me.BtnDel.Text = "Delete Item"
+        Me.BtnDel.Visible = False
         '
         'BtnEdit
         '
@@ -527,6 +530,19 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnAdd.Size = New System.Drawing.Size(91, 35)
         Me.BtnAdd.TabIndex = 3
         Me.BtnAdd.Text = "Add Item"
+        Me.BtnAdd.Visible = False
+        '
+        'BtnImportExcel
+        '
+        Me.BtnImportExcel.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnImportExcel.Image = CType(resources.GetObject("BtnImportExcel.Image"), System.Drawing.Image)
+        Me.BtnImportExcel.ImageIndex = 1
+        Me.BtnImportExcel.ImageList = Me.LargeImageCollection
+        Me.BtnImportExcel.Location = New System.Drawing.Point(0, 0)
+        Me.BtnImportExcel.Name = "BtnImportExcel"
+        Me.BtnImportExcel.Size = New System.Drawing.Size(139, 35)
+        Me.BtnImportExcel.TabIndex = 6
+        Me.BtnImportExcel.Text = "Import From Excel"
         '
         'FormFGCodeReplaceStoreDet
         '
@@ -615,4 +631,5 @@ Partial Class FormFGCodeReplaceStoreDet
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStoreNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnImportExcel As DevExpress.XtraEditors.SimpleButton
 End Class
