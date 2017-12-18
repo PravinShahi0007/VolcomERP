@@ -1,5 +1,6 @@
 ﻿Public Class FormSalesReturnSearch
     Public dt As DataTable
+    Public id_pop_up As String = "-1"
 
     Private Sub FormSalesReturnSearch_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         GCData.DataSource = dt
@@ -10,13 +11,22 @@
     Sub choose()
         If GVData.RowCount > 0 And GVData.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
-            FormSalesReturnDetProblem.TxtSearch.Text = ""
-            FormSalesReturnDetProblem.TxtCode.Text = GVData.GetFocusedRowCellValue("design_code").ToString
-            FormSalesReturnDetProblem.TxtBarcode.Text = GVData.GetFocusedRowCellValue("product_code").ToString
-            FormSalesReturnDetProblem.TxtSize.Text = GVData.GetFocusedRowCellValue("size").ToString
-            FormSalesReturnDetProblem.TxtDesign.Text = GVData.GetFocusedRowCellValue("name").ToString
-            FormSalesReturnDetProblem.id_product = GVData.GetFocusedRowCellValue("id_product").ToString
-            Close()
+            If id_pop_up = "-1" Then
+                FormSalesReturnDetProblem.TxtSearch.Text = ""
+                FormSalesReturnDetProblem.TxtCode.Text = GVData.GetFocusedRowCellValue("design_code").ToString
+                FormSalesReturnDetProblem.TxtBarcode.Text = GVData.GetFocusedRowCellValue("product_code").ToString
+                FormSalesReturnDetProblem.TxtSize.Text = GVData.GetFocusedRowCellValue("size").ToString
+                FormSalesReturnDetProblem.TxtDesign.Text = GVData.GetFocusedRowCellValue("name").ToString
+                FormSalesReturnDetProblem.id_product = GVData.GetFocusedRowCellValue("id_product").ToString
+                Close()
+            ElseIf id_pop_up = "1" Then
+                FormFGCodeReplaceStoreAdd.TxtDesignCode.Text = GVData.GetFocusedRowCellValue("product_code").ToString
+                FormFGCodeReplaceStoreAdd.TxtDesignName.Text = GVData.GetFocusedRowCellValue("name").ToString
+                FormFGCodeReplaceStoreAdd.TxtSize.Text = GVData.GetFocusedRowCellValue("size").ToString
+                FormFGCodeReplaceStoreAdd.id_product = GVData.GetFocusedRowCellValue("id_product").ToString
+                FormFGCodeReplaceStoreAdd.id_design = GVData.GetFocusedRowCellValue("id_design").ToString
+                Close()
+            End If
             Cursor = Cursors.Default
         End If
     End Sub

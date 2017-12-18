@@ -1,10 +1,14 @@
 ﻿Public Class FormFGCodeReplaceStoreAdd
     Dim id_drawer_def As String = "-1"
-    Dim id_product As String = "-1"
+    Dim id_comp As String = "-1"
+    Public id_product As String = "-1"
+    Public id_design As String = "-1"
+
     Private Sub FormFGCodeReplaceStoreAdd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ActiveControl = TxtStoreCode
         TxtQty.EditValue = 0
         TxtAvailable.EditValue = 0
+        pre_viewImages("2", PEView, id_design, False)
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
@@ -15,29 +19,38 @@
         Dispose()
     End Sub
 
-    Sub resetInput(ByVal include_comp As Boolean, ByVal include_design As Boolean)
+    Sub resetInputStore(ByVal include_code As Boolean)
         id_drawer_def = "-1"
-        id_product = "-1"
-        If include_comp Then
+        id_comp = "-1"
+        If include_code Then
             TxtStoreCode.Text = ""
         End If
         TxtStoreName.Text = ""
-        If include_design Then
+        TxtQty.EditValue = 0
+        TxtAvailable.EditValue = 0
+    End Sub
+
+    Sub resetInputDesign(ByVal include_code As Boolean)
+        id_product = "-1"
+        id_design = "-1"
+        If include_code Then
             TxtDesignCode.Text = ""
         End If
         TxtDesignName.Text = ""
-        TxtQty.EditValue = 0
-        TxtAvailable.EditValue = 0
+        TxtSize.Text = ""
+        PEView.EditValue = Nothing
+        'pre_viewImages("2", PEView, id_design, False)
     End Sub
 
     Private Sub TxtStoreCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtStoreCode.KeyDown
         If e.KeyCode = Keys.Enter Then
             Dim code As String = addSlashes(TxtStoreCode.Text)
-            Dim data As DataTable = get_company_by_code(code, "AND comp.id_comp_cat = 6 ")
+            Dim data As DataTable = get_company_by_code(code, "AND (comp.id_comp_cat = 6 OR comp.id_comp_cat =5) ")
             If data.Rows.Count > 0 Then
                 TxtStoreCode.Text = data.Rows(0)("comp_number").ToString
                 TxtStoreName.Text = data.Rows(0)("comp_name").ToString
                 id_drawer_def = data.Rows(0)("id_drawer_def").ToString
+                id_comp = data.Rows(0)("id_comp").ToString
                 TxtDesignCode.Focus()
             Else
                 stopCustom("Store not found")
@@ -45,27 +58,39 @@
                 TxtStoreCode.Focus()
             End If
         Else
-            resetInput(False, True)
+            resetInputStore(False)
         End If
     End Sub
 
     Private Sub TxtDesignCode_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDesignCode.KeyDown
         If e.KeyCode = Keys.Enter Then
-            Dim code As String = addSlashes(TxtDesignCode.Text)
-            Dim data As DataTable = execute_query("SELECT * FROM tb_m_product p WHERE p.product_full_code='" + code + "' ", -1, True, "", "", "", "")
+            Dim keyword As String = addSlashes(TxtDesignCode.Text)
+            Dim query As String = "SELECT p.id_product,p.id_design, d.design_code, p.product_full_code AS `product_code`,p.product_full_code AS `code`,
+            d.design_display_name AS `name`, cd.code_detail_name AS `size`, d.is_old_design
+            FROM tb_m_product p
+            INNER JOIN tb_m_product_code pc ON pc.id_product = p.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = pc.id_code_detail
+            INNER JOIN tb_m_design d ON d.id_design = p.id_design AND d.id_active=1
+            WHERE p.product_full_code LIKE '%" + keyword + "%' OR d.design_code LIKE '%" + keyword + "%'  "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             If data.Rows.Count > 0 Then
-                TxtDesignCode.Text = data.Rows(0)("product_full_code").ToString
-                TxtDesignName.Text = data.Rows(0)("product_name").ToString
-                id_product = data.Rows(0)("id_product").ToString
-                getStock()
-                TxtQty.Focus()
+                FormSalesReturnSearch.id_pop_up = "1"
+                FormSalesReturnSearch.dt = data
+                FormSalesReturnSearch.ShowDialog()
+                If id_product <> "-1" Then
+                    pre_viewImages("2", PEView, id_design, False)
+                    getStock()
+                    TxtQty.Focus()
+                Else
+                    TxtDesignCode.Focus()
+                End If
             Else
-                stopCustom("Store not found")
+                stopCustom("Data not found")
                 TxtDesignCode.Text = ""
                 TxtDesignCode.Focus()
             End If
         Else
-            resetInput(True, False)
+            resetInputDesign(False)
         End If
     End Sub
 
@@ -83,24 +108,57 @@
     End Sub
 
     Private Sub TxtQty_EditValueChanged(sender As Object, e As EventArgs) Handles TxtQty.EditValueChanged
-        If TxtQty.EditValue > TxtAvailable.EditValue Then
-            stopCustom("Can't exceed " + TxtAvailable.EditValue.ToString)
-            TxtQty.EditValue = 0
-        End If
+
     End Sub
 
 
     Private Sub TxtQty_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtQty.KeyDown
         If e.KeyCode = Keys.Enter Then
-            BtnAdd.Focus()
+            If TxtQty.EditValue > TxtAvailable.EditValue Then
+                stopCustom("Can't exceed " + TxtAvailable.EditValue.ToString)
+                TxtQty.EditValue = 0
+                TxtQty.Focus()
+            Else
+                BtnAdd.Focus()
+            End If
         End If
     End Sub
 
     Private Sub BtnAdd_Click(sender As Object, e As EventArgs) Handles BtnAdd.Click
-        If id_drawer_def = "-1" Or id_product = "-1" Or TxtQty.EditValue = 0 Then
-            stopCustom("Input can't blank. ")
-        Else
+        makeSafeGV(FormFGCodeReplaceStoreDet.GVItemList)
+        Dim cond_duplicate As Boolean = False
+        FormFGCodeReplaceStoreDet.GVItemList.ActiveFilterString = "[id_comp]='" + id_comp + "' AND [id_product]='" + id_product + "' "
+        If FormFGCodeReplaceStoreDet.GVItemList.RowCount > 0 Then
+            cond_duplicate = True
+        End If
+        FormFGCodeReplaceStoreDet.GVItemList.ActiveFilterString = ""
 
+        If id_drawer_def = " - 1" Or id_product = "-1" Or TxtQty.EditValue = 0 Then
+            stopCustom("Input can't blank. ")
+        ElseIf TxtQty.EditValue > TxtAvailable.EditValue Then
+            stopCustom("Can't exceed " + TxtAvailable.EditValue.ToString)
+        ElseIf cond_duplicate Then
+            stopCustom("Data already exist !")
+        Else
+            Dim newRow As DataRow = (TryCast(FormFGCodeReplaceStoreDet.GCItemList.DataSource, DataTable)).NewRow()
+            newRow("code") = TxtDesignCode.Text
+            newRow("name") = TxtDesignName.Text
+            newRow("size") = TxtSize.Text
+            newRow("pl_sales_order_del_number") = ""
+            newRow("id_comp") = id_comp
+            newRow("comp_name") = TxtStoreName.Text
+            newRow("comp_number") = TxtStoreCode.Text
+            newRow("counting_start") = "0000"
+            newRow("counting_end") = "0000"
+            newRow("fg_code_replace_store_det_qty") = TxtQty.EditValue
+            newRow("id_product") = id_product
+            newRow("id_fg_code_replace_store_det") = "0"
+            TryCast(FormFGCodeReplaceStoreDet.GCItemList.DataSource, DataTable).Rows.Add(newRow)
+            FormFGCodeReplaceStoreDet.GCItemList.RefreshDataSource()
+            FormFGCodeReplaceStoreDet.GVItemList.RefreshData()
+            resetInputStore(True)
+            resetInputDesign(True)
+            ActiveControl = TxtStoreCode
         End If
     End Sub
 End Class

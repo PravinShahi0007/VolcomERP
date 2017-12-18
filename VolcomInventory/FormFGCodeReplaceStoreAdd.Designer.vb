@@ -32,6 +32,9 @@ Partial Class FormFGCodeReplaceStoreAdd
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.PEView = New DevExpress.XtraEditors.PictureEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TxtSize = New DevExpress.XtraEditors.TextEdit()
         CType(Me.TxtStoreCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtStoreName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -39,19 +42,20 @@ Partial Class FormFGCodeReplaceStoreAdd
         CType(Me.TxtQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtAvailable.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
         '
         Me.LabelControl1.Location = New System.Drawing.Point(164, 24)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "Store Code"
+        Me.LabelControl1.Text = "Account"
         '
         'TxtStoreCode
         '
-        Me.TxtStoreCode.Location = New System.Drawing.Point(248, 21)
+        Me.TxtStoreCode.Location = New System.Drawing.Point(232, 21)
         Me.TxtStoreCode.Name = "TxtStoreCode"
         Me.TxtStoreCode.Size = New System.Drawing.Size(56, 20)
         Me.TxtStoreCode.TabIndex = 1
@@ -59,7 +63,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         'TxtStoreName
         '
         Me.TxtStoreName.Enabled = False
-        Me.TxtStoreName.Location = New System.Drawing.Point(306, 21)
+        Me.TxtStoreName.Location = New System.Drawing.Point(290, 21)
         Me.TxtStoreName.Name = "TxtStoreName"
         Me.TxtStoreName.Size = New System.Drawing.Size(225, 20)
         Me.TxtStoreName.TabIndex = 2
@@ -68,28 +72,30 @@ Partial Class FormFGCodeReplaceStoreAdd
         '
         Me.LabelControl2.Location = New System.Drawing.Point(164, 50)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl2.TabIndex = 3
-        Me.LabelControl2.Text = "Product Code"
+        Me.LabelControl2.Text = "Code"
         '
         'TxtDesignCode
         '
-        Me.TxtDesignCode.Location = New System.Drawing.Point(248, 47)
+        Me.TxtDesignCode.EditValue = ""
+        Me.TxtDesignCode.Location = New System.Drawing.Point(232, 47)
         Me.TxtDesignCode.Name = "TxtDesignCode"
-        Me.TxtDesignCode.Size = New System.Drawing.Size(283, 20)
+        Me.TxtDesignCode.Size = New System.Drawing.Size(202, 20)
         Me.TxtDesignCode.TabIndex = 4
         '
         'TxtDesignName
         '
+        Me.TxtDesignName.EditValue = ""
         Me.TxtDesignName.Enabled = False
-        Me.TxtDesignName.Location = New System.Drawing.Point(248, 73)
+        Me.TxtDesignName.Location = New System.Drawing.Point(232, 73)
         Me.TxtDesignName.Name = "TxtDesignName"
         Me.TxtDesignName.Size = New System.Drawing.Size(283, 20)
         Me.TxtDesignName.TabIndex = 5
         '
         'TxtQty
         '
-        Me.TxtQty.Location = New System.Drawing.Point(248, 99)
+        Me.TxtQty.Location = New System.Drawing.Point(232, 99)
         Me.TxtQty.Name = "TxtQty"
         Me.TxtQty.Properties.DisplayFormat.FormatString = "N0"
         Me.TxtQty.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -108,7 +114,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(362, 102)
+        Me.LabelControl4.Location = New System.Drawing.Point(346, 102)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(43, 13)
         Me.LabelControl4.TabIndex = 8
@@ -117,7 +123,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         'TxtAvailable
         '
         Me.TxtAvailable.Enabled = False
-        Me.TxtAvailable.Location = New System.Drawing.Point(411, 99)
+        Me.TxtAvailable.Location = New System.Drawing.Point(395, 99)
         Me.TxtAvailable.Name = "TxtAvailable"
         Me.TxtAvailable.Properties.DisplayFormat.FormatString = "N0"
         Me.TxtAvailable.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -126,7 +132,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         '
         'BtnAdd
         '
-        Me.BtnAdd.Location = New System.Drawing.Point(456, 125)
+        Me.BtnAdd.Location = New System.Drawing.Point(440, 125)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(75, 23)
         Me.BtnAdd.TabIndex = 10
@@ -134,7 +140,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         '
         'BtnClose
         '
-        Me.BtnClose.Location = New System.Drawing.Point(375, 125)
+        Me.BtnClose.Location = New System.Drawing.Point(359, 125)
         Me.BtnClose.Name = "BtnClose"
         Me.BtnClose.Size = New System.Drawing.Size(75, 23)
         Me.BtnClose.TabIndex = 11
@@ -143,7 +149,6 @@ Partial Class FormFGCodeReplaceStoreAdd
         'PEView
         '
         Me.PEView.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PEView.Enabled = False
         Me.PEView.Location = New System.Drawing.Point(0, 0)
         Me.PEView.Name = "PEView"
         Me.PEView.Properties.LookAndFeel.SkinName = "Office 2010 Silver"
@@ -152,11 +157,38 @@ Partial Class FormFGCodeReplaceStoreAdd
         Me.PEView.Size = New System.Drawing.Size(145, 183)
         Me.PEView.TabIndex = 10002
         '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(164, 76)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl5.TabIndex = 10003
+        Me.LabelControl5.Text = "Description"
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(440, 50)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(19, 13)
+        Me.LabelControl6.TabIndex = 10004
+        Me.LabelControl6.Text = "Size"
+        '
+        'TxtSize
+        '
+        Me.TxtSize.Enabled = False
+        Me.TxtSize.Location = New System.Drawing.Point(467, 47)
+        Me.TxtSize.Name = "TxtSize"
+        Me.TxtSize.Size = New System.Drawing.Size(48, 20)
+        Me.TxtSize.TabIndex = 10005
+        '
         'FormFGCodeReplaceStoreAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(556, 183)
+        Me.ClientSize = New System.Drawing.Size(530, 183)
+        Me.Controls.Add(Me.TxtSize)
+        Me.Controls.Add(Me.LabelControl6)
+        Me.Controls.Add(Me.LabelControl5)
         Me.Controls.Add(Me.PEView)
         Me.Controls.Add(Me.BtnClose)
         Me.Controls.Add(Me.BtnAdd)
@@ -183,6 +215,7 @@ Partial Class FormFGCodeReplaceStoreAdd
         CType(Me.TxtQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtAvailable.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PEView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtSize.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -201,4 +234,7 @@ Partial Class FormFGCodeReplaceStoreAdd
     Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PEView As DevExpress.XtraEditors.PictureEdit
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtSize As DevExpress.XtraEditors.TextEdit
 End Class
