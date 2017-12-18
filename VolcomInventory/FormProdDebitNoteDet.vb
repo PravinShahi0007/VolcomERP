@@ -94,6 +94,7 @@
             'detail
             For i As Integer = 0 To GVProdRec.RowCount - 1
                 query = "INSERT INTO tb_prod_debit_note_det(id_prod_debit_note,id_prod_order_rec,id_claim_type,days_late,delivery_date_ko,note,qty_pcs,price_pc,discount,qty) VALUES('" & id_dn & "','" & GVProdRec.GetRowCellValue(i, "id_prod_order_rec").ToString & "','" & GVProdRec.GetRowCellValue(i, "id_claim_type").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "',note,qty_pcs,price_pc,discount,qty)"
+                execute_query(query, -1, True, "", "", "", "")
             Next
         Else 'edit
         End If
@@ -123,5 +124,11 @@
     Private Sub GVProdRec_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVProdRec.CellValueChanged
         GVProdRec.UpdateTotalSummary()
         METotSay.Text = ConvertCurrencyToEnglish(GVProdRec.Columns("total_amount").SummaryItem.SummaryValue, "1")
+    End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.id_report = id_dn
+        FormReportMark.report_mark_type = "122"
+        FormReportMark.ShowDialog()
     End Sub
 End Class

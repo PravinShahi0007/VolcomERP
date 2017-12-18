@@ -35,6 +35,7 @@ Partial Class FormBarcodeProduct
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLastDigit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.PCNavLineList = New DevExpress.XtraEditors.PanelControl()
         Me.SLESeason = New DevExpress.XtraEditors.SearchLookUpEdit()
@@ -44,7 +45,6 @@ Partial Class FormBarcodeProduct
         Me.GridColumnSeason = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnLastDigit = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCProdList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVProdList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNavLineList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,8 +158,6 @@ Partial Class FormBarcodeProduct
         Me.GridColumn1.Caption = "Range Awal"
         Me.GridColumn1.FieldName = "range_awal"
         Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 9
         '
         'GridColumn2
         '
@@ -170,8 +168,6 @@ Partial Class FormBarcodeProduct
         Me.GridColumn2.Caption = "Range Akhir"
         Me.GridColumn2.FieldName = "range_akhir"
         Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 10
         '
         'GridColumn3
         '
@@ -216,6 +212,18 @@ Partial Class FormBarcodeProduct
         Me.GridColumn6.Caption = "Digit Code"
         Me.GridColumn6.FieldName = "digit_code"
         Me.GridColumn6.Name = "GridColumn6"
+        '
+        'GridColumnLastDigit
+        '
+        Me.GridColumnLastDigit.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnLastDigit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnLastDigit.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnLastDigit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnLastDigit.Caption = "Last Unique Print"
+        Me.GridColumnLastDigit.FieldName = "last_unique"
+        Me.GridColumnLastDigit.Name = "GridColumnLastDigit"
+        Me.GridColumnLastDigit.Visible = True
+        Me.GridColumnLastDigit.VisibleIndex = 9
         '
         'PanelControlNavLineList
         '
@@ -298,18 +306,6 @@ Partial Class FormBarcodeProduct
         Me.BtnView.Size = New System.Drawing.Size(104, 35)
         Me.BtnView.TabIndex = 94
         Me.BtnView.Text = "View List"
-        '
-        'GridColumnLastDigit
-        '
-        Me.GridColumnLastDigit.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnLastDigit.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnLastDigit.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnLastDigit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnLastDigit.Caption = "Last Unique Print"
-        Me.GridColumnLastDigit.FieldName = "last_unique"
-        Me.GridColumnLastDigit.Name = "GridColumnLastDigit"
-        Me.GridColumnLastDigit.Visible = True
-        Me.GridColumnLastDigit.VisibleIndex = 11
         '
         'FormBarcodeProduct
         '
