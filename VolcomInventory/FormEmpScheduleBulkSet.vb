@@ -46,22 +46,33 @@
         Else
             GVEmployee.ActiveFilterString = "[is_select]='yes' "
             If GVEmployee.RowCount > 0 Then
+                PGBBulk.EditValue = 0
                 For i As Integer = 0 To GVEmployee.RowCount - 1
-                    FormMain.BEProgress.EditValue = 0
-                    'do schedule
-                    Dim date_start, date_until, id_employee As String
-                    id_employee = GVEmployee.GetRowCellValue(i, "id_employee").ToString
-                    '
-                    date_start = Date.Parse(DEStart.EditValue).ToString("yyyy-MM-dd")
-                    date_until = Date.Parse(DEUntil.EditValue).ToString("yyyy-MM-dd")
-                    '
-                    Dim query As String = "CALL add_shift(" & id_employee & "," & GVShift.GetFocusedRowCellValue("id_shift").ToString & ",'" & date_start & "','" & date_until & "',1)"
-                    execute_non_query(query, True, "", "", "", "")
+                    'loop date
+                    Dim startP As Date = DEStart.EditValue
+                    Dim endP As Date = DEUntil.EditValue
+                    Dim CurrD As Date = startP
+                    Dim length = endP - startP
 
+                    PGBDate.EditValue = 0
+                    Dim j As Integer = 0
+                    While (CurrD <= endP)
+                        Dim date_start, date_until, id_employee As String
+                        id_employee = GVEmployee.GetRowCellValue(i, "id_employee").ToString
+                        '
+                        date_start = Date.Parse(CurrD).ToString("yyyy-MM-dd")
+                        date_until = Date.Parse(CurrD).ToString("yyyy-MM-dd")
+                        '
+                        Dim query As String = "CALL add_shift(" & id_employee & "," & GVShift.GetFocusedRowCellValue("id_shift").ToString & ",'" & date_start & "','" & date_until & "',1)"
+                        execute_non_query(query, True, "", "", "", "")
+
+                        progres_bar_cus_update(PGBDate, j + 1, length.Days)
+                        j += 1
+                        CurrD = CurrD.AddDays(1)
+                    End While
                     '
                     progres_bar_cus_update(PGBBulk, i + 1, GVEmployee.RowCount)
                 Next
-                PGBBulk.EditValue = 0
                 infoCustom("Schedule success.")
             Else
                 stopCustom("Please choose employee first.")
