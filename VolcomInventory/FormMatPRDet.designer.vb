@@ -22,6 +22,7 @@ Partial Class FormMatPRDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMatPRDet))
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.BPickRec = New DevExpress.XtraEditors.SimpleButton()
         Me.TETextInvNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
@@ -49,10 +50,6 @@ Partial Class FormMatPRDet
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPListPurchase = New DevExpress.XtraTab.XtraTabPage()
-        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
         Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
         Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColIdPRDetSample = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -69,6 +66,11 @@ Partial Class FormMatPRDet
         Me.ColDebit = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
         Me.TEkurs = New DevExpress.XtraEditors.TextEdit()
@@ -97,10 +99,10 @@ Partial Class FormMatPRDet
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.EPSamplePR = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETextInvNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEBillNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,11 +120,13 @@ Partial Class FormMatPRDet
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPListPurchase.SuspendLayout()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RISEQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
         CType(Me.TEkurs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -138,10 +142,6 @@ Partial Class FormMatPRDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.EPSamplePR, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl2.SuspendLayout()
-        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -174,6 +174,19 @@ Partial Class FormMatPRDet
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 116)
         Me.GroupGeneralHeader.TabIndex = 33
+        '
+        'DEDueDate
+        '
+        Me.DEDueDate.EditValue = Nothing
+        Me.DEDueDate.Location = New System.Drawing.Point(768, 33)
+        Me.DEDueDate.Name = "DEDueDate"
+        Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEDueDate.Properties.Mask.EditMask = "dd MMM yyyy"
+        Me.DEDueDate.Size = New System.Drawing.Size(129, 20)
+        Me.DEDueDate.TabIndex = 174
         '
         'BPickRec
         '
@@ -424,47 +437,6 @@ Partial Class FormMatPRDet
         Me.XTPListPurchase.Size = New System.Drawing.Size(880, 242)
         Me.XTPListPurchase.Text = "Detail"
         '
-        'BEdit
-        '
-        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BEdit.ImageIndex = 2
-        Me.BEdit.ImageList = Me.LargeImageCollection
-        Me.BEdit.Location = New System.Drawing.Point(696, 2)
-        Me.BEdit.Name = "BEdit"
-        Me.BEdit.Size = New System.Drawing.Size(91, 32)
-        Me.BEdit.TabIndex = 22
-        Me.BEdit.Text = "Edit"
-        '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        '
-        'BAdd
-        '
-        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BAdd.ImageIndex = 0
-        Me.BAdd.ImageList = Me.LargeImageCollection
-        Me.BAdd.Location = New System.Drawing.Point(787, 2)
-        Me.BAdd.Name = "BAdd"
-        Me.BAdd.Size = New System.Drawing.Size(91, 32)
-        Me.BAdd.TabIndex = 21
-        Me.BAdd.Text = "Add"
-        '
-        'Bdel
-        '
-        Me.Bdel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Bdel.ImageIndex = 1
-        Me.Bdel.ImageList = Me.LargeImageCollection
-        Me.Bdel.Location = New System.Drawing.Point(605, 2)
-        Me.Bdel.Name = "Bdel"
-        Me.Bdel.Size = New System.Drawing.Size(91, 32)
-        Me.Bdel.TabIndex = 20
-        Me.Bdel.Text = "Delete"
-        '
         'GCListPurchase
         '
         Me.GCListPurchase.Dock = System.Windows.Forms.DockStyle.Fill
@@ -598,12 +570,12 @@ Partial Class FormMatPRDet
         Me.ColTotal.AppearanceHeader.Options.UseTextOptions = True
         Me.ColTotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColTotal.Caption = "Credit"
-        Me.ColTotal.DisplayFormat.FormatString = "N2"
+        Me.ColTotal.DisplayFormat.FormatString = "N4"
         Me.ColTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColTotal.FieldName = "total"
         Me.ColTotal.Name = "ColTotal"
         Me.ColTotal.OptionsColumn.AllowEdit = False
-        Me.ColTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
+        Me.ColTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N4}")})
         Me.ColTotal.Visible = True
         Me.ColTotal.VisibleIndex = 7
         Me.ColTotal.Width = 156
@@ -615,12 +587,12 @@ Partial Class FormMatPRDet
         Me.ColDebit.AppearanceHeader.Options.UseTextOptions = True
         Me.ColDebit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColDebit.Caption = "Debit"
-        Me.ColDebit.DisplayFormat.FormatString = "N2"
+        Me.ColDebit.DisplayFormat.FormatString = "N4"
         Me.ColDebit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColDebit.FieldName = "debit"
         Me.ColDebit.Name = "ColDebit"
         Me.ColDebit.OptionsColumn.AllowEdit = False
-        Me.ColDebit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N2}")})
+        Me.ColDebit.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "debit", "{0:N4}")})
         Me.ColDebit.Visible = True
         Me.ColDebit.VisibleIndex = 6
         Me.ColDebit.Width = 201
@@ -638,6 +610,58 @@ Partial Class FormMatPRDet
         '
         Me.GridView1.GridControl = Me.GCListPurchase
         Me.GridView1.Name = "GridView1"
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.Controls.Add(Me.Bdel)
+        Me.PanelControl2.Controls.Add(Me.BEdit)
+        Me.PanelControl2.Controls.Add(Me.BAdd)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(880, 36)
+        Me.PanelControl2.TabIndex = 23
+        '
+        'Bdel
+        '
+        Me.Bdel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Bdel.ImageIndex = 1
+        Me.Bdel.ImageList = Me.LargeImageCollection
+        Me.Bdel.Location = New System.Drawing.Point(605, 2)
+        Me.Bdel.Name = "Bdel"
+        Me.Bdel.Size = New System.Drawing.Size(91, 32)
+        Me.Bdel.TabIndex = 20
+        Me.Bdel.Text = "Delete"
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        '
+        'BEdit
+        '
+        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BEdit.ImageIndex = 2
+        Me.BEdit.ImageList = Me.LargeImageCollection
+        Me.BEdit.Location = New System.Drawing.Point(696, 2)
+        Me.BEdit.Name = "BEdit"
+        Me.BEdit.Size = New System.Drawing.Size(91, 32)
+        Me.BEdit.TabIndex = 22
+        Me.BEdit.Text = "Edit"
+        '
+        'BAdd
+        '
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.ImageIndex = 0
+        Me.BAdd.ImageList = Me.LargeImageCollection
+        Me.BAdd.Location = New System.Drawing.Point(787, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(91, 32)
+        Me.BAdd.TabIndex = 21
+        Me.BAdd.Text = "Add"
         '
         'GroupControl3
         '
@@ -667,7 +691,7 @@ Partial Class FormMatPRDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl3.Location = New System.Drawing.Point(0, 390)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(909, 180)
+        Me.GroupControl3.Size = New System.Drawing.Size(909, 174)
         Me.GroupControl3.TabIndex = 35
         '
         'LabelControl20
@@ -731,7 +755,7 @@ Partial Class FormMatPRDet
         Me.TEDPTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEDPTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEDPTot.Properties.EditValueChangedDelay = 1
-        Me.TEDPTot.Properties.Mask.EditMask = "N2"
+        Me.TEDPTot.Properties.Mask.EditMask = "N4"
         Me.TEDPTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEDPTot.Properties.Mask.SaveLiteral = False
         Me.TEDPTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -794,7 +818,7 @@ Partial Class FormMatPRDet
         Me.TEGrossTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEGrossTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEGrossTot.Properties.EditValueChangedDelay = 1
-        Me.TEGrossTot.Properties.Mask.EditMask = "N2"
+        Me.TEGrossTot.Properties.Mask.EditMask = "N4"
         Me.TEGrossTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEGrossTot.Properties.Mask.SaveLiteral = False
         Me.TEGrossTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -825,7 +849,7 @@ Partial Class FormMatPRDet
         Me.TETot.Properties.Appearance.Options.UseTextOptions = True
         Me.TETot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TETot.Properties.EditValueChangedDelay = 1
-        Me.TETot.Properties.Mask.EditMask = "N2"
+        Me.TETot.Properties.Mask.EditMask = "N4"
         Me.TETot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TETot.Properties.Mask.SaveLiteral = False
         Me.TETot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -840,7 +864,7 @@ Partial Class FormMatPRDet
         Me.TEVatTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEVatTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEVatTot.Properties.EditValueChangedDelay = 1
-        Me.TEVatTot.Properties.Mask.EditMask = "N2"
+        Me.TEVatTot.Properties.Mask.EditMask = "N4"
         Me.TEVatTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEVatTot.Properties.Mask.SaveLiteral = False
         Me.TEVatTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -895,9 +919,9 @@ Partial Class FormMatPRDet
         Me.GroupControl1.Controls.Add(Me.BCancel)
         Me.GroupControl1.Controls.Add(Me.BSave)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 570)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 564)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(909, 32)
+        Me.GroupControl1.Size = New System.Drawing.Size(909, 38)
         Me.GroupControl1.TabIndex = 36
         '
         'BAttach
@@ -905,7 +929,7 @@ Partial Class FormMatPRDet
         Me.BAttach.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAttach.Location = New System.Drawing.Point(581, 2)
         Me.BAttach.Name = "BAttach"
-        Me.BAttach.Size = New System.Drawing.Size(101, 28)
+        Me.BAttach.Size = New System.Drawing.Size(101, 34)
         Me.BAttach.TabIndex = 5
         Me.BAttach.Text = "Attachment"
         '
@@ -914,7 +938,7 @@ Partial Class FormMatPRDet
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Left
         Me.BMark.Location = New System.Drawing.Point(21, 2)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(75, 28)
+        Me.BMark.Size = New System.Drawing.Size(75, 34)
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Mark"
         '
@@ -924,7 +948,7 @@ Partial Class FormMatPRDet
         Me.BPrint.Enabled = False
         Me.BPrint.Location = New System.Drawing.Point(682, 2)
         Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(75, 28)
+        Me.BPrint.Size = New System.Drawing.Size(75, 34)
         Me.BPrint.TabIndex = 3
         Me.BPrint.Text = "Print"
         '
@@ -933,7 +957,7 @@ Partial Class FormMatPRDet
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.Location = New System.Drawing.Point(757, 2)
         Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(75, 28)
+        Me.BCancel.Size = New System.Drawing.Size(75, 34)
         Me.BCancel.TabIndex = 2
         Me.BCancel.Text = "Cancel"
         '
@@ -943,37 +967,13 @@ Partial Class FormMatPRDet
         Me.BSave.Enabled = False
         Me.BSave.Location = New System.Drawing.Point(832, 2)
         Me.BSave.Name = "BSave"
-        Me.BSave.Size = New System.Drawing.Size(75, 28)
+        Me.BSave.Size = New System.Drawing.Size(75, 34)
         Me.BSave.TabIndex = 1
         Me.BSave.Text = "Save"
         '
         'EPSamplePR
         '
         Me.EPSamplePR.ContainerControl = Me
-        '
-        'PanelControl2
-        '
-        Me.PanelControl2.Controls.Add(Me.Bdel)
-        Me.PanelControl2.Controls.Add(Me.BEdit)
-        Me.PanelControl2.Controls.Add(Me.BAdd)
-        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(880, 36)
-        Me.PanelControl2.TabIndex = 23
-        '
-        'DEDueDate
-        '
-        Me.DEDueDate.EditValue = Nothing
-        Me.DEDueDate.Location = New System.Drawing.Point(768, 33)
-        Me.DEDueDate.Name = "DEDueDate"
-        Me.DEDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEDueDate.Properties.Mask.EditMask = "dd MMM yyyy"
-        Me.DEDueDate.Size = New System.Drawing.Size(129, 20)
-        Me.DEDueDate.TabIndex = 174
         '
         'FormMatPRDet
         '
@@ -996,6 +996,8 @@ Partial Class FormMatPRDet
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         Me.GroupGeneralHeader.PerformLayout()
+        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETextInvNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEBillNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1013,11 +1015,13 @@ Partial Class FormMatPRDet
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPListPurchase.ResumeLayout(False)
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVListPurchase, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RISEQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
@@ -1034,10 +1038,6 @@ Partial Class FormMatPRDet
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl1.ResumeLayout(False)
         CType(Me.EPSamplePR, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl2.ResumeLayout(False)
-        CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

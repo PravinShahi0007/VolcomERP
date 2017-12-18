@@ -7,6 +7,9 @@
     End Sub
     Sub action_load()
         view_claim_type(RIClaimType)
+
+        view_report_status(LEReportStatus)
+
         If id_dn = "-1" Then 'new
             TxtVirtualPosNumber.Text = header_number_prod("14")
             Dim date_dn As Date = Now()
@@ -15,6 +18,17 @@
 
         End If
         load_gv()
+    End Sub
+
+    Private Sub view_report_status(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
+        Dim query As String = "SELECT id_report_status,report_status FROM tb_lookup_report_status"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        lookup.Properties.DataSource = data
+
+        lookup.Properties.DisplayMember = "report_status"
+        lookup.Properties.ValueMember = "id_report_status"
+        lookup.ItemIndex = 0
     End Sub
 
     Sub load_gv()
@@ -66,20 +80,48 @@
 
     Sub button_check()
         If GVProdRec.RowCount > 0 Then
-            BEdit.Visible = True
             BDelete.Visible = True
         Else
-            BEdit.Visible = False
             BDelete.Visible = False
         End If
     End Sub
 
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
-
+        If id_dn = "-1" Then 'new
+            Dim query As String = "INSERT INTO tb_prod_debit_note(prod_debit_note_number,id_comp_contact_to,prod_debit_note_date,note) VALUES('" & header_number_prod("14") & "','" & id_comp_contact_debit_to & "',DATE(NOW()),'" & MENote.Text & "');SELECT LAST_INSERT_ID(); "
+            id_dn = execute_query(query, 0, True, "", "", "", "")
+            increase_inc_prod("14")
+            'detail
+            For i As Integer = 0 To GVProdRec.RowCount - 1
+                query = "INSERT INTO tb_prod_debit_note_det(id_prod_debit_note,id_prod_order_rec,id_claim_type,days_late,delivery_date_ko,note,qty_pcs,price_pc,discount,qty) VALUES('" & id_dn & "','" & GVProdRec.GetRowCellValue(i, "id_prod_order_rec").ToString & "','" & GVProdRec.GetRowCellValue(i, "id_claim_type").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "',note,qty_pcs,price_pc,discount,qty)"
+            Next
+        Else 'edit
+        End If
     End Sub
 
     Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
-        FormPopUpRecQC.id_pop_up = "2"
-        FormPopUpRecQC.ShowDialog()
+        If id_comp_contact_debit_to = "-1" Then
+            stopCustom("Please choose the vendor first")
+        Else
+            FormPopUpRecQC.id_contact_vendor = id_comp_contact_debit_to
+            FormPopUpRecQC.id_pop_up = "2"
+            FormPopUpRecQC.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub BDelete_Click(sender As Object, e As EventArgs) Handles BDelete.Click
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
+            GVProdRec.DeleteRow(GVProdRec.FocusedRowHandle)
+            GCProdRec.RefreshDataSource()
+            GVProdRec.RefreshData()
+            Cursor = Cursors.Default
+        End If
+    End Sub
+
+    Private Sub GVProdRec_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVProdRec.CellValueChanged
+        GVProdRec.UpdateTotalSummary()
+        METotSay.Text = ConvertCurrencyToEnglish(GVProdRec.Columns("total_amount").SummaryItem.SummaryValue, "1")
     End Sub
 End Class

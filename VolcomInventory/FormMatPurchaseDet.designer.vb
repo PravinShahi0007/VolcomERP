@@ -75,9 +75,9 @@ Partial Class FormMatPurchaseDet
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
         Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
-        Me.Bdel = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
         Me.LEDelivery = New DevExpress.XtraEditors.SearchLookUpEdit()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -391,7 +391,7 @@ Partial Class FormMatPurchaseDet
         Me.TEGrossTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEGrossTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEGrossTot.Properties.EditValueChangedDelay = 1
-        Me.TEGrossTot.Properties.Mask.EditMask = "N2"
+        Me.TEGrossTot.Properties.Mask.EditMask = "N4"
         Me.TEGrossTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEGrossTot.Properties.Mask.SaveLiteral = False
         Me.TEGrossTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -439,7 +439,7 @@ Partial Class FormMatPurchaseDet
         Me.TETot.Properties.Appearance.Options.UseTextOptions = True
         Me.TETot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TETot.Properties.EditValueChangedDelay = 1
-        Me.TETot.Properties.Mask.EditMask = "N2"
+        Me.TETot.Properties.Mask.EditMask = "N4"
         Me.TETot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TETot.Properties.Mask.SaveLiteral = False
         Me.TETot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -455,7 +455,7 @@ Partial Class FormMatPurchaseDet
         Me.TEVatTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEVatTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEVatTot.Properties.EditValueChangedDelay = 1
-        Me.TEVatTot.Properties.Mask.EditMask = "N2"
+        Me.TEVatTot.Properties.Mask.EditMask = "N4"
         Me.TEVatTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEVatTot.Properties.Mask.SaveLiteral = False
         Me.TEVatTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -693,11 +693,11 @@ Partial Class FormMatPurchaseDet
         Me.ColSubtotal.AppearanceHeader.Options.UseTextOptions = True
         Me.ColSubtotal.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.ColSubtotal.Caption = "Sub Total"
-        Me.ColSubtotal.DisplayFormat.FormatString = "N2"
+        Me.ColSubtotal.DisplayFormat.FormatString = "N4"
         Me.ColSubtotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColSubtotal.FieldName = "total"
         Me.ColSubtotal.Name = "ColSubtotal"
-        Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
+        Me.ColSubtotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N4}")})
         Me.ColSubtotal.Visible = True
         Me.ColSubtotal.VisibleIndex = 8
         Me.ColSubtotal.Width = 165
@@ -748,6 +748,18 @@ Partial Class FormMatPurchaseDet
         Me.PanelControl2.Size = New System.Drawing.Size(887, 38)
         Me.PanelControl2.TabIndex = 18
         '
+        'Bdel
+        '
+        Me.Bdel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Bdel.Enabled = False
+        Me.Bdel.ImageIndex = 1
+        Me.Bdel.ImageList = Me.LargeImageCollection
+        Me.Bdel.Location = New System.Drawing.Point(614, 0)
+        Me.Bdel.Name = "Bdel"
+        Me.Bdel.Size = New System.Drawing.Size(91, 38)
+        Me.Bdel.TabIndex = 17
+        Me.Bdel.Text = "Delete"
+        '
         'BEdit
         '
         Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
@@ -771,18 +783,6 @@ Partial Class FormMatPurchaseDet
         Me.BAdd.Size = New System.Drawing.Size(91, 38)
         Me.BAdd.TabIndex = 18
         Me.BAdd.Text = "Add"
-        '
-        'Bdel
-        '
-        Me.Bdel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Bdel.Enabled = False
-        Me.Bdel.ImageIndex = 1
-        Me.Bdel.ImageList = Me.LargeImageCollection
-        Me.Bdel.Location = New System.Drawing.Point(614, 0)
-        Me.Bdel.Name = "Bdel"
-        Me.Bdel.Size = New System.Drawing.Size(91, 38)
-        Me.Bdel.TabIndex = 17
-        Me.Bdel.Text = "Delete"
         '
         'GroupGeneralHeader
         '
@@ -1181,7 +1181,6 @@ Partial Class FormMatPurchaseDet
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatPurchaseDet"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Raw Material Purchase Detail"

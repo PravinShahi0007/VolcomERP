@@ -36,6 +36,12 @@ Partial Class FormPopUpRecQC
         Me.ColStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDelRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GCListPurchase = New DevExpress.XtraGrid.GridControl()
         Me.GVListPurchase = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -54,8 +60,6 @@ Partial Class FormPopUpRecQC
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,8 +85,8 @@ Partial Class FormPopUpRecQC
         Me.SplitContainerControl1.Panel1.Text = "Panel1"
         Me.SplitContainerControl1.Panel2.Controls.Add(Me.GCListPurchase)
         Me.SplitContainerControl1.Panel2.Text = "Panel2"
-        Me.SplitContainerControl1.Size = New System.Drawing.Size(814, 426)
-        Me.SplitContainerControl1.SplitterPosition = 216
+        Me.SplitContainerControl1.Size = New System.Drawing.Size(1051, 444)
+        Me.SplitContainerControl1.SplitterPosition = 317
         Me.SplitContainerControl1.TabIndex = 34
         Me.SplitContainerControl1.Text = "SplitContainerControl1"
         '
@@ -93,7 +97,7 @@ Partial Class FormPopUpRecQC
         Me.GroupGeneral.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupGeneral.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneral.Name = "GroupGeneral"
-        Me.GroupGeneral.Size = New System.Drawing.Size(814, 216)
+        Me.GroupGeneral.Size = New System.Drawing.Size(1051, 317)
         Me.GroupGeneral.TabIndex = 16
         Me.GroupGeneral.Text = "Receive"
         '
@@ -103,20 +107,18 @@ Partial Class FormPopUpRecQC
         Me.GCProdRec.Location = New System.Drawing.Point(2, 20)
         Me.GCProdRec.MainView = Me.GVProdRec
         Me.GCProdRec.Name = "GCProdRec"
-        Me.GCProdRec.Size = New System.Drawing.Size(810, 194)
+        Me.GCProdRec.Size = New System.Drawing.Size(1047, 295)
         Me.GCProdRec.TabIndex = 3
         Me.GCProdRec.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdRec, Me.GridView3})
         '
         'GVProdRec
         '
-        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColSeason, Me.ColRecNumber, Me.ColShipFrom, Me.ColShipTo, Me.ColRecDate, Me.ColDueDate, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.ColStatus, Me.GridColumnIdDel, Me.GridColumnDelRec, Me.GridColumn2, Me.GridColumn1})
+        Me.GVProdRec.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColIdPRodOrderRecPurc, Me.ColSeason, Me.ColRecNumber, Me.ColShipFrom, Me.ColShipTo, Me.ColRecDate, Me.ColDueDate, Me.ColPSONumber, Me.ColDONumber, Me.ColIDStatus, Me.ColStatus, Me.GridColumnIdDel, Me.GridColumnDelRec, Me.GridColumn2, Me.GridColumn1, Me.GridColumn3, Me.GridColumn6, Me.GridColumn5, Me.GridColumn4})
         Me.GVProdRec.GridControl = Me.GCProdRec
-        Me.GVProdRec.GroupCount = 2
         Me.GVProdRec.Name = "GVProdRec"
         Me.GVProdRec.OptionsBehavior.Editable = False
         Me.GVProdRec.OptionsFind.AlwaysVisible = True
         Me.GVProdRec.OptionsView.ShowGroupPanel = False
-        Me.GVProdRec.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.ColSeason, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.GridColumnIdDel, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'ColIdPRodOrderRecPurc
         '
@@ -129,6 +131,8 @@ Partial Class FormPopUpRecQC
         Me.ColSeason.Caption = "Season"
         Me.ColSeason.FieldName = "season"
         Me.ColSeason.Name = "ColSeason"
+        Me.ColSeason.Visible = True
+        Me.ColSeason.VisibleIndex = 0
         '
         'ColRecNumber
         '
@@ -136,7 +140,7 @@ Partial Class FormPopUpRecQC
         Me.ColRecNumber.FieldName = "prod_order_rec_number"
         Me.ColRecNumber.Name = "ColRecNumber"
         Me.ColRecNumber.Visible = True
-        Me.ColRecNumber.VisibleIndex = 0
+        Me.ColRecNumber.VisibleIndex = 2
         Me.ColRecNumber.Width = 99
         '
         'ColShipFrom
@@ -145,7 +149,7 @@ Partial Class FormPopUpRecQC
         Me.ColShipFrom.FieldName = "comp_from"
         Me.ColShipFrom.Name = "ColShipFrom"
         Me.ColShipFrom.Visible = True
-        Me.ColShipFrom.VisibleIndex = 5
+        Me.ColShipFrom.VisibleIndex = 10
         Me.ColShipFrom.Width = 125
         '
         'ColShipTo
@@ -163,7 +167,7 @@ Partial Class FormPopUpRecQC
         Me.ColRecDate.FieldName = "prod_order_rec_date"
         Me.ColRecDate.Name = "ColRecDate"
         Me.ColRecDate.Visible = True
-        Me.ColRecDate.VisibleIndex = 6
+        Me.ColRecDate.VisibleIndex = 11
         Me.ColRecDate.Width = 123
         '
         'ColDueDate
@@ -174,7 +178,7 @@ Partial Class FormPopUpRecQC
         Me.ColDueDate.FieldName = "delivery_order_date"
         Me.ColDueDate.Name = "ColDueDate"
         Me.ColDueDate.Visible = True
-        Me.ColDueDate.VisibleIndex = 4
+        Me.ColDueDate.VisibleIndex = 9
         Me.ColDueDate.Width = 126
         '
         'ColPSONumber
@@ -183,7 +187,7 @@ Partial Class FormPopUpRecQC
         Me.ColPSONumber.FieldName = "prod_order_number"
         Me.ColPSONumber.Name = "ColPSONumber"
         Me.ColPSONumber.Visible = True
-        Me.ColPSONumber.VisibleIndex = 1
+        Me.ColPSONumber.VisibleIndex = 3
         Me.ColPSONumber.Width = 65
         '
         'ColDONumber
@@ -192,7 +196,7 @@ Partial Class FormPopUpRecQC
         Me.ColDONumber.FieldName = "delivery_order_number"
         Me.ColDONumber.Name = "ColDONumber"
         Me.ColDONumber.Visible = True
-        Me.ColDONumber.VisibleIndex = 3
+        Me.ColDONumber.VisibleIndex = 8
         Me.ColDONumber.Width = 65
         '
         'ColIDStatus
@@ -213,12 +217,64 @@ Partial Class FormPopUpRecQC
         Me.GridColumnIdDel.FieldName = "id_delivery"
         Me.GridColumnIdDel.Name = "GridColumnIdDel"
         Me.GridColumnIdDel.Visible = True
-        Me.GridColumnIdDel.VisibleIndex = 8
+        Me.GridColumnIdDel.VisibleIndex = 1
         '
         'GridColumnDelRec
         '
         Me.GridColumnDelRec.Caption = "Delivery"
         Me.GridColumnDelRec.Name = "GridColumnDelRec"
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Arrive in QC"
+        Me.GridColumn2.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn2.FieldName = "arrive_date"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 12
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Est Receive Date"
+        Me.GridColumn1.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn1.FieldName = "est_rec_date"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 7
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Design"
+        Me.GridColumn3.FieldName = "design_display_name"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 5
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Color"
+        Me.GridColumn6.FieldName = "color"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 6
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Design Code"
+        Me.GridColumn5.FieldName = "design_code"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 4
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Note"
+        Me.GridColumn4.FieldName = "prod_order_rec_note"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 13
         '
         'GridView3
         '
@@ -232,7 +288,7 @@ Partial Class FormPopUpRecQC
         Me.GCListPurchase.MainView = Me.GVListPurchase
         Me.GCListPurchase.Name = "GCListPurchase"
         Me.GCListPurchase.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemSpinEdit1})
-        Me.GCListPurchase.Size = New System.Drawing.Size(814, 205)
+        Me.GCListPurchase.Size = New System.Drawing.Size(1051, 122)
         Me.GCListPurchase.TabIndex = 2
         Me.GCListPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPurchase})
         '
@@ -372,55 +428,35 @@ Partial Class FormPopUpRecQC
         Me.PanelControl2.Controls.Add(Me.BtnCancel)
         Me.PanelControl2.Controls.Add(Me.BtnSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 426)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 444)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(814, 31)
+        Me.PanelControl2.Size = New System.Drawing.Size(1051, 37)
         Me.PanelControl2.TabIndex = 33
         '
         'BtnCancel
         '
         Me.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancel.Location = New System.Drawing.Point(674, 0)
+        Me.BtnCancel.Location = New System.Drawing.Point(911, 0)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(70, 31)
+        Me.BtnCancel.Size = New System.Drawing.Size(70, 37)
         Me.BtnCancel.TabIndex = 4
         Me.BtnCancel.Text = "Cancel"
         '
         'BtnSave
         '
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnSave.Location = New System.Drawing.Point(744, 0)
+        Me.BtnSave.Location = New System.Drawing.Point(981, 0)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(70, 31)
+        Me.BtnSave.Size = New System.Drawing.Size(70, 37)
         Me.BtnSave.TabIndex = 3
         Me.BtnSave.Text = "Choose"
-        '
-        'GridColumn2
-        '
-        Me.GridColumn2.Caption = "Arrive in QC"
-        Me.GridColumn2.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn2.FieldName = "arrive_date"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 7
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "Est Receive Date"
-        Me.GridColumn1.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn1.FieldName = "est_rec_date"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 2
         '
         'FormPopUpRecQC
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(814, 457)
+        Me.ClientSize = New System.Drawing.Size(1051, 481)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.SplitContainerControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -483,4 +519,8 @@ Partial Class FormPopUpRecQC
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

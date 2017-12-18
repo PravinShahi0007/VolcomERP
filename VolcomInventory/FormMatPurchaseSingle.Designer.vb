@@ -19,51 +19,51 @@ Partial Class FormMatPurchaseSingle
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl
-        Me.GroupGeneral = New DevExpress.XtraEditors.GroupControl
-        Me.GCMat = New DevExpress.XtraGrid.GridControl
-        Me.GVMat = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColLot = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit
-        Me.BView = New DevExpress.XtraEditors.SimpleButton
-        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl
-        Me.GCMatPrice = New DevExpress.XtraGrid.GridControl
-        Me.GVMatPrice = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.ColMatPirce = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPriceName = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.ColCurrenct = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GroupControlDetail = New DevExpress.XtraEditors.GroupControl
-        Me.TENote = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl
-        Me.TEDiscount = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl
-        Me.TEPriceTot = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl
-        Me.TEUOM = New DevExpress.XtraEditors.TextEdit
-        Me.TEVendCur = New DevExpress.XtraEditors.TextEdit
-        Me.TEQty = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.TEVendPrice = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControlUpdateName = New DevExpress.XtraEditors.LabelControl
-        Me.TEPrice = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl
-        Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit
-        Me.TEKurs = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.PanelControlButton = New DevExpress.XtraEditors.PanelControl
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
+        Me.SplitContainerControl1 = New DevExpress.XtraEditors.SplitContainerControl()
+        Me.GroupGeneral = New DevExpress.XtraEditors.GroupControl()
+        Me.GCMat = New DevExpress.XtraGrid.GridControl()
+        Me.GVMat = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColLot = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
+        Me.BView = New DevExpress.XtraEditors.SimpleButton()
+        Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
+        Me.GCMatPrice = New DevExpress.XtraGrid.GridControl()
+        Me.GVMatPrice = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.ColMatPirce = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPriceName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColCurrenct = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GroupControlDetail = New DevExpress.XtraEditors.GroupControl()
+        Me.TENote = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEDiscount = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPriceTot = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEUOM = New DevExpress.XtraEditors.TextEdit()
+        Me.TEVendCur = New DevExpress.XtraEditors.TextEdit()
+        Me.TEQty = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEVendPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControlUpdateName = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LECurrency = New DevExpress.XtraEditors.LookUpEdit()
+        Me.TEKurs = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControlButton = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.SplitContainerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainerControl1.SuspendLayout()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -203,6 +203,18 @@ Partial Class FormMatPurchaseSingle
         Me.ColLot.VisibleIndex = 3
         Me.ColLot.Width = 100
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumn2.Caption = "Color"
+        Me.GridColumn2.FieldName = "color"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 5
+        '
         'GridView3
         '
         Me.GridView3.GridControl = Me.GCMat
@@ -241,10 +253,10 @@ Partial Class FormMatPurchaseSingle
         'GCMatPrice
         '
         Me.GCMatPrice.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCMatPrice.Location = New System.Drawing.Point(2, 22)
+        Me.GCMatPrice.Location = New System.Drawing.Point(2, 20)
         Me.GCMatPrice.MainView = Me.GVMatPrice
         Me.GCMatPrice.Name = "GCMatPrice"
-        Me.GCMatPrice.Size = New System.Drawing.Size(639, 156)
+        Me.GCMatPrice.Size = New System.Drawing.Size(639, 158)
         Me.GCMatPrice.TabIndex = 3
         Me.GCMatPrice.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVMatPrice, Me.GridView1})
         '
@@ -385,7 +397,7 @@ Partial Class FormMatPurchaseSingle
         Me.TEPriceTot.Name = "TEPriceTot"
         Me.TEPriceTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPriceTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEPriceTot.Properties.Mask.EditMask = "N2"
+        Me.TEPriceTot.Properties.Mask.EditMask = "N4"
         Me.TEPriceTot.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPriceTot.Properties.Mask.SaveLiteral = False
         Me.TEPriceTot.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -572,18 +584,6 @@ Partial Class FormMatPurchaseSingle
         Me.BSave.TabIndex = 1
         Me.BSave.Text = "Save"
         '
-        'GridColumn2
-        '
-        Me.GridColumn2.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn2.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumn2.Caption = "Color"
-        Me.GridColumn2.FieldName = "color"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 5
-        '
         'FormMatPurchaseSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -596,7 +596,6 @@ Partial Class FormMatPurchaseSingle
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMatPurchaseSingle"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pick Material"
