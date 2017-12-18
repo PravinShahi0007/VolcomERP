@@ -54,6 +54,9 @@ Partial Class FormEmpScheduleBulkSet
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.CESelectAll = New DevExpress.XtraEditors.CheckEdit()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.PGBDate = New DevExpress.XtraEditors.ProgressBarControl()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -72,6 +75,11 @@ Partial Class FormEmpScheduleBulkSet
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
+        CType(Me.PGBDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -101,13 +109,14 @@ Partial Class FormEmpScheduleBulkSet
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.PanelControl4)
+        Me.PanelControl2.Controls.Add(Me.PanelControl3)
         Me.PanelControl2.Controls.Add(Me.BDayOff)
         Me.PanelControl2.Controls.Add(Me.BTempSchedule)
-        Me.PanelControl2.Controls.Add(Me.PGBBulk)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 476)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(787, 37)
+        Me.PanelControl2.Size = New System.Drawing.Size(787, 55)
         Me.PanelControl2.TabIndex = 3
         '
         'BDayOff
@@ -117,7 +126,7 @@ Partial Class FormEmpScheduleBulkSet
         Me.BDayOff.ImageList = Me.LargeImageCollection
         Me.BDayOff.Location = New System.Drawing.Point(561, 2)
         Me.BDayOff.Name = "BDayOff"
-        Me.BDayOff.Size = New System.Drawing.Size(112, 33)
+        Me.BDayOff.Size = New System.Drawing.Size(112, 51)
         Me.BDayOff.TabIndex = 4
         Me.BDayOff.Text = "Set Dayoff"
         '
@@ -128,18 +137,18 @@ Partial Class FormEmpScheduleBulkSet
         Me.BTempSchedule.ImageList = Me.LargeImageCollection
         Me.BTempSchedule.Location = New System.Drawing.Point(673, 2)
         Me.BTempSchedule.Name = "BTempSchedule"
-        Me.BTempSchedule.Size = New System.Drawing.Size(112, 33)
+        Me.BTempSchedule.Size = New System.Drawing.Size(112, 51)
         Me.BTempSchedule.TabIndex = 3
         Me.BTempSchedule.Text = "Use Template"
         '
         'PGBBulk
         '
-        Me.PGBBulk.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PGBBulk.Location = New System.Drawing.Point(2, 2)
+        Me.PGBBulk.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PGBBulk.Location = New System.Drawing.Point(0, 0)
         Me.PGBBulk.Name = "PGBBulk"
         Me.PGBBulk.Properties.FlowAnimationEnabled = True
         Me.PGBBulk.Properties.ShowTitle = True
-        Me.PGBBulk.Size = New System.Drawing.Size(176, 33)
+        Me.PGBBulk.Size = New System.Drawing.Size(559, 25)
         Me.PGBBulk.TabIndex = 1
         '
         'DEUntil
@@ -409,11 +418,40 @@ Partial Class FormEmpScheduleBulkSet
         Me.CESelectAll.Size = New System.Drawing.Size(75, 19)
         Me.CESelectAll.TabIndex = 0
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.PGBDate)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl3.Location = New System.Drawing.Point(2, 2)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(559, 25)
+        Me.PanelControl3.TabIndex = 5
+        '
+        'PanelControl4
+        '
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.PGBBulk)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl4.Location = New System.Drawing.Point(2, 27)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(559, 25)
+        Me.PanelControl4.TabIndex = 6
+        '
+        'PGBDate
+        '
+        Me.PGBDate.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PGBDate.Location = New System.Drawing.Point(0, 0)
+        Me.PGBDate.Name = "PGBDate"
+        Me.PGBDate.Properties.ShowTitle = True
+        Me.PGBDate.Size = New System.Drawing.Size(559, 25)
+        Me.PGBDate.TabIndex = 1
+        '
         'FormEmpScheduleBulkSet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(787, 513)
+        Me.ClientSize = New System.Drawing.Size(787, 531)
         Me.Controls.Add(Me.SplitContainerControl1)
         Me.Controls.Add(Me.PanelControl2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
@@ -441,6 +479,11 @@ Partial Class FormEmpScheduleBulkSet
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
         CType(Me.CESelectAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        CType(Me.PGBDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -478,4 +521,7 @@ Partial Class FormEmpScheduleBulkSet
     Friend WithEvents PGBBulk As DevExpress.XtraEditors.ProgressBarControl
     Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BDayOff As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PGBDate As DevExpress.XtraEditors.ProgressBarControl
 End Class
