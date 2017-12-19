@@ -59,20 +59,20 @@
     End Sub
 
     Sub check_but()
-        Dim id_productx As String = "0"
-        Try
-            id_productx = GVItemList.GetFocusedRowCellValue("id_product").ToString
-        Catch ex As Exception
-        End Try
+        'Dim id_productx As String = "0"
+        'Try
+        '    id_productx = GVItemList.GetFocusedRowCellValue("id_product").ToString
+        'Catch ex As Exception
+        'End Try
 
-        'Constraint Status
-        If GVItemList.RowCount > 0 And id_productx <> "0" Then
-            BtnEdit.Enabled = True
-            BtnDel.Enabled = True
-        Else
-            BtnEdit.Enabled = False
-            BtnDel.Enabled = False
-        End If
+        ''Constraint Status
+        'If GVItemList.RowCount > 0 And id_productx <> "0" Then
+        '    BtnEdit.Enabled = True
+        '    BtnDel.Enabled = True
+        'Else
+        '    BtnEdit.Enabled = False
+        '    BtnDel.Enabled = False
+        'End If
     End Sub
 
     Sub viewDetail()
@@ -134,14 +134,16 @@
     End Sub
 
     Private Sub BtnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDel.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
-            GCItemList.RefreshDataSource()
-            GVItemList.RefreshData()
-            check_but()
-            Cursor = Cursors.Default
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                check_but()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
