@@ -120,6 +120,8 @@ Partial Class FormEmpAttnSum
         Me.GVScheduleTable = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LEEmployeeStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BPrintSum = New DevExpress.XtraEditors.SimpleButton()
@@ -146,6 +148,7 @@ Partial Class FormEmpAttnSum
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.LEEmployeeStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -690,6 +693,7 @@ Partial Class FormEmpAttnSum
         Me.GVListSchedule.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "work_hour", Me.GridColumn58, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "actual_work_hour", Me.GridColumn59, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "late", Me.GridColumn60, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over", Me.GridColumn61, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "balance", Me.GridColumn62, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "over_break", Me.GridColumn63, "{0:0.##}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "present", Me.GridColumn64, "{0:0.##}")})
         Me.GVListSchedule.Name = "GVListSchedule"
         Me.GVListSchedule.OptionsBehavior.Editable = False
+        Me.GVListSchedule.OptionsMenu.ShowConditionalFormattingItem = True
         Me.GVListSchedule.OptionsView.ColumnAutoWidth = False
         Me.GVListSchedule.OptionsView.ShowFooter = True
         Me.GVListSchedule.OptionsView.ShowGroupPanel = False
@@ -1006,6 +1010,8 @@ Partial Class FormEmpAttnSum
         '
         'PanelControl2
         '
+        Me.PanelControl2.Controls.Add(Me.LEEmployeeStatus)
+        Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Controls.Add(Me.LEDeptSum)
         Me.PanelControl2.Controls.Add(Me.LabelControl1)
         Me.PanelControl2.Controls.Add(Me.BPrintSum)
@@ -1019,6 +1025,23 @@ Partial Class FormEmpAttnSum
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1006, 38)
         Me.PanelControl2.TabIndex = 3
+        '
+        'LEEmployeeStatus
+        '
+        Me.LEEmployeeStatus.Location = New System.Drawing.Point(669, 9)
+        Me.LEEmployeeStatus.Name = "LEEmployeeStatus"
+        Me.LEEmployeeStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEEmployeeStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_active", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_active", "Status")})
+        Me.LEEmployeeStatus.Size = New System.Drawing.Size(127, 20)
+        Me.LEEmployeeStatus.TabIndex = 16
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(632, 12)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl2.TabIndex = 15
+        Me.LabelControl2.Text = "Status"
         '
         'LEDeptSum
         '
@@ -1040,7 +1063,7 @@ Partial Class FormEmpAttnSum
         'BPrintSum
         '
         Me.BPrintSum.ImageList = Me.LargeImageCollection
-        Me.BPrintSum.Location = New System.Drawing.Point(724, 6)
+        Me.BPrintSum.Location = New System.Drawing.Point(894, 6)
         Me.BPrintSum.Name = "BPrintSum"
         Me.BPrintSum.Size = New System.Drawing.Size(86, 25)
         Me.BPrintSum.TabIndex = 12
@@ -1091,7 +1114,7 @@ Partial Class FormEmpAttnSum
         'BViewSum
         '
         Me.BViewSum.ImageList = Me.LargeImageCollection
-        Me.BViewSum.Location = New System.Drawing.Point(632, 6)
+        Me.BViewSum.Location = New System.Drawing.Point(802, 6)
         Me.BViewSum.Name = "BViewSum"
         Me.BViewSum.Size = New System.Drawing.Size(86, 25)
         Me.BViewSum.TabIndex = 1
@@ -1128,6 +1151,7 @@ Partial Class FormEmpAttnSum
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.LEEmployeeStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilSum.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1244,4 +1268,6 @@ Partial Class FormEmpAttnSum
     Friend WithEvents GridColumn68 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIDScheduleType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn69 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LEEmployeeStatus As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class

@@ -102,7 +102,9 @@
             del.id_sales_order
             FROM tb_sales_pos cn
             INNER JOIN tb_sales_pos inv ON inv.id_sales_pos = cn.id_sales_pos_ref
-            INNER JOIN tb_pl_sales_order_del del ON inv.id_pl_sales_order_del = del.id_pl_sales_order_del
+            INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos = inv.id_sales_pos
+            INNER JOIN tb_pl_sales_order_del_det deld ON deld.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
+            INNER JOIN tb_pl_sales_order_del del ON del.id_pl_sales_order_del = deld.id_pl_sales_order_del
             WHERE cn.id_report_status=6 AND cn.id_memo_type=2
             GROUP BY del.id_sales_order  
         ) cn ON cn.id_sales_order = so.id_sales_order 
