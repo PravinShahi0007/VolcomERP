@@ -11,7 +11,7 @@
         Cursor = Cursors.Default
     End Sub
     Sub load_report()
-        Dim date_start, date_until, dept As String
+        Dim date_start, date_until, dept, status As String
 
         date_start = Date.Parse(DEStartSum.EditValue.ToString).ToString("yyyy-MM-dd")
         date_until = Date.Parse(DEUntilSum.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -20,6 +20,12 @@
             dept = "%%"
         Else
             dept = LEDeptSum.EditValue.ToString
+        End If
+
+        If LEEmployeeStatus.EditValue.ToString = "0" Then
+            status = "%%"
+        Else
+            status = LEEmployeeStatus.EditValue.ToString
         End If
 
         Dim query As String = "SELECT tb.*,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0) AS work_hour,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present FROM
@@ -61,6 +67,7 @@
                                 WHERE emp.id_departement Like '" & dept & "'
                                 AND sch.date >='" & date_start & "'
                                 AND sch.date <='" & date_until & "'
+                                AND emp.id_employee_active LIKE '" & status & "'
                                 GROUP BY sch.id_schedule
                                 ) tb"
 
@@ -70,7 +77,7 @@
         GVSchedule.ExpandAllGroups()
     End Sub
     Sub load_report_schedule()
-        Dim date_start, date_until, dept As String
+        Dim date_start, date_until, dept, status As String
 
         date_start = Date.Parse(DEStartSum.EditValue.ToString).ToString("yyyy-MM-dd")
         date_until = Date.Parse(DEUntilSum.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -79,6 +86,12 @@
             dept = "%%"
         Else
             dept = LEDeptSum.EditValue.ToString
+        End If
+
+        If LEEmployeeStatus.EditValue.ToString = "0" Then
+            status = "%%"
+        Else
+            status = LEEmployeeStatus.EditValue.ToString
         End If
 
         Dim query As String = "SELECT tb.*,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0) AS work_hour,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present FROM
@@ -111,6 +124,7 @@
                                 WHERE emp.id_departement Like '" & dept & "'
                                 AND sch.date >='" & date_start & "'
                                 AND sch.date <='" & date_until & "'
+                                AND emp.id_employee_active LIKE '" & status & "'
                                 GROUP BY sch.id_schedule
                                 ) tb"
 
@@ -140,6 +154,7 @@
         XTCReportAttendance.SelectedTabPage = XTCReportAttendance.TabPages(0)
 
         viewDept()
+        viewStatus()
         DEStartSum.EditValue = Now
         DEUntilSum.EditValue = Now
         '
@@ -162,7 +177,18 @@
         End If
         viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
     End Sub
-
+    Sub viewStatus()
+        Dim query As String = ""
+        query += "SELECT 0 as id_employee_active, 'All employee' as employee_active UNION  "
+        query += "(SELECT id_employee_active,employee_active FROM `tb_lookup_employee_active`) "
+        viewLookupQuery(LEEmployeeStatus, query, 0, "employee_active", "id_employee_active")
+        LEEmployeeStatus.ItemIndex = LEEmployeeStatus.Properties.GetDataSourceRowIndex("id_employee_active", "1")
+        If view_one_dept = True Or view_store = True Then
+            LEEmployeeStatus.ReadOnly = True
+        Else
+            LEEmployeeStatus.ReadOnly = False
+        End If
+    End Sub
     Private Sub BViewSum_Click(sender As Object, e As EventArgs) Handles BViewSum.Click
         Cursor = Cursors.WaitCursor
         If XTCReportAttendance.SelectedTabPageIndex = 0 Then
@@ -183,6 +209,7 @@
         Dim curD As Date = startP
         Dim string_date As String = ""
         Dim dept As String = ""
+        Dim status As String = ""
 
         If LEDeptSum.EditValue.ToString = "0" Then
             dept = "%%"
@@ -190,7 +217,13 @@
             dept = LEDeptSum.EditValue.ToString
         End If
 
-        Dim query As String = "SELECT * FROM tb_m_employee WHERE id_departement LIKE '" & dept & "' AND id_employee_active='1'"
+        If LEEmployeeStatus.EditValue.ToString = "0" Then
+            status = "%%"
+        Else
+            status = LEEmployeeStatus.EditValue.ToString
+        End If
+
+        Dim query As String = "SELECT * FROM tb_m_employee WHERE id_departement LIKE '" & dept & "' AND id_employee_active LIKE '" & status & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         GVScheduleTable.Columns.Clear()
@@ -267,7 +300,7 @@
     End Function
 
     Sub load_report_sum()
-        Dim date_start, date_until, dept As String
+        Dim date_start, date_until, dept, status As String
 
         date_start = Date.Parse(DEStartSum.EditValue.ToString).ToString("yyyy-MM-dd")
         date_until = Date.Parse(DEUntilSum.EditValue.ToString).ToString("yyyy-MM-dd")
@@ -276,6 +309,12 @@
             dept = "%%"
         Else
             dept = LEDeptSum.EditValue.ToString
+        End If
+
+        If LEEmployeeStatus.EditValue.ToString = "0" Then
+            status = "%%"
+        Else
+            status = LEEmployeeStatus.EditValue.ToString
         End If
 
         Dim query As String = ""
@@ -317,7 +356,7 @@
 	                LEFT JOIN tb_emp_attn at_brin ON at_brin.id_employee=sch.id_employee AND DATE(at_brin.datetime) = sch.Date AND at_brin.type_log = 4
 	                LEFT JOIN tb_emp_attn at_in_hol ON at_in_hol.id_employee = sch.id_employee AND DATE(at_in_hol.datetime) = sch.Date AND at_in_hol.type_log = 1 
 	                LEFT JOIN tb_emp_attn at_out_hol ON at_out_hol.id_employee = sch.id_employee AND DATE(at_out_hol.datetime) = sch.Date AND at_out_hol.type_log = 2   
-	                WHERE emp.id_departement LIKE '" & dept & "' AND sch.date >='" & date_start & "' AND sch.date <='" & date_until & "' 
+	                WHERE emp.id_departement LIKE '" & dept & "' AND sch.date >='" & date_start & "' AND sch.date <='" & date_until & "' AND emp.id_employee_active LIKE '" & status & "'
 	                GROUP BY sch.id_schedule
                 )tb
                 INNER JOIN tb_m_departement dep ON dep.id_departement=tb.id_departement
@@ -423,6 +462,10 @@
     Private Sub GVSchedule_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVSchedule.RowCellStyle
         If GVSchedule.GetRowCellValue(e.RowHandle, "id_employee_active").ToString = "1" And GVSchedule.GetRowCellValue(e.RowHandle, "id_schedule_type").ToString = "1" And Date.Parse(GVSchedule.GetRowCellValue(e.RowHandle, "date").ToString).Date < Now.Date And GVSchedule.GetRowCellValue(e.RowHandle, "present").ToString = "0" And GVSchedule.GetRowCellValue(e.RowHandle, "id_leave_type").ToString = "" Then
             e.Appearance.BackColor = Color.Yellow
+        ElseIf GVSchedule.GetRowCellValue(e.RowHandle, "id_employee_active").ToString = "1" And GVSchedule.GetRowCellValue(e.RowHandle, "id_schedule_type").ToString = "2" Then
+            e.Appearance.BackColor = Color.LightGreen
+        ElseIf GVSchedule.GetRowCellValue(e.RowHandle, "id_employee_active").ToString = "1" And GVSchedule.GetRowCellValue(e.RowHandle, "id_schedule_type").ToString = "3" Then
+            e.Appearance.BackColor = Color.Lime
         End If
     End Sub
 End Class
