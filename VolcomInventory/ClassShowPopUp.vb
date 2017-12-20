@@ -19,6 +19,9 @@
         ElseIf report_mark_type = "15" Then
             'Mat WO
             FormViewMatWO.Close()
+        ElseIf report_mark_type = "16" Then
+            'Mat Rec Purc
+            FormViewMatRecPurc.Close()
         ElseIf report_mark_type = "24" Then
             'MAT PR
             FormViewMatPR.Close()
@@ -28,6 +31,12 @@
         ElseIf report_mark_type = "23" Then
             'Production Work Order
             FormViewProductionWO.Close()
+        ElseIf report_mark_type = "29" Then
+            'production MRS
+            FormViewProductionMRS.Close()
+        ElseIf report_mark_type = "44" Then
+            'non production MRS
+            FormViewMatMRS.Close()
         ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Then
             'invoice/missing/credit note
             FormViewSalesPOS.Close()
@@ -50,6 +59,9 @@
         ElseIf report_mark_type = "104" Then
             'propose leave HRD
             FormEmpLeaveDet.Close()
+        ElseIf report_mark_type = "105" Then
+            'final clearance
+            FormProductionFinalClearDet.Close()
         End If
     End Sub
     Sub show()
