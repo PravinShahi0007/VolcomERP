@@ -18,8 +18,8 @@
         GVItemList.OptionsBehavior.AutoExpandAllGroups = True
 
         'visible column counting
-        GridColumnCountingStart.Visible = False
-        GridColumnCountingEnd.Visible = False
+        ' GridColumnCountingStart.Visible = False
+        ' GridColumnCountingEnd.Visible = False
 
         'query view based on edit id's
         Dim query_c As ClassFGCodeReplace = New ClassFGCodeReplace()

@@ -64,6 +64,9 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTCCodeReplace = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPRequisition = New DevExpress.XtraTab.XtraTabPage()
+        Me.XTPList = New DevExpress.XtraTab.XtraTabPage()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPForm, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,6 +90,9 @@ Partial Class FormFGCodeReplaceStoreDet
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
+        CType(Me.XTCCodeReplace, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCCodeReplace.SuspendLayout()
+        Me.XTPRequisition.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -181,11 +187,11 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.PanelControl3.Controls.Add(Me.BtnCancel)
         Me.PanelControl3.Controls.Add(Me.BtnSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 463)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 361)
         Me.PanelControl3.LookAndFeel.SkinName = "Blue"
         Me.PanelControl3.LookAndFeel.UseDefaultLookAndFeel = False
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(774, 31)
+        Me.PanelControl3.Size = New System.Drawing.Size(768, 31)
         Me.PanelControl3.TabIndex = 188
         '
         'BtnPrint
@@ -193,7 +199,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnPrint.ImageIndex = 6
         Me.BtnPrint.ImageList = Me.LargeImageCollection
-        Me.BtnPrint.Location = New System.Drawing.Point(547, 2)
+        Me.BtnPrint.Location = New System.Drawing.Point(541, 2)
         Me.BtnPrint.Name = "BtnPrint"
         Me.BtnPrint.Size = New System.Drawing.Size(75, 27)
         Me.BtnPrint.TabIndex = 9
@@ -225,7 +231,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.ImageIndex = 5
         Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(622, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(616, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 27)
         Me.BtnCancel.TabIndex = 10
@@ -236,7 +242,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnSave.ImageIndex = 7
         Me.BtnSave.ImageList = Me.LargeImageCollection
-        Me.BtnSave.Location = New System.Drawing.Point(697, 2)
+        Me.BtnSave.Location = New System.Drawing.Point(691, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 27)
         Me.BtnSave.TabIndex = 8
@@ -249,9 +255,9 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GroupControl3.Controls.Add(Me.MENote)
         Me.GroupControl3.Controls.Add(Me.LabelControl18)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 395)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 293)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(774, 68)
+        Me.GroupControl3.Size = New System.Drawing.Size(768, 68)
         Me.GroupControl3.TabIndex = 190
         '
         'PanelBottomRight
@@ -260,7 +266,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.PanelBottomRight.Controls.Add(Me.LEReportStatus)
         Me.PanelBottomRight.Controls.Add(Me.LabelControl21)
         Me.PanelBottomRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelBottomRight.Location = New System.Drawing.Point(449, 2)
+        Me.PanelBottomRight.Location = New System.Drawing.Point(443, 2)
         Me.PanelBottomRight.Name = "PanelBottomRight"
         Me.PanelBottomRight.Size = New System.Drawing.Size(323, 64)
         Me.PanelBottomRight.TabIndex = 139
@@ -310,9 +316,9 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GroupControlListItem.Controls.Add(Me.PanelControlNav)
         Me.GroupControlListItem.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlListItem.Enabled = False
-        Me.GroupControlListItem.Location = New System.Drawing.Point(0, 74)
+        Me.GroupControlListItem.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlListItem.Name = "GroupControlListItem"
-        Me.GroupControlListItem.Size = New System.Drawing.Size(774, 321)
+        Me.GroupControlListItem.Size = New System.Drawing.Size(768, 293)
         Me.GroupControlListItem.TabIndex = 191
         Me.GroupControlListItem.Text = "Item List"
         '
@@ -324,7 +330,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(752, 282)
+        Me.GCItemList.Size = New System.Drawing.Size(746, 254)
         Me.GCItemList.TabIndex = 3
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
@@ -332,6 +338,7 @@ Partial Class FormFGCodeReplaceStoreDet
         '
         Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnColor, Me.GridColumnDelNumber, Me.GridColumnStore, Me.GridColumnStoreNumber, Me.GridColumnCountingStart, Me.GridColumnCountingEnd, Me.GridColumn1, Me.GridColumnIdPLSalesOrderDelDet, Me.GridColumnIdSample, Me.GridColumnIdDet, Me.GridColumnIdComp})
         Me.GVItemList.GridControl = Me.GCItemList
+        Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "fg_code_replace_store_det_qty", Me.GridColumn1, "{0:n0}")})
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVItemList.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -440,8 +447,11 @@ Partial Class FormFGCodeReplaceStoreDet
         'GridColumn1
         '
         Me.GridColumn1.Caption = "Replacement Qty"
+        Me.GridColumn1.DisplayFormat.FormatString = "n0"
+        Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn1.FieldName = "fg_code_replace_store_det_qty"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "fg_code_replace_store_det_qty", "{0:n0}")})
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 6
         Me.GridColumn1.Width = 118
@@ -491,7 +501,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControlNav.Location = New System.Drawing.Point(20, 2)
         Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(752, 35)
+        Me.PanelControlNav.Size = New System.Drawing.Size(746, 35)
         Me.PanelControlNav.TabIndex = 1
         '
         'BtnDel
@@ -499,7 +509,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDel.ImageIndex = 1
         Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(469, 0)
+        Me.BtnDel.Location = New System.Drawing.Point(463, 0)
         Me.BtnDel.Name = "BtnDel"
         Me.BtnDel.Size = New System.Drawing.Size(101, 35)
         Me.BtnDel.TabIndex = 5
@@ -510,7 +520,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnEdit.ImageIndex = 2
         Me.BtnEdit.ImageList = Me.LargeImageCollection
-        Me.BtnEdit.Location = New System.Drawing.Point(570, 0)
+        Me.BtnEdit.Location = New System.Drawing.Point(564, 0)
         Me.BtnEdit.Name = "BtnEdit"
         Me.BtnEdit.Size = New System.Drawing.Size(91, 35)
         Me.BtnEdit.TabIndex = 4
@@ -522,20 +532,43 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAdd.ImageIndex = 0
         Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(661, 0)
+        Me.BtnAdd.Location = New System.Drawing.Point(655, 0)
         Me.BtnAdd.Name = "BtnAdd"
         Me.BtnAdd.Size = New System.Drawing.Size(91, 35)
         Me.BtnAdd.TabIndex = 3
         Me.BtnAdd.Text = "Add Item"
+        '
+        'XTCCodeReplace
+        '
+        Me.XTCCodeReplace.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCCodeReplace.Location = New System.Drawing.Point(0, 74)
+        Me.XTCCodeReplace.Name = "XTCCodeReplace"
+        Me.XTCCodeReplace.SelectedTabPage = Me.XTPRequisition
+        Me.XTCCodeReplace.Size = New System.Drawing.Size(774, 420)
+        Me.XTCCodeReplace.TabIndex = 192
+        Me.XTCCodeReplace.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPRequisition, Me.XTPList})
+        '
+        'XTPRequisition
+        '
+        Me.XTPRequisition.Controls.Add(Me.GroupControlListItem)
+        Me.XTPRequisition.Controls.Add(Me.GroupControl3)
+        Me.XTPRequisition.Controls.Add(Me.PanelControl3)
+        Me.XTPRequisition.Name = "XTPRequisition"
+        Me.XTPRequisition.Size = New System.Drawing.Size(768, 392)
+        Me.XTPRequisition.Text = "Requisition"
+        '
+        'XTPList
+        '
+        Me.XTPList.Name = "XTPList"
+        Me.XTPList.Size = New System.Drawing.Size(768, 392)
+        Me.XTPList.Text = "Barcode List"
         '
         'FormFGCodeReplaceStoreDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(774, 494)
-        Me.Controls.Add(Me.GroupControlListItem)
-        Me.Controls.Add(Me.GroupControl3)
-        Me.Controls.Add(Me.PanelControl3)
+        Me.Controls.Add(Me.XTCCodeReplace)
         Me.Controls.Add(Me.GroupGeneralHeader)
         Me.MinimizeBox = False
         Me.Name = "FormFGCodeReplaceStoreDet"
@@ -569,6 +602,9 @@ Partial Class FormFGCodeReplaceStoreDet
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
+        CType(Me.XTCCodeReplace, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCCodeReplace.ResumeLayout(False)
+        Me.XTPRequisition.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -615,4 +651,7 @@ Partial Class FormFGCodeReplaceStoreDet
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdComp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnStoreNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCCodeReplace As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPRequisition As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPList As DevExpress.XtraTab.XtraTabPage
 End Class

@@ -51,7 +51,9 @@
         ElseIf report_mark_type = "50" Then
             'PR Prod Order
             FormViewPRProdWO.Close()
-
+        ElseIf report_mark_type = "65" Then
+            'code replacement
+            FormViewFGCodeReplaceStore.Close()
         ElseIf report_mark_type = "95" Then
             'propose leave
             FormEmpLeaveDet.Close()

@@ -3,6 +3,7 @@
     Public id_fg_code_replace_store As String = "-1"
     Public id_report_status As String = "-1"
     Public id_fg_code_replace_store_det_list As New List(Of String)
+    Public form_type As String = "1"
 
     Private Sub FormFGCodeReplaceStoreDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -15,7 +16,7 @@
 
     Sub actionLoad()
         If action = "ins" Then
-            TxtNumber.Text = header_number_sales("16")
+            TxtNumber.Text = ""
             BtnPrint.Enabled = False
             BMark.Enabled = False
             DEForm.Text = view_date(0)
@@ -94,7 +95,7 @@
             GVItemList.OptionsCustomization.AllowGroup = False
             MENote.Properties.ReadOnly = False
             GVItemList.OptionsCustomization.AllowGroup = False
-            BtnSave.Enabled = True
+            BtnSave.Enabled = False
             PanelControlNav.Enabled = True
             GVItemList.OptionsCustomization.AllowGroup = False
         Else
@@ -106,10 +107,11 @@
             PanelControlNav.Enabled = False
             GVItemList.OptionsCustomization.AllowGroup = True
         End If
+        PanelControlNav.Visible = False
 
-        If id_report_status = "6" Then
-            GridColumnCountingStart.Visible = True
-            GridColumnCountingEnd.Visible = True
+        If id_report_status <> "5" Then
+            GridColumnCountingStart.VisibleIndex = 7
+            GridColumnCountingEnd.VisibleIndex = 8
         Else
             GridColumnCountingStart.Visible = False
             GridColumnCountingEnd.Visible = False
@@ -120,6 +122,14 @@
         Else
             BtnPrint.Enabled = False
         End If
+
+        If form_type = "1" Then
+            XTPList.PageVisible = False
+        Else
+            XTPList.PageVisible = True
+        End If
+
+
     End Sub
 
    
@@ -167,7 +177,7 @@
                 If action = "ins" Then
                     'Main tbale
                     Dim query As String = "INSERT INTO tb_fg_code_replace_store(fg_code_replace_store_number, fg_code_replace_store_date, fg_code_replace_store_note, id_report_status) "
-                    query += "VALUES('" + fg_code_replace_store_number + "', NOW(), '" + fg_code_replace_store_note + "', '" + id_report_status + "'); SELECT LAST_INSERT_ID(); "
+                    query += "VALUES('" + header_number_sales("16") + "', NOW(), '" + fg_code_replace_store_note + "', '" + id_report_status + "'); SELECT LAST_INSERT_ID(); "
                     id_fg_code_replace_store = execute_query(query, 0, True, "", "", "", "")
 
                     increase_inc_sales("16")
@@ -197,6 +207,18 @@
                     If GVItemList.RowCount > 0 Then
                         execute_non_query(query_detail, True, "", "", "", "")
                     End If
+
+                    'call procedure
+                    execute_non_query("CALL generate_replace_barcode_new('" + id_fg_code_replace_store + "')", True, "", "", "", "")
+
+                    'submit who prepared
+                    submit_who_prepared("65", id_fg_code_replace_store, id_user)
+
+                    FormFGCodeReplace.viewCodeReplaceStore()
+                    FormFGCodeReplace.GVFGCodeReplaceStore.FocusedRowHandle = find_row(FormFGCodeReplace.GVFGCodeReplaceStore, "id_fg_code_replace_store", id_fg_code_replace_store)
+                    action = "upd"
+                    actionLoad()
+                    infoCustom("Transaction #" + TxtNumber.Text + " created successfully ")
                 ElseIf action = "upd" Then
                     Dim query As String = "UPDATE tb_fg_code_replace_store SET fg_code_replace_store_note='" + fg_code_replace_store_note + "' WHERE id_fg_code_replace_store='" + id_fg_code_replace_store + "' "
                     execute_non_query(query, True, "", "", "", "")
@@ -242,11 +264,7 @@
                         End Try
                     Next
                 End If
-
-                FormFGCodeReplace.viewCodeReplaceStore()
-                FormFGCodeReplace.GVFGCodeReplaceStore.FocusedRowHandle = find_row(FormFGCodeReplace.GVFGCodeReplaceStore, "id_fg_code_replace_store", id_fg_code_replace_store)
                 Cursor = Cursors.Default
-                Close()
             End If
         End If
         Cursor = Cursors.Default
