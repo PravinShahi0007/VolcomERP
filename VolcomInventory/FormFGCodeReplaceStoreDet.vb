@@ -179,19 +179,19 @@
                     Dim jum_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_fg_code_replace_store_det(id_fg_code_replace_store,id_product,id_pl_sales_order_del_det,fg_code_replace_store_det_qty,counting_start,counting_end) VALUES "
+                        query_detail = "INSERT INTO tb_fg_code_replace_store_det(id_fg_code_replace_store,id_product,id_pl_sales_order_del_det, id_comp,fg_code_replace_store_det_qty,counting_start,counting_end) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - (GetGroupRowCount(GVItemList)))
                         Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
-                        Dim id_pl_sales_order_del_det As String = GVItemList.GetRowCellValue(i, "id_pl_sales_order_del_det").ToString
                         Dim fg_code_replace_store_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "fg_code_replace_store_det_qty").ToString)
                         Dim counting_start As String = GVItemList.GetRowCellValue(i, "counting_start").ToString
                         Dim counting_end As String = GVItemList.GetRowCellValue(i, "counting_end").ToString
+                        Dim id_comp As String = GVItemList.GetRowCellValue(i, "id_comp").ToString
 
                         If jum_i > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_fg_code_replace_store + "', '" + id_product + "', '" + id_pl_sales_order_del_det + "', '" + fg_code_replace_store_det_qty + "', '" + counting_start + "', '" + counting_end + "') "
+                        query_detail += "('" + id_fg_code_replace_store + "', '" + id_product + "', NULL,'" + id_comp + "', '" + fg_code_replace_store_det_qty + "', '" + counting_start + "', '" + counting_end + "') "
                         jum_i = jum_i + 1
                     Next
                     If GVItemList.RowCount > 0 Then
