@@ -34,6 +34,14 @@
         ElseIf report_mark_type = "29" Then
             'production MRS
             FormViewProductionMRS.Close()
+        ElseIf report_mark_type = "30" Then
+            'production pl MRS
+        ElseIf report_mark_type = "31" Then
+            'return out production
+            FormViewProductionRetOut.Close()
+        ElseIf report_mark_type = "32" Then
+            'return in production
+            FormViewProductionRetIn.Close()
         ElseIf report_mark_type = "44" Then
             'non production MRS
             FormViewMatMRS.Close()
