@@ -4,6 +4,7 @@
     Public id_report_status As String = "-1"
     Public id_fg_code_replace_store_det_list As New List(Of String)
     Public form_type As String = "1"
+    Dim is_verified As String = "-1"
 
     Private Sub FormFGCodeReplaceStoreDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -45,6 +46,7 @@
             TxtNumber.Text = data.Rows(0)("fg_code_replace_store_number").ToString
             DEForm.Text = view_date_from(data.Rows(0)("fg_code_replace_store_datex").ToString, 0)
             MENote.Text = data.Rows(0)("fg_code_replace_store_note").ToString
+            is_verified = data.Rows(0)("is_verified").ToString
 
             'detail2
             viewDetail()
@@ -123,6 +125,7 @@
             BtnPrint.Enabled = False
         End If
 
+        MsgBox(form_type)
         If form_type = "1" Then
             XTPList.PageVisible = False
         Else
@@ -130,11 +133,15 @@
             viewBarcode()
             XTCCodeReplace.SelectedTabPageIndex = 1
             If form_type = "2" Then
-                BtnPrint.Visible = True
+                BtnPrintBarcode.Visible = True
                 BtnVerifiy.Visible = False
             Else
-                BtnPrint.Visible = False
+                BtnPrintBarcode.Visible = False
                 BtnVerifiy.Visible = True
+                If is_verified = "2" Then
+                    PanelControlScan.Visible = True
+                    ActiveControl = TxtScan
+                End If
             End If
         End If
     End Sub
@@ -345,6 +352,51 @@
     Private Sub GVBarcode_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVBarcode.CustomColumnDisplayText
         If e.Column.FieldName = "no" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub BtnVerifiy_Click(sender As Object, e As EventArgs) Handles BtnVerifiy.Click
+        makeSafeGV(GVBarcode)
+        GVBarcode.ActiveFilterString = "[status]='-'"
+
+        If GVBarcode.RowCount > 0 Then
+            stopCustom("Data not match !")
+        Else
+            GVBarcode.ActiveFilterString = ""
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Data match. Please click 'OK' to completed verification ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                infoCustom("Verification compeleted")
+            End If
+        End If
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        TxtScan.Focus()
+    End Sub
+
+    Private Sub FormFGCodeReplaceStoreDet_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F2 Then
+            TxtScan.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtScan_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScan.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim code As String = TxtScan.Text
+            makeSafeGV(GVBarcode)
+            GVBarcode.ActiveFilterString = "[unique_code]='" + code + "' "
+            If GVBarcode.RowCount = 1 Then
+                If GVBarcode.GetFocusedRowCellValue("status") = "verified" Then
+                    infoCustom("Code duplicate !")
+                Else
+                    GVBarcode.SetFocusedRowCellValue("status", "verified")
+                End If
+            Else
+                    infoCustom("Code not found !")
+            End If
+            GVBarcode.ActiveFilterString = ""
+            TxtScan.Text = ""
+            TxtScan.Focus()
         End If
     End Sub
 End Class
