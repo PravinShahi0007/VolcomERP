@@ -10982,4 +10982,12 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBCodeReplacementPrint_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCodeReplacementPrint.LinkClicked
+
+    End Sub
+
+    Private Sub NBCodeReplacementVerify_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCodeReplacementVerify.LinkClicked
+
+    End Sub
 End Class
