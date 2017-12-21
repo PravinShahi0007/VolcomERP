@@ -127,12 +127,25 @@
             XTPList.PageVisible = False
         Else
             XTPList.PageVisible = True
+            viewBarcode()
+            XTCCodeReplace.SelectedTabPageIndex = 1
+            If form_type = "2" Then
+                BtnPrint.Visible = True
+                BtnVerifiy.Visible = False
+            Else
+                BtnPrint.Visible = False
+                BtnVerifiy.Visible = True
+            End If
         End If
-
-
     End Sub
 
-   
+    Sub viewBarcode()
+        Dim query As String = "CALL generate_replace_barcode_list(" + id_fg_code_replace_store + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCBarcode.DataSource = data
+    End Sub
+
+
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
         FormFGCodeReplaceStoreAdd.ShowDialog()
@@ -327,5 +340,11 @@
 
     Private Sub BtnTest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnTest.Click
         
+    End Sub
+
+    Private Sub GVBarcode_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVBarcode.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
     End Sub
 End Class
