@@ -101,6 +101,7 @@
                 query = "INSERT INTO tb_prod_debit_note_det(id_prod_debit_note,id_prod_order_rec,id_claim_type,days_late,delivery_date_ko,note,qty_pcs,claim_price_pc) VALUES('" & id_dn & "','" & GVProdRec.GetRowCellValue(i, "id_prod_order_rec").ToString & "','" & GVProdRec.GetRowCellValue(i, "id_claim_type").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "','" & note_claim & "','" & qty_claim & "','" & claim_prc & "')"
                 execute_query(query, -1, True, "", "", "", "")
             Next
+            Close()
         Else 'edit
 
         End If
