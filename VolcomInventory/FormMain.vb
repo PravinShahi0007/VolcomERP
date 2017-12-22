@@ -2192,6 +2192,7 @@ Public Class FormMain
             ElseIf formName = "FormFGCodeReplace" Then
                 'CODE REPLACEMENT FG STORE
                 If FormFGCodeReplace.XTCFGCodeReplace.SelectedTabPageIndex = 0 Then
+                    FormFGCodeReplaceStoreDet.form_type = FormFGCodeReplace.form_type
                     FormFGCodeReplaceStoreDet.action = "upd"
                     FormFGCodeReplaceStoreDet.id_fg_code_replace_store = FormFGCodeReplace.GVFGCodeReplaceStore.GetFocusedRowCellValue("id_fg_code_replace_store").ToString
                     FormFGCodeReplaceStoreDet.ShowDialog()
@@ -10977,6 +10978,34 @@ Public Class FormMain
             FormFGTransSummary.Show()
             FormFGTransSummary.WindowState = FormWindowState.Maximized
             FormFGTransSummary.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCodeReplacementPrint_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCodeReplacementPrint.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGCodeReplace.form_type = "2"
+            FormFGCodeReplace.MdiParent = Me
+            FormFGCodeReplace.Show()
+            FormFGCodeReplace.WindowState = FormWindowState.Maximized
+            FormFGCodeReplace.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCodeReplacementVerify_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCodeReplacementVerify.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGCodeReplace.form_type = "3"
+            FormFGCodeReplace.MdiParent = Me
+            FormFGCodeReplace.Show()
+            FormFGCodeReplace.WindowState = FormWindowState.Maximized
+            FormFGCodeReplace.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

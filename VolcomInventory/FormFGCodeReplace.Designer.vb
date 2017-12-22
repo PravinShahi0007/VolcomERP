@@ -19,19 +19,19 @@ Partial Class FormFGCodeReplace
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.XTCFGCodeReplace = New DevExpress.XtraTab.XtraTabControl
-        Me.XTPFGCodeReplaceStore = New DevExpress.XtraTab.XtraTabPage
-        Me.GCFGCodeReplaceStore = New DevExpress.XtraGrid.GridControl
-        Me.GVFGCodeReplaceStore = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.XTPFGCodeReplaceWH = New DevExpress.XtraTab.XtraTabPage
-        Me.GCFGCodeReplaceWH = New DevExpress.XtraGrid.GridControl
-        Me.GVFGCodeReplaceWH = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
+        Me.XTCFGCodeReplace = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPFGCodeReplaceStore = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCFGCodeReplaceStore = New DevExpress.XtraGrid.GridControl()
+        Me.GVFGCodeReplaceStore = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPFGCodeReplaceWH = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCFGCodeReplaceWH = New DevExpress.XtraGrid.GridControl()
+        Me.GVFGCodeReplaceWH = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCFGCodeReplace, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGCodeReplace.SuspendLayout()
         Me.XTPFGCodeReplaceStore.SuspendLayout()
@@ -58,8 +58,8 @@ Partial Class FormFGCodeReplace
         '
         Me.XTPFGCodeReplaceStore.Controls.Add(Me.GCFGCodeReplaceStore)
         Me.XTPFGCodeReplaceStore.Name = "XTPFGCodeReplaceStore"
-        Me.XTPFGCodeReplaceStore.Size = New System.Drawing.Size(650, 447)
-        Me.XTPFGCodeReplaceStore.Text = "In Store"
+        Me.XTPFGCodeReplaceStore.Size = New System.Drawing.Size(657, 447)
+        Me.XTPFGCodeReplaceStore.Text = "List"
         '
         'GCFGCodeReplaceStore
         '
@@ -67,7 +67,7 @@ Partial Class FormFGCodeReplace
         Me.GCFGCodeReplaceStore.Location = New System.Drawing.Point(0, 0)
         Me.GCFGCodeReplaceStore.MainView = Me.GVFGCodeReplaceStore
         Me.GCFGCodeReplaceStore.Name = "GCFGCodeReplaceStore"
-        Me.GCFGCodeReplaceStore.Size = New System.Drawing.Size(650, 447)
+        Me.GCFGCodeReplaceStore.Size = New System.Drawing.Size(657, 447)
         Me.GCFGCodeReplaceStore.TabIndex = 0
         Me.GCFGCodeReplaceStore.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGCodeReplaceStore})
         '
@@ -109,7 +109,8 @@ Partial Class FormFGCodeReplace
         '
         Me.XTPFGCodeReplaceWH.Controls.Add(Me.GCFGCodeReplaceWH)
         Me.XTPFGCodeReplaceWH.Name = "XTPFGCodeReplaceWH"
-        Me.XTPFGCodeReplaceWH.Size = New System.Drawing.Size(650, 447)
+        Me.XTPFGCodeReplaceWH.PageVisible = False
+        Me.XTPFGCodeReplaceWH.Size = New System.Drawing.Size(657, 447)
         Me.XTPFGCodeReplaceWH.Text = "In WH"
         '
         'GCFGCodeReplaceWH
@@ -118,7 +119,7 @@ Partial Class FormFGCodeReplace
         Me.GCFGCodeReplaceWH.Location = New System.Drawing.Point(0, 0)
         Me.GCFGCodeReplaceWH.MainView = Me.GVFGCodeReplaceWH
         Me.GCFGCodeReplaceWH.Name = "GCFGCodeReplaceWH"
-        Me.GCFGCodeReplaceWH.Size = New System.Drawing.Size(650, 447)
+        Me.GCFGCodeReplaceWH.Size = New System.Drawing.Size(657, 447)
         Me.GCFGCodeReplaceWH.TabIndex = 1
         Me.GCFGCodeReplaceWH.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVFGCodeReplaceWH})
         '

@@ -69,7 +69,7 @@
 
     Private Sub SMViewDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SMViewDel.Click
         Cursor = Cursors.WaitCursor
-        If GVTracking.RowCount > 0 Then
+        If GVTracking.RowCount > 0 And GVTracking.GetFocusedRowCellValue("id_trans").ToString > 0 Then
             Dim id_trans As String = "-1"
             Dim report_mark_type As String = "-1"
             Try

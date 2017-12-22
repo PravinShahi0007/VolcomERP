@@ -116,6 +116,7 @@ Public Class FormBarcodeProductPrint
     End Sub
 
     Private Sub BPrint_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BPrint.Click
+        'remember change on fgcodereplacestoredetprint too
         If SEPrintTo.EditValue < SEPrintFrom.EditValue Then
             stopCustom("Please make sure barcode unique on the left is before unique on the right.")
         ElseIf TEPrice.Text.ToString = "" Or TEPrice.Text.ToString = "0" Then
