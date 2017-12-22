@@ -110,4 +110,10 @@
     Private Sub XTCFGCodeReplace_SelectedPageChanged(ByVal sender As System.Object, ByVal e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCFGCodeReplace.SelectedPageChanged
         check_menu()
     End Sub
+
+    Private Sub GVFGCodeReplaceStore_DoubleClick(sender As Object, e As EventArgs) Handles GVFGCodeReplaceStore.DoubleClick
+        If GVFGCodeReplaceStore.RowCount > 0 And GVFGCodeReplaceStore.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
+    End Sub
 End Class

@@ -135,6 +135,9 @@
             If form_type = "2" Then
                 BtnPrintBarcode.Visible = True
                 BtnVerifiy.Visible = False
+                If is_verified = "1" Then
+                    GridColumnStatus.Visible = False
+                End If
             Else
                 BtnPrintBarcode.Visible = False
                 If is_verified = "2" Then
