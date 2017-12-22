@@ -21,7 +21,12 @@
 
     Sub viewCodeReplaceStore()
         Dim query_c As ClassFGCodeReplace = New ClassFGCodeReplace()
-        Dim query As String = query_c.queryMainStore("-1", "2")
+        Dim query As String = ""
+        If form_type = "2" Or form_type = "3" Then
+            query = query_c.queryMainStore("AND rep.id_report_status=6 ", "2")
+        Else
+            query = query_c.queryMainStore("-1", "2")
+        End If
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCFGCodeReplaceStore.DataSource = data
         check_menu()

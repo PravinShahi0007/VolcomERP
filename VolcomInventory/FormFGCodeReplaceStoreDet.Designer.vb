@@ -85,7 +85,9 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GridColumnCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumncounting = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.PBC = New DevExpress.XtraEditors.ProgressBarControl()
         Me.PanelControlScan = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtScan = New DevExpress.XtraEditors.TextEdit()
@@ -124,6 +126,7 @@ Partial Class FormFGCodeReplaceStoreDet
         CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlScan, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlScan.SuspendLayout()
         CType(Me.TxtScan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -594,10 +597,12 @@ Partial Class FormFGCodeReplaceStoreDet
         'XTPList
         '
         Me.XTPList.Controls.Add(Me.GroupControl1)
+        Me.XTPList.Controls.Add(Me.PBC)
         Me.XTPList.Controls.Add(Me.PanelControlScan)
         Me.XTPList.Controls.Add(Me.BtnPrintBarcode)
         Me.XTPList.Controls.Add(Me.BtnVerifiy)
         Me.XTPList.Name = "XTPList"
+        Me.XTPList.PageVisible = False
         Me.XTPList.Size = New System.Drawing.Size(1010, 527)
         Me.XTPList.Text = "Barcode List"
         '
@@ -608,7 +613,7 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl1.Location = New System.Drawing.Point(0, 44)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(1010, 421)
+        Me.GroupControl1.Size = New System.Drawing.Size(1010, 411)
         Me.GroupControl1.TabIndex = 0
         Me.GroupControl1.Text = "List"
         '
@@ -620,13 +625,13 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GCBarcode.MainView = Me.GVBarcode
         Me.GCBarcode.Name = "GCBarcode"
         Me.GCBarcode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2})
-        Me.GCBarcode.Size = New System.Drawing.Size(988, 417)
+        Me.GCBarcode.Size = New System.Drawing.Size(988, 407)
         Me.GCBarcode.TabIndex = 4
         Me.GCBarcode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBarcode})
         '
         'GVBarcode
         '
-        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumnUnqueCode, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumnCost, Me.GridColumnStatus, Me.GridColumnPrice})
+        Me.GVBarcode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn3, Me.GridColumnUnqueCode, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumn8, Me.GridColumn9, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumnCost, Me.GridColumnStatus, Me.GridColumnPrice, Me.GridColumncounting})
         Me.GVBarcode.GridControl = Me.GCBarcode
         Me.GVBarcode.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "fg_code_replace_store_det_qty", Nothing, "{0:n0}")})
         Me.GVBarcode.Name = "GVBarcode"
@@ -776,6 +781,12 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.GridColumnPrice.VisibleIndex = 7
         Me.GridColumnPrice.Width = 234
         '
+        'GridColumncounting
+        '
+        Me.GridColumncounting.Caption = "counting"
+        Me.GridColumncounting.FieldName = "counting"
+        Me.GridColumncounting.Name = "GridColumncounting"
+        '
         'RepositoryItemSpinEdit2
         '
         Me.RepositoryItemSpinEdit2.AutoHeight = False
@@ -783,6 +794,15 @@ Partial Class FormFGCodeReplaceStoreDet
         Me.RepositoryItemSpinEdit2.Mask.EditMask = "f0"
         Me.RepositoryItemSpinEdit2.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
+        '
+        'PBC
+        '
+        Me.PBC.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PBC.Location = New System.Drawing.Point(0, 455)
+        Me.PBC.Name = "PBC"
+        Me.PBC.Properties.PercentView = False
+        Me.PBC.Size = New System.Drawing.Size(1010, 10)
+        Me.PBC.TabIndex = 152
         '
         'PanelControlScan
         '
@@ -907,6 +927,7 @@ Partial Class FormFGCodeReplaceStoreDet
         CType(Me.GCBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVBarcode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PBC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlScan, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlScan.ResumeLayout(False)
         Me.PanelControlScan.PerformLayout()
@@ -985,4 +1006,6 @@ Partial Class FormFGCodeReplaceStoreDet
     Friend WithEvents GroupControl1 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumncounting As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PBC As DevExpress.XtraEditors.ProgressBarControl
 End Class

@@ -29,6 +29,7 @@
             GridColumnCountingStart.Visible = False
             GridColumnCountingEnd.Visible = False
         ElseIf action = "upd" Then
+            BMark.Enabled = True
             GroupControlListItem.Enabled = True
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
 
@@ -125,7 +126,6 @@
             BtnPrint.Enabled = False
         End If
 
-        MsgBox(form_type)
         If form_type = "1" Then
             XTPList.PageVisible = False
         Else
@@ -137,10 +137,14 @@
                 BtnVerifiy.Visible = False
             Else
                 BtnPrintBarcode.Visible = False
-                BtnVerifiy.Visible = True
                 If is_verified = "2" Then
                     PanelControlScan.Visible = True
                     ActiveControl = TxtScan
+                    BtnVerifiy.Visible = True
+                Else
+                    PanelControlScan.Visible = False
+                    BtnVerifiy.Visible = False
+                    GridColumnStatus.Visible = False
                 End If
             End If
         End If
@@ -361,11 +365,42 @@
 
         If GVBarcode.RowCount > 0 Then
             stopCustom("Data not match !")
+            GVBarcode.ActiveFilterString = ""
         Else
             GVBarcode.ActiveFilterString = ""
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Data match. Please click 'OK' to completed verification ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                PBC.Properties.Minimum = 0
+                PBC.Properties.Maximum = GVBarcode.RowCount - 1
+                PBC.Properties.Step = 1
+                For i As Integer = 0 To ((GVBarcode.RowCount - 1) - (GetGroupRowCount(GVBarcode)))
+                    'pl rec
+                    Dim query_ins_pl As String = "INSERT INTO tb_pl_prod_order_rec_det_counting (id_pl_prod_order_rec_det, pl_prod_order_rec_det_counting, id_product, bom_unit_price, id_counting_type) "
+                    query_ins_pl += "VALUES ('0', '" + GVBarcode.GetRowCellValue(i, "counting").ToString + "', '" + GVBarcode.GetRowCellValue(i, "id_product").ToString + "', '" + decimalSQL(GVBarcode.GetRowCellValue(i, "design_cop").ToString) + "','2'); SELECT LAST_INSERT_ID(); "
+                    Dim id_pl As String = execute_query(query_ins_pl, 0, True, "", "", "", "")
+
+                    'prob- only for store
+                    If GVBarcode.GetRowCellValue(i, "id_comp_cat").ToString = "6" Then
+                        Dim query_prob As String = "INSERT INTO tb_fg_unique_problem(id_pl_prod_order_rec_det_unique, id_fg_code_replace_store_det, id_comp, id_product, report_mark_type, counting_code, insert_date, note) 
+                        VALUES('" + id_pl + "', '" + GVBarcode.GetRowCellValue(i, "id_fg_code_replace_store_det").ToString + "','" + GVBarcode.GetRowCellValue(i, "id_comp").ToString + "', '" + GVBarcode.GetRowCellValue(i, "id_product").ToString + "', '65', '" + GVBarcode.GetRowCellValue(i, "counting").ToString + "', NOW(), 'Code Replacement " + TxtNumber.Text + "') "
+                        execute_non_query(query_prob, True, "", "", "", "")
+                    End If
+
+                    PBC.PerformStep()
+                    PBC.Update()
+                Next
+
+                'del temp
+                execute_non_query("DELETE FROM tb_fg_code_replace_store_temp WHERE id_fg_code_replace_store=" + id_fg_code_replace_store + "", True, "", "", "", "")
+
+                'update stt
+                Dim query_upd As String = "UPDATE tb_fg_code_replace_store SET is_verified=1, verified_date=NOW(), verified_by='" + id_user + "' WHERE   id_fg_code_replace_store=" + id_fg_code_replace_store + " "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                actionLoad()
                 infoCustom("Verification compeleted")
+                Cursor = Cursors.Default
             End If
         End If
     End Sub
@@ -389,6 +424,8 @@
                 If GVBarcode.GetFocusedRowCellValue("status") = "verified" Then
                     infoCustom("Code duplicate !")
                 Else
+                    Dim queryIns As String = "INSERT INTO tb_fg_code_replace_store_temp VALUES ('" + addSlashes(code) + "', '" + GVBarcode.GetFocusedRowCellValue("id_fg_code_replace_store_det") + "', '" + id_fg_code_replace_store + "') "
+                    execute_query(queryIns, -1, True, "", "", "", "")
                     GVBarcode.SetFocusedRowCellValue("status", "verified")
                 End If
             Else
