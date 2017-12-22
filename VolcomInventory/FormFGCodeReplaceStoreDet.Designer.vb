@@ -772,7 +772,7 @@ Partial Class FormFGCodeReplaceStoreDet
         '
         'GridColumnPrice
         '
-        Me.GridColumnPrice.Caption = "Price"
+        Me.GridColumnPrice.Caption = "Price On Tag"
         Me.GridColumnPrice.DisplayFormat.FormatString = "n2"
         Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPrice.FieldName = "price"

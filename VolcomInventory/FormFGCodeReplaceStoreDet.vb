@@ -153,6 +153,7 @@
     Sub viewBarcode()
         Dim query As String = "CALL generate_replace_barcode_list(" + id_fg_code_replace_store + ")"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
         GCBarcode.DataSource = data
     End Sub
 
@@ -435,5 +436,9 @@
             TxtScan.Text = ""
             TxtScan.Focus()
         End If
+    End Sub
+
+    Private Sub BtnPrintBarcode_Click(sender As Object, e As EventArgs) Handles BtnPrintBarcode.Click
+        FormFGCodeReplaceStoreDetPrint.ShowDialog()
     End Sub
 End Class
