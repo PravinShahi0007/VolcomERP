@@ -2580,11 +2580,14 @@
             End Try
         ElseIf report_mark_type = "65" Then
             'CODE REPLACEMENT
-            'action complete
-            If id_status_reportx = "6" Then
-                Dim query_replace As String = "CALL generate_replace_barcode('" + id_report + "')"
-                execute_non_query(query_replace, True, "", "", "", "")
+            If id_status_reportx = "3" Then
+                id_status_reportx = 6
             End If
+            'action complete
+            'If id_status_reportx = "6" Then
+            '    Dim query_replace As String = "CALL generate_replace_barcode('" + id_report + "')"
+            '    execute_non_query(query_replace, True, "", "", "", "")
+            'End If
 
             query = String.Format("UPDATE tb_fg_code_replace_store SET id_report_status='{0}' WHERE id_fg_code_replace_store ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")

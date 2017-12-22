@@ -883,10 +883,22 @@
     <Compile Include="FormFGAdjOutSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGCodeReplaceStoreAdd.Designer.vb">
+      <DependentUpon>FormFGCodeReplaceStoreAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGCodeReplaceStoreAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGCodeReplaceStoreDet.Designer.vb">
       <DependentUpon>FormFGCodeReplaceStoreDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGCodeReplaceStoreDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGCodeReplaceStoreDetPrint.Designer.vb">
+      <DependentUpon>FormFGCodeReplaceStoreDetPrint.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGCodeReplaceStoreDetPrint.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGCodeReplaceStoreSingle.Designer.vb">
@@ -5400,9 +5412,15 @@
       <DependentUpon>FormFGAdjOutSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFGCodeReplaceStoreAdd.resx">
+      <DependentUpon>FormFGCodeReplaceStoreAdd.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFGCodeReplaceStoreDet.resx">
       <DependentUpon>FormFGCodeReplaceStoreDet.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGCodeReplaceStoreDetPrint.resx">
+      <DependentUpon>FormFGCodeReplaceStoreDetPrint.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGCodeReplaceStoreSingle.resx">
       <DependentUpon>FormFGCodeReplaceStoreSingle.vb</DependentUpon>

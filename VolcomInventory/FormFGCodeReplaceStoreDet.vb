@@ -3,6 +3,8 @@
     Public id_fg_code_replace_store As String = "-1"
     Public id_report_status As String = "-1"
     Public id_fg_code_replace_store_det_list As New List(Of String)
+    Public form_type As String = "1"
+    Dim is_verified As String = "-1"
 
     Private Sub FormFGCodeReplaceStoreDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -15,7 +17,7 @@
 
     Sub actionLoad()
         If action = "ins" Then
-            TxtNumber.Text = header_number_sales("16")
+            TxtNumber.Text = ""
             BtnPrint.Enabled = False
             BMark.Enabled = False
             DEForm.Text = view_date(0)
@@ -27,6 +29,7 @@
             GridColumnCountingStart.Visible = False
             GridColumnCountingEnd.Visible = False
         ElseIf action = "upd" Then
+            BMark.Enabled = True
             GroupControlListItem.Enabled = True
             GVItemList.OptionsBehavior.AutoExpandAllGroups = True
 
@@ -44,6 +47,7 @@
             TxtNumber.Text = data.Rows(0)("fg_code_replace_store_number").ToString
             DEForm.Text = view_date_from(data.Rows(0)("fg_code_replace_store_datex").ToString, 0)
             MENote.Text = data.Rows(0)("fg_code_replace_store_note").ToString
+            is_verified = data.Rows(0)("is_verified").ToString
 
             'detail2
             viewDetail()
@@ -59,20 +63,20 @@
     End Sub
 
     Sub check_but()
-        Dim id_productx As String = "0"
-        Try
-            id_productx = GVItemList.GetFocusedRowCellValue("id_product").ToString
-        Catch ex As Exception
-        End Try
+        'Dim id_productx As String = "0"
+        'Try
+        '    id_productx = GVItemList.GetFocusedRowCellValue("id_product").ToString
+        'Catch ex As Exception
+        'End Try
 
-        'Constraint Status
-        If GVItemList.RowCount > 0 And id_productx <> "0" Then
-            BtnEdit.Enabled = True
-            BtnDel.Enabled = True
-        Else
-            BtnEdit.Enabled = False
-            BtnDel.Enabled = False
-        End If
+        ''Constraint Status
+        'If GVItemList.RowCount > 0 And id_productx <> "0" Then
+        '    BtnEdit.Enabled = True
+        '    BtnDel.Enabled = True
+        'Else
+        '    BtnEdit.Enabled = False
+        '    BtnDel.Enabled = False
+        'End If
     End Sub
 
     Sub viewDetail()
@@ -94,7 +98,7 @@
             GVItemList.OptionsCustomization.AllowGroup = False
             MENote.Properties.ReadOnly = False
             GVItemList.OptionsCustomization.AllowGroup = False
-            BtnSave.Enabled = True
+            BtnSave.Enabled = False
             PanelControlNav.Enabled = True
             GVItemList.OptionsCustomization.AllowGroup = False
         Else
@@ -106,10 +110,11 @@
             PanelControlNav.Enabled = False
             GVItemList.OptionsCustomization.AllowGroup = True
         End If
+        PanelControlNav.Visible = False
 
-        If id_report_status = "6" Then
-            GridColumnCountingStart.Visible = True
-            GridColumnCountingEnd.Visible = True
+        If id_report_status <> "5" Then
+            GridColumnCountingStart.VisibleIndex = 7
+            GridColumnCountingEnd.VisibleIndex = 8
         Else
             GridColumnCountingStart.Visible = False
             GridColumnCountingEnd.Visible = False
@@ -120,12 +125,45 @@
         Else
             BtnPrint.Enabled = False
         End If
+
+        If form_type = "1" Then
+            XTPList.PageVisible = False
+        Else
+            XTPList.PageVisible = True
+            viewBarcode()
+            XTCCodeReplace.SelectedTabPageIndex = 1
+            If form_type = "2" Then
+                BtnPrintBarcode.Visible = True
+                BtnVerifiy.Visible = False
+                If is_verified = "1" Then
+                    GridColumnStatus.Visible = False
+                End If
+            Else
+                BtnPrintBarcode.Visible = False
+                If is_verified = "2" Then
+                    PanelControlScan.Visible = True
+                    ActiveControl = TxtScan
+                    BtnVerifiy.Visible = True
+                Else
+                    PanelControlScan.Visible = False
+                    BtnVerifiy.Visible = False
+                    GridColumnStatus.Visible = False
+                End If
+            End If
+        End If
     End Sub
 
-   
+    Sub viewBarcode()
+        Dim query As String = "CALL generate_replace_barcode_list(" + id_fg_code_replace_store + ")"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        GCBarcode.DataSource = data
+    End Sub
+
+
     Private Sub BtnAdd_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAdd.Click
         Cursor = Cursors.WaitCursor
-        FormFGCodeReplaceStoreSingle.ShowDialog()
+        FormFGCodeReplaceStoreAdd.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 
@@ -134,14 +172,16 @@
     End Sub
 
     Private Sub BtnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDel.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Cursor = Cursors.WaitCursor
-            GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
-            GCItemList.RefreshDataSource()
-            GVItemList.RefreshData()
-            check_but()
-            Cursor = Cursors.Default
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this item?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                GVItemList.DeleteRow(GVItemList.FocusedRowHandle)
+                GCItemList.RefreshDataSource()
+                GVItemList.RefreshData()
+                check_but()
+                Cursor = Cursors.Default
+            End If
         End If
     End Sub
 
@@ -165,7 +205,7 @@
                 If action = "ins" Then
                     'Main tbale
                     Dim query As String = "INSERT INTO tb_fg_code_replace_store(fg_code_replace_store_number, fg_code_replace_store_date, fg_code_replace_store_note, id_report_status) "
-                    query += "VALUES('" + fg_code_replace_store_number + "', NOW(), '" + fg_code_replace_store_note + "', '" + id_report_status + "'); SELECT LAST_INSERT_ID(); "
+                    query += "VALUES('" + header_number_sales("16") + "', NOW(), '" + fg_code_replace_store_note + "', '" + id_report_status + "'); SELECT LAST_INSERT_ID(); "
                     id_fg_code_replace_store = execute_query(query, 0, True, "", "", "", "")
 
                     increase_inc_sales("16")
@@ -177,24 +217,36 @@
                     Dim jum_i As Integer = 0
                     Dim query_detail As String = ""
                     If GVItemList.RowCount > 0 Then
-                        query_detail = "INSERT INTO tb_fg_code_replace_store_det(id_fg_code_replace_store,id_product,id_pl_sales_order_del_det,fg_code_replace_store_det_qty,counting_start,counting_end) VALUES "
+                        query_detail = "INSERT INTO tb_fg_code_replace_store_det(id_fg_code_replace_store,id_product,id_pl_sales_order_del_det, id_comp,fg_code_replace_store_det_qty,counting_start,counting_end) VALUES "
                     End If
                     For i As Integer = 0 To ((GVItemList.RowCount - 1) - (GetGroupRowCount(GVItemList)))
                         Dim id_product As String = GVItemList.GetRowCellValue(i, "id_product").ToString
-                        Dim id_pl_sales_order_del_det As String = GVItemList.GetRowCellValue(i, "id_pl_sales_order_del_det").ToString
                         Dim fg_code_replace_store_det_qty As String = decimalSQL(GVItemList.GetRowCellValue(i, "fg_code_replace_store_det_qty").ToString)
                         Dim counting_start As String = GVItemList.GetRowCellValue(i, "counting_start").ToString
                         Dim counting_end As String = GVItemList.GetRowCellValue(i, "counting_end").ToString
+                        Dim id_comp As String = GVItemList.GetRowCellValue(i, "id_comp").ToString
 
                         If jum_i > 0 Then
                             query_detail += ", "
                         End If
-                        query_detail += "('" + id_fg_code_replace_store + "', '" + id_product + "', '" + id_pl_sales_order_del_det + "', '" + fg_code_replace_store_det_qty + "', '" + counting_start + "', '" + counting_end + "') "
+                        query_detail += "('" + id_fg_code_replace_store + "', '" + id_product + "', NULL,'" + id_comp + "', '" + fg_code_replace_store_det_qty + "', '" + counting_start + "', '" + counting_end + "') "
                         jum_i = jum_i + 1
                     Next
                     If GVItemList.RowCount > 0 Then
                         execute_non_query(query_detail, True, "", "", "", "")
                     End If
+
+                    'call procedure
+                    execute_non_query("CALL generate_replace_barcode_new('" + id_fg_code_replace_store + "')", True, "", "", "", "")
+
+                    'submit who prepared
+                    submit_who_prepared("65", id_fg_code_replace_store, id_user)
+
+                    FormFGCodeReplace.viewCodeReplaceStore()
+                    FormFGCodeReplace.GVFGCodeReplaceStore.FocusedRowHandle = find_row(FormFGCodeReplace.GVFGCodeReplaceStore, "id_fg_code_replace_store", id_fg_code_replace_store)
+                    action = "upd"
+                    actionLoad()
+                    infoCustom("Transaction #" + TxtNumber.Text + " created successfully ")
                 ElseIf action = "upd" Then
                     Dim query As String = "UPDATE tb_fg_code_replace_store SET fg_code_replace_store_note='" + fg_code_replace_store_note + "' WHERE id_fg_code_replace_store='" + id_fg_code_replace_store + "' "
                     execute_non_query(query, True, "", "", "", "")
@@ -240,11 +292,7 @@
                         End Try
                     Next
                 End If
-
-                FormFGCodeReplace.viewCodeReplaceStore()
-                FormFGCodeReplace.GVFGCodeReplaceStore.FocusedRowHandle = find_row(FormFGCodeReplace.GVFGCodeReplaceStore, "id_fg_code_replace_store", id_fg_code_replace_store)
                 Cursor = Cursors.Default
-                Close()
             End If
         End If
         Cursor = Cursors.Default
@@ -307,5 +355,93 @@
 
     Private Sub BtnTest_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnTest.Click
         
+    End Sub
+
+    Private Sub GVBarcode_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVBarcode.CustomColumnDisplayText
+        If e.Column.FieldName = "no" Then
+            e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
+        End If
+    End Sub
+
+    Private Sub BtnVerifiy_Click(sender As Object, e As EventArgs) Handles BtnVerifiy.Click
+        makeSafeGV(GVBarcode)
+        GVBarcode.ActiveFilterString = "[status]='-'"
+
+        If GVBarcode.RowCount > 0 Then
+            stopCustom("Data not match !")
+            GVBarcode.ActiveFilterString = ""
+        Else
+            GVBarcode.ActiveFilterString = ""
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Data match. Please click 'OK' to completed verification ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                PBC.Properties.Minimum = 0
+                PBC.Properties.Maximum = GVBarcode.RowCount - 1
+                PBC.Properties.Step = 1
+                For i As Integer = 0 To ((GVBarcode.RowCount - 1) - (GetGroupRowCount(GVBarcode)))
+                    'pl rec
+                    Dim query_ins_pl As String = "INSERT INTO tb_pl_prod_order_rec_det_counting (id_pl_prod_order_rec_det, pl_prod_order_rec_det_counting, id_product, bom_unit_price, id_counting_type) "
+                    query_ins_pl += "VALUES ('0', '" + GVBarcode.GetRowCellValue(i, "counting").ToString + "', '" + GVBarcode.GetRowCellValue(i, "id_product").ToString + "', '" + decimalSQL(GVBarcode.GetRowCellValue(i, "design_cop").ToString) + "','2'); SELECT LAST_INSERT_ID(); "
+                    Dim id_pl As String = execute_query(query_ins_pl, 0, True, "", "", "", "")
+
+                    'prob- only for store
+                    If GVBarcode.GetRowCellValue(i, "id_comp_cat").ToString = "6" Then
+                        Dim query_prob As String = "INSERT INTO tb_fg_unique_problem(id_pl_prod_order_rec_det_unique, id_fg_code_replace_store_det, id_comp, id_product, report_mark_type, counting_code, insert_date, note) 
+                        VALUES('" + id_pl + "', '" + GVBarcode.GetRowCellValue(i, "id_fg_code_replace_store_det").ToString + "','" + GVBarcode.GetRowCellValue(i, "id_comp").ToString + "', '" + GVBarcode.GetRowCellValue(i, "id_product").ToString + "', '65', '" + GVBarcode.GetRowCellValue(i, "counting").ToString + "', NOW(), 'Code Replacement " + TxtNumber.Text + "') "
+                        execute_non_query(query_prob, True, "", "", "", "")
+                    End If
+
+                    PBC.PerformStep()
+                    PBC.Update()
+                Next
+
+                'del temp
+                execute_non_query("DELETE FROM tb_fg_code_replace_store_temp WHERE id_fg_code_replace_store=" + id_fg_code_replace_store + "", True, "", "", "", "")
+
+                'update stt
+                Dim query_upd As String = "UPDATE tb_fg_code_replace_store SET is_verified=1, verified_date=NOW(), verified_by='" + id_user + "' WHERE   id_fg_code_replace_store=" + id_fg_code_replace_store + " "
+                execute_non_query(query_upd, True, "", "", "", "")
+
+                actionLoad()
+                infoCustom("Verification compeleted")
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        TxtScan.Focus()
+    End Sub
+
+    Private Sub FormFGCodeReplaceStoreDet_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F2 Then
+            TxtScan.Focus()
+        End If
+    End Sub
+
+    Private Sub TxtScan_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtScan.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim code As String = TxtScan.Text
+            makeSafeGV(GVBarcode)
+            GVBarcode.ActiveFilterString = "[unique_code]='" + code + "' "
+            If GVBarcode.RowCount = 1 Then
+                If GVBarcode.GetFocusedRowCellValue("status") = "verified" Then
+                    infoCustom("Code duplicate !")
+                Else
+                    Dim queryIns As String = "INSERT INTO tb_fg_code_replace_store_temp VALUES ('" + addSlashes(code) + "', '" + GVBarcode.GetFocusedRowCellValue("id_fg_code_replace_store_det") + "', '" + id_fg_code_replace_store + "') "
+                    execute_query(queryIns, -1, True, "", "", "", "")
+                    GVBarcode.SetFocusedRowCellValue("status", "verified")
+                End If
+            Else
+                    infoCustom("Code not found !")
+            End If
+            GVBarcode.ActiveFilterString = ""
+            TxtScan.Text = ""
+            TxtScan.Focus()
+        End If
+    End Sub
+
+    Private Sub BtnPrintBarcode_Click(sender As Object, e As EventArgs) Handles BtnPrintBarcode.Click
+        FormFGCodeReplaceStoreDetPrint.ShowDialog()
     End Sub
 End Class
