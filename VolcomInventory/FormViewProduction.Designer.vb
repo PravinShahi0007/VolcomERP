@@ -134,6 +134,7 @@ Partial Class FormViewProduction
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GConListPurchase, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GConListPurchase.SuspendLayout()
         CType(Me.XTCDetailPO, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -679,7 +680,7 @@ Partial Class FormViewProduction
         '
         'GVWO
         '
-        Me.GVWO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn13, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn9, Me.GridColumn6, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn20, Me.GridColumn33, Me.GridColumn37, Me.GridColumn32, Me.GridColumn31, Me.GridColumn30, Me.GridColumn39, Me.GridColumn38, Me.GridColumn15, Me.GridColumn21, Me.GridColumn40, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
+        Me.GVWO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn7, Me.GridColumn8, Me.GridColumn13, Me.GridColumn16, Me.GridColumn17, Me.GridColumn19, Me.GridColumn3, Me.GridColumn9, Me.GridColumn6, Me.GridColumn10, Me.GridColumn11, Me.GridColumn12, Me.GridColumn20, Me.GridColumn33, Me.GridColumn37, Me.GridColumn32, Me.GridColumn31, Me.GridColumn30, Me.GridColumn39, Me.GridColumn38, Me.GridColumn15, Me.GridColumn21, Me.GridColumn40, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29})
         Me.GVWO.GridControl = Me.GCWO
         Me.GVWO.Name = "GVWO"
         Me.GVWO.OptionsView.ColumnAutoWidth = False
@@ -802,7 +803,7 @@ Partial Class FormViewProduction
     ")"
         Me.GridColumn12.UnboundType = DevExpress.Data.UnboundColumnType.DateTime
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 7
+        Me.GridColumn12.VisibleIndex = 8
         '
         'GridColumn20
         '
@@ -814,7 +815,7 @@ Partial Class FormViewProduction
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 10
+        Me.GridColumn20.VisibleIndex = 11
         '
         'RIVat
         '
@@ -831,7 +832,7 @@ Partial Class FormViewProduction
         Me.GridColumn33.Name = "GridColumn33"
         Me.GridColumn33.OptionsColumn.AllowEdit = False
         Me.GridColumn33.Visible = True
-        Me.GridColumn33.VisibleIndex = 8
+        Me.GridColumn33.VisibleIndex = 9
         '
         'RICECurrency
         '
@@ -864,7 +865,7 @@ Partial Class FormViewProduction
         Me.GridColumn31.Name = "GridColumn31"
         Me.GridColumn31.OptionsColumn.AllowEdit = False
         Me.GridColumn31.Visible = True
-        Me.GridColumn31.VisibleIndex = 13
+        Me.GridColumn31.VisibleIndex = 14
         '
         'RITEWOKurs
         '
@@ -883,7 +884,7 @@ Partial Class FormViewProduction
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 9
+        Me.GridColumn30.VisibleIndex = 10
         '
         'RIWOPrice
         '
@@ -907,7 +908,7 @@ Partial Class FormViewProduction
         Me.GridColumn39.UnboundExpression = "[price] * [qty]"
         Me.GridColumn39.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn39.Visible = True
-        Me.GridColumn39.VisibleIndex = 11
+        Me.GridColumn39.VisibleIndex = 12
         '
         'GridColumn38
         '
@@ -924,7 +925,7 @@ Partial Class FormViewProduction
         Me.GridColumn38.UnboundExpression = "[price] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
         Me.GridColumn38.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn38.Visible = True
-        Me.GridColumn38.VisibleIndex = 12
+        Me.GridColumn38.VisibleIndex = 13
         '
         'GridColumn15
         '
@@ -941,7 +942,7 @@ Partial Class FormViewProduction
         Me.GridColumn15.UnboundExpression = "[price] * [prod_order_wo_kurs]"
         Me.GridColumn15.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 14
+        Me.GridColumn15.VisibleIndex = 15
         '
         'GridColumn21
         '
@@ -958,7 +959,7 @@ Partial Class FormViewProduction
         Me.GridColumn21.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty]"
         Me.GridColumn21.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 15
+        Me.GridColumn21.VisibleIndex = 16
         '
         'GridColumn40
         '
@@ -975,7 +976,7 @@ Partial Class FormViewProduction
         Me.GridColumn40.UnboundExpression = "[price] * [prod_order_wo_kurs] * [qty] * ((100 + [prod_order_wo_vat]) / 100)"
         Me.GridColumn40.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn40.Visible = True
-        Me.GridColumn40.VisibleIndex = 16
+        Me.GridColumn40.VisibleIndex = 17
         '
         'GridColumn27
         '
@@ -1424,6 +1425,14 @@ Partial Class FormViewProduction
         Me.LabelControl3.TabIndex = 86
         Me.LabelControl3.Text = "PO Number"
         '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Payment Type"
+        Me.GridColumn3.FieldName = "payment"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 7
+        '
         'FormViewProduction
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1608,4 +1617,5 @@ Partial Class FormViewProduction
     Friend WithEvents RepositoryItemProgressBar2 As DevExpress.XtraEditors.Repository.RepositoryItemProgressBar
     Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RCIMainVendorWO As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
