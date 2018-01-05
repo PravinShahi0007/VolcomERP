@@ -85,6 +85,9 @@ Partial Class FormProdPRWODet
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.TEAju = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPRNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPIB = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.TEPONumber = New DevExpress.XtraEditors.TextEdit()
@@ -97,14 +100,13 @@ Partial Class FormProdPRWODet
         Me.TERecNumber = New DevExpress.XtraEditors.TextEdit()
         Me.LRecCaption = New DevExpress.XtraEditors.LabelControl()
         Me.LDOCaption = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEPRNumber = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BPickRec = New DevExpress.XtraEditors.SimpleButton()
         Me.TECompTo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEWOPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LWOCaption = New DevExpress.XtraEditors.LabelControl()
+        Me.TEBOFNo = New DevExpress.XtraEditors.TextEdit()
+        Me.Lbl = New DevExpress.XtraEditors.LabelControl()
         CType(Me.LargeImageCollectionOld, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EPSamplePR, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,14 +144,15 @@ Partial Class FormProdPRWODet
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEAju.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPIB.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MECompAddress.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEBOFNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollectionOld
@@ -261,6 +264,8 @@ Partial Class FormProdPRWODet
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.TEBOFNo)
+        Me.GroupControl3.Controls.Add(Me.Lbl)
         Me.GroupControl3.Controls.Add(Me.TEInvNo)
         Me.GroupControl3.Controls.Add(Me.TETaxInvNo)
         Me.GroupControl3.Controls.Add(Me.LabelControl24)
@@ -537,7 +542,7 @@ Partial Class FormProdPRWODet
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(207, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(124, 20)
         Me.LEReportStatus.TabIndex = 145
         '
         'LabelControl21
@@ -893,6 +898,32 @@ Partial Class FormProdPRWODet
         Me.LabelControl16.TabIndex = 176
         Me.LabelControl16.Text = "AJU Date"
         '
+        'TEPRNumber
+        '
+        Me.TEPRNumber.EditValue = ""
+        Me.TEPRNumber.Location = New System.Drawing.Point(481, 7)
+        Me.TEPRNumber.Name = "TEPRNumber"
+        Me.TEPRNumber.Properties.EditValueChangedDelay = 1
+        Me.TEPRNumber.Properties.ReadOnly = True
+        Me.TEPRNumber.Size = New System.Drawing.Size(176, 20)
+        Me.TEPRNumber.TabIndex = 144
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Location = New System.Drawing.Point(409, 36)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl6.TabIndex = 147
+        Me.LabelControl6.Text = "Date"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(409, 10)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(53, 13)
+        Me.LabelControl1.TabIndex = 146
+        Me.LabelControl1.Text = "PR Number"
+        '
         'TEPIB
         '
         Me.TEPIB.EditValue = ""
@@ -998,32 +1029,6 @@ Partial Class FormProdPRWODet
         Me.LDOCaption.TabIndex = 156
         Me.LDOCaption.Text = "Delivery Number"
         '
-        'LabelControl6
-        '
-        Me.LabelControl6.Location = New System.Drawing.Point(409, 36)
-        Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
-        Me.LabelControl6.TabIndex = 147
-        Me.LabelControl6.Text = "Date"
-        '
-        'TEPRNumber
-        '
-        Me.TEPRNumber.EditValue = ""
-        Me.TEPRNumber.Location = New System.Drawing.Point(481, 7)
-        Me.TEPRNumber.Name = "TEPRNumber"
-        Me.TEPRNumber.Properties.EditValueChangedDelay = 1
-        Me.TEPRNumber.Properties.ReadOnly = True
-        Me.TEPRNumber.Size = New System.Drawing.Size(176, 20)
-        Me.TEPRNumber.TabIndex = 144
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(409, 10)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(53, 13)
-        Me.LabelControl1.TabIndex = 146
-        Me.LabelControl1.Text = "PR Number"
-        '
         'BPickRec
         '
         Me.BPickRec.Location = New System.Drawing.Point(907, 33)
@@ -1068,6 +1073,23 @@ Partial Class FormProdPRWODet
         Me.LWOCaption.Size = New System.Drawing.Size(58, 13)
         Me.LWOCaption.TabIndex = 86
         Me.LWOCaption.Text = "WO Number"
+        '
+        'TEBOFNo
+        '
+        Me.TEBOFNo.EditValue = ""
+        Me.TEBOFNo.Location = New System.Drawing.Point(283, 90)
+        Me.TEBOFNo.Name = "TEBOFNo"
+        Me.TEBOFNo.Properties.EditValueChangedDelay = 1
+        Me.TEBOFNo.Size = New System.Drawing.Size(185, 20)
+        Me.TEBOFNo.TabIndex = 185
+        '
+        'Lbl
+        '
+        Me.Lbl.Location = New System.Drawing.Point(241, 93)
+        Me.Lbl.Name = "Lbl"
+        Me.Lbl.Size = New System.Drawing.Size(36, 13)
+        Me.Lbl.TabIndex = 184
+        Me.Lbl.Text = "BOF No"
         '
         'FormProdPRWODet
         '
@@ -1124,14 +1146,15 @@ Partial Class FormProdPRWODet
         CType(Me.DEDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEAju.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPIB.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MECompAddress.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEBOFNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1219,4 +1242,6 @@ Partial Class FormProdPRWODet
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents BPickVendor As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEBOFNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Lbl As DevExpress.XtraEditors.LabelControl
 End Class

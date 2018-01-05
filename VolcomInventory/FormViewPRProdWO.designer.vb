@@ -89,6 +89,8 @@ Partial Class FormViewPRProdWO
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEWOPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LWOCaption = New DevExpress.XtraEditors.LabelControl()
+        Me.Lbl = New DevExpress.XtraEditors.LabelControl()
+        Me.TEBOFNo = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -130,6 +132,7 @@ Partial Class FormViewPRProdWO
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEBOFNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -164,6 +167,8 @@ Partial Class FormViewPRProdWO
         'GroupControl3
         '
         Me.GroupControl3.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl3.Controls.Add(Me.TEBOFNo)
+        Me.GroupControl3.Controls.Add(Me.Lbl)
         Me.GroupControl3.Controls.Add(Me.TEInvNo)
         Me.GroupControl3.Controls.Add(Me.TETaxInvNo)
         Me.GroupControl3.Controls.Add(Me.LabelControl24)
@@ -211,7 +216,7 @@ Partial Class FormViewPRProdWO
         Me.TETaxInvNo.Name = "TETaxInvNo"
         Me.TETaxInvNo.Properties.EditValueChangedDelay = 1
         Me.TETaxInvNo.Properties.ReadOnly = True
-        Me.TETaxInvNo.Size = New System.Drawing.Size(357, 20)
+        Me.TETaxInvNo.Size = New System.Drawing.Size(363, 20)
         Me.TETaxInvNo.TabIndex = 180
         '
         'LabelControl24
@@ -249,7 +254,7 @@ Partial Class FormViewPRProdWO
         Me.LECurrency.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_currency", "Id Currency", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("currency", "Currency")})
         Me.LECurrency.Properties.NullText = ""
         Me.LECurrency.Properties.ShowFooter = False
-        Me.LECurrency.Size = New System.Drawing.Size(230, 20)
+        Me.LECurrency.Size = New System.Drawing.Size(157, 20)
         Me.LECurrency.TabIndex = 165
         '
         'LabelControl7
@@ -420,7 +425,7 @@ Partial Class FormViewPRProdWO
         Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
         Me.LEReportStatus.Properties.NullText = ""
         Me.LEReportStatus.Properties.ShowFooter = False
-        Me.LEReportStatus.Size = New System.Drawing.Size(230, 20)
+        Me.LEReportStatus.Size = New System.Drawing.Size(157, 20)
         Me.LEReportStatus.TabIndex = 145
         '
         'LabelControl21
@@ -893,6 +898,24 @@ Partial Class FormViewPRProdWO
         Me.LWOCaption.TabIndex = 86
         Me.LWOCaption.Text = "WO Number"
         '
+        'Lbl
+        '
+        Me.Lbl.Location = New System.Drawing.Point(274, 92)
+        Me.Lbl.Name = "Lbl"
+        Me.Lbl.Size = New System.Drawing.Size(36, 13)
+        Me.Lbl.TabIndex = 182
+        Me.Lbl.Text = "BOF No"
+        '
+        'TEBOFNo
+        '
+        Me.TEBOFNo.EditValue = ""
+        Me.TEBOFNo.Location = New System.Drawing.Point(316, 89)
+        Me.TEBOFNo.Name = "TEBOFNo"
+        Me.TEBOFNo.Properties.EditValueChangedDelay = 1
+        Me.TEBOFNo.Properties.ReadOnly = True
+        Me.TEBOFNo.Size = New System.Drawing.Size(175, 20)
+        Me.TEBOFNo.TabIndex = 183
+        '
         'FormViewPRProdWO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -952,6 +975,7 @@ Partial Class FormViewPRProdWO
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEBOFNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1025,4 +1049,6 @@ Partial Class FormViewPRProdWO
     Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TEBOFNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Lbl As DevExpress.XtraEditors.LabelControl
 End Class

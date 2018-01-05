@@ -54,6 +54,7 @@
 
         button_check()
     End Sub
+
     Private Sub view_claim_type(ByVal lookup As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit)
         Dim query As String = "SELECT id_claim_type,claim_type,description FROM tb_lookup_claim_type ORDER BY id_claim_type ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -63,6 +64,7 @@
         lookup.DisplayMember = "description"
         lookup.ValueMember = "id_claim_type"
     End Sub
+
     Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
         Close()
     End Sub
@@ -103,7 +105,8 @@
             Next
             Close()
         Else 'edit
-
+            Dim query As String = "UPDATE tb_prod_debit_note SET id_comp_contact_to,prod_debit_note_date,note) VALUES('" & header_number_prod("14") & "','" & id_comp_contact_debit_to & "',DATE(NOW()),'" & MENote.Text & "');SELECT LAST_INSERT_ID(); "
+            id_dn = execute_query(query, 0, True, "", "", "", "")
         End If
     End Sub
 
