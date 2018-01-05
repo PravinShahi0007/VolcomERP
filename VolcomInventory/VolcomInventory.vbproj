@@ -4321,6 +4321,12 @@
     <Compile Include="FormMasterCompany.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ReportDebitNote.Designer.vb">
+      <DependentUpon>ReportDebitNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDebitNote.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportEmpAttn.Designer.vb">
       <DependentUpon>ReportEmpAttn.vb</DependentUpon>
     </Compile>
@@ -7560,6 +7566,9 @@
     <EmbeddedResource Include="FormMasterCompany.resx">
       <DependentUpon>FormMasterCompany.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDebitNote.resx">
+      <DependentUpon>ReportDebitNote.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportEmpAttn.resx">
       <DependentUpon>ReportEmpAttn.vb</DependentUpon>

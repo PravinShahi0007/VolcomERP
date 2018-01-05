@@ -72,6 +72,7 @@ Partial Class FormBOMDesignSingle
         Me.GVBomDetOvh = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -102,7 +103,7 @@ Partial Class FormBOMDesignSingle
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         CType(Me.EPBOM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupGeneral, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,6 +140,8 @@ Partial Class FormBOMDesignSingle
         Me.PCLotTitle.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl4.SuspendLayout()
         Me.SuspendLayout()
         '
         'EPBOM
@@ -173,7 +176,7 @@ Partial Class FormBOMDesignSingle
         Me.GroupGeneral.Dock = System.Windows.Forms.DockStyle.Left
         Me.GroupGeneral.Location = New System.Drawing.Point(0, 40)
         Me.GroupGeneral.Name = "GroupGeneral"
-        Me.GroupGeneral.Size = New System.Drawing.Size(244, 419)
+        Me.GroupGeneral.Size = New System.Drawing.Size(244, 429)
         Me.GroupGeneral.TabIndex = 28
         Me.GroupGeneral.Text = "General"
         '
@@ -298,23 +301,18 @@ Partial Class FormBOMDesignSingle
         '
         Me.GroupComponent.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Flat
         Me.GroupComponent.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupComponent.Controls.Add(Me.TEUnitPrice)
-        Me.GroupComponent.Controls.Add(Me.LabelControl8)
-        Me.GroupComponent.Controls.Add(Me.TEQtyPD)
-        Me.GroupComponent.Controls.Add(Me.LabelControl7)
-        Me.GroupComponent.Controls.Add(Me.TEUnitPriceTot)
-        Me.GroupComponent.Controls.Add(Me.LabelControl2)
         Me.GroupComponent.Controls.Add(Me.XTCBOM)
+        Me.GroupComponent.Controls.Add(Me.PanelControl4)
         Me.GroupComponent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupComponent.Location = New System.Drawing.Point(244, 40)
         Me.GroupComponent.Name = "GroupComponent"
-        Me.GroupComponent.Size = New System.Drawing.Size(756, 419)
+        Me.GroupComponent.Size = New System.Drawing.Size(887, 429)
         Me.GroupComponent.TabIndex = 27
         Me.GroupComponent.Text = "Component"
         '
         'TEUnitPrice
         '
-        Me.TEUnitPrice.Location = New System.Drawing.Point(565, 388)
+        Me.TEUnitPrice.Location = New System.Drawing.Point(676, 61)
         Me.TEUnitPrice.Name = "TEUnitPrice"
         Me.TEUnitPrice.Properties.Appearance.Options.UseTextOptions = True
         Me.TEUnitPrice.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -329,7 +327,7 @@ Partial Class FormBOMDesignSingle
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(459, 391)
+        Me.LabelControl8.Location = New System.Drawing.Point(570, 64)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl8.TabIndex = 92
@@ -337,7 +335,7 @@ Partial Class FormBOMDesignSingle
         '
         'TEQtyPD
         '
-        Me.TEQtyPD.Location = New System.Drawing.Point(565, 362)
+        Me.TEQtyPD.Location = New System.Drawing.Point(676, 35)
         Me.TEQtyPD.Name = "TEQtyPD"
         Me.TEQtyPD.Properties.Appearance.Options.UseTextOptions = True
         Me.TEQtyPD.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -350,7 +348,7 @@ Partial Class FormBOMDesignSingle
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(459, 365)
+        Me.LabelControl7.Location = New System.Drawing.Point(570, 38)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(76, 13)
         Me.LabelControl7.TabIndex = 90
@@ -358,7 +356,7 @@ Partial Class FormBOMDesignSingle
         '
         'TEUnitPriceTot
         '
-        Me.TEUnitPriceTot.Location = New System.Drawing.Point(565, 336)
+        Me.TEUnitPriceTot.Location = New System.Drawing.Point(676, 9)
         Me.TEUnitPriceTot.Name = "TEUnitPriceTot"
         Me.TEUnitPriceTot.Properties.Appearance.Options.UseTextOptions = True
         Me.TEUnitPriceTot.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -373,7 +371,7 @@ Partial Class FormBOMDesignSingle
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(459, 339)
+        Me.LabelControl2.Location = New System.Drawing.Point(570, 12)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(72, 13)
         Me.LabelControl2.TabIndex = 88
@@ -381,11 +379,11 @@ Partial Class FormBOMDesignSingle
         '
         'XTCBOM
         '
-        Me.XTCBOM.Dock = System.Windows.Forms.DockStyle.Top
+        Me.XTCBOM.Dock = System.Windows.Forms.DockStyle.Fill
         Me.XTCBOM.Location = New System.Drawing.Point(20, 2)
         Me.XTCBOM.Name = "XTCBOM"
         Me.XTCBOM.SelectedTabPage = Me.XTPMat
-        Me.XTCBOM.Size = New System.Drawing.Size(734, 331)
+        Me.XTCBOM.Size = New System.Drawing.Size(865, 330)
         Me.XTCBOM.TabIndex = 1
         Me.XTCBOM.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMat, Me.XTPOvh})
         '
@@ -394,7 +392,7 @@ Partial Class FormBOMDesignSingle
         Me.XTPMat.Controls.Add(Me.GCBomDetMat)
         Me.XTPMat.Controls.Add(Me.PanelControl1)
         Me.XTPMat.Name = "XTPMat"
-        Me.XTPMat.Size = New System.Drawing.Size(728, 303)
+        Me.XTPMat.Size = New System.Drawing.Size(859, 302)
         Me.XTPMat.Text = "Material"
         '
         'GCBomDetMat
@@ -404,7 +402,7 @@ Partial Class FormBOMDesignSingle
         Me.GCBomDetMat.MainView = Me.GVBomDetMat
         Me.GCBomDetMat.Name = "GCBomDetMat"
         Me.GCBomDetMat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECOP})
-        Me.GCBomDetMat.Size = New System.Drawing.Size(728, 261)
+        Me.GCBomDetMat.Size = New System.Drawing.Size(859, 260)
         Me.GCBomDetMat.TabIndex = 17
         Me.GCBomDetMat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBomDetMat, Me.GridView3})
         '
@@ -595,7 +593,7 @@ Partial Class FormBOMDesignSingle
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(728, 42)
+        Me.PanelControl1.Size = New System.Drawing.Size(859, 42)
         Me.PanelControl1.TabIndex = 18
         '
         'BSubmitMat
@@ -614,7 +612,7 @@ Partial Class FormBOMDesignSingle
         Me.BDelMat.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelMat.ImageIndex = 1
         Me.BDelMat.ImageList = Me.LargeImageCollection
-        Me.BDelMat.Location = New System.Drawing.Point(453, 2)
+        Me.BDelMat.Location = New System.Drawing.Point(584, 2)
         Me.BDelMat.Name = "BDelMat"
         Me.BDelMat.Size = New System.Drawing.Size(91, 38)
         Me.BDelMat.TabIndex = 14
@@ -625,7 +623,7 @@ Partial Class FormBOMDesignSingle
         Me.BEditMat.Dock = System.Windows.Forms.DockStyle.Right
         Me.BEditMat.ImageIndex = 2
         Me.BEditMat.ImageList = Me.LargeImageCollection
-        Me.BEditMat.Location = New System.Drawing.Point(544, 2)
+        Me.BEditMat.Location = New System.Drawing.Point(675, 2)
         Me.BEditMat.Name = "BEditMat"
         Me.BEditMat.Size = New System.Drawing.Size(91, 38)
         Me.BEditMat.TabIndex = 16
@@ -636,7 +634,7 @@ Partial Class FormBOMDesignSingle
         Me.BAddMat.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddMat.ImageIndex = 0
         Me.BAddMat.ImageList = Me.LargeImageCollection
-        Me.BAddMat.Location = New System.Drawing.Point(635, 2)
+        Me.BAddMat.Location = New System.Drawing.Point(766, 2)
         Me.BAddMat.Name = "BAddMat"
         Me.BAddMat.Size = New System.Drawing.Size(91, 38)
         Me.BAddMat.TabIndex = 15
@@ -647,7 +645,7 @@ Partial Class FormBOMDesignSingle
         Me.XTPOvh.Controls.Add(Me.GCBomDetOvh)
         Me.XTPOvh.Controls.Add(Me.PanelControl3)
         Me.XTPOvh.Name = "XTPOvh"
-        Me.XTPOvh.Size = New System.Drawing.Size(728, 303)
+        Me.XTPOvh.Size = New System.Drawing.Size(859, 302)
         Me.XTPOvh.Text = "Overhead"
         '
         'GCBomDetOvh
@@ -657,7 +655,7 @@ Partial Class FormBOMDesignSingle
         Me.GCBomDetOvh.MainView = Me.GVBomDetOvh
         Me.GCBomDetOvh.Name = "GCBomDetOvh"
         Me.GCBomDetOvh.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RCOVHMain})
-        Me.GCBomDetOvh.Size = New System.Drawing.Size(728, 261)
+        Me.GCBomDetOvh.Size = New System.Drawing.Size(859, 260)
         Me.GCBomDetOvh.TabIndex = 21
         Me.GCBomDetOvh.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBomDetOvh, Me.GridView5})
         '
@@ -685,6 +683,12 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn11.Caption = "Id Component Price"
         Me.GridColumn11.FieldName = "id_component_price"
         Me.GridColumn11.Name = "GridColumn11"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Id BOM Det"
+        Me.GridColumn14.FieldName = "id_bom_det"
+        Me.GridColumn14.Name = "GridColumn14"
         '
         'GridColumnCat
         '
@@ -779,7 +783,7 @@ Partial Class FormBOMDesignSingle
         Me.GridColumn20.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn20.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn20.Caption = "Price After Kurs"
-        Me.GridColumn20.DisplayFormat.FormatString = "N2"
+        Me.GridColumn20.DisplayFormat.FormatString = "N4"
         Me.GridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn20.FieldName = "unit_price"
         Me.GridColumn20.Name = "GridColumn20"
@@ -851,7 +855,7 @@ Partial Class FormBOMDesignSingle
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl3.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(728, 42)
+        Me.PanelControl3.Size = New System.Drawing.Size(859, 42)
         Me.PanelControl3.TabIndex = 22
         '
         'BSubmitOVH
@@ -870,7 +874,7 @@ Partial Class FormBOMDesignSingle
         Me.BDelOVH.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelOVH.ImageIndex = 1
         Me.BDelOVH.ImageList = Me.LargeImageCollection
-        Me.BDelOVH.Location = New System.Drawing.Point(453, 2)
+        Me.BDelOVH.Location = New System.Drawing.Point(584, 2)
         Me.BDelOVH.Name = "BDelOVH"
         Me.BDelOVH.Size = New System.Drawing.Size(91, 38)
         Me.BDelOVH.TabIndex = 18
@@ -881,7 +885,7 @@ Partial Class FormBOMDesignSingle
         Me.BEditOVH.Dock = System.Windows.Forms.DockStyle.Right
         Me.BEditOVH.ImageIndex = 2
         Me.BEditOVH.ImageList = Me.LargeImageCollection
-        Me.BEditOVH.Location = New System.Drawing.Point(544, 2)
+        Me.BEditOVH.Location = New System.Drawing.Point(675, 2)
         Me.BEditOVH.Name = "BEditOVH"
         Me.BEditOVH.Size = New System.Drawing.Size(91, 38)
         Me.BEditOVH.TabIndex = 20
@@ -892,7 +896,7 @@ Partial Class FormBOMDesignSingle
         Me.BAddOVH.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddOVH.ImageIndex = 0
         Me.BAddOVH.ImageList = Me.LargeImageCollection
-        Me.BAddOVH.Location = New System.Drawing.Point(635, 2)
+        Me.BAddOVH.Location = New System.Drawing.Point(766, 2)
         Me.BAddOVH.Name = "BAddOVH"
         Me.BAddOVH.Size = New System.Drawing.Size(91, 38)
         Me.BAddOVH.TabIndex = 19
@@ -911,7 +915,7 @@ Partial Class FormBOMDesignSingle
         Me.PCLotTitle.Location = New System.Drawing.Point(0, 0)
         Me.PCLotTitle.LookAndFeel.SkinName = "iMaginary"
         Me.PCLotTitle.Name = "PCLotTitle"
-        Me.PCLotTitle.Size = New System.Drawing.Size(1000, 40)
+        Me.PCLotTitle.Size = New System.Drawing.Size(1131, 40)
         Me.PCLotTitle.TabIndex = 26
         '
         'LabelPrintedName
@@ -944,15 +948,15 @@ Partial Class FormBOMDesignSingle
         Me.PanelControl2.Controls.Add(Me.BCancel)
         Me.PanelControl2.Controls.Add(Me.BSave)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl2.Location = New System.Drawing.Point(0, 459)
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 469)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1000, 33)
+        Me.PanelControl2.Size = New System.Drawing.Size(1131, 33)
         Me.PanelControl2.TabIndex = 25
         '
         'BDupDesign
         '
         Me.BDupDesign.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDupDesign.Location = New System.Drawing.Point(428, 0)
+        Me.BDupDesign.Location = New System.Drawing.Point(559, 0)
         Me.BDupDesign.Name = "BDupDesign"
         Me.BDupDesign.Size = New System.Drawing.Size(148, 33)
         Me.BDupDesign.TabIndex = 20
@@ -961,7 +965,7 @@ Partial Class FormBOMDesignSingle
         'BDuplicate
         '
         Me.BDuplicate.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BDuplicate.Location = New System.Drawing.Point(576, 0)
+        Me.BDuplicate.Location = New System.Drawing.Point(707, 0)
         Me.BDuplicate.Name = "BDuplicate"
         Me.BDuplicate.Size = New System.Drawing.Size(134, 33)
         Me.BDuplicate.TabIndex = 19
@@ -970,7 +974,7 @@ Partial Class FormBOMDesignSingle
         'BMark
         '
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BMark.Location = New System.Drawing.Point(710, 0)
+        Me.BMark.Location = New System.Drawing.Point(841, 0)
         Me.BMark.Name = "BMark"
         Me.BMark.Size = New System.Drawing.Size(75, 33)
         Me.BMark.TabIndex = 18
@@ -979,7 +983,7 @@ Partial Class FormBOMDesignSingle
         'Bprint
         '
         Me.Bprint.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Bprint.Location = New System.Drawing.Point(785, 0)
+        Me.Bprint.Location = New System.Drawing.Point(916, 0)
         Me.Bprint.Name = "Bprint"
         Me.Bprint.Size = New System.Drawing.Size(75, 33)
         Me.Bprint.TabIndex = 17
@@ -1007,7 +1011,7 @@ Partial Class FormBOMDesignSingle
         '
         Me.BCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCancel.Location = New System.Drawing.Point(860, 0)
+        Me.BCancel.Location = New System.Drawing.Point(991, 0)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(70, 33)
         Me.BCancel.TabIndex = 11
@@ -1016,29 +1020,38 @@ Partial Class FormBOMDesignSingle
         'BSave
         '
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BSave.Location = New System.Drawing.Point(930, 0)
+        Me.BSave.Location = New System.Drawing.Point(1061, 0)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(70, 33)
         Me.BSave.TabIndex = 10
         Me.BSave.Text = "Save"
         '
-        'GridColumn14
+        'PanelControl4
         '
-        Me.GridColumn14.Caption = "Id BOM Det"
-        Me.GridColumn14.FieldName = "id_bom_det"
-        Me.GridColumn14.Name = "GridColumn14"
+        Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.TEUnitPrice)
+        Me.PanelControl4.Controls.Add(Me.LabelControl2)
+        Me.PanelControl4.Controls.Add(Me.LabelControl8)
+        Me.PanelControl4.Controls.Add(Me.TEUnitPriceTot)
+        Me.PanelControl4.Controls.Add(Me.TEQtyPD)
+        Me.PanelControl4.Controls.Add(Me.LabelControl7)
+        Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl4.Location = New System.Drawing.Point(20, 332)
+        Me.PanelControl4.Name = "PanelControl4"
+        Me.PanelControl4.Size = New System.Drawing.Size(865, 95)
+        Me.PanelControl4.TabIndex = 93
         '
         'FormBOMDesignSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1000, 492)
+        Me.ClientSize = New System.Drawing.Size(1131, 502)
         Me.Controls.Add(Me.GroupComponent)
         Me.Controls.Add(Me.GroupGeneral)
         Me.Controls.Add(Me.PCLotTitle)
         Me.Controls.Add(Me.PanelControl2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
-        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "FormBOMDesignSingle"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -1057,7 +1070,6 @@ Partial Class FormBOMDesignSingle
         CType(Me.TEName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupComponent, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupComponent.ResumeLayout(False)
-        Me.GroupComponent.PerformLayout()
         CType(Me.TEUnitPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQtyPD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUnitPriceTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1083,6 +1095,9 @@ Partial Class FormBOMDesignSingle
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
+        CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl4.ResumeLayout(False)
+        Me.PanelControl4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1168,4 +1183,5 @@ Partial Class FormBOMDesignSingle
     Friend WithEvents MEBOMNote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents BDupDesign As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
 End Class
