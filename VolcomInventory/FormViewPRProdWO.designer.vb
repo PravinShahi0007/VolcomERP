@@ -69,6 +69,7 @@ Partial Class FormViewPRProdWO
         Me.ColNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupGeneralHeader = New DevExpress.XtraEditors.GroupControl()
+        Me.BViewPIB = New DevExpress.XtraEditors.SimpleButton()
         Me.DEPRDate = New DevExpress.XtraEditors.DateEdit()
         Me.DEDueDate = New DevExpress.XtraEditors.DateEdit()
         Me.TEAju = New DevExpress.XtraEditors.TextEdit()
@@ -91,7 +92,6 @@ Partial Class FormViewPRProdWO
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEWOPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LWOCaption = New DevExpress.XtraEditors.LabelControl()
-        Me.BViewPIB = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -711,6 +711,14 @@ Partial Class FormViewPRProdWO
         Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 116)
         Me.GroupGeneralHeader.TabIndex = 41
         '
+        'BViewPIB
+        '
+        Me.BViewPIB.Location = New System.Drawing.Point(631, 57)
+        Me.BViewPIB.Name = "BViewPIB"
+        Me.BViewPIB.Size = New System.Drawing.Size(26, 23)
+        Me.BViewPIB.TabIndex = 181
+        Me.BViewPIB.Text = "..."
+        '
         'DEPRDate
         '
         Me.DEPRDate.EditValue = Nothing
@@ -917,14 +925,6 @@ Partial Class FormViewPRProdWO
         Me.LWOCaption.Size = New System.Drawing.Size(58, 13)
         Me.LWOCaption.TabIndex = 86
         Me.LWOCaption.Text = "WO Number"
-        '
-        'BViewPIB
-        '
-        Me.BViewPIB.Location = New System.Drawing.Point(631, 57)
-        Me.BViewPIB.Name = "BViewPIB"
-        Me.BViewPIB.Size = New System.Drawing.Size(26, 23)
-        Me.BViewPIB.TabIndex = 181
-        Me.BViewPIB.Text = "..."
         '
         'FormViewPRProdWO
         '
