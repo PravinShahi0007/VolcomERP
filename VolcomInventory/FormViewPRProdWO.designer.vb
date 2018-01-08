@@ -23,6 +23,8 @@ Partial Class FormViewPRProdWO
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BAttachment = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.TEBOFNo = New DevExpress.XtraEditors.TextEdit()
+        Me.Lbl = New DevExpress.XtraEditors.LabelControl()
         Me.TEInvNo = New DevExpress.XtraEditors.TextEdit()
         Me.TETaxInvNo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
@@ -89,12 +91,12 @@ Partial Class FormViewPRProdWO
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEWOPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LWOCaption = New DevExpress.XtraEditors.LabelControl()
-        Me.Lbl = New DevExpress.XtraEditors.LabelControl()
-        Me.TEBOFNo = New DevExpress.XtraEditors.TextEdit()
+        Me.BViewPIB = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl3.SuspendLayout()
+        CType(Me.TEBOFNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETaxInvNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,7 +134,6 @@ Partial Class FormViewPRProdWO
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEBOFNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -198,6 +199,24 @@ Partial Class FormViewPRProdWO
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(909, 176)
         Me.GroupControl3.TabIndex = 43
+        '
+        'TEBOFNo
+        '
+        Me.TEBOFNo.EditValue = ""
+        Me.TEBOFNo.Location = New System.Drawing.Point(316, 89)
+        Me.TEBOFNo.Name = "TEBOFNo"
+        Me.TEBOFNo.Properties.EditValueChangedDelay = 1
+        Me.TEBOFNo.Properties.ReadOnly = True
+        Me.TEBOFNo.Size = New System.Drawing.Size(175, 20)
+        Me.TEBOFNo.TabIndex = 183
+        '
+        'Lbl
+        '
+        Me.Lbl.Location = New System.Drawing.Point(274, 92)
+        Me.Lbl.Name = "Lbl"
+        Me.Lbl.Size = New System.Drawing.Size(36, 13)
+        Me.Lbl.TabIndex = 182
+        Me.Lbl.Text = "BOF No"
         '
         'TEInvNo
         '
@@ -663,6 +682,7 @@ Partial Class FormViewPRProdWO
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.BViewPIB)
         Me.GroupGeneralHeader.Controls.Add(Me.DEPRDate)
         Me.GroupGeneralHeader.Controls.Add(Me.DEDueDate)
         Me.GroupGeneralHeader.Controls.Add(Me.TEAju)
@@ -744,7 +764,7 @@ Partial Class FormViewPRProdWO
         Me.TEPIB.Name = "TEPIB"
         Me.TEPIB.Properties.EditValueChangedDelay = 1
         Me.TEPIB.Properties.ReadOnly = True
-        Me.TEPIB.Size = New System.Drawing.Size(163, 20)
+        Me.TEPIB.Size = New System.Drawing.Size(131, 20)
         Me.TEPIB.TabIndex = 173
         '
         'LabelControl13
@@ -898,23 +918,13 @@ Partial Class FormViewPRProdWO
         Me.LWOCaption.TabIndex = 86
         Me.LWOCaption.Text = "WO Number"
         '
-        'Lbl
+        'BViewPIB
         '
-        Me.Lbl.Location = New System.Drawing.Point(274, 92)
-        Me.Lbl.Name = "Lbl"
-        Me.Lbl.Size = New System.Drawing.Size(36, 13)
-        Me.Lbl.TabIndex = 182
-        Me.Lbl.Text = "BOF No"
-        '
-        'TEBOFNo
-        '
-        Me.TEBOFNo.EditValue = ""
-        Me.TEBOFNo.Location = New System.Drawing.Point(316, 89)
-        Me.TEBOFNo.Name = "TEBOFNo"
-        Me.TEBOFNo.Properties.EditValueChangedDelay = 1
-        Me.TEBOFNo.Properties.ReadOnly = True
-        Me.TEBOFNo.Size = New System.Drawing.Size(175, 20)
-        Me.TEBOFNo.TabIndex = 183
+        Me.BViewPIB.Location = New System.Drawing.Point(631, 57)
+        Me.BViewPIB.Name = "BViewPIB"
+        Me.BViewPIB.Size = New System.Drawing.Size(26, 23)
+        Me.BViewPIB.TabIndex = 181
+        Me.BViewPIB.Text = "..."
         '
         'FormViewPRProdWO
         '
@@ -937,6 +947,7 @@ Partial Class FormViewPRProdWO
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl3.ResumeLayout(False)
         Me.GroupControl3.PerformLayout()
+        CType(Me.TEBOFNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETaxInvNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECurrency.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -975,7 +986,6 @@ Partial Class FormViewPRProdWO
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEBOFNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1051,4 +1061,5 @@ Partial Class FormViewPRProdWO
     Friend WithEvents BAttachment As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEBOFNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Lbl As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BViewPIB As DevExpress.XtraEditors.SimpleButton
 End Class
