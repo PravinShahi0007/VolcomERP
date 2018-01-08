@@ -5,6 +5,15 @@
     Public id_contact_vendor As String = "-1"
     Private Sub FormPopUpRecQC_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         view_prod_order_rec()
+        viewSeason()
+
+    End Sub
+    Sub viewSeason()
+        Dim query As String = "SELECT '-1' AS id_season, 'All Season' as season UNION "
+        query += "(SELECT id_season,season FROM tb_season a "
+        query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
+        query += "ORDER BY b.range ASC)"
+        viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
     End Sub
     Sub view_prod_order_rec()
         Dim query = "SELECT a.id_report_status,h.report_status,g.season,a.id_prod_order_rec,a.prod_order_rec_number,a.prod_order_rec_note,
@@ -134,7 +143,7 @@
                 newRow("delivery_order_date") = GVProdRec.GetFocusedRowCellValue("delivery_order_date")
                 newRow("arrive_date") = arrive_qc
                 newRow("est_rec_date") = GVProdRec.GetFocusedRowCellValue("est_rec_date")
-                newRow("price_pc") = GVProdRec.GetFocusedRowCellValue("price_pc")
+                newRow("claim_price_pc") = GVProdRec.GetFocusedRowCellValue("price_pc")
                 newRow("id_claim_type") = "1"
                 newRow("days_late") = day_late
                 TryCast(FormProdDebitNoteDet.GCProdRec.DataSource, DataTable).Rows.Add(newRow)

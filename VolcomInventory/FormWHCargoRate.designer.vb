@@ -21,7 +21,7 @@ Partial Class FormWHCargoRate
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormWHCargoRate))
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.PCEdit = New DevExpress.XtraEditors.PanelControl()
         Me.BtnEdit = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BAddComp = New DevExpress.XtraEditors.SimpleButton()
@@ -37,8 +37,8 @@ Partial Class FormWHCargoRate
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BEditIn = New DevExpress.XtraEditors.SimpleButton()
         Me.BCompanyIn = New DevExpress.XtraEditors.SimpleButton()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        CType(Me.PCEdit, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PCEdit.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVCompany, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,15 +52,15 @@ Partial Class FormWHCargoRate
         Me.PanelControl2.SuspendLayout()
         Me.SuspendLayout()
         '
-        'PanelControl1
+        'PCEdit
         '
-        Me.PanelControl1.Controls.Add(Me.BtnEdit)
-        Me.PanelControl1.Controls.Add(Me.BAddComp)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(849, 41)
-        Me.PanelControl1.TabIndex = 0
+        Me.PCEdit.Controls.Add(Me.BtnEdit)
+        Me.PCEdit.Controls.Add(Me.BAddComp)
+        Me.PCEdit.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PCEdit.Location = New System.Drawing.Point(0, 0)
+        Me.PCEdit.Name = "PCEdit"
+        Me.PCEdit.Size = New System.Drawing.Size(849, 41)
+        Me.PCEdit.TabIndex = 0
         '
         'BtnEdit
         '
@@ -156,7 +156,7 @@ Partial Class FormWHCargoRate
         'XTPOutbound
         '
         Me.XTPOutbound.Controls.Add(Me.GCCompany)
-        Me.XTPOutbound.Controls.Add(Me.PanelControl1)
+        Me.XTPOutbound.Controls.Add(Me.PCEdit)
         Me.XTPOutbound.Name = "XTPOutbound"
         Me.XTPOutbound.Size = New System.Drawing.Size(849, 434)
         Me.XTPOutbound.Text = "Outbound"
@@ -241,8 +241,8 @@ Partial Class FormWHCargoRate
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Cargo Rate"
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PCEdit, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PCEdit.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCCompany, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVCompany, System.ComponentModel.ISupportInitialize).EndInit()
@@ -258,7 +258,7 @@ Partial Class FormWHCargoRate
 
     End Sub
 
-    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PCEdit As DevExpress.XtraEditors.PanelControl
     Friend WithEvents GCCompany As DevExpress.XtraGrid.GridControl
     Friend WithEvents BAddComp As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnEdit As DevExpress.XtraEditors.SimpleButton

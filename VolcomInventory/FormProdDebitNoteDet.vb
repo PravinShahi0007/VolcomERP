@@ -7,7 +7,6 @@
     End Sub
     Sub action_load()
         view_claim_type(RIClaimType)
-
         view_report_status(LEReportStatus)
 
         If id_dn = "-1" Then 'new
@@ -55,6 +54,7 @@
 
         button_check()
     End Sub
+
     Private Sub view_claim_type(ByVal lookup As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit)
         Dim query As String = "SELECT id_claim_type,claim_type,description FROM tb_lookup_claim_type ORDER BY id_claim_type ASC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -64,6 +64,7 @@
         lookup.DisplayMember = "description"
         lookup.ValueMember = "id_claim_type"
     End Sub
+
     Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
         Close()
     End Sub
@@ -93,10 +94,19 @@
             increase_inc_prod("14")
             'detail
             For i As Integer = 0 To GVProdRec.RowCount - 1
-                query = "INSERT INTO tb_prod_debit_note_det(id_prod_debit_note,id_prod_order_rec,id_claim_type,days_late,delivery_date_ko,note,qty_pcs,price_pc,discount,qty) VALUES('" & id_dn & "','" & GVProdRec.GetRowCellValue(i, "id_prod_order_rec").ToString & "','" & GVProdRec.GetRowCellValue(i, "id_claim_type").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "',note,qty_pcs,price_pc,discount,qty)"
+                Dim claim_prc, qty_claim, note_claim As String
+
+                claim_prc = decimalSQL(GVProdRec.GetRowCellValue(i, "claim_price_pc").ToString)
+                qty_claim = decimalSQL(GVProdRec.GetRowCellValue(i, "qty_pcs").ToString)
+                note_claim = addSlashes(GVProdRec.GetRowCellValue(i, "note").ToString)
+
+                query = "INSERT INTO tb_prod_debit_note_det(id_prod_debit_note,id_prod_order_rec,id_claim_type,days_late,delivery_date_ko,note,qty_pcs,claim_price_pc) VALUES('" & id_dn & "','" & GVProdRec.GetRowCellValue(i, "id_prod_order_rec").ToString & "','" & GVProdRec.GetRowCellValue(i, "id_claim_type").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "','" & GVProdRec.GetRowCellValue(i, "days_late").ToString & "','" & note_claim & "','" & qty_claim & "','" & claim_prc & "')"
                 execute_query(query, -1, True, "", "", "", "")
             Next
+            Close()
         Else 'edit
+            Dim query As String = "UPDATE tb_prod_debit_note SET id_comp_contact_to,prod_debit_note_date,note) VALUES('" & header_number_prod("14") & "','" & id_comp_contact_debit_to & "',DATE(NOW()),'" & MENote.Text & "');SELECT LAST_INSERT_ID(); "
+            id_dn = execute_query(query, 0, True, "", "", "", "")
         End If
     End Sub
 
@@ -130,5 +140,13 @@
         FormReportMark.id_report = id_dn
         FormReportMark.report_mark_type = "122"
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Cursor = Cursors.WaitCursor
+        Dim Report As New ReportDebitNote()
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
