@@ -3,6 +3,8 @@
     Dim bedit_active As String = "1"
     Dim bdel_active As String = "1"
 
+    Public is_view As String = "-1"
+
     Private Sub BAddComp_Click(sender As Object, e As EventArgs) Handles BAddComp.Click
         Cursor = Cursors.WaitCursor
         Try
@@ -29,6 +31,9 @@
     Private Sub FormWHCargoRate_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_cargo_rate()
         load_cargo_rate_in()
+        If is_view = "1" Then
+            PCEdit.Visible = False
+        End If
     End Sub
 
     Sub load_cargo_rate()

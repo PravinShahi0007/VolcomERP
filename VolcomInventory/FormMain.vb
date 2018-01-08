@@ -10964,4 +10964,18 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBCargoRateView_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCargoRateView.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormWHCargoRate.is_view = "1"
+            FormWHCargoRate.MdiParent = Me
+            FormWHCargoRate.Show()
+            FormWHCargoRate.WindowState = FormWindowState.Maximized
+            FormWHCargoRate.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
