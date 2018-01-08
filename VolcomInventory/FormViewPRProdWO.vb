@@ -382,4 +382,10 @@
     Private Sub TEDP_EditValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TEDP.EditValueChanged
         calculate()
     End Sub
+
+    Private Sub BViewPIB_Click(sender As Object, e As EventArgs) Handles BViewPIB.Click
+        FormViewPRProdWOPIB.Text = FormViewPRProdWOPIB.Text & " PIB : " & TEPIB.Text
+        FormViewPRProdWOPIB.pib_number = TEPIB.Text
+        FormViewPRProdWOPIB.ShowDialog()
+    End Sub
 End Class
