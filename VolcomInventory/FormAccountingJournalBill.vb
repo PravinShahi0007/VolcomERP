@@ -625,4 +625,10 @@
         FormPopUpCOA.id_pop_up = "6"
         FormPopUpCOA.ShowDialog()
     End Sub
+
+    Private Sub BtnRef_Click(sender As Object, e As EventArgs) Handles BtnRef.Click
+        Cursor = Cursors.WaitCursor
+        FormAccountingJournalBrowse.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
 End Class
