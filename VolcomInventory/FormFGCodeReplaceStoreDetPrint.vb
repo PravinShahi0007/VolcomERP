@@ -111,8 +111,8 @@ Public Class FormFGCodeReplaceStoreDetPrint
                 print_command += "^FT3," & (add_zebra_vpx + 333).ToString & "^A0N,39,38^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "currency").ToString & " " & Decimal.Parse(FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "price").ToString).ToString("N0") & "^FS" & vbNewLine
                 print_command += "^FT3," & (add_zebra_vpx + 285).ToString & "^A0N,34,33^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "ret_code").ToString & "^FS" & vbNewLine
                 print_command += "^FT1," & (add_zebra_vpx + 215).ToString & "^A0N,17,16^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "name").ToString & "^FS" & vbNewLine
-                print_command += "^FT2," & (add_zebra_vpx + 25).ToString & "^A0N,17,16^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "code").ToString & "^FS" & vbNewLine
-                print_command += "^BY2,2,162^FT3," & (add_zebra_vpx + 194).ToString & "^B2N,,N,N" & vbNewLine
+                print_command += "^FT2," & (add_zebra_vpx + 25).ToString & "^A0N,24,40^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "code").ToString & "^FS" & vbNewLine
+                print_command += "^BY2,2,162^FT23," & (add_zebra_vpx + 194).ToString & "^B2N,,N,N" & vbNewLine
                 print_command += "^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "code").ToString & "^FS" & vbNewLine
                 print_command += "^FT159," & (add_zebra_vpx + 247).ToString & "^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
                 print_command += "^FT87," & (add_zebra_vpx + 247).ToString & "^A0N,14,14^FH\^FDsize^FS" & vbNewLine
@@ -133,8 +133,8 @@ Public Class FormFGCodeReplaceStoreDetPrint
                 print_command += "^FT3," & (add_zebra_vpx + 225).ToString & "^A0N,34,33^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "ret_code").ToString & "^FS" & vbNewLine
                 print_command += "^FT2," & (add_zebra_vpx + 161).ToString & "^A0N,17,16^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "name").ToString & "^FS" & vbNewLine
                 print_command += "^FT3," & (add_zebra_vpx + 307).ToString & "^A0N,17,16^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "counting").ToString & " ^FS" & vbNewLine
-                print_command += "^FT3," & (add_zebra_vpx + 28).ToString & "^A0N,17,16^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "code").ToString & "^FS" & vbNewLine
-                print_command += "^BY2,2,111^FT3," & (add_zebra_vpx + 143).ToString & "^B2N,,N,N" & vbNewLine
+                print_command += "^FT3," & (add_zebra_vpx + 28).ToString & "^A0N,24,40^FH\^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "code").ToString & "^FS" & vbNewLine
+                print_command += "^BY2,2,111^FT23," & (add_zebra_vpx + 143).ToString & "^B2N,,N,N" & vbNewLine
                 print_command += "^FD" & FormFGCodeReplaceStoreDet.GVBarcode.GetRowCellValue(j, "code").ToString & "^FS" & vbNewLine
                 print_command += "^FT159," & (add_zebra_vpx + 187).ToString & "^A0N,14,14^FH\^FDcolor^FS" & vbNewLine
                 print_command += "^FT87," & (add_zebra_vpx + 187).ToString & "^A0N,14,14^FH\^FDsize^FS" & vbNewLine
