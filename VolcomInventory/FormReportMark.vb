@@ -1848,7 +1848,7 @@
             Try
                 FormAccountingJournalDet.id_report_status_g = id_status_reportx
                 FormAccountingJournalDet.allow_status()
-                FormAccountingJournal.view_entry(FormAccountingJournal.LEBilling.EditValue.ToString, Now.ToString("yyy-MM-dd"), Now.ToString("yyy-MM-dd"))
+                FormAccountingJournal.view_entry()
                 FormAccountingJournal.GVAccTrans.FocusedRowHandle = find_row(FormAccountingJournal.GVAccTrans, "id_acc_trans", id_report)
             Catch ex As Exception
             End Try

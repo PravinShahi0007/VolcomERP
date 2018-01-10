@@ -15,12 +15,17 @@
         Bprint.Visible = False
         TEUserEntry.Text = get_user_identify(id_user, 1)
 
-        TENumber.Text = header_number_acc("1")
+        TENumber.Text = ""
+        'TEDate.EditValue = Now()
+        actionLoad()
 
-        TEDate.EditValue = Now()
+    End Sub
 
+    Sub actionLoad()
         If id_trans = "-1" Then 'new
             load_number()
+            view_det()
+            but_check()
         Else 'edit
             '
             BMark.Visible = True
@@ -44,11 +49,13 @@
             '
             LEBilling.Enabled = False
             PCButton.Enabled = False
+            view_det()
+            allow_status()
+            but_check()
         End If
-
-        view_det()
-        allow_status()
-        but_check()
+        LabelControl4.Visible = False
+        TEReffNumber.Visible = False
+        Blink.Visible = False
     End Sub
 
     Sub view_det()
@@ -111,117 +118,126 @@
         ElseIf Not GVJournalDet.Columns("debit").SummaryText = GVJournalDet.Columns("credit").SummaryText Then
             stopCustom("Debit and credit must balance.")
         Else
-            If id_trans = "-1" Then
-                'new
-                Dim query As String = String.Format("INSERT INTO tb_a_acc_trans(acc_trans_number,date_created,id_user,acc_trans_note,id_bill_type,report_mark_type,id_report,report_number,id_cc) VALUES('{0}',NOW(),'{1}','{2}','{3}','{4}','{5}','{6}','{7}'); SELECT LAST_INSERT_ID()", TENumber.Text, id_user, MENote.Text, LEBilling.EditValue.ToString, report_mark_typex, id_ref, report_numberx, id_cc)
-                id_trans = execute_query(query, 0, True, "", "", "", "")
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to save this journal entry ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                If id_trans = "-1" Then
+                    'new
+                    Dim query As String = String.Format("INSERT INTO tb_a_acc_trans(acc_trans_number,date_created,id_user,acc_trans_note,id_bill_type) VALUES('{0}',NOW(),'{1}','{2}','{3}'); SELECT LAST_INSERT_ID()", header_number_acc("1"), id_user, MENote.Text, LEBilling.EditValue.ToString)
+                    id_trans = execute_query(query, 0, True, "", "", "", "")
 
-                If LEBilling.EditValue.ToString = "1" Then
-                    increase_inc_acc("3")
-                ElseIf LEBilling.EditValue.ToString = "3" Then
-                    increase_inc_acc("4")
-                ElseIf LEBilling.EditValue.ToString = "4" Then
-                    increase_inc_acc("5")
-                End If
+                    increase_inc_acc("1")
+                    'If LEBilling.EditValue.ToString = "1" Then
+                    '    increase_inc_acc("3")
+                    'ElseIf LEBilling.EditValue.ToString = "3" Then
+                    '    increase_inc_acc("4")
+                    'ElseIf LEBilling.EditValue.ToString = "4" Then
+                    '    increase_inc_acc("5")
+                    'End If
 
-                'insert who prepared
-                insert_who_prepared("36", id_trans, id_user)
+                    'insert who prepared
+                    insert_who_prepared("36", id_trans, id_user)
 
-                'entry detail
-                Dim id_reportd As String = ""
-                Dim report_mark_typed As String = ""
-                Dim id_compd As String = ""
-                Try
-                    For i As Integer = 0 To GVJournalDet.RowCount - 1
-                        If Not GVJournalDet.GetRowCellValue(i, "id_acc").ToString = "" Then
-                            If GVJournalDet.GetRowCellValue(i, "id_report").ToString = "" Then
-                                id_reportd = "NULL"
-                            Else
-                                id_reportd = "'" + GVJournalDet.GetRowCellValue(i, "id_report").ToString + "'"
-                            End If
-                            If GVJournalDet.GetRowCellValue(i, "report_mark_type").ToString = "" Then
-                                report_mark_typed = "NULL"
-                            Else
-                                report_mark_typed = "'" + GVJournalDet.GetRowCellValue(i, "report_mark_type").ToString + "'"
-                            End If
-                            If GVJournalDet.GetRowCellValue(i, "id_comp").ToString = "" Then
-                                id_compd = "NULL"
-                            Else
-                                id_compd = "'" + GVJournalDet.GetRowCellValue(i, "id_comp").ToString + "'"
-                            End If
-
-                            query = String.Format("INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,id_status_open,report_mark_type,id_report,report_number,id_comp) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6},{7},'{8}',{9})", id_trans, GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), GVJournalDet.GetRowCellValue(i, "note").ToString, GVJournalDet.GetRowCellValue(i, "id_status_open").ToString, report_mark_typed, id_reportd, GVJournalDet.GetRowCellValue(i, "report_number").ToString, id_compd)
-                            execute_non_query(query, True, "", "", "", "")
-                        End If
-                    Next
-                Catch ex As Exception
-                    MsgBox(ex.ToString)
-                End Try
-
-                infoCustom("Journal saved.")
-                'FormAccountingJournal.view_entry(LEBilling.EditValue.ToString)
-                'FormAccountingJournal.GVAccTrans.FocusedRowHandle = find_row(FormAccountingJournal.GVAccTrans, "id_acc_trans", id_trans)
-                Close()
-            Else
-                'edit
-                Dim query As String = String.Format("UPDATE tb_a_acc_trans SET acc_trans_note='{0}' WHERE id_acc_trans='{1}'", MENote.Text, id_trans)
-                execute_non_query(query, True, "", "", "", "")
-
-                'delete first
-                Dim sp_check As Boolean = False
-                Dim query_del As String = "SELECT id_acc_trans_det FROM tb_a_acc_trans_det WHERE id_acc_trans='" & id_trans & "'"
-                Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
-                If data_del.Rows.Count > 0 Then
-                    For i As Integer = 0 To data_del.Rows.Count - 1
-                        sp_check = False
-                        ' false mean not found, believe me
-                        For j As Integer = 0 To GVJournalDet.RowCount - 1
-                            If Not GVJournalDet.GetRowCellValue(j, "id_acc_trans_det").ToString = "" Then
-                                '
-                                If GVJournalDet.GetRowCellValue(j, "id_acc_trans_det").ToString = data_del.Rows(i)("id_acc_trans_det").ToString() Then
-                                    sp_check = True
+                    'entry detail
+                    Dim id_reportd As String = ""
+                    Dim report_mark_typed As String = ""
+                    Dim id_compd As String = ""
+                    Try
+                        For i As Integer = 0 To GVJournalDet.RowCount - 1
+                            If Not GVJournalDet.GetRowCellValue(i, "id_acc").ToString = "" Then
+                                If GVJournalDet.GetRowCellValue(i, "id_report").ToString = "" Then
+                                    id_reportd = "NULL"
+                                Else
+                                    id_reportd = "'" + GVJournalDet.GetRowCellValue(i, "id_report").ToString + "'"
                                 End If
+                                If GVJournalDet.GetRowCellValue(i, "report_mark_type").ToString = "" Then
+                                    report_mark_typed = "NULL"
+                                Else
+                                    report_mark_typed = "'" + GVJournalDet.GetRowCellValue(i, "report_mark_type").ToString + "'"
+                                End If
+                                If GVJournalDet.GetRowCellValue(i, "id_comp").ToString = "" Then
+                                    id_compd = "NULL"
+                                Else
+                                    id_compd = "'" + GVJournalDet.GetRowCellValue(i, "id_comp").ToString + "'"
+                                End If
+
+                                query = String.Format("INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,id_status_open,report_mark_type,id_report,report_number,id_comp) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6},{7},'{8}',{9})", id_trans, GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), GVJournalDet.GetRowCellValue(i, "note").ToString, GVJournalDet.GetRowCellValue(i, "id_status_open").ToString, report_mark_typed, id_reportd, GVJournalDet.GetRowCellValue(i, "report_number").ToString, id_compd)
+                                execute_non_query(query, True, "", "", "", "")
                             End If
                         Next
-                        'end loop check on gv
-                        If sp_check = False Then
-                            'Because not found, it's only mean already deleted
-                            query = String.Format("DELETE FROM tb_a_acc_trans_det WHERE id_acc_trans_det='{0}'", data_del.Rows(i)("id_acc_trans_det").ToString())
-                            execute_non_query(query, True, "", "", "", "")
+                    Catch ex As Exception
+                        MsgBox(ex.ToString)
+                    End Try
+
+                    'SUBMIT who prepared
+                    submit_who_prepared("36", id_trans, id_user)
+
+                    actionLoad()
+                    FormAccountingJournal.view_entry()
+                    FormAccountingJournal.GVAccTrans.FocusedRowHandle = find_row(FormAccountingJournal.GVAccTrans, "id_acc_trans", id_trans)
+                    infoCustom("Journal saved.")
+                Else
+                    'edit
+                    Dim query As String = String.Format("UPDATE tb_a_acc_trans SET acc_trans_note='{0}' WHERE id_acc_trans='{1}'", MENote.Text, id_trans)
+                    execute_non_query(query, True, "", "", "", "")
+
+                    'delete first
+                    Dim sp_check As Boolean = False
+                    Dim query_del As String = "SELECT id_acc_trans_det FROM tb_a_acc_trans_det WHERE id_acc_trans='" & id_trans & "'"
+                    Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
+                    If data_del.Rows.Count > 0 Then
+                        For i As Integer = 0 To data_del.Rows.Count - 1
+                            sp_check = False
+                            ' false mean not found, believe me
+                            For j As Integer = 0 To GVJournalDet.RowCount - 1
+                                If Not GVJournalDet.GetRowCellValue(j, "id_acc_trans_det").ToString = "" Then
+                                    '
+                                    If GVJournalDet.GetRowCellValue(j, "id_acc_trans_det").ToString = data_del.Rows(i)("id_acc_trans_det").ToString() Then
+                                        sp_check = True
+                                    End If
+                                End If
+                            Next
+                            'end loop check on gv
+                            If sp_check = False Then
+                                'Because not found, it's only mean already deleted
+                                query = String.Format("DELETE FROM tb_a_acc_trans_det WHERE id_acc_trans_det='{0}'", data_del.Rows(i)("id_acc_trans_det").ToString())
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
+                        Next
+                    End If
+
+                    For i As Integer = 0 To GVJournalDet.RowCount - 1
+                        If Not GVJournalDet.GetRowCellValue(i, "id_acc").ToString = "" Then
+                            If GVJournalDet.GetRowCellValue(i, "id_acc_trans_det").ToString = "" Then
+                                'insert new
+                                query = String.Format("INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,id_status_open) VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", id_trans, GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), GVJournalDet.GetRowCellValue(i, "note").ToString, GVJournalDet.GetRowCellValue(i, "id_status_open").ToString)
+                                execute_non_query(query, True, "", "", "", "")
+                            Else
+                                'update
+                                query = String.Format("UPDATE tb_a_acc_trans_det SET id_acc='{0}',debit='{1}',credit='{2}',acc_trans_det_note='{3}',id_status_open='{5}' WHERE id_acc_trans_det='{4}'", GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), GVJournalDet.GetRowCellValue(i, "note").ToString, GVJournalDet.GetRowCellValue(i, "id_acc_trans_det").ToString, GVJournalDet.GetRowCellValue(i, "id_status_open").ToString)
+                                execute_non_query(query, True, "", "", "", "")
+                            End If
                         End If
                     Next
+
+                    'FormAccountingJournal.view_entry(LEBilling.EditValue.ToString)
+                    'FormAccountingJournal.GVAccTrans.FocusedRowHandle = find_row(FormAccountingJournal.GVAccTrans, "id_acc_trans", id_trans)
+                    infoCustom("Journal updated.")
+                    Close()
                 End If
-
-                For i As Integer = 0 To GVJournalDet.RowCount - 1
-                    If Not GVJournalDet.GetRowCellValue(i, "id_acc").ToString = "" Then
-                        If GVJournalDet.GetRowCellValue(i, "id_acc_trans_det").ToString = "" Then
-                            'insert new
-                            query = String.Format("INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,id_status_open) VALUES('{0}','{1}','{2}','{3}','{4}','{5}')", id_trans, GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), GVJournalDet.GetRowCellValue(i, "note").ToString, GVJournalDet.GetRowCellValue(i, "id_status_open").ToString)
-                            execute_non_query(query, True, "", "", "", "")
-                        Else
-                            'update
-                            query = String.Format("UPDATE tb_a_acc_trans_det SET id_acc='{0}',debit='{1}',credit='{2}',acc_trans_det_note='{3}',id_status_open='{5}' WHERE id_acc_trans_det='{4}'", GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), GVJournalDet.GetRowCellValue(i, "note").ToString, GVJournalDet.GetRowCellValue(i, "id_acc_trans_det").ToString, GVJournalDet.GetRowCellValue(i, "id_status_open").ToString)
-                            execute_non_query(query, True, "", "", "", "")
-                        End If
-                    End If
-                Next
-
-                'FormAccountingJournal.view_entry(LEBilling.EditValue.ToString)
-                'FormAccountingJournal.GVAccTrans.FocusedRowHandle = find_row(FormAccountingJournal.GVAccTrans, "id_acc_trans", id_trans)
-                infoCustom("Journal updated.")
-                Close()
             End If
         End If
+
     End Sub
 
     Sub load_number()
-        If LEBilling.EditValue.ToString = "1" Then
-            TENumber.Text = header_number_acc("3")
-        ElseIf LEBilling.EditValue.ToString = "3" Then
-            TENumber.Text = header_number_acc("4")
-        ElseIf LEBilling.EditValue.ToString = "4" Then
-            TENumber.Text = header_number_acc("5")
-        End If
+        ' TENumber.Text = = header_number_acc("1")
+        'If LEBilling.EditValue.ToString = "1" Then
+        '    TENumber.Text = header_number_acc("3")
+        'ElseIf LEBilling.EditValue.ToString = "3" Then
+        '    TENumber.Text = header_number_acc("4")
+        'ElseIf LEBilling.EditValue.ToString = "4" Then
+        '    TENumber.Text = header_number_acc("5")
+        'End If
     End Sub
 
     Private Sub BDelMat_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BDelMat.Click
@@ -229,6 +245,7 @@
         confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this entry ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             GVJournalDet.DeleteSelectedRows()
+            CType(GCJournalDet.DataSource, DataTable).AcceptChanges()
         End If
         GVJournalDet.RefreshData()
         but_check()
@@ -263,19 +280,11 @@
     End Sub
 
     Sub allow_status()
-        If check_edit_report_status(id_report_status_g, "36", id_trans) Then
-            BAddMat.Enabled = True
-            BDelMat.Enabled = True
-            GVJournalDet.OptionsBehavior.Editable = True
-            BSave.Enabled = True
-            MENote.Properties.ReadOnly = False
-        Else
-            BAddMat.Enabled = False
-            BDelMat.Enabled = False
-            GVJournalDet.OptionsBehavior.Editable = False
-            BSave.Enabled = False
-            MENote.Properties.ReadOnly = True
-        End If
+        GVJournalDet.OptionsBehavior.Editable = False
+        MENote.Properties.ReadOnly = True
+        BAddMat.Enabled = False
+        BDelMat.Enabled = False
+        BSave.Enabled = False
 
         'If check_print_report_status(id_report_status_g) Then
         '    Bprint.Enabled = True
@@ -628,6 +637,7 @@
 
     Private Sub BtnRef_Click(sender As Object, e As EventArgs) Handles BtnRef.Click
         Cursor = Cursors.WaitCursor
+        FormAccountingJournalBrowse.data_par = GCJournalDet.DataSource
         FormAccountingJournalBrowse.ShowDialog()
         Cursor = Cursors.Default
     End Sub

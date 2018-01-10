@@ -51,6 +51,7 @@ Partial Class FormAccountingJournalBill
         Me.PCButton = New DevExpress.XtraEditors.PanelControl()
         Me.BDelMat = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRef = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.Bprint = New DevExpress.XtraEditors.SimpleButton()
@@ -67,7 +68,6 @@ Partial Class FormAccountingJournalBill
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LTransNo = New DevExpress.XtraEditors.LabelControl()
-        Me.BtnRef = New DevExpress.XtraEditors.SimpleButton()
         Me.BalanceMenu.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -361,7 +361,7 @@ Partial Class FormAccountingJournalBill
         Me.BDelMat.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelMat.ImageIndex = 1
         Me.BDelMat.ImageList = Me.LargeImageCollection
-        Me.BDelMat.Location = New System.Drawing.Point(501, 2)
+        Me.BDelMat.Location = New System.Drawing.Point(513, 2)
         Me.BDelMat.Name = "BDelMat"
         Me.BDelMat.Size = New System.Drawing.Size(91, 32)
         Me.BDelMat.TabIndex = 16
@@ -373,12 +373,24 @@ Partial Class FormAccountingJournalBill
         Me.BAddMat.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddMat.ImageIndex = 0
         Me.BAddMat.ImageList = Me.LargeImageCollection
-        Me.BAddMat.Location = New System.Drawing.Point(592, 2)
+        Me.BAddMat.Location = New System.Drawing.Point(604, 2)
         Me.BAddMat.Name = "BAddMat"
-        Me.BAddMat.Size = New System.Drawing.Size(91, 32)
+        Me.BAddMat.Size = New System.Drawing.Size(85, 32)
         Me.BAddMat.TabIndex = 17
         Me.BAddMat.TabStop = False
         Me.BAddMat.Text = "Add"
+        '
+        'BtnRef
+        '
+        Me.BtnRef.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRef.Image = CType(resources.GetObject("BtnRef.Image"), System.Drawing.Image)
+        Me.BtnRef.ImageIndex = 1
+        Me.BtnRef.ImageList = Me.LargeImageCollection
+        Me.BtnRef.Location = New System.Drawing.Point(689, 2)
+        Me.BtnRef.Name = "BtnRef"
+        Me.BtnRef.Size = New System.Drawing.Size(135, 32)
+        Me.BtnRef.TabIndex = 19
+        Me.BtnRef.Text = "Browse Reference"
         '
         'PanelControl2
         '
@@ -460,10 +472,13 @@ Partial Class FormAccountingJournalBill
         'TEDate
         '
         Me.TEDate.EditValue = Nothing
+        Me.TEDate.Enabled = False
         Me.TEDate.Location = New System.Drawing.Point(642, 12)
         Me.TEDate.Name = "TEDate"
         Me.TEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.TEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TEDate.Size = New System.Drawing.Size(172, 20)
         Me.TEDate.TabIndex = 156
         '
@@ -554,18 +569,6 @@ Partial Class FormAccountingJournalBill
         Me.LTransNo.Size = New System.Drawing.Size(23, 13)
         Me.LTransNo.TabIndex = 0
         Me.LTransNo.Text = "Date"
-        '
-        'BtnRef
-        '
-        Me.BtnRef.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnRef.Image = CType(resources.GetObject("BtnRef.Image"), System.Drawing.Image)
-        Me.BtnRef.ImageIndex = 1
-        Me.BtnRef.ImageList = Me.LargeImageCollection
-        Me.BtnRef.Location = New System.Drawing.Point(683, 2)
-        Me.BtnRef.Name = "BtnRef"
-        Me.BtnRef.Size = New System.Drawing.Size(141, 32)
-        Me.BtnRef.TabIndex = 19
-        Me.BtnRef.Text = "Browse Reference"
         '
         'FormAccountingJournalBill
         '
