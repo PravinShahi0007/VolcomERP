@@ -4,8 +4,6 @@
     Dim data_dt As DataTable = Nothing
     Dim id_marriage_stattus_db As String = "-1"
 
-
-
     Sub viewSex()
         Dim query As String = "SELECT * FROM tb_lookup_sex a ORDER BY a.id_sex "
         viewLookupQuery(LESex, query, 0, "sex", "id_sex")
@@ -598,7 +596,6 @@
                 Dim query As String = "UPDATE tb_m_employee_salary SET is_cancel='1' WHERE id_employee_salary='" + id_employee_salary + "'"
                 execute_non_query(query, True, "", "", "", "")
                 viewSalary()
-
                 '
                 Dim query_cek As String = "SELECT * FROM tb_m_employee_salary WHERE id_employee='" & id_employee & "' AND is_cancel='2'"
                 Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
