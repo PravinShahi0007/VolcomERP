@@ -46,9 +46,9 @@ Partial Class FormEmpPayrollPeriode
         Me.PanelControl1.Controls.Add(Me.BtnCancel)
         Me.PanelControl1.Controls.Add(Me.BtnSave)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 150)
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 156)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(462, 44)
+        Me.PanelControl1.Size = New System.Drawing.Size(462, 38)
         Me.PanelControl1.TabIndex = 1
         '
         'LargeImageCollection
@@ -79,7 +79,7 @@ Partial Class FormEmpPayrollPeriode
         Me.BtnCancel.ImageList = Me.LargeImageCollection
         Me.BtnCancel.Location = New System.Drawing.Point(310, 2)
         Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 40)
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
         Me.BtnCancel.TabIndex = 12
         Me.BtnCancel.TabStop = False
         Me.BtnCancel.Text = "Cancel"
@@ -91,7 +91,7 @@ Partial Class FormEmpPayrollPeriode
         Me.BtnSave.ImageList = Me.LargeImageCollection
         Me.BtnSave.Location = New System.Drawing.Point(385, 2)
         Me.BtnSave.Name = "BtnSave"
-        Me.BtnSave.Size = New System.Drawing.Size(75, 40)
+        Me.BtnSave.Size = New System.Drawing.Size(75, 34)
         Me.BtnSave.TabIndex = 11
         Me.BtnSave.TabStop = False
         Me.BtnSave.Text = "Save"
@@ -153,7 +153,7 @@ Partial Class FormEmpPayrollPeriode
         '
         Me.MemoEdit1.Location = New System.Drawing.Point(93, 65)
         Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(353, 70)
+        Me.MemoEdit1.Size = New System.Drawing.Size(353, 68)
         Me.MemoEdit1.TabIndex = 8933
         '
         'FormEmpPayrollPeriode

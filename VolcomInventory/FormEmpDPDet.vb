@@ -20,6 +20,7 @@
     Private Sub FormEmpDPDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TENumber.Text = header_number_emp("2")
         DEDateCreated.EditValue = Now
+        load_payroll_periode()
         '
         If id_emp_dp = "-1" Then 'new
             BMark.Visible = False
@@ -114,8 +115,8 @@
     Private Sub BSave_Click(sender As Object, e As EventArgs) Handles BSave.Click
         If id_emp_dp = "-1" Then 'new
             If GVDP.RowCount > 0 Then
-                Dim query As String = "INSERT INTO tb_emp_dp(dp_number,id_employee,dp_date_created,dp_total,dp_note)
-                                        VALUES('" & header_number_emp("2") & "','" & id_employee & "',NOW(),'" & TETotHour.EditValue.ToString & "','" & MEDPNote.Text & "');SELECT LAST_INSERT_ID();"
+                Dim query As String = "INSERT INTO tb_emp_dp(dp_number,id_employee,dp_date_created,dp_total,dp_note,id_payroll)
+                                        VALUES('" & header_number_emp("2") & "','" & id_employee & "',NOW(),'" & TETotHour.EditValue.ToString & "','" & MEDPNote.Text & "','" & LEPayrollPeriode.EditValue.ToString & "');SELECT LAST_INSERT_ID();"
                 id_emp_dp = execute_query(query, 0, True, "", "", "", "")
                 increase_inc_emp("2")
 
@@ -142,7 +143,7 @@
             End If
         Else
             If GVDP.RowCount > 0 Then
-                Dim query As String = "UPDATE tb_emp_dp SET id_employee='" & id_employee & "',dp_total='" & TETotHour.EditValue.ToString & "',dp_note='" & MEDPNote.Text & "' WHERE id_dp='" & id_emp_dp & "'"
+                Dim query As String = "UPDATE tb_emp_dp SET id_employee='" & id_employee & "',dp_total='" & TETotHour.EditValue.ToString & "',dp_note='" & MEDPNote.Text & "',id_payroll='" & LEPayrollPeriode.EditValue.ToString & "' WHERE id_dp='" & id_emp_dp & "'"
                 execute_non_query(query, True, "", "", "", "")
                 '
                 query = "DELETE FROM tb_emp_dp WHERE id_dp='" & id_emp_dp & "'"
@@ -199,5 +200,10 @@
             GVDP.DeleteSelectedRows()
             calc()
         End If
+    End Sub
+
+    Sub load_payroll_periode()
+        Dim query As String = "SELECT p.id_payroll,p.periode_start,p.periode_end,DATE_FORMAT(`periode_end`,'%M %Y') as periode FROM tb_emp_payroll p"
+        viewLookupQuery(LEPayrollPeriode, query, 0, "periode", "id_payroll")
     End Sub
 End Class

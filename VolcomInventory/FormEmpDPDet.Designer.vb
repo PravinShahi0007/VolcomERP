@@ -57,6 +57,8 @@ Partial Class FormEmpDPDet
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BDelDP = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddDP = New DevExpress.XtraEditors.SimpleButton()
+        Me.LEPayrollPeriode = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.DEDateCreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,6 +81,7 @@ Partial Class FormEmpDPDet
         CType(Me.GVDP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.LEPayrollPeriode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -99,7 +102,7 @@ Partial Class FormEmpDPDet
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(622, 96)
+        Me.GroupControl1.Size = New System.Drawing.Size(713, 96)
         Me.GroupControl1.TabIndex = 1
         Me.GroupControl1.Text = "Employee"
         '
@@ -113,7 +116,7 @@ Partial Class FormEmpDPDet
         Me.DEDateCreated.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEDateCreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEDateCreated.Properties.ReadOnly = True
-        Me.DEDateCreated.Size = New System.Drawing.Size(218, 20)
+        Me.DEDateCreated.Size = New System.Drawing.Size(305, 20)
         Me.DEDateCreated.TabIndex = 98
         Me.DEDateCreated.TabStop = False
         '
@@ -155,7 +158,7 @@ Partial Class FormEmpDPDet
         '
         'BPickEmployee
         '
-        Me.BPickEmployee.Location = New System.Drawing.Point(583, 34)
+        Me.BPickEmployee.Location = New System.Drawing.Point(670, 33)
         Me.BPickEmployee.Name = "BPickEmployee"
         Me.BPickEmployee.Size = New System.Drawing.Size(29, 23)
         Me.BPickEmployee.TabIndex = 0
@@ -187,7 +190,7 @@ Partial Class FormEmpDPDet
         Me.TEPosition.Name = "TEPosition"
         Me.TEPosition.Properties.EditValueChangedDelay = 1
         Me.TEPosition.Properties.ReadOnly = True
-        Me.TEPosition.Size = New System.Drawing.Size(218, 20)
+        Me.TEPosition.Size = New System.Drawing.Size(305, 20)
         Me.TEPosition.TabIndex = 4
         Me.TEPosition.TabStop = False
         '
@@ -206,7 +209,7 @@ Partial Class FormEmpDPDet
         Me.TEEmployeeName.Name = "TEEmployeeName"
         Me.TEEmployeeName.Properties.EditValueChangedDelay = 1
         Me.TEEmployeeName.Properties.ReadOnly = True
-        Me.TEEmployeeName.Size = New System.Drawing.Size(324, 20)
+        Me.TEEmployeeName.Size = New System.Drawing.Size(411, 20)
         Me.TEEmployeeName.TabIndex = 2
         Me.TEEmployeeName.TabStop = False
         '
@@ -250,9 +253,9 @@ Partial Class FormEmpDPDet
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 353)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 417)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(622, 37)
+        Me.PanelControl3.Size = New System.Drawing.Size(713, 37)
         Me.PanelControl3.TabIndex = 5
         '
         'BPrint
@@ -260,7 +263,7 @@ Partial Class FormEmpDPDet
         Me.BPrint.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPrint.ImageIndex = 6
         Me.BPrint.ImageList = Me.LargeImageCollection
-        Me.BPrint.Location = New System.Drawing.Point(399, 2)
+        Me.BPrint.Location = New System.Drawing.Point(490, 2)
         Me.BPrint.Name = "BPrint"
         Me.BPrint.Size = New System.Drawing.Size(73, 33)
         Me.BPrint.TabIndex = 3
@@ -282,7 +285,7 @@ Partial Class FormEmpDPDet
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(472, 2)
+        Me.BCancel.Location = New System.Drawing.Point(563, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 33)
         Me.BCancel.TabIndex = 1
@@ -293,7 +296,7 @@ Partial Class FormEmpDPDet
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.ImageIndex = 7
         Me.BSave.ImageList = Me.LargeImageCollection
-        Me.BSave.Location = New System.Drawing.Point(545, 2)
+        Me.BSave.Location = New System.Drawing.Point(636, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(75, 33)
         Me.BSave.TabIndex = 0
@@ -302,21 +305,23 @@ Partial Class FormEmpDPDet
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.LEPayrollPeriode)
+        Me.GroupControl2.Controls.Add(Me.LabelControl9)
         Me.GroupControl2.Controls.Add(Me.LabelControl8)
         Me.GroupControl2.Controls.Add(Me.TETotHour)
         Me.GroupControl2.Controls.Add(Me.LabelControl4)
         Me.GroupControl2.Controls.Add(Me.MEDPNote)
         Me.GroupControl2.Controls.Add(Me.LabelControl5)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 261)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 325)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(622, 92)
+        Me.GroupControl2.Size = New System.Drawing.Size(713, 92)
         Me.GroupControl2.TabIndex = 6
         Me.GroupControl2.Text = "DP"
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(287, 65)
+        Me.LabelControl8.Location = New System.Drawing.Point(232, 65)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(36, 13)
         Me.LabelControl8.TabIndex = 108
@@ -329,7 +334,7 @@ Partial Class FormEmpDPDet
         Me.TETotHour.Name = "TETotHour"
         Me.TETotHour.Properties.EditValueChangedDelay = 1
         Me.TETotHour.Properties.ReadOnly = True
-        Me.TETotHour.Size = New System.Drawing.Size(153, 20)
+        Me.TETotHour.Size = New System.Drawing.Size(98, 20)
         Me.TETotHour.TabIndex = 106
         Me.TETotHour.TabStop = False
         '
@@ -346,7 +351,7 @@ Partial Class FormEmpDPDet
         Me.MEDPNote.Location = New System.Drawing.Point(128, 10)
         Me.MEDPNote.Name = "MEDPNote"
         Me.MEDPNote.Properties.MaxLength = 200
-        Me.MEDPNote.Size = New System.Drawing.Size(484, 46)
+        Me.MEDPNote.Size = New System.Drawing.Size(571, 46)
         Me.MEDPNote.TabIndex = 1
         '
         'LabelControl5
@@ -365,7 +370,7 @@ Partial Class FormEmpDPDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(0, 96)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(622, 165)
+        Me.GroupControl3.Size = New System.Drawing.Size(713, 229)
         Me.GroupControl3.TabIndex = 7
         Me.GroupControl3.Text = "Detail"
         '
@@ -375,7 +380,7 @@ Partial Class FormEmpDPDet
         Me.GCDP.Location = New System.Drawing.Point(20, 38)
         Me.GCDP.MainView = Me.GVDP
         Me.GCDP.Name = "GCDP"
-        Me.GCDP.Size = New System.Drawing.Size(600, 125)
+        Me.GCDP.Size = New System.Drawing.Size(691, 189)
         Me.GCDP.TabIndex = 1
         Me.GCDP.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDP})
         '
@@ -440,7 +445,7 @@ Partial Class FormEmpDPDet
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(600, 36)
+        Me.PanelControl1.Size = New System.Drawing.Size(691, 36)
         Me.PanelControl1.TabIndex = 0
         '
         'BDelDP
@@ -448,7 +453,7 @@ Partial Class FormEmpDPDet
         Me.BDelDP.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelDP.ImageIndex = 1
         Me.BDelDP.ImageList = Me.LargeImageCollection
-        Me.BDelDP.Location = New System.Drawing.Point(420, 2)
+        Me.BDelDP.Location = New System.Drawing.Point(511, 2)
         Me.BDelDP.Name = "BDelDP"
         Me.BDelDP.Size = New System.Drawing.Size(89, 32)
         Me.BDelDP.TabIndex = 1
@@ -459,17 +464,42 @@ Partial Class FormEmpDPDet
         Me.BAddDP.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddDP.ImageIndex = 0
         Me.BAddDP.ImageList = Me.LargeImageCollection
-        Me.BAddDP.Location = New System.Drawing.Point(509, 2)
+        Me.BAddDP.Location = New System.Drawing.Point(600, 2)
         Me.BAddDP.Name = "BAddDP"
         Me.BAddDP.Size = New System.Drawing.Size(89, 32)
         Me.BAddDP.TabIndex = 0
         Me.BAddDP.Text = "Add"
         '
+        'LEPayrollPeriode
+        '
+        Me.LEPayrollPeriode.Location = New System.Drawing.Point(405, 62)
+        Me.LEPayrollPeriode.Name = "LEPayrollPeriode"
+        Me.LEPayrollPeriode.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPayrollPeriode.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPayrollPeriode.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.LEPayrollPeriode.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.LEPayrollPeriode.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LEPayrollPeriode.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.LEPayrollPeriode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPayrollPeriode.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payroll", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode", "Periode"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode_start", "Periode Start", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode_end", "Periode End", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.LEPayrollPeriode.Properties.NullText = ""
+        Me.LEPayrollPeriode.Properties.ShowFooter = False
+        Me.LEPayrollPeriode.Size = New System.Drawing.Size(294, 20)
+        Me.LEPayrollPeriode.TabIndex = 148
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(328, 65)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl9.TabIndex = 147
+        Me.LabelControl9.Text = "Payroll Periode"
+        '
         'FormEmpDPDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(622, 390)
+        Me.ClientSize = New System.Drawing.Size(713, 454)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.PanelControl3)
@@ -504,6 +534,7 @@ Partial Class FormEmpDPDet
         CType(Me.GVDP, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.LEPayrollPeriode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -544,4 +575,6 @@ Partial Class FormEmpDPDet
     Friend WithEvents BDelDP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BAddDP As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LEPayrollPeriode As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
 End Class
