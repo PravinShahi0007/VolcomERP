@@ -30,11 +30,15 @@
             Dim query As String = "INSERT INTO tb_emp_payroll(periode_start,periode_end,note,last_upd,id_user_upd) VALUES('" & date_start & "','" & date_end & "','" & note & "',NOW(),'" & id_user & "'); SELECT LAST_INSERT_ID();"
             id_payroll = execute_query(query, 0, True, "", "", "", "")
             '
+            FormEmpPayroll.load_payroll()
+            FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_payroll)
             Close()
         Else 'edit
             Dim query As String = "UPDATE tb_emp_payroll SET periode_start='" & date_start & "',periode_end='" & date_end & "',note='" & note & "',last_upd=NOW(),id_user_upd='" & id_user & "' WHERE id_payroll='" & id_payroll & "'"
             execute_non_query(query, True, "", "", "", "")
             '
+            FormEmpPayroll.load_payroll()
+            FormEmpPayroll.GVPayrollPeriode.FocusedRowHandle = find_row(FormEmpPayroll.GVPayrollPeriode, "id_payroll", id_payroll)
             Close()
         End If
     End Sub

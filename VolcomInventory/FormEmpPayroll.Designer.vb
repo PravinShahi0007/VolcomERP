@@ -81,6 +81,7 @@ Partial Class FormEmpPayroll
         Me.GVPayrollPeriode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnPStart, Me.GridColumnPEnd, Me.GridColumnLastUpd, Me.GridColumnLastUpdBy, Me.GridColumnNote})
         Me.GVPayrollPeriode.GridControl = Me.GCPayrollPeriode
         Me.GVPayrollPeriode.Name = "GVPayrollPeriode"
+        Me.GVPayrollPeriode.OptionsBehavior.ReadOnly = True
         Me.GVPayrollPeriode.OptionsView.ShowGroupPanel = False
         '
         'GridColumnID
