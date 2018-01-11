@@ -6,8 +6,10 @@
     Public id_cc As String = "-1"
     Public report_mark_typex As String = "-1"
     Public report_numberx As String = "-1"
+    Dim id_report_status As String = "-1"
 
     Private Sub FormAccountingJournalBill_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        viewReportStatus()
         load_billing_type(LEBilling)
         ''
         view_status()
@@ -19,6 +21,29 @@
         'TEDate.EditValue = Now()
         actionLoad()
 
+    End Sub
+
+    Sub viewReportStatus()
+        Dim query As String = "SELECT * FROM tb_lookup_report_status a ORDER BY a.id_report_status "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        viewLookupQuery(LEReportStatus, query, 0, "report_status", "id_report_status")
+    End Sub
+
+    Sub noEdit()
+        Dim id_acc_src As String = ""
+        Try
+            id_acc_src = GVJournalDet.GetFocusedRowCellValue("id_acc_src").ToString
+        Catch ex As Exception
+        End Try
+        If id_acc_src = "" Then
+            GVJournalDet.Columns("debit").OptionsColumn.AllowEdit = True
+            GVJournalDet.Columns("credit").OptionsColumn.AllowEdit = True
+            GVJournalDet.Columns("report_number").OptionsColumn.AllowEdit = True
+        Else
+            GVJournalDet.Columns("debit").OptionsColumn.AllowEdit = False
+            GVJournalDet.Columns("credit").OptionsColumn.AllowEdit = False
+            GVJournalDet.Columns("report_number").OptionsColumn.AllowEdit = False
+        End If
     End Sub
 
     Sub actionLoad()
@@ -43,6 +68,8 @@
 
             MENote.Text = data.Rows(0)("acc_trans_note").ToString
             TEReffNumber.Text = data.Rows(0)("report_number").ToString
+            id_report_status = data.Rows(0)("id_report_status").ToString
+            LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
             Blink.Enabled = False
             TEReffNumber.Properties.ReadOnly = True
             TENumber.Properties.ReadOnly = True
@@ -140,6 +167,7 @@
                     'entry detail
                     Dim id_reportd As String = ""
                     Dim report_mark_typed As String = ""
+                    Dim id_acc_srcd As String = ""
                     Dim id_compd As String = ""
                     Try
                         For i As Integer = 0 To GVJournalDet.RowCount - 1
@@ -159,8 +187,13 @@
                                 Else
                                     id_compd = "'" + GVJournalDet.GetRowCellValue(i, "id_comp").ToString + "'"
                                 End If
+                                If GVJournalDet.GetRowCellValue(i, "id_acc_src").ToString = "" Then
+                                    id_acc_srcd = "NULL"
+                                Else
+                                    id_acc_srcd = "'" + GVJournalDet.GetRowCellValue(i, "id_acc_src").ToString + "'"
+                                End If
 
-                                query = String.Format("INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,id_status_open,report_mark_type,id_report,report_number,id_comp) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6},{7},'{8}',{9})", id_trans, GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), GVJournalDet.GetRowCellValue(i, "note").ToString, GVJournalDet.GetRowCellValue(i, "id_status_open").ToString, report_mark_typed, id_reportd, GVJournalDet.GetRowCellValue(i, "report_number").ToString, id_compd)
+                                query = String.Format("INSERT INTO tb_a_acc_trans_det(id_acc_trans,id_acc,debit,credit,acc_trans_det_note,id_status_open,report_mark_type,id_report,report_number,id_comp, id_acc_src) VALUES('{0}','{1}','{2}','{3}','{4}','{5}',{6},{7},'{8}',{9},{10})", id_trans, GVJournalDet.GetRowCellValue(i, "id_acc").ToString, decimalSQL(GVJournalDet.GetRowCellValue(i, "debit").ToString), decimalSQL(GVJournalDet.GetRowCellValue(i, "credit").ToString), GVJournalDet.GetRowCellValue(i, "note").ToString, GVJournalDet.GetRowCellValue(i, "id_status_open").ToString, report_mark_typed, id_reportd, GVJournalDet.GetRowCellValue(i, "report_number").ToString, id_compd, id_acc_srcd)
                                 execute_non_query(query, True, "", "", "", "")
                             End If
                         Next
@@ -276,6 +309,7 @@
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
         FormReportMark.id_report = id_trans
         FormReportMark.report_mark_type = "36"
+        FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
     End Sub
 
@@ -640,5 +674,13 @@
         FormAccountingJournalBrowse.data_par = GCJournalDet.DataSource
         FormAccountingJournalBrowse.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub GVJournalDet_ColumnFilterChanged(sender As Object, e As EventArgs) Handles GVJournalDet.ColumnFilterChanged
+        noEdit()
+    End Sub
+
+    Private Sub GVJournalDet_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVJournalDet.FocusedRowChanged
+        noEdit()
     End Sub
 End Class

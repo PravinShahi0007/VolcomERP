@@ -42,6 +42,9 @@
         ElseIf report_mark_type = "32" Then
             'return in production
             FormViewProductionRetIn.Close()
+        ElseIf report_mark_type = "36" Then
+            'entry journal
+            FormViewJournal.Close()
         ElseIf report_mark_type = "44" Then
             'non production MRS
             FormViewMatMRS.Close()
@@ -761,7 +764,7 @@
             table_name = "tb_a_acc_trans"
             field_id = "id_acc_trans"
             field_number = "acc_trans_number"
-            field_date = "acc_trans_date"
+            field_date = "date_created"
         ElseIf report_mark_type = "37" Then
             'REC PL FG TO WH
             table_name = "tb_pl_prod_order_rec"
