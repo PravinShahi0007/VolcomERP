@@ -15,7 +15,7 @@
 
             DEStart.EditValue = data.Rows(0)("periode_start")
             DEEnd.EditValue = data.Rows(0)("periode_end")
-            MemoEdit1.Text = data.Rows(0)("note").ToString
+            MEPayrollNote.Text = data.Rows(0)("note").ToString
         End If
     End Sub
 
@@ -24,7 +24,7 @@
 
         date_start = Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd")
         date_end = Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
-        note = addSlashes(MemoEdit1.Text)
+        note = addSlashes(MEPayrollNote.Text)
 
         If id_payroll = "-1" Then
             Dim query As String = "INSERT INTO tb_emp_payroll(periode_start,periode_end,note,last_upd,id_user_upd) VALUES('" & date_start & "','" & date_end & "','" & note & "',NOW(),'" & id_user & "'); SELECT LAST_INSERT_ID();"

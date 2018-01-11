@@ -21,31 +21,31 @@ Partial Class FormEmpPayroll
     Private Sub InitializeComponent()
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPPeriode = New DevExpress.XtraTab.XtraTabPage()
-        Me.XTPSalaryFormat = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPayrollPeriode = New DevExpress.XtraGrid.GridControl()
         Me.GVPayrollPeriode = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPStart = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPEnd = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnLastUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastUpd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLastUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPSalaryFormat = New DevExpress.XtraTab.XtraTabPage()
+        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.XTPPeriode.SuspendLayout()
-        Me.XTPSalaryFormat.SuspendLayout()
         CType(Me.GCPayrollPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPayrollPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl1.SuspendLayout()
+        Me.XTPSalaryFormat.SuspendLayout()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XtraTabControl1
@@ -66,14 +66,6 @@ Partial Class FormEmpPayroll
         Me.XTPPeriode.Size = New System.Drawing.Size(1115, 441)
         Me.XTPPeriode.Text = "Periode"
         '
-        'XTPSalaryFormat
-        '
-        Me.XTPSalaryFormat.Controls.Add(Me.GridControl2)
-        Me.XTPSalaryFormat.Controls.Add(Me.PanelControl1)
-        Me.XTPSalaryFormat.Name = "XTPSalaryFormat"
-        Me.XTPSalaryFormat.Size = New System.Drawing.Size(1115, 441)
-        Me.XTPSalaryFormat.Text = "Worksheet"
-        '
         'GCPayrollPeriode
         '
         Me.GCPayrollPeriode.Dock = System.Windows.Forms.DockStyle.Fill
@@ -91,64 +83,10 @@ Partial Class FormEmpPayroll
         Me.GVPayrollPeriode.Name = "GVPayrollPeriode"
         Me.GVPayrollPeriode.OptionsView.ShowGroupPanel = False
         '
-        'PanelControl1
-        '
-        Me.PanelControl1.Controls.Add(Me.SimpleButton3)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
-        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
-        Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(1115, 45)
-        Me.PanelControl1.TabIndex = 0
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Location = New System.Drawing.Point(1004, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(109, 41)
-        Me.SimpleButton1.TabIndex = 0
-        Me.SimpleButton1.Text = "Setting"
-        '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton2.Location = New System.Drawing.Point(895, 2)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(109, 41)
-        Me.SimpleButton2.TabIndex = 1
-        Me.SimpleButton2.Text = "Overtime"
-        '
-        'SimpleButton3
-        '
-        Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton3.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(97, 41)
-        Me.SimpleButton3.TabIndex = 2
-        Me.SimpleButton3.Text = "Print"
-        '
-        'GridControl2
-        '
-        Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl2.Location = New System.Drawing.Point(0, 45)
-        Me.GridControl2.MainView = Me.GridView2
-        Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(1115, 396)
-        Me.GridControl2.TabIndex = 1
-        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
-        '
-        'GridView2
-        '
-        Me.GridView2.GridControl = Me.GridControl2
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsView.ShowGroupPanel = False
-        '
         'GridColumnID
         '
         Me.GridColumnID.Caption = "ID"
-        Me.GridColumnID.FieldName = "id_emp_payroll"
+        Me.GridColumnID.FieldName = "id_payroll"
         Me.GridColumnID.Name = "GridColumnID"
         '
         'GridColumnPStart
@@ -173,24 +111,6 @@ Partial Class FormEmpPayroll
         Me.GridColumnPEnd.VisibleIndex = 1
         Me.GridColumnPEnd.Width = 136
         '
-        'GridColumnNote
-        '
-        Me.GridColumnNote.Caption = "Note"
-        Me.GridColumnNote.FieldName = "note"
-        Me.GridColumnNote.Name = "GridColumnNote"
-        Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 4
-        Me.GridColumnNote.Width = 440
-        '
-        'GridColumnLastUpdBy
-        '
-        Me.GridColumnLastUpdBy.Caption = "Last Update By"
-        Me.GridColumnLastUpdBy.FieldName = "employee_name"
-        Me.GridColumnLastUpdBy.Name = "GridColumnLastUpdBy"
-        Me.GridColumnLastUpdBy.Visible = True
-        Me.GridColumnLastUpdBy.VisibleIndex = 3
-        Me.GridColumnLastUpdBy.Width = 162
-        '
         'GridColumnLastUpd
         '
         Me.GridColumnLastUpd.Caption = "Last Update"
@@ -201,6 +121,86 @@ Partial Class FormEmpPayroll
         Me.GridColumnLastUpd.Visible = True
         Me.GridColumnLastUpd.VisibleIndex = 2
         Me.GridColumnLastUpd.Width = 199
+        '
+        'GridColumnLastUpdBy
+        '
+        Me.GridColumnLastUpdBy.Caption = "Last Update By"
+        Me.GridColumnLastUpdBy.FieldName = "employee_name"
+        Me.GridColumnLastUpdBy.Name = "GridColumnLastUpdBy"
+        Me.GridColumnLastUpdBy.Visible = True
+        Me.GridColumnLastUpdBy.VisibleIndex = 3
+        Me.GridColumnLastUpdBy.Width = 162
+        '
+        'GridColumnNote
+        '
+        Me.GridColumnNote.Caption = "Note"
+        Me.GridColumnNote.FieldName = "note"
+        Me.GridColumnNote.Name = "GridColumnNote"
+        Me.GridColumnNote.Visible = True
+        Me.GridColumnNote.VisibleIndex = 4
+        Me.GridColumnNote.Width = 440
+        '
+        'XTPSalaryFormat
+        '
+        Me.XTPSalaryFormat.Controls.Add(Me.GridControl2)
+        Me.XTPSalaryFormat.Controls.Add(Me.PanelControl1)
+        Me.XTPSalaryFormat.Name = "XTPSalaryFormat"
+        Me.XTPSalaryFormat.Size = New System.Drawing.Size(1115, 441)
+        Me.XTPSalaryFormat.Text = "Worksheet"
+        '
+        'GridControl2
+        '
+        Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GridControl2.Location = New System.Drawing.Point(0, 45)
+        Me.GridControl2.MainView = Me.GridView2
+        Me.GridControl2.Name = "GridControl2"
+        Me.GridControl2.Size = New System.Drawing.Size(1115, 396)
+        Me.GridControl2.TabIndex = 1
+        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        '
+        'GridView2
+        '
+        Me.GridView2.GridControl = Me.GridControl2
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsView.ShowGroupPanel = False
+        '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.SimpleButton3)
+        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1115, 45)
+        Me.PanelControl1.TabIndex = 0
+        '
+        'SimpleButton3
+        '
+        Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SimpleButton3.Location = New System.Drawing.Point(2, 2)
+        Me.SimpleButton3.Name = "SimpleButton3"
+        Me.SimpleButton3.Size = New System.Drawing.Size(97, 41)
+        Me.SimpleButton3.TabIndex = 2
+        Me.SimpleButton3.Text = "Print"
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton2.Location = New System.Drawing.Point(895, 2)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(109, 41)
+        Me.SimpleButton2.TabIndex = 1
+        Me.SimpleButton2.Text = "Overtime"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Location = New System.Drawing.Point(1004, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(109, 41)
+        Me.SimpleButton1.TabIndex = 0
+        Me.SimpleButton1.Text = "Setting"
         '
         'FormEmpPayroll
         '
@@ -217,13 +217,13 @@ Partial Class FormEmpPayroll
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.XTPPeriode.ResumeLayout(False)
-        Me.XTPSalaryFormat.ResumeLayout(False)
         CType(Me.GCPayrollPeriode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPayrollPeriode, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl1.ResumeLayout(False)
+        Me.XTPSalaryFormat.ResumeLayout(False)
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub

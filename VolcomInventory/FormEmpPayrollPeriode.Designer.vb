@@ -22,15 +22,15 @@ Partial Class FormEmpPayrollPeriode
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollPeriode))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
+        Me.MEPayrollNote = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -38,7 +38,7 @@ Partial Class FormEmpPayrollPeriode
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MEPayrollNote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
@@ -50,6 +50,18 @@ Partial Class FormEmpPayrollPeriode
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(462, 38)
         Me.PanelControl1.TabIndex = 1
+        '
+        'BtnCancel
+        '
+        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancel.ImageIndex = 5
+        Me.BtnCancel.ImageList = Me.LargeImageCollection
+        Me.BtnCancel.Location = New System.Drawing.Point(310, 2)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
+        Me.BtnCancel.TabIndex = 12
+        Me.BtnCancel.TabStop = False
+        Me.BtnCancel.Text = "Cancel"
         '
         'LargeImageCollection
         '
@@ -71,18 +83,6 @@ Partial Class FormEmpPayrollPeriode
         Me.LargeImageCollection.Images.SetKeyName(13, "folder-documents-icon.png")
         Me.LargeImageCollection.Images.SetKeyName(14, "mail_attachment.png")
         Me.LargeImageCollection.Images.SetKeyName(15, "attachment-icon.png")
-        '
-        'BtnCancel
-        '
-        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnCancel.ImageIndex = 5
-        Me.BtnCancel.ImageList = Me.LargeImageCollection
-        Me.BtnCancel.Location = New System.Drawing.Point(310, 2)
-        Me.BtnCancel.Name = "BtnCancel"
-        Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
-        Me.BtnCancel.TabIndex = 12
-        Me.BtnCancel.TabStop = False
-        Me.BtnCancel.Text = "Cancel"
         '
         'BtnSave
         '
@@ -149,19 +149,19 @@ Partial Class FormEmpPayrollPeriode
         Me.LabelControl3.TabIndex = 8932
         Me.LabelControl3.Text = "Note"
         '
-        'MemoEdit1
+        'MEPayrollNote
         '
-        Me.MemoEdit1.Location = New System.Drawing.Point(93, 65)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(353, 68)
-        Me.MemoEdit1.TabIndex = 8933
+        Me.MEPayrollNote.Location = New System.Drawing.Point(93, 65)
+        Me.MEPayrollNote.Name = "MEPayrollNote"
+        Me.MEPayrollNote.Size = New System.Drawing.Size(353, 68)
+        Me.MEPayrollNote.TabIndex = 8933
         '
         'FormEmpPayrollPeriode
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(462, 194)
-        Me.Controls.Add(Me.MemoEdit1)
+        Me.Controls.Add(Me.MEPayrollNote)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.DEEnd)
@@ -181,7 +181,7 @@ Partial Class FormEmpPayrollPeriode
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MEPayrollNote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -196,5 +196,5 @@ Partial Class FormEmpPayrollPeriode
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MEPayrollNote As DevExpress.XtraEditors.MemoEdit
 End Class
