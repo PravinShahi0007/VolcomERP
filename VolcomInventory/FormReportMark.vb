@@ -1842,8 +1842,13 @@
             End Try
         ElseIf report_mark_type = "36" Then
             'Journal Entry
+            If id_status_reportx = 3 Then
+                id_status_reportx = 6
+            End If
+
             If id_status_reportx = "6" Then
-                Dim qu As String = "UPDATE tb_a"
+                Dim qu As String = "CALL update_status_trans_journal(" + id_report + ")"
+                execute_non_query(qu, True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_a_acc_trans SET id_report_status='{0}' WHERE id_acc_trans ='{1}'", id_status_reportx, id_report)

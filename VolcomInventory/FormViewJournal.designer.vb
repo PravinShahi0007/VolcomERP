@@ -19,34 +19,34 @@ Partial Class FormViewJournal
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
-        Me.GCJournalDet = New DevExpress.XtraGrid.GridControl
-        Me.GVJournalDet = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
-        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnReportMT = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl
-        Me.MENote = New DevExpress.XtraEditors.MemoEdit
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
-        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl
-        Me.BMark = New DevExpress.XtraEditors.SimpleButton
-        Me.PCGeneralheader = New DevExpress.XtraEditors.PanelControl
-        Me.TEUserEntry = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl
-        Me.TENumber = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.TEDate = New DevExpress.XtraEditors.TextEdit
-        Me.LTransNo = New DevExpress.XtraEditors.LabelControl
+        Me.components = New System.ComponentModel.Container()
+        Me.GCJournalDet = New DevExpress.XtraGrid.GridControl()
+        Me.GVJournalDet = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemTextEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReportMT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
+        Me.PCGeneralheader = New DevExpress.XtraEditors.PanelControl()
+        Me.TEUserEntry = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEDate = New DevExpress.XtraEditors.TextEdit()
+        Me.LTransNo = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem
+        Me.SMViewTransaction = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVJournalDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -260,6 +260,7 @@ Partial Class FormViewJournal
         '
         'TEUserEntry
         '
+        Me.TEUserEntry.Enabled = False
         Me.TEUserEntry.Location = New System.Drawing.Point(78, 41)
         Me.TEUserEntry.Name = "TEUserEntry"
         Me.TEUserEntry.Size = New System.Drawing.Size(249, 20)
@@ -275,6 +276,7 @@ Partial Class FormViewJournal
         '
         'TENumber
         '
+        Me.TENumber.Enabled = False
         Me.TENumber.Location = New System.Drawing.Point(78, 12)
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Size = New System.Drawing.Size(249, 20)
@@ -290,6 +292,7 @@ Partial Class FormViewJournal
         '
         'TEDate
         '
+        Me.TEDate.Enabled = False
         Me.TEDate.Location = New System.Drawing.Point(525, 12)
         Me.TEDate.Name = "TEDate"
         Me.TEDate.Size = New System.Drawing.Size(203, 20)
