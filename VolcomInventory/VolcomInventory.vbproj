@@ -685,6 +685,18 @@
     <Compile Include="FormEmpLeaveStock.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPayroll.Designer.vb">
+      <DependentUpon>FormEmpPayroll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayroll.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollPeriode.Designer.vb">
+      <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollPeriode.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpSchedule.Designer.vb">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
     </Compile>
@@ -5318,6 +5330,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeaveStock.resx">
       <DependentUpon>FormEmpLeaveStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayroll.resx">
+      <DependentUpon>FormEmpPayroll.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollPeriode.resx">
+      <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpSchedule.resx">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
