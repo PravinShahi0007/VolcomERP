@@ -50,7 +50,7 @@
 
         Dim id_comp As String = SLEComp.EditValue.ToString
         Dim query As String = "SELECT so.sales_order_number, so.sales_order_ol_shop_number, so.sales_order_date AS `order_date`, del.pl_sales_order_del_number, del.pl_sales_order_del_date AS `del_date`,ro.sales_return_order_number, ro.sales_return_order_date as `ro_date`, r.sales_return_number, r.sales_return_date AS `ret_date`, inv.sales_pos_number, inv.sales_pos_number AS `inv_date`, cn.sales_pos_cn_number, cn.sales_pos_cn_date AS `cn_date`,
-        IF(ISNULL(inv.id_sales_pos),'Pending',IF(inv.id_report_status<5,'Prepared','Paid')) AS `paid_status`, '0' AS `report_mark_type`,
+        IF(ISNULL(inv.id_sales_pos),'Pending',IF(inv.id_report_status<5,'Prepared',IF(j.id_status_open=2,'Paid','Invoice Sent'))) AS `paid_status`, '0' AS `report_mark_type`,
         so.id_sales_order, del.id_del,ro.id_ro, r.id_ret, inv.id_inv, cn.id_cn
         FROM tb_sales_order so 
         INNER JOIN tb_m_comp_contact socc ON socc.id_comp_contact = so.id_store_contact_to
@@ -108,6 +108,18 @@
             WHERE cn.id_report_status=6 AND cn.id_memo_type=2
             GROUP BY del.id_sales_order  
         ) cn ON cn.id_sales_order = so.id_sales_order 
+        LEFT JOIN (
+            SELECT ad.id_acc_trans_det,sod.id_sales_order, ad.id_status_open
+            FROM tb_a_acc_trans_det ad
+            INNER JOIN tb_a_acc_trans a ON a.id_acc_trans = ad.id_acc_trans
+            INNER JOIN tb_a_acc coa ON coa.id_acc = ad.id_acc
+            INNER JOIN tb_sales_pos inv ON inv.id_sales_pos = ad.id_report
+            INNER JOIN tb_sales_pos_det invd ON invd.id_sales_pos = inv.id_sales_pos
+            INNER JOIN tb_pl_sales_order_del_det dd ON dd.id_pl_sales_order_del_det = invd.id_pl_sales_order_del_det
+            INNER JOIN tb_sales_order_det sod ON sod.id_sales_order_det = dd.id_sales_order_det
+            WHERE a.id_report_status=6 AND (ad.report_mark_type=48 OR ad.report_mark_type=54) AND coa.acc_name LIKE '1113%'
+            GROUP BY sod.id_sales_order
+        ) j ON j.id_sales_order = so.id_sales_order
         WHERE c.id_comp=" + id_comp + " AND so.id_report_status=6 AND (so.sales_order_date>='" + date_from_selected + "' AND so.sales_order_date<='" + date_until_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCData.DataSource = data

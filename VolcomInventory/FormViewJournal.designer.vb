@@ -39,6 +39,7 @@ Partial Class FormViewJournal
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.PCGeneralheader = New DevExpress.XtraEditors.PanelControl()
+        Me.LEBilling = New DevExpress.XtraEditors.LookUpEdit()
         Me.TEUserEntry = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.TENumber = New DevExpress.XtraEditors.TextEdit()
@@ -58,6 +59,7 @@ Partial Class FormViewJournal
         Me.PanelControl2.SuspendLayout()
         CType(Me.PCGeneralheader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCGeneralheader.SuspendLayout()
+        CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUserEntry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -246,6 +248,7 @@ Partial Class FormViewJournal
         '
         'PCGeneralheader
         '
+        Me.PCGeneralheader.Controls.Add(Me.LEBilling)
         Me.PCGeneralheader.Controls.Add(Me.TEUserEntry)
         Me.PCGeneralheader.Controls.Add(Me.LabelControl2)
         Me.PCGeneralheader.Controls.Add(Me.TENumber)
@@ -258,17 +261,35 @@ Partial Class FormViewJournal
         Me.PCGeneralheader.Size = New System.Drawing.Size(744, 75)
         Me.PCGeneralheader.TabIndex = 9
         '
+        'LEBilling
+        '
+        Me.LEBilling.Enabled = False
+        Me.LEBilling.Location = New System.Drawing.Point(55, 12)
+        Me.LEBilling.Name = "LEBilling"
+        Me.LEBilling.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEBilling.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEBilling.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.LEBilling.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.LEBilling.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LEBilling.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.LEBilling.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEBilling.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_bill_type", "Id Billing Type", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bill_type", "Billing Type")})
+        Me.LEBilling.Properties.NullText = ""
+        Me.LEBilling.Properties.ShowFooter = False
+        Me.LEBilling.Size = New System.Drawing.Size(70, 20)
+        Me.LEBilling.TabIndex = 6
+        '
         'TEUserEntry
         '
         Me.TEUserEntry.Enabled = False
-        Me.TEUserEntry.Location = New System.Drawing.Point(78, 41)
+        Me.TEUserEntry.Location = New System.Drawing.Point(525, 38)
         Me.TEUserEntry.Name = "TEUserEntry"
-        Me.TEUserEntry.Size = New System.Drawing.Size(249, 20)
+        Me.TEUserEntry.Size = New System.Drawing.Size(203, 20)
         Me.TEUserEntry.TabIndex = 5
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 44)
+        Me.LabelControl2.Location = New System.Drawing.Point(456, 41)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(51, 13)
         Me.LabelControl2.TabIndex = 4
@@ -277,9 +298,9 @@ Partial Class FormViewJournal
         'TENumber
         '
         Me.TENumber.Enabled = False
-        Me.TENumber.Location = New System.Drawing.Point(78, 12)
+        Me.TENumber.Location = New System.Drawing.Point(129, 12)
         Me.TENumber.Name = "TENumber"
-        Me.TENumber.Size = New System.Drawing.Size(249, 20)
+        Me.TENumber.Size = New System.Drawing.Size(193, 20)
         Me.TENumber.TabIndex = 3
         '
         'LabelControl1
@@ -300,7 +321,7 @@ Partial Class FormViewJournal
         '
         'LTransNo
         '
-        Me.LTransNo.Location = New System.Drawing.Point(484, 15)
+        Me.LTransNo.Location = New System.Drawing.Point(456, 15)
         Me.LTransNo.Name = "LTransNo"
         Me.LTransNo.Size = New System.Drawing.Size(23, 13)
         Me.LTransNo.TabIndex = 0
@@ -347,6 +368,7 @@ Partial Class FormViewJournal
         CType(Me.PCGeneralheader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCGeneralheader.ResumeLayout(False)
         Me.PCGeneralheader.PerformLayout()
+        CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUserEntry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -381,4 +403,5 @@ Partial Class FormViewJournal
     Friend WithEvents SMViewTransaction As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GridColumnIdReport As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnReportMT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LEBilling As DevExpress.XtraEditors.LookUpEdit
 End Class
