@@ -287,10 +287,9 @@ Public Class FormPopUpCOA
                 newRow("note") = TreeList1.FocusedNode("acc_description").ToString()
                 newRow("debit") = 0
                 newRow("credit") = 0
-                newRow("id_status_open") = 1
                 newRow("id_comp") = 0
-                newRow("report_mark_type") = 0
-                newRow("id_report") = 0
+                'newRow("report_mark_type") = 0
+                'newRow("id_report") = 0
                 newRow("report_number") = ""
                 newRow("id_status_open") = 1
 
@@ -377,7 +376,7 @@ Public Class FormPopUpCOA
                 stopCustom("Account already in list")
             Else
                 Dim newRow As DataRow = (TryCast(FormAccountingJournalDet.GCJournalDet.DataSource, DataTable)).NewRow()
-                newRow("id_acc_src") = GVJournalDet.GetFocusedRowCellValue("id_acc").ToString()
+                'newRow("id_acc_src") = GVJournalDet.GetFocusedRowCellValue("id_acc").ToString()
                 newRow("id_acc") = GVJournalDet.GetFocusedRowCellValue("id_acc").ToString()
                 newRow("acc_name") = GVJournalDet.GetFocusedRowCellValue("acc_name").ToString()
                 newRow("note") = GVJournalDet.GetFocusedRowCellValue("note").ToString()

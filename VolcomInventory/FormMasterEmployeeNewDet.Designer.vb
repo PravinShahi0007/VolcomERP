@@ -52,6 +52,8 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlMain = New DevExpress.XtraEditors.PanelControl()
         Me.XTPEmployee = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
+        Me.TENoRek = New DevExpress.XtraEditors.TextEdit()
+        Me.Label37 = New System.Windows.Forms.Label()
         Me.Label36 = New System.Windows.Forms.Label()
         Me.DERegBPJSKes = New DevExpress.XtraEditors.DateEdit()
         Me.DERegBPJSTK = New DevExpress.XtraEditors.DateEdit()
@@ -109,9 +111,11 @@ Partial Class FormMasterEmployeeNewDet
         Me.GVPosition = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDatePostion = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -149,8 +153,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.DELastDay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -175,6 +178,7 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.XTPEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPEmployee.SuspendLayout()
         Me.XTPGeneral.SuspendLayout()
+        CType(Me.TENoRek.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERegBPJSKes.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERegBPJSKes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERegBPJSTK.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -547,6 +551,8 @@ Partial Class FormMasterEmployeeNewDet
         '
         'XTPGeneral
         '
+        Me.XTPGeneral.Controls.Add(Me.TENoRek)
+        Me.XTPGeneral.Controls.Add(Me.Label37)
         Me.XTPGeneral.Controls.Add(Me.Label36)
         Me.XTPGeneral.Controls.Add(Me.DERegBPJSKes)
         Me.XTPGeneral.Controls.Add(Me.DERegBPJSTK)
@@ -601,6 +607,22 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.Name = "XTPGeneral"
         Me.XTPGeneral.Size = New System.Drawing.Size(797, 422)
         Me.XTPGeneral.Text = "General"
+        '
+        'TENoRek
+        '
+        Me.TENoRek.Location = New System.Drawing.Point(562, 220)
+        Me.TENoRek.Name = "TENoRek"
+        Me.TENoRek.Size = New System.Drawing.Size(219, 20)
+        Me.TENoRek.TabIndex = 8901
+        '
+        'Label37
+        '
+        Me.Label37.AutoSize = True
+        Me.Label37.Location = New System.Drawing.Point(489, 223)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(67, 13)
+        Me.Label37.TabIndex = 8900
+        Me.Label37.Text = "No Rekening"
         '
         'Label36
         '
@@ -856,7 +878,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.TxtNpwp.Location = New System.Drawing.Point(107, 220)
         Me.TxtNpwp.Name = "TxtNpwp"
-        Me.TxtNpwp.Size = New System.Drawing.Size(675, 20)
+        Me.TxtNpwp.Size = New System.Drawing.Size(376, 20)
         Me.TxtNpwp.TabIndex = 16
         '
         'TxtBPJSTK
@@ -1110,6 +1132,13 @@ Partial Class FormMasterEmployeeNewDet
         Me.GridColumn5.Visible = True
         Me.GridColumn5.VisibleIndex = 5
         '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "Orign Sub Dept"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.Visible = True
+        Me.GridColumn2.VisibleIndex = 2
+        '
         'GridColumn6
         '
         Me.GridColumn6.Caption = "Origin Level"
@@ -1135,6 +1164,13 @@ Partial Class FormMasterEmployeeNewDet
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 1
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Sub Dept"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 6
         '
         'GridColumn9
         '
@@ -1342,7 +1378,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'GVSalary
         '
-        Me.GVSalary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdSalary, Me.GridColumnBasicSalary, Me.GridColumnAllowJob, Me.GridColumnAllowMeal, Me.GridColumnAllowTrans, Me.GridColumnAllowHouse, Me.GridColumnAllowCar, Me.GridColumnEffectiveDate})
+        Me.GVSalary.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdSalary, Me.GridColumnBasicSalary, Me.GridColumnAllowJob, Me.GridColumnAllowMeal, Me.GridColumnAllowTrans, Me.GridColumnAllowHouse, Me.GridColumnAllowCar, Me.GridColumnEffectiveDate, Me.GridColumnStatus})
         Me.GVSalary.GridControl = Me.GCSalary
         Me.GVSalary.Name = "GVSalary"
         Me.GVSalary.OptionsBehavior.Editable = False
@@ -1445,7 +1481,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnDelSalary.Name = "BtnDelSalary"
         Me.BtnDelSalary.Size = New System.Drawing.Size(89, 37)
         Me.BtnDelSalary.TabIndex = 6
-        Me.BtnDelSalary.Text = "Delete"
+        Me.BtnDelSalary.Text = "Cancel"
         '
         'BtnAddSalary
         '
@@ -1507,19 +1543,13 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'GridColumn2
+        'GridColumnStatus
         '
-        Me.GridColumn2.Caption = "Orign Sub Dept"
-        Me.GridColumn2.Name = "GridColumn2"
-        Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 2
-        '
-        'GridColumn3
-        '
-        Me.GridColumn3.Caption = "Sub Dept"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 6
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "is_cancel"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 7
         '
         'FormMasterEmployeeNewDet
         '
@@ -1561,6 +1591,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPEmployee.ResumeLayout(False)
         Me.XTPGeneral.ResumeLayout(False)
         Me.XTPGeneral.PerformLayout()
+        CType(Me.TENoRek.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERegBPJSKes.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERegBPJSKes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERegBPJSTK.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1748,4 +1779,7 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents DERegBPJSTK As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TENoRek As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents Label37 As Label
+    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class

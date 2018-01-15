@@ -343,6 +343,12 @@
     <Compile Include="FormAccountingJournalBill.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAccountingJournalBrowse.Designer.vb">
+      <DependentUpon>FormAccountingJournalBrowse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccountingJournalBrowse.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAccountingJournalDet.designer.vb">
       <DependentUpon>FormAccountingJournalDet.vb</DependentUpon>
     </Compile>
@@ -677,6 +683,30 @@
       <DependentUpon>FormEmpLeaveStock.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpLeaveStock.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayroll.Designer.vb">
+      <DependentUpon>FormEmpPayroll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayroll.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollOvertime.Designer.vb">
+      <DependentUpon>FormEmpPayrollOvertime.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollOvertime.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollOvertimeDet.Designer.vb">
+      <DependentUpon>FormEmpPayrollOvertimeDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollOvertimeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollPeriode.Designer.vb">
+      <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollPeriode.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpSchedule.Designer.vb">
@@ -5123,6 +5153,9 @@
       <DependentUpon>FormAccountingJournalBill.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAccountingJournalBrowse.resx">
+      <DependentUpon>FormAccountingJournalBrowse.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingJournalDet.resx">
       <DependentUpon>FormAccountingJournalDet.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -5309,6 +5342,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeaveStock.resx">
       <DependentUpon>FormEmpLeaveStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayroll.resx">
+      <DependentUpon>FormEmpPayroll.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollOvertime.resx">
+      <DependentUpon>FormEmpPayrollOvertime.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollOvertimeDet.resx">
+      <DependentUpon>FormEmpPayrollOvertimeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollPeriode.resx">
+      <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpSchedule.resx">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>

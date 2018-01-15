@@ -53,13 +53,14 @@ Partial Class FormAccountingJournal
         Me.GridColumnIdJurnal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnJurnalNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnJournalDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnAccDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.DETo = New DevExpress.XtraEditors.DateEdit()
         Me.DEFrom = New DevExpress.XtraEditors.DateEdit()
         Me.BView = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnAccDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnstatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCAccTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAccTrans, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XTCJurnal, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -97,7 +98,7 @@ Partial Class FormAccountingJournal
         '
         'GVAccTrans
         '
-        Me.GVAccTrans.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumnBillType, Me.GridColumnIdBillType})
+        Me.GVAccTrans.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumn6, Me.GridColumn7, Me.GridColumnBillType, Me.GridColumnIdBillType, Me.GridColumnstatus})
         Me.GVAccTrans.GridControl = Me.GCAccTrans
         Me.GVAccTrans.Name = "GVAccTrans"
         Me.GVAccTrans.OptionsBehavior.Editable = False
@@ -423,6 +424,14 @@ Partial Class FormAccountingJournal
         Me.GridColumnJournalDate.VisibleIndex = 0
         Me.GridColumnJournalDate.Width = 59
         '
+        'GridColumnAccDesc
+        '
+        Me.GridColumnAccDesc.Caption = "Acc. Description"
+        Me.GridColumnAccDesc.FieldName = "acc_description"
+        Me.GridColumnAccDesc.Name = "GridColumnAccDesc"
+        Me.GridColumnAccDesc.Visible = True
+        Me.GridColumnAccDesc.VisibleIndex = 2
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
@@ -484,13 +493,13 @@ Partial Class FormAccountingJournal
         Me.BView.TabIndex = 0
         Me.BView.Text = "View Transaction"
         '
-        'GridColumnAccDesc
+        'GridColumnstatus
         '
-        Me.GridColumnAccDesc.Caption = "Acc. Description"
-        Me.GridColumnAccDesc.FieldName = "acc_description"
-        Me.GridColumnAccDesc.Name = "GridColumnAccDesc"
-        Me.GridColumnAccDesc.Visible = True
-        Me.GridColumnAccDesc.VisibleIndex = 2
+        Me.GridColumnstatus.Caption = "Status"
+        Me.GridColumnstatus.FieldName = "report_status"
+        Me.GridColumnstatus.Name = "GridColumnstatus"
+        Me.GridColumnstatus.Visible = True
+        Me.GridColumnstatus.VisibleIndex = 5
         '
         'FormAccountingJournal
         '
@@ -574,4 +583,5 @@ Partial Class FormAccountingJournal
     Friend WithEvents DEToViewJournal As DevExpress.XtraEditors.DateEdit
     Friend WithEvents DEFromViewJournal As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumnAccDesc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnstatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class

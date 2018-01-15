@@ -1517,6 +1517,9 @@ Public Class FormMain
         ElseIf formName = "FormProdDebitNote" Then
             FormProdDebitNoteDet.id_dn = "-1"
             FormProdDebitNoteDet.ShowDialog()
+        ElseIf formName = "FormEmpPayroll" Then
+            FormEmpPayrollPeriode.id_payroll = "-1"
+            FormEmpPayrollPeriode.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -1777,14 +1780,14 @@ Public Class FormMain
                 Else ' per PD
                     'Try
                     If FormBOM.GVDesign.FocusedRowHandle < 0 Then
-                            stopCustom("Please select proper design first!")
-                        Else
-                            FormBOMDesignSingle.id_pop_up = "1"
-                            FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
-                            FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
-                            FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
-                            FormBOMDesignSingle.ShowDialog()
-                        End If
+                        stopCustom("Please select proper design first!")
+                    Else
+                        FormBOMDesignSingle.id_pop_up = "1"
+                        FormBOMDesignSingle.id_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_design").ToString
+                        FormBOMDesignSingle.TEQtyPD.EditValue = FormBOM.GVDesign.GetFocusedRowCellValue("qty")
+                        FormBOMDesignSingle.id_prod_demand_design = FormBOM.GVDesign.GetFocusedRowCellValue("id_prod_demand_design").ToString
+                        FormBOMDesignSingle.ShowDialog()
+                    End If
                     'Catch ex As Exception
                     'stopCustom("Please select proper design first!")
                     'End Try
@@ -2422,6 +2425,9 @@ Public Class FormMain
             ElseIf formName = "FormDepartementSub" Then
                 FormDepartementSubDet.id_subdept = FormDepartementSub.GVDepartment.GetFocusedRowCellValue("id_departement_sub").ToString
                 FormDepartementSubDet.ShowDialog()
+            ElseIf formName = "FormEmpPayroll" Then
+                FormEmpPayrollPeriode.id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+                FormEmpPayrollPeriode.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -7317,6 +7323,9 @@ Public Class FormMain
         ElseIf formName = "FormFGTransSummary" Then
             FormFGTransSummary.Close()
             FormFGTransSummary.Dispose()
+        ElseIf formName = "FormEmpPayroll" Then
+            FormEmpPayroll.Close()
+            FormEmpPayroll.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7650,7 +7659,7 @@ Public Class FormMain
             End If
         ElseIf formName = "FormAccountingJournal" Then
             If FormAccountingJournal.XTCJurnal.SelectedTabPageIndex = 0 Then
-                FormAccountingJournal.view_entry(FormAccountingJournal.LEBilling.EditValue.ToString, Now.ToString("yyy-MM-dd"), Now.ToString("yyy-MM-dd"))
+                FormAccountingJournal.view_entry()
             Else
                 FormAccountingJournal.view_det(Now.ToString("yyy-MM-dd"), Now.ToString("yyy-MM-dd"))
             End If
@@ -7982,6 +7991,8 @@ Public Class FormMain
             FormEmpUniPeriod.viewUniformPeriod()
         ElseIf formName = "FormDepartementSub" Then
             FormDepartementSub.view_departement()
+        ElseIf formName = "FormEmpPayroll" Then
+            FormEmpPayroll.load_payroll()
         End If
     End Sub
     'Switch
@@ -11019,6 +11030,18 @@ Public Class FormMain
             FormWHCargoRate.Show()
             FormWHCargoRate.WindowState = FormWindowState.Maximized
             FormWHCargoRate.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+    Private Sub NBPayroll_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPayroll.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpPayroll.MdiParent = Me
+            FormEmpPayroll.Show()
+            FormEmpPayroll.WindowState = FormWindowState.Maximized
+            FormEmpPayroll.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

@@ -4,8 +4,6 @@
     Dim data_dt As DataTable = Nothing
     Dim id_marriage_stattus_db As String = "-1"
 
-
-
     Sub viewSex()
         Dim query As String = "SELECT * FROM tb_lookup_sex a ORDER BY a.id_sex "
         viewLookupQuery(LESex, query, 0, "sex", "id_sex")
@@ -149,6 +147,7 @@
             TxtBPJSSehat.Text = datarow("employee_bpjs_kesehatan").ToString
             DERegBPJSKes.EditValue = datarow("employee_bpjs_kesehatan_date")
             TxtNpwp.Text = datarow("employee_npwp").ToString
+            TENoRek.Text = datarow("employee_no_rek").ToString
             TxtPhone.Text = datarow("phone").ToString
             TxtMobilePhone.Text = datarow("phone_mobile").ToString
             TxtPhoneExt.Text = datarow("phone_ext").ToString
@@ -331,6 +330,7 @@
             Catch ex As Exception
             End Try
             Dim employee_npwp As String = addSlashes(TxtNpwp.Text)
+            Dim employee_no_rek As String = addSlashes(TENoRek.Text)
             Dim phone As String = TxtPhone.Text
             Dim phone_mobile As String = TxtMobilePhone.Text
             Dim phone_ext As String = TxtPhoneExt.Text
@@ -352,8 +352,8 @@
 
             If action = "ins" Then
                 'main
-                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other) "
-                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + employee_bpjs_kesehatan + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other) "
+                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + employee_bpjs_kesehatan + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "'); SELECT LAST_INSERT_ID(); "
                 id_employee = execute_query(query, 0, True, "", "", "", "")
 
                 'pic
@@ -396,6 +396,7 @@
                 query += "employee_bpjs_kesehatan='" + employee_bpjs_kesehatan + "', "
                 query += "employee_bpjs_kesehatan_date=" + employee_bpjs_kesehatan_date + ", "
                 query += "employee_npwp='" + employee_npwp + "', "
+                query += "employee_no_rek='" + employee_no_rek + "', "
                 query += "phone='" + phone + "', "
                 query += "phone_mobile='" + phone_mobile + "', "
                 query += "phone_ext='" + phone_ext + "', "
@@ -587,19 +588,22 @@
     End Sub
 
     Private Sub BtnDelSalary_Click(sender As Object, e As EventArgs) Handles BtnDelSalary.Click
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this data?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to cancel this salary?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
 
         Dim id_employee_salary As String = GVSalary.GetFocusedRowCellDisplayText("id_employee_salary").ToString
         If confirm = Windows.Forms.DialogResult.Yes Then
             Try
-                Dim query As String = "DELETE FROM tb_m_employee_salary WHERE id_employee_salary='" + id_employee_salary + "'"
+                Dim query As String = "UPDATE tb_m_employee_salary SET is_cancel='1' WHERE id_employee_salary='" + id_employee_salary + "'"
                 execute_non_query(query, True, "", "", "", "")
                 viewSalary()
+                '
+                Dim query_cek As String = "SELECT * FROM tb_m_employee_salary WHERE id_employee='" & id_employee & "' AND is_cancel='2'"
+                Dim data_cek As DataTable = execute_query(query_cek, -1, True, "", "", "", "")
 
-                If GVSalary.RowCount > 0 Then
+                If data_cek.Rows.Count > 0 Then
                     Dim query_upd As String = "UPDATE tb_m_employee main "
                     query_upd += "INNER JOIN ( "
-                    query_upd += "SELECT * FROM tb_m_employee_salary a WHERE a.id_employee='" + id_employee + "' ORDER BY a.id_employee_salary DESC LIMIT 1 "
+                    query_upd += "SELECT * FROM tb_m_employee_salary a WHERE a.id_employee='" + id_employee + "' AND is_cancel='2' ORDER BY a.id_employee_salary DESC LIMIT 1 "
                     query_upd += ") src ON main.id_employee = src.id_employee "
                     query_upd += "SET main.basic_salary = src.basic_salary, "
                     query_upd += "main.allow_job = src.allow_job, "
