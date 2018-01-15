@@ -3306,15 +3306,16 @@
             'DP
             If id_status_reportx = "3" Then
                 'complete 
-                Dim query_det As String = "SELECT det.id_dp,dp.id_employee,det.subtotal_hour,det.dp_time_end,det.remark 
+                Dim query_det As String = "SELECT det.id_dp,dp.id_employee,det.subtotal_hour,pr.periode_end,det.remark 
                                             FROM tb_emp_dp_det det
                                             INNER JOIN tb_emp_dp dp ON dp.id_dp=det.id_dp
+                                            INNER JOIN tb_emp_payroll pr ON pr.`id_payroll`=dp.id_payroll
                                             WHERE det.id_dp='" & id_report & "'"
                 Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
                 If data_det.Rows.Count > 0 Then
                     For i As Integer = 0 To data_det.Rows.Count - 1
                         query = "INSERT INTO tb_emp_stock_leave(id_emp_dp,id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,note,`type`) VALUES
-                        ('" & id_report & "','" & data_det.Rows(i)("id_employee").ToString & "','" & (data_det.Rows(i)("subtotal_hour") * 60).ToString & "','1',NOW(),'" & Date.Parse(data_det.Rows(i)("dp_time_end").ToString).AddMonths(6).ToString("yyyy-MM-dd") & "','2','" & data_det.Rows(i)("remark").ToString & "','2')"
+                        ('" & id_report & "','" & data_det.Rows(i)("id_employee").ToString & "','" & (data_det.Rows(i)("subtotal_hour") * 60).ToString & "','1',NOW(),'" & Date.Parse(data_det.Rows(i)("periode_end").ToString).AddMonths(6).ToString("yyyy-MM-dd") & "','2','" & data_det.Rows(i)("remark").ToString & "','2')"
                         execute_non_query(query, True, "", "", "", "")
                     Next
                 End If

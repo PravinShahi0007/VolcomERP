@@ -6,6 +6,7 @@
     Private Sub FormEmpPayroll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_payroll()
         '
+
     End Sub
 
     Sub load_payroll()
@@ -30,5 +31,10 @@
 
     Private Sub FormEmpPayroll_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Private Sub BOvertime_Click(sender As Object, e As EventArgs) Handles BOvertime.Click
+        FormEmpPayrollOvertime.id_periode = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        FormEmpPayrollOvertime.ShowDialog()
     End Sub
 End Class
