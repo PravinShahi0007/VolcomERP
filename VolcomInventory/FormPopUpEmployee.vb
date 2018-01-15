@@ -21,6 +21,8 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmployee.DataSource = data
         GVEmployee.BestFitColumns()
+        '
+
     End Sub
 
     Private Sub FormPopUpEmployee_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -66,6 +68,12 @@
             FormEmpChScheduleDet.TEPosition.Text = GVEmployee.GetFocusedRowCellValue("employee_position").ToString
             FormEmpChScheduleDet.MEChNote.Focus()
             Close()
+        ElseIf id_popup = "5" Then
+            FormEmpPayrollOvertimeDet.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpPayrollOvertimeDet.TEEmployeeCode.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
+            FormEmpPayrollOvertimeDet.TEEmployeeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            FormEmpPayrollOvertimeDet.LEDayoff.Focus()
+            Close()
         End If
     End Sub
 
@@ -73,5 +81,9 @@
         If GVEmployee.RowCount > 0 Then
             pick()
         End If
+    End Sub
+    Private Sub FormPopUpEmployee_Shown(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Shown
+        GVEmployee.ShowFindPanel()
+        GVEmployee.ShowFindPanel()
     End Sub
 End Class
