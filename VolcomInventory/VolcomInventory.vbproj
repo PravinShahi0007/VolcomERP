@@ -343,6 +343,12 @@
     <Compile Include="FormAccountingJournalBill.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAccountingJournalBrowse.Designer.vb">
+      <DependentUpon>FormAccountingJournalBrowse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAccountingJournalBrowse.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAccountingJournalDet.designer.vb">
       <DependentUpon>FormAccountingJournalDet.vb</DependentUpon>
     </Compile>
@@ -5134,6 +5140,9 @@
     <EmbeddedResource Include="FormAccountingJournalBill.resx">
       <DependentUpon>FormAccountingJournalBill.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAccountingJournalBrowse.resx">
+      <DependentUpon>FormAccountingJournalBrowse.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAccountingJournalDet.resx">
       <DependentUpon>FormAccountingJournalDet.vb</DependentUpon>
