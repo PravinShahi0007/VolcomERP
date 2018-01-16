@@ -19,29 +19,29 @@ Partial Class FormAccountingAcc
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
-        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton
-        Me.BSave = New DevExpress.XtraEditors.SimpleButton
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl
-        Me.MEAccDesc = New DevExpress.XtraEditors.MemoEdit
-        Me.TEAccount = New DevExpress.XtraEditors.TextEdit
-        Me.SLEParentAccount = New DevExpress.XtraEditors.SearchLookUpEdit
-        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView
-        Me.GridColumnIdAcc = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnACc = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnIdCat = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn
-        Me.LEActive = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl
-        Me.LEAccCat = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl
-        Me.LEDetail = New DevExpress.XtraEditors.LookUpEdit
-        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl
-        Me.TEAccountDetail = New DevExpress.XtraEditors.TextEdit
-        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl
+        Me.components = New System.ComponentModel.Container()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.MEAccDesc = New DevExpress.XtraEditors.MemoEdit()
+        Me.TEAccount = New DevExpress.XtraEditors.TextEdit()
+        Me.SLEParentAccount = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.SearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIdAcc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnACc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LEActive = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEAccCat = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEDetail = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEAccountDetail = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.EPACC = New System.Windows.Forms.ErrorProvider(Me.components)
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()

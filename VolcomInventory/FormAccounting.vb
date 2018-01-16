@@ -29,7 +29,7 @@ Public Class FormAccounting
             If GVAcc.RowCount > 0 Then
                 bnew_active = "1"
                 bedit_active = "1"
-                bdel_active = "0"
+                bdel_active = "1"
             Else
                 bnew_active = "1"
                 bedit_active = "0"
@@ -37,8 +37,8 @@ Public Class FormAccounting
             End If
         Else
             If TreeList1.Nodes.Count > 0 Then
-                bnew_active = "1"
-                bedit_active = "1"
+                bnew_active = "0"
+                bedit_active = "0"
                 bdel_active = "0"
             Else
                 bnew_active = "1"
@@ -157,5 +157,11 @@ Public Class FormAccounting
         FormAccountingTrs.id_acc = TreeList1.FocusedNode.GetValue("id_acc").ToString
         FormAccountingTrs.id_acc_child = TreeList1.FocusedNode.GetValue("id_all_child").ToString
         FormAccountingTrs.ShowDialog()
+    End Sub
+
+    Private Sub GVAcc_DoubleClick(sender As Object, e As EventArgs) Handles GVAcc.DoubleClick
+        If GVAcc.RowCount > 0 And GVAcc.FocusedRowHandle >= 0 Then
+            FormMain.but_edit()
+        End If
     End Sub
 End Class
