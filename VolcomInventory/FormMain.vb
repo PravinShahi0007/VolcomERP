@@ -2537,6 +2537,21 @@ Public Class FormMain
                 End Try
                 Cursor = Cursors.Default
             End If
+        ElseIf formName = "FormAccounting" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim id_acc As String = FormAccounting.GVAcc.GetFocusedRowCellDisplayText("id_acc").ToString
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Try
+                    query = String.Format("DELETE FROM tb_a_acc WHERE id_acc = '{0}'", id_acc)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormAccounting.view_acc()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+                Cursor = Cursors.Default
+            End If
         ElseIf formName = "FormMasterDepartement" Then
             '
             confirm = XtraMessageBox.Show("Are you sure want to delete this departement ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
