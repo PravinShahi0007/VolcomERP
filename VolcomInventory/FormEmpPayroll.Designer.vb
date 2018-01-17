@@ -32,8 +32,8 @@ Partial Class FormEmpPayroll
         Me.GridColumnLastUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPSalaryFormat = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCPayroll = New DevExpress.XtraGrid.GridControl()
+        Me.GVPayroll = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -45,8 +45,8 @@ Partial Class FormEmpPayroll
         CType(Me.GCPayrollPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPayrollPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSalaryFormat.SuspendLayout()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -147,27 +147,27 @@ Partial Class FormEmpPayroll
         '
         'XTPSalaryFormat
         '
-        Me.XTPSalaryFormat.Controls.Add(Me.GridControl2)
+        Me.XTPSalaryFormat.Controls.Add(Me.GCPayroll)
         Me.XTPSalaryFormat.Controls.Add(Me.PanelControl1)
         Me.XTPSalaryFormat.Name = "XTPSalaryFormat"
         Me.XTPSalaryFormat.Size = New System.Drawing.Size(1115, 441)
         Me.XTPSalaryFormat.Text = "Worksheet"
         '
-        'GridControl2
+        'GCPayroll
         '
-        Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl2.Location = New System.Drawing.Point(0, 39)
-        Me.GridControl2.MainView = Me.GridView2
-        Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(1115, 402)
-        Me.GridControl2.TabIndex = 1
-        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        Me.GCPayroll.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPayroll.Location = New System.Drawing.Point(0, 39)
+        Me.GCPayroll.MainView = Me.GVPayroll
+        Me.GCPayroll.Name = "GCPayroll"
+        Me.GCPayroll.Size = New System.Drawing.Size(1115, 402)
+        Me.GCPayroll.TabIndex = 1
+        Me.GCPayroll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayroll})
         '
-        'GridView2
+        'GVPayroll
         '
-        Me.GridView2.GridControl = Me.GridControl2
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsView.ShowGroupPanel = False
+        Me.GVPayroll.GridControl = Me.GCPayroll
+        Me.GVPayroll.Name = "GVPayroll"
+        Me.GVPayroll.OptionsView.ShowGroupPanel = False
         '
         'PanelControl1
         '
@@ -256,8 +256,8 @@ Partial Class FormEmpPayroll
         CType(Me.GCPayrollPeriode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPayrollPeriode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSalaryFormat.ResumeLayout(False)
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
@@ -274,8 +274,8 @@ Partial Class FormEmpPayroll
     Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BOvertime As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCPayroll As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPayroll As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPStart As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPEnd As DevExpress.XtraGrid.Columns.GridColumn

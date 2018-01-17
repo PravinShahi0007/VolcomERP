@@ -110,7 +110,7 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.TEPoint.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEPoint.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TEPoint.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEPoint.Properties.DisplayFormat.FormatString = "N0"
+        Me.TEPoint.Properties.DisplayFormat.FormatString = "N1"
         Me.TEPoint.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEPoint.Properties.EditValueChangedDelay = 1
         Me.TEPoint.Properties.ReadOnly = True
