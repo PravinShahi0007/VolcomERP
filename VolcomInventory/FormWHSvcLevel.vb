@@ -1,5 +1,6 @@
 ﻿Public Class FormWHSvcLevel
     Dim id_design_selected As String = "-1"
+    Public id_comp_selected As String = "-1"
     Private Sub FormWHSvcLevel_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim data_dt As DataTable = execute_query("SELECT DATE(NOW()) AS `dt`", -1, True, "", "", "", "")
         DEFrom.EditValue = data_dt.Rows(0)("dt")
@@ -61,7 +62,7 @@
         Catch ex As Exception
         End Try
 
-        Dim query As String = "CALL view_svc_level_acc('" + date_from_selected + "', '" + date_until_selected + "') "
+        Dim query As String = "CALL view_svc_level_acc('" + date_from_selected + "', '" + date_until_selected + "', '" + id_comp_selected + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCByAcco.DataSource = data
     End Sub
@@ -104,7 +105,7 @@
         ElseIf XTCSvcLelel.SelectedTabPageIndex = 1 Then
             TxtDesignCode.Focus()
         ElseIf XTCSvcLelel.SelectedTabPageIndex = 2 Then
-            DEFromAcc.Focus()
+            TxtCompID.Focus()
         ElseIf XTCSvcLelel.SelectedTabPageIndex = 3 Then
             DEFromReturn.Focus()
         End If
@@ -214,6 +215,40 @@
             id_design_selected = "-1"
             TxtDesign.Text = ""
             GCByCode.DataSource = Nothing
+        End If
+    End Sub
+
+    Private Sub TextEdit2_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCompID.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Cursor = Cursors.WaitCursor
+            Dim code As String = addSlashes(TxtCompID.Text)
+            Dim data As DataTable = get_company_by_code_no_limit(code, "AND !ISNULL(comp.id_drawer_def) ")
+            If data.Rows.Count = 0 Or code = "" Then
+                stopCustom("Account not found!")
+                id_comp_selected = "-1"
+                TxtComp.Text = ""
+                TxtCompID.Text = ""
+                TxtCompID.Focus()
+            Else
+                If data.Rows.Count = 1 Then
+                    id_comp_selected = data.Rows(0)("id_comp").ToString
+                    TxtComp.Text = data.Rows(0)("comp_name").ToString
+                    DEFromAcc.Focus()
+                Else
+                    FormMasterCompanyDouble.dt = data
+                    FormMasterCompanyDouble.ShowDialog()
+                    If id_comp_selected <> "-1" Then
+                        DEFromAcc.Focus()
+                    Else
+                        TxtCompID.Focus()
+                    End If
+                End If
+            End If
+            Cursor = Cursors.Default
+        Else
+            id_comp_selected = "-1"
+            TxtComp.Text = ""
+            GCByAcco.DataSource = Nothing
         End If
     End Sub
 End Class

@@ -92,6 +92,9 @@ Partial Class FormWHSvcLevel
         Me.BandedGridColumnSL = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GVByAcc = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControlByAccount = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtComp = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCompID = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnAcc = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
@@ -149,6 +152,8 @@ Partial Class FormWHSvcLevel
         CType(Me.GVByAcc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlByAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlByAccount.SuspendLayout()
+        CType(Me.TxtComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCompID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -948,6 +953,9 @@ Partial Class FormWHSvcLevel
         'GroupControlByAccount
         '
         Me.GroupControlByAccount.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlByAccount.Controls.Add(Me.TxtComp)
+        Me.GroupControlByAccount.Controls.Add(Me.TxtCompID)
+        Me.GroupControlByAccount.Controls.Add(Me.LabelControl10)
         Me.GroupControlByAccount.Controls.Add(Me.BtnAcc)
         Me.GroupControlByAccount.Controls.Add(Me.SimpleButton2)
         Me.GroupControlByAccount.Controls.Add(Me.SimpleButton3)
@@ -961,9 +969,34 @@ Partial Class FormWHSvcLevel
         Me.GroupControlByAccount.Size = New System.Drawing.Size(1222, 39)
         Me.GroupControlByAccount.TabIndex = 4
         '
+        'TxtComp
+        '
+        Me.TxtComp.EditValue = ""
+        Me.TxtComp.Enabled = False
+        Me.TxtComp.Location = New System.Drawing.Point(150, 9)
+        Me.TxtComp.Name = "TxtComp"
+        Me.TxtComp.Size = New System.Drawing.Size(283, 20)
+        Me.TxtComp.TabIndex = 8904
+        '
+        'TxtCompID
+        '
+        Me.TxtCompID.EditValue = ""
+        Me.TxtCompID.Location = New System.Drawing.Point(76, 9)
+        Me.TxtCompID.Name = "TxtCompID"
+        Me.TxtCompID.Size = New System.Drawing.Size(72, 20)
+        Me.TxtCompID.TabIndex = 8903
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(26, 12)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl10.TabIndex = 8902
+        Me.LabelControl10.Text = "Account"
+        '
         'BtnAcc
         '
-        Me.BtnAcc.Location = New System.Drawing.Point(317, 9)
+        Me.BtnAcc.Location = New System.Drawing.Point(728, 9)
         Me.BtnAcc.LookAndFeel.SkinName = "Blue"
         Me.BtnAcc.Name = "BtnAcc"
         Me.BtnAcc.Size = New System.Drawing.Size(75, 20)
@@ -993,7 +1026,7 @@ Partial Class FormWHSvcLevel
         'DEUntilAcc
         '
         Me.DEUntilAcc.EditValue = Nothing
-        Me.DEUntilAcc.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntilAcc.Location = New System.Drawing.Point(613, 9)
         Me.DEUntilAcc.Name = "DEUntilAcc"
         Me.DEUntilAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilAcc.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -1006,7 +1039,7 @@ Partial Class FormWHSvcLevel
         'DEFromAcc
         '
         Me.DEFromAcc.EditValue = Nothing
-        Me.DEFromAcc.Location = New System.Drawing.Point(58, 9)
+        Me.DEFromAcc.Location = New System.Drawing.Point(469, 9)
         Me.DEFromAcc.Name = "DEFromAcc"
         Me.DEFromAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFromAcc.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -1018,7 +1051,7 @@ Partial Class FormWHSvcLevel
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(586, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl1.TabIndex = 8893
@@ -1026,7 +1059,7 @@ Partial Class FormWHSvcLevel
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl4.Location = New System.Drawing.Point(439, 12)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl4.TabIndex = 8892
@@ -1308,6 +1341,8 @@ Partial Class FormWHSvcLevel
         CType(Me.GroupControlByAccount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlByAccount.ResumeLayout(False)
         Me.GroupControlByAccount.PerformLayout()
+        CType(Me.TxtComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCompID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1428,4 +1463,7 @@ Partial Class FormWHSvcLevel
     Friend WithEvents TxtDesignCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtComp As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtCompID As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class
