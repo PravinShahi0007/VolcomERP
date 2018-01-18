@@ -16,11 +16,12 @@
         TEPoint.EditValue = 0.0
         TETotHour.EditValue = 0.0
         TEBreak.EditValue = 0.0
+        TEPointWages.EditValue = 0.00
         load_dayoff()
         load_ot_type()
 
         If Not id_overtime = "-1" Then 'edit
-            Dim query As String = "SELECT p.id_payroll_ot,p.`id_payroll`,p.`id_employee`,p.`id_ot_type`,p.`ot_start`,p.`ot_end`,p.`total_hour`,p.`total_point`,IF(p.`is_day_off`=1,'Yes','No') AS day_off,p.`is_day_off`,lvl.`employee_level`,emp.`employee_name`,emp.`employee_code`,ott.`ot_type`,ott.id_ot_type,p.note
+            Dim query As String = "SELECT p.id_payroll_ot,p.`id_payroll`,p.`id_employee`,p.`id_ot_type`,p.`ot_start`,p.`ot_end`,p.`total_hour`,p.`total_point`,IF(p.`is_day_off`=1,'Yes','No') AS day_off,p.`is_day_off`,lvl.`employee_level`,emp.`employee_name`,emp.`employee_code`,ott.`ot_type`,ott.id_ot_type,p.note,p.wages_per_point
                                 FROM tb_emp_payroll_ot p
                                 INNER JOIN `tb_lookup_ot_type` ott ON ott.`id_ot_type`=p.`id_ot_type`
                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=p.`id_employee`
@@ -41,6 +42,7 @@
                 TEBreak.EditValue = data.Rows(0)("total_break")
                 TETotHour.EditValue = data.Rows(0)("total_hour")
                 TEPoint.EditValue = data.Rows(0)("total_point")
+                TEPointWages.EditValue = data.Rows(0)("wages_per_point")
                 MENote.Text = data.Rows(0)("note")
             End If
         End If
@@ -54,7 +56,7 @@
     End Sub
 
     Sub load_ot_type()
-        Dim query As String = "SELECT id_ot_type,ot_type,IF(is_event='1','Yes','No') AS is_event FROM tb_lookup_ot_type"
+        Dim query As String = "SELECT id_ot_type,ot_type,IF(is_event='1','Yes','No') AS is_event,ot_point_wages FROM tb_lookup_ot_type"
         viewLookupQuery(LECategory, query, 0, "ot_type", "id_ot_type")
     End Sub
 
@@ -90,10 +92,14 @@
 
     Private Sub LECategory_KeyDown(sender As Object, e As KeyEventArgs) Handles LECategory.KeyDown
         If e.KeyCode = Keys.Enter Then
+            TEPointWages.Focus()
+        End If
+    End Sub
+    Private Sub TEPointWages_KeyDown(sender As Object, e As KeyEventArgs) Handles TEPointWages.KeyDown
+        If e.KeyCode = Keys.Enter Then
             DEStart.Focus()
         End If
     End Sub
-
     Private Sub DEStart_KeyDown(sender As Object, e As KeyEventArgs) Handles DEStart.KeyDown
         If e.KeyCode = Keys.Enter Then
             DEUntil.Focus()
@@ -192,16 +198,17 @@
         Dim tot_hour As String = decimalSQL(TETotHour.EditValue.ToString)
         Dim tot_break As String = decimalSQL(TEBreak.EditValue.ToString)
         Dim tot_poin As String = decimalSQL(TEPoint.EditValue.ToString)
+        Dim wages_per_point As String = decimalSQL(TEPointWages.EditValue.ToString)
 
         If id_overtime = "-1" Then 'new
-            Dim query As String = "INSERT INTO tb_emp_payroll_ot(id_payroll,id_employee,id_ot_type,ot_start,ot_end,total_break,total_hour,total_point,is_day_off)
-                                    VALUES('" & id_payroll & "','" & id_employee & "','" & LECategory.EditValue.ToString & "','" & Date.Parse(dt_start.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(dt_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & tot_break & "','" & tot_hour & "','" & tot_poin & "','" & LEDayoff.EditValue.ToString & "');SELECT LAST_INSERT_ID();"
+            Dim query As String = "INSERT INTO tb_emp_payroll_ot(id_payroll,id_employee,id_ot_type,ot_start,ot_end,total_break,total_hour,total_point,is_day_off,wages_per_point)
+                                    VALUES('" & id_payroll & "','" & id_employee & "','" & LECategory.EditValue.ToString & "','" & Date.Parse(dt_start.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(dt_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & tot_break & "','" & tot_hour & "','" & tot_poin & "','" & LEDayoff.EditValue.ToString & "','" & wages_per_point & "');SELECT LAST_INSERT_ID();"
             id_overtime = execute_query(query, 0, True, "", "", "", "")
             FormEmpPayrollOvertime.load_payroll_ot()
             FormEmpPayrollOvertime.GVOverTime.FocusedRowHandle = find_row(FormEmpPayrollOvertime.GVOverTime, "id_payroll_ot", id_overtime)
             Close()
         Else 'edit
-            Dim query As String = "UPDATE tb_emp_payroll_ot SET id_payroll='" & id_payroll & "',id_employee='" & id_employee & "',id_ot_type='" & LECategory.EditValue.ToString & "',ot_start='" & Date.Parse(dt_start.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',ot_end='" & Date.Parse(dt_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',total_break='" & tot_break & "',total_hour='" & tot_hour & "',total_point='" & tot_poin & "',is_day_off='" & LEDayoff.EditValue.ToString & "'
+            Dim query As String = "UPDATE tb_emp_payroll_ot SET id_payroll='" & id_payroll & "',id_employee='" & id_employee & "',id_ot_type='" & LECategory.EditValue.ToString & "',ot_start='" & Date.Parse(dt_start.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',ot_end='" & Date.Parse(dt_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',total_break='" & tot_break & "',total_hour='" & tot_hour & "',total_point='" & tot_poin & "',is_day_off='" & LEDayoff.EditValue.ToString & "',wages_per_point='" & wages_per_point & "
                                     WHERE id_payroll_ot='" & id_overtime & "'"
             execute_non_query(query, True, "", "", "", "")
 
@@ -214,5 +221,13 @@
 
     Private Sub TETotHour_EditValueChanged(sender As Object, e As EventArgs) Handles TETotHour.EditValueChanged
         calc_point()
+    End Sub
+
+    Private Sub LECategory_EditValueChanged(sender As Object, e As EventArgs) Handles LECategory.EditValueChanged
+        Try
+            TEPointWages.EditValue = LECategory.GetSelectedDataRow("ot_point_wages")
+        Catch ex As Exception
+            TEPointWages.EditValue = 0.00
+        End Try
     End Sub
 End Class

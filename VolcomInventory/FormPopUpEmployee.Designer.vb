@@ -21,7 +21,6 @@ Partial Class FormPopUpEmployee
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPopUpEmployee))
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BPick = New DevExpress.XtraEditors.SimpleButton()
@@ -34,20 +33,13 @@ Partial Class FormPopUpEmployee
         Me.GridColumnJoinDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
         '
         'PanelControl3
         '
@@ -62,6 +54,8 @@ Partial Class FormPopUpEmployee
         'BCancel
         '
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.ImageIndex = 5
+        Me.BCancel.ImageList = Me.LargeImageCollection
         Me.BCancel.Location = New System.Drawing.Point(543, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 33)
@@ -71,6 +65,8 @@ Partial Class FormPopUpEmployee
         'BPick
         '
         Me.BPick.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPick.ImageIndex = 19
+        Me.BPick.ImageList = Me.LargeImageCollection
         Me.BPick.Location = New System.Drawing.Point(616, 2)
         Me.BPick.Name = "BPick"
         Me.BPick.Size = New System.Drawing.Size(75, 33)
@@ -157,6 +153,31 @@ Partial Class FormPopUpEmployee
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 5
         '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
+        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
+        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
+        '
         'FormPopUpEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -170,16 +191,14 @@ Partial Class FormPopUpEmployee
         Me.Name = "FormPopUpEmployee"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Pilih Karyawan"
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-
-    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPick As DevExpress.XtraEditors.SimpleButton
@@ -192,4 +211,5 @@ Partial Class FormPopUpEmployee
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnJoinDate As DevExpress.XtraGrid.Columns.GridColumn
+    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
 End Class

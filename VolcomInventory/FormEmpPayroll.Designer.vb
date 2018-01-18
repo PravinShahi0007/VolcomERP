@@ -34,9 +34,41 @@ Partial Class FormEmpPayroll
         Me.XTPSalaryFormat = New DevExpress.XtraTab.XtraTabPage()
         Me.GCPayroll = New DevExpress.XtraGrid.GridControl()
         Me.GVPayroll = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIDDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIDEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNIP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLevel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPosition = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnContractEnd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWorkingDays = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotOvertime = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBasicSalary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnJobAllowance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMealAllowance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTransportAllowance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnHousingAllowance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVehicleAttndAllowance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotTHP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointRegular = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOTReguler = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointMkt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOtMkt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointIA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOtIA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointSales = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOtSales = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointProd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOTProd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointGeneral = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOtGeneral = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.BOvertime = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,13 +197,232 @@ Partial Class FormEmpPayroll
         '
         'GVPayroll
         '
+        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.GridColumnWorkingDays, Me.GridColumnTotOvertime, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral, Me.GridColumn1})
         Me.GVPayroll.GridControl = Me.GCPayroll
         Me.GVPayroll.Name = "GVPayroll"
+        Me.GVPayroll.OptionsView.ColumnAutoWidth = False
         Me.GVPayroll.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIDDet
+        '
+        Me.GridColumnIDDet.Caption = "ID"
+        Me.GridColumnIDDet.FieldName = "id_payroll_det"
+        Me.GridColumnIDDet.Name = "GridColumnIDDet"
+        '
+        'GridColumnIDEmployee
+        '
+        Me.GridColumnIDEmployee.Caption = "ID Employee"
+        Me.GridColumnIDEmployee.FieldName = "id_employee"
+        Me.GridColumnIDEmployee.Name = "GridColumnIDEmployee"
+        '
+        'GridColumnNIP
+        '
+        Me.GridColumnNIP.Caption = "NIP"
+        Me.GridColumnNIP.FieldName = "employee_code"
+        Me.GridColumnNIP.Name = "GridColumnNIP"
+        Me.GridColumnNIP.Visible = True
+        Me.GridColumnNIP.VisibleIndex = 0
+        '
+        'GridColumnName
+        '
+        Me.GridColumnName.Caption = "Name"
+        Me.GridColumnName.Name = "GridColumnName"
+        Me.GridColumnName.Visible = True
+        Me.GridColumnName.VisibleIndex = 1
+        '
+        'GridColumnDepartement
+        '
+        Me.GridColumnDepartement.Caption = "Departement"
+        Me.GridColumnDepartement.Name = "GridColumnDepartement"
+        Me.GridColumnDepartement.Visible = True
+        Me.GridColumnDepartement.VisibleIndex = 2
+        '
+        'GridColumnLevel
+        '
+        Me.GridColumnLevel.Caption = "Level"
+        Me.GridColumnLevel.Name = "GridColumnLevel"
+        Me.GridColumnLevel.Visible = True
+        Me.GridColumnLevel.VisibleIndex = 3
+        '
+        'GridColumnPosition
+        '
+        Me.GridColumnPosition.Caption = "Position"
+        Me.GridColumnPosition.Name = "GridColumnPosition"
+        Me.GridColumnPosition.Visible = True
+        Me.GridColumnPosition.VisibleIndex = 4
+        '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 5
+        '
+        'GridColumnContractEnd
+        '
+        Me.GridColumnContractEnd.Caption = "Contract End"
+        Me.GridColumnContractEnd.Name = "GridColumnContractEnd"
+        Me.GridColumnContractEnd.Visible = True
+        Me.GridColumnContractEnd.VisibleIndex = 6
+        '
+        'GridColumnWorkingDays
+        '
+        Me.GridColumnWorkingDays.Caption = "Working Days"
+        Me.GridColumnWorkingDays.Name = "GridColumnWorkingDays"
+        Me.GridColumnWorkingDays.Visible = True
+        Me.GridColumnWorkingDays.VisibleIndex = 7
+        '
+        'GridColumnTotOvertime
+        '
+        Me.GridColumnTotOvertime.Caption = "Overtime (hours)"
+        Me.GridColumnTotOvertime.Name = "GridColumnTotOvertime"
+        Me.GridColumnTotOvertime.Visible = True
+        Me.GridColumnTotOvertime.VisibleIndex = 8
+        '
+        'GridColumnBasicSalary
+        '
+        Me.GridColumnBasicSalary.Caption = "Basic Salary"
+        Me.GridColumnBasicSalary.Name = "GridColumnBasicSalary"
+        Me.GridColumnBasicSalary.Visible = True
+        Me.GridColumnBasicSalary.VisibleIndex = 9
+        '
+        'GridColumnJobAllowance
+        '
+        Me.GridColumnJobAllowance.Caption = "Job Allowance"
+        Me.GridColumnJobAllowance.Name = "GridColumnJobAllowance"
+        Me.GridColumnJobAllowance.Visible = True
+        Me.GridColumnJobAllowance.VisibleIndex = 10
+        '
+        'GridColumnMealAllowance
+        '
+        Me.GridColumnMealAllowance.Caption = "Meal Allowance"
+        Me.GridColumnMealAllowance.Name = "GridColumnMealAllowance"
+        Me.GridColumnMealAllowance.Visible = True
+        Me.GridColumnMealAllowance.VisibleIndex = 11
+        '
+        'GridColumnTransportAllowance
+        '
+        Me.GridColumnTransportAllowance.Caption = "Transport Allowance"
+        Me.GridColumnTransportAllowance.Name = "GridColumnTransportAllowance"
+        Me.GridColumnTransportAllowance.Visible = True
+        Me.GridColumnTransportAllowance.VisibleIndex = 12
+        '
+        'GridColumnHousingAllowance
+        '
+        Me.GridColumnHousingAllowance.Caption = "Housing Allowance"
+        Me.GridColumnHousingAllowance.Name = "GridColumnHousingAllowance"
+        Me.GridColumnHousingAllowance.Visible = True
+        Me.GridColumnHousingAllowance.VisibleIndex = 13
+        '
+        'GridColumnVehicleAttndAllowance
+        '
+        Me.GridColumnVehicleAttndAllowance.Caption = "Vehicle & Attnd Allowance"
+        Me.GridColumnVehicleAttndAllowance.Name = "GridColumnVehicleAttndAllowance"
+        Me.GridColumnVehicleAttndAllowance.Visible = True
+        Me.GridColumnVehicleAttndAllowance.VisibleIndex = 14
+        '
+        'GridColumnTotTHP
+        '
+        Me.GridColumnTotTHP.Caption = "THP Total"
+        Me.GridColumnTotTHP.Name = "GridColumnTotTHP"
+        Me.GridColumnTotTHP.Visible = True
+        Me.GridColumnTotTHP.VisibleIndex = 15
+        '
+        'GridColumnPointRegular
+        '
+        Me.GridColumnPointRegular.Caption = "Point Reguler"
+        Me.GridColumnPointRegular.Name = "GridColumnPointRegular"
+        Me.GridColumnPointRegular.Visible = True
+        Me.GridColumnPointRegular.VisibleIndex = 16
+        '
+        'GridColumnOTReguler
+        '
+        Me.GridColumnOTReguler.Caption = "Overtime Reguler"
+        Me.GridColumnOTReguler.Name = "GridColumnOTReguler"
+        Me.GridColumnOTReguler.Visible = True
+        Me.GridColumnOTReguler.VisibleIndex = 17
+        '
+        'GridColumnPointMkt
+        '
+        Me.GridColumnPointMkt.Caption = "Point Event Marketing"
+        Me.GridColumnPointMkt.Name = "GridColumnPointMkt"
+        Me.GridColumnPointMkt.Visible = True
+        Me.GridColumnPointMkt.VisibleIndex = 18
+        '
+        'GridColumnOtMkt
+        '
+        Me.GridColumnOtMkt.Caption = "Overtime Marketing"
+        Me.GridColumnOtMkt.Name = "GridColumnOtMkt"
+        Me.GridColumnOtMkt.Visible = True
+        Me.GridColumnOtMkt.VisibleIndex = 19
+        '
+        'GridColumnPointIA
+        '
+        Me.GridColumnPointIA.Caption = "Point Event IA"
+        Me.GridColumnPointIA.Name = "GridColumnPointIA"
+        Me.GridColumnPointIA.Visible = True
+        Me.GridColumnPointIA.VisibleIndex = 20
+        '
+        'GridColumnOtIA
+        '
+        Me.GridColumnOtIA.Caption = "Overtime IA"
+        Me.GridColumnOtIA.Name = "GridColumnOtIA"
+        Me.GridColumnOtIA.Visible = True
+        Me.GridColumnOtIA.VisibleIndex = 21
+        '
+        'GridColumnPointSales
+        '
+        Me.GridColumnPointSales.Caption = "Point Event Sales"
+        Me.GridColumnPointSales.Name = "GridColumnPointSales"
+        Me.GridColumnPointSales.Visible = True
+        Me.GridColumnPointSales.VisibleIndex = 22
+        '
+        'GridColumnOtSales
+        '
+        Me.GridColumnOtSales.Caption = "Overtime Sales"
+        Me.GridColumnOtSales.Name = "GridColumnOtSales"
+        Me.GridColumnOtSales.Visible = True
+        Me.GridColumnOtSales.VisibleIndex = 23
+        '
+        'GridColumnPointProd
+        '
+        Me.GridColumnPointProd.Caption = "Point Event Production"
+        Me.GridColumnPointProd.Name = "GridColumnPointProd"
+        Me.GridColumnPointProd.Visible = True
+        Me.GridColumnPointProd.VisibleIndex = 24
+        '
+        'GridColumnOTProd
+        '
+        Me.GridColumnOTProd.Caption = "Overtime Production"
+        Me.GridColumnOTProd.Name = "GridColumnOTProd"
+        Me.GridColumnOTProd.Visible = True
+        Me.GridColumnOTProd.VisibleIndex = 25
+        '
+        'GridColumnPointGeneral
+        '
+        Me.GridColumnPointGeneral.Caption = "Point Event General/Other"
+        Me.GridColumnPointGeneral.Name = "GridColumnPointGeneral"
+        Me.GridColumnPointGeneral.Visible = True
+        Me.GridColumnPointGeneral.VisibleIndex = 26
+        '
+        'GridColumnOtGeneral
+        '
+        Me.GridColumnOtGeneral.Caption = "Overtime General/Other"
+        Me.GridColumnOtGeneral.Name = "GridColumnOtGeneral"
+        Me.GridColumnOtGeneral.Visible = True
+        Me.GridColumnOtGeneral.VisibleIndex = 27
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "GridColumn1"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 28
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SimpleButton3)
+        Me.PanelControl1.Controls.Add(Me.BGetEmployee)
         Me.PanelControl1.Controls.Add(Me.BOvertime)
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -185,7 +436,7 @@ Partial Class FormEmpPayroll
         Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Left
         Me.SimpleButton3.ImageIndex = 6
         Me.SimpleButton3.ImageList = Me.LargeImageCollection
-        Me.SimpleButton3.Location = New System.Drawing.Point(2, 2)
+        Me.SimpleButton3.Location = New System.Drawing.Point(130, 2)
         Me.SimpleButton3.Name = "SimpleButton3"
         Me.SimpleButton3.Size = New System.Drawing.Size(86, 35)
         Me.SimpleButton3.TabIndex = 2
@@ -215,6 +466,17 @@ Partial Class FormEmpPayroll
         Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
+        '
+        'BGetEmployee
+        '
+        Me.BGetEmployee.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BGetEmployee.ImageIndex = 19
+        Me.BGetEmployee.ImageList = Me.LargeImageCollection
+        Me.BGetEmployee.Location = New System.Drawing.Point(2, 2)
+        Me.BGetEmployee.Name = "BGetEmployee"
+        Me.BGetEmployee.Size = New System.Drawing.Size(128, 35)
+        Me.BGetEmployee.TabIndex = 3
+        Me.BGetEmployee.Text = "Insert Employee"
         '
         'BOvertime
         '
@@ -283,4 +545,36 @@ Partial Class FormEmpPayroll
     Friend WithEvents GridColumnLastUpdBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents GridColumnIDDet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIDEmployee As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNIP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDepartement As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnLevel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPosition As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnContractEnd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnWorkingDays As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotOvertime As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnBasicSalary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnJobAllowance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMealAllowance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTransportAllowance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnHousingAllowance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVehicleAttndAllowance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotTHP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointRegular As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOTReguler As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointMkt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOtMkt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointIA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOtIA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointSales As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOtSales As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointProd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOTProd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointGeneral As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOtGeneral As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BGetEmployee As DevExpress.XtraEditors.SimpleButton
 End Class

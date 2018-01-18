@@ -22,7 +22,7 @@
         GCEmployee.DataSource = data
         GVEmployee.BestFitColumns()
         '
-
+        GVEmployee.BestFitColumns()
     End Sub
 
     Private Sub FormPopUpEmployee_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed

@@ -6,7 +6,6 @@
     Private Sub FormEmpPayroll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_payroll()
         '
-
     End Sub
 
     Sub load_payroll()
@@ -36,5 +35,22 @@
     Private Sub BOvertime_Click(sender As Object, e As EventArgs) Handles BOvertime.Click
         FormEmpPayrollOvertime.id_periode = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         FormEmpPayrollOvertime.ShowDialog()
+    End Sub
+
+    Private Sub BGetEmployee_Click(sender As Object, e As EventArgs) Handles BGetEmployee.Click
+
+    End Sub
+
+    Private Sub GVPayrollPeriode_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVPayrollPeriode.FocusedRowChanged
+        load_payroll_detail()
+    End Sub
+
+    Sub load_payroll_detail()
+        If GVPayrollPeriode.RowCount > 0 Then
+            Dim query As String = "CALL view_payroll('" & GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            GCPayroll.DataSource = data
+        End If
     End Sub
 End Class
