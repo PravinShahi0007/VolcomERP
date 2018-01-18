@@ -155,6 +155,12 @@ Partial Class FormFGStock
         Me.TxtCodeDsgRsv = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameDsgRsv = New DevExpress.XtraEditors.TextEdit()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGStock.SuspendLayout()
         Me.XTPFGStockWHSum.SuspendLayout()
@@ -407,12 +413,14 @@ Partial Class FormFGStock
         Me.SLEWHStockSum.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SLEWHStockSum.Properties.Appearance.Options.UseFont = True
         Me.SLEWHStockSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEWHStockSum.Properties.ShowClearButton = False
         Me.SLEWHStockSum.Properties.View = Me.GridView14
         Me.SLEWHStockSum.Size = New System.Drawing.Size(166, 20)
         Me.SLEWHStockSum.TabIndex = 7
         '
         'GridView14
         '
+        Me.GridView14.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn4})
         Me.GridView14.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView14.Name = "GridView14"
         Me.GridView14.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -821,6 +829,7 @@ Partial Class FormFGStock
         '
         'GridView1
         '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn19})
         Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
@@ -1630,6 +1639,50 @@ Partial Class FormFGStock
         Me.GridColumn51.Visible = True
         Me.GridColumn51.VisibleIndex = 0
         '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Id Comp"
+        Me.GridColumn1.FieldName = "id_comp"
+        Me.GridColumn1.Name = "GridColumn1"
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "Account"
+        Me.GridColumn3.FieldName = "comp_number"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.Visible = True
+        Me.GridColumn3.VisibleIndex = 0
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Description"
+        Me.GridColumn4.FieldName = "comp_name_label"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 1
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Id Comp"
+        Me.GridColumn5.FieldName = "id_comp"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Account"
+        Me.GridColumn6.FieldName = "comp_number"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Description"
+        Me.GridColumn19.FieldName = "comp_name_label"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 1
+        '
         'FormFGStock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1866,4 +1919,10 @@ Partial Class FormFGStock
     Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TxtDesignCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

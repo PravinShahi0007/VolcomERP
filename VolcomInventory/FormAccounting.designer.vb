@@ -298,12 +298,12 @@ Partial Class FormAccounting
         '
         Me.BalanceMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMViewTransaction})
         Me.BalanceMenu.Name = "ContextMenuStripYM"
-        Me.BalanceMenu.Size = New System.Drawing.Size(137, 26)
+        Me.BalanceMenu.Size = New System.Drawing.Size(136, 26)
         '
         'SMViewTransaction
         '
         Me.SMViewTransaction.Name = "SMViewTransaction"
-        Me.SMViewTransaction.Size = New System.Drawing.Size(136, 22)
+        Me.SMViewTransaction.Size = New System.Drawing.Size(135, 22)
         Me.SMViewTransaction.Text = "Transaction"
         '
         'FormAccounting
