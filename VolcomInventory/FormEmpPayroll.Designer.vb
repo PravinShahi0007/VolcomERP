@@ -64,7 +64,6 @@ Partial Class FormEmpPayroll
         Me.GridColumnOTProd = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPointGeneral = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOtGeneral = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
@@ -197,7 +196,7 @@ Partial Class FormEmpPayroll
         '
         'GVPayroll
         '
-        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.GridColumnWorkingDays, Me.GridColumnTotOvertime, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral, Me.GridColumn1})
+        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.GridColumnWorkingDays, Me.GridColumnTotOvertime, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral})
         Me.GVPayroll.GridControl = Me.GCPayroll
         Me.GVPayroll.Name = "GVPayroll"
         Me.GVPayroll.OptionsView.ColumnAutoWidth = False
@@ -226,6 +225,7 @@ Partial Class FormEmpPayroll
         'GridColumnName
         '
         Me.GridColumnName.Caption = "Name"
+        Me.GridColumnName.FieldName = "employee_name"
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 1
@@ -233,6 +233,7 @@ Partial Class FormEmpPayroll
         'GridColumnDepartement
         '
         Me.GridColumnDepartement.Caption = "Departement"
+        Me.GridColumnDepartement.FieldName = "departement"
         Me.GridColumnDepartement.Name = "GridColumnDepartement"
         Me.GridColumnDepartement.Visible = True
         Me.GridColumnDepartement.VisibleIndex = 2
@@ -240,6 +241,7 @@ Partial Class FormEmpPayroll
         'GridColumnLevel
         '
         Me.GridColumnLevel.Caption = "Level"
+        Me.GridColumnLevel.FieldName = "employee_level"
         Me.GridColumnLevel.Name = "GridColumnLevel"
         Me.GridColumnLevel.Visible = True
         Me.GridColumnLevel.VisibleIndex = 3
@@ -247,6 +249,7 @@ Partial Class FormEmpPayroll
         'GridColumnPosition
         '
         Me.GridColumnPosition.Caption = "Position"
+        Me.GridColumnPosition.FieldName = "employee_position"
         Me.GridColumnPosition.Name = "GridColumnPosition"
         Me.GridColumnPosition.Visible = True
         Me.GridColumnPosition.VisibleIndex = 4
@@ -254,6 +257,7 @@ Partial Class FormEmpPayroll
         'GridColumnStatus
         '
         Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "employee_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
         Me.GridColumnStatus.VisibleIndex = 5
@@ -261,6 +265,7 @@ Partial Class FormEmpPayroll
         'GridColumnContractEnd
         '
         Me.GridColumnContractEnd.Caption = "Contract End"
+        Me.GridColumnContractEnd.FieldName = "end_period"
         Me.GridColumnContractEnd.Name = "GridColumnContractEnd"
         Me.GridColumnContractEnd.Visible = True
         Me.GridColumnContractEnd.VisibleIndex = 6
@@ -268,6 +273,7 @@ Partial Class FormEmpPayroll
         'GridColumnWorkingDays
         '
         Me.GridColumnWorkingDays.Caption = "Working Days"
+        Me.GridColumnWorkingDays.FieldName = "working_days"
         Me.GridColumnWorkingDays.Name = "GridColumnWorkingDays"
         Me.GridColumnWorkingDays.Visible = True
         Me.GridColumnWorkingDays.VisibleIndex = 7
@@ -275,6 +281,7 @@ Partial Class FormEmpPayroll
         'GridColumnTotOvertime
         '
         Me.GridColumnTotOvertime.Caption = "Overtime (hours)"
+        Me.GridColumnTotOvertime.FieldName = "total_ot"
         Me.GridColumnTotOvertime.Name = "GridColumnTotOvertime"
         Me.GridColumnTotOvertime.Visible = True
         Me.GridColumnTotOvertime.VisibleIndex = 8
@@ -282,6 +289,7 @@ Partial Class FormEmpPayroll
         'GridColumnBasicSalary
         '
         Me.GridColumnBasicSalary.Caption = "Basic Salary"
+        Me.GridColumnBasicSalary.FieldName = "basic_salary"
         Me.GridColumnBasicSalary.Name = "GridColumnBasicSalary"
         Me.GridColumnBasicSalary.Visible = True
         Me.GridColumnBasicSalary.VisibleIndex = 9
@@ -289,6 +297,7 @@ Partial Class FormEmpPayroll
         'GridColumnJobAllowance
         '
         Me.GridColumnJobAllowance.Caption = "Job Allowance"
+        Me.GridColumnJobAllowance.FieldName = "allow_job"
         Me.GridColumnJobAllowance.Name = "GridColumnJobAllowance"
         Me.GridColumnJobAllowance.Visible = True
         Me.GridColumnJobAllowance.VisibleIndex = 10
@@ -296,6 +305,7 @@ Partial Class FormEmpPayroll
         'GridColumnMealAllowance
         '
         Me.GridColumnMealAllowance.Caption = "Meal Allowance"
+        Me.GridColumnMealAllowance.FieldName = "allow_meal"
         Me.GridColumnMealAllowance.Name = "GridColumnMealAllowance"
         Me.GridColumnMealAllowance.Visible = True
         Me.GridColumnMealAllowance.VisibleIndex = 11
@@ -303,6 +313,7 @@ Partial Class FormEmpPayroll
         'GridColumnTransportAllowance
         '
         Me.GridColumnTransportAllowance.Caption = "Transport Allowance"
+        Me.GridColumnTransportAllowance.FieldName = "allow_trans"
         Me.GridColumnTransportAllowance.Name = "GridColumnTransportAllowance"
         Me.GridColumnTransportAllowance.Visible = True
         Me.GridColumnTransportAllowance.VisibleIndex = 12
@@ -310,6 +321,7 @@ Partial Class FormEmpPayroll
         'GridColumnHousingAllowance
         '
         Me.GridColumnHousingAllowance.Caption = "Housing Allowance"
+        Me.GridColumnHousingAllowance.FieldName = "allow_house"
         Me.GridColumnHousingAllowance.Name = "GridColumnHousingAllowance"
         Me.GridColumnHousingAllowance.Visible = True
         Me.GridColumnHousingAllowance.VisibleIndex = 13
@@ -317,6 +329,7 @@ Partial Class FormEmpPayroll
         'GridColumnVehicleAttndAllowance
         '
         Me.GridColumnVehicleAttndAllowance.Caption = "Vehicle & Attnd Allowance"
+        Me.GridColumnVehicleAttndAllowance.FieldName = "allow_car"
         Me.GridColumnVehicleAttndAllowance.Name = "GridColumnVehicleAttndAllowance"
         Me.GridColumnVehicleAttndAllowance.Visible = True
         Me.GridColumnVehicleAttndAllowance.VisibleIndex = 14
@@ -324,6 +337,7 @@ Partial Class FormEmpPayroll
         'GridColumnTotTHP
         '
         Me.GridColumnTotTHP.Caption = "THP Total"
+        Me.GridColumnTotTHP.FieldName = "tot_thp"
         Me.GridColumnTotTHP.Name = "GridColumnTotTHP"
         Me.GridColumnTotTHP.Visible = True
         Me.GridColumnTotTHP.VisibleIndex = 15
@@ -331,6 +345,7 @@ Partial Class FormEmpPayroll
         'GridColumnPointRegular
         '
         Me.GridColumnPointRegular.Caption = "Point Reguler"
+        Me.GridColumnPointRegular.FieldName = "reg_total_point"
         Me.GridColumnPointRegular.Name = "GridColumnPointRegular"
         Me.GridColumnPointRegular.Visible = True
         Me.GridColumnPointRegular.VisibleIndex = 16
@@ -338,6 +353,7 @@ Partial Class FormEmpPayroll
         'GridColumnOTReguler
         '
         Me.GridColumnOTReguler.Caption = "Overtime Reguler"
+        Me.GridColumnOTReguler.FieldName = "reg_total_wages"
         Me.GridColumnOTReguler.Name = "GridColumnOTReguler"
         Me.GridColumnOTReguler.Visible = True
         Me.GridColumnOTReguler.VisibleIndex = 17
@@ -345,6 +361,7 @@ Partial Class FormEmpPayroll
         'GridColumnPointMkt
         '
         Me.GridColumnPointMkt.Caption = "Point Event Marketing"
+        Me.GridColumnPointMkt.FieldName = "mkt_total_point"
         Me.GridColumnPointMkt.Name = "GridColumnPointMkt"
         Me.GridColumnPointMkt.Visible = True
         Me.GridColumnPointMkt.VisibleIndex = 18
@@ -352,6 +369,7 @@ Partial Class FormEmpPayroll
         'GridColumnOtMkt
         '
         Me.GridColumnOtMkt.Caption = "Overtime Marketing"
+        Me.GridColumnOtMkt.FieldName = "mkt_total_wages"
         Me.GridColumnOtMkt.Name = "GridColumnOtMkt"
         Me.GridColumnOtMkt.Visible = True
         Me.GridColumnOtMkt.VisibleIndex = 19
@@ -359,6 +377,7 @@ Partial Class FormEmpPayroll
         'GridColumnPointIA
         '
         Me.GridColumnPointIA.Caption = "Point Event IA"
+        Me.GridColumnPointIA.FieldName = "ia_total_point"
         Me.GridColumnPointIA.Name = "GridColumnPointIA"
         Me.GridColumnPointIA.Visible = True
         Me.GridColumnPointIA.VisibleIndex = 20
@@ -366,6 +385,7 @@ Partial Class FormEmpPayroll
         'GridColumnOtIA
         '
         Me.GridColumnOtIA.Caption = "Overtime IA"
+        Me.GridColumnOtIA.FieldName = "ia_total_wages"
         Me.GridColumnOtIA.Name = "GridColumnOtIA"
         Me.GridColumnOtIA.Visible = True
         Me.GridColumnOtIA.VisibleIndex = 21
@@ -373,6 +393,7 @@ Partial Class FormEmpPayroll
         'GridColumnPointSales
         '
         Me.GridColumnPointSales.Caption = "Point Event Sales"
+        Me.GridColumnPointSales.FieldName = "sales_total_point"
         Me.GridColumnPointSales.Name = "GridColumnPointSales"
         Me.GridColumnPointSales.Visible = True
         Me.GridColumnPointSales.VisibleIndex = 22
@@ -380,6 +401,7 @@ Partial Class FormEmpPayroll
         'GridColumnOtSales
         '
         Me.GridColumnOtSales.Caption = "Overtime Sales"
+        Me.GridColumnOtSales.FieldName = "sales_total_wages"
         Me.GridColumnOtSales.Name = "GridColumnOtSales"
         Me.GridColumnOtSales.Visible = True
         Me.GridColumnOtSales.VisibleIndex = 23
@@ -387,6 +409,7 @@ Partial Class FormEmpPayroll
         'GridColumnPointProd
         '
         Me.GridColumnPointProd.Caption = "Point Event Production"
+        Me.GridColumnPointProd.FieldName = "prod_total_point"
         Me.GridColumnPointProd.Name = "GridColumnPointProd"
         Me.GridColumnPointProd.Visible = True
         Me.GridColumnPointProd.VisibleIndex = 24
@@ -394,6 +417,7 @@ Partial Class FormEmpPayroll
         'GridColumnOTProd
         '
         Me.GridColumnOTProd.Caption = "Overtime Production"
+        Me.GridColumnOTProd.FieldName = "prod_total_wages"
         Me.GridColumnOTProd.Name = "GridColumnOTProd"
         Me.GridColumnOTProd.Visible = True
         Me.GridColumnOTProd.VisibleIndex = 25
@@ -401,6 +425,7 @@ Partial Class FormEmpPayroll
         'GridColumnPointGeneral
         '
         Me.GridColumnPointGeneral.Caption = "Point Event General/Other"
+        Me.GridColumnPointGeneral.FieldName = "general_total_point"
         Me.GridColumnPointGeneral.Name = "GridColumnPointGeneral"
         Me.GridColumnPointGeneral.Visible = True
         Me.GridColumnPointGeneral.VisibleIndex = 26
@@ -408,16 +433,10 @@ Partial Class FormEmpPayroll
         'GridColumnOtGeneral
         '
         Me.GridColumnOtGeneral.Caption = "Overtime General/Other"
+        Me.GridColumnOtGeneral.FieldName = "general_total_wages"
         Me.GridColumnOtGeneral.Name = "GridColumnOtGeneral"
         Me.GridColumnOtGeneral.Visible = True
         Me.GridColumnOtGeneral.VisibleIndex = 27
-        '
-        'GridColumn1
-        '
-        Me.GridColumn1.Caption = "GridColumn1"
-        Me.GridColumn1.Name = "GridColumn1"
-        Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 28
         '
         'PanelControl1
         '
@@ -575,6 +594,5 @@ Partial Class FormEmpPayroll
     Friend WithEvents GridColumnOTProd As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPointGeneral As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOtGeneral As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BGetEmployee As DevExpress.XtraEditors.SimpleButton
 End Class

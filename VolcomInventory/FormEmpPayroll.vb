@@ -38,7 +38,7 @@
     End Sub
 
     Private Sub BGetEmployee_Click(sender As Object, e As EventArgs) Handles BGetEmployee.Click
-
+        FormEmpPayrollEmp.ShowDialog()
     End Sub
 
     Private Sub GVPayrollPeriode_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVPayrollPeriode.FocusedRowChanged
@@ -51,6 +51,7 @@
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             GCPayroll.DataSource = data
+            GVPayroll.BestFitColumns()
         End If
     End Sub
 End Class

@@ -3,12 +3,19 @@
         load_emp()
     End Sub
     Sub load_emp()
-        Dim query As String = "SELECT 'no' AS is_check,emp.id_employee,dep.is_store,emp.employee_code,emp.employee_name,dep.departement,emp.employee_join_date,emp.employee_position,active.employee_active
+        Dim query As String = "SELECT 'no' AS is_check,emp.id_employee,dep.is_store,emp.employee_code,emp.employee_name,dep.departement,emp.employee_join_date,emp.employee_position,active.employee_active,salx.*
                                 FROM tb_m_employee emp
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level 
                                 INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
-                                WHERE emp.id_employee_active='1' AND id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
+                                LEFT JOIN (	
+	                                SELECT sal.* FROM (
+		                                SELECT * FROM tb_m_employee_salary sal
+		                                WHERE is_cancel='2'
+		                                ORDER BY sal.`effective_date` DESC,sal.`id_employee_salary` DESC
+	                                ) sal GROUP BY id_employee
+                                ) salx ON salx.id_employee = emp.`id_employee`
+                                WHERE emp.id_employee_active='1' AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmployee.DataSource = data
