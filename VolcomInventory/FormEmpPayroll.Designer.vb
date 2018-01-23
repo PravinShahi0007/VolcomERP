@@ -32,24 +32,58 @@ Partial Class FormEmpPayroll
         Me.GridColumnLastUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPSalaryFormat = New DevExpress.XtraTab.XtraTabPage()
-        Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCPayroll = New DevExpress.XtraGrid.GridControl()
+        Me.GVPayroll = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIDDet = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIDEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNIP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnLevel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPosition = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnContractEnd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWorkingDays = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotOvertime = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnBasicSalary = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnJobAllowance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMealAllowance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTransportAllowance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnHousingAllowance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVehicleAttndAllowance = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotTHP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointRegular = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOTReguler = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointMkt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOtMkt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointIA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOtIA = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointSales = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOtSales = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointProd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOTProd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPointGeneral = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOtGeneral = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.BOvertime = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.ViewPopWorksheet = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CMDelEmp = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPayroll.SuspendLayout()
         Me.XTPPeriode.SuspendLayout()
         CType(Me.GCPayrollPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPayrollPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPSalaryFormat.SuspendLayout()
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewPopWorksheet.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPayroll
@@ -147,31 +181,314 @@ Partial Class FormEmpPayroll
         '
         'XTPSalaryFormat
         '
-        Me.XTPSalaryFormat.Controls.Add(Me.GridControl2)
+        Me.XTPSalaryFormat.Controls.Add(Me.GCPayroll)
         Me.XTPSalaryFormat.Controls.Add(Me.PanelControl1)
         Me.XTPSalaryFormat.Name = "XTPSalaryFormat"
         Me.XTPSalaryFormat.Size = New System.Drawing.Size(1115, 441)
         Me.XTPSalaryFormat.Text = "Worksheet"
         '
-        'GridControl2
+        'GCPayroll
         '
-        Me.GridControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl2.Location = New System.Drawing.Point(0, 39)
-        Me.GridControl2.MainView = Me.GridView2
-        Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(1115, 402)
-        Me.GridControl2.TabIndex = 1
-        Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
+        Me.GCPayroll.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCPayroll.Location = New System.Drawing.Point(0, 39)
+        Me.GCPayroll.MainView = Me.GVPayroll
+        Me.GCPayroll.Name = "GCPayroll"
+        Me.GCPayroll.Size = New System.Drawing.Size(1115, 402)
+        Me.GCPayroll.TabIndex = 1
+        Me.GCPayroll.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPayroll})
         '
-        'GridView2
+        'GVPayroll
         '
-        Me.GridView2.GridControl = Me.GridControl2
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsView.ShowGroupPanel = False
+        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.GridColumnWorkingDays, Me.GridColumnTotOvertime, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral})
+        Me.GVPayroll.GridControl = Me.GCPayroll
+        Me.GVPayroll.Name = "GVPayroll"
+        Me.GVPayroll.OptionsView.ColumnAutoWidth = False
+        Me.GVPayroll.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIDDet
+        '
+        Me.GridColumnIDDet.Caption = "ID"
+        Me.GridColumnIDDet.FieldName = "id_payroll_det"
+        Me.GridColumnIDDet.Name = "GridColumnIDDet"
+        '
+        'GridColumnIDEmployee
+        '
+        Me.GridColumnIDEmployee.Caption = "ID Employee"
+        Me.GridColumnIDEmployee.FieldName = "id_employee"
+        Me.GridColumnIDEmployee.Name = "GridColumnIDEmployee"
+        '
+        'GridColumnNIP
+        '
+        Me.GridColumnNIP.Caption = "NIP"
+        Me.GridColumnNIP.FieldName = "employee_code"
+        Me.GridColumnNIP.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnNIP.Name = "GridColumnNIP"
+        Me.GridColumnNIP.Visible = True
+        Me.GridColumnNIP.VisibleIndex = 0
+        '
+        'GridColumnName
+        '
+        Me.GridColumnName.Caption = "Name"
+        Me.GridColumnName.FieldName = "employee_name"
+        Me.GridColumnName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
+        Me.GridColumnName.Name = "GridColumnName"
+        Me.GridColumnName.Visible = True
+        Me.GridColumnName.VisibleIndex = 1
+        '
+        'GridColumnDepartement
+        '
+        Me.GridColumnDepartement.Caption = "Departement"
+        Me.GridColumnDepartement.FieldName = "departement"
+        Me.GridColumnDepartement.Name = "GridColumnDepartement"
+        Me.GridColumnDepartement.Visible = True
+        Me.GridColumnDepartement.VisibleIndex = 2
+        '
+        'GridColumnLevel
+        '
+        Me.GridColumnLevel.Caption = "Level"
+        Me.GridColumnLevel.FieldName = "employee_level"
+        Me.GridColumnLevel.Name = "GridColumnLevel"
+        Me.GridColumnLevel.Visible = True
+        Me.GridColumnLevel.VisibleIndex = 3
+        '
+        'GridColumnPosition
+        '
+        Me.GridColumnPosition.Caption = "Position"
+        Me.GridColumnPosition.FieldName = "employee_position"
+        Me.GridColumnPosition.Name = "GridColumnPosition"
+        Me.GridColumnPosition.Visible = True
+        Me.GridColumnPosition.VisibleIndex = 4
+        '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "employee_status"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 5
+        '
+        'GridColumnContractEnd
+        '
+        Me.GridColumnContractEnd.Caption = "Contract End"
+        Me.GridColumnContractEnd.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnContractEnd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnContractEnd.FieldName = "end_period"
+        Me.GridColumnContractEnd.Name = "GridColumnContractEnd"
+        Me.GridColumnContractEnd.Visible = True
+        Me.GridColumnContractEnd.VisibleIndex = 6
+        '
+        'GridColumnWorkingDays
+        '
+        Me.GridColumnWorkingDays.Caption = "Working Days"
+        Me.GridColumnWorkingDays.FieldName = "working_days"
+        Me.GridColumnWorkingDays.Name = "GridColumnWorkingDays"
+        Me.GridColumnWorkingDays.Visible = True
+        Me.GridColumnWorkingDays.VisibleIndex = 7
+        '
+        'GridColumnTotOvertime
+        '
+        Me.GridColumnTotOvertime.Caption = "Overtime (hours)"
+        Me.GridColumnTotOvertime.DisplayFormat.FormatString = "N1"
+        Me.GridColumnTotOvertime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotOvertime.FieldName = "total_ot"
+        Me.GridColumnTotOvertime.Name = "GridColumnTotOvertime"
+        Me.GridColumnTotOvertime.Visible = True
+        Me.GridColumnTotOvertime.VisibleIndex = 8
+        '
+        'GridColumnBasicSalary
+        '
+        Me.GridColumnBasicSalary.Caption = "Basic Salary"
+        Me.GridColumnBasicSalary.DisplayFormat.FormatString = "N2"
+        Me.GridColumnBasicSalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnBasicSalary.FieldName = "basic_salary"
+        Me.GridColumnBasicSalary.Name = "GridColumnBasicSalary"
+        Me.GridColumnBasicSalary.Visible = True
+        Me.GridColumnBasicSalary.VisibleIndex = 9
+        '
+        'GridColumnJobAllowance
+        '
+        Me.GridColumnJobAllowance.Caption = "Job Allowance"
+        Me.GridColumnJobAllowance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnJobAllowance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnJobAllowance.FieldName = "allow_job"
+        Me.GridColumnJobAllowance.Name = "GridColumnJobAllowance"
+        Me.GridColumnJobAllowance.Visible = True
+        Me.GridColumnJobAllowance.VisibleIndex = 10
+        '
+        'GridColumnMealAllowance
+        '
+        Me.GridColumnMealAllowance.Caption = "Meal Allowance"
+        Me.GridColumnMealAllowance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnMealAllowance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnMealAllowance.FieldName = "allow_meal"
+        Me.GridColumnMealAllowance.Name = "GridColumnMealAllowance"
+        Me.GridColumnMealAllowance.Visible = True
+        Me.GridColumnMealAllowance.VisibleIndex = 11
+        '
+        'GridColumnTransportAllowance
+        '
+        Me.GridColumnTransportAllowance.Caption = "Transport Allowance"
+        Me.GridColumnTransportAllowance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTransportAllowance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTransportAllowance.FieldName = "allow_trans"
+        Me.GridColumnTransportAllowance.Name = "GridColumnTransportAllowance"
+        Me.GridColumnTransportAllowance.Visible = True
+        Me.GridColumnTransportAllowance.VisibleIndex = 12
+        '
+        'GridColumnHousingAllowance
+        '
+        Me.GridColumnHousingAllowance.Caption = "Housing Allowance"
+        Me.GridColumnHousingAllowance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnHousingAllowance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnHousingAllowance.FieldName = "allow_house"
+        Me.GridColumnHousingAllowance.Name = "GridColumnHousingAllowance"
+        Me.GridColumnHousingAllowance.Visible = True
+        Me.GridColumnHousingAllowance.VisibleIndex = 13
+        '
+        'GridColumnVehicleAttndAllowance
+        '
+        Me.GridColumnVehicleAttndAllowance.Caption = "Vehicle & Attnd Allowance"
+        Me.GridColumnVehicleAttndAllowance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnVehicleAttndAllowance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnVehicleAttndAllowance.FieldName = "allow_car"
+        Me.GridColumnVehicleAttndAllowance.Name = "GridColumnVehicleAttndAllowance"
+        Me.GridColumnVehicleAttndAllowance.Visible = True
+        Me.GridColumnVehicleAttndAllowance.VisibleIndex = 14
+        '
+        'GridColumnTotTHP
+        '
+        Me.GridColumnTotTHP.Caption = "THP Total"
+        Me.GridColumnTotTHP.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotTHP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotTHP.FieldName = "tot_thp"
+        Me.GridColumnTotTHP.Name = "GridColumnTotTHP"
+        Me.GridColumnTotTHP.Visible = True
+        Me.GridColumnTotTHP.VisibleIndex = 15
+        '
+        'GridColumnPointRegular
+        '
+        Me.GridColumnPointRegular.Caption = "Point Reguler"
+        Me.GridColumnPointRegular.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointRegular.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPointRegular.FieldName = "reg_total_point"
+        Me.GridColumnPointRegular.Name = "GridColumnPointRegular"
+        Me.GridColumnPointRegular.Visible = True
+        Me.GridColumnPointRegular.VisibleIndex = 16
+        '
+        'GridColumnOTReguler
+        '
+        Me.GridColumnOTReguler.Caption = "Overtime Reguler"
+        Me.GridColumnOTReguler.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOTReguler.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnOTReguler.FieldName = "reg_total_wages"
+        Me.GridColumnOTReguler.Name = "GridColumnOTReguler"
+        Me.GridColumnOTReguler.Visible = True
+        Me.GridColumnOTReguler.VisibleIndex = 17
+        '
+        'GridColumnPointMkt
+        '
+        Me.GridColumnPointMkt.Caption = "Point Event Marketing"
+        Me.GridColumnPointMkt.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointMkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPointMkt.FieldName = "mkt_total_point"
+        Me.GridColumnPointMkt.Name = "GridColumnPointMkt"
+        Me.GridColumnPointMkt.Visible = True
+        Me.GridColumnPointMkt.VisibleIndex = 18
+        '
+        'GridColumnOtMkt
+        '
+        Me.GridColumnOtMkt.Caption = "Overtime Marketing"
+        Me.GridColumnOtMkt.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOtMkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnOtMkt.FieldName = "mkt_total_wages"
+        Me.GridColumnOtMkt.Name = "GridColumnOtMkt"
+        Me.GridColumnOtMkt.Visible = True
+        Me.GridColumnOtMkt.VisibleIndex = 19
+        '
+        'GridColumnPointIA
+        '
+        Me.GridColumnPointIA.Caption = "Point Event IA"
+        Me.GridColumnPointIA.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointIA.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPointIA.FieldName = "ia_total_point"
+        Me.GridColumnPointIA.Name = "GridColumnPointIA"
+        Me.GridColumnPointIA.Visible = True
+        Me.GridColumnPointIA.VisibleIndex = 20
+        '
+        'GridColumnOtIA
+        '
+        Me.GridColumnOtIA.Caption = "Overtime IA"
+        Me.GridColumnOtIA.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOtIA.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnOtIA.FieldName = "ia_total_wages"
+        Me.GridColumnOtIA.Name = "GridColumnOtIA"
+        Me.GridColumnOtIA.Visible = True
+        Me.GridColumnOtIA.VisibleIndex = 21
+        '
+        'GridColumnPointSales
+        '
+        Me.GridColumnPointSales.Caption = "Point Event Sales"
+        Me.GridColumnPointSales.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointSales.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPointSales.FieldName = "sales_total_point"
+        Me.GridColumnPointSales.Name = "GridColumnPointSales"
+        Me.GridColumnPointSales.Visible = True
+        Me.GridColumnPointSales.VisibleIndex = 22
+        '
+        'GridColumnOtSales
+        '
+        Me.GridColumnOtSales.Caption = "Overtime Sales"
+        Me.GridColumnOtSales.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOtSales.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnOtSales.FieldName = "sales_total_wages"
+        Me.GridColumnOtSales.Name = "GridColumnOtSales"
+        Me.GridColumnOtSales.Visible = True
+        Me.GridColumnOtSales.VisibleIndex = 23
+        '
+        'GridColumnPointProd
+        '
+        Me.GridColumnPointProd.Caption = "Point Event Production"
+        Me.GridColumnPointProd.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointProd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPointProd.FieldName = "prod_total_point"
+        Me.GridColumnPointProd.Name = "GridColumnPointProd"
+        Me.GridColumnPointProd.Visible = True
+        Me.GridColumnPointProd.VisibleIndex = 24
+        '
+        'GridColumnOTProd
+        '
+        Me.GridColumnOTProd.Caption = "Overtime Production"
+        Me.GridColumnOTProd.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOTProd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnOTProd.FieldName = "prod_total_wages"
+        Me.GridColumnOTProd.Name = "GridColumnOTProd"
+        Me.GridColumnOTProd.Visible = True
+        Me.GridColumnOTProd.VisibleIndex = 25
+        '
+        'GridColumnPointGeneral
+        '
+        Me.GridColumnPointGeneral.Caption = "Point Event General/Other"
+        Me.GridColumnPointGeneral.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointGeneral.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPointGeneral.FieldName = "general_total_point"
+        Me.GridColumnPointGeneral.Name = "GridColumnPointGeneral"
+        Me.GridColumnPointGeneral.Visible = True
+        Me.GridColumnPointGeneral.VisibleIndex = 26
+        '
+        'GridColumnOtGeneral
+        '
+        Me.GridColumnOtGeneral.Caption = "Overtime General/Other"
+        Me.GridColumnOtGeneral.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOtGeneral.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnOtGeneral.FieldName = "general_total_wages"
+        Me.GridColumnOtGeneral.Name = "GridColumnOtGeneral"
+        Me.GridColumnOtGeneral.Visible = True
+        Me.GridColumnOtGeneral.VisibleIndex = 27
         '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.SimpleButton3)
+        Me.PanelControl1.Controls.Add(Me.BGetEmployee)
         Me.PanelControl1.Controls.Add(Me.BOvertime)
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
@@ -185,7 +502,7 @@ Partial Class FormEmpPayroll
         Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Left
         Me.SimpleButton3.ImageIndex = 6
         Me.SimpleButton3.ImageList = Me.LargeImageCollection
-        Me.SimpleButton3.Location = New System.Drawing.Point(2, 2)
+        Me.SimpleButton3.Location = New System.Drawing.Point(130, 2)
         Me.SimpleButton3.Name = "SimpleButton3"
         Me.SimpleButton3.Size = New System.Drawing.Size(86, 35)
         Me.SimpleButton3.TabIndex = 2
@@ -216,6 +533,17 @@ Partial Class FormEmpPayroll
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
+        'BGetEmployee
+        '
+        Me.BGetEmployee.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BGetEmployee.ImageIndex = 19
+        Me.BGetEmployee.ImageList = Me.LargeImageCollection
+        Me.BGetEmployee.Location = New System.Drawing.Point(2, 2)
+        Me.BGetEmployee.Name = "BGetEmployee"
+        Me.BGetEmployee.Size = New System.Drawing.Size(128, 35)
+        Me.BGetEmployee.TabIndex = 3
+        Me.BGetEmployee.Text = "Insert Employee"
+        '
         'BOvertime
         '
         Me.BOvertime.Dock = System.Windows.Forms.DockStyle.Right
@@ -238,6 +566,18 @@ Partial Class FormEmpPayroll
         Me.SimpleButton1.TabIndex = 0
         Me.SimpleButton1.Text = "Setting"
         '
+        'ViewPopWorksheet
+        '
+        Me.ViewPopWorksheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMDelEmp})
+        Me.ViewPopWorksheet.Name = "ViewPreDel"
+        Me.ViewPopWorksheet.Size = New System.Drawing.Size(173, 48)
+        '
+        'CMDelEmp
+        '
+        Me.CMDelEmp.Name = "CMDelEmp"
+        Me.CMDelEmp.Size = New System.Drawing.Size(172, 22)
+        Me.CMDelEmp.Text = "Remove Employee"
+        '
         'FormEmpPayroll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -256,11 +596,12 @@ Partial Class FormEmpPayroll
         CType(Me.GCPayrollPeriode, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPayrollPeriode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPSalaryFormat.ResumeLayout(False)
-        CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCPayroll, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewPopWorksheet.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -274,8 +615,8 @@ Partial Class FormEmpPayroll
     Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BOvertime As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridControl2 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCPayroll As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVPayroll As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumnID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPStart As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPEnd As DevExpress.XtraGrid.Columns.GridColumn
@@ -283,4 +624,37 @@ Partial Class FormEmpPayroll
     Friend WithEvents GridColumnLastUpdBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents GridColumnIDDet As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIDEmployee As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnNIP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDepartement As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnLevel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPosition As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnContractEnd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnWorkingDays As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotOvertime As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnBasicSalary As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnJobAllowance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMealAllowance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTransportAllowance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnHousingAllowance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVehicleAttndAllowance As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnTotTHP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointRegular As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOTReguler As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointMkt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOtMkt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointIA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOtIA As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointSales As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOtSales As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointProd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOTProd As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPointGeneral As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOtGeneral As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BGetEmployee As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ViewPopWorksheet As ContextMenuStrip
+    Friend WithEvents CMDelEmp As ToolStripMenuItem
 End Class
