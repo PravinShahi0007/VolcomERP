@@ -31,7 +31,6 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.BPickEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.TEEmployeeName = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.TETotHour = New DevExpress.XtraEditors.TextEdit()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -46,7 +45,10 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.TEBreak = New DevExpress.XtraEditors.TextEdit()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPointWages = New DevExpress.XtraEditors.TextEdit()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.PictureSeason = New DevExpress.XtraEditors.PictureEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -62,6 +64,10 @@ Partial Class FormEmpPayrollOvertimeDet
         CType(Me.LEDayoff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LECategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEBreak.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPointWages.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.PictureSeason.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -91,26 +97,24 @@ Partial Class FormEmpPayrollOvertimeDet
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.TEPoint)
         Me.PanelControl3.Controls.Add(Me.BCancel)
-        Me.PanelControl3.Controls.Add(Me.Label2)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl3.Location = New System.Drawing.Point(0, 223)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(543, 39)
+        Me.PanelControl3.Size = New System.Drawing.Size(721, 39)
         Me.PanelControl3.TabIndex = 6
         '
         'TEPoint
         '
         Me.TEPoint.EditValue = ""
-        Me.TEPoint.Location = New System.Drawing.Point(46, 9)
+        Me.TEPoint.Location = New System.Drawing.Point(407, 142)
         Me.TEPoint.Name = "TEPoint"
         Me.TEPoint.Properties.Appearance.Options.UseTextOptions = True
         Me.TEPoint.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEPoint.Properties.AppearanceReadOnly.Options.UseTextOptions = True
         Me.TEPoint.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEPoint.Properties.DisplayFormat.FormatString = "N0"
+        Me.TEPoint.Properties.DisplayFormat.FormatString = "N1"
         Me.TEPoint.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEPoint.Properties.EditValueChangedDelay = 1
         Me.TEPoint.Properties.ReadOnly = True
@@ -122,16 +126,16 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(393, 2)
+        Me.BCancel.Location = New System.Drawing.Point(571, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 35)
-        Me.BCancel.TabIndex = 8
+        Me.BCancel.TabIndex = 10
         Me.BCancel.Text = "Cancel"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(7, 12)
+        Me.Label2.Location = New System.Drawing.Point(370, 145)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(31, 13)
         Me.Label2.TabIndex = 152
@@ -142,24 +146,24 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.ImageIndex = 7
         Me.BSave.ImageList = Me.LargeImageCollection
-        Me.BSave.Location = New System.Drawing.Point(466, 2)
+        Me.BSave.Location = New System.Drawing.Point(644, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(75, 35)
-        Me.BSave.TabIndex = 7
+        Me.BSave.TabIndex = 9
         Me.BSave.Text = "Save"
         '
         'TEEmployeeCode
         '
         Me.TEEmployeeCode.EditValue = ""
-        Me.TEEmployeeCode.Location = New System.Drawing.Point(108, 12)
+        Me.TEEmployeeCode.Location = New System.Drawing.Point(271, 12)
         Me.TEEmployeeCode.Name = "TEEmployeeCode"
         Me.TEEmployeeCode.Properties.EditValueChangedDelay = 1
-        Me.TEEmployeeCode.Size = New System.Drawing.Size(92, 20)
+        Me.TEEmployeeCode.Size = New System.Drawing.Size(96, 20)
         Me.TEEmployeeCode.TabIndex = 1
         '
         'BPickEmployee
         '
-        Me.BPickEmployee.Location = New System.Drawing.Point(493, 10)
+        Me.BPickEmployee.Location = New System.Drawing.Point(680, 10)
         Me.BPickEmployee.Name = "BPickEmployee"
         Me.BPickEmployee.Size = New System.Drawing.Size(29, 23)
         Me.BPickEmployee.TabIndex = 89
@@ -168,35 +172,26 @@ Partial Class FormEmpPayrollOvertimeDet
         'TEEmployeeName
         '
         Me.TEEmployeeName.EditValue = ""
-        Me.TEEmployeeName.Location = New System.Drawing.Point(206, 12)
+        Me.TEEmployeeName.Location = New System.Drawing.Point(373, 12)
         Me.TEEmployeeName.Name = "TEEmployeeName"
         Me.TEEmployeeName.Properties.EditValueChangedDelay = 1
         Me.TEEmployeeName.Properties.ReadOnly = True
-        Me.TEEmployeeName.Size = New System.Drawing.Size(281, 20)
+        Me.TEEmployeeName.Size = New System.Drawing.Size(292, 20)
         Me.TEEmployeeName.TabIndex = 91
         Me.TEEmployeeName.TabStop = False
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 15)
+        Me.LabelControl3.Location = New System.Drawing.Point(154, 15)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(46, 13)
         Me.LabelControl3.TabIndex = 92
         Me.LabelControl3.Text = "Employee"
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(203, 145)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(43, 13)
-        Me.Label5.TabIndex = 114
-        Me.Label5.Text = "Hour(s)"
-        '
         'TETotHour
         '
         Me.TETotHour.EditValue = ""
-        Me.TETotHour.Location = New System.Drawing.Point(108, 142)
+        Me.TETotHour.Location = New System.Drawing.Point(271, 142)
         Me.TETotHour.Name = "TETotHour"
         Me.TETotHour.Properties.Appearance.Options.UseTextOptions = True
         Me.TETotHour.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -211,15 +206,15 @@ Partial Class FormEmpPayrollOvertimeDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(108, 168)
+        Me.MENote.Location = New System.Drawing.Point(271, 168)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 200
-        Me.MENote.Size = New System.Drawing.Size(414, 46)
-        Me.MENote.TabIndex = 6
+        Me.MENote.Size = New System.Drawing.Size(438, 46)
+        Me.MENote.TabIndex = 8
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(10, 170)
+        Me.LabelControl6.Location = New System.Drawing.Point(152, 170)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl6.TabIndex = 111
@@ -228,7 +223,7 @@ Partial Class FormEmpPayrollOvertimeDet
         'DEUntil
         '
         Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(322, 90)
+        Me.DEUntil.Location = New System.Drawing.Point(464, 90)
         Me.DEUntil.Name = "DEUntil"
         Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntil.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
@@ -237,12 +232,12 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEUntil.Properties.Mask.EditMask = "dd-MM-yyyy/H-mm"
         Me.DEUntil.Size = New System.Drawing.Size(201, 20)
-        Me.DEUntil.TabIndex = 5
+        Me.DEUntil.TabIndex = 6
         '
         'Luntil
         '
         Me.Luntil.AutoSize = True
-        Me.Luntil.Location = New System.Drawing.Point(305, 93)
+        Me.Luntil.Location = New System.Drawing.Point(447, 93)
         Me.Luntil.Name = "Luntil"
         Me.Luntil.Size = New System.Drawing.Size(11, 13)
         Me.Luntil.TabIndex = 109
@@ -251,7 +246,7 @@ Partial Class FormEmpPayrollOvertimeDet
         'DEStart
         '
         Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(108, 90)
+        Me.DEStart.Location = New System.Drawing.Point(271, 90)
         Me.DEStart.Name = "DEStart"
         Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStart.Properties.CalendarTimeEditing = DevExpress.Utils.DefaultBoolean.[True]
@@ -259,13 +254,13 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy hh:mm:ss tt"
         Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEStart.Properties.Mask.EditMask = "dd-MM-yyyy/H-mm"
-        Me.DEStart.Size = New System.Drawing.Size(191, 20)
-        Me.DEStart.TabIndex = 4
+        Me.DEStart.Size = New System.Drawing.Size(170, 20)
+        Me.DEStart.TabIndex = 5
         '
         'LPropose
         '
         Me.LPropose.AutoSize = True
-        Me.LPropose.Location = New System.Drawing.Point(7, 93)
+        Me.LPropose.Location = New System.Drawing.Point(149, 93)
         Me.LPropose.Name = "LPropose"
         Me.LPropose.Size = New System.Drawing.Size(51, 13)
         Me.LPropose.TabIndex = 107
@@ -273,7 +268,7 @@ Partial Class FormEmpPayrollOvertimeDet
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(10, 41)
+        Me.LabelControl1.Location = New System.Drawing.Point(152, 41)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(34, 13)
         Me.LabelControl1.TabIndex = 116
@@ -281,7 +276,7 @@ Partial Class FormEmpPayrollOvertimeDet
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(10, 67)
+        Me.LabelControl2.Location = New System.Drawing.Point(152, 67)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(92, 13)
         Me.LabelControl2.TabIndex = 117
@@ -289,7 +284,7 @@ Partial Class FormEmpPayrollOvertimeDet
         '
         'LEDayoff
         '
-        Me.LEDayoff.Location = New System.Drawing.Point(108, 38)
+        Me.LEDayoff.Location = New System.Drawing.Point(271, 38)
         Me.LEDayoff.Name = "LEDayoff"
         Me.LEDayoff.Properties.Appearance.Options.UseTextOptions = True
         Me.LEDayoff.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -301,12 +296,12 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.LEDayoff.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("is_dayoff", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dayoff", "Dayoff")})
         Me.LEDayoff.Properties.NullText = ""
         Me.LEDayoff.Properties.ShowFooter = False
-        Me.LEDayoff.Size = New System.Drawing.Size(159, 20)
+        Me.LEDayoff.Size = New System.Drawing.Size(154, 20)
         Me.LEDayoff.TabIndex = 2
         '
         'LECategory
         '
-        Me.LECategory.Location = New System.Drawing.Point(108, 64)
+        Me.LECategory.Location = New System.Drawing.Point(271, 64)
         Me.LECategory.Name = "LECategory"
         Me.LECategory.Properties.Appearance.Options.UseTextOptions = True
         Me.LECategory.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -315,34 +310,34 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.LECategory.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.LECategory.Properties.AppearanceDisabled.Options.UseForeColor = True
         Me.LECategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LECategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_ot_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ot_type", "Category"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("is_event", "Is Event")})
+        Me.LECategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_ot_type", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ot_type", "Category"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("is_event", "Is Event"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ot_point_wages", "Wages Per Point")})
         Me.LECategory.Properties.NullText = ""
         Me.LECategory.Properties.ShowFooter = False
-        Me.LECategory.Size = New System.Drawing.Size(316, 20)
+        Me.LECategory.Size = New System.Drawing.Size(227, 20)
         Me.LECategory.TabIndex = 3
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(7, 145)
+        Me.Label1.Location = New System.Drawing.Point(149, 145)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(78, 13)
+        Me.Label1.Size = New System.Drawing.Size(116, 13)
         Me.Label1.TabIndex = 113
-        Me.Label1.Text = "Total Overtime"
+        Me.Label1.Text = "Total Overtime (hours)"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(7, 119)
+        Me.Label3.Location = New System.Drawing.Point(149, 119)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(34, 13)
+        Me.Label3.Size = New System.Drawing.Size(72, 13)
         Me.Label3.TabIndex = 118
-        Me.Label3.Text = "Break"
+        Me.Label3.Text = "Break (hours)"
         '
         'TEBreak
         '
         Me.TEBreak.EditValue = ""
-        Me.TEBreak.Location = New System.Drawing.Point(108, 116)
+        Me.TEBreak.Location = New System.Drawing.Point(271, 116)
         Me.TEBreak.Name = "TEBreak"
         Me.TEBreak.Properties.Appearance.Options.UseTextOptions = True
         Me.TEBreak.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
@@ -352,30 +347,69 @@ Partial Class FormEmpPayrollOvertimeDet
         Me.TEBreak.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEBreak.Properties.EditValueChangedDelay = 1
         Me.TEBreak.Size = New System.Drawing.Size(89, 20)
-        Me.TEBreak.TabIndex = 119
+        Me.TEBreak.TabIndex = 7
         '
-        'Label4
+        'LabelControl4
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(203, 119)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(43, 13)
-        Me.Label4.TabIndex = 120
-        Me.Label4.Text = "Hour(s)"
+        Me.LabelControl4.Location = New System.Drawing.Point(504, 67)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(79, 13)
+        Me.LabelControl4.TabIndex = 121
+        Me.LabelControl4.Text = "Wages per point"
+        '
+        'TEPointWages
+        '
+        Me.TEPointWages.EditValue = ""
+        Me.TEPointWages.Location = New System.Drawing.Point(589, 64)
+        Me.TEPointWages.Name = "TEPointWages"
+        Me.TEPointWages.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEPointWages.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPointWages.Properties.AppearanceReadOnly.Options.UseTextOptions = True
+        Me.TEPointWages.Properties.AppearanceReadOnly.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPointWages.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEPointWages.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.TEPointWages.Properties.EditValueChangedDelay = 1
+        Me.TEPointWages.Size = New System.Drawing.Size(120, 20)
+        Me.TEPointWages.TabIndex = 4
+        '
+        'PanelControl2
+        '
+        Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.PictureSeason)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Left
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(143, 223)
+        Me.PanelControl2.TabIndex = 154
+        '
+        'PictureSeason
+        '
+        Me.PictureSeason.EditValue = CType(resources.GetObject("PictureSeason.EditValue"), Object)
+        Me.PictureSeason.Location = New System.Drawing.Point(12, 93)
+        Me.PictureSeason.Name = "PictureSeason"
+        Me.PictureSeason.Properties.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.PictureSeason.Properties.Appearance.Options.UseBackColor = True
+        Me.PictureSeason.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PictureSeason.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom
+        Me.PictureSeason.Size = New System.Drawing.Size(124, 113)
+        Me.PictureSeason.TabIndex = 19
         '
         'FormEmpPayrollOvertimeDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(543, 262)
-        Me.Controls.Add(Me.Label4)
+        Me.ClientSize = New System.Drawing.Size(721, 262)
+        Me.Controls.Add(Me.PanelControl2)
+        Me.Controls.Add(Me.TEPoint)
+        Me.Controls.Add(Me.TEPointWages)
+        Me.Controls.Add(Me.LabelControl4)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TEBreak)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.LECategory)
         Me.Controls.Add(Me.LEDayoff)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.LabelControl1)
-        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.TETotHour)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.MENote)
@@ -398,7 +432,6 @@ Partial Class FormEmpPayrollOvertimeDet
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        Me.PanelControl3.PerformLayout()
         CType(Me.TEPoint.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEEmployeeCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEEmployeeName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -411,6 +444,10 @@ Partial Class FormEmpPayrollOvertimeDet
         CType(Me.LEDayoff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LECategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEBreak.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPointWages.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        CType(Me.PictureSeason.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -424,7 +461,6 @@ Partial Class FormEmpPayrollOvertimeDet
     Friend WithEvents BPickEmployee As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TEEmployeeName As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents Label5 As Label
     Friend WithEvents TETotHour As DevExpress.XtraEditors.TextEdit
     Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
@@ -441,5 +477,8 @@ Partial Class FormEmpPayrollOvertimeDet
     Friend WithEvents Label1 As Label
     Friend WithEvents Label3 As Label
     Friend WithEvents TEBreak As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents Label4 As Label
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEPointWages As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents PictureSeason As DevExpress.XtraEditors.PictureEdit
 End Class

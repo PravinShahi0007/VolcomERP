@@ -447,16 +447,16 @@
     End Sub
 
     Private Sub SMEditKet_Click(sender As Object, e As EventArgs) Handles SMEditKet.Click
-        If GVSchedule.RowCount > 0 And Not GVSchedule.IsGroupRow(GVSchedule.FocusedRowHandle) Then
-            FormEmpScheduleKet.id_schedule = GVSchedule.GetFocusedRowCellValue("id_schedule").ToString
-            Try
-                FormEmpScheduleKet.id_leave_type = GVSchedule.GetFocusedRowCellValue("id_leave_type").ToString
-                FormEmpScheduleKet.MEInfo.Text = GVSchedule.GetFocusedRowCellValue("info_leave").ToString
-            Catch ex As Exception
-            End Try
+        'If GVSchedule.RowCount > 0 And Not GVSchedule.IsGroupRow(GVSchedule.FocusedRowHandle) Then
+        '    FormEmpScheduleKet.id_schedule = GVSchedule.GetFocusedRowCellValue("id_schedule").ToString
+        '    Try
+        '        FormEmpScheduleKet.id_leave_type = GVSchedule.GetFocusedRowCellValue("id_leave_type").ToString
+        '        FormEmpScheduleKet.MEInfo.Text = GVSchedule.GetFocusedRowCellValue("info_leave").ToString
+        '    Catch ex As Exception
+        '    End Try
 
-            FormEmpScheduleKet.ShowDialog()
-        End If
+        '    FormEmpScheduleKet.ShowDialog()
+        'End If
     End Sub
 
     Private Sub GVSchedule_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVSchedule.RowCellStyle

@@ -163,7 +163,7 @@ Partial Class FormEmpAttnSum
         Me.XTCReportAttendance.Location = New System.Drawing.Point(0, 38)
         Me.XTCReportAttendance.Name = "XTCReportAttendance"
         Me.XTCReportAttendance.SelectedTabPage = Me.XTPMonthly
-        Me.XTCReportAttendance.Size = New System.Drawing.Size(1006, 290)
+        Me.XTCReportAttendance.Size = New System.Drawing.Size(844, 290)
         Me.XTCReportAttendance.TabIndex = 0
         Me.XTCReportAttendance.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPMonthly, Me.XTPD2D, Me.XTPSchedule, Me.XTPScheduleTable})
         '
@@ -171,7 +171,7 @@ Partial Class FormEmpAttnSum
         '
         Me.XTPMonthly.Controls.Add(Me.GCSum)
         Me.XTPMonthly.Name = "XTPMonthly"
-        Me.XTPMonthly.Size = New System.Drawing.Size(1000, 262)
+        Me.XTPMonthly.Size = New System.Drawing.Size(838, 262)
         Me.XTPMonthly.Text = "Summary"
         '
         'GCSum
@@ -180,7 +180,7 @@ Partial Class FormEmpAttnSum
         Me.GCSum.Location = New System.Drawing.Point(0, 0)
         Me.GCSum.MainView = Me.GVSum
         Me.GCSum.Name = "GCSum"
-        Me.GCSum.Size = New System.Drawing.Size(1000, 262)
+        Me.GCSum.Size = New System.Drawing.Size(838, 262)
         Me.GCSum.TabIndex = 8
         Me.GCSum.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSum})
         '
@@ -1023,21 +1023,21 @@ Partial Class FormEmpAttnSum
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1006, 38)
+        Me.PanelControl2.Size = New System.Drawing.Size(844, 38)
         Me.PanelControl2.TabIndex = 3
         '
         'LEEmployeeStatus
         '
-        Me.LEEmployeeStatus.Location = New System.Drawing.Point(669, 9)
+        Me.LEEmployeeStatus.Location = New System.Drawing.Point(551, 9)
         Me.LEEmployeeStatus.Name = "LEEmployeeStatus"
         Me.LEEmployeeStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEEmployeeStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_employee_active", "Id", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("employee_active", "Status")})
-        Me.LEEmployeeStatus.Size = New System.Drawing.Size(127, 20)
+        Me.LEEmployeeStatus.Size = New System.Drawing.Size(87, 20)
         Me.LEEmployeeStatus.TabIndex = 16
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(632, 12)
+        Me.LabelControl2.Location = New System.Drawing.Point(514, 12)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(31, 13)
         Me.LabelControl2.TabIndex = 15
@@ -1045,16 +1045,16 @@ Partial Class FormEmpAttnSum
         '
         'LEDeptSum
         '
-        Me.LEDeptSum.Location = New System.Drawing.Point(475, 9)
+        Me.LEDeptSum.Location = New System.Drawing.Point(378, 9)
         Me.LEDeptSum.Name = "LEDeptSum"
         Me.LEDeptSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.LEDeptSum.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "Id Departement", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departemen")})
-        Me.LEDeptSum.Size = New System.Drawing.Size(151, 20)
+        Me.LEDeptSum.Size = New System.Drawing.Size(130, 20)
         Me.LEDeptSum.TabIndex = 14
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(406, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(309, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl1.TabIndex = 13
@@ -1063,7 +1063,7 @@ Partial Class FormEmpAttnSum
         'BPrintSum
         '
         Me.BPrintSum.ImageList = Me.LargeImageCollection
-        Me.BPrintSum.Location = New System.Drawing.Point(894, 6)
+        Me.BPrintSum.Location = New System.Drawing.Point(736, 6)
         Me.BPrintSum.Name = "BPrintSum"
         Me.BPrintSum.Size = New System.Drawing.Size(86, 25)
         Me.BPrintSum.TabIndex = 12
@@ -1072,19 +1072,19 @@ Partial Class FormEmpAttnSum
         'DEUntilSum
         '
         Me.DEUntilSum.EditValue = Nothing
-        Me.DEUntilSum.Location = New System.Drawing.Point(273, 9)
+        Me.DEUntilSum.Location = New System.Drawing.Point(195, 9)
         Me.DEUntilSum.Name = "DEUntilSum"
         Me.DEUntilSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilSum.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilSum.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEUntilSum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntilSum.Size = New System.Drawing.Size(127, 20)
+        Me.DEUntilSum.Size = New System.Drawing.Size(108, 20)
         Me.DEUntilSum.TabIndex = 11
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(229, 12)
+        Me.Label3.Location = New System.Drawing.Point(151, 12)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(38, 13)
         Me.Label3.TabIndex = 10
@@ -1093,13 +1093,13 @@ Partial Class FormEmpAttnSum
         'DEStartSum
         '
         Me.DEStartSum.EditValue = Nothing
-        Me.DEStartSum.Location = New System.Drawing.Point(109, 9)
+        Me.DEStartSum.Location = New System.Drawing.Point(51, 9)
         Me.DEStartSum.Name = "DEStartSum"
         Me.DEStartSum.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStartSum.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStartSum.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEStartSum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStartSum.Size = New System.Drawing.Size(114, 20)
+        Me.DEStartSum.Size = New System.Drawing.Size(94, 20)
         Me.DEStartSum.TabIndex = 9
         '
         'Label4
@@ -1107,14 +1107,14 @@ Partial Class FormEmpAttnSum
         Me.Label4.AutoSize = True
         Me.Label4.Location = New System.Drawing.Point(5, 12)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(98, 13)
+        Me.Label4.Size = New System.Drawing.Size(40, 13)
         Me.Label4.TabIndex = 8
-        Me.Label4.Text = "Attendance from : "
+        Me.Label4.Text = "Date : "
         '
         'BViewSum
         '
         Me.BViewSum.ImageList = Me.LargeImageCollection
-        Me.BViewSum.Location = New System.Drawing.Point(802, 6)
+        Me.BViewSum.Location = New System.Drawing.Point(644, 6)
         Me.BViewSum.Name = "BViewSum"
         Me.BViewSum.Size = New System.Drawing.Size(86, 25)
         Me.BViewSum.TabIndex = 1
@@ -1124,7 +1124,7 @@ Partial Class FormEmpAttnSum
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1006, 328)
+        Me.ClientSize = New System.Drawing.Size(844, 328)
         Me.Controls.Add(Me.XTCReportAttendance)
         Me.Controls.Add(Me.PanelControl2)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog

@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormPopUpEmployee
+Partial Class FormEmpPayrollEmp
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -20,13 +20,12 @@ Partial Class FormPopUpEmployee
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormPopUpEmployee))
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollEmp))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.BPick = New DevExpress.XtraEditors.SimpleButton()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnPick = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -34,33 +33,17 @@ Partial Class FormPopUpEmployee
         Me.GridColumnJoinDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPickAll = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPick = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.BCancel)
-        Me.PanelControl3.Controls.Add(Me.BPick)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 315)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(863, 37)
-        Me.PanelControl3.TabIndex = 4
-        '
-        'BCancel
-        '
-        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCancel.ImageIndex = 5
-        Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(713, 2)
-        Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(73, 33)
-        Me.BCancel.TabIndex = 1
-        Me.BCancel.Text = "Cancel"
         '
         'LargeImageCollection
         '
@@ -87,34 +70,42 @@ Partial Class FormPopUpEmployee
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
-        'BPick
-        '
-        Me.BPick.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPick.ImageIndex = 19
-        Me.BPick.ImageList = Me.LargeImageCollection
-        Me.BPick.Location = New System.Drawing.Point(786, 2)
-        Me.BPick.Name = "BPick"
-        Me.BPick.Size = New System.Drawing.Size(75, 33)
-        Me.BPick.TabIndex = 0
-        Me.BPick.Text = "Pilih"
-        '
         'GCEmployee
         '
         Me.GCEmployee.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCEmployee.Location = New System.Drawing.Point(0, 0)
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
-        Me.GCEmployee.Size = New System.Drawing.Size(863, 315)
-        Me.GCEmployee.TabIndex = 5
+        Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck})
+        Me.GCEmployee.Size = New System.Drawing.Size(806, 353)
+        Me.GCEmployee.TabIndex = 7
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
         'GVEmployee
         '
-        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumnJoinDate, Me.GridColumn5, Me.GridColumn6})
+        Me.GVEmployee.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnPick, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumnJoinDate, Me.GridColumn5, Me.GridColumn6})
         Me.GVEmployee.GridControl = Me.GCEmployee
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsFind.AlwaysVisible = True
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnPick
+        '
+        Me.GridColumnPick.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnPick.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnPick.Caption = "*"
+        Me.GridColumnPick.ColumnEdit = Me.RICECheck
+        Me.GridColumnPick.FieldName = "is_check"
+        Me.GridColumnPick.Name = "GridColumnPick"
+        Me.GridColumnPick.Visible = True
+        Me.GridColumnPick.VisibleIndex = 0
+        '
+        'RICECheck
+        '
+        Me.RICECheck.AutoHeight = False
+        Me.RICECheck.Name = "RICECheck"
+        Me.RICECheck.ValueChecked = "yes"
+        Me.RICECheck.ValueUnchecked = "no"
         '
         'GridColumn1
         '
@@ -130,7 +121,7 @@ Partial Class FormPopUpEmployee
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.OptionsColumn.AllowEdit = False
         Me.GridColumn2.Visible = True
-        Me.GridColumn2.VisibleIndex = 0
+        Me.GridColumn2.VisibleIndex = 1
         '
         'GridColumn3
         '
@@ -139,7 +130,7 @@ Partial Class FormPopUpEmployee
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.OptionsColumn.AllowEdit = False
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 1
+        Me.GridColumn3.VisibleIndex = 2
         '
         'GridColumn4
         '
@@ -148,7 +139,7 @@ Partial Class FormPopUpEmployee
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.OptionsColumn.AllowEdit = False
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 2
+        Me.GridColumn4.VisibleIndex = 3
         '
         'GridColumnJoinDate
         '
@@ -158,7 +149,7 @@ Partial Class FormPopUpEmployee
         Me.GridColumnJoinDate.FieldName = "employee_join_date"
         Me.GridColumnJoinDate.Name = "GridColumnJoinDate"
         Me.GridColumnJoinDate.Visible = True
-        Me.GridColumnJoinDate.VisibleIndex = 4
+        Me.GridColumnJoinDate.VisibleIndex = 5
         '
         'GridColumn5
         '
@@ -167,7 +158,7 @@ Partial Class FormPopUpEmployee
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.OptionsColumn.AllowEdit = False
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.VisibleIndex = 4
         '
         'GridColumn6
         '
@@ -176,40 +167,86 @@ Partial Class FormPopUpEmployee
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.OptionsColumn.AllowEdit = False
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 5
+        Me.GridColumn6.VisibleIndex = 6
         '
-        'FormPopUpEmployee
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BPickAll)
+        Me.PanelControl3.Controls.Add(Me.BCancel)
+        Me.PanelControl3.Controls.Add(Me.BPick)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 353)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(806, 37)
+        Me.PanelControl3.TabIndex = 6
+        '
+        'BPickAll
+        '
+        Me.BPickAll.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPickAll.ImageIndex = 19
+        Me.BPickAll.ImageList = Me.LargeImageCollection
+        Me.BPickAll.Location = New System.Drawing.Point(2, 2)
+        Me.BPickAll.Name = "BPickAll"
+        Me.BPickAll.Size = New System.Drawing.Size(178, 33)
+        Me.BPickAll.TabIndex = 2
+        Me.BPickAll.Text = "Insert All Active Employee"
+        '
+        'BCancel
+        '
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.ImageIndex = 5
+        Me.BCancel.ImageList = Me.LargeImageCollection
+        Me.BCancel.Location = New System.Drawing.Point(656, 2)
+        Me.BCancel.Name = "BCancel"
+        Me.BCancel.Size = New System.Drawing.Size(73, 33)
+        Me.BCancel.TabIndex = 1
+        Me.BCancel.Text = "Cancel"
+        '
+        'BPick
+        '
+        Me.BPick.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPick.ImageIndex = 19
+        Me.BPick.ImageList = Me.LargeImageCollection
+        Me.BPick.Location = New System.Drawing.Point(729, 2)
+        Me.BPick.Name = "BPick"
+        Me.BPick.Size = New System.Drawing.Size(75, 33)
+        Me.BPick.TabIndex = 0
+        Me.BPick.Text = "Insert"
+        '
+        'FormEmpPayrollEmp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(863, 352)
+        Me.ClientSize = New System.Drawing.Size(806, 390)
         Me.Controls.Add(Me.GCEmployee)
         Me.Controls.Add(Me.PanelControl3)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.MaximizeBox = False
-        Me.MinimizeBox = False
-        Me.Name = "FormPopUpEmployee"
+        Me.Name = "FormEmpPayrollEmp"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Pilih Karyawan"
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
+        Me.Text = "Insert Employee"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BPick As DevExpress.XtraEditors.SimpleButton
+
+    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents GCEmployee As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnJoinDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnJoinDate As DevExpress.XtraGrid.Columns.GridColumn
-    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPick As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPickAll As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnPick As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

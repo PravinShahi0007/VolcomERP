@@ -4,7 +4,7 @@
         load_emp()
     End Sub
     Sub load_emp()
-        Dim query As String = "SELECT emp.id_employee,emp.employee_code,emp.employee_name,dep.departement,emp.employee_join_date,emp.employee_position,active.employee_active"
+        Dim query As String = "SELECT emp.id_employee,dep.is_store,emp.employee_code,emp.employee_name,dep.departement,emp.employee_join_date,emp.employee_position,active.employee_active"
         query += " FROM tb_m_employee emp"
         query += " INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement"
         query += " INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level "
@@ -22,7 +22,7 @@
         GCEmployee.DataSource = data
         GVEmployee.BestFitColumns()
         '
-
+        GVEmployee.BestFitColumns()
     End Sub
 
     Private Sub FormPopUpEmployee_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -72,6 +72,7 @@
             FormEmpPayrollOvertimeDet.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
             FormEmpPayrollOvertimeDet.TEEmployeeCode.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
             FormEmpPayrollOvertimeDet.TEEmployeeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            FormEmpPayrollOvertimeDet.is_store_employee = GVEmployee.GetFocusedRowCellValue("is_store").ToString
             FormEmpPayrollOvertimeDet.LEDayoff.Focus()
             Close()
         End If
