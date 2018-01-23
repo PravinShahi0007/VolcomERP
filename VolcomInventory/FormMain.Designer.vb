@@ -2334,13 +2334,15 @@ Partial Class FormMain
         '
         'NBAWB
         '
-        Me.NBAWB.Caption = "Air Ways Bill"
+        Me.NBAWB.Caption = "Air Ways Bill (WH)"
         Me.NBAWB.Name = "NBAWB"
+        Me.NBAWB.SmallImageIndex = 35
         '
         'NBCargoRate
         '
         Me.NBCargoRate.Caption = "Cargo Rate"
         Me.NBCargoRate.Name = "NBCargoRate"
+        Me.NBCargoRate.SmallImageIndex = 34
         '
         'NBImportDO
         '
