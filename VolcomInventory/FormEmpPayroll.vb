@@ -54,4 +54,24 @@
             GVPayroll.BestFitColumns()
         End If
     End Sub
+
+    Private Sub GVPayroll_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GVPayroll.PopupMenuShowing
+        If GVPayroll.RowCount > 0 And GVPayroll.FocusedRowHandle >= 0 Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
+            If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
+                view.FocusedRowHandle = hitInfo.RowHandle
+                ViewPopWorksheet.Show(view.GridControl, e.Point)
+            End If
+        End If
+    End Sub
+
+    Private Sub CMDelEmp_Click(sender As Object, e As EventArgs) Handles CMDelEmp.Click
+        Dim id_employee As String = GVPayroll.GetFocusedRowCellValue("id_employee").ToString
+        Dim id_payroll As String = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        '
+        Dim query As String = "DELETE FROM tb_emp_payroll_det WHERE id_employee='" & id_employee & "' AND id_payroll='" & id_payroll & "'"
+        execute_non_query(query, True, "", "", "", "")
+        load_payroll_detail()
+    End Sub
 End Class

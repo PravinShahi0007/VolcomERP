@@ -24,6 +24,8 @@ Partial Class FormEmpPayrollEmp
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnPick = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -32,17 +34,15 @@ Partial Class FormEmpPayrollEmp
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPickAll = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BPick = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnPick = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RICECheck = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -88,6 +88,24 @@ Partial Class FormEmpPayrollEmp
         Me.GVEmployee.Name = "GVEmployee"
         Me.GVEmployee.OptionsFind.AlwaysVisible = True
         Me.GVEmployee.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnPick
+        '
+        Me.GridColumnPick.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnPick.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.GridColumnPick.Caption = "*"
+        Me.GridColumnPick.ColumnEdit = Me.RICECheck
+        Me.GridColumnPick.FieldName = "is_check"
+        Me.GridColumnPick.Name = "GridColumnPick"
+        Me.GridColumnPick.Visible = True
+        Me.GridColumnPick.VisibleIndex = 0
+        '
+        'RICECheck
+        '
+        Me.RICECheck.AutoHeight = False
+        Me.RICECheck.Name = "RICECheck"
+        Me.RICECheck.ValueChecked = "yes"
+        Me.RICECheck.ValueUnchecked = "no"
         '
         'GridColumn1
         '
@@ -153,7 +171,7 @@ Partial Class FormEmpPayrollEmp
         '
         'PanelControl3
         '
-        Me.PanelControl3.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl3.Controls.Add(Me.BPickAll)
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BPick)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -161,6 +179,17 @@ Partial Class FormEmpPayrollEmp
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(806, 37)
         Me.PanelControl3.TabIndex = 6
+        '
+        'BPickAll
+        '
+        Me.BPickAll.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPickAll.ImageIndex = 19
+        Me.BPickAll.ImageList = Me.LargeImageCollection
+        Me.BPickAll.Location = New System.Drawing.Point(2, 2)
+        Me.BPickAll.Name = "BPickAll"
+        Me.BPickAll.Size = New System.Drawing.Size(178, 33)
+        Me.BPickAll.TabIndex = 2
+        Me.BPickAll.Text = "Insert All Active Employee"
         '
         'BCancel
         '
@@ -184,35 +213,6 @@ Partial Class FormEmpPayrollEmp
         Me.BPick.TabIndex = 0
         Me.BPick.Text = "Insert"
         '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton1.ImageIndex = 19
-        Me.SimpleButton1.ImageList = Me.LargeImageCollection
-        Me.SimpleButton1.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(178, 33)
-        Me.SimpleButton1.TabIndex = 2
-        Me.SimpleButton1.Text = "Insert All Active Employee"
-        '
-        'GridColumnPick
-        '
-        Me.GridColumnPick.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnPick.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnPick.Caption = "*"
-        Me.GridColumnPick.ColumnEdit = Me.RICECheck
-        Me.GridColumnPick.FieldName = "is_check"
-        Me.GridColumnPick.Name = "GridColumnPick"
-        Me.GridColumnPick.Visible = True
-        Me.GridColumnPick.VisibleIndex = 0
-        '
-        'RICECheck
-        '
-        Me.RICECheck.AutoHeight = False
-        Me.RICECheck.Name = "RICECheck"
-        Me.RICECheck.ValueChecked = "yes"
-        Me.RICECheck.ValueUnchecked = "no"
-        '
         'FormEmpPayrollEmp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -226,9 +226,9 @@ Partial Class FormEmpPayrollEmp
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -246,7 +246,7 @@ Partial Class FormEmpPayrollEmp
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPick As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPickAll As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnPick As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

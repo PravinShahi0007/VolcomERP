@@ -70,6 +70,8 @@ Partial Class FormEmpPayroll
         Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.BOvertime = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.ViewPopWorksheet = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CMDelEmp = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.XTCPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPayroll.SuspendLayout()
         Me.XTPPeriode.SuspendLayout()
@@ -81,6 +83,7 @@ Partial Class FormEmpPayroll
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewPopWorksheet.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCPayroll
@@ -218,6 +221,7 @@ Partial Class FormEmpPayroll
         '
         Me.GridColumnNIP.Caption = "NIP"
         Me.GridColumnNIP.FieldName = "employee_code"
+        Me.GridColumnNIP.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnNIP.Name = "GridColumnNIP"
         Me.GridColumnNIP.Visible = True
         Me.GridColumnNIP.VisibleIndex = 0
@@ -226,6 +230,7 @@ Partial Class FormEmpPayroll
         '
         Me.GridColumnName.Caption = "Name"
         Me.GridColumnName.FieldName = "employee_name"
+        Me.GridColumnName.Fixed = DevExpress.XtraGrid.Columns.FixedStyle.Left
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 1
@@ -265,6 +270,8 @@ Partial Class FormEmpPayroll
         'GridColumnContractEnd
         '
         Me.GridColumnContractEnd.Caption = "Contract End"
+        Me.GridColumnContractEnd.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnContractEnd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnContractEnd.FieldName = "end_period"
         Me.GridColumnContractEnd.Name = "GridColumnContractEnd"
         Me.GridColumnContractEnd.Visible = True
@@ -281,6 +288,8 @@ Partial Class FormEmpPayroll
         'GridColumnTotOvertime
         '
         Me.GridColumnTotOvertime.Caption = "Overtime (hours)"
+        Me.GridColumnTotOvertime.DisplayFormat.FormatString = "N1"
+        Me.GridColumnTotOvertime.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTotOvertime.FieldName = "total_ot"
         Me.GridColumnTotOvertime.Name = "GridColumnTotOvertime"
         Me.GridColumnTotOvertime.Visible = True
@@ -289,6 +298,8 @@ Partial Class FormEmpPayroll
         'GridColumnBasicSalary
         '
         Me.GridColumnBasicSalary.Caption = "Basic Salary"
+        Me.GridColumnBasicSalary.DisplayFormat.FormatString = "N2"
+        Me.GridColumnBasicSalary.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnBasicSalary.FieldName = "basic_salary"
         Me.GridColumnBasicSalary.Name = "GridColumnBasicSalary"
         Me.GridColumnBasicSalary.Visible = True
@@ -297,6 +308,8 @@ Partial Class FormEmpPayroll
         'GridColumnJobAllowance
         '
         Me.GridColumnJobAllowance.Caption = "Job Allowance"
+        Me.GridColumnJobAllowance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnJobAllowance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnJobAllowance.FieldName = "allow_job"
         Me.GridColumnJobAllowance.Name = "GridColumnJobAllowance"
         Me.GridColumnJobAllowance.Visible = True
@@ -305,6 +318,8 @@ Partial Class FormEmpPayroll
         'GridColumnMealAllowance
         '
         Me.GridColumnMealAllowance.Caption = "Meal Allowance"
+        Me.GridColumnMealAllowance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnMealAllowance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnMealAllowance.FieldName = "allow_meal"
         Me.GridColumnMealAllowance.Name = "GridColumnMealAllowance"
         Me.GridColumnMealAllowance.Visible = True
@@ -313,6 +328,8 @@ Partial Class FormEmpPayroll
         'GridColumnTransportAllowance
         '
         Me.GridColumnTransportAllowance.Caption = "Transport Allowance"
+        Me.GridColumnTransportAllowance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTransportAllowance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTransportAllowance.FieldName = "allow_trans"
         Me.GridColumnTransportAllowance.Name = "GridColumnTransportAllowance"
         Me.GridColumnTransportAllowance.Visible = True
@@ -321,6 +338,8 @@ Partial Class FormEmpPayroll
         'GridColumnHousingAllowance
         '
         Me.GridColumnHousingAllowance.Caption = "Housing Allowance"
+        Me.GridColumnHousingAllowance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnHousingAllowance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnHousingAllowance.FieldName = "allow_house"
         Me.GridColumnHousingAllowance.Name = "GridColumnHousingAllowance"
         Me.GridColumnHousingAllowance.Visible = True
@@ -329,6 +348,8 @@ Partial Class FormEmpPayroll
         'GridColumnVehicleAttndAllowance
         '
         Me.GridColumnVehicleAttndAllowance.Caption = "Vehicle & Attnd Allowance"
+        Me.GridColumnVehicleAttndAllowance.DisplayFormat.FormatString = "N2"
+        Me.GridColumnVehicleAttndAllowance.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnVehicleAttndAllowance.FieldName = "allow_car"
         Me.GridColumnVehicleAttndAllowance.Name = "GridColumnVehicleAttndAllowance"
         Me.GridColumnVehicleAttndAllowance.Visible = True
@@ -337,6 +358,8 @@ Partial Class FormEmpPayroll
         'GridColumnTotTHP
         '
         Me.GridColumnTotTHP.Caption = "THP Total"
+        Me.GridColumnTotTHP.DisplayFormat.FormatString = "N2"
+        Me.GridColumnTotTHP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTotTHP.FieldName = "tot_thp"
         Me.GridColumnTotTHP.Name = "GridColumnTotTHP"
         Me.GridColumnTotTHP.Visible = True
@@ -345,6 +368,8 @@ Partial Class FormEmpPayroll
         'GridColumnPointRegular
         '
         Me.GridColumnPointRegular.Caption = "Point Reguler"
+        Me.GridColumnPointRegular.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointRegular.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPointRegular.FieldName = "reg_total_point"
         Me.GridColumnPointRegular.Name = "GridColumnPointRegular"
         Me.GridColumnPointRegular.Visible = True
@@ -353,6 +378,8 @@ Partial Class FormEmpPayroll
         'GridColumnOTReguler
         '
         Me.GridColumnOTReguler.Caption = "Overtime Reguler"
+        Me.GridColumnOTReguler.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOTReguler.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOTReguler.FieldName = "reg_total_wages"
         Me.GridColumnOTReguler.Name = "GridColumnOTReguler"
         Me.GridColumnOTReguler.Visible = True
@@ -361,6 +388,8 @@ Partial Class FormEmpPayroll
         'GridColumnPointMkt
         '
         Me.GridColumnPointMkt.Caption = "Point Event Marketing"
+        Me.GridColumnPointMkt.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointMkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPointMkt.FieldName = "mkt_total_point"
         Me.GridColumnPointMkt.Name = "GridColumnPointMkt"
         Me.GridColumnPointMkt.Visible = True
@@ -369,6 +398,8 @@ Partial Class FormEmpPayroll
         'GridColumnOtMkt
         '
         Me.GridColumnOtMkt.Caption = "Overtime Marketing"
+        Me.GridColumnOtMkt.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOtMkt.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOtMkt.FieldName = "mkt_total_wages"
         Me.GridColumnOtMkt.Name = "GridColumnOtMkt"
         Me.GridColumnOtMkt.Visible = True
@@ -377,6 +408,8 @@ Partial Class FormEmpPayroll
         'GridColumnPointIA
         '
         Me.GridColumnPointIA.Caption = "Point Event IA"
+        Me.GridColumnPointIA.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointIA.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPointIA.FieldName = "ia_total_point"
         Me.GridColumnPointIA.Name = "GridColumnPointIA"
         Me.GridColumnPointIA.Visible = True
@@ -385,6 +418,8 @@ Partial Class FormEmpPayroll
         'GridColumnOtIA
         '
         Me.GridColumnOtIA.Caption = "Overtime IA"
+        Me.GridColumnOtIA.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOtIA.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOtIA.FieldName = "ia_total_wages"
         Me.GridColumnOtIA.Name = "GridColumnOtIA"
         Me.GridColumnOtIA.Visible = True
@@ -393,6 +428,8 @@ Partial Class FormEmpPayroll
         'GridColumnPointSales
         '
         Me.GridColumnPointSales.Caption = "Point Event Sales"
+        Me.GridColumnPointSales.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointSales.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPointSales.FieldName = "sales_total_point"
         Me.GridColumnPointSales.Name = "GridColumnPointSales"
         Me.GridColumnPointSales.Visible = True
@@ -401,6 +438,8 @@ Partial Class FormEmpPayroll
         'GridColumnOtSales
         '
         Me.GridColumnOtSales.Caption = "Overtime Sales"
+        Me.GridColumnOtSales.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOtSales.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOtSales.FieldName = "sales_total_wages"
         Me.GridColumnOtSales.Name = "GridColumnOtSales"
         Me.GridColumnOtSales.Visible = True
@@ -409,6 +448,8 @@ Partial Class FormEmpPayroll
         'GridColumnPointProd
         '
         Me.GridColumnPointProd.Caption = "Point Event Production"
+        Me.GridColumnPointProd.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointProd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPointProd.FieldName = "prod_total_point"
         Me.GridColumnPointProd.Name = "GridColumnPointProd"
         Me.GridColumnPointProd.Visible = True
@@ -417,6 +458,8 @@ Partial Class FormEmpPayroll
         'GridColumnOTProd
         '
         Me.GridColumnOTProd.Caption = "Overtime Production"
+        Me.GridColumnOTProd.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOTProd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOTProd.FieldName = "prod_total_wages"
         Me.GridColumnOTProd.Name = "GridColumnOTProd"
         Me.GridColumnOTProd.Visible = True
@@ -425,6 +468,8 @@ Partial Class FormEmpPayroll
         'GridColumnPointGeneral
         '
         Me.GridColumnPointGeneral.Caption = "Point Event General/Other"
+        Me.GridColumnPointGeneral.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPointGeneral.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPointGeneral.FieldName = "general_total_point"
         Me.GridColumnPointGeneral.Name = "GridColumnPointGeneral"
         Me.GridColumnPointGeneral.Visible = True
@@ -433,6 +478,8 @@ Partial Class FormEmpPayroll
         'GridColumnOtGeneral
         '
         Me.GridColumnOtGeneral.Caption = "Overtime General/Other"
+        Me.GridColumnOtGeneral.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOtGeneral.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOtGeneral.FieldName = "general_total_wages"
         Me.GridColumnOtGeneral.Name = "GridColumnOtGeneral"
         Me.GridColumnOtGeneral.Visible = True
@@ -519,6 +566,18 @@ Partial Class FormEmpPayroll
         Me.SimpleButton1.TabIndex = 0
         Me.SimpleButton1.Text = "Setting"
         '
+        'ViewPopWorksheet
+        '
+        Me.ViewPopWorksheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMDelEmp})
+        Me.ViewPopWorksheet.Name = "ViewPreDel"
+        Me.ViewPopWorksheet.Size = New System.Drawing.Size(173, 48)
+        '
+        'CMDelEmp
+        '
+        Me.CMDelEmp.Name = "CMDelEmp"
+        Me.CMDelEmp.Size = New System.Drawing.Size(172, 22)
+        Me.CMDelEmp.Text = "Remove Employee"
+        '
         'FormEmpPayroll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -542,6 +601,7 @@ Partial Class FormEmpPayroll
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewPopWorksheet.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -595,4 +655,6 @@ Partial Class FormEmpPayroll
     Friend WithEvents GridColumnPointGeneral As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOtGeneral As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BGetEmployee As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ViewPopWorksheet As ContextMenuStrip
+    Friend WithEvents CMDelEmp As ToolStripMenuItem
 End Class
