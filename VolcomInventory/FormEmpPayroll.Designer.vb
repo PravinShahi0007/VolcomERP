@@ -570,7 +570,7 @@ Partial Class FormEmpPayroll
         '
         Me.ViewPopWorksheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMDelEmp})
         Me.ViewPopWorksheet.Name = "ViewPreDel"
-        Me.ViewPopWorksheet.Size = New System.Drawing.Size(173, 48)
+        Me.ViewPopWorksheet.Size = New System.Drawing.Size(173, 26)
         '
         'CMDelEmp
         '
