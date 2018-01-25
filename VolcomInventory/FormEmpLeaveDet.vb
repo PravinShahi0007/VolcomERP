@@ -357,6 +357,8 @@
             stopCustom("Sisa cuti tidak mencukupi.")
         ElseIf LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "1" Then
             stopCustom("Sakit harus menggunakan form atau DC.")
+        ElseIf TEAdvLeaveTot.EditValue > Integer.Parse(get_opt_emp_field("notif_max_adv_hour")) Then
+            stopCustom("Advance Leave sudah melebihi batas yang ditentukan.")
         Else
             If LELeaveType.EditValue.ToString = "2" And LEFormDC.EditValue.ToString = "2" Then
                 'check if sudah form sekali dalam sebulan.
@@ -658,13 +660,18 @@
         For i As Integer = GVLeaveDet.RowCount - 1 To 0 Step -1
             GVLeaveDet.DeleteRow(i)
         Next
+        '
+        If LELeaveType.EditValue.ToString = "" Then 'sick
+            LEFormDC.ItemIndex = LEFormDC.Properties.GetDataSourceRowIndex("id_form_dc", "2")
+        Else
+            LEFormDC.ItemIndex = LEFormDC.Properties.GetDataSourceRowIndex("id_form_dc", "1")
+        End If
     End Sub
 
     Private Sub BPickChange_Click(sender As Object, e As EventArgs) Handles BPickChange.Click
         FormPopUpEmployee.id_popup = "2"
         FormPopUpEmployee.ShowDialog()
     End Sub
-
 
     Sub path_file(ByVal TextEdit As DevExpress.XtraEditors.TextEdit)
         Dim fd As OpenFileDialog = New OpenFileDialog()
