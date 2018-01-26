@@ -961,6 +961,12 @@
     <Compile Include="FormFGDesignList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGFirstDel.Designer.vb">
+      <DependentUpon>FormFGFirstDel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGFirstDel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGLineListMoveSeason.Designer.vb">
       <DependentUpon>FormFGLineListMoveSeason.vb</DependentUpon>
     </Compile>
@@ -5502,6 +5508,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGDesignList.resx">
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGFirstDel.resx">
+      <DependentUpon>FormFGFirstDel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGLineListMoveSeason.resx">
       <DependentUpon>FormFGLineListMoveSeason.vb</DependentUpon>
