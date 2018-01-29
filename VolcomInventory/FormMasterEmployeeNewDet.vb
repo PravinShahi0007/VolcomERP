@@ -162,7 +162,25 @@
             TxtChild1.Text = data.Rows(0)("child1").ToString
             TxtChild2.Text = data.Rows(0)("child2").ToString
             TxtChild3.Text = data.Rows(0)("child3").ToString
-
+            '
+            If data.Rows(0)("is_bpjs_volcom").ToString = "yes" Then
+                CEBPJS.Checked = True
+            Else
+                CEBPJS.Checked = False
+            End If
+            '
+            If data.Rows(0)("is_jp").ToString = "yes" Then
+                CEJP.Checked = True
+            Else
+                CEJP.Checked = False
+            End If
+            '
+            If data.Rows(0)("is_jht").ToString = "yes" Then
+                CEJHT.Checked = True
+            Else
+                CEJHT.Checked = False
+            End If
+            '
             'load img
             pre_viewImages("4", PEEmployee, id_employee, False)
         End If
@@ -349,11 +367,24 @@
             Dim child1 As String = TxtChild1.Text
             Dim child2 As String = TxtChild2.Text
             Dim child3 As String = TxtChild3.Text
-
+            '
+            Dim is_bpjs_volcom As String = "2"
+            Dim is_jp As String = "2"
+            Dim is_jht As String = "2"
+            If CEBPJS.Checked = True Then
+                is_bpjs_volcom = "1"
+            End If
+            If CEJP.Checked = True Then
+                is_jp = "1"
+            End If
+            If CEJHT.Checked = True Then
+                is_jht = "1"
+            End If
+            '
             If action = "ins" Then
                 'main
-                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other) "
-                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + employee_bpjs_kesehatan + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_m_employee(employee_code, employee_name, employee_nick_name, employee_initial_name, employee_join_date, employee_last_date, id_employee_active, id_sex, id_blood_type, employee_pob, employee_dob, id_religion, id_country, employee_ethnic, id_education, employee_ktp, employee_ktp_period, employee_passport, employee_passport_period, employee_bpjs_tk, employee_bpjs_tk_date, employee_bpjs_kesehatan, employee_bpjs_kesehatan_date, employee_npwp, employee_no_rek, address_primary, address_additional, phone, phone_mobile, phone_ext, email_lokal, email_external, email_other,is_bpjs_volcom,is_jp,is_jht) "
+                query += "VALUES('" + employee_code + "', '" + employee_name + "', '" + employee_nick_name + "', '" + employee_initial_name + "', '" + employee_join_date + "', " + employee_last_date + ", '" + id_employee_active + "', '" + id_sex + "', '" + id_blood_type + "', '" + employee_pob + "', '" + employee_dob + "', '" + id_religion + "', '" + id_country + "', '" + employee_ethnic + "', '" + id_education + "', '" + employee_ktp + "', " + employee_ktp_period + ", '" + employee_passport + "', " + employee_passport_period + ", '" + employee_bpjs_tk + "', " + employee_bpjs_tk_date + ", '" + employee_bpjs_kesehatan + "', " + employee_bpjs_kesehatan_date + ", '" + employee_npwp + "', '" + employee_no_rek + "', '" + address_primary + "', '" + address_additional + "', '" + phone + "', '" + phone_mobile + "', '" + phone_ext + "', '" + email_lokal + "', '" + email_external + "', '" + email_other + "','" & is_bpjs_volcom & "','" & is_jp & "','" & is_jht & "'); SELECT LAST_INSERT_ID(); "
                 id_employee = execute_query(query, 0, True, "", "", "", "")
 
                 'pic
@@ -409,7 +440,10 @@
                 query += "wife='" + wife + "', "
                 query += "child1='" + child1 + "', "
                 query += "child2='" + child2 + "', "
-                query += "child3='" + child3 + "' "
+                query += "child3='" + child3 + "', "
+                query += "is_bpjs_volcom='" + is_bpjs_volcom + "', "
+                query += "is_jp='" + is_jp + "', "
+                query += "is_jht='" + is_jht + "' "
                 query += "WHERE id_employee=" + id_employee + " "
                 execute_non_query(query, True, "", "", "", "")
 
@@ -428,8 +462,6 @@
             End If
         End If
     End Sub
-
-
 
     Private Sub BtnAddNationality_Click(sender As Object, e As EventArgs) Handles BtnAddNationality.Click
         Cursor = Cursors.WaitCursor

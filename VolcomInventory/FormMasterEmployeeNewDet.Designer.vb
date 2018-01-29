@@ -52,6 +52,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlMain = New DevExpress.XtraEditors.PanelControl()
         Me.XTPEmployee = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
+        Me.CEJP = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEJHT = New DevExpress.XtraEditors.CheckEdit()
+        Me.CEBPJS = New DevExpress.XtraEditors.CheckEdit()
         Me.TENoRek = New DevExpress.XtraEditors.TextEdit()
         Me.Label37 = New System.Windows.Forms.Label()
         Me.Label36 = New System.Windows.Forms.Label()
@@ -145,6 +148,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.GridColumnAllowHouse = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnAllowCar = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEffectiveDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnDelSalary = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddSalary = New DevExpress.XtraEditors.SimpleButton()
@@ -153,7 +157,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.DELastDay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -178,6 +181,9 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.XTPEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPEmployee.SuspendLayout()
         Me.XTPGeneral.SuspendLayout()
+        CType(Me.CEJP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEJHT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CEBPJS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENoRek.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERegBPJSKes.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DERegBPJSKes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -551,6 +557,9 @@ Partial Class FormMasterEmployeeNewDet
         '
         'XTPGeneral
         '
+        Me.XTPGeneral.Controls.Add(Me.CEJP)
+        Me.XTPGeneral.Controls.Add(Me.CEJHT)
+        Me.XTPGeneral.Controls.Add(Me.CEBPJS)
         Me.XTPGeneral.Controls.Add(Me.TENoRek)
         Me.XTPGeneral.Controls.Add(Me.Label37)
         Me.XTPGeneral.Controls.Add(Me.Label36)
@@ -607,6 +616,36 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.Name = "XTPGeneral"
         Me.XTPGeneral.Size = New System.Drawing.Size(797, 422)
         Me.XTPGeneral.Text = "General"
+        '
+        'CEJP
+        '
+        Me.CEJP.Location = New System.Drawing.Point(459, 168)
+        Me.CEJP.Name = "CEJP"
+        Me.CEJP.Properties.Caption = "JP"
+        Me.CEJP.Properties.ValueChecked = "yes"
+        Me.CEJP.Properties.ValueUnchecked = "no"
+        Me.CEJP.Size = New System.Drawing.Size(36, 19)
+        Me.CEJP.TabIndex = 8904
+        '
+        'CEJHT
+        '
+        Me.CEJHT.Location = New System.Drawing.Point(501, 168)
+        Me.CEJHT.Name = "CEJHT"
+        Me.CEJHT.Properties.Caption = "JHT"
+        Me.CEJHT.Properties.ValueChecked = "yes"
+        Me.CEJHT.Properties.ValueUnchecked = "no"
+        Me.CEJHT.Size = New System.Drawing.Size(56, 19)
+        Me.CEJHT.TabIndex = 8903
+        '
+        'CEBPJS
+        '
+        Me.CEBPJS.Location = New System.Drawing.Point(459, 194)
+        Me.CEBPJS.Name = "CEBPJS"
+        Me.CEBPJS.Properties.Caption = "BPJS Volcom"
+        Me.CEBPJS.Properties.ValueChecked = "yes"
+        Me.CEBPJS.Properties.ValueUnchecked = "no"
+        Me.CEBPJS.Size = New System.Drawing.Size(97, 19)
+        Me.CEBPJS.TabIndex = 8902
         '
         'TENoRek
         '
@@ -748,7 +787,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.TxtBPJSSehat.Location = New System.Drawing.Point(107, 194)
         Me.TxtBPJSSehat.Name = "TxtBPJSSehat"
-        Me.TxtBPJSSehat.Size = New System.Drawing.Size(472, 20)
+        Me.TxtBPJSSehat.Size = New System.Drawing.Size(346, 20)
         Me.TxtBPJSSehat.TabIndex = 14
         '
         'Label25
@@ -885,7 +924,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.TxtBPJSTK.Location = New System.Drawing.Point(107, 168)
         Me.TxtBPJSTK.Name = "TxtBPJSTK"
-        Me.TxtBPJSTK.Size = New System.Drawing.Size(472, 20)
+        Me.TxtBPJSTK.Size = New System.Drawing.Size(346, 20)
         Me.TxtBPJSTK.TabIndex = 12
         '
         'Label17
@@ -1462,6 +1501,14 @@ Partial Class FormMasterEmployeeNewDet
         Me.GridColumnEffectiveDate.Visible = True
         Me.GridColumnEffectiveDate.VisibleIndex = 6
         '
+        'GridColumnStatus
+        '
+        Me.GridColumnStatus.Caption = "Status"
+        Me.GridColumnStatus.FieldName = "is_cancel"
+        Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.Visible = True
+        Me.GridColumnStatus.VisibleIndex = 7
+        '
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
@@ -1543,14 +1590,6 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'GridColumnStatus
-        '
-        Me.GridColumnStatus.Caption = "Status"
-        Me.GridColumnStatus.FieldName = "is_cancel"
-        Me.GridColumnStatus.Name = "GridColumnStatus"
-        Me.GridColumnStatus.Visible = True
-        Me.GridColumnStatus.VisibleIndex = 7
-        '
         'FormMasterEmployeeNewDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1591,6 +1630,9 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPEmployee.ResumeLayout(False)
         Me.XTPGeneral.ResumeLayout(False)
         Me.XTPGeneral.PerformLayout()
+        CType(Me.CEJP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEJHT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CEBPJS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENoRek.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERegBPJSKes.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DERegBPJSKes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1782,4 +1824,7 @@ Partial Class FormMasterEmployeeNewDet
     Friend WithEvents TENoRek As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Label37 As Label
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CEJP As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEJHT As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents CEBPJS As DevExpress.XtraEditors.CheckEdit
 End Class
