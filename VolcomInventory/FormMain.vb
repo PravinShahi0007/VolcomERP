@@ -11080,4 +11080,17 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBCompareStockCard_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompareStockCard.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGCompare.MdiParent = Me
+            FormFGCompare.Show()
+            FormFGCompare.WindowState = FormWindowState.Maximized
+            FormFGCompare.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
