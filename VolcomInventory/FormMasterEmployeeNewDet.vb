@@ -463,8 +463,6 @@
         End If
     End Sub
 
-
-
     Private Sub BtnAddNationality_Click(sender As Object, e As EventArgs) Handles BtnAddNationality.Click
         Cursor = Cursors.WaitCursor
         FormMasterArea.quick_edit = "1"

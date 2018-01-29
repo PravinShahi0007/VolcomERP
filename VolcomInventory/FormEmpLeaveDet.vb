@@ -661,7 +661,7 @@
             GVLeaveDet.DeleteRow(i)
         Next
         '
-        If LELeaveType.EditValue.ToString = "" Then 'sick
+        If LELeaveType.EditValue.ToString = "2" Then 'sick
             LEFormDC.ItemIndex = LEFormDC.Properties.GetDataSourceRowIndex("id_form_dc", "2")
         Else
             LEFormDC.ItemIndex = LEFormDC.Properties.GetDataSourceRowIndex("id_form_dc", "1")
