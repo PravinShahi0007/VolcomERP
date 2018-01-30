@@ -23,6 +23,7 @@ Partial Class FormFGCompareStockCard
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -59,12 +60,20 @@ Partial Class FormFGCompareStockCard
         '
         'GVData
         '
+        Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand1})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.Editable = False
         Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'gridBand1
+        '
+        Me.gridBand1.Caption = "gridBand1"
+        Me.gridBand1.Name = "gridBand1"
+        Me.gridBand1.VisibleIndex = 0
+        Me.gridBand1.Width = 75
         '
         'FormFGCompareStockCard
         '
@@ -87,4 +96,5 @@ Partial Class FormFGCompareStockCard
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCData As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVData As DevExpress.XtraGrid.Views.BandedGrid.BandedGridView
+    Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class
