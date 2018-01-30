@@ -65,6 +65,15 @@ Partial Class FormFGTracking
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelPrice = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelPriceType = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelProductStatus = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControlFilter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlFilter.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,6 +176,15 @@ Partial Class FormFGTracking
         'GroupControlInfo
         '
         Me.GroupControlInfo.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlInfo.Controls.Add(Me.LabelProductStatus)
+        Me.GroupControlInfo.Controls.Add(Me.LabelControl23)
+        Me.GroupControlInfo.Controls.Add(Me.LabelControl24)
+        Me.GroupControlInfo.Controls.Add(Me.LabelPriceType)
+        Me.GroupControlInfo.Controls.Add(Me.LabelControl18)
+        Me.GroupControlInfo.Controls.Add(Me.LabelControl20)
+        Me.GroupControlInfo.Controls.Add(Me.LabelPrice)
+        Me.GroupControlInfo.Controls.Add(Me.LabelControl9)
+        Me.GroupControlInfo.Controls.Add(Me.LabelControl12)
         Me.GroupControlInfo.Controls.Add(Me.LabelColor)
         Me.GroupControlInfo.Controls.Add(Me.LabelControl21)
         Me.GroupControlInfo.Controls.Add(Me.LabelControl19)
@@ -521,6 +539,87 @@ Partial Class FormFGTracking
         Me.GridColumnSize.VisibleIndex = 3
         Me.GridColumnSize.Width = 56
         '
+        'LabelPrice
+        '
+        Me.LabelPrice.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPrice.Location = New System.Drawing.Point(630, 50)
+        Me.LabelPrice.Name = "LabelPrice"
+        Me.LabelPrice.Size = New System.Drawing.Size(5, 16)
+        Me.LabelPrice.TabIndex = 22
+        Me.LabelPrice.Text = "-"
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(610, 50)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(5, 16)
+        Me.LabelControl9.TabIndex = 21
+        Me.LabelControl9.Text = ":"
+        '
+        'LabelControl12
+        '
+        Me.LabelControl12.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl12.Location = New System.Drawing.Point(462, 50)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(75, 16)
+        Me.LabelControl12.TabIndex = 20
+        Me.LabelControl12.Text = "Current Price"
+        '
+        'LabelPriceType
+        '
+        Me.LabelPriceType.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelPriceType.Location = New System.Drawing.Point(630, 73)
+        Me.LabelPriceType.Name = "LabelPriceType"
+        Me.LabelPriceType.Size = New System.Drawing.Size(5, 16)
+        Me.LabelPriceType.TabIndex = 25
+        Me.LabelPriceType.Text = "-"
+        '
+        'LabelControl18
+        '
+        Me.LabelControl18.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl18.Location = New System.Drawing.Point(610, 73)
+        Me.LabelControl18.Name = "LabelControl18"
+        Me.LabelControl18.Size = New System.Drawing.Size(5, 16)
+        Me.LabelControl18.TabIndex = 24
+        Me.LabelControl18.Text = ":"
+        '
+        'LabelControl20
+        '
+        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl20.Location = New System.Drawing.Point(462, 73)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(107, 16)
+        Me.LabelControl20.TabIndex = 23
+        Me.LabelControl20.Text = "Current Price Type"
+        '
+        'LabelProductStatus
+        '
+        Me.LabelProductStatus.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelProductStatus.Location = New System.Drawing.Point(630, 95)
+        Me.LabelProductStatus.Name = "LabelProductStatus"
+        Me.LabelProductStatus.Size = New System.Drawing.Size(5, 16)
+        Me.LabelProductStatus.TabIndex = 28
+        Me.LabelProductStatus.Text = "-"
+        '
+        'LabelControl23
+        '
+        Me.LabelControl23.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl23.Location = New System.Drawing.Point(610, 96)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(5, 16)
+        Me.LabelControl23.TabIndex = 27
+        Me.LabelControl23.Text = ":"
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Appearance.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl24.Location = New System.Drawing.Point(462, 96)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(130, 16)
+        Me.LabelControl24.TabIndex = 26
+        Me.LabelControl24.Text = "Current Product Status"
+        '
         'FormFGTracking
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -605,4 +704,13 @@ Partial Class FormFGTracking
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDesign As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnSize As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LabelProductStatus As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelPriceType As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl18 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelPrice As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
 End Class
