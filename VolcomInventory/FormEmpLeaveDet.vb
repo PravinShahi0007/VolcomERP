@@ -718,7 +718,6 @@
             infoCustom("Cuti dibatalkan")
             load_form()
         End If
-
     End Sub
 
     Private Sub BViewMutasi_Click(sender As Object, e As EventArgs) Handles BViewMutasi.Click

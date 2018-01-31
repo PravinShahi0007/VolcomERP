@@ -37,6 +37,9 @@
                 LabelDivision.Text = data.Rows(i)("product_division").ToString
                 LabelBranding.Text = data.Rows(i)("product_branding").ToString
                 LabelSource.Text = data.Rows(i)("product_source").ToString
+                LabelPrice.Text = Decimal.Parse(data.Rows(i)("design_price").ToString).ToString("N2")
+                LabelPriceType.Text = data.Rows(i)("design_price_type").ToString
+                LabelProductStatus.Text = data.Rows(i)("design_cat").ToString
                 id_design_image = data.Rows(i)("id_design").ToString
                 Exit For
             End If
