@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormEmpPayroll
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormEmpPayroll
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayroll))
@@ -74,15 +74,7 @@ Partial Class FormEmpPayroll
         Me.GridColumnMissing = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPotLain2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDropQuickMenu = New DevExpress.XtraEditors.DropDownButton()
-        Me.PopupMenu = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.BBJamsostek = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBDeduction = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarManager = New DevExpress.XtraBars.BarManager(Me.components)
-        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
-        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BDeduction = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
@@ -100,8 +92,6 @@ Partial Class FormEmpPayroll
         CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewPopWorksheet.SuspendLayout()
         Me.SuspendLayout()
@@ -570,7 +560,7 @@ Partial Class FormEmpPayroll
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BtnDropQuickMenu)
+        Me.PanelControl1.Controls.Add(Me.BDeduction)
         Me.PanelControl1.Controls.Add(Me.SimpleButton3)
         Me.PanelControl1.Controls.Add(Me.BGetEmployee)
         Me.PanelControl1.Controls.Add(Me.BOvertime)
@@ -581,73 +571,16 @@ Partial Class FormEmpPayroll
         Me.PanelControl1.Size = New System.Drawing.Size(1115, 39)
         Me.PanelControl1.TabIndex = 0
         '
-        'BtnDropQuickMenu
+        'BDeduction
         '
-        Me.BtnDropQuickMenu.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDropQuickMenu.DropDownControl = Me.PopupMenu
-        Me.BtnDropQuickMenu.ImageIndex = 14
-        Me.BtnDropQuickMenu.ImageList = Me.LargeImageCollection
-        Me.BtnDropQuickMenu.Location = New System.Drawing.Point(798, 2)
-        Me.BtnDropQuickMenu.Name = "BtnDropQuickMenu"
-        Me.BtnDropQuickMenu.Size = New System.Drawing.Size(111, 35)
-        Me.BtnDropQuickMenu.TabIndex = 108
-        Me.BtnDropQuickMenu.Text = "Deduction"
-        '
-        'PopupMenu
-        '
-        Me.PopupMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBJamsostek), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDeduction)})
-        Me.PopupMenu.Manager = Me.BarManager
-        Me.PopupMenu.Name = "PopupMenu"
-        '
-        'BBJamsostek
-        '
-        Me.BBJamsostek.Caption = "Jamsostek"
-        Me.BBJamsostek.Id = 12
-        Me.BBJamsostek.Name = "BBJamsostek"
-        '
-        'BBDeduction
-        '
-        Me.BBDeduction.Caption = "Deduction"
-        Me.BBDeduction.Id = 13
-        Me.BBDeduction.Name = "BBDeduction"
-        '
-        'BarManager
-        '
-        Me.BarManager.DockControls.Add(Me.barDockControlTop)
-        Me.BarManager.DockControls.Add(Me.barDockControlBottom)
-        Me.BarManager.DockControls.Add(Me.barDockControlLeft)
-        Me.BarManager.DockControls.Add(Me.barDockControlRight)
-        Me.BarManager.Form = Me
-        Me.BarManager.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBJamsostek, Me.BBDeduction})
-        Me.BarManager.MaxItemId = 14
-        '
-        'barDockControlTop
-        '
-        Me.barDockControlTop.CausesValidation = False
-        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1121, 0)
-        '
-        'barDockControlBottom
-        '
-        Me.barDockControlBottom.CausesValidation = False
-        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 469)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1121, 0)
-        '
-        'barDockControlLeft
-        '
-        Me.barDockControlLeft.CausesValidation = False
-        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 469)
-        '
-        'barDockControlRight
-        '
-        Me.barDockControlRight.CausesValidation = False
-        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1121, 0)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 469)
+        Me.BDeduction.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDeduction.ImageIndex = 14
+        Me.BDeduction.ImageList = Me.LargeImageCollection
+        Me.BDeduction.Location = New System.Drawing.Point(808, 2)
+        Me.BDeduction.Name = "BDeduction"
+        Me.BDeduction.Size = New System.Drawing.Size(101, 35)
+        Me.BDeduction.TabIndex = 4
+        Me.BDeduction.Text = "Deduction"
         '
         'LargeImageCollection
         '
@@ -736,10 +669,6 @@ Partial Class FormEmpPayroll
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1121, 469)
         Me.Controls.Add(Me.XTCPayroll)
-        Me.Controls.Add(Me.barDockControlLeft)
-        Me.Controls.Add(Me.barDockControlRight)
-        Me.Controls.Add(Me.barDockControlBottom)
-        Me.Controls.Add(Me.barDockControlTop)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -756,12 +685,9 @@ Partial Class FormEmpPayroll
         CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
-        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewPopWorksheet.ResumeLayout(False)
         Me.ResumeLayout(False)
-        Me.PerformLayout()
 
     End Sub
 
@@ -825,13 +751,5 @@ Partial Class FormEmpPayroll
     Friend WithEvents GridColumnSPT As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMissing As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPotLain2 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BtnDropQuickMenu As DevExpress.XtraEditors.DropDownButton
-    Friend WithEvents PopupMenu As DevExpress.XtraBars.PopupMenu
-    Friend WithEvents BBJamsostek As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BBDeduction As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarManager As DevExpress.XtraBars.BarManager
-    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
-    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
-    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
-    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents BDeduction As DevExpress.XtraEditors.SimpleButton
 End Class

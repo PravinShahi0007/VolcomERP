@@ -75,11 +75,7 @@
         load_payroll_detail()
     End Sub
 
-    Private Sub BBJamsostek_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBJamsostek.ItemClick
-
-    End Sub
-
-    Private Sub BBDeduction_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBDeduction.ItemClick
+    Private Sub BDeduction_Click(sender As Object, e As EventArgs) Handles BDeduction.Click
 
     End Sub
 End Class
