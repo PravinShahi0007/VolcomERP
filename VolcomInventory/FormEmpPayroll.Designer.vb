@@ -64,9 +64,27 @@ Partial Class FormEmpPayroll
         Me.GridColumnOTProd = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPointGeneral = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOtGeneral = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIuranKoperasi = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPinjamanKoperasi = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnUniform = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnWHSale = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnREIKI = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnKasBon = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnSPT = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnMissing = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPotLain2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDropQuickMenu = New DevExpress.XtraEditors.DropDownButton()
+        Me.PopupMenu = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BBJamsostek = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBDeduction = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarManager = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.BOvertime = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
@@ -82,6 +100,8 @@ Partial Class FormEmpPayroll
         CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ViewPopWorksheet.SuspendLayout()
         Me.SuspendLayout()
@@ -199,7 +219,7 @@ Partial Class FormEmpPayroll
         '
         'GVPayroll
         '
-        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.GridColumnWorkingDays, Me.GridColumnTotOvertime, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral})
+        Me.GVPayroll.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.GridColumnWorkingDays, Me.GridColumnTotOvertime, Me.GridColumnBasicSalary, Me.GridColumnJobAllowance, Me.GridColumnMealAllowance, Me.GridColumnTransportAllowance, Me.GridColumnHousingAllowance, Me.GridColumnVehicleAttndAllowance, Me.GridColumnTotTHP, Me.GridColumnPointRegular, Me.GridColumnOTReguler, Me.GridColumnPointMkt, Me.GridColumnOtMkt, Me.GridColumnPointIA, Me.GridColumnOtIA, Me.GridColumnPointSales, Me.GridColumnOtSales, Me.GridColumnPointProd, Me.GridColumnOTProd, Me.GridColumnPointGeneral, Me.GridColumnOtGeneral, Me.GridColumnIuranKoperasi, Me.GridColumnPinjamanKoperasi, Me.GridColumnUniform, Me.GridColumnWHSale, Me.GridColumnREIKI, Me.GridColumnKasBon, Me.GridColumnSPT, Me.GridColumnMissing, Me.GridColumnPotLain2})
         Me.GVPayroll.GridControl = Me.GCPayroll
         Me.GVPayroll.Name = "GVPayroll"
         Me.GVPayroll.OptionsView.ColumnAutoWidth = False
@@ -485,8 +505,72 @@ Partial Class FormEmpPayroll
         Me.GridColumnOtGeneral.Visible = True
         Me.GridColumnOtGeneral.VisibleIndex = 27
         '
+        'GridColumnIuranKoperasi
+        '
+        Me.GridColumnIuranKoperasi.Caption = "Iuran Koperasi"
+        Me.GridColumnIuranKoperasi.Name = "GridColumnIuranKoperasi"
+        Me.GridColumnIuranKoperasi.Visible = True
+        Me.GridColumnIuranKoperasi.VisibleIndex = 29
+        '
+        'GridColumnPinjamanKoperasi
+        '
+        Me.GridColumnPinjamanKoperasi.Caption = "Pinjaman Koperasi"
+        Me.GridColumnPinjamanKoperasi.Name = "GridColumnPinjamanKoperasi"
+        Me.GridColumnPinjamanKoperasi.Visible = True
+        Me.GridColumnPinjamanKoperasi.VisibleIndex = 28
+        '
+        'GridColumnUniform
+        '
+        Me.GridColumnUniform.Caption = "Uniform"
+        Me.GridColumnUniform.Name = "GridColumnUniform"
+        Me.GridColumnUniform.Visible = True
+        Me.GridColumnUniform.VisibleIndex = 30
+        '
+        'GridColumnWHSale
+        '
+        Me.GridColumnWHSale.Caption = "WH Sale"
+        Me.GridColumnWHSale.Name = "GridColumnWHSale"
+        Me.GridColumnWHSale.Visible = True
+        Me.GridColumnWHSale.VisibleIndex = 31
+        '
+        'GridColumnREIKI
+        '
+        Me.GridColumnREIKI.Caption = "REIKI"
+        Me.GridColumnREIKI.Name = "GridColumnREIKI"
+        Me.GridColumnREIKI.Visible = True
+        Me.GridColumnREIKI.VisibleIndex = 32
+        '
+        'GridColumnKasBon
+        '
+        Me.GridColumnKasBon.Caption = "Kas Bon"
+        Me.GridColumnKasBon.Name = "GridColumnKasBon"
+        Me.GridColumnKasBon.Visible = True
+        Me.GridColumnKasBon.VisibleIndex = 33
+        '
+        'GridColumnSPT
+        '
+        Me.GridColumnSPT.Caption = "SPT"
+        Me.GridColumnSPT.Name = "GridColumnSPT"
+        Me.GridColumnSPT.Visible = True
+        Me.GridColumnSPT.VisibleIndex = 34
+        '
+        'GridColumnMissing
+        '
+        Me.GridColumnMissing.Caption = "Tabungan Missing"
+        Me.GridColumnMissing.Name = "GridColumnMissing"
+        Me.GridColumnMissing.Visible = True
+        Me.GridColumnMissing.VisibleIndex = 35
+        '
+        'GridColumnPotLain2
+        '
+        Me.GridColumnPotLain2.Caption = "Potongan Lain-lain"
+        Me.GridColumnPotLain2.Name = "GridColumnPotLain2"
+        Me.GridColumnPotLain2.Visible = True
+        Me.GridColumnPotLain2.VisibleIndex = 36
+        '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnDropQuickMenu)
         Me.PanelControl1.Controls.Add(Me.SimpleButton3)
         Me.PanelControl1.Controls.Add(Me.BGetEmployee)
         Me.PanelControl1.Controls.Add(Me.BOvertime)
@@ -497,16 +581,73 @@ Partial Class FormEmpPayroll
         Me.PanelControl1.Size = New System.Drawing.Size(1115, 39)
         Me.PanelControl1.TabIndex = 0
         '
-        'SimpleButton3
+        'BtnDropQuickMenu
         '
-        Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton3.ImageIndex = 6
-        Me.SimpleButton3.ImageList = Me.LargeImageCollection
-        Me.SimpleButton3.Location = New System.Drawing.Point(130, 2)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(86, 35)
-        Me.SimpleButton3.TabIndex = 2
-        Me.SimpleButton3.Text = "Print"
+        Me.BtnDropQuickMenu.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDropQuickMenu.DropDownControl = Me.PopupMenu
+        Me.BtnDropQuickMenu.ImageIndex = 14
+        Me.BtnDropQuickMenu.ImageList = Me.LargeImageCollection
+        Me.BtnDropQuickMenu.Location = New System.Drawing.Point(798, 2)
+        Me.BtnDropQuickMenu.Name = "BtnDropQuickMenu"
+        Me.BtnDropQuickMenu.Size = New System.Drawing.Size(111, 35)
+        Me.BtnDropQuickMenu.TabIndex = 108
+        Me.BtnDropQuickMenu.Text = "Deduction"
+        '
+        'PopupMenu
+        '
+        Me.PopupMenu.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BBJamsostek), New DevExpress.XtraBars.LinkPersistInfo(Me.BBDeduction)})
+        Me.PopupMenu.Manager = Me.BarManager
+        Me.PopupMenu.Name = "PopupMenu"
+        '
+        'BBJamsostek
+        '
+        Me.BBJamsostek.Caption = "Jamsostek"
+        Me.BBJamsostek.Id = 12
+        Me.BBJamsostek.Name = "BBJamsostek"
+        '
+        'BBDeduction
+        '
+        Me.BBDeduction.Caption = "Deduction"
+        Me.BBDeduction.Id = 13
+        Me.BBDeduction.Name = "BBDeduction"
+        '
+        'BarManager
+        '
+        Me.BarManager.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager.Form = Me
+        Me.BarManager.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BBJamsostek, Me.BBDeduction})
+        Me.BarManager.MaxItemId = 14
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1121, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 469)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1121, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 469)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1121, 0)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 469)
         '
         'LargeImageCollection
         '
@@ -532,6 +673,17 @@ Partial Class FormEmpPayroll
         Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
+        '
+        'SimpleButton3
+        '
+        Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Left
+        Me.SimpleButton3.ImageIndex = 6
+        Me.SimpleButton3.ImageList = Me.LargeImageCollection
+        Me.SimpleButton3.Location = New System.Drawing.Point(130, 2)
+        Me.SimpleButton3.Name = "SimpleButton3"
+        Me.SimpleButton3.Size = New System.Drawing.Size(86, 35)
+        Me.SimpleButton3.TabIndex = 2
+        Me.SimpleButton3.Text = "Print"
         '
         'BGetEmployee
         '
@@ -584,6 +736,10 @@ Partial Class FormEmpPayroll
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1121, 469)
         Me.Controls.Add(Me.XTCPayroll)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -600,9 +756,12 @@ Partial Class FormEmpPayroll
         CType(Me.GVPayroll, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ViewPopWorksheet.ResumeLayout(False)
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -657,4 +816,22 @@ Partial Class FormEmpPayroll
     Friend WithEvents BGetEmployee As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents ViewPopWorksheet As ContextMenuStrip
     Friend WithEvents CMDelEmp As ToolStripMenuItem
+    Friend WithEvents GridColumnPinjamanKoperasi As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIuranKoperasi As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnUniform As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnWHSale As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnREIKI As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnKasBon As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnSPT As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnMissing As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPotLain2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnDropQuickMenu As DevExpress.XtraEditors.DropDownButton
+    Friend WithEvents PopupMenu As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BBJamsostek As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBDeduction As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarManager As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
 End Class

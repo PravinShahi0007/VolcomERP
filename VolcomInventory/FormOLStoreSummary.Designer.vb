@@ -57,6 +57,12 @@ Partial Class FormOLStoreSummary
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepoSLEAttach = New DevExpress.XtraEditors.Repository.RepositoryItemSearchLookUpEdit()
         Me.RepositoryItemSearchLookUpEdit1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnOrderDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDelDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRODate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnReturnDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnInvDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCNDate = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -208,10 +214,11 @@ Partial Class FormOLStoreSummary
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnOLStoreOrder, Me.GridColumnSONumber, Me.GridColumnDelNumber, Me.GridColumnReturnOrder, Me.GridColumnReturnNumber, Me.GridColumnIsPaid, Me.GridColumnInvNumber, Me.GridColumnCNNumber, Me.GridColumnAttach, Me.GridColumnId, Me.GridColumnIdDel, Me.GridColumnIdRO, Me.GridColumnIdRet, Me.GridColumnIdInv, Me.GridColumnIdCN})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnOLStoreOrder, Me.GridColumnSONumber, Me.GridColumnDelNumber, Me.GridColumnReturnOrder, Me.GridColumnReturnNumber, Me.GridColumnIsPaid, Me.GridColumnInvNumber, Me.GridColumnCNNumber, Me.GridColumnAttach, Me.GridColumnId, Me.GridColumnIdDel, Me.GridColumnIdRO, Me.GridColumnIdRet, Me.GridColumnIdInv, Me.GridColumnIdCN, Me.GridColumnOrderDate, Me.GridColumnDelDate, Me.GridColumnRODate, Me.GridColumnReturnDate, Me.GridColumnInvDate, Me.GridColumnCNDate})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVData.OptionsView.ColumnAutoWidth = False
         Me.GVData.OptionsView.ShowFooter = True
         Me.GVData.OptionsView.ShowGroupedColumns = True
         Me.GVData.OptionsView.ShowGroupPanel = False
@@ -224,7 +231,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
         Me.GridColumnOLStoreOrder.Visible = True
         Me.GridColumnOLStoreOrder.VisibleIndex = 0
-        Me.GridColumnOLStoreOrder.Width = 181
+        Me.GridColumnOLStoreOrder.Width = 150
         '
         'RepositoryItemTextEdit1
         '
@@ -240,7 +247,7 @@ Partial Class FormOLStoreSummary
         Me.GridColumnSONumber.Name = "GridColumnSONumber"
         Me.GridColumnSONumber.Visible = True
         Me.GridColumnSONumber.VisibleIndex = 1
-        Me.GridColumnSONumber.Width = 181
+        Me.GridColumnSONumber.Width = 150
         '
         'GridColumnDelNumber
         '
@@ -249,8 +256,8 @@ Partial Class FormOLStoreSummary
         Me.GridColumnDelNumber.FieldName = "pl_sales_order_del_number"
         Me.GridColumnDelNumber.Name = "GridColumnDelNumber"
         Me.GridColumnDelNumber.Visible = True
-        Me.GridColumnDelNumber.VisibleIndex = 2
-        Me.GridColumnDelNumber.Width = 181
+        Me.GridColumnDelNumber.VisibleIndex = 3
+        Me.GridColumnDelNumber.Width = 143
         '
         'GridColumnReturnOrder
         '
@@ -259,8 +266,8 @@ Partial Class FormOLStoreSummary
         Me.GridColumnReturnOrder.FieldName = "sales_return_order_number"
         Me.GridColumnReturnOrder.Name = "GridColumnReturnOrder"
         Me.GridColumnReturnOrder.Visible = True
-        Me.GridColumnReturnOrder.VisibleIndex = 3
-        Me.GridColumnReturnOrder.Width = 181
+        Me.GridColumnReturnOrder.VisibleIndex = 5
+        Me.GridColumnReturnOrder.Width = 135
         '
         'GridColumnReturnNumber
         '
@@ -269,8 +276,8 @@ Partial Class FormOLStoreSummary
         Me.GridColumnReturnNumber.FieldName = "sales_return_number"
         Me.GridColumnReturnNumber.Name = "GridColumnReturnNumber"
         Me.GridColumnReturnNumber.Visible = True
-        Me.GridColumnReturnNumber.VisibleIndex = 4
-        Me.GridColumnReturnNumber.Width = 181
+        Me.GridColumnReturnNumber.VisibleIndex = 7
+        Me.GridColumnReturnNumber.Width = 121
         '
         'GridColumnIsPaid
         '
@@ -279,8 +286,8 @@ Partial Class FormOLStoreSummary
         Me.GridColumnIsPaid.FieldName = "paid_status"
         Me.GridColumnIsPaid.Name = "GridColumnIsPaid"
         Me.GridColumnIsPaid.Visible = True
-        Me.GridColumnIsPaid.VisibleIndex = 5
-        Me.GridColumnIsPaid.Width = 114
+        Me.GridColumnIsPaid.VisibleIndex = 9
+        Me.GridColumnIsPaid.Width = 69
         '
         'GridColumnInvNumber
         '
@@ -289,8 +296,8 @@ Partial Class FormOLStoreSummary
         Me.GridColumnInvNumber.FieldName = "sales_pos_number"
         Me.GridColumnInvNumber.Name = "GridColumnInvNumber"
         Me.GridColumnInvNumber.Visible = True
-        Me.GridColumnInvNumber.VisibleIndex = 6
-        Me.GridColumnInvNumber.Width = 201
+        Me.GridColumnInvNumber.VisibleIndex = 10
+        Me.GridColumnInvNumber.Width = 126
         '
         'GridColumnCNNumber
         '
@@ -299,8 +306,8 @@ Partial Class FormOLStoreSummary
         Me.GridColumnCNNumber.FieldName = "sales_pos_cn_number"
         Me.GridColumnCNNumber.Name = "GridColumnCNNumber"
         Me.GridColumnCNNumber.Visible = True
-        Me.GridColumnCNNumber.VisibleIndex = 7
-        Me.GridColumnCNNumber.Width = 201
+        Me.GridColumnCNNumber.VisibleIndex = 12
+        Me.GridColumnCNNumber.Width = 105
         '
         'GridColumnAttach
         '
@@ -309,7 +316,8 @@ Partial Class FormOLStoreSummary
         Me.GridColumnAttach.FieldName = "report_mark_type"
         Me.GridColumnAttach.Name = "GridColumnAttach"
         Me.GridColumnAttach.Visible = True
-        Me.GridColumnAttach.VisibleIndex = 8
+        Me.GridColumnAttach.VisibleIndex = 14
+        Me.GridColumnAttach.Width = 85
         '
         'RepoAttach
         '
@@ -389,6 +397,72 @@ Partial Class FormOLStoreSummary
         Me.RepositoryItemSearchLookUpEdit1View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.RepositoryItemSearchLookUpEdit1View.OptionsView.ShowGroupPanel = False
         '
+        'GridColumnOrderDate
+        '
+        Me.GridColumnOrderDate.Caption = "Order Date"
+        Me.GridColumnOrderDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnOrderDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnOrderDate.FieldName = "order_date"
+        Me.GridColumnOrderDate.Name = "GridColumnOrderDate"
+        Me.GridColumnOrderDate.Visible = True
+        Me.GridColumnOrderDate.VisibleIndex = 2
+        Me.GridColumnOrderDate.Width = 119
+        '
+        'GridColumnDelDate
+        '
+        Me.GridColumnDelDate.Caption = "Delivery Date"
+        Me.GridColumnDelDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnDelDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnDelDate.FieldName = "del_date"
+        Me.GridColumnDelDate.Name = "GridColumnDelDate"
+        Me.GridColumnDelDate.Visible = True
+        Me.GridColumnDelDate.VisibleIndex = 4
+        Me.GridColumnDelDate.Width = 103
+        '
+        'GridColumnRODate
+        '
+        Me.GridColumnRODate.Caption = "Return Order Date"
+        Me.GridColumnRODate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnRODate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnRODate.FieldName = "ro_date"
+        Me.GridColumnRODate.Name = "GridColumnRODate"
+        Me.GridColumnRODate.Visible = True
+        Me.GridColumnRODate.VisibleIndex = 6
+        Me.GridColumnRODate.Width = 116
+        '
+        'GridColumnReturnDate
+        '
+        Me.GridColumnReturnDate.Caption = "Return Date"
+        Me.GridColumnReturnDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnReturnDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnReturnDate.FieldName = "ret_date"
+        Me.GridColumnReturnDate.Name = "GridColumnReturnDate"
+        Me.GridColumnReturnDate.Visible = True
+        Me.GridColumnReturnDate.VisibleIndex = 8
+        Me.GridColumnReturnDate.Width = 86
+        '
+        'GridColumnInvDate
+        '
+        Me.GridColumnInvDate.Caption = "Invoice Date"
+        Me.GridColumnInvDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnInvDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnInvDate.FieldName = "inv_date"
+        Me.GridColumnInvDate.Name = "GridColumnInvDate"
+        Me.GridColumnInvDate.Visible = True
+        Me.GridColumnInvDate.VisibleIndex = 11
+        Me.GridColumnInvDate.Width = 86
+        '
+        'GridColumnCNDate
+        '
+        Me.GridColumnCNDate.Caption = "Credit Note Date"
+        Me.GridColumnCNDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnCNDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnCNDate.FieldName = "cn_date"
+        Me.GridColumnCNDate.Name = "GridColumnCNDate"
+        Me.GridColumnCNDate.Visible = True
+        Me.GridColumnCNDate.VisibleIndex = 13
+        Me.GridColumnCNDate.Width = 104
+        '
         'FormOLStoreSummary
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -459,4 +533,10 @@ Partial Class FormOLStoreSummary
     Friend WithEvents GridColumnIdRet As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdInv As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnIdCN As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOrderDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDelDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRODate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnReturnDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnInvDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCNDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -51,6 +51,7 @@ Partial Class FormAccountingJournalBill
         Me.PCButton = New DevExpress.XtraEditors.PanelControl()
         Me.BDelMat = New DevExpress.XtraEditors.SimpleButton()
         Me.BAddMat = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnRef = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.Bprint = New DevExpress.XtraEditors.SimpleButton()
@@ -67,6 +68,10 @@ Partial Class FormAccountingJournalBill
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LTransNo = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnIdAccSrc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.BalanceMenu.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImgBut, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,6 +98,9 @@ Partial Class FormAccountingJournalBill
         CType(Me.TEReffNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUserEntry.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelBottomRight.SuspendLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BalanceMenu
@@ -151,7 +159,7 @@ Partial Class FormAccountingJournalBill
         '
         'GVJournalDet
         '
-        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnStatus, Me.GridColumnIdReport, Me.GridColumnReportMarkType, Me.GridColumnReff, Me.GridColumnIdCompany})
+        Me.GVJournalDet.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumn4, Me.GridColumn5, Me.GridColumnStatus, Me.GridColumnIdReport, Me.GridColumnReportMarkType, Me.GridColumnReff, Me.GridColumnIdCompany, Me.GridColumnIdAccSrc})
         Me.GVJournalDet.GridControl = Me.GCJournalDet
         Me.GVJournalDet.Name = "GVJournalDet"
         Me.GVJournalDet.OptionsLayout.Columns.StoreAllOptions = True
@@ -321,6 +329,7 @@ Partial Class FormAccountingJournalBill
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.PanelBottomRight)
         Me.PanelControl4.Controls.Add(Me.MENote)
         Me.PanelControl4.Controls.Add(Me.LabelControl3)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -333,7 +342,7 @@ Partial Class FormAccountingJournalBill
         '
         Me.MENote.Location = New System.Drawing.Point(55, 8)
         Me.MENote.Name = "MENote"
-        Me.MENote.Size = New System.Drawing.Size(759, 40)
+        Me.MENote.Size = New System.Drawing.Size(317, 40)
         Me.MENote.TabIndex = 4
         '
         'LabelControl3
@@ -348,6 +357,7 @@ Partial Class FormAccountingJournalBill
         '
         Me.PCButton.Controls.Add(Me.BDelMat)
         Me.PCButton.Controls.Add(Me.BAddMat)
+        Me.PCButton.Controls.Add(Me.BtnRef)
         Me.PCButton.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCButton.Location = New System.Drawing.Point(0, 75)
         Me.PCButton.Name = "PCButton"
@@ -359,7 +369,7 @@ Partial Class FormAccountingJournalBill
         Me.BDelMat.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelMat.ImageIndex = 1
         Me.BDelMat.ImageList = Me.LargeImageCollection
-        Me.BDelMat.Location = New System.Drawing.Point(642, 2)
+        Me.BDelMat.Location = New System.Drawing.Point(513, 2)
         Me.BDelMat.Name = "BDelMat"
         Me.BDelMat.Size = New System.Drawing.Size(91, 32)
         Me.BDelMat.TabIndex = 16
@@ -371,12 +381,24 @@ Partial Class FormAccountingJournalBill
         Me.BAddMat.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAddMat.ImageIndex = 0
         Me.BAddMat.ImageList = Me.LargeImageCollection
-        Me.BAddMat.Location = New System.Drawing.Point(733, 2)
+        Me.BAddMat.Location = New System.Drawing.Point(604, 2)
         Me.BAddMat.Name = "BAddMat"
-        Me.BAddMat.Size = New System.Drawing.Size(91, 32)
+        Me.BAddMat.Size = New System.Drawing.Size(85, 32)
         Me.BAddMat.TabIndex = 17
         Me.BAddMat.TabStop = False
         Me.BAddMat.Text = "Add"
+        '
+        'BtnRef
+        '
+        Me.BtnRef.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnRef.Image = CType(resources.GetObject("BtnRef.Image"), System.Drawing.Image)
+        Me.BtnRef.ImageIndex = 1
+        Me.BtnRef.ImageList = Me.LargeImageCollection
+        Me.BtnRef.Location = New System.Drawing.Point(689, 2)
+        Me.BtnRef.Name = "BtnRef"
+        Me.BtnRef.Size = New System.Drawing.Size(135, 32)
+        Me.BtnRef.TabIndex = 19
+        Me.BtnRef.Text = "Browse Reference"
         '
         'PanelControl2
         '
@@ -458,10 +480,13 @@ Partial Class FormAccountingJournalBill
         'TEDate
         '
         Me.TEDate.EditValue = Nothing
+        Me.TEDate.Enabled = False
         Me.TEDate.Location = New System.Drawing.Point(642, 12)
         Me.TEDate.Name = "TEDate"
         Me.TEDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.TEDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TEDate.Properties.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.TEDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.TEDate.Size = New System.Drawing.Size(172, 20)
         Me.TEDate.TabIndex = 156
         '
@@ -553,6 +578,45 @@ Partial Class FormAccountingJournalBill
         Me.LTransNo.TabIndex = 0
         Me.LTransNo.Text = "Date"
         '
+        'GridColumnIdAccSrc
+        '
+        Me.GridColumnIdAccSrc.Caption = "GridColumn8"
+        Me.GridColumnIdAccSrc.FieldName = "id_acc_src"
+        Me.GridColumnIdAccSrc.Name = "GridColumnIdAccSrc"
+        '
+        'PanelBottomRight
+        '
+        Me.PanelBottomRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelBottomRight.Controls.Add(Me.LEReportStatus)
+        Me.PanelBottomRight.Controls.Add(Me.LabelControl21)
+        Me.PanelBottomRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.PanelBottomRight.Location = New System.Drawing.Point(501, 2)
+        Me.PanelBottomRight.Name = "PanelBottomRight"
+        Me.PanelBottomRight.Size = New System.Drawing.Size(323, 54)
+        Me.PanelBottomRight.TabIndex = 140
+        '
+        'LEReportStatus
+        '
+        Me.LEReportStatus.Enabled = False
+        Me.LEReportStatus.Location = New System.Drawing.Point(117, 5)
+        Me.LEReportStatus.Name = "LEReportStatus"
+        Me.LEReportStatus.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEReportStatus.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEReportStatus.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEReportStatus.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_report_status", "ID Report Status", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("report_status", "Report Status")})
+        Me.LEReportStatus.Properties.NullText = ""
+        Me.LEReportStatus.Properties.ShowFooter = False
+        Me.LEReportStatus.Size = New System.Drawing.Size(196, 20)
+        Me.LEReportStatus.TabIndex = 7
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(73, 8)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl21.TabIndex = 144
+        Me.LabelControl21.Text = "Status"
+        '
         'FormAccountingJournalBill
         '
         Me.AcceptButton = Me.BSave
@@ -569,7 +633,6 @@ Partial Class FormAccountingJournalBill
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAccountingJournalBill"
-        Me.ShowInTaskbar = False
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Entry Journal"
@@ -601,6 +664,10 @@ Partial Class FormAccountingJournalBill
         CType(Me.TEReffNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEBilling.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUserEntry.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelBottomRight, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelBottomRight.ResumeLayout(False)
+        Me.PanelBottomRight.PerformLayout()
+        CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -650,4 +717,9 @@ Partial Class FormAccountingJournalBill
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents GridColumnIdCompany As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents TEDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BtnRef As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnIdAccSrc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelBottomRight As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LEReportStatus As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
 End Class

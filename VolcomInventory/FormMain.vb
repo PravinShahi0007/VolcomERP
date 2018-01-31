@@ -279,7 +279,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Then
             RGAreaManage.Visible = False
         End If
 
@@ -397,7 +397,7 @@ Public Class FormMain
             BBDelete.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
 
-        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Then
+        If formName = "FormWork" Or formName = "FormProductionWOList" Or formName = "FormFGDistScheme" Or formName = "FormFGLineList" Or formName = "FormFGTracking" Or formName = "FormFGStock" Or formName = "FormMatStock" Or formName = "FormSalesWeekly" Or formName = "FormFGWoffList" Or formName = "FormFGDistSchemaSetup" Or formName = "FormFGProdList" Or formName = "FormSamplePLExport" Or formName = "FormFGWHAllocLog" Or formName = "FormEmpReview" Or formName = "FormProductionSummary" Or formName = "FormWHDelEmptyStock" Or formName = "FormFGTransList" Or formName = "FormProdClosing" Or formName = "FormOLStoreSummary" Or formName = "FormFGAging" Or formName = "FormFGTransSummary" Or formName = "FormFGFirstDel" Then
             RGAreaManage.Visible = True
         End If
 
@@ -2534,6 +2534,21 @@ Public Class FormMain
                     FormMasterCompanyCategory.view_company_category()
                 Catch ex As Exception
                     XtraMessageBox.Show("Server Disconnected on delete category company. Please wait a moment.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End Try
+                Cursor = Cursors.Default
+            End If
+        ElseIf formName = "FormAccounting" Then
+            confirm = XtraMessageBox.Show("Are you sure want to delete this data ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            Dim id_acc As String = FormAccounting.GVAcc.GetFocusedRowCellDisplayText("id_acc").ToString
+
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Try
+                    query = String.Format("DELETE FROM tb_a_acc WHERE id_acc = '{0}'", id_acc)
+                    execute_non_query(query, True, "", "", "", "")
+                    FormAccounting.view_acc()
+                Catch ex As Exception
+                    errorDelete()
                 End Try
                 Cursor = Cursors.Default
             End If
@@ -6745,6 +6760,8 @@ Public Class FormMain
             print_raw(FormFGAging.GCDesign, "")
         ElseIf formName = "FormFGTransSummary" Then
             print_raw(FormFGTransSummary.GCData, "")
+        ElseIf formName = "FormFGFirstDel" Then
+            print_raw(FormFGFirstDel.GCData, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7326,6 +7343,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpPayroll" Then
             FormEmpPayroll.Close()
             FormEmpPayroll.Dispose()
+        ElseIf formName = "FormFGFirstDel" Then
+            FormFGFirstDel.Close()
+            FormFGFirstDel.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -7659,7 +7679,7 @@ Public Class FormMain
             End If
         ElseIf formName = "FormAccountingJournal" Then
             If FormAccountingJournal.XTCJurnal.SelectedTabPageIndex = 0 Then
-                FormAccountingJournal.view_entry(FormAccountingJournal.LEBilling.EditValue.ToString, Now.ToString("yyy-MM-dd"), Now.ToString("yyy-MM-dd"))
+                FormAccountingJournal.view_entry()
             Else
                 FormAccountingJournal.view_det(Now.ToString("yyy-MM-dd"), Now.ToString("yyy-MM-dd"))
             End If
@@ -11042,6 +11062,32 @@ Public Class FormMain
             FormEmpPayroll.Show()
             FormEmpPayroll.WindowState = FormWindowState.Maximized
             FormEmpPayroll.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBFirstDel_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBFirstDel.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGFirstDel.MdiParent = Me
+            FormFGFirstDel.Show()
+            FormFGFirstDel.WindowState = FormWindowState.Maximized
+            FormFGFirstDel.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBCompareStockCard_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBCompareStockCard.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormFGCompareStockCard.MdiParent = Me
+            FormFGCompareStockCard.Show()
+            FormFGCompareStockCard.WindowState = FormWindowState.Maximized
+            FormFGCompareStockCard.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

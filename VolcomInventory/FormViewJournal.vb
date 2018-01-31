@@ -2,7 +2,8 @@
     Public id_trans As String = "-1"
 
     Private Sub FormViewJournal_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Dim query As String = "SELECT a.id_user,a.acc_trans_number,DATE_FORMAT(a.date_created,'%Y-%m-%d') as date_created,a.acc_trans_note,id_report_status FROM tb_a_acc_trans a WHERE a.id_acc_trans='" & id_trans & "'"
+        load_billing_type(LEBilling)
+        Dim query As String = "SELECT a.id_user,a.acc_trans_number,DATE_FORMAT(a.date_created,'%Y-%m-%d') as date_created,a.acc_trans_note,id_report_status, a.id_bill_type FROM tb_a_acc_trans a WHERE a.id_acc_trans='" & id_trans & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
         TEUserEntry.Text = get_user_identify(data.Rows(0)("id_user").ToString, 1)
@@ -10,8 +11,21 @@
         Dim strDate As String = data.Rows(0)("date_created").ToString
         TEDate.Text = view_date_from(strDate, 0)
         MENote.Text = data.Rows(0)("acc_trans_note").ToString
+        LEBilling.ItemIndex = LEBilling.Properties.GetDataSourceRowIndex("id_bill_type", data.Rows(0)("id_bill_type").ToString)
         view_det()
     End Sub
+
+    Sub load_billing_type(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
+        Dim query As String = "SELECT id_bill_type,bill_type FROM tb_lookup_bill_type WHERE is_active='1'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+        lookup.Properties.DataSource = data
+
+        lookup.Properties.DisplayMember = "bill_type"
+        lookup.Properties.ValueMember = "id_bill_type"
+        lookup.ItemIndex = 0
+    End Sub
+
     Sub view_det()
         Dim query As String = "SELECT a.id_acc_trans_det,a.id_acc,b.acc_name,b.acc_description,CAST(a.debit AS DECIMAL(13,2)) as debit,CAST(a.credit AS DECIMAL(13,2)) as credit,a.acc_trans_det_note as note,a.report_mark_type,a.id_report FROM tb_a_acc_trans_det a INNER JOIN tb_a_acc b ON a.id_acc=b.id_acc WHERE a.id_acc_trans='" & id_trans & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")

@@ -74,21 +74,8 @@
         check_but()
     End Sub
 
-    Sub view_entry(ByVal id_type As String, ByVal fromdate As String, ByVal enddate As String)
-        Dim query As String = ""
-        query = "SELECT bill.bill_type,bill.id_bill_type,t.id_report_status,f.report_status,t.id_acc_trans,t.acc_trans_number,t.acc_trans_note,i.employee_name,  DATE_FORMAT(t.date_created, '%d %M %Y') AS date_created FROM tb_a_acc_trans t "
-        query += "INNER JOIN tb_m_user h ON t.id_user = h.id_user "
-        query += "INNER JOIN tb_m_employee i ON h.id_employee = i.id_employee "
-        query += "INNER JOIN tb_lookup_report_status f ON t.id_report_status = f.id_report_status "
-        query += "INNER JOIN tb_lookup_bill_type bill ON bill.id_bill_type=t.id_bill_type "
-        query += "WHERE t.id_bill_type LIKE '" + id_type + "' AND (DATE(t.date_created) <= '" & enddate & "') AND (DATE(t.date_created) >= '" & fromdate & "')"
-        query += "ORDER BY t.id_acc_trans DESC "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCAccTrans.DataSource = data
-        check_but()
-    End Sub
-
-    Private Sub BViewJournal_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BViewJournal.Click
+    Sub view_entry()
+        Dim id_type As String = LEBilling.EditValue.ToString
         Dim fromdate As String = ""
         Dim enddate As String = ""
 
@@ -105,7 +92,22 @@
         Else
             enddate = DateTime.Parse(DEToViewJournal.EditValue.ToString).ToString("yyy-MM-dd")
         End If
+        Dim query As String = ""
+        query = "SELECT bill.bill_type,bill.id_bill_type,t.id_report_status,f.report_status,t.id_acc_trans,t.acc_trans_number,t.acc_trans_note,i.employee_name,  DATE_FORMAT(t.date_created, '%d %M %Y') AS date_created FROM tb_a_acc_trans t "
+        query += "INNER JOIN tb_m_user h ON t.id_user = h.id_user "
+        query += "INNER JOIN tb_m_employee i ON h.id_employee = i.id_employee "
+        query += "INNER JOIN tb_lookup_report_status f ON t.id_report_status = f.id_report_status "
+        query += "INNER JOIN tb_lookup_bill_type bill ON bill.id_bill_type=t.id_bill_type "
+        query += "WHERE t.id_bill_type LIKE '" + id_type + "' AND (DATE(t.date_created) <= '" & enddate & "') AND (DATE(t.date_created) >= '" & fromdate & "')"
+        query += "ORDER BY t.id_acc_trans DESC "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCAccTrans.DataSource = data
+        check_but()
+    End Sub
 
-        view_entry(LEBilling.EditValue.ToString, fromdate, enddate)
+    Private Sub BViewJournal_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BViewJournal.Click
+
+
+        view_entry()
     End Sub
 End Class

@@ -1842,16 +1842,33 @@
             End Try
         ElseIf report_mark_type = "36" Then
             'Journal Entry
+            If id_status_reportx = 3 Then
+                id_status_reportx = 6
+            End If
+
+            If id_status_reportx = "6" Then
+                Dim qu As String = "CALL update_status_trans_journal(" + id_report + ")"
+                execute_non_query(qu, True, "", "", "", "")
+            End If
+
             query = String.Format("UPDATE tb_a_acc_trans SET id_report_status='{0}' WHERE id_acc_trans ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             infoCustom("Status changed.")
-            Try
-                FormAccountingJournalDet.id_report_status_g = id_status_reportx
-                FormAccountingJournalDet.allow_status()
-                FormAccountingJournal.view_entry(FormAccountingJournal.LEBilling.EditValue.ToString, Now.ToString("yyy-MM-dd"), Now.ToString("yyy-MM-dd"))
+
+            If form_origin = "FormAccountingJournalBill" Then
+                FormAccountingJournalBill.actionLoad()
+                FormAccountingJournal.view_entry()
                 FormAccountingJournal.GVAccTrans.FocusedRowHandle = find_row(FormAccountingJournal.GVAccTrans, "id_acc_trans", id_report)
-            Catch ex As Exception
-            End Try
+            Else
+                Try
+                    FormAccountingJournalDet.id_report_status_g = id_status_reportx
+                    FormAccountingJournalDet.allow_status()
+                    FormAccountingJournal.view_entry()
+                    FormAccountingJournal.GVAccTrans.FocusedRowHandle = find_row(FormAccountingJournal.GVAccTrans, "id_acc_trans", id_report)
+                Catch ex As Exception
+                End Try
+            End If
+
         ElseIf report_mark_type = "37" Then
             'Rec PL FG TO WH
             Try

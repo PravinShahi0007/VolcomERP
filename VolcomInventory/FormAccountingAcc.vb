@@ -47,6 +47,9 @@
 
             SLEParentAccount.Properties.ReadOnly = True
             TEAccountDetail.Properties.ReadOnly = True
+            LEAccCat.Properties.ReadOnly = True
+            MEAccDesc.Properties.ReadOnly = True
+            LEDetail.Properties.ReadOnly = True
         End If
     End Sub
 
@@ -115,36 +118,40 @@
         Dim query As String = ""
 
         ValidateChildren()
-        If id_acc = "-1" Then
-            'new
-            If SLEParentAccount.EditValue = "-1" Then
-                query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_cat,id_is_det,id_status) VALUES('{0}','{1}','{2}','{3}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString)
-            Else
-                query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status) VALUES('{0}','{1}','{2}','{3}','{4}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString)
-            End If
-            
-            id_acc = execute_query(query, 0, True, "", "", "", "")
-
-            FormAccounting.view_acc()
-            FormAccounting.CreateNodes(FormAccounting.TreeList1)
-            FormAccounting.XTCGeneral.SelectedTabPageIndex = 0
-
-            FormAccounting.GVAcc.FocusedRowHandle = find_row(FormAccounting.GVAcc, "id_acc", id_acc)
-
-            Close()
+        If Not formIsValidInPanel(EPACC, PanelControl3) Then
+            errorInput()
         Else
-            'edit
-            query = String.Format("UPDATE tb_a_acc SET acc_description='{0}',id_acc_cat='{1}',id_is_det='{2}',id_status='{3}' WHERE id_acc='{4}'", MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, id_acc)
-            execute_non_query(query, True, "", "", "", "")
-            FormAccounting.view_acc()
-            FormAccounting.CreateNodes(FormAccounting.TreeList1)
+            If id_acc = "-1" Then
+                'new
+                If SLEParentAccount.EditValue = "-1" Then
+                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_cat,id_is_det,id_status) VALUES('{0}','{1}','{2}','{3}','{4}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString)
+                Else
+                    query = String.Format("INSERT INTO tb_a_acc(acc_name,acc_description,id_acc_parent,id_acc_cat,id_is_det,id_status) VALUES('{0}','{1}','{2}','{3}','{4}','{5}');SELECT LAST_INSERT_ID()", TEAccount.Text, MEAccDesc.Text, SLEParentAccount.Properties.View.GetFocusedRowCellValue("id_acc").ToString, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString)
+                End If
 
-            FormAccounting.TreeList1.FocusedNode = FormAccounting.TreeList1.FindNodeByKeyID(id_acc)
+                id_acc = execute_query(query, 0, True, "", "", "", "")
 
-            'FormAccounting.XTCGeneral.SelectedTabPageIndex = 0
-            FormAccounting.GVAcc.FocusedRowHandle = find_row(FormAccounting.GVAcc, "id_acc", id_acc)
+                FormAccounting.view_acc()
+                FormAccounting.CreateNodes(FormAccounting.TreeList1)
+                FormAccounting.XTCGeneral.SelectedTabPageIndex = 0
 
-            Close()
+                FormAccounting.GVAcc.FocusedRowHandle = find_row(FormAccounting.GVAcc, "id_acc", id_acc)
+
+                Close()
+            Else
+                'edit
+                query = String.Format("UPDATE tb_a_acc SET acc_description='{0}',id_acc_cat='{1}',id_is_det='{2}',id_status='{3}' WHERE id_acc='{4}'", MEAccDesc.Text, LEAccCat.EditValue.ToString, LEDetail.EditValue.ToString, LEActive.EditValue.ToString, id_acc)
+                execute_non_query(query, True, "", "", "", "")
+                FormAccounting.view_acc()
+                FormAccounting.CreateNodes(FormAccounting.TreeList1)
+
+                FormAccounting.TreeList1.FocusedNode = FormAccounting.TreeList1.FindNodeByKeyID(id_acc)
+
+                'FormAccounting.XTCGeneral.SelectedTabPageIndex = 0
+                FormAccounting.GVAcc.FocusedRowHandle = find_row(FormAccounting.GVAcc, "id_acc", id_acc)
+
+                Close()
+            End If
         End If
     End Sub
 
@@ -170,6 +177,10 @@
     End Sub
 
     Private Sub TEAccount_Validating(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles TEAccount.Validating
+        check()
+    End Sub
+
+    Sub check()
         Dim query_jml As String
         query_jml = String.Format("SELECT COUNT(id_acc) FROM tb_a_acc WHERE acc_name='{0}' AND id_acc!='{1}'", TEAccount.Text, id_acc)
         Dim jml As Integer = execute_query(query_jml, 0, True, "", "", "", "")
@@ -183,5 +194,9 @@
     Private Sub BPickCompTo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         FormPopUpContact.id_pop_up = "58"
         FormPopUpContact.ShowDialog()
+    End Sub
+
+    Private Sub TEAccountDetail_Validating(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles TEAccountDetail.Validating
+        check()
     End Sub
 End Class
