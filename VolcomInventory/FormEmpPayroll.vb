@@ -76,6 +76,6 @@
     End Sub
 
     Private Sub BDeduction_Click(sender As Object, e As EventArgs) Handles BDeduction.Click
-
+        FormEmpPayrollDeduction.ShowDialog()
     End Sub
 End Class
