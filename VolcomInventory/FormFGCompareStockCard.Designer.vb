@@ -19,10 +19,18 @@ Partial Class FormFGCompareStockCard
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormFGCompareStockCard))
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.SLEWH = New DevExpress.XtraEditors.SearchLookUpEdit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.GCData = New DevExpress.XtraGrid.GridControl()
         Me.GVData = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumnCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnTRS = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnReff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -40,6 +48,9 @@ Partial Class FormFGCompareStockCard
         Me.BandedGridColumnQty8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQty9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQty10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumnSourceERP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridSizeTypeERP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQtyERP1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQtyERP2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQtyERP3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -50,18 +61,20 @@ Partial Class FormFGCompareStockCard
         Me.BandedGridColumnQtyERP8 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQtyERP9 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnQtyERP10 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.gridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
+        CType(Me.SLEWH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.SLEWH)
+        Me.PanelControl1.Controls.Add(Me.LabelControl1)
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
@@ -69,12 +82,59 @@ Partial Class FormFGCompareStockCard
         Me.PanelControl1.Size = New System.Drawing.Size(656, 44)
         Me.PanelControl1.TabIndex = 0
         '
+        'SLEWH
+        '
+        Me.SLEWH.Location = New System.Drawing.Point(58, 12)
+        Me.SLEWH.Name = "SLEWH"
+        Me.SLEWH.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.SLEWH.Properties.ShowClearButton = False
+        Me.SLEWH.Properties.View = Me.GridView1
+        Me.SLEWH.Size = New System.Drawing.Size(228, 20)
+        Me.SLEWH.TabIndex = 8895
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn5, Me.GridColumn6, Me.GridColumn19})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Id Comp"
+        Me.GridColumn5.FieldName = "id_comp"
+        Me.GridColumn5.Name = "GridColumn5"
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Account"
+        Me.GridColumn6.FieldName = "comp_number"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 0
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Description"
+        Me.GridColumn19.FieldName = "comp_name_label"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 1
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(40, 13)
+        Me.LabelControl1.TabIndex = 1
+        Me.LabelControl1.Text = "Location"
+        '
         'SimpleButton1
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
-        Me.SimpleButton1.Location = New System.Drawing.Point(2, 2)
+        Me.SimpleButton1.Location = New System.Drawing.Point(288, 11)
         Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(100, 40)
+        Me.SimpleButton1.Size = New System.Drawing.Size(100, 21)
         Me.SimpleButton1.TabIndex = 0
         Me.SimpleButton1.Text = "Load BOF XLS"
         '
@@ -91,13 +151,39 @@ Partial Class FormFGCompareStockCard
         'GVData
         '
         Me.GVData.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.gridBand1, Me.gridBand2, Me.gridBand3})
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnCode, Me.BandedGridColumnTRS, Me.BandedGridColumnReff, Me.BandedGridColumnERPNumber, Me.BandedGridColumnSource, Me.BandedGridColumndate, Me.BandedGridColumnSizeTypBOF, Me.BandedGridColumnQty1, Me.BandedGridColumnQty2, Me.BandedGridColumnQty3, Me.BandedGridColumnQty4, Me.BandedGridColumnQty5, Me.BandedGridColumnQty6, Me.BandedGridColumnQty7, Me.BandedGridColumnQty8, Me.BandedGridColumnQty9, Me.BandedGridColumnQty10, Me.BandedGridColumnQtyERP1, Me.BandedGridColumnQtyERP2, Me.BandedGridColumnQtyERP3, Me.BandedGridColumnQtyERP4, Me.BandedGridColumnQtyERP5, Me.BandedGridColumnQtyERP6, Me.BandedGridColumnQtyERP7, Me.BandedGridColumnQtyERP8, Me.BandedGridColumnQtyERP9, Me.BandedGridColumnQtyERP10, Me.BandedGridColumn1})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.BandedGridColumnCode, Me.BandedGridColumnTRS, Me.BandedGridColumnReff, Me.BandedGridColumnERPNumber, Me.BandedGridColumnSource, Me.BandedGridColumndate, Me.BandedGridColumnSizeTypBOF, Me.BandedGridColumnQty1, Me.BandedGridColumnQty2, Me.BandedGridColumnQty3, Me.BandedGridColumnQty4, Me.BandedGridColumnQty5, Me.BandedGridColumnQty6, Me.BandedGridColumnQty7, Me.BandedGridColumnQty8, Me.BandedGridColumnQty9, Me.BandedGridColumnQty10, Me.BandedGridColumnQtyERP1, Me.BandedGridColumnQtyERP2, Me.BandedGridColumnQtyERP3, Me.BandedGridColumnQtyERP4, Me.BandedGridColumnQtyERP5, Me.BandedGridColumnQtyERP6, Me.BandedGridColumnQtyERP7, Me.BandedGridColumnQtyERP8, Me.BandedGridColumnQtyERP9, Me.BandedGridColumnQtyERP10, Me.BandedGridColumn1, Me.BandedGridSizeTypeERP, Me.BandedGridColumnSourceERP})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVData.OptionsBehavior.Editable = False
+        Me.GVData.OptionsPrint.AllowMultilineHeaders = True
         Me.GVData.OptionsView.ColumnAutoWidth = False
+        Me.GVData.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.[True]
         Me.GVData.OptionsView.ShowGroupPanel = False
+        '
+        'gridBand1
+        '
+        Me.gridBand1.Caption = "BOF"
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnCode)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnTRS)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnReff)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnERPNumber)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnSource)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumndate)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnSizeTypBOF)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty1)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty2)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty3)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty4)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty5)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty6)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty7)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty8)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty9)
+        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty10)
+        Me.gridBand1.Name = "gridBand1"
+        Me.gridBand1.VisibleIndex = 0
+        Me.gridBand1.Width = 1077
         '
         'BandedGridColumnCode
         '
@@ -237,113 +323,11 @@ Partial Class FormFGCompareStockCard
         Me.BandedGridColumnQty10.Visible = True
         Me.BandedGridColumnQty10.Width = 93
         '
-        'BandedGridColumnQtyERP1
-        '
-        Me.BandedGridColumnQtyERP1.Caption = "1"
-        Me.BandedGridColumnQtyERP1.FieldName = "qtyerp1"
-        Me.BandedGridColumnQtyERP1.Name = "BandedGridColumnQtyERP1"
-        Me.BandedGridColumnQtyERP1.Visible = True
-        Me.BandedGridColumnQtyERP1.Width = 60
-        '
-        'BandedGridColumnQtyERP2
-        '
-        Me.BandedGridColumnQtyERP2.Caption = "2"
-        Me.BandedGridColumnQtyERP2.FieldName = "qtyerp2"
-        Me.BandedGridColumnQtyERP2.Name = "BandedGridColumnQtyERP2"
-        Me.BandedGridColumnQtyERP2.Visible = True
-        '
-        'BandedGridColumnQtyERP3
-        '
-        Me.BandedGridColumnQtyERP3.Caption = "3"
-        Me.BandedGridColumnQtyERP3.FieldName = "qtyerp3"
-        Me.BandedGridColumnQtyERP3.Name = "BandedGridColumnQtyERP3"
-        Me.BandedGridColumnQtyERP3.Visible = True
-        '
-        'BandedGridColumnQtyERP4
-        '
-        Me.BandedGridColumnQtyERP4.Caption = "4"
-        Me.BandedGridColumnQtyERP4.FieldName = "qtyerp4"
-        Me.BandedGridColumnQtyERP4.Name = "BandedGridColumnQtyERP4"
-        Me.BandedGridColumnQtyERP4.Visible = True
-        '
-        'BandedGridColumnQtyERP5
-        '
-        Me.BandedGridColumnQtyERP5.Caption = "5"
-        Me.BandedGridColumnQtyERP5.FieldName = "qtyerp5"
-        Me.BandedGridColumnQtyERP5.Name = "BandedGridColumnQtyERP5"
-        Me.BandedGridColumnQtyERP5.Visible = True
-        '
-        'BandedGridColumnQtyERP6
-        '
-        Me.BandedGridColumnQtyERP6.Caption = "6"
-        Me.BandedGridColumnQtyERP6.FieldName = "qtyerp6"
-        Me.BandedGridColumnQtyERP6.Name = "BandedGridColumnQtyERP6"
-        Me.BandedGridColumnQtyERP6.Visible = True
-        '
-        'BandedGridColumnQtyERP7
-        '
-        Me.BandedGridColumnQtyERP7.Caption = "7"
-        Me.BandedGridColumnQtyERP7.FieldName = "qtyerp7"
-        Me.BandedGridColumnQtyERP7.Name = "BandedGridColumnQtyERP7"
-        Me.BandedGridColumnQtyERP7.Visible = True
-        '
-        'BandedGridColumnQtyERP8
-        '
-        Me.BandedGridColumnQtyERP8.Caption = "8"
-        Me.BandedGridColumnQtyERP8.FieldName = "qtyerp8"
-        Me.BandedGridColumnQtyERP8.Name = "BandedGridColumnQtyERP8"
-        Me.BandedGridColumnQtyERP8.Visible = True
-        '
-        'BandedGridColumnQtyERP9
-        '
-        Me.BandedGridColumnQtyERP9.Caption = "9"
-        Me.BandedGridColumnQtyERP9.FieldName = "qtyerp9"
-        Me.BandedGridColumnQtyERP9.Name = "BandedGridColumnQtyERP9"
-        Me.BandedGridColumnQtyERP9.Visible = True
-        '
-        'BandedGridColumnQtyERP10
-        '
-        Me.BandedGridColumnQtyERP10.Caption = "0"
-        Me.BandedGridColumnQtyERP10.FieldName = "qtyerp10"
-        Me.BandedGridColumnQtyERP10.Name = "BandedGridColumnQtyERP10"
-        Me.BandedGridColumnQtyERP10.Visible = True
-        '
-        'BandedGridColumn1
-        '
-        Me.BandedGridColumn1.Caption = "Note"
-        Me.BandedGridColumn1.FieldName = "note"
-        Me.BandedGridColumn1.Name = "BandedGridColumn1"
-        Me.BandedGridColumn1.UnboundExpression = "Iif([req] = '', 'Not found in ERP', 'OK')"
-        Me.BandedGridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[String]
-        Me.BandedGridColumn1.Visible = True
-        '
-        'gridBand1
-        '
-        Me.gridBand1.Caption = "BOF"
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnCode)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnTRS)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnReff)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnERPNumber)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnSource)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumndate)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnSizeTypBOF)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty1)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty2)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty3)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty4)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty5)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty6)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty7)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty8)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty9)
-        Me.gridBand1.Columns.Add(Me.BandedGridColumnQty10)
-        Me.gridBand1.Name = "gridBand1"
-        Me.gridBand1.VisibleIndex = 0
-        Me.gridBand1.Width = 1077
-        '
         'gridBand2
         '
         Me.gridBand2.Caption = "ERP"
+        Me.gridBand2.Columns.Add(Me.BandedGridColumnSourceERP)
+        Me.gridBand2.Columns.Add(Me.BandedGridSizeTypeERP)
         Me.gridBand2.Columns.Add(Me.BandedGridColumnQtyERP1)
         Me.gridBand2.Columns.Add(Me.BandedGridColumnQtyERP2)
         Me.gridBand2.Columns.Add(Me.BandedGridColumnQtyERP3)
@@ -356,7 +340,112 @@ Partial Class FormFGCompareStockCard
         Me.gridBand2.Columns.Add(Me.BandedGridColumnQtyERP10)
         Me.gridBand2.Name = "gridBand2"
         Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 735
+        Me.gridBand2.Width = 885
+        '
+        'BandedGridColumnSourceERP
+        '
+        Me.BandedGridColumnSourceERP.Caption = "Source"
+        Me.BandedGridColumnSourceERP.FieldName = "source_erp"
+        Me.BandedGridColumnSourceERP.Name = "BandedGridColumnSourceERP"
+        Me.BandedGridColumnSourceERP.Visible = True
+        '
+        'BandedGridSizeTypeERP
+        '
+        Me.BandedGridSizeTypeERP.Caption = "Size type"
+        Me.BandedGridSizeTypeERP.FieldName = "sizetyperp"
+        Me.BandedGridSizeTypeERP.Name = "BandedGridSizeTypeERP"
+        Me.BandedGridSizeTypeERP.Visible = True
+        '
+        'BandedGridColumnQtyERP1
+        '
+        Me.BandedGridColumnQtyERP1.Caption = "1"
+        Me.BandedGridColumnQtyERP1.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyERP1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyERP1.FieldName = "qtyerp1"
+        Me.BandedGridColumnQtyERP1.Name = "BandedGridColumnQtyERP1"
+        Me.BandedGridColumnQtyERP1.Visible = True
+        Me.BandedGridColumnQtyERP1.Width = 60
+        '
+        'BandedGridColumnQtyERP2
+        '
+        Me.BandedGridColumnQtyERP2.Caption = "2"
+        Me.BandedGridColumnQtyERP2.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyERP2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyERP2.FieldName = "qtyerp2"
+        Me.BandedGridColumnQtyERP2.Name = "BandedGridColumnQtyERP2"
+        Me.BandedGridColumnQtyERP2.Visible = True
+        '
+        'BandedGridColumnQtyERP3
+        '
+        Me.BandedGridColumnQtyERP3.Caption = "3"
+        Me.BandedGridColumnQtyERP3.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyERP3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyERP3.FieldName = "qtyerp3"
+        Me.BandedGridColumnQtyERP3.Name = "BandedGridColumnQtyERP3"
+        Me.BandedGridColumnQtyERP3.Visible = True
+        '
+        'BandedGridColumnQtyERP4
+        '
+        Me.BandedGridColumnQtyERP4.Caption = "4"
+        Me.BandedGridColumnQtyERP4.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyERP4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyERP4.FieldName = "qtyerp4"
+        Me.BandedGridColumnQtyERP4.Name = "BandedGridColumnQtyERP4"
+        Me.BandedGridColumnQtyERP4.Visible = True
+        '
+        'BandedGridColumnQtyERP5
+        '
+        Me.BandedGridColumnQtyERP5.Caption = "5"
+        Me.BandedGridColumnQtyERP5.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyERP5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyERP5.FieldName = "qtyerp5"
+        Me.BandedGridColumnQtyERP5.Name = "BandedGridColumnQtyERP5"
+        Me.BandedGridColumnQtyERP5.Visible = True
+        '
+        'BandedGridColumnQtyERP6
+        '
+        Me.BandedGridColumnQtyERP6.Caption = "6"
+        Me.BandedGridColumnQtyERP6.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyERP6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyERP6.FieldName = "qtyerp6"
+        Me.BandedGridColumnQtyERP6.Name = "BandedGridColumnQtyERP6"
+        Me.BandedGridColumnQtyERP6.Visible = True
+        '
+        'BandedGridColumnQtyERP7
+        '
+        Me.BandedGridColumnQtyERP7.Caption = "7"
+        Me.BandedGridColumnQtyERP7.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyERP7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyERP7.FieldName = "qtyerp7"
+        Me.BandedGridColumnQtyERP7.Name = "BandedGridColumnQtyERP7"
+        Me.BandedGridColumnQtyERP7.Visible = True
+        '
+        'BandedGridColumnQtyERP8
+        '
+        Me.BandedGridColumnQtyERP8.Caption = "8"
+        Me.BandedGridColumnQtyERP8.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyERP8.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyERP8.FieldName = "qtyerp8"
+        Me.BandedGridColumnQtyERP8.Name = "BandedGridColumnQtyERP8"
+        Me.BandedGridColumnQtyERP8.Visible = True
+        '
+        'BandedGridColumnQtyERP9
+        '
+        Me.BandedGridColumnQtyERP9.Caption = "9"
+        Me.BandedGridColumnQtyERP9.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyERP9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyERP9.FieldName = "qtyerp9"
+        Me.BandedGridColumnQtyERP9.Name = "BandedGridColumnQtyERP9"
+        Me.BandedGridColumnQtyERP9.Visible = True
+        '
+        'BandedGridColumnQtyERP10
+        '
+        Me.BandedGridColumnQtyERP10.Caption = "0"
+        Me.BandedGridColumnQtyERP10.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumnQtyERP10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnQtyERP10.FieldName = "qtyerp10"
+        Me.BandedGridColumnQtyERP10.Name = "BandedGridColumnQtyERP10"
+        Me.BandedGridColumnQtyERP10.Visible = True
         '
         'gridBand3
         '
@@ -365,6 +454,15 @@ Partial Class FormFGCompareStockCard
         Me.gridBand3.Name = "gridBand3"
         Me.gridBand3.VisibleIndex = 2
         Me.gridBand3.Width = 75
+        '
+        'BandedGridColumn1
+        '
+        Me.BandedGridColumn1.Caption = "Note"
+        Me.BandedGridColumn1.FieldName = "note"
+        Me.BandedGridColumn1.Name = "BandedGridColumn1"
+        Me.BandedGridColumn1.UnboundExpression = resources.GetString("BandedGridColumn1.UnboundExpression")
+        Me.BandedGridColumn1.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.BandedGridColumn1.Visible = True
         '
         'FormFGCompareStockCard
         '
@@ -377,6 +475,9 @@ Partial Class FormFGCompareStockCard
         Me.Text = "Compare Stock Card"
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
+        Me.PanelControl1.PerformLayout()
+        CType(Me.SLEWH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVData, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -415,7 +516,15 @@ Partial Class FormFGCompareStockCard
     Friend WithEvents BandedGridColumnQtyERP9 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnQtyERP10 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents BandedGridSizeTypeERP As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents SLEWH As DevExpress.XtraEditors.SearchLookUpEdit
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn19 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents gridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumnSourceERP As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
 End Class

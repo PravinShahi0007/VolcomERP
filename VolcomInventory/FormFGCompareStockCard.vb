@@ -5,8 +5,28 @@ Public Class FormFGCompareStockCard
     Public file_path As String = ""
     Public copy_file_path As String = ""
 
-    Private Sub FormFGCompareStockCard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Sub viewWHStockCard()
+        Dim query As String = ""
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label FROM tb_storage_fg a "
+        query += "INNER JOIN tb_m_wh_drawer b ON a.id_wh_drawer = b.id_wh_drawer "
+        query += "INNER JOIN tb_m_wh_rack c ON b.id_wh_rack = c.id_wh_rack "
+        query += "INNER JOIN tb_m_wh_locator d ON c.id_wh_locator = d.id_wh_locator "
+        query += "INNER JOIN tb_m_comp e ON e.id_comp = d.id_comp "
+        query += "GROUP BY e.id_comp "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        SLEWH.Properties.DataSource = Nothing
+        SLEWH.Properties.DataSource = data
+        SLEWH.Properties.DisplayMember = "comp_name_label"
+        SLEWH.Properties.ValueMember = "id_comp"
+        If data.Rows.Count.ToString >= 1 Then
+            SLEWH.EditValue = data.Rows(0)("id_comp").ToString
+        Else
+            SLEWH.EditValue = Nothing
+        End If
+    End Sub
 
+    Private Sub FormFGCompareStockCard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        viewWHStockCard()
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
@@ -56,12 +76,32 @@ Public Class FormFGCompareStockCard
                 Console.WriteLine(qry)
 
                 Dim data As New DataTable
-                Dim adapter As New MySqlDataAdapter("CALL view_compare_sc()", connection)
+                Dim adapter As New MySqlDataAdapter("CALL view_compare_sc('" + SLEWH.EditValue.ToString + "')", connection)
                 adapter.SelectCommand.CommandTimeout = 300
                 adapter.Fill(data)
                 adapter.Dispose()
                 data.Dispose()
                 GCData.DataSource = data
+                GVData.Columns("qty1").Caption = "1" + System.Environment.NewLine + "XXS"
+                GVData.Columns("qtyerp1").Caption = "1" + System.Environment.NewLine + "XXS"
+                GVData.Columns("qty2").Caption = "2" + System.Environment.NewLine + "XS"
+                GVData.Columns("qtyerp2").Caption = "2" + System.Environment.NewLine + "XS"
+                GVData.Columns("qty3").Caption = "3" + System.Environment.NewLine + "S"
+                GVData.Columns("qtyerp3").Caption = "3" + System.Environment.NewLine + "S"
+                GVData.Columns("qty4").Caption = "4" + System.Environment.NewLine + "M"
+                GVData.Columns("qtyerp4").Caption = "4" + System.Environment.NewLine + "M"
+                GVData.Columns("qty5").Caption = "5" + System.Environment.NewLine + "ML"
+                GVData.Columns("qtyerp5").Caption = "5" + System.Environment.NewLine + "ML"
+                GVData.Columns("qty6").Caption = "6" + System.Environment.NewLine + "L"
+                GVData.Columns("qtyerp6").Caption = "6" + System.Environment.NewLine + "L"
+                GVData.Columns("qty7").Caption = "7" + System.Environment.NewLine + "XL"
+                GVData.Columns("qtyerp7").Caption = "7" + System.Environment.NewLine + "XL"
+                GVData.Columns("qty8").Caption = "8" + System.Environment.NewLine + "XXL"
+                GVData.Columns("qtyerp8").Caption = "8" + System.Environment.NewLine + "XXL"
+                GVData.Columns("qty9").Caption = "9" + System.Environment.NewLine + "ALL"
+                GVData.Columns("qtyerp9").Caption = "9" + System.Environment.NewLine + "ALL"
+                GVData.Columns("qty10").Caption = "0" + System.Environment.NewLine + "SM"
+                GVData.Columns("qtyerp10").Caption = "0" + System.Environment.NewLine + "SM"
 
                 connection.Close()
                 connection.Dispose()
@@ -69,5 +109,13 @@ Public Class FormFGCompareStockCard
             Cursor = Cursors.Default
         End If
         fdlg.Dispose()
+    End Sub
+
+    Private Sub FormFGCompareStockCard_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+    End Sub
+
+    Private Sub FormFGCompareStockCard_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
     End Sub
 End Class
