@@ -32,13 +32,14 @@ Partial Class FormEmpPayrollDeduction
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BDel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BEdit = New DevExpress.XtraEditors.SimpleButton()
+        Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GCDeduction = New DevExpress.XtraGrid.GridControl()
         Me.GVDeduction = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdDeduction = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDept = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNIP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmpPosition = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -58,9 +59,9 @@ Partial Class FormEmpPayrollDeduction
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnDropQuickMenu)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton3)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton2)
-        Me.PanelControl1.Controls.Add(Me.SimpleButton1)
+        Me.PanelControl1.Controls.Add(Me.BDel)
+        Me.PanelControl1.Controls.Add(Me.BEdit)
+        Me.PanelControl1.Controls.Add(Me.BAdd)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
@@ -160,38 +161,38 @@ Partial Class FormEmpPayrollDeduction
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
-        'SimpleButton3
+        'BDel
         '
-        Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton3.ImageIndex = 1
-        Me.SimpleButton3.ImageList = Me.LargeImageCollection
-        Me.SimpleButton3.Location = New System.Drawing.Point(1008, 2)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(81, 34)
-        Me.SimpleButton3.TabIndex = 2
-        Me.SimpleButton3.Text = "Delete"
+        Me.BDel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BDel.ImageIndex = 1
+        Me.BDel.ImageList = Me.LargeImageCollection
+        Me.BDel.Location = New System.Drawing.Point(1008, 2)
+        Me.BDel.Name = "BDel"
+        Me.BDel.Size = New System.Drawing.Size(81, 34)
+        Me.BDel.TabIndex = 2
+        Me.BDel.Text = "Delete"
         '
-        'SimpleButton2
+        'BEdit
         '
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton2.ImageIndex = 2
-        Me.SimpleButton2.ImageList = Me.LargeImageCollection
-        Me.SimpleButton2.Location = New System.Drawing.Point(1089, 2)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(81, 34)
-        Me.SimpleButton2.TabIndex = 1
-        Me.SimpleButton2.Text = "Edit"
+        Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BEdit.ImageIndex = 2
+        Me.BEdit.ImageList = Me.LargeImageCollection
+        Me.BEdit.Location = New System.Drawing.Point(1089, 2)
+        Me.BEdit.Name = "BEdit"
+        Me.BEdit.Size = New System.Drawing.Size(81, 34)
+        Me.BEdit.TabIndex = 1
+        Me.BEdit.Text = "Edit"
         '
-        'SimpleButton1
+        'BAdd
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.ImageIndex = 0
-        Me.SimpleButton1.ImageList = Me.LargeImageCollection
-        Me.SimpleButton1.Location = New System.Drawing.Point(1170, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(81, 34)
-        Me.SimpleButton1.TabIndex = 0
-        Me.SimpleButton1.Text = "Add"
+        Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAdd.ImageIndex = 0
+        Me.BAdd.ImageList = Me.LargeImageCollection
+        Me.BAdd.Location = New System.Drawing.Point(1170, 2)
+        Me.BAdd.Name = "BAdd"
+        Me.BAdd.Size = New System.Drawing.Size(81, 34)
+        Me.BAdd.TabIndex = 0
+        Me.BAdd.Text = "Add"
         '
         'GCDeduction
         '
@@ -205,9 +206,12 @@ Partial Class FormEmpPayrollDeduction
         '
         'GVDeduction
         '
-        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDeduction, Me.GridColumnIdEmployee, Me.GridColumnNIP, Me.GridColumnEmp, Me.GridColumnEmpPosition, Me.GridColumnEmpLvl, Me.GridColumnDeductType, Me.GridColumnValue, Me.GridColumnNote})
+        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDeduction, Me.GridColumnIdEmployee, Me.GridColumnDept, Me.GridColumnNIP, Me.GridColumnEmp, Me.GridColumnEmpPosition, Me.GridColumnEmpLvl, Me.GridColumnDeductType, Me.GridColumnValue, Me.GridColumnNote})
         Me.GVDeduction.GridControl = Me.GCDeduction
+        Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "deduction", Me.GridColumnValue, "{0:N0}")})
         Me.GVDeduction.Name = "GVDeduction"
+        Me.GVDeduction.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GVDeduction.OptionsView.ShowFooter = True
         Me.GVDeduction.OptionsView.ShowGroupPanel = False
         '
         'GridColumnIdDeduction
@@ -222,14 +226,22 @@ Partial Class FormEmpPayrollDeduction
         Me.GridColumnIdEmployee.FieldName = "id_employee"
         Me.GridColumnIdEmployee.Name = "GridColumnIdEmployee"
         '
+        'GridColumnDept
+        '
+        Me.GridColumnDept.Caption = "Departement"
+        Me.GridColumnDept.FieldName = "departement"
+        Me.GridColumnDept.Name = "GridColumnDept"
+        Me.GridColumnDept.Visible = True
+        Me.GridColumnDept.VisibleIndex = 0
+        '
         'GridColumnNIP
         '
         Me.GridColumnNIP.Caption = "NIP"
         Me.GridColumnNIP.FieldName = "employee_code"
         Me.GridColumnNIP.Name = "GridColumnNIP"
         Me.GridColumnNIP.Visible = True
-        Me.GridColumnNIP.VisibleIndex = 0
-        Me.GridColumnNIP.Width = 110
+        Me.GridColumnNIP.VisibleIndex = 1
+        Me.GridColumnNIP.Width = 50
         '
         'GridColumnEmp
         '
@@ -237,8 +249,8 @@ Partial Class FormEmpPayrollDeduction
         Me.GridColumnEmp.FieldName = "employee_name"
         Me.GridColumnEmp.Name = "GridColumnEmp"
         Me.GridColumnEmp.Visible = True
-        Me.GridColumnEmp.VisibleIndex = 1
-        Me.GridColumnEmp.Width = 186
+        Me.GridColumnEmp.VisibleIndex = 2
+        Me.GridColumnEmp.Width = 86
         '
         'GridColumnEmpPosition
         '
@@ -246,8 +258,8 @@ Partial Class FormEmpPayrollDeduction
         Me.GridColumnEmpPosition.FieldName = "employee_position"
         Me.GridColumnEmpPosition.Name = "GridColumnEmpPosition"
         Me.GridColumnEmpPosition.Visible = True
-        Me.GridColumnEmpPosition.VisibleIndex = 2
-        Me.GridColumnEmpPosition.Width = 186
+        Me.GridColumnEmpPosition.VisibleIndex = 3
+        Me.GridColumnEmpPosition.Width = 86
         '
         'GridColumnEmpLvl
         '
@@ -255,17 +267,17 @@ Partial Class FormEmpPayrollDeduction
         Me.GridColumnEmpLvl.FieldName = "employee_level"
         Me.GridColumnEmpLvl.Name = "GridColumnEmpLvl"
         Me.GridColumnEmpLvl.Visible = True
-        Me.GridColumnEmpLvl.VisibleIndex = 3
-        Me.GridColumnEmpLvl.Width = 186
+        Me.GridColumnEmpLvl.VisibleIndex = 4
+        Me.GridColumnEmpLvl.Width = 86
         '
         'GridColumnDeductType
         '
         Me.GridColumnDeductType.Caption = "Deduction Type"
-        Me.GridColumnDeductType.FieldName = "salary_deduction"
+        Me.GridColumnDeductType.FieldName = "description"
         Me.GridColumnDeductType.Name = "GridColumnDeductType"
         Me.GridColumnDeductType.Visible = True
-        Me.GridColumnDeductType.VisibleIndex = 4
-        Me.GridColumnDeductType.Width = 186
+        Me.GridColumnDeductType.VisibleIndex = 5
+        Me.GridColumnDeductType.Width = 86
         '
         'GridColumnValue
         '
@@ -274,9 +286,10 @@ Partial Class FormEmpPayrollDeduction
         Me.GridColumnValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnValue.FieldName = "deduction"
         Me.GridColumnValue.Name = "GridColumnValue"
+        Me.GridColumnValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "deduction", "{0:N0}")})
         Me.GridColumnValue.Visible = True
-        Me.GridColumnValue.VisibleIndex = 5
-        Me.GridColumnValue.Width = 186
+        Me.GridColumnValue.VisibleIndex = 6
+        Me.GridColumnValue.Width = 86
         '
         'GridColumnNote
         '
@@ -284,8 +297,8 @@ Partial Class FormEmpPayrollDeduction
         Me.GridColumnNote.FieldName = "note"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 6
-        Me.GridColumnNote.Width = 195
+        Me.GridColumnNote.VisibleIndex = 7
+        Me.GridColumnNote.Width = 101
         '
         'FormEmpPayrollDeduction
         '
@@ -303,6 +316,7 @@ Partial Class FormEmpPayrollDeduction
         Me.Name = "FormEmpPayrollDeduction"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Deduction "
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.PopupMenu, System.ComponentModel.ISupportInitialize).EndInit()
@@ -326,10 +340,10 @@ Partial Class FormEmpPayrollDeduction
     Friend WithEvents GridColumnDeductType As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnValue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BDel As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BEdit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GridColumnNIP As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PopupMenu As DevExpress.XtraBars.PopupMenu
     Friend WithEvents BBJamsostek As DevExpress.XtraBars.BarButtonItem
@@ -340,4 +354,5 @@ Partial Class FormEmpPayrollDeduction
     Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
     Friend WithEvents BtnDropQuickMenu As DevExpress.XtraEditors.DropDownButton
+    Friend WithEvents GridColumnDept As DevExpress.XtraGrid.Columns.GridColumn
 End Class

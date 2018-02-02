@@ -74,7 +74,7 @@ Partial Class FormEmpPayrollSetup
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl3.Location = New System.Drawing.Point(0, 164)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(371, 37)
+        Me.PanelControl3.Size = New System.Drawing.Size(331, 37)
         Me.PanelControl3.TabIndex = 7
         '
         'BCancel
@@ -82,7 +82,7 @@ Partial Class FormEmpPayrollSetup
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(221, 2)
+        Me.BCancel.Location = New System.Drawing.Point(181, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 33)
         Me.BCancel.TabIndex = 1
@@ -93,7 +93,7 @@ Partial Class FormEmpPayrollSetup
         Me.BPick.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPick.ImageIndex = 7
         Me.BPick.ImageList = Me.LargeImageCollection
-        Me.BPick.Location = New System.Drawing.Point(294, 2)
+        Me.BPick.Location = New System.Drawing.Point(254, 2)
         Me.BPick.Name = "BPick"
         Me.BPick.Size = New System.Drawing.Size(75, 33)
         Me.BPick.TabIndex = 0
@@ -104,6 +104,8 @@ Partial Class FormEmpPayrollSetup
         Me.TEKurs.EditValue = "1.00"
         Me.TEKurs.Location = New System.Drawing.Point(121, 9)
         Me.TEKurs.Name = "TEKurs"
+        Me.TEKurs.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEKurs.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEKurs.Properties.EditValueChangedDelay = 1
         Me.TEKurs.Properties.Mask.EditMask = "N0"
         Me.TEKurs.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -116,9 +118,9 @@ Partial Class FormEmpPayrollSetup
         '
         Me.LabelControl16.Location = New System.Drawing.Point(12, 12)
         Me.LabelControl16.Name = "LabelControl16"
-        Me.LabelControl16.Size = New System.Drawing.Size(24, 13)
+        Me.LabelControl16.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl16.TabIndex = 135
-        Me.LabelControl16.Text = "PTKP"
+        Me.LabelControl16.Text = "UMP"
         '
         'LabelControl1
         '
@@ -133,12 +135,14 @@ Partial Class FormEmpPayrollSetup
         Me.TextEdit1.EditValue = "1.00"
         Me.TextEdit1.Location = New System.Drawing.Point(121, 35)
         Me.TextEdit1.Name = "TextEdit1"
+        Me.TextEdit1.Properties.Appearance.Options.UseTextOptions = True
+        Me.TextEdit1.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TextEdit1.Properties.EditValueChangedDelay = 1
         Me.TextEdit1.Properties.Mask.EditMask = "N0"
         Me.TextEdit1.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TextEdit1.Properties.Mask.SaveLiteral = False
         Me.TextEdit1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TextEdit1.Size = New System.Drawing.Size(221, 20)
+        Me.TextEdit1.Size = New System.Drawing.Size(187, 20)
         Me.TextEdit1.TabIndex = 137
         '
         'LabelControl2
@@ -147,7 +151,7 @@ Partial Class FormEmpPayrollSetup
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(103, 13)
         Me.LabelControl2.TabIndex = 138
-        Me.LabelControl2.Text = "Overtime Reguler Var"
+        Me.LabelControl2.Text = "Overtime Regular Var"
         '
         'TEPembilang
         '
@@ -177,21 +181,19 @@ Partial Class FormEmpPayrollSetup
         Me.TEPenyebut.EditValue = "1.00"
         Me.TEPenyebut.Location = New System.Drawing.Point(219, 61)
         Me.TEPenyebut.Name = "TEPenyebut"
-        Me.TEPenyebut.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEPenyebut.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEPenyebut.Properties.EditValueChangedDelay = 1
         Me.TEPenyebut.Properties.Mask.EditMask = "N0"
         Me.TEPenyebut.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPenyebut.Properties.Mask.SaveLiteral = False
         Me.TEPenyebut.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEPenyebut.Size = New System.Drawing.Size(82, 20)
+        Me.TEPenyebut.Size = New System.Drawing.Size(89, 20)
         Me.TEPenyebut.TabIndex = 141
         '
         'FormEmpPayrollSetup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(371, 201)
+        Me.ClientSize = New System.Drawing.Size(331, 201)
         Me.Controls.Add(Me.TEPenyebut)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.TEPembilang)
