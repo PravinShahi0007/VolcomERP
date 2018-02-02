@@ -74,4 +74,12 @@
         execute_non_query(query, True, "", "", "", "")
         load_payroll_detail()
     End Sub
+
+    Private Sub BBJamsostek_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBJamsostek.ItemClick
+
+    End Sub
+
+    Private Sub BBDeduction_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBDeduction.ItemClick
+
+    End Sub
 End Class

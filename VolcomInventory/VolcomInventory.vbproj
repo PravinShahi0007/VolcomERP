@@ -691,6 +691,12 @@
     <Compile Include="FormEmpPayroll.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPayrollDeduction.Designer.vb">
+      <DependentUpon>FormEmpPayrollDeduction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollDeduction.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpPayrollEmp.Designer.vb">
       <DependentUpon>FormEmpPayrollEmp.vb</DependentUpon>
     </Compile>
@@ -5369,6 +5375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayroll.resx">
       <DependentUpon>FormEmpPayroll.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollDeduction.resx">
+      <DependentUpon>FormEmpPayrollDeduction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollEmp.resx">
       <DependentUpon>FormEmpPayrollEmp.vb</DependentUpon>
