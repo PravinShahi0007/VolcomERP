@@ -118,4 +118,18 @@ Public Class FormFGCompareStockCard
     Private Sub FormFGCompareStockCard_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
         FormMain.hide_rb()
     End Sub
+
+    Private Sub GVData_RowCellStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs) Handles GVData.RowCellStyle
+        'Dim note As String = sender.GetRowCellvalue(e.RowHandle, sender.Columns("note").ToString)
+        ''condition
+        'If note = "Data Match" Then
+        '    e.Appearance.BackColor = Color.White
+        '    e.Appearance.BackColor2 = Color.White
+        '    e.Appearance.ForeColor = Color.Black
+        'Else
+        '    e.Appearance.BackColor = Color.OrangeRed
+        '    e.Appearance.BackColor2 = Color.OrangeRed
+        '    e.Appearance.ForeColor = Color.White
+        'End If
+    End Sub
 End Class
