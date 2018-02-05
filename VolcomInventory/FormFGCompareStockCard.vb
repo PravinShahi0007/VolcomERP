@@ -113,6 +113,7 @@ Public Class FormFGCompareStockCard
 
     Private Sub FormFGCompareStockCard_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
+        checkFormAccess(Name)
     End Sub
 
     Private Sub FormFGCompareStockCard_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
