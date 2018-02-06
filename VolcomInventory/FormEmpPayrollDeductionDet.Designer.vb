@@ -188,7 +188,7 @@ Partial Class FormEmpPayrollDeductionDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(113, 90)
+        Me.MENote.Location = New System.Drawing.Point(112, 90)
         Me.MENote.Name = "MENote"
         Me.MENote.Properties.MaxLength = 200
         Me.MENote.Size = New System.Drawing.Size(386, 46)

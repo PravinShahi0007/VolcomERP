@@ -78,4 +78,8 @@
     Private Sub BDeduction_Click(sender As Object, e As EventArgs) Handles BDeduction.Click
         FormEmpPayrollDeduction.ShowDialog()
     End Sub
+
+    Private Sub BSetting_Click(sender As Object, e As EventArgs) Handles BSetting.Click
+        FormEmpPayrollSetup.ShowDialog()
+    End Sub
 End Class
