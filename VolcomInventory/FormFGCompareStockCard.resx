@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BandedGridColumn1.UnboundExpression" xml:space="preserve">
+    <value>Iif([req] = '', 'Not found in ERP', Iif([qty1] = [qtyerp1] And [qty2] = [qtyerp2] And [qty3] = [qtyerp3] And [qty4] = [qtyerp4] And [qty5] = [qtyerp5] And [qty6] = [qtyerp6] And [qty7] = [qtyerp7] And [qty8] = [qtyerp8] And [qty9] = [qtyerp9] And [qty10] = [qtyerp10] And [source] = [source_erp], 'Data Match', 'Data Not Match'))</value>
+  </data>
 </root>

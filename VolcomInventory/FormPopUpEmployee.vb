@@ -75,6 +75,12 @@
             FormEmpPayrollOvertimeDet.is_store_employee = GVEmployee.GetFocusedRowCellValue("is_store").ToString
             FormEmpPayrollOvertimeDet.LEDayoff.Focus()
             Close()
+        ElseIf id_popup = "6" Then
+            FormEmpPayrollDeductionDet.id_employee = GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+            FormEmpPayrollDeductionDet.TEEmployeeCode.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
+            FormEmpPayrollDeductionDet.TEEmployeeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
+            FormEmpPayrollDeductionDet.LEDeductionType.Focus()
+            Close()
         End If
     End Sub
 
