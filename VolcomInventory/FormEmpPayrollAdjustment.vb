@@ -11,4 +11,8 @@
     Private Sub FormEmpPayrollAdjustment_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub BAdd_Click(sender As Object, e As EventArgs) Handles BAdd.Click
+        FormEmpPayrollAdjustmentDet.ShowDialog()
+    End Sub
 End Class

@@ -35,11 +35,11 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnEmp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmpPosition = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmpLvl = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotTHP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotDays = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTotDays = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTotTHP = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -192,6 +192,19 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnEmpLvl.VisibleIndex = 4
         Me.GridColumnEmpLvl.Width = 86
         '
+        'GridColumnTotTHP
+        '
+        Me.GridColumnTotTHP.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnTotTHP.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnTotTHP.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnTotTHP.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnTotTHP.Caption = "Total THP"
+        Me.GridColumnTotTHP.DisplayFormat.FormatString = "N0"
+        Me.GridColumnTotTHP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotTHP.Name = "GridColumnTotTHP"
+        Me.GridColumnTotTHP.Visible = True
+        Me.GridColumnTotTHP.VisibleIndex = 5
+        '
         'GridColumnType
         '
         Me.GridColumnType.Caption = "Type"
@@ -200,6 +213,19 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnType.Visible = True
         Me.GridColumnType.VisibleIndex = 6
         Me.GridColumnType.Width = 86
+        '
+        'GridColumnTotDays
+        '
+        Me.GridColumnTotDays.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnTotDays.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnTotDays.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnTotDays.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnTotDays.Caption = "Total Days"
+        Me.GridColumnTotDays.DisplayFormat.FormatString = "N1"
+        Me.GridColumnTotDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotDays.Name = "GridColumnTotDays"
+        Me.GridColumnTotDays.Visible = True
+        Me.GridColumnTotDays.VisibleIndex = 7
         '
         'GridColumnValue
         '
@@ -225,32 +251,6 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnNote.Visible = True
         Me.GridColumnNote.VisibleIndex = 9
         Me.GridColumnNote.Width = 101
-        '
-        'GridColumnTotDays
-        '
-        Me.GridColumnTotDays.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnTotDays.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnTotDays.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnTotDays.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnTotDays.Caption = "Total Days"
-        Me.GridColumnTotDays.DisplayFormat.FormatString = "N1"
-        Me.GridColumnTotDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotDays.Name = "GridColumnTotDays"
-        Me.GridColumnTotDays.Visible = True
-        Me.GridColumnTotDays.VisibleIndex = 7
-        '
-        'GridColumnTotTHP
-        '
-        Me.GridColumnTotTHP.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnTotTHP.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnTotTHP.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnTotTHP.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnTotTHP.Caption = "Total THP"
-        Me.GridColumnTotTHP.DisplayFormat.FormatString = "N0"
-        Me.GridColumnTotTHP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotTHP.Name = "GridColumnTotTHP"
-        Me.GridColumnTotTHP.Visible = True
-        Me.GridColumnTotTHP.VisibleIndex = 5
         '
         'FormEmpPayrollAdjustment
         '

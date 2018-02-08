@@ -82,4 +82,8 @@
     Private Sub BSetting_Click(sender As Object, e As EventArgs) Handles BSetting.Click
         FormEmpPayrollSetup.ShowDialog()
     End Sub
+
+    Private Sub BBonusAdjustment_Click(sender As Object, e As EventArgs) Handles BBonusAdjustment.Click
+        FormEmpPayrollAdjustment.ShowDialog()
+    End Sub
 End Class
