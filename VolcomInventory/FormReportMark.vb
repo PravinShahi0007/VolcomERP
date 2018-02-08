@@ -3398,7 +3398,7 @@
             End If
             query = String.Format("UPDATE tb_emp_ch_schedule SET id_report_status='{0}' WHERE id_emp_ch_schedule ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "99" Or report_mark_type = "110" Then
+        ElseIf report_mark_type = "99" Then
             'LEAVE PROPOSE
             If id_status_reportx = "3" Then
                 'update schedule to cuti
