@@ -67,6 +67,9 @@ Partial Class FormWHSvcLevel
         Me.BandedGridColumnDelAmount = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnSvcLevelByCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControlByCode = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtDesignCode = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnViewCode = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton4 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton5 = New DevExpress.XtraEditors.SimpleButton()
@@ -89,6 +92,9 @@ Partial Class FormWHSvcLevel
         Me.BandedGridColumnSL = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GVByAcc = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GroupControlByAccount = New DevExpress.XtraEditors.GroupControl()
+        Me.TxtComp = New DevExpress.XtraEditors.TextEdit()
+        Me.TxtCompID = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnAcc = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
@@ -134,6 +140,8 @@ Partial Class FormWHSvcLevel
         CType(Me.GVByCode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlByCode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlByCode.SuspendLayout()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilCode.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromCode.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -144,6 +152,8 @@ Partial Class FormWHSvcLevel
         CType(Me.GVByAcc, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlByAccount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlByAccount.SuspendLayout()
+        CType(Me.TxtComp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TxtCompID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEFromAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,7 +176,7 @@ Partial Class FormWHSvcLevel
         Me.XTCSvcLelel.Location = New System.Drawing.Point(0, 0)
         Me.XTCSvcLelel.Name = "XTCSvcLelel"
         Me.XTCSvcLelel.SelectedTabPage = Me.XTPBySO
-        Me.XTCSvcLelel.Size = New System.Drawing.Size(777, 364)
+        Me.XTCSvcLelel.Size = New System.Drawing.Size(1228, 364)
         Me.XTCSvcLelel.TabIndex = 0
         Me.XTCSvcLelel.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBySO, Me.XTPByCode, Me.XTPByAcc, Me.XTPByReturn})
         '
@@ -175,7 +185,7 @@ Partial Class FormWHSvcLevel
         Me.XTPBySO.Controls.Add(Me.GCBySO)
         Me.XTPBySO.Controls.Add(Me.GCFilter)
         Me.XTPBySO.Name = "XTPBySO"
-        Me.XTPBySO.Size = New System.Drawing.Size(771, 336)
+        Me.XTPBySO.Size = New System.Drawing.Size(1222, 336)
         Me.XTPBySO.Text = "Prepare Order"
         '
         'GCBySO
@@ -184,7 +194,7 @@ Partial Class FormWHSvcLevel
         Me.GCBySO.Location = New System.Drawing.Point(0, 39)
         Me.GCBySO.MainView = Me.GVBySO
         Me.GCBySO.Name = "GCBySO"
-        Me.GCBySO.Size = New System.Drawing.Size(771, 297)
+        Me.GCBySO.Size = New System.Drawing.Size(1222, 297)
         Me.GCBySO.TabIndex = 4
         Me.GCBySO.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVBySO})
         '
@@ -408,7 +418,7 @@ Partial Class FormWHSvcLevel
         Me.GCFilter.Dock = System.Windows.Forms.DockStyle.Top
         Me.GCFilter.Location = New System.Drawing.Point(0, 0)
         Me.GCFilter.Name = "GCFilter"
-        Me.GCFilter.Size = New System.Drawing.Size(771, 39)
+        Me.GCFilter.Size = New System.Drawing.Size(1222, 39)
         Me.GCFilter.TabIndex = 3
         '
         'BtnView
@@ -487,7 +497,7 @@ Partial Class FormWHSvcLevel
         Me.XTPByCode.Controls.Add(Me.GCByCode)
         Me.XTPByCode.Controls.Add(Me.GroupControlByCode)
         Me.XTPByCode.Name = "XTPByCode"
-        Me.XTPByCode.Size = New System.Drawing.Size(771, 336)
+        Me.XTPByCode.Size = New System.Drawing.Size(1222, 336)
         Me.XTPByCode.Text = "Prepare Order By Code"
         '
         'GCByCode
@@ -496,7 +506,7 @@ Partial Class FormWHSvcLevel
         Me.GCByCode.Location = New System.Drawing.Point(0, 39)
         Me.GCByCode.MainView = Me.GVByCode
         Me.GCByCode.Name = "GCByCode"
-        Me.GCByCode.Size = New System.Drawing.Size(771, 297)
+        Me.GCByCode.Size = New System.Drawing.Size(1222, 297)
         Me.GCByCode.TabIndex = 5
         Me.GCByCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVByCode})
         '
@@ -674,6 +684,9 @@ Partial Class FormWHSvcLevel
         'GroupControlByCode
         '
         Me.GroupControlByCode.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlByCode.Controls.Add(Me.TxtDesign)
+        Me.GroupControlByCode.Controls.Add(Me.TxtDesignCode)
+        Me.GroupControlByCode.Controls.Add(Me.LabelControl9)
         Me.GroupControlByCode.Controls.Add(Me.BtnViewCode)
         Me.GroupControlByCode.Controls.Add(Me.SimpleButton4)
         Me.GroupControlByCode.Controls.Add(Me.SimpleButton5)
@@ -684,12 +697,37 @@ Partial Class FormWHSvcLevel
         Me.GroupControlByCode.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlByCode.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlByCode.Name = "GroupControlByCode"
-        Me.GroupControlByCode.Size = New System.Drawing.Size(771, 39)
+        Me.GroupControlByCode.Size = New System.Drawing.Size(1222, 39)
         Me.GroupControlByCode.TabIndex = 4
+        '
+        'TxtDesign
+        '
+        Me.TxtDesign.EditValue = ""
+        Me.TxtDesign.Enabled = False
+        Me.TxtDesign.Location = New System.Drawing.Point(135, 9)
+        Me.TxtDesign.Name = "TxtDesign"
+        Me.TxtDesign.Size = New System.Drawing.Size(283, 20)
+        Me.TxtDesign.TabIndex = 8901
+        '
+        'TxtDesignCode
+        '
+        Me.TxtDesignCode.EditValue = ""
+        Me.TxtDesignCode.Location = New System.Drawing.Point(61, 9)
+        Me.TxtDesignCode.Name = "TxtDesignCode"
+        Me.TxtDesignCode.Size = New System.Drawing.Size(72, 20)
+        Me.TxtDesignCode.TabIndex = 8900
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Location = New System.Drawing.Point(23, 12)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(32, 13)
+        Me.LabelControl9.TabIndex = 8899
+        Me.LabelControl9.Text = "Design"
         '
         'BtnViewCode
         '
-        Me.BtnViewCode.Location = New System.Drawing.Point(317, 9)
+        Me.BtnViewCode.Location = New System.Drawing.Point(711, 9)
         Me.BtnViewCode.LookAndFeel.SkinName = "Blue"
         Me.BtnViewCode.Name = "BtnViewCode"
         Me.BtnViewCode.Size = New System.Drawing.Size(75, 20)
@@ -699,7 +737,7 @@ Partial Class FormWHSvcLevel
         'SimpleButton4
         '
         Me.SimpleButton4.ImageIndex = 9
-        Me.SimpleButton4.Location = New System.Drawing.Point(938, 14)
+        Me.SimpleButton4.Location = New System.Drawing.Point(1008, 14)
         Me.SimpleButton4.Name = "SimpleButton4"
         Me.SimpleButton4.Size = New System.Drawing.Size(104, 20)
         Me.SimpleButton4.TabIndex = 8898
@@ -709,7 +747,7 @@ Partial Class FormWHSvcLevel
         'SimpleButton5
         '
         Me.SimpleButton5.ImageIndex = 8
-        Me.SimpleButton5.Location = New System.Drawing.Point(835, 14)
+        Me.SimpleButton5.Location = New System.Drawing.Point(1118, 14)
         Me.SimpleButton5.Name = "SimpleButton5"
         Me.SimpleButton5.Size = New System.Drawing.Size(99, 20)
         Me.SimpleButton5.TabIndex = 8897
@@ -719,7 +757,7 @@ Partial Class FormWHSvcLevel
         'DEUntilCode
         '
         Me.DEUntilCode.EditValue = Nothing
-        Me.DEUntilCode.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntilCode.Location = New System.Drawing.Point(596, 9)
         Me.DEUntilCode.Name = "DEUntilCode"
         Me.DEUntilCode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilCode.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -732,7 +770,7 @@ Partial Class FormWHSvcLevel
         'DEFromCode
         '
         Me.DEFromCode.EditValue = Nothing
-        Me.DEFromCode.Location = New System.Drawing.Point(58, 9)
+        Me.DEFromCode.Location = New System.Drawing.Point(452, 9)
         Me.DEFromCode.Name = "DEFromCode"
         Me.DEFromCode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFromCode.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -744,7 +782,7 @@ Partial Class FormWHSvcLevel
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl5.Location = New System.Drawing.Point(569, 12)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl5.TabIndex = 8893
@@ -752,7 +790,7 @@ Partial Class FormWHSvcLevel
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl6.Location = New System.Drawing.Point(422, 12)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl6.TabIndex = 8892
@@ -763,7 +801,7 @@ Partial Class FormWHSvcLevel
         Me.XTPByAcc.Controls.Add(Me.GCByAcco)
         Me.XTPByAcc.Controls.Add(Me.GroupControlByAccount)
         Me.XTPByAcc.Name = "XTPByAcc"
-        Me.XTPByAcc.Size = New System.Drawing.Size(771, 336)
+        Me.XTPByAcc.Size = New System.Drawing.Size(1222, 336)
         Me.XTPByAcc.Text = "Prepare Order By Account"
         '
         'GCByAcco
@@ -772,7 +810,7 @@ Partial Class FormWHSvcLevel
         Me.GCByAcco.Location = New System.Drawing.Point(0, 39)
         Me.GCByAcco.MainView = Me.GVByAcco
         Me.GCByAcco.Name = "GCByAcco"
-        Me.GCByAcco.Size = New System.Drawing.Size(771, 297)
+        Me.GCByAcco.Size = New System.Drawing.Size(1222, 297)
         Me.GCByAcco.TabIndex = 5
         Me.GCByAcco.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVByAcco, Me.GVByAcc})
         '
@@ -915,6 +953,9 @@ Partial Class FormWHSvcLevel
         'GroupControlByAccount
         '
         Me.GroupControlByAccount.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControlByAccount.Controls.Add(Me.TxtComp)
+        Me.GroupControlByAccount.Controls.Add(Me.TxtCompID)
+        Me.GroupControlByAccount.Controls.Add(Me.LabelControl10)
         Me.GroupControlByAccount.Controls.Add(Me.BtnAcc)
         Me.GroupControlByAccount.Controls.Add(Me.SimpleButton2)
         Me.GroupControlByAccount.Controls.Add(Me.SimpleButton3)
@@ -925,12 +966,37 @@ Partial Class FormWHSvcLevel
         Me.GroupControlByAccount.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControlByAccount.Location = New System.Drawing.Point(0, 0)
         Me.GroupControlByAccount.Name = "GroupControlByAccount"
-        Me.GroupControlByAccount.Size = New System.Drawing.Size(771, 39)
+        Me.GroupControlByAccount.Size = New System.Drawing.Size(1222, 39)
         Me.GroupControlByAccount.TabIndex = 4
+        '
+        'TxtComp
+        '
+        Me.TxtComp.EditValue = ""
+        Me.TxtComp.Enabled = False
+        Me.TxtComp.Location = New System.Drawing.Point(150, 9)
+        Me.TxtComp.Name = "TxtComp"
+        Me.TxtComp.Size = New System.Drawing.Size(283, 20)
+        Me.TxtComp.TabIndex = 8904
+        '
+        'TxtCompID
+        '
+        Me.TxtCompID.EditValue = ""
+        Me.TxtCompID.Location = New System.Drawing.Point(76, 9)
+        Me.TxtCompID.Name = "TxtCompID"
+        Me.TxtCompID.Size = New System.Drawing.Size(72, 20)
+        Me.TxtCompID.TabIndex = 8903
+        '
+        'LabelControl10
+        '
+        Me.LabelControl10.Location = New System.Drawing.Point(26, 12)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl10.TabIndex = 8902
+        Me.LabelControl10.Text = "Account"
         '
         'BtnAcc
         '
-        Me.BtnAcc.Location = New System.Drawing.Point(317, 9)
+        Me.BtnAcc.Location = New System.Drawing.Point(728, 9)
         Me.BtnAcc.LookAndFeel.SkinName = "Blue"
         Me.BtnAcc.Name = "BtnAcc"
         Me.BtnAcc.Size = New System.Drawing.Size(75, 20)
@@ -960,7 +1026,7 @@ Partial Class FormWHSvcLevel
         'DEUntilAcc
         '
         Me.DEUntilAcc.EditValue = Nothing
-        Me.DEUntilAcc.Location = New System.Drawing.Point(202, 9)
+        Me.DEUntilAcc.Location = New System.Drawing.Point(613, 9)
         Me.DEUntilAcc.Name = "DEUntilAcc"
         Me.DEUntilAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEUntilAcc.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -973,7 +1039,7 @@ Partial Class FormWHSvcLevel
         'DEFromAcc
         '
         Me.DEFromAcc.EditValue = Nothing
-        Me.DEFromAcc.Location = New System.Drawing.Point(58, 9)
+        Me.DEFromAcc.Location = New System.Drawing.Point(469, 9)
         Me.DEFromAcc.Name = "DEFromAcc"
         Me.DEFromAcc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEFromAcc.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
@@ -985,7 +1051,7 @@ Partial Class FormWHSvcLevel
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(175, 12)
+        Me.LabelControl1.Location = New System.Drawing.Point(586, 12)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(21, 13)
         Me.LabelControl1.TabIndex = 8893
@@ -993,7 +1059,7 @@ Partial Class FormWHSvcLevel
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(28, 12)
+        Me.LabelControl4.Location = New System.Drawing.Point(439, 12)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(24, 13)
         Me.LabelControl4.TabIndex = 8892
@@ -1004,7 +1070,7 @@ Partial Class FormWHSvcLevel
         Me.XTPByReturn.Controls.Add(Me.GCReturn)
         Me.XTPByReturn.Controls.Add(Me.GroupControl1)
         Me.XTPByReturn.Name = "XTPByReturn"
-        Me.XTPByReturn.Size = New System.Drawing.Size(771, 336)
+        Me.XTPByReturn.Size = New System.Drawing.Size(1222, 336)
         Me.XTPByReturn.Text = "Return"
         '
         'GCReturn
@@ -1013,7 +1079,7 @@ Partial Class FormWHSvcLevel
         Me.GCReturn.Location = New System.Drawing.Point(0, 39)
         Me.GCReturn.MainView = Me.GVReturn
         Me.GCReturn.Name = "GCReturn"
-        Me.GCReturn.Size = New System.Drawing.Size(771, 297)
+        Me.GCReturn.Size = New System.Drawing.Size(1222, 297)
         Me.GCReturn.TabIndex = 5
         Me.GCReturn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVReturn})
         '
@@ -1160,7 +1226,7 @@ Partial Class FormWHSvcLevel
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(771, 39)
+        Me.GroupControl1.Size = New System.Drawing.Size(1222, 39)
         Me.GroupControl1.TabIndex = 4
         '
         'BtnViewReturn
@@ -1238,7 +1304,7 @@ Partial Class FormWHSvcLevel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(777, 364)
+        Me.ClientSize = New System.Drawing.Size(1228, 364)
         Me.Controls.Add(Me.XTCSvcLelel)
         Me.Name = "FormWHSvcLevel"
         Me.ShowInTaskbar = False
@@ -1262,6 +1328,8 @@ Partial Class FormWHSvcLevel
         CType(Me.GroupControlByCode, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlByCode.ResumeLayout(False)
         Me.GroupControlByCode.PerformLayout()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtDesignCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilCode.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromCode.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1273,6 +1341,8 @@ Partial Class FormWHSvcLevel
         CType(Me.GroupControlByAccount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlByAccount.ResumeLayout(False)
         Me.GroupControlByAccount.PerformLayout()
+        CType(Me.TxtComp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TxtCompID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEUntilAcc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEFromAcc.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1390,4 +1460,10 @@ Partial Class FormWHSvcLevel
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnScannedQty As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDiffSc As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents TxtDesignCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtComp As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TxtCompID As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
 End Class

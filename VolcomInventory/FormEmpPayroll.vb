@@ -6,7 +6,6 @@
     Private Sub FormEmpPayroll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_payroll()
         '
-
     End Sub
 
     Sub load_payroll()
@@ -36,5 +35,51 @@
     Private Sub BOvertime_Click(sender As Object, e As EventArgs) Handles BOvertime.Click
         FormEmpPayrollOvertime.id_periode = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
         FormEmpPayrollOvertime.ShowDialog()
+    End Sub
+
+    Private Sub BGetEmployee_Click(sender As Object, e As EventArgs) Handles BGetEmployee.Click
+        FormEmpPayrollEmp.ShowDialog()
+    End Sub
+
+    Private Sub GVPayrollPeriode_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles GVPayrollPeriode.FocusedRowChanged
+        load_payroll_detail()
+    End Sub
+
+    Sub load_payroll_detail()
+        If GVPayrollPeriode.RowCount > 0 Then
+            Dim query As String = "CALL view_payroll('" & GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "')"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            GCPayroll.DataSource = data
+            GVPayroll.BestFitColumns()
+        End If
+    End Sub
+
+    Private Sub GVPayroll_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs)
+        If GVPayroll.RowCount > 0 And GVPayroll.FocusedRowHandle >= 0 Then
+            Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
+            Dim hitInfo As DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo = view.CalcHitInfo(e.Point)
+            If hitInfo.InRow And hitInfo.RowHandle >= 0 Then
+                view.FocusedRowHandle = hitInfo.RowHandle
+                ViewPopWorksheet.Show(view.GridControl, e.Point)
+            End If
+        End If
+    End Sub
+
+    Private Sub CMDelEmp_Click(sender As Object, e As EventArgs) Handles CMDelEmp.Click
+        Dim id_employee As String = GVPayroll.GetFocusedRowCellValue("id_employee").ToString
+        Dim id_payroll As String = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+        '
+        Dim query As String = "DELETE FROM tb_emp_payroll_det WHERE id_employee='" & id_employee & "' AND id_payroll='" & id_payroll & "'"
+        execute_non_query(query, True, "", "", "", "")
+        load_payroll_detail()
+    End Sub
+
+    Private Sub BDeduction_Click(sender As Object, e As EventArgs) Handles BDeduction.Click
+        FormEmpPayrollDeduction.ShowDialog()
+    End Sub
+
+    Private Sub BSetting_Click(sender As Object, e As EventArgs) Handles BSetting.Click
+        FormEmpPayrollSetup.ShowDialog()
     End Sub
 End Class

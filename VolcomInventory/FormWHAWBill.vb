@@ -148,7 +148,7 @@
         Else
             If CEDO.Checked = True Then 'view do
                 gridBandDO.Visible = True
-                query = "SELECT IF(is_paid_by_store='2','no','yes') as is_cod,do.do_no,do.qty,do.reff, do.scan_date, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
+                query = "SELECT awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,do.do_no,do.qty,do.reff, do.scan_date, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
@@ -164,7 +164,7 @@
                 query += " ORDER BY awb.id_awbill,do.do_no ASC"
             Else
                 gridBandDO.Visible = False
-                query = "SELECT IF(is_paid_by_store='2','no','yes') as is_cod,grp.comp_group, comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
+                query = "SELECT awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,grp.comp_group, comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
@@ -305,7 +305,7 @@
         Else
             If CERO.Checked = True Then 'view do
                 gridBandRO.Visible = True
-                query = "SELECT IF(is_paid_by_store='2','no','yes') as is_cod,awbd.do_no,awbd.qty, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
+                query = "SELECT awb.awbill_no,awb.awbill_inv_no,IF(is_paid_by_store='2','no','yes') as is_cod,awbd.do_no,awbd.qty, grp.comp_group,comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"
@@ -320,7 +320,7 @@
                 query += " ORDER BY awb.id_awbill,awbd.do_no ASC"
             Else
                 gridBandRO.Visible = False
-                query = "SELECT grp.comp_group, comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
+                query = "SELECT awb.awbill_no,awb.awbill_inv_no,grp.comp_group, comp_store.comp_number as account,comp_store.comp_name as account_name,comp_cargo.comp_name as cargo,comp_store.awb_cargo_code AS awb_cargo_code,comp_store.awb_zone AS awb_zone,comp_store.awb_destination AS awb_destination,awb.*, ((awb.height*awb.length*awb.width)/6000) as volume,"
                 query += " DATE_ADD(awb.pick_up_date, INTERVAL awb.cargo_lead_time DAY) AS eta_date,"
                 query += " DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) AS del_time,"
                 query += " (DATEDIFF(awb.rec_by_store_date, awb.pick_up_date) - awb.cargo_lead_time) AS lead_time_diff,"

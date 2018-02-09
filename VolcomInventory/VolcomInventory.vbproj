@@ -691,6 +691,42 @@
     <Compile Include="FormEmpPayroll.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPayrollAdjustment.Designer.vb">
+      <DependentUpon>FormEmpPayrollAdjustment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollAdjustment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollAdjustmentDet.Designer.vb">
+      <DependentUpon>FormEmpPayrollAdjustmentDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollAdjustmentDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollDeduction.Designer.vb">
+      <DependentUpon>FormEmpPayrollDeduction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollDeduction.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollDeductionDet.Designer.vb">
+      <DependentUpon>FormEmpPayrollDeductionDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollDeductionDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollDeductionGen.Designer.vb">
+      <DependentUpon>FormEmpPayrollDeductionGen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollDeductionGen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollEmp.Designer.vb">
+      <DependentUpon>FormEmpPayrollEmp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollEmp.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpPayrollOvertime.Designer.vb">
       <DependentUpon>FormEmpPayrollOvertime.vb</DependentUpon>
     </Compile>
@@ -707,6 +743,12 @@
       <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpPayrollPeriode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollSetup.Designer.vb">
+      <DependentUpon>FormEmpPayrollSetup.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollSetup.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpSchedule.Designer.vb">
@@ -949,10 +991,22 @@
     <Compile Include="FormFGCodeReplaceWHSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormFGCompareStockCard.Designer.vb">
+      <DependentUpon>FormFGCompareStockCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGCompareStockCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGDesignList.Designer.vb">
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
     </Compile>
     <Compile Include="FormFGDesignList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormFGFirstDel.Designer.vb">
+      <DependentUpon>FormFGFirstDel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormFGFirstDel.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGLineListMoveSeason.Designer.vb">
@@ -5346,6 +5400,24 @@
     <EmbeddedResource Include="FormEmpPayroll.resx">
       <DependentUpon>FormEmpPayroll.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollAdjustment.resx">
+      <DependentUpon>FormEmpPayrollAdjustment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollAdjustmentDet.resx">
+      <DependentUpon>FormEmpPayrollAdjustmentDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollDeduction.resx">
+      <DependentUpon>FormEmpPayrollDeduction.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollDeductionDet.resx">
+      <DependentUpon>FormEmpPayrollDeductionDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollDeductionGen.resx">
+      <DependentUpon>FormEmpPayrollDeductionGen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollEmp.resx">
+      <DependentUpon>FormEmpPayrollEmp.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollOvertime.resx">
       <DependentUpon>FormEmpPayrollOvertime.vb</DependentUpon>
     </EmbeddedResource>
@@ -5354,6 +5426,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollPeriode.resx">
       <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollSetup.resx">
+      <DependentUpon>FormEmpPayrollSetup.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpSchedule.resx">
       <DependentUpon>FormEmpSchedule.vb</DependentUpon>
@@ -5491,8 +5566,14 @@
       <DependentUpon>FormFGCodeReplaceWHSingle.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormFGCompareStockCard.resx">
+      <DependentUpon>FormFGCompareStockCard.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormFGDesignList.resx">
       <DependentUpon>FormFGDesignList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormFGFirstDel.resx">
+      <DependentUpon>FormFGFirstDel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGLineListMoveSeason.resx">
       <DependentUpon>FormFGLineListMoveSeason.vb</DependentUpon>

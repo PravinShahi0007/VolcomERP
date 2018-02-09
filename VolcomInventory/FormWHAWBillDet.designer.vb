@@ -97,7 +97,7 @@ Partial Class FormWHAWBillDet
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
-        Me.TEInvNo = New DevExpress.XtraEditors.TextEdit()
+        Me.TEAwbNo = New DevExpress.XtraEditors.TextEdit()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TENo = New DevExpress.XtraEditors.TextEdit()
@@ -119,6 +119,8 @@ Partial Class FormWHAWBillDet
         Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.TEInvNo = New DevExpress.XtraEditors.TextEdit()
+        Me.Label22 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -163,7 +165,7 @@ Partial Class FormWHAWBillDet
         CType(Me.DEStore.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPickUp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEPickUp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEAwbNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TENo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,6 +184,7 @@ Partial Class FormWHAWBillDet
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -894,6 +897,8 @@ Partial Class FormWHAWBillDet
         '
         'XTPInvoice
         '
+        Me.XTPInvoice.Controls.Add(Me.Label22)
+        Me.XTPInvoice.Controls.Add(Me.TEInvNo)
         Me.XTPInvoice.Controls.Add(Me.Label21)
         Me.XTPInvoice.Controls.Add(Me.TERecByPerson)
         Me.XTPInvoice.Controls.Add(Me.BRecStoreNothing)
@@ -905,7 +910,7 @@ Partial Class FormWHAWBillDet
         Me.XTPInvoice.Controls.Add(Me.Label17)
         Me.XTPInvoice.Controls.Add(Me.Label16)
         Me.XTPInvoice.Controls.Add(Me.Label15)
-        Me.XTPInvoice.Controls.Add(Me.TEInvNo)
+        Me.XTPInvoice.Controls.Add(Me.TEAwbNo)
         Me.XTPInvoice.Name = "XTPInvoice"
         Me.XTPInvoice.Size = New System.Drawing.Size(793, 228)
         Me.XTPInvoice.Text = "AWB"
@@ -913,7 +918,7 @@ Partial Class FormWHAWBillDet
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(14, 98)
+        Me.Label21.Location = New System.Drawing.Point(14, 121)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(60, 13)
         Me.Label21.TabIndex = 105
@@ -922,7 +927,7 @@ Partial Class FormWHAWBillDet
         '
         'TERecByPerson
         '
-        Me.TERecByPerson.Location = New System.Drawing.Point(146, 95)
+        Me.TERecByPerson.Location = New System.Drawing.Point(146, 118)
         Me.TERecByPerson.Name = "TERecByPerson"
         Me.TERecByPerson.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TERecByPerson.Size = New System.Drawing.Size(197, 20)
@@ -930,7 +935,7 @@ Partial Class FormWHAWBillDet
         '
         'BRecStoreNothing
         '
-        Me.BRecStoreNothing.Location = New System.Drawing.Point(371, 67)
+        Me.BRecStoreNothing.Location = New System.Drawing.Point(371, 90)
         Me.BRecStoreNothing.Name = "BRecStoreNothing"
         Me.BRecStoreNothing.Size = New System.Drawing.Size(80, 23)
         Me.BRecStoreNothing.TabIndex = 104
@@ -938,7 +943,7 @@ Partial Class FormWHAWBillDet
         '
         'BPickupNothing
         '
-        Me.BPickupNothing.Location = New System.Drawing.Point(371, 41)
+        Me.BPickupNothing.Location = New System.Drawing.Point(371, 64)
         Me.BPickupNothing.Name = "BPickupNothing"
         Me.BPickupNothing.Size = New System.Drawing.Size(80, 23)
         Me.BPickupNothing.TabIndex = 103
@@ -947,7 +952,7 @@ Partial Class FormWHAWBillDet
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(14, 123)
+        Me.Label18.Location = New System.Drawing.Point(14, 146)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(30, 13)
         Me.Label18.TabIndex = 102
@@ -956,7 +961,7 @@ Partial Class FormWHAWBillDet
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(146, 121)
+        Me.MENote.Location = New System.Drawing.Point(146, 144)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(420, 70)
         Me.MENote.TabIndex = 102
@@ -964,7 +969,7 @@ Partial Class FormWHAWBillDet
         'DEStore
         '
         Me.DEStore.EditValue = Nothing
-        Me.DEStore.Location = New System.Drawing.Point(146, 69)
+        Me.DEStore.Location = New System.Drawing.Point(146, 92)
         Me.DEStore.Name = "DEStore"
         Me.DEStore.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEStore.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -976,7 +981,7 @@ Partial Class FormWHAWBillDet
         'DEPickUp
         '
         Me.DEPickUp.EditValue = Nothing
-        Me.DEPickUp.Location = New System.Drawing.Point(146, 43)
+        Me.DEPickUp.Location = New System.Drawing.Point(146, 66)
         Me.DEPickUp.Name = "DEPickUp"
         Me.DEPickUp.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPickUp.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -988,7 +993,7 @@ Partial Class FormWHAWBillDet
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(13, 72)
+        Me.Label17.Location = New System.Drawing.Point(13, 95)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(71, 13)
         Me.Label17.TabIndex = 98
@@ -998,7 +1003,7 @@ Partial Class FormWHAWBillDet
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(14, 46)
+        Me.Label16.Location = New System.Drawing.Point(14, 69)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(67, 13)
         Me.Label16.TabIndex = 97
@@ -1008,20 +1013,20 @@ Partial Class FormWHAWBillDet
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(14, 20)
+        Me.Label15.Location = New System.Drawing.Point(14, 17)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(46, 13)
         Me.Label15.TabIndex = 95
         Me.Label15.Text = "AWB No"
         Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
-        'TEInvNo
+        'TEAwbNo
         '
-        Me.TEInvNo.Location = New System.Drawing.Point(146, 17)
-        Me.TEInvNo.Name = "TEInvNo"
-        Me.TEInvNo.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEInvNo.Size = New System.Drawing.Size(197, 20)
-        Me.TEInvNo.TabIndex = 98
+        Me.TEAwbNo.Location = New System.Drawing.Point(146, 14)
+        Me.TEAwbNo.Name = "TEAwbNo"
+        Me.TEAwbNo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEAwbNo.Size = New System.Drawing.Size(197, 20)
+        Me.TEAwbNo.TabIndex = 98
         '
         'DECreated
         '
@@ -1234,6 +1239,24 @@ Partial Class FormWHAWBillDet
         Me.PanelControl4.Size = New System.Drawing.Size(807, 282)
         Me.PanelControl4.TabIndex = 2
         '
+        'TEInvNo
+        '
+        Me.TEInvNo.Location = New System.Drawing.Point(146, 40)
+        Me.TEInvNo.Name = "TEInvNo"
+        Me.TEInvNo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEInvNo.Size = New System.Drawing.Size(197, 20)
+        Me.TEInvNo.TabIndex = 106
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(14, 43)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(58, 13)
+        Me.Label22.TabIndex = 107
+        Me.Label22.Text = "Invoice No"
+        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'FormWHAWBillDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1296,7 +1319,7 @@ Partial Class FormWHAWBillDet
         CType(Me.DEStore.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPickUp.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEPickUp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEAwbNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TENo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1317,6 +1340,7 @@ Partial Class FormWHAWBillDet
         Me.GroupControl1.PerformLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
+        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1385,7 +1409,7 @@ Partial Class FormWHAWBillDet
     Friend WithEvents Label14 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents Label15 As Label
-    Friend WithEvents TEInvNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEAwbNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents Label17 As Label
     Friend WithEvents DEStore As DevExpress.XtraEditors.DateEdit
@@ -1419,4 +1443,6 @@ Partial Class FormWHAWBillDet
     Friend WithEvents TEMarkDifferent As DevExpress.XtraEditors.TextEdit
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents Label22 As Label
+    Friend WithEvents TEInvNo As DevExpress.XtraEditors.TextEdit
 End Class

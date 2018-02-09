@@ -32,6 +32,8 @@ Partial Class FormFGCodeReplace
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVerifiedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnVerifiedDate = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCFGCodeReplace, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGCodeReplace.SuspendLayout()
         Me.XTPFGCodeReplaceStore.SuspendLayout()
@@ -73,7 +75,7 @@ Partial Class FormFGCodeReplace
         '
         'GVFGCodeReplaceStore
         '
-        Me.GVFGCodeReplaceStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNumber, Me.GridColumnDate, Me.GridColumnStatus})
+        Me.GVFGCodeReplaceStore.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNumber, Me.GridColumnDate, Me.GridColumnStatus, Me.GridColumnVerifiedBy, Me.GridColumnVerifiedDate})
         Me.GVFGCodeReplaceStore.GridControl = Me.GCFGCodeReplaceStore
         Me.GVFGCodeReplaceStore.Name = "GVFGCodeReplaceStore"
         Me.GVFGCodeReplaceStore.OptionsBehavior.ReadOnly = True
@@ -86,6 +88,7 @@ Partial Class FormFGCodeReplace
         Me.GridColumnNumber.Name = "GridColumnNumber"
         Me.GridColumnNumber.Visible = True
         Me.GridColumnNumber.VisibleIndex = 0
+        Me.GridColumnNumber.Width = 326
         '
         'GridColumnDate
         '
@@ -96,6 +99,7 @@ Partial Class FormFGCodeReplace
         Me.GridColumnDate.Name = "GridColumnDate"
         Me.GridColumnDate.Visible = True
         Me.GridColumnDate.VisibleIndex = 1
+        Me.GridColumnDate.Width = 326
         '
         'GridColumnStatus
         '
@@ -104,6 +108,7 @@ Partial Class FormFGCodeReplace
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Visible = True
         Me.GridColumnStatus.VisibleIndex = 2
+        Me.GridColumnStatus.Width = 326
         '
         'XTPFGCodeReplaceWH
         '
@@ -157,6 +162,26 @@ Partial Class FormFGCodeReplace
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
         '
+        'GridColumnVerifiedBy
+        '
+        Me.GridColumnVerifiedBy.Caption = "Verified By"
+        Me.GridColumnVerifiedBy.FieldName = "verified_by_name"
+        Me.GridColumnVerifiedBy.Name = "GridColumnVerifiedBy"
+        Me.GridColumnVerifiedBy.Visible = True
+        Me.GridColumnVerifiedBy.VisibleIndex = 4
+        Me.GridColumnVerifiedBy.Width = 448
+        '
+        'GridColumnVerifiedDate
+        '
+        Me.GridColumnVerifiedDate.Caption = "Verified Date"
+        Me.GridColumnVerifiedDate.DisplayFormat.FormatString = "dd MMMM yyyy"
+        Me.GridColumnVerifiedDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnVerifiedDate.FieldName = "verified_date"
+        Me.GridColumnVerifiedDate.Name = "GridColumnVerifiedDate"
+        Me.GridColumnVerifiedDate.Visible = True
+        Me.GridColumnVerifiedDate.VisibleIndex = 3
+        Me.GridColumnVerifiedDate.Width = 206
+        '
         'FormFGCodeReplace
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -191,4 +216,6 @@ Partial Class FormFGCodeReplace
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVerifiedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnVerifiedDate As DevExpress.XtraGrid.Columns.GridColumn
 End Class

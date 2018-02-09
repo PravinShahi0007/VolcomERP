@@ -118,7 +118,13 @@
 
     '=============== TAB STOCK CARD FG=================================
     Sub viewWHStockCard()
-        Dim query As String = getQueryWH()
+        Dim query As String = ""
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label FROM tb_storage_fg a "
+        query += "INNER JOIN tb_m_wh_drawer b ON a.id_wh_drawer = b.id_wh_drawer "
+        query += "INNER JOIN tb_m_wh_rack c ON b.id_wh_rack = c.id_wh_rack "
+        query += "INNER JOIN tb_m_wh_locator d ON c.id_wh_locator = d.id_wh_locator "
+        query += "INNER JOIN tb_m_comp e ON e.id_comp = d.id_comp "
+        query += "GROUP BY e.id_comp "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Rows.Count - 1
             If i = 0 Then
@@ -216,7 +222,15 @@
 
     '===================== TAB STOCK SUMMARY=========================================
     Sub viewWHStockSum()
-        Dim query As String = getQueryWH()
+        Dim query As String = ""
+        query += "SELECT ('-1') AS id_comp, ('-') AS comp_number, ('Normal Warehouse') AS comp_name, ('Normal Warehouse') AS comp_name_label UNION ALL "
+        query += "SELECT ('-2') AS id_comp, ('-') AS comp_number, ('Sale Warehouse') AS comp_name, ('Sale Warehouse') AS comp_name_label UNION ALL "
+        query += "SELECT e.id_comp, e.comp_number, e.comp_name, CONCAT_WS(' - ', e.comp_number, e.comp_name) AS comp_name_label FROM tb_storage_fg a "
+        query += "INNER JOIN tb_m_wh_drawer b ON a.id_wh_drawer = b.id_wh_drawer "
+        query += "INNER JOIN tb_m_wh_rack c ON b.id_wh_rack = c.id_wh_rack "
+        query += "INNER JOIN tb_m_wh_locator d ON c.id_wh_locator = d.id_wh_locator "
+        query += "INNER JOIN tb_m_comp e ON e.id_comp = d.id_comp "
+        query += "GROUP BY e.id_comp "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Rows.Count - 1
             If i = 0 Then
@@ -361,7 +375,7 @@
         Dim query As String = "CALL view_stock_fg_sum('" + id_wh_param_selected + "', '" + id_locator_param_selected + "', '" + id_rack_param_selected + "', '" + id_drawer_param_selected + "', '" + id_design_selected_stock_sum + "', '" + date_until_selected_stock_sum + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         For i As Integer = 0 To data.Columns.Count - 1
-            If data.Columns(i).ColumnName.ToString = "id_sample" Or data.Columns(i).ColumnName.ToString = "Code" Or data.Columns(i).ColumnName.ToString = "id_design" Or data.Columns(i).ColumnName.ToString = "Design" Or data.Columns(i).ColumnName.ToString = "design_display_name" Or data.Columns(i).ColumnName.ToString = "uom" Or data.Columns(i).ColumnName.ToString = "id_design_stock" Or data.Columns(i).ColumnName.ToString = "Unit Cost" Or data.Columns(i).ColumnName.ToString = "Product Division" Or data.Columns(i).ColumnName.ToString = "Product Source" Or data.Columns(i).ColumnName.ToString = "Product Branding" Or data.Columns(i).ColumnName.ToString = "Range" Or data.Columns(i).ColumnName.ToString = "Product Counting" Or data.Columns(i).ColumnName.ToString = "Color" Or data.Columns(i).ColumnName.ToString = "Status" Or data.Columns(i).ColumnName.ToString = "Price" Or data.Columns(i).ColumnName.ToString = "Sizetype" Then
+            If data.Columns(i).ColumnName.ToString = "id_sample" Or data.Columns(i).ColumnName.ToString = "Code" Or data.Columns(i).ColumnName.ToString = "id_design" Or data.Columns(i).ColumnName.ToString = "Design" Or data.Columns(i).ColumnName.ToString = "design_display_name" Or data.Columns(i).ColumnName.ToString = "uom" Or data.Columns(i).ColumnName.ToString = "id_design_stock" Or data.Columns(i).ColumnName.ToString = "Unit Cost" Or data.Columns(i).ColumnName.ToString = "Product Division" Or data.Columns(i).ColumnName.ToString = "Product Source" Or data.Columns(i).ColumnName.ToString = "Product Branding" Or data.Columns(i).ColumnName.ToString = "Range" Or data.Columns(i).ColumnName.ToString = "Product Counting" Or data.Columns(i).ColumnName.ToString = "Color" Or data.Columns(i).ColumnName.ToString = "Status" Or data.Columns(i).ColumnName.ToString = "Price" Or data.Columns(i).ColumnName.ToString = "Sizetype" Or data.Columns(i).ColumnName.ToString = "Account" Then
                 band_desc.Columns.Add(BGVFGStock.Columns.AddVisible(data.Columns(i).ColumnName.ToString, data.Columns(i).ColumnName.ToString))
                 If data.Columns(i).ColumnName.ToString = "Price" Or data.Columns(i).ColumnName.ToString = "Unit Cost" Then
                     BGVFGStock.Columns(data.Columns(i).ColumnName.ToString).AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
