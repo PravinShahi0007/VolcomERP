@@ -1,7 +1,7 @@
 ﻿Public Class FormEmpPayroll
     Dim bnew_active As String = "1"
-    Dim bedit_active As String = "1"
-    Dim bdel_active As String = "1"
+    Dim bedit_active As String = "0"
+    Dim bdel_active As String = "0"
     '
     Private Sub FormEmpPayroll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_payroll()
@@ -81,5 +81,22 @@
 
     Private Sub BSetting_Click(sender As Object, e As EventArgs) Handles BSetting.Click
         FormEmpPayrollSetup.ShowDialog()
+    End Sub
+
+    Private Sub BBonusAdjustment_Click(sender As Object, e As EventArgs) Handles BBonusAdjustment.Click
+        FormEmpPayrollAdjustment.ShowDialog()
+    End Sub
+
+    Private Sub BRemoveEmployee_Click(sender As Object, e As EventArgs) Handles BRemoveEmployee.Click
+        If GVPayroll.RowCount > 0 Then
+            Dim confirm As DialogResult
+            confirm = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete ?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query As String = "DELETE FROM tb_emp_payroll_det WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
+                execute_non_query(query, True, "", "", "", "")
+                '
+                load_payroll_detail()
+            End If
+        End If
     End Sub
 End Class
