@@ -54,11 +54,17 @@
             If data.Rows.Count > 0 Then
                 TEEmployeeCode.Text = data.Rows(0)("employee_code").ToString
                 TEEmployeeName.Text = data.Rows(0)("employee_name").ToString
+                TEDepartement.Text = data.Rows(0)("departement").ToString
                 id_employee = data.Rows(0)("id_employee").ToString
                 '
                 TETHP.EditValue = data.Rows(0)("thp_total")
+                TETotalWorkdays.EditValue = data.Rows(0)("workdays")
                 TETotDays.EditValue = data.Rows(0)("total_days")
                 LEType.ItemIndex = LEType.Properties.GetDataSourceRowIndex("id_salary_adjustment", data.Rows(0)("id_salary_adj").ToString)
+                '
+                TEIncrease.EditValue = data.Rows(0)("increase")
+                TEAdjustment.EditValue = data.Rows(0)("value")
+                '
                 MENote.Text = data.Rows(0)("note").ToString
                 calculate()
             End If
