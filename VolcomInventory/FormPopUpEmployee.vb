@@ -4,19 +4,34 @@
         load_emp()
     End Sub
     Sub load_emp()
-        Dim query As String = "SELECT emp.id_employee,dep.is_store,emp.employee_code,emp.employee_name,dep.departement,emp.employee_join_date,emp.employee_position,active.employee_active
-        ,IFNULL((salx.basic_salary+salx.allow_job+salx.allow_meal+salx.allow_trans+salx.allow_house+salx.allow_car),0) AS thp_total
-        From tb_m_employee emp
-        INNER Join tb_m_departement dep ON dep.id_departement=emp.id_departement
-        INNER Join tb_lookup_employee_level lvl On lvl.id_employee_level=emp.id_employee_level 
-        INNER Join tb_lookup_employee_active active On active.id_employee_active=emp.id_employee_active
-        LEFT JOIN (	
-	        SELECT sal.* FROM (
-		        SELECT * FROM tb_m_employee_salary sal
-		        WHERE is_cancel='2'
-		        ORDER BY sal.`effective_date` DESC,sal.`id_employee_salary` DESC
-	        ) sal GROUP BY id_employee
-        ) salx ON salx.id_employee = emp.`id_employee`"
+        Dim query As String = ""
+        If id_popup = "7" Then
+            Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+            query = "SELECT emp.id_employee,dep.is_store,emp.employee_code,emp.employee_name,dep.departement,emp.employee_join_date,emp.employee_position,active.employee_active
+                    ,IFNULL((salx.basic_salary+salx.allow_job+salx.allow_meal+salx.allow_trans+salx.allow_house+salx.allow_car),0) AS thp_total
+                    ,pyd.workdays
+                    From tb_m_employee emp
+                    INNER Join tb_m_departement dep ON dep.id_departement=emp.id_departement
+                    INNER Join tb_lookup_employee_level lvl On lvl.id_employee_level=emp.id_employee_level 
+                    INNER Join tb_lookup_employee_active active On active.id_employee_active=emp.id_employee_active
+                    INNER JOIN tb_emp_payroll_det pyd ON pyd.`id_employee`=emp.`id_employee` AND pyd.`id_payroll`='" & id_payroll & "'
+                    INNER JOIN `tb_m_employee_salary` salx ON salx.`id_employee_salary`=pyd.`id_salary`"
+        Else
+            query = "Select emp.id_employee,dep.is_store,emp.employee_code,emp.employee_name,dep.departement,emp.employee_join_date,emp.employee_position,active.employee_active
+                    ,IFNULL((salx.basic_salary+salx.allow_job+salx.allow_meal+salx.allow_trans+salx.allow_house+salx.allow_car),0) AS thp_total
+                    From tb_m_employee emp
+                    INNER Join tb_m_departement dep ON dep.id_departement=emp.id_departement
+                    INNER Join tb_lookup_employee_level lvl On lvl.id_employee_level=emp.id_employee_level 
+                    INNER Join tb_lookup_employee_active active On active.id_employee_active=emp.id_employee_active
+                    LEFT JOIN (	
+	                    SELECT sal.* FROM (
+		                    SELECT * FROM tb_m_employee_salary sal
+		                    WHERE is_cancel='2'
+		                    ORDER BY sal.`effective_date` DESC,sal.`id_employee_salary` DESC
+	                    ) sal GROUP BY id_employee
+                    ) salx ON salx.id_employee = emp.`id_employee`"
+        End If
+
         If FormEmpLeave.is_propose = "1" Then
             'Dim id_user_admin_management As String = get_opt_emp_field("id_user_admin_mng").ToString
             'If id_user_admin_management = id_user Then
@@ -94,6 +109,9 @@
             FormEmpPayrollAdjustmentDet.TEEmployeeCode.Text = GVEmployee.GetFocusedRowCellValue("employee_code").ToString
             FormEmpPayrollAdjustmentDet.TEEmployeeName.Text = GVEmployee.GetFocusedRowCellValue("employee_name").ToString
             FormEmpPayrollAdjustmentDet.TETHP.EditValue = GVEmployee.GetFocusedRowCellValue("thp_total")
+            FormEmpPayrollAdjustmentDet.TETotalWorkdays.EditValue = GVEmployee.GetFocusedRowCellValue("workdays")
+            FormEmpPayrollAdjustmentDet.TEDepartement.Text = GVEmployee.GetFocusedRowCellValue("departement").ToString
+            FormEmpPayrollAdjustmentDet.calculate()
             FormEmpPayrollAdjustmentDet.LEType.Focus()
             Close()
         End If

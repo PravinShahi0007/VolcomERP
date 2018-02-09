@@ -18,7 +18,7 @@
         TEKoperasiIuran.EditValue = 0
 
         If Not id_payroll = "-1" Then
-            Dim query As String = "SELECT * FORM tb_emp_payroll WHERE id_payroll='" & id_payroll & "'"
+            Dim query As String = "SELECT * FROM tb_emp_payroll WHERE id_payroll='" & id_payroll & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
             If data.Rows.Count > 0 Then
