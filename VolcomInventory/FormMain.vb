@@ -8017,7 +8017,12 @@ Public Class FormMain
         ElseIf formName = "FormDepartementSub" Then
             FormDepartementSub.view_departement()
         ElseIf formName = "FormEmpPayroll" Then
-            FormEmpPayroll.load_payroll()
+            If FormEmpPayroll.XTCPayroll.SelectedTabPageIndex = 0 Then
+                FormEmpPayroll.load_payroll()
+            Else
+                FormEmpPayroll.load_payroll_detail()
+            End If
+
         End If
     End Sub
     'Switch

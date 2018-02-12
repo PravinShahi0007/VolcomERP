@@ -36,10 +36,10 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnEmpPosition = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEmpLvl = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnType = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnTotDays = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTotDays = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnTotTHP = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIncrease = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -128,9 +128,9 @@ Partial Class FormEmpPayrollAdjustment
         '
         'GVDeduction
         '
-        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDeduction, Me.GridColumnIdEmployee, Me.GridColumnDept, Me.GridColumnNIP, Me.GridColumnEmp, Me.GridColumnEmpPosition, Me.GridColumnEmpLvl, Me.GridColumnTotTHP, Me.GridColumnType, Me.GridColumnTotDays, Me.GridColumnValue, Me.GridColumnNote})
+        Me.GVDeduction.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdDeduction, Me.GridColumnIdEmployee, Me.GridColumnDept, Me.GridColumnNIP, Me.GridColumnEmp, Me.GridColumnEmpPosition, Me.GridColumnEmpLvl, Me.GridColumnType, Me.GridColumnTotDays, Me.GridColumnValue, Me.GridColumnIncrease, Me.GridColumnNote})
         Me.GVDeduction.GridControl = Me.GCDeduction
-        Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "deduction", Me.GridColumnValue, "{0:N0}")})
+        Me.GVDeduction.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", Me.GridColumnValue, "{0:N0}")})
         Me.GVDeduction.Name = "GVDeduction"
         Me.GVDeduction.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
         Me.GVDeduction.OptionsView.ShowFooter = True
@@ -138,8 +138,8 @@ Partial Class FormEmpPayrollAdjustment
         '
         'GridColumnIdDeduction
         '
-        Me.GridColumnIdDeduction.Caption = "ID Deduction"
-        Me.GridColumnIdDeduction.FieldName = "id_payroll_deduction"
+        Me.GridColumnIdDeduction.Caption = "ID Adjustment"
+        Me.GridColumnIdDeduction.FieldName = "id_payroll_adjustment"
         Me.GridColumnIdDeduction.Name = "GridColumnIdDeduction"
         '
         'GridColumnIdEmployee
@@ -198,33 +198,8 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnType.FieldName = "description"
         Me.GridColumnType.Name = "GridColumnType"
         Me.GridColumnType.Visible = True
-        Me.GridColumnType.VisibleIndex = 6
+        Me.GridColumnType.VisibleIndex = 5
         Me.GridColumnType.Width = 86
-        '
-        'GridColumnValue
-        '
-        Me.GridColumnValue.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnValue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnValue.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnValue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnValue.Caption = "Value"
-        Me.GridColumnValue.DisplayFormat.FormatString = "N0"
-        Me.GridColumnValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnValue.FieldName = "deduction"
-        Me.GridColumnValue.Name = "GridColumnValue"
-        Me.GridColumnValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "deduction", "{0:N0}")})
-        Me.GridColumnValue.Visible = True
-        Me.GridColumnValue.VisibleIndex = 8
-        Me.GridColumnValue.Width = 86
-        '
-        'GridColumnNote
-        '
-        Me.GridColumnNote.Caption = "Note"
-        Me.GridColumnNote.FieldName = "note"
-        Me.GridColumnNote.Name = "GridColumnNote"
-        Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 9
-        Me.GridColumnNote.Width = 101
         '
         'GridColumnTotDays
         '
@@ -235,22 +210,43 @@ Partial Class FormEmpPayrollAdjustment
         Me.GridColumnTotDays.Caption = "Total Days"
         Me.GridColumnTotDays.DisplayFormat.FormatString = "N1"
         Me.GridColumnTotDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnTotDays.FieldName = "total_days"
         Me.GridColumnTotDays.Name = "GridColumnTotDays"
         Me.GridColumnTotDays.Visible = True
-        Me.GridColumnTotDays.VisibleIndex = 7
+        Me.GridColumnTotDays.VisibleIndex = 6
         '
-        'GridColumnTotTHP
+        'GridColumnValue
         '
-        Me.GridColumnTotTHP.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnTotTHP.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnTotTHP.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnTotTHP.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.GridColumnTotTHP.Caption = "Total THP"
-        Me.GridColumnTotTHP.DisplayFormat.FormatString = "N0"
-        Me.GridColumnTotTHP.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnTotTHP.Name = "GridColumnTotTHP"
-        Me.GridColumnTotTHP.Visible = True
-        Me.GridColumnTotTHP.VisibleIndex = 5
+        Me.GridColumnValue.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnValue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnValue.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnValue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnValue.Caption = "Value"
+        Me.GridColumnValue.DisplayFormat.FormatString = "N0"
+        Me.GridColumnValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnValue.FieldName = "value"
+        Me.GridColumnValue.Name = "GridColumnValue"
+        Me.GridColumnValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "value", "{0:N0}")})
+        Me.GridColumnValue.Visible = True
+        Me.GridColumnValue.VisibleIndex = 7
+        Me.GridColumnValue.Width = 86
+        '
+        'GridColumnNote
+        '
+        Me.GridColumnNote.Caption = "Note"
+        Me.GridColumnNote.FieldName = "note"
+        Me.GridColumnNote.Name = "GridColumnNote"
+        Me.GridColumnNote.Visible = True
+        Me.GridColumnNote.VisibleIndex = 8
+        Me.GridColumnNote.Width = 101
+        '
+        'GridColumnIncrease
+        '
+        Me.GridColumnIncrease.Caption = "Increase"
+        Me.GridColumnIncrease.DisplayFormat.FormatString = "N0"
+        Me.GridColumnIncrease.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnIncrease.FieldName = "increase"
+        Me.GridColumnIncrease.Name = "GridColumnIncrease"
         '
         'FormEmpPayrollAdjustment
         '
@@ -292,5 +288,5 @@ Partial Class FormEmpPayrollAdjustment
     Friend WithEvents GridColumnValue As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnTotDays As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumnTotTHP As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIncrease As DevExpress.XtraGrid.Columns.GridColumn
 End Class
