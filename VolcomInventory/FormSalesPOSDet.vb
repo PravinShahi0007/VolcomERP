@@ -440,6 +440,17 @@ Public Class FormSalesPOSDet
                         execute_non_query(query_detail, True, "", "", "", "")
                     End If
 
+                    'update total qty
+                    Dim queryt As String = "UPDATE tb_sales_pos main
+                    INNER JOIN (
+                        SELECT pd.id_sales_pos,ABS(SUM(pd.sales_pos_det_qty)) AS `total`
+                        FROM tb_sales_pos_det pd
+                        WHERE pd.id_sales_pos=" + id_sales_pos + "
+                        GROUP BY pd.id_sales_pos
+                    ) src ON src.id_sales_pos = main.id_sales_pos
+                    SET main.sales_pos_total_qty = src.total "
+                    execute_non_query(queryt, True, "", "", "", "")
+
                     If id_menu = "1" Or id_menu = "4" Then
                         'reserved stock
                         Dim rsv_stock As ClassSalesInv = New ClassSalesInv()
