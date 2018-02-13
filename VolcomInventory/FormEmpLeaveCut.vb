@@ -20,4 +20,8 @@
     Private Sub FormEmpLeaveCut_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Sub load_leave_cut()
+
+    End Sub
 End Class

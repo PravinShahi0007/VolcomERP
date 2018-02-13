@@ -3,12 +3,18 @@
     Dim id_comp As String = "-1"
     Public id_product As String = "-1"
     Public id_design As String = "-1"
+    Dim is_limited_print As String = "-1"
 
     Private Sub FormFGCodeReplaceStoreAdd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ActiveControl = TxtStoreCode
         TxtQty.EditValue = 0
         TxtAvailable.EditValue = 0
         pre_viewImages("2", PEView, id_design, False)
+        is_limited_print = get_setup_field("is_limited_print")
+        If is_limited_print = "2" Then
+            LabelControl4.Visible = False
+            TxtAvailable.Visible = False
+        End If
     End Sub
 
     Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
@@ -95,15 +101,19 @@
     End Sub
 
     Sub getStock()
-        Dim query As String = "SELECT SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS qty
-        FROM tb_storage_fg f
-        WHERE f.id_wh_drawer='" + id_drawer_def + "' AND f.id_product='" + id_product + "'
-        GROUP BY f.id_product "
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
-            TxtAvailable.EditValue = data.Rows(0)("qty")
+        If is_limited_print = "1" Then
+            Dim query As String = "SELECT SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS qty
+            FROM tb_storage_fg f
+            WHERE f.id_wh_drawer='" + id_drawer_def + "' AND f.id_product='" + id_product + "'
+            GROUP BY f.id_product "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                TxtAvailable.EditValue = data.Rows(0)("qty")
+            Else
+                TxtAvailable.EditValue = 0
+            End If
         Else
-            TxtAvailable.EditValue = 0
+            TxtAvailable.EditValue = 9999
         End If
     End Sub
 

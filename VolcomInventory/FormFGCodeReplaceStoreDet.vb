@@ -403,6 +403,7 @@
                 execute_non_query(query_upd, True, "", "", "", "")
 
                 actionLoad()
+                FormFGCodeReplace.GVFGCodeReplaceStore.FocusedRowHandle = find_row(FormFGCodeReplace.GVFGCodeReplaceStore, "id_fg_code_replace_store", id_fg_code_replace_store)
                 infoCustom("Verification compeleted")
                 Cursor = Cursors.Default
             End If
