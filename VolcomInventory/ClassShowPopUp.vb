@@ -13,24 +13,68 @@
     Public info_design_code As String = ""
     '
     Sub close()
-        If report_mark_type = "13" Then
+        If report_mark_type = "1" Then
+            'sample purchase
+            FormViewSamplePurchase.Close()
+        ElseIf report_mark_type = "2" Then
+            'sample receive
+            FormViewSampleReceive.Close()
+        ElseIf report_mark_type = "3" Then
+            'sample PL
+            FormViewSamplePL.Close()
+        ElseIf report_mark_type = "4" Then
+            'sample PR
+            FormViewSamplePR.Close()
+        ElseIf report_mark_type = "5" Then
+            'sample ret out
+
+        ElseIf report_mark_type = "6" Then
+            'sample ret in
+
+        ElseIf report_mark_type = "7" Then
+            'sample receipt
+
+        ElseIf report_mark_type = "8" Then
+            'bom
+            FormViewBOM.Close()
+        ElseIf report_mark_type = "9" Then
+            'prod demand
+            FormViewProdDemand.Close()
+        ElseIf report_mark_type = "10" Then
+            'sample packing list delivery
+            FormViewSamplePLDel.Close()
+        ElseIf report_mark_type = "11" Then
+            'sample requisition
+            FormViewSampleReq.Close()
+        ElseIf report_mark_type = "12" Then
+            'sample plan
+            FormViewSamplePlan.Close()
+        ElseIf report_mark_type = "13" Then
             'Mat PO
             FormViewMatPurc.Close()
+        ElseIf report_mark_type = "14" Then
+            'sample return from delivery
+            FormViewSampleReturn.Close()
         ElseIf report_mark_type = "15" Then
             'Mat WO
             FormViewMatWO.Close()
         ElseIf report_mark_type = "16" Then
             'Mat Rec Purc
             FormViewMatRecPurc.Close()
-        ElseIf report_mark_type = "24" Then
-            'MAT PR
-            FormViewMatPR.Close()
+        ElseIf report_mark_type = "17" Then
+            FormViewMatRecWO.Close()
         ElseIf report_mark_type = "22" Then
             'Production Order
             FormViewProduction.Close()
         ElseIf report_mark_type = "23" Then
             'Production Work Order
             FormViewProductionWO.Close()
+        ElseIf report_mark_type = "24" Then
+            'material PR PO
+            FormViewMatPR.Close()
+        ElseIf report_mark_type = "25" Then
+            'material PR WO
+            FormViewMatPRWO.Close()
         ElseIf report_mark_type = "29" Then
             'production MRS
             FormViewProductionMRS.Close()
