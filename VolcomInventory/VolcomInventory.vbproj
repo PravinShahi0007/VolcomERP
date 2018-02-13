@@ -673,6 +673,12 @@
     <Compile Include="FormEmpLeaveCut.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpLeaveCutDet.Designer.vb">
+      <DependentUpon>FormEmpLeaveCutDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpLeaveCutDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpLeaveDet.Designer.vb">
       <DependentUpon>FormEmpLeaveDet.vb</DependentUpon>
     </Compile>
@@ -5396,6 +5402,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeaveCut.resx">
       <DependentUpon>FormEmpLeaveCut.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpLeaveCutDet.resx">
+      <DependentUpon>FormEmpLeaveCutDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpLeaveDet.resx">
       <DependentUpon>FormEmpLeaveDet.vb</DependentUpon>
