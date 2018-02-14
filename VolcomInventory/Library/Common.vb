@@ -10,6 +10,7 @@ Module Common
     Public title_print As String
     Public formName As String
     Public id_user As String
+    Public is_auto_load_workplace As String
     Public id_comp_user As String
     Public id_employee_user As String
     Public id_role_login As String

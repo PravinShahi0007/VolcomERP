@@ -358,6 +358,7 @@
             Dim view As DevExpress.XtraGrid.Views.Grid.GridView = CType(sender, DevExpress.XtraGrid.Views.Grid.GridView)
             Dim val1 As String = view.GetRowCellValue(e.RowHandle1, "id_awbill")
             Dim val2 As String = view.GetRowCellValue(e.RowHandle2, "id_awbill")
+
             e.Merge = (val1.ToString = val2.ToString)
             e.Handled = True
         Else

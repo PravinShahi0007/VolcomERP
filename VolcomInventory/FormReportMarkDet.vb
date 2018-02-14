@@ -66,10 +66,11 @@
             FormReportMark.GVMark.FocusedRowHandle = find_row(FormReportMark.GVMark, "id_report_mark", id_report_mark)
             FormReportMark.GVMark.ExpandAllGroups()
             'slow but..
-            FormWork.view_mark_need()
-            'FormWork.view_mark_history()
-            '
+            If is_auto_load_workplace = "1" Then
+                FormWork.view_mark_need()
+            End If
 
+            'FormWork.view_mark_history()
             '
             close_form(FormReportMark.report_mark_type)
             FormReportMark.Close()
