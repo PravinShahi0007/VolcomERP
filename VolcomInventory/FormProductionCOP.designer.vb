@@ -144,6 +144,10 @@ Partial Class FormProductionCOP
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMEditCost = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LPercentBeaMasuk = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPercentBeamasuk = New DevExpress.XtraEditors.TextEdit()
+        Me.LRemark = New DevExpress.XtraEditors.LabelControl()
+        Me.MERemark = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,6 +201,8 @@ Partial Class FormProductionCOP
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
         Me.ViewMenu.SuspendLayout()
+        CType(Me.TEPercentBeamasuk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -737,6 +743,10 @@ Partial Class FormProductionCOP
         '
         'PanelControl4
         '
+        Me.PanelControl4.Controls.Add(Me.MERemark)
+        Me.PanelControl4.Controls.Add(Me.LRemark)
+        Me.PanelControl4.Controls.Add(Me.TEPercentBeamasuk)
+        Me.PanelControl4.Controls.Add(Me.LPercentBeaMasuk)
         Me.PanelControl4.Controls.Add(Me.BSameCost)
         Me.PanelControl4.Controls.Add(Me.LabelControl3)
         Me.PanelControl4.Controls.Add(Me.TEUnitCostActual)
@@ -1660,19 +1670,57 @@ Partial Class FormProductionCOP
         '
         Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditCost, Me.ViewLogToolStripMenuItem})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(153, 70)
+        Me.ViewMenu.Size = New System.Drawing.Size(123, 48)
         '
         'SMEditCost
         '
         Me.SMEditCost.Name = "SMEditCost"
-        Me.SMEditCost.Size = New System.Drawing.Size(152, 22)
+        Me.SMEditCost.Size = New System.Drawing.Size(122, 22)
         Me.SMEditCost.Text = "Edit"
         '
         'ViewLogToolStripMenuItem
         '
         Me.ViewLogToolStripMenuItem.Name = "ViewLogToolStripMenuItem"
-        Me.ViewLogToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ViewLogToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.ViewLogToolStripMenuItem.Text = "View Log"
+        '
+        'LPercentBeaMasuk
+        '
+        Me.LPercentBeaMasuk.Location = New System.Drawing.Point(13, 11)
+        Me.LPercentBeaMasuk.Name = "LPercentBeaMasuk"
+        Me.LPercentBeaMasuk.Size = New System.Drawing.Size(65, 13)
+        Me.LPercentBeaMasuk.TabIndex = 154
+        Me.LPercentBeaMasuk.Text = "% Bea Masuk"
+        '
+        'TEPercentBeamasuk
+        '
+        Me.TEPercentBeamasuk.EditValue = ""
+        Me.TEPercentBeamasuk.Location = New System.Drawing.Point(84, 8)
+        Me.TEPercentBeamasuk.Name = "TEPercentBeamasuk"
+        Me.TEPercentBeamasuk.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEPercentBeamasuk.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPercentBeamasuk.Properties.EditValueChangedDelay = 1
+        Me.TEPercentBeamasuk.Properties.Mask.EditMask = "N2"
+        Me.TEPercentBeamasuk.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPercentBeamasuk.Properties.Mask.SaveLiteral = False
+        Me.TEPercentBeamasuk.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEPercentBeamasuk.Size = New System.Drawing.Size(173, 20)
+        Me.TEPercentBeamasuk.TabIndex = 155
+        '
+        'LRemark
+        '
+        Me.LRemark.Location = New System.Drawing.Point(13, 36)
+        Me.LRemark.Name = "LRemark"
+        Me.LRemark.Size = New System.Drawing.Size(36, 13)
+        Me.LRemark.TabIndex = 156
+        Me.LRemark.Text = "Remark"
+        '
+        'MERemark
+        '
+        Me.MERemark.Location = New System.Drawing.Point(84, 34)
+        Me.MERemark.Name = "MERemark"
+        Me.MERemark.Size = New System.Drawing.Size(351, 69)
+        Me.MERemark.TabIndex = 157
         '
         'FormProductionCOP
         '
@@ -1749,6 +1797,8 @@ Partial Class FormProductionCOP
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         Me.ViewMenu.ResumeLayout(False)
+        CType(Me.TEPercentBeamasuk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1876,4 +1926,8 @@ Partial Class FormProductionCOP
     Friend WithEvents TEUnitCostActual As DevExpress.XtraEditors.TextEdit
     Friend WithEvents BSameCost As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents ViewLogToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MERemark As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LRemark As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEPercentBeamasuk As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LPercentBeaMasuk As DevExpress.XtraEditors.LabelControl
 End Class

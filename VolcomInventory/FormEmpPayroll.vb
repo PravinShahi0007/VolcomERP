@@ -16,11 +16,31 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         '
         GCPayrollPeriode.DataSource = data
+        check_but()
+    End Sub
+
+    Sub check_but()
+        If XTCPayroll.SelectedTabPageIndex = 0 Then
+            If GVPayrollPeriode.RowCount > 0 Then
+                bnew_active = "1"
+                bedit_active = "1"
+                bdel_active = "1"
+            Else
+                bnew_active = "1"
+                bedit_active = "0"
+                bdel_active = "0"
+            End If
+        Else
+            bnew_active = "0"
+            bedit_active = "0"
+            bdel_active = "0"
+        End If
     End Sub
 
     Private Sub FormEmpPayroll_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
+        check_but()
         button_main(bnew_active, bedit_active, bdel_active)
     End Sub
 

@@ -11,13 +11,16 @@
         view_status(LEStatus)
 
         If Not id_design = "-1" Then
-            Dim query As String = String.Format("SELECT rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,design_name,design_display_name,design_code,id_cop_status FROM tb_m_design WHERE id_design = '{0}'", id_design)
+            Dim query As String = String.Format("SELECT rate_management,prod_order_cop_kurs_mng,prod_order_cop_mng,design_name,design_display_name,design_code,id_cop_status,cop_pre_percent_bea_masuk,cop_pre_remark FROM tb_m_design WHERE id_design = '{0}'", id_design)
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
             TEDesign.Text = data.Rows(0)("design_display_name").ToString
             TEDesignCode.Text = data.Rows(0)("design_code").ToString
             LEStatus.EditValue = data.Rows(0)("id_cop_status").ToString
             TEKursMan.EditValue = data.Rows(0)("prod_order_cop_kurs_mng")
+            '
+            TEPercentBeamasuk.EditValue = data.Rows(0)("cop_pre_percent_bea_masuk")
+            MERemark.Text = data.Rows(0)("cop_pre_remark").ToString
             '
             If data.Rows(0)("id_cop_status").ToString = "2" Then
                 BUpdateCOP.Visible = False
@@ -29,8 +32,7 @@
                 '
                 TEUnitPrice.EditValue = True
                 TEUnitCostBOM.EditValue = True
-                TEUnitCostPD.EditValue = True
-                '
+                TEUnitCostPD.EditValue = True                '
                 TEUnitPrice.EditValue = FormMasterDesignCOP.BGVDesign.GetFocusedRowCellValue("design_cop")
             Else
                 TEUnitPrice.Properties.ReadOnly = False
@@ -196,7 +198,7 @@
                     stopCustom("You have no right to edit final COP.")
                 End If
             Else 'pre final
-                Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_qty='{1}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{2}',prod_order_cop_mng='{3}',id_cop_status='1' WHERE id_design='{4}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design)
+                Dim query As String = String.Format("UPDATE tb_m_design SET prod_order_cop_total_man='{0}',prod_order_cop_qty='{1}',prod_order_cop_last_upd=NOW(),prod_order_cop_kurs_mng='{2}',prod_order_cop_mng='{3}',cop_pre_percent_bea_masuk='{5}',cop_pre_remark='{6}',id_cop_status='1' WHERE id_design='{4}'", decimalSQL(TETotal.EditValue.ToString), decimalSQL(TEQty.EditValue.ToString), decimalSQL(TEKursMan.EditValue.ToString), decimalSQL(TEUnitPrice.EditValue.ToString), id_design, decimalSQL(TEPercentBeamasuk.EditValue.ToString), addSlashes(MERemark.Text))
                 execute_non_query(query, True, "", "", "", "")
                 infoCustom("Pre Final COP updated.")
                 Close()
@@ -279,7 +281,7 @@
         End If
     End Sub
     Sub calculate_cost_management()
-        If GVCostMan.RowCount > 0 And LEStatus.EditValue.ToString = "1" Then
+        If GVCostMan.RowCount > 0 And LEStatus.EditValue.ToString = "1" Then 'pre final
             Dim kurs As Decimal = TEKursMan.EditValue
             Dim actual_price As Decimal = 0
             Dim price As Decimal = 0
@@ -296,6 +298,16 @@
                     GVCostMan.SetRowCellValue(i, "total_price", total)
                 End If
             Next
+            '
+            LRemark.Visible = True
+            LPercentBeaMasuk.Visible = True
+            TEPercentBeamasuk.Visible = True
+            MERemark.Visible = True
+        Else 'final
+            LRemark.Visible = False
+            LPercentBeaMasuk.Visible = False
+            TEPercentBeamasuk.Visible = False
+            MERemark.Visible = False
         End If
     End Sub
 

@@ -1520,6 +1520,9 @@ Public Class FormMain
         ElseIf formName = "FormEmpPayroll" Then
             FormEmpPayrollPeriode.id_payroll = "-1"
             FormEmpPayrollPeriode.ShowDialog()
+        ElseIf formName = "FormEmpLeaveCut" Then
+            FormEmpLeaveCutDet.id_leave_cut = "-1"
+            FormEmpLeaveCutDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2428,6 +2431,9 @@ Public Class FormMain
             ElseIf formName = "FormEmpPayroll" Then
                 FormEmpPayrollPeriode.id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
                 FormEmpPayrollPeriode.ShowDialog()
+            ElseIf formName = "FormEmpLeaveCut" Then
+                FormEmpLeaveCutDet.id_leave_cut = FormEmpLeaveCut.GVPayrollPeriode.GetFocusedRowCellValue("id_leave_cut").ToString
+                FormEmpLeaveCutDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5491,7 +5497,7 @@ Public Class FormMain
                     FormEmpDP.load_dp()
                 End If
             Else
-                stopCustom("This report already appoved.")
+                stopCustom("This report already approved.")
             End If
         ElseIf formName = "FormDeliveryCargo" Then
             If check_edit_report_status(FormDeliveryCargo.GVDeliverySlip.GetFocusedRowCellValue("id_report_status").ToString, "112", FormDeliveryCargo.GVDeliverySlip.GetFocusedRowCellValue("id_awbill")) Then
@@ -5504,7 +5510,7 @@ Public Class FormMain
                     FormDeliveryCargo.load_awb()
                 End If
             Else
-                stopCustom("This report already appoved.")
+                stopCustom("This report already approved.")
             End If
         ElseIf formName = "FormEmpUniPeriod" Then
             confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
@@ -5518,6 +5524,18 @@ Public Class FormMain
                 Catch ex As Exception
                     errorDelete()
                 End Try
+            End If
+        ElseIf formName = "FormEmpLeaveCut" Then
+            If check_edit_report_status(FormEmpLeaveCut.GVPayrollPeriode.GetFocusedRowCellValue("id_report_status").ToString, "125", FormEmpLeaveCut.GVPayrollPeriode.GetFocusedRowCellValue("id_leave_cut")) Then
+                Dim id As String = FormEmpLeaveCut.GVPayrollPeriode.GetFocusedRowCellValue("id_leave_cut").ToString
+                confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = DialogResult.Yes Then
+                    Dim query_del As String = "DELETE FROM tb_emp_leave_cut WHERE id_leave_cut='" + id + "'"
+                    execute_non_query(query_del, True, "", "", "", "")
+                    FormEmpLeaveCut.load_leave_cut()
+                End If
+            Else
+                stopCustom("This report already approved.")
             End If
         Else
             RPSubMenu.Visible = False
@@ -6764,6 +6782,14 @@ Public Class FormMain
             print_raw(FormFGFirstDel.GCData, "")
         ElseIf formName = "FormFGCompareStockCard" Then
             print_raw(FormFGCompareStockCard.GCData, "")
+        ElseIf formName = "FormEmpPayroll" Then
+            If FormEmpPayroll.XTCPayroll.SelectedTabPageIndex = 0 Then
+                print_raw(FormEmpPayroll.GCPayrollPeriode, "")
+            Else
+                print_raw(FormEmpPayroll.GCPayroll, "")
+            End If
+        ElseIf formName = "FormEmpLeaveCut" Then
+            print_raw(FormEmpLeaveCut.GCPayrollPeriode, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7351,6 +7377,12 @@ Public Class FormMain
         ElseIf formName = "FormFGCompareStockCard" Then
             FormFGCompareStockCard.Close()
             FormFGCompareStockCard.Dispose()
+        ElseIf formName = "FormEmpPayroll" Then
+            FormEmpPayroll.Close()
+            FormEmpPayroll.Dispose()
+        ElseIf formName = "FormEmpLeaveCut" Then
+            FormEmpLeaveCut.Close()
+            FormEmpLeaveCut.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8022,7 +8054,8 @@ Public Class FormMain
             Else
                 FormEmpPayroll.load_payroll_detail()
             End If
-
+        ElseIf formName = "FormEmpLeaveCut" Then
+            FormEmpLeaveCut.load_leave_cut()
         End If
     End Sub
     'Switch
@@ -11098,6 +11131,19 @@ Public Class FormMain
             FormFGCompareStockCard.Show()
             FormFGCompareStockCard.WindowState = FormWindowState.Maximized
             FormFGCompareStockCard.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBLeaveCut_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBLeaveCut.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormEmpLeaveCut.MdiParent = Me
+            FormEmpLeaveCut.Show()
+            FormEmpLeaveCut.WindowState = FormWindowState.Maximized
+            FormEmpLeaveCut.Focus()
         Catch ex As Exception
             errorProcess()
         End Try
