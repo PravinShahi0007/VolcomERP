@@ -761,7 +761,7 @@
             'sample purchase
             query = String.Format("UPDATE tb_sample_purc SET id_report_status='{0}' WHERE id_sample_purc='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormSamplePurchaseDet.allow_status()
                 FormViewSamplePurchase.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -803,7 +803,7 @@
                     execute_non_query(query_upd_stored, True, "", "", "", "")
                 Next
             End If
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormSampleReceiveDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSampleReceiveDet.allow_status()
@@ -823,7 +823,7 @@
 
             query = String.Format("UPDATE tb_pl_sample_purc SET id_report_status='{0}' WHERE id_pl_sample_purc='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormSamplePLSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSamplePLSingle.action = "upd"
@@ -837,7 +837,7 @@
             'sample PR
             query = String.Format("UPDATE tb_pr_sample_purc SET id_report_status='{0}' WHERE id_pr_sample_purc='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormSamplePRDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSamplePRDet.allow_status()
@@ -849,7 +849,7 @@
             'sample ret out
             query = String.Format("UPDATE tb_sample_purc_ret_out SET id_report_status='{0}' WHERE id_sample_purc_ret_out='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormSampleRetOutSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSampleRetOutSingle.action = "upd"
@@ -863,7 +863,7 @@
             'sample ret in
             query = String.Format("UPDATE tb_sample_purc_ret_in SET id_report_status='{0}' WHERE id_sample_purc_ret_in='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormSampleRetInSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSampleRetInSingle.action = "upd"
@@ -877,7 +877,7 @@
             'sample Receipt
             query = String.Format("UPDATE tb_pl_sample_purc SET id_report_status_rec='{0}' WHERE id_pl_sample_purc='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormSampleReceiptSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSampleReceiptSingle.action = "upd"
@@ -891,7 +891,7 @@
             'bom
             query = String.Format("UPDATE tb_bom SET id_report_status='{0}' WHERE id_bom='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormBOMSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormBOMSingle.allow_status()
@@ -929,7 +929,7 @@
             'update status
             query = String.Format("UPDATE tb_prod_demand SET id_report_status='{0}' WHERE id_prod_demand='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 If form_origin = "FormProdDemand" Then
                     FormProdDemand.viewProdDemand()
@@ -995,7 +995,7 @@
 
             query = String.Format("UPDATE tb_pl_sample_del SET id_report_status='{0}' WHERE id_pl_sample_del='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             'Try
             If form_origin = "FormSamplePLDelSingle" Then
                 FormSamplePLDelSingle.id_pl_sample_del = id_report
@@ -1016,7 +1016,7 @@
             'sample requisition
             query = String.Format("UPDATE tb_sample_requisition SET id_report_status='{0}' WHERE id_sample_requisition='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormSampleReqSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSampleReqSingle.action = "upd"
@@ -1031,7 +1031,7 @@
             'sample planning
             query = String.Format("UPDATE tb_sample_plan SET id_report_status='{0}' WHERE id_sample_plan='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormSamplePlanDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormSamplePlanDet.allow_status()
@@ -1044,7 +1044,7 @@
             'material purchase
             query = String.Format("UPDATE tb_mat_purc SET id_report_status='{0}' WHERE id_mat_purc='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormMatPurchaseDet.id_report_status_g = id_status_reportx
                 FormMatPurchaseDet.allow_status()
@@ -1087,7 +1087,7 @@
 
             query = String.Format("UPDATE tb_sample_return SET id_report_status='{0}' WHERE id_sample_return='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             'Try
             If form_origin = "FormSampleReturnSingle" Then
                 FormSampleReturnSingle.id_sample_return = id_report
@@ -1113,7 +1113,7 @@
             End If
 
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormMatWODet.allow_status()
             Catch ex As Exception
@@ -1201,7 +1201,7 @@
                     WHERE rd.id_mat_purc_rec=" + id_report + ") "
                     execute_non_query(qdj, True, "", "", "", "")
 
-                    infoCustom("Status changed.")
+                    'infoCustom("Status changed.")
                     Try
                         FormMatRecPurcDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                         FormMatRecPurcDet.allow_status()
@@ -1216,7 +1216,7 @@
             Else
                 query = String.Format("UPDATE tb_mat_purc_rec Set id_report_status='{0}' WHERE id_mat_purc_rec='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
                 Try
                     FormMatRecPurcDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                     FormMatRecPurcDet.allow_status()
@@ -1263,7 +1263,7 @@
                     Next
                     query = String.Format("UPDATE tb_mat_wo_rec SET id_report_status='{0}' WHERE id_mat_wo_rec='{1}'", id_status_reportx, id_report)
                     execute_non_query(query, True, "", "", "", "")
-                    infoCustom("Status changed.")
+                    'infoCustom("Status changed.")
                     Try
                         FormMatRecWODet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                         FormMatRecWODet.allow_status()
@@ -1277,7 +1277,7 @@
             Else
                 query = String.Format("UPDATE tb_mat_wo_rec SET id_report_status='{0}' WHERE id_mat_wo_rec='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
                 Try
                     FormMatRecWODet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                     FormMatRecWODet.allow_status()
@@ -1295,7 +1295,7 @@
 
             query = String.Format("UPDATE tb_mat_purc_ret_out SET id_report_status='{0}' WHERE id_mat_purc_ret_out='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormMatRetOutDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormMatRetOutDet.check_but()
@@ -1346,7 +1346,7 @@
                     execute_non_query(query_upd_storage, True, "", "", "", "")
                 End If
             End If
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormMatRetInDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormMatRetInDet.check_but()
@@ -1377,7 +1377,7 @@
 
             query = String.Format("UPDATE tb_adj_in_sample SET id_report_status='{0}' WHERE id_adj_in_sample='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             'Try
             If form_origin = "FormSampleAdjustmentInSingle" Then
                 FormSampleAdjustmentInSingle.id_adj_in_sample = id_report
@@ -1467,7 +1467,7 @@
 
             query = String.Format("UPDATE tb_adj_out_sample SET id_report_status='{0}' WHERE id_adj_out_sample='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             'Try
             If form_origin = "FormSampleAdjustmentOutSingle" Then
                 FormSampleAdjustmentOutSingle.id_adj_out_sample = id_report
@@ -1494,7 +1494,7 @@
 
             query = String.Format("UPDATE tb_prod_order_wo SET id_report_status='{0}' WHERE id_prod_order='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            'infoCustom("Status changed.")
+            ''infoCustom("Status changed.")
             Try
                 FormProductionDet.id_report_status_g = id_status_reportx
                 FormProductionDet.allow_status()
@@ -1519,7 +1519,7 @@
 
                 query = String.Format("UPDATE tb_prod_order_wo Set id_report_status='{0}' WHERE id_prod_order_wo='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                'infoCustom("Status changed.")
+                ''infoCustom("Status changed.")
 
                 FormProductionWO.id_report_status_g = id_status_reportx
                 FormProductionWO.allow_status()
@@ -1531,7 +1531,7 @@
             'Material PO PR
             query = String.Format("UPDATE tb_pr_mat_purc SET id_report_status='{0}' WHERE id_pr_mat_purc='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 If form_origin = "FormMatPRDet" Then
                     FormMatPRDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -1549,7 +1549,7 @@
             'Material WO PR
             query = String.Format("UPDATE tb_pr_mat_wo SET id_report_status='{0}' WHERE id_pr_mat_wo='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 If form_origin = "FormMatPRWODet" Then
                     FormMatPRWODet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -1568,7 +1568,7 @@
 
             query = String.Format("UPDATE tb_adj_in_mat SET id_report_status='{0}' WHERE id_adj_in_mat='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 If form_origin = "FormMatAdjInSingle" Then
                     FormMatAdjInSingle.id_adj_in_mat = id_report
@@ -1631,7 +1631,7 @@
 
             query = String.Format("UPDATE tb_adj_out_mat SET id_report_status='{0}' WHERE id_adj_out_mat='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             If form_origin = "FormMatAdjOutSingle" Then
                 FormMatAdjOutSingle.id_adj_out_mat = id_report
                 FormMatAdjOutSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -1668,7 +1668,7 @@
 
                 query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 If form_origin = "FormProductionRecDet" Then
                     FormProductionRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -1687,7 +1687,7 @@
             'Production MRS
             query = String.Format("UPDATE tb_prod_order_mrs SET id_report_status='{0}' WHERE id_prod_order_mrs='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormProductionMRS.id_report_status_g = id_status_reportx
                 FormProductionMRS.allow_status()
@@ -1751,7 +1751,7 @@
 
             query = String.Format("UPDATE tb_pl_mrs SET id_report_status='{0}' WHERE id_pl_mrs='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormMatPLSingle.id_report_status = id_status_reportx
                 FormMatPLSingle.actionLoad()
@@ -1773,7 +1773,7 @@
             'update status
             query = String.Format("UPDATE tb_prod_order_ret_out SET id_report_status='{0}' WHERE id_prod_order_ret_out ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             'delete qty =0
             If id_status_reportx > "2" Then
@@ -1797,7 +1797,7 @@
             'Return IN FG
             query = String.Format("UPDATE tb_prod_order_ret_in SET id_report_status='{0}' WHERE id_prod_order_ret_in ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 If form_origin = "FormProductionRetInSingle" Then
                     FormProductionRetInSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -1814,7 +1814,7 @@
             'PL FG TO WH
             query = String.Format("UPDATE tb_pl_prod_order SET id_report_status='{0}' WHERE id_pl_prod_order ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 If form_origin = "FormProductionPLToWHDet" Then
                     FormProductionPLToWHDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -1830,7 +1830,7 @@
             'Invoice Mat PL MRS
             query = String.Format("UPDATE tb_inv_pl_mrs SET id_report_status='{0}' WHERE id_inv_pl_mrs ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormMatInvoiceDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormMatInvoiceDet.id_report_status_g = id_status_reportx
@@ -1843,7 +1843,7 @@
             'Retur invoice Mat PL MRS
             query = String.Format("UPDATE tb_inv_pl_mrs_ret SET id_report_status='{0}' WHERE id_inv_pl_mrs_ret ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormMatInvoiceReturDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormMatInvoiceReturDet.id_report_status_g = id_status_reportx
@@ -1865,7 +1865,7 @@
 
             query = String.Format("UPDATE tb_a_acc_trans SET id_report_status='{0}' WHERE id_acc_trans ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormAccountingJournalBill" Then
                 FormAccountingJournalBill.actionLoad()
@@ -1887,7 +1887,7 @@
                 Dim ch_stt As ClassProductionPLToWHRec = New ClassProductionPLToWHRec()
                 ch_stt.changeStatus(id_report, id_status_reportx)
 
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 FormProductionPLToWHRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
                 FormProductionPLToWHRecDet.check_but()
@@ -1933,7 +1933,7 @@
 
             query = String.Format("UPDATE tb_sales_order SET id_report_status='{0}' WHERE id_sales_order ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             'Try
             If form_origin = "FormSalesOrderDet" Then
                 FormSalesOrderDet.exportToBOF(False)
@@ -1951,7 +1951,7 @@
             'Entry Journal
             query = String.Format("UPDATE tb_a_acc_trans_adj SET id_report_status='{0}' WHERE id_acc_trans_adj ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormAccountingJournalAdjDet.id_report_status_g = id_status_reportx
                 FormAccountingJournalAdjDet.allow_status()
@@ -1982,7 +1982,7 @@
 
             query = String.Format("UPDATE tb_adj_in_fg SET id_report_status='{0}' WHERE id_adj_in_fg = '{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 If form_origin = "FormFGAdjInDet" Then
                     FormFGAdjInDet.id_adj_in_fg = id_report
@@ -2043,7 +2043,7 @@
 
             query = String.Format("UPDATE tb_adj_out_fg SET id_report_status='{0}' WHERE id_adj_out_fg='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             If form_origin = "FormFGAdjOutDet" Then
                 FormFGAdjOutDet.id_adj_out_fg = id_report
                 FormFGAdjOutDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2057,7 +2057,7 @@
             'SALES Del Order
             Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
             stt.changeStatus(id_report, id_status_reportx)
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSalesDelOrderDet" Then
                 FormSalesDelOrderDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2072,7 +2072,7 @@
             'MRS WO
             query = String.Format("UPDATE tb_prod_order_mrs SET id_report_status='{0}' WHERE id_prod_order_mrs ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormMatMRSDet.id_report_status_g = id_status_reportx
                 FormMatMRSDet.allow_status()
@@ -2090,7 +2090,7 @@
             Try
                 query = String.Format("UPDATE tb_sales_return_order SET id_report_status='{0}' WHERE id_sales_return_order ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
             Catch ex As Exception
                 errorConnection()
                 Close()
@@ -2120,7 +2120,7 @@
             End If
 
 
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSalesReturnDet" Then
                 FormSalesReturnDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2163,7 +2163,7 @@
                     'update stored
                 Next
             End If
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormMatRetInProd.id_report_status = id_status_reportx
                 FormMatRetInProd.allow_status()
@@ -2190,7 +2190,7 @@
             'update status
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSalesPOSDet" Then
                 FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2205,7 +2205,7 @@
             'SALES RETURN QC
             Dim st As ClassSalesReturnQC = New ClassSalesReturnQC()
             st.changeStatus(id_report, id_status_reportx)
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSalesReturnQCDet" Then
                 FormSalesReturnQCDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2232,7 +2232,7 @@
             Try
                 query = String.Format("UPDATE tb_sales_invoice SET id_report_status='{0}' WHERE id_sales_invoice ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 If form_origin = "FormSalesInvoiceDet" Then
                     FormSalesInvoiceDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2251,7 +2251,7 @@
             'Mat Stock Opname
             query = String.Format("UPDATE tb_mat_so SET id_report_status='{0}' WHERE id_mat_so ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
             Try
                 FormMatStockOpnameDet.id_report_status = id_status_reportx
                 FormMatStockOpnameDet.allow_status()
@@ -2266,7 +2266,7 @@
             Try
                 query = String.Format("UPDATE tb_fg_so_store SET id_report_status='{0}' WHERE id_fg_so_store ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 If form_origin = "FormFGStockOpnameStoreDet" Then
                     'FormSalesInvoiceDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2300,7 +2300,7 @@
 
                 query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 If form_origin = "FormSalesPOSDet" Then
                     FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2320,7 +2320,7 @@
             Try
                 query = String.Format("UPDATE tb_fg_missing_invoice SET id_report_status='{0}' WHERE id_fg_missing_invoice ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 If form_origin = "FormFGMissingInvoiceDet" Then
                     FormFGMissingInvoiceDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2340,7 +2340,7 @@
             Try
                 query = String.Format("UPDATE tb_fg_so_wh SET id_report_status='{0}' WHERE id_fg_so_wh ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 If form_origin = "FormFGStockOpnameWHDet" Then
                     'FormSalesInvoiceDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2359,7 +2359,7 @@
             'TRANSFER
             Dim stt As ClassFGTrf = New ClassFGTrf()
             stt.changeStatus(id_report, id_status_reportx)
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormFGTrfDet" Then
                 FormFGTrfDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2395,7 +2395,7 @@
 
                 query = String.Format("UPDATE tb_fg_trf SET id_report_status_rec='{0}' WHERE id_fg_trf ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 If form_origin = "FormFGTrfDet" Then
                     FormFGTrfDet.LEReportStatus2.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2471,7 +2471,7 @@
                 End If
             End If
 
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSampleDelDet" Then
                 FormSampleDelDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2487,7 +2487,7 @@
             Try
                 query = String.Format("UPDATE tb_sample_del_rec SET id_report_status='{0}' WHERE id_sample_del_rec ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 If form_origin = "FormSampleDelRecDet" Then
                     FormSampleDelRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2507,7 +2507,7 @@
             Try
                 query = String.Format("UPDATE tb_sample_order SET id_report_status='{0}' WHERE id_sample_order ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 If form_origin = "FormSampleOrderDet" Then
                     FormSampleOrderDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2578,7 +2578,7 @@
                 End If
             End If
 
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSampleDelOrderDet" Then
                 FormSampleDelOrderDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2595,7 +2595,7 @@
             Try
                 query = String.Format("UPDATE tb_sample_so SET id_report_status='{0}' WHERE id_sample_so ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 If form_origin = "FormSampleStockOpname" Then
                     FormSampleStockOpnameDet.actionLoad()
@@ -2621,7 +2621,7 @@
 
             query = String.Format("UPDATE tb_fg_code_replace_store SET id_report_status='{0}' WHERE id_fg_code_replace_store ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormFGCodeReplaceStoreDet" Then
                 FormFGCodeReplaceStoreDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2646,7 +2646,7 @@
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSalesPOSDet" Then
                 FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2671,7 +2671,7 @@
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSalesPOSDet" Then
                 FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2692,7 +2692,7 @@
 
             query = String.Format("UPDATE tb_fg_code_replace_wh SET id_report_status='{0}' WHERE id_fg_code_replace_wh ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormFGCodeReplaceWHDet" Then
                 FormFGCodeReplaceWHDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2718,7 +2718,7 @@
             'cheange status
             query = String.Format("UPDATE tb_fg_woff SET id_report_status='{0}' WHERE id_fg_woff ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormFGWoffDet" Then
                 FormFGWoffDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2731,7 +2731,7 @@
             'FG PROPOSE PRICE
             query = String.Format("UPDATE tb_fg_propose_price SET id_report_status='{0}' WHERE id_fg_propose_price ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             'post ke master price if completed
             If id_status_reportx = "6" Then
@@ -2751,7 +2751,7 @@
             'QC Adj In
             query = String.Format("UPDATE tb_prod_order_qc_adj_in SET id_report_status='{0}' WHERE id_prod_order_qc_adj_in ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormProdQCAdjIn" Then
                 FormProdQCAdjIn.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2765,7 +2765,7 @@
             'QC Adj Out
             query = String.Format("UPDATE tb_prod_order_qc_adj_out SET id_report_status='{0}' WHERE id_prod_order_qc_adj_out ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormProdQCAdjOut" Then
                 FormProdQCAdjOut.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2942,7 +2942,7 @@
             Else
                 query = String.Format("UPDATE tb_fg_so_reff SET id_report_status='{0}' WHERE id_fg_so_reff ='{1}'", id_status_reportx, id_report)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
 
                 If form_origin = "FormFGSalesOrderReffDet" Then
                     FormFGSalesOrderReffDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2967,7 +2967,7 @@
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSalesPromoDet" Then
                 FormSalesPromoDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -2991,7 +2991,7 @@
                 execute_non_query(query, True, "", "", "", "")
                 query = String.Format("UPDATE tb_bom bom INNER JOIN tb_m_product prod ON prod.id_product=bom.id_product SET bom.id_report_status='{0}' WHERE bom.id_bom_approve='{1}' AND prod.id_design='{2}'", id_status_reportx, id_report, FormBOMSingle.id_design)
                 execute_non_query(query, True, "", "", "", "")
-                infoCustom("Status changed.")
+                'infoCustom("Status changed.")
                 If form_origin = "FormBomSingle" Then
                     FormBOMSingle.act_load()
                 ElseIf form_origin = "FormBOMDesignSingle" Then
@@ -3016,7 +3016,7 @@
 
             query = String.Format("UPDATE tb_fg_price SET id_report_status='{0}' WHERE id_fg_price ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormMasterPriceSingle" Then
                 FormMasterPriceSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3039,7 +3039,7 @@
 
             query = String.Format("UPDATE tb_sample_pl SET id_report_status='{0}' WHERE id_sample_pl ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSamplePLToWHDet" Then
                 FormSamplePLToWHDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3065,7 +3065,7 @@
 
             query = String.Format("UPDATE tb_sample_price SET id_report_status='{0}' WHERE id_sample_price ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormMasterPriceSampleSingle" Then
                 FormMasterPriceSampleSingle.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3088,7 +3088,7 @@
 
             query = String.Format("UPDATE tb_fg_wh_alloc SET id_report_status='{0}' WHERE id_fg_wh_alloc ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormFGWHAllocDet" Then
                 FormFGWHAllocDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3134,7 +3134,7 @@
 
             query = String.Format("UPDATE tb_sales_order_gen SET id_report_status='{0}' WHERE id_sales_order_gen ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSalesOrderGen" Then
                 FormSalesOrderGen.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3153,7 +3153,7 @@
 
             query = String.Format("UPDATE tb_sample_pl_ret SET id_report_status='{0}' WHERE id_sample_pl_ret ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSampleReturnPLDet" Then
                 FormSampleReturnPLDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3176,7 +3176,7 @@
 
             query = String.Format("UPDATE tb_fg_repair SET id_report_status='{0}' WHERE id_fg_repair ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormFGRepairDet" Then
                 FormFGRepairDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3193,7 +3193,7 @@
 
             query = String.Format("UPDATE tb_fg_repair_rec SET id_report_status='{0}' WHERE id_fg_repair_rec ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormFGRepairRecDet" Then
                 FormFGRepairRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3214,7 +3214,7 @@
 
             query = String.Format("UPDATE tb_fg_repair_return SET id_report_status='{0}' WHERE id_fg_repair_return ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormFGRepairReturnDet" Then
                 FormFGRepairReturnDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3231,7 +3231,7 @@
 
             query = String.Format("UPDATE tb_fg_repair_return_rec SET id_report_status='{0}' WHERE id_fg_repair_return_rec ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormFGRepairReturnRecDet" Then
                 FormFGRepairReturnRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3336,7 +3336,7 @@
             End If
             query = String.Format("UPDATE tb_emp_dp SET id_report_status='{0}' WHERE id_dp ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
         ElseIf report_mark_type = "98" Then
             'Employee change schedule
             If id_status_reportx = "3" Then
@@ -3468,7 +3468,7 @@
             End If
             query = String.Format("UPDATE tb_emp_assign_sch SET id_report_status='{0}' WHERE id_assign_sch ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
         ElseIf report_mark_type = "101" Then
             'Air Ways Bill
             If id_status_reportx = "3" Then
@@ -3477,7 +3477,7 @@
             End If
             query = String.Format("UPDATE tb_wh_awbill SET id_report_status='{0}' WHERE id_awbill ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
         ElseIf report_mark_type = "102" Then
             'LEAVE PROPOSE
             If id_status_reportx = "3" Or id_status_reportx = "6" Then
@@ -3520,7 +3520,7 @@
             'combine del
             Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
             stt.changeStatusHead(id_report, id_status_reportx)
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             FormSalesDelOrderSlip.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
             FormSalesDelOrderSlip.actionLoad()
@@ -3570,7 +3570,7 @@
 
             query = String.Format("UPDATE tb_prod_fc SET id_report_status='{0}' WHERE id_prod_fc ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormProductionFinalClearDet" Then
                 FormProductionFinalClearDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3655,7 +3655,7 @@
 
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSalesPOSDet" Then
                 FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3685,7 +3685,7 @@
             'update status
             query = String.Format("UPDATE tb_sales_pos SET id_report_status='{0}' WHERE id_sales_pos ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSalesPOSDet" Then
                 FormSalesPOSDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3705,7 +3705,7 @@
 
             query = String.Format("UPDATE tb_sales_return_order SET id_report_status='{0}' WHERE id_sales_return_order ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            infoCustom("Status changed.")
+            'infoCustom("Status changed.")
 
             If form_origin = "FormSalesReturnOrderOLDet" Then
                 FormSalesReturnOrderOLDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)

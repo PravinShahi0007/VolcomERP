@@ -34,6 +34,7 @@ Public Class FormLogin
                 data = execute_query(query, -1, True, "", "", "", "")
                 If data.Rows.Count > 0 Then
                     id_user = data.Rows(0)("id_user").ToString
+                    is_auto_load_workplace = data.Rows(0)("is_auto_load_workplace").ToString
                     id_role_login = data.Rows(0)("id_role").ToString
                     name_user = data.Rows(0)("employee_name").ToString
                     code_user = data.Rows(0)("employee_code").ToString

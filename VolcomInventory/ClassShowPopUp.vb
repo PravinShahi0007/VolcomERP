@@ -25,15 +25,6 @@
         ElseIf report_mark_type = "4" Then
             'sample PR
             FormViewSamplePR.Close()
-        ElseIf report_mark_type = "5" Then
-            'sample ret out
-
-        ElseIf report_mark_type = "6" Then
-            'sample ret in
-
-        ElseIf report_mark_type = "7" Then
-            'sample receipt
-
         ElseIf report_mark_type = "8" Then
             'bom
             FormViewBOM.Close()
