@@ -572,7 +572,7 @@ Public Class FormSalesDelOrderDet
                     'query main table
                     Dim pl_sales_order_del_number As String = ""
                     Dim query_main As String = "INSERT tb_pl_sales_order_del(id_sales_order, pl_sales_order_del_number, id_comp_contact_from, id_store_contact_to, pl_sales_order_del_date, pl_sales_order_del_note, id_report_status, last_update, last_update_by, id_wh_drawer) "
-                    query_main += "VALUES('" + id_sales_order + "', '" + header_number_sales("3") + "', '" + id_comp_contact_from + "', '" + id_store_contact_to + "', NOW(), '" + pl_sales_order_del_note + "', '1', NOW(), " + id_user + ", '" + id_wh_drawer + "'); SELECT LAST_INSERT_ID(); "
+                    query_main += "VALUES('" + id_sales_order + "', '', '" + id_comp_contact_from + "', '" + id_store_contact_to + "', NOW(), '" + pl_sales_order_del_note + "', '1', NOW(), " + id_user + ", '" + id_wh_drawer + "'); SELECT LAST_INSERT_ID(); "
                     id_pl_sales_order_del = execute_query(query_main, 0, True, "", "", "", "")
 
 
