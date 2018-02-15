@@ -270,6 +270,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnQty.Name = "BandedGridColumnQty"
         Me.BandedGridColumnQty.OptionsColumn.AllowEdit = False
         Me.BandedGridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty", "{0:N0}")})
+        Me.BandedGridColumnQty.Tag = ""
         Me.BandedGridColumnQty.Visible = True
         Me.BandedGridColumnQty.Width = 30
         '
@@ -402,7 +403,8 @@ Partial Class FormWHAWBill
         Me.GridColumnWeight.FieldName = "weight"
         Me.GridColumnWeight.Name = "GridColumnWeight"
         Me.GridColumnWeight.OptionsColumn.AllowEdit = False
-        Me.GridColumnWeight.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "weight", "{0:N2}")})
+        Me.GridColumnWeight.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "weight", "{0:N2}")})
+        Me.GridColumnWeight.Tag = "1"
         Me.GridColumnWeight.Visible = True
         Me.GridColumnWeight.Width = 24
         '
@@ -979,7 +981,7 @@ Partial Class FormWHAWBill
         Me.XTPInbound.Controls.Add(Me.GCAwbillIn)
         Me.XTPInbound.Controls.Add(Me.PanelControl2)
         Me.XTPInbound.Name = "XTPInbound"
-        Me.XTPInbound.Size = New System.Drawing.Size(1038, 273)
+        Me.XTPInbound.Size = New System.Drawing.Size(1273, 515)
         Me.XTPInbound.Text = "Inbound"
         '
         'GCAwbillIn
@@ -988,7 +990,7 @@ Partial Class FormWHAWBill
         Me.GCAwbillIn.Location = New System.Drawing.Point(0, 39)
         Me.GCAwbillIn.MainView = Me.GVAwbillIn
         Me.GCAwbillIn.Name = "GCAwbillIn"
-        Me.GCAwbillIn.Size = New System.Drawing.Size(1038, 234)
+        Me.GCAwbillIn.Size = New System.Drawing.Size(1273, 476)
         Me.GCAwbillIn.TabIndex = 2
         Me.GCAwbillIn.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAwbillIn})
         '
@@ -1512,7 +1514,7 @@ Partial Class FormWHAWBill
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1038, 39)
+        Me.PanelControl2.Size = New System.Drawing.Size(1273, 39)
         Me.PanelControl2.TabIndex = 3
         '
         'CERO
