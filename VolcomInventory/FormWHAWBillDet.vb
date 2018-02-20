@@ -175,24 +175,43 @@
     Sub rate_table()
         Dim berat_terpakai As Integer = TEBeratTerpakai.EditValue
 
-        Dim query As String = "SELECT rate.id_cargo,rate.id_store,comp.comp_name AS cargo,rate.cargo_min_weight,rate.cargo_rate"
-        query += ", IF(" + berat_terpakai.ToString + " < Rate.cargo_min_weight, Rate.cargo_min_weight, " + berat_terpakai.ToString + ") As weight"
-        query += " ,(If(" + berat_terpakai.ToString + "<rate.cargo_min_weight,rate.cargo_min_weight," + berat_terpakai.ToString + ") * cargo_rate) As amount"
-        query += " ,rate.cargo_lead_time"
-        query += " ,comp.awb_rank"
-        query += " FROM tb_wh_cargo_rate As rate"
-        query += " INNER JOIN tb_m_comp comp ON comp.id_comp=rate.id_cargo"
-        query += " WHERE rate.id_store='" + id_comp + "' AND rate.id_rate_type='" + id_awb_type + "'"
-        query += " ORDER BY amount ASC,awb_rank ASC"
+        If id_awb = "-1" Then 'new
+            Dim query As String = "SELECT rate.id_cargo,rate.id_store,comp.comp_name AS cargo,rate.cargo_min_weight,rate.cargo_rate"
+            query += ", IF(" + berat_terpakai.ToString + " < Rate.cargo_min_weight, Rate.cargo_min_weight, " + berat_terpakai.ToString + ") As weight"
+            query += " ,(If(" + berat_terpakai.ToString + "<rate.cargo_min_weight,rate.cargo_min_weight," + berat_terpakai.ToString + ") * cargo_rate) As amount"
+            query += " ,rate.cargo_lead_time"
+            query += " ,comp.awb_rank"
+            query += " FROM tb_wh_cargo_rate As rate"
+            query += " INNER JOIN tb_m_comp comp ON comp.id_comp=rate.id_cargo"
+            query += " WHERE rate.id_store='" + id_comp + "' AND rate.id_rate_type='" + id_awb_type + "'"
+            query += " ORDER BY amount ASC,awb_rank ASC"
 
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        GCCargoRate.DataSource = data
-        GVCargoRate.BestFitColumns()
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCCargoRate.DataSource = data
+            GVCargoRate.BestFitColumns()
 
-        SLECargo.EditValue = Nothing
-        viewSearchLookupQuery(SLECargo, query, "id_cargo", "cargo", "id_cargo")
+            SLECargo.EditValue = Nothing
+            viewSearchLookupQuery(SLECargo, query, "id_cargo", "cargo", "id_cargo")
 
-        auto_cargo()
+            auto_cargo()
+        Else 'edit
+            Dim query As String = "SELECT awb.id_cargo,awb.id_store,comp_c.comp_name AS cargo,awb.cargo_min_weight,awb.cargo_rate
+                                    ,awb.weight AS weight
+                                    ,awb.`c_tot_price` AS amount
+                                    FROM tb_wh_awbill awb
+                                    INNER JOIN tb_m_comp comp_c ON comp_c.id_comp=awb.id_cargo 
+                                    WHERE awb.id_awbill='" & id_awb & "'"
+
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCCargoRate.DataSource = data
+            GVCargoRate.BestFitColumns()
+
+            SLECargo.EditValue = Nothing
+            viewSearchLookupQuery(SLECargo, query, "id_cargo", "cargo", "id_cargo")
+
+            auto_cargo()
+        End If
+
         calculate_amount()
     End Sub
 
