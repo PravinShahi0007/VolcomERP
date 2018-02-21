@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormEmpPayrollEmp
+Partial Class FormEmpLeaveCutEmp
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -20,8 +20,12 @@ Partial Class FormEmpPayrollEmp
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpPayrollEmp))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpLeaveCutEmp))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPickAll = New DevExpress.XtraEditors.SimpleButton()
+        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BPick = New DevExpress.XtraEditors.SimpleButton()
         Me.GCEmployee = New DevExpress.XtraGrid.GridControl()
         Me.GVEmployee = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnPick = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -33,16 +37,12 @@ Partial Class FormEmpPayrollEmp
         Me.GridColumnJoinDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.BPickAll = New DevExpress.XtraEditors.SimpleButton()
-        Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPick = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl3.SuspendLayout()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControl3.SuspendLayout()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -70,6 +70,50 @@ Partial Class FormEmpPayrollEmp
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
+        'PanelControl3
+        '
+        Me.PanelControl3.Controls.Add(Me.BPickAll)
+        Me.PanelControl3.Controls.Add(Me.BCancel)
+        Me.PanelControl3.Controls.Add(Me.BPick)
+        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 358)
+        Me.PanelControl3.Name = "PanelControl3"
+        Me.PanelControl3.Size = New System.Drawing.Size(802, 37)
+        Me.PanelControl3.TabIndex = 7
+        '
+        'BPickAll
+        '
+        Me.BPickAll.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPickAll.ImageIndex = 19
+        Me.BPickAll.ImageList = Me.LargeImageCollection
+        Me.BPickAll.Location = New System.Drawing.Point(2, 2)
+        Me.BPickAll.Name = "BPickAll"
+        Me.BPickAll.Size = New System.Drawing.Size(178, 33)
+        Me.BPickAll.TabIndex = 2
+        Me.BPickAll.Text = "Insert All Active Employee"
+        '
+        'BCancel
+        '
+        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BCancel.ImageIndex = 5
+        Me.BCancel.ImageList = Me.LargeImageCollection
+        Me.BCancel.Location = New System.Drawing.Point(652, 2)
+        Me.BCancel.Name = "BCancel"
+        Me.BCancel.Size = New System.Drawing.Size(73, 33)
+        Me.BCancel.TabIndex = 1
+        Me.BCancel.Text = "Cancel"
+        '
+        'BPick
+        '
+        Me.BPick.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BPick.ImageIndex = 19
+        Me.BPick.ImageList = Me.LargeImageCollection
+        Me.BPick.Location = New System.Drawing.Point(725, 2)
+        Me.BPick.Name = "BPick"
+        Me.BPick.Size = New System.Drawing.Size(75, 33)
+        Me.BPick.TabIndex = 0
+        Me.BPick.Text = "Insert"
+        '
         'GCEmployee
         '
         Me.GCEmployee.Dock = System.Windows.Forms.DockStyle.Fill
@@ -77,8 +121,8 @@ Partial Class FormEmpPayrollEmp
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
         Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck})
-        Me.GCEmployee.Size = New System.Drawing.Size(806, 353)
-        Me.GCEmployee.TabIndex = 7
+        Me.GCEmployee.Size = New System.Drawing.Size(802, 358)
+        Me.GCEmployee.TabIndex = 8
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '
         'GVEmployee
@@ -169,75 +213,37 @@ Partial Class FormEmpPayrollEmp
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
         '
-        'PanelControl3
-        '
-        Me.PanelControl3.Controls.Add(Me.BPickAll)
-        Me.PanelControl3.Controls.Add(Me.BCancel)
-        Me.PanelControl3.Controls.Add(Me.BPick)
-        Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 353)
-        Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(806, 37)
-        Me.PanelControl3.TabIndex = 6
-        '
-        'BPickAll
-        '
-        Me.BPickAll.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BPickAll.ImageIndex = 19
-        Me.BPickAll.ImageList = Me.LargeImageCollection
-        Me.BPickAll.Location = New System.Drawing.Point(2, 2)
-        Me.BPickAll.Name = "BPickAll"
-        Me.BPickAll.Size = New System.Drawing.Size(178, 33)
-        Me.BPickAll.TabIndex = 2
-        Me.BPickAll.Text = "Insert All Active Employee"
-        '
-        'BCancel
-        '
-        Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BCancel.ImageIndex = 5
-        Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(656, 2)
-        Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(73, 33)
-        Me.BCancel.TabIndex = 1
-        Me.BCancel.Text = "Cancel"
-        '
-        'BPick
-        '
-        Me.BPick.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BPick.ImageIndex = 19
-        Me.BPick.ImageList = Me.LargeImageCollection
-        Me.BPick.Location = New System.Drawing.Point(729, 2)
-        Me.BPick.Name = "BPick"
-        Me.BPick.Size = New System.Drawing.Size(75, 33)
-        Me.BPick.TabIndex = 0
-        Me.BPick.Text = "Insert"
-        '
-        'FormEmpPayrollEmp
+        'FormEmpLeaveCutEmp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(806, 390)
+        Me.ClientSize = New System.Drawing.Size(802, 395)
         Me.Controls.Add(Me.GCEmployee)
         Me.Controls.Add(Me.PanelControl3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MinimizeBox = False
-        Me.Name = "FormEmpPayrollEmp"
+        Me.Name = "FormEmpLeaveCutEmp"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Insert Employee"
+        Me.Text = "Pick Employee"
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl3.ResumeLayout(False)
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControl3.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
 
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BPickAll As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPick As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCEmployee As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVEmployee As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnPick As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
@@ -245,10 +251,4 @@ Partial Class FormEmpPayrollEmp
     Friend WithEvents GridColumnJoinDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BCancel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BPick As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BPickAll As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents GridColumnPick As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents RICECheck As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

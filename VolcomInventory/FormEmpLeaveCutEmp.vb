@@ -1,7 +1,7 @@
-﻿Public Class FormEmpPayrollEmp
-    Dim id_payroll As String = "-1"
+﻿Public Class FormEmpLeaveCutEmp
+    Dim id_leave_cut As String = "-1"
     Private Sub FormEmpPayrollEmp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        id_payroll = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString()
+        id_leave_cut = FormEmpLeaveCut.GVPayrollPeriode.GetFocusedRowCellValue("id_leave_cut").ToString()
         load_emp()
     End Sub
     Sub load_emp()
@@ -17,7 +17,7 @@
 		                                ORDER BY sal.`effective_date` DESC,sal.`id_employee_salary` DESC
 	                                ) sal GROUP BY id_employee
                                 ) salx ON salx.id_employee = emp.`id_employee`
-                                WHERE emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & id_payroll & "')"
+                                WHERE emp.id_employee_active='1' AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_leave_cut_det WHERE id_leave_cut='" & id_leave_cut & "')"
 
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCEmployee.DataSource = data
@@ -59,43 +59,34 @@
             stopCustom("Please select order first.")
             GVEmployee.ActiveFilterString = ""
         Else
-            query = "INSERT INTO tb_emp_payroll_det(id_payroll,id_employee,id_salary,workdays) VALUES"
+            query = "INSERT INTO tb_emp_leave_cut_det(id_leave_cut,id_employee) VALUES"
             For i As Integer = 0 To ((GVEmployee.RowCount - 1) - GetGroupRowCount(GVEmployee))
                 Dim id_employee As String = GVEmployee.GetRowCellValue(i, "id_employee").ToString
-                Dim id_salary As String = GVEmployee.GetRowCellValue(i, "id_employee_salary").ToString
-                Dim workdays As String = decimalSQL(GVEmployee.GetRowCellValue(i, "total_workdays").ToString)
                 If Not i = 0 Then
                     query += ","
                 End If
-                query += "('" & id_payroll & "','" & id_employee & "','" & id_salary & "','" & workdays & "')"
+                query += "('" & id_leave_cut & "','" & id_employee & "')"
             Next
             execute_non_query(query, True, "", "", "", "")
         End If
         GVEmployee.ActiveFilterString = ""
         Cursor = Cursors.Default
-        FormEmpPayroll.load_payroll_detail()
+        FormEmpLeaveCutDet.load_det()
         infoCustom("Employee listed.")
         Close()
     End Sub
 
     Private Sub BPickAll_Click(sender As Object, e As EventArgs) Handles BPickAll.Click
-        Dim query As String = "INSERT INTO tb_emp_payroll_det(id_payroll,id_employee,id_salary,workdays)
-                                SELECT '" & id_payroll & "' as id_payroll,emp.id_employee,salx.id_employee_salary,dep.total_workdays
+        Dim query As String = "INSERT INTO tb_emp_leav_cut_det(id_payroll,id_employee,id_salary,workdays)
+                                SELECT '" & id_leave_cut & "' as id_leave_cut,emp.id_employee
                                 FROM tb_m_employee emp
                                 INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level 
                                 INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
-                                INNER JOIN (	
-	                                SELECT sal.* FROM (
-		                                SELECT * FROM tb_m_employee_salary sal
-		                                WHERE is_cancel='2'
-		                                ORDER BY sal.`effective_date` DESC,sal.`id_employee_salary` DESC
-	                                ) sal GROUP BY id_employee
-                                ) salx ON salx.id_employee = emp.`id_employee`
-                                WHERE emp.id_employee_active='1' AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & id_payroll & "')"
+                                WHERE emp.id_employee_active='1' AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_payroll_det WHERE id_payroll='" & id_leave_cut & "')"
         execute_non_query(query, True, "", "", "", "")
         infoCustom("Employee listed.")
-        FormEmpPayroll.load_payroll_detail()
+        FormEmpLeaveCutDet.load_det()
         Close()
     End Sub
 End Class
