@@ -76,9 +76,9 @@ Partial Class FormEmpLeaveCutEmp
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BPick)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 358)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 352)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(802, 37)
+        Me.PanelControl3.Size = New System.Drawing.Size(802, 43)
         Me.PanelControl3.TabIndex = 7
         '
         'BPickAll
@@ -88,7 +88,7 @@ Partial Class FormEmpLeaveCutEmp
         Me.BPickAll.ImageList = Me.LargeImageCollection
         Me.BPickAll.Location = New System.Drawing.Point(2, 2)
         Me.BPickAll.Name = "BPickAll"
-        Me.BPickAll.Size = New System.Drawing.Size(178, 33)
+        Me.BPickAll.Size = New System.Drawing.Size(178, 39)
         Me.BPickAll.TabIndex = 2
         Me.BPickAll.Text = "Insert All Active Employee"
         '
@@ -99,7 +99,7 @@ Partial Class FormEmpLeaveCutEmp
         Me.BCancel.ImageList = Me.LargeImageCollection
         Me.BCancel.Location = New System.Drawing.Point(652, 2)
         Me.BCancel.Name = "BCancel"
-        Me.BCancel.Size = New System.Drawing.Size(73, 33)
+        Me.BCancel.Size = New System.Drawing.Size(73, 39)
         Me.BCancel.TabIndex = 1
         Me.BCancel.Text = "Cancel"
         '
@@ -110,7 +110,7 @@ Partial Class FormEmpLeaveCutEmp
         Me.BPick.ImageList = Me.LargeImageCollection
         Me.BPick.Location = New System.Drawing.Point(725, 2)
         Me.BPick.Name = "BPick"
-        Me.BPick.Size = New System.Drawing.Size(75, 33)
+        Me.BPick.Size = New System.Drawing.Size(75, 39)
         Me.BPick.TabIndex = 0
         Me.BPick.Text = "Insert"
         '
@@ -121,7 +121,7 @@ Partial Class FormEmpLeaveCutEmp
         Me.GCEmployee.MainView = Me.GVEmployee
         Me.GCEmployee.Name = "GCEmployee"
         Me.GCEmployee.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RICECheck})
-        Me.GCEmployee.Size = New System.Drawing.Size(802, 358)
+        Me.GCEmployee.Size = New System.Drawing.Size(802, 352)
         Me.GCEmployee.TabIndex = 8
         Me.GCEmployee.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVEmployee})
         '

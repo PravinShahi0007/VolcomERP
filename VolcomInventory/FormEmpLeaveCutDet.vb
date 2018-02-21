@@ -13,7 +13,8 @@
     End Sub
 
     Private Sub BGetEmployee_Click(sender As Object, e As EventArgs) Handles BGetEmployee.Click
-        FormEmpPayrollEmp.ShowDialog()
+        FormEmpLeaveCutEmp.id_leave_cut = id_leave_cut
+        FormEmpLeaveCutEmp.ShowDialog()
     End Sub
 
     Sub load_det()
@@ -22,5 +23,14 @@
 
         GCLeaveAdj.DataSource = data
         GVLeaveAdj.BestFitColumns()
+    End Sub
+
+    Private Sub BSetup_Click(sender As Object, e As EventArgs) Handles BSetup.Click
+        FormEmpLeaveCutDetSetup.id_leave_cut = id_leave_cut
+        FormEmpLeaveCutDetSetup.ShowDialog()
+    End Sub
+
+    Private Sub Bload_Click(sender As Object, e As EventArgs) Handles Bload.Click
+
     End Sub
 End Class

@@ -22,8 +22,9 @@ Partial Class FormEmpLeaveCutDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpLeaveCutDet))
         Me.PCControl = New DevExpress.XtraEditors.PanelControl()
-        Me.Bload = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSetup = New DevExpress.XtraEditors.SimpleButton()
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.Bload = New DevExpress.XtraEditors.SimpleButton()
         Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
         Me.GCLeaveAdj = New DevExpress.XtraGrid.GridControl()
         Me.GVLeaveAdj = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
@@ -38,8 +39,6 @@ Partial Class FormEmpLeaveCutDet
         Me.GridColumnStatus = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnContractEnd = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.GridColumnWorkingDays = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.BandedGridColumnActWorkdays = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -60,6 +59,7 @@ Partial Class FormEmpLeaveCutDet
         '
         'PCControl
         '
+        Me.PCControl.Controls.Add(Me.BSetup)
         Me.PCControl.Controls.Add(Me.Bload)
         Me.PCControl.Controls.Add(Me.BGetEmployee)
         Me.PCControl.Dock = System.Windows.Forms.DockStyle.Top
@@ -68,16 +68,16 @@ Partial Class FormEmpLeaveCutDet
         Me.PCControl.Size = New System.Drawing.Size(1147, 44)
         Me.PCControl.TabIndex = 0
         '
-        'Bload
+        'BSetup
         '
-        Me.Bload.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Bload.ImageIndex = 3
-        Me.Bload.ImageList = Me.LargeImageCollection
-        Me.Bload.Location = New System.Drawing.Point(847, 2)
-        Me.Bload.Name = "Bload"
-        Me.Bload.Size = New System.Drawing.Size(170, 40)
-        Me.Bload.TabIndex = 5
-        Me.Bload.Text = "Load Working Time Detail"
+        Me.BSetup.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BSetup.ImageIndex = 17
+        Me.BSetup.ImageList = Me.LargeImageCollection
+        Me.BSetup.Location = New System.Drawing.Point(2, 2)
+        Me.BSetup.Name = "BSetup"
+        Me.BSetup.Size = New System.Drawing.Size(90, 40)
+        Me.BSetup.TabIndex = 6
+        Me.BSetup.Text = "Setup"
         '
         'LargeImageCollection
         '
@@ -104,6 +104,17 @@ Partial Class FormEmpLeaveCutDet
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
+        'Bload
+        '
+        Me.Bload.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Bload.ImageIndex = 3
+        Me.Bload.ImageList = Me.LargeImageCollection
+        Me.Bload.Location = New System.Drawing.Point(847, 2)
+        Me.Bload.Name = "Bload"
+        Me.Bload.Size = New System.Drawing.Size(170, 40)
+        Me.Bload.TabIndex = 5
+        Me.Bload.Text = "Load Working Time Detail"
+        '
         'BGetEmployee
         '
         Me.BGetEmployee.Dock = System.Windows.Forms.DockStyle.Right
@@ -128,7 +139,7 @@ Partial Class FormEmpLeaveCutDet
         'GVLeaveAdj
         '
         Me.GVLeaveAdj.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand5, Me.gridBand2})
-        Me.GVLeaveAdj.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.GridColumnWorkingDays, Me.BandedGridColumnActWorkdays, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn6, Me.BandedGridColumn4, Me.BandedGridColumn5})
+        Me.GVLeaveAdj.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn6, Me.BandedGridColumn4, Me.BandedGridColumn5})
         Me.GVLeaveAdj.GridControl = Me.GCLeaveAdj
         Me.GVLeaveAdj.Name = "GVLeaveAdj"
         Me.GVLeaveAdj.OptionsView.ColumnAutoWidth = False
@@ -222,40 +233,12 @@ Partial Class FormEmpLeaveCutDet
         Me.gridBand5.AppearanceHeader.Options.UseTextOptions = True
         Me.gridBand5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand5.Caption = "Working Time Detail"
-        Me.gridBand5.Columns.Add(Me.GridColumnWorkingDays)
-        Me.gridBand5.Columns.Add(Me.BandedGridColumnActWorkdays)
         Me.gridBand5.Columns.Add(Me.BandedGridColumn1)
         Me.gridBand5.Columns.Add(Me.BandedGridColumn2)
         Me.gridBand5.Columns.Add(Me.BandedGridColumn3)
         Me.gridBand5.Name = "gridBand5"
         Me.gridBand5.VisibleIndex = 1
-        Me.gridBand5.Width = 375
-        '
-        'GridColumnWorkingDays
-        '
-        Me.GridColumnWorkingDays.AppearanceCell.Options.UseTextOptions = True
-        Me.GridColumnWorkingDays.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnWorkingDays.AppearanceHeader.Options.UseTextOptions = True
-        Me.GridColumnWorkingDays.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.GridColumnWorkingDays.Caption = "Working Days"
-        Me.GridColumnWorkingDays.DisplayFormat.FormatString = "N1"
-        Me.GridColumnWorkingDays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnWorkingDays.FieldName = "workdays"
-        Me.GridColumnWorkingDays.Name = "GridColumnWorkingDays"
-        Me.GridColumnWorkingDays.Visible = True
-        '
-        'BandedGridColumnActWorkdays
-        '
-        Me.BandedGridColumnActWorkdays.AppearanceCell.Options.UseTextOptions = True
-        Me.BandedGridColumnActWorkdays.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumnActWorkdays.AppearanceHeader.Options.UseTextOptions = True
-        Me.BandedGridColumnActWorkdays.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.BandedGridColumnActWorkdays.Caption = "Actual Working Days"
-        Me.BandedGridColumnActWorkdays.DisplayFormat.FormatString = "N1"
-        Me.BandedGridColumnActWorkdays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnActWorkdays.FieldName = "actual_workdays"
-        Me.BandedGridColumnActWorkdays.Name = "BandedGridColumnActWorkdays"
-        Me.BandedGridColumnActWorkdays.Visible = True
+        Me.gridBand5.Width = 225
         '
         'BandedGridColumn1
         '
@@ -358,8 +341,6 @@ Partial Class FormEmpLeaveCutDet
     Friend WithEvents GridColumnPosition As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnStatus As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents GridColumnContractEnd As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridColumnWorkingDays As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents BandedGridColumnActWorkdays As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -374,4 +355,5 @@ Partial Class FormEmpLeaveCutDet
     Friend WithEvents BGetEmployee As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BSetup As DevExpress.XtraEditors.SimpleButton
 End Class
