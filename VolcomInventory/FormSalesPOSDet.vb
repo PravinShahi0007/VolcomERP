@@ -730,7 +730,7 @@ Public Class FormSalesPOSDet
     End Sub
 
     Private Sub SimpleButton1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SimpleButton1.Click
-
+        print_raw(GCItemList, "")
     End Sub
 
     Private Sub BMark_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BMark.Click
@@ -959,15 +959,15 @@ Public Class FormSalesPOSDet
         WHERE d.id_store_contact_to='" + id_store_contact_from + "' AND d.id_report_status=6 AND !ISNULL(so.sales_order_ol_shop_number) AND so.sales_order_ol_shop_number!='' AND ISNULL(ind.id_sales_pos_det) "
         Dim dtd As DataTable = execute_query(query_del, -1, True, "", "", "", "")
 
+
         Dim tb1 = data_temp.AsEnumerable()
         Dim tb2 = dtd.AsEnumerable()
 
         Try
             Dim dtr As DataTable = (From table1 In tb1
                                     Join rd In tb2
-                                   On table1("ol_store_order").ToString Equals rd("ol_store_order").ToString
+                                    On Trim(table1("ol_store_order").ToString) Equals Trim(rd("ol_store_order").ToString)
                                     Select rd).CopyToDataTable
-
 
             GCItemList.DataSource = Nothing
             GCItemList.DataSource = dtr
