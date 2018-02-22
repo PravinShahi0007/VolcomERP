@@ -4,13 +4,13 @@
     Dim bdel_active As String = "0"
     '
     Private Sub FormEmpLeaveCut_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        load_leave_cut()
     End Sub
 
     Private Sub FormEmpLeaveCut_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
         checkFormAccess(Name)
-        button_main(bnew_active, bedit_active, bdel_active)
+        check_but()
     End Sub
 
     Private Sub FormEmpLeaveCut_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
@@ -19,6 +19,19 @@
 
     Private Sub FormEmpLeaveCut_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
+    End Sub
+
+    Sub check_but()
+        If GVPayrollPeriode.RowCount > 0 Then
+            bnew_active = 1
+            bedit_active = 1
+            bdel_active = 1
+        Else
+            bnew_active = 1
+            bedit_active = 0
+            bdel_active = 0
+        End If
+        button_main(bnew_active, bedit_active, bdel_active)
     End Sub
 
     Sub load_leave_cut()
