@@ -108,6 +108,8 @@ Partial Class FormSalesPOS
         Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnLastMark = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIsSubmit = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GVSalesPOSDet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesPOS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -360,7 +362,7 @@ Partial Class FormSalesPOS
         '
         'GVSalesPOS
         '
-        Me.GVSalesPOS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnStore, Me.GridColumnSalesPOSDate, Me.GridColumn1, Me.GridColumnSalesStore, Me.GridColumnType, Me.GridColumnQty, Me.GridColumnTotal, Me.GridColumnDiscount, Me.GridColumnSalesTax, Me.GridColumnNetto, Me.GridColumnSalesPosRev, Me.GridColumnStatus, Me.GridColumnDueDate, Me.GridColumnAge, Me.GridColumnRemark})
+        Me.GVSalesPOS.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnStore, Me.GridColumnSalesPOSDate, Me.GridColumn1, Me.GridColumnSalesStore, Me.GridColumnType, Me.GridColumnQty, Me.GridColumnTotal, Me.GridColumnDiscount, Me.GridColumnSalesTax, Me.GridColumnNetto, Me.GridColumnSalesPosRev, Me.GridColumnStatus, Me.GridColumnDueDate, Me.GridColumnAge, Me.GridColumnRemark, Me.GridColumnLastMark, Me.GridColumnIsSubmit})
         Me.GVSalesPOS.GridControl = Me.GCSalesPOS
         Me.GVSalesPOS.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_det_qty", Me.GridColumnQty, "{0:f2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_total", Me.GridColumnTotal, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_netto", Me.GridColumnNetto, "{0:n2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_pos_revenue", Me.GridColumnSalesPosRev, "{0:n2}")})
         Me.GVSalesPOS.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
@@ -1006,6 +1008,25 @@ Partial Class FormSalesPOS
         Me.LabelControl10.TabIndex = 8892
         Me.LabelControl10.Text = "From"
         '
+        'GridColumnLastMark
+        '
+        Me.GridColumnLastMark.Caption = "LAST MARK"
+        Me.GridColumnLastMark.FieldName = "last_mark"
+        Me.GridColumnLastMark.Name = "GridColumnLastMark"
+        Me.GridColumnLastMark.Visible = True
+        Me.GridColumnLastMark.VisibleIndex = 14
+        Me.GridColumnLastMark.Width = 116
+        '
+        'GridColumnIsSubmit
+        '
+        Me.GridColumnIsSubmit.Caption = "SUBMITTED"
+        Me.GridColumnIsSubmit.FieldName = "is_submit"
+        Me.GridColumnIsSubmit.Name = "GridColumnIsSubmit"
+        Me.GridColumnIsSubmit.UnboundExpression = "Iif([last_mark] = '-', 'No', 'Yes')"
+        Me.GridColumnIsSubmit.UnboundType = DevExpress.Data.UnboundColumnType.[String]
+        Me.GridColumnIsSubmit.Visible = True
+        Me.GridColumnIsSubmit.VisibleIndex = 13
+        '
         'FormSalesPOS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1151,4 +1172,6 @@ Partial Class FormSalesPOS
     Friend WithEvents GridColumnLastUpdate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnUpdBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnLastMark As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIsSubmit As DevExpress.XtraGrid.Columns.GridColumn
 End Class
