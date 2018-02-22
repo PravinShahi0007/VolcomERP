@@ -1,6 +1,6 @@
 ﻿Public Class FormFGCodeReplaceStoreAdd
-    Dim id_drawer_def As String = "-1"
-    Dim id_comp As String = "-1"
+    Public id_drawer_def As String = "-1"
+    Public id_comp As String = "-1"
     Public id_product As String = "-1"
     Public id_design As String = "-1"
     Dim is_limited_print As String = "-1"
@@ -53,11 +53,23 @@
             Dim code As String = addSlashes(TxtStoreCode.Text)
             Dim data As DataTable = get_company_by_code(code, "AND (comp.id_comp_cat = 6 OR comp.id_comp_cat =5) ")
             If data.Rows.Count > 0 Then
-                TxtStoreCode.Text = data.Rows(0)("comp_number").ToString
-                TxtStoreName.Text = data.Rows(0)("comp_name").ToString
-                id_drawer_def = data.Rows(0)("id_drawer_def").ToString
-                id_comp = data.Rows(0)("id_comp").ToString
-                TxtDesignCode.Focus()
+                If data.Rows.Count > 1 Then
+                    FormMasterCompanyDouble.dt = data
+                    FormMasterCompanyDouble.id_pop_up = "2"
+                    FormMasterCompanyDouble.ShowDialog()
+                    If id_drawer_def <> "-1" Then
+                        TxtDesignCode.Focus()
+                    Else
+                        TxtStoreCode.Text = ""
+                        TxtStoreCode.Focus()
+                    End If
+                Else
+                    TxtStoreCode.Text = data.Rows(0)("comp_number").ToString
+                    TxtStoreName.Text = data.Rows(0)("comp_name").ToString
+                    id_drawer_def = data.Rows(0)("id_drawer_def").ToString
+                    id_comp = data.Rows(0)("id_comp").ToString
+                    TxtDesignCode.Focus()
+                End If
             Else
                 stopCustom("Store not found")
                 TxtStoreCode.Text = ""
@@ -101,6 +113,7 @@
     End Sub
 
     Sub getStock()
+        Cursor = Cursors.WaitCursor
         If is_limited_print = "1" Then
             Dim query As String = "SELECT SUM(IF(f.id_storage_category=2, CONCAT('-', f.storage_product_qty), f.storage_product_qty)) AS qty
             FROM tb_storage_fg f
@@ -115,6 +128,7 @@
         Else
             TxtAvailable.EditValue = 9999
         End If
+        Cursor = Cursors.Default
     End Sub
 
     Private Sub TxtQty_EditValueChanged(sender As Object, e As EventArgs) Handles TxtQty.EditValueChanged

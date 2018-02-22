@@ -17,6 +17,12 @@
                     FormWHSvcLevel.TxtCompID.Text = GVComp.GetFocusedRowCellValue("comp_name").ToString
                     FormWHSvcLevel.DEFromAcc.Focus()
                     Close()
+                ElseIf id_pop_up = "2" Then
+                    FormFGCodeReplaceStoreAdd.TxtStoreCode.Text = GVComp.GetFocusedRowCellValue("comp_number").ToString
+                    FormFGCodeReplaceStoreAdd.TxtStoreName.Text = GVComp.GetFocusedRowCellValue("comp_name").ToString
+                    FormFGCodeReplaceStoreAdd.id_drawer_def = GVComp.GetFocusedRowCellValue("id_drawer_def").ToString
+                    FormFGCodeReplaceStoreAdd.id_comp = GVComp.GetFocusedRowCellValue("id_comp").ToString
+                    Close()
                 Else
                     FormFGStock.id_drw_rsv = GVComp.GetFocusedRowCellValue("id_drawer_def").ToString
                     FormFGStock.TxtCodeAccRsv.Text = GVComp.GetFocusedRowCellValue("comp_number").ToString
