@@ -18,6 +18,15 @@
     End Sub
 
     Sub load_det()
+        Dim query_hdr As String = "SELECT dep.`departement`,lc.`leave_cut_number` FROM tb_emp_leave_cut lc
+                                    INNER JOIN tb_m_departement dep ON dep.`id_departement`=lc.`id_departement`
+                                    WHERE lc.id_leave_cut='" & id_leave_cut & "'"
+        Dim data_hdr As DataTable = execute_query(query_hdr, -1, True, "", "", "", "")
+        If data_hdr.Rows.Count > 0 Then
+            TENumber.Text = data_hdr.Rows(0)("leave_cut_number").ToString
+            TEDept.Text = data_hdr.Rows(0)("departement").ToString
+        End If
+        '
         Dim query As String = "CALL view_leave_cut('" & id_leave_cut & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
 
