@@ -61,6 +61,7 @@ Partial Class FormProductionSpecialRecSingle
         Me.SimpleButton1.Size = New System.Drawing.Size(80, 30)
         Me.SimpleButton1.TabIndex = 2
         Me.SimpleButton1.Text = "Attachment"
+        Me.SimpleButton1.Visible = False
         '
         'BOpenLock
         '

@@ -24,6 +24,7 @@ Partial Class FormProdClosingTolerance
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnOK = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.TxtTolMinus = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTolOver = New DevExpress.XtraEditors.TextEdit()
@@ -32,7 +33,6 @@ Partial Class FormProdClosingTolerance
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.TxtTolDiscount = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,7 +66,7 @@ Partial Class FormProdClosingTolerance
         '
         Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancel.Image = CType(resources.GetObject("BtnCancel.Image"), System.Drawing.Image)
-        Me.BtnCancel.Location = New System.Drawing.Point(2, 2)
+        Me.BtnCancel.Location = New System.Drawing.Point(18, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(84, 36)
         Me.BtnCancel.TabIndex = 8
@@ -76,11 +76,22 @@ Partial Class FormProdClosingTolerance
         '
         Me.BtnOK.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnOK.Image = CType(resources.GetObject("BtnOK.Image"), System.Drawing.Image)
-        Me.BtnOK.Location = New System.Drawing.Point(86, 2)
+        Me.BtnOK.Location = New System.Drawing.Point(102, 2)
         Me.BtnOK.Name = "BtnOK"
-        Me.BtnOK.Size = New System.Drawing.Size(75, 36)
+        Me.BtnOK.Size = New System.Drawing.Size(86, 36)
         Me.BtnOK.TabIndex = 7
-        Me.BtnOK.Text = "OK"
+        Me.BtnOK.Text = "Submit"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(188, 2)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(77, 36)
+        Me.SimpleButton1.TabIndex = 6
+        Me.SimpleButton1.Text = "Attachment"
+        Me.SimpleButton1.Visible = False
         '
         'GroupControl1
         '
@@ -156,16 +167,6 @@ Partial Class FormProdClosingTolerance
         Me.LabelControl4.Size = New System.Drawing.Size(55, 13)
         Me.LabelControl4.TabIndex = 4
         Me.LabelControl4.Text = "Discount %"
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(161, 2)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(104, 36)
-        Me.SimpleButton1.TabIndex = 6
-        Me.SimpleButton1.Text = "Attachment"
         '
         'FormProdClosingTolerance
         '

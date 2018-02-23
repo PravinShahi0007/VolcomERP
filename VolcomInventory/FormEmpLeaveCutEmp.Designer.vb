@@ -37,12 +37,14 @@ Partial Class FormEmpLeaveCutEmp
         Me.GridColumnJoinDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.CheckEditSelAll = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -72,6 +74,7 @@ Partial Class FormEmpLeaveCutEmp
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.CheckEditSelAll)
         Me.PanelControl3.Controls.Add(Me.BPickAll)
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BPick)
@@ -83,10 +86,10 @@ Partial Class FormEmpLeaveCutEmp
         '
         'BPickAll
         '
-        Me.BPickAll.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPickAll.Dock = System.Windows.Forms.DockStyle.Right
         Me.BPickAll.ImageIndex = 19
         Me.BPickAll.ImageList = Me.LargeImageCollection
-        Me.BPickAll.Location = New System.Drawing.Point(2, 2)
+        Me.BPickAll.Location = New System.Drawing.Point(474, 2)
         Me.BPickAll.Name = "BPickAll"
         Me.BPickAll.Size = New System.Drawing.Size(178, 39)
         Me.BPickAll.TabIndex = 2
@@ -213,6 +216,14 @@ Partial Class FormEmpLeaveCutEmp
         Me.GridColumn6.Visible = True
         Me.GridColumn6.VisibleIndex = 6
         '
+        'CheckEditSelAll
+        '
+        Me.CheckEditSelAll.Location = New System.Drawing.Point(12, 12)
+        Me.CheckEditSelAll.Name = "CheckEditSelAll"
+        Me.CheckEditSelAll.Properties.Caption = "Select All"
+        Me.CheckEditSelAll.Size = New System.Drawing.Size(75, 19)
+        Me.CheckEditSelAll.TabIndex = 3
+        '
         'FormEmpLeaveCutEmp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -231,6 +242,7 @@ Partial Class FormEmpLeaveCutEmp
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RICECheck, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CheckEditSelAll.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -251,4 +263,5 @@ Partial Class FormEmpLeaveCutEmp
     Friend WithEvents GridColumnJoinDate As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents CheckEditSelAll As DevExpress.XtraEditors.CheckEdit
 End Class
