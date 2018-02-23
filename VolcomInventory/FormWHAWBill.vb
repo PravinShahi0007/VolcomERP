@@ -40,13 +40,13 @@
     Sub load_outbound()
         Dim number_start, number_end, date_start, date_end As String
 
-        If TENoStart.EditValue = 0 Or TENoStart.EditValue = Nothing Then
+        If TENoStart.Text = "" Then
             number_start = ""
         Else
             number_start = " AND awb.id_awbill>='" + TENoStart.EditValue.ToString + "'"
         End If
 
-        If TENoEnd.EditValue = 0 Or TENoEnd.EditValue = Nothing Then
+        If TENoEnd.Text Then
             number_end = ""
         Else
             number_end = " AND awb.id_awbill<='" + TENoEnd.EditValue.ToString + "'"
