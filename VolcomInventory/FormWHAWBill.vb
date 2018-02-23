@@ -46,7 +46,7 @@
             number_start = " AND awb.id_awbill>='" + TENoStart.EditValue.ToString + "'"
         End If
 
-        If TENoEnd.Text Then
+        If TENoEnd.Text = "" Then
             number_end = ""
         Else
             number_end = " AND awb.id_awbill<='" + TENoEnd.EditValue.ToString + "'"
