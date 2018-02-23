@@ -70,6 +70,7 @@
             '
             TEAwbNo.Text = data.Rows(0)("awbill_no").ToString
             TEInvNo.Text = data.Rows(0)("awbill_inv_no").ToString
+            TERecByPerson.Text = data.Rows(0)("rec_by_store_person")
 
             If data.Rows(0)("pick_up_date").ToString = "" Then
                 DEPickUp.EditValue = Nothing
@@ -198,6 +199,8 @@
             Dim query As String = "SELECT awb.id_cargo,awb.id_store,comp_c.comp_name AS cargo,awb.cargo_min_weight,awb.cargo_rate
                                     ,awb.weight AS weight
                                     ,awb.`c_tot_price` AS amount
+                                    ,awb.cargo_lead_time
+                                    ,comp_c.awb_rank
                                     FROM tb_wh_awbill awb
                                     INNER JOIN tb_m_comp comp_c ON comp_c.id_comp=awb.id_cargo 
                                     WHERE awb.id_awbill='" & id_awb & "'"

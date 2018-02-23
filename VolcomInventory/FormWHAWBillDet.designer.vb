@@ -86,6 +86,8 @@ Partial Class FormWHAWBillDet
         Me.TEWidth = New DevExpress.XtraEditors.TextEdit()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.XTPInvoice = New DevExpress.XtraTab.XtraTabPage()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.TEInvNo = New DevExpress.XtraEditors.TextEdit()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TERecByPerson = New DevExpress.XtraEditors.TextEdit()
         Me.BRecStoreNothing = New DevExpress.XtraEditors.SimpleButton()
@@ -119,8 +121,6 @@ Partial Class FormWHAWBillDet
         Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
-        Me.TEInvNo = New DevExpress.XtraEditors.TextEdit()
-        Me.Label22 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -159,6 +159,7 @@ Partial Class FormWHAWBillDet
         CType(Me.TEHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWidth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPInvoice.SuspendLayout()
+        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TERecByPerson.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStore.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -184,7 +185,6 @@ Partial Class FormWHAWBillDet
         Me.GroupControl1.SuspendLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
-        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -302,10 +302,10 @@ Partial Class FormWHAWBillDet
         '
         'TEMarkDifferent
         '
-        Me.TEMarkDifferent.Location = New System.Drawing.Point(61, 65)
+        Me.TEMarkDifferent.Location = New System.Drawing.Point(63, 65)
         Me.TEMarkDifferent.Name = "TEMarkDifferent"
         Me.TEMarkDifferent.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEMarkDifferent.Size = New System.Drawing.Size(724, 20)
+        Me.TEMarkDifferent.Size = New System.Drawing.Size(722, 20)
         Me.TEMarkDifferent.TabIndex = 118
         '
         'CEPaid
@@ -915,6 +915,24 @@ Partial Class FormWHAWBillDet
         Me.XTPInvoice.Size = New System.Drawing.Size(793, 228)
         Me.XTPInvoice.Text = "AWB"
         '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.Location = New System.Drawing.Point(14, 43)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(58, 13)
+        Me.Label22.TabIndex = 107
+        Me.Label22.Text = "Invoice No"
+        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'TEInvNo
+        '
+        Me.TEInvNo.Location = New System.Drawing.Point(146, 40)
+        Me.TEInvNo.Name = "TEInvNo"
+        Me.TEInvNo.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEInvNo.Size = New System.Drawing.Size(197, 20)
+        Me.TEInvNo.TabIndex = 106
+        '
         'Label21
         '
         Me.Label21.AutoSize = True
@@ -1239,24 +1257,6 @@ Partial Class FormWHAWBillDet
         Me.PanelControl4.Size = New System.Drawing.Size(807, 282)
         Me.PanelControl4.TabIndex = 2
         '
-        'TEInvNo
-        '
-        Me.TEInvNo.Location = New System.Drawing.Point(146, 40)
-        Me.TEInvNo.Name = "TEInvNo"
-        Me.TEInvNo.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEInvNo.Size = New System.Drawing.Size(197, 20)
-        Me.TEInvNo.TabIndex = 106
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(14, 43)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(58, 13)
-        Me.Label22.TabIndex = 107
-        Me.Label22.Text = "Invoice No"
-        Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        '
         'FormWHAWBillDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1313,6 +1313,7 @@ Partial Class FormWHAWBillDet
         CType(Me.TEWidth.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XTPInvoice.ResumeLayout(False)
         Me.XTPInvoice.PerformLayout()
+        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TERecByPerson.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStore.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1340,7 +1341,6 @@ Partial Class FormWHAWBillDet
         Me.GroupControl1.PerformLayout()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
-        CType(Me.TEInvNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
