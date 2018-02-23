@@ -78,6 +78,7 @@ Partial Class FormWHAWBill
         Me.BandedGridColumnRemarkDiff = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn38 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn39 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnManifest = New DevExpress.XtraEditors.SimpleButton()
         Me.CEDO = New DevExpress.XtraEditors.CheckEdit()
@@ -156,7 +157,6 @@ Partial Class FormWHAWBill
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TEInNoStart = New DevExpress.XtraEditors.TextEdit()
-        Me.BandedGridColumn28 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         CType(Me.GCAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAWBill, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RCICOD, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -822,6 +822,12 @@ Partial Class FormWHAWBill
         Me.BandedGridColumn39.Name = "BandedGridColumn39"
         Me.BandedGridColumn39.Width = 50
         '
+        'BandedGridColumn28
+        '
+        Me.BandedGridColumn28.Caption = "Penanda"
+        Me.BandedGridColumn28.FieldName = "penanda"
+        Me.BandedGridColumn28.Name = "BandedGridColumn28"
+        '
         'PanelControl1
         '
         Me.PanelControl1.Controls.Add(Me.BtnManifest)
@@ -922,9 +928,6 @@ Partial Class FormWHAWBill
         '
         Me.TENoEnd.Location = New System.Drawing.Point(166, 10)
         Me.TENoEnd.Name = "TENoEnd"
-        Me.TENoEnd.Properties.Mask.EditMask = "N0"
-        Me.TENoEnd.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TENoEnd.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TENoEnd.Size = New System.Drawing.Size(81, 20)
         Me.TENoEnd.TabIndex = 5
         '
@@ -952,9 +955,6 @@ Partial Class FormWHAWBill
         Me.TENoStart.Name = "TENoStart"
         Me.TENoStart.Properties.Appearance.Options.UseTextOptions = True
         Me.TENoStart.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TENoStart.Properties.Mask.EditMask = "N0"
-        Me.TENoStart.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TENoStart.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TENoStart.Size = New System.Drawing.Size(81, 20)
         Me.TENoStart.TabIndex = 2
         '
@@ -1624,12 +1624,6 @@ Partial Class FormWHAWBill
         Me.TEInNoStart.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEInNoStart.Size = New System.Drawing.Size(81, 20)
         Me.TEInNoStart.TabIndex = 2
-        '
-        'BandedGridColumn28
-        '
-        Me.BandedGridColumn28.Caption = "Penanda"
-        Me.BandedGridColumn28.FieldName = "penanda"
-        Me.BandedGridColumn28.Name = "BandedGridColumn28"
         '
         'FormWHAWBill
         '
