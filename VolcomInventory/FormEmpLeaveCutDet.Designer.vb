@@ -48,6 +48,10 @@ Partial Class FormEmpLeaveCutDet
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEDept = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
         CType(Me.PCControl, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCControl.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,13 +59,19 @@ Partial Class FormEmpLeaveCutDet
         CType(Me.GVLeaveAdj, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
+        CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCControl
         '
-        Me.PCControl.Controls.Add(Me.BSetup)
+        Me.PCControl.Controls.Add(Me.TENumber)
+        Me.PCControl.Controls.Add(Me.TEDept)
+        Me.PCControl.Controls.Add(Me.LabelControl2)
+        Me.PCControl.Controls.Add(Me.LabelControl1)
         Me.PCControl.Controls.Add(Me.Bload)
         Me.PCControl.Controls.Add(Me.BGetEmployee)
+        Me.PCControl.Controls.Add(Me.BSetup)
         Me.PCControl.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCControl.Location = New System.Drawing.Point(0, 0)
         Me.PCControl.Name = "PCControl"
@@ -70,10 +80,10 @@ Partial Class FormEmpLeaveCutDet
         '
         'BSetup
         '
-        Me.BSetup.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BSetup.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSetup.ImageIndex = 17
         Me.BSetup.ImageList = Me.LargeImageCollection
-        Me.BSetup.Location = New System.Drawing.Point(2, 2)
+        Me.BSetup.Location = New System.Drawing.Point(1055, 2)
         Me.BSetup.Name = "BSetup"
         Me.BSetup.Size = New System.Drawing.Size(90, 40)
         Me.BSetup.TabIndex = 6
@@ -109,7 +119,7 @@ Partial Class FormEmpLeaveCutDet
         Me.Bload.Dock = System.Windows.Forms.DockStyle.Right
         Me.Bload.ImageIndex = 3
         Me.Bload.ImageList = Me.LargeImageCollection
-        Me.Bload.Location = New System.Drawing.Point(847, 2)
+        Me.Bload.Location = New System.Drawing.Point(757, 2)
         Me.Bload.Name = "Bload"
         Me.Bload.Size = New System.Drawing.Size(170, 40)
         Me.Bload.TabIndex = 5
@@ -120,7 +130,7 @@ Partial Class FormEmpLeaveCutDet
         Me.BGetEmployee.Dock = System.Windows.Forms.DockStyle.Right
         Me.BGetEmployee.ImageIndex = 19
         Me.BGetEmployee.ImageList = Me.LargeImageCollection
-        Me.BGetEmployee.Location = New System.Drawing.Point(1017, 2)
+        Me.BGetEmployee.Location = New System.Drawing.Point(927, 2)
         Me.BGetEmployee.Name = "BGetEmployee"
         Me.BGetEmployee.Size = New System.Drawing.Size(128, 40)
         Me.BGetEmployee.TabIndex = 4
@@ -260,6 +270,8 @@ Partial Class FormEmpLeaveCutDet
         '
         'gridBand2
         '
+        Me.gridBand2.AppearanceHeader.Options.UseTextOptions = True
+        Me.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
         Me.gridBand2.Caption = "Adjustment Leave"
         Me.gridBand2.Columns.Add(Me.BandedGridColumn4)
         Me.gridBand2.Columns.Add(Me.BandedGridColumn6)
@@ -303,7 +315,43 @@ Partial Class FormEmpLeaveCutDet
         Me.SimpleButton2.Name = "SimpleButton2"
         Me.SimpleButton2.Size = New System.Drawing.Size(1143, 40)
         Me.SimpleButton2.TabIndex = 4
-        Me.SimpleButton2.Text = "Create"
+        Me.SimpleButton2.Text = "Mark"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl1.TabIndex = 7
+        Me.LabelControl1.Text = "Number"
+        '
+        'TEDept
+        '
+        Me.TEDept.EditValue = ""
+        Me.TEDept.Location = New System.Drawing.Point(293, 12)
+        Me.TEDept.Name = "TEDept"
+        Me.TEDept.Properties.EditValueChangedDelay = 1
+        Me.TEDept.Properties.ReadOnly = True
+        Me.TEDept.Size = New System.Drawing.Size(217, 20)
+        Me.TEDept.TabIndex = 93
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(224, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl2.TabIndex = 94
+        Me.LabelControl2.Text = "Departement"
+        '
+        'TENumber
+        '
+        Me.TENumber.EditValue = ""
+        Me.TENumber.Location = New System.Drawing.Point(55, 12)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.EditValueChangedDelay = 1
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(163, 20)
+        Me.TENumber.TabIndex = 95
         '
         'FormEmpLeaveCutDet
         '
@@ -320,11 +368,14 @@ Partial Class FormEmpLeaveCutDet
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PCControl, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCControl.ResumeLayout(False)
+        Me.PCControl.PerformLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCLeaveAdj, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVLeaveAdj, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
+        CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -356,4 +407,8 @@ Partial Class FormEmpLeaveCutDet
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSetup As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents TEDept As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
 End Class

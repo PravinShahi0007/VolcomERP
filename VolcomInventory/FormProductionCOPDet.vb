@@ -2,7 +2,7 @@
     Public id_wo As String = "-1"
     '
     Public old_kurs As Decimal = 1.0
-    Public old_price As Decimal = 0.0
+    Public old_price As Decimal = 0.0000
     Public old_curr As String = "1"
     Public old_id_ovh_price As String = "1"
     '
