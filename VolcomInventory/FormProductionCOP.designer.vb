@@ -69,6 +69,10 @@ Partial Class FormProductionCOP
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.MERemark = New DevExpress.XtraEditors.MemoEdit()
+        Me.LRemark = New DevExpress.XtraEditors.LabelControl()
+        Me.TEPercentBeamasuk = New DevExpress.XtraEditors.TextEdit()
+        Me.LPercentBeaMasuk = New DevExpress.XtraEditors.LabelControl()
         Me.BSameCost = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.TEUnitCostActual = New DevExpress.XtraEditors.TextEdit()
@@ -144,10 +148,6 @@ Partial Class FormProductionCOP
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMEditCost = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LPercentBeaMasuk = New DevExpress.XtraEditors.LabelControl()
-        Me.TEPercentBeamasuk = New DevExpress.XtraEditors.TextEdit()
-        Me.LRemark = New DevExpress.XtraEditors.LabelControl()
-        Me.MERemark = New DevExpress.XtraEditors.MemoEdit()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.LEStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,6 +169,8 @@ Partial Class FormProductionCOP
         CType(Me.GVCostMan, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl4.SuspendLayout()
+        CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEPercentBeamasuk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEUnitCostActual.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -201,8 +203,6 @@ Partial Class FormProductionCOP
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl4.SuspendLayout()
         Me.ViewMenu.SuspendLayout()
-        CType(Me.TEPercentBeamasuk.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -662,7 +662,7 @@ Partial Class FormProductionCOP
         Me.GridColumn28.AppearanceHeader.Options.UseTextOptions = True
         Me.GridColumn28.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumn28.Caption = "Price Before Kurs"
-        Me.GridColumn28.DisplayFormat.FormatString = "N2"
+        Me.GridColumn28.DisplayFormat.FormatString = "N4"
         Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn28.FieldName = "actual_price"
         Me.GridColumn28.Name = "GridColumn28"
@@ -761,6 +761,44 @@ Partial Class FormProductionCOP
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(911, 118)
         Me.PanelControl4.TabIndex = 8
+        '
+        'MERemark
+        '
+        Me.MERemark.Location = New System.Drawing.Point(84, 34)
+        Me.MERemark.Name = "MERemark"
+        Me.MERemark.Size = New System.Drawing.Size(351, 69)
+        Me.MERemark.TabIndex = 157
+        '
+        'LRemark
+        '
+        Me.LRemark.Location = New System.Drawing.Point(13, 36)
+        Me.LRemark.Name = "LRemark"
+        Me.LRemark.Size = New System.Drawing.Size(36, 13)
+        Me.LRemark.TabIndex = 156
+        Me.LRemark.Text = "Remark"
+        '
+        'TEPercentBeamasuk
+        '
+        Me.TEPercentBeamasuk.EditValue = ""
+        Me.TEPercentBeamasuk.Location = New System.Drawing.Point(84, 8)
+        Me.TEPercentBeamasuk.Name = "TEPercentBeamasuk"
+        Me.TEPercentBeamasuk.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEPercentBeamasuk.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TEPercentBeamasuk.Properties.EditValueChangedDelay = 1
+        Me.TEPercentBeamasuk.Properties.Mask.EditMask = "N2"
+        Me.TEPercentBeamasuk.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.TEPercentBeamasuk.Properties.Mask.SaveLiteral = False
+        Me.TEPercentBeamasuk.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.TEPercentBeamasuk.Size = New System.Drawing.Size(173, 20)
+        Me.TEPercentBeamasuk.TabIndex = 155
+        '
+        'LPercentBeaMasuk
+        '
+        Me.LPercentBeaMasuk.Location = New System.Drawing.Point(13, 11)
+        Me.LPercentBeaMasuk.Name = "LPercentBeaMasuk"
+        Me.LPercentBeaMasuk.Size = New System.Drawing.Size(65, 13)
+        Me.LPercentBeaMasuk.TabIndex = 154
+        Me.LPercentBeaMasuk.Text = "% Bea Masuk"
         '
         'BSameCost
         '
@@ -1684,44 +1722,6 @@ Partial Class FormProductionCOP
         Me.ViewLogToolStripMenuItem.Size = New System.Drawing.Size(122, 22)
         Me.ViewLogToolStripMenuItem.Text = "View Log"
         '
-        'LPercentBeaMasuk
-        '
-        Me.LPercentBeaMasuk.Location = New System.Drawing.Point(13, 11)
-        Me.LPercentBeaMasuk.Name = "LPercentBeaMasuk"
-        Me.LPercentBeaMasuk.Size = New System.Drawing.Size(65, 13)
-        Me.LPercentBeaMasuk.TabIndex = 154
-        Me.LPercentBeaMasuk.Text = "% Bea Masuk"
-        '
-        'TEPercentBeamasuk
-        '
-        Me.TEPercentBeamasuk.EditValue = ""
-        Me.TEPercentBeamasuk.Location = New System.Drawing.Point(84, 8)
-        Me.TEPercentBeamasuk.Name = "TEPercentBeamasuk"
-        Me.TEPercentBeamasuk.Properties.Appearance.Options.UseTextOptions = True
-        Me.TEPercentBeamasuk.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEPercentBeamasuk.Properties.EditValueChangedDelay = 1
-        Me.TEPercentBeamasuk.Properties.Mask.EditMask = "N2"
-        Me.TEPercentBeamasuk.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
-        Me.TEPercentBeamasuk.Properties.Mask.SaveLiteral = False
-        Me.TEPercentBeamasuk.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEPercentBeamasuk.Size = New System.Drawing.Size(173, 20)
-        Me.TEPercentBeamasuk.TabIndex = 155
-        '
-        'LRemark
-        '
-        Me.LRemark.Location = New System.Drawing.Point(13, 36)
-        Me.LRemark.Name = "LRemark"
-        Me.LRemark.Size = New System.Drawing.Size(36, 13)
-        Me.LRemark.TabIndex = 156
-        Me.LRemark.Text = "Remark"
-        '
-        'MERemark
-        '
-        Me.MERemark.Location = New System.Drawing.Point(84, 34)
-        Me.MERemark.Name = "MERemark"
-        Me.MERemark.Size = New System.Drawing.Size(351, 69)
-        Me.MERemark.TabIndex = 157
-        '
         'FormProductionCOP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1760,6 +1760,8 @@ Partial Class FormProductionCOP
         CType(Me.PanelControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl4.ResumeLayout(False)
         Me.PanelControl4.PerformLayout()
+        CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEPercentBeamasuk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEUnitCostActual.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEQty.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TETotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1797,8 +1799,6 @@ Partial Class FormProductionCOP
         CType(Me.GroupControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl4.ResumeLayout(False)
         Me.ViewMenu.ResumeLayout(False)
-        CType(Me.TEPercentBeamasuk.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.MERemark.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

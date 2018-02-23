@@ -1,6 +1,6 @@
 ﻿Public Class FormEmpLeaveCutDet
     Public id_leave_cut As String = "-1"
-
+    Public id_dep As String = "-1"
     Private Sub FormEmpLeaveCutDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_leave_cut = "-1" Then
             FormEmpLeaveCutDetSetup.ShowDialog()
@@ -14,17 +14,19 @@
 
     Private Sub BGetEmployee_Click(sender As Object, e As EventArgs) Handles BGetEmployee.Click
         FormEmpLeaveCutEmp.id_leave_cut = id_leave_cut
+        FormEmpLeaveCutEmp.id_departement = id_dep
         FormEmpLeaveCutEmp.ShowDialog()
     End Sub
 
     Sub load_det()
-        Dim query_hdr As String = "SELECT dep.`departement`,lc.`leave_cut_number` FROM tb_emp_leave_cut lc
+        Dim query_hdr As String = "SELECT dep.id_departement,dep.`departement`,lc.`leave_cut_number` FROM tb_emp_leave_cut lc
                                     INNER JOIN tb_m_departement dep ON dep.`id_departement`=lc.`id_departement`
                                     WHERE lc.id_leave_cut='" & id_leave_cut & "'"
         Dim data_hdr As DataTable = execute_query(query_hdr, -1, True, "", "", "", "")
         If data_hdr.Rows.Count > 0 Then
             TENumber.Text = data_hdr.Rows(0)("leave_cut_number").ToString
             TEDept.Text = data_hdr.Rows(0)("departement").ToString
+            id_dep = data_hdr.Rows(0)("id_departement").ToString
         End If
         '
         Dim query As String = "CALL view_leave_cut('" & id_leave_cut & "')"
