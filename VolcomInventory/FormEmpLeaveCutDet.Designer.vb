@@ -22,10 +22,14 @@ Partial Class FormEmpLeaveCutDet
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpLeaveCutDet))
         Me.PCControl = New DevExpress.XtraEditors.PanelControl()
-        Me.BSetup = New DevExpress.XtraEditors.SimpleButton()
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.TEDept = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.Bload = New DevExpress.XtraEditors.SimpleButton()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.BGetEmployee = New DevExpress.XtraEditors.SimpleButton()
+        Me.BSetup = New DevExpress.XtraEditors.SimpleButton()
         Me.GCLeaveAdj = New DevExpress.XtraGrid.GridControl()
         Me.GVLeaveAdj = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
@@ -41,6 +45,7 @@ Partial Class FormEmpLeaveCutDet
         Me.gridBand5 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn1 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn2 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumn7 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn3 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.BandedGridColumn4 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -48,23 +53,35 @@ Partial Class FormEmpLeaveCutDet
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEDept = New DevExpress.XtraEditors.TextEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
-        Me.TENumber = New DevExpress.XtraEditors.TextEdit()
+        Me.ViewPopWorksheet = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.CMDelEmp = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewAttendanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         CType(Me.PCControl, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCControl.SuspendLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCLeaveAdj, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVLeaveAdj, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ViewPopWorksheet.SuspendLayout()
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCControl
         '
+        Me.PCControl.Controls.Add(Me.Label6)
+        Me.PCControl.Controls.Add(Me.DEUntil)
+        Me.PCControl.Controls.Add(Me.Label5)
+        Me.PCControl.Controls.Add(Me.DEStart)
         Me.PCControl.Controls.Add(Me.TENumber)
         Me.PCControl.Controls.Add(Me.TEDept)
         Me.PCControl.Controls.Add(Me.LabelControl2)
@@ -75,19 +92,55 @@ Partial Class FormEmpLeaveCutDet
         Me.PCControl.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCControl.Location = New System.Drawing.Point(0, 0)
         Me.PCControl.Name = "PCControl"
-        Me.PCControl.Size = New System.Drawing.Size(1147, 44)
+        Me.PCControl.Size = New System.Drawing.Size(1163, 44)
         Me.PCControl.TabIndex = 0
         '
-        'BSetup
+        'TENumber
         '
-        Me.BSetup.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BSetup.ImageIndex = 17
-        Me.BSetup.ImageList = Me.LargeImageCollection
-        Me.BSetup.Location = New System.Drawing.Point(1055, 2)
-        Me.BSetup.Name = "BSetup"
-        Me.BSetup.Size = New System.Drawing.Size(90, 40)
-        Me.BSetup.TabIndex = 6
-        Me.BSetup.Text = "Setup"
+        Me.TENumber.EditValue = ""
+        Me.TENumber.Location = New System.Drawing.Point(55, 12)
+        Me.TENumber.Name = "TENumber"
+        Me.TENumber.Properties.EditValueChangedDelay = 1
+        Me.TENumber.Properties.ReadOnly = True
+        Me.TENumber.Size = New System.Drawing.Size(109, 20)
+        Me.TENumber.TabIndex = 95
+        '
+        'TEDept
+        '
+        Me.TEDept.EditValue = ""
+        Me.TEDept.Location = New System.Drawing.Point(239, 12)
+        Me.TEDept.Name = "TEDept"
+        Me.TEDept.Properties.EditValueChangedDelay = 1
+        Me.TEDept.Properties.ReadOnly = True
+        Me.TEDept.Size = New System.Drawing.Size(176, 20)
+        Me.TEDept.TabIndex = 93
+        '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(170, 15)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl2.TabIndex = 94
+        Me.LabelControl2.Text = "Departement"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 15)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
+        Me.LabelControl1.TabIndex = 7
+        Me.LabelControl1.Text = "Number"
+        '
+        'Bload
+        '
+        Me.Bload.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Bload.ImageIndex = 3
+        Me.Bload.ImageList = Me.LargeImageCollection
+        Me.Bload.Location = New System.Drawing.Point(790, 2)
+        Me.Bload.Name = "Bload"
+        Me.Bload.Size = New System.Drawing.Size(159, 40)
+        Me.Bload.TabIndex = 5
+        Me.Bload.Text = "Load From Attendance"
         '
         'LargeImageCollection
         '
@@ -114,27 +167,27 @@ Partial Class FormEmpLeaveCutDet
         Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
         Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
         '
-        'Bload
-        '
-        Me.Bload.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Bload.ImageIndex = 3
-        Me.Bload.ImageList = Me.LargeImageCollection
-        Me.Bload.Location = New System.Drawing.Point(757, 2)
-        Me.Bload.Name = "Bload"
-        Me.Bload.Size = New System.Drawing.Size(170, 40)
-        Me.Bload.TabIndex = 5
-        Me.Bload.Text = "Load Working Time Detail"
-        '
         'BGetEmployee
         '
         Me.BGetEmployee.Dock = System.Windows.Forms.DockStyle.Right
         Me.BGetEmployee.ImageIndex = 19
         Me.BGetEmployee.ImageList = Me.LargeImageCollection
-        Me.BGetEmployee.Location = New System.Drawing.Point(927, 2)
+        Me.BGetEmployee.Location = New System.Drawing.Point(949, 2)
         Me.BGetEmployee.Name = "BGetEmployee"
         Me.BGetEmployee.Size = New System.Drawing.Size(128, 40)
         Me.BGetEmployee.TabIndex = 4
         Me.BGetEmployee.Text = "Insert Employee"
+        '
+        'BSetup
+        '
+        Me.BSetup.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BSetup.ImageIndex = 17
+        Me.BSetup.ImageList = Me.LargeImageCollection
+        Me.BSetup.Location = New System.Drawing.Point(1077, 2)
+        Me.BSetup.Name = "BSetup"
+        Me.BSetup.Size = New System.Drawing.Size(84, 40)
+        Me.BSetup.TabIndex = 6
+        Me.BSetup.Text = "Setup"
         '
         'GCLeaveAdj
         '
@@ -142,14 +195,14 @@ Partial Class FormEmpLeaveCutDet
         Me.GCLeaveAdj.Location = New System.Drawing.Point(0, 44)
         Me.GCLeaveAdj.MainView = Me.GVLeaveAdj
         Me.GCLeaveAdj.Name = "GCLeaveAdj"
-        Me.GCLeaveAdj.Size = New System.Drawing.Size(1147, 499)
+        Me.GCLeaveAdj.Size = New System.Drawing.Size(1163, 499)
         Me.GCLeaveAdj.TabIndex = 2
         Me.GCLeaveAdj.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVLeaveAdj})
         '
         'GVLeaveAdj
         '
         Me.GVLeaveAdj.Bands.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.GridBand() {Me.GridBand1, Me.gridBand5, Me.gridBand2})
-        Me.GVLeaveAdj.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn3, Me.BandedGridColumn6, Me.BandedGridColumn4, Me.BandedGridColumn5})
+        Me.GVLeaveAdj.Columns.AddRange(New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn() {Me.GridColumnIDDet, Me.GridColumnIDEmployee, Me.GridColumnNIP, Me.GridColumnName, Me.GridColumnDepartement, Me.GridColumnLevel, Me.GridColumnPosition, Me.GridColumnStatus, Me.GridColumnContractEnd, Me.BandedGridColumn1, Me.BandedGridColumn2, Me.BandedGridColumn7, Me.BandedGridColumn3, Me.BandedGridColumn6, Me.BandedGridColumn4, Me.BandedGridColumn5})
         Me.GVLeaveAdj.GridControl = Me.GCLeaveAdj
         Me.GVLeaveAdj.Name = "GVLeaveAdj"
         Me.GVLeaveAdj.OptionsView.ColumnAutoWidth = False
@@ -245,27 +298,64 @@ Partial Class FormEmpLeaveCutDet
         Me.gridBand5.Caption = "Working Time Detail"
         Me.gridBand5.Columns.Add(Me.BandedGridColumn1)
         Me.gridBand5.Columns.Add(Me.BandedGridColumn2)
+        Me.gridBand5.Columns.Add(Me.BandedGridColumn7)
         Me.gridBand5.Columns.Add(Me.BandedGridColumn3)
         Me.gridBand5.Name = "gridBand5"
         Me.gridBand5.VisibleIndex = 1
-        Me.gridBand5.Width = 225
+        Me.gridBand5.Width = 300
         '
         'BandedGridColumn1
         '
+        Me.BandedGridColumn1.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn1.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn1.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn1.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn1.Caption = "Total Late"
+        Me.BandedGridColumn1.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn1.FieldName = "late_total"
         Me.BandedGridColumn1.Name = "BandedGridColumn1"
         Me.BandedGridColumn1.Visible = True
         '
         'BandedGridColumn2
         '
+        Me.BandedGridColumn2.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn2.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn2.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn2.Caption = "Total Early Home"
+        Me.BandedGridColumn2.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn2.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn2.FieldName = "early_home_total"
         Me.BandedGridColumn2.Name = "BandedGridColumn2"
         Me.BandedGridColumn2.Visible = True
         '
+        'BandedGridColumn7
+        '
+        Me.BandedGridColumn7.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn7.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn7.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn7.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn7.Caption = "Total Over Break"
+        Me.BandedGridColumn7.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn7.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn7.FieldName = "over_break_total"
+        Me.BandedGridColumn7.Name = "BandedGridColumn7"
+        Me.BandedGridColumn7.Visible = True
+        '
         'BandedGridColumn3
         '
+        Me.BandedGridColumn3.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn3.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn3.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn3.Caption = "Total Leave Cut"
+        Me.BandedGridColumn3.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn3.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn3.FieldName = "total"
         Me.BandedGridColumn3.Name = "BandedGridColumn3"
+        Me.BandedGridColumn3.UnboundExpression = "[late_total] + [early_home_total] + [over_break_total]"
+        Me.BandedGridColumn3.UnboundType = DevExpress.Data.UnboundColumnType.[Integer]
         Me.BandedGridColumn3.Visible = True
         '
         'gridBand2
@@ -282,19 +372,37 @@ Partial Class FormEmpLeaveCutDet
         '
         'BandedGridColumn4
         '
+        Me.BandedGridColumn4.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn4.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn4.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn4.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn4.Caption = "Leave Remaining"
+        Me.BandedGridColumn4.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
         Me.BandedGridColumn4.Visible = True
         '
         'BandedGridColumn6
         '
+        Me.BandedGridColumn6.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn6.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn6.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn6.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn6.Caption = "Actual Leave Cut"
+        Me.BandedGridColumn6.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn6.Name = "BandedGridColumn6"
         Me.BandedGridColumn6.Visible = True
         '
         'BandedGridColumn5
         '
+        Me.BandedGridColumn5.AppearanceCell.Options.UseTextOptions = True
+        Me.BandedGridColumn5.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.BandedGridColumn5.AppearanceHeader.Options.UseTextOptions = True
+        Me.BandedGridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.BandedGridColumn5.Caption = "Leave After"
+        Me.BandedGridColumn5.DisplayFormat.FormatString = "N0"
+        Me.BandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
         Me.BandedGridColumn5.Visible = True
         '
@@ -304,7 +412,7 @@ Partial Class FormEmpLeaveCutDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 543)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(1147, 44)
+        Me.PanelControl2.Size = New System.Drawing.Size(1163, 44)
         Me.PanelControl2.TabIndex = 3
         '
         'SimpleButton2
@@ -313,51 +421,77 @@ Partial Class FormEmpLeaveCutDet
         Me.SimpleButton2.ImageList = Me.LargeImageCollection
         Me.SimpleButton2.Location = New System.Drawing.Point(2, 2)
         Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(1143, 40)
+        Me.SimpleButton2.Size = New System.Drawing.Size(1159, 40)
         Me.SimpleButton2.TabIndex = 4
         Me.SimpleButton2.Text = "Mark"
         '
-        'LabelControl1
+        'ViewPopWorksheet
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 15)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(37, 13)
-        Me.LabelControl1.TabIndex = 7
-        Me.LabelControl1.Text = "Number"
+        Me.ViewPopWorksheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMDelEmp, Me.ViewAttendanceToolStripMenuItem})
+        Me.ViewPopWorksheet.Name = "ViewPreDel"
+        Me.ViewPopWorksheet.Size = New System.Drawing.Size(173, 48)
         '
-        'TEDept
+        'CMDelEmp
         '
-        Me.TEDept.EditValue = ""
-        Me.TEDept.Location = New System.Drawing.Point(293, 12)
-        Me.TEDept.Name = "TEDept"
-        Me.TEDept.Properties.EditValueChangedDelay = 1
-        Me.TEDept.Properties.ReadOnly = True
-        Me.TEDept.Size = New System.Drawing.Size(217, 20)
-        Me.TEDept.TabIndex = 93
+        Me.CMDelEmp.Name = "CMDelEmp"
+        Me.CMDelEmp.Size = New System.Drawing.Size(172, 22)
+        Me.CMDelEmp.Text = "Remove Employee"
         '
-        'LabelControl2
+        'ViewAttendanceToolStripMenuItem
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(224, 15)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
-        Me.LabelControl2.TabIndex = 94
-        Me.LabelControl2.Text = "Departement"
+        Me.ViewAttendanceToolStripMenuItem.Name = "ViewAttendanceToolStripMenuItem"
+        Me.ViewAttendanceToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.ViewAttendanceToolStripMenuItem.Text = "View Attendance"
         '
-        'TENumber
+        'Label6
         '
-        Me.TENumber.EditValue = ""
-        Me.TENumber.Location = New System.Drawing.Point(55, 12)
-        Me.TENumber.Name = "TENumber"
-        Me.TENumber.Properties.EditValueChangedDelay = 1
-        Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(163, 20)
-        Me.TENumber.TabIndex = 95
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(421, 15)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(41, 13)
+        Me.Label6.TabIndex = 99
+        Me.Label6.Text = "From : "
+        '
+        'DEUntil
+        '
+        Me.DEUntil.EditValue = Nothing
+        Me.DEUntil.Location = New System.Drawing.Point(645, 12)
+        Me.DEUntil.Name = "DEUntil"
+        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEUntil.Properties.ReadOnly = True
+        Me.DEUntil.Size = New System.Drawing.Size(127, 20)
+        Me.DEUntil.TabIndex = 98
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(601, 15)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(38, 13)
+        Me.Label5.TabIndex = 97
+        Me.Label5.Text = "Until : "
+        '
+        'DEStart
+        '
+        Me.DEStart.EditValue = Nothing
+        Me.DEStart.Location = New System.Drawing.Point(468, 12)
+        Me.DEStart.Name = "DEStart"
+        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEStart.Properties.ReadOnly = True
+        Me.DEStart.Size = New System.Drawing.Size(127, 20)
+        Me.DEStart.TabIndex = 96
         '
         'FormEmpLeaveCutDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1147, 587)
+        Me.ClientSize = New System.Drawing.Size(1163, 587)
         Me.Controls.Add(Me.GCLeaveAdj)
         Me.Controls.Add(Me.PanelControl2)
         Me.Controls.Add(Me.PCControl)
@@ -369,13 +503,18 @@ Partial Class FormEmpLeaveCutDet
         CType(Me.PCControl, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCControl.ResumeLayout(False)
         Me.PCControl.PerformLayout()
+        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCLeaveAdj, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVLeaveAdj, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
-        CType(Me.TEDept.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ViewPopWorksheet.ResumeLayout(False)
+        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -395,9 +534,6 @@ Partial Class FormEmpLeaveCutDet
     Friend WithEvents BandedGridColumn1 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn2 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn3 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
-    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
-    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BandedGridColumn4 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn6 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumn5 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
@@ -411,4 +547,15 @@ Partial Class FormEmpLeaveCutDet
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents TEDept As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents BandedGridColumn7 As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
+    Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents ViewPopWorksheet As ContextMenuStrip
+    Friend WithEvents CMDelEmp As ToolStripMenuItem
+    Friend WithEvents ViewAttendanceToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Label6 As Label
+    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents Label5 As Label
+    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
 End Class
