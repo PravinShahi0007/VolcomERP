@@ -121,6 +121,7 @@ Partial Class FormWHAWBillDet
         Me.Label8 = New System.Windows.Forms.Label()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.GridColumnIdDelERP = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.Panel1.SuspendLayout()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
@@ -1165,7 +1166,7 @@ Partial Class FormWHAWBillDet
         '
         'GVDO
         '
-        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3})
+        Me.GVDO.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.GridColumn3, Me.GridColumnIdDelERP})
         Me.GVDO.GridControl = Me.GCDO
         Me.GVDO.Name = "GVDO"
         Me.GVDO.OptionsBehavior.ReadOnly = True
@@ -1256,6 +1257,13 @@ Partial Class FormWHAWBillDet
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(807, 282)
         Me.PanelControl4.TabIndex = 2
+        '
+        'GridColumnIdDelERP
+        '
+        Me.GridColumnIdDelERP.Caption = "ID DEL ERP"
+        Me.GridColumnIdDelERP.FieldName = "id_pl_sales_order_del"
+        Me.GridColumnIdDelERP.Name = "GridColumnIdDelERP"
+        Me.GridColumnIdDelERP.OptionsColumn.AllowEdit = False
         '
         'FormWHAWBillDet
         '
@@ -1445,4 +1453,5 @@ Partial Class FormWHAWBillDet
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents Label22 As Label
     Friend WithEvents TEInvNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumnIdDelERP As DevExpress.XtraGrid.Columns.GridColumn
 End Class
