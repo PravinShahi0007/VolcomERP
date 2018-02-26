@@ -42,6 +42,20 @@
     End Sub
 
     Private Sub Bload_Click(sender As Object, e As EventArgs) Handles Bload.Click
+        Dim query As String = "CALL load_total_leave_cut('" & id_leave_cut & "')"
+        execute_non_query(query, True, "", "", "", "")
+        load_det()
+    End Sub
 
+    Private Sub CMDelEmp_Click(sender As Object, e As EventArgs) Handles CMDelEmp.Click
+        Dim query As String = "DELETE FROM tb_emp_leave_cut_det WHERE id_leave_cut_det='" & GVLeaveAdj.GetFocusedRowCellValue("id_leave_cut_det").ToString & "'"
+        execute_non_query(query, True, "", "", "", "")
+        load_det()
+    End Sub
+
+    Private Sub ViewAttendanceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewAttendanceToolStripMenuItem.Click
+        FormEmpAttnIndView.id_employee = GVLeaveAdj.GetFocusedRowCellValue("id_employee").ToString
+        FormEmpAttnIndView.DEStart.EditValue = ""
+        FormEmpAttnIndView.DEUntil.EditValue = ""
     End Sub
 End Class
