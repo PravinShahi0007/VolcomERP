@@ -22,15 +22,15 @@ Partial Class FormEmpLeaveCut
         Me.GCPayrollPeriode = New DevExpress.XtraGrid.GridControl()
         Me.GVPayrollPeriode = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIDPayroll = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPayroll = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPStart = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPEnd = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastUpd = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnLastUpdBy = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnPayroll = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnNumber = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnIDPayroll = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCPayrollPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPayrollPeriode, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -58,6 +58,30 @@ Partial Class FormEmpLeaveCut
         Me.GridColumnID.Caption = "ID"
         Me.GridColumnID.FieldName = "id_leave_cut"
         Me.GridColumnID.Name = "GridColumnID"
+        '
+        'GridColumnIDPayroll
+        '
+        Me.GridColumnIDPayroll.Caption = "ID Payroll"
+        Me.GridColumnIDPayroll.FieldName = "id_payroll"
+        Me.GridColumnIDPayroll.Name = "GridColumnIDPayroll"
+        '
+        'GridColumnNumber
+        '
+        Me.GridColumnNumber.Caption = "Number"
+        Me.GridColumnNumber.FieldName = "leave_cut_number"
+        Me.GridColumnNumber.Name = "GridColumnNumber"
+        Me.GridColumnNumber.Visible = True
+        Me.GridColumnNumber.VisibleIndex = 0
+        Me.GridColumnNumber.Width = 89
+        '
+        'GridColumnPayroll
+        '
+        Me.GridColumnPayroll.Caption = "Payroll Periode"
+        Me.GridColumnPayroll.FieldName = "periode"
+        Me.GridColumnPayroll.Name = "GridColumnPayroll"
+        Me.GridColumnPayroll.Visible = True
+        Me.GridColumnPayroll.VisibleIndex = 1
+        Me.GridColumnPayroll.Width = 100
         '
         'GridColumnPStart
         '
@@ -101,31 +125,6 @@ Partial Class FormEmpLeaveCut
         Me.GridColumnLastUpdBy.VisibleIndex = 5
         Me.GridColumnLastUpdBy.Width = 105
         '
-        'GridColumnNote
-        '
-        Me.GridColumnNote.Caption = "Note"
-        Me.GridColumnNote.FieldName = "note"
-        Me.GridColumnNote.Name = "GridColumnNote"
-        Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 7
-        Me.GridColumnNote.Width = 281
-        '
-        'GridColumnPayroll
-        '
-        Me.GridColumnPayroll.Caption = "Payroll Periode"
-        Me.GridColumnPayroll.Name = "GridColumnPayroll"
-        Me.GridColumnPayroll.Visible = True
-        Me.GridColumnPayroll.VisibleIndex = 1
-        Me.GridColumnPayroll.Width = 100
-        '
-        'GridColumnNumber
-        '
-        Me.GridColumnNumber.Caption = "Number"
-        Me.GridColumnNumber.Name = "GridColumnNumber"
-        Me.GridColumnNumber.Visible = True
-        Me.GridColumnNumber.VisibleIndex = 0
-        Me.GridColumnNumber.Width = 89
-        '
         'GridColumnStatus
         '
         Me.GridColumnStatus.Caption = "Status"
@@ -135,11 +134,14 @@ Partial Class FormEmpLeaveCut
         Me.GridColumnStatus.VisibleIndex = 6
         Me.GridColumnStatus.Width = 68
         '
-        'GridColumnIDPayroll
+        'GridColumnNote
         '
-        Me.GridColumnIDPayroll.Caption = "ID Payroll"
-        Me.GridColumnIDPayroll.FieldName = "id_payroll"
-        Me.GridColumnIDPayroll.Name = "GridColumnIDPayroll"
+        Me.GridColumnNote.Caption = "Note"
+        Me.GridColumnNote.FieldName = "note"
+        Me.GridColumnNote.Name = "GridColumnNote"
+        Me.GridColumnNote.Visible = True
+        Me.GridColumnNote.VisibleIndex = 7
+        Me.GridColumnNote.Width = 281
         '
         'FormEmpLeaveCut
         '

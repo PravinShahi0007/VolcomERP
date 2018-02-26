@@ -1,12 +1,13 @@
 ﻿Public Class FormEmpLeaveCutEmp
     Public id_leave_cut As String = "-1"
+    Public id_departement As String = "-1"
     Private Sub FormEmpLeaveCutEmp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_emp()
     End Sub
     Sub load_emp()
         Dim query As String = "SELECT 'no' AS is_check,emp.id_employee,dep.total_workdays,dep.is_store,emp.employee_code,emp.employee_name,dep.departement,emp.employee_join_date,emp.employee_position,active.employee_active
                                 FROM tb_m_employee emp
-                                INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement and dep.id_departement='" & id_departement & "'
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level 
                                 INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
                                 WHERE emp.id_employee_active='1' AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_leave_cut_det WHERE id_leave_cut='" & id_leave_cut & "')"
@@ -72,7 +73,7 @@
         Dim query As String = "INSERT INTO tb_emp_leave_cut_det(id_leave_cut,id_employee)
                                 SELECT '" & id_leave_cut & "' AS id_leave_cut,emp.id_employee
                                 FROM tb_m_employee emp
-                                INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement AND dep.id_departement='" & id_departement & "'
                                 INNER JOIN tb_lookup_employee_level lvl ON lvl.id_employee_level=emp.id_employee_level 
                                 INNER JOIN tb_lookup_employee_active active ON active.id_employee_active=emp.id_employee_active
                                 WHERE emp.id_employee_active='1' AND emp.id_employee NOT IN (SELECT id_employee FROM tb_emp_leave_cut_det WHERE id_leave_cut='" & id_leave_cut & "')"
@@ -80,5 +81,20 @@
         infoCustom("Employee listed.")
         FormEmpLeaveCutDet.load_det()
         Close()
+    End Sub
+
+    Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
+        Dim cek As String = CheckEditSelAll.EditValue.ToString
+        For i As Integer = 0 To (GVEmployee.RowCount - 1)
+            Try
+                If cek Then
+                    GVEmployee.SetRowCellValue(i, "is_check", "yes")
+                Else
+                    GVEmployee.SetRowCellValue(i, "is_check", "no")
+                End If
+            Catch ex As Exception
+
+            End Try
+        Next
     End Sub
 End Class

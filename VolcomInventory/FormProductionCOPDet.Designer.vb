@@ -87,19 +87,19 @@ Partial Class FormProductionCOPDet
         '
         'TEEcop
         '
-        Me.TEEcop.EditValue = ""
+        Me.TEEcop.EditValue = "0.0000"
         Me.TEEcop.Location = New System.Drawing.Point(85, 115)
         Me.TEEcop.Name = "TEEcop"
         Me.TEEcop.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEEcop.Properties.Appearance.Options.UseFont = True
         Me.TEEcop.Properties.Appearance.Options.UseTextOptions = True
         Me.TEEcop.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
-        Me.TEEcop.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEEcop.Properties.DisplayFormat.FormatString = "N4"
         Me.TEEcop.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TEEcop.Properties.EditFormat.FormatString = "N2"
+        Me.TEEcop.Properties.EditFormat.FormatString = "N4"
         Me.TEEcop.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEEcop.Properties.EditValueChangedDelay = 1
-        Me.TEEcop.Properties.Mask.EditMask = "N2"
+        Me.TEEcop.Properties.Mask.EditMask = "N4"
         Me.TEEcop.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEEcop.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEEcop.Size = New System.Drawing.Size(231, 20)
