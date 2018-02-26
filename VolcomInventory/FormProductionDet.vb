@@ -59,6 +59,7 @@
 
             TEPONumber.Text = data.Rows(0)("prod_order_number").ToString
 
+            MENote.Text = data.Rows(0)("prod_order_note").ToString
             LEPOType.EditValue = data.Rows(0)("id_po_type").ToString()
             LECategory.EditValue = data.Rows(0)("id_term_production").ToString()
             '

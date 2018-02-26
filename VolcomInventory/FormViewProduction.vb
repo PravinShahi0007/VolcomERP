@@ -32,6 +32,7 @@
             TETolerance.EditValue = data.Rows(0)("tolerance")
             '
             TEDate.Text = view_date_from(data.Rows(0)("prod_order_datex").ToString(), 0)
+            MENote.Text = data.Rows(0)("prod_order_note").ToString
             '
             id_prod_demand_design = data.Rows(0)("id_prod_demand_design").ToString()
             id_prod_demand = get_prod_demand_design_x(id_prod_demand_design, "1")
