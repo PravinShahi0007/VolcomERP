@@ -197,7 +197,7 @@
             auto_cargo()
         Else 'edit
             Dim query As String = "SELECT awb.id_cargo,awb.id_store,comp_c.comp_name AS cargo,awb.cargo_min_weight,awb.cargo_rate
-                                    ,awb.weight AS weight
+                                    ,awb.c_weight AS weight
                                     ,awb.`c_tot_price` AS amount
                                     ,awb.cargo_lead_time
                                     ,comp_c.awb_rank
