@@ -6,7 +6,7 @@
     Private Sub FormMatPL_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Cursor = Cursors.WaitCursor
         Try
-
+            view_status_pl()
             viewPL()
             viewStatusMRS()
 
@@ -20,6 +20,16 @@
             errorConnection()
         End Try
         Cursor = Cursors.Default
+    End Sub
+    Sub view_status_pl()
+        Dim query As String = "SELECT 1 AS id_status,'On Process' AS `status`
+                                UNION
+                                SELECT 2 AS id_status,'Completed' AS `status`
+                                UNION
+                                SELECT 3 AS id_status,'Cancelled' AS `status`
+                                UNION
+                                SELECT 4 AS id_status,'ALL' AS `status`"
+        viewLookupQuery(LEStatusPL, query, 0, "status", "id_status")
     End Sub
     Sub viewStatusMRS()
         Dim query As String = "SELECT '0' as id_statusmrs, 'All' as status_mrs 
@@ -40,27 +50,18 @@
     End Sub
 
     Sub viewPL()
-        Dim query As String = "SELECT a.id_pl_mrs,m.design_code,m.design_name,m.design_display_name,k.prod_order_number,a.id_comp_contact_from , a.id_comp_contact_to, a.pl_mrs_note, a.pl_mrs_number,
-                                (d.comp_name) AS comp_name_from, (f.comp_name) AS comp_name_to, h.report_status, a.id_report_status,j.prod_order_wo_number,i.prod_order_mrs_number,
-                                a.pl_mrs_date, a.id_report_status 
-                                ,IF(ISNULL(mark.id_mark),'no','yes') AS is_submit
-                                FROM tb_pl_mrs a 
-                                INNER JOIN tb_m_comp_contact c ON a.id_comp_contact_from = c.id_comp_contact 
-                                INNER JOIN tb_m_comp d ON c.id_comp = d.id_comp 
-                                INNER JOIN tb_m_comp_contact e ON a.id_comp_contact_to = e.id_comp_contact 
-                                INNER JOIN tb_m_comp f ON e.id_comp = f.id_comp 
-                                INNER JOIN tb_lookup_report_status h ON h.id_report_status = a.id_report_status 
-                                INNER JOIN tb_prod_order_mrs i ON a.id_prod_order_mrs = i.id_prod_order_mrs 
-                                INNER JOIN tb_prod_order k ON i.id_prod_order = k.id_prod_order 
-                                LEFT JOIN tb_prod_order_wo j ON i.id_prod_order_wo = j.id_prod_order_wo 
-                                INNER JOIN tb_prod_demand_design l ON k.id_prod_demand_design = l.id_prod_demand_design 
-                                INNER JOIN tb_m_design m ON m.id_design = l.id_design 
-                                LEFT JOIN 
-                                (
-	                                SELECT * FROM tb_report_mark GROUP BY report_mark_type,id_report
-                                ) mark ON mark.id_report=a.id_pl_mrs AND mark.report_mark_type='30'
-                                WHERE NOT ISNULL(i.id_prod_order) 
-                                ORDER BY a.id_pl_mrs DESC"
+        Dim query_where As String = ""
+        If LEStatusPL.EditValue.ToString = "1" Then
+            query_where = " AND a.id_report_status != 6 AND a.id_report_status != 5 "
+        ElseIf LEStatusPL.EditValue.ToString = "2" Then
+            query_where = " AND a.id_report_status = 6 "
+        ElseIf LEStatusPL.EditValue.ToString = "3" Then
+            query_where = " AND a.id_report_status = 5 "
+        ElseIf LEStatusPL.EditValue.ToString = "4" Then
+            query_where = " "
+        End If
+        '
+        Dim query As String = "CALL view_pl('" & query_where & "')"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCProdPL.DataSource = data
     End Sub
@@ -251,5 +252,9 @@
 
     Private Sub BtnView_Click(sender As Object, e As EventArgs) Handles BtnView.Click
         viewMRS()
+    End Sub
+
+    Private Sub BSearch_Click(sender As Object, e As EventArgs) Handles BSearch.Click
+        viewPL()
     End Sub
 End Class
