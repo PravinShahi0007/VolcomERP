@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FormMatPL
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class FormMatPL
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.XTCPL = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPProduction = New DevExpress.XtraTab.XtraTabPage()
@@ -38,9 +38,12 @@ Partial Class FormMatPL
         Me.GridColumnDesignCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPLDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPLWONumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn45 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn46 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPLIdPO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdReportStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.ColMrsNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.XTPListProdMRS = New DevExpress.XtraTab.XtraTabPage()
         Me.GCMRS = New DevExpress.XtraGrid.GridControl()
         Me.GVMRS = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -127,7 +130,10 @@ Partial Class FormMatPL
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdReport = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemProgressBar2 = New DevExpress.XtraEditors.Repository.RepositoryItemProgressBar()
-        Me.GridColumn44 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEStatusPL = New DevExpress.XtraEditors.LookUpEdit()
+        Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.XTCPL, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCPL.SuspendLayout()
         Me.XTPProduction.SuspendLayout()
@@ -164,6 +170,9 @@ Partial Class FormMatPL
         CType(Me.GCMRSOther, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVMRSOther, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl2.SuspendLayout()
+        CType(Me.LEStatusPL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'XTCPL
@@ -199,6 +208,7 @@ Partial Class FormMatPL
         'XTPListProdPL
         '
         Me.XTPListProdPL.Controls.Add(Me.GCProdPL)
+        Me.XTPListProdPL.Controls.Add(Me.PanelControl2)
         Me.XTPListProdPL.Name = "XTPListProdPL"
         Me.XTPListProdPL.Size = New System.Drawing.Size(721, 338)
         Me.XTPListProdPL.Text = "All Packing List"
@@ -206,16 +216,16 @@ Partial Class FormMatPL
         'GCProdPL
         '
         Me.GCProdPL.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCProdPL.Location = New System.Drawing.Point(0, 0)
+        Me.GCProdPL.Location = New System.Drawing.Point(0, 35)
         Me.GCProdPL.MainView = Me.GVProdPL
         Me.GCProdPL.Name = "GCProdPL"
-        Me.GCProdPL.Size = New System.Drawing.Size(721, 338)
+        Me.GCProdPL.Size = New System.Drawing.Size(721, 303)
         Me.GCProdPL.TabIndex = 1
         Me.GCProdPL.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVProdPL})
         '
         'GVProdPL
         '
-        Me.GVProdPL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdPLSample, Me.GridColumnIdContactFrom, Me.GridColumnIdCompContactTo, Me.GridColumnPLIdWO, Me.GridColumnPLNumber, Me.GridColumnPLPoNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnPLDate, Me.GridColumnPLStatus, Me.GridColumnDesignCode, Me.GridColumnPLDesign, Me.GridColumnPLWONumber, Me.GridColumnPLIdPO, Me.GridColumnIdReportStatus, Me.ColMrsNumber, Me.GridColumn44})
+        Me.GVProdPL.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdPLSample, Me.GridColumnIdContactFrom, Me.GridColumnIdCompContactTo, Me.GridColumnPLIdWO, Me.GridColumnPLNumber, Me.GridColumnPLPoNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnPLDate, Me.GridColumnPLStatus, Me.GridColumnDesignCode, Me.GridColumnPLDesign, Me.GridColumnPLWONumber, Me.GridColumn45, Me.GridColumn46, Me.GridColumnPLIdPO, Me.GridColumnIdReportStatus, Me.ColMrsNumber, Me.GridColumn44})
         Me.GVProdPL.GridControl = Me.GCProdPL
         Me.GVProdPL.Name = "GVProdPL"
         Me.GVProdPL.OptionsBehavior.Editable = False
@@ -324,8 +334,32 @@ Partial Class FormMatPL
         Me.GridColumnPLWONumber.Visible = True
         Me.GridColumnPLWONumber.VisibleIndex = 2
         '
+        'GridColumn45
+        '
+        Me.GridColumn45.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn45.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn45.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn45.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn45.Caption = "Sticker Qty"
+        Me.GridColumn45.DisplayFormat.FormatString = "N0"
+        Me.GridColumn45.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn45.FieldName = "qty_sticker"
+        Me.GridColumn45.Name = "GridColumn45"
+        '
+        'GridColumn46
+        '
+        Me.GridColumn46.Caption = "Order Qty"
+        Me.GridColumn46.DisplayFormat.FormatString = "N0"
+        Me.GridColumn46.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn46.FieldName = "qty_order"
+        Me.GridColumn46.Name = "GridColumn46"
+        '
         'GridColumnPLIdPO
         '
+        Me.GridColumnPLIdPO.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnPLIdPO.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnPLIdPO.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnPLIdPO.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.GridColumnPLIdPO.Caption = "Id PO"
         Me.GridColumnPLIdPO.FieldName = "id_prod_order"
         Me.GridColumnPLIdPO.Name = "GridColumnPLIdPO"
@@ -343,6 +377,14 @@ Partial Class FormMatPL
         Me.ColMrsNumber.Name = "ColMrsNumber"
         Me.ColMrsNumber.Visible = True
         Me.ColMrsNumber.VisibleIndex = 3
+        '
+        'GridColumn44
+        '
+        Me.GridColumn44.Caption = "Submitted"
+        Me.GridColumn44.FieldName = "is_submit"
+        Me.GridColumn44.Name = "GridColumn44"
+        Me.GridColumn44.Visible = True
+        Me.GridColumn44.VisibleIndex = 10
         '
         'XTPListProdMRS
         '
@@ -1055,13 +1097,45 @@ Partial Class FormMatPL
         Me.RepositoryItemProgressBar2.StartColor = System.Drawing.Color.Green
         Me.RepositoryItemProgressBar2.Step = 1
         '
-        'GridColumn44
+        'PanelControl2
         '
-        Me.GridColumn44.Caption = "Submitted"
-        Me.GridColumn44.FieldName = "is_submit"
-        Me.GridColumn44.Name = "GridColumn44"
-        Me.GridColumn44.Visible = True
-        Me.GridColumn44.VisibleIndex = 10
+        Me.PanelControl2.Controls.Add(Me.BSearch)
+        Me.PanelControl2.Controls.Add(Me.LEStatusPL)
+        Me.PanelControl2.Controls.Add(Me.LabelControl1)
+        Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl2.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl2.Name = "PanelControl2"
+        Me.PanelControl2.Size = New System.Drawing.Size(721, 35)
+        Me.PanelControl2.TabIndex = 2
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(10, 10)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(31, 13)
+        Me.LabelControl1.TabIndex = 0
+        Me.LabelControl1.Text = "Status"
+        '
+        'LEStatusPL
+        '
+        Me.LEStatusPL.Location = New System.Drawing.Point(47, 7)
+        Me.LEStatusPL.Name = "LEStatusPL"
+        Me.LEStatusPL.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEStatusPL.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEStatusPL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEStatusPL.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_status", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("status", "Status")})
+        Me.LEStatusPL.Properties.NullText = ""
+        Me.LEStatusPL.Properties.ShowFooter = False
+        Me.LEStatusPL.Size = New System.Drawing.Size(176, 20)
+        Me.LEStatusPL.TabIndex = 15
+        '
+        'BSearch
+        '
+        Me.BSearch.Location = New System.Drawing.Point(229, 5)
+        Me.BSearch.Name = "BSearch"
+        Me.BSearch.Size = New System.Drawing.Size(59, 23)
+        Me.BSearch.TabIndex = 8904
+        Me.BSearch.Text = "Search"
         '
         'FormMatPL
         '
@@ -1113,6 +1187,10 @@ Partial Class FormMatPL
         CType(Me.GCMRSOther, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVMRSOther, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemProgressBar2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl2.ResumeLayout(False)
+        Me.PanelControl2.PerformLayout()
+        CType(Me.LEStatusPL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1225,4 +1303,10 @@ Partial Class FormMatPL
     Friend WithEvents GridColumnDesignCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnMRSDesignCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn44 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn45 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn46 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LEStatusPL As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
 End Class
