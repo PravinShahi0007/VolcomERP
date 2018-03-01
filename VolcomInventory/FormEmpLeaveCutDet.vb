@@ -27,6 +27,17 @@
             TENumber.Text = data_hdr.Rows(0)("leave_cut_number").ToString
             TEDept.Text = data_hdr.Rows(0)("departement").ToString
             id_dep = data_hdr.Rows(0)("id_departement").ToString
+            If data_hdr.Rows(0)("is_process").ToString = "1" Then
+                BMark.Visible = False
+                Bload.Visible = False
+                BGetEmployee.Visible = False
+                BSetup.Visible = False
+            Else
+                BMark.Visible = True
+                Bload.Visible = True
+                BGetEmployee.Visible = True
+                BSetup.Visible = True
+            End If
         End If
         '
         Dim query As String = "CALL view_leave_cut('" & id_leave_cut & "')"
@@ -60,8 +71,41 @@
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
-        FormReportMark.id_report = id_leave_cut
-        FormReportMark.report_mark_type = "125"
-        FormReportMark.ShowDialog()
+        'FormReportMark.id_report = id_leave_cut
+        'FormReportMark.report_mark_type = "125"
+        'FormReportMark.ShowDialog()
+        If GVLeaveAdj.RowCount > 0 Then
+            For i As Integer = 0 To GVLeaveAdj.RowCount - 1
+                If GVLeaveAdj.GetRowCellValue(i, "adjustment_final") > 0 Then
+                    Dim id_employee As String = GVLeaveAdj.GetRowCellValue(i, "id_employee").ToString
+                    Dim adj_leave As Integer = GVLeaveAdj.GetRowCellValue(i, "adjustment_final")
+                    'adjust
+                    Dim query As String = "SELECT id_emp,SUM(IF(plus_minus=1,qty,-qty))/60 AS qty,`type`,IF(`type`=1,'Leave','DP') as type_ket,date_expired FROM tb_emp_stock_leave
+                                WHERE id_emp='" & id_employee & "'
+                                GROUP BY id_emp,date_expired,`type`
+                                HAVING SUM(IF(plus_minus=1,qty,-qty)) > 0
+                                ORDER BY `type` DESC,date_expired ASC"
+                    Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+                    For j As Integer = 0 To data.Rows.Count - 1
+                        Dim cuti_sisa As Integer = data.Rows(j)("qty")
+                        If adj_leave > cuti_sisa Then
+                            adj_leave = adj_leave - cuti_sisa
+                            'insert cuti
+                            Dim query_pot_cuti As String = "INSERT tb_emp_stock_leave()"
+                        Else
+                            Exit For
+                        End If
+                    Next
+                    '
+                    If adj_leave > 0 Then
+                        'advance leave here
+                    End If
+                End If
+            Next
+        End If
+
+        Dim query_upd As String = "UPDATE tb_emp_leave_cut SET is_process='1' WHERE id_leave_cut='" & id_leave_cut & "'"
+        infoCustom("Stock Leave Adjusted")
+        load_det()
     End Sub
 End Class

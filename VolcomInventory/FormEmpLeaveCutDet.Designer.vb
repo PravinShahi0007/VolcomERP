@@ -90,22 +90,22 @@ Partial Class FormEmpLeaveCutDet
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.EditValueChangedDelay = 1
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(109, 20)
+        Me.TENumber.Size = New System.Drawing.Size(135, 20)
         Me.TENumber.TabIndex = 95
         '
         'TEDept
         '
         Me.TEDept.EditValue = ""
-        Me.TEDept.Location = New System.Drawing.Point(239, 12)
+        Me.TEDept.Location = New System.Drawing.Point(265, 12)
         Me.TEDept.Name = "TEDept"
         Me.TEDept.Properties.EditValueChangedDelay = 1
         Me.TEDept.Properties.ReadOnly = True
-        Me.TEDept.Size = New System.Drawing.Size(176, 20)
+        Me.TEDept.Size = New System.Drawing.Size(226, 20)
         Me.TEDept.TabIndex = 93
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(170, 15)
+        Me.LabelControl2.Location = New System.Drawing.Point(196, 15)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl2.TabIndex = 94
@@ -416,7 +416,7 @@ Partial Class FormEmpLeaveCutDet
         Me.BMark.Name = "BMark"
         Me.BMark.Size = New System.Drawing.Size(1159, 40)
         Me.BMark.TabIndex = 4
-        Me.BMark.Text = "Mark"
+        Me.BMark.Text = "Process"
         '
         'ViewPopWorksheet
         '
