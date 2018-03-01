@@ -58,4 +58,10 @@
         FormEmpAttnIndView.DEStart.EditValue = ""
         FormEmpAttnIndView.DEUntil.EditValue = ""
     End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.id_report = id_leave_cut
+        FormReportMark.report_mark_type = "125"
+        FormReportMark.ShowDialog()
+    End Sub
 End Class
