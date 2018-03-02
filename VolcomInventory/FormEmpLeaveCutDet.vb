@@ -19,7 +19,7 @@
     End Sub
 
     Sub load_det()
-        Dim query_hdr As String = "SELECT dep.id_departement,dep.`departement`,lc.`leave_cut_number` FROM tb_emp_leave_cut lc
+        Dim query_hdr As String = "SELECT dep.id_departement,dep.`departement`,lc.`leave_cut_number`,lc.is_process FROM tb_emp_leave_cut lc
                                     INNER JOIN tb_m_departement dep ON dep.`id_departement`=lc.`id_departement`
                                     WHERE lc.id_leave_cut='" & id_leave_cut & "'"
         Dim data_hdr As DataTable = execute_query(query_hdr, -1, True, "", "", "", "")
@@ -91,7 +91,9 @@
                         If adj_leave > cuti_sisa Then
                             adj_leave = adj_leave - cuti_sisa
                             'insert cuti
-                            Dim query_pot_cuti As String = "INSERT tb_emp_stock_leave()"
+                            Dim query_pot_cuti As String = "INSERT INTO tb_emp_stock_leave(id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,`type`,note)
+                                                            VALUES()"
+                            execute_non_query(query, True, "", "", "", "")
                         Else
                             Exit For
                         End If
@@ -99,6 +101,9 @@
                     '
                     If adj_leave > 0 Then
                         'advance leave here
+                        Dim query_pot_cuti As String = "INSERT INTO tb_emp_stock_leave(id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,`type`,note)
+                                                            VALUES()"
+                        execute_non_query(query, True, "", "", "", "")
                     End If
                 End If
             Next
