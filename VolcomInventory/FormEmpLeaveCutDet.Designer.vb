@@ -179,6 +179,7 @@ Partial Class FormEmpLeaveCutDet
         '
         'GCLeaveAdj
         '
+        Me.GCLeaveAdj.ContextMenuStrip = Me.ViewPopWorksheet
         Me.GCLeaveAdj.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCLeaveAdj.Location = New System.Drawing.Point(0, 44)
         Me.GCLeaveAdj.MainView = Me.GVLeaveAdj
@@ -283,7 +284,7 @@ Partial Class FormEmpLeaveCutDet
         '
         Me.gridBand5.AppearanceHeader.Options.UseTextOptions = True
         Me.gridBand5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand5.Caption = "Working Time Detail"
+        Me.gridBand5.Caption = "Working Time Detail (Minutes)"
         Me.gridBand5.Columns.Add(Me.BandedGridColumn1)
         Me.gridBand5.Columns.Add(Me.BandedGridColumn2)
         Me.gridBand5.Columns.Add(Me.BandedGridColumn7)
@@ -350,7 +351,7 @@ Partial Class FormEmpLeaveCutDet
         '
         Me.gridBand2.AppearanceHeader.Options.UseTextOptions = True
         Me.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand2.Caption = "Adjustment Leave"
+        Me.gridBand2.Caption = "Adjustment Leave (Hour)"
         Me.gridBand2.Columns.Add(Me.BandedGridColumn4)
         Me.gridBand2.Columns.Add(Me.BandedGridColumn6)
         Me.gridBand2.Columns.Add(Me.BandedGridColumn5)
