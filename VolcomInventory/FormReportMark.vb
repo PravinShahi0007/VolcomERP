@@ -379,6 +379,9 @@
         ElseIf report_mark_type = "124" Then
             'Propose Leave Admin Manager
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
+        ElseIf report_mark_type = "125" Then
+            'Leave Cut
+            query = String.Format("SELECT id_report_status, leave_cut_number as report_number FROM tb_emp_leave_cut WHERE id_leave_cut = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3754,6 +3757,17 @@
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'FormEmpLeave.load_sum()
+        ElseIf report_mark_type = "125" Then
+            'leave cut
+            If id_status_reportx = "5" Then
+                '
+            ElseIf id_status_reportx = "6" Then
+
+            End If
+
+            query = String.Format("UPDATE tb_emp_leave_cut SET id_report_status='{0}' WHERE id_leave_cut ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
         End If
 
         'adding lead time
