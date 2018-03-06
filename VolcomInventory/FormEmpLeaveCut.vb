@@ -35,11 +35,11 @@
     End Sub
 
     Sub load_leave_cut()
-        Dim query As String = "SELECT emp.`employee_name`,rs.`report_status`,DATE_FORMAT(py.`periode_end`,'%M %Y') AS periode,py.periode_start,py.`periode_end`,lc.* FROM tb_emp_leave_cut lc
-                                INNER JOIN tb_lookup_report_status rs ON rs.`id_report_status`=lc.`id_report_status`
+        Dim query As String = "SELECT emp.`employee_name`,IF(lc.is_process=1,'Processed','Waiting') as report_status,DATE_FORMAT(py.`periode_end`,'%M %Y') AS periode,py.periode_start,py.`periode_end`,lc.* FROM tb_emp_leave_cut lc
                                 INNER JOIN tb_emp_payroll py ON py.`id_payroll`=lc.`id_payroll`
                                 INNER JOIN tb_m_user usr ON usr.`id_user`=lc.`id_user_last_upd`
-                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`"
+                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                                ORDER BY lc.id_leave_cut DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCPayrollPeriode.DataSource = data
         GVPayrollPeriode.BestFitColumns()
