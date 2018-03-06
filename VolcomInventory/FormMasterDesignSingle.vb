@@ -371,7 +371,7 @@
         load_comment()
 
         'permission condition
-        If id_pop_up = "-1" Or id_pop_up = "2" Or id_pop_up = "5" Then
+        If id_pop_up = "-1" Or id_pop_up = "2" Or id_pop_up = "5" Or id_pop_up = "4" Then
             XTPDesign.PageVisible = True
             XTPMD.PageVisible = True
             XTPNonMD.PageVisible = False
@@ -557,7 +557,8 @@
                 End If
                 inputPermission()  'access limit
             Catch ex As Exception
-                errorConnection()
+                'errorConnection()
+                MsgBox(ex.ToString)
             End Try
         Else
             'ins jika dilakukan di LINE LIST
@@ -2208,10 +2209,10 @@
                                 WHERE dc.id_design='" & id_design & "' ORDER BY dc.datetime DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "'")
         GCComment.DataSource = data
-        If data.Rows.Count > 0 Then
-            BDelComment.Visible = True
-        Else
-            BDelComment.Visible = False
-        End If
+        'If data.Rows.Count > 0 Then
+        '    BDelComment.Visible = True
+        'Else
+        '    BDelComment.Visible = False
+        'End If
     End Sub
 End Class

@@ -2649,6 +2649,7 @@ Partial Class FormMasterDesignSingle
         Me.BDelComment.Size = New System.Drawing.Size(92, 35)
         Me.BDelComment.TabIndex = 14
         Me.BDelComment.Text = "Delete"
+        Me.BDelComment.Visible = False
         '
         'BAddComment
         '
