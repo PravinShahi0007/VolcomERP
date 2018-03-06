@@ -89,8 +89,10 @@
     End Sub
 
     Private Sub FormEmpAttnIndView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DEStart.EditValue = Now
-        DEUntil.EditValue = Now
+        If DEStart.Text = "" Then
+            DEStart.EditValue = Now
+            DEUntil.EditValue = Now
+        End If
         load_report()
     End Sub
 

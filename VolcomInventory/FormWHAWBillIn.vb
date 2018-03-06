@@ -8,11 +8,12 @@
         load_awb()
     End Sub
     Sub load_awb()
-        'TELength.EditValue = 0.00
-        'TEWidth.EditValue = 0.00
-        'TEHeight.EditValue = 0.00
-        'TEVolume.EditValue = 0.00
-        'TEWeight.EditValue = 0.00
+        TECargoWeight.EditValue = 0.00
+        TELength.EditValue = 0.00
+        TEWidth.EditValue = 0.00
+        TEHeight.EditValue = 0.00
+        TEVolume.EditValue = 0.00
+        TEWeight.EditValue = 0.00
 
         TEBeratTerpakai.EditValue = 0
         TEVolumeVolc.EditValue = 0
@@ -244,43 +245,47 @@
         'End If
     End Sub
     Sub calculate_amount()
-        If SLECargo.EditValue = Nothing Then
-            TEChargeRate.EditValue = 0
-            TEVolumeVolc.EditValue = 0
-            TEPriceVolcom.EditValue = 0
-            TECargoLeadTime.EditValue = 0
-            TECargoMinWeight.EditValue = 0
-        Else
-            If CEPaid.Checked = True Then
+        Try
+            If SLECargo.EditValue = Nothing Then
                 TEChargeRate.EditValue = 0
+                TEVolumeVolc.EditValue = 0
                 TEPriceVolcom.EditValue = 0
+                TECargoLeadTime.EditValue = 0
+                TECargoMinWeight.EditValue = 0
             Else
-                TEChargeRate.EditValue = SLECargo.Properties.View.GetFocusedRowCellValue("cargo_rate")
-                TEPriceVolcom.EditValue = SLECargo.Properties.View.GetFocusedRowCellValue("amount")
-            End If
-
-            TEVolumeVolc.EditValue = SLECargo.Properties.View.GetFocusedRowCellValue("weight")
-            TECargoLeadTime.EditValue = SLECargo.Properties.View.GetFocusedRowCellValue("cargo_lead_time")
-            TECargoMinWeight.EditValue = SLECargo.Properties.View.GetFocusedRowCellValue("cargo_min_weight")
-
-            If SLECargo.Properties.View.GetFocusedRowCellValue("cargo_rate") = Nothing Then
                 If CEPaid.Checked = True Then
                     TEChargeRate.EditValue = 0
                     TEPriceVolcom.EditValue = 0
                 Else
-                    TEChargeRate.EditValue = GVCargoRate.GetRowCellValue(find_row(GVCargoRate, "id_cargo", SLECargo.EditValue), "cargo_rate").ToString
-                    TEPriceVolcom.EditValue = GVCargoRate.GetRowCellValue(find_row(GVCargoRate, "id_cargo", SLECargo.EditValue), "amount").ToString
+                    TEChargeRate.EditValue = SLECargo.Properties.View.GetFocusedRowCellValue("cargo_rate")
+                    TEPriceVolcom.EditValue = SLECargo.Properties.View.GetFocusedRowCellValue("amount")
                 End If
 
-                TEVolumeVolc.EditValue = GVCargoRate.GetRowCellValue(find_row(GVCargoRate, "id_cargo", SLECargo.EditValue), "weight").ToString
-                TECargoLeadTime.EditValue = GVCargoRate.GetRowCellValue(find_row(GVCargoRate, "id_cargo", SLECargo.EditValue), "cargo_lead_time").ToString
-                TECargoMinWeight.EditValue = GVCargoRate.GetRowCellValue(find_row(GVCargoRate, "id_cargo", SLECargo.EditValue), "cargo_min_weight").ToString
-            End If
-        End If
+                TEVolumeVolc.EditValue = SLECargo.Properties.View.GetFocusedRowCellValue("weight")
+                TECargoLeadTime.EditValue = SLECargo.Properties.View.GetFocusedRowCellValue("cargo_lead_time")
+                TECargoMinWeight.EditValue = SLECargo.Properties.View.GetFocusedRowCellValue("cargo_min_weight")
 
-        TEPriceAirport.EditValue = TEVolumeAirport.EditValue * TEChargeRate.EditValue
-        TEVolumeDiff.EditValue = TEVolumeVolc.EditValue - TEVolumeAirport.EditValue
-        TEPriceDiff.EditValue = TEChargeRate.EditValue * TEVolumeDiff.EditValue
+                If SLECargo.Properties.View.GetFocusedRowCellValue("cargo_rate") = Nothing Then
+                    If CEPaid.Checked = True Then
+                        TEChargeRate.EditValue = 0
+                        TEPriceVolcom.EditValue = 0
+                    Else
+                        TEChargeRate.EditValue = GVCargoRate.GetRowCellValue(find_row(GVCargoRate, "id_cargo", SLECargo.EditValue), "cargo_rate").ToString
+                        TEPriceVolcom.EditValue = GVCargoRate.GetRowCellValue(find_row(GVCargoRate, "id_cargo", SLECargo.EditValue), "amount").ToString
+                    End If
+
+                    TEVolumeVolc.EditValue = GVCargoRate.GetRowCellValue(find_row(GVCargoRate, "id_cargo", SLECargo.EditValue), "weight").ToString
+                    TECargoLeadTime.EditValue = GVCargoRate.GetRowCellValue(find_row(GVCargoRate, "id_cargo", SLECargo.EditValue), "cargo_lead_time").ToString
+                    TECargoMinWeight.EditValue = GVCargoRate.GetRowCellValue(find_row(GVCargoRate, "id_cargo", SLECargo.EditValue), "cargo_min_weight").ToString
+                End If
+            End If
+
+            TEPriceAirport.EditValue = TEVolumeAirport.EditValue * TEChargeRate.EditValue
+            TEVolumeDiff.EditValue = TEVolumeVolc.EditValue - TEVolumeAirport.EditValue
+            TEPriceDiff.EditValue = TEChargeRate.EditValue * TEVolumeDiff.EditValue
+        Catch ex As Exception
+
+        End Try
     End Sub
     Private Sub SLECargo_EditValueChanged(sender As Object, e As EventArgs) Handles SLECargo.EditValueChanged
         calculate_amount()
