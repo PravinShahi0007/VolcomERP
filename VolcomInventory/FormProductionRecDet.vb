@@ -340,6 +340,11 @@ Public Class FormProductionRecDet
         GVListPurchase.BestFitColumns()
         ReportProductionRec.dt = GCListPurchase.DataSource
         ReportProductionRec.id_receive = id_receive
+        If is_over_tol = "1" Then
+            ReportProductionRec.rmt = "127"
+        Else
+            ReportProductionRec.rmt = "28"
+        End If
         Dim Report As New ReportProductionRec()
 
         ' '... 
