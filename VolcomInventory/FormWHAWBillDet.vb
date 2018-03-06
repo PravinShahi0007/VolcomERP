@@ -428,7 +428,6 @@
                         End If
                         query += "('" + id_awb + "'," + id_pl_sales_order_del + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
                     Next
-                    Console.WriteLine(query.ToString)
                     execute_non_query(query, True, "", "", "", "")
                 End If
 
