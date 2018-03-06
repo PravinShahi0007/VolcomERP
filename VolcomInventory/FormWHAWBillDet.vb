@@ -371,6 +371,9 @@
                             id_pl_sales_order_del = GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString
                         Catch ex As Exception
                         End Try
+                        If id_pl_sales_order_del = "" Then
+                            id_pl_sales_order_del = "NULL"
+                        End If
 
                         If Not i = 0 Then
                             query += ","
@@ -416,12 +419,16 @@
                             id_pl_sales_order_del = GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString
                         Catch ex As Exception
                         End Try
+                        If id_pl_sales_order_del = "" Then
+                            id_pl_sales_order_del = "NULL"
+                        End If
 
                         If Not i = 0 Then
                             query += ","
                         End If
                         query += "('" + id_awb + "'," + id_pl_sales_order_del + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
                     Next
+                    Console.WriteLine(query.ToString)
                     execute_non_query(query, True, "", "", "", "")
                 End If
 
