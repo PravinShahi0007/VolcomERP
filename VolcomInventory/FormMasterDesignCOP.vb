@@ -186,4 +186,10 @@
             e.Value = Images(fileName)
         End If
     End Sub
+
+    Private Sub ViewDetailToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ViewDetailToolStripMenuItem.Click
+        FormMasterDesignSingle.id_pop_up = "4"
+        FormMasterDesignSingle.id_design = BGVDesign.GetFocusedRowCellValue("id_design").ToString
+        FormMasterDesignSingle.ShowDialog()
+    End Sub
 End Class

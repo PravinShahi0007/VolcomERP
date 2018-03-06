@@ -11,6 +11,7 @@ Public Class ClassSendEmail
     Public comment_by As String = ""
     Public comment As String = ""
     Public design As String = ""
+    Public design_code As String = ""
 
     Sub send_email_html(ByVal send_to As String, ByVal email_to As String, ByVal subject As String, ByVal number As String, ByVal body As String)
         If report_mark_type = "95" Then
@@ -135,7 +136,7 @@ Public Class ClassSendEmail
             client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
             mail.Subject = "New comment on design " & design & " (Season : " & season & ")"
             mail.IsBodyHtml = True
-            mail.Body = email_body_comment(season, design, comment_by, date_string, comment)
+            mail.Body = email_body_comment(season, design, design_code, comment_by, date_string, comment)
             client.Send(mail)
         End If
     End Sub
@@ -552,7 +553,7 @@ Public Class ClassSendEmail
                     </tbody></table>"
         Return body_temp
     End Function
-    Function email_body_comment(ByVal season As String, ByVal design_name As String, ByVal comment_by As String, ByVal date_string As String, ByVal comment As String)
+    Function email_body_comment(ByVal season As String, ByVal design_name As String, ByVal design_code As String, ByVal comment_by As String, ByVal date_string As String, ByVal comment As String)
         Dim body_temp As String = ""
         body_temp = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
                      <tbody><tr>
@@ -664,6 +665,30 @@ Public Class ClassSendEmail
                          </tr>
                          <tr>
                           <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Design Code
+                            </span>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>:
+                              
+                            </span>
+                          </p>
+
+                          </div>
+                          </td>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <div>
+                          <p class='MsoNormal' style='line-height:14.25pt'>
+                            <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & design_code & "
+                            </span>
+                          </p>
+                          </div>
+                          </td>
+                         </tr>
+                         <tr>
+                          <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt'>
                             <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Design
                             </span>
                           </td>
@@ -701,7 +726,7 @@ Public Class ClassSendEmail
 
                           </div>
                           </td>
-                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <td style='padding:1.0pt 10.0pt 1.0pt 10.0pt'>
                           <div>
                           <p class='MsoNormal' style='line-height:14.25pt'>
                             <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & comment_by & "
@@ -725,7 +750,7 @@ Public Class ClassSendEmail
 
                           </div>
                           </td>
-                          <td style='padding:1.0pt 1.0pt 1.0pt 10.0pt'>
+                          <td style='padding:1.0pt 10.0pt 1.0pt 10.0pt'>
                           <div>
                           <p class='MsoNormal' style='line-height:14.25pt;text-align:justify''>
                             <span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>" & comment & "

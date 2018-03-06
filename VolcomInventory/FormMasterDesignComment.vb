@@ -16,10 +16,10 @@
             execute_non_query(query, True, "", "", "", "")
             Dim mail As ClassSendEmail = New ClassSendEmail
             mail.report_mark_type = "design_comment"
-            mail.design = FormMasterDesignSingle.TEName.Text.ToString
+            mail.design = FormMasterDesignSingle.TEDisplayName.Text.ToString
+            mail.design_code = FormMasterDesignSingle.TECode.Text.ToString
             mail.date_string = Now.ToString("dd MMM yyyy H:mm:ss")
             mail.season = FormMasterDesignSingle.LESeason.Text.ToString
-            'mail.comment = addSlashes(MEComment.Text)
             mail.comment = MEComment.Text
             mail.comment_by = get_user_identify(id_user, "1")
             mail.send_email()

@@ -75,6 +75,7 @@ Partial Class FormMasterDesignCOP
         Me.ViewMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.SMEditEcopPD = New System.Windows.Forms.ToolStripMenuItem()
         Me.SMEditEcopFinal = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewDetailToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BGVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RPImg, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -558,9 +559,9 @@ Partial Class FormMasterDesignCOP
         '
         'ViewMenu
         '
-        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SMEditEcopPD, Me.SMEditEcopFinal})
+        Me.ViewMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ViewDetailToolStripMenuItem, Me.SMEditEcopPD, Me.SMEditEcopFinal})
         Me.ViewMenu.Name = "ContextMenuStripYM"
-        Me.ViewMenu.Size = New System.Drawing.Size(235, 70)
+        Me.ViewMenu.Size = New System.Drawing.Size(235, 92)
         '
         'SMEditEcopPD
         '
@@ -573,6 +574,12 @@ Partial Class FormMasterDesignCOP
         Me.SMEditEcopFinal.Name = "SMEditEcopFinal"
         Me.SMEditEcopFinal.Size = New System.Drawing.Size(234, 22)
         Me.SMEditEcopFinal.Text = "Edit Pre-Final COP / Final COP"
+        '
+        'ViewDetailToolStripMenuItem
+        '
+        Me.ViewDetailToolStripMenuItem.Name = "ViewDetailToolStripMenuItem"
+        Me.ViewDetailToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.ViewDetailToolStripMenuItem.Text = "View Detail"
         '
         'FormMasterDesignCOP
         '
@@ -662,4 +669,5 @@ Partial Class FormMasterDesignCOP
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents ViewDetailToolStripMenuItem As ToolStripMenuItem
 End Class
