@@ -17,6 +17,7 @@ Public Class FormSalesOrderDet
     Public dt As DataTable
     Public id_type As String
     Public id_commerce_type As String = "-1"
+    Public id_store_type As String = "-1"
 
     Private Sub FormSalesOrderDet_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         id_type = FormSalesOrder.id_type
@@ -655,6 +656,7 @@ Public Class FormSalesOrderDet
                     id_commerce_type = data.Rows(0)("id_commerce_type").ToString
                     checkCommerceType()
                     id_store_cat = data.Rows(0)("id_comp_cat").ToString
+                    id_store_type = data.Rows(0)("id_store_type").ToString
                     id_store_contact_to = data.Rows(0)("id_comp_contact").ToString
                     TxtNameCompTo.Text = data.Rows(0)("comp_name").ToString
                     MEAdrressCompTo.Text = data.Rows(0)("address_primary").ToString
@@ -675,6 +677,7 @@ Public Class FormSalesOrderDet
         id_store = "-1"
         id_commerce_type = "-1"
         id_store_cat = "-1"
+        id_store_type = "-1"
         id_store_contact_to = "-1"
         TxtNameCompTo.Text = ""
         MEAdrressCompTo.Text = ""
