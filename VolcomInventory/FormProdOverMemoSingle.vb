@@ -163,15 +163,17 @@
 
     Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
         If GVProd.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
             Dim cek As String = CheckEditSelAll.EditValue.ToString
             For i As Integer = 0 To ((GVProd.RowCount - 1) - GetGroupRowCount(GVProd))
                 Dim memo_number As String = GVProd.GetRowCellValue(i, "memo_number").ToString
-                If cek And memo_number <> "" Then
-                    GVProd.SetRowCellValue(i, "Select_sct", "Yes")
+                If cek And memo_number = "" Then
+                    GVProd.SetRowCellValue(i, "check", "yes")
                 Else
-                    GVProd.SetRowCellValue(i, "Select_sct", "No")
+                    GVProd.SetRowCellValue(i, "check", "no")
                 End If
             Next
+            Cursor = Cursors.Default
         End If
     End Sub
 
