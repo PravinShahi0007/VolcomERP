@@ -52,14 +52,10 @@ Partial Class FormEmpLeaveCutDet
         Me.BandedGridColumn6 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumn5 = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.ViewPopWorksheet = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CMDelEmp = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewAttendanceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.DEUntil = New DevExpress.XtraEditors.DateEdit()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.DEStart = New DevExpress.XtraEditors.DateEdit()
         CType(Me.PCControl, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCControl.SuspendLayout()
         CType(Me.TENumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,18 +66,10 @@ Partial Class FormEmpLeaveCutDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
         Me.ViewPopWorksheet.SuspendLayout()
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PCControl
         '
-        Me.PCControl.Controls.Add(Me.Label6)
-        Me.PCControl.Controls.Add(Me.DEUntil)
-        Me.PCControl.Controls.Add(Me.Label5)
-        Me.PCControl.Controls.Add(Me.DEStart)
         Me.PCControl.Controls.Add(Me.TENumber)
         Me.PCControl.Controls.Add(Me.TEDept)
         Me.PCControl.Controls.Add(Me.LabelControl2)
@@ -102,22 +90,22 @@ Partial Class FormEmpLeaveCutDet
         Me.TENumber.Name = "TENumber"
         Me.TENumber.Properties.EditValueChangedDelay = 1
         Me.TENumber.Properties.ReadOnly = True
-        Me.TENumber.Size = New System.Drawing.Size(109, 20)
+        Me.TENumber.Size = New System.Drawing.Size(135, 20)
         Me.TENumber.TabIndex = 95
         '
         'TEDept
         '
         Me.TEDept.EditValue = ""
-        Me.TEDept.Location = New System.Drawing.Point(239, 12)
+        Me.TEDept.Location = New System.Drawing.Point(265, 12)
         Me.TEDept.Name = "TEDept"
         Me.TEDept.Properties.EditValueChangedDelay = 1
         Me.TEDept.Properties.ReadOnly = True
-        Me.TEDept.Size = New System.Drawing.Size(176, 20)
+        Me.TEDept.Size = New System.Drawing.Size(226, 20)
         Me.TEDept.TabIndex = 93
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(170, 15)
+        Me.LabelControl2.Location = New System.Drawing.Point(196, 15)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
         Me.LabelControl2.TabIndex = 94
@@ -191,6 +179,7 @@ Partial Class FormEmpLeaveCutDet
         '
         'GCLeaveAdj
         '
+        Me.GCLeaveAdj.ContextMenuStrip = Me.ViewPopWorksheet
         Me.GCLeaveAdj.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCLeaveAdj.Location = New System.Drawing.Point(0, 44)
         Me.GCLeaveAdj.MainView = Me.GVLeaveAdj
@@ -295,7 +284,7 @@ Partial Class FormEmpLeaveCutDet
         '
         Me.gridBand5.AppearanceHeader.Options.UseTextOptions = True
         Me.gridBand5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand5.Caption = "Working Time Detail"
+        Me.gridBand5.Caption = "Working Time Detail (Minutes)"
         Me.gridBand5.Columns.Add(Me.BandedGridColumn1)
         Me.gridBand5.Columns.Add(Me.BandedGridColumn2)
         Me.gridBand5.Columns.Add(Me.BandedGridColumn7)
@@ -362,13 +351,13 @@ Partial Class FormEmpLeaveCutDet
         '
         Me.gridBand2.AppearanceHeader.Options.UseTextOptions = True
         Me.gridBand2.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.gridBand2.Caption = "Adjustment Leave"
+        Me.gridBand2.Caption = "Adjustment Leave (Hour)"
         Me.gridBand2.Columns.Add(Me.BandedGridColumn4)
         Me.gridBand2.Columns.Add(Me.BandedGridColumn6)
         Me.gridBand2.Columns.Add(Me.BandedGridColumn5)
         Me.gridBand2.Name = "gridBand2"
         Me.gridBand2.VisibleIndex = 2
-        Me.gridBand2.Width = 225
+        Me.gridBand2.Width = 262
         '
         'BandedGridColumn4
         '
@@ -379,6 +368,7 @@ Partial Class FormEmpLeaveCutDet
         Me.BandedGridColumn4.Caption = "Leave Remaining"
         Me.BandedGridColumn4.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumn4.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn4.FieldName = "leave_tot"
         Me.BandedGridColumn4.Name = "BandedGridColumn4"
         Me.BandedGridColumn4.Visible = True
         '
@@ -391,8 +381,10 @@ Partial Class FormEmpLeaveCutDet
         Me.BandedGridColumn6.Caption = "Actual Leave Cut"
         Me.BandedGridColumn6.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumn6.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn6.FieldName = "adjustment_final"
         Me.BandedGridColumn6.Name = "BandedGridColumn6"
         Me.BandedGridColumn6.Visible = True
+        Me.BandedGridColumn6.Width = 109
         '
         'BandedGridColumn5
         '
@@ -403,27 +395,29 @@ Partial Class FormEmpLeaveCutDet
         Me.BandedGridColumn5.Caption = "Leave After"
         Me.BandedGridColumn5.DisplayFormat.FormatString = "N0"
         Me.BandedGridColumn5.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumn5.FieldName = "leave_after"
         Me.BandedGridColumn5.Name = "BandedGridColumn5"
         Me.BandedGridColumn5.Visible = True
+        Me.BandedGridColumn5.Width = 78
         '
         'PanelControl2
         '
-        Me.PanelControl2.Controls.Add(Me.SimpleButton2)
+        Me.PanelControl2.Controls.Add(Me.BMark)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl2.Location = New System.Drawing.Point(0, 543)
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1163, 44)
         Me.PanelControl2.TabIndex = 3
         '
-        'SimpleButton2
+        'BMark
         '
-        Me.SimpleButton2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SimpleButton2.ImageList = Me.LargeImageCollection
-        Me.SimpleButton2.Location = New System.Drawing.Point(2, 2)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(1159, 40)
-        Me.SimpleButton2.TabIndex = 4
-        Me.SimpleButton2.Text = "Mark"
+        Me.BMark.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.BMark.ImageList = Me.LargeImageCollection
+        Me.BMark.Location = New System.Drawing.Point(2, 2)
+        Me.BMark.Name = "BMark"
+        Me.BMark.Size = New System.Drawing.Size(1159, 40)
+        Me.BMark.TabIndex = 4
+        Me.BMark.Text = "Process"
         '
         'ViewPopWorksheet
         '
@@ -442,50 +436,6 @@ Partial Class FormEmpLeaveCutDet
         Me.ViewAttendanceToolStripMenuItem.Name = "ViewAttendanceToolStripMenuItem"
         Me.ViewAttendanceToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.ViewAttendanceToolStripMenuItem.Text = "View Attendance"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(421, 15)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(41, 13)
-        Me.Label6.TabIndex = 99
-        Me.Label6.Text = "From : "
-        '
-        'DEUntil
-        '
-        Me.DEUntil.EditValue = Nothing
-        Me.DEUntil.Location = New System.Drawing.Point(645, 12)
-        Me.DEUntil.Name = "DEUntil"
-        Me.DEUntil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEUntil.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEUntil.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEUntil.Properties.ReadOnly = True
-        Me.DEUntil.Size = New System.Drawing.Size(127, 20)
-        Me.DEUntil.TabIndex = 98
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(601, 15)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(38, 13)
-        Me.Label5.TabIndex = 97
-        Me.Label5.Text = "Until : "
-        '
-        'DEStart
-        '
-        Me.DEStart.EditValue = Nothing
-        Me.DEStart.Location = New System.Drawing.Point(468, 12)
-        Me.DEStart.Name = "DEStart"
-        Me.DEStart.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DEStart.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DEStart.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEStart.Properties.ReadOnly = True
-        Me.DEStart.Size = New System.Drawing.Size(127, 20)
-        Me.DEStart.TabIndex = 96
         '
         'FormEmpLeaveCutDet
         '
@@ -511,10 +461,6 @@ Partial Class FormEmpLeaveCutDet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.ViewPopWorksheet.ResumeLayout(False)
-        CType(Me.DEUntil.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEUntil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -541,7 +487,7 @@ Partial Class FormEmpLeaveCutDet
     Friend WithEvents Bload As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BGetEmployee As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BSetup As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TENumber As DevExpress.XtraEditors.TextEdit
@@ -554,8 +500,4 @@ Partial Class FormEmpLeaveCutDet
     Friend WithEvents ViewPopWorksheet As ContextMenuStrip
     Friend WithEvents CMDelEmp As ToolStripMenuItem
     Friend WithEvents ViewAttendanceToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Label6 As Label
-    Friend WithEvents DEUntil As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents Label5 As Label
-    Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
 End Class

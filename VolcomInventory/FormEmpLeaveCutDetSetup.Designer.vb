@@ -31,12 +31,16 @@ Partial Class FormEmpLeaveCutDetSetup
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LEDepartement = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.TETolerance = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
         CType(Me.LEPayrollPeriode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TETolerance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -69,7 +73,7 @@ Partial Class FormEmpLeaveCutDetSetup
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BPick)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 168)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 193)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(427, 37)
         Me.PanelControl3.TabIndex = 8
@@ -123,14 +127,14 @@ Partial Class FormEmpLeaveCutDetSetup
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(100, 64)
+        Me.MENote.Location = New System.Drawing.Point(100, 90)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(300, 83)
         Me.MENote.TabIndex = 11
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 66)
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 92)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl2.TabIndex = 12
@@ -157,11 +161,39 @@ Partial Class FormEmpLeaveCutDetSetup
         Me.LabelControl3.TabIndex = 13
         Me.LabelControl3.Text = "Departement"
         '
+        'TETolerance
+        '
+        Me.TETolerance.Location = New System.Drawing.Point(100, 64)
+        Me.TETolerance.Name = "TETolerance"
+        Me.TETolerance.Properties.Appearance.Options.UseTextOptions = True
+        Me.TETolerance.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.TETolerance.Size = New System.Drawing.Size(258, 20)
+        Me.TETolerance.TabIndex = 15
+        '
+        'LabelControl4
+        '
+        Me.LabelControl4.Location = New System.Drawing.Point(12, 67)
+        Me.LabelControl4.Name = "LabelControl4"
+        Me.LabelControl4.Size = New System.Drawing.Size(47, 13)
+        Me.LabelControl4.TabIndex = 16
+        Me.LabelControl4.Text = "Tolerance"
+        '
+        'LabelControl5
+        '
+        Me.LabelControl5.Location = New System.Drawing.Point(364, 67)
+        Me.LabelControl5.Name = "LabelControl5"
+        Me.LabelControl5.Size = New System.Drawing.Size(36, 13)
+        Me.LabelControl5.TabIndex = 17
+        Me.LabelControl5.Text = "Hour(s)"
+        '
         'FormEmpLeaveCutDetSetup
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(427, 205)
+        Me.ClientSize = New System.Drawing.Size(427, 230)
+        Me.Controls.Add(Me.LabelControl5)
+        Me.Controls.Add(Me.LabelControl4)
+        Me.Controls.Add(Me.TETolerance)
         Me.Controls.Add(Me.LEDepartement)
         Me.Controls.Add(Me.LabelControl3)
         Me.Controls.Add(Me.LabelControl2)
@@ -180,6 +212,7 @@ Partial Class FormEmpLeaveCutDetSetup
         CType(Me.LEPayrollPeriode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDepartement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TETolerance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -195,4 +228,7 @@ Partial Class FormEmpLeaveCutDetSetup
     Friend WithEvents LabelControl2 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEDepartement As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TETolerance As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl4 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl5 As DevExpress.XtraEditors.LabelControl
 End Class

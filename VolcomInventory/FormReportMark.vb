@@ -154,7 +154,7 @@
         ElseIf report_mark_type = "27" Then
             'Mat Adj Out
             query = String.Format("SELECT id_report_status,adj_out_mat_number as report_number FROM tb_adj_out_mat WHERE id_adj_out_mat = '{0}'", id_report)
-        ElseIf report_mark_type = "28" Then
+        ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             'Production rec
             query = String.Format("SELECT id_report_status,prod_order_rec_number as report_number FROM tb_prod_order_rec WHERE id_prod_order_rec = '{0}'", id_report)
         ElseIf report_mark_type = "29" Then
@@ -379,6 +379,12 @@
         ElseIf report_mark_type = "124" Then
             'Propose Leave Admin Manager
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
+        ElseIf report_mark_type = "125" Then
+            'Leave Cut
+            query = String.Format("SELECT id_report_status, leave_cut_number as report_number FROM tb_emp_leave_cut WHERE id_leave_cut = '{0}'", id_report)
+        ElseIf report_mark_type = "126" Then
+            'over production memo
+            query = String.Format("SELECT id_report_status, memo_number as report_number FROM tb_prod_over_memo WHERE id_prod_over_memo = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -1648,7 +1654,7 @@
                 FormWork.viewMatAdjOut()
             End If
             Cursor = Cursors.Default
-        ElseIf report_mark_type = "28" Then
+        ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             'prod receive qc
             Try
                 If id_status_reportx = "6" Then
@@ -3754,6 +3760,28 @@
             query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'FormEmpLeave.load_sum()
+        ElseIf report_mark_type = "125" Then
+            'leave cut
+            If id_status_reportx = "5" Then
+                '
+            ElseIf id_status_reportx = "6" Then
+
+            End If
+
+            query = String.Format("UPDATE tb_emp_leave_cut SET id_report_status='{0}' WHERE id_leave_cut ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
+        ElseIf report_mark_type = "126" Then
+            'Production Over Memo
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            Dim query_upd As String = "UPDATE tb_prod_over_memo SET id_report_status='" + id_status_reportx + "' WHERE id_prod_over_memo='" + id_report + "' "
+            execute_non_query(query_upd, True, "", "", "", "")
+            FormProdOverMemoDet.actionLoad()
+            FormProdOverMemo.viewData()
+            FormProdOverMemo.GVMemo.FocusedRowHandle = find_row(FormProdOverMemo.GVMemo, "id_prod_over_memo", id_report)
         End If
 
         'adding lead time
@@ -4579,7 +4607,7 @@
             pushNotif("Production Demand", "Document #" + report_number + " is " + type, "FormProdDemand", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
         ElseIf report_mark_type = "11" Then
             pushNotif("Sample Requisition", "Document #" + report_number + " is " + type + " by " + get_user_identify(dt.Rows(0)("id_user"), "1") + ".", "FormSampleReq", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
-        ElseIf report_mark_type = "28" Then
+        ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             pushNotif("Receiving QC", "Document #" + report_number + " is " + type + " by " + get_user_identify(id_user, "1") + ".", "FormProductionRec", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
         ElseIf report_mark_type = "31" Then
             pushNotif("Return Out", "Document #" + report_number + " is " + type, "FormProductionRet", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
