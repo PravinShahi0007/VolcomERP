@@ -12,6 +12,7 @@ Public Class ClassSendEmail
     Public comment As String = ""
     Public design As String = ""
     Public design_code As String = ""
+    Public type_email As String = "4"
 
     Sub send_email_html(ByVal send_to As String, ByVal email_to As String, ByVal subject As String, ByVal number As String, ByVal body As String)
         If report_mark_type = "95" Then
@@ -114,20 +115,30 @@ Public Class ClassSendEmail
     Sub send_email()
         If report_mark_type = "design_comment" Then
             ' Create a new report. 
-            Dim query_send_mail As String = "SELECT emp.`email_lokal`,emp.`employee_name` FROM tb_mail_dsg_cmnt md
-                                                INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
-                                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`"
-            Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
-
-            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Volcom ERP")
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Update Artikel - Volcom ERP")
             Dim mail As MailMessage = New MailMessage()
             mail.From = from_mail
-
+            'Send to
+            Dim query_send_mail As String = "SELECT emp.`email_lokal`,emp.`employee_name` FROM tb_mail_dsg_cmnt md
+                                                INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+                                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                                              WHERE class='" & type_email & "' AND is_to='1'"
+            Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
             For i As Integer = 0 To data_send_mail.Rows.Count - 1
                 Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_lokal").ToString, data_send_mail.Rows(i)("employee_name").ToString)
                 mail.To.Add(to_mail)
             Next
-
+            'Send CC
+            Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` FROM tb_mail_dsg_cmnt md
+                                                INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+                                                INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                                              WHERE class='" & type_email & "' AND is_to='2'"
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_lokal").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                mail.CC.Add(to_mail)
+            Next
+            '
             Dim client As SmtpClient = New SmtpClient()
             client.Port = 25
             client.DeliveryMethod = SmtpDeliveryMethod.Network
