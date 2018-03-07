@@ -1099,13 +1099,13 @@ Public Class FormSalesOrderDet
                 colIndex = colIndex + 1
                 If j = 0 Then 'code
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "code").ToString
-                ElseIf j = 1 'qty
+                ElseIf j = 1 Then 'qty
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "sales_order_det_qty")
-                ElseIf j = 2 'number
+                ElseIf j = 2 Then 'number
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "number").ToString
-                ElseIf j = 3 'from
+                ElseIf j = 3 Then 'from
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "from").ToString
-                ElseIf j = 4 'to
+                ElseIf j = 4 Then 'to
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellDisplayText(i, "to").ToString
                 Else 'remark det
                     wSheet.Cells(rowIndex + 1, colIndex) = dtTemp.GetRowCellValue(i, "sales_order_det_note").ToString
@@ -1151,7 +1151,16 @@ Public Class FormSalesOrderDet
     End Sub
 
     Private Sub LEStatusSO_EditValueChanged(sender As Object, e As EventArgs) Handles LEStatusSO.EditValueChanged
-
+        If Not LEStatusSO.EditValue = LEStatusSO.OldEditValue Then
+            If GVItemList.RowCount > 0 Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("This action will be reset your item list order, are you sure want to continue this action?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    viewDetail("-1")
+                Else
+                    LEStatusSO.EditValue = LEStatusSO.OldEditValue
+                End If
+            End If
+        End If
     End Sub
 
 
