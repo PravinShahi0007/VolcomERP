@@ -13,8 +13,8 @@
         ElseIf id_pop_up = "2" Then 'all 
             BClosingFGPO.Visible = True
             BtnClosingRec.Visible = True
-            SMTolerance.Visible = True
-            SMOpenLock.Visible = True
+            SMTolerance.Visible = False
+            SMOpenLock.Visible = False
         Else 'only view
             GVProd.OptionsBehavior.ReadOnly = True
         End If
