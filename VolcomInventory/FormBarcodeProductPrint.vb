@@ -207,6 +207,7 @@ Public Class FormBarcodeProductPrint
                         print_command += "CT~~CD,~CC^~CT~" & vbNewLine
                         print_command += "^XA~TA000~JSN^LT0^MNW^MTT^PON^PMN^LH0,0^JMA^PR4,4~SD30^JUS^LRN^CI0^XZ" & vbNewLine
                         print_command += "^XA" & vbNewLine
+                        print_command += "^CI28" & vbNewLine
                         print_command += "^MMT" & vbNewLine
                         print_command += "^PW277" & vbNewLine
                         print_command += "^LL0406" & vbNewLine
@@ -228,6 +229,7 @@ Public Class FormBarcodeProductPrint
                         print_command += "CT~~CD,~CC^~CT~" & vbNewLine
                         print_command += "^XA~TA000~JSN^LT0^MNW^MTT^PON^PMN^LH0,0^JMA^PR4,4~SD27^JUS^LRN^CI0^XZ" & vbNewLine
                         print_command += "^XA" & vbNewLine
+                        print_command += "^CI28" & vbNewLine
                         print_command += "^MMT" & vbNewLine
                         print_command += "^PW277" & vbNewLine
                         print_command += "^LL0406" & vbNewLine
@@ -339,6 +341,7 @@ Public Class FormBarcodeProductPrint
                     print_command += "CT~~CD,~CC^~CT~" & vbNewLine
                     print_command += "^XA~TA000~JSN^LT0^MNW^MTT^PON^PMN^LH0,0^JMA^PR4,4~SD27^JUS^LRN^CI0^XZ" & vbNewLine
                     print_command += "^XA" & vbNewLine
+                    print_command += "^CI28" & vbNewLine
                     print_command += "^MMT" & vbNewLine
                     print_command += "^PW277" & vbNewLine
                     print_command += "^LL0406" & vbNewLine
@@ -421,6 +424,7 @@ Public Class FormBarcodeProductPrint
                 print_command += "CT~~CD,~CC^~CT~" & vbNewLine
                 print_command += "^XA~TA000~JSN^LT0^MNW^MTT^PON^PMN^LH0,0^JMA^PR4,4~SD30^JUS^LRN^CI0^XZ" & vbNewLine
                 print_command += "^XA" & vbNewLine
+                print_command += "^CI28" & vbNewLine
                 print_command += "^MMT" & vbNewLine
                 print_command += "^PW277" & vbNewLine
                 print_command += "^LL0406" & vbNewLine
