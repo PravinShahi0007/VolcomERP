@@ -146,9 +146,7 @@ Public Class FormFGCodeReplaceStoreDetPrint
             Next
             print_command = print_command.ToString()
         End If
-        '
 
-        '
         Dim pd As New PrintDialog()
 
         pd.PrinterSettings = New PrinterSettings()
