@@ -3731,6 +3731,23 @@
                 id_status_reportx = "6"
             End If
 
+            'kalo completed generate nomer urut
+            If id_status_reportx = "6" Then
+                Dim qm As String = "SELECT IFNULL(MAX(dd.`no`),0) AS `maks` FROM tb_emp_uni_design_det dd WHERE dd.id_emp_uni_design=" + id_report + " "
+                Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
+                Dim maks As Integer = dm.Rows(0)("maks")
+
+                Dim qn As String = "UPDATE tb_emp_uni_design_det main
+                INNER JOIN (
+                    SELECT dd.id_emp_uni_design_det,dd.id_design, @a:=@a+1 `counting` 
+                    FROM tb_emp_uni_design_det dd ,
+                    (SELECT @a:= " + maks.ToString + ") AS a
+                    WHERE dd.id_emp_uni_design =" + id_report + "
+                ) src ON src.id_emp_uni_design_det = main.id_emp_uni_design_det
+                SET main.no = src.counting "
+                execute_non_query(qn, True, "", "", "", "")
+            End If
+
             query = String.Format("UPDATE tb_emp_uni_design SET id_report_status='{0}' WHERE id_emp_uni_design ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
