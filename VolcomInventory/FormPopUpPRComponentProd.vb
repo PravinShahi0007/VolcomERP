@@ -68,7 +68,7 @@
     End Sub
 
     Sub view_dc(ByVal lookup As DevExpress.XtraEditors.LookUpEdit)
-        Dim query As String = "SELECT id_dc,dc FROM tb_lookup_dc"
+        Dim query As String = "SELECT id_dc,dc FROM tb_lookup_dc WHERE id_dc !='3' ORDER BY id_dc DESC"
         viewLookupQuery(lookup, query, 0, "dc", "id_dc")
     End Sub
 
