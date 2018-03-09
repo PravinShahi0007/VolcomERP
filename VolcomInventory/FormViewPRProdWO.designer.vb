@@ -92,6 +92,10 @@ Partial Class FormViewPRProdWO
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.TEWOPONumber = New DevExpress.XtraEditors.TextEdit()
         Me.LWOCaption = New DevExpress.XtraEditors.LabelControl()
+        Me.DEPIBDueDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.DEAjuDate = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,6 +138,10 @@ Partial Class FormViewPRProdWO
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEPIBDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEPIBDueDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEAjuDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DEAjuDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -142,9 +150,9 @@ Partial Class FormViewPRProdWO
         Me.GroupControl1.Controls.Add(Me.BMark)
         Me.GroupControl1.Controls.Add(Me.BAttachment)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 566)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 562)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(909, 63)
+        Me.GroupControl1.Size = New System.Drawing.Size(909, 67)
         Me.GroupControl1.TabIndex = 44
         '
         'BMark
@@ -152,7 +160,7 @@ Partial Class FormViewPRProdWO
         Me.BMark.Dock = System.Windows.Forms.DockStyle.Fill
         Me.BMark.Location = New System.Drawing.Point(20, 32)
         Me.BMark.Name = "BMark"
-        Me.BMark.Size = New System.Drawing.Size(887, 29)
+        Me.BMark.Size = New System.Drawing.Size(887, 33)
         Me.BMark.TabIndex = 4
         Me.BMark.Text = "Mark"
         '
@@ -195,7 +203,7 @@ Partial Class FormViewPRProdWO
         Me.GroupControl3.Controls.Add(Me.MENote)
         Me.GroupControl3.Controls.Add(Me.LabelControl18)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 390)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 386)
         Me.GroupControl3.Name = "GroupControl3"
         Me.GroupControl3.Size = New System.Drawing.Size(909, 176)
         Me.GroupControl3.TabIndex = 43
@@ -478,9 +486,9 @@ Partial Class FormViewPRProdWO
         Me.GConListPurchase.Controls.Add(Me.PanelControl1)
         Me.GConListPurchase.Dock = System.Windows.Forms.DockStyle.Top
         Me.GConListPurchase.Enabled = False
-        Me.GConListPurchase.Location = New System.Drawing.Point(0, 116)
+        Me.GConListPurchase.Location = New System.Drawing.Point(0, 146)
         Me.GConListPurchase.Name = "GConListPurchase"
-        Me.GConListPurchase.Size = New System.Drawing.Size(909, 274)
+        Me.GConListPurchase.Size = New System.Drawing.Size(909, 240)
         Me.GConListPurchase.TabIndex = 42
         Me.GConListPurchase.Text = "List Purchase"
         '
@@ -493,7 +501,7 @@ Partial Class FormViewPRProdWO
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl1.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(887, 270)
+        Me.PanelControl1.Size = New System.Drawing.Size(887, 236)
         Me.PanelControl1.TabIndex = 19
         '
         'XtraTabControl1
@@ -502,7 +510,7 @@ Partial Class FormViewPRProdWO
         Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XTPListPurchase
-        Me.XtraTabControl1.Size = New System.Drawing.Size(887, 270)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(887, 236)
         Me.XtraTabControl1.TabIndex = 0
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPListPurchase})
         '
@@ -510,7 +518,7 @@ Partial Class FormViewPRProdWO
         '
         Me.XTPListPurchase.Controls.Add(Me.GCListPurchase)
         Me.XTPListPurchase.Name = "XTPListPurchase"
-        Me.XTPListPurchase.Size = New System.Drawing.Size(881, 242)
+        Me.XTPListPurchase.Size = New System.Drawing.Size(881, 208)
         Me.XTPListPurchase.Text = "Detail"
         '
         'GCListPurchase
@@ -519,7 +527,7 @@ Partial Class FormViewPRProdWO
         Me.GCListPurchase.Location = New System.Drawing.Point(0, 0)
         Me.GCListPurchase.MainView = Me.GVListPurchase
         Me.GCListPurchase.Name = "GCListPurchase"
-        Me.GCListPurchase.Size = New System.Drawing.Size(881, 242)
+        Me.GCListPurchase.Size = New System.Drawing.Size(881, 208)
         Me.GCListPurchase.TabIndex = 1
         Me.GCListPurchase.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVListPurchase, Me.GridView1})
         '
@@ -682,6 +690,10 @@ Partial Class FormViewPRProdWO
         'GroupGeneralHeader
         '
         Me.GroupGeneralHeader.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupGeneralHeader.Controls.Add(Me.DEAjuDate)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl8)
+        Me.GroupGeneralHeader.Controls.Add(Me.DEPIBDueDate)
+        Me.GroupGeneralHeader.Controls.Add(Me.LabelControl3)
         Me.GroupGeneralHeader.Controls.Add(Me.BViewPIB)
         Me.GroupGeneralHeader.Controls.Add(Me.DEPRDate)
         Me.GroupGeneralHeader.Controls.Add(Me.DEDueDate)
@@ -708,12 +720,12 @@ Partial Class FormViewPRProdWO
         Me.GroupGeneralHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupGeneralHeader.Location = New System.Drawing.Point(0, 0)
         Me.GroupGeneralHeader.Name = "GroupGeneralHeader"
-        Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 116)
+        Me.GroupGeneralHeader.Size = New System.Drawing.Size(909, 146)
         Me.GroupGeneralHeader.TabIndex = 41
         '
         'BViewPIB
         '
-        Me.BViewPIB.Location = New System.Drawing.Point(631, 57)
+        Me.BViewPIB.Location = New System.Drawing.Point(631, 84)
         Me.BViewPIB.Name = "BViewPIB"
         Me.BViewPIB.Size = New System.Drawing.Size(26, 23)
         Me.BViewPIB.TabIndex = 181
@@ -750,7 +762,7 @@ Partial Class FormViewPRProdWO
         'TEAju
         '
         Me.TEAju.EditValue = ""
-        Me.TEAju.Location = New System.Drawing.Point(494, 86)
+        Me.TEAju.Location = New System.Drawing.Point(494, 113)
         Me.TEAju.Name = "TEAju"
         Me.TEAju.Properties.EditValueChangedDelay = 1
         Me.TEAju.Properties.ReadOnly = True
@@ -759,7 +771,7 @@ Partial Class FormViewPRProdWO
         '
         'LabelControl16
         '
-        Me.LabelControl16.Location = New System.Drawing.Point(409, 89)
+        Me.LabelControl16.Location = New System.Drawing.Point(409, 116)
         Me.LabelControl16.Name = "LabelControl16"
         Me.LabelControl16.Size = New System.Drawing.Size(45, 13)
         Me.LabelControl16.TabIndex = 176
@@ -768,7 +780,7 @@ Partial Class FormViewPRProdWO
         'TEPIB
         '
         Me.TEPIB.EditValue = ""
-        Me.TEPIB.Location = New System.Drawing.Point(494, 59)
+        Me.TEPIB.Location = New System.Drawing.Point(494, 86)
         Me.TEPIB.Name = "TEPIB"
         Me.TEPIB.Properties.EditValueChangedDelay = 1
         Me.TEPIB.Properties.ReadOnly = True
@@ -777,7 +789,7 @@ Partial Class FormViewPRProdWO
         '
         'LabelControl13
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(409, 62)
+        Me.LabelControl13.Location = New System.Drawing.Point(409, 89)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(16, 13)
         Me.LabelControl13.TabIndex = 174
@@ -786,16 +798,16 @@ Partial Class FormViewPRProdWO
         'TEPONumber
         '
         Me.TEPONumber.EditValue = ""
-        Me.TEPONumber.Location = New System.Drawing.Point(768, 59)
+        Me.TEPONumber.Location = New System.Drawing.Point(494, 58)
         Me.TEPONumber.Name = "TEPONumber"
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(131, 20)
+        Me.TEPONumber.Size = New System.Drawing.Size(163, 20)
         Me.TEPONumber.TabIndex = 167
         '
         'LFGPOCaption
         '
-        Me.LFGPOCaption.Location = New System.Drawing.Point(673, 62)
+        Me.LFGPOCaption.Location = New System.Drawing.Point(407, 61)
         Me.LFGPOCaption.Name = "LFGPOCaption"
         Me.LFGPOCaption.Size = New System.Drawing.Size(67, 13)
         Me.LFGPOCaption.TabIndex = 168
@@ -804,7 +816,7 @@ Partial Class FormViewPRProdWO
         'TEDONumber
         '
         Me.TEDONumber.EditValue = ""
-        Me.TEDONumber.Location = New System.Drawing.Point(768, 86)
+        Me.TEDONumber.Location = New System.Drawing.Point(768, 59)
         Me.TEDONumber.Name = "TEDONumber"
         Me.TEDONumber.Properties.EditValueChangedDelay = 1
         Me.TEDONumber.Properties.ReadOnly = True
@@ -833,7 +845,7 @@ Partial Class FormViewPRProdWO
         Me.MECompAddress.Name = "MECompAddress"
         Me.MECompAddress.Properties.MaxLength = 100
         Me.MECompAddress.Properties.ReadOnly = True
-        Me.MECompAddress.Size = New System.Drawing.Size(278, 45)
+        Me.MECompAddress.Size = New System.Drawing.Size(278, 74)
         Me.MECompAddress.TabIndex = 159
         Me.MECompAddress.TabStop = False
         '
@@ -857,7 +869,7 @@ Partial Class FormViewPRProdWO
         '
         'LDOCaption
         '
-        Me.LDOCaption.Location = New System.Drawing.Point(673, 89)
+        Me.LDOCaption.Location = New System.Drawing.Point(673, 62)
         Me.LDOCaption.Name = "LDOCaption"
         Me.LDOCaption.Size = New System.Drawing.Size(79, 13)
         Me.LDOCaption.TabIndex = 156
@@ -926,6 +938,50 @@ Partial Class FormViewPRProdWO
         Me.LWOCaption.TabIndex = 86
         Me.LWOCaption.Text = "WO Number"
         '
+        'DEPIBDueDate
+        '
+        Me.DEPIBDueDate.EditValue = Nothing
+        Me.DEPIBDueDate.Enabled = False
+        Me.DEPIBDueDate.Location = New System.Drawing.Point(768, 87)
+        Me.DEPIBDueDate.Name = "DEPIBDueDate"
+        Me.DEPIBDueDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPIBDueDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEPIBDueDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEPIBDueDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEPIBDueDate.Properties.Mask.EditMask = ""
+        Me.DEPIBDueDate.Size = New System.Drawing.Size(131, 20)
+        Me.DEPIBDueDate.TabIndex = 183
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Location = New System.Drawing.Point(673, 90)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl3.TabIndex = 182
+        Me.LabelControl3.Text = "PIB Due Date"
+        '
+        'DEAjuDate
+        '
+        Me.DEAjuDate.EditValue = Nothing
+        Me.DEAjuDate.Enabled = False
+        Me.DEAjuDate.Location = New System.Drawing.Point(768, 113)
+        Me.DEAjuDate.Name = "DEAjuDate"
+        Me.DEAjuDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEAjuDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DEAjuDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DEAjuDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DEAjuDate.Properties.Mask.EditMask = ""
+        Me.DEAjuDate.Size = New System.Drawing.Size(131, 20)
+        Me.DEAjuDate.TabIndex = 185
+        '
+        'LabelControl8
+        '
+        Me.LabelControl8.Location = New System.Drawing.Point(673, 116)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(42, 13)
+        Me.LabelControl8.TabIndex = 184
+        Me.LabelControl8.Text = "Aju Date"
+        '
         'FormViewPRProdWO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -986,6 +1042,10 @@ Partial Class FormViewPRProdWO
         CType(Me.TEPRNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECompTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEWOPONumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEPIBDueDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEPIBDueDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEAjuDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DEAjuDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1062,4 +1122,8 @@ Partial Class FormViewPRProdWO
     Friend WithEvents TEBOFNo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Lbl As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BViewPIB As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DEAjuDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DEPIBDueDate As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
 End Class

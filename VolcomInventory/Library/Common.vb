@@ -2497,16 +2497,32 @@ Module Common
             Return date_now
         End If
     End Function
+    Function parse_view_date(ByVal datex As String)
+        Dim query As String = ""
+        Dim date_now As String = ""
+
+        If datex = "" Then
+            date_now = ""
+        Else
+            date_now = Date.Parse(datex).ToString("dd MMM yyyy")
+        End If
+
+        Return date_now
+    End Function
     Function view_date_from(ByVal datex As String, ByVal plus As Integer)
         Dim query As String = ""
-        Dim date_now As String
+        Dim date_now As String = ""
 
-        If plus = 0 Then
-            query = "SELECT DATE_FORMAT('" & datex & "','%d/%m/%Y') AS now_datex"
-            date_now = execute_query(query, 0, True, "", "", "", "")
+        If datex = "" Then
+            date_now = ""
         Else
-            query = "SELECT DATE_FORMAT(DATE_ADD('" & datex & "',INTERVAL " & plus & " DAY),'%d/%m/%Y')  AS now_datex "
-            date_now = execute_query(query, 0, True, "", "", "", "")
+            If plus = 0 Then
+                query = "SELECT DATE_FORMAT('" & datex & "','%d %M %Y') AS now_datex"
+                date_now = execute_query(query, 0, True, "", "", "", "")
+            Else
+                query = "SELECT DATE_FORMAT(DATE_ADD('" & datex & "',INTERVAL " & plus & " DAY),'%d %M %Y')  AS now_datex "
+                date_now = execute_query(query, 0, True, "", "", "", "")
+            End If
         End If
 
         Return date_now
