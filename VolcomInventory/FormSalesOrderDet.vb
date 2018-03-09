@@ -864,9 +864,25 @@ Public Class FormSalesOrderDet
                             GVItemList.SetRowCellValue(rh, "name", data_filter(0)("design_display_name").ToString)
                             GVItemList.SetRowCellValue(rh, "size", data_filter(0)("Size").ToString)
                             GVItemList.SetRowCellValue(rh, "sales_order_det_qty", 0)
-                            GVItemList.SetRowCellValue(rh, "id_design_price", data_filter(0)("id_design_price").ToString)
-                            GVItemList.SetRowCellValue(rh, "design_price", data_filter(0)("design_price"))
-                            GVItemList.SetRowCellValue(rh, "design_price_type", data_filter(0)("design_price_type").ToString)
+
+                            'untuk claim toko normal
+                            If LEStatusSO.EditValue.ToString = "8" And id_store_type = "1" Then 'jika cat claim dan toko normal => harga normal
+                                Dim dtp As DataTable = getNormalPrice(data_filter(0)("id_design").ToString)
+                                If dtp.Rows.Count > 0 Then
+                                    GVItemList.SetRowCellValue(rh, "id_design_price", dtp(0)("id_design_price").ToString)
+                                    GVItemList.SetRowCellValue(rh, "design_price", dtp(0)("design_price"))
+                                    GVItemList.SetRowCellValue(rh, "design_price_type", dtp(0)("design_price_type").ToString)
+                                Else
+                                    GVItemList.SetRowCellValue(rh, "id_design_price", data_filter(0)("id_design_price").ToString)
+                                    GVItemList.SetRowCellValue(rh, "design_price", data_filter(0)("design_price"))
+                                    GVItemList.SetRowCellValue(rh, "design_price_type", data_filter(0)("design_price_type").ToString)
+                                End If
+                            Else 'selaiinnya haga update
+                                GVItemList.SetRowCellValue(rh, "id_design_price", data_filter(0)("id_design_price").ToString)
+                                GVItemList.SetRowCellValue(rh, "design_price", data_filter(0)("design_price"))
+                                GVItemList.SetRowCellValue(rh, "design_price_type", data_filter(0)("design_price_type").ToString)
+                            End If
+
                             GVItemList.SetRowCellValue(rh, "amount", 0)
                             GVItemList.SetRowCellValue(rh, "qty_avail", data_filter(0)("total_allow"))
                             GVItemList.SetRowCellValue(rh, "sales_order_det_note", "")
@@ -1187,4 +1203,5 @@ Public Class FormSalesOrderDet
             End If
         End If
     End Sub
+
 End Class
