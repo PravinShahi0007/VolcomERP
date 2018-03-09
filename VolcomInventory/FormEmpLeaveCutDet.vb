@@ -104,19 +104,19 @@
                     For j As Integer = 0 To data.Rows.Count - 1
                         Dim cuti_sisa As Integer = data.Rows(j)("qty")
                         Dim date_exp As Date = data.Rows(j)("date_expired")
-                        Dim type_leave As Date = data.Rows(j)("type").ToString
+                        Dim type_leave As String = data.Rows(j)("type").ToString
                         If adj_leave = 0 Then
                             Exit For
                         ElseIf adj_leave >= cuti_sisa Then
                             adj_leave = adj_leave - cuti_sisa
                             'insert cuti sejumlah cuti sisa
                             Dim query_pot_cuti As String = "INSERT INTO tb_emp_stock_leave(id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,`type`,note)
-                                                            VALUES('" & id_employee & "','" & cuti_sisa.ToString & "',2,NOW(),'" & date_exp.ToString("yyyy-MM-dd") & "','" & type_leave & "','Potongan Kekurangan Jam Kerja')"
+                                                            VALUES('" & id_employee & "','" & cuti_sisa.ToString & "',2,NOW(),'" & date_exp.ToString("yyyy-MM-dd") & "','2','" & type_leave & "','Potongan Kekurangan Jam Kerja')"
                             execute_non_query(query_pot_cuti, True, "", "", "", "")
                         ElseIf adj_leave < cuti_sisa Then
                             'insert cuti sejumlah sisa
                             Dim query_pot_cuti As String = "INSERT INTO tb_emp_stock_leave(id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,`type`,note)
-                                                            VALUES('" & id_employee & "','" & adj_leave.ToString & "',2,NOW(),'" & date_exp.ToString("yyyy-MM-dd") & "','" & type_leave & "','Potongan Kekurangan Jam Kerja')"
+                                                            VALUES('" & id_employee & "','" & adj_leave.ToString & "',2,NOW(),'" & date_exp.ToString("yyyy-MM-dd") & "','2','" & type_leave & "','Potongan Kekurangan Jam Kerja')"
                             execute_non_query(query_pot_cuti, True, "", "", "", "")
                             adj_leave = 0
                         End If
@@ -125,7 +125,7 @@
                     If adj_leave > 0 Then
                         'advance leave here
                         Dim query_pot_cuti As String = "INSERT INTO tb_emp_stock_leave_adv(id_emp,qty,adv_datetime)
-                                                        VALUES('" & id_employee & "',NULL,'" & adj_leave & "',NOW())"
+                                                        VALUES('" & id_employee & "','" & adj_leave & "',NOW())"
                         execute_non_query(query_pot_cuti, True, "", "", "", "")
                     End If
                 End If

@@ -12,10 +12,14 @@
         If MEComment.Text = "" Then
             stopCustom("Please write the comment first !")
         Else
+            query = "SELECT get_type_division('" & FormMasterDesignSingle.id_design & "')"
+            Dim type_email As String = execute_query(query, 0, True, "", "", "", "")
+            '
             query = "INSERT INTO tb_m_design_comment(id_design,id_user,datetime,comment) VALUES('" & FormMasterDesignSingle.id_design & "','" & id_user & "',NOW(),'" & addSlashes(MEComment.Text) & "')"
             execute_non_query(query, True, "", "", "", "")
             Dim mail As ClassSendEmail = New ClassSendEmail
             mail.report_mark_type = "design_comment"
+            mail.type_email = type_email
             mail.design = FormMasterDesignSingle.TEDisplayName.Text.ToString
             mail.design_code = FormMasterDesignSingle.TECode.Text.ToString
             mail.date_string = Now.ToString("dd MMM yyyy H:mm:ss")
