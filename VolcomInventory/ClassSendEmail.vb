@@ -149,6 +149,7 @@ Public Class ClassSendEmail
             mail.IsBodyHtml = True
             mail.Body = email_body_comment(season, design, design_code, comment_by, date_string, comment)
             client.Send(mail)
+
         End If
     End Sub
     Sub send_email_appr(ByVal report_mark_type As String, ByVal id_leave As String, ByVal is_appr As Boolean)
