@@ -149,6 +149,7 @@ Public Class ClassSendEmail
             mail.IsBodyHtml = True
             mail.Body = email_body_comment(season, design, design_code, comment_by, date_string, comment)
             client.Send(mail)
+        ElseIf report_mark_type = "prod_over_memo" Then
 
         End If
     End Sub
