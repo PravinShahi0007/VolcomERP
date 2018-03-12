@@ -5189,7 +5189,7 @@ WHERE b.report_mark_type='" & report_mark_type & "' ORDER BY b.id_report_status,
     End Function
 
 
-    Function getNormalPrice(ByVal id_design_par As String)
+    Public Function getNormalPrice(ByVal id_design_par As String)
         Dim query As String = "SELECT * FROM tb_m_design_price p
         INNER JOIN tb_lookup_design_price_type pt ON pt.id_design_price_type = p.id_design_price_type
         INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = pt.id_design_cat
