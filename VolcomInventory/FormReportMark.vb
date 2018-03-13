@@ -3777,6 +3777,10 @@
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+
+            End If
+
             Dim query_upd As String = "UPDATE tb_prod_over_memo SET id_report_status='" + id_status_reportx + "' WHERE id_prod_over_memo='" + id_report + "' "
             execute_non_query(query_upd, True, "", "", "", "")
             FormProdOverMemoDet.actionLoad()
