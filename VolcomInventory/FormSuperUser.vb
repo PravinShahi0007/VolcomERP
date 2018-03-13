@@ -79,12 +79,6 @@
         '    submit_who_prepared("120", data.Rows(i)("id_sales_return").ToString, data.Rows(i)("last_update_by").ToString)
         'Next
         'Cursor = Cursors.Default
-        Cursor = Cursors.WaitCursor
-        Dim mail As New ClassSendEmail()
-        mail.report_mark_type = "126"
-        mail.id_report = "6"
-        mail.send_email()
-        Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnDepartement_Click(sender As Object, e As EventArgs) Handles BtnDepartement.Click

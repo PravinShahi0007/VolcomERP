@@ -247,6 +247,7 @@ Public Class ClassSendEmail
                       <th>Description</th>
                       <th>Qty</th>
                     </tr> "
+            Dim total As Integer = 0
             For i As Integer = 0 To (data.Rows.Count - 1)
                 body_temp += "<tr>
             <td>" + data.Rows(i)("prod_order_number").ToString + "</td>
@@ -254,8 +255,14 @@ Public Class ClassSendEmail
             <td>" + data.Rows(i)("name").ToString + "</td>
             <td>" + data.Rows(i)("qty").ToString + "</td>
             </tr>"
+                total += data.Rows(i)("qty")
             Next
-            body_temp += "</table>
+            body_temp += "
+            <tr>
+                <th colspan='3' align='center'>TOTAL</th>
+                <td>" + total.ToString + "</td>
+            </tr>
+            </table>
               </td>
              </tr> 
            <tr>

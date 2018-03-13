@@ -3778,7 +3778,12 @@
             End If
 
             If id_status_reportx = "6" Then
-
+                Cursor = Cursors.WaitCursor
+                Dim mail As New ClassSendEmail()
+                mail.report_mark_type = "126"
+                mail.id_report = id_report
+                mail.send_email()
+                Cursor = Cursors.Default
             End If
 
             Dim query_upd As String = "UPDATE tb_prod_over_memo SET id_report_status='" + id_status_reportx + "' WHERE id_prod_over_memo='" + id_report + "' "
