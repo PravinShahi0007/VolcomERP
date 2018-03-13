@@ -1656,39 +1656,34 @@
             Cursor = Cursors.Default
         ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             'prod receive qc
-            Try
-                If id_status_reportx = "6" Then
-                    'generate unique
-                    Dim query_gen As String = "CALL generate_prod_unique('" & id_report & "',1)"
-                    execute_non_query(query_gen, True, "", "", "", "")
-                    'delete empty data
-                    For i As Integer = 0 To (FormProductionRecDet.GVListPurchase.RowCount - 1)
-                        Dim id_prod_order_rec_det As String = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "id_prod_order_rec_det").ToString
-                        Dim qty As Decimal = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_qty")
-                        If qty = 0.0 Then
-                            Dim query_del As String = "DELETE FROM tb_prod_order_rec_det WHERE id_prod_order_rec_det = '" + id_prod_order_rec_det + "'"
-                            execute_non_query(query_del, True, "", "", "", "")
-                        End If
-                    Next
-                End If
+            If id_status_reportx = "6" Then
+                'generate unique
+                Dim query_gen As String = "CALL generate_prod_unique('" & id_report & "',1)"
+                execute_non_query(query_gen, True, "", "", "", "")
+                'delete empty data
+                For i As Integer = 0 To (FormProductionRecDet.GVListPurchase.RowCount - 1)
+                    Dim id_prod_order_rec_det As String = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "id_prod_order_rec_det").ToString
+                    Dim qty As Decimal = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_qty")
+                    If qty = 0.0 Then
+                        Dim query_del As String = "DELETE FROM tb_prod_order_rec_det WHERE id_prod_order_rec_det = '" + id_prod_order_rec_det + "'"
+                        execute_non_query(query_del, True, "", "", "", "")
+                    End If
+                Next
+            End If
 
-                query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
-                execute_non_query(query, True, "", "", "", "")
-                'infoCustom("Status changed.")
+            query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
 
-                If form_origin = "FormProductionRecDet" Then
-                    FormProductionRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormProductionRecDet.allow_status()
-                    FormProductionRecDet.view_list_rec()
-                    FormProductionRec.view_prod_order_rec()
-                    FormProductionRec.GVProdRec.FocusedRowHandle = find_row(FormProductionRec.GVProdRec, "id_prod_order_rec", id_report)
-                Else
-                    FormViewProductionRec.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormWork.view_production_rec()
-                End If
-            Catch ex As Exception
-                errorConnection()
-            End Try
+            If form_origin = "FormProductionRecDet" Then
+                FormProductionRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormProductionRecDet.allow_status()
+                FormProductionRecDet.view_list_rec()
+                FormProductionRec.view_prod_order_rec()
+                FormProductionRec.GVProdRec.FocusedRowHandle = find_row(FormProductionRec.GVProdRec, "id_prod_order_rec", id_report)
+            Else
+                FormViewProductionRec.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            End If
         ElseIf report_mark_type = "29" Then
             'Production MRS
             query = String.Format("UPDATE tb_prod_order_mrs SET id_report_status='{0}' WHERE id_prod_order_mrs='{1}'", id_status_reportx, id_report)
