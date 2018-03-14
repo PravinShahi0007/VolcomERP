@@ -3733,7 +3733,9 @@
 
             'kalo completed generate nomer urut
             If id_status_reportx = "6" Then
-                Dim qm As String = "SELECT IFNULL(MAX(dd.`no`),0) AS `maks` FROM tb_emp_uni_design_det dd WHERE dd.id_emp_uni_design=" + id_report + " "
+                Dim qm As String = "SELECT IFNULL(MAX(dd.`no`),0) AS `maks` FROM tb_emp_uni_design_det dd 
+                INNER JOIN tb_emp_uni_design d ON d.id_emp_uni_design = dd.id_emp_uni_design
+                WHERE d.id_emp_uni_period=" + FormEmpUniListDet.LEPeriodx.EditValue.ToString + " "
                 Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
                 Dim maks As Integer = dm.Rows(0)("maks")
 
