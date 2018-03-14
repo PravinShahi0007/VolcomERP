@@ -51,6 +51,7 @@ Partial Class FormProdOverMemoDet
         Me.PanelBottomRight = New DevExpress.XtraEditors.PanelControl()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlTop.SuspendLayout()
         CType(Me.DEExpired.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -169,7 +170,7 @@ Partial Class FormProdOverMemoDet
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnIdPO, Me.GridColumnPONumber, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnRemark})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnId, Me.GridColumnIdPO, Me.GridColumnPONumber, Me.GridColumnCode, Me.GridColumnDescription, Me.GridColumnRemark, Me.GridColumnQty})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsView.ShowGroupPanel = False
@@ -224,7 +225,7 @@ Partial Class FormProdOverMemoDet
         Me.GridColumnRemark.FieldName = "remark"
         Me.GridColumnRemark.Name = "GridColumnRemark"
         Me.GridColumnRemark.Visible = True
-        Me.GridColumnRemark.VisibleIndex = 3
+        Me.GridColumnRemark.VisibleIndex = 4
         Me.GridColumnRemark.Width = 260
         '
         'PanelControlNav
@@ -383,6 +384,14 @@ Partial Class FormProdOverMemoDet
         Me.LabelControl21.TabIndex = 144
         Me.LabelControl21.Text = "Status"
         '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.FieldName = "qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 3
+        '
         'FormProdOverMemoDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -455,4 +464,5 @@ Partial Class FormProdOverMemoDet
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDescription As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRemark As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
 End Class

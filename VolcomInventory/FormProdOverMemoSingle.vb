@@ -90,7 +90,7 @@
                         ,wo.id_prod_order_wo,
                         IF(a.is_closing_rec=1,'Closed','Opened') AS `rec_status`,
                         a.is_special_rec, a.special_rec_memo, a.special_rec_datetime,
-                        mm.memo_number, mm.created_date, mm.expired_date, '' AS `remark`, 'no' AS `check`
+                        mm.memo_number, mm.created_date, mm.expired_date, '' AS `remark`, 'no' AS `check`, 0 AS `qty`
                         FROM tb_prod_order a 
                         INNER JOIN tb_prod_order_det pod ON pod.id_prod_order=a.id_prod_order 
                         INNER JOIN tb_prod_demand_design b ON a.id_prod_demand_design = b.id_prod_demand_design 
@@ -192,6 +192,7 @@
                 newRow("prod_order_number") = GVProd.GetRowCellValue(i, "prod_order_number").ToString
                 newRow("code") = GVProd.GetRowCellValue(i, "design_code").ToString
                 newRow("name") = GVProd.GetRowCellValue(i, "design_display_name").ToString
+                newRow("qty") = GVProd.GetRowCellValue(i, "qty")
                 newRow("remark") = GVProd.GetRowCellValue(i, "remark").ToString
                 TryCast(FormProdOverMemoDet.GCData.DataSource, DataTable).Rows.Add(newRow)
                 FormProdOverMemoDet.GCData.RefreshDataSource()

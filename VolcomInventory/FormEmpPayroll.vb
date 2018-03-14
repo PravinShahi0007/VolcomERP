@@ -16,6 +16,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         '
         GCPayrollPeriode.DataSource = data
+        '
         check_but()
     End Sub
 
@@ -72,6 +73,7 @@
 
             GCPayroll.DataSource = data
             GVPayroll.BestFitColumns()
+            '
         End If
     End Sub
 
@@ -118,5 +120,9 @@
                 load_payroll_detail()
             End If
         End If
+    End Sub
+
+    Private Sub ChangePendingStatusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangePendingStatusToolStripMenuItem.Click
+
     End Sub
 End Class

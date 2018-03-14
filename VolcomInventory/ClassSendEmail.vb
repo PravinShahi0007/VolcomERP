@@ -130,7 +130,7 @@ Public Class ClassSendEmail
             Next
             'Send CC
             Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` FROM tb_mail_dsg_cmnt md
-                                                INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+                                                 INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
                                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
                                               WHERE class='" & type_email & "' AND is_to='2'"
             Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
@@ -148,6 +148,169 @@ Public Class ClassSendEmail
             mail.Subject = "New comment on design " & design & " (Season : " & season & ")"
             mail.IsBodyHtml = True
             mail.Body = email_body_comment(season, design, design_code, comment_by, date_string, comment)
+            client.Send(mail)
+        ElseIf report_mark_type = "126" Then 'over production memo
+            ' Create a new report. 
+            Dim from_mail As MailAddress = New MailAddress("system@volcom.mail", "Over Production Memo - Volcom ERP")
+            Dim mail As MailMessage = New MailMessage()
+            mail.From = from_mail
+
+            'Send to
+            Dim query_send_mail As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+                                             FROM tb_prod_over_memo_mail md
+                                             INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+                                             INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                                             WHERE is_to='1'"
+            Dim data_send_mail As DataTable = execute_query(query_send_mail, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_mail.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_mail.Rows(i)("email_lokal").ToString, data_send_mail.Rows(i)("employee_name").ToString)
+                mail.To.Add(to_mail)
+            Next
+
+            'Send CC
+            Dim query_send_cc As String = "SELECT emp.`email_lokal`,emp.`employee_name` 
+                                           FROM tb_prod_over_memo_mail md
+                                           INNER JOIN tb_m_user usr ON usr.`id_user`=md.id_user
+                                           INNER JOIN tb_m_employee emp ON emp.`id_employee`=usr.`id_employee`
+                                           WHERE is_to='2'"
+            Dim data_send_cc As DataTable = execute_query(query_send_cc, -1, True, "", "", "", "")
+            For i As Integer = 0 To data_send_cc.Rows.Count - 1
+                Dim to_mail As MailAddress = New MailAddress(data_send_cc.Rows(i)("email_lokal").ToString, data_send_cc.Rows(i)("employee_name").ToString)
+                mail.CC.Add(to_mail)
+            Next
+
+            'mail body
+            '----main
+            Dim mov As New ClassProdOverMemo()
+            Dim qm As String = mov.queryMain("AND m.id_prod_over_memo=" + id_report + "", "1")
+            Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
+            '----detail
+            Dim query As String = "SELECT md.id_prod_over_memo_det, md.id_prod_over_memo, md.id_prod_order, po.prod_order_number, d.design_code AS `code`, d.design_display_name AS `name`, md.remark, md.qty
+            FROM tb_prod_over_memo_det md
+            INNER JOIN tb_prod_order po ON po.id_prod_order = md.id_prod_order
+            INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
+            INNER JOIN tb_m_design d ON d.id_design = pdd.id_design
+            WHERE md.id_prod_over_memo=" + id_report + " "
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+
+            Dim body_temp As String = " <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>
+         <tbody><tr>
+          <td style='padding:30.0pt 30.0pt 30.0pt 30.0pt'>
+          <div align='center'>
+
+          <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+           <tbody><tr>
+            <td style='padding:0in 0in 0in 0in'></td>
+           </tr>
+           <tr>
+            <td style='padding:0in 0in 0in 0in'>
+            <p class='MsoNormal' align='center' style='text-align:center'><a href='http://www.volcom.co.id/' title='Volcom' target='_blank' data-saferedirecturl='https://www.google.com/url?hl=en&amp;q=http://www.volcom.co.id/&amp;source=gmail&amp;ust=1480121870771000&amp;usg=AFQjCNEjXvEZWgDdR-Wlke7nn0fmc1ZUuA'><span style='text-decoration:none'><img border='0' width='180' id='m_1811720018273078822_x0000_i1025' src='https://ci3.googleusercontent.com/proxy/x-zXDZUS-2knkEkbTh3HzgyAAusw1Wz7dqV-lbnl39W_4F6T97fJ2_b9doP3nYi0B6KHstdb-tK8VAF_kOaLt2OH=s0-d-e1-ft#http://www.volcom.co.id/enews/img/volcom.jpg' alt='Volcom' class='CToWUd'></span></a><u></u><u></u></p>
+            </td>
+           </tr>
+           <tr>
+            <td style='padding:0in 0in 0in 0in'></td>
+           </tr>
+           <tr>
+            <td style='padding:0in 0in 0in 0in'>
+            <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='600' style='width:6.25in;background:white'>
+             <tbody><tr>
+              <td style='padding:0in 0in 0in 0in'>
+
+              </td>
+             </tr>
+            </tbody></table>
+            <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;background-color:#eff0f1;height: 5px;'><u></u>&nbsp;<u></u></span></p>
+            <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+            <table width='100%' class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+             <tbody>
+             <tr>
+              <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+              <div>
+              <p class='MsoNormal' style='line-height:14.25pt'><b><span style='font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060'>Dear All,</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span></p>
+              </div>
+              </td>
+             </tr>
+             <tr>
+              <td style='padding:1.0pt 1.0pt 1.0pt 15.0pt' colspan='3'>
+              <div>
+              <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Memo No : " + dm.Rows(0)("memo_number").ToString + " has been submitted with details below </span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+              </div>
+              </td>
+             </tr>
+         
+             <tr>
+              <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+                <table width='100%' class='m_1811720018273078822MsoNormalTable' border='1' cellspacing='0' cellpadding='5' style='background:white'>
+                    <tr>
+                      <th>FGPO#</th>
+                      <th>Code</th>
+                      <th>Description</th>
+                      <th>Qty</th>
+                    </tr> "
+            Dim total As Integer = 0
+            For i As Integer = 0 To (data.Rows.Count - 1)
+                body_temp += "<tr>
+            <td>" + data.Rows(i)("prod_order_number").ToString + "</td>
+            <td>" + data.Rows(i)("code").ToString + "</td>
+            <td>" + data.Rows(i)("name").ToString + "</td>
+            <td>" + data.Rows(i)("qty").ToString + "</td>
+            </tr>"
+                total += data.Rows(i)("qty")
+            Next
+            body_temp += "
+            <tr>
+                <th colspan='3' align='center'>TOTAL</th>
+                <td>" + total.ToString + "</td>
+            </tr>
+            </table>
+              </td>
+             </tr> 
+           <tr>
+              <td style ='padding:15.0pt 15.0pt 8.0pt 15.0pt' colspan='3'>
+              <div>
+                  <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>This memo is valid until " + DateTime.Parse(dm.Rows(0)("expired_date").ToString).ToString("dd MMMM yyyy hh:mm tt") + "</span></b><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'><u></u><u></u></span>
+              </div>
+                          </td>
+             </tr>
+         
+      <tr>
+              <td style='padding:15.0pt 15.0pt 15.0pt 15.0pt' colspan='3'>
+              <div>
+              <p class='MsoNormal' style='line-height:14.25pt'><span style='font-size:10.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#606060;letter-spacing:.4pt'>Thank you<br /><b>Volcom ERP</b><u></u><u></u></span></p>
+
+              </div>
+              </td>
+             </tr>
+            </tbody></table>
+            <p class='MsoNormal' style='background-color:#eff0f1'><span style='display:block;height: 10px;'><u></u>&nbsp;<u></u></span></p>
+            <p class='MsoNormal'><span style='display:none'><u></u>&nbsp;<u></u></span></p>
+            <div align='center'>
+            <table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' style='background:white'>
+             <tbody><tr>
+              <td style='padding:6.0pt 6.0pt 6.0pt 6.0pt;text-align:center;'>
+                <span style='text-align:center;font-size:7.0pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#a0a0a0;letter-spacing:.4pt;'>This email send directly from system. Do not reply.</b><u></u><u></u></span>
+              <p class='MsoNormal' align='center' style='margin-bottom:12.0pt;text-align:center;padding-top:0px;'><img border='0' width='300' id='m_1811720018273078822_x0000_i1028' src='https://ci6.googleusercontent.com/proxy/xq6o45mp_D9Z7DHCK5WT7GKuQ2QDaLg1hyMxoHX5ofUIv_m7GwasoczpbAOn6l6Ze-UfLuIUAndSokPvO633nnO9=s0-d-e1-ft#http://www.volcom.co.id/enews/img/footer.jpg' class='CToWUd'><u></u><u></u></p>
+              </td>
+             </tr>
+            </tbody></table>
+            </div>
+            </td>
+           </tr>
+          </tbody></table>
+          </div>
+          </td>
+         </tr>
+        </tbody>
+    </table> "
+            Dim client As SmtpClient = New SmtpClient()
+            client.Port = 25
+            client.DeliveryMethod = SmtpDeliveryMethod.Network
+            client.UseDefaultCredentials = False
+            client.Host = "192.168.1.4"
+            client.Credentials = New System.Net.NetworkCredential("system@volcom.mail", "system123")
+            mail.Subject = "Memo No. : " + dm.Rows(0)("memo_number").ToString
+            mail.IsBodyHtml = True
+            mail.Body = body_temp
             client.Send(mail)
         End If
     End Sub
@@ -802,6 +965,9 @@ Public Class ClassSendEmail
                     </tbody></table>"
         Return body_temp
     End Function
+
+
+
     Function email_temp(ByVal employee_name As String)
         Dim body_temp As String = ""
         body_temp = "<table class='m_1811720018273078822MsoNormalTable' border='0' cellspacing='0' cellpadding='0' width='100%' style='width:100.0%;background:#eeeeee'>

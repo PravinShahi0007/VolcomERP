@@ -42,7 +42,7 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "SELECT md.id_prod_over_memo_det, md.id_prod_over_memo, md.id_prod_order, po.prod_order_number, d.design_code AS `code`, d.design_display_name AS `name`, md.remark 
+        Dim query As String = "SELECT md.id_prod_over_memo_det, md.id_prod_over_memo, md.id_prod_order, po.prod_order_number, d.design_code AS `code`, d.design_display_name AS `name`, md.remark, md.qty
         FROM tb_prod_over_memo_det md
         INNER JOIN tb_prod_order po ON po.id_prod_order = md.id_prod_order
         INNER JOIN tb_prod_demand_design pdd ON pdd.id_prod_demand_design = po.id_prod_demand_design
@@ -159,12 +159,12 @@
                 id_prod_over_memo = execute_query(qi, 0, True, "", "", "", "")
 
                 'detail
-                Dim qd As String = "INSERT INTO tb_prod_over_memo_det(id_prod_over_memo, id_prod_order, remark) VALUES "
+                Dim qd As String = "INSERT INTO tb_prod_over_memo_det(id_prod_over_memo, id_prod_order, remark, qty) VALUES "
                 For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                     If i > 0 Then
                         qd += ", "
                     End If
-                    qd += "('" + id_prod_over_memo + "', '" + GVData.GetRowCellValue(i, "id_prod_order").ToString + "', '" + GVData.GetRowCellValue(i, "remark").ToString + "') "
+                    qd += "('" + id_prod_over_memo + "', '" + GVData.GetRowCellValue(i, "id_prod_order").ToString + "', '" + GVData.GetRowCellValue(i, "remark").ToString + "', '" + decimalSQL(GVData.GetRowCellValue(i, "qty").ToString) + "') "
                 Next
                 execute_non_query(qd, True, "", "", "", "")
 
