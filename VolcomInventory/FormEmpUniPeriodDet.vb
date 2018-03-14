@@ -22,10 +22,16 @@
             TxtTolerance.EditValue = data.Rows(0)("tolerance")
             XTCUni.Enabled = True
             BtnSave.Text = "Save Changes"
+            viewDept()
             viewDetail()
-            viewDesignList()
-            viewOrder()
         End If
+    End Sub
+
+    Sub viewDept()
+        Dim query As String = ""
+        query += "SELECT 0 as id_departement, 'All departement' as departement UNION  "
+        query += "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
+        viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
     End Sub
 
     Sub viewDetail()
@@ -39,6 +45,17 @@
         Dim query As String = "CALL view_emp_uni_design(" + id_emp_uni_period + ") "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesignList.DataSource = data
+        GVDesignList.Columns("1").Caption = "1" + System.Environment.NewLine + "XXS"
+        GVDesignList.Columns("2").Caption = "2" + System.Environment.NewLine + "XS"
+        GVDesignList.Columns("3").Caption = "3" + System.Environment.NewLine + "S"
+        GVDesignList.Columns("4").Caption = "4" + System.Environment.NewLine + "M"
+        GVDesignList.Columns("5").Caption = "5" + System.Environment.NewLine + "ML"
+        GVDesignList.Columns("6").Caption = "6" + System.Environment.NewLine + "L"
+        GVDesignList.Columns("7").Caption = "7" + System.Environment.NewLine + "XL"
+        GVDesignList.Columns("8").Caption = "8" + System.Environment.NewLine + "XXL"
+        GVDesignList.Columns("9").Caption = "9" + System.Environment.NewLine + "ALL"
+        GVDesignList.Columns("0").Caption = "0" + System.Environment.NewLine + "SM"
+        GVDesignList.RefreshData()
         Cursor = Cursors.Default
     End Sub
 
@@ -136,6 +153,9 @@
     Private Sub XTCUni_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCUni.SelectedPageChanged
         If XTCUni.SelectedTabPageIndex = 0 Then
             BtnSave.Visible = True
+        ElseIf XTCUni.SelectedTabPageIndex = 1 Then
+            BtnSave.Visible = False
+            viewDesignList()
         Else
             BtnSave.Visible = False
         End If
@@ -147,7 +167,7 @@
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         Cursor = Cursors.WaitCursor
-        print(GCDesignList, TxtPeriodName.Text + " - " + "DESIGN LIST")
+        print_raw(GCDesignList, TxtPeriodName.Text + " - " + "DESIGN LIST")
         Cursor = Cursors.Default
     End Sub
 
