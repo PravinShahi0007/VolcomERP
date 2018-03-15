@@ -23,7 +23,6 @@
             XTCUni.Enabled = True
             BtnSave.Text = "Save Changes"
             viewDept()
-            viewDetail()
         End If
     End Sub
 
@@ -35,7 +34,12 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_emp_uni_budget(" + id_emp_uni_period + ") "
+        Dim dept As String = "0"
+        Try
+            dept = LEDeptSum.EditValue.ToString
+        Catch ex As Exception
+        End Try
+        Dim query As String = "CALL view_emp_uni_budget(" + id_emp_uni_period + ", '" + dept + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
     End Sub
@@ -217,5 +221,9 @@
             Tool.ShowPreviewDialog()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub LEDeptSum_EditValueChanged(sender As Object, e As EventArgs) Handles LEDeptSum.EditValueChanged
+        viewDetail()
     End Sub
 End Class

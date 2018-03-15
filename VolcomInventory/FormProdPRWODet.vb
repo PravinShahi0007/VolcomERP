@@ -77,7 +77,7 @@
             id_report_status = 1
         Else 'editpr_prod_order_date
             If is_po_pr = "1" Then
-                Dim query As String = "SELECT z.bof_no,z.inv_no,z.tax_inv_no,z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,po.id_prod_order,po.prod_order_number,
+                Dim query As String = "SELECT z.bof_no,z.inv_no,z.tax_inv_no,z.pr_prod_order_aju,z.pr_prod_order_pib,z.pr_prod_order_aju_date,z.pr_prod_order_pib_due_date,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,po.id_prod_order,po.prod_order_number,
                                         IFNULL(z.id_prod_order_rec,0) AS id_prod_order_rec, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,
                                         DATE_FORMAT(rec.delivery_order_date,'%Y-%m-%d') AS delivery_order_date,rec.delivery_order_number,
                                         DATE_FORMAT(rec.prod_order_rec_date,'%Y-%m-%d') AS prod_order_rec_date, d.comp_name AS comp_to, 
@@ -123,6 +123,8 @@
 
                 TEPIB.Text = data.Rows(0)("pr_prod_order_pib").ToString
                 TEAju.Text = data.Rows(0)("pr_prod_order_aju").ToString
+                DEPIBDueDate.EditValue = data.Rows(0)("pr_prod_order_pib_due_date")
+                DEAjuDueDate.EditValue = data.Rows(0)("pr_prod_order_aju_date")
 
                 'add due date
                 DEDueDate.EditValue = data.Rows(0)("pr_prod_order_due_date")
@@ -133,7 +135,7 @@
                     TEDP.EditValue = ((Decimal.Parse(data.Rows(0)("pr_prod_order_dp").ToString) / Decimal.Parse(TEGrossTot.EditValue)) * 100).ToString("0")
                 End If
             ElseIf is_no_reff = "1" Then
-                Dim query As String = "SELECT z.bof_no,z.inv_no,z.tax_inv_no,z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,
+                Dim query As String = "SELECT z.bof_no,z.inv_no,z.tax_inv_no,z.pr_prod_order_aju,z.pr_prod_order_pib,z.pr_prod_order_aju_date,z.pr_prod_order_pib_due_date,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,
                                         IFNULL(z.id_prod_order_rec,0) AS id_prod_order_rec, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,
                                         d.comp_name AS comp_to, 
                                         z.pr_prod_order_due_date ,z.id_currency
@@ -173,6 +175,8 @@
 
                 TEPIB.Text = data.Rows(0)("pr_prod_order_pib").ToString
                 TEAju.Text = data.Rows(0)("pr_prod_order_aju").ToString
+                DEPIBDueDate.EditValue = data.Rows(0)("pr_prod_order_pib_due_date")
+                DEAjuDueDate.EditValue = data.Rows(0)("pr_prod_order_aju_date")
 
                 'add due date
                 DEDueDate.EditValue = data.Rows(0)("pr_prod_order_due_date")
@@ -183,7 +187,7 @@
                     TEDP.EditValue = ((Decimal.Parse(data.Rows(0)("pr_prod_order_dp").ToString) / Decimal.Parse(TEGrossTot.EditValue)) * 100).ToString("0")
                 End If
             Else
-                Dim query As String = "SELECT z.bof_no,z.inv_no,z.tax_inv_no,z.pr_prod_order_aju,z.pr_prod_order_pib,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,po.id_prod_order,po.prod_order_number,IFNULL(z.id_prod_order_rec,0) as id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,DATE_FORMAT(rec.delivery_order_date,'%Y-%m-%d') AS delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,DATE_FORMAT(rec.prod_order_rec_date,'%Y-%m-%d') AS prod_order_rec_date, d.comp_name AS comp_to, "
+                Dim query As String = "SELECT z.bof_no,z.inv_no,z.tax_inv_no,z.pr_prod_order_aju,z.pr_prod_order_pib,z.pr_prod_order_aju_date,z.pr_prod_order_pib_due_date,z.id_prod_order_wo,z.pr_prod_order_vat,z.pr_prod_order_dp,z.id_comp_contact_to,po.id_prod_order,po.prod_order_number,IFNULL(z.id_prod_order_rec,0) as id_prod_order_rec,l.overhead, z.id_report_status,h.report_status,z.pr_prod_order_note,z.id_pr_prod_order,z.pr_prod_order_number,z.pr_prod_order_date,rec.id_prod_order_rec,rec.prod_order_rec_number,DATE_FORMAT(rec.delivery_order_date,'%Y-%m-%d') AS delivery_order_date,rec.delivery_order_number,wo.prod_order_wo_number,DATE_FORMAT(rec.prod_order_rec_date,'%Y-%m-%d') AS prod_order_rec_date, d.comp_name AS comp_to, "
                 query += "DATE_FORMAT(DATE_ADD(wo.prod_order_wo_date,INTERVAL (wo.prod_order_wo_top+wo.prod_order_wo_lead_time) DAY),'%Y-%m-%d') AS prod_order_wo_top,z.pr_prod_order_due_date,z.id_currency "
                 query += "FROM tb_pr_prod_order z "
                 query += "INNER JOIN tb_prod_order_wo wo ON wo.id_prod_order_wo = z.id_prod_order_wo "
@@ -239,6 +243,8 @@
 
                 TEPIB.Text = data.Rows(0)("pr_prod_order_pib").ToString
                 TEAju.Text = data.Rows(0)("pr_prod_order_aju").ToString
+                DEPIBDueDate.EditValue = data.Rows(0)("pr_prod_order_pib_due_date")
+                DEAjuDueDate.EditValue = data.Rows(0)("pr_prod_order_aju_date")
 
                 'add due date
                 DEDueDate.EditValue = data.Rows(0)("pr_prod_order_due_date")

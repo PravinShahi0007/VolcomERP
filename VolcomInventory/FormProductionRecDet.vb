@@ -17,6 +17,7 @@ Public Class FormProductionRecDet
     Dim expired_date As DateTime = Nothing
     Dim is_over_tol As String = "2"
     Dim id_prod_over_memo As String = "NULL"
+    Dim qty_limit As Integer = 0
 
 
 
@@ -153,6 +154,11 @@ Public Class FormProductionRecDet
     End Sub
 
     Sub view_po()
+        expired_date = Nothing
+        is_over_tol = "2"
+        id_prod_over_memo = "NULL"
+        qty_limit = 0
+
         Dim query As String = "SELECT b.id_design,d.id_sample, d.design_name, d.design_display_name, a.id_report_status, a.prod_order_number, a.id_po_type, DATE_FORMAT(a.prod_order_date,'%Y-%m-%d') as prod_order_datex, "
         query += "a.prod_order_lead_time, a.prod_order_note, g.po_type, get_total_po(" + id_order + ", 2) AS `total_min`, g.po_type, get_total_po(" + id_order + ", 3) AS `total_max`, get_total_po(" + id_order + ", 4) AS `total_rec`, a.is_special_rec, a.special_rec_memo "
         query += "FROM tb_prod_order a "
@@ -181,15 +187,17 @@ Public Class FormProductionRecDet
         mainVendor()
 
         'see memo
-        Dim qm As String = "SELECT od.id_prod_over_memo,ADDTIME(o.created_date,CONCAT(o.lead_time,':00:00')) AS `expired_date`
+        Dim qm As String = "SELECT od.id_prod_over_memo, od.qty,ADDTIME(o.created_date,CONCAT(o.lead_time,':00:00')) AS `expired_date`
         FROM tb_prod_over_memo_det od
         INNER JOIN tb_prod_over_memo o ON o.id_prod_over_memo = od.id_prod_over_memo 
-        WHERE od.id_prod_order=" + id_order + " AND o.id_report_status=6 AND NOW()<ADDTIME(o.created_date,CONCAT(o.lead_time,':00:00'))
+        LEFT JOIN tb_prod_order_rec rec ON rec.id_prod_over_memo = o.id_prod_over_memo AND rec.id_prod_order = od.id_prod_order AND rec.id_report_status!=5
+        WHERE od.id_prod_order=" + id_order + " AND o.id_report_status=6 AND NOW()<ADDTIME(o.created_date,CONCAT(o.lead_time,':00:00')) AND ISNULL(rec.id_prod_order_rec)
         ORDER BY od.id_prod_over_memo_det ASC "
         Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
         If dm.Rows.Count > 0 Then
             expired_date = dm.Rows(0)("expired_date")
             id_prod_over_memo = dm.Rows(0)("id_prod_over_memo").ToString
+            qty_limit = dm.Rows(0)("qty")
         End If
     End Sub
 
@@ -286,29 +294,39 @@ Public Class FormProductionRecDet
     End Sub
 
     Sub allow_status()
-        If check_edit_report_status(LEReportStatus.EditValue.ToString, "28", id_receive) Then
-            BScan.Enabled = True
-            BDelete.Enabled = True
-            BSave.Enabled = True
-            TEDODate.Properties.ReadOnly = False
-            DEArrive.Properties.ReadOnly = False
-            TEDONumber.Properties.ReadOnly = False
-            MENote.Properties.ReadOnly = False
-            GVListPurchase.OptionsBehavior.Editable = True
-            BtnInfoSrs.Enabled = True
-            GVListPurchase.OptionsCustomization.AllowGroup = False
-        Else
-            BScan.Enabled = False
-            BDelete.Enabled = False
-            BSave.Enabled = False
-            TEDODate.Properties.ReadOnly = True
-            DEArrive.Properties.ReadOnly = True
-            TEDONumber.Properties.ReadOnly = True
-            MENote.Properties.ReadOnly = True
-            GVListPurchase.OptionsBehavior.Editable = False
-            BtnInfoSrs.Enabled = False
-            GVListPurchase.OptionsCustomization.AllowGroup = True
-        End If
+        'If check_edit_report_status(LEReportStatus.EditValue.ToString, "28", id_receive) Then
+        '    BScan.Enabled = True
+        '    BDelete.Enabled = True
+        '    BSave.Enabled = True
+        '    TEDODate.Properties.ReadOnly = False
+        '    DEArrive.Properties.ReadOnly = False
+        '    TEDONumber.Properties.ReadOnly = False
+        '    MENote.Properties.ReadOnly = False
+        '    GVListPurchase.OptionsBehavior.Editable = True
+        '    BtnInfoSrs.Enabled = True
+        '    GVListPurchase.OptionsCustomization.AllowGroup = False
+        'Else
+        '    BScan.Enabled = False
+        '    BDelete.Enabled = False
+        '    BSave.Enabled = False
+        '    TEDODate.Properties.ReadOnly = True
+        '    DEArrive.Properties.ReadOnly = True
+        '    TEDONumber.Properties.ReadOnly = True
+        '    MENote.Properties.ReadOnly = True
+        '    GVListPurchase.OptionsBehavior.Editable = False
+        '    BtnInfoSrs.Enabled = False
+        '    GVListPurchase.OptionsCustomization.AllowGroup = True
+        'End If
+        BScan.Enabled = False
+        BDelete.Enabled = False
+        BSave.Enabled = False
+        TEDODate.Properties.ReadOnly = True
+        DEArrive.Properties.ReadOnly = True
+        TEDONumber.Properties.ReadOnly = True
+        MENote.Properties.ReadOnly = True
+        GVListPurchase.OptionsBehavior.Editable = False
+        BtnInfoSrs.Enabled = False
+        GVListPurchase.OptionsCustomization.AllowGroup = True
 
         'attachment
         If check_attach_report_status(LEReportStatus.EditValue.ToString, "28", id_receive) Then
@@ -441,11 +459,26 @@ Public Class FormProductionRecDet
         Next
         'end of validasi
 
+        'memo
+        Dim cond_memo As Boolean = True
+        If id_prod_over_memo <> "NULL" Then
+            Dim cur_total As Integer = 0
+            Try
+                cur_total = GVListPurchase.Columns("prod_order_rec_det_qty").SummaryItem.SummaryValue.ToString
+            Catch ex As Exception
+            End Try
+            If cur_total <> qty_limit Then
+                cond_memo = False
+            End If
+        End If
+
         If id_receive = "-1" Then
             'new
             rec_number = header_number_prod("3")
             If err_txt = "1" Or Not formIsValidInGroup(EPSampleRec, GroupGeneralHeader) Or id_order = "-1" Then
                 errorInput()
+            ElseIf Not cond_memo Then
+                stopCustom("Received should be equal to " + qty_limit.ToString)
             Else
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to save changes?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
@@ -711,13 +744,18 @@ Public Class FormProductionRecDet
                     countQty(id_prod_order_det)
                     newRows()
                 Else
-                    If id_prod_over_memo <> "NULL" Then
-                        If getTimeDB() < expired_date Then
-                            is_over_tol = "1"
-                            GVBarcode.SetFocusedRowCellValue("is_fix", "2")
-                            GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
-                            countQty(id_prod_order_det)
-                            newRows()
+                    If id_prod_over_memo <> "NULL" Then 'jika ada memo
+                        If getTimeDB() < expired_date Then 'jika masi ada waktu
+                            If (cur_total + 1) <= qty_limit Then
+                                is_over_tol = "1"
+                                GVBarcode.SetFocusedRowCellValue("is_fix", "2")
+                                GVBarcode.SetFocusedRowCellValue("id_prod_order_det", id_prod_order_det)
+                                countQty(id_prod_order_det)
+                                newRows()
+                            Else
+                                GVBarcode.SetFocusedRowCellValue("ean_code", "")
+                                stopCustom("Received should be equal to " + qty_limit.ToString)
+                            End If
                         Else
                             GVBarcode.SetFocusedRowCellValue("ean_code", "")
                             stopCustom("Memo is expired !")
