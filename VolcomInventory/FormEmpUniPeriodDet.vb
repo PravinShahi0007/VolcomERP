@@ -27,13 +27,16 @@
     End Sub
 
     Sub viewDept()
+        Cursor = Cursors.WaitCursor
         Dim query As String = ""
         query += "SELECT 0 as id_departement, 'All departement' as departement UNION  "
         query += "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
         viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewDetail()
+        Cursor = Cursors.WaitCursor
         Dim dept As String = "0"
         Try
             dept = LEDeptSum.EditValue.ToString
@@ -42,6 +45,7 @@
         Dim query As String = "CALL view_emp_uni_budget(" + id_emp_uni_period + ", '" + dept + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
+        Cursor = Cursors.Default
     End Sub
 
     Sub viewDesignList()
