@@ -1526,6 +1526,12 @@ Public Class FormMain
         ElseIf formName = "FormProdOverMemo" Then
             FormProdOverMemoDet.action = "ins"
             FormProdOverMemoDet.ShowDialog()
+        ElseIf formName = "FormMasterAssetCategory" Then
+            FormMasterAssetCategoryDet.id_asset_cat = "-1"
+            FormMasterAssetCategoryDet.ShowDialog()
+        ElseIf formName = "FormMasterAsset" Then
+            FormMasterAssetDet.id_asset = "-1"
+            FormMasterAssetDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2441,6 +2447,12 @@ Public Class FormMain
                 FormProdOverMemoDet.id_prod_over_memo = FormProdOverMemo.GVMemo.GetFocusedRowCellValue("id_prod_over_memo").ToString
                 FormProdOverMemoDet.action = "upd"
                 FormProdOverMemoDet.ShowDialog()
+            ElseIf formName = "FormMasterAssetCategory" Then
+                FormMasterAssetCategoryDet.id_asset_cat = FormMasterAssetCategory.GVAssetCat.GetFocusedRowCellValue("id_asset_cat").ToString
+                FormMasterAssetCategoryDet.ShowDialog()
+            ElseIf formName = "FormMasterAsset" Then
+                FormMasterAssetDet.id_asset = FormMasterAsset.GVAsset.GetFocusedRowCellValue("id_asset").ToString
+                FormMasterAssetDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5544,6 +5556,22 @@ Public Class FormMain
             Else
                 stopCustom("This report already approved.")
             End If
+        ElseIf formName = "FormMasterAssetCategory" Then
+            Dim id As String = FormMasterAssetCategory.GVAssetCat.GetFocusedRowCellValue("id_asset_cat").ToString
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim query_del As String = "DELETE FROM tb_a_asset_cat WHERE id_asset_cat='" + id + "'"
+                execute_non_query(query_del, True, "", "", "", "")
+                FormMasterAssetCategory.load_cat()
+            End If
+        ElseIf formName = "FormMasterAsset" Then
+            Dim id As String = FormMasterAsset.GVAsset.GetFocusedRowCellValue("id_asset").ToString
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim query_del As String = "DELETE FROM tb_a_asset WHERE id_asset='" + id + "'"
+                execute_non_query(query_del, True, "", "", "", "")
+                FormMasterAsset.load_asset()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -6799,6 +6827,10 @@ Public Class FormMain
             print_raw(FormEmpLeaveCut.GCPayrollPeriode, "")
         ElseIf formName = "FormProdOverMemo" Then
             print_raw(FormProdOverMemo.GCMemo, "")
+        ElseIf formName = "FormMasterAssetCategory" Then
+            print_raw(FormMasterAssetCategory.GCAssetCat, "")
+        ElseIf formName = "FormMasterAsset" Then
+            print_raw(FormMasterAsset.GCAsset, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7395,6 +7427,12 @@ Public Class FormMain
         ElseIf formName = "FormProdOverMemo" Then
             FormProdOverMemo.Close()
             FormProdOverMemo.Dispose()
+        ElseIf formName = "FormMasterAssetCategory" Then
+            FormMasterAssetCategory.Close()
+            FormMasterAssetCategory.Dispose()
+        ElseIf formName = "FormMasterAsset" Then
+            FormMasterAsset.Close()
+            FormMasterAsset.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
