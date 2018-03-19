@@ -53,7 +53,11 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnActual = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnStatus = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOrderNumber = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOrderStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnOrderDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnImportExcel = New DevExpress.XtraEditors.SimpleButton()
@@ -345,7 +349,7 @@ Partial Class FormEmpUniPeriodDet
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdEmployee, Me.GridColumnIdBudget, Me.GridColumnNik, Me.GridColumnName, Me.GridColumnDept, Me.GridColumnPosition, Me.GridColumnLevel, Me.GridColumnBudget, Me.GridColumnActual, Me.GridColumn1, Me.GridColumnStatus})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdEmployee, Me.GridColumnIdBudget, Me.GridColumnNik, Me.GridColumnName, Me.GridColumnDept, Me.GridColumnPosition, Me.GridColumnLevel, Me.GridColumnBudget, Me.GridColumnActual, Me.GridColumn1, Me.GridColumnStatus, Me.GridColumnIdOrder, Me.GridColumnOrderNumber, Me.GridColumnOrderStatus})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.GroupCount = 1
         Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", Me.GridColumnBudget, "{0:N2}")})
@@ -452,9 +456,32 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnStatus.Name = "GridColumnStatus"
         Me.GridColumnStatus.Width = 150
         '
+        'GridColumnIdOrder
+        '
+        Me.GridColumnIdOrder.Caption = "IdOrder"
+        Me.GridColumnIdOrder.FieldName = "id_order"
+        Me.GridColumnIdOrder.Name = "GridColumnIdOrder"
+        '
+        'GridColumnOrderNumber
+        '
+        Me.GridColumnOrderNumber.Caption = "Order#"
+        Me.GridColumnOrderNumber.FieldName = "order_number"
+        Me.GridColumnOrderNumber.Name = "GridColumnOrderNumber"
+        Me.GridColumnOrderNumber.Visible = True
+        Me.GridColumnOrderNumber.VisibleIndex = 6
+        '
+        'GridColumnOrderStatus
+        '
+        Me.GridColumnOrderStatus.Caption = "Order Status"
+        Me.GridColumnOrderStatus.FieldName = "order_status"
+        Me.GridColumnOrderStatus.Name = "GridColumnOrderStatus"
+        Me.GridColumnOrderStatus.Visible = True
+        Me.GridColumnOrderStatus.VisibleIndex = 7
+        '
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl2.Controls.Add(Me.BtnOrderDetail)
         Me.PanelControl2.Controls.Add(Me.LEDeptSum)
         Me.PanelControl2.Controls.Add(Me.LabelControl6)
         Me.PanelControl2.Controls.Add(Me.BtnImportExcel)
@@ -468,6 +495,16 @@ Partial Class FormEmpUniPeriodDet
         Me.PanelControl2.Name = "PanelControl2"
         Me.PanelControl2.Size = New System.Drawing.Size(1137, 37)
         Me.PanelControl2.TabIndex = 0
+        '
+        'BtnOrderDetail
+        '
+        Me.BtnOrderDetail.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnOrderDetail.Image = CType(resources.GetObject("BtnOrderDetail.Image"), System.Drawing.Image)
+        Me.BtnOrderDetail.Location = New System.Drawing.Point(371, 0)
+        Me.BtnOrderDetail.Name = "BtnOrderDetail"
+        Me.BtnOrderDetail.Size = New System.Drawing.Size(110, 37)
+        Me.BtnOrderDetail.TabIndex = 16
+        Me.BtnOrderDetail.Text = "Order Detail"
         '
         'LEDeptSum
         '
@@ -1213,4 +1250,8 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents GridColumnNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEDeptSum As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents GridColumnIdOrder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnOrderNumber As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnOrderDetail As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnOrderStatus As DevExpress.XtraGrid.Columns.GridColumn
 End Class
