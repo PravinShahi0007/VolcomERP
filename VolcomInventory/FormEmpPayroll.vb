@@ -122,7 +122,16 @@
         End If
     End Sub
 
-    Private Sub ChangePendingStatusToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangePendingStatusToolStripMenuItem.Click
-
+    Private Sub RICEPending_EditValueChanged(sender As Object, e As EventArgs) Handles RICEPending.EditValueChanged
+        Dim cepending As DevExpress.XtraEditors.CheckEdit = CType(sender, DevExpress.XtraEditors.CheckEdit)
+        If cepending.CheckState = True Then
+            'pending
+            Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_pending='1' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
+            execute_non_query(query_upd, True, "", "", "", "")
+        Else
+            'not pending
+            Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_pending='2' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
+            execute_non_query(query_upd, True, "", "", "", "")
+        End If
     End Sub
 End Class
