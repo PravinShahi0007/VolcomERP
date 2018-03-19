@@ -77,6 +77,7 @@ Partial Class FormMasterEmployee
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
         Me.BClone = New DevExpress.XtraEditors.SimpleButton()
+        Me.BImportSalary = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -544,6 +545,7 @@ Partial Class FormMasterEmployee
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.BImportSalary)
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.PanelControlFreeze)
         Me.PanelControl1.Controls.Add(Me.PanelOpt)
@@ -643,6 +645,16 @@ Partial Class FormMasterEmployee
         Me.BClone.Text = "Clone"
         Me.BClone.Visible = False
         '
+        'BImportSalary
+        '
+        Me.BImportSalary.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BImportSalary.Image = CType(resources.GetObject("BImportSalary.Image"), System.Drawing.Image)
+        Me.BImportSalary.Location = New System.Drawing.Point(115, 0)
+        Me.BImportSalary.Name = "BImportSalary"
+        Me.BImportSalary.Size = New System.Drawing.Size(115, 35)
+        Me.BImportSalary.TabIndex = 111
+        Me.BImportSalary.Text = "Import Salary"
+        '
         'FormMasterEmployee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -730,4 +742,5 @@ Partial Class FormMasterEmployee
     Friend WithEvents gridBandSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandContact As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BClone As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BImportSalary As DevExpress.XtraEditors.SimpleButton
 End Class

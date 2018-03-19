@@ -11180,4 +11180,30 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBAssetCat_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAssetCat.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterAssetCategory.MdiParent = Me
+            FormMasterAssetCategory.Show()
+            FormMasterAssetCategory.WindowState = FormWindowState.Maximized
+            FormMasterAssetCategory.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAsset_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAsset.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterAsset.MdiParent = Me
+            FormMasterAsset.Show()
+            FormMasterAsset.WindowState = FormWindowState.Maximized
+            FormMasterAsset.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
 End Class
