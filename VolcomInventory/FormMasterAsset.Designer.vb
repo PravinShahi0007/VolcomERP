@@ -27,9 +27,7 @@ Partial Class FormMasterAsset
         Me.ColumnIdCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCodeName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCodeDesc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColIsIncludeName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.ColIsIncludeCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.GCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,7 +50,7 @@ Partial Class FormMasterAsset
         '
         'GVAsset
         '
-        Me.GVAsset.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdCode, Me.GCCodeName, Me.GCCodeDesc, Me.ColIsIncludeName, Me.ColIsIncludeCode})
+        Me.GVAsset.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdCode, Me.GCCodeName, Me.GCCodeDesc})
         Me.GVAsset.GridControl = Me.GCAsset
         Me.GVAsset.Name = "GVAsset"
         Me.GVAsset.OptionsBehavior.Editable = False
@@ -82,34 +80,10 @@ Partial Class FormMasterAsset
         Me.GCCodeDesc.VisibleIndex = 1
         Me.GCCodeDesc.Width = 210
         '
-        'ColIsIncludeName
-        '
-        Me.ColIsIncludeName.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColIsIncludeName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ColIsIncludeName.Caption = "Include in Name"
-        Me.ColIsIncludeName.ColumnEdit = Me.RepositoryItemCheckEdit3
-        Me.ColIsIncludeName.FieldName = "is_include_name"
-        Me.ColIsIncludeName.Name = "ColIsIncludeName"
-        Me.ColIsIncludeName.Visible = True
-        Me.ColIsIncludeName.VisibleIndex = 2
-        Me.ColIsIncludeName.Width = 74
-        '
         'RepositoryItemCheckEdit3
         '
         Me.RepositoryItemCheckEdit3.AutoHeight = False
         Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
-        '
-        'ColIsIncludeCode
-        '
-        Me.ColIsIncludeCode.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColIsIncludeCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ColIsIncludeCode.Caption = "Include in Code"
-        Me.ColIsIncludeCode.ColumnEdit = Me.RepositoryItemCheckEdit4
-        Me.ColIsIncludeCode.FieldName = "is_include_code"
-        Me.ColIsIncludeCode.Name = "ColIsIncludeCode"
-        Me.ColIsIncludeCode.Visible = True
-        Me.ColIsIncludeCode.VisibleIndex = 3
-        Me.ColIsIncludeCode.Width = 80
         '
         'RepositoryItemCheckEdit4
         '
@@ -149,9 +123,7 @@ Partial Class FormMasterAsset
     Friend WithEvents ColumnIdCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCodeName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCodeDesc As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ColIsIncludeName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents ColIsIncludeCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class

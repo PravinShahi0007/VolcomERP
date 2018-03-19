@@ -1527,11 +1527,11 @@ Public Class FormMain
             FormProdOverMemoDet.action = "ins"
             FormProdOverMemoDet.ShowDialog()
         ElseIf formName = "FormMasterAssetCategory" Then
-            FormMasterAssetCategoryDet.id_asset_cat = "-1"
-            FormMasterAssetCategoryDet.ShowDialog()
+            FormMasterAssetCategoryDetail.id_asset_cat = "-1"
+            FormMasterAssetCategoryDetail.ShowDialog()
         ElseIf formName = "FormMasterAsset" Then
-            FormMasterAssetDet.id_asset = "-1"
-            FormMasterAssetDet.ShowDialog()
+            FormMasterAssetDetail.id_asset = "-1"
+            FormMasterAssetDetail.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2448,11 +2448,11 @@ Public Class FormMain
                 FormProdOverMemoDet.action = "upd"
                 FormProdOverMemoDet.ShowDialog()
             ElseIf formName = "FormMasterAssetCategory" Then
-                FormMasterAssetCategoryDet.id_asset_cat = FormMasterAssetCategory.GVAssetCat.GetFocusedRowCellValue("id_asset_cat").ToString
-                FormMasterAssetCategoryDet.ShowDialog()
+                FormMasterAssetCategoryDetail.id_asset_cat = FormMasterAssetCategory.GVAssetCat.GetFocusedRowCellValue("id_asset_cat").ToString
+                FormMasterAssetCategoryDetail.ShowDialog()
             ElseIf formName = "FormMasterAsset" Then
-                FormMasterAssetDet.id_asset = FormMasterAsset.GVAsset.GetFocusedRowCellValue("id_asset").ToString
-                FormMasterAssetDet.ShowDialog()
+                FormMasterAssetDetail.id_asset = FormMasterAsset.GVAsset.GetFocusedRowCellValue("id_asset").ToString
+                FormMasterAssetDetail.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If

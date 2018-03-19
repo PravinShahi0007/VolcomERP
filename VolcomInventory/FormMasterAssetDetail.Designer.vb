@@ -1,17 +1,14 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormMasterAssetCategoryDet
-    Inherits System.Windows.Forms.Form
+Partial Class FormMasterAssetDetail
+    Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
-        Try
-            If disposing AndAlso components IsNot Nothing Then
-                components.Dispose()
-            End If
-        Finally
-            MyBase.Dispose(disposing)
-        End Try
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
     End Sub
 
     'Required by the Windows Form Designer
@@ -24,17 +21,17 @@ Partial Class FormMasterAssetCategoryDet
     Private Sub InitializeComponent()
         Me.SuspendLayout()
         '
-        'FormMasterAssetCategoryDet
+        'FormMasterAssetDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(663, 319)
+        Me.ClientSize = New System.Drawing.Size(538, 260)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "FormMasterAssetCategoryDet"
+        Me.Name = "FormMasterAssetDetail"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Asset Category Detail"
+        Me.Text = "Asset Detail"
         Me.ResumeLayout(False)
 
     End Sub
