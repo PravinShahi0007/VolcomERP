@@ -364,12 +364,21 @@
                 id_awb = execute_query(query, 0, True, "", "", "", "")
                 'detail do
                 If GVDO.RowCount > 0 Then
-                    query = "INSERT INTO tb_wh_awbill_det(id_awbill,do_no,qty) VALUES"
+                    query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,do_no,qty) VALUES"
                     For i As Integer = 0 To GVDO.RowCount - 1
+                        Dim id_pl_sales_order_del As String = "NULL"
+                        Try
+                            id_pl_sales_order_del = GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                        Catch ex As Exception
+                        End Try
+                        If id_pl_sales_order_del = "" Then
+                            id_pl_sales_order_del = "NULL"
+                        End If
+
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
+                        query += "('" + id_awb + "'," + id_pl_sales_order_del + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                 End If
@@ -403,12 +412,21 @@
                 execute_non_query(query, True, "", "", "", "")
                 '
                 If GVDO.RowCount > 0 Then
-                    query = "INSERT INTO tb_wh_awbill_det(id_awbill,do_no,qty) VALUES"
+                    query = "INSERT INTO tb_wh_awbill_det(id_awbill,id_pl_sales_order_del,do_no,qty) VALUES"
                     For i As Integer = 0 To GVDO.RowCount - 1
+                        Dim id_pl_sales_order_del As String = "NULL"
+                        Try
+                            id_pl_sales_order_del = GVDO.GetRowCellValue(i, "id_pl_sales_order_del").ToString
+                        Catch ex As Exception
+                        End Try
+                        If id_pl_sales_order_del = "" Then
+                            id_pl_sales_order_del = "NULL"
+                        End If
+
                         If Not i = 0 Then
                             query += ","
                         End If
-                        query += "('" + id_awb + "','" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
+                        query += "('" + id_awb + "'," + id_pl_sales_order_del + ",'" + GVDO.GetRowCellValue(i, "do_no").ToString + "','" + GVDO.GetRowCellValue(i, "qty").ToString + "')"
                     Next
                     execute_non_query(query, True, "", "", "", "")
                 End If

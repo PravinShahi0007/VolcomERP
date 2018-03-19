@@ -154,7 +154,7 @@
         ElseIf report_mark_type = "27" Then
             'Mat Adj Out
             query = String.Format("SELECT id_report_status,adj_out_mat_number as report_number FROM tb_adj_out_mat WHERE id_adj_out_mat = '{0}'", id_report)
-        ElseIf report_mark_type = "28" Then
+        ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             'Production rec
             query = String.Format("SELECT id_report_status,prod_order_rec_number as report_number FROM tb_prod_order_rec WHERE id_prod_order_rec = '{0}'", id_report)
         ElseIf report_mark_type = "29" Then
@@ -214,7 +214,7 @@
         ElseIf report_mark_type = "48" Then
             'SALES VIRTUAL POS
             query = String.Format("SELECT id_report_status,sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
-        ElseIf report_mark_type = "49" Then
+        ElseIf report_mark_type = "49" Or report_mark_type = "106" Then
             'SALES RETURN QC
             query = String.Format("SELECT id_report_status,sales_return_qc_number as report_number FROM tb_sales_return_qc WHERE id_sales_return_qc = '{0}'", id_report)
         ElseIf report_mark_type = "50" Then
@@ -382,6 +382,9 @@
         ElseIf report_mark_type = "125" Then
             'Leave Cut
             query = String.Format("SELECT id_report_status, leave_cut_number as report_number FROM tb_emp_leave_cut WHERE id_leave_cut = '{0}'", id_report)
+        ElseIf report_mark_type = "126" Then
+            'over production memo
+            query = String.Format("SELECT id_report_status, memo_number as report_number FROM tb_prod_over_memo WHERE id_prod_over_memo = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -1651,41 +1654,36 @@
                 FormWork.viewMatAdjOut()
             End If
             Cursor = Cursors.Default
-        ElseIf report_mark_type = "28" Then
+        ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             'prod receive qc
-            Try
-                If id_status_reportx = "6" Then
-                    'generate unique
-                    Dim query_gen As String = "CALL generate_prod_unique('" & id_report & "',1)"
-                    execute_non_query(query_gen, True, "", "", "", "")
-                    'delete empty data
-                    For i As Integer = 0 To (FormProductionRecDet.GVListPurchase.RowCount - 1)
-                        Dim id_prod_order_rec_det As String = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "id_prod_order_rec_det").ToString
-                        Dim qty As Decimal = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_qty")
-                        If qty = 0.0 Then
-                            Dim query_del As String = "DELETE FROM tb_prod_order_rec_det WHERE id_prod_order_rec_det = '" + id_prod_order_rec_det + "'"
-                            execute_non_query(query_del, True, "", "", "", "")
-                        End If
-                    Next
-                End If
+            If id_status_reportx = "6" Then
+                'generate unique
+                Dim query_gen As String = "CALL generate_prod_unique('" & id_report & "',1)"
+                execute_non_query(query_gen, True, "", "", "", "")
+                'delete empty data
+                For i As Integer = 0 To (FormProductionRecDet.GVListPurchase.RowCount - 1)
+                    Dim id_prod_order_rec_det As String = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "id_prod_order_rec_det").ToString
+                    Dim qty As Decimal = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_qty")
+                    If qty = 0.0 Then
+                        Dim query_del As String = "DELETE FROM tb_prod_order_rec_det WHERE id_prod_order_rec_det = '" + id_prod_order_rec_det + "'"
+                        execute_non_query(query_del, True, "", "", "", "")
+                    End If
+                Next
+            End If
 
-                query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
-                execute_non_query(query, True, "", "", "", "")
-                'infoCustom("Status changed.")
+            query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
 
-                If form_origin = "FormProductionRecDet" Then
-                    FormProductionRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormProductionRecDet.allow_status()
-                    FormProductionRecDet.view_list_rec()
-                    FormProductionRec.view_prod_order_rec()
-                    FormProductionRec.GVProdRec.FocusedRowHandle = find_row(FormProductionRec.GVProdRec, "id_prod_order_rec", id_report)
-                Else
-                    FormViewProductionRec.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormWork.view_production_rec()
-                End If
-            Catch ex As Exception
-                errorConnection()
-            End Try
+            If form_origin = "FormProductionRecDet" Then
+                FormProductionRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormProductionRecDet.allow_status()
+                FormProductionRecDet.view_list_rec()
+                FormProductionRec.view_prod_order_rec()
+                FormProductionRec.GVProdRec.FocusedRowHandle = find_row(FormProductionRec.GVProdRec, "id_prod_order_rec", id_report)
+            Else
+                FormViewProductionRec.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            End If
         ElseIf report_mark_type = "29" Then
             'Production MRS
             query = String.Format("UPDATE tb_prod_order_mrs SET id_report_status='{0}' WHERE id_prod_order_mrs='{1}'", id_status_reportx, id_report)
@@ -2204,7 +2202,7 @@
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "49" Then
+        ElseIf report_mark_type = "49" Or report_mark_type = "106" Then
             'SALES RETURN QC
             Dim st As ClassSalesReturnQC = New ClassSalesReturnQC()
             st.changeStatus(id_report, id_status_reportx)
@@ -3581,6 +3579,26 @@
             query = String.Format("UPDATE tb_emp_leave_cut SET id_report_status='{0}' WHERE id_leave_cut ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
+        ElseIf report_mark_type = "126" Then
+            'Production Over Memo
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            If id_status_reportx = "6" Then
+                Cursor = Cursors.WaitCursor
+                Dim mail As New ClassSendEmail()
+                mail.report_mark_type = "126"
+                mail.id_report = id_report
+                mail.send_email()
+                Cursor = Cursors.Default
+            End If
+
+            Dim query_upd As String = "UPDATE tb_prod_over_memo SET id_report_status='" + id_status_reportx + "' WHERE id_prod_over_memo='" + id_report + "' "
+            execute_non_query(query_upd, True, "", "", "", "")
+            FormProdOverMemoDet.actionLoad()
+            FormProdOverMemo.viewData()
+            FormProdOverMemo.GVMemo.FocusedRowHandle = find_row(FormProdOverMemo.GVMemo, "id_prod_over_memo", id_report)
         End If
 
         'adding lead time
@@ -4406,7 +4424,7 @@
             pushNotif("Production Demand", "Document #" + report_number + " is " + type, "FormProdDemand", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
         ElseIf report_mark_type = "11" Then
             pushNotif("Sample Requisition", "Document #" + report_number + " is " + type + " by " + get_user_identify(dt.Rows(0)("id_user"), "1") + ".", "FormSampleReq", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
-        ElseIf report_mark_type = "28" Then
+        ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             pushNotif("Receiving QC", "Document #" + report_number + " is " + type + " by " + get_user_identify(id_user, "1") + ".", "FormProductionRec", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
         ElseIf report_mark_type = "31" Then
             pushNotif("Return Out", "Document #" + report_number + " is " + type, "FormProductionRet", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
@@ -4420,7 +4438,7 @@
             pushNotif("Return Order", "Document #" + report_number + " is " + type, "FormSalesReturnOrder", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
         ElseIf report_mark_type = "46" Then
             pushNotif("Return", "Document #" + report_number + " is " + type, "FormSalesReturn", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
-        ElseIf report_mark_type = "49" Then
+        ElseIf report_mark_type = "49" Or report_mark_type = "106" Then
             pushNotif("Return QC", "Document #" + report_number + " is " + type, "FormSalesReturnQC", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")
         ElseIf report_mark_type = "82" Then
             pushNotif("Product Price From Excel", "Document #" + report_number + " is " + type, "FormMasterPrice", dt.Rows(0)("id_user"), id_user, id_report, report_number, "1")

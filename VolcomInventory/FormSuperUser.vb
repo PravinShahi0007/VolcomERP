@@ -37,15 +37,48 @@
         'load data
 
 
-        Dim Report As New ReportEmpUni()
+        'Dim Report As New ReportEmpUni()
         '
 
         ' Create a data binding.
         ' Add the created binding to the binding collection of the lbUnitPrice label.
         'XrRichText1.DataBindings.AddRange(New DevExpress.XtraReports.UI.XRBinding() {New DevExpress.XtraReports.UI.XRBinding("Text", dsNew, "customQuery.employee_name")})
 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreview()
+        'Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        'Tool.ShowPreview()
+        'Cursor = Cursors.WaitCursor
+        'Dim query As String = "SELECT r.*, IFNULL(maxd.employee_name,'-') as last_mark, e.employee_name, IF(ISNULL(rm.id_report_mark),'No','Yes') AS `is_submit`
+        'FROM tb_sales_return r
+        'LEFT JOIN (
+        ' (SELECT mark.id_report_mark,mark.id_report,emp.employee_name,maxd.report_mark_datetime,mark.report_number
+        '     FROM tb_report_mark mark
+        '     INNER JOIN tb_m_employee emp ON emp.`id_employee`=mark.id_employee
+        '     INNER JOIN 
+        '     (
+        '        SELECT mark.id_report,mark.report_mark_type,MAX(report_mark_datetime) AS report_mark_datetime
+        '        FROM tb_report_mark mark
+        '        WHERE mark.id_mark='2' AND NOT ISNULL(report_mark_start_datetime) AND (report_mark_type='46' OR report_mark_type='113' OR report_mark_type='120' OR report_mark_type='111')
+        '        GROUP BY report_mark_type,id_report
+        '     ) maxd ON maxd.id_report=mark.id_report AND maxd.report_mark_type=mark.report_mark_type AND maxd.report_mark_datetime=mark.report_mark_datetime
+        '     WHERE mark.id_mark='2' AND NOT ISNULL(mark.report_mark_start_datetime) AND (mark.report_mark_type='46' OR mark.report_mark_type='113' OR mark.report_mark_type='120' OR mark.report_mark_type='111')
+        ' )
+        ') maxd ON maxd.id_report = r.id_sales_return
+        'INNER JOIN tb_m_user u ON u.id_user=r.last_update_by
+        'INNER JOIN tb_m_employee e ON e.id_employee = u.id_employee
+        'LEFT JOIN (
+        ' SELECT rm.id_report_mark, rm.id_report
+        ' FROM tb_report_mark rm
+        ' WHERE (rm.report_mark_type='46' OR rm.report_mark_type='113' OR rm.report_mark_type='120' OR rm.report_mark_type='111') AND rm.id_report_status=1
+        ' GROUP BY rm.id_report
+        ') rm ON rm.id_report = r.id_sales_return
+        'WHERE ISNULL(maxd.employee_name) AND r.id_report_status!=5 
+        '-- AND r.sales_return_date='2018-03-07'
+        'AND r.id_ret_type=4  "
+        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'For i As Integer = 0 To data.Rows.Count - 1
+        '    submit_who_prepared("120", data.Rows(i)("id_sales_return").ToString, data.Rows(i)("last_update_by").ToString)
+        'Next
+        'Cursor = Cursors.Default
     End Sub
 
     Private Sub BtnDepartement_Click(sender As Object, e As EventArgs) Handles BtnDepartement.Click

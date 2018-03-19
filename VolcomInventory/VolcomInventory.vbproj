@@ -203,6 +203,7 @@
     <Compile Include="ClassFingerPrint.vb" />
     <Compile Include="ClassOwnMenu.vb" />
     <Compile Include="ClassProdDemand.vb" />
+    <Compile Include="ClassProdOverMemo.vb" />
     <Compile Include="ClassProductionAssembly.vb" />
     <Compile Include="ClassProductionFinalClear.vb" />
     <Compile Include="ClassProductionPLToWHRec.vb" />
@@ -401,6 +402,12 @@
       <DependentUpon>FormAccoutningTrs.vb</DependentUpon>
     </Compile>
     <Compile Include="FormAccoutningTrs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAssetMovingLog.Designer.vb">
+      <DependentUpon>FormAssetMovingLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssetMovingLog.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormBarcodeProduct.designer.vb">
@@ -1171,6 +1178,18 @@
     <Compile Include="FormListPOMat.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterAsset.Designer.vb">
+      <DependentUpon>FormMasterAsset.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterAsset.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterAssetCategory.Designer.vb">
+      <DependentUpon>FormMasterAssetCategory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterAssetCategory.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterCargoRate.Designer.vb">
       <DependentUpon>FormMasterCargoRate.vb</DependentUpon>
     </Compile>
@@ -1409,6 +1428,24 @@
       <DependentUpon>FormProdDutyVar.vb</DependentUpon>
     </Compile>
     <Compile Include="FormProdDutyVar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdOverMemo.designer.vb">
+      <DependentUpon>FormProdOverMemo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdOverMemo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdOverMemoDet.designer.vb">
+      <DependentUpon>FormProdOverMemoDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdOverMemoDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProdOverMemoSingle.designer.vb">
+      <DependentUpon>FormProdOverMemoSingle.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormProdOverMemoSingle.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormProductionAssembly.Designer.vb">
@@ -4831,6 +4868,12 @@
     <Compile Include="ReportProdDemand.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportProdOverMemo.Designer.vb">
+      <DependentUpon>ReportProdOverMemo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportProdOverMemo.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportProdPRWO.designer.vb">
       <DependentUpon>ReportProdPRWO.vb</DependentUpon>
     </Compile>
@@ -5270,6 +5313,9 @@
       <DependentUpon>FormAccoutningTrs.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAssetMovingLog.resx">
+      <DependentUpon>FormAssetMovingLog.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormBarcodeProduct.resx">
       <DependentUpon>FormBarcodeProduct.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -5684,6 +5730,12 @@
     <EmbeddedResource Include="FormListPOMat.resx">
       <DependentUpon>FormListPOMat.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterAsset.resx">
+      <DependentUpon>FormMasterAsset.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterAssetCategory.resx">
+      <DependentUpon>FormMasterAssetCategory.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMasterCargoRate.resx">
       <DependentUpon>FormMasterCargoRate.vb</DependentUpon>
     </EmbeddedResource>
@@ -5804,6 +5856,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProdDutyVar.resx">
       <DependentUpon>FormProdDutyVar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdOverMemo.resx">
+      <DependentUpon>FormProdOverMemo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdOverMemoDet.resx">
+      <DependentUpon>FormProdOverMemoDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProdOverMemoSingle.resx">
+      <DependentUpon>FormProdOverMemoSingle.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormProductionAssembly.resx">
       <DependentUpon>FormProductionAssembly.vb</DependentUpon>
@@ -7978,6 +8039,9 @@
     <EmbeddedResource Include="ReportProdDemand.resx">
       <DependentUpon>ReportProdDemand.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportProdOverMemo.resx">
+      <DependentUpon>ReportProdOverMemo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportProdPRWO.resx">
       <DependentUpon>ReportProdPRWO.vb</DependentUpon>
