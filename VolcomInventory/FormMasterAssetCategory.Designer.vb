@@ -22,8 +22,8 @@ Partial Class FormMasterAssetCategory
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.GCCode = New DevExpress.XtraGrid.GridControl()
-        Me.GVCode = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GCAssetCat = New DevExpress.XtraGrid.GridControl()
+        Me.GVAssetCat = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.ColumnIdCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCodeName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCodeDesc = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -32,31 +32,31 @@ Partial Class FormMasterAssetCategory
         Me.ColIsIncludeCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        CType(Me.GCCode, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVCode, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCAssetCat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVAssetCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'GCCode
+        'GCAssetCat
         '
-        Me.GCCode.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCCode.Location = New System.Drawing.Point(0, 0)
-        Me.GCCode.MainView = Me.GVCode
-        Me.GCCode.Name = "GCCode"
-        Me.GCCode.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit3, Me.RepositoryItemCheckEdit4})
-        Me.GCCode.Size = New System.Drawing.Size(640, 469)
-        Me.GCCode.TabIndex = 1
-        Me.GCCode.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVCode})
+        Me.GCAssetCat.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCAssetCat.Location = New System.Drawing.Point(0, 0)
+        Me.GCAssetCat.MainView = Me.GVAssetCat
+        Me.GCAssetCat.Name = "GCAssetCat"
+        Me.GCAssetCat.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCheckEdit1, Me.RepositoryItemCheckEdit3, Me.RepositoryItemCheckEdit4})
+        Me.GCAssetCat.Size = New System.Drawing.Size(918, 406)
+        Me.GCAssetCat.TabIndex = 1
+        Me.GCAssetCat.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAssetCat})
         '
-        'GVCode
+        'GVAssetCat
         '
-        Me.GVCode.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdCode, Me.GCCodeName, Me.GCCodeDesc, Me.ColIsIncludeName, Me.ColIsIncludeCode})
-        Me.GVCode.GridControl = Me.GCCode
-        Me.GVCode.Name = "GVCode"
-        Me.GVCode.OptionsBehavior.Editable = False
-        Me.GVCode.OptionsView.ShowGroupPanel = False
+        Me.GVAssetCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdCode, Me.GCCodeName, Me.GCCodeDesc, Me.ColIsIncludeName, Me.ColIsIncludeCode})
+        Me.GVAssetCat.GridControl = Me.GCAssetCat
+        Me.GVAssetCat.Name = "GVAssetCat"
+        Me.GVAssetCat.OptionsBehavior.Editable = False
+        Me.GVAssetCat.OptionsView.ShowGroupPanel = False
         '
         'ColumnIdCode
         '
@@ -127,16 +127,16 @@ Partial Class FormMasterAssetCategory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(640, 469)
-        Me.Controls.Add(Me.GCCode)
+        Me.ClientSize = New System.Drawing.Size(918, 406)
+        Me.Controls.Add(Me.GCAssetCat)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormMasterAssetCategory"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Asset Category"
-        CType(Me.GCCode, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVCode, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCAssetCat, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVAssetCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -144,8 +144,8 @@ Partial Class FormMasterAssetCategory
 
     End Sub
 
-    Friend WithEvents GCCode As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVCode As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCAssetCat As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVAssetCat As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents ColumnIdCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCodeName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCodeDesc As DevExpress.XtraGrid.Columns.GridColumn

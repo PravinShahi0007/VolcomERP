@@ -1190,6 +1190,18 @@
     <Compile Include="FormMasterAssetCategory.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterAssetCategoryDet.Designer.vb">
+      <DependentUpon>FormMasterAssetCategoryDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterAssetCategoryDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMasterAssetDet.Designer.vb">
+      <DependentUpon>FormMasterAssetDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterAssetDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterCargoRate.Designer.vb">
       <DependentUpon>FormMasterCargoRate.vb</DependentUpon>
     </Compile>
@@ -5735,6 +5747,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterAssetCategory.resx">
       <DependentUpon>FormMasterAssetCategory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterAssetCategoryDet.resx">
+      <DependentUpon>FormMasterAssetCategoryDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterAssetDet.resx">
+      <DependentUpon>FormMasterAssetDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterCargoRate.resx">
       <DependentUpon>FormMasterCargoRate.vb</DependentUpon>
