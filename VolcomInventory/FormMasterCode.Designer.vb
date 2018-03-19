@@ -96,6 +96,7 @@ Partial Class FormMasterCode
         Me.GVCode.GridControl = Me.GCCode
         Me.GVCode.Name = "GVCode"
         Me.GVCode.OptionsBehavior.Editable = False
+        Me.GVCode.OptionsView.ShowGroupPanel = False
         '
         'ColumnIdCode
         '
