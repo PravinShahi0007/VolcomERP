@@ -337,11 +337,8 @@
                         End If
                         For i As Integer = 0 To data_main_view.Rows.Count - 1
                             Dim query_so_main As String = "INSERT INTO tb_sales_order(id_sales_order_gen, id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_so_status, id_report_status, id_prepare_status, id_user_created) "
-                            query_so_main += "VALUES('" + id_sales_order_gen + "', '" + data_main_view.Rows(i)("id_comp_contact_to").ToString + "', '" + data_main_view.Rows(i)("id_comp_contact_from").ToString + "', '" + header_number_sales("2") + "', NOW(), '', '" + data_main_view.Rows(i)("id_so_type").ToString + "', '" + data_main_view.Rows(i)("id_so_status").ToString + "', '1','1', '" + id_user + "'); SELECT LAST_INSERT_ID(); "
+                            query_so_main += "VALUES('" + id_sales_order_gen + "', '" + data_main_view.Rows(i)("id_comp_contact_to").ToString + "', '" + data_main_view.Rows(i)("id_comp_contact_from").ToString + "', '', NOW(), '', '" + data_main_view.Rows(i)("id_so_type").ToString + "', '" + data_main_view.Rows(i)("id_so_status").ToString + "', '1','1', '" + id_user + "'); SELECT LAST_INSERT_ID(); "
                             Dim id_so_created As String = execute_query(query_so_main, 0, True, "", "", "", "")
-
-                            'insert who prepared
-                            increase_inc_sales("2")
 
                             'insert detail
                             Dim query_so_det As String = "INSERT INTO tb_sales_order_det(id_sales_order, id_product, id_design_price, design_price, sales_order_det_qty, sales_order_det_note) "
