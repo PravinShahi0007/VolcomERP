@@ -241,7 +241,7 @@
             Dim qorder As String = "SELECT * FROM tb_sales_order WHERE id_emp_uni_period=" + id_emp_uni_period + " AND id_emp_uni_budget=" + GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString + " AND id_report_status!=5 "
             Dim dorder As DataTable = execute_query(qorder, -1, True, "", "", "", "")
             If dorder.Rows.Count > 0 Then 'sudah ada order
-                FormEmpUniOrderDet.id_sales_order = GVDetail.GetFocusedRowCellValue("id_sales_order").ToString
+                FormEmpUniOrderDet.id_sales_order = GVDetail.GetFocusedRowCellValue("id_order").ToString
                 FormEmpUniOrderDet.ShowDialog()
             Else 'blm ada
                 'get destination
@@ -290,10 +290,13 @@
 
                     FormEmpUniOrderDet.id_sales_order = id_new
                     FormEmpUniOrderDet.ShowDialog()
-                    Close()
                 End If
             End If
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub GVDetail_DoubleClick(sender As Object, e As EventArgs) Handles GVDetail.DoubleClick
+        orderDetail()
     End Sub
 End Class

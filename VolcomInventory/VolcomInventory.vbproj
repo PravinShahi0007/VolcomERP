@@ -914,6 +914,12 @@
     <Compile Include="FormEmpUniPeriodSingle.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniSuggest.Designer.vb">
+      <DependentUpon>FormEmpUniSuggest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniSuggest.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormFGAging.Designer.vb">
       <DependentUpon>FormFGAging.vb</DependentUpon>
     </Compile>
@@ -5607,6 +5613,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniPeriodSingle.resx">
       <DependentUpon>FormEmpUniPeriodSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniSuggest.resx">
+      <DependentUpon>FormEmpUniSuggest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGAging.resx">
       <DependentUpon>FormFGAging.vb</DependentUpon>

@@ -39,6 +39,8 @@ Partial Class FormEmpUniOrderDet
         Me.BtnCancelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAccept = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
@@ -94,8 +96,8 @@ Partial Class FormEmpUniOrderDet
         Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
+        Me.GridColumnCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnSuggest = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,6 +112,8 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl1.SuspendLayout()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
@@ -132,8 +136,6 @@ Partial Class FormEmpUniOrderDet
         CType(Me.PanelControlDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlDesign.SuspendLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupControl1
@@ -305,6 +307,7 @@ Partial Class FormEmpUniOrderDet
         Me.BtnCancelOrder.Size = New System.Drawing.Size(111, 37)
         Me.BtnCancelOrder.TabIndex = 1
         Me.BtnCancelOrder.Text = "Cancell Order"
+        Me.BtnCancelOrder.Visible = False
         '
         'BtnAccept
         '
@@ -327,10 +330,33 @@ Partial Class FormEmpUniOrderDet
         Me.GroupControl2.Controls.Add(Me.MENote)
         Me.GroupControl2.Controls.Add(Me.LabelControl18)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 396)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 397)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(934, 125)
+        Me.GroupControl2.Size = New System.Drawing.Size(934, 124)
         Me.GroupControl2.TabIndex = 2
+        '
+        'LabelControl16
+        '
+        Me.LabelControl16.Location = New System.Drawing.Point(34, 68)
+        Me.LabelControl16.Name = "LabelControl16"
+        Me.LabelControl16.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl16.TabIndex = 148
+        Me.LabelControl16.Text = "Created Date"
+        '
+        'DECreated
+        '
+        Me.DECreated.EditValue = Nothing
+        Me.DECreated.Enabled = False
+        Me.DECreated.Location = New System.Drawing.Point(117, 65)
+        Me.DECreated.Name = "DECreated"
+        Me.DECreated.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.DECreated.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreated.Size = New System.Drawing.Size(256, 20)
+        Me.DECreated.TabIndex = 147
         '
         'LEReportStatus
         '
@@ -378,22 +404,22 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
         Me.PanelControl2.Location = New System.Drawing.Point(452, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(480, 121)
+        Me.PanelControl2.Size = New System.Drawing.Size(480, 120)
         Me.PanelControl2.TabIndex = 141
         '
         'LabelControl15
         '
-        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl15.Location = New System.Drawing.Point(13, 92)
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl15.Location = New System.Drawing.Point(10, 39)
         Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(58, 13)
+        Me.LabelControl15.Size = New System.Drawing.Size(62, 13)
         Me.LabelControl15.TabIndex = 159
-        Me.LabelControl15.Text = "Difference"
+        Me.LabelControl15.Text = "DIFFERENCE"
         '
         'TxtDiff
         '
         Me.TxtDiff.Enabled = False
-        Me.TxtDiff.Location = New System.Drawing.Point(78, 89)
+        Me.TxtDiff.Location = New System.Drawing.Point(78, 36)
         Me.TxtDiff.Name = "TxtDiff"
         Me.TxtDiff.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDiff.Properties.Appearance.Options.UseFont = True
@@ -406,7 +432,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl14
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(13, 66)
+        Me.LabelControl14.Location = New System.Drawing.Point(13, 203)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(51, 13)
         Me.LabelControl14.TabIndex = 157
@@ -415,7 +441,7 @@ Partial Class FormEmpUniOrderDet
         'TxtOrderMax
         '
         Me.TxtOrderMax.Enabled = False
-        Me.TxtOrderMax.Location = New System.Drawing.Point(78, 63)
+        Me.TxtOrderMax.Location = New System.Drawing.Point(78, 200)
         Me.TxtOrderMax.Name = "TxtOrderMax"
         Me.TxtOrderMax.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtOrderMax.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -426,7 +452,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl13
         '
-        Me.LabelControl13.Location = New System.Drawing.Point(13, 40)
+        Me.LabelControl13.Location = New System.Drawing.Point(13, 177)
         Me.LabelControl13.Name = "LabelControl13"
         Me.LabelControl13.Size = New System.Drawing.Size(47, 13)
         Me.LabelControl13.TabIndex = 155
@@ -435,7 +461,7 @@ Partial Class FormEmpUniOrderDet
         'TxtTolerance
         '
         Me.TxtTolerance.Enabled = False
-        Me.TxtTolerance.Location = New System.Drawing.Point(78, 37)
+        Me.TxtTolerance.Location = New System.Drawing.Point(78, 174)
         Me.TxtTolerance.Name = "TxtTolerance"
         Me.TxtTolerance.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtTolerance.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -448,7 +474,7 @@ Partial Class FormEmpUniOrderDet
         '
         Me.TxtTotal.EditValue = ""
         Me.TxtTotal.Enabled = False
-        Me.TxtTotal.Location = New System.Drawing.Point(314, 63)
+        Me.TxtTotal.Location = New System.Drawing.Point(317, 6)
         Me.TxtTotal.Name = "TxtTotal"
         Me.TxtTotal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtTotal.Properties.Appearance.Options.UseFont = True
@@ -462,16 +488,16 @@ Partial Class FormEmpUniOrderDet
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl5.Location = New System.Drawing.Point(253, 66)
+        Me.LabelControl5.Location = New System.Drawing.Point(257, 9)
         Me.LabelControl5.Name = "LabelControl5"
-        Me.LabelControl5.Size = New System.Drawing.Size(43, 19)
+        Me.LabelControl5.Size = New System.Drawing.Size(60, 19)
         Me.LabelControl5.TabIndex = 150
-        Me.LabelControl5.Text = "Total"
+        Me.LabelControl5.Text = "TOTAL "
         '
         'TxtDiscountValue
         '
         Me.TxtDiscountValue.Enabled = False
-        Me.TxtDiscountValue.Location = New System.Drawing.Point(381, 37)
+        Me.TxtDiscountValue.Location = New System.Drawing.Point(381, 218)
         Me.TxtDiscountValue.Name = "TxtDiscountValue"
         Me.TxtDiscountValue.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtDiscountValue.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -482,16 +508,16 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(13, 13)
+        Me.LabelControl1.Location = New System.Drawing.Point(10, 13)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(34, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl1.TabIndex = 142
-        Me.LabelControl1.Text = "Budget"
+        Me.LabelControl1.Text = "BUDGET"
         '
         'TxtBudget
         '
         Me.TxtBudget.Enabled = False
-        Me.TxtBudget.Location = New System.Drawing.Point(78, 11)
+        Me.TxtBudget.Location = New System.Drawing.Point(78, 10)
         Me.TxtBudget.Name = "TxtBudget"
         Me.TxtBudget.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtBudget.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -502,7 +528,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(362, 40)
+        Me.LabelControl4.Location = New System.Drawing.Point(362, 221)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(11, 13)
         Me.LabelControl4.TabIndex = 148
@@ -510,7 +536,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(255, 40)
+        Me.LabelControl3.Location = New System.Drawing.Point(255, 221)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(41, 13)
         Me.LabelControl3.TabIndex = 147
@@ -519,7 +545,7 @@ Partial Class FormEmpUniOrderDet
         'TxtDiscount
         '
         Me.TxtDiscount.Enabled = False
-        Me.TxtDiscount.Location = New System.Drawing.Point(314, 37)
+        Me.TxtDiscount.Location = New System.Drawing.Point(314, 218)
         Me.TxtDiscount.Name = "TxtDiscount"
         Me.TxtDiscount.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtDiscount.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -533,7 +559,7 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(255, 14)
+        Me.LabelControl2.Location = New System.Drawing.Point(255, 195)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(54, 13)
         Me.LabelControl2.TabIndex = 145
@@ -542,7 +568,7 @@ Partial Class FormEmpUniOrderDet
         'TxtGross
         '
         Me.TxtGross.Enabled = False
-        Me.TxtGross.Location = New System.Drawing.Point(314, 11)
+        Me.TxtGross.Location = New System.Drawing.Point(314, 192)
         Me.TxtGross.Name = "TxtGross"
         Me.TxtGross.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtGross.Properties.AppearanceDisabled.Options.UseBackColor = True
@@ -575,13 +601,13 @@ Partial Class FormEmpUniOrderDet
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1})
-        Me.GCItemList.Size = New System.Drawing.Size(912, 283)
+        Me.GCItemList.Size = New System.Drawing.Size(912, 284)
         Me.GCItemList.TabIndex = 5
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnIdSalesTarget, Me.GridColumnEanCode, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnQtyAvail, Me.GridColumnIsFound, Me.GridColumnErr, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnSize, Me.GridColumnPriceType, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnAmount, Me.GridColumnRemark, Me.GridColumnUOM, Me.GridColumnIdSalesTarget, Me.GridColumnEanCode, Me.GridColumnIdDesign, Me.GridColumnIdProduct, Me.GridColumnIdSample, Me.GridColumnIdSalesOrderDet, Me.GridColumnIdDesignPrice, Me.GridColumnQtyAvail, Me.GridColumnIsFound, Me.GridColumnErr, Me.GridColumnNumber, Me.GridColumnFrom, Me.GridColumnTo, Me.GridColumnCost})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -598,7 +624,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 43
+        Me.GridColumnNo.Width = 60
         '
         'GridColumnCode
         '
@@ -607,7 +633,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 1
-        Me.GridColumnCode.Width = 122
+        Me.GridColumnCode.Width = 172
         '
         'GridColumnName
         '
@@ -619,7 +645,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 2
-        Me.GridColumnName.Width = 253
+        Me.GridColumnName.Width = 358
         '
         'GridColumnSize
         '
@@ -634,7 +660,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 3
-        Me.GridColumnSize.Width = 94
+        Me.GridColumnSize.Width = 133
         '
         'GridColumnPriceType
         '
@@ -662,7 +688,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 4
-        Me.GridColumnQty.Width = 156
+        Me.GridColumnQty.Width = 220
         '
         'RepositoryItemSpinEdit1
         '
@@ -687,7 +713,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 5
-        Me.GridColumnPrice.Width = 189
+        Me.GridColumnPrice.Width = 267
         '
         'GridColumnAmount
         '
@@ -705,7 +731,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 6
-        Me.GridColumnAmount.Width = 221
+        Me.GridColumnAmount.Width = 254
         '
         'GridColumnRemark
         '
@@ -833,12 +859,13 @@ Partial Class FormEmpUniOrderDet
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControl3.Location = New System.Drawing.Point(0, 69)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(934, 327)
+        Me.GroupControl3.Size = New System.Drawing.Size(934, 328)
         Me.GroupControl3.TabIndex = 6
         '
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.BtnSuggest)
         Me.PanelControl4.Controls.Add(Me.PanelControlDesign)
         Me.PanelControl4.Controls.Add(Me.BtnFocusRow)
         Me.PanelControl4.Controls.Add(Me.BtnDelOrder)
@@ -857,19 +884,19 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControlDesign.Dock = System.Windows.Forms.DockStyle.Left
         Me.PanelControlDesign.Location = New System.Drawing.Point(0, 0)
         Me.PanelControlDesign.Name = "PanelControlDesign"
-        Me.PanelControlDesign.Size = New System.Drawing.Size(470, 40)
+        Me.PanelControlDesign.Size = New System.Drawing.Size(165, 40)
         Me.PanelControlDesign.TabIndex = 5
         '
         'TxtDesign
         '
         Me.TxtDesign.EditValue = ""
-        Me.TxtDesign.Location = New System.Drawing.Point(60, 10)
+        Me.TxtDesign.Location = New System.Drawing.Point(79, 10)
         Me.TxtDesign.Name = "TxtDesign"
         Me.TxtDesign.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDesign.Properties.Appearance.Options.UseFont = True
         Me.TxtDesign.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtDesign.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TxtDesign.Size = New System.Drawing.Size(243, 20)
+        Me.TxtDesign.Size = New System.Drawing.Size(58, 20)
         Me.TxtDesign.TabIndex = 155
         '
         'LabelControl6
@@ -877,9 +904,9 @@ Partial Class FormEmpUniOrderDet
         Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl6.Location = New System.Drawing.Point(14, 13)
         Me.LabelControl6.Name = "LabelControl6"
-        Me.LabelControl6.Size = New System.Drawing.Size(38, 13)
+        Me.LabelControl6.Size = New System.Drawing.Size(55, 13)
         Me.LabelControl6.TabIndex = 155
-        Me.LabelControl6.Text = "Design"
+        Me.LabelControl6.Text = "Design No"
         '
         'BtnFocusRow
         '
@@ -911,28 +938,25 @@ Partial Class FormEmpUniOrderDet
         Me.BtnAddOrder.TabIndex = 2
         Me.BtnAddOrder.Text = "Add (Ins)"
         '
-        'DECreated
+        'GridColumnCost
         '
-        Me.DECreated.EditValue = Nothing
-        Me.DECreated.Enabled = False
-        Me.DECreated.Location = New System.Drawing.Point(117, 65)
-        Me.DECreated.Name = "DECreated"
-        Me.DECreated.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.DECreated.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DECreated.Properties.DisplayFormat.FormatString = "dd\/MM\/yyyy"
-        Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DECreated.Size = New System.Drawing.Size(256, 20)
-        Me.DECreated.TabIndex = 147
+        Me.GridColumnCost.Caption = "Cost"
+        Me.GridColumnCost.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCost.FieldName = "design_cop"
+        Me.GridColumnCost.Name = "GridColumnCost"
+        Me.GridColumnCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "design_cop", "{0:N2}")})
+        Me.GridColumnCost.Width = 168
         '
-        'LabelControl16
+        'BtnSuggest
         '
-        Me.LabelControl16.Location = New System.Drawing.Point(34, 68)
-        Me.LabelControl16.Name = "LabelControl16"
-        Me.LabelControl16.Size = New System.Drawing.Size(65, 13)
-        Me.LabelControl16.TabIndex = 148
-        Me.LabelControl16.Text = "Created Date"
+        Me.BtnSuggest.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSuggest.Image = CType(resources.GetObject("BtnSuggest.Image"), System.Drawing.Image)
+        Me.BtnSuggest.Location = New System.Drawing.Point(445, 0)
+        Me.BtnSuggest.Name = "BtnSuggest"
+        Me.BtnSuggest.Size = New System.Drawing.Size(142, 40)
+        Me.BtnSuggest.TabIndex = 6
+        Me.BtnSuggest.Text = "Suggestion (Ctrl+T)"
         '
         'FormEmpUniOrderDet
         '
@@ -966,6 +990,8 @@ Partial Class FormEmpUniOrderDet
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEReportStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
@@ -990,8 +1016,6 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControlDesign.ResumeLayout(False)
         Me.PanelControlDesign.PerformLayout()
         CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1072,4 +1096,6 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents TxtDiff As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents GridColumnCost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnSuggest As DevExpress.XtraEditors.SimpleButton
 End Class

@@ -5,6 +5,7 @@
     Dim id_rack As String = "-1"
     Public id_drawer As String = "-1"
     Public id_emp_uni_budget As String = "-1"
+    Public id_emp_uni_period As String = "-1"
     Dim prepared_by As String = ""
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -17,6 +18,7 @@
         Dim query As String = query_c.queryMainOrder("And so.id_sales_order=" + id_sales_order + " ", "1", id_sales_order)
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         id_emp_uni_budget = data.Rows(0)("id_emp_uni_budget").ToString
+        id_emp_uni_period = data.Rows(0)("id_emp_uni_period").ToString
         TxtNIK.Text = data.Rows(0)("employee_code").ToString
         TxtName.Text = data.Rows(0)("employee_name").ToString
         TxtDept.Text = data.Rows(0)("departement").ToString
@@ -33,7 +35,7 @@
         TxtGross.EditValue = data.Rows(0)("amount")
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         getTotal()
-        TxtDiff.EditValue = TxtOrderMax.EditValue - TxtTotal.EditValue
+        TxtDiff.EditValue = TxtBudget.EditValue - TxtTotal.EditValue
         TxtDesign.Focus()
 
         'get drawer
@@ -90,6 +92,8 @@
     Private Sub BtnAccept_Click(sender As Object, e As EventArgs) Handles BtnAccept.Click
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to accept this order?", "Accept Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
+            submit_who_prepared("39", id_sales_order, id_user)
+
             Dim query As String = "UPDATE tb_sales_order Set id_report_status=6, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
             FormEmpUniPeriodDet.viewOrder()
@@ -122,11 +126,13 @@
     End Sub
 
     Sub deleteRow()
-        Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want To delete this detail order?", "Delete Detail Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
-        If confirm = Windows.Forms.DialogResult.Yes Then
-            Dim query As String = "DELETE FROM tb_sales_order_det WHERE id_sales_order_det=" + GVItemList.GetFocusedRowCellValue("id_sales_order_det").ToString + " "
-            execute_non_query(query, True, "", "", "", "")
-            actionLoad()
+        If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want To delete this detail order?", "Delete Detail Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Dim query As String = "DELETE FROM tb_sales_order_det WHERE id_sales_order_det=" + GVItemList.GetFocusedRowCellValue("id_sales_order_det").ToString + " "
+                execute_non_query(query, True, "", "", "", "")
+                actionLoad()
+            End If
         End If
     End Sub
 
@@ -216,6 +222,13 @@
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreviewDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnSuggest.Click
+        Cursor = Cursors.WaitCursor
+        FormEmpUniSuggest.id_emp_uni_period = id_emp_uni_period
+        FormEmpUniSuggest.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 
