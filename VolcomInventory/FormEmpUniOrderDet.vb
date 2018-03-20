@@ -1,12 +1,9 @@
 ﻿Public Class FormEmpUniOrderDet
     Public id_sales_order As String = "-1"
-    Dim id_wh As String = "-1"
-    Dim id_locator As String = "-1"
-    Dim id_rack As String = "-1"
-    Public id_drawer As String = "-1"
     Public id_emp_uni_budget As String = "-1"
     Public id_emp_uni_period As String = "-1"
     Dim prepared_by As String = ""
+    Dim id_wh_drawer As String = ""
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -19,6 +16,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         id_emp_uni_budget = data.Rows(0)("id_emp_uni_budget").ToString
         id_emp_uni_period = data.Rows(0)("id_emp_uni_period").ToString
+        id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
         TxtNIK.Text = data.Rows(0)("employee_code").ToString
         TxtName.Text = data.Rows(0)("employee_name").ToString
         TxtDept.Text = data.Rows(0)("departement").ToString
@@ -30,25 +28,11 @@
         DECreated.EditValue = data.Rows(0)("sales_order_date")
         TxtBudget.EditValue = data.Rows(0)("budget")
         TxtTolerance.EditValue = data.Rows(0)("tolerance")
-        TxtOrderMax.EditValue = data.Rows(0)("order_max")
         TxtDiscount.EditValue = data.Rows(0)("discount")
-        TxtGross.EditValue = data.Rows(0)("amount")
+        TxtTotal.EditValue = data.Rows(0)("amount")
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
-        getTotal()
         TxtDiff.EditValue = TxtBudget.EditValue - TxtTotal.EditValue
         TxtDesign.Focus()
-
-        'get drawer
-        id_wh = get_setup_field("wh_uni")
-        Dim query_wh As String = "SELECT l.id_wh_locator, r.id_wh_rack, d.id_wh_drawer 
-        FROM tb_m_wh_locator l 
-        INNER JOIN tb_m_wh_rack r ON r.id_wh_locator = l.id_wh_locator
-        INNER JOIN tb_m_wh_drawer d ON d.id_wh_rack = r.id_wh_rack
-        WHERE l.id_comp=" + id_wh + " "
-        Dim dt_wh As DataTable = execute_query(query_wh, -1, True, "", "", "", "")
-        id_locator = dt_wh(0)("id_wh_locator").ToString
-        id_rack = dt_wh(0)("id_wh_rack").ToString
-        id_drawer = dt_wh(0)("id_wh_drawer").ToString
 
         If data.Rows(0)("id_report_status").ToString = 5 Or data.Rows(0)("id_report_status").ToString = 6 Then
             BtnAccept.Visible = False
@@ -166,24 +150,83 @@
         If e.KeyCode = Keys.Enter Then
             Cursor = Cursors.WaitCursor
             Dim key As String = addSlashes(TxtDesign.Text)
-            Dim condition As String = "AND so.id_emp_uni_period=" + FormEmpUniPeriodDet.id_emp_uni_period + " AND (prod.design_code LIKE '%" + key + "%' OR prod.product_full_code LIKE '%" + key + "%' OR prod.design_display_name LIKE '%" + key + "%') "
-            Dim dt As DataTable = execute_query("CALL view_emp_uni_stock(""" + condition + """,1) ", -1, True, "", "", "", "")
+            Dim dt As DataTable = checkStock("AND dm.id_emp_uni_period=" + id_emp_uni_period + " AND dd.no='" + key.ToString + "'")
             If dt.Rows.Count <= 0 Then
                 stopCustom("Product not found")
                 TxtDesign.Text = ""
                 TxtDesign.Focus()
             Else
-                FormEmpUniOrderSingle.dt = dt
-                FormEmpUniOrderSingle.ShowDialog()
-                TxtDesign.Text = ""
-                TxtDesign.Focus()
+                'jika sudah ada di list
+                If checkExist(dt.Rows(0)("id_design").ToString) Then
+                    stopCustom("Product already order")
+                    TxtDesign.Text = ""
+                    TxtDesign.Focus()
+                Else
+                    FormEmpUniOrderSingle.dt = dt
+                    FormEmpUniOrderSingle.ShowDialog()
+                    TxtDesign.Text = ""
+                    TxtDesign.Focus()
+                End If
             End If
             Cursor = Cursors.Default
         End If
     End Sub
 
+    Public Function checkStock(ByVal cond As String) As DataTable
+        Dim query As String = "SELECT dd.`no`, dd.id_design, prod.id_product, dsg.design_code AS `code`, prod.product_full_code AS `barcode`, dsg.design_display_name AS `name`, cd.code_detail_name AS `size`, IFNULL(dsg.design_cop,0) AS `design_cop`,
+            IFNULL(s.qty_avl,0) AS qty_avl,
+            IFNULL(s.qty_rsv,0) AS qty_rsv,
+            IFNULL(s.qty_tot,0) AS qty_tot,
+            prc.id_design_price, prc.design_price
+            FROM tb_emp_uni_design_det dd
+            INNER JOIN tb_emp_uni_design dm ON dm.id_emp_uni_design = dd.id_emp_uni_design
+            INNER JOIN tb_m_design dsg ON dsg.id_design = dd.id_design
+            INNER JOIN tb_m_product prod ON prod.id_design = dsg.id_design
+            INNER JOIN tb_m_product_code prodc ON prodc.id_product = prod.id_product
+            INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = prodc.id_code_detail
+            LEFT JOIN (
+	            SELECT j.id_product,
+	            SUM(IF(j.id_storage_category=2, CONCAT('-', j.storage_product_qty), j.storage_product_qty)) AS qty_avl, 	
+	            SUM(IF(j.id_stock_status=1, (IF(j.id_storage_category='2', CONCAT('-', j.storage_product_qty), j.storage_product_qty)),0)) AS qty_tot,			
+	            SUM(IF(j.id_stock_status=2, (IF(j.id_storage_category='1', CONCAT('-', j.storage_product_qty), j.storage_product_qty)),0)) AS qty_rsv
+	            FROM tb_storage_fg j
+	            WHERE j.id_wh_drawer=" + id_wh_drawer + "
+	            GROUP BY j.id_product
+            ) s ON s.id_product = prod.id_product
+            LEFT JOIN( 
+                 Select * FROM ( 
+                 Select price.id_design, price.design_price, price.design_price_date, price.id_design_price, 
+	              price.id_design_price_type, price_type.design_price_type,
+	              cat.id_design_cat, cat.design_cat
+                 From tb_m_design_price price 
+                 INNER Join tb_lookup_design_price_type price_type On price.id_design_price_type = price_type.id_design_price_type 
+                 INNER JOIN tb_lookup_design_cat cat ON cat.id_design_cat = price_type.id_design_cat
+                 WHERE price.is_active_wh =1 AND price.design_price_start_date <= NOW() 
+                 ORDER BY price.design_price_start_date DESC, price.id_design_price DESC ) a 
+                 GROUP BY a.id_design 
+            ) prc ON prc.id_design = dsg.id_design 
+            WHERE dm.id_report_status=6 
+            " + cond + "
+            ORDER BY dd.`no` ASC, cd.id_code_detail ASC "
+        Dim dt As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Return dt
+    End Function
+
+    Public Function checkExist(ByVal id_design_par As String) As Boolean
+        Dim check_existing As Boolean = False
+        Dim query_sod As String = "SELECT * FROM tb_sales_order_det sod 
+            INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+            INNER JOIN tb_m_product p ON p.id_product = sod.id_product 
+            WHERE so.id_emp_uni_budget =" + id_emp_uni_budget + " AND so.id_emp_uni_period=" + id_emp_uni_period + " AND p.id_design=" + id_design_par + " AND so.id_report_status!=5 "
+        Dim data_sod As DataTable = execute_query(query_sod, -1, True, "", "", "", "")
+        If data_sod.Rows.Count > 0 Then
+            check_existing = True
+        End If
+        Return check_existing
+    End Function
+
     Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
-        If e.Column.FieldName = "no" Then
+        If e.Column.FieldName = "nomer" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
@@ -225,7 +268,7 @@
         Cursor = Cursors.Default
     End Sub
 
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles BtnSuggest.Click
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
         Cursor = Cursors.WaitCursor
         FormEmpUniSuggest.id_emp_uni_period = id_emp_uni_period
         FormEmpUniSuggest.ShowDialog()
@@ -241,4 +284,5 @@
 
     '    End If
     'End Sub
+
 End Class

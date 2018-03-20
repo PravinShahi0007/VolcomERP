@@ -19,6 +19,7 @@ Partial Class FormEmpUniOrderSingle
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniOrderSingle))
         Me.GCDesign = New DevExpress.XtraGrid.GridControl()
         Me.GVDesign = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnBarcode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -28,8 +29,12 @@ Partial Class FormEmpUniOrderSingle
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesign = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'GCDesign
@@ -38,7 +43,7 @@ Partial Class FormEmpUniOrderSingle
         Me.GCDesign.Location = New System.Drawing.Point(0, 0)
         Me.GCDesign.MainView = Me.GVDesign
         Me.GCDesign.Name = "GCDesign"
-        Me.GCDesign.Size = New System.Drawing.Size(713, 322)
+        Me.GCDesign.Size = New System.Drawing.Size(713, 284)
         Me.GCDesign.TabIndex = 2
         Me.GCDesign.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDesign})
         '
@@ -58,7 +63,7 @@ Partial Class FormEmpUniOrderSingle
         'GridColumnBarcode
         '
         Me.GridColumnBarcode.Caption = "Full Code"
-        Me.GridColumnBarcode.FieldName = "code"
+        Me.GridColumnBarcode.FieldName = "barcode"
         Me.GridColumnBarcode.Name = "GridColumnBarcode"
         Me.GridColumnBarcode.OptionsColumn.AllowEdit = False
         Me.GridColumnBarcode.Visible = True
@@ -80,10 +85,10 @@ Partial Class FormEmpUniOrderSingle
         Me.GridColumnAvail.Caption = "Available"
         Me.GridColumnAvail.DisplayFormat.FormatString = "N0"
         Me.GridColumnAvail.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnAvail.FieldName = "qty_avail"
+        Me.GridColumnAvail.FieldName = "qty_avl"
         Me.GridColumnAvail.Name = "GridColumnAvail"
         Me.GridColumnAvail.OptionsColumn.AllowEdit = False
-        Me.GridColumnAvail.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_avail", "{0:N0}")})
+        Me.GridColumnAvail.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "qty_avl", "{0:N0}")})
         Me.GridColumnAvail.Visible = True
         Me.GridColumnAvail.VisibleIndex = 4
         Me.GridColumnAvail.Width = 118
@@ -98,7 +103,7 @@ Partial Class FormEmpUniOrderSingle
         'GridColumnCode
         '
         Me.GridColumnCode.Caption = "Code"
-        Me.GridColumnCode.FieldName = "design_code"
+        Me.GridColumnCode.FieldName = "code"
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
@@ -126,12 +131,34 @@ Partial Class FormEmpUniOrderSingle
         Me.GridColumnPrice.VisibleIndex = 5
         Me.GridColumnPrice.Width = 114
         '
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnClose)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 284)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(713, 38)
+        Me.PanelControl1.TabIndex = 3
+        '
+        'BtnClose
+        '
+        Me.BtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
+        Me.BtnClose.Location = New System.Drawing.Point(624, 2)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.Size = New System.Drawing.Size(87, 34)
+        Me.BtnClose.TabIndex = 0
+        Me.BtnClose.Text = "Close"
+        '
         'FormEmpUniOrderSingle
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.BtnClose
         Me.ClientSize = New System.Drawing.Size(713, 322)
         Me.Controls.Add(Me.GCDesign)
+        Me.Controls.Add(Me.PanelControl1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.KeyPreview = True
         Me.MaximizeBox = False
@@ -141,6 +168,8 @@ Partial Class FormEmpUniOrderSingle
         Me.Text = "Select Product"
         CType(Me.GCDesign, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDesign, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -153,4 +182,6 @@ Partial Class FormEmpUniOrderSingle
     Friend WithEvents GridColumnCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnDesign As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
 End Class
