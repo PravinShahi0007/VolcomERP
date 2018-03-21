@@ -109,7 +109,7 @@ Public Class FormEmpUniOrderDet
             ReportStyleGridview(Report.GVItemList)
 
             'Parse val
-            Report.LabelTitle.Text = "UNIFORM ORDER"
+            'Report.LabelTitle.Text = "UNIFORM ORDER"
             Report.LabelPeriod.Text = TxtPeriodName.Text.ToUpper
             Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
             Report.LabelNIK.Text = TxtNIK.Text.ToUpper
@@ -137,7 +137,7 @@ Public Class FormEmpUniOrderDet
     End Sub
 
     Private Sub ReportOnStartPrint(ByVal sender As Object, ByVal e As DevExpress.XtraPrinting.PrintDocumentEventArgs)
-        e.PrintDocument.PrinterSettings.Copies = 2
+        e.PrintDocument.PrinterSettings.Copies = 3
     End Sub
 
     Private Sub BtnCancelOrder_Click(sender As Object, e As EventArgs) Handles BtnCancelOrder.Click
@@ -335,7 +335,7 @@ Public Class FormEmpUniOrderDet
         ReportStyleGridview(Report.GVItemList)
 
         'Parse val
-        Report.LabelTitle.Text = "UNIFORM ORDER"
+        'Report.LabelTitle.Text = "UNIFORM ORDER"
         Report.LabelPeriod.Text = TxtPeriodName.Text.ToUpper
         Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
         Report.LabelNIK.Text = TxtNIK.Text.ToUpper
