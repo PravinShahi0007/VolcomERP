@@ -1529,11 +1529,18 @@ Public Class FormMain
         ElseIf formName = "FormEmpUniList" Then
             FormEmpUniListNew.ShowDialog()
         ElseIf formName = "FormMasterAssetCategory" Then
-            FormMasterAssetCategoryDet.id_asset_cat = "-1"
-            FormMasterAssetCategoryDet.ShowDialog()
+            FormMasterAssetCategoryDetail.id_asset_cat = "-1"
+            FormMasterAssetCategoryDetail.ShowDialog()
         ElseIf formName = "FormMasterAsset" Then
-            FormMasterAssetDet.id_asset = "-1"
-            FormMasterAssetDet.ShowDialog()
+            If FormMasterAsset.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                FormMasterAssetDetail.id_asset = "-1"
+                FormMasterAssetDetail.ShowDialog()
+            ElseIf FormMasterAsset.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                If FormMasterAsset.GVAsset.RowCount > 0 Then
+                    FormMasterAssetLog.id_asset = FormMasterAsset.GVAsset.GetFocusedRowCellValue("id_asset").ToString
+                    FormMasterAssetLog.ShowDialog()
+                End If
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -2453,11 +2460,11 @@ Public Class FormMain
                 FormEmpUniListDet.id_emp_uni_design = FormEmpUniList.GVData.GetFocusedRowCellValue("id_emp_uni_design").ToString
                 FormEmpUniListDet.ShowDialog()
             ElseIf formName = "FormMasterAssetCategory" Then
-                FormMasterAssetCategoryDet.id_asset_cat = FormMasterAssetCategory.GVAssetCat.GetFocusedRowCellValue("id_asset_cat").ToString
-                FormMasterAssetCategoryDet.ShowDialog()
+                FormMasterAssetCategoryDetail.id_asset_cat = FormMasterAssetCategory.GVAssetCat.GetFocusedRowCellValue("id_asset_cat").ToString
+                FormMasterAssetCategoryDetail.ShowDialog()
             ElseIf formName = "FormMasterAsset" Then
-                FormMasterAssetDet.id_asset = FormMasterAsset.GVAsset.GetFocusedRowCellValue("id_asset").ToString
-                FormMasterAssetDet.ShowDialog()
+                FormMasterAssetDetail.id_asset = FormMasterAsset.GVAsset.GetFocusedRowCellValue("id_asset").ToString
+                FormMasterAssetDetail.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -6835,7 +6842,11 @@ Public Class FormMain
         ElseIf formName = "FormMasterAssetCategory" Then
             print_raw(FormMasterAssetCategory.GCAssetCat, "")
         ElseIf formName = "FormMasterAsset" Then
-            print_raw(FormMasterAsset.GCAsset, "")
+            If FormMasterAsset.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                print_raw(FormMasterAsset.GCAsset, "")
+            ElseIf FormMasterAsset.xtratabcontrol1.SelectedTabPageIndex = 1 Then
+                print_raw(FormMasterAsset.GCAssetMovingLog, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If
