@@ -27,9 +27,7 @@ Partial Class FormMasterAssetCategory
         Me.ColumnIdCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCodeName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCodeDesc = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.ColIsIncludeName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.ColIsIncludeCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         CType(Me.GCAssetCat, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,7 +50,7 @@ Partial Class FormMasterAssetCategory
         '
         'GVAssetCat
         '
-        Me.GVAssetCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdCode, Me.GCCodeName, Me.GCCodeDesc, Me.ColIsIncludeName, Me.ColIsIncludeCode})
+        Me.GVAssetCat.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdCode, Me.GCCodeName, Me.GCCodeDesc})
         Me.GVAssetCat.GridControl = Me.GCAssetCat
         Me.GVAssetCat.Name = "GVAssetCat"
         Me.GVAssetCat.OptionsBehavior.Editable = False
@@ -61,13 +59,13 @@ Partial Class FormMasterAssetCategory
         'ColumnIdCode
         '
         Me.ColumnIdCode.Caption = "Id Code"
-        Me.ColumnIdCode.FieldName = "id_code"
+        Me.ColumnIdCode.FieldName = "id_asset_cat"
         Me.ColumnIdCode.Name = "ColumnIdCode"
         '
         'GCCodeName
         '
         Me.GCCodeName.Caption = "Code"
-        Me.GCCodeName.FieldName = "code_name"
+        Me.GCCodeName.FieldName = "asset_cat_code"
         Me.GCCodeName.Name = "GCCodeName"
         Me.GCCodeName.Visible = True
         Me.GCCodeName.VisibleIndex = 0
@@ -75,41 +73,17 @@ Partial Class FormMasterAssetCategory
         '
         'GCCodeDesc
         '
-        Me.GCCodeDesc.Caption = "Description"
-        Me.GCCodeDesc.FieldName = "description"
+        Me.GCCodeDesc.Caption = "Category"
+        Me.GCCodeDesc.FieldName = "asset_cat"
         Me.GCCodeDesc.Name = "GCCodeDesc"
         Me.GCCodeDesc.Visible = True
         Me.GCCodeDesc.VisibleIndex = 1
         Me.GCCodeDesc.Width = 210
         '
-        'ColIsIncludeName
-        '
-        Me.ColIsIncludeName.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColIsIncludeName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ColIsIncludeName.Caption = "Include in Name"
-        Me.ColIsIncludeName.ColumnEdit = Me.RepositoryItemCheckEdit3
-        Me.ColIsIncludeName.FieldName = "is_include_name"
-        Me.ColIsIncludeName.Name = "ColIsIncludeName"
-        Me.ColIsIncludeName.Visible = True
-        Me.ColIsIncludeName.VisibleIndex = 2
-        Me.ColIsIncludeName.Width = 74
-        '
         'RepositoryItemCheckEdit3
         '
         Me.RepositoryItemCheckEdit3.AutoHeight = False
         Me.RepositoryItemCheckEdit3.Name = "RepositoryItemCheckEdit3"
-        '
-        'ColIsIncludeCode
-        '
-        Me.ColIsIncludeCode.AppearanceHeader.Options.UseTextOptions = True
-        Me.ColIsIncludeCode.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
-        Me.ColIsIncludeCode.Caption = "Include in Code"
-        Me.ColIsIncludeCode.ColumnEdit = Me.RepositoryItemCheckEdit4
-        Me.ColIsIncludeCode.FieldName = "is_include_code"
-        Me.ColIsIncludeCode.Name = "ColIsIncludeCode"
-        Me.ColIsIncludeCode.Visible = True
-        Me.ColIsIncludeCode.VisibleIndex = 3
-        Me.ColIsIncludeCode.Width = 80
         '
         'RepositoryItemCheckEdit4
         '
@@ -149,9 +123,7 @@ Partial Class FormMasterAssetCategory
     Friend WithEvents ColumnIdCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCodeName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GCCodeDesc As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents ColIsIncludeName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit3 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents ColIsIncludeCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit4 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
 End Class
