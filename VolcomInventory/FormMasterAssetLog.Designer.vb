@@ -50,6 +50,8 @@ Partial Class FormMasterAssetLog
         Me.TECode = New DevExpress.XtraEditors.TextEdit()
         Me.BNothingUser = New DevExpress.XtraEditors.SimpleButton()
         Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEMoveNo = New DevExpress.XtraEditors.TextEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -70,6 +72,7 @@ Partial Class FormMasterAssetLog
         CType(Me.LEAssetCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOldCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEMoveNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -103,7 +106,7 @@ Partial Class FormMasterAssetLog
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 350)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 376)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(496, 37)
         Me.PanelControl3.TabIndex = 153
@@ -138,7 +141,7 @@ Partial Class FormMasterAssetLog
         Me.GroupControl1.Controls.Add(Me.LabelControl2)
         Me.GroupControl1.Controls.Add(Me.LECurUser)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 120)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 147)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(496, 67)
         Me.GroupControl1.TabIndex = 155
@@ -209,9 +212,9 @@ Partial Class FormMasterAssetLog
         Me.GroupControl3.Controls.Add(Me.LabelControl4)
         Me.GroupControl3.Controls.Add(Me.LENewUser)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 187)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 214)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(496, 163)
+        Me.GroupControl3.Size = New System.Drawing.Size(496, 162)
         Me.GroupControl3.TabIndex = 156
         Me.GroupControl3.Text = "New Location"
         '
@@ -303,6 +306,8 @@ Partial Class FormMasterAssetLog
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.LabelControl11)
+        Me.GroupControl2.Controls.Add(Me.TEMoveNo)
         Me.GroupControl2.Controls.Add(Me.LabelControl5)
         Me.GroupControl2.Controls.Add(Me.TEDesc)
         Me.GroupControl2.Controls.Add(Me.LabelControl6)
@@ -314,13 +319,13 @@ Partial Class FormMasterAssetLog
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(496, 120)
+        Me.GroupControl2.Size = New System.Drawing.Size(496, 147)
         Me.GroupControl2.TabIndex = 157
         Me.GroupControl2.Text = "Asset"
         '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(34, 16)
+        Me.LabelControl5.Location = New System.Drawing.Point(34, 40)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl5.TabIndex = 7
@@ -328,7 +333,7 @@ Partial Class FormMasterAssetLog
         '
         'TEDesc
         '
-        Me.TEDesc.Location = New System.Drawing.Point(103, 65)
+        Me.TEDesc.Location = New System.Drawing.Point(103, 89)
         Me.TEDesc.Name = "TEDesc"
         Me.TEDesc.Properties.ReadOnly = True
         Me.TEDesc.Size = New System.Drawing.Size(354, 20)
@@ -336,7 +341,7 @@ Partial Class FormMasterAssetLog
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(34, 68)
+        Me.LabelControl6.Location = New System.Drawing.Point(34, 92)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl6.TabIndex = 8
@@ -345,7 +350,7 @@ Partial Class FormMasterAssetLog
         'LEAssetCat
         '
         Me.LEAssetCat.Enabled = False
-        Me.LEAssetCat.Location = New System.Drawing.Point(103, 91)
+        Me.LEAssetCat.Location = New System.Drawing.Point(103, 115)
         Me.LEAssetCat.Name = "LEAssetCat"
         Me.LEAssetCat.Properties.Appearance.Options.UseTextOptions = True
         Me.LEAssetCat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -362,7 +367,7 @@ Partial Class FormMasterAssetLog
         '
         'TEOldCode
         '
-        Me.TEOldCode.Location = New System.Drawing.Point(103, 39)
+        Me.TEOldCode.Location = New System.Drawing.Point(103, 63)
         Me.TEOldCode.Name = "TEOldCode"
         Me.TEOldCode.Properties.ReadOnly = True
         Me.TEOldCode.Size = New System.Drawing.Size(242, 20)
@@ -370,7 +375,7 @@ Partial Class FormMasterAssetLog
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(34, 42)
+        Me.LabelControl7.Location = New System.Drawing.Point(34, 66)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl7.TabIndex = 9
@@ -378,7 +383,7 @@ Partial Class FormMasterAssetLog
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(34, 94)
+        Me.LabelControl8.Location = New System.Drawing.Point(34, 118)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(48, 13)
         Me.LabelControl8.TabIndex = 6
@@ -386,7 +391,7 @@ Partial Class FormMasterAssetLog
         '
         'TECode
         '
-        Me.TECode.Location = New System.Drawing.Point(103, 13)
+        Me.TECode.Location = New System.Drawing.Point(103, 37)
         Me.TECode.Name = "TECode"
         Me.TECode.Properties.ReadOnly = True
         Me.TECode.Size = New System.Drawing.Size(213, 20)
@@ -412,11 +417,28 @@ Partial Class FormMasterAssetLog
         Me.BPrint.TabIndex = 22
         Me.BPrint.Text = "Print"
         '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(34, 14)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl11.TabIndex = 11
+        Me.LabelControl11.Text = "Moving No"
+        '
+        'TEMoveNo
+        '
+        Me.TEMoveNo.Location = New System.Drawing.Point(103, 11)
+        Me.TEMoveNo.Name = "TEMoveNo"
+        Me.TEMoveNo.Properties.ReadOnly = True
+        Me.TEMoveNo.Size = New System.Drawing.Size(213, 20)
+        Me.TEMoveNo.TabIndex = 10
+        Me.TEMoveNo.TabStop = False
+        '
         'FormMasterAssetLog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(496, 387)
+        Me.ClientSize = New System.Drawing.Size(496, 413)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl3)
@@ -450,6 +472,7 @@ Partial Class FormMasterAssetLog
         CType(Me.LEAssetCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEOldCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEMoveNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -483,4 +506,6 @@ Partial Class FormMasterAssetLog
     Friend WithEvents DEMovingDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents BNothingUser As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEMoveNo As DevExpress.XtraEditors.TextEdit
 End Class

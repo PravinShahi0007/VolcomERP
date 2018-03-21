@@ -51,7 +51,7 @@
     End Sub
     Sub load_moving_log()
         If GVAsset.RowCount > 0 Then
-            Dim query As String = "SELECT assl.*,dep.`departement`,emp.`employee_name`,dep_new.`departement` AS departement_new,emp_new.`employee_name` AS employee_name_new FROM tb_a_asset_log assl 
+            Dim query As String = "SELECT CONCAT('IAMA',LPAD(assl.id_asset_log,5,'0')) as move_no,assl.*,dep.`departement`,emp.`employee_name`,dep_new.`departement` AS departement_new,emp_new.`employee_name` AS employee_name_new FROM tb_a_asset_log assl 
                                 INNER JOIN tb_m_departement dep ON dep.`id_departement`=assl.`id_departement_old`
                                 LEFT JOIN tb_m_employee emp ON emp.`id_employee`=assl.`id_employee_old`
                                 INNER JOIN tb_m_departement dep_new ON dep_new.`id_departement`=assl.`id_departement`

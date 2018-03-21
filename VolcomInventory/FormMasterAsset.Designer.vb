@@ -63,6 +63,7 @@ Partial Class FormMasterAsset
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -369,7 +370,7 @@ Partial Class FormMasterAsset
         '
         'GVAssetMovingLog
         '
-        Me.GVAssetMovingLog.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn24, Me.GridColumn15, Me.GridColumn16, Me.GridColumn13, Me.GridColumn12, Me.GridColumn22, Me.GridColumn5})
+        Me.GVAssetMovingLog.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn24, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn13, Me.GridColumn12, Me.GridColumn22, Me.GridColumn5})
         Me.GVAssetMovingLog.GridControl = Me.GCAssetMovingLog
         Me.GVAssetMovingLog.Name = "GVAssetMovingLog"
         Me.GVAssetMovingLog.OptionsBehavior.Editable = False
@@ -395,7 +396,7 @@ Partial Class FormMasterAsset
         Me.GridColumn15.FieldName = "departement"
         Me.GridColumn15.Name = "GridColumn15"
         Me.GridColumn15.Visible = True
-        Me.GridColumn15.VisibleIndex = 1
+        Me.GridColumn15.VisibleIndex = 2
         Me.GridColumn15.Width = 72
         '
         'GridColumn16
@@ -404,7 +405,7 @@ Partial Class FormMasterAsset
         Me.GridColumn16.FieldName = "employee_name"
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 2
+        Me.GridColumn16.VisibleIndex = 3
         Me.GridColumn16.Width = 72
         '
         'GridColumn13
@@ -413,7 +414,7 @@ Partial Class FormMasterAsset
         Me.GridColumn13.FieldName = "departement_new"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 3
+        Me.GridColumn13.VisibleIndex = 4
         '
         'GridColumn12
         '
@@ -421,7 +422,7 @@ Partial Class FormMasterAsset
         Me.GridColumn12.FieldName = "employee_name_new"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 4
+        Me.GridColumn12.VisibleIndex = 5
         '
         'GridColumn22
         '
@@ -431,7 +432,7 @@ Partial Class FormMasterAsset
         Me.GridColumn22.FieldName = "date"
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 0
+        Me.GridColumn22.VisibleIndex = 1
         Me.GridColumn22.Width = 72
         '
         'GridColumn5
@@ -440,7 +441,7 @@ Partial Class FormMasterAsset
         Me.GridColumn5.FieldName = "note"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 5
+        Me.GridColumn5.VisibleIndex = 6
         '
         'RepositoryItemCheckEdit2
         '
@@ -458,6 +459,14 @@ Partial Class FormMasterAsset
         '
         Me.RepositoryItemCheckEdit6.AutoHeight = False
         Me.RepositoryItemCheckEdit6.Name = "RepositoryItemCheckEdit6"
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Number"
+        Me.GridColumn14.FieldName = "move_no"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 0
         '
         'FormMasterAsset
         '
@@ -538,4 +547,5 @@ Partial Class FormMasterAsset
     Friend WithEvents RepositoryItemCheckEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemCheckEdit5 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents RepositoryItemCheckEdit6 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
 End Class

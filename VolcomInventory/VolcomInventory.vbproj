@@ -4724,6 +4724,12 @@
     <Compile Include="ReportFGWoffList.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportMasterAssetLog.Designer.vb">
+      <DependentUpon>ReportMasterAssetLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMasterAssetLog.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportMasterPrice.Designer.vb">
       <DependentUpon>ReportMasterPrice.vb</DependentUpon>
     </Compile>
@@ -7961,6 +7967,9 @@
     <EmbeddedResource Include="ReportFGWoffList.resx">
       <DependentUpon>ReportFGWoffList.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMasterAssetLog.resx">
+      <DependentUpon>ReportMasterAssetLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportMasterPrice.resx">
       <DependentUpon>ReportMasterPrice.vb</DependentUpon>

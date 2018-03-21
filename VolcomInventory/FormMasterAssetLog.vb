@@ -52,7 +52,7 @@
             BSave.Visible = True
         Else 'edit
             '
-            Dim query_view As String = "SELECT * FROM tb_a_asset_log WHERE id_asset_log='" & id_asset_log & "'"
+            Dim query_view As String = "SELECT a.*,LPAD(a.id_asset_log,5,'0') as move_no FROM tb_a_asset_log a WHERE a.id_asset_log='" & id_asset_log & "'"
             Dim data_view As DataTable = execute_query(query_view, -1, True, "", "", "", "")
             '
             LECurDep.ItemIndex = LECurDep.Properties.GetDataSourceRowIndex("id_departement", data_view.Rows(0)("id_departement_old").ToString)
@@ -68,6 +68,8 @@
             '
             MENote.Text = data_view.Rows(0)("note").ToString
             DEMovingDate.EditValue = data_view.Rows(0)("date")
+            '
+            TEMoveNo.Text = "IAMA" & data_view.Rows(0)("move_no").ToString
             '
             BSave.Visible = False
         End If
@@ -125,5 +127,30 @@
 
     Private Sub BNothingUser_Click(sender As Object, e As EventArgs) Handles BNothingUser.Click
         LENewUser.ItemIndex = 0
+    End Sub
+
+    Private Sub BPrint_Click(sender As Object, e As EventArgs) Handles BPrint.Click
+        Dim Report As New ReportMasterAssetLog()
+        '
+        Report.LabelNumber.Text = TEMoveNo.Text
+        Report.LDate.Text = Date.Parse(DEMovingDate.EditValue.ToString).ToString("dd MMM yyyy")
+        '
+        Report.CAssetCode.Text = TECode.Text
+        Report.CAssetDesc.Text = TEDesc.Text
+        Report.CAssetCat.Text = LEAssetCat.Text
+        '
+        Report.CNewDep.Text = LENewDep.Text
+        Report.CNewUser.Text = LENewUser.Text
+        Report.CSignNew.Text = If(LENewUser.Text = "", LENewDep.Text, LENewUser.Text)
+        '
+        Report.COldDept.Text = LECurDep.Text
+        Report.COldUser.Text = LECurUser.Text
+        Report.CSignOld.Text = If(LECurUser.Text = "", LECurDep.Text, LECurUser.Text)
+        '
+        Report.CSignIA.Text = name_user
+        Report.CSignDept.Text = get_departement_x(id_departement_user, "1")
+        ' Show the report's preview. 
+        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+        Tool.ShowPreview()
     End Sub
 End Class
