@@ -6837,7 +6837,11 @@ Public Class FormMain
         ElseIf formName = "FormMasterAssetCategory" Then
             print_raw(FormMasterAssetCategory.GCAssetCat, "")
         ElseIf formName = "FormMasterAsset" Then
-            print_raw(FormMasterAsset.GCAsset, "")
+            If FormMasterAsset.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                print_raw(FormMasterAsset.GCAsset, "")
+            ElseIf FormMasterAsset.xtratabcontrol1.SelectedTabPageIndex = 1 Then
+                print_raw(FormMasterAsset.GCAssetMovingLog, "")
+            End If
         Else
             RPSubMenu.Visible = False
         End If

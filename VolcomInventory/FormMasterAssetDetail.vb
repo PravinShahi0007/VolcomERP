@@ -144,6 +144,7 @@
 
     Private Sub DERecDate_EditValueChanged(sender As Object, e As EventArgs) Handles DERecDate.EditValueChanged
         calculate_aging()
+        generate_code()
     End Sub
 
     Private Sub TEPOQty_EditValueChanged(sender As Object, e As EventArgs) Handles TEPOQty.EditValueChanged
