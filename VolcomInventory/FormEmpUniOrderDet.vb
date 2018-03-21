@@ -65,7 +65,7 @@
     End Sub
 
     Sub viewDetail()
-        Dim query As String = "CALL view_sales_order('" + id_sales_order + "') "
+        Dim query As String = "CALL view_sales_order_uni('" + id_sales_order + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
     End Sub
@@ -74,14 +74,20 @@
     End Sub
 
     Private Sub BtnAccept_Click(sender As Object, e As EventArgs) Handles BtnAccept.Click
+        acceptOrder()
+    End Sub
+
+    Sub acceptOrder()
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to accept this order?", "Accept Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
+            Cursor = Cursors.WaitCursor
             submit_who_prepared("39", id_sales_order, id_user)
 
             Dim query As String = "UPDATE tb_sales_order Set id_report_status=6, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
             FormEmpUniPeriodDet.viewOrder()
             actionLoad()
+            Cursor = Cursors.Default
         End If
     End Sub
 
@@ -110,6 +116,10 @@
     End Sub
 
     Sub deleteRow()
+
+    End Sub
+
+    Sub deleteData()
         If GVItemList.RowCount > 0 And GVItemList.FocusedRowHandle >= 0 Then
             Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want To delete this detail order?", "Delete Detail Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
             If confirm = Windows.Forms.DialogResult.Yes Then
@@ -124,11 +134,23 @@
         GVItemList.Focus()
     End Sub
 
+
     Private Sub FormEmpUniOrderDet_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
-        If e.KeyCode = Keys.Insert Then
+        If e.KeyCode = Keys.F2 Then
+            'TAMBAH
             addRow()
-        ElseIf e.KeyCode = Keys.Delete Then
+        ElseIf e.KeyCode = Keys.F3 Then
+            'DELETE
             deleteRow()
+        ElseIf e.KeyCode = Keys.F4 Then
+            'view STOCK
+            viewStock()
+        ElseIf e.KeyCode = Keys.F5 Then
+            'ACCEPT ORDER
+            acceptOrder()
+        ElseIf e.KeyCode = Keys.F6 Then
+            'PRINT
+            printOrder()
         ElseIf (e.KeyCode = Keys.R AndAlso e.Modifiers = Keys.Control) Then
             focusRow()
         End If
@@ -232,6 +254,10 @@
     End Sub
 
     Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles SimpleButton3.Click
+        printOrder()
+    End Sub
+
+    Sub printOrder()
         Cursor = Cursors.WaitCursor
         ReportEmpUniOrder.dt = GCItemList.DataSource
         Dim Report As New ReportEmpUniOrder()
@@ -269,6 +295,17 @@
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs)
+        Cursor = Cursors.WaitCursor
+        FormEmpUniSuggest.id_emp_uni_period = id_emp_uni_period
+        FormEmpUniSuggest.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnStock_Click(sender As Object, e As EventArgs) Handles BtnStock.Click
+        viewStock()
+    End Sub
+
+    Sub viewStock()
         Cursor = Cursors.WaitCursor
         FormEmpUniSuggest.id_emp_uni_period = id_emp_uni_period
         FormEmpUniSuggest.ShowDialog()

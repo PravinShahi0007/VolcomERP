@@ -3,6 +3,7 @@
 
     Private Sub FormEmpUniSuggest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewDesignList()
+        ActiveControl = TxtDesign
     End Sub
 
     Sub viewDesignList()
@@ -25,6 +26,8 @@
     End Sub
 
     Private Sub SimpleButton6_Click(sender As Object, e As EventArgs) Handles SimpleButton6.Click
+        GVDesignList.ActiveFilterString = ""
+        TxtDesign.Text = ""
         viewDesignList()
     End Sub
 
@@ -32,5 +35,20 @@
         Cursor = Cursors.WaitCursor
         print_raw(GCDesignList, "Suggested Design")
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TxtDesign_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDesign.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            viewDesignList()
+            If TxtDesign.Text.ToString = "" Then
+                GVDesignList.ActiveFilterString = ""
+            Else
+                GVDesignList.ActiveFilterString = "[no]='" + addSlashes(TxtDesign.Text.ToString) + "'"
+            End If
+        End If
+    End Sub
+
+    Private Sub FormEmpUniSuggest_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
     End Sub
 End Class

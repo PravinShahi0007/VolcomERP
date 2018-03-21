@@ -44,11 +44,14 @@ Partial Class FormEmpUniSuggest
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton6 = New DevExpress.XtraEditors.SimpleButton()
+        Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.GCDesignList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesignList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GCDesignList
@@ -320,6 +323,8 @@ Partial Class FormEmpUniSuggest
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.TxtDesign)
+        Me.PanelControl3.Controls.Add(Me.LabelControl6)
         Me.PanelControl3.Controls.Add(Me.SimpleButton1)
         Me.PanelControl3.Controls.Add(Me.SimpleButton6)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Top
@@ -348,6 +353,27 @@ Partial Class FormEmpUniSuggest
         Me.SimpleButton6.TabIndex = 5
         Me.SimpleButton6.Text = "Refresh List"
         '
+        'TxtDesign
+        '
+        Me.TxtDesign.EditValue = ""
+        Me.TxtDesign.Location = New System.Drawing.Point(74, 9)
+        Me.TxtDesign.Name = "TxtDesign"
+        Me.TxtDesign.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDesign.Properties.Appearance.Options.UseFont = True
+        Me.TxtDesign.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TxtDesign.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TxtDesign.Size = New System.Drawing.Size(58, 20)
+        Me.TxtDesign.TabIndex = 156
+        '
+        'LabelControl6
+        '
+        Me.LabelControl6.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl6.Location = New System.Drawing.Point(14, 12)
+        Me.LabelControl6.Name = "LabelControl6"
+        Me.LabelControl6.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl6.TabIndex = 157
+        Me.LabelControl6.Text = "Uniform#"
+        '
         'FormEmpUniSuggest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -364,6 +390,8 @@ Partial Class FormEmpUniSuggest
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        Me.PanelControl3.PerformLayout()
+        CType(Me.TxtDesign.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -392,4 +420,6 @@ Partial Class FormEmpUniSuggest
     Friend WithEvents PanelControl3 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton6 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
 End Class

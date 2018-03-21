@@ -35,6 +35,7 @@ Partial Class FormEmpUniOrderDet
         Me.TxtNIK = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAccept = New DevExpress.XtraEditors.SimpleButton()
@@ -91,6 +92,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnUniformNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnStock = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlDesign = New DevExpress.XtraEditors.PanelControl()
         Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -278,6 +280,7 @@ Partial Class FormEmpUniOrderDet
         '
         'PanelControl1
         '
+        Me.PanelControl1.Controls.Add(Me.BtnClose)
         Me.PanelControl1.Controls.Add(Me.SimpleButton3)
         Me.PanelControl1.Controls.Add(Me.BtnCancelOrder)
         Me.PanelControl1.Controls.Add(Me.BtnAccept)
@@ -287,21 +290,33 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl1.Size = New System.Drawing.Size(934, 41)
         Me.PanelControl1.TabIndex = 1
         '
+        'BtnClose
+        '
+        Me.BtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
+        Me.BtnClose.Location = New System.Drawing.Point(605, 2)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.Size = New System.Drawing.Size(104, 37)
+        Me.BtnClose.TabIndex = 4
+        Me.BtnClose.Text = "Close (Esc)"
+        '
         'SimpleButton3
         '
         Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Left
         Me.SimpleButton3.Image = CType(resources.GetObject("SimpleButton3.Image"), System.Drawing.Image)
         Me.SimpleButton3.Location = New System.Drawing.Point(2, 2)
         Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(86, 37)
+        Me.SimpleButton3.Size = New System.Drawing.Size(97, 37)
         Me.SimpleButton3.TabIndex = 3
-        Me.SimpleButton3.Text = "Print"
+        Me.SimpleButton3.Text = "Print (F6)"
         '
         'BtnCancelOrder
         '
+        Me.BtnCancelOrder.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnCancelOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCancelOrder.Image = CType(resources.GetObject("BtnCancelOrder.Image"), System.Drawing.Image)
-        Me.BtnCancelOrder.Location = New System.Drawing.Point(703, 2)
+        Me.BtnCancelOrder.Location = New System.Drawing.Point(709, 2)
         Me.BtnCancelOrder.Name = "BtnCancelOrder"
         Me.BtnCancelOrder.Size = New System.Drawing.Size(111, 37)
         Me.BtnCancelOrder.TabIndex = 1
@@ -310,13 +325,14 @@ Partial Class FormEmpUniOrderDet
         '
         'BtnAccept
         '
+        Me.BtnAccept.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnAccept.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAccept.Image = CType(resources.GetObject("BtnAccept.Image"), System.Drawing.Image)
-        Me.BtnAccept.Location = New System.Drawing.Point(814, 2)
+        Me.BtnAccept.Location = New System.Drawing.Point(820, 2)
         Me.BtnAccept.Name = "BtnAccept"
-        Me.BtnAccept.Size = New System.Drawing.Size(118, 37)
+        Me.BtnAccept.Size = New System.Drawing.Size(112, 37)
         Me.BtnAccept.TabIndex = 0
-        Me.BtnAccept.Text = "Accept Order"
+        Me.BtnAccept.Text = "Accept (F5)"
         '
         'GroupControl2
         '
@@ -632,7 +648,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 40
+        Me.GridColumnNo.Width = 38
         '
         'GridColumnCode
         '
@@ -641,7 +657,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 2
-        Me.GridColumnCode.Width = 194
+        Me.GridColumnCode.Width = 187
         '
         'GridColumnName
         '
@@ -653,7 +669,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 3
-        Me.GridColumnName.Width = 405
+        Me.GridColumnName.Width = 391
         '
         'GridColumnSize
         '
@@ -668,7 +684,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 4
-        Me.GridColumnSize.Width = 150
+        Me.GridColumnSize.Width = 144
         '
         'GridColumnPriceType
         '
@@ -696,7 +712,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 5
-        Me.GridColumnQty.Width = 249
+        Me.GridColumnQty.Width = 240
         '
         'RepositoryItemSpinEdit1
         '
@@ -721,7 +737,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 6
-        Me.GridColumnPrice.Width = 301
+        Me.GridColumnPrice.Width = 290
         '
         'GridColumnAmount
         '
@@ -739,7 +755,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amount", "{0:n2}")})
         Me.GridColumnAmount.Visible = True
         Me.GridColumnAmount.VisibleIndex = 7
-        Me.GridColumnAmount.Width = 293
+        Me.GridColumnAmount.Width = 288
         '
         'GridColumnRemark
         '
@@ -866,6 +882,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnUniformNo.Name = "GridColumnUniformNo"
         Me.GridColumnUniformNo.Visible = True
         Me.GridColumnUniformNo.VisibleIndex = 1
+        Me.GridColumnUniformNo.Width = 54
         '
         'GroupControl3
         '
@@ -881,6 +898,7 @@ Partial Class FormEmpUniOrderDet
         'PanelControl4
         '
         Me.PanelControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl4.Controls.Add(Me.BtnStock)
         Me.PanelControl4.Controls.Add(Me.PanelControlDesign)
         Me.PanelControl4.Controls.Add(Me.BtnFocusRow)
         Me.PanelControl4.Controls.Add(Me.BtnDelOrder)
@@ -890,6 +908,16 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl4.Name = "PanelControl4"
         Me.PanelControl4.Size = New System.Drawing.Size(912, 40)
         Me.PanelControl4.TabIndex = 6
+        '
+        'BtnStock
+        '
+        Me.BtnStock.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnStock.Image = CType(resources.GetObject("BtnStock.Image"), System.Drawing.Image)
+        Me.BtnStock.Location = New System.Drawing.Point(478, 0)
+        Me.BtnStock.Name = "BtnStock"
+        Me.BtnStock.Size = New System.Drawing.Size(109, 40)
+        Me.BtnStock.TabIndex = 6
+        Me.BtnStock.Text = "Stock (F4)"
         '
         'PanelControlDesign
         '
@@ -932,6 +960,7 @@ Partial Class FormEmpUniOrderDet
         Me.BtnFocusRow.Size = New System.Drawing.Size(117, 40)
         Me.BtnFocusRow.TabIndex = 4
         Me.BtnFocusRow.Text = "Row (Ctrl+R)"
+        Me.BtnFocusRow.Visible = False
         '
         'BtnDelOrder
         '
@@ -941,22 +970,24 @@ Partial Class FormEmpUniOrderDet
         Me.BtnDelOrder.Name = "BtnDelOrder"
         Me.BtnDelOrder.Size = New System.Drawing.Size(109, 40)
         Me.BtnDelOrder.TabIndex = 3
-        Me.BtnDelOrder.Text = "Delete (Del)"
+        Me.BtnDelOrder.Text = "Delete (F3)"
         '
         'BtnAddOrder
         '
+        Me.BtnAddOrder.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.BtnAddOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnAddOrder.Image = CType(resources.GetObject("BtnAddOrder.Image"), System.Drawing.Image)
         Me.BtnAddOrder.Location = New System.Drawing.Point(813, 0)
         Me.BtnAddOrder.Name = "BtnAddOrder"
         Me.BtnAddOrder.Size = New System.Drawing.Size(99, 40)
         Me.BtnAddOrder.TabIndex = 2
-        Me.BtnAddOrder.Text = "Add (Ins)"
+        Me.BtnAddOrder.Text = "Add (F2)"
         '
         'FormEmpUniOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.BtnClose
         Me.ClientSize = New System.Drawing.Size(934, 562)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl2)
@@ -1092,4 +1123,6 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents LabelControl16 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
     Friend WithEvents GridColumnUniformNo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnStock As DevExpress.XtraEditors.SimpleButton
 End Class
