@@ -218,8 +218,8 @@
     Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles BtnPrintForm.Click
         If GVDetail.RowCount > 0 Then
             Cursor = Cursors.WaitCursor
+            ReportEmpUni.id_period = id_emp_uni_period
             Dim Report As New ReportEmpUni()
-            Report.id_period = id_emp_uni_period
             Report.LabelPeriode.Text = TxtPeriodName.Text
             Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
             Tool.ShowPreviewDialog()

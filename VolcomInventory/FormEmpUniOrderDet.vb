@@ -1,4 +1,6 @@
-﻿Public Class FormEmpUniOrderDet
+﻿Imports DevExpress.XtraReports.UI
+
+Public Class FormEmpUniOrderDet
     Public id_sales_order As String = "-1"
     Public id_emp_uni_budget As String = "-1"
     Public id_emp_uni_period As String = "-1"
@@ -81,14 +83,61 @@
         Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to accept this order?", "Accept Order", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
+            'submit
             submit_who_prepared("39", id_sales_order, id_user)
 
+            'update completed
             Dim query As String = "UPDATE tb_sales_order Set id_report_status=6, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
             FormEmpUniPeriodDet.viewOrder()
             actionLoad()
+
+            'print direct
+            ReportEmpUniOrder.dt = GCItemList.DataSource
+            Dim Report As New ReportEmpUniOrder()
+
+            ' '... 
+            ' ' creating and saving the view's layout to a new memory stream 
+            Dim str As System.IO.Stream
+            str = New System.IO.MemoryStream()
+            GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+            Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+            str.Seek(0, System.IO.SeekOrigin.Begin)
+
+            'Grid Detail
+            ReportStyleGridview(Report.GVItemList)
+
+            'Parse val
+            Report.LabelTitle.Text = "UNIFORM ORDER"
+            Report.LabelPeriod.Text = TxtPeriodName.Text.ToUpper
+            Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
+            Report.LabelNIK.Text = TxtNIK.Text.ToUpper
+            Report.LabelName.Text = TxtName.Text.ToUpper
+            Report.LabelDept.Text = TxtDept.Text.ToUpper
+            Report.LabelLevel.Text = TxtLevel.Text.ToUpper
+            Report.LabelBudget.Text = TxtBudget.Text.ToUpper
+            Report.LabelTotal.Text = TxtTotal.Text.ToUpper
+            Report.LabelDiff.Text = TxtDiff.Text
+            Report.LabelHRD.Text = prepared_by.ToUpper
+            Report.LabelTTDName.Text = TxtName.Text.ToUpper
+            Report.LabelDate.Text = DECreated.Text.ToString
+
+            Dim instance As New Printing.PrinterSettings
+            Dim DefaultPrinter As String = instance.PrinterName
+
+            ' THIS IS TO PRINT THE REPORT
+            Report.PrinterName = DefaultPrinter
+            Report.CreateDocument()
+            Report.PrintingSystem.ShowMarginsWarning = False
+            AddHandler Report.PrintingSystem.StartPrint, AddressOf ReportOnStartPrint
+            Report.Print()
             Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub ReportOnStartPrint(ByVal sender As Object, ByVal e As DevExpress.XtraPrinting.PrintDocumentEventArgs)
+        e.PrintDocument.PrinterSettings.Copies = 2
     End Sub
 
     Private Sub BtnCancelOrder_Click(sender As Object, e As EventArgs) Handles BtnCancelOrder.Click
@@ -286,18 +335,19 @@
         ReportStyleGridview(Report.GVItemList)
 
         'Parse val
-        Report.LabelTitle.Text = "UNIFORM ORDER - " + TxtPeriodName.Text.ToUpper
+        Report.LabelTitle.Text = "UNIFORM ORDER"
+        Report.LabelPeriod.Text = TxtPeriodName.Text.ToUpper
         Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
         Report.LabelNIK.Text = TxtNIK.Text.ToUpper
         Report.LabelName.Text = TxtName.Text.ToUpper
         Report.LabelDept.Text = TxtDept.Text.ToUpper
         Report.LabelLevel.Text = TxtLevel.Text.ToUpper
         Report.LabelBudget.Text = TxtBudget.Text.ToUpper
-        Report.LabelTolerance.Text = TxtTolerance.Text.ToUpper
-        Report.LabelGrossTotal.Text = TxtGross.Text.ToUpper
-        Report.LabelDiscount.Text = TxtDiscountValue.Text.ToUpper
         Report.LabelTotal.Text = TxtTotal.Text.ToUpper
-        Report.LabelPrepared.Text = "PREPARED BY " + prepared_by.ToUpper + " (" + DECreated.Text + ")"
+        Report.LabelDiff.Text = TxtDiff.Text
+        Report.LabelHRD.Text = prepared_by.ToUpper
+        Report.LabelTTDName.Text = TxtName.Text.ToUpper
+        Report.LabelDate.Text = DECreated.Text.ToString
 
         'Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)

@@ -5234,6 +5234,12 @@
     <Compile Include="XtraFormViewFGWHAlloc.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="XtraReport1.Designer.vb">
+      <DependentUpon>XtraReport1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport1.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AppLauncher.resx">
@@ -8303,6 +8309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XtraFormViewFGWHAlloc.resx">
       <DependentUpon>XtraFormViewFGWHAlloc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport1.resx">
+      <DependentUpon>XtraReport1.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
