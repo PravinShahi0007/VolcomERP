@@ -19,6 +19,7 @@ Partial Class FormEmpUniOrderDet
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormEmpUniOrderDet))
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
         Me.TxtLevel = New DevExpress.XtraEditors.TextEdit()
@@ -64,6 +65,10 @@ Partial Class FormEmpUniOrderDet
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl18 = New DevExpress.XtraEditors.LabelControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
+        Me.ContextMenuStrip1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.AddToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.StockToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -128,6 +133,7 @@ Partial Class FormEmpUniOrderDet
         CType(Me.TxtGross.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStrip1.SuspendLayout()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -417,27 +423,27 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl2.Controls.Add(Me.LabelControl2)
         Me.PanelControl2.Controls.Add(Me.TxtGross)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl2.Location = New System.Drawing.Point(452, 2)
+        Me.PanelControl2.Location = New System.Drawing.Point(422, 2)
         Me.PanelControl2.Name = "PanelControl2"
-        Me.PanelControl2.Size = New System.Drawing.Size(480, 120)
+        Me.PanelControl2.Size = New System.Drawing.Size(510, 120)
         Me.PanelControl2.TabIndex = 141
         '
         'LabelControl15
         '
-        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl15.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LabelControl15.Location = New System.Drawing.Point(10, 39)
+        Me.LabelControl15.Location = New System.Drawing.Point(10, 45)
         Me.LabelControl15.Name = "LabelControl15"
-        Me.LabelControl15.Size = New System.Drawing.Size(62, 13)
+        Me.LabelControl15.Size = New System.Drawing.Size(37, 19)
         Me.LabelControl15.TabIndex = 159
-        Me.LabelControl15.Text = "DIFFERENCE"
+        Me.LabelControl15.Text = "DIFF"
         '
         'TxtDiff
         '
         Me.TxtDiff.Enabled = False
-        Me.TxtDiff.Location = New System.Drawing.Point(78, 36)
+        Me.TxtDiff.Location = New System.Drawing.Point(84, 42)
         Me.TxtDiff.Name = "TxtDiff"
-        Me.TxtDiff.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TxtDiff.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtDiff.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.TxtDiff.Properties.Appearance.Options.UseFont = True
         Me.TxtDiff.Properties.Appearance.Options.UseForeColor = True
@@ -445,7 +451,7 @@ Partial Class FormEmpUniOrderDet
         Me.TxtDiff.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtDiff.Properties.DisplayFormat.FormatString = "n2"
         Me.TxtDiff.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtDiff.Size = New System.Drawing.Size(155, 20)
+        Me.TxtDiff.Size = New System.Drawing.Size(167, 26)
         Me.TxtDiff.TabIndex = 158
         '
         'LabelControl14
@@ -492,7 +498,7 @@ Partial Class FormEmpUniOrderDet
         '
         Me.TxtTotal.EditValue = ""
         Me.TxtTotal.Enabled = False
-        Me.TxtTotal.Location = New System.Drawing.Point(317, 6)
+        Me.TxtTotal.Location = New System.Drawing.Point(315, 10)
         Me.TxtTotal.Name = "TxtTotal"
         Me.TxtTotal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtTotal.Properties.Appearance.ForeColor = System.Drawing.Color.Blue
@@ -502,14 +508,14 @@ Partial Class FormEmpUniOrderDet
         Me.TxtTotal.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtTotal.Properties.DisplayFormat.FormatString = "n2"
         Me.TxtTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtTotal.Size = New System.Drawing.Size(155, 26)
+        Me.TxtTotal.Size = New System.Drawing.Size(185, 26)
         Me.TxtTotal.TabIndex = 151
         '
         'LabelControl5
         '
         Me.LabelControl5.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl5.Appearance.ForeColor = System.Drawing.Color.Blue
-        Me.LabelControl5.Location = New System.Drawing.Point(257, 9)
+        Me.LabelControl5.Location = New System.Drawing.Point(257, 13)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(60, 19)
         Me.LabelControl5.TabIndex = 150
@@ -529,25 +535,28 @@ Partial Class FormEmpUniOrderDet
         '
         'LabelControl1
         '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.Green
         Me.LabelControl1.Location = New System.Drawing.Point(10, 13)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(68, 19)
         Me.LabelControl1.TabIndex = 142
         Me.LabelControl1.Text = "BUDGET"
         '
         'TxtBudget
         '
         Me.TxtBudget.Enabled = False
-        Me.TxtBudget.Location = New System.Drawing.Point(78, 10)
+        Me.TxtBudget.Location = New System.Drawing.Point(84, 10)
         Me.TxtBudget.Name = "TxtBudget"
+        Me.TxtBudget.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TxtBudget.Properties.Appearance.ForeColor = System.Drawing.Color.Green
+        Me.TxtBudget.Properties.Appearance.Options.UseFont = True
         Me.TxtBudget.Properties.Appearance.Options.UseForeColor = True
         Me.TxtBudget.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TxtBudget.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TxtBudget.Properties.DisplayFormat.FormatString = "n2"
         Me.TxtBudget.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.TxtBudget.Size = New System.Drawing.Size(155, 20)
+        Me.TxtBudget.Size = New System.Drawing.Size(167, 26)
         Me.TxtBudget.TabIndex = 143
         '
         'LabelControl4
@@ -619,6 +628,7 @@ Partial Class FormEmpUniOrderDet
         '
         'GCItemList
         '
+        Me.GCItemList.ContextMenuStrip = Me.ContextMenuStrip1
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GCItemList.Location = New System.Drawing.Point(20, 42)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
@@ -628,6 +638,30 @@ Partial Class FormEmpUniOrderDet
         Me.GCItemList.Size = New System.Drawing.Size(912, 284)
         Me.GCItemList.TabIndex = 5
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
+        '
+        'ContextMenuStrip1
+        '
+        Me.ContextMenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddToolStripMenuItem, Me.DeleteToolStripMenuItem, Me.StockToolStripMenuItem})
+        Me.ContextMenuStrip1.Name = "ContextMenuStrip1"
+        Me.ContextMenuStrip1.Size = New System.Drawing.Size(108, 70)
+        '
+        'AddToolStripMenuItem
+        '
+        Me.AddToolStripMenuItem.Name = "AddToolStripMenuItem"
+        Me.AddToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AddToolStripMenuItem.Text = "Add"
+        '
+        'DeleteToolStripMenuItem
+        '
+        Me.DeleteToolStripMenuItem.Name = "DeleteToolStripMenuItem"
+        Me.DeleteToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.DeleteToolStripMenuItem.Text = "Delete"
+        '
+        'StockToolStripMenuItem
+        '
+        Me.StockToolStripMenuItem.Name = "StockToolStripMenuItem"
+        Me.StockToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.StockToolStripMenuItem.Text = "Stock"
         '
         'GVItemList
         '
@@ -1032,6 +1066,7 @@ Partial Class FormEmpUniOrderDet
         CType(Me.TxtGross.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStrip1.ResumeLayout(False)
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControl3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1125,4 +1160,8 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents GridColumnUniformNo As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnStock As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
+    Friend WithEvents AddToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents StockToolStripMenuItem As ToolStripMenuItem
 End Class

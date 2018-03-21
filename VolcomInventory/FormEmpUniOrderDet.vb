@@ -116,7 +116,18 @@
     End Sub
 
     Sub deleteRow()
-
+        Cursor = Cursors.WaitCursor
+        makeSafeGV(GVItemList)
+        FormEmpUniOrderDelete.ShowDialog()
+        If GVItemList.ActiveFilterString <> "" Then
+            If GVItemList.RowCount <= 0 Then
+                stopCustom("Not found")
+            Else
+                deleteData()
+            End If
+            makeSafeGV(GVItemList)
+        End If
+        Cursor = Cursors.Default
     End Sub
 
     Sub deleteData()
@@ -310,6 +321,18 @@
         FormEmpUniSuggest.id_emp_uni_period = id_emp_uni_period
         FormEmpUniSuggest.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub AddToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddToolStripMenuItem.Click
+        addRow()
+    End Sub
+
+    Private Sub DeleteToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteToolStripMenuItem.Click
+        deleteData()
+    End Sub
+
+    Private Sub StockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StockToolStripMenuItem.Click
+        viewStock()
     End Sub
 
     'Private Sub TxtCode_KeyDown(sender As Object, e As KeyEventArgs)

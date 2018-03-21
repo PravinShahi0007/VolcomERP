@@ -872,6 +872,12 @@
     <Compile Include="FormEmpUniListNew.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniOrderDelete.Designer.vb">
+      <DependentUpon>FormEmpUniOrderDelete.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniOrderDelete.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniOrderDet.Designer.vb">
       <DependentUpon>FormEmpUniOrderDet.vb</DependentUpon>
     </Compile>
@@ -5592,6 +5598,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniListNew.resx">
       <DependentUpon>FormEmpUniListNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniOrderDelete.resx">
+      <DependentUpon>FormEmpUniOrderDelete.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniOrderDet.resx">
       <DependentUpon>FormEmpUniOrderDet.vb</DependentUpon>
