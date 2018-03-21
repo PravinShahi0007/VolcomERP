@@ -40,11 +40,11 @@
             End If
             '
             TEPONumber.Text = data.Rows(0)("po_no").ToString
-            TEPOQty = data.Rows(0)("po_qty")
+            TEPOQty.EditValue = data.Rows(0)("po_qty")
             DEPODate.EditValue = data.Rows(0)("po_date")
             TEPOValue.EditValue = data.Rows(0)("po_value")
             '
-            TERecQty = data.Rows(0)("rec_qty")
+            TERecQty.EditValue = data.Rows(0)("rec_qty")
             DERecDate.EditValue = data.Rows(0)("rec_date")
             DERecDate.Properties.ReadOnly = True
             TERecValue.EditValue = data.Rows(0)("rec_value")
@@ -96,13 +96,16 @@
 
     Sub calculate_total_po()
         Try
-
+            TEPOTotal.EditValue = TEPOQty.EditValue * TEPOValue.EditValue
         Catch ex As Exception
         End Try
     End Sub
 
     Sub calculate_total_rec()
-
+        Try
+            TERecTotal.EditValue = TERecQty.EditValue * TERecValue.EditValue
+        Catch ex As Exception
+        End Try
     End Sub
 
     Sub load_cat()

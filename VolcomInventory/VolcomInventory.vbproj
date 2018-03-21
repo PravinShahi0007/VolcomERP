@@ -1202,6 +1202,12 @@
     <Compile Include="FormMasterAssetDetail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormMasterAssetLog.Designer.vb">
+      <DependentUpon>FormMasterAssetLog.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormMasterAssetLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormMasterCargoRate.Designer.vb">
       <DependentUpon>FormMasterCargoRate.vb</DependentUpon>
     </Compile>
@@ -5753,6 +5759,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterAssetDetail.resx">
       <DependentUpon>FormMasterAssetDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMasterAssetLog.resx">
+      <DependentUpon>FormMasterAssetLog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMasterCargoRate.resx">
       <DependentUpon>FormMasterCargoRate.vb</DependentUpon>

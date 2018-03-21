@@ -1530,8 +1530,15 @@ Public Class FormMain
             FormMasterAssetCategoryDetail.id_asset_cat = "-1"
             FormMasterAssetCategoryDetail.ShowDialog()
         ElseIf formName = "FormMasterAsset" Then
-            FormMasterAssetDetail.id_asset = "-1"
-            FormMasterAssetDetail.ShowDialog()
+            If FormMasterAsset.XtraTabControl1.SelectedTabPageIndex = 0 Then
+                FormMasterAssetDetail.id_asset = "-1"
+                FormMasterAssetDetail.ShowDialog()
+            ElseIf FormMasterAsset.XtraTabControl1.SelectedTabPageIndex = 1 Then
+                If FormMasterAsset.GVAsset.RowCount > 0 Then
+                    FormMasterAssetLog.id_asset = FormMasterAsset.GVAsset.GetFocusedRowCellValue("id_asset").ToString
+                    FormMasterAssetLog.ShowDialog()
+                End If
+            End If
         Else
             RPSubMenu.Visible = False
         End If
