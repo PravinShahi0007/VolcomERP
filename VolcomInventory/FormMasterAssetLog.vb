@@ -15,7 +15,9 @@
         load_user_old()
         load_dept_new()
         load_user_new()
-
+        '
+        DEMovingDate.EditValue = Now
+        '
         Dim query As String = "SELECT ass.id_asset,ass.vendor_code,ass.asset_code,ass.asset_code_old,ass.id_asset_cat,ass.asset_desc
                                 ,IF(ISNULL(cur_user.id_asset),emp.employee_name,cur_user.employee_name) AS employee_name
                                 ,IF(ISNULL(cur_user.id_asset),emp.id_employee,cur_user.id_employee) AS id_employee
