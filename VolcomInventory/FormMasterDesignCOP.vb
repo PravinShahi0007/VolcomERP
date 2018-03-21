@@ -216,4 +216,15 @@
             errorConnection()
         End Try
     End Sub
+
+    Private Sub BGVDesign_RowStyle(sender As Object, e As DevExpress.XtraGrid.Views.Grid.RowStyleEventArgs) Handles BGVDesign.RowStyle
+        Try
+            If BGVDesign.GetRowCellValue(e.RowHandle, "id_lookup_status_order").ToString = "2" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.ForeColor = Color.Red
+                e.Appearance.FontStyleDelta = FontStyle.Bold
+            End If
+        Catch ex As Exception
+        End Try
+    End Sub
 End Class
