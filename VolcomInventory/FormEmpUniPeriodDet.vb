@@ -238,6 +238,7 @@
     Sub orderDetail()
         If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
+            Dim id_emp_uni_budget As String = GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString
             Dim qorder As String = "SELECT * FROM tb_sales_order WHERE id_emp_uni_period=" + id_emp_uni_period + " AND id_emp_uni_budget=" + GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString + " AND id_report_status!=5 "
             Dim dorder As DataTable = execute_query(qorder, -1, True, "", "", "", "")
             If dorder.Rows.Count > 0 Then 'sudah ada order
@@ -268,7 +269,6 @@
                 End Try
 
                 'get id_emp_uni_budget
-                Dim id_emp_uni_budget As String = GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString
                 Dim tolerance As String = decimalSQL(GVDetail.GetFocusedRowCellValue("tolerance").ToString)
 
                 'get discount
@@ -285,13 +285,15 @@
                     Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
                     'submit_who_prepared("39", id_new, id_user)
-                    viewDetail()
-                    GVDetail.FocusedRowHandle = find_row(GVDetail, "id_emp_uni_budget", id_emp_uni_budget)
 
                     FormEmpUniOrderDet.id_sales_order = id_new
                     FormEmpUniOrderDet.ShowDialog()
                 End If
             End If
+
+            'refrsh
+            viewDetail()
+            GVDetail.FocusedRowHandle = find_row(GVDetail, "id_emp_uni_budget", id_emp_uni_budget)
             Cursor = Cursors.Default
         End If
     End Sub

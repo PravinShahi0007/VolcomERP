@@ -93,51 +93,13 @@ Public Class FormEmpUniOrderDet
             actionLoad()
 
             'print direct
-            ReportEmpUniOrder.dt = GCItemList.DataSource
-            Dim Report As New ReportEmpUniOrder()
-
-            ' '... 
-            ' ' creating and saving the view's layout to a new memory stream 
-            Dim str As System.IO.Stream
-            str = New System.IO.MemoryStream()
-            GVItemList.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-            Report.GVItemList.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-            str.Seek(0, System.IO.SeekOrigin.Begin)
-
-            'Grid Detail
-            ReportStyleGridview(Report.GVItemList)
-
-            'Parse val
-            'Report.LabelTitle.Text = "UNIFORM ORDER"
-            Report.LabelPeriod.Text = TxtPeriodName.Text.ToUpper
-            Report.LabelNumber.Text = TxtOrderNumber.Text.ToUpper
-            Report.LabelNIK.Text = TxtNIK.Text.ToUpper
-            Report.LabelName.Text = TxtName.Text.ToUpper
-            Report.LabelDept.Text = TxtDept.Text.ToUpper
-            Report.LabelLevel.Text = TxtLevel.Text.ToUpper
-            Report.LabelBudget.Text = TxtBudget.Text.ToUpper
-            Report.LabelTotal.Text = TxtTotal.Text.ToUpper
-            Report.LabelDiff.Text = TxtDiff.Text
-            Report.LabelHRD.Text = prepared_by.ToUpper
-            Report.LabelTTDName.Text = TxtName.Text.ToUpper
-            Report.LabelDate.Text = DECreated.Text.ToString
-
-            Dim instance As New Printing.PrinterSettings
-            Dim DefaultPrinter As String = instance.PrinterName
-
-            ' THIS IS TO PRINT THE REPORT
-            Report.PrinterName = DefaultPrinter
-            Report.CreateDocument()
-            Report.PrintingSystem.ShowMarginsWarning = False
-            AddHandler Report.PrintingSystem.StartPrint, AddressOf ReportOnStartPrint
-            Report.Print()
+            printOrder(False)
             Cursor = Cursors.Default
         End If
     End Sub
 
     Private Sub ReportOnStartPrint(ByVal sender As Object, ByVal e As DevExpress.XtraPrinting.PrintDocumentEventArgs)
-        e.PrintDocument.PrinterSettings.Copies = 3
+        e.PrintDocument.PrinterSettings.Copies = Integer.Parse(get_setup_field("copy_of_uni"))
     End Sub
 
     Private Sub BtnCancelOrder_Click(sender As Object, e As EventArgs) Handles BtnCancelOrder.Click
@@ -210,7 +172,7 @@ Public Class FormEmpUniOrderDet
             acceptOrder()
         ElseIf e.KeyCode = Keys.F6 Then
             'PRINT
-            printOrder()
+            printOrder(True)
         ElseIf (e.KeyCode = Keys.R AndAlso e.Modifiers = Keys.Control) Then
             focusRow()
         End If
@@ -314,10 +276,10 @@ Public Class FormEmpUniOrderDet
     End Sub
 
     Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles SimpleButton3.Click
-        printOrder()
+        printOrder(True)
     End Sub
 
-    Sub printOrder()
+    Sub printOrder(ByVal is_preview As Boolean)
         Cursor = Cursors.WaitCursor
         ReportEmpUniOrder.dt = GCItemList.DataSource
         Dim Report As New ReportEmpUniOrder()
@@ -349,9 +311,21 @@ Public Class FormEmpUniOrderDet
         Report.LabelTTDName.Text = TxtName.Text.ToUpper
         Report.LabelDate.Text = DECreated.Text.ToString
 
-        'Show the report's preview. 
-        Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-        Tool.ShowPreviewDialog()
+        If is_preview Then
+            'Show the report's preview. 
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+        Else
+            Dim instance As New Printing.PrinterSettings
+            Dim DefaultPrinter As String = instance.PrinterName
+
+            ' THIS IS TO PRINT THE REPORT
+            Report.PrinterName = DefaultPrinter
+            Report.CreateDocument()
+            Report.PrintingSystem.ShowMarginsWarning = False
+            AddHandler Report.PrintingSystem.StartPrint, AddressOf ReportOnStartPrint
+            Report.Print()
+        End If
         Cursor = Cursors.Default
     End Sub
 

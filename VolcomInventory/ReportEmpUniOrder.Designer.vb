@@ -71,13 +71,6 @@ Partial Public Class ReportEmpUniOrder
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.XrPageInfo1 = New DevExpress.XtraReports.UI.XRPageInfo()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
-        Me.XrTable5 = New DevExpress.XtraReports.UI.XRTable()
-        Me.XrTableRow22 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell84 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow23 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell85 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableRow24 = New DevExpress.XtraReports.UI.XRTableRow()
-        Me.XrTableCell86 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTable4 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow19 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell80 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -104,7 +97,6 @@ Partial Public Class ReportEmpUniOrder
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -649,65 +641,13 @@ Partial Public Class ReportEmpUniOrder
         '
         'ReportFooter
         '
-        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable5, Me.XrTable4, Me.XrTable3, Me.XrLabel17, Me.XrLabel14, Me.LabelDiff, Me.XrLabel25, Me.XrLabel23, Me.LabelBudget, Me.LabelTotal, Me.XrLabel19, Me.XrLabel18})
+        Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable4, Me.XrTable3, Me.XrLabel17, Me.XrLabel14, Me.LabelDiff, Me.XrLabel25, Me.XrLabel23, Me.LabelBudget, Me.LabelTotal, Me.XrLabel19, Me.XrLabel18})
         Me.ReportFooter.HeightF = 162.5!
         Me.ReportFooter.Name = "ReportFooter"
         '
-        'XrTable5
-        '
-        Me.XrTable5.LocationFloat = New DevExpress.Utils.PointFloat(538.7312!, 62.5!)
-        Me.XrTable5.Name = "XrTable5"
-        Me.XrTable5.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow22, Me.XrTableRow23, Me.XrTableRow24})
-        Me.XrTable5.SizeF = New System.Drawing.SizeF(184.375!, 100.0!)
-        '
-        'XrTableRow22
-        '
-        Me.XrTableRow22.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell84})
-        Me.XrTableRow22.Name = "XrTableRow22"
-        Me.XrTableRow22.Weight = 0.41666748046875R
-        '
-        'XrTableCell84
-        '
-        Me.XrTableCell84.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell84.Name = "XrTableCell84"
-        Me.XrTableCell84.StylePriority.UseFont = False
-        Me.XrTableCell84.StylePriority.UseTextAlignment = False
-        Me.XrTableCell84.Text = "CHECKED BY,"
-        Me.XrTableCell84.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell84.Weight = 1.0R
-        '
-        'XrTableRow23
-        '
-        Me.XrTableRow23.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell85})
-        Me.XrTableRow23.Name = "XrTableRow23"
-        Me.XrTableRow23.Weight = 2.3346771894407743R
-        '
-        'XrTableCell85
-        '
-        Me.XrTableCell85.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell85.Name = "XrTableCell85"
-        Me.XrTableCell85.StylePriority.UseFont = False
-        Me.XrTableCell85.Weight = 1.0R
-        '
-        'XrTableRow24
-        '
-        Me.XrTableRow24.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell86})
-        Me.XrTableRow24.Name = "XrTableRow24"
-        Me.XrTableRow24.Weight = 0.73185298098018814R
-        '
-        'XrTableCell86
-        '
-        Me.XrTableCell86.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrTableCell86.Name = "XrTableCell86"
-        Me.XrTableCell86.StylePriority.UseFont = False
-        Me.XrTableCell86.StylePriority.UseTextAlignment = False
-        Me.XrTableCell86.Text = "WH & DISTRIBUTION DEPT"
-        Me.XrTableCell86.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
-        Me.XrTableCell86.Weight = 1.0R
-        '
         'XrTable4
         '
-        Me.XrTable4.LocationFloat = New DevExpress.Utils.PointFloat(276.1574!, 62.5!)
+        Me.XrTable4.LocationFloat = New DevExpress.Utils.PointFloat(491.5677!, 62.5!)
         Me.XrTable4.Name = "XrTable4"
         Me.XrTable4.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow19, Me.XrTableRow20, Me.XrTableRow21})
         Me.XrTable4.SizeF = New System.Drawing.SizeF(234.4321!, 100.0!)
@@ -762,7 +702,7 @@ Partial Public Class ReportEmpUniOrder
         Me.XrTable3.LocationFloat = New DevExpress.Utils.PointFloat(0.00003178914!, 62.5!)
         Me.XrTable3.Name = "XrTable3"
         Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow16, Me.XrTableRow18, Me.XrTableRow17})
-        Me.XrTable3.SizeF = New System.Drawing.SizeF(251.4583!, 100.0!)
+        Me.XrTable3.SizeF = New System.Drawing.SizeF(295.2083!, 100.0!)
         '
         'XrTableRow16
         '
@@ -807,7 +747,7 @@ Partial Public Class ReportEmpUniOrder
         Me.LabelTTDName.Name = "LabelTTDName"
         Me.LabelTTDName.StylePriority.UseFont = False
         Me.LabelTTDName.StylePriority.UseTextAlignment = False
-        Me.LabelTTDName.Text = "[employee_name]"
+        Me.LabelTTDName.Text = "Ni Luh Kunthi Pranyanti Sentana Madri Wantera"
         Me.LabelTTDName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         Me.LabelTTDName.Weight = 1.0R
         '
@@ -931,7 +871,6 @@ Partial Public Class ReportEmpUniOrder
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1012,11 +951,4 @@ Partial Public Class ReportEmpUniOrder
     Friend WithEvents XrTableCell82 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableRow21 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents LabelHRD As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTable5 As DevExpress.XtraReports.UI.XRTable
-    Friend WithEvents XrTableRow22 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents XrTableCell84 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableRow23 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents XrTableCell85 As DevExpress.XtraReports.UI.XRTableCell
-    Friend WithEvents XrTableRow24 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents XrTableCell86 As DevExpress.XtraReports.UI.XRTableCell
 End Class
