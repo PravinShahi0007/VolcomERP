@@ -281,6 +281,18 @@
         End If
     End Sub
     Sub calculate_cost_management()
+        If LEStatus.EditValue.ToString = "1" Then
+            LRemark.Visible = True
+            LPercentBeaMasuk.Visible = True
+            TEPercentBeamasuk.Visible = True
+            MERemark.Visible = True
+        Else
+            LRemark.Visible = False
+            LPercentBeaMasuk.Visible = False
+            TEPercentBeamasuk.Visible = False
+            MERemark.Visible = False
+        End If
+        '
         If GVCostMan.RowCount > 0 And LEStatus.EditValue.ToString = "1" Then 'pre final
             Dim kurs As Decimal = TEKursMan.EditValue
             Dim actual_price As Decimal = 0
@@ -299,15 +311,7 @@
                 End If
             Next
             '
-            LRemark.Visible = True
-            LPercentBeaMasuk.Visible = True
-            TEPercentBeamasuk.Visible = True
-            MERemark.Visible = True
         Else 'final
-            LRemark.Visible = False
-            LPercentBeaMasuk.Visible = False
-            TEPercentBeamasuk.Visible = False
-            MERemark.Visible = False
         End If
     End Sub
 
