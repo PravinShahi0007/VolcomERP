@@ -5,7 +5,6 @@
     '
     Private Sub FormEmpPayroll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_payroll()
-        '
     End Sub
 
     Sub load_payroll()
@@ -73,7 +72,6 @@
 
             GCPayroll.DataSource = data
             GVPayroll.BestFitColumns()
-            '
         End If
     End Sub
 
