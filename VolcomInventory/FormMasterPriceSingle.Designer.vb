@@ -70,6 +70,7 @@ Partial Class FormMasterPriceSingle
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImport = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnCostPre = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.LEPriceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -436,7 +437,7 @@ Partial Class FormMasterPriceSingle
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnPrice, Me.GridColumnPriceName, Me.GridColumnIsPrintLabel, Me.GridColumnIsPrint, Me.GridColumnIdDesign, Me.GridColumnIdPlSalesOrderDel})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnNo, Me.GridColumnCode, Me.GridColumnName, Me.GridColumnPrice, Me.GridColumnPriceName, Me.GridColumnIsPrintLabel, Me.GridColumnIsPrint, Me.GridColumnIdDesign, Me.GridColumnIdPlSalesOrderDel, Me.GridColumnCostPre})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "sales_order_det_qty_limit", Nothing, "{0:n0}")})
         Me.GVItemList.Name = "GVItemList"
@@ -493,7 +494,7 @@ Partial Class FormMasterPriceSingle
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.OptionsColumn.AllowEdit = False
         Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 4
+        Me.GridColumnPrice.VisibleIndex = 5
         '
         'RepositoryItemSpinEdit2
         '
@@ -519,7 +520,7 @@ Partial Class FormMasterPriceSingle
         Me.GridColumnIsPrintLabel.Name = "GridColumnIsPrintLabel"
         Me.GridColumnIsPrintLabel.OptionsColumn.AllowEdit = False
         Me.GridColumnIsPrintLabel.Visible = True
-        Me.GridColumnIsPrintLabel.VisibleIndex = 5
+        Me.GridColumnIsPrintLabel.VisibleIndex = 6
         '
         'GridColumnIsPrint
         '
@@ -577,6 +578,16 @@ Partial Class FormMasterPriceSingle
         Me.BtnImport.Size = New System.Drawing.Size(126, 35)
         Me.BtnImport.TabIndex = 3
         Me.BtnImport.Text = "Import from Excel"
+        '
+        'GridColumnCostPre
+        '
+        Me.GridColumnCostPre.Caption = "Cost Pre Final"
+        Me.GridColumnCostPre.DisplayFormat.FormatString = "N2"
+        Me.GridColumnCostPre.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnCostPre.FieldName = "prod_order_cop_mng"
+        Me.GridColumnCostPre.Name = "GridColumnCostPre"
+        Me.GridColumnCostPre.Visible = True
+        Me.GridColumnCostPre.VisibleIndex = 4
         '
         'FormMasterPriceSingle
         '
@@ -682,4 +693,5 @@ Partial Class FormMasterPriceSingle
     Friend WithEvents GridColumnIsPrintLabel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemCheckEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
     Friend WithEvents GridColumnIsPrint As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnCostPre As DevExpress.XtraGrid.Columns.GridColumn
 End Class
