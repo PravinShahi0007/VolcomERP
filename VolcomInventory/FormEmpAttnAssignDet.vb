@@ -250,6 +250,9 @@
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        'check if not approved yet
+        Dim query As String = "SELECT * FROM tb_report_mark WHERE report_mark_type='100' AND id_mark_asg='116' AND id_mark='1' AND id_report<='" & id_emp_assign_sch & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         FormReportMark.id_report = id_emp_assign_sch
         FormReportMark.report_mark_type = "100"
         FormReportMark.is_view = is_view
