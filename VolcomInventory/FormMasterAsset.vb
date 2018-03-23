@@ -19,12 +19,19 @@
         ElseIf LEPil.EditValue.ToString = "2" Then
             'by rec date
             where_string = " WHERE ass.rec_date >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ass.rec_date<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+        ElseIf LEPil.EditValue.ToString = "3" Then
+            'by created date
+            where_string = " WHERE ass.date_created >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ass.date_created<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
+        ElseIf LEPil.EditValue.ToString = "4" Then
+            'by last update date
+            where_string = " WHERE ass.date_last_upd >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ass.date_last_upd<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         End If
         '
         Dim query As String = "SELECT ass.id_asset,ass.id_asset_cat,cat.asset_cat,vendor_code,asset_code_old,asset_code,asset_desc,po_no,po_qty,po_value,po_date,rec_date,rec_qty,rec_value,age
                                 ,DATE_ADD(rec_date,INTERVAL age MONTH) AS date_aging
                                 ,MONTH(DATEDIFF(rec_date,NOW())) AS age_current
                                 ,rec_value/age AS monthly_dep
+                                ,ass.date_created,ass.date_last_upd,emp_last.employee_name as emp_created,emp_cre.employee_name as emp_last_upd
                                 ,IF(age>=(SELECT age_current),0,(rec_value-((SELECT age_current)*(SELECT monthly_dep)))) AS current_value
                                 ,IF(ISNULL(cur_user.id_asset),emp.employee_name,cur_user.employee_name) AS employee_name
                                 ,IF(ISNULL(cur_user.id_asset),ass.id_employee,cur_user.id_employee) AS id_employee
@@ -32,6 +39,10 @@
                                 ,IF(ISNULL(cur_user.id_asset),ass.id_departement,cur_user.id_departement) AS id_departement
                                 FROM tb_a_asset ass
                                 LEFT JOIN tb_m_employee emp ON emp.id_employee=ass.id_employee
+                                LEFT JOIN tb_m_user usr_cre ON usr_cre.id_user=ass.id_user_created
+                                LEFT JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
+                                LEFT JOIN tb_m_user usr_last ON usr_last.id_user=ass.id_user_last_upd
+                                LEFT JOIN tb_m_employee emp_last ON emp_last.id_employee=usr_last.id_employee
                                 LEFT JOIN
                                 (
                                         SELECT a.id_asset,emp.`employee_name`,emp.`id_employee`,dep.`departement`,dep.`id_departement` FROM
@@ -51,11 +62,13 @@
     End Sub
     Sub load_moving_log()
         If GVAsset.RowCount > 0 Then
-            Dim query As String = "SELECT CONCAT('IAMA',LPAD(assl.id_asset_log,5,'0')) as move_no,assl.*,dep.`departement`,emp.`employee_name`,dep_new.`departement` AS departement_new,emp_new.`employee_name` AS employee_name_new FROM tb_a_asset_log assl 
+            Dim query As String = "SELECT CONCAT('IAMA',LPAD(assl.id_asset_log,5,'0')) as move_no,assl.*,dep.`departement`,emp.`employee_name`,dep_new.`departement` AS departement_new,emp_new.`employee_name` AS employee_name_new,emp_cre.employee_name as emp_created FROM tb_a_asset_log assl 
                                 INNER JOIN tb_m_departement dep ON dep.`id_departement`=assl.`id_departement_old`
                                 LEFT JOIN tb_m_employee emp ON emp.`id_employee`=assl.`id_employee_old`
                                 INNER JOIN tb_m_departement dep_new ON dep_new.`id_departement`=assl.`id_departement`
                                 LEFT JOIN tb_m_employee emp_new ON emp_new.`id_employee`=assl.`id_employee`
+                                LEFT JOIN tb_m_user usr ON usr.id_user=assl.id_user_created
+                                LEFT JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr.id_employee
                                 WHERE assl.id_asset='" & GVAsset.GetFocusedRowCellValue("id_asset").ToString & "'
                                 ORDER BY assl.date DESC"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -67,8 +80,12 @@
     Sub load_pil()
         Dim query As String = "SELECT '1' id_pil,'By PO Date' as pil_name
                                 UNION
-                               SELECT '2' id_pil,'By REC Date' as pil_name"
-        viewLookupQuery(LEPil, query, 0, "pil_name", "id_pil")
+                               SELECT '2' id_pil,'By REC Date' as pil_name
+                                UNION
+                               SELECT '3' id_pil,'By Created Date' as pil_name
+                                UNION
+                               SELECT '4' id_pil,'By Last Update Date' as pil_name"
+        viewLookupQuery(LEPil, query, 2, "pil_name", "id_pil")
     End Sub
     Sub check_but()
         If XtraTabControl1.SelectedTabPageIndex = 0 Then
