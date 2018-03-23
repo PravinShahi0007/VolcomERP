@@ -6,6 +6,10 @@
         load_user()
         DEPODate.EditValue = Now
         DERecDate.EditValue = Now
+        DELastUpd.EditValue = Now
+        TEUserLastUpd.Text = name_user
+        DECreated.EditValue = Now
+        TEUserCreated.Text = name_user
         '
         TEAge.EditValue = 0
         '
@@ -22,7 +26,13 @@
             LEDept.Enabled = True
             DERecDate.Properties.ReadOnly = False
         Else 'edit
-            Dim query As String = "SELECT * FROM tb_a_asset WHERE id_asset='" & id_asset & "'"
+            Dim query As String = "SELECT a.*,emp_cre.employee_name AS emp_created,emp_last.employee_name AS emp_last_upd
+                                    FROM tb_a_asset a
+                                    LEFT JOIN tb_m_user usr_cre ON usr_cre.id_user=a.id_user_created
+                                    LEFT JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
+                                    LEFT JOIN tb_m_user usr_last ON usr_cre.id_user=a.id_user_last_upd
+                                    LEFT JOIN tb_m_employee emp_last ON emp_last.id_employee=usr_last.id_employee
+                                    WHERE a.id_asset='" & id_asset & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             '
             TECode.Text = data.Rows(0)("asset_code").ToString
@@ -50,6 +60,11 @@
             TERecValue.EditValue = data.Rows(0)("rec_value")
             '
             TEAge.EditValue = data.Rows(0)("age")
+            '
+            TEUserCreated.Text = data.Rows(0)("emp_created").ToString
+            TEUserLastUpd.Text = data.Rows(0)("emp_last_upd").ToString
+            DECreated.EditValue = data.Rows(0)("date_created")
+            DELastUpd.EditValue = data.Rows(0)("date_last_upd")
         End If
         '
         calculate_total_po()
@@ -195,16 +210,20 @@
         Dim age As String = TEAge.EditValue.ToString
         '
         If id_asset = "-1" Then 'new
-            Dim query As String = "INSERT INTO tb_a_asset(id_asset_cat,asset_code_old,asset_code,vendor_code,asset_desc,id_departement,id_employee,po_no,po_qty,po_value,po_date,rec_date,rec_qty,rec_value,age)
-                                    VALUES('" & asset_cat & "','" & code_old & "','" & code & "','" & vendor_code & "','" & desc & "','" & id_dep & "'," & id_emp & ",'" & po_no & "','" & po_qty & "','" & po_value & "','" & po_date & "','" & rec_date & "','" & rec_qty & "','" & rec_value & "','" & age & "')"
-            execute_non_query(query, True, "", "", "", "")
+            Dim query As String = "INSERT INTO tb_a_asset(id_asset_cat,asset_code_old,asset_code,vendor_code,asset_desc,id_departement,id_employee,po_no,po_qty,po_value,po_date,rec_date,rec_qty,rec_value,age,id_user_created,id_user_last_upd,date_created,date_last_upd)
+                                    VALUES('" & asset_cat & "','" & code_old & "','" & code & "','" & vendor_code & "','" & desc & "','" & id_dep & "'," & id_emp & ",'" & po_no & "','" & po_qty & "','" & po_value & "','" & po_date & "','" & rec_date & "','" & rec_qty & "','" & rec_value & "','" & age & "','" & id_user & "','" & id_user & "',NOW(),NOW()); SELECT LAST_INSERT_ID(); "
+            id_asset = execute_query(query, 0, True, "", "", "", "")
+
             FormMasterAsset.load_asset()
+            FormMasterAsset.GVAsset.FocusedRowHandle = find_row(FormMasterAsset.GVAsset, "id_asset", id_asset)
             Close()
         Else
-            Dim query As String = "UPDATE tb_a_asset SET asset_code_old='" & code_old & "',vendor_code='" & vendor_code & "',asset_desc='" & desc & "',po_no='" & po_no & "',po_qty='" & po_qty & "',po_value='" & po_value & "',po_date='" & po_date & "',rec_date='" & rec_date & "',rec_qty='" & rec_qty & "',rec_value='" & rec_value & "',age='" & age & "'
+            Dim query As String = "UPDATE tb_a_asset SET asset_code_old='" & code_old & "',vendor_code='" & vendor_code & "',id_employee=" & id_emp & ",asset_desc='" & desc & "',po_no='" & po_no & "',po_qty='" & po_qty & "',po_value='" & po_value & "',po_date='" & po_date & "',rec_date='" & rec_date & "',rec_qty='" & rec_qty & "',rec_value='" & rec_value & "',age='" & age & "',id_user_last_upd='" & id_user & "',date_last_upd=NOW()
                                     WHERE id_asset='" & id_asset & "'"
+
             execute_non_query(query, True, "", "", "", "")
             FormMasterAsset.load_asset()
+            FormMasterAsset.GVAsset.FocusedRowHandle = find_row(FormMasterAsset.GVAsset, "id_asset", id_asset)
             Close()
         End If
     End Sub

@@ -72,6 +72,14 @@ Partial Class FormMasterAssetDetail
         Me.TEAge = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
+        Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEUserLastUpd = New DevExpress.XtraEditors.TextEdit()
+        Me.DELastUpd = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl22 = New DevExpress.XtraEditors.LabelControl()
+        Me.DECreated = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl23 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl24 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEUserCreated = New DevExpress.XtraEditors.TextEdit()
         CType(Me.LEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,11 +117,17 @@ Partial Class FormMasterAssetDetail
         CType(Me.TEMonthlyDepr.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEAge.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEUserLastUpd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DELastUpd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DELastUpd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TEUserCreated.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LEDept
         '
-        Me.LEDept.Location = New System.Drawing.Point(103, 11)
+        Me.LEDept.Location = New System.Drawing.Point(113, 11)
         Me.LEDept.Name = "LEDept"
         Me.LEDept.Properties.Appearance.Options.UseTextOptions = True
         Me.LEDept.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -130,7 +144,7 @@ Partial Class FormMasterAssetDetail
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(34, 94)
+        Me.LabelControl1.Location = New System.Drawing.Point(34, 146)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(48, 13)
         Me.LabelControl1.TabIndex = 6
@@ -146,7 +160,7 @@ Partial Class FormMasterAssetDetail
         '
         'LabelControl3
         '
-        Me.LabelControl3.Location = New System.Drawing.Point(34, 68)
+        Me.LabelControl3.Location = New System.Drawing.Point(34, 120)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl3.TabIndex = 8
@@ -154,7 +168,7 @@ Partial Class FormMasterAssetDetail
         '
         'LabelControl4
         '
-        Me.LabelControl4.Location = New System.Drawing.Point(34, 42)
+        Me.LabelControl4.Location = New System.Drawing.Point(34, 94)
         Me.LabelControl4.Name = "LabelControl4"
         Me.LabelControl4.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl4.TabIndex = 9
@@ -162,16 +176,16 @@ Partial Class FormMasterAssetDetail
         '
         'TECode
         '
-        Me.TECode.Location = New System.Drawing.Point(103, 13)
+        Me.TECode.Location = New System.Drawing.Point(113, 9)
         Me.TECode.Name = "TECode"
         Me.TECode.Properties.ReadOnly = True
-        Me.TECode.Size = New System.Drawing.Size(213, 20)
+        Me.TECode.Size = New System.Drawing.Size(174, 20)
         Me.TECode.TabIndex = 1
         Me.TECode.TabStop = False
         '
         'LEUser
         '
-        Me.LEUser.Location = New System.Drawing.Point(103, 37)
+        Me.LEUser.Location = New System.Drawing.Point(113, 37)
         Me.LEUser.Name = "LEUser"
         Me.LEUser.Properties.Appearance.Options.UseTextOptions = True
         Me.LEUser.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -188,7 +202,7 @@ Partial Class FormMasterAssetDetail
         '
         'LEAssetCat
         '
-        Me.LEAssetCat.Location = New System.Drawing.Point(103, 91)
+        Me.LEAssetCat.Location = New System.Drawing.Point(113, 139)
         Me.LEAssetCat.Name = "LEAssetCat"
         Me.LEAssetCat.Properties.Appearance.Options.UseTextOptions = True
         Me.LEAssetCat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -200,7 +214,7 @@ Partial Class FormMasterAssetDetail
         Me.LEAssetCat.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_asset_cat", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("asset_cat_code", "Code"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("asset_cat", "Category")})
         Me.LEAssetCat.Properties.NullText = ""
         Me.LEAssetCat.Properties.ShowFooter = False
-        Me.LEAssetCat.Size = New System.Drawing.Size(242, 20)
+        Me.LEAssetCat.Size = New System.Drawing.Size(279, 20)
         Me.LEAssetCat.TabIndex = 3
         '
         'LabelControl5
@@ -221,21 +235,29 @@ Partial Class FormMasterAssetDetail
         '
         'TEOldCode
         '
-        Me.TEOldCode.Location = New System.Drawing.Point(103, 39)
+        Me.TEOldCode.Location = New System.Drawing.Point(113, 87)
         Me.TEOldCode.Name = "TEOldCode"
-        Me.TEOldCode.Size = New System.Drawing.Size(242, 20)
+        Me.TEOldCode.Size = New System.Drawing.Size(303, 20)
         Me.TEOldCode.TabIndex = 1
         '
         'TEDesc
         '
-        Me.TEDesc.Location = New System.Drawing.Point(103, 65)
+        Me.TEDesc.Location = New System.Drawing.Point(113, 113)
         Me.TEDesc.Name = "TEDesc"
-        Me.TEDesc.Size = New System.Drawing.Size(354, 20)
+        Me.TEDesc.Size = New System.Drawing.Size(382, 20)
         Me.TEDesc.TabIndex = 2
         '
         'GroupControl1
         '
         Me.GroupControl1.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl1.Controls.Add(Me.DECreated)
+        Me.GroupControl1.Controls.Add(Me.LabelControl23)
+        Me.GroupControl1.Controls.Add(Me.LabelControl24)
+        Me.GroupControl1.Controls.Add(Me.TEUserCreated)
+        Me.GroupControl1.Controls.Add(Me.DELastUpd)
+        Me.GroupControl1.Controls.Add(Me.LabelControl22)
+        Me.GroupControl1.Controls.Add(Me.LabelControl21)
+        Me.GroupControl1.Controls.Add(Me.TEUserLastUpd)
         Me.GroupControl1.Controls.Add(Me.LabelControl2)
         Me.GroupControl1.Controls.Add(Me.TEDesc)
         Me.GroupControl1.Controls.Add(Me.LabelControl3)
@@ -247,7 +269,7 @@ Partial Class FormMasterAssetDetail
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl1.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl1.Name = "GroupControl1"
-        Me.GroupControl1.Size = New System.Drawing.Size(476, 120)
+        Me.GroupControl1.Size = New System.Drawing.Size(507, 180)
         Me.GroupControl1.TabIndex = 17
         Me.GroupControl1.Text = "Asset"
         '
@@ -260,15 +282,15 @@ Partial Class FormMasterAssetDetail
         Me.GroupControl2.Controls.Add(Me.LabelControl6)
         Me.GroupControl2.Controls.Add(Me.LEUser)
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl2.Location = New System.Drawing.Point(0, 120)
+        Me.GroupControl2.Location = New System.Drawing.Point(0, 180)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(476, 93)
+        Me.GroupControl2.Size = New System.Drawing.Size(507, 71)
         Me.GroupControl2.TabIndex = 18
         Me.GroupControl2.Text = "First Location"
         '
         'BNothingUser
         '
-        Me.BNothingUser.Location = New System.Drawing.Point(388, 35)
+        Me.BNothingUser.Location = New System.Drawing.Point(398, 35)
         Me.BNothingUser.Name = "BNothingUser"
         Me.BNothingUser.Size = New System.Drawing.Size(75, 23)
         Me.BNothingUser.TabIndex = 16
@@ -304,9 +326,9 @@ Partial Class FormMasterAssetDetail
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 420)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 465)
         Me.PanelControl3.Name = "PanelControl3"
-        Me.PanelControl3.Size = New System.Drawing.Size(662, 37)
+        Me.PanelControl3.Size = New System.Drawing.Size(721, 37)
         Me.PanelControl3.TabIndex = 152
         '
         'BCancel
@@ -314,7 +336,7 @@ Partial Class FormMasterAssetDetail
         Me.BCancel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BCancel.ImageIndex = 5
         Me.BCancel.ImageList = Me.LargeImageCollection
-        Me.BCancel.Location = New System.Drawing.Point(512, 2)
+        Me.BCancel.Location = New System.Drawing.Point(571, 2)
         Me.BCancel.Name = "BCancel"
         Me.BCancel.Size = New System.Drawing.Size(73, 33)
         Me.BCancel.TabIndex = 21
@@ -325,7 +347,7 @@ Partial Class FormMasterAssetDetail
         Me.BSave.Dock = System.Windows.Forms.DockStyle.Right
         Me.BSave.ImageIndex = 7
         Me.BSave.ImageList = Me.LargeImageCollection
-        Me.BSave.Location = New System.Drawing.Point(585, 2)
+        Me.BSave.Location = New System.Drawing.Point(644, 2)
         Me.BSave.Name = "BSave"
         Me.BSave.Size = New System.Drawing.Size(75, 33)
         Me.BSave.TabIndex = 20
@@ -347,15 +369,15 @@ Partial Class FormMasterAssetDetail
         Me.GroupControl3.Controls.Add(Me.LabelControl7)
         Me.GroupControl3.Controls.Add(Me.LabelControl8)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 213)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 251)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(476, 116)
+        Me.GroupControl3.Size = New System.Drawing.Size(507, 116)
         Me.GroupControl3.TabIndex = 153
         Me.GroupControl3.Text = "Purchase "
         '
         'TEVendorCode
         '
-        Me.TEVendorCode.Location = New System.Drawing.Point(103, 12)
+        Me.TEVendorCode.Location = New System.Drawing.Point(113, 12)
         Me.TEVendorCode.Name = "TEVendorCode"
         Me.TEVendorCode.Size = New System.Drawing.Size(242, 20)
         Me.TEVendorCode.TabIndex = 6
@@ -371,18 +393,18 @@ Partial Class FormMasterAssetDetail
         'DEPODate
         '
         Me.DEPODate.EditValue = Nothing
-        Me.DEPODate.Location = New System.Drawing.Point(322, 38)
+        Me.DEPODate.Location = New System.Drawing.Point(332, 38)
         Me.DEPODate.Name = "DEPODate"
         Me.DEPODate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPODate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEPODate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEPODate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEPODate.Size = New System.Drawing.Size(135, 20)
+        Me.DEPODate.Size = New System.Drawing.Size(163, 20)
         Me.DEPODate.TabIndex = 8
         '
         'LabelControl11
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(293, 41)
+        Me.LabelControl11.Location = New System.Drawing.Point(303, 41)
         Me.LabelControl11.Name = "LabelControl11"
         Me.LabelControl11.Size = New System.Drawing.Size(23, 13)
         Me.LabelControl11.TabIndex = 21
@@ -390,13 +412,13 @@ Partial Class FormMasterAssetDetail
         '
         'TEPOTotal
         '
-        Me.TEPOTotal.Location = New System.Drawing.Point(103, 90)
+        Me.TEPOTotal.Location = New System.Drawing.Point(113, 90)
         Me.TEPOTotal.Name = "TEPOTotal"
         Me.TEPOTotal.Properties.Mask.EditMask = "N0"
         Me.TEPOTotal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPOTotal.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEPOTotal.Properties.ReadOnly = True
-        Me.TEPOTotal.Size = New System.Drawing.Size(354, 20)
+        Me.TEPOTotal.Size = New System.Drawing.Size(382, 20)
         Me.TEPOTotal.TabIndex = 20
         Me.TEPOTotal.TabStop = False
         '
@@ -410,17 +432,17 @@ Partial Class FormMasterAssetDetail
         '
         'TEPOValue
         '
-        Me.TEPOValue.Location = New System.Drawing.Point(233, 64)
+        Me.TEPOValue.Location = New System.Drawing.Point(243, 64)
         Me.TEPOValue.Name = "TEPOValue"
-        Me.TEPOValue.Properties.Mask.EditMask = "N0"
+        Me.TEPOValue.Properties.Mask.EditMask = "N2"
         Me.TEPOValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEPOValue.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEPOValue.Size = New System.Drawing.Size(224, 20)
+        Me.TEPOValue.Size = New System.Drawing.Size(252, 20)
         Me.TEPOValue.TabIndex = 10
         '
         'LabelControl9
         '
-        Me.LabelControl9.Location = New System.Drawing.Point(188, 67)
+        Me.LabelControl9.Location = New System.Drawing.Point(198, 67)
         Me.LabelControl9.Name = "LabelControl9"
         Me.LabelControl9.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl9.TabIndex = 17
@@ -428,7 +450,7 @@ Partial Class FormMasterAssetDetail
         '
         'TEPOQty
         '
-        Me.TEPOQty.Location = New System.Drawing.Point(103, 64)
+        Me.TEPOQty.Location = New System.Drawing.Point(113, 64)
         Me.TEPOQty.Name = "TEPOQty"
         Me.TEPOQty.Properties.Mask.EditMask = "N0"
         Me.TEPOQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -438,7 +460,7 @@ Partial Class FormMasterAssetDetail
         '
         'TEPONumber
         '
-        Me.TEPONumber.Location = New System.Drawing.Point(103, 38)
+        Me.TEPONumber.Location = New System.Drawing.Point(113, 38)
         Me.TEPONumber.Name = "TEPONumber"
         Me.TEPONumber.Size = New System.Drawing.Size(184, 20)
         Me.TEPONumber.TabIndex = 7
@@ -471,16 +493,16 @@ Partial Class FormMasterAssetDetail
         Me.GroupControl4.Controls.Add(Me.LabelControl15)
         Me.GroupControl4.Controls.Add(Me.LabelControl16)
         Me.GroupControl4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl4.Location = New System.Drawing.Point(0, 329)
+        Me.GroupControl4.Location = New System.Drawing.Point(0, 367)
         Me.GroupControl4.Name = "GroupControl4"
-        Me.GroupControl4.Size = New System.Drawing.Size(476, 91)
+        Me.GroupControl4.Size = New System.Drawing.Size(507, 98)
         Me.GroupControl4.TabIndex = 154
         Me.GroupControl4.Text = "Receive"
         '
         'DERecDate
         '
         Me.DERecDate.EditValue = Nothing
-        Me.DERecDate.Location = New System.Drawing.Point(104, 14)
+        Me.DERecDate.Location = New System.Drawing.Point(113, 14)
         Me.DERecDate.Name = "DERecDate"
         Me.DERecDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DERecDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -491,13 +513,13 @@ Partial Class FormMasterAssetDetail
         '
         'TERecTotal
         '
-        Me.TERecTotal.Location = New System.Drawing.Point(103, 66)
+        Me.TERecTotal.Location = New System.Drawing.Point(112, 66)
         Me.TERecTotal.Name = "TERecTotal"
         Me.TERecTotal.Properties.Mask.EditMask = "N0"
         Me.TERecTotal.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TERecTotal.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TERecTotal.Properties.ReadOnly = True
-        Me.TERecTotal.Size = New System.Drawing.Size(354, 20)
+        Me.TERecTotal.Size = New System.Drawing.Size(383, 20)
         Me.TERecTotal.TabIndex = 20
         Me.TERecTotal.TabStop = False
         '
@@ -511,17 +533,17 @@ Partial Class FormMasterAssetDetail
         '
         'TERecValue
         '
-        Me.TERecValue.Location = New System.Drawing.Point(233, 40)
+        Me.TERecValue.Location = New System.Drawing.Point(242, 40)
         Me.TERecValue.Name = "TERecValue"
-        Me.TERecValue.Properties.Mask.EditMask = "N0"
+        Me.TERecValue.Properties.Mask.EditMask = "N2"
         Me.TERecValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TERecValue.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TERecValue.Size = New System.Drawing.Size(224, 20)
+        Me.TERecValue.Size = New System.Drawing.Size(253, 20)
         Me.TERecValue.TabIndex = 13
         '
         'LabelControl14
         '
-        Me.LabelControl14.Location = New System.Drawing.Point(188, 43)
+        Me.LabelControl14.Location = New System.Drawing.Point(197, 43)
         Me.LabelControl14.Name = "LabelControl14"
         Me.LabelControl14.Size = New System.Drawing.Size(39, 13)
         Me.LabelControl14.TabIndex = 17
@@ -529,7 +551,7 @@ Partial Class FormMasterAssetDetail
         '
         'TERecQty
         '
-        Me.TERecQty.Location = New System.Drawing.Point(103, 40)
+        Me.TERecQty.Location = New System.Drawing.Point(112, 40)
         Me.TERecQty.Name = "TERecQty"
         Me.TERecQty.Properties.Mask.EditMask = "N0"
         Me.TERecQty.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -565,9 +587,9 @@ Partial Class FormMasterAssetDetail
         Me.PanelControl1.Controls.Add(Me.LabelControl12)
         Me.PanelControl1.Controls.Add(Me.PictureEdit1)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.PanelControl1.Location = New System.Drawing.Point(476, 0)
+        Me.PanelControl1.Location = New System.Drawing.Point(507, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(186, 420)
+        Me.PanelControl1.Size = New System.Drawing.Size(214, 465)
         Me.PanelControl1.TabIndex = 155
         '
         'DEAging
@@ -580,7 +602,7 @@ Partial Class FormMasterAssetDetail
         Me.DEAging.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEAging.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
         Me.DEAging.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DEAging.Size = New System.Drawing.Size(162, 20)
+        Me.DEAging.Size = New System.Drawing.Size(190, 20)
         Me.DEAging.TabIndex = 24
         Me.DEAging.TabStop = False
         '
@@ -600,7 +622,7 @@ Partial Class FormMasterAssetDetail
         Me.TECurrentValue.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TECurrentValue.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TECurrentValue.Properties.ReadOnly = True
-        Me.TECurrentValue.Size = New System.Drawing.Size(163, 20)
+        Me.TECurrentValue.Size = New System.Drawing.Size(191, 20)
         Me.TECurrentValue.TabIndex = 22
         Me.TECurrentValue.TabStop = False
         '
@@ -620,7 +642,7 @@ Partial Class FormMasterAssetDetail
         Me.TEMonthlyDepr.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEMonthlyDepr.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.TEMonthlyDepr.Properties.ReadOnly = True
-        Me.TEMonthlyDepr.Size = New System.Drawing.Size(163, 20)
+        Me.TEMonthlyDepr.Size = New System.Drawing.Size(191, 20)
         Me.TEMonthlyDepr.TabIndex = 20
         Me.TEMonthlyDepr.TabStop = False
         '
@@ -639,7 +661,7 @@ Partial Class FormMasterAssetDetail
         Me.TEAge.Properties.Mask.EditMask = "N0"
         Me.TEAge.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         Me.TEAge.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.TEAge.Size = New System.Drawing.Size(163, 20)
+        Me.TEAge.Size = New System.Drawing.Size(191, 20)
         Me.TEAge.TabIndex = 14
         '
         'LabelControl12
@@ -653,18 +675,96 @@ Partial Class FormMasterAssetDetail
         'PictureEdit1
         '
         Me.PictureEdit1.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PictureEdit1.Location = New System.Drawing.Point(2, 215)
+        Me.PictureEdit1.Location = New System.Drawing.Point(2, 220)
         Me.PictureEdit1.Name = "PictureEdit1"
         Me.PictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.[Auto]
-        Me.PictureEdit1.Size = New System.Drawing.Size(182, 203)
+        Me.PictureEdit1.Size = New System.Drawing.Size(210, 243)
         Me.PictureEdit1.TabIndex = 0
         Me.PictureEdit1.Visible = False
+        '
+        'LabelControl21
+        '
+        Me.LabelControl21.Location = New System.Drawing.Point(34, 64)
+        Me.LabelControl21.Name = "LabelControl21"
+        Me.LabelControl21.Size = New System.Drawing.Size(73, 13)
+        Me.LabelControl21.TabIndex = 11
+        Me.LabelControl21.Text = "Last Update By"
+        '
+        'TEUserLastUpd
+        '
+        Me.TEUserLastUpd.Location = New System.Drawing.Point(113, 61)
+        Me.TEUserLastUpd.Name = "TEUserLastUpd"
+        Me.TEUserLastUpd.Properties.ReadOnly = True
+        Me.TEUserLastUpd.Size = New System.Drawing.Size(213, 20)
+        Me.TEUserLastUpd.TabIndex = 10
+        Me.TEUserLastUpd.TabStop = False
+        '
+        'DELastUpd
+        '
+        Me.DELastUpd.EditValue = Nothing
+        Me.DELastUpd.Enabled = False
+        Me.DELastUpd.Location = New System.Drawing.Point(360, 61)
+        Me.DELastUpd.Name = "DELastUpd"
+        Me.DELastUpd.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DELastUpd.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DELastUpd.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DELastUpd.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DELastUpd.Size = New System.Drawing.Size(135, 20)
+        Me.DELastUpd.TabIndex = 22
+        Me.DELastUpd.TabStop = False
+        '
+        'LabelControl22
+        '
+        Me.LabelControl22.Location = New System.Drawing.Point(331, 64)
+        Me.LabelControl22.Name = "LabelControl22"
+        Me.LabelControl22.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl22.TabIndex = 23
+        Me.LabelControl22.Text = "Date"
+        '
+        'DECreated
+        '
+        Me.DECreated.EditValue = Nothing
+        Me.DECreated.Enabled = False
+        Me.DECreated.Location = New System.Drawing.Point(360, 35)
+        Me.DECreated.Name = "DECreated"
+        Me.DECreated.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreated.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DECreated.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreated.Size = New System.Drawing.Size(135, 20)
+        Me.DECreated.TabIndex = 26
+        Me.DECreated.TabStop = False
+        '
+        'LabelControl23
+        '
+        Me.LabelControl23.Location = New System.Drawing.Point(331, 38)
+        Me.LabelControl23.Name = "LabelControl23"
+        Me.LabelControl23.Size = New System.Drawing.Size(23, 13)
+        Me.LabelControl23.TabIndex = 27
+        Me.LabelControl23.Text = "Date"
+        '
+        'LabelControl24
+        '
+        Me.LabelControl24.Location = New System.Drawing.Point(34, 38)
+        Me.LabelControl24.Name = "LabelControl24"
+        Me.LabelControl24.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl24.TabIndex = 25
+        Me.LabelControl24.Text = "Created By"
+        '
+        'TEUserCreated
+        '
+        Me.TEUserCreated.Location = New System.Drawing.Point(113, 35)
+        Me.TEUserCreated.Name = "TEUserCreated"
+        Me.TEUserCreated.Properties.ReadOnly = True
+        Me.TEUserCreated.Size = New System.Drawing.Size(213, 20)
+        Me.TEUserCreated.TabIndex = 24
+        Me.TEUserCreated.TabStop = False
         '
         'FormMasterAssetDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(662, 457)
+        Me.ClientSize = New System.Drawing.Size(721, 502)
         Me.Controls.Add(Me.GroupControl4)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl2)
@@ -719,6 +819,12 @@ Partial Class FormMasterAssetDetail
         CType(Me.TEMonthlyDepr.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEAge.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEUserLastUpd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DELastUpd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DELastUpd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TEUserCreated.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -774,4 +880,12 @@ Partial Class FormMasterAssetDetail
     Friend WithEvents TEVendorCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl20 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents BNothingUser As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents DELastUpd As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl22 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl21 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEUserLastUpd As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents DECreated As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TEUserCreated As DevExpress.XtraEditors.TextEdit
 End Class

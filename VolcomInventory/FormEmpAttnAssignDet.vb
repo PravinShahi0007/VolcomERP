@@ -4,9 +4,10 @@
     Public date_until As Date = Now
     '
     Public is_view As String = "-1"
+    Public id_departement As String = "-1"
     Private Sub FormEmpAttnAssignDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If id_emp_assign_sch = "-1" Then 'new
-            Dim query As String = "SELECT emp.employee_name,emp.employee_code,dep.departement FROM tb_m_employee emp
+            Dim query As String = "SELECT emp.employee_name,emp.employee_code,dep.departement,emp.id_departement FROM tb_m_employee emp
                                     INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
                                     WHERE id_employee='" & id_employee_user & "'"
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -14,6 +15,7 @@
             TEEmpCode.Text = data.Rows(0)("employee_code").ToString
             TEEmpName.Text = data.Rows(0)("employee_name").ToString
             TEDepartement.Text = data.Rows(0)("departement").ToString
+            id_departement = data.Rows(0)("id_departement").ToString
 
             DEDate.EditValue = Now
             TENumber.Text = header_number_emp("4")
@@ -37,6 +39,7 @@
             TEDepartement.Text = data.Rows(0)("departement").ToString
             TEEmpCode.Text = data.Rows(0)("employee_code").ToString
             TEEmpName.Text = data.Rows(0)("employee_name").ToString
+            id_departement = data.Rows(0)("id_departement").ToString
             '
             Dim string_date As String = ""
             Dim startP As Date = Date.Parse(data.Rows(0)("date_from").ToString)
@@ -250,6 +253,17 @@
     End Sub
 
     Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        'check if not approved yet
+        Dim query As String = "SELECT * FROM tb_emp_assign_sch rm 
+                                LEFT JOIN
+                                (
+	                                SELECT rm.`id_report_mark`,rm.`id_report`,sch.`id_departement`,rm.`id_mark`,rm.`report_number` FROM tb_report_mark rm
+	                                INNER JOIN tb_emp_assign_sch sch ON sch.`id_assign_sch`=rm.`id_report`
+	                                WHERE rm.report_mark_type='100' AND rm.id_mark_asg='116' AND (rm.id_mark='2' OR rm.`id_mark`='3') AND sch.`id_departement`='23' AND rm.id_report<='" & id_emp_assign_sch & "'
+	                                GROUP BY rm.`id_report`
+                                )st ON st.id_report=rm.`id_assign_sch`
+                                WHERE rm.`id_assign_sch`<='" & id_emp_assign_sch & "' AND rm.`id_departement`='23' AND NOT (rm.id_report_status='5' OR rm.id_report_status='6')  AND ISNULL(st.id_report)"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         FormReportMark.id_report = id_emp_assign_sch
         FormReportMark.report_mark_type = "100"
         FormReportMark.is_view = is_view

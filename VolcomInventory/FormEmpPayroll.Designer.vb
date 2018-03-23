@@ -35,7 +35,6 @@ Partial Class FormEmpPayroll
         Me.GCPayroll = New DevExpress.XtraGrid.GridControl()
         Me.ViewPopWorksheet = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.CMDelEmp = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ChangePendingStatusToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GVPayroll = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
         Me.gridBand8 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnNIP = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
@@ -233,21 +232,15 @@ Partial Class FormEmpPayroll
         '
         'ViewPopWorksheet
         '
-        Me.ViewPopWorksheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMDelEmp, Me.ChangePendingStatusToolStripMenuItem})
+        Me.ViewPopWorksheet.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CMDelEmp})
         Me.ViewPopWorksheet.Name = "ViewPreDel"
-        Me.ViewPopWorksheet.Size = New System.Drawing.Size(198, 48)
+        Me.ViewPopWorksheet.Size = New System.Drawing.Size(173, 48)
         '
         'CMDelEmp
         '
         Me.CMDelEmp.Name = "CMDelEmp"
         Me.CMDelEmp.Size = New System.Drawing.Size(197, 22)
         Me.CMDelEmp.Text = "Remove Employee"
-        '
-        'ChangePendingStatusToolStripMenuItem
-        '
-        Me.ChangePendingStatusToolStripMenuItem.Name = "ChangePendingStatusToolStripMenuItem"
-        Me.ChangePendingStatusToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.ChangePendingStatusToolStripMenuItem.Text = "Change Pending Status"
         '
         'GVPayroll
         '
@@ -1196,7 +1189,6 @@ Partial Class FormEmpPayroll
     Friend WithEvents BandedGridColumnActWorkdays As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents BandedGridColumnPending As DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn
     Friend WithEvents RICEPending As DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit
-    Friend WithEvents ChangePendingStatusToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents gridBand8 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents GridBand1 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand5 As DevExpress.XtraGrid.Views.BandedGrid.GridBand

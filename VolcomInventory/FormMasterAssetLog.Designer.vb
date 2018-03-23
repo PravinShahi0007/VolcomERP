@@ -23,6 +23,7 @@ Partial Class FormMasterAssetLog
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormMasterAssetLog))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
+        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl1 = New DevExpress.XtraEditors.GroupControl()
@@ -31,6 +32,7 @@ Partial Class FormMasterAssetLog
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
         Me.LECurUser = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
+        Me.BNothingUser = New DevExpress.XtraEditors.SimpleButton()
         Me.DEMovingDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
         Me.MENote = New DevExpress.XtraEditors.MemoEdit()
@@ -40,6 +42,8 @@ Partial Class FormMasterAssetLog
         Me.LabelControl4 = New DevExpress.XtraEditors.LabelControl()
         Me.LENewUser = New DevExpress.XtraEditors.LookUpEdit()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
+        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
+        Me.TEMoveNo = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl5 = New DevExpress.XtraEditors.LabelControl()
         Me.TEDesc = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
@@ -48,10 +52,10 @@ Partial Class FormMasterAssetLog
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         Me.TECode = New DevExpress.XtraEditors.TextEdit()
-        Me.BNothingUser = New DevExpress.XtraEditors.SimpleButton()
-        Me.BPrint = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl11 = New DevExpress.XtraEditors.LabelControl()
-        Me.TEMoveNo = New DevExpress.XtraEditors.TextEdit()
+        Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
+        Me.TECreatedBy = New DevExpress.XtraEditors.TextEdit()
+        Me.DECreatedBy = New DevExpress.XtraEditors.DateEdit()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -68,11 +72,14 @@ Partial Class FormMasterAssetLog
         CType(Me.LENewUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl2.SuspendLayout()
+        CType(Me.TEMoveNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEDesc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEAssetCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TEOldCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TEMoveNo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreatedBy.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DECreatedBy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -106,10 +113,21 @@ Partial Class FormMasterAssetLog
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.PanelControl3.Location = New System.Drawing.Point(0, 376)
+        Me.PanelControl3.Location = New System.Drawing.Point(0, 430)
         Me.PanelControl3.Name = "PanelControl3"
         Me.PanelControl3.Size = New System.Drawing.Size(496, 37)
         Me.PanelControl3.TabIndex = 153
+        '
+        'BPrint
+        '
+        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BPrint.ImageIndex = 6
+        Me.BPrint.ImageList = Me.LargeImageCollection
+        Me.BPrint.Location = New System.Drawing.Point(2, 2)
+        Me.BPrint.Name = "BPrint"
+        Me.BPrint.Size = New System.Drawing.Size(73, 33)
+        Me.BPrint.TabIndex = 22
+        Me.BPrint.Text = "Print"
         '
         'BCancel
         '
@@ -141,7 +159,7 @@ Partial Class FormMasterAssetLog
         Me.GroupControl1.Controls.Add(Me.LabelControl2)
         Me.GroupControl1.Controls.Add(Me.LECurUser)
         Me.GroupControl1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupControl1.Location = New System.Drawing.Point(0, 147)
+        Me.GroupControl1.Location = New System.Drawing.Point(0, 197)
         Me.GroupControl1.Name = "GroupControl1"
         Me.GroupControl1.Size = New System.Drawing.Size(496, 67)
         Me.GroupControl1.TabIndex = 155
@@ -158,7 +176,7 @@ Partial Class FormMasterAssetLog
         'LECurDep
         '
         Me.LECurDep.Enabled = False
-        Me.LECurDep.Location = New System.Drawing.Point(103, 11)
+        Me.LECurDep.Location = New System.Drawing.Point(105, 11)
         Me.LECurDep.Name = "LECurDep"
         Me.LECurDep.Properties.Appearance.Options.UseTextOptions = True
         Me.LECurDep.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -184,7 +202,7 @@ Partial Class FormMasterAssetLog
         'LECurUser
         '
         Me.LECurUser.Enabled = False
-        Me.LECurUser.Location = New System.Drawing.Point(103, 37)
+        Me.LECurUser.Location = New System.Drawing.Point(105, 37)
         Me.LECurUser.Name = "LECurUser"
         Me.LECurUser.Properties.Appearance.Options.UseTextOptions = True
         Me.LECurUser.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -212,16 +230,24 @@ Partial Class FormMasterAssetLog
         Me.GroupControl3.Controls.Add(Me.LabelControl4)
         Me.GroupControl3.Controls.Add(Me.LENewUser)
         Me.GroupControl3.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupControl3.Location = New System.Drawing.Point(0, 214)
+        Me.GroupControl3.Location = New System.Drawing.Point(0, 264)
         Me.GroupControl3.Name = "GroupControl3"
-        Me.GroupControl3.Size = New System.Drawing.Size(496, 162)
+        Me.GroupControl3.Size = New System.Drawing.Size(496, 166)
         Me.GroupControl3.TabIndex = 156
         Me.GroupControl3.Text = "New Location"
+        '
+        'BNothingUser
+        '
+        Me.BNothingUser.Location = New System.Drawing.Point(388, 35)
+        Me.BNothingUser.Name = "BNothingUser"
+        Me.BNothingUser.Size = New System.Drawing.Size(75, 23)
+        Me.BNothingUser.TabIndex = 19
+        Me.BNothingUser.Text = "set nothing"
         '
         'DEMovingDate
         '
         Me.DEMovingDate.EditValue = Nothing
-        Me.DEMovingDate.Location = New System.Drawing.Point(103, 131)
+        Me.DEMovingDate.Location = New System.Drawing.Point(105, 131)
         Me.DEMovingDate.Name = "DEMovingDate"
         Me.DEMovingDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.DEMovingDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -240,7 +266,7 @@ Partial Class FormMasterAssetLog
         '
         'MENote
         '
-        Me.MENote.Location = New System.Drawing.Point(103, 63)
+        Me.MENote.Location = New System.Drawing.Point(105, 63)
         Me.MENote.Name = "MENote"
         Me.MENote.Size = New System.Drawing.Size(354, 62)
         Me.MENote.TabIndex = 16
@@ -263,7 +289,7 @@ Partial Class FormMasterAssetLog
         '
         'LENewDep
         '
-        Me.LENewDep.Location = New System.Drawing.Point(103, 11)
+        Me.LENewDep.Location = New System.Drawing.Point(105, 11)
         Me.LENewDep.Name = "LENewDep"
         Me.LENewDep.Properties.Appearance.Options.UseTextOptions = True
         Me.LENewDep.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -288,7 +314,7 @@ Partial Class FormMasterAssetLog
         '
         'LENewUser
         '
-        Me.LENewUser.Location = New System.Drawing.Point(103, 37)
+        Me.LENewUser.Location = New System.Drawing.Point(105, 37)
         Me.LENewUser.Name = "LENewUser"
         Me.LENewUser.Properties.Appearance.Options.UseTextOptions = True
         Me.LENewUser.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -306,6 +332,10 @@ Partial Class FormMasterAssetLog
         'GroupControl2
         '
         Me.GroupControl2.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl2.Controls.Add(Me.DECreatedBy)
+        Me.GroupControl2.Controls.Add(Me.LabelControl13)
+        Me.GroupControl2.Controls.Add(Me.TECreatedBy)
+        Me.GroupControl2.Controls.Add(Me.LabelControl12)
         Me.GroupControl2.Controls.Add(Me.LabelControl11)
         Me.GroupControl2.Controls.Add(Me.TEMoveNo)
         Me.GroupControl2.Controls.Add(Me.LabelControl5)
@@ -319,13 +349,30 @@ Partial Class FormMasterAssetLog
         Me.GroupControl2.Dock = System.Windows.Forms.DockStyle.Top
         Me.GroupControl2.Location = New System.Drawing.Point(0, 0)
         Me.GroupControl2.Name = "GroupControl2"
-        Me.GroupControl2.Size = New System.Drawing.Size(496, 147)
+        Me.GroupControl2.Size = New System.Drawing.Size(496, 197)
         Me.GroupControl2.TabIndex = 157
         Me.GroupControl2.Text = "Asset"
         '
+        'LabelControl11
+        '
+        Me.LabelControl11.Location = New System.Drawing.Point(34, 15)
+        Me.LabelControl11.Name = "LabelControl11"
+        Me.LabelControl11.Size = New System.Drawing.Size(50, 13)
+        Me.LabelControl11.TabIndex = 11
+        Me.LabelControl11.Text = "Moving No"
+        '
+        'TEMoveNo
+        '
+        Me.TEMoveNo.Location = New System.Drawing.Point(105, 12)
+        Me.TEMoveNo.Name = "TEMoveNo"
+        Me.TEMoveNo.Properties.ReadOnly = True
+        Me.TEMoveNo.Size = New System.Drawing.Size(213, 20)
+        Me.TEMoveNo.TabIndex = 10
+        Me.TEMoveNo.TabStop = False
+        '
         'LabelControl5
         '
-        Me.LabelControl5.Location = New System.Drawing.Point(34, 40)
+        Me.LabelControl5.Location = New System.Drawing.Point(34, 93)
         Me.LabelControl5.Name = "LabelControl5"
         Me.LabelControl5.Size = New System.Drawing.Size(25, 13)
         Me.LabelControl5.TabIndex = 7
@@ -333,7 +380,7 @@ Partial Class FormMasterAssetLog
         '
         'TEDesc
         '
-        Me.TEDesc.Location = New System.Drawing.Point(103, 89)
+        Me.TEDesc.Location = New System.Drawing.Point(105, 142)
         Me.TEDesc.Name = "TEDesc"
         Me.TEDesc.Properties.ReadOnly = True
         Me.TEDesc.Size = New System.Drawing.Size(354, 20)
@@ -341,7 +388,7 @@ Partial Class FormMasterAssetLog
         '
         'LabelControl6
         '
-        Me.LabelControl6.Location = New System.Drawing.Point(34, 92)
+        Me.LabelControl6.Location = New System.Drawing.Point(34, 145)
         Me.LabelControl6.Name = "LabelControl6"
         Me.LabelControl6.Size = New System.Drawing.Size(53, 13)
         Me.LabelControl6.TabIndex = 8
@@ -350,7 +397,7 @@ Partial Class FormMasterAssetLog
         'LEAssetCat
         '
         Me.LEAssetCat.Enabled = False
-        Me.LEAssetCat.Location = New System.Drawing.Point(103, 115)
+        Me.LEAssetCat.Location = New System.Drawing.Point(105, 168)
         Me.LEAssetCat.Name = "LEAssetCat"
         Me.LEAssetCat.Properties.Appearance.Options.UseTextOptions = True
         Me.LEAssetCat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -367,7 +414,7 @@ Partial Class FormMasterAssetLog
         '
         'TEOldCode
         '
-        Me.TEOldCode.Location = New System.Drawing.Point(103, 63)
+        Me.TEOldCode.Location = New System.Drawing.Point(105, 116)
         Me.TEOldCode.Name = "TEOldCode"
         Me.TEOldCode.Properties.ReadOnly = True
         Me.TEOldCode.Size = New System.Drawing.Size(242, 20)
@@ -375,7 +422,7 @@ Partial Class FormMasterAssetLog
         '
         'LabelControl7
         '
-        Me.LabelControl7.Location = New System.Drawing.Point(34, 66)
+        Me.LabelControl7.Location = New System.Drawing.Point(34, 119)
         Me.LabelControl7.Name = "LabelControl7"
         Me.LabelControl7.Size = New System.Drawing.Size(44, 13)
         Me.LabelControl7.TabIndex = 9
@@ -383,7 +430,7 @@ Partial Class FormMasterAssetLog
         '
         'LabelControl8
         '
-        Me.LabelControl8.Location = New System.Drawing.Point(34, 118)
+        Me.LabelControl8.Location = New System.Drawing.Point(34, 171)
         Me.LabelControl8.Name = "LabelControl8"
         Me.LabelControl8.Size = New System.Drawing.Size(48, 13)
         Me.LabelControl8.TabIndex = 6
@@ -391,54 +438,57 @@ Partial Class FormMasterAssetLog
         '
         'TECode
         '
-        Me.TECode.Location = New System.Drawing.Point(103, 37)
+        Me.TECode.Location = New System.Drawing.Point(105, 90)
         Me.TECode.Name = "TECode"
         Me.TECode.Properties.ReadOnly = True
         Me.TECode.Size = New System.Drawing.Size(213, 20)
         Me.TECode.TabIndex = 1
         Me.TECode.TabStop = False
         '
-        'BNothingUser
+        'LabelControl12
         '
-        Me.BNothingUser.Location = New System.Drawing.Point(388, 35)
-        Me.BNothingUser.Name = "BNothingUser"
-        Me.BNothingUser.Size = New System.Drawing.Size(75, 23)
-        Me.BNothingUser.TabIndex = 19
-        Me.BNothingUser.Text = "set nothing"
+        Me.LabelControl12.Location = New System.Drawing.Point(34, 41)
+        Me.LabelControl12.Name = "LabelControl12"
+        Me.LabelControl12.Size = New System.Drawing.Size(65, 13)
+        Me.LabelControl12.TabIndex = 13
+        Me.LabelControl12.Text = "Created Date"
         '
-        'BPrint
+        'LabelControl13
         '
-        Me.BPrint.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BPrint.ImageIndex = 6
-        Me.BPrint.ImageList = Me.LargeImageCollection
-        Me.BPrint.Location = New System.Drawing.Point(2, 2)
-        Me.BPrint.Name = "BPrint"
-        Me.BPrint.Size = New System.Drawing.Size(73, 33)
-        Me.BPrint.TabIndex = 22
-        Me.BPrint.Text = "Print"
+        Me.LabelControl13.Location = New System.Drawing.Point(34, 67)
+        Me.LabelControl13.Name = "LabelControl13"
+        Me.LabelControl13.Size = New System.Drawing.Size(54, 13)
+        Me.LabelControl13.TabIndex = 15
+        Me.LabelControl13.Text = "Created By"
         '
-        'LabelControl11
+        'TECreatedBy
         '
-        Me.LabelControl11.Location = New System.Drawing.Point(34, 14)
-        Me.LabelControl11.Name = "LabelControl11"
-        Me.LabelControl11.Size = New System.Drawing.Size(50, 13)
-        Me.LabelControl11.TabIndex = 11
-        Me.LabelControl11.Text = "Moving No"
+        Me.TECreatedBy.Location = New System.Drawing.Point(105, 64)
+        Me.TECreatedBy.Name = "TECreatedBy"
+        Me.TECreatedBy.Properties.ReadOnly = True
+        Me.TECreatedBy.Size = New System.Drawing.Size(213, 20)
+        Me.TECreatedBy.TabIndex = 14
+        Me.TECreatedBy.TabStop = False
         '
-        'TEMoveNo
+        'DECreatedBy
         '
-        Me.TEMoveNo.Location = New System.Drawing.Point(103, 11)
-        Me.TEMoveNo.Name = "TEMoveNo"
-        Me.TEMoveNo.Properties.ReadOnly = True
-        Me.TEMoveNo.Size = New System.Drawing.Size(213, 20)
-        Me.TEMoveNo.TabIndex = 10
-        Me.TEMoveNo.TabStop = False
+        Me.DECreatedBy.EditValue = Nothing
+        Me.DECreatedBy.Enabled = False
+        Me.DECreatedBy.Location = New System.Drawing.Point(105, 38)
+        Me.DECreatedBy.Name = "DECreatedBy"
+        Me.DECreatedBy.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedBy.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DECreatedBy.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DECreatedBy.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DECreatedBy.Size = New System.Drawing.Size(213, 20)
+        Me.DECreatedBy.TabIndex = 19
+        Me.DECreatedBy.TabStop = False
         '
         'FormMasterAssetLog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(496, 413)
+        Me.ClientSize = New System.Drawing.Size(496, 467)
         Me.Controls.Add(Me.GroupControl3)
         Me.Controls.Add(Me.GroupControl1)
         Me.Controls.Add(Me.PanelControl3)
@@ -468,11 +518,14 @@ Partial Class FormMasterAssetLog
         CType(Me.GroupControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControl2.ResumeLayout(False)
         Me.GroupControl2.PerformLayout()
+        CType(Me.TEMoveNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEDesc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEAssetCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TEOldCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TEMoveNo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreatedBy.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DECreatedBy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -508,4 +561,8 @@ Partial Class FormMasterAssetLog
     Friend WithEvents BPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEMoveNo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TECreatedBy As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LabelControl12 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents DECreatedBy As DevExpress.XtraEditors.DateEdit
 End Class
