@@ -41,11 +41,14 @@ Partial Class FormEmpUniSuggest
         Me.GridColumnPriceType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCurStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnCost = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton6 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.TxtDesign = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton6 = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSug = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCDesignList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesignList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,7 +71,7 @@ Partial Class FormEmpUniSuggest
         'GVDesignList
         '
         Me.GVDesignList.ColumnPanelRowHeight = 40
-        Me.GVDesignList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn8, Me.GridColumn14, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumnCurPrice, Me.GridColumnPriceType, Me.GridColumnCurStatus, Me.GridColumnNo})
+        Me.GVDesignList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn8, Me.GridColumn14, Me.GridColumn20, Me.GridColumn21, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumnCurPrice, Me.GridColumnPriceType, Me.GridColumnCurStatus, Me.GridColumnNo, Me.GridColumnCost})
         Me.GVDesignList.GridControl = Me.GCDesignList
         Me.GVDesignList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", Me.GridColumn20, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", Me.GridColumn21, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", Me.GridColumn22, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", Me.GridColumn23, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", Me.GridColumn24, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", Me.GridColumn25, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", Me.GridColumn26, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", Me.GridColumn27, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", Me.GridColumn28, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "0", Me.GridColumn29, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", Me.GridColumn30, "{0:N0}")})
         Me.GVDesignList.Name = "GVDesignList"
@@ -320,9 +323,19 @@ Partial Class FormEmpUniSuggest
         Me.GridColumnNo.VisibleIndex = 0
         Me.GridColumnNo.Width = 43
         '
+        'GridColumnCost
+        '
+        Me.GridColumnCost.Caption = "Cost"
+        Me.GridColumnCost.FieldName = "design_cop"
+        Me.GridColumnCost.Name = "GridColumnCost"
+        Me.GridColumnCost.OptionsColumn.AllowEdit = False
+        Me.GridColumnCost.OptionsColumn.ShowInCustomizationForm = False
+        '
         'PanelControl3
         '
         Me.PanelControl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl3.Controls.Add(Me.BtnClose)
+        Me.PanelControl3.Controls.Add(Me.BtnSug)
         Me.PanelControl3.Controls.Add(Me.TxtDesign)
         Me.PanelControl3.Controls.Add(Me.LabelControl6)
         Me.PanelControl3.Controls.Add(Me.SimpleButton1)
@@ -333,25 +346,16 @@ Partial Class FormEmpUniSuggest
         Me.PanelControl3.Size = New System.Drawing.Size(851, 37)
         Me.PanelControl3.TabIndex = 6
         '
-        'SimpleButton1
+        'BtnClose
         '
-        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(661, 0)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(86, 37)
-        Me.SimpleButton1.TabIndex = 2
-        Me.SimpleButton1.Text = "Print"
-        '
-        'SimpleButton6
-        '
-        Me.SimpleButton6.Dock = System.Windows.Forms.DockStyle.Right
-        Me.SimpleButton6.Image = CType(resources.GetObject("SimpleButton6.Image"), System.Drawing.Image)
-        Me.SimpleButton6.Location = New System.Drawing.Point(747, 0)
-        Me.SimpleButton6.Name = "SimpleButton6"
-        Me.SimpleButton6.Size = New System.Drawing.Size(104, 37)
-        Me.SimpleButton6.TabIndex = 5
-        Me.SimpleButton6.Text = "Refresh List"
+        Me.BtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.BtnClose.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnClose.Image = CType(resources.GetObject("BtnClose.Image"), System.Drawing.Image)
+        Me.BtnClose.Location = New System.Drawing.Point(472, 0)
+        Me.BtnClose.Name = "BtnClose"
+        Me.BtnClose.Size = New System.Drawing.Size(86, 37)
+        Me.BtnClose.TabIndex = 158
+        Me.BtnClose.Text = "Close"
         '
         'TxtDesign
         '
@@ -374,10 +378,41 @@ Partial Class FormEmpUniSuggest
         Me.LabelControl6.TabIndex = 157
         Me.LabelControl6.Text = "Uniform#"
         '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(661, 0)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(86, 37)
+        Me.SimpleButton1.TabIndex = 2
+        Me.SimpleButton1.Text = "Print"
+        '
+        'SimpleButton6
+        '
+        Me.SimpleButton6.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton6.Image = CType(resources.GetObject("SimpleButton6.Image"), System.Drawing.Image)
+        Me.SimpleButton6.Location = New System.Drawing.Point(747, 0)
+        Me.SimpleButton6.Name = "SimpleButton6"
+        Me.SimpleButton6.Size = New System.Drawing.Size(104, 37)
+        Me.SimpleButton6.TabIndex = 5
+        Me.SimpleButton6.Text = "Refresh List"
+        '
+        'BtnSug
+        '
+        Me.BtnSug.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSug.Image = CType(resources.GetObject("BtnSug.Image"), System.Drawing.Image)
+        Me.BtnSug.Location = New System.Drawing.Point(558, 0)
+        Me.BtnSug.Name = "BtnSug"
+        Me.BtnSug.Size = New System.Drawing.Size(103, 37)
+        Me.BtnSug.TabIndex = 159
+        Me.BtnSug.Text = "Suggestion"
+        '
         'FormEmpUniSuggest
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.BtnClose
         Me.ClientSize = New System.Drawing.Size(851, 438)
         Me.Controls.Add(Me.GCDesignList)
         Me.Controls.Add(Me.PanelControl3)
@@ -422,4 +457,7 @@ Partial Class FormEmpUniSuggest
     Friend WithEvents SimpleButton6 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents BtnClose As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnCost As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnSug As DevExpress.XtraEditors.SimpleButton
 End Class

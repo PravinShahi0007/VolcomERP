@@ -51,4 +51,15 @@
     Private Sub FormEmpUniSuggest_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub BtnClose_Click(sender As Object, e As EventArgs) Handles BtnClose.Click
+        Close()
+    End Sub
+
+    Private Sub BtnSug_Click(sender As Object, e As EventArgs) Handles BtnSug.Click
+        Cursor = Cursors.WaitCursor
+        viewDesignList()
+        GVDesignList.ActiveFilterString = "[design_cop]<=" + decimalSQL(FormEmpUniOrderDet.TxtDiff.EditValue.ToString) + ""
+        Cursor = Cursors.Default
+    End Sub
 End Class

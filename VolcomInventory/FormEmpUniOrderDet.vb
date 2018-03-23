@@ -190,28 +190,31 @@ Public Class FormEmpUniOrderDet
         focusRow()
     End Sub
 
+    Public Sub selectUniform(ByVal key As String)
+        Dim dt As DataTable = checkStock("AND dm.id_emp_uni_period=" + id_emp_uni_period + " AND dd.no='" + key.ToString + "'")
+        If dt.Rows.Count <= 0 Then
+            stopCustom("Product not found")
+            TxtDesign.Text = ""
+            TxtDesign.Focus()
+        Else
+            'jika sudah ada di list
+            If checkExist(dt.Rows(0)("id_design").ToString) Then
+                stopCustom("Product already order")
+                TxtDesign.Text = ""
+                TxtDesign.Focus()
+            Else
+                FormEmpUniOrderSingle.dt = dt
+                FormEmpUniOrderSingle.ShowDialog()
+                TxtDesign.Text = ""
+                TxtDesign.Focus()
+            End If
+        End If
+    End Sub
     Private Sub TxtDesign_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDesign.KeyDown
         If e.KeyCode = Keys.Enter Then
             Cursor = Cursors.WaitCursor
             Dim key As String = addSlashes(TxtDesign.Text)
-            Dim dt As DataTable = checkStock("AND dm.id_emp_uni_period=" + id_emp_uni_period + " AND dd.no='" + key.ToString + "'")
-            If dt.Rows.Count <= 0 Then
-                stopCustom("Product not found")
-                TxtDesign.Text = ""
-                TxtDesign.Focus()
-            Else
-                'jika sudah ada di list
-                If checkExist(dt.Rows(0)("id_design").ToString) Then
-                    stopCustom("Product already order")
-                    TxtDesign.Text = ""
-                    TxtDesign.Focus()
-                Else
-                    FormEmpUniOrderSingle.dt = dt
-                    FormEmpUniOrderSingle.ShowDialog()
-                    TxtDesign.Text = ""
-                    TxtDesign.Focus()
-                End If
-            End If
+            selectUniform(key)
             Cursor = Cursors.Default
         End If
     End Sub
