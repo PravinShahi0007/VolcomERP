@@ -99,6 +99,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select KODE, NAMA, SIZETYP, `xxs/1`, `xs/2`, `s/3`, `m/4`, `ml/5`, `l/6`, `xl/7`, `xxl/8`, `all/9`, `~/0` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='')", oledbconn)
         ElseIf id_pop_up = "26" Then
             MyCommand = New OleDbDataAdapter("select no_faktur, nama_toko, npwp, alamat, id_keterangan_tambahan, kode_barang, ket_barang, jumlah_barang, harga_satuan, harga_total, diskon, ppn, dpp, jumlah_ppn, jumlah_dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
+        ElseIf id_pop_up = "33" Then
+            MyCommand = New OleDbDataAdapter("select KODE from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='') GROUP BY KODE ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -1788,6 +1790,44 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "33" Then
+            'import list uni
+
+
+            'master design
+            Dim queryx As String = "SELECT * FROM tb_m_design d WHERE d.id_active=1 "
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+
+            'list
+            Dim ql As String = "SELECT dd.id_design, dm.design_code
+            FROM tb_emp_uni_design_det dd
+            INNER JOIN tb_m_design dm ON dm.id_design = dd.id_design
+            INNER JOIN tb_emp_uni_design d ON d.id_emp_uni_design = dd.id_emp_uni_design
+            WHERE d.id_emp_uni_period=" + FormEmpUniListDet.LEPeriodx.EditValue.ToString + "
+            AND d.id_report_status!=5 "
+            Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
+            Dim tb3 = dl.AsEnumerable()
+
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("KODE").ToString Equals table_tmp("design_code").ToString Into designjoin = Group
+                        From rd In designjoin.DefaultIfEmpty()
+                        Group Join list In tb3 On table1("KODE").ToString Equals list("design_code").ToString Into listjoin = Group
+                        From rl In listjoin.DefaultIfEmpty()
+                        Select New With
+                            {
+                                .IdDesign = If(rd Is Nothing, "0", rd("id_design").ToString),
+                                .Code = If(rd Is Nothing, table1("KODE"), rd("design_code").ToString),
+                                .Description = If(rd Is Nothing, "-", rd("design_display_name").ToString),
+                                .Status = If(rd Is Nothing, "Not Found", If(rl Is Nothing, "OK", "Already exist on this period"))
+                            }
+
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+            GVData.Columns("IdDesign").Visible = False
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -1834,7 +1874,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -3139,6 +3179,38 @@ Public Class FormImportExcel
                     infoCustom("Import Success")
                     FormProdDuty.view_production_order()
                     Close()
+                End If
+            ElseIf id_pop_up = "33" Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                Dim id_emp_uni_design As String = FormEmpUniListDet.id_emp_uni_design
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+                    If GVData.RowCount > 0 Then
+                        'delete old
+                        Dim qd As String = "DELETE FROM tb_emp_uni_design_det WHERE id_emp_uni_design='" + id_emp_uni_design + "' "
+                        execute_non_query(qd, True, "", "", "", "")
+
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+                        '
+
+                        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_design As String = GVData.GetRowCellValue(i, "IdDesign").ToString
+                            Dim query As String = "INSERT INTO tb_emp_uni_design_det(id_emp_uni_design, id_design) VALUES('" + id_emp_uni_design + "', '" + id_design + "'); "
+                            execute_non_query(query, True, "", "", "", "")
+                            '
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormEmpUniListDet.viewDetail()
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
                 End If
             End If
         End If
