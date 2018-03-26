@@ -152,4 +152,8 @@
     Private Sub FormMasterEmployee_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
     End Sub
+
+    Private Sub BImportSalary_Click(sender As Object, e As EventArgs) Handles BImportSalary.Click
+
+    End Sub
 End Class

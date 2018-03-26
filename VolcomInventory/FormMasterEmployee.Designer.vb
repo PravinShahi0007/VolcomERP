@@ -69,6 +69,7 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnExternalEm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnOthEm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BImportSalary = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlFreeze = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditFreeze = New DevExpress.XtraEditors.CheckEdit()
@@ -77,7 +78,6 @@ Partial Class FormMasterEmployee
         Me.SplashScreenManager1 = New DevExpress.XtraSplashScreen.SplashScreenManager(Me, GetType(Global.VolcomMRP.WaitForm), True, True)
         Me.BAccept = New DevExpress.XtraEditors.SimpleButton()
         Me.BClone = New DevExpress.XtraEditors.SimpleButton()
-        Me.BImportSalary = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GCEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemPictureEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -555,6 +555,17 @@ Partial Class FormMasterEmployee
         Me.PanelControl1.Size = New System.Drawing.Size(764, 35)
         Me.PanelControl1.TabIndex = 1
         '
+        'BImportSalary
+        '
+        Me.BImportSalary.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BImportSalary.Image = CType(resources.GetObject("BImportSalary.Image"), System.Drawing.Image)
+        Me.BImportSalary.Location = New System.Drawing.Point(115, 0)
+        Me.BImportSalary.Name = "BImportSalary"
+        Me.BImportSalary.Size = New System.Drawing.Size(115, 35)
+        Me.BImportSalary.TabIndex = 111
+        Me.BImportSalary.Text = "Import Salary"
+        Me.BImportSalary.Visible = False
+        '
         'SimpleButton1
         '
         Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Left
@@ -644,16 +655,6 @@ Partial Class FormMasterEmployee
         Me.BClone.TabIndex = 139
         Me.BClone.Text = "Clone"
         Me.BClone.Visible = False
-        '
-        'BImportSalary
-        '
-        Me.BImportSalary.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BImportSalary.Image = CType(resources.GetObject("BImportSalary.Image"), System.Drawing.Image)
-        Me.BImportSalary.Location = New System.Drawing.Point(115, 0)
-        Me.BImportSalary.Name = "BImportSalary"
-        Me.BImportSalary.Size = New System.Drawing.Size(115, 35)
-        Me.BImportSalary.TabIndex = 111
-        Me.BImportSalary.Text = "Import Salary"
         '
         'FormMasterEmployee
         '
