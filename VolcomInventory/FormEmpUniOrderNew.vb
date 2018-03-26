@@ -1,6 +1,6 @@
 ﻿Public Class FormEmpUniOrderNew
     Private Sub FormEmpUniOrderNew_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim query As String = "CALL view_emp_uni_budget(" + FormEmpUniPeriodDet.id_emp_uni_period + ") "
+        Dim query As String = "CALL view_emp_uni_budget(" + FormEmpUniPeriodDet.id_emp_uni_period + ",0) "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
         GCDetail.Focus()
