@@ -270,13 +270,11 @@ Public Class FormSalesOrderDet
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     Cursor = Cursors.WaitCursor
-                    sales_order_number = header_number_sales("2")
+                    sales_order_number = ""
                     'Main tbale
                     Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_uni_type, sales_order_ol_shop_number) "
                     query += "VALUES('" + id_store_contact_to + "', '" + id_comp_contact_par + "', '" + sales_order_number + "', NOW(), '" + sales_order_note + "', '" + id_so_type + "', '" + id_report_status + "', '" + id_so_status + "', '" + id_user + "'," + id_emp_uni_period + ", " + id_uni_type + ",'" + sales_order_ol_shop_number + "'); SELECT LAST_INSERT_ID(); "
                     id_sales_order = execute_query(query, 0, True, "", "", "", "")
-
-                    increase_inc_sales("2")
 
                     'insert who prepared
                     insert_who_prepared("39", id_sales_order, id_user)
@@ -320,7 +318,7 @@ Public Class FormSalesOrderDet
                     'gen xls
                     exportToBOF(False)
 
-                    infoCustom("Prepare order : " + sales_order_number.ToString + " was created successfully. ")
+                    infoCustom("Prepare order : " + TxtSalesOrderNumber.Text.ToString + " was created successfully. ")
                     Cursor = Cursors.Default
                 End If
             ElseIf action = "upd" Then

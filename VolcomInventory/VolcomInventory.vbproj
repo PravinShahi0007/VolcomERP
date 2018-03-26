@@ -854,6 +854,30 @@
     <Compile Include="FormEmpStoreSchCompareHistory.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpUniList.designer.vb">
+      <DependentUpon>FormEmpUniList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniListDet.designer.vb">
+      <DependentUpon>FormEmpUniListDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniListDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniListNew.designer.vb">
+      <DependentUpon>FormEmpUniListNew.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniListNew.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniOrderDelete.Designer.vb">
+      <DependentUpon>FormEmpUniOrderDelete.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniOrderDelete.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpUniOrderDet.Designer.vb">
       <DependentUpon>FormEmpUniOrderDet.vb</DependentUpon>
     </Compile>
@@ -894,6 +918,12 @@
       <DependentUpon>FormEmpUniPeriodSingle.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpUniPeriodSingle.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpUniSuggest.Designer.vb">
+      <DependentUpon>FormEmpUniSuggest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpUniSuggest.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormFGAging.Designer.vb">
@@ -5216,6 +5246,12 @@
     <Compile Include="XtraFormViewFGWHAlloc.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="XtraReport1.Designer.vb">
+      <DependentUpon>XtraReport1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="XtraReport1.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AppLauncher.resx">
@@ -5572,6 +5608,18 @@
     <EmbeddedResource Include="FormEmpStoreSchCompareHistory.resx">
       <DependentUpon>FormEmpStoreSchCompareHistory.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniList.resx">
+      <DependentUpon>FormEmpUniList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniListDet.resx">
+      <DependentUpon>FormEmpUniListDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniListNew.resx">
+      <DependentUpon>FormEmpUniListNew.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniOrderDelete.resx">
+      <DependentUpon>FormEmpUniOrderDelete.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniOrderDet.resx">
       <DependentUpon>FormEmpUniOrderDet.vb</DependentUpon>
     </EmbeddedResource>
@@ -5592,6 +5640,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpUniPeriodSingle.resx">
       <DependentUpon>FormEmpUniPeriodSingle.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpUniSuggest.resx">
+      <DependentUpon>FormEmpUniSuggest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFGAging.resx">
       <DependentUpon>FormFGAging.vb</DependentUpon>
@@ -8276,6 +8327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="XtraFormViewFGWHAlloc.resx">
       <DependentUpon>XtraFormViewFGWHAlloc.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraReport1.resx">
+      <DependentUpon>XtraReport1.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
