@@ -35,8 +35,9 @@
 
     Private Sub BPick_Click(sender As Object, e As EventArgs) Handles BPick.Click
         If Not id_payroll = "-1" Then
-            Dim query As String = "UPDATE tb_emp_payroll SET ump='" & TEUMP.EditValue.ToString & "',bpjs_max='" & TEBPJSMax.EditValue.ToString & "',jp_max='" & TEJPMax.EditValue.ToString & "',ot_reg_pembilang='" & TEPembilang.EditValue.ToString & "',ot_reg_penyebut='" & TEPenyebut.EditValue.ToString & "',koperasi_iuran,note='" & addSlashes(MemoEdit1.Text) & "' WHERE id_payroll='" & id_payroll & "'"
+            Dim query As String = "UPDATE tb_emp_payroll SET ump='" & TEUMP.EditValue.ToString & "',bpjs_max='" & TEBPJSMax.EditValue.ToString & "',jp_max='" & TEJPMax.EditValue.ToString & "',ot_reg_pembilang='" & TEPembilang.EditValue.ToString & "',ot_reg_penyebut='" & TEPenyebut.EditValue.ToString & "',koperasi_iuran='" & TEKoperasiIuran.EditValue.ToString & "',note='" & addSlashes(MemoEdit1.Text) & "' WHERE id_payroll='" & id_payroll & "'"
             execute_query(query, -1, True, "", "", "", "")
+            Console.WriteLine(query)
             FormEmpPayroll.load_payroll_detail()
             Close()
         End If
