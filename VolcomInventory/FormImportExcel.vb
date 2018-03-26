@@ -1788,6 +1788,71 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "34" Then 'import salary
+            Try
+                Dim queryx As String = "SELECT * FROM tb_m_employee WHERE is_active='1'"
+                Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+                Dim tb1 = data_temp.AsEnumerable()
+                Dim tb2 = dt.AsEnumerable()
+
+                Dim query = From table1 In tb1
+                            Group Join table_tmp In tb2
+                                On table1("nik").ToString.ToLower Equals table_tmp("employee_code").ToString.ToLower Into emp = Group
+                            From result_emp In emp.DefaultIfEmpty()
+                            Select New With
+                                {
+                                    .IdEmployee = If(result_emp Is Nothing, "0", result_emp("id_employee")),
+                                    .NIK = If(result_emp Is Nothing, "0", result_emp("employee_code")),
+                                    .Name = If(result_emp Is Nothing, "0", result_emp("employee_name")),
+                                    .basic_salary = table1("basic_salary"),
+                                    .allow_job = table1("job_allowance"),
+                                    .allow_meal = table1("meal_allowance"),
+                                    .allow_trans = table1("transport_allowance"),
+                                    .allow_house = table1("house_allowance"),
+                                    .allow_car = table1("car_allowance"),
+                                    .effective_date = table1("effective_date")
+                                }
+
+                GCData.DataSource = Nothing
+                GCData.DataSource = query.ToList()
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+
+                'Customize column
+                GVData.Columns("IdEmployee").Visible = False
+                GVData.Columns("NIK").Caption = "NIK"
+                GVData.Columns("basic_salary").Caption = "Basic Salary"
+                GVData.Columns("allow_job").Caption = "Job Allowance"
+                GVData.Columns("allow_meal").Caption = "Meal Allowance"
+                GVData.Columns("allow_trans").Caption = "Transport Allowance"
+                GVData.Columns("allow_house").Caption = "House Allowance"
+                GVData.Columns("allow_car").Caption = "Car Allowance"
+                GVData.Columns("effective_date").Caption = "Effective Date"
+
+                GVData.Columns("basic_salary").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("allow_job").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("allow_meal").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("allow_trans").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("allow_house").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("allow_car").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+
+                GVData.Columns("basic_salary").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("allow_job").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("allow_meal").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("allow_trans").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("allow_house").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("allow_car").DisplayFormat.FormatString = "{0:N2}"
+
+                GVData.Columns("effective_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("effective_date").DisplayFormat.FormatString = "{0:dd MMM yyyy}"
+
+                GVData.OptionsView.ColumnAutoWidth = False
+                GVData.BestFitColumns()
+
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -3138,6 +3203,28 @@ Public Class FormImportExcel
                     Next
                     infoCustom("Import Success")
                     FormProdDuty.view_production_order()
+                    Close()
+                End If
+            ElseIf id_pop_up = "34" Then 'import salary
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+                    '
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "0" Then
+                            Dim query_exec As String = "INSERT INTO tb_m_employee_salary(id_employee,basic_salary,allow_job,allow_meal,allow_trans,allow_house,allow_car,effective_date)
+                                                        VALUES('" & GVData.GetRowCellValue(i, "IDEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "basic_salary").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_job").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_meal").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_trans").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_house").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_car").ToString) & "','" & Date.Parse(GVData.GetRowCellValue(i, "effective_date").ToString).ToString("yyyy-MM-dd") & "')"
+                            execute_non_query(query_exec, True, "", "", "", "")
+                        End If
+                        '
+                        PBC.PerformStep()
+                        PBC.Update()
+                    Next
+                    infoCustom("Import Success")
+                    FormMasterEmployee.viewEmployee("-1")
                     Close()
                 End If
             End If
