@@ -1,6 +1,9 @@
 ﻿Public Class FormMasterAssetLog
     Public id_asset_log As String = "-1"
     Public id_asset As String = "-1"
+    '
+    Public departement As String = ""
+
     Private Sub BCancel_Click(sender As Object, e As EventArgs) Handles BCancel.Click
         Close()
     End Sub
@@ -17,6 +20,8 @@
         load_user_new()
         '
         DEMovingDate.EditValue = Now
+        '
+        DECreatedBy.EditValue = Now
         '
         Dim query As String = "SELECT ass.id_asset,ass.vendor_code,ass.asset_code,ass.asset_code_old,ass.id_asset_cat,ass.asset_desc
                                 ,IF(ISNULL(cur_user.id_asset),emp.employee_name,cur_user.employee_name) AS employee_name
@@ -35,6 +40,7 @@
                                     GROUP BY a.id_asset
                                 )cur_user ON cur_user.id_asset=ass.id_asset
                                 LEFT JOIN tb_m_employee emp ON emp.`id_employee`=ass.id_employee
+                                INNER JOIN tb_m_user usr ON usr.id_user=ass.id_user_created
                                 INNER JOIN tb_m_departement dep ON dep.`id_departement`=ass.id_departement
                                 WHERE ass.id_asset='" & id_asset & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
@@ -46,6 +52,8 @@
         LEAssetCat.ItemIndex = LEAssetCat.Properties.GetDataSourceRowIndex("id_asset_cat", data.Rows(0)("id_asset_cat").ToString)
 
         If id_asset_log = "-1" Then 'new
+            TECreatedBy.Text = name_user
+
             LECurDep.ItemIndex = LECurDep.Properties.GetDataSourceRowIndex("id_departement", data.Rows(0)("id_departement").ToString)
 
             If Not data.Rows(0)("id_employee").ToString = "" Then
@@ -54,7 +62,12 @@
             BSave.Visible = True
         Else 'edit
             '
-            Dim query_view As String = "SELECT a.*,LPAD(a.id_asset_log,5,'0') as move_no FROM tb_a_asset_log a WHERE a.id_asset_log='" & id_asset_log & "'"
+            Dim query_view As String = "SELECT a.*,LPAD(a.id_asset_log,5,'0'),emp.employee_name,dep.departement AS move_no 
+                                        FROM tb_a_asset_log a 
+                                        INNER JOIN tb_m_user usr ON usr.id_user=a.id_user_created
+                                        INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
+                                        INNER JOIN tb_m_departement dep ON dep.id_departement=emp.id_departement
+                                        WHERE a.id_asset_log='" & id_asset_log & "'"
             Dim data_view As DataTable = execute_query(query_view, -1, True, "", "", "", "")
             '
             LECurDep.ItemIndex = LECurDep.Properties.GetDataSourceRowIndex("id_departement", data_view.Rows(0)("id_departement_old").ToString)
@@ -72,6 +85,8 @@
             DEMovingDate.EditValue = data_view.Rows(0)("date")
             '
             TEMoveNo.Text = "IAMA" & data_view.Rows(0)("move_no").ToString
+            departement = data_view(0)("departement").ToString
+            TECreatedBy.Text = data_view(0)("employee_name").ToString
             '
             BSave.Visible = False
         End If
@@ -120,10 +135,12 @@
             id_emp_new = "'" & LENewUser.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "INSERT INTO tb_a_asset_log(id_asset,id_departement_old,id_employee_old,id_departement,id_employee,note,date)
-                                VALUES('" & id_asset & "','" & LECurDep.EditValue.ToString & "'," & id_emp_old & ",'" & LENewDep.EditValue.ToString & "'," & id_emp_new & ",'" & addSlashes(MENote.Text) & "','" & Date.Parse(DEMovingDate.EditValue.ToString).ToString("yyyy-MM-dd") & "')"
-        execute_non_query(query, True, "", "", "", "")
+        Dim query As String = "INSERT INTO tb_a_asset_log(id_asset,id_departement_old,id_employee_old,id_departement,id_employee,note,date,id_user_created,date_created)
+                                VALUES('" & id_asset & "','" & LECurDep.EditValue.ToString & "'," & id_emp_old & ",'" & LENewDep.EditValue.ToString & "'," & id_emp_new & ",'" & addSlashes(MENote.Text) & "','" & Date.Parse(DEMovingDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
+        id_asset_log = execute_query(query, 0, True, "", "", "", "")
+
         FormMasterAsset.load_moving_log()
+        FormMasterAsset.GVAssetMovingLog.FocusedRowHandle = find_row(FormMasterAsset.GVAssetMovingLog, "id_asset_log", id_asset_log)
         Close()
     End Sub
 
@@ -149,8 +166,14 @@
         Report.COldUser.Text = LECurUser.Text
         Report.CSignOld.Text = If(LECurUser.Text = "", LECurDep.Text, LECurUser.Text)
         '
-        Report.CSignIA.Text = name_user
-        Report.CSignDept.Text = get_departement_x(id_departement_user, "1")
+        If TECreatedBy.Text = "" Then
+            Report.CSignIA.Text = name_user
+            Report.CSignDept.Text = get_departement_x(id_departement_user, "1")
+        Else
+            Report.CSignIA.Text = TECreatedBy.Text
+            Report.CSignDept.Text = departement
+        End If
+
         ' Show the report's preview. 
         Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
         Tool.ShowPreview()
