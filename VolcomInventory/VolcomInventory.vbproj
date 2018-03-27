@@ -428,6 +428,12 @@
     <Compile Include="FormAssetRec.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAssetRecDet.Designer.vb">
+      <DependentUpon>FormAssetRecDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssetRecDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormBarcodeProduct.designer.vb">
       <DependentUpon>FormBarcodeProduct.vb</DependentUpon>
     </Compile>
@@ -5402,6 +5408,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAssetRec.resx">
       <DependentUpon>FormAssetRec.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAssetRecDet.resx">
+      <DependentUpon>FormAssetRecDet.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormBarcodeProduct.resx">
       <DependentUpon>FormBarcodeProduct.vb</DependentUpon>

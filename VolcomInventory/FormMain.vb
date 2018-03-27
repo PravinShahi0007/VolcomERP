@@ -1532,15 +1532,21 @@ Public Class FormMain
             FormMasterAssetCategoryDetail.id_asset_cat = "-1"
             FormMasterAssetCategoryDetail.ShowDialog()
         ElseIf formName = "FormMasterAsset" Then
-            If FormMasterAsset.XtraTabControl1.SelectedTabPageIndex = 0 Then
+            If FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 0 Then
                 FormMasterAssetDetail.id_asset = "-1"
                 FormMasterAssetDetail.ShowDialog()
-            ElseIf FormMasterAsset.XtraTabControl1.SelectedTabPageIndex = 1 Then
+            ElseIf FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 1 Then
                 If FormMasterAsset.GVAsset.RowCount > 0 Then
                     FormMasterAssetLog.id_asset = FormMasterAsset.GVAsset.GetFocusedRowCellValue("id_asset").ToString
                     FormMasterAssetLog.ShowDialog()
                 End If
             End If
+        ElseIf formName = "FormAssetPO" Then
+            FormAssetPODet.id_po = "-1"
+            FormAssetPODet.ShowDialog()
+        ElseIf formName = "FormAssetRec" Then
+            FormAssetRecDet.id_rec = "-1"
+            FormAssetRecDet.ShowDialog()
         Else
             RPSubMenu.Visible = False
         End If
@@ -2465,6 +2471,12 @@ Public Class FormMain
             ElseIf formName = "FormMasterAsset" Then
                 FormMasterAssetDetail.id_asset = FormMasterAsset.GVAsset.GetFocusedRowCellValue("id_asset").ToString
                 FormMasterAssetDetail.ShowDialog()
+            ElseIf formName = "FormAssetPO" Then
+                FormAssetPODet.id_po = FormAssetPO.GVPOList.GetFocusedRowCellValue("id_asset_po").ToString
+                FormAssetPODet.ShowDialog()
+            ElseIf formName = "FormAssetRec" Then
+                FormAssetRecDet.id_rec = FormAssetRec.GVRecList.GetFocusedRowCellValue("id_asset_rec").ToString
+                FormAssetRecDet.ShowDialog()
             Else
                 RPSubMenu.Visible = False
             End If
@@ -5584,6 +5596,22 @@ Public Class FormMain
                 execute_non_query(query_del, True, "", "", "", "")
                 FormMasterAsset.load_asset()
             End If
+        ElseIf formName = "FormAssetPO" Then
+            Dim id As String = FormAssetPO.GVPOList.GetFocusedRowCellValue("id_asset_po").ToString
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim query_del As String = "DELETE FROM tb_a_asset_po WHERE id_asset_po='" + id + "'"
+                execute_non_query(query_del, True, "", "", "", "")
+                FormAssetPO.load_po()
+            End If
+        ElseIf formName = "FormAssetRec" Then
+            Dim id As String = FormAssetRec.GVRecList.GetFocusedRowCellValue("id_asset_rec").ToString
+            confirm = XtraMessageBox.Show("Are you sure want to delete?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = DialogResult.Yes Then
+                Dim query_del As String = "DELETE FROM tb_a_asset_rec WHERE id_asset_rec='" + id + "'"
+                execute_non_query(query_del, True, "", "", "", "")
+                FormAssetRec.load_rec()
+            End If
         Else
             RPSubMenu.Visible = False
         End If
@@ -6842,11 +6870,15 @@ Public Class FormMain
         ElseIf formName = "FormMasterAssetCategory" Then
             print_raw(FormMasterAssetCategory.GCAssetCat, "")
         ElseIf formName = "FormMasterAsset" Then
-            If FormMasterAsset.XtraTabControl1.SelectedTabPageIndex = 0 Then
+            If FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 0 Then
                 print_raw(FormMasterAsset.GCAsset, "")
-            ElseIf FormMasterAsset.xtratabcontrol1.SelectedTabPageIndex = 1 Then
+            ElseIf FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 1 Then
                 print_raw(FormMasterAsset.GCAssetMovingLog, "")
             End If
+        ElseIf formName = "FormAssetPO" Then
+            print_raw(FormAssetPO.GCPOList, "")
+        ElseIf formName = "FormAssetRec" Then
+            print_raw(FormAssetRec.GCRecList, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7452,6 +7484,12 @@ Public Class FormMain
         ElseIf formName = "FormMasterAsset" Then
             FormMasterAsset.Close()
             FormMasterAsset.Dispose()
+        ElseIf formName = "FormAssetPO" Then
+            FormAssetPO.Close()
+            FormAssetPO.Dispose()
+        ElseIf formName = "FormAssetRec" Then
+            FormAssetRec.Close()
+            FormAssetRec.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -8129,6 +8167,16 @@ Public Class FormMain
             FormProdOverMemo.viewData()
         ElseIf formName = "FormEmpUniList" Then
             FormEmpUniList.viewData()
+        ElseIf formName = "FormMasterAsset" Then
+            If FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 0 Then
+                FormMasterAsset.load_asset()
+            ElseIf FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 1 Then
+                FormMasterAsset.load_moving_log()
+            End If
+        ElseIf formName = "FormAssetPO" Then
+            FormAssetPO.load_po()
+        ElseIf formName = "FormAssetRec" Then
+            FormAssetRec.load_rec()
         End If
     End Sub
     'Switch
@@ -11250,6 +11298,32 @@ Public Class FormMain
             FormMasterAsset.Show()
             FormMasterAsset.WindowState = FormWindowState.Maximized
             FormMasterAsset.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAssetPO_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAssetPO.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormAssetPO.MdiParent = Me
+            FormAssetPO.Show()
+            FormAssetPO.WindowState = FormWindowState.Maximized
+            FormAssetPO.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBAssetRec_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBAssetRec.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormAssetRec.MdiParent = Me
+            FormAssetRec.Show()
+            FormAssetRec.WindowState = FormWindowState.Maximized
+            FormAssetRec.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

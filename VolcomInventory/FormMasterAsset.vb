@@ -88,7 +88,7 @@
         viewLookupQuery(LEPil, query, 2, "pil_name", "id_pil")
     End Sub
     Sub check_but()
-        If XtraTabControl1.SelectedTabPageIndex = 0 Then
+        If XTCListAsset.SelectedTabPageIndex = 0 Then
             If GVAsset.RowCount > 0 Then
                 bnew_active = "1"
                 bedit_active = "1"
@@ -98,7 +98,7 @@
                 bedit_active = "0"
                 bdel_active = "0"
             End If
-        ElseIf XtraTabControl1.SelectedTabPageIndex = 1 Then
+        ElseIf XTCListAsset.SelectedTabPageIndex = 1 Then
             bnew_active = "1"
             bedit_active = "0"
             bdel_active = "0"
@@ -124,7 +124,7 @@
         load_asset()
     End Sub
 
-    Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XtraTabControl1.SelectedPageChanged
+    Private Sub XtraTabControl1_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCListAsset.SelectedPageChanged
         check_but()
     End Sub
 
