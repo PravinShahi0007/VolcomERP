@@ -1526,6 +1526,8 @@ Public Class FormMain
         ElseIf formName = "FormProdOverMemo" Then
             FormProdOverMemoDet.action = "ins"
             FormProdOverMemoDet.ShowDialog()
+        ElseIf formName = "FormEmpUniList" Then
+            FormEmpUniListNew.ShowDialog()
         ElseIf formName = "FormMasterAssetCategory" Then
             FormMasterAssetCategoryDetail.id_asset_cat = "-1"
             FormMasterAssetCategoryDetail.ShowDialog()
@@ -2454,6 +2456,9 @@ Public Class FormMain
                 FormProdOverMemoDet.id_prod_over_memo = FormProdOverMemo.GVMemo.GetFocusedRowCellValue("id_prod_over_memo").ToString
                 FormProdOverMemoDet.action = "upd"
                 FormProdOverMemoDet.ShowDialog()
+            ElseIf formName = "FormEmpUniList" Then
+                FormEmpUniListDet.id_emp_uni_design = FormEmpUniList.GVData.GetFocusedRowCellValue("id_emp_uni_design").ToString
+                FormEmpUniListDet.ShowDialog()
             ElseIf formName = "FormMasterAssetCategory" Then
                 FormMasterAssetCategoryDetail.id_asset_cat = FormMasterAssetCategory.GVAssetCat.GetFocusedRowCellValue("id_asset_cat").ToString
                 FormMasterAssetCategoryDetail.ShowDialog()
@@ -7438,6 +7443,9 @@ Public Class FormMain
         ElseIf formName = "FormProdOverMemo" Then
             FormProdOverMemo.Close()
             FormProdOverMemo.Dispose()
+        ElseIf formName = "FormEmpUniList" Then
+            FormEmpUniList.Close()
+            FormEmpUniList.Dispose()
         ElseIf formName = "FormMasterAssetCategory" Then
             FormMasterAssetCategory.Close()
             FormMasterAssetCategory.Dispose()
@@ -8119,6 +8127,8 @@ Public Class FormMain
             FormEmpLeaveCut.load_leave_cut()
         ElseIf formName = "FormProdOverMemo" Then
             FormProdOverMemo.viewData()
+        ElseIf formName = "FormEmpUniList" Then
+            FormEmpUniList.viewData()
         End If
     End Sub
     'Switch
@@ -10914,16 +10924,10 @@ Public Class FormMain
     Private Sub NBPrepareOrderUni_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBPrepareOrderUni.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
-            FormSalesOrder.Close()
-            FormSalesOrder.Dispose()
-        Catch ex As Exception
-        End Try
-        Try
-            FormSalesOrder.MdiParent = Me
-            FormSalesOrder.id_type = "1"
-            FormSalesOrder.Show()
-            FormSalesOrder.WindowState = FormWindowState.Maximized
-            FormSalesOrder.Focus()
+            FormEmpUniList.MdiParent = Me
+            FormEmpUniList.Show()
+            FormEmpUniList.WindowState = FormWindowState.Maximized
+            FormEmpUniList.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

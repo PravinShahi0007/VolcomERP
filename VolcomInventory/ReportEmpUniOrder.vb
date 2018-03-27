@@ -6,7 +6,7 @@
     End Sub
 
     Private Sub GVItemList_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVItemList.CustomColumnDisplayText
-        If e.Column.FieldName = "no" Then
+        If e.Column.FieldName = "nomer" Then
             e.DisplayText = (e.ListSourceRowIndex + 1).ToString()
         End If
     End Sub
