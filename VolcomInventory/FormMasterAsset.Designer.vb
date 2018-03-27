@@ -38,6 +38,10 @@ Partial Class FormMasterAsset
         Me.GridColumnRecVal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit3 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit4 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
@@ -47,7 +51,7 @@ Partial Class FormMasterAsset
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.LEPil = New DevExpress.XtraEditors.LookUpEdit()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
-        Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTCListAsset = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPAsset = New DevExpress.XtraTab.XtraTabPage()
         Me.XTPMovingLog = New DevExpress.XtraTab.XtraTabPage()
         Me.GCAssetMovingLog = New DevExpress.XtraGrid.GridControl()
@@ -60,16 +64,12 @@ Partial Class FormMasterAsset
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,8 +82,8 @@ Partial Class FormMasterAsset
         CType(Me.LEPil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.XtraTabControl1.SuspendLayout()
+        CType(Me.XTCListAsset, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCListAsset.SuspendLayout()
         Me.XTPAsset.SuspendLayout()
         Me.XTPMovingLog.SuspendLayout()
         CType(Me.GCAssetMovingLog, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -251,6 +251,42 @@ Partial Class FormMasterAsset
         Me.GridColumn7.VisibleIndex = 12
         Me.GridColumn7.Width = 81
         '
+        'GridColumn17
+        '
+        Me.GridColumn17.Caption = "Date Created"
+        Me.GridColumn17.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn17.FieldName = "date_created"
+        Me.GridColumn17.Name = "GridColumn17"
+        Me.GridColumn17.Visible = True
+        Me.GridColumn17.VisibleIndex = 13
+        '
+        'GridColumn18
+        '
+        Me.GridColumn18.Caption = "Date Last Update"
+        Me.GridColumn18.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn18.FieldName = "date_last_upd"
+        Me.GridColumn18.Name = "GridColumn18"
+        Me.GridColumn18.Visible = True
+        Me.GridColumn18.VisibleIndex = 15
+        '
+        'GridColumn19
+        '
+        Me.GridColumn19.Caption = "Created By"
+        Me.GridColumn19.FieldName = "emp_created"
+        Me.GridColumn19.Name = "GridColumn19"
+        Me.GridColumn19.Visible = True
+        Me.GridColumn19.VisibleIndex = 14
+        '
+        'GridColumn20
+        '
+        Me.GridColumn20.Caption = "Last Update By"
+        Me.GridColumn20.FieldName = "emp_last_upd"
+        Me.GridColumn20.Name = "GridColumn20"
+        Me.GridColumn20.Visible = True
+        Me.GridColumn20.VisibleIndex = 16
+        '
         'RepositoryItemCheckEdit1
         '
         Me.RepositoryItemCheckEdit1.AutoHeight = False
@@ -338,16 +374,16 @@ Partial Class FormMasterAsset
         Me.DEStart.Size = New System.Drawing.Size(149, 20)
         Me.DEStart.TabIndex = 14
         '
-        'XtraTabControl1
+        'XTCListAsset
         '
-        Me.XtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.XtraTabControl1.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
-        Me.XtraTabControl1.Location = New System.Drawing.Point(0, 0)
-        Me.XtraTabControl1.Name = "XtraTabControl1"
-        Me.XtraTabControl1.SelectedTabPage = Me.XTPAsset
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1154, 487)
-        Me.XtraTabControl1.TabIndex = 4
-        Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPAsset, Me.XTPMovingLog})
+        Me.XTCListAsset.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCListAsset.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Left
+        Me.XTCListAsset.Location = New System.Drawing.Point(0, 0)
+        Me.XTCListAsset.Name = "XTCListAsset"
+        Me.XTCListAsset.SelectedTabPage = Me.XTPAsset
+        Me.XTCListAsset.Size = New System.Drawing.Size(1154, 487)
+        Me.XTCListAsset.TabIndex = 4
+        Me.XTCListAsset.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPAsset, Me.XTPMovingLog})
         '
         'XTPAsset
         '
@@ -450,6 +486,24 @@ Partial Class FormMasterAsset
         Me.GridColumn22.VisibleIndex = 1
         Me.GridColumn22.Width = 72
         '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Date Created"
+        Me.GridColumn23.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumn23.FieldName = "date_created"
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 8
+        '
+        'GridColumn21
+        '
+        Me.GridColumn21.Caption = "Created By"
+        Me.GridColumn21.FieldName = "emp_created"
+        Me.GridColumn21.Name = "GridColumn21"
+        Me.GridColumn21.Visible = True
+        Me.GridColumn21.VisibleIndex = 7
+        '
         'GridColumn5
         '
         Me.GridColumn5.Caption = "Note"
@@ -475,66 +529,12 @@ Partial Class FormMasterAsset
         Me.RepositoryItemCheckEdit6.AutoHeight = False
         Me.RepositoryItemCheckEdit6.Name = "RepositoryItemCheckEdit6"
         '
-        'GridColumn17
-        '
-        Me.GridColumn17.Caption = "Date Created"
-        Me.GridColumn17.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn17.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn17.FieldName = "date_created"
-        Me.GridColumn17.Name = "GridColumn17"
-        Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 13
-        '
-        'GridColumn18
-        '
-        Me.GridColumn18.Caption = "Date Last Update"
-        Me.GridColumn18.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn18.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn18.FieldName = "date_last_upd"
-        Me.GridColumn18.Name = "GridColumn18"
-        Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 15
-        '
-        'GridColumn19
-        '
-        Me.GridColumn19.Caption = "Created By"
-        Me.GridColumn19.FieldName = "emp_created"
-        Me.GridColumn19.Name = "GridColumn19"
-        Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 14
-        '
-        'GridColumn20
-        '
-        Me.GridColumn20.Caption = "Last Update By"
-        Me.GridColumn20.FieldName = "emp_last_upd"
-        Me.GridColumn20.Name = "GridColumn20"
-        Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 16
-        '
-        'GridColumn21
-        '
-        Me.GridColumn21.Caption = "Created By"
-        Me.GridColumn21.FieldName = "emp_created"
-        Me.GridColumn21.Name = "GridColumn21"
-        Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 7
-        '
-        'GridColumn23
-        '
-        Me.GridColumn23.Caption = "Date Created"
-        Me.GridColumn23.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.GridColumn23.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.GridColumn23.FieldName = "date_created"
-        Me.GridColumn23.Name = "GridColumn23"
-        Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 8
-        '
         'FormMasterAsset
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1154, 487)
-        Me.Controls.Add(Me.XtraTabControl1)
+        Me.Controls.Add(Me.XTCListAsset)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
@@ -554,8 +554,8 @@ Partial Class FormMasterAsset
         CType(Me.LEPil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.XtraTabControl1.ResumeLayout(False)
+        CType(Me.XTCListAsset, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCListAsset.ResumeLayout(False)
         Me.XTPAsset.ResumeLayout(False)
         Me.XTPMovingLog.ResumeLayout(False)
         CType(Me.GCAssetMovingLog, System.ComponentModel.ISupportInitialize).EndInit()
@@ -592,7 +592,7 @@ Partial Class FormMasterAsset
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LEPil As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents BView As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents XtraTabControl1 As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTCListAsset As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPAsset As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPMovingLog As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GCAssetMovingLog As DevExpress.XtraGrid.GridControl

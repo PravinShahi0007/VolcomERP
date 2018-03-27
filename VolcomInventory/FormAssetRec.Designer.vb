@@ -23,6 +23,7 @@ Partial Class FormAssetRec
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAssetRec))
         Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
         Me.PCEdit = New DevExpress.XtraEditors.PanelControl()
+        Me.LEPil = New DevExpress.XtraEditors.LookUpEdit()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.DEStart = New DevExpress.XtraEditors.DateEdit()
@@ -33,21 +34,20 @@ Partial Class FormAssetRec
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.BSearch = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.GCPOList = New DevExpress.XtraGrid.GridControl()
-        Me.GVPOList = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.LEPil = New DevExpress.XtraEditors.LookUpEdit()
+        Me.GCRecList = New DevExpress.XtraGrid.GridControl()
+        Me.GVRecList = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCEdit.SuspendLayout()
+        CType(Me.LEPil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GCPOList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GVPOList, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LEPil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GCRecList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVRecList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LargeImageCollection
@@ -95,6 +95,23 @@ Partial Class FormAssetRec
         Me.PCEdit.Name = "PCEdit"
         Me.PCEdit.Size = New System.Drawing.Size(927, 41)
         Me.PCEdit.TabIndex = 2
+        '
+        'LEPil
+        '
+        Me.LEPil.Location = New System.Drawing.Point(255, 11)
+        Me.LEPil.Name = "LEPil"
+        Me.LEPil.Properties.Appearance.Options.UseTextOptions = True
+        Me.LEPil.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
+        Me.LEPil.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.LEPil.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
+        Me.LEPil.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.LEPil.Properties.AppearanceDisabled.Options.UseForeColor = True
+        Me.LEPil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPil.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pil", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pil_name", "Option")})
+        Me.LEPil.Properties.NullText = ""
+        Me.LEPil.Properties.ShowFooter = False
+        Me.LEPil.Size = New System.Drawing.Size(126, 20)
+        Me.LEPil.TabIndex = 8913
         '
         'DEEnd
         '
@@ -188,45 +205,28 @@ Partial Class FormAssetRec
         Me.LabelControl3.TabIndex = 8906
         Me.LabelControl3.Text = "Vendor"
         '
-        'GCPOList
+        'GCRecList
         '
-        Me.GCPOList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCPOList.Location = New System.Drawing.Point(0, 41)
-        Me.GCPOList.MainView = Me.GVPOList
-        Me.GCPOList.Name = "GCPOList"
-        Me.GCPOList.Size = New System.Drawing.Size(927, 441)
-        Me.GCPOList.TabIndex = 3
-        Me.GCPOList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPOList})
+        Me.GCRecList.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCRecList.Location = New System.Drawing.Point(0, 41)
+        Me.GCRecList.MainView = Me.GVRecList
+        Me.GCRecList.Name = "GCRecList"
+        Me.GCRecList.Size = New System.Drawing.Size(927, 441)
+        Me.GCRecList.TabIndex = 3
+        Me.GCRecList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVRecList})
         '
-        'GVPOList
+        'GVRecList
         '
-        Me.GVPOList.GridControl = Me.GCPOList
-        Me.GVPOList.Name = "GVPOList"
-        Me.GVPOList.OptionsView.ShowGroupPanel = False
-        '
-        'LEPil
-        '
-        Me.LEPil.Location = New System.Drawing.Point(255, 11)
-        Me.LEPil.Name = "LEPil"
-        Me.LEPil.Properties.Appearance.Options.UseTextOptions = True
-        Me.LEPil.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
-        Me.LEPil.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.LEPil.Properties.AppearanceDisabled.ForeColor = System.Drawing.Color.Black
-        Me.LEPil.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.LEPil.Properties.AppearanceDisabled.Options.UseForeColor = True
-        Me.LEPil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPil.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pil", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pil_name", "Option")})
-        Me.LEPil.Properties.NullText = ""
-        Me.LEPil.Properties.ShowFooter = False
-        Me.LEPil.Size = New System.Drawing.Size(126, 20)
-        Me.LEPil.TabIndex = 8913
+        Me.GVRecList.GridControl = Me.GCRecList
+        Me.GVRecList.Name = "GVRecList"
+        Me.GVRecList.OptionsView.ShowGroupPanel = False
         '
         'FormAssetRec
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(927, 482)
-        Me.Controls.Add(Me.GCPOList)
+        Me.Controls.Add(Me.GCRecList)
         Me.Controls.Add(Me.PCEdit)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
@@ -238,15 +238,15 @@ Partial Class FormAssetRec
         CType(Me.PCEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCEdit.ResumeLayout(False)
         Me.PCEdit.PerformLayout()
+        CType(Me.LEPil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEnd.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SLEVendor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GCPOList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GVPOList, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LEPil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GCRecList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVRecList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -263,7 +263,7 @@ Partial Class FormAssetRec
     Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
-    Friend WithEvents GCPOList As DevExpress.XtraGrid.GridControl
-    Friend WithEvents GVPOList As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GCRecList As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVRecList As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LEPil As DevExpress.XtraEditors.LookUpEdit
 End Class
