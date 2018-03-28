@@ -1867,7 +1867,7 @@ Public Class FormImportExcel
                 GVData.Columns("allow_meal").Caption = "Meal Allowance"
                 GVData.Columns("allow_trans").Caption = "Transport Allowance"
                 GVData.Columns("allow_house").Caption = "House Allowance"
-                GVData.Columns("allow_car").Caption = "Car Allowance"
+                GVData.Columns("allow_car").Caption = "Attendance Allowance"
                 GVData.Columns("effective_date").Caption = "Effective Date"
 
                 GVData.Columns("basic_salary").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric

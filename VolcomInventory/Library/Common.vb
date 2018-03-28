@@ -2321,7 +2321,19 @@ Module Common
             Console.WriteLine(ex.ToString)
         End Try
     End Sub
-
+    'view repository lookupedit
+    Public Sub viewLookupRepositoryQuery(ByVal LE As Repository.RepositoryItemLookUpEdit, ByVal query As String, ByVal index_selected As Integer, ByVal display As String, ByVal value As String)
+        Try
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            LE.DataSource = Nothing
+            LE.DataSource = data
+            LE.DisplayMember = display
+            LE.ValueMember = value
+        Catch ex As Exception
+            'errorConnection()
+            Console.WriteLine(ex.ToString)
+        End Try
+    End Sub
     'View Lookup with Query
     Public Sub viewSearchLookupQuery(ByVal SLE As DevExpress.XtraEditors.SearchLookUpEdit, ByVal query As String, ByVal index_selected As String, ByVal display As String, ByVal value As String)
         'Try
