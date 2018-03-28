@@ -52,6 +52,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.PanelControlMain = New DevExpress.XtraEditors.PanelControl()
         Me.XTPEmployee = New DevExpress.XtraTab.XtraTabControl()
         Me.XTPGeneral = New DevExpress.XtraTab.XtraTabPage()
+        Me.CEKoperasi = New DevExpress.XtraEditors.CheckEdit()
         Me.CEJP = New DevExpress.XtraEditors.CheckEdit()
         Me.CEJHT = New DevExpress.XtraEditors.CheckEdit()
         Me.CEBPJS = New DevExpress.XtraEditors.CheckEdit()
@@ -157,7 +158,6 @@ Partial Class FormMasterEmployeeNewDet
         Me.BtnNext = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSaveChanges = New DevExpress.XtraEditors.SimpleButton()
         Me.ErrorProvider1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.CEKoperasi = New DevExpress.XtraEditors.CheckEdit()
         CType(Me.PanelControlTop, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTop.SuspendLayout()
         CType(Me.DELastDay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,6 +182,7 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.XTPEmployee, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTPEmployee.SuspendLayout()
         Me.XTPGeneral.SuspendLayout()
+        CType(Me.CEKoperasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEJP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEJHT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CEBPJS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -238,7 +239,6 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlBottom.SuspendLayout()
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CEKoperasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PanelControlTop
@@ -619,6 +619,16 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPGeneral.Name = "XTPGeneral"
         Me.XTPGeneral.Size = New System.Drawing.Size(797, 422)
         Me.XTPGeneral.Text = "General"
+        '
+        'CEKoperasi
+        '
+        Me.CEKoperasi.Location = New System.Drawing.Point(672, 220)
+        Me.CEKoperasi.Name = "CEKoperasi"
+        Me.CEKoperasi.Properties.Caption = "Koperasi Member"
+        Me.CEKoperasi.Properties.ValueChecked = "yes"
+        Me.CEKoperasi.Properties.ValueUnchecked = "no"
+        Me.CEKoperasi.Size = New System.Drawing.Size(109, 19)
+        Me.CEKoperasi.TabIndex = 8905
         '
         'CEJP
         '
@@ -1486,7 +1496,7 @@ Partial Class FormMasterEmployeeNewDet
         '
         'GridColumnAllowCar
         '
-        Me.GridColumnAllowCar.Caption = "Car Allowance"
+        Me.GridColumnAllowCar.Caption = "Attendance Allowance"
         Me.GridColumnAllowCar.DisplayFormat.FormatString = "{0:n0}"
         Me.GridColumnAllowCar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAllowCar.FieldName = "allow_car"
@@ -1593,16 +1603,6 @@ Partial Class FormMasterEmployeeNewDet
         '
         Me.ErrorProvider1.ContainerControl = Me
         '
-        'CEKoperasi
-        '
-        Me.CEKoperasi.Location = New System.Drawing.Point(672, 220)
-        Me.CEKoperasi.Name = "CEKoperasi"
-        Me.CEKoperasi.Properties.Caption = "Koperasi Member"
-        Me.CEKoperasi.Properties.ValueChecked = "yes"
-        Me.CEKoperasi.Properties.ValueUnchecked = "no"
-        Me.CEKoperasi.Size = New System.Drawing.Size(109, 19)
-        Me.CEKoperasi.TabIndex = 8905
-        '
         'FormMasterEmployeeNewDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1643,6 +1643,7 @@ Partial Class FormMasterEmployeeNewDet
         Me.XTPEmployee.ResumeLayout(False)
         Me.XTPGeneral.ResumeLayout(False)
         Me.XTPGeneral.PerformLayout()
+        CType(Me.CEKoperasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEJP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEJHT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CEBPJS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1700,7 +1701,6 @@ Partial Class FormMasterEmployeeNewDet
         CType(Me.PanelControlBottom, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlBottom.ResumeLayout(False)
         CType(Me.ErrorProvider1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CEKoperasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
