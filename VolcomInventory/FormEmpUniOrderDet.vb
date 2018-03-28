@@ -224,7 +224,7 @@ Public Class FormEmpUniOrderDet
             IFNULL(s.qty_avl,0) AS qty_avl,
             IFNULL(s.qty_rsv,0) AS qty_rsv,
             IFNULL(s.qty_tot,0) AS qty_tot,
-            prc.id_design_price, prc.design_price
+            prc.id_design_price, prc.design_price, IFNULL(dd.point,0) AS `point`
             FROM tb_emp_uni_design_det dd
             INNER JOIN tb_emp_uni_design dm ON dm.id_emp_uni_design = dd.id_emp_uni_design
             INNER JOIN tb_m_design dsg ON dsg.id_design = dd.id_design

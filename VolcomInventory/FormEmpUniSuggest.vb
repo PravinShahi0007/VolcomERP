@@ -59,7 +59,7 @@
     Private Sub BtnSug_Click(sender As Object, e As EventArgs) Handles BtnSug.Click
         Cursor = Cursors.WaitCursor
         viewDesignList()
-        GVDesignList.ActiveFilterString = "[design_cop]<=" + decimalSQL(FormEmpUniOrderDet.TxtDiff.EditValue.ToString) + ""
+        GVDesignList.ActiveFilterString = "[point]<=" + decimalSQL(FormEmpUniOrderDet.TxtDiff.EditValue.ToString) + ""
         Cursor = Cursors.Default
     End Sub
 End Class

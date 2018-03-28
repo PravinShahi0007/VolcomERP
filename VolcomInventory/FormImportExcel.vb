@@ -1722,7 +1722,7 @@ Public Class FormImportExcel
                                 .Name = If(y1 Is Nothing, "-", y1("employee_name").ToString),
                                 .Dept = If(y1 Is Nothing, "-", y1("departement").ToString),
                                 .Position = If(y1 Is Nothing, "-", y1("employee_position").ToString),
-                                .Budget = table1("budget"),
+                                .Budget = If(FormEmpUniBudgetSet.TxtBudget.EditValue > 0, FormEmpUniBudgetSet.TxtBudget.EditValue, table1("budget")),
                                 .Status = If(y1 Is Nothing, "Not Found", If(y1("id_sales_order").ToString = 0, "OK", "Order already processed"))
                             }
             GCData.DataSource = Nothing
@@ -3213,6 +3213,10 @@ Public Class FormImportExcel
                         If l_i > 0 Then
                             execute_non_query(query_ins, True, "", "", "", "")
                         End If
+
+                        'update point
+                        execute_non_query("CALL set_emp_uni_point(" + FormEmpUniPeriodDet.id_emp_uni_period + ")", True, "", "", "", "")
+
                         FormEmpUniPeriodDet.viewDetail()
                         Close()
                         Cursor = Cursors.Default

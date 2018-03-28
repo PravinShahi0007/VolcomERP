@@ -35,7 +35,7 @@
             End If
 
             'cek budget
-            Dim total As Decimal = FormEmpUniOrderDet.TxtTotal.EditValue + GVDesign.GetFocusedRowCellValue("design_cop")
+            Dim total As Decimal = FormEmpUniOrderDet.TxtTotal.EditValue + GVDesign.GetFocusedRowCellValue("point")
 
             If check_existing Then
                 stopCustom("Product already order")

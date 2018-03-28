@@ -202,8 +202,7 @@
 
     Private Sub BtnImportExcel_Click(sender As Object, e As EventArgs) Handles BtnImportExcel.Click
         Cursor = Cursors.WaitCursor
-        FormImportExcel.id_pop_up = "31"
-        FormImportExcel.ShowDialog()
+        FormEmpUniBudgetSet.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 
