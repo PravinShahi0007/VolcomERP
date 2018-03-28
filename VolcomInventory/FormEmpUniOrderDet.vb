@@ -307,9 +307,9 @@ Public Class FormEmpUniOrderDet
         Report.LabelName.Text = TxtName.Text.ToUpper
         Report.LabelDept.Text = TxtDept.Text.ToUpper
         Report.LabelLevel.Text = TxtLevel.Text.ToUpper
-        Report.LabelBudget.Text = TxtBudget.Text.ToUpper
-        Report.LabelTotal.Text = TxtTotal.Text.ToUpper
-        Report.LabelDiff.Text = TxtDiff.Text
+        Report.LabelBudget.Text = TxtBudget.Text.ToUpper + "%"
+        Report.LabelTotal.Text = TxtTotal.Text.ToUpper + "%"
+        Report.LabelDiff.Text = TxtDiff.Text + "%"
         Report.LabelHRD.Text = prepared_by.ToUpper
         Report.LabelTTDName.Text = TxtName.Text.ToUpper
         Report.LabelDate.Text = DECreated.Text.ToString

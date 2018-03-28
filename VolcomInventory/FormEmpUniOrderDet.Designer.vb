@@ -689,7 +689,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 50
+        Me.GridColumnNo.Width = 69
         '
         'GridColumnCode
         '
@@ -698,7 +698,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 2
-        Me.GridColumnCode.Width = 233
+        Me.GridColumnCode.Width = 342
         '
         'GridColumnName
         '
@@ -710,7 +710,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 3
-        Me.GridColumnName.Width = 490
+        Me.GridColumnName.Width = 721
         '
         'GridColumnSize
         '
@@ -725,6 +725,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 4
+        Me.GridColumnSize.Width = 110
         '
         'GridColumnPriceType
         '
@@ -752,7 +753,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:n0}")})
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 5
-        Me.GridColumnQty.Width = 81
+        Me.GridColumnQty.Width = 118
         '
         'RepositoryItemSpinEdit1
         '
@@ -919,7 +920,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnUniformNo.Name = "GridColumnUniformNo"
         Me.GridColumnUniformNo.Visible = True
         Me.GridColumnUniformNo.VisibleIndex = 1
-        Me.GridColumnUniformNo.Width = 170
+        Me.GridColumnUniformNo.Width = 157
         '
         'GroupControl3
         '
@@ -1060,6 +1061,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnPoint.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "point", "{0:n2}")})
         Me.GridColumnPoint.Visible = True
         Me.GridColumnPoint.VisibleIndex = 6
+        Me.GridColumnPoint.Width = 115
         '
         'FormEmpUniOrderDet
         '

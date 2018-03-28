@@ -127,8 +127,6 @@ Partial Class FormEmpUniOrderSingle
         Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPrice.FieldName = "design_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
-        Me.GridColumnPrice.Visible = True
-        Me.GridColumnPrice.VisibleIndex = 5
         Me.GridColumnPrice.Width = 114
         '
         'PanelControl1
