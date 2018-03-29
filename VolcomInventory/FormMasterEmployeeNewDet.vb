@@ -181,6 +181,12 @@
                 CEJHT.Checked = False
             End If
             '
+            If data.Rows(0)("is_koperasi").ToString = "yes" Then
+                CEKoperasi.Checked = True
+            Else
+                CEKoperasi.Checked = False
+            End If
+            '
             'load img
             pre_viewImages("4", PEEmployee, id_employee, False)
         End If
