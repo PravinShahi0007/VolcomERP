@@ -87,15 +87,24 @@
             Dim selection_date_end As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim distribution_date As String = DateTime.Parse(DEDist.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim tolerance As String = decimalSQL(TxtTolerance.EditValue.ToString)
+            Dim id_status As String = CEActive.EditValue.ToString
+            If id_status = "True" Then
+                id_status = "1"
+                Dim uni As New ClassEmpUni
+                uni.nonaktifPeriod()
+            Else
+                id_status = "2"
+            End If
+
             If action = "ins" Then
-                Dim query As String = "INSERT INTO tb_emp_uni_period(period_name, selection_date_start, selection_date_end, created_date, distribution_date, tolerance) VALUES "
-                query += "('" + period_name + "', '" + selection_date_start + "', '" + selection_date_end + "', NOW(), '" + distribution_date + "','" + tolerance + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_emp_uni_period(period_name, selection_date_start, selection_date_end, created_date, distribution_date, tolerance, id_status) VALUES "
+                query += "('" + period_name + "', '" + selection_date_start + "', '" + selection_date_end + "', NOW(), '" + distribution_date + "','" + tolerance + "', '" + id_status + "'); SELECT LAST_INSERT_ID(); "
                 id_emp_uni_period = execute_query(query, 0, True, "", "", "", "")
                 action = "upd"
                 actionLoad()
                 infoCustom("Uniform period was created successfully, please input detail budget.")
             Else
-                Dim query As String = "UPDATE tb_emp_uni_period SET period_name='" + period_name + "', selection_date_start='" + selection_date_start + "', selection_date_end='" + selection_date_end + "', distribution_date='" + distribution_date + "', tolerance='" + tolerance + "' WHERE id_emp_uni_period='" + id_emp_uni_period + "' "
+                Dim query As String = "UPDATE tb_emp_uni_period SET period_name='" + period_name + "', selection_date_start='" + selection_date_start + "', selection_date_end='" + selection_date_end + "', distribution_date='" + distribution_date + "', tolerance='" + tolerance + "', id_status='" + id_status + "' WHERE id_emp_uni_period='" + id_emp_uni_period + "' "
                 execute_non_query(query, True, "", "", "", "")
                 action = "upd"
                 actionLoad()
@@ -108,6 +117,8 @@
         End If
 
     End Sub
+
+
 
     Private Sub FormEmpUniPeriodDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
         Dispose()
@@ -238,57 +249,60 @@
         If GVDetail.RowCount > 0 And GVDetail.FocusedRowHandle >= 0 Then
             Cursor = Cursors.WaitCursor
             Dim id_emp_uni_budget As String = GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString
-            Dim qorder As String = "SELECT * FROM tb_sales_order WHERE id_emp_uni_period=" + id_emp_uni_period + " AND id_emp_uni_budget=" + GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString + " AND id_report_status!=5 "
-            Dim dorder As DataTable = execute_query(qorder, -1, True, "", "", "", "")
-            If dorder.Rows.Count > 0 Then 'sudah ada order
-                FormEmpUniOrderDet.id_sales_order = GVDetail.GetFocusedRowCellValue("id_order").ToString
-                FormEmpUniOrderDet.ShowDialog()
-            Else 'blm ada
-                'get destination
-                Dim id_dept As String = GVDetail.GetFocusedRowCellValue("id_departement").ToString
-                Dim id_store_contact_to As String = "-1"
-                Try
-                    id_store_contact_to = execute_query("SELECT cc.id_comp_contact FROM tb_m_departement d 
-                INNER JOIN tb_m_comp c ON c.id_comp = d.id_comp_promo
-                INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1
-                WHERE d.id_departement=" + id_dept + " ", 0, True, "", "", "", "")
-                Catch ex As Exception
-                End Try
+            Dim uni As New ClassEmpUni()
+            uni.openOrderDetail(id_emp_uni_period, id_emp_uni_budget, GVDetail.GetFocusedRowCellValue("id_order").ToString, GVDetail.GetFocusedRowCellValue("id_departement").ToString)
 
-                'get from
-                Dim id_warehouse_contact_to = "-1"
-                Try
-                    id_warehouse_contact_to = execute_query("SELECT cc.id_comp_contact 
-                    FROM tb_emp_uni_design l 
-                    INNER JOIN tb_m_comp c ON c.id_drawer_def = l.id_wh_drawer
-                    INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1
-                    WHERE l.id_emp_uni_period=" + id_emp_uni_period + " AND l.id_report_status=6
-                    GROUP BY l.id_emp_uni_period", 0, True, "", "", "", "")
-                Catch ex As Exception
-                End Try
+            'Dim qorder As String = "SELECT * FROM tb_sales_order WHERE id_emp_uni_period=" + id_emp_uni_period + " AND id_emp_uni_budget=" + GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString + " AND id_report_status!=5 "
+            'Dim dorder As DataTable = execute_query(qorder, -1, True, "", "", "", "")
+            'If dorder.Rows.Count > 0 Then 'sudah ada order
+            '    FormEmpUniOrderDet.id_sales_order = GVDetail.GetFocusedRowCellValue("id_order").ToString
+            '    FormEmpUniOrderDet.ShowDialog()
+            'Else 'blm ada
+            '    'get destination
+            '    Dim id_dept As String = GVDetail.GetFocusedRowCellValue("id_departement").ToString
+            '    Dim id_store_contact_to As String = "-1"
+            '    Try
+            '        id_store_contact_to = execute_query("SELECT cc.id_comp_contact FROM tb_m_departement d 
+            '    INNER JOIN tb_m_comp c ON c.id_comp = d.id_comp_promo
+            '    INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1
+            '    WHERE d.id_departement=" + id_dept + " ", 0, True, "", "", "", "")
+            '    Catch ex As Exception
+            '    End Try
 
-                'get id_emp_uni_budget
-                Dim tolerance As String = decimalSQL(GVDetail.GetFocusedRowCellValue("tolerance").ToString)
+            '    'get from
+            '    Dim id_warehouse_contact_to = "-1"
+            '    Try
+            '        id_warehouse_contact_to = execute_query("SELECT cc.id_comp_contact 
+            '        FROM tb_emp_uni_design l 
+            '        INNER JOIN tb_m_comp c ON c.id_drawer_def = l.id_wh_drawer
+            '        INNER JOIN tb_m_comp_contact cc ON cc.id_comp = c.id_comp AND cc.is_default=1
+            '        WHERE l.id_emp_uni_period=" + id_emp_uni_period + " AND l.id_report_status=6
+            '        GROUP BY l.id_emp_uni_period", 0, True, "", "", "", "")
+            '    Catch ex As Exception
+            '    End Try
 
-                'get discount
-                Dim discount As Decimal = 0
+            '    'get id_emp_uni_budget
+            '    Dim tolerance As String = decimalSQL(GVDetail.GetFocusedRowCellValue("tolerance").ToString)
 
-                'check
-                If id_store_contact_to = "-1" Then
-                    stopCustom("Destination account is not found")
-                ElseIf id_warehouse_contact_to = "-1" Then
-                    stopCustom("WH account is not found")
-                Else
-                    Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_emp_uni_budget, tolerance, discount) "
-                    query += "VALUES('" + id_store_contact_to + "', '" + id_warehouse_contact_to + "', '', NOW(), '', '0', '1', '7', '" + id_user + "','" + id_emp_uni_period + "'," + id_emp_uni_budget + ",'" + tolerance + "','" + decimalSQL(discount.ToString) + "'); SELECT LAST_INSERT_ID(); "
-                    Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
+            '    'get discount
+            '    Dim discount As Decimal = 0
 
-                    'submit_who_prepared("39", id_new, id_user)
+            '    'check
+            '    If id_store_contact_to = "-1" Then
+            '        stopCustom("Destination account is not found")
+            '    ElseIf id_warehouse_contact_to = "-1" Then
+            '        stopCustom("WH account is not found")
+            '    Else
+            '        Dim query As String = "INSERT INTO tb_sales_order(id_store_contact_to, id_warehouse_contact_to, sales_order_number, sales_order_date, sales_order_note, id_so_type, id_report_status, id_so_status, id_user_created, id_emp_uni_period, id_emp_uni_budget, tolerance, discount) "
+            '        query += "VALUES('" + id_store_contact_to + "', '" + id_warehouse_contact_to + "', '', NOW(), '', '0', '1', '7', '" + id_user + "','" + id_emp_uni_period + "'," + id_emp_uni_budget + ",'" + tolerance + "','" + decimalSQL(discount.ToString) + "'); SELECT LAST_INSERT_ID(); "
+            '        Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
-                    FormEmpUniOrderDet.id_sales_order = id_new
-                    FormEmpUniOrderDet.ShowDialog()
-                End If
-            End If
+            '        'submit_who_prepared("39", id_new, id_user)
+
+            '        FormEmpUniOrderDet.id_sales_order = id_new
+            '        FormEmpUniOrderDet.ShowDialog()
+            '    End If
+            'End If
 
             'refrsh
             viewDetail()

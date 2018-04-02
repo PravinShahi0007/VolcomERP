@@ -42,6 +42,7 @@ Partial Class FormEmpUniSuggest
         Me.GridColumnCurStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCost = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPOINT = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnClose = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSug = New DevExpress.XtraEditors.SimpleButton()
@@ -49,7 +50,6 @@ Partial Class FormEmpUniSuggest
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton6 = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnPOINT = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCDesignList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDesignList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,7 +89,7 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn2.Name = "GridColumn2"
         Me.GridColumn2.Visible = True
         Me.GridColumn2.VisibleIndex = 1
-        Me.GridColumn2.Width = 122
+        Me.GridColumn2.Width = 142
         '
         'GridColumn8
         '
@@ -98,7 +98,7 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 2
-        Me.GridColumn8.Width = 258
+        Me.GridColumn8.Width = 301
         '
         'GridColumn14
         '
@@ -106,8 +106,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn14.FieldName = "sizetype"
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 5
-        Me.GridColumn14.Width = 124
+        Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.Width = 141
         '
         'GridColumn20
         '
@@ -122,8 +122,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", "{0:N0}")})
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 6
-        Me.GridColumn20.Width = 68
+        Me.GridColumn20.VisibleIndex = 5
+        Me.GridColumn20.Width = 76
         '
         'RepositoryItemTextEdit2
         '
@@ -144,8 +144,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", "{0:N0}")})
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 7
-        Me.GridColumn21.Width = 64
+        Me.GridColumn21.VisibleIndex = 6
+        Me.GridColumn21.Width = 72
         '
         'GridColumn22
         '
@@ -160,8 +160,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn22.Name = "GridColumn22"
         Me.GridColumn22.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", "{0:N0}")})
         Me.GridColumn22.Visible = True
-        Me.GridColumn22.VisibleIndex = 8
-        Me.GridColumn22.Width = 60
+        Me.GridColumn22.VisibleIndex = 7
+        Me.GridColumn22.Width = 67
         '
         'GridColumn23
         '
@@ -176,8 +176,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", "{0:N0}")})
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 9
-        Me.GridColumn23.Width = 59
+        Me.GridColumn23.VisibleIndex = 8
+        Me.GridColumn23.Width = 66
         '
         'GridColumn24
         '
@@ -192,8 +192,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn24.Name = "GridColumn24"
         Me.GridColumn24.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", "{0:N0}")})
         Me.GridColumn24.Visible = True
-        Me.GridColumn24.VisibleIndex = 10
-        Me.GridColumn24.Width = 63
+        Me.GridColumn24.VisibleIndex = 9
+        Me.GridColumn24.Width = 71
         '
         'GridColumn25
         '
@@ -208,8 +208,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn25.Name = "GridColumn25"
         Me.GridColumn25.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", "{0:N0}")})
         Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 11
-        Me.GridColumn25.Width = 57
+        Me.GridColumn25.VisibleIndex = 10
+        Me.GridColumn25.Width = 63
         '
         'GridColumn26
         '
@@ -224,8 +224,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn26.Name = "GridColumn26"
         Me.GridColumn26.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", "{0:N0}")})
         Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 12
-        Me.GridColumn26.Width = 64
+        Me.GridColumn26.VisibleIndex = 11
+        Me.GridColumn26.Width = 72
         '
         'GridColumn27
         '
@@ -240,7 +240,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn27.Name = "GridColumn27"
         Me.GridColumn27.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", "{0:N0}")})
         Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 13
+        Me.GridColumn27.VisibleIndex = 12
+        Me.GridColumn27.Width = 85
         '
         'GridColumn28
         '
@@ -255,8 +256,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn28.Name = "GridColumn28"
         Me.GridColumn28.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", "{0:N0}")})
         Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 14
-        Me.GridColumn28.Width = 72
+        Me.GridColumn28.VisibleIndex = 13
+        Me.GridColumn28.Width = 81
         '
         'GridColumn29
         '
@@ -271,8 +272,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn29.Name = "GridColumn29"
         Me.GridColumn29.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "0", "{0:N0}")})
         Me.GridColumn29.Visible = True
-        Me.GridColumn29.VisibleIndex = 15
-        Me.GridColumn29.Width = 79
+        Me.GridColumn29.VisibleIndex = 14
+        Me.GridColumn29.Width = 89
         '
         'GridColumn30
         '
@@ -287,8 +288,8 @@ Partial Class FormEmpUniSuggest
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", "{0:N0}")})
         Me.GridColumn30.Visible = True
-        Me.GridColumn30.VisibleIndex = 16
-        Me.GridColumn30.Width = 106
+        Me.GridColumn30.VisibleIndex = 15
+        Me.GridColumn30.Width = 143
         '
         'GridColumnCurPrice
         '
@@ -297,8 +298,6 @@ Partial Class FormEmpUniSuggest
         Me.GridColumnCurPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnCurPrice.FieldName = "design_price"
         Me.GridColumnCurPrice.Name = "GridColumnCurPrice"
-        Me.GridColumnCurPrice.Visible = True
-        Me.GridColumnCurPrice.VisibleIndex = 3
         Me.GridColumnCurPrice.Width = 106
         '
         'GridColumnPriceType
@@ -322,7 +321,7 @@ Partial Class FormEmpUniSuggest
         Me.GridColumnNo.Name = "GridColumnNo"
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 43
+        Me.GridColumnNo.Width = 59
         '
         'GridColumnCost
         '
@@ -331,6 +330,17 @@ Partial Class FormEmpUniSuggest
         Me.GridColumnCost.Name = "GridColumnCost"
         Me.GridColumnCost.OptionsColumn.AllowEdit = False
         Me.GridColumnCost.OptionsColumn.ShowInCustomizationForm = False
+        '
+        'GridColumnPOINT
+        '
+        Me.GridColumnPOINT.Caption = "POINT"
+        Me.GridColumnPOINT.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPOINT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPOINT.FieldName = "point"
+        Me.GridColumnPOINT.Name = "GridColumnPOINT"
+        Me.GridColumnPOINT.Visible = True
+        Me.GridColumnPOINT.VisibleIndex = 3
+        Me.GridColumnPOINT.Width = 104
         '
         'PanelControl3
         '
@@ -408,16 +418,6 @@ Partial Class FormEmpUniSuggest
         Me.SimpleButton6.Size = New System.Drawing.Size(104, 37)
         Me.SimpleButton6.TabIndex = 5
         Me.SimpleButton6.Text = "Refresh List"
-        '
-        'GridColumnPOINT
-        '
-        Me.GridColumnPOINT.Caption = "POINT"
-        Me.GridColumnPOINT.DisplayFormat.FormatString = "N2"
-        Me.GridColumnPOINT.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnPOINT.FieldName = "point"
-        Me.GridColumnPOINT.Name = "GridColumnPOINT"
-        Me.GridColumnPOINT.Visible = True
-        Me.GridColumnPOINT.VisibleIndex = 4
         '
         'FormEmpUniSuggest
         '
