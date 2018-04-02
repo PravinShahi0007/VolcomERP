@@ -11331,6 +11331,21 @@ Public Class FormMain
     End Sub
 
     Private Sub NBGUniformPublic_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBGUniformPublic.LinkClicked
-
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT p.id_emp_uni_period, b.id_emp_uni_budget, IFNULL(so.id_sales_order,0) AS `id_order`
+        FROM tb_emp_uni_period p 
+        LEFT JOIN tb_emp_uni_budget b ON b.id_emp_uni_period = p.id_emp_uni_period AND b.id_employee=" + id_employee_user + "
+        LEFT JOIN tb_m_employee e ON e.id_employee = b.id_employee
+        LEFT JOIN tb_sales_order so ON so.id_emp_uni_budget = b.id_emp_uni_budget AND so.id_emp_uni_period = p.id_emp_uni_period
+        WHERE p.id_status=1  "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        If data.Rows.Count > 0 Then
+            Dim uni As New ClassEmpUni()
+            uni.is_public_form = True
+            uni.openOrderDetail(data.Rows(0)("id_emp_uni_period").ToString, data.Rows(0)("id_emp_uni_budget").ToString, data.Rows(0)("id_order").ToString, id_departement_user)
+        Else
+            stopCustom("Periode uniform belum dimulai")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

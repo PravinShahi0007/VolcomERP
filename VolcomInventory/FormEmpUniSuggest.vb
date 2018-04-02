@@ -39,7 +39,6 @@
 
     Private Sub TxtDesign_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDesign.KeyDown
         If e.KeyCode = Keys.Enter Then
-            viewDesignList()
             If TxtDesign.Text.ToString = "" Then
                 GVDesignList.ActiveFilterString = ""
             Else

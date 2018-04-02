@@ -6,6 +6,7 @@ Public Class FormEmpUniOrderDet
     Public id_emp_uni_period As String = "-1"
     Dim prepared_by As String = ""
     Dim id_wh_drawer As String = ""
+    Public is_public_form As Boolean = False
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -89,7 +90,9 @@ Public Class FormEmpUniOrderDet
             'update completed
             Dim query As String = "UPDATE tb_sales_order Set id_report_status=6, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
-            FormEmpUniPeriodDet.viewOrder()
+            If Not is_public_form Then
+                FormEmpUniPeriodDet.viewOrder()
+            End If
             actionLoad()
 
             'print direct
@@ -110,7 +113,9 @@ Public Class FormEmpUniOrderDet
 
             Dim query As String = "UPDATE tb_sales_order Set id_report_status=5,sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
-            FormEmpUniPeriodDet.viewOrder()
+            If Not is_public_form Then
+                FormEmpUniPeriodDet.viewOrder()
+            End If
             actionLoad()
         End If
     End Sub

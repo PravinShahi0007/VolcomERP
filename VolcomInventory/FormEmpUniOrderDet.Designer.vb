@@ -46,6 +46,9 @@ Partial Class FormEmpUniOrderDet
         Me.LEReportStatus = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl21 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
+        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
         Me.LabelControl15 = New DevExpress.XtraEditors.LabelControl()
         Me.TxtDiff = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl14 = New DevExpress.XtraEditors.LabelControl()
@@ -95,6 +98,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnFrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnUniformNo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPoint = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GroupControl3 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnStock = New DevExpress.XtraEditors.SimpleButton()
@@ -104,10 +108,6 @@ Partial Class FormEmpUniOrderDet
         Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.LabelControl17 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl19 = New DevExpress.XtraEditors.LabelControl()
-        Me.LabelControl20 = New DevExpress.XtraEditors.LabelControl()
-        Me.GridColumnPoint = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -435,6 +435,36 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl2.Size = New System.Drawing.Size(510, 120)
         Me.PanelControl2.TabIndex = 141
         '
+        'LabelControl20
+        '
+        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl20.Appearance.ForeColor = System.Drawing.Color.Blue
+        Me.LabelControl20.Location = New System.Drawing.Point(481, 13)
+        Me.LabelControl20.Name = "LabelControl20"
+        Me.LabelControl20.Size = New System.Drawing.Size(19, 19)
+        Me.LabelControl20.TabIndex = 162
+        Me.LabelControl20.Text = "%"
+        '
+        'LabelControl19
+        '
+        Me.LabelControl19.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl19.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.LabelControl19.Location = New System.Drawing.Point(220, 45)
+        Me.LabelControl19.Name = "LabelControl19"
+        Me.LabelControl19.Size = New System.Drawing.Size(19, 19)
+        Me.LabelControl19.TabIndex = 161
+        Me.LabelControl19.Text = "%"
+        '
+        'LabelControl17
+        '
+        Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl17.Appearance.ForeColor = System.Drawing.Color.Green
+        Me.LabelControl17.Location = New System.Drawing.Point(220, 12)
+        Me.LabelControl17.Name = "LabelControl17"
+        Me.LabelControl17.Size = New System.Drawing.Size(19, 19)
+        Me.LabelControl17.TabIndex = 160
+        Me.LabelControl17.Text = "%"
+        '
         'LabelControl15
         '
         Me.LabelControl15.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -689,16 +719,17 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnNo.OptionsColumn.AllowEdit = False
         Me.GridColumnNo.Visible = True
         Me.GridColumnNo.VisibleIndex = 0
-        Me.GridColumnNo.Width = 69
+        Me.GridColumnNo.Width = 74
         '
         'GridColumnCode
         '
         Me.GridColumnCode.Caption = "Code"
         Me.GridColumnCode.FieldName = "code"
         Me.GridColumnCode.Name = "GridColumnCode"
+        Me.GridColumnCode.OptionsColumn.AllowEdit = False
         Me.GridColumnCode.Visible = True
         Me.GridColumnCode.VisibleIndex = 2
-        Me.GridColumnCode.Width = 342
+        Me.GridColumnCode.Width = 386
         '
         'GridColumnName
         '
@@ -710,7 +741,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnName.OptionsColumn.ReadOnly = True
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 3
-        Me.GridColumnName.Width = 721
+        Me.GridColumnName.Width = 817
         '
         'GridColumnSize
         '
@@ -725,7 +756,7 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnSize.OptionsColumn.ReadOnly = True
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.VisibleIndex = 4
-        Me.GridColumnSize.Width = 110
+        Me.GridColumnSize.Width = 123
         '
         'GridColumnPriceType
         '
@@ -751,8 +782,6 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnQty.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.[False]
         Me.GridColumnQty.OptionsColumn.AllowShowHide = False
         Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "sales_order_det_qty", "{0:n0}")})
-        Me.GridColumnQty.Visible = True
-        Me.GridColumnQty.VisibleIndex = 5
         Me.GridColumnQty.Width = 118
         '
         'RepositoryItemSpinEdit1
@@ -918,9 +947,23 @@ Partial Class FormEmpUniOrderDet
         Me.GridColumnUniformNo.Caption = "Uniform#"
         Me.GridColumnUniformNo.FieldName = "no"
         Me.GridColumnUniformNo.Name = "GridColumnUniformNo"
+        Me.GridColumnUniformNo.OptionsColumn.AllowEdit = False
         Me.GridColumnUniformNo.Visible = True
         Me.GridColumnUniformNo.VisibleIndex = 1
-        Me.GridColumnUniformNo.Width = 157
+        Me.GridColumnUniformNo.Width = 96
+        '
+        'GridColumnPoint
+        '
+        Me.GridColumnPoint.Caption = "Point"
+        Me.GridColumnPoint.DisplayFormat.FormatString = "n2"
+        Me.GridColumnPoint.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPoint.FieldName = "point"
+        Me.GridColumnPoint.Name = "GridColumnPoint"
+        Me.GridColumnPoint.OptionsColumn.AllowEdit = False
+        Me.GridColumnPoint.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "point", "{0:n2}")})
+        Me.GridColumnPoint.Visible = True
+        Me.GridColumnPoint.VisibleIndex = 5
+        Me.GridColumnPoint.Width = 136
         '
         'GroupControl3
         '
@@ -1020,48 +1063,6 @@ Partial Class FormEmpUniOrderDet
         Me.BtnAddOrder.Size = New System.Drawing.Size(99, 40)
         Me.BtnAddOrder.TabIndex = 2
         Me.BtnAddOrder.Text = "Add (F2)"
-        '
-        'LabelControl17
-        '
-        Me.LabelControl17.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl17.Appearance.ForeColor = System.Drawing.Color.Green
-        Me.LabelControl17.Location = New System.Drawing.Point(220, 12)
-        Me.LabelControl17.Name = "LabelControl17"
-        Me.LabelControl17.Size = New System.Drawing.Size(19, 19)
-        Me.LabelControl17.TabIndex = 160
-        Me.LabelControl17.Text = "%"
-        '
-        'LabelControl19
-        '
-        Me.LabelControl19.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl19.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.LabelControl19.Location = New System.Drawing.Point(220, 45)
-        Me.LabelControl19.Name = "LabelControl19"
-        Me.LabelControl19.Size = New System.Drawing.Size(19, 19)
-        Me.LabelControl19.TabIndex = 161
-        Me.LabelControl19.Text = "%"
-        '
-        'LabelControl20
-        '
-        Me.LabelControl20.Appearance.Font = New System.Drawing.Font("Tahoma", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl20.Appearance.ForeColor = System.Drawing.Color.Blue
-        Me.LabelControl20.Location = New System.Drawing.Point(481, 13)
-        Me.LabelControl20.Name = "LabelControl20"
-        Me.LabelControl20.Size = New System.Drawing.Size(19, 19)
-        Me.LabelControl20.TabIndex = 162
-        Me.LabelControl20.Text = "%"
-        '
-        'GridColumnPoint
-        '
-        Me.GridColumnPoint.Caption = "Point"
-        Me.GridColumnPoint.DisplayFormat.FormatString = "n2"
-        Me.GridColumnPoint.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnPoint.FieldName = "point"
-        Me.GridColumnPoint.Name = "GridColumnPoint"
-        Me.GridColumnPoint.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "point", "{0:n2}")})
-        Me.GridColumnPoint.Visible = True
-        Me.GridColumnPoint.VisibleIndex = 6
-        Me.GridColumnPoint.Width = 115
         '
         'FormEmpUniOrderDet
         '

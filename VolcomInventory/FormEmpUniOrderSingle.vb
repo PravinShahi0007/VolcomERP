@@ -28,7 +28,7 @@
 
             'cek stok
             Dim check_avail_stc As Boolean = True
-            Dim condition As String = "AND dm.id_emp_uni_period=" + FormEmpUniPeriodDet.id_emp_uni_period + " AND prod.id_product=" + id_product + " "
+            Dim condition As String = "AND dm.id_emp_uni_period=" + FormEmpUniOrderDet.id_emp_uni_period + " AND prod.id_product=" + id_product + " "
             Dim data_stc As DataTable = FormEmpUniOrderDet.checkStock(condition)
             If (data_stc.Rows.Count <= 0) Or data_stc.Rows(0)("qty_avl") <= 0 Then
                 check_avail_stc = False

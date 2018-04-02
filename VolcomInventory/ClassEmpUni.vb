@@ -1,4 +1,6 @@
 ﻿Public Class ClassEmpUni
+    Public is_public_form As Boolean = False
+
     Public Function queryMain(ByVal condition As String, ByVal order_type As String) As String
         If order_type = "1" Then
             order_type = "ASC "
@@ -98,6 +100,7 @@
         'Dim dorder As DataTable = execute_query(qorder, -1, True, "", "", "", "")
         If id_order <> "0" Then 'sudah ada order
             FormEmpUniOrderDet.id_sales_order = id_order
+            FormEmpUniOrderDet.is_public_form = is_public_form
             FormEmpUniOrderDet.ShowDialog()
         Else 'blm ada
             'get destination
