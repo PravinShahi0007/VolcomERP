@@ -11329,4 +11329,8 @@ Public Class FormMain
         End Try
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBGUniformPublic_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBGUniformPublic.LinkClicked
+
+    End Sub
 End Class
