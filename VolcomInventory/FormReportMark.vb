@@ -388,6 +388,12 @@
         ElseIf report_mark_type = "126" Then
             'over production memo
             query = String.Format("SELECT id_report_status, memo_number as report_number FROM tb_prod_over_memo WHERE id_prod_over_memo = '{0}'", id_report)
+        ElseIf report_mark_type = "128" Then
+            'Asset PO
+            query = String.Format("SELECT id_report_status, asset_po_no as report_number FROM tb_a_asset_po WHERE id_asset_po = '{0}'", id_report)
+        ElseIf report_mark_type = "129" Then
+            'Asset Rec
+            query = String.Format("SELECT id_report_status, asset_rec_no as report_number FROM tb_a_asset_rec WHERE id_asset_rec = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -3635,6 +3641,40 @@
             FormProdOverMemoDet.actionLoad()
             FormProdOverMemo.viewData()
             FormProdOverMemo.GVMemo.FocusedRowHandle = find_row(FormProdOverMemo.GVMemo, "id_prod_over_memo", id_report)
+        ElseIf report_mark_type = "128" Then
+            'Asset PO
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            query = String.Format("UPDATE tb_a_asset_po SET id_report_status='{0}' WHERE id_asset_po ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
+
+            If form_origin = "FormAssetPODet" Then
+                FormAssetPODet.load_det()
+                FormAssetPO.load_po()
+                FormAssetPO.GVPOList.FocusedRowHandle = find_row(FormAssetPO.GVPOList, "id_asset_po", id_report)
+            Else
+                'code here
+            End If
+        ElseIf report_mark_type = "129" Then
+            'Asset PO
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            query = String.Format("UPDATE tb_a_asset_rec SET id_report_status='{0}' WHERE id_asset_rec ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
+
+            If form_origin = "FormAssetRecDet" Then
+                FormAssetRecDet.load_det()
+                FormAssetRec.load_rec()
+                FormAssetRec.GVRecList.FocusedRowHandle = find_row(FormAssetRec.GVRecList, "id_asset_rec", id_report)
+            Else
+                'code here
+            End If
         End If
 
         'adding lead time

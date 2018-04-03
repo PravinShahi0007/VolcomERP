@@ -132,6 +132,12 @@
         ElseIf report_mark_type = "126" Then
             'memo over prod
             FormProdOverMemoDet.Close()
+        ElseIf report_mark_type = "128" Then
+            'Asset PO
+            FormAssetPODet.Close()
+        ElseIf report_mark_type = "129" Then
+            'Asset Rec
+            FormAssetRecDet.Close()
         End If
     End Sub
     Sub show()
@@ -629,6 +635,16 @@
             FormProdOverMemoDet.action = "upd"
             FormProdOverMemoDet.is_view = "1"
             FormProdOverMemoDet.ShowDialog()
+        ElseIf report_mark_type = "128" Then
+            'Asset PO
+            FormAssetPODet.id_po = id_report
+            FormAssetPODet.is_view = "1"
+            FormAssetPODet.ShowDialog()
+        ElseIf report_mark_type = "129" Then
+            'Asset Rec
+            FormAssetRecDet.id_rec = id_report
+            FormAssetRecDet.is_view = "1"
+            FormAssetRecDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -1273,6 +1289,18 @@
             field_id = "id_emp_leave"
             field_number = "emp_leave_number"
             field_date = "emp_leave_date"
+        ElseIf report_mark_type = "128" Then
+            'Asset PO
+            table_name = "tb_a_asset_po"
+            field_id = "id_asset_po"
+            field_number = "asset_po_no"
+            field_date = "asset_po_date"
+        ElseIf report_mark_type = "129" Then
+            'Asset Rec
+            table_name = "tb_a_asset_rec"
+            field_id = "id_asset_rec"
+            field_number = "asset_rec_no"
+            field_date = "asset_rec_date"
         Else
             query = "Select '-' AS report_number, NOW() as report_date"
         End If
