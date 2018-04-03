@@ -60,6 +60,7 @@ Partial Class FormAssetPODet
         Me.GridColumnSKU = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDesc = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RITEQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDiscount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -70,7 +71,7 @@ Partial Class FormAssetPODet
         Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
+        Me.MENote = New DevExpress.XtraEditors.MemoEdit()
         Me.LabelControl13 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
         Me.TEGrandTotal = New DevExpress.XtraEditors.TextEdit()
@@ -107,6 +108,7 @@ Partial Class FormAssetPODet
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RILEAssetCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RILEDepartement, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNav.SuspendLayout()
@@ -114,7 +116,7 @@ Partial Class FormAssetPODet
         Me.GroupControl2.SuspendLayout()
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl2.SuspendLayout()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.TEGrandTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -199,7 +201,7 @@ Partial Class FormAssetPODet
         Me.TEFax.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEFax.Properties.EditValueChangedDelay = 1
         Me.TEFax.Size = New System.Drawing.Size(333, 20)
-        Me.TEFax.TabIndex = 8904
+        Me.TEFax.TabIndex = 5
         Me.TEFax.TabStop = False
         '
         'LabelControl2
@@ -235,7 +237,7 @@ Partial Class FormAssetPODet
         Me.TEPhone.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEPhone.Properties.EditValueChangedDelay = 1
         Me.TEPhone.Size = New System.Drawing.Size(333, 20)
-        Me.TEPhone.TabIndex = 8902
+        Me.TEPhone.TabIndex = 4
         Me.TEPhone.TabStop = False
         '
         'TEAttn
@@ -253,7 +255,7 @@ Partial Class FormAssetPODet
         Me.TEAttn.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEAttn.Properties.EditValueChangedDelay = 1
         Me.TEAttn.Size = New System.Drawing.Size(333, 20)
-        Me.TEAttn.TabIndex = 8900
+        Me.TEAttn.TabIndex = 2
         Me.TEAttn.TabStop = False
         '
         'LabelControl1
@@ -276,7 +278,7 @@ Partial Class FormAssetPODet
         Me.MEAddress.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.MEAddress.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.MEAddress.Size = New System.Drawing.Size(333, 46)
-        Me.MEAddress.TabIndex = 4444
+        Me.MEAddress.TabIndex = 3
         Me.MEAddress.TabStop = False
         '
         'LabelStore
@@ -303,7 +305,7 @@ Partial Class FormAssetPODet
         Me.TEVendor.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEVendor.Properties.EditValueChangedDelay = 1
         Me.TEVendor.Size = New System.Drawing.Size(333, 20)
-        Me.TEVendor.TabIndex = 8888
+        Me.TEVendor.TabIndex = 1
         Me.TEVendor.TabStop = False
         '
         'LabelControl3
@@ -344,11 +346,11 @@ Partial Class FormAssetPODet
         Me.LEPil.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.LEPil.Properties.AppearanceDisabled.Options.UseForeColor = True
         Me.LEPil.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPil.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_pil", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pil_name", "Option")})
+        Me.LEPil.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_term_payment", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("term_payment", "Term")})
         Me.LEPil.Properties.NullText = ""
         Me.LEPil.Properties.ShowFooter = False
         Me.LEPil.Size = New System.Drawing.Size(221, 20)
-        Me.LEPil.TabIndex = 8936
+        Me.LEPil.TabIndex = 9
         '
         'LabelControl7
         '
@@ -371,7 +373,7 @@ Partial Class FormAssetPODet
         Me.DEEstRecDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEEstRecDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEEstRecDate.Size = New System.Drawing.Size(221, 20)
-        Me.DEEstRecDate.TabIndex = 8933
+        Me.DEEstRecDate.TabIndex = 8
         '
         'LabelControl6
         '
@@ -394,7 +396,7 @@ Partial Class FormAssetPODet
         Me.DEPODate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.DEPODate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEPODate.Size = New System.Drawing.Size(221, 20)
-        Me.DEPODate.TabIndex = 8931
+        Me.DEPODate.TabIndex = 7
         '
         'LabelControl8
         '
@@ -428,7 +430,7 @@ Partial Class FormAssetPODet
         Me.TEPONumber.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Size = New System.Drawing.Size(221, 20)
-        Me.TEPONumber.TabIndex = 8890
+        Me.TEPONumber.TabIndex = 6
         Me.TEPONumber.TabStop = False
         '
         'PanelControl3
@@ -490,7 +492,7 @@ Partial Class FormAssetPODet
         Me.BtnCancel.Location = New System.Drawing.Point(650, 2)
         Me.BtnCancel.Name = "BtnCancel"
         Me.BtnCancel.Size = New System.Drawing.Size(75, 34)
-        Me.BtnCancel.TabIndex = 10
+        Me.BtnCancel.TabIndex = 13
         Me.BtnCancel.TabStop = False
         Me.BtnCancel.Text = "Cancel"
         '
@@ -502,7 +504,7 @@ Partial Class FormAssetPODet
         Me.BtnSave.Location = New System.Drawing.Point(725, 2)
         Me.BtnSave.Name = "BtnSave"
         Me.BtnSave.Size = New System.Drawing.Size(75, 34)
-        Me.BtnSave.TabIndex = 8
+        Me.BtnSave.TabIndex = 12
         Me.BtnSave.TabStop = False
         Me.BtnSave.Text = "Save"
         '
@@ -525,9 +527,10 @@ Partial Class FormAssetPODet
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
-        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RILEDepartement, Me.RILEAssetCat})
+        Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RILEDepartement, Me.RILEAssetCat, Me.RITEQty})
         Me.GCItemList.Size = New System.Drawing.Size(780, 218)
         Me.GCItemList.TabIndex = 2
+        Me.GCItemList.TabStop = False
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
         '
         'GVItemList
@@ -602,6 +605,7 @@ Partial Class FormAssetPODet
         'GridColumnQty
         '
         Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.ColumnEdit = Me.RITEQty
         Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "qty"
@@ -610,9 +614,20 @@ Partial Class FormAssetPODet
         Me.GridColumnQty.VisibleIndex = 4
         Me.GridColumnQty.Width = 79
         '
+        'RITEQty
+        '
+        Me.RITEQty.Appearance.Options.UseTextOptions = True
+        Me.RITEQty.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.RITEQty.AutoHeight = False
+        Me.RITEQty.Mask.EditMask = "N2"
+        Me.RITEQty.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RITEQty.Mask.UseMaskAsDisplayFormat = True
+        Me.RITEQty.Name = "RITEQty"
+        '
         'GridColumnPrice
         '
         Me.GridColumnPrice.Caption = "Price"
+        Me.GridColumnPrice.ColumnEdit = Me.RITEQty
         Me.GridColumnPrice.DisplayFormat.FormatString = "N2"
         Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPrice.FieldName = "value"
@@ -624,6 +639,7 @@ Partial Class FormAssetPODet
         'GridColumnDiscount
         '
         Me.GridColumnDiscount.Caption = "Discount"
+        Me.GridColumnDiscount.ColumnEdit = Me.RITEQty
         Me.GridColumnDiscount.DisplayFormat.FormatString = "N2"
         Me.GridColumnDiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnDiscount.FieldName = "disc"
@@ -713,7 +729,7 @@ Partial Class FormAssetPODet
         'PanelControl2
         '
         Me.PanelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControl2.Controls.Add(Me.MemoEdit1)
+        Me.PanelControl2.Controls.Add(Me.MENote)
         Me.PanelControl2.Controls.Add(Me.LabelControl13)
         Me.PanelControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.PanelControl2.Location = New System.Drawing.Point(20, 2)
@@ -721,19 +737,18 @@ Partial Class FormAssetPODet
         Me.PanelControl2.Size = New System.Drawing.Size(459, 113)
         Me.PanelControl2.TabIndex = 8937
         '
-        'MemoEdit1
+        'MENote
         '
-        Me.MemoEdit1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.MENote.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.MemoEdit1.Location = New System.Drawing.Point(54, 14)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.MemoEdit1.Properties.Appearance.Options.UseFont = True
-        Me.MemoEdit1.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
-        Me.MemoEdit1.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.MemoEdit1.Size = New System.Drawing.Size(382, 81)
-        Me.MemoEdit1.TabIndex = 4444
-        Me.MemoEdit1.TabStop = False
+        Me.MENote.Location = New System.Drawing.Point(54, 14)
+        Me.MENote.Name = "MENote"
+        Me.MENote.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MENote.Properties.Appearance.Options.UseFont = True
+        Me.MENote.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.MENote.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.MENote.Size = New System.Drawing.Size(382, 81)
+        Me.MENote.TabIndex = 10
         '
         'LabelControl13
         '
@@ -769,11 +784,16 @@ Partial Class FormAssetPODet
         Me.TEGrandTotal.Name = "TEGrandTotal"
         Me.TEGrandTotal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEGrandTotal.Properties.Appearance.Options.UseFont = True
+        Me.TEGrandTotal.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEGrandTotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEGrandTotal.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TEGrandTotal.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TEGrandTotal.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TEGrandTotal.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TEGrandTotal.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEGrandTotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEGrandTotal.Properties.EditValueChangedDelay = 1
+        Me.TEGrandTotal.Properties.ReadOnly = True
         Me.TEGrandTotal.Size = New System.Drawing.Size(229, 20)
         Me.TEGrandTotal.TabIndex = 8897
         Me.TEGrandTotal.TabStop = False
@@ -795,11 +815,16 @@ Partial Class FormAssetPODet
         Me.TEVATAmount.Name = "TEVATAmount"
         Me.TEVATAmount.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEVATAmount.Properties.Appearance.Options.UseFont = True
+        Me.TEVATAmount.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEVATAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEVATAmount.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TEVATAmount.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TEVATAmount.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TEVATAmount.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TEVATAmount.Properties.DisplayFormat.FormatString = "N2"
+        Me.TEVATAmount.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEVATAmount.Properties.EditValueChangedDelay = 1
+        Me.TEVATAmount.Properties.ReadOnly = True
         Me.TEVATAmount.Size = New System.Drawing.Size(151, 20)
         Me.TEVATAmount.TabIndex = 8895
         Me.TEVATAmount.TabStop = False
@@ -821,13 +846,17 @@ Partial Class FormAssetPODet
         Me.TEVat.Name = "TEVat"
         Me.TEVat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TEVat.Properties.Appearance.Options.UseFont = True
+        Me.TEVat.Properties.Appearance.Options.UseTextOptions = True
+        Me.TEVat.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TEVat.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TEVat.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TEVat.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TEVat.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TEVat.Properties.DisplayFormat.FormatString = "N0"
+        Me.TEVat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TEVat.Properties.EditValueChangedDelay = 1
         Me.TEVat.Size = New System.Drawing.Size(55, 20)
-        Me.TEVat.TabIndex = 8893
+        Me.TEVat.TabIndex = 11
         Me.TEVat.TabStop = False
         '
         'LabelControl10
@@ -856,11 +885,16 @@ Partial Class FormAssetPODet
         Me.TETotal.Name = "TETotal"
         Me.TETotal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TETotal.Properties.Appearance.Options.UseFont = True
+        Me.TETotal.Properties.Appearance.Options.UseTextOptions = True
+        Me.TETotal.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
         Me.TETotal.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
         Me.TETotal.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.TETotal.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TETotal.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TETotal.Properties.DisplayFormat.FormatString = "N2"
+        Me.TETotal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.TETotal.Properties.EditValueChangedDelay = 1
+        Me.TETotal.Properties.ReadOnly = True
         Me.TETotal.Size = New System.Drawing.Size(229, 20)
         Me.TETotal.TabIndex = 8890
         Me.TETotal.TabStop = False
@@ -908,6 +942,7 @@ Partial Class FormAssetPODet
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RILEAssetCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RILEDepartement, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlNav.ResumeLayout(False)
@@ -916,7 +951,7 @@ Partial Class FormAssetPODet
         CType(Me.PanelControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl2.ResumeLayout(False)
         Me.PanelControl2.PerformLayout()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
@@ -977,7 +1012,7 @@ Partial Class FormAssetPODet
     Friend WithEvents RILEDepartement As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents GroupControl2 As DevExpress.XtraEditors.GroupControl
     Friend WithEvents PanelControl2 As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents MENote As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LabelControl13 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TETotal As DevExpress.XtraEditors.TextEdit
@@ -988,4 +1023,5 @@ Partial Class FormAssetPODet
     Friend WithEvents LabelControl11 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEVat As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents RITEQty As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
