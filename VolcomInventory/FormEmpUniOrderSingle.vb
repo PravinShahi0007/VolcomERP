@@ -47,8 +47,17 @@
                 Close()
             Else
                 Dim query As String = "INSERT INTO tb_sales_order_det(id_sales_order, id_product, id_design_price, design_price, sales_order_det_qty, sales_order_det_note) VALUES 
-                ('" + FormEmpUniOrderDet.id_sales_order + "','" + id_product + "','" + id_design_price + "','" + design_price + "','1','') "
-                execute_non_query(query, True, "", "", "", "")
+                ('" + FormEmpUniOrderDet.id_sales_order + "','" + id_product + "','" + id_design_price + "','" + design_price + "','1',''); SELECT LAST_INSERT_ID(); "
+                Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
+
+                'cek lg
+                data_stc = Nothing
+                data_stc = FormEmpUniOrderDet.checkStock(condition)
+                If (data_stc.Rows.Count <= 0) Or data_stc.Rows(0)("qty_avl") < 0 Then
+                    Dim qdel As String = "DELETE FROM tb_sales_order_det WHERE id_sales_order_det=" + id_new + " "
+                    execute_non_query(qdel, True, "", "", "", "")
+                    stopCustom("Stok sudah habis")
+                End If
 
                 'refresh
                 FormEmpUniOrderDet.actionLoad()
