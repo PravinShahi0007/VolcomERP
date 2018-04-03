@@ -38,12 +38,12 @@
             Dim total As Decimal = FormEmpUniOrderDet.TxtTotal.EditValue + GVDesign.GetFocusedRowCellValue("point")
 
             If check_existing Then
-                stopCustom("Product already order")
+                stopCustom("Product sudah dipilih")
                 Close()
             ElseIf Not check_avail_stc Then
-                stopCustom("There is no available quantity")
+                stopCustom("Stok sudah habis")
             ElseIf total > FormEmpUniOrderDet.Txtbudget.EditValue Then
-                stopCustom("Exceed maximum order : " + FormEmpUniOrderDet.TxtBudget.Text.ToString)
+                stopCustom("Budget tidak mencukupi")
                 Close()
             Else
                 Dim query As String = "INSERT INTO tb_sales_order_det(id_sales_order, id_product, id_design_price, design_price, sales_order_det_qty, sales_order_det_note) VALUES 

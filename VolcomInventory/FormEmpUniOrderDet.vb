@@ -137,7 +137,7 @@ Public Class FormEmpUniOrderDet
         FormEmpUniOrderDelete.ShowDialog()
         If GVItemList.ActiveFilterString <> "" Then
             If GVItemList.RowCount <= 0 Then
-                stopCustom("Not found")
+                stopCustom("Data tidak ditemukan")
             Else
                 deleteData()
             End If
@@ -198,13 +198,13 @@ Public Class FormEmpUniOrderDet
     Public Sub selectUniform(ByVal key As String)
         Dim dt As DataTable = checkStock("AND dm.id_emp_uni_period=" + id_emp_uni_period + " AND dd.no='" + key.ToString + "'")
         If dt.Rows.Count <= 0 Then
-            stopCustom("Product not found")
+            stopCustom("Product tidak ditemukan")
             TxtDesign.Text = ""
             TxtDesign.Focus()
         Else
             'jika sudah ada di list
             If checkExist(dt.Rows(0)("id_design").ToString) Then
-                stopCustom("Product already order")
+                stopCustom("Product sudah dipilih")
                 TxtDesign.Text = ""
                 TxtDesign.Focus()
             Else
