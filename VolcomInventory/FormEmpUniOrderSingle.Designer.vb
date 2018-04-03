@@ -82,7 +82,7 @@ Partial Class FormEmpUniOrderSingle
         '
         'GridColumnAvail
         '
-        Me.GridColumnAvail.Caption = "Available"
+        Me.GridColumnAvail.Caption = "Stok"
         Me.GridColumnAvail.DisplayFormat.FormatString = "N0"
         Me.GridColumnAvail.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnAvail.FieldName = "qty_avl"
