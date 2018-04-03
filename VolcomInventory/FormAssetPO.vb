@@ -51,13 +51,14 @@
         End If
         '
         Dim query As String = "SELECT po.*,det.total,(det.total * ((100+po.`vat`)/100)) AS grand_total,term.`term_payment`
-                                ,po.created_date,po.last_upd_date,emp_last.employee_name AS emp_created,emp_cre.employee_name AS emp_last_upd
+                                ,po.created_date,po.last_upd_date,emp_last.employee_name AS emp_created,emp_cre.employee_name AS emp_last_upd,sts.report_status
                                 FROM tb_a_asset_po po
                                 LEFT JOIN tb_m_user usr_cre ON usr_cre.id_user=po.created_by
                                 LEFT JOIN tb_m_employee emp_cre ON emp_cre.id_employee=usr_cre.id_employee
                                 LEFT JOIN tb_m_user usr_last ON usr_last.id_user=po.last_upd_by
                                 LEFT JOIN tb_m_employee emp_last ON emp_last.id_employee=usr_last.id_employee
                                 INNER JOIN `tb_lookup_term_payment` term ON term.`id_term_payment`=po.`id_term_payment`
+                                INNER JOIN tb_lookup_report_status sts ON sts.id_report_status=po.id_report_status
                                 LEFT JOIN (
                                 SELECT det.`id_asset_po`,SUM((det.value-det.disc)*det.qty) AS total FROM tb_a_asset_po_det det
                                 GROUP BY det.`id_asset_po`
