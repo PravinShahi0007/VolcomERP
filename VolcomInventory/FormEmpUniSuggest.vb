@@ -39,7 +39,6 @@
 
     Private Sub TxtDesign_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDesign.KeyDown
         If e.KeyCode = Keys.Enter Then
-            viewDesignList()
             If TxtDesign.Text.ToString = "" Then
                 GVDesignList.ActiveFilterString = ""
             Else
@@ -58,8 +57,7 @@
 
     Private Sub BtnSug_Click(sender As Object, e As EventArgs) Handles BtnSug.Click
         Cursor = Cursors.WaitCursor
-        viewDesignList()
-        GVDesignList.ActiveFilterString = "[design_cop]<=" + decimalSQL(FormEmpUniOrderDet.TxtDiff.EditValue.ToString) + ""
+        GVDesignList.ActiveFilterString = "[point]<=" + decimalSQL(FormEmpUniOrderDet.TxtDiff.EditValue.ToString) + ""
         Cursor = Cursors.Default
     End Sub
 End Class
