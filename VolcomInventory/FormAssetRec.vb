@@ -40,4 +40,13 @@
                                SELECT '3' id_pil,'By Last Update Date' as pil_name"
         viewLookupQuery(LEPil, query, 2, "pil_name", "id_pil")
     End Sub
+
+    Private Sub FormAssetRec_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
+        FormMain.show_rb(Name)
+        check_but()
+    End Sub
+
+    Private Sub FormAssetRec_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
+        FormMain.hide_rb()
+    End Sub
 End Class

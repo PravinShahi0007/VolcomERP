@@ -34,6 +34,9 @@ Partial Class FormAssetRecDet
         Me.TEVendor = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.BPickPONumber = New DevExpress.XtraEditors.SimpleButton()
+        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LEPil = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
         Me.DEEstRecDate = New DevExpress.XtraEditors.DateEdit()
@@ -53,8 +56,6 @@ Partial Class FormAssetRecDet
         Me.BMark = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
-        Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.GroupControlList = New DevExpress.XtraEditors.GroupControl()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -72,9 +73,8 @@ Partial Class FormAssetRecDet
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnDel = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAdd = New DevExpress.XtraEditors.SimpleButton()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TERecNumber = New DevExpress.XtraEditors.TextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,6 +86,8 @@ Partial Class FormAssetRecDet
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEstRecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEstRecDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -100,8 +102,6 @@ Partial Class FormAssetRecDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlList.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,8 +110,7 @@ Partial Class FormAssetRecDet
         CType(Me.RILEDepartement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.PanelControlNav.SuspendLayout()
+        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -282,6 +281,9 @@ Partial Class FormAssetRecDet
         'PanelControlTopRight
         '
         Me.PanelControlTopRight.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControlTopRight.Controls.Add(Me.LabelControl10)
+        Me.PanelControlTopRight.Controls.Add(Me.TERecNumber)
+        Me.PanelControlTopRight.Controls.Add(Me.BPickPONumber)
         Me.PanelControlTopRight.Controls.Add(Me.DateEdit1)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl9)
         Me.PanelControlTopRight.Controls.Add(Me.LEPil)
@@ -297,6 +299,37 @@ Partial Class FormAssetRecDet
         Me.PanelControlTopRight.Name = "PanelControlTopRight"
         Me.PanelControlTopRight.Size = New System.Drawing.Size(346, 174)
         Me.PanelControlTopRight.TabIndex = 8935
+        '
+        'BPickPONumber
+        '
+        Me.BPickPONumber.Location = New System.Drawing.Point(307, 8)
+        Me.BPickPONumber.Name = "BPickPONumber"
+        Me.BPickPONumber.Size = New System.Drawing.Size(29, 23)
+        Me.BPickPONumber.TabIndex = 8938
+        Me.BPickPONumber.Text = "..."
+        '
+        'DateEdit1
+        '
+        Me.DateEdit1.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.DateEdit1.EditValue = Nothing
+        Me.DateEdit1.Location = New System.Drawing.Point(115, 140)
+        Me.DateEdit1.Name = "DateEdit1"
+        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DateEdit1.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DateEdit1.Size = New System.Drawing.Size(221, 20)
+        Me.DateEdit1.TabIndex = 8936
+        '
+        'LabelControl9
+        '
+        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl9.Location = New System.Drawing.Point(25, 143)
+        Me.LabelControl9.Name = "LabelControl9"
+        Me.LabelControl9.Size = New System.Drawing.Size(64, 13)
+        Me.LabelControl9.TabIndex = 8937
+        Me.LabelControl9.Text = "Receive Date"
         '
         'LEPil
         '
@@ -394,7 +427,7 @@ Partial Class FormAssetRecDet
         Me.TEPONumber.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Properties.ReadOnly = True
-        Me.TEPONumber.Size = New System.Drawing.Size(221, 20)
+        Me.TEPONumber.Size = New System.Drawing.Size(186, 20)
         Me.TEPONumber.TabIndex = 6
         Me.TEPONumber.TabStop = False
         '
@@ -547,34 +580,10 @@ Partial Class FormAssetRecDet
         Me.BtnSave.TabStop = False
         Me.BtnSave.Text = "Save"
         '
-        'DateEdit1
-        '
-        Me.DateEdit1.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(115, 114)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DateEdit1.Size = New System.Drawing.Size(221, 20)
-        Me.DateEdit1.TabIndex = 8936
-        '
-        'LabelControl9
-        '
-        Me.LabelControl9.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl9.Location = New System.Drawing.Point(25, 117)
-        Me.LabelControl9.Name = "LabelControl9"
-        Me.LabelControl9.Size = New System.Drawing.Size(64, 13)
-        Me.LabelControl9.TabIndex = 8937
-        Me.LabelControl9.Text = "Receive Date"
-        '
         'GroupControlList
         '
         Me.GroupControlList.CaptionLocation = DevExpress.Utils.Locations.Left
         Me.GroupControlList.Controls.Add(Me.GCItemList)
-        Me.GroupControlList.Controls.Add(Me.PanelControlNav)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlList.Location = New System.Drawing.Point(0, 178)
         Me.GroupControlList.Name = "GroupControlList"
@@ -585,12 +594,12 @@ Partial Class FormAssetRecDet
         'GCItemList
         '
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemList.Location = New System.Drawing.Point(20, 38)
+        Me.GCItemList.Location = New System.Drawing.Point(20, 2)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RILEDepartement, Me.RILEAssetCat, Me.RITEQty})
-        Me.GCItemList.Size = New System.Drawing.Size(843, 157)
+        Me.GCItemList.Size = New System.Drawing.Size(843, 193)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.TabStop = False
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
@@ -742,40 +751,32 @@ Partial Class FormAssetRecDet
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
-        'PanelControlNav
+        'LabelControl10
         '
-        Me.PanelControlNav.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.PanelControlNav.Controls.Add(Me.BtnDel)
-        Me.PanelControlNav.Controls.Add(Me.BtnAdd)
-        Me.PanelControlNav.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PanelControlNav.Location = New System.Drawing.Point(20, 2)
-        Me.PanelControlNav.Name = "PanelControlNav"
-        Me.PanelControlNav.Size = New System.Drawing.Size(843, 36)
-        Me.PanelControlNav.TabIndex = 0
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(25, 117)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(78, 13)
+        Me.LabelControl10.TabIndex = 8940
+        Me.LabelControl10.Text = "Receive Number"
         '
-        'BtnDel
+        'TERecNumber
         '
-        Me.BtnDel.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnDel.ImageIndex = 1
-        Me.BtnDel.ImageList = Me.LargeImageCollection
-        Me.BtnDel.Location = New System.Drawing.Point(661, 0)
-        Me.BtnDel.Name = "BtnDel"
-        Me.BtnDel.Size = New System.Drawing.Size(92, 36)
-        Me.BtnDel.TabIndex = 5
-        Me.BtnDel.TabStop = False
-        Me.BtnDel.Text = "Delete (F2)"
-        '
-        'BtnAdd
-        '
-        Me.BtnAdd.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAdd.ImageIndex = 0
-        Me.BtnAdd.ImageList = Me.LargeImageCollection
-        Me.BtnAdd.Location = New System.Drawing.Point(753, 0)
-        Me.BtnAdd.Name = "BtnAdd"
-        Me.BtnAdd.Size = New System.Drawing.Size(90, 36)
-        Me.BtnAdd.TabIndex = 3
-        Me.BtnAdd.TabStop = False
-        Me.BtnAdd.Text = "Add (F1)"
+        Me.TERecNumber.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.TERecNumber.EditValue = ""
+        Me.TERecNumber.Location = New System.Drawing.Point(115, 114)
+        Me.TERecNumber.Name = "TERecNumber"
+        Me.TERecNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TERecNumber.Properties.Appearance.Options.UseFont = True
+        Me.TERecNumber.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TERecNumber.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TERecNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TERecNumber.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TERecNumber.Properties.EditValueChangedDelay = 1
+        Me.TERecNumber.Properties.ReadOnly = True
+        Me.TERecNumber.Size = New System.Drawing.Size(221, 20)
+        Me.TERecNumber.TabIndex = 8939
+        Me.TERecNumber.TabStop = False
         '
         'FormAssetRecDet
         '
@@ -804,6 +805,8 @@ Partial Class FormAssetRecDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
+        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEstRecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEstRecDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -819,8 +822,6 @@ Partial Class FormAssetRecDet
         CType(Me.MENote.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlList.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
@@ -829,8 +830,7 @@ Partial Class FormAssetRecDet
         CType(Me.RILEDepartement, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PanelControlNav, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.PanelControlNav.ResumeLayout(False)
+        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -886,7 +886,7 @@ Partial Class FormAssetRecDet
     Friend WithEvents GridColumnTotal As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnNote As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemSpinEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
-    Friend WithEvents PanelControlNav As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BtnDel As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnAdd As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BPickPONumber As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents TERecNumber As DevExpress.XtraEditors.TextEdit
 End Class

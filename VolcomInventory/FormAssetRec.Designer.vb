@@ -32,13 +32,13 @@ Partial Class FormAssetRec
         Me.GVRecList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PCEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCEdit.SuspendLayout()
@@ -183,6 +183,14 @@ Partial Class FormAssetRec
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
         '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "PO Number"
+        Me.GridColumn14.FieldName = "asset_po_no"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 2
+        '
         'GridColumn4
         '
         Me.GridColumn4.Caption = "Vendor"
@@ -190,6 +198,14 @@ Partial Class FormAssetRec
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
         Me.GridColumn4.VisibleIndex = 0
+        '
+        'GridColumn13
+        '
+        Me.GridColumn13.Caption = "Rec Date"
+        Me.GridColumn13.FieldName = "asset_rec_date"
+        Me.GridColumn13.Name = "GridColumn13"
+        Me.GridColumn13.Visible = True
+        Me.GridColumn13.VisibleIndex = 3
         '
         'GridColumn5
         '
@@ -226,22 +242,6 @@ Partial Class FormAssetRec
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
         Me.GridColumn7.VisibleIndex = 7
-        '
-        'GridColumn13
-        '
-        Me.GridColumn13.Caption = "Rec Date"
-        Me.GridColumn13.FieldName = "asset_rec_date"
-        Me.GridColumn13.Name = "GridColumn13"
-        Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 3
-        '
-        'GridColumn14
-        '
-        Me.GridColumn14.Caption = "PO Number"
-        Me.GridColumn14.FieldName = "asset_po_no"
-        Me.GridColumn14.Name = "GridColumn14"
-        Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 2
         '
         'FormAssetRec
         '

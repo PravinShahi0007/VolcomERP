@@ -410,6 +410,12 @@
     <Compile Include="FormAssetMovingLog.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormAssetPickPO.Designer.vb">
+      <DependentUpon>FormAssetPickPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssetPickPO.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormAssetPO.Designer.vb">
       <DependentUpon>FormAssetPO.vb</DependentUpon>
     </Compile>
@@ -5399,6 +5405,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormAssetMovingLog.resx">
       <DependentUpon>FormAssetMovingLog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormAssetPickPO.resx">
+      <DependentUpon>FormAssetPickPO.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormAssetPO.resx">
       <DependentUpon>FormAssetPO.vb</DependentUpon>
