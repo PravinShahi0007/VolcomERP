@@ -460,7 +460,11 @@
                 execute_non_query(query, True, "", "", "", "")
 
                 'pic
-                save_image_ori(PEEmployee, emp_image_path, id_employee & ".jpg")
+                Try
+                    save_image_ori(PEEmployee, emp_image_path, id_employee & ".jpg")
+                Catch ex As Exception
+                    infoCustom(ex.ToString)
+                End Try
 
                 'fp
                 setFP(employee_code, employee_name, id_employee_active)
