@@ -17,17 +17,17 @@
     End Sub
 
     Private Sub FormEmpUniBudgetSet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        TxtBudget.EditValue = 0
+        TxtBudget.EditValue = FormEmpUniPeriodDet.TxtBudget.EditValue
         TxtBudget.Enabled = False
     End Sub
 
     Private Sub CheckEdit1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEdit1.CheckedChanged
         If CheckEdit1.EditValue = True Then
-            TxtBudget.EditValue = 0
+            TxtBudget.EditValue = FormEmpUniPeriodDet.TxtBudget.EditValue
             TxtBudget.Enabled = True
             TxtBudget.Focus()
         Else
-            TxtBudget.EditValue = 0
+            TxtBudget.EditValue = FormEmpUniPeriodDet.TxtBudget.EditValue
             TxtBudget.Enabled = False
         End If
     End Sub

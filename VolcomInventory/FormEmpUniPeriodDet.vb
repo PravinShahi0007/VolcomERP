@@ -11,6 +11,7 @@
             XTCUni.Enabled = False
             BtnSave.Text = "Create New"
             TxtTolerance.EditValue = 0
+            TxtBudget.EditValue = 0
         Else
             Dim query_c As New ClassEmpUni()
             Dim query As String = query_c.queryMain("AND u.id_emp_uni_period=" + id_emp_uni_period + "", "1")
@@ -20,6 +21,12 @@
             DEEnd.EditValue = data.Rows(0)("selection_date_end")
             DEDist.EditValue = data.Rows(0)("distribution_date")
             TxtTolerance.EditValue = data.Rows(0)("tolerance")
+            TxtBudget.EditValue = data.Rows(0)("budget_point")
+            If data.Rows(0)("id_status").ToString = "1" Then
+                CEActive.Checked = True
+            Else
+                CEActive.Checked = False
+            End If
             XTCUni.Enabled = True
             BtnSave.Text = "Save Changes"
             viewDept()
@@ -87,6 +94,7 @@
             Dim selection_date_end As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim distribution_date As String = DateTime.Parse(DEDist.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim tolerance As String = decimalSQL(TxtTolerance.EditValue.ToString)
+            Dim budget_point As String = decimalSQL(TxtBudget.EditValue.ToString)
             Dim id_status As String = CEActive.EditValue.ToString
             If id_status = "True" Then
                 id_status = "1"
@@ -97,14 +105,14 @@
             End If
 
             If action = "ins" Then
-                Dim query As String = "INSERT INTO tb_emp_uni_period(period_name, selection_date_start, selection_date_end, created_date, distribution_date, tolerance, id_status) VALUES "
-                query += "('" + period_name + "', '" + selection_date_start + "', '" + selection_date_end + "', NOW(), '" + distribution_date + "','" + tolerance + "', '" + id_status + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_emp_uni_period(period_name, selection_date_start, selection_date_end, created_date, distribution_date, tolerance, budget_point, id_status) VALUES "
+                query += "('" + period_name + "', '" + selection_date_start + "', '" + selection_date_end + "', NOW(), '" + distribution_date + "','" + tolerance + "','" + budget_point + "', '" + id_status + "'); SELECT LAST_INSERT_ID(); "
                 id_emp_uni_period = execute_query(query, 0, True, "", "", "", "")
                 action = "upd"
                 actionLoad()
                 infoCustom("Uniform period was created successfully, please input detail budget.")
             Else
-                Dim query As String = "UPDATE tb_emp_uni_period SET period_name='" + period_name + "', selection_date_start='" + selection_date_start + "', selection_date_end='" + selection_date_end + "', distribution_date='" + distribution_date + "', tolerance='" + tolerance + "', id_status='" + id_status + "' WHERE id_emp_uni_period='" + id_emp_uni_period + "' "
+                Dim query As String = "UPDATE tb_emp_uni_period SET period_name='" + period_name + "', selection_date_start='" + selection_date_start + "', selection_date_end='" + selection_date_end + "', distribution_date='" + distribution_date + "', budget_point='" + budget_point + "', tolerance='" + tolerance + "', id_status='" + id_status + "' WHERE id_emp_uni_period='" + id_emp_uni_period + "' "
                 execute_non_query(query, True, "", "", "", "")
                 action = "upd"
                 actionLoad()
@@ -213,7 +221,15 @@
 
     Private Sub BtnImportExcel_Click(sender As Object, e As EventArgs) Handles BtnImportExcel.Click
         Cursor = Cursors.WaitCursor
-        FormEmpUniBudgetSet.ShowDialog()
+        Dim qc As String = "SELECT * FROM tb_sales_order so WHERE so.id_emp_uni_period = '" + id_emp_uni_period + "' AND so.id_report_status!=5 "
+        Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dc.Rows.Count > 0 Then
+            stopCustom("Pemilihan uniform sedang berlangsung")
+        Else
+            FormImportExcel.id_pop_up = "31"
+            FormImportExcel.ShowDialog()
+        End If
+        ' FormEmpUniBudgetSet.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 

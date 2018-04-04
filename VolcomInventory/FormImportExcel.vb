@@ -1722,13 +1722,14 @@ Public Class FormImportExcel
                                 .Name = If(y1 Is Nothing, "-", y1("employee_name").ToString),
                                 .Dept = If(y1 Is Nothing, "-", y1("departement").ToString),
                                 .Position = If(y1 Is Nothing, "-", y1("employee_position").ToString),
-                                .Budget = If(FormEmpUniBudgetSet.TxtBudget.EditValue > 0, FormEmpUniBudgetSet.TxtBudget.EditValue, table1("budget")),
+                                .Budget = table1("budget"),
                                 .Status = If(y1 Is Nothing, "Not Found", If(y1("id_sales_order").ToString = 0, "OK", "Order already processed"))
                             }
             GCData.DataSource = Nothing
             GCData.DataSource = query.ToList()
             GCData.RefreshDataSource()
             GVData.PopulateColumns()
+            '.Budget = If(FormEmpUniBudgetSet.CheckEdit1.EditValue.ToString = "True", FormEmpUniBudgetSet.TxtBudget.EditValue, table1("budget")),
 
             'Customize column
             GVData.Columns("IdEmp").Visible = False
