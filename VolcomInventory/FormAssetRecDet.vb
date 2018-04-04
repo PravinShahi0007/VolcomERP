@@ -47,7 +47,7 @@
     End Sub
 
     Private Sub BPickPONumber_Click(sender As Object, e As EventArgs) Handles BPickPONumber.Click
-
+        FormAssetPickPO.ShowDialog()
     End Sub
 
     Private Sub FormAssetRecDet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed

@@ -5030,6 +5030,12 @@
     <Compile Include="ReportProductionWO.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalarySlip.Designer.vb">
+      <DependentUpon>ReportSalarySlip.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalarySlip.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesCreditNote.designer.vb">
       <DependentUpon>ReportSalesCreditNote.vb</DependentUpon>
     </Compile>
@@ -8221,6 +8227,9 @@
     <EmbeddedResource Include="ReportProductionWO.resx">
       <DependentUpon>ReportProductionWO.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalarySlip.resx">
+      <DependentUpon>ReportSalarySlip.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesCreditNote.resx">
       <DependentUpon>ReportSalesCreditNote.vb</DependentUpon>

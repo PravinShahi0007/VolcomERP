@@ -61,7 +61,6 @@
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
         FormAssetRecDet.id_po = GVPOList.GetFocusedRowCellValue("id_asset_po").ToString
         FormAssetRecDet.load_po_det()
-        FormAssetRecDet.ShowDialog()
         Close()
     End Sub
 End Class
