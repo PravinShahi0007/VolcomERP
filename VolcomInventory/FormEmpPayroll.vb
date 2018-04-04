@@ -132,4 +132,28 @@
             execute_non_query(query_upd, True, "", "", "", "")
         End If
     End Sub
+
+    Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
+        If GVPayroll.RowCount > 0 Then
+            Dim cek As String = CheckEditSelAll.EditValue.ToString
+            For i As Integer = 0 To ((GVPayroll.RowCount - 1) - GetGroupRowCount(GVPayroll))
+                If cek = "no" Then
+                    GVPayroll.SetRowCellValue(i, "is_check", "yes")
+                Else
+                    GVPayroll.SetRowCellValue(i, "is_check", "no")
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub BUpdateActualWorkingDays_Click(sender As Object, e As EventArgs) Handles BUpdateActualWorkingDays.Click
+        makeSafeGV(GVPayroll)
+        GVPayroll.ActiveFilterString = "[is_check]='yes'"
+        For i As Integer = 0 To GVPayroll.RowCount - 1
+            'update actual working days
+            infoCustom(GVPayroll.GetRowCellValue(i, "id_employee").ToString)
+            progres_bar_update(i, GVPayroll.RowCount - 1)
+        Next
+        makeSafeGV(GVPayroll)
+    End Sub
 End Class
