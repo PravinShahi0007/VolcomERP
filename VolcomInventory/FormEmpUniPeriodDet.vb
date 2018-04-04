@@ -45,6 +45,9 @@
                 TxtBudget.Enabled = False
                 TxtTolerance.Enabled = False
                 CEActive.Visible = False
+                GridColumnBudget.Visible = False
+                GridColumnBugdetDiff.Visible = False
+                GridColumnOrderAmount.Visible = False
             End If
         End If
     End Sub

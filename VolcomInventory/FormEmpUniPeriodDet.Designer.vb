@@ -485,6 +485,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnBudget.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnBudget.FieldName = "budget"
         Me.GridColumnBudget.Name = "GridColumnBudget"
+        Me.GridColumnBudget.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnBudget.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", "{0:N2}")})
         Me.GridColumnBudget.Visible = True
         Me.GridColumnBudget.VisibleIndex = 5
@@ -555,6 +556,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnOrderAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnOrderAmount.FieldName = "order_amount"
         Me.GridColumnOrderAmount.Name = "GridColumnOrderAmount"
+        Me.GridColumnOrderAmount.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnOrderAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_amount", "{0:N2}")})
         Me.GridColumnOrderAmount.Visible = True
         Me.GridColumnOrderAmount.VisibleIndex = 6
@@ -567,6 +569,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnBugdetDiff.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnBugdetDiff.FieldName = "budget_diff"
         Me.GridColumnBugdetDiff.Name = "GridColumnBugdetDiff"
+        Me.GridColumnBugdetDiff.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnBugdetDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget_diff", "{0:N2}")})
         Me.GridColumnBugdetDiff.UnboundExpression = "[budget] - [order_amount]"
         Me.GridColumnBugdetDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]

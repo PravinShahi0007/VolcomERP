@@ -143,7 +143,7 @@
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
                 'submit_who_prepared("39", id_new, id_user)
-
+                FormEmpUniOrderDet.is_public_form = is_public_form
                 FormEmpUniOrderDet.id_sales_order = id_new
                 FormEmpUniOrderDet.ShowDialog()
             End If
