@@ -1,6 +1,7 @@
 ﻿Public Class FormEmpUniPeriodDet
     Public action As String = "-1"
     Public id_emp_uni_period As String = "-1"
+    Public is_public_form As Boolean = False
 
     Private Sub FormEmpUniPeriodDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actionLoad()
@@ -280,6 +281,7 @@
             Cursor = Cursors.WaitCursor
             Dim id_emp_uni_budget As String = GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString
             Dim uni As New ClassEmpUni()
+            uni.is_public_form = is_public_form
             uni.openOrderDetail(id_emp_uni_period, id_emp_uni_budget, GVDetail.GetFocusedRowCellValue("id_order").ToString, GVDetail.GetFocusedRowCellValue("id_departement").ToString)
 
             'Dim qorder As String = "SELECT * FROM tb_sales_order WHERE id_emp_uni_period=" + id_emp_uni_period + " AND id_emp_uni_budget=" + GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString + " AND id_report_status!=5 "
