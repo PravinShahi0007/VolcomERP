@@ -55,6 +55,17 @@
         Cursor = Cursors.Default
     End Sub
 
+    Sub viewSchedule()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT s.id_schedule, s.id_emp_uni_period, s.id_departement, d.departement, s.`start`, s.`end` 
+        FROM tb_emp_uni_schedule s
+        INNER JOIN tb_m_departement d ON d.id_departement = s.id_departement
+        WHERE s.id_emp_uni_period=" + id_emp_uni_period + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSchedule.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
     Sub viewDesignList()
         Cursor = Cursors.WaitCursor
         Dim query As String = "CALL view_emp_uni_design(" + id_emp_uni_period + ") "
@@ -183,6 +194,9 @@
         ElseIf XTCUni.SelectedTabPageIndex = 1 Then
             BtnSave.Visible = False
             viewDesignList()
+        ElseIf XTCUni.SelectedTabPageIndex = 2 Then
+            BtnSave.Visible = False
+            viewSchedule()
         Else
             BtnSave.Visible = False
         End If
@@ -329,5 +343,39 @@
 
     Private Sub GVDetail_DoubleClick(sender As Object, e As EventArgs) Handles GVDetail.DoubleClick
         orderDetail()
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCSchedule, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDeleteSchedule_Click(sender As Object, e As EventArgs) Handles BtnDeleteSchedule.Click
+        Dim id As String = "-1"
+        Try
+            id = GVSchedule.GetFocusedRowCellValue("id_schedule").ToString
+        Catch ex As Exception
+        End Try
+        If id <> "-1" Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this schedule?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Try
+                    Dim query As String = "DELETE FROM tb_emp_uni_schedule WHERE id_schedule=" + id + " "
+                    execute_non_query(query, True, "", "", "", "")
+                    viewSchedule()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnAddSchedule_Click(sender As Object, e As EventArgs) Handles BtnAddSchedule.Click
+        Cursor = Cursors.WaitCursor
+        FormEmpUniSchedule.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class

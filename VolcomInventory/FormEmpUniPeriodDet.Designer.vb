@@ -98,6 +98,18 @@ Partial Class FormEmpUniPeriodDet
         Me.PanelControl3 = New DevExpress.XtraEditors.PanelControl()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton6 = New DevExpress.XtraEditors.SimpleButton()
+        Me.XTPSchedule = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCSchedule = New DevExpress.XtraGrid.GridControl()
+        Me.GVSchedule = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumnIDSchedule = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnIdDept = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnStart = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEnd = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.PanelControl6 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnDeleteSchedule = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnAddSchedule = New DevExpress.XtraEditors.SimpleButton()
         Me.XTPOrder = New DevExpress.XtraTab.XtraTabPage()
         Me.GCSalesOrder = New DevExpress.XtraGrid.GridControl()
         Me.GVSalesOrder = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -153,6 +165,11 @@ Partial Class FormEmpUniPeriodDet
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
+        Me.XTPSchedule.SuspendLayout()
+        CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl6.SuspendLayout()
         Me.XTPOrder.SuspendLayout()
         CType(Me.GCSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -354,7 +371,7 @@ Partial Class FormEmpUniPeriodDet
         Me.XTCUni.SelectedTabPage = Me.XTPBudget
         Me.XTCUni.Size = New System.Drawing.Size(1166, 393)
         Me.XTCUni.TabIndex = 2
-        Me.XTCUni.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget, Me.XTPDesign, Me.XTPOrder})
+        Me.XTCUni.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPBudget, Me.XTPDesign, Me.XTPSchedule, Me.XTPOrder})
         '
         'XTPBudget
         '
@@ -979,6 +996,115 @@ Partial Class FormEmpUniPeriodDet
         Me.SimpleButton6.TabIndex = 5
         Me.SimpleButton6.Text = "Refresh List"
         '
+        'XTPSchedule
+        '
+        Me.XTPSchedule.Controls.Add(Me.GCSchedule)
+        Me.XTPSchedule.Controls.Add(Me.PanelControl6)
+        Me.XTPSchedule.Name = "XTPSchedule"
+        Me.XTPSchedule.Size = New System.Drawing.Size(1137, 387)
+        Me.XTPSchedule.Text = "Schedule"
+        '
+        'GCSchedule
+        '
+        Me.GCSchedule.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCSchedule.Location = New System.Drawing.Point(0, 37)
+        Me.GCSchedule.MainView = Me.GVSchedule
+        Me.GCSchedule.Name = "GCSchedule"
+        Me.GCSchedule.Size = New System.Drawing.Size(1137, 350)
+        Me.GCSchedule.TabIndex = 2
+        Me.GCSchedule.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSchedule})
+        '
+        'GVSchedule
+        '
+        Me.GVSchedule.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIDSchedule, Me.GridColumnIdDept, Me.GridColumnDepartement, Me.GridColumnStart, Me.GridColumnEnd})
+        Me.GVSchedule.GridControl = Me.GCSchedule
+        Me.GVSchedule.Name = "GVSchedule"
+        Me.GVSchedule.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GVSchedule.OptionsBehavior.Editable = False
+        Me.GVSchedule.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumnIDSchedule
+        '
+        Me.GridColumnIDSchedule.Caption = "Id"
+        Me.GridColumnIDSchedule.FieldName = "id_schedule"
+        Me.GridColumnIDSchedule.Name = "GridColumnIDSchedule"
+        '
+        'GridColumnIdDept
+        '
+        Me.GridColumnIdDept.Caption = "Id Departement"
+        Me.GridColumnIdDept.FieldName = "id_departement"
+        Me.GridColumnIdDept.Name = "GridColumnIdDept"
+        '
+        'GridColumnDepartement
+        '
+        Me.GridColumnDepartement.Caption = "Departement"
+        Me.GridColumnDepartement.FieldName = "departement"
+        Me.GridColumnDepartement.Name = "GridColumnDepartement"
+        Me.GridColumnDepartement.Visible = True
+        Me.GridColumnDepartement.VisibleIndex = 0
+        '
+        'GridColumnStart
+        '
+        Me.GridColumnStart.Caption = "Start"
+        Me.GridColumnStart.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnStart.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnStart.FieldName = "start"
+        Me.GridColumnStart.Name = "GridColumnStart"
+        Me.GridColumnStart.Visible = True
+        Me.GridColumnStart.VisibleIndex = 1
+        '
+        'GridColumnEnd
+        '
+        Me.GridColumnEnd.Caption = "End"
+        Me.GridColumnEnd.DisplayFormat.FormatString = "dd MMMM yyyy HH:mm"
+        Me.GridColumnEnd.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnEnd.FieldName = "end"
+        Me.GridColumnEnd.Name = "GridColumnEnd"
+        Me.GridColumnEnd.Visible = True
+        Me.GridColumnEnd.VisibleIndex = 2
+        '
+        'PanelControl6
+        '
+        Me.PanelControl6.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl6.Controls.Add(Me.BtnPrint)
+        Me.PanelControl6.Controls.Add(Me.BtnDeleteSchedule)
+        Me.PanelControl6.Controls.Add(Me.BtnAddSchedule)
+        Me.PanelControl6.Dock = System.Windows.Forms.DockStyle.Top
+        Me.PanelControl6.Location = New System.Drawing.Point(0, 0)
+        Me.PanelControl6.Name = "PanelControl6"
+        Me.PanelControl6.Size = New System.Drawing.Size(1137, 37)
+        Me.PanelControl6.TabIndex = 1
+        '
+        'BtnPrint
+        '
+        Me.BtnPrint.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnPrint.Image = CType(resources.GetObject("BtnPrint.Image"), System.Drawing.Image)
+        Me.BtnPrint.Location = New System.Drawing.Point(877, 0)
+        Me.BtnPrint.Name = "BtnPrint"
+        Me.BtnPrint.Size = New System.Drawing.Size(89, 37)
+        Me.BtnPrint.TabIndex = 2
+        Me.BtnPrint.Text = "Print"
+        '
+        'BtnDeleteSchedule
+        '
+        Me.BtnDeleteSchedule.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnDeleteSchedule.Image = CType(resources.GetObject("BtnDeleteSchedule.Image"), System.Drawing.Image)
+        Me.BtnDeleteSchedule.Location = New System.Drawing.Point(966, 0)
+        Me.BtnDeleteSchedule.Name = "BtnDeleteSchedule"
+        Me.BtnDeleteSchedule.Size = New System.Drawing.Size(89, 37)
+        Me.BtnDeleteSchedule.TabIndex = 7
+        Me.BtnDeleteSchedule.Text = "Delete"
+        '
+        'BtnAddSchedule
+        '
+        Me.BtnAddSchedule.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnAddSchedule.Image = CType(resources.GetObject("BtnAddSchedule.Image"), System.Drawing.Image)
+        Me.BtnAddSchedule.Location = New System.Drawing.Point(1055, 0)
+        Me.BtnAddSchedule.Name = "BtnAddSchedule"
+        Me.BtnAddSchedule.Size = New System.Drawing.Size(82, 37)
+        Me.BtnAddSchedule.TabIndex = 5
+        Me.BtnAddSchedule.Text = "Add"
+        '
         'XTPOrder
         '
         Me.XTPOrder.Controls.Add(Me.GCSalesOrder)
@@ -1238,6 +1364,11 @@ Partial Class FormEmpUniPeriodDet
         CType(Me.RepositoryItemTextEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl3.ResumeLayout(False)
+        Me.XTPSchedule.ResumeLayout(False)
+        CType(Me.GCSchedule, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVSchedule, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl6, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl6.ResumeLayout(False)
         Me.XTPOrder.ResumeLayout(False)
         CType(Me.GCSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVSalesOrder, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1350,4 +1481,16 @@ Partial Class FormEmpUniPeriodDet
     Friend WithEvents CEActive As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents TxtBudget As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl7 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents XTPSchedule As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents PanelControl6 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnDeleteSchedule As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnAddSchedule As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GCSchedule As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVSchedule As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumnIDSchedule As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnIdDept As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDepartement As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnStart As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEnd As DevExpress.XtraGrid.Columns.GridColumn
 End Class
