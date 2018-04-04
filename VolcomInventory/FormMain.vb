@@ -11348,4 +11348,8 @@ Public Class FormMain
         End If
         Cursor = Cursors.Default
     End Sub
+
+    Private Sub NBGUniformAdmin_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBGUniformAdmin.LinkClicked
+
+    End Sub
 End Class
