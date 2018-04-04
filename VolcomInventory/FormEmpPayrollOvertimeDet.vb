@@ -21,7 +21,7 @@
         load_ot_type()
 
         If Not id_overtime = "-1" Then 'edit
-            Dim query As String = "SELECT p.id_payroll_ot,p.`id_payroll`,p.`id_employee`,p.`id_ot_type`,p.`ot_start`,p.`ot_end`,p.`total_hour`,p.`total_point`,IF(p.`is_day_off`=1,'Yes','No') AS day_off,p.`is_day_off`,lvl.`employee_level`,emp.`employee_name`,emp.`employee_code`,ott.`ot_type`,ott.id_ot_type,p.note,p.wages_per_point
+            Dim query As String = "SELECT p.id_payroll_ot,p.`id_payroll`,p.`id_employee`,p.`id_ot_type`,p.total_break,p.`ot_start`,p.`ot_end`,p.`total_hour`,p.`total_point`,IF(p.`is_day_off`=1,'Yes','No') AS day_off,p.`is_day_off`,lvl.`employee_level`,emp.`employee_name`,emp.`employee_code`,ott.`ot_type`,ott.id_ot_type,p.note,p.wages_per_point
                                 FROM tb_emp_payroll_ot p
                                 INNER JOIN `tb_lookup_ot_type` ott ON ott.`id_ot_type`=p.`id_ot_type`
                                 INNER JOIN tb_m_employee emp ON emp.`id_employee`=p.`id_employee`
@@ -133,29 +133,33 @@
     End Sub
 
     Sub calc()
-        If Not DEStart.EditValue > DEUntil.EditValue Then
-            '
-            Dim date_start As Date = DEStart.EditValue
-            Dim date_until As Date = DEUntil.EditValue
-            Dim time_diff As TimeSpan
-            Dim diff As Decimal = 0.0
-            Dim break As Decimal = 0.0
+        Try
+            If Not DEStart.EditValue > DEUntil.EditValue Then
+                '
+                Dim date_start As Date = DEStart.EditValue
+                Dim date_until As Date = DEUntil.EditValue
+                Dim time_diff As TimeSpan
+                Dim diff As Decimal = 0.0
+                Dim break As Decimal = 0.0
 
-            Try
-                break = TEBreak.EditValue
-            Catch ex As Exception
-            End Try
+                Try
+                    break = TEBreak.EditValue
+                Catch ex As Exception
+                End Try
 
-            time_diff = date_until - date_start
-            'nearest 0.5
-            'diff = Math.Round((time_diff.TotalHours * 2), MidpointRounding.AwayFromZero) / 2
-            'rounddown 0.5
-            diff = Math.Floor(time_diff.TotalHours / 0.5) * 0.5
-            TETotHour.EditValue = diff - break
-        Else
-            '
-            TETotHour.EditValue = 0
-        End If
+                time_diff = date_until - date_start
+                'nearest 0.5
+                'diff = Math.Round((time_diff.TotalHours * 2), MidpointRounding.AwayFromZero) / 2
+                'rounddown 0.5
+                diff = Math.Floor(time_diff.TotalHours / 0.5) * 0.5
+                TETotHour.EditValue = diff - break
+            Else
+                '
+                TETotHour.EditValue = 0
+            End If
+        Catch ex As Exception
+
+        End Try
     End Sub
 
     Private Sub DEUntil_EditValueChanged(sender As Object, e As EventArgs) Handles DEUntil.EditValueChanged
@@ -208,7 +212,7 @@
             FormEmpPayrollOvertime.GVOverTime.FocusedRowHandle = find_row(FormEmpPayrollOvertime.GVOverTime, "id_payroll_ot", id_overtime)
             Close()
         Else 'edit
-            Dim query As String = "UPDATE tb_emp_payroll_ot SET id_payroll='" & id_payroll & "',id_employee='" & id_employee & "',id_ot_type='" & LECategory.EditValue.ToString & "',ot_start='" & Date.Parse(dt_start.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',ot_end='" & Date.Parse(dt_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',total_break='" & tot_break & "',total_hour='" & tot_hour & "',total_point='" & tot_poin & "',is_day_off='" & LEDayoff.EditValue.ToString & "',wages_per_point='" & wages_per_point & "
+            Dim query As String = "UPDATE tb_emp_payroll_ot SET id_payroll='" & id_payroll & "',id_employee='" & id_employee & "',id_ot_type='" & LECategory.EditValue.ToString & "',ot_start='" & Date.Parse(dt_start.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',ot_end='" & Date.Parse(dt_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',total_break='" & tot_break & "',total_hour='" & tot_hour & "',total_point='" & tot_poin & "',is_day_off='" & LEDayoff.EditValue.ToString & "',wages_per_point='" & wages_per_point & "'
                                     WHERE id_payroll_ot='" & id_overtime & "'"
             execute_non_query(query, True, "", "", "", "")
 
