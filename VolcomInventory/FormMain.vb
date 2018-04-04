@@ -11339,10 +11339,19 @@ Public Class FormMain
         LEFT JOIN tb_sales_order so ON so.id_emp_uni_budget = b.id_emp_uni_budget AND so.id_emp_uni_period = p.id_emp_uni_period
         WHERE p.id_status=1  "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
+        Dim id_periode As String = "-1"
+        Try
+            id_periode = data.Rows(0)("id_emp_uni_period").ToString
+        Catch ex As Exception
+        End Try
+        If id_periode = "" Then
+            id_periode = "0"
+        End If
+        Dim valid As String = execute_query("SELECT is_selection_time(" + id_periode + ", " + id_departement_user + ")", 0, True, "", "", "", "")
+        If data.Rows.Count > 0 And valid = "1" Then
             Dim uni As New ClassEmpUni()
             uni.is_public_form = True
-            uni.openOrderDetail(data.Rows(0)("id_emp_uni_period").ToString, data.Rows(0)("id_emp_uni_budget").ToString, data.Rows(0)("id_order").ToString, id_departement_user)
+            uni.openOrderDetail(id_periode, data.Rows(0)("id_emp_uni_budget").ToString, data.Rows(0)("id_order").ToString, id_departement_user)
         Else
             stopCustom("Periode uniform belum dimulai")
         End If
