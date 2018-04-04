@@ -231,4 +231,8 @@
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
     End Sub
+
+    Private Sub FormAssetPODet_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
+        Dispose()
+    End Sub
 End Class
