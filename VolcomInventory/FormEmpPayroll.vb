@@ -135,12 +135,11 @@
 
     Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
         If GVPayroll.RowCount > 0 Then
-            Dim cek As String = CheckEditSelAll.EditValue.ToString
             For i As Integer = 0 To ((GVPayroll.RowCount - 1) - GetGroupRowCount(GVPayroll))
-                If cek = "no" Then
-                    GVPayroll.SetRowCellValue(i, "is_check", "yes")
-                Else
+                If CheckEditSelAll.Checked = False Then
                     GVPayroll.SetRowCellValue(i, "is_check", "no")
+                Else
+                    GVPayroll.SetRowCellValue(i, "is_check", "yes")
                 End If
             Next
         End If
@@ -155,5 +154,30 @@
             progres_bar_update(i, GVPayroll.RowCount - 1)
         Next
         makeSafeGV(GVPayroll)
+    End Sub
+
+    Private Sub BPrintSlip_Click(sender As Object, e As EventArgs) Handles BPrintSlip.Click
+        Dim where_string As String = ""
+
+        If GVPayroll.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            'search id det
+            makeSafeGV(GVPayroll)
+            GVPayroll.ActiveFilterString = "[is_check]='yes'"
+            For i As Integer = 0 To GVPayroll.RowCount - 1
+                If i = 0 Then
+                    where_string = GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
+                Else
+                    where_string += "," & GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
+                End If
+            Next
+            makeSafeGV(GVPayroll)
+            '
+            ReportSalarySlip.where_string = where_string
+            Dim Report As New ReportSalarySlip()
+            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+            Tool.ShowPreviewDialog()
+            Cursor = Cursors.Default
+        End If
     End Sub
 End Class

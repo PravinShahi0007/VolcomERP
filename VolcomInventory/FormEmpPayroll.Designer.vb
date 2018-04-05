@@ -1163,7 +1163,6 @@ Partial Class FormEmpPayroll
         Me.BPrintSlip.Size = New System.Drawing.Size(103, 35)
         Me.BPrintSlip.TabIndex = 106
         Me.BPrintSlip.Text = "Print Slip"
-        Me.BPrintSlip.Visible = False
         '
         'LargeImageCollection
         '
@@ -1255,6 +1254,7 @@ Partial Class FormEmpPayroll
         Me.BUpdateActualWorkingDays.Size = New System.Drawing.Size(181, 35)
         Me.BUpdateActualWorkingDays.TabIndex = 6
         Me.BUpdateActualWorkingDays.Text = "Update Actual Working Days"
+        Me.BUpdateActualWorkingDays.Visible = False
         '
         'BBonusAdjustment
         '
