@@ -14,7 +14,7 @@
             condition = ""
         End If
 
-        Dim query As String = "SELECT u.id_emp_uni_period, u.period_name, u.selection_date_start, u.selection_date_start, u.selection_date_end, u.created_date, u.distribution_date, u.tolerance, stt.status
+        Dim query As String = "SELECT u.id_emp_uni_period, u.period_name, u.selection_date_start, u.selection_date_start, u.selection_date_end, u.created_date, u.distribution_date, u.tolerance, u.budget_point, u.id_status,stt.status
         FROM tb_emp_uni_period u
         INNER JOIN tb_lookup_status stt ON stt.id_status = u.id_status
         WHERE u.id_emp_uni_period>0 "
@@ -38,7 +38,7 @@
         End If
 
         Dim query As String = "SELECT so.id_sales_order, so.sales_order_number, so.sales_order_date, so.sales_order_note, SUM(IFNULL(sod.sales_order_det_qty,0)) AS `total_order`, SUM(IFNULL(udd.point,0)) AS `amount`,
-        so.id_emp_uni_budget, b.id_emp_uni_period, p.period_name, 100.00 AS `budget`, so.tolerance, so.discount,
+        so.id_emp_uni_budget, b.id_emp_uni_period, p.period_name, (b.budget/p.budget_point)*100 AS `budget`, so.tolerance, so.discount,
         b.id_employee, e.employee_code, e.employee_name, e.employee_position, e.id_employee_level, lvl.employee_level, e.id_departement, d.departement,
         so.id_report_status, rs.report_status, so.sales_order_note, so.sales_order_date, eu.employee_name AS `prepared_by`, c.id_drawer_def
         FROM tb_sales_order so
@@ -143,7 +143,7 @@
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
 
                 'submit_who_prepared("39", id_new, id_user)
-
+                FormEmpUniOrderDet.is_public_form = is_public_form
                 FormEmpUniOrderDet.id_sales_order = id_new
                 FormEmpUniOrderDet.ShowDialog()
             End If

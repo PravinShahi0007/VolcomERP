@@ -11339,10 +11339,19 @@ Public Class FormMain
         LEFT JOIN tb_sales_order so ON so.id_emp_uni_budget = b.id_emp_uni_budget AND so.id_emp_uni_period = p.id_emp_uni_period
         WHERE p.id_status=1  "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        If data.Rows.Count > 0 Then
+        Dim id_periode As String = "-1"
+        Try
+            id_periode = data.Rows(0)("id_emp_uni_period").ToString
+        Catch ex As Exception
+        End Try
+        If id_periode = "" Then
+            id_periode = "-1"
+        End If
+        Dim valid As String = execute_query("SELECT is_selection_time(" + id_periode + ", " + id_departement_user + ")", 0, True, "", "", "", "")
+        If data.Rows.Count > 0 And valid = "1" Then
             Dim uni As New ClassEmpUni()
             uni.is_public_form = True
-            uni.openOrderDetail(data.Rows(0)("id_emp_uni_period").ToString, data.Rows(0)("id_emp_uni_budget").ToString, data.Rows(0)("id_order").ToString, id_departement_user)
+            uni.openOrderDetail(id_periode, data.Rows(0)("id_emp_uni_budget").ToString, data.Rows(0)("id_order").ToString, id_departement_user)
         Else
             stopCustom("Periode uniform belum dimulai")
         End If
@@ -11350,6 +11359,33 @@ Public Class FormMain
     End Sub
 
     Private Sub NBGUniformAdmin_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBGUniformAdmin.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT p.id_emp_uni_period FROM tb_emp_uni_period p WHERE p.id_status=1  "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        Dim id_periode As String = "-1"
+        Try
+            id_periode = data.Rows(0)("id_emp_uni_period").ToString
+        Catch ex As Exception
+        End Try
+        If id_periode = "" Then
+            id_periode = "-1"
+        End If
 
+        If data.Rows.Count > 0 Then
+            Try
+                FormEmpUniPeriodDet.MdiParent = Me
+                FormEmpUniPeriodDet.action = "upd"
+                FormEmpUniPeriodDet.id_emp_uni_period = id_periode
+                FormEmpUniPeriodDet.is_public_form = True
+                FormEmpUniPeriodDet.Show()
+                FormEmpUniPeriodDet.WindowState = FormWindowState.Maximized
+                FormEmpUniPeriodDet.Focus()
+            Catch ex As Exception
+                errorProcess()
+            End Try
+        Else
+            stopCustom("Periode uniform belum dimulai")
+        End If
+        Cursor = Cursors.Default
     End Sub
 End Class

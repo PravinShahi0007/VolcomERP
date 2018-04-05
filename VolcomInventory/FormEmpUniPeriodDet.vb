@@ -1,6 +1,7 @@
 ﻿Public Class FormEmpUniPeriodDet
     Public action As String = "-1"
     Public id_emp_uni_period As String = "-1"
+    Public is_public_form As Boolean = False
 
     Private Sub FormEmpUniPeriodDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         actionLoad()
@@ -11,6 +12,7 @@
             XTCUni.Enabled = False
             BtnSave.Text = "Create New"
             TxtTolerance.EditValue = 0
+            TxtBudget.EditValue = 0
         Else
             Dim query_c As New ClassEmpUni()
             Dim query As String = query_c.queryMain("AND u.id_emp_uni_period=" + id_emp_uni_period + "", "1")
@@ -20,17 +22,45 @@
             DEEnd.EditValue = data.Rows(0)("selection_date_end")
             DEDist.EditValue = data.Rows(0)("distribution_date")
             TxtTolerance.EditValue = data.Rows(0)("tolerance")
+            TxtBudget.EditValue = data.Rows(0)("budget_point")
+            If data.Rows(0)("id_status").ToString = "1" Then
+                CEActive.Checked = True
+            Else
+                CEActive.Checked = False
+            End If
             XTCUni.Enabled = True
             BtnSave.Text = "Save Changes"
             viewDept()
+
+            'permission
+            If is_public_form Then
+                BtnImportExcel.Visible = False
+                BtnPrintForm.Visible = False
+                PanelControl1.Visible = False
+                PanelControl6.Visible = False
+                TxtPeriodName.Enabled = False
+                DEStart.Enabled = False
+                DEEnd.Enabled = False
+                DEDist.Enabled = False
+                TxtBudget.Enabled = False
+                TxtTolerance.Enabled = False
+                CEActive.Visible = False
+                GridColumnBudget.Visible = False
+                GridColumnBugdetDiff.Visible = False
+                GridColumnOrderAmount.Visible = False
+            End If
         End If
     End Sub
 
     Sub viewDept()
         Cursor = Cursors.WaitCursor
         Dim query As String = ""
-        query += "SELECT 0 as id_departement, 'All departement' as departement UNION  "
-        query += "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
+        If Not is_public_form Then
+            query += "SELECT 0 as id_departement, 'All departement' as departement UNION  "
+            query += "(SELECT id_departement,departement FROM tb_m_departement a ORDER BY a.departement ASC) "
+        Else
+            query += "(SELECT id_departement,departement FROM tb_m_departement a WHERE (a.id_user_admin=" + id_user + " OR a.id_departement=" + id_departement_user + ") ORDER BY a.departement ASC) "
+        End If
         viewLookupQuery(LEDeptSum, query, 0, "departement", "id_departement")
         Cursor = Cursors.Default
     End Sub
@@ -45,6 +75,17 @@
         Dim query As String = "CALL view_emp_uni_budget(" + id_emp_uni_period + ", '" + dept + "') "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDetail.DataSource = data
+        Cursor = Cursors.Default
+    End Sub
+
+    Sub viewSchedule()
+        Cursor = Cursors.WaitCursor
+        Dim query As String = "SELECT s.id_schedule, s.id_emp_uni_period, s.id_departement, d.departement, s.`start`, s.`end` 
+        FROM tb_emp_uni_schedule s
+        INNER JOIN tb_m_departement d ON d.id_departement = s.id_departement
+        WHERE s.id_emp_uni_period=" + id_emp_uni_period + " "
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSchedule.DataSource = data
         Cursor = Cursors.Default
     End Sub
 
@@ -87,6 +128,7 @@
             Dim selection_date_end As String = DateTime.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim distribution_date As String = DateTime.Parse(DEDist.EditValue.ToString).ToString("yyyy-MM-dd")
             Dim tolerance As String = decimalSQL(TxtTolerance.EditValue.ToString)
+            Dim budget_point As String = decimalSQL(TxtBudget.EditValue.ToString)
             Dim id_status As String = CEActive.EditValue.ToString
             If id_status = "True" Then
                 id_status = "1"
@@ -97,14 +139,14 @@
             End If
 
             If action = "ins" Then
-                Dim query As String = "INSERT INTO tb_emp_uni_period(period_name, selection_date_start, selection_date_end, created_date, distribution_date, tolerance, id_status) VALUES "
-                query += "('" + period_name + "', '" + selection_date_start + "', '" + selection_date_end + "', NOW(), '" + distribution_date + "','" + tolerance + "', '" + id_status + "'); SELECT LAST_INSERT_ID(); "
+                Dim query As String = "INSERT INTO tb_emp_uni_period(period_name, selection_date_start, selection_date_end, created_date, distribution_date, tolerance, budget_point, id_status) VALUES "
+                query += "('" + period_name + "', '" + selection_date_start + "', '" + selection_date_end + "', NOW(), '" + distribution_date + "','" + tolerance + "','" + budget_point + "', '" + id_status + "'); SELECT LAST_INSERT_ID(); "
                 id_emp_uni_period = execute_query(query, 0, True, "", "", "", "")
                 action = "upd"
                 actionLoad()
                 infoCustom("Uniform period was created successfully, please input detail budget.")
             Else
-                Dim query As String = "UPDATE tb_emp_uni_period SET period_name='" + period_name + "', selection_date_start='" + selection_date_start + "', selection_date_end='" + selection_date_end + "', distribution_date='" + distribution_date + "', tolerance='" + tolerance + "', id_status='" + id_status + "' WHERE id_emp_uni_period='" + id_emp_uni_period + "' "
+                Dim query As String = "UPDATE tb_emp_uni_period SET period_name='" + period_name + "', selection_date_start='" + selection_date_start + "', selection_date_end='" + selection_date_end + "', distribution_date='" + distribution_date + "', budget_point='" + budget_point + "', tolerance='" + tolerance + "', id_status='" + id_status + "' WHERE id_emp_uni_period='" + id_emp_uni_period + "' "
                 execute_non_query(query, True, "", "", "", "")
                 action = "upd"
                 actionLoad()
@@ -175,6 +217,9 @@
         ElseIf XTCUni.SelectedTabPageIndex = 1 Then
             BtnSave.Visible = False
             viewDesignList()
+        ElseIf XTCUni.SelectedTabPageIndex = 2 Then
+            BtnSave.Visible = False
+            viewSchedule()
         Else
             BtnSave.Visible = False
         End If
@@ -213,7 +258,15 @@
 
     Private Sub BtnImportExcel_Click(sender As Object, e As EventArgs) Handles BtnImportExcel.Click
         Cursor = Cursors.WaitCursor
-        FormEmpUniBudgetSet.ShowDialog()
+        Dim qc As String = "SELECT * FROM tb_sales_order so WHERE so.id_emp_uni_period = '" + id_emp_uni_period + "' AND so.id_report_status!=5 "
+        Dim dc As DataTable = execute_query(qc, -1, True, "", "", "", "")
+        If dc.Rows.Count > 0 Then
+            stopCustom("Pemilihan uniform sedang berlangsung")
+        Else
+            FormImportExcel.id_pop_up = "31"
+            FormImportExcel.ShowDialog()
+        End If
+        ' FormEmpUniBudgetSet.ShowDialog()
         Cursor = Cursors.Default
     End Sub
 
@@ -250,6 +303,7 @@
             Cursor = Cursors.WaitCursor
             Dim id_emp_uni_budget As String = GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString
             Dim uni As New ClassEmpUni()
+            uni.is_public_form = is_public_form
             uni.openOrderDetail(id_emp_uni_period, id_emp_uni_budget, GVDetail.GetFocusedRowCellValue("id_order").ToString, GVDetail.GetFocusedRowCellValue("id_departement").ToString)
 
             'Dim qorder As String = "SELECT * FROM tb_sales_order WHERE id_emp_uni_period=" + id_emp_uni_period + " AND id_emp_uni_budget=" + GVDetail.GetFocusedRowCellValue("id_emp_uni_budget").ToString + " AND id_report_status!=5 "
@@ -313,5 +367,39 @@
 
     Private Sub GVDetail_DoubleClick(sender As Object, e As EventArgs) Handles GVDetail.DoubleClick
         orderDetail()
+    End Sub
+
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+        Cursor = Cursors.WaitCursor
+        print_raw(GCSchedule, "")
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnDeleteSchedule_Click(sender As Object, e As EventArgs) Handles BtnDeleteSchedule.Click
+        Dim id As String = "-1"
+        Try
+            id = GVSchedule.GetFocusedRowCellValue("id_schedule").ToString
+        Catch ex As Exception
+        End Try
+        If id <> "-1" Then
+            Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to delete this schedule?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+            If confirm = Windows.Forms.DialogResult.Yes Then
+                Cursor = Cursors.WaitCursor
+                Try
+                    Dim query As String = "DELETE FROM tb_emp_uni_schedule WHERE id_schedule=" + id + " "
+                    execute_non_query(query, True, "", "", "", "")
+                    viewSchedule()
+                Catch ex As Exception
+                    errorDelete()
+                End Try
+                Cursor = Cursors.Default
+            End If
+        End If
+    End Sub
+
+    Private Sub BtnAddSchedule_Click(sender As Object, e As EventArgs) Handles BtnAddSchedule.Click
+        Cursor = Cursors.WaitCursor
+        FormEmpUniSchedule.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 End Class
