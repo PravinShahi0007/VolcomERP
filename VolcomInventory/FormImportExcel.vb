@@ -3216,7 +3216,7 @@ Public Class FormImportExcel
                         End If
 
                         'update point
-                        execute_non_query("CALL set_emp_uni_point(" + FormEmpUniPeriodDet.id_emp_uni_period + ")", True, "", "", "", "")
+                        'execute_non_query("CALL set_emp_uni_point(" + FormEmpUniPeriodDet.id_emp_uni_period + ")", True, "", "", "", "")
 
                         FormEmpUniPeriodDet.viewDetail()
                         Close()

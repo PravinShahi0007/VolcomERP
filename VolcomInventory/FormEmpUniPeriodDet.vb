@@ -148,6 +148,10 @@
             Else
                 Dim query As String = "UPDATE tb_emp_uni_period SET period_name='" + period_name + "', selection_date_start='" + selection_date_start + "', selection_date_end='" + selection_date_end + "', distribution_date='" + distribution_date + "', budget_point='" + budget_point + "', tolerance='" + tolerance + "', id_status='" + id_status + "' WHERE id_emp_uni_period='" + id_emp_uni_period + "' "
                 execute_non_query(query, True, "", "", "", "")
+
+                'update point
+                execute_non_query("CALL set_emp_uni_point(" + id_emp_uni_period + ")", True, "", "", "", "")
+
                 action = "upd"
                 actionLoad()
                 infoCustom("Uniform period was edited successfully.")
