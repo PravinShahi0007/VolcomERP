@@ -164,20 +164,25 @@
             'search id det
             makeSafeGV(GVPayroll)
             GVPayroll.ActiveFilterString = "[is_check]='yes'"
-            For i As Integer = 0 To GVPayroll.RowCount - 1
-                If i = 0 Then
-                    where_string = GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
-                Else
-                    where_string += "," & GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
-                End If
-            Next
-            makeSafeGV(GVPayroll)
-            '
-            ReportSalarySlip.where_string = where_string
-            Dim Report As New ReportSalarySlip()
-            Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-            Tool.ShowPreviewDialog()
-            Cursor = Cursors.Default
+            If GVPayroll.RowCount > 0 Then
+                For i As Integer = 0 To GVPayroll.RowCount - 1
+                    If i = 0 Then
+                        where_string = GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
+                    Else
+                        where_string += "," & GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
+                    End If
+                Next
+                makeSafeGV(GVPayroll)
+                '
+                ReportSalarySlip.where_string = where_string
+                ReportSalarySlip.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+                Dim Report As New ReportSalarySlip()
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+                Cursor = Cursors.Default
+            Else
+                stopCustom("Please choose employee first.")
+            End If
         End If
     End Sub
 End Class
