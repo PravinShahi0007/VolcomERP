@@ -7,6 +7,7 @@ Public Class FormEmpUniOrderDet
     Dim prepared_by As String = ""
     Dim id_wh_drawer As String = ""
     Public is_public_form As Boolean = False
+    Dim id_departement As String = "-1"
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -20,6 +21,7 @@ Public Class FormEmpUniOrderDet
         id_emp_uni_budget = data.Rows(0)("id_emp_uni_budget").ToString
         id_emp_uni_period = data.Rows(0)("id_emp_uni_period").ToString
         id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
+        id_departement = data.Rows(0)("id_departement").ToString
         TxtNIK.Text = data.Rows(0)("employee_code").ToString
         TxtName.Text = data.Rows(0)("employee_name").ToString
         TxtDept.Text = data.Rows(0)("departement").ToString
@@ -218,6 +220,15 @@ Public Class FormEmpUniOrderDet
     Private Sub TxtDesign_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtDesign.KeyDown
         If e.KeyCode = Keys.Enter Then
             Cursor = Cursors.WaitCursor
+            If is_public_form Then
+                Dim valid As String = execute_query("SELECT is_selection_time(" + id_emp_uni_period + ", " + id_departement + ")", 0, True, "", "", "", "")
+                If valid = "2" Then
+                    stopCustom("Maaf, saat ini belum waktunya memilih uniform")
+                    TxtDesign.Text = ""
+                    TxtDesign.Focus()
+                    Exit Sub
+                End If
+            End If
             Dim key As String = addSlashes(TxtDesign.Text)
             selectUniform(key)
             Cursor = Cursors.Default

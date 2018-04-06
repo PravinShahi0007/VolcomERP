@@ -1,5 +1,6 @@
 ﻿Public Class FormEmpUniListDet
     Public id_emp_uni_design As String = "-1"
+    Public id_emp_uni_period As String = "-1"
     Dim id_report_status As String = " -1"
     Dim id_wh_drawer As String = "-1"
     Public is_view As String = "-1"
@@ -27,6 +28,8 @@
         MENote.Text = data.Rows(0)("note").ToString
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         id_report_status = data.Rows(0)("id_report_status").ToString
+        id_emp_uni_period = data.Rows(0)("id_emp_uni_period").ToString
+
 
         'check mark
         Dim qm As String = "SELECT * FROM tb_report_mark rm WHERE rm.report_mark_type=123 AND id_report =" + id_emp_uni_design + " "
@@ -166,13 +169,13 @@
     End Sub
 
     Private Sub GVData_CustomColumnDisplayText(sender As Object, e As DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs) Handles GVData.CustomColumnDisplayText
-        Dim view As DevExpress.XtraGrid.Views.Base.ColumnView = TryCast(sender, DevExpress.XtraGrid.Views.Base.ColumnView)
-        If (e.Column.FieldName = "1" Or e.Column.FieldName = "2" Or e.Column.FieldName = "3" Or e.Column.FieldName = "4" Or e.Column.FieldName = "5" Or e.Column.FieldName = "6" Or e.Column.FieldName = "7" Or e.Column.FieldName = "8" Or e.Column.FieldName = "9" Or e.Column.FieldName = "0" Or e.Column.FieldName = "total_qty") AndAlso e.ListSourceRowIndex <> DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
-            Dim qty As Decimal = Convert.ToDecimal(e.Value)
-            If qty = 0 Then
-                e.DisplayText = "-"
-            End If
-        End If
+        'Dim view As DevExpress.XtraGrid.Views.Base.ColumnView = TryCast(sender, DevExpress.XtraGrid.Views.Base.ColumnView)
+        'If (e.Column.FieldName = "1" Or e.Column.FieldName = "2" Or e.Column.FieldName = "3" Or e.Column.FieldName = "4" Or e.Column.FieldName = "5" Or e.Column.FieldName = "6" Or e.Column.FieldName = "7" Or e.Column.FieldName = "8" Or e.Column.FieldName = "9" Or e.Column.FieldName = "0" Or e.Column.FieldName = "total_qty") AndAlso e.ListSourceRowIndex <> DevExpress.XtraGrid.GridControl.InvalidRowHandle Then
+        '    Dim qty As Decimal = Convert.ToDecimal(e.Value)
+        '    If qty = 0 Then
+        '        e.DisplayText = "-"
+        '    End If
+        'End If
     End Sub
 
     Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click

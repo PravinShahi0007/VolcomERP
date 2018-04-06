@@ -3600,6 +3600,9 @@
                 ) src ON src.id_emp_uni_design_det = main.id_emp_uni_design_det
                 SET main.no = src.counting "
                 execute_non_query(qn, True, "", "", "", "")
+
+                'update point
+                execute_non_query("CALL set_emp_uni_point(" + FormEmpUniListDet.id_emp_uni_period + ")", True, "", "", "", "")
             End If
 
             query = String.Format("UPDATE tb_emp_uni_design SET id_report_status='{0}' WHERE id_emp_uni_design ='{1}'", id_status_reportx, id_report)
