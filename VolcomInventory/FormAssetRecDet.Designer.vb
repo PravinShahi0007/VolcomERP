@@ -34,8 +34,10 @@ Partial Class FormAssetRecDet
         Me.TEVendor = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
         Me.PanelControlTopRight = New DevExpress.XtraEditors.PanelControl()
+        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
+        Me.TERecNumber = New DevExpress.XtraEditors.TextEdit()
         Me.BPickPONumber = New DevExpress.XtraEditors.SimpleButton()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
+        Me.DERecDate = New DevExpress.XtraEditors.DateEdit()
         Me.LabelControl9 = New DevExpress.XtraEditors.LabelControl()
         Me.LEPil = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl7 = New DevExpress.XtraEditors.LabelControl()
@@ -73,8 +75,9 @@ Partial Class FormAssetRecDet
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.LabelControl10 = New DevExpress.XtraEditors.LabelControl()
-        Me.TERecNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.GridColumnQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnValueRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -86,8 +89,9 @@ Partial Class FormAssetRecDet
         CType(Me.TEVendor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlTopRight.SuspendLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEPil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEstRecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DEEstRecDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,7 +114,6 @@ Partial Class FormAssetRecDet
         CType(Me.RILEDepartement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -284,7 +287,7 @@ Partial Class FormAssetRecDet
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl10)
         Me.PanelControlTopRight.Controls.Add(Me.TERecNumber)
         Me.PanelControlTopRight.Controls.Add(Me.BPickPONumber)
-        Me.PanelControlTopRight.Controls.Add(Me.DateEdit1)
+        Me.PanelControlTopRight.Controls.Add(Me.DERecDate)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl9)
         Me.PanelControlTopRight.Controls.Add(Me.LEPil)
         Me.PanelControlTopRight.Controls.Add(Me.LabelControl7)
@@ -300,27 +303,55 @@ Partial Class FormAssetRecDet
         Me.PanelControlTopRight.Size = New System.Drawing.Size(346, 174)
         Me.PanelControlTopRight.TabIndex = 8935
         '
+        'LabelControl10
+        '
+        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelControl10.Location = New System.Drawing.Point(25, 117)
+        Me.LabelControl10.Name = "LabelControl10"
+        Me.LabelControl10.Size = New System.Drawing.Size(78, 13)
+        Me.LabelControl10.TabIndex = 8940
+        Me.LabelControl10.Text = "Receive Number"
+        '
+        'TERecNumber
+        '
+        Me.TERecNumber.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.TERecNumber.EditValue = ""
+        Me.TERecNumber.Location = New System.Drawing.Point(115, 114)
+        Me.TERecNumber.Name = "TERecNumber"
+        Me.TERecNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TERecNumber.Properties.Appearance.Options.UseFont = True
+        Me.TERecNumber.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
+        Me.TERecNumber.Properties.AppearanceDisabled.Options.UseBackColor = True
+        Me.TERecNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
+        Me.TERecNumber.Properties.AppearanceReadOnly.Options.UseBackColor = True
+        Me.TERecNumber.Properties.EditValueChangedDelay = 1
+        Me.TERecNumber.Properties.ReadOnly = True
+        Me.TERecNumber.Size = New System.Drawing.Size(221, 20)
+        Me.TERecNumber.TabIndex = 88
+        Me.TERecNumber.TabStop = False
+        '
         'BPickPONumber
         '
         Me.BPickPONumber.Location = New System.Drawing.Point(307, 8)
         Me.BPickPONumber.Name = "BPickPONumber"
         Me.BPickPONumber.Size = New System.Drawing.Size(29, 23)
-        Me.BPickPONumber.TabIndex = 8938
+        Me.BPickPONumber.TabIndex = 1
         Me.BPickPONumber.Text = "..."
         '
-        'DateEdit1
+        'DERecDate
         '
-        Me.DateEdit1.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(115, 140)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.DateEdit1.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
-        Me.DateEdit1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-        Me.DateEdit1.Properties.Mask.EditMask = "dd\/MM\/yyyy"
-        Me.DateEdit1.Size = New System.Drawing.Size(221, 20)
-        Me.DateEdit1.TabIndex = 8936
+        Me.DERecDate.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.DERecDate.EditValue = Nothing
+        Me.DERecDate.Location = New System.Drawing.Point(115, 140)
+        Me.DERecDate.Name = "DERecDate"
+        Me.DERecDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.DERecDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.DERecDate.Properties.DisplayFormat.FormatString = "dd MMM yyyy"
+        Me.DERecDate.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.DERecDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
+        Me.DERecDate.Size = New System.Drawing.Size(221, 20)
+        Me.DERecDate.TabIndex = 2
+        Me.DERecDate.TabStop = False
         '
         'LabelControl9
         '
@@ -348,6 +379,7 @@ Partial Class FormAssetRecDet
         Me.LEPil.Properties.ShowFooter = False
         Me.LEPil.Size = New System.Drawing.Size(221, 20)
         Me.LEPil.TabIndex = 9
+        Me.LEPil.TabStop = False
         '
         'LabelControl7
         '
@@ -371,6 +403,7 @@ Partial Class FormAssetRecDet
         Me.DEEstRecDate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEEstRecDate.Size = New System.Drawing.Size(221, 20)
         Me.DEEstRecDate.TabIndex = 8
+        Me.DEEstRecDate.TabStop = False
         '
         'LabelControl6
         '
@@ -394,6 +427,7 @@ Partial Class FormAssetRecDet
         Me.DEPODate.Properties.Mask.EditMask = "dd\/MM\/yyyy"
         Me.DEPODate.Size = New System.Drawing.Size(221, 20)
         Me.DEPODate.TabIndex = 7
+        Me.DEPODate.TabStop = False
         '
         'LabelControl8
         '
@@ -428,7 +462,7 @@ Partial Class FormAssetRecDet
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
         Me.TEPONumber.Properties.ReadOnly = True
         Me.TEPONumber.Size = New System.Drawing.Size(186, 20)
-        Me.TEPONumber.TabIndex = 6
+        Me.TEPONumber.TabIndex = 1
         Me.TEPONumber.TabStop = False
         '
         'LargeImageCollection
@@ -493,7 +527,7 @@ Partial Class FormAssetRecDet
         Me.MENote.Properties.Appearance.Options.UseFont = True
         Me.MENote.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.MENote.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.MENote.Size = New System.Drawing.Size(766, 81)
+        Me.MENote.Size = New System.Drawing.Size(779, 81)
         Me.MENote.TabIndex = 10
         '
         'LabelControl13
@@ -531,6 +565,7 @@ Partial Class FormAssetRecDet
         Me.BtnAttachment.TabIndex = 13
         Me.BtnAttachment.TabStop = False
         Me.BtnAttachment.Text = "Attachment"
+        Me.BtnAttachment.Visible = False
         '
         'BtnPrint
         '
@@ -543,6 +578,7 @@ Partial Class FormAssetRecDet
         Me.BtnPrint.TabIndex = 9
         Me.BtnPrint.TabStop = False
         Me.BtnPrint.Text = "Print"
+        Me.BtnPrint.Visible = False
         '
         'BMark
         '
@@ -555,6 +591,7 @@ Partial Class FormAssetRecDet
         Me.BMark.TabIndex = 11
         Me.BMark.TabStop = False
         Me.BMark.Text = "Mark"
+        Me.BMark.Visible = False
         '
         'BtnCancel
         '
@@ -606,7 +643,7 @@ Partial Class FormAssetRecDet
         '
         'GVItemList
         '
-        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumnCat, Me.GridColumnDepartement, Me.GridColumnSKU, Me.GridColumnDesc, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnDiscount, Me.GridColumnTotal, Me.GridColumnNote})
+        Me.GVItemList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnID, Me.GridColumn3, Me.GridColumnCat, Me.GridColumnDepartement, Me.GridColumnSKU, Me.GridColumnDesc, Me.GridColumnQty, Me.GridColumnPrice, Me.GridColumnDiscount, Me.GridColumnQtyRec, Me.GridColumnValueRec, Me.GridColumnTotal, Me.GridColumnNote})
         Me.GVItemList.GridControl = Me.GCItemList
         Me.GVItemList.Name = "GVItemList"
         Me.GVItemList.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -619,7 +656,9 @@ Partial Class FormAssetRecDet
         'GridColumnID
         '
         Me.GridColumnID.Caption = "ID"
+        Me.GridColumnID.FieldName = "id_asset_po_det"
         Me.GridColumnID.Name = "GridColumnID"
+        Me.GridColumnID.OptionsColumn.ReadOnly = True
         '
         'GridColumnCat
         '
@@ -627,6 +666,7 @@ Partial Class FormAssetRecDet
         Me.GridColumnCat.ColumnEdit = Me.RILEAssetCat
         Me.GridColumnCat.FieldName = "id_asset_cat"
         Me.GridColumnCat.Name = "GridColumnCat"
+        Me.GridColumnCat.OptionsColumn.ReadOnly = True
         Me.GridColumnCat.Visible = True
         Me.GridColumnCat.VisibleIndex = 1
         Me.GridColumnCat.Width = 87
@@ -644,6 +684,7 @@ Partial Class FormAssetRecDet
         Me.GridColumnDepartement.ColumnEdit = Me.RILEDepartement
         Me.GridColumnDepartement.FieldName = "id_departement"
         Me.GridColumnDepartement.Name = "GridColumnDepartement"
+        Me.GridColumnDepartement.OptionsColumn.ReadOnly = True
         Me.GridColumnDepartement.Visible = True
         Me.GridColumnDepartement.VisibleIndex = 2
         Me.GridColumnDepartement.Width = 90
@@ -660,6 +701,7 @@ Partial Class FormAssetRecDet
         Me.GridColumnSKU.Caption = "Vendor SKU"
         Me.GridColumnSKU.FieldName = "vendor_sku"
         Me.GridColumnSKU.Name = "GridColumnSKU"
+        Me.GridColumnSKU.OptionsColumn.ReadOnly = True
         Me.GridColumnSKU.Visible = True
         Me.GridColumnSKU.VisibleIndex = 0
         Me.GridColumnSKU.Width = 115
@@ -669,18 +711,20 @@ Partial Class FormAssetRecDet
         Me.GridColumnDesc.Caption = "Desc"
         Me.GridColumnDesc.FieldName = "desc"
         Me.GridColumnDesc.Name = "GridColumnDesc"
+        Me.GridColumnDesc.OptionsColumn.ReadOnly = True
         Me.GridColumnDesc.Visible = True
         Me.GridColumnDesc.VisibleIndex = 3
         Me.GridColumnDesc.Width = 291
         '
         'GridColumnQty
         '
-        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.Caption = "Qty PO"
         Me.GridColumnQty.ColumnEdit = Me.RITEQty
         Me.GridColumnQty.DisplayFormat.FormatString = "N0"
         Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnQty.FieldName = "qty"
         Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.OptionsColumn.ReadOnly = True
         Me.GridColumnQty.Visible = True
         Me.GridColumnQty.VisibleIndex = 4
         Me.GridColumnQty.Width = 79
@@ -697,50 +741,52 @@ Partial Class FormAssetRecDet
         '
         'GridColumnPrice
         '
-        Me.GridColumnPrice.Caption = "Price"
+        Me.GridColumnPrice.Caption = "Price PO"
         Me.GridColumnPrice.ColumnEdit = Me.RITEQty
         Me.GridColumnPrice.DisplayFormat.FormatString = "N2"
         Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPrice.FieldName = "value"
         Me.GridColumnPrice.Name = "GridColumnPrice"
+        Me.GridColumnPrice.OptionsColumn.ReadOnly = True
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 5
         Me.GridColumnPrice.Width = 136
         '
         'GridColumnDiscount
         '
-        Me.GridColumnDiscount.Caption = "Discount"
+        Me.GridColumnDiscount.Caption = "Discount PO"
         Me.GridColumnDiscount.ColumnEdit = Me.RITEQty
         Me.GridColumnDiscount.DisplayFormat.FormatString = "N2"
         Me.GridColumnDiscount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnDiscount.FieldName = "disc"
         Me.GridColumnDiscount.Name = "GridColumnDiscount"
+        Me.GridColumnDiscount.OptionsColumn.ReadOnly = True
         Me.GridColumnDiscount.Visible = True
         Me.GridColumnDiscount.VisibleIndex = 6
         Me.GridColumnDiscount.Width = 158
         '
         'GridColumnTotal
         '
-        Me.GridColumnTotal.Caption = "Total"
+        Me.GridColumnTotal.Caption = "Total Receiving"
         Me.GridColumnTotal.DisplayFormat.FormatString = "N2"
         Me.GridColumnTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnTotal.FieldName = "total"
         Me.GridColumnTotal.Name = "GridColumnTotal"
         Me.GridColumnTotal.OptionsColumn.AllowEdit = False
         Me.GridColumnTotal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
-        Me.GridColumnTotal.UnboundExpression = "([value] - [disc]) * [qty]"
+        Me.GridColumnTotal.UnboundExpression = "[qty_rec] * [value_rec]"
         Me.GridColumnTotal.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnTotal.Visible = True
-        Me.GridColumnTotal.VisibleIndex = 7
+        Me.GridColumnTotal.VisibleIndex = 9
         Me.GridColumnTotal.Width = 147
         '
         'GridColumnNote
         '
         Me.GridColumnNote.Caption = "Note"
-        Me.GridColumnNote.FieldName = "note"
+        Me.GridColumnNote.FieldName = "note_rec"
         Me.GridColumnNote.Name = "GridColumnNote"
         Me.GridColumnNote.Visible = True
-        Me.GridColumnNote.VisibleIndex = 8
+        Me.GridColumnNote.VisibleIndex = 10
         Me.GridColumnNote.Width = 529
         '
         'RepositoryItemSpinEdit1
@@ -751,32 +797,28 @@ Partial Class FormAssetRecDet
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
-        'LabelControl10
+        'GridColumnQtyRec
         '
-        Me.LabelControl10.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelControl10.Location = New System.Drawing.Point(25, 117)
-        Me.LabelControl10.Name = "LabelControl10"
-        Me.LabelControl10.Size = New System.Drawing.Size(78, 13)
-        Me.LabelControl10.TabIndex = 8940
-        Me.LabelControl10.Text = "Receive Number"
+        Me.GridColumnQtyRec.Caption = "Qty Receiving"
+        Me.GridColumnQtyRec.FieldName = "qty_rec"
+        Me.GridColumnQtyRec.Name = "GridColumnQtyRec"
+        Me.GridColumnQtyRec.Visible = True
+        Me.GridColumnQtyRec.VisibleIndex = 7
         '
-        'TERecNumber
+        'GridColumnValueRec
         '
-        Me.TERecNumber.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.TERecNumber.EditValue = ""
-        Me.TERecNumber.Location = New System.Drawing.Point(115, 114)
-        Me.TERecNumber.Name = "TERecNumber"
-        Me.TERecNumber.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TERecNumber.Properties.Appearance.Options.UseFont = True
-        Me.TERecNumber.Properties.AppearanceDisabled.BackColor = System.Drawing.Color.White
-        Me.TERecNumber.Properties.AppearanceDisabled.Options.UseBackColor = True
-        Me.TERecNumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
-        Me.TERecNumber.Properties.AppearanceReadOnly.Options.UseBackColor = True
-        Me.TERecNumber.Properties.EditValueChangedDelay = 1
-        Me.TERecNumber.Properties.ReadOnly = True
-        Me.TERecNumber.Size = New System.Drawing.Size(221, 20)
-        Me.TERecNumber.TabIndex = 8939
-        Me.TERecNumber.TabStop = False
+        Me.GridColumnValueRec.Caption = "Value Receiving"
+        Me.GridColumnValueRec.FieldName = "value_rec"
+        Me.GridColumnValueRec.Name = "GridColumnValueRec"
+        Me.GridColumnValueRec.Visible = True
+        Me.GridColumnValueRec.VisibleIndex = 8
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID"
+        Me.GridColumn3.FieldName = "id_asset_rec_det"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         '
         'FormAssetRecDet
         '
@@ -787,11 +829,11 @@ Partial Class FormAssetRecDet
         Me.Controls.Add(Me.GroupControl2)
         Me.Controls.Add(Me.PanelControl3)
         Me.Controls.Add(Me.GroupGeneralHeader)
-        Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FormAssetRecDet"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Receiving Detail"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupGeneralHeader.ResumeLayout(False)
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).EndInit()
@@ -805,8 +847,9 @@ Partial Class FormAssetRecDet
         CType(Me.PanelControlTopRight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControlTopRight.ResumeLayout(False)
         Me.PanelControlTopRight.PerformLayout()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DERecDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEPil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEstRecDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DEEstRecDate.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -830,7 +873,6 @@ Partial Class FormAssetRecDet
         CType(Me.RILEDepartement, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TERecNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -867,7 +909,7 @@ Partial Class FormAssetRecDet
     Friend WithEvents BMark As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents DERecDate As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl9 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GroupControlList As DevExpress.XtraEditors.GroupControl
     Friend WithEvents GCItemList As DevExpress.XtraGrid.GridControl
@@ -889,4 +931,7 @@ Partial Class FormAssetRecDet
     Friend WithEvents BPickPONumber As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LabelControl10 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TERecNumber As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnQtyRec As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnValueRec As DevExpress.XtraGrid.Columns.GridColumn
 End Class

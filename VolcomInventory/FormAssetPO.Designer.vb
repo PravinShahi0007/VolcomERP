@@ -230,6 +230,7 @@ Partial Class FormAssetPO
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "total"
         Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 5
         '
@@ -240,6 +241,7 @@ Partial Class FormAssetPO
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "grand_total"
         Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", "{0:N2}")})
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 6
         '
