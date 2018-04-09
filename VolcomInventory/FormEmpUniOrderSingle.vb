@@ -46,6 +46,7 @@
                 stopCustom("Budget tidak mencukupi")
                 Close()
             Else
+                Cursor = Cursors.WaitCursor
                 Dim query As String = "INSERT INTO tb_sales_order_det(id_sales_order, id_product, id_design_price, design_price, sales_order_det_qty, sales_order_det_note) VALUES 
                 ('" + FormEmpUniOrderDet.id_sales_order + "','" + id_product + "','" + id_design_price + "','" + design_price + "','1',''); SELECT LAST_INSERT_ID(); "
                 Dim id_new As String = execute_query(query, 0, True, "", "", "", "")
@@ -62,6 +63,7 @@
                 'refresh
                 FormEmpUniOrderDet.actionLoad()
                 Close()
+                Cursor = Cursors.Default
             End If
 
             Cursor = Cursors.Default
