@@ -54,6 +54,12 @@
             FormViewMatRecPurc.Close()
         ElseIf report_mark_type = "17" Then
             FormViewMatRecWO.Close()
+        ElseIf report_mark_type = "18" Then
+            'return out material
+            FormViewMatRetOut.Close()
+        ElseIf report_mark_type = "19" Then
+            'return in material
+            FormViewMatRetIn.Close()
         ElseIf report_mark_type = "22" Then
             'Production Order
             FormViewProduction.Close()
@@ -87,6 +93,9 @@
         ElseIf report_mark_type = "44" Then
             'non production MRS
             FormViewMatMRS.Close()
+        ElseIf report_mark_type = "47" Then
+            'return in mat
+            FormViewMatRetInProd.Close()
         ElseIf report_mark_type = "48" Or report_mark_type = "66" Or report_mark_type = "118" Or report_mark_type = "54" Or report_mark_type = "67" Or report_mark_type = "116" Or report_mark_type = "117" Then
             'invoice/missing/credit note
             FormViewSalesPOS.Close()

@@ -3667,9 +3667,14 @@
                 id_status_reportx = "6"
             End If
 
+            '
             query = String.Format("UPDATE tb_a_asset_rec SET id_report_status='{0}' WHERE id_asset_rec ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
+            '
+            If id_status_reportx = "6" Then
+
+            End If
 
             If form_origin = "FormAssetRecDet" Then
                 FormAssetRecDet.load_det()
