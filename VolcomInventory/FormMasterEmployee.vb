@@ -34,6 +34,8 @@
             '
             GVEmployee.Columns("allow_house").Visible = False
             GVEmployee.Columns("allow_house").OptionsColumn.ShowInCustomizationForm = False
+
+            gridBandSalary.Visible = False
         End If
     End Sub
 
