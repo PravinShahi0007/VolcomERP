@@ -133,4 +133,11 @@
             FormAssetRec.GVRecList.FocusedRowHandle = find_row(FormAssetRec.GVRecList, "id_asset_rec", id_rec)
         End If
     End Sub
+
+    Private Sub BMark_Click(sender As Object, e As EventArgs) Handles BMark.Click
+        FormReportMark.id_report = id_rec
+        FormReportMark.report_mark_type = "129"
+        FormReportMark.form_origin = Name
+        FormReportMark.ShowDialog()
+    End Sub
 End Class

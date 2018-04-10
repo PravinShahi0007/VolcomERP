@@ -59,9 +59,12 @@ Partial Class FormAssetRecDet
         Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControlList = New DevExpress.XtraEditors.GroupControl()
+        Me.XTCReceiving = New DevExpress.XtraTab.XtraTabControl()
+        Me.XTPReceiving = New DevExpress.XtraTab.XtraTabPage()
         Me.GCItemList = New DevExpress.XtraGrid.GridControl()
         Me.GVItemList = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCat = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RILEAssetCat = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.GridColumnDepartement = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -72,12 +75,27 @@ Partial Class FormAssetRecDet
         Me.RITEQty = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumnPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnDiscount = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnValueRec = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnNote = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemSpinEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
-        Me.GridColumnQtyRec = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnValueRec = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.XTPAllocation = New DevExpress.XtraTab.XtraTabPage()
+        Me.GCAllocation = New DevExpress.XtraGrid.GridControl()
+        Me.GVAllocation = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemLookUpEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumnUser = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepositoryItemSpinEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit()
+        Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,12 +126,22 @@ Partial Class FormAssetRecDet
         Me.PanelControl3.SuspendLayout()
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControlList.SuspendLayout()
+        CType(Me.XTCReceiving, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTCReceiving.SuspendLayout()
+        Me.XTPReceiving.SuspendLayout()
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RILEAssetCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RILEDepartement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XTPAllocation.SuspendLayout()
+        CType(Me.GCAllocation, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GVAllocation, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GroupGeneralHeader
@@ -620,7 +648,7 @@ Partial Class FormAssetRecDet
         'GroupControlList
         '
         Me.GroupControlList.CaptionLocation = DevExpress.Utils.Locations.Left
-        Me.GroupControlList.Controls.Add(Me.GCItemList)
+        Me.GroupControlList.Controls.Add(Me.XTCReceiving)
         Me.GroupControlList.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupControlList.Location = New System.Drawing.Point(0, 178)
         Me.GroupControlList.Name = "GroupControlList"
@@ -628,15 +656,33 @@ Partial Class FormAssetRecDet
         Me.GroupControlList.TabIndex = 192
         Me.GroupControlList.Text = "Item List"
         '
+        'XTCReceiving
+        '
+        Me.XTCReceiving.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.XTCReceiving.HeaderLocation = DevExpress.XtraTab.TabHeaderLocation.Bottom
+        Me.XTCReceiving.Location = New System.Drawing.Point(20, 2)
+        Me.XTCReceiving.Name = "XTCReceiving"
+        Me.XTCReceiving.SelectedTabPage = Me.XTPReceiving
+        Me.XTCReceiving.Size = New System.Drawing.Size(843, 193)
+        Me.XTCReceiving.TabIndex = 3
+        Me.XTCReceiving.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XTPReceiving, Me.XTPAllocation})
+        '
+        'XTPReceiving
+        '
+        Me.XTPReceiving.Controls.Add(Me.GCItemList)
+        Me.XTPReceiving.Name = "XTPReceiving"
+        Me.XTPReceiving.Size = New System.Drawing.Size(837, 165)
+        Me.XTPReceiving.Text = "Receiving"
+        '
         'GCItemList
         '
         Me.GCItemList.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GCItemList.Location = New System.Drawing.Point(20, 2)
+        Me.GCItemList.Location = New System.Drawing.Point(0, 0)
         Me.GCItemList.LookAndFeel.SkinName = "Office 2010 Silver"
         Me.GCItemList.MainView = Me.GVItemList
         Me.GCItemList.Name = "GCItemList"
         Me.GCItemList.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit1, Me.RILEDepartement, Me.RILEAssetCat, Me.RITEQty})
-        Me.GCItemList.Size = New System.Drawing.Size(843, 193)
+        Me.GCItemList.Size = New System.Drawing.Size(837, 165)
         Me.GCItemList.TabIndex = 2
         Me.GCItemList.TabStop = False
         Me.GCItemList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVItemList})
@@ -659,6 +705,13 @@ Partial Class FormAssetRecDet
         Me.GridColumnID.FieldName = "id_asset_po_det"
         Me.GridColumnID.Name = "GridColumnID"
         Me.GridColumnID.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn3
+        '
+        Me.GridColumn3.Caption = "ID"
+        Me.GridColumn3.FieldName = "id_asset_rec_det"
+        Me.GridColumn3.Name = "GridColumn3"
+        Me.GridColumn3.OptionsColumn.ReadOnly = True
         '
         'GridColumnCat
         '
@@ -765,6 +818,24 @@ Partial Class FormAssetRecDet
         Me.GridColumnDiscount.VisibleIndex = 6
         Me.GridColumnDiscount.Width = 158
         '
+        'GridColumnQtyRec
+        '
+        Me.GridColumnQtyRec.Caption = "Qty Receiving"
+        Me.GridColumnQtyRec.FieldName = "qty_rec"
+        Me.GridColumnQtyRec.Name = "GridColumnQtyRec"
+        Me.GridColumnQtyRec.Visible = True
+        Me.GridColumnQtyRec.VisibleIndex = 7
+        '
+        'GridColumnValueRec
+        '
+        Me.GridColumnValueRec.Caption = "Value Receiving"
+        Me.GridColumnValueRec.DisplayFormat.FormatString = "N2"
+        Me.GridColumnValueRec.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnValueRec.FieldName = "value_rec"
+        Me.GridColumnValueRec.Name = "GridColumnValueRec"
+        Me.GridColumnValueRec.Visible = True
+        Me.GridColumnValueRec.VisibleIndex = 8
+        '
         'GridColumnTotal
         '
         Me.GridColumnTotal.Caption = "Total Receiving"
@@ -797,28 +868,147 @@ Partial Class FormAssetRecDet
         Me.RepositoryItemSpinEdit1.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
         Me.RepositoryItemSpinEdit1.Name = "RepositoryItemSpinEdit1"
         '
-        'GridColumnQtyRec
+        'XTPAllocation
         '
-        Me.GridColumnQtyRec.Caption = "Qty Receiving"
-        Me.GridColumnQtyRec.FieldName = "qty_rec"
-        Me.GridColumnQtyRec.Name = "GridColumnQtyRec"
-        Me.GridColumnQtyRec.Visible = True
-        Me.GridColumnQtyRec.VisibleIndex = 7
+        Me.XTPAllocation.Controls.Add(Me.GCAllocation)
+        Me.XTPAllocation.Name = "XTPAllocation"
+        Me.XTPAllocation.PageVisible = False
+        Me.XTPAllocation.Size = New System.Drawing.Size(837, 165)
+        Me.XTPAllocation.Text = "Allocation"
         '
-        'GridColumnValueRec
+        'GCAllocation
         '
-        Me.GridColumnValueRec.Caption = "Value Receiving"
-        Me.GridColumnValueRec.FieldName = "value_rec"
-        Me.GridColumnValueRec.Name = "GridColumnValueRec"
-        Me.GridColumnValueRec.Visible = True
-        Me.GridColumnValueRec.VisibleIndex = 8
+        Me.GCAllocation.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GCAllocation.Location = New System.Drawing.Point(0, 0)
+        Me.GCAllocation.LookAndFeel.SkinName = "Office 2010 Silver"
+        Me.GCAllocation.MainView = Me.GVAllocation
+        Me.GCAllocation.Name = "GCAllocation"
+        Me.GCAllocation.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemSpinEdit2, Me.RepositoryItemLookUpEdit2, Me.RepositoryItemLookUpEdit1, Me.RepositoryItemTextEdit1})
+        Me.GCAllocation.Size = New System.Drawing.Size(837, 165)
+        Me.GCAllocation.TabIndex = 3
+        Me.GCAllocation.TabStop = False
+        Me.GCAllocation.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVAllocation})
         '
-        'GridColumn3
+        'GVAllocation
         '
-        Me.GridColumn3.Caption = "ID"
-        Me.GridColumn3.FieldName = "id_asset_rec_det"
-        Me.GridColumn3.Name = "GridColumn3"
-        Me.GridColumn3.OptionsColumn.ReadOnly = True
+        Me.GVAllocation.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn1, Me.GridColumn6, Me.GridColumn4, Me.GridColumn5, Me.GridColumnUser, Me.GridColumn7, Me.GridColumn12, Me.GridColumn14})
+        Me.GVAllocation.GridControl = Me.GCAllocation
+        Me.GVAllocation.Name = "GVAllocation"
+        Me.GVAllocation.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVAllocation.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GVAllocation.OptionsCustomization.AllowGroup = False
+        Me.GVAllocation.OptionsCustomization.AllowQuickHideColumns = False
+        Me.GVAllocation.OptionsView.ShowFooter = True
+        Me.GVAllocation.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn2
+        '
+        Me.GridColumn2.Caption = "ID"
+        Me.GridColumn2.FieldName = "id_asset_rec_det"
+        Me.GridColumn2.Name = "GridColumn2"
+        Me.GridColumn2.OptionsColumn.ReadOnly = True
+        '
+        'GridColumn1
+        '
+        Me.GridColumn1.Caption = "Code"
+        Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.Visible = True
+        Me.GridColumn1.VisibleIndex = 1
+        '
+        'GridColumn6
+        '
+        Me.GridColumn6.Caption = "Old Code"
+        Me.GridColumn6.Name = "GridColumn6"
+        Me.GridColumn6.Visible = True
+        Me.GridColumn6.VisibleIndex = 2
+        '
+        'GridColumn4
+        '
+        Me.GridColumn4.Caption = "Category"
+        Me.GridColumn4.ColumnEdit = Me.RepositoryItemLookUpEdit1
+        Me.GridColumn4.FieldName = "id_asset_cat"
+        Me.GridColumn4.Name = "GridColumn4"
+        Me.GridColumn4.OptionsColumn.ReadOnly = True
+        Me.GridColumn4.Visible = True
+        Me.GridColumn4.VisibleIndex = 0
+        Me.GridColumn4.Width = 87
+        '
+        'RepositoryItemLookUpEdit1
+        '
+        Me.RepositoryItemLookUpEdit1.AutoHeight = False
+        Me.RepositoryItemLookUpEdit1.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemLookUpEdit1.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_asset_cat", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("asset_cat", "Asset Category")})
+        Me.RepositoryItemLookUpEdit1.Name = "RepositoryItemLookUpEdit1"
+        '
+        'GridColumn5
+        '
+        Me.GridColumn5.Caption = "Departement"
+        Me.GridColumn5.ColumnEdit = Me.RepositoryItemLookUpEdit2
+        Me.GridColumn5.FieldName = "id_departement"
+        Me.GridColumn5.Name = "GridColumn5"
+        Me.GridColumn5.OptionsColumn.ReadOnly = True
+        Me.GridColumn5.Visible = True
+        Me.GridColumn5.VisibleIndex = 3
+        Me.GridColumn5.Width = 90
+        '
+        'RepositoryItemLookUpEdit2
+        '
+        Me.RepositoryItemLookUpEdit2.AutoHeight = False
+        Me.RepositoryItemLookUpEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemLookUpEdit2.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_departement", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("departement", "Departement")})
+        Me.RepositoryItemLookUpEdit2.Name = "RepositoryItemLookUpEdit2"
+        '
+        'GridColumnUser
+        '
+        Me.GridColumnUser.Caption = "User"
+        Me.GridColumnUser.Name = "GridColumnUser"
+        Me.GridColumnUser.Visible = True
+        Me.GridColumnUser.VisibleIndex = 5
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.Caption = "Desc"
+        Me.GridColumn7.FieldName = "desc"
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.ReadOnly = True
+        Me.GridColumn7.Visible = True
+        Me.GridColumn7.VisibleIndex = 4
+        Me.GridColumn7.Width = 291
+        '
+        'GridColumn12
+        '
+        Me.GridColumn12.Caption = "Value Receiving"
+        Me.GridColumn12.FieldName = "value_rec"
+        Me.GridColumn12.Name = "GridColumn12"
+        Me.GridColumn12.Visible = True
+        Me.GridColumn12.VisibleIndex = 6
+        '
+        'GridColumn14
+        '
+        Me.GridColumn14.Caption = "Note"
+        Me.GridColumn14.FieldName = "note_rec"
+        Me.GridColumn14.Name = "GridColumn14"
+        Me.GridColumn14.Visible = True
+        Me.GridColumn14.VisibleIndex = 7
+        Me.GridColumn14.Width = 529
+        '
+        'RepositoryItemSpinEdit2
+        '
+        Me.RepositoryItemSpinEdit2.AutoHeight = False
+        Me.RepositoryItemSpinEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemSpinEdit2.Mask.EditMask = "f0"
+        Me.RepositoryItemSpinEdit2.MaxValue = New Decimal(New Integer() {-1530494977, 232830, 0, 0})
+        Me.RepositoryItemSpinEdit2.Name = "RepositoryItemSpinEdit2"
+        '
+        'RepositoryItemTextEdit1
+        '
+        Me.RepositoryItemTextEdit1.Appearance.Options.UseTextOptions = True
+        Me.RepositoryItemTextEdit1.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.RepositoryItemTextEdit1.AutoHeight = False
+        Me.RepositoryItemTextEdit1.Mask.EditMask = "N2"
+        Me.RepositoryItemTextEdit1.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
+        Me.RepositoryItemTextEdit1.Mask.UseMaskAsDisplayFormat = True
+        Me.RepositoryItemTextEdit1.Name = "RepositoryItemTextEdit1"
         '
         'FormAssetRecDet
         '
@@ -867,12 +1057,22 @@ Partial Class FormAssetRecDet
         Me.PanelControl3.ResumeLayout(False)
         CType(Me.GroupControlList, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupControlList.ResumeLayout(False)
+        CType(Me.XTCReceiving, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTCReceiving.ResumeLayout(False)
+        Me.XTPReceiving.ResumeLayout(False)
         CType(Me.GCItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVItemList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RILEAssetCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RILEDepartement, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RITEQty, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemSpinEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.XTPAllocation.ResumeLayout(False)
+        CType(Me.GCAllocation, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GVAllocation, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemLookUpEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemSpinEdit2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -934,4 +1134,22 @@ Partial Class FormAssetRecDet
     Friend WithEvents GridColumn3 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnQtyRec As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnValueRec As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents XTCReceiving As DevExpress.XtraTab.XtraTabControl
+    Friend WithEvents XTPReceiving As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents XTPAllocation As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GCAllocation As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GVAllocation As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemLookUpEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemLookUpEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumnUser As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn14 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemSpinEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit
+    Friend WithEvents RepositoryItemTextEdit1 As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

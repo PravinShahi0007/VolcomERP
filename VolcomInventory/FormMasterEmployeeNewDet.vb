@@ -4,6 +4,7 @@
     Dim data_dt As DataTable = Nothing
     Dim id_marriage_stattus_db As String = "-1"
 
+    Public is_salary As String = "-1"
     Sub viewSex()
         Dim query As String = "SELECT * FROM tb_lookup_sex a ORDER BY a.id_sex "
         viewLookupQuery(LESex, query, 0, "sex", "id_sex")
@@ -90,6 +91,13 @@
         viewEmployeePosition()
         viewSalary()
         actionLoad()
+        '
+        If is_salary = "1" Then
+            XTPSalary.PageVisible = True
+        Else
+            XTPSalary.PageVisible = False
+        End If
+        '
     End Sub
 
     Sub viewSalary()
