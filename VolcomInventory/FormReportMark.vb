@@ -3675,7 +3675,21 @@
             'infoCustom("Status changed.")
             '
             If id_status_reportx = "6" Then
-
+                'insert to master asset
+                query = String.Format("SELECT recd.qty_rec,pod.`id_asset_cat`,recd.`id_asset_rec_det`,pod.`desc`,pod.`id_departement`,0 AS id_employee,1 AS id_user_created,1 AS id_user_last_upd,DATE(NOW()) AS date_created,DATE(NOW()) AS date_last_upd FROM tb_a_asset_rec_det recd
+                                        INNER JOIN tb_a_asset_po_det pod ON pod.`id_asset_po_det`=recd.`id_asset_po_det`
+                                        WHERE id_asset_rec='{0}'", id_report)
+                Dim data_sel As DataTable = execute_query(query, -1, True, "", "", "", "")
+                For sel As Integer = 0 To data_sel.Rows.Count - 1
+                    Dim qty_rec As Integer = data_sel.Rows(sel)("qty_rec")
+                    For ins As Integer = 0 To qty_rec - 1
+                        Dim query_ins As String = String.Format("INSERT INTO tb_a_asset(id_asset_cat,id_asset_rec_det,`asset_desc`,id_departement,id_employee,id_user_created,id_user_last_upd,date_created,date_last_upd)
+                                        SELECT pod.`id_asset_cat`,recd.`id_asset_rec_det`,pod.`desc`,pod.`id_departement`,0 AS id_employee,'" & id_user & "' AS id_user_created,'" & id_user & "' AS id_user_last_upd,DATE(NOW()) AS date_created,DATE(NOW()) AS date_last_upd FROM tb_a_asset_rec_det recd
+                                        INNER JOIN tb_a_asset_po_det pod ON pod.`id_asset_po_det`=recd.`id_asset_po_det`
+                                        WHERE recd.id_asset_rec_det='{0}'", data_sel.Rows(sel)("id_asset_rec_det"))
+                        execute_non_query(query_ins, True, "", "", "", "")
+                    Next
+                Next
             End If
 
             If form_origin = "FormAssetRecDet" Then
