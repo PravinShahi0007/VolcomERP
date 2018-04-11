@@ -6,6 +6,7 @@
         load_top()
         load_cat()
         load_dept()
+        load_user()
         '
         DERecDate.EditValue = Now()
         '
@@ -20,6 +21,15 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCItemList.DataSource = data
         GVItemList.BestFitColumns()
+    End Sub
+    Sub load_alloc()
+        Dim query As String = "SELECT ast.id_asset_rec_det,ast.id_asset,recd.`value_rec`,ast.asset_code,ast.`asset_desc`,ast.`asset_code_old`,ast.id_employee,pod.`id_departement`,pod.`id_asset_cat`,IFNULL(ast.`age`,0) AS age FROM tb_a_asset ast
+                                INNER JOIN tb_a_asset_rec_det recd ON recd.id_asset_rec_det=ast.id_asset_rec_det
+                                INNER JOIN tb_a_asset_po_det pod ON pod.id_asset_po_det=recd.`id_asset_po_det`
+                                WHERE recd.id_asset_rec='" & id_rec & "'"
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCAllocation.DataSource = data
+        GVAllocation.BestFitColumns()
     End Sub
     Sub load_det()
         Dim query As String = "SELECT * FROM tb_a_asset_rec rec 
@@ -44,6 +54,8 @@
             If data.Rows(0)("id_report_status").ToString = "6" Then
                 BPickPONumber.Enabled = False
                 BtnSave.Visible = False
+                XTPAllocation.PageVisible = True
+                load_alloc()
             End If
             '
             BMark.Visible = True
@@ -52,13 +64,19 @@
     End Sub
     Sub load_cat()
         Dim query As String = "SELECT id_asset_cat,asset_cat FROM tb_a_asset_cat"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupRepositoryQuery(RILEAssetCat, query, 0, "asset_cat", "id_asset_cat")
+        viewLookupRepositoryQuery(RICatAlloc2, query, 0, "asset_cat", "id_asset_cat")
+    End Sub
+    Sub load_user()
+        Dim query As String = "SELECT 0 AS id_employee,'-' AS employee_code,'-' AS employee_name FROM tb_m_employee
+                                UNION 
+                               SELECT id_employee,employee_code,employee_name FROM tb_m_employee"
+        viewLookupRepositoryQuery(RILEUserAlloc, query, 0, "employee_name", "id_employee")
     End Sub
     Sub load_dept()
         Dim query As String = "SELECT id_departement,departement FROM tb_m_departement"
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         viewLookupRepositoryQuery(RILEDepartement, query, 0, "departement", "id_departement")
+        viewLookupRepositoryQuery(RILEDeptAlloc, query, 0, "departement", "id_departement")
     End Sub
     Sub load_list_po_det()
         Dim query As String = "SELECT pod.*,'' AS id_asset_rec_det,pod.`qty` AS qty_rec,(pod.`value`-pod.`disc`) AS value_rec,'' AS note_rec
@@ -139,5 +157,21 @@
         FormReportMark.report_mark_type = "129"
         FormReportMark.form_origin = Name
         FormReportMark.ShowDialog()
+    End Sub
+
+    Private Sub BUpdate_Click(sender As Object, e As EventArgs) Handles BUpdate.Click
+        If GVAllocation.RowCount > 0 Then
+            For i As Integer = 0 To GVAllocation.RowCount - 1
+                Dim id_asset As String = GVAllocation.GetRowCellValue(i, "id_asset").ToString
+                Dim asset_code_old As String = GVAllocation.GetRowCellValue(i, "asset_code_old").ToString
+                Dim asset_desc As String = GVAllocation.GetRowCellValue(i, "asset_desc").ToString
+                Dim id_employee As String = GVAllocation.GetRowCellValue(i, "id_employee").ToString
+                Dim age As String = GVAllocation.GetRowCellValue(i, "age").ToString
+
+                Dim query As String = "UPDATE tb_a_asset SET asset_code_old='" & asset_code_old & "',asset_desc='" & asset_desc & "',id_employee='" & id_employee & "',age='" & age & "',id_user_last_upd='" & id_user & "',date_last_upd=NOW() WHERE id_asset='" & id_asset & "'"
+                execute_non_query(query, True, "", "", "", "")
+            Next
+            infoCustom("Asset detail updated")
+        End If
     End Sub
 End Class
