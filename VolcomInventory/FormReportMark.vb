@@ -3583,6 +3583,9 @@
                 id_status_reportx = "6"
             End If
 
+            query = String.Format("UPDATE tb_emp_uni_design SET id_report_status='{0}' WHERE id_emp_uni_design ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
             'kalo completed generate nomer urut
             If id_status_reportx = "6" Then
                 Dim qm As String = "SELECT IFNULL(MAX(dd.`no`),0) AS `maks` FROM tb_emp_uni_design_det dd 
@@ -3605,8 +3608,7 @@
                 execute_non_query("CALL set_emp_uni_point(" + FormEmpUniListDet.id_emp_uni_period + ")", True, "", "", "", "")
             End If
 
-            query = String.Format("UPDATE tb_emp_uni_design SET id_report_status='{0}' WHERE id_emp_uni_design ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
+
             'infoCustom("Status changed.")
 
             FormEmpUniListDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
