@@ -33,7 +33,7 @@
     End Sub
     Sub load_det()
         Dim query As String = "SELECT * FROM tb_a_asset_rec rec 
-                            INNER JOIN tb_a_asset_po po ON po.id_asset_po=rec.id_asset_rec
+                            INNER JOIN tb_a_asset_po po ON po.id_asset_po=rec.id_asset_po
                             WHERE rec.id_asset_rec='" & id_rec & "'"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         If data.Rows.Count > 0 Then
@@ -122,33 +122,37 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        If id_rec = "-1" Then 'new
-            Dim query As String = "INSERT INTO tb_a_asset_rec(id_asset_po,asset_rec_date,note,created_date,id_user_created,last_upd_date,id_user_last_upd) 
-                                    VALUES('" & id_po & "','" & Date.Parse(DERecDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(MENote.Text) & "',NOW(),'" & id_user & "',NOW(),'" & id_user & "'); SELECT LAST_INSERT_ID(); "
-            id_rec = execute_query(query, 0, True, "", "", "", "")
-            'insert detail
-            For i As Integer = 0 To GVItemList.RowCount - 1
-                query = "INSERT INTO tb_a_asset_rec_det(id_asset_po_det,id_asset_rec,qty_rec,value_rec,note_rec) VALUES('" & GVItemList.GetRowCellValue(i, "id_asset_po_det").ToString & "','" & id_rec & "','" & GVItemList.GetRowCellValue(i, "qty_rec").ToString & "','" & GVItemList.GetRowCellValue(i, "value_rec").ToString & "','" & GVItemList.GetRowCellValue(i, "note_rec").ToString & "')"
-                execute_non_query(query, True, "", "", "", "")
-            Next
-            infoCustom("Asset receive saved")
-            load_det()
-            FormAssetRec.load_rec()
-            FormAssetRec.GVRecList.FocusedRowHandle = find_row(FormAssetRec.GVRecList, "id_asset_rec", id_rec)
+        If id_po = "-1" Then
+            stopCustom("Please select PO first")
         Else
-            Dim query As String = "UPDATE tb_a_asset_rec SET id_asset_po='" & id_po & "',asset_rec_date='" & Date.Parse(DERecDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',note='" & addSlashes(MENote.Text) & "',last_upd_date=NOW(),id_user_last_upd='" & id_user & "' WHERE id_asset_rec='" & id_rec & "'"
-            execute_non_query(query, True, "", "", "", "")
-            'insert detail
-            query = "DELETE FROM tb_a_asset_rec_det WHERE id_asset_rec='" & id_rec & "'"
-            execute_non_query(query, True, "", "", "", "")
-            For i As Integer = 0 To GVItemList.RowCount - 1
-                query = "INSERT INTO tb_a_asset_rec_det(id_asset_po_det,id_asset_rec,qty_rec,value_rec,note_rec) VALUES('" & GVItemList.GetRowCellValue(i, "id_asset_po_det").ToString & "','" & id_rec & "','" & GVItemList.GetRowCellValue(i, "qty_rec").ToString & "','" & GVItemList.GetRowCellValue(i, "value_rec").ToString & "','" & GVItemList.GetRowCellValue(i, "note_rec").ToString & "')"
+            If id_rec = "-1" Then 'new
+                Dim query As String = "INSERT INTO tb_a_asset_rec(id_asset_po,asset_rec_date,note,created_date,id_user_created,last_upd_date,id_user_last_upd) 
+                                    VALUES('" & id_po & "','" & Date.Parse(DERecDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & addSlashes(MENote.Text) & "',NOW(),'" & id_user & "',NOW(),'" & id_user & "'); SELECT LAST_INSERT_ID(); "
+                id_rec = execute_query(query, 0, True, "", "", "", "")
+                'insert detail
+                For i As Integer = 0 To GVItemList.RowCount - 1
+                    query = "INSERT INTO tb_a_asset_rec_det(id_asset_po_det,id_asset_rec,qty_rec,value_rec,note_rec) VALUES('" & GVItemList.GetRowCellValue(i, "id_asset_po_det").ToString & "','" & id_rec & "','" & GVItemList.GetRowCellValue(i, "qty_rec").ToString & "','" & GVItemList.GetRowCellValue(i, "value_rec").ToString & "','" & GVItemList.GetRowCellValue(i, "note_rec").ToString & "')"
+                    execute_non_query(query, True, "", "", "", "")
+                Next
+                infoCustom("Asset receive saved")
+                load_det()
+                FormAssetRec.load_rec()
+                FormAssetRec.GVRecList.FocusedRowHandle = find_row(FormAssetRec.GVRecList, "id_asset_rec", id_rec)
+            Else
+                Dim query As String = "UPDATE tb_a_asset_rec SET id_asset_po='" & id_po & "',asset_rec_date='" & Date.Parse(DERecDate.EditValue.ToString).ToString("yyyy-MM-dd") & "',note='" & addSlashes(MENote.Text) & "',last_upd_date=NOW(),id_user_last_upd='" & id_user & "' WHERE id_asset_rec='" & id_rec & "'"
                 execute_non_query(query, True, "", "", "", "")
-            Next
-            infoCustom("Asset updated")
-            load_det()
-            FormAssetRec.load_rec()
-            FormAssetRec.GVRecList.FocusedRowHandle = find_row(FormAssetRec.GVRecList, "id_asset_rec", id_rec)
+                'insert detail
+                query = "DELETE FROM tb_a_asset_rec_det WHERE id_asset_rec='" & id_rec & "'"
+                execute_non_query(query, True, "", "", "", "")
+                For i As Integer = 0 To GVItemList.RowCount - 1
+                    query = "INSERT INTO tb_a_asset_rec_det(id_asset_po_det,id_asset_rec,qty_rec,value_rec,note_rec) VALUES('" & GVItemList.GetRowCellValue(i, "id_asset_po_det").ToString & "','" & id_rec & "','" & GVItemList.GetRowCellValue(i, "qty_rec").ToString & "','" & GVItemList.GetRowCellValue(i, "value_rec").ToString & "','" & GVItemList.GetRowCellValue(i, "note_rec").ToString & "')"
+                    execute_non_query(query, True, "", "", "", "")
+                Next
+                infoCustom("Asset updated")
+                load_det()
+                FormAssetRec.load_rec()
+                FormAssetRec.GVRecList.FocusedRowHandle = find_row(FormAssetRec.GVRecList, "id_asset_rec", id_rec)
+            End If
         End If
     End Sub
 
@@ -172,6 +176,27 @@
                 execute_non_query(query, True, "", "", "", "")
             Next
             infoCustom("Asset detail updated")
+        End If
+    End Sub
+
+    Private Sub BtnAttachment_Click(sender As Object, e As EventArgs) Handles BtnAttachment.Click
+        Cursor = Cursors.WaitCursor
+        FormDocumentUpload.id_report = id_po
+        FormDocumentUpload.report_mark_type = "129"
+        FormDocumentUpload.ShowDialog()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub TEPONumber_KeyDown(sender As Object, e As KeyEventArgs) Handles TEPONumber.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Dim query As String = "SELECT id_asset_po FROM tb_a_asset_po WHERE asset_po_no='" & TEPONumber.Text & "' LIMIT 1"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            If data.Rows.Count > 0 Then
+                id_po = data.Rows(0)("id_asset_po").ToString
+                load_po_det()
+            Else
+                infoCustom("PO Number not found")
+            End If
         End If
     End Sub
 End Class
