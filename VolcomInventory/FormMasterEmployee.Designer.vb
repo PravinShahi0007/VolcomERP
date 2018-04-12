@@ -69,6 +69,7 @@ Partial Class FormMasterEmployee
         Me.BandedGridColumnExternalEm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.BandedGridColumnOthEm = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BImportSalary = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlFreeze = New DevExpress.XtraEditors.PanelControl()
         Me.CheckEditFreeze = New DevExpress.XtraEditors.CheckEdit()
@@ -475,7 +476,7 @@ Partial Class FormMasterEmployee
         '
         'BandedGridColumnAllowCar
         '
-        Me.BandedGridColumnAllowCar.Caption = "Car Allowance"
+        Me.BandedGridColumnAllowCar.Caption = "Attendance Allowance"
         Me.BandedGridColumnAllowCar.DisplayFormat.FormatString = "{0:n2}"
         Me.BandedGridColumnAllowCar.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnAllowCar.FieldName = "allow_car"
@@ -544,6 +545,7 @@ Partial Class FormMasterEmployee
         'PanelControl1
         '
         Me.PanelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.PanelControl1.Controls.Add(Me.BImportSalary)
         Me.PanelControl1.Controls.Add(Me.SimpleButton1)
         Me.PanelControl1.Controls.Add(Me.PanelControlFreeze)
         Me.PanelControl1.Controls.Add(Me.PanelOpt)
@@ -552,6 +554,16 @@ Partial Class FormMasterEmployee
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(764, 35)
         Me.PanelControl1.TabIndex = 1
+        '
+        'BImportSalary
+        '
+        Me.BImportSalary.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BImportSalary.Image = CType(resources.GetObject("BImportSalary.Image"), System.Drawing.Image)
+        Me.BImportSalary.Location = New System.Drawing.Point(115, 0)
+        Me.BImportSalary.Name = "BImportSalary"
+        Me.BImportSalary.Size = New System.Drawing.Size(115, 35)
+        Me.BImportSalary.TabIndex = 111
+        Me.BImportSalary.Text = "Import Salary"
         '
         'SimpleButton1
         '
@@ -730,4 +742,5 @@ Partial Class FormMasterEmployee
     Friend WithEvents gridBandSalary As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBandContact As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents BClone As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BImportSalary As DevExpress.XtraEditors.SimpleButton
 End Class

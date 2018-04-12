@@ -376,6 +376,9 @@
         ElseIf report_mark_type = "117" Then
             'missing staff
             query = String.Format("SELECT id_report_status,sales_pos_number as report_number FROM tb_sales_pos WHERE id_sales_pos = '{0}'", id_report)
+        ElseIf report_mark_type = "123" Then
+            'list uniform
+            query = String.Format("SELECT ed.id_report_status,ep.period_name as report_number FROM tb_emp_uni_design ed INNER JOIN tb_emp_uni_period ep ON ep.id_emp_uni_period = ed.id_emp_uni_period WHERE ed.id_emp_uni_design = '{0}'", id_report)
         ElseIf report_mark_type = "124" Then
             'Propose Leave Admin Manager
             query = String.Format("SELECT id_report_status, emp_leave_number as report_number FROM tb_emp_leave WHERE id_emp_leave = '{0}'", id_report)
@@ -385,6 +388,12 @@
         ElseIf report_mark_type = "126" Then
             'over production memo
             query = String.Format("SELECT id_report_status, memo_number as report_number FROM tb_prod_over_memo WHERE id_prod_over_memo = '{0}'", id_report)
+        ElseIf report_mark_type = "128" Then
+            'Asset PO
+            query = String.Format("SELECT id_report_status, asset_po_no as report_number FROM tb_a_asset_po WHERE id_asset_po = '{0}'", id_report)
+        ElseIf report_mark_type = "129" Then
+            'Asset Rec
+            query = String.Format("SELECT id_report_status, asset_rec_no as report_number FROM tb_a_asset_rec WHERE id_asset_rec = '{0}'", id_report)
         End If
 
         data = execute_query(query, -1, True, "", "", "", "")
@@ -1656,39 +1665,34 @@
             Cursor = Cursors.Default
         ElseIf report_mark_type = "28" Or report_mark_type = "127" Then
             'prod receive qc
-            Try
-                If id_status_reportx = "6" Then
-                    'generate unique
-                    Dim query_gen As String = "CALL generate_prod_unique('" & id_report & "',1)"
-                    execute_non_query(query_gen, True, "", "", "", "")
-                    'delete empty data
-                    For i As Integer = 0 To (FormProductionRecDet.GVListPurchase.RowCount - 1)
-                        Dim id_prod_order_rec_det As String = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "id_prod_order_rec_det").ToString
-                        Dim qty As Decimal = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_qty")
-                        If qty = 0.0 Then
-                            Dim query_del As String = "DELETE FROM tb_prod_order_rec_det WHERE id_prod_order_rec_det = '" + id_prod_order_rec_det + "'"
-                            execute_non_query(query_del, True, "", "", "", "")
-                        End If
-                    Next
-                End If
+            If id_status_reportx = "6" Then
+                'generate unique
+                Dim query_gen As String = "CALL generate_prod_unique('" & id_report & "',1)"
+                execute_non_query(query_gen, True, "", "", "", "")
+                'delete empty data
+                For i As Integer = 0 To (FormProductionRecDet.GVListPurchase.RowCount - 1)
+                    Dim id_prod_order_rec_det As String = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "id_prod_order_rec_det").ToString
+                    Dim qty As Decimal = FormProductionRecDet.GVListPurchase.GetRowCellValue(i, "prod_order_rec_det_qty")
+                    If qty = 0.0 Then
+                        Dim query_del As String = "DELETE FROM tb_prod_order_rec_det WHERE id_prod_order_rec_det = '" + id_prod_order_rec_det + "'"
+                        execute_non_query(query_del, True, "", "", "", "")
+                    End If
+                Next
+            End If
 
-                query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
-                execute_non_query(query, True, "", "", "", "")
-                'infoCustom("Status changed.")
+            query = String.Format("UPDATE tb_prod_order_rec SET id_report_status='{0}' WHERE id_prod_order_rec='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
 
-                If form_origin = "FormProductionRecDet" Then
-                    FormProductionRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormProductionRecDet.allow_status()
-                    FormProductionRecDet.view_list_rec()
-                    FormProductionRec.view_prod_order_rec()
-                    FormProductionRec.GVProdRec.FocusedRowHandle = find_row(FormProductionRec.GVProdRec, "id_prod_order_rec", id_report)
-                Else
-                    FormViewProductionRec.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
-                    FormWork.view_production_rec()
-                End If
-            Catch ex As Exception
-                errorConnection()
-            End Try
+            If form_origin = "FormProductionRecDet" Then
+                FormProductionRecDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+                FormProductionRecDet.allow_status()
+                FormProductionRecDet.view_list_rec()
+                FormProductionRec.view_prod_order_rec()
+                FormProductionRec.GVProdRec.FocusedRowHandle = find_row(FormProductionRec.GVProdRec, "id_prod_order_rec", id_report)
+            Else
+                FormViewProductionRec.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            End If
         ElseIf report_mark_type = "29" Then
             'Production MRS
             query = String.Format("UPDATE tb_prod_order_mrs SET id_report_status='{0}' WHERE id_prod_order_mrs='{1}'", id_status_reportx, id_report)
@@ -3246,9 +3250,9 @@
                 FormFGRepairReturnRec.viewRepairList()
                 FormFGRepairReturnRec.GVRepairRec.FocusedRowHandle = find_row(FormFGRepairReturnRec.GVRepairRec, "id_fg_repair_return_rec", id_report)
             End If
-        ElseIf report_mark_type = "95" Then
+        ElseIf report_mark_type = "95" Or report_mark_type = "96" Or report_mark_type = "99" Or report_mark_type = "102" Or report_mark_type = "104" Or report_mark_type = "108" Or report_mark_type = "109" Or report_mark_type = "110" Or report_mark_type = "124" Then
             'LEAVE PROPOSE
-            If id_status_reportx = "3" Then
+            If id_status_reportx = "3" Or id_status_reportx = "6" Then
                 'update schedule to cuti
                 Dim query_upd As String = ""
                 query_upd = "UPDATE tb_emp_schedule emps
@@ -3260,50 +3264,52 @@
                                 SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
                 execute_non_query(query_upd, True, "", "", "", "")
                 'add if advance
-                query_upd = "INSERT INTO tb_emp_stock_leave_adv(id_emp,id_emp_leave,qty,adv_datetime)
-                                SELECT lve.id_emp,ld.id_emp_leave,SUM(ld.minutes_total) AS qty,NOW()
+                'select 
+                Dim query_det As String = "SELECT lve.id_emp,ld.id_emp_leave,SUM(ld.minutes_total) AS qty,NOW() as datex
                                 FROM tb_emp_leave_det ld
                                 INNER JOIN tb_emp_leave lve ON lve.id_emp_leave=ld.id_emp_leave
                                 WHERE ld.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'
                                 GROUP BY ld.id_emp_leave"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'complete 
-                id_status_reportx = "6"
-                'mail
-                Dim mail As ClassSendEmail = New ClassSendEmail()
-                mail.report_mark_type = report_mark_type
-                mail.send_email_appr(report_mark_type, id_report, True)
-            ElseIf id_status_reportx = "5" Then 'cancel
-                Dim query_cancel As String = ""
-                query_cancel = "DELETE FROM tb_emp_stock_leave_adv WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
-                query_cancel = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
-            End If
-            query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
-            'FormEmpLeave.load_sum()
-        ElseIf report_mark_type = "96" Then
-            'LEAVE PROPOSE
-            If id_status_reportx = "3" Then
-                'update schedule to cuti
-                Dim query_upd As String = ""
-                query_upd = "UPDATE tb_emp_schedule emps
-                                INNER JOIN
-                                (SELECT empld.id_schedule,empl.leave_purpose,empl.id_leave_type FROM tb_emp_leave_det empld
-                                INNER JOIN tb_emp_leave empl ON empld.id_emp_leave=empl.id_emp_leave
-                                WHERE empld.id_emp_leave='" & id_report & "')
-                                a ON a.id_schedule=emps.id_schedule
-                                SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'add if advance
-                query_upd = "INSERT INTO tb_emp_stock_leave_adv(id_emp,id_emp_leave,qty,adv_datetime)
-                                SELECT lve.id_emp,ld.id_emp_leave,SUM(ld.minutes_total) AS qty,NOW()
-                                FROM tb_emp_leave_det ld
-                                INNER JOIN tb_emp_leave lve ON lve.id_emp_leave=ld.id_emp_leave
-                                WHERE ld.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'
-                                GROUP BY ld.id_emp_leave"
-                execute_non_query(query_upd, True, "", "", "", "")
+                Dim data_det As DataTable = execute_query(query_det, -1, True, "", "", "", "")
+                If data_det.Rows.Count > 0 Then
+                    Dim qty_adv As Integer = data_det.Rows(0)("qty")
+                    '
+                    Dim query_sisa As String = "SELECT id_emp,SUM(IF(plus_minus=1,qty,-qty)) AS qty_sisa,`type`,IF(`type`=1,'Leave','DP') as type_ket,date_expired FROM tb_emp_stock_leave
+                                WHERE id_emp='" & data_det.Rows(0)("id_emp").ToString & "'
+                                GROUP BY id_emp,date_expired,`type`
+                                HAVING SUM(IF(plus_minus=1,qty,-qty)) > 0
+                                ORDER BY date_expired ASC,`type` DESC"
+                    Dim data_sisa As DataTable = execute_query(query_sisa, -1, True, "", "", "", "")
+                    If data_sisa.Rows.Count > 0 Then
+                        For i_sisa As Integer = 0 To data_sisa.Rows.Count - 1
+                            If qty_adv = 0 Then
+                                Exit For
+                            End If
+                            Dim qty_sisa As Integer = data_sisa.Rows(i_sisa)("qty_sisa")
+                            If qty_adv >= qty_sisa Then
+                                'adv kurangi, qty sisa lawankan dgn sisa
+                                qty_adv = qty_adv - qty_sisa
+                                Dim query_pot As String = "INSERT INTO tb_emp_stock_leave(id_emp_leave,id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,note,`type`) VALUES
+                                                            ('" & report_number & "','" & data_det.Rows(0)("id_emp").ToString & "','" & qty_sisa.ToString & "','2',NOW(),'" & Date.Parse(data_sisa.Rows(i_sisa)("date_expired").ToString).ToString("yyyy-MM-dd") & "','2','Auto Paid Advance Leave(" & report_number & ")','" & data_sisa.Rows(i_sisa)("type").ToString & "')"
+                                execute_non_query(query_pot, True, "", "", "", "")
+                            Else
+                                'qty sisa kurangi , lawankan dgn adv
+                                Dim query_pot As String = "INSERT INTO tb_emp_stock_leave(id_emp_leave,id_emp,qty,plus_minus,date_leave,date_expired,is_process_exp,note,`type`) VALUES
+                                                            ('" & report_number & "','" & data_det.Rows(0)("id_emp").ToString & "','" & qty_adv.ToString & "','2',NOW(),'" & Date.Parse(data_sisa.Rows(i_sisa)("date_expired").ToString).ToString("yyyy-MM-dd") & "','2','Auto Paid Advance Leave(" & report_number & ")','" & data_sisa.Rows(i_sisa)("type").ToString & "')"
+                                execute_non_query(query_pot, True, "", "", "", "")
+                                qty_adv = 0
+                            End If
+                        Next
+                    End If
+                    If qty_adv > 0 Then
+                        Dim query_pot As String = "INSERT INTO tb_emp_stock_leave_adv(id_emp,id_emp_leave,qty,adv_datetime)
+                                SELECT lve.id_emp,lve.id_emp_leave,'" & qty_adv.ToString & "' AS qty,NOW()
+                                FROM tb_emp_leave lve WHERE lve.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'"
+                        execute_non_query(query_upd, True, "", "", "", "")
+                    End If
+
+                End If
+
                 'complete 
                 id_status_reportx = "6"
                 'mail
@@ -3407,43 +3413,6 @@
             End If
             query = String.Format("UPDATE tb_emp_ch_schedule SET id_report_status='{0}' WHERE id_emp_ch_schedule ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-        ElseIf report_mark_type = "99" Then
-            'LEAVE PROPOSE
-            If id_status_reportx = "3" Then
-                'update schedule to cuti
-                Dim query_upd As String = ""
-                query_upd = "UPDATE tb_emp_schedule emps
-                                INNER JOIN
-                                (SELECT empld.id_schedule,empl.leave_purpose,empl.id_leave_type FROM tb_emp_leave_det empld
-                                INNER JOIN tb_emp_leave empl ON empld.id_emp_leave=empl.id_emp_leave
-                                WHERE empld.id_emp_leave='" & id_report & "')
-                                a ON a.id_schedule=emps.id_schedule
-                                SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'add if advance
-                query_upd = "INSERT INTO tb_emp_stock_leave_adv(id_emp,id_emp_leave,qty,adv_datetime)
-                                SELECT lve.id_emp,ld.id_emp_leave,SUM(ld.minutes_total) AS qty,NOW()
-                                FROM tb_emp_leave_det ld
-                                INNER JOIN tb_emp_leave lve ON lve.id_emp_leave=ld.id_emp_leave
-                                WHERE ld.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'
-                                GROUP BY ld.id_emp_leave"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'complete 
-                id_status_reportx = "6"
-                'mail
-                Dim mail As ClassSendEmail = New ClassSendEmail()
-                mail.report_mark_type = report_mark_type
-                mail.send_email_appr(report_mark_type, id_report, True)
-            ElseIf id_status_reportx = "5" Then 'cancel
-                Dim query_cancel As String = ""
-                query_cancel = "DELETE FROM tb_emp_stock_leave_adv WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
-                query_cancel = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
-            End If
-            query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
-            'FormEmpLeave.load_sum()
         ElseIf report_mark_type = "100" Then
             'Schedule PROPOSE with approval
             If id_status_reportx = "3" Then
@@ -3484,44 +3453,6 @@
             query = String.Format("UPDATE tb_wh_awbill SET id_report_status='{0}' WHERE id_awbill ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
-        ElseIf report_mark_type = "102" Then
-            'LEAVE PROPOSE
-            If id_status_reportx = "3" Or id_status_reportx = "6" Then
-                'update schedule to cuti
-                Dim query_upd As String = ""
-                query_upd = "UPDATE tb_emp_schedule emps
-                                INNER JOIN
-                                (SELECT empld.id_schedule,empl.leave_purpose,empl.id_leave_type FROM tb_emp_leave_det empld
-                                INNER JOIN tb_emp_leave empl ON empld.id_emp_leave=empl.id_emp_leave
-                                WHERE empld.id_emp_leave='" & id_report & "')
-                                a ON a.id_schedule=emps.id_schedule
-                                SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'add if advance
-                query_upd = "INSERT INTO tb_emp_stock_leave_adv(id_emp,id_emp_leave,qty,adv_datetime)
-                                SELECT lve.id_emp,ld.id_emp_leave,SUM(ld.minutes_total) AS qty,NOW()
-                                FROM tb_emp_leave_det ld
-                                INNER JOIN tb_emp_leave lve ON lve.id_emp_leave=ld.id_emp_leave
-                                WHERE ld.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'
-                                GROUP BY ld.id_emp_leave"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'complete 
-                id_status_reportx = "6"
-                'mail
-                Dim mail As ClassSendEmail = New ClassSendEmail()
-                mail.report_mark_type = report_mark_type
-                mail.send_email_appr(report_mark_type, id_report, True)
-            ElseIf id_status_reportx = "5" Then 'cancel
-                Dim query_cancel As String = ""
-                query_cancel = "DELETE FROM tb_emp_stock_leave_adv WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
-                query_cancel = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
-            End If
-
-            query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
-            'FormEmpLeave.load_sum()
         ElseIf report_mark_type = "103" Then
             'combine del
             Dim stt As ClassSalesDelOrder = New ClassSalesDelOrder()
@@ -3530,44 +3461,6 @@
 
             FormSalesDelOrderSlip.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
             FormSalesDelOrderSlip.actionLoad()
-        ElseIf report_mark_type = "104" Then
-            'LEAVE PROPOSE
-            If id_status_reportx = "3" Or id_status_reportx = "6" Then
-                'update schedule to cuti
-                Dim query_upd As String = ""
-                query_upd = "UPDATE tb_emp_schedule emps
-                                INNER JOIN
-                                (SELECT empld.id_schedule,empl.leave_purpose,empl.id_leave_type FROM tb_emp_leave_det empld
-                                INNER JOIN tb_emp_leave empl ON empld.id_emp_leave=empl.id_emp_leave
-                                WHERE empld.id_emp_leave='" & id_report & "')
-                                a ON a.id_schedule=emps.id_schedule
-                                SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'add if advance
-                query_upd = "INSERT INTO tb_emp_stock_leave_adv(id_emp,id_emp_leave,qty,adv_datetime)
-                                SELECT lve.id_emp,ld.id_emp_leave,SUM(ld.minutes_total) AS qty,NOW()
-                                FROM tb_emp_leave_det ld
-                                INNER JOIN tb_emp_leave lve ON lve.id_emp_leave=ld.id_emp_leave
-                                WHERE ld.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'
-                                GROUP BY ld.id_emp_leave"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'complete 
-                id_status_reportx = "6"
-                'mail
-                Dim mail As ClassSendEmail = New ClassSendEmail()
-                mail.report_mark_type = report_mark_type
-                mail.send_email_appr(report_mark_type, id_report, True)
-            ElseIf id_status_reportx = "5" Then 'cancel
-                Dim query_cancel As String = ""
-                query_cancel = "DELETE FROM tb_emp_stock_leave_adv WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
-                query_cancel = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
-            End If
-
-            query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
-            'FormEmpLeave.load_sum()
         ElseIf report_mark_type = "105" Then
             'Final Clear
             If id_status_reportx = "3" Then
@@ -3601,44 +3494,6 @@
                 FormProductionAssembly.GVData.FocusedRowHandle = find_row(FormProductionAssembly.GVData, "id_prod_ass", id_report)
             End If
             Cursor = Cursors.Default
-        ElseIf report_mark_type = "108" Or report_mark_type = "109" Or report_mark_type = "110" Then
-            'LEAVE PROPOSE
-            If id_status_reportx = "3" Or id_status_reportx = "6" Then
-                'update schedule to cuti
-                Dim query_upd As String = ""
-                query_upd = "UPDATE tb_emp_schedule emps
-                                INNER JOIN
-                                (SELECT empld.id_schedule,empl.leave_purpose,empl.id_leave_type FROM tb_emp_leave_det empld
-                                INNER JOIN tb_emp_leave empl ON empld.id_emp_leave=empl.id_emp_leave
-                                WHERE empld.id_emp_leave='" & id_report & "')
-                                a ON a.id_schedule=emps.id_schedule
-                                SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'add if advance
-                query_upd = "INSERT INTO tb_emp_stock_leave_adv(id_emp,id_emp_leave,qty,adv_datetime)
-                                SELECT lve.id_emp,ld.id_emp_leave,SUM(ld.minutes_total) AS qty,NOW()
-                                FROM tb_emp_leave_det ld
-                                INNER JOIN tb_emp_leave lve ON lve.id_emp_leave=ld.id_emp_leave
-                                WHERE ld.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'
-                                GROUP BY ld.id_emp_leave"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'complete 
-                id_status_reportx = "6"
-                'mail
-                Dim mail As ClassSendEmail = New ClassSendEmail()
-                mail.report_mark_type = report_mark_type
-                mail.send_email_appr(report_mark_type, id_report, True)
-            ElseIf id_status_reportx = "5" Then 'cancel
-                Dim query_cancel As String = ""
-                query_cancel = "DELETE FROM tb_emp_stock_leave_adv WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
-                query_cancel = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
-            End If
-
-            query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
-            'FormEmpLeave.load_sum()
         ElseIf report_mark_type = "111" Then
             Cursor = Cursors.WaitCursor
             'out non stock
@@ -3722,44 +3577,44 @@
             Else
                 'code here
             End If
-        ElseIf report_mark_type = "124" Then
-            'LEAVE PROPOSE
-            If id_status_reportx = "3" Or id_status_reportx = "6" Then
-                'update schedule to cuti
-                Dim query_upd As String = ""
-                query_upd = "UPDATE tb_emp_schedule emps
-                                INNER JOIN
-                                (SELECT empld.id_schedule,empl.leave_purpose,empl.id_leave_type FROM tb_emp_leave_det empld
-                                INNER JOIN tb_emp_leave empl ON empld.id_emp_leave=empl.id_emp_leave
-                                WHERE empld.id_emp_leave='" & id_report & "')
-                                a ON a.id_schedule=emps.id_schedule
-                                SET emps.id_leave_type=a.id_leave_type,emps.info_leave=a.leave_purpose"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'add if advance
-                query_upd = "INSERT INTO tb_emp_stock_leave_adv(id_emp,id_emp_leave,qty,adv_datetime)
-                                SELECT lve.id_emp,ld.id_emp_leave,SUM(ld.minutes_total) AS qty,NOW()
-                                FROM tb_emp_leave_det ld
-                                INNER JOIN tb_emp_leave lve ON lve.id_emp_leave=ld.id_emp_leave
-                                WHERE ld.id_emp_leave='" & id_report & "' AND lve.id_leave_type='4'
-                                GROUP BY ld.id_emp_leave"
-                execute_non_query(query_upd, True, "", "", "", "")
-                'complete 
+        ElseIf report_mark_type = "123" Then
+            'list uniform
+            If id_status_reportx = "3" Then
                 id_status_reportx = "6"
-                'mail
-                Dim mail As ClassSendEmail = New ClassSendEmail()
-                mail.report_mark_type = report_mark_type
-                mail.send_email_appr(report_mark_type, id_report, True)
-            ElseIf id_status_reportx = "5" Then 'cancel
-                Dim query_cancel As String = ""
-                query_cancel = "DELETE FROM tb_emp_stock_leave_adv WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
-                query_cancel = "DELETE FROM tb_emp_stock_leave WHERE id_emp_leave='" & id_report & "'"
-                execute_non_query(query_cancel, True, "", "", "", "")
             End If
 
-            query = String.Format("UPDATE tb_emp_leave SET id_report_status='{0}' WHERE id_emp_leave ='{1}'", id_status_reportx, id_report)
+            query = String.Format("UPDATE tb_emp_uni_design SET id_report_status='{0}' WHERE id_emp_uni_design ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
-            'FormEmpLeave.load_sum()
+
+            'kalo completed generate nomer urut
+            If id_status_reportx = "6" Then
+                Dim qm As String = "SELECT IFNULL(MAX(dd.`no`),0) AS `maks` FROM tb_emp_uni_design_det dd 
+                INNER JOIN tb_emp_uni_design d ON d.id_emp_uni_design = dd.id_emp_uni_design
+                WHERE d.id_emp_uni_period=" + FormEmpUniListDet.LEPeriodx.EditValue.ToString + " "
+                Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
+                Dim maks As Integer = dm.Rows(0)("maks")
+
+                Dim qn As String = "UPDATE tb_emp_uni_design_det main
+                INNER JOIN (
+                    SELECT dd.id_emp_uni_design_det,dd.id_design, @a:=@a+1 `counting` 
+                    FROM tb_emp_uni_design_det dd ,
+                    (SELECT @a:= " + maks.ToString + ") AS a
+                    WHERE dd.id_emp_uni_design =" + id_report + "
+                ) src ON src.id_emp_uni_design_det = main.id_emp_uni_design_det
+                SET main.no = src.counting "
+                execute_non_query(qn, True, "", "", "", "")
+
+                'update point
+                execute_non_query("CALL set_emp_uni_point(" + FormEmpUniListDet.id_emp_uni_period + ")", True, "", "", "", "")
+            End If
+
+
+            'infoCustom("Status changed.")
+
+            FormEmpUniListDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
+            FormEmpUniListDet.actionLoad()
+            FormEmpUniList.viewData()
+            FormEmpUniList.GVData.FocusedRowHandle = find_row(FormEmpUniList.GVData, "id_emp_uni_design", id_report)
         ElseIf report_mark_type = "125" Then
             'leave cut
             If id_status_reportx = "5" Then
@@ -3777,11 +3632,73 @@
                 id_status_reportx = "6"
             End If
 
+            If id_status_reportx = "6" Then
+                Cursor = Cursors.WaitCursor
+                Dim mail As New ClassSendEmail()
+                mail.report_mark_type = "126"
+                mail.id_report = id_report
+                mail.send_email()
+                Cursor = Cursors.Default
+            End If
+
             Dim query_upd As String = "UPDATE tb_prod_over_memo SET id_report_status='" + id_status_reportx + "' WHERE id_prod_over_memo='" + id_report + "' "
             execute_non_query(query_upd, True, "", "", "", "")
             FormProdOverMemoDet.actionLoad()
             FormProdOverMemo.viewData()
             FormProdOverMemo.GVMemo.FocusedRowHandle = find_row(FormProdOverMemo.GVMemo, "id_prod_over_memo", id_report)
+        ElseIf report_mark_type = "128" Then
+            'Asset PO
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            query = String.Format("UPDATE tb_a_asset_po SET id_report_status='{0}' WHERE id_asset_po ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
+
+            If form_origin = "FormAssetPODet" Then
+                FormAssetPODet.load_det()
+                FormAssetPO.load_po()
+                FormAssetPO.GVPOList.FocusedRowHandle = find_row(FormAssetPO.GVPOList, "id_asset_po", id_report)
+            Else
+                'code here
+            End If
+        ElseIf report_mark_type = "129" Then
+            'Asset PO
+            If id_status_reportx = "3" Then
+                id_status_reportx = "6"
+            End If
+
+            '
+            query = String.Format("UPDATE tb_a_asset_rec SET id_report_status='{0}' WHERE id_asset_rec ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+            'infoCustom("Status changed.")
+            '
+            If id_status_reportx = "6" Then
+                'insert to master asset
+                query = String.Format("SELECT recd.qty_rec,pod.`id_asset_cat`,recd.`id_asset_rec_det`,pod.`desc`,pod.`id_departement`,0 AS id_employee,1 AS id_user_created,1 AS id_user_last_upd,DATE(NOW()) AS date_created,DATE(NOW()) AS date_last_upd FROM tb_a_asset_rec_det recd
+                                        INNER JOIN tb_a_asset_po_det pod ON pod.`id_asset_po_det`=recd.`id_asset_po_det`
+                                        WHERE id_asset_rec='{0}'", id_report)
+                Dim data_sel As DataTable = execute_query(query, -1, True, "", "", "", "")
+                For sel As Integer = 0 To data_sel.Rows.Count - 1
+                    Dim qty_rec As Integer = data_sel.Rows(sel)("qty_rec")
+                    For ins As Integer = 0 To qty_rec - 1
+                        Dim query_ins As String = String.Format("INSERT INTO tb_a_asset(id_asset_cat,id_asset_rec_det,`asset_desc`,id_departement,id_employee,id_user_created,id_user_last_upd,date_created,date_last_upd)
+                                        SELECT pod.`id_asset_cat`,recd.`id_asset_rec_det`,pod.`desc`,pod.`id_departement`,0 AS id_employee,'" & id_user & "' AS id_user_created,'" & id_user & "' AS id_user_last_upd,DATE(NOW()) AS date_created,DATE(NOW()) AS date_last_upd FROM tb_a_asset_rec_det recd
+                                        INNER JOIN tb_a_asset_po_det pod ON pod.`id_asset_po_det`=recd.`id_asset_po_det`
+                                        WHERE recd.id_asset_rec_det='{0}'", data_sel.Rows(sel)("id_asset_rec_det"))
+                        execute_non_query(query_ins, True, "", "", "", "")
+                    Next
+                Next
+            End If
+
+            If form_origin = "FormAssetRecDet" Then
+                FormAssetRecDet.load_det()
+                FormAssetRec.load_rec()
+                FormAssetRec.GVRecList.FocusedRowHandle = find_row(FormAssetRec.GVRecList, "id_asset_rec", id_report)
+            Else
+                'code here
+            End If
         End If
 
         'adding lead time

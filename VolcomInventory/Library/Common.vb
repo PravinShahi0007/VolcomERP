@@ -2321,7 +2321,19 @@ Module Common
             Console.WriteLine(ex.ToString)
         End Try
     End Sub
-
+    'view repository lookupedit
+    Public Sub viewLookupRepositoryQuery(ByVal LE As Repository.RepositoryItemLookUpEdit, ByVal query As String, ByVal index_selected As Integer, ByVal display As String, ByVal value As String)
+        Try
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            LE.DataSource = Nothing
+            LE.DataSource = data
+            LE.DisplayMember = display
+            LE.ValueMember = value
+        Catch ex As Exception
+            'errorConnection()
+            Console.WriteLine(ex.ToString)
+        End Try
+    End Sub
     'View Lookup with Query
     Public Sub viewSearchLookupQuery(ByVal SLE As DevExpress.XtraEditors.SearchLookUpEdit, ByVal query As String, ByVal index_selected As String, ByVal display As String, ByVal value As String)
         'Try
@@ -2497,16 +2509,32 @@ Module Common
             Return date_now
         End If
     End Function
+    Function parse_view_date(ByVal datex As String)
+        Dim query As String = ""
+        Dim date_now As String = ""
+
+        If datex = "" Then
+            date_now = ""
+        Else
+            date_now = Date.Parse(datex).ToString("dd MMM yyyy")
+        End If
+
+        Return date_now
+    End Function
     Function view_date_from(ByVal datex As String, ByVal plus As Integer)
         Dim query As String = ""
-        Dim date_now As String
+        Dim date_now As String = ""
 
-        If plus = 0 Then
-            query = "SELECT DATE_FORMAT('" & datex & "','%d/%m/%Y') AS now_datex"
-            date_now = execute_query(query, 0, True, "", "", "", "")
+        If datex = "" Then
+            date_now = ""
         Else
-            query = "SELECT DATE_FORMAT(DATE_ADD('" & datex & "',INTERVAL " & plus & " DAY),'%d/%m/%Y')  AS now_datex "
-            date_now = execute_query(query, 0, True, "", "", "", "")
+            If plus = 0 Then
+                query = "SELECT DATE_FORMAT('" & datex & "','%d %M %Y') AS now_datex"
+                date_now = execute_query(query, 0, True, "", "", "", "")
+            Else
+                query = "SELECT DATE_FORMAT(DATE_ADD('" & datex & "',INTERVAL " & plus & " DAY),'%d %M %Y')  AS now_datex "
+                date_now = execute_query(query, 0, True, "", "", "", "")
+            End If
         End If
 
         Return date_now

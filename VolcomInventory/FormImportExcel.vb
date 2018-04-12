@@ -99,6 +99,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select KODE, NAMA, SIZETYP, `xxs/1`, `xs/2`, `s/3`, `m/4`, `ml/5`, `l/6`, `xl/7`, `xxl/8`, `all/9`, `~/0` from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='')", oledbconn)
         ElseIf id_pop_up = "26" Then
             MyCommand = New OleDbDataAdapter("select no_faktur, nama_toko, npwp, alamat, id_keterangan_tambahan, kode_barang, ket_barang, jumlah_barang, harga_satuan, harga_total, diskon, ppn, dpp, jumlah_ppn, jumlah_dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
+        ElseIf id_pop_up = "33" Then
+            MyCommand = New OleDbDataAdapter("select KODE from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='') GROUP BY KODE ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -1727,6 +1729,7 @@ Public Class FormImportExcel
             GCData.DataSource = query.ToList()
             GCData.RefreshDataSource()
             GVData.PopulateColumns()
+            '.Budget = If(FormEmpUniBudgetSet.CheckEdit1.EditValue.ToString = "True", FormEmpUniBudgetSet.TxtBudget.EditValue, table1("budget")),
 
             'Customize column
             GVData.Columns("IdEmp").Visible = False
@@ -1788,6 +1791,109 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "33" Then
+            'import list uni
+
+
+            'master design
+            Dim queryx As String = "SELECT * FROM tb_m_design d WHERE d.id_active=1 "
+            Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+            Dim tb1 = data_temp.AsEnumerable()
+            Dim tb2 = dt.AsEnumerable()
+
+            'list
+            Dim ql As String = "SELECT dd.id_design, dm.design_code
+            FROM tb_emp_uni_design_det dd
+            INNER JOIN tb_m_design dm ON dm.id_design = dd.id_design
+            INNER JOIN tb_emp_uni_design d ON d.id_emp_uni_design = dd.id_emp_uni_design
+            WHERE d.id_emp_uni_period=" + FormEmpUniListDet.LEPeriodx.EditValue.ToString + "
+            AND d.id_report_status!=5 "
+            Dim dl As DataTable = execute_query(ql, -1, True, "", "", "", "")
+            Dim tb3 = dl.AsEnumerable()
+
+            Dim query = From table1 In tb1
+                        Group Join table_tmp In tb2 On table1("KODE").ToString Equals table_tmp("design_code").ToString Into designjoin = Group
+                        From rd In designjoin.DefaultIfEmpty()
+                        Group Join list In tb3 On table1("KODE").ToString Equals list("design_code").ToString Into listjoin = Group
+                        From rl In listjoin.DefaultIfEmpty()
+                        Select New With
+                            {
+                                .IdDesign = If(rd Is Nothing, "0", rd("id_design").ToString),
+                                .Code = If(rd Is Nothing, table1("KODE"), rd("design_code").ToString),
+                                .Description = If(rd Is Nothing, "-", rd("design_display_name").ToString),
+                                .Status = If(rd Is Nothing, "Not Found", If(rl Is Nothing, "OK", "Already exist on this period"))
+                            }
+
+            GCData.DataSource = Nothing
+            GCData.DataSource = query.ToList()
+            GCData.RefreshDataSource()
+            GVData.PopulateColumns()
+            GVData.Columns("IdDesign").Visible = False
+        ElseIf id_pop_up = "34" Then 'import salary
+            Try
+                Dim queryx As String = "SELECT * FROM tb_m_employee WHERE is_active='1'"
+                Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+                Dim tb1 = data_temp.AsEnumerable()
+                Dim tb2 = dt.AsEnumerable()
+
+                Dim query = From table1 In tb1
+                            Group Join table_tmp In tb2
+                                On table1("nik").ToString.ToLower Equals table_tmp("employee_code").ToString.ToLower Into emp = Group
+                            From result_emp In emp.DefaultIfEmpty()
+                            Select New With
+                                {
+                                    .IdEmployee = If(result_emp Is Nothing, "0", result_emp("id_employee")),
+                                    .NIK = If(result_emp Is Nothing, "0", result_emp("employee_code")),
+                                    .Name = If(result_emp Is Nothing, "0", result_emp("employee_name")),
+                                    .basic_salary = table1("basic_salary"),
+                                    .allow_job = table1("job_allowance"),
+                                    .allow_meal = table1("meal_allowance"),
+                                    .allow_trans = table1("transport_allowance"),
+                                    .allow_house = table1("house_allowance"),
+                                    .allow_car = table1("car_allowance"),
+                                    .effective_date = table1("effective_date")
+                                }
+
+                GCData.DataSource = Nothing
+                GCData.DataSource = query.ToList()
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+
+                'Customize column
+                GVData.Columns("IdEmployee").Visible = False
+                GVData.Columns("NIK").Caption = "NIK"
+                GVData.Columns("basic_salary").Caption = "Basic Salary"
+                GVData.Columns("allow_job").Caption = "Job Allowance"
+                GVData.Columns("allow_meal").Caption = "Meal Allowance"
+                GVData.Columns("allow_trans").Caption = "Transport Allowance"
+                GVData.Columns("allow_house").Caption = "House Allowance"
+                GVData.Columns("allow_car").Caption = "Attendance Allowance"
+                GVData.Columns("effective_date").Caption = "Effective Date"
+
+                GVData.Columns("basic_salary").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("allow_job").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("allow_meal").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("allow_trans").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("allow_house").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GVData.Columns("allow_car").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+
+                GVData.Columns("basic_salary").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("allow_job").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("allow_meal").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("allow_trans").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("allow_house").DisplayFormat.FormatString = "{0:N2}"
+                GVData.Columns("allow_car").DisplayFormat.FormatString = "{0:N2}"
+
+                GVData.Columns("effective_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("effective_date").DisplayFormat.FormatString = "{0:dd MMM yyyy}"
+
+                GVData.OptionsView.ColumnAutoWidth = False
+                GVData.BestFitColumns()
+
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -1834,7 +1940,7 @@ Public Class FormImportExcel
                 e.Appearance.BackColor = Color.Salmon
                 e.Appearance.BackColor2 = Color.WhiteSmoke
             End If
-        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Then
+        ElseIf id_pop_up = "11" Or id_pop_up = "13" Or id_pop_up = "14" Or id_pop_up = "15" Or id_pop_up = "17" Or id_pop_up = "19" Or id_pop_up = "20" Or id_pop_up = "21" Or id_pop_up = "25" Or id_pop_up = "31" Or id_pop_up = "33" Then
             Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("Status")).ToString
             If stt <> "OK" Then
                 e.Appearance.BackColor = Color.Salmon
@@ -3126,6 +3232,10 @@ Public Class FormImportExcel
                         If l_i > 0 Then
                             execute_non_query(query_ins, True, "", "", "", "")
                         End If
+
+                        'update point
+                        'execute_non_query("CALL set_emp_uni_point(" + FormEmpUniPeriodDet.id_emp_uni_period + ")", True, "", "", "", "")
+
                         FormEmpUniPeriodDet.viewDetail()
                         Close()
                         Cursor = Cursors.Default
@@ -3156,6 +3266,60 @@ Public Class FormImportExcel
                     Next
                     infoCustom("Import Success")
                     FormProdDuty.view_production_order()
+                    Close()
+                End If
+            ElseIf id_pop_up = "33" Then
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Please make sure :" + System.Environment.NewLine + "- Only 'OK' status will continue to next step." + System.Environment.NewLine + "- If this report is an important, please click 'No' button, and then click 'Print' button to export to multiple formats provided." + System.Environment.NewLine + "Are you sure you want to continue this process?", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                Dim id_emp_uni_design As String = FormEmpUniListDet.id_emp_uni_design
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
+                    GVData.ActiveFilterString = "[Status] = 'OK'"
+                    If GVData.RowCount > 0 Then
+                        'delete old
+                        Dim qd As String = "DELETE FROM tb_emp_uni_design_det WHERE id_emp_uni_design='" + id_emp_uni_design + "' "
+                        execute_non_query(qd, True, "", "", "", "")
+
+                        PBC.Properties.Minimum = 0
+                        PBC.Properties.Maximum = GVData.RowCount - 1
+                        PBC.Properties.Step = 1
+                        PBC.Properties.PercentView = True
+                        '
+
+                        For i As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
+                            Dim id_design As String = GVData.GetRowCellValue(i, "IdDesign").ToString
+                            Dim query As String = "INSERT INTO tb_emp_uni_design_det(id_emp_uni_design, id_design) VALUES('" + id_emp_uni_design + "', '" + id_design + "'); "
+                            execute_non_query(query, True, "", "", "", "")
+                            '
+                            PBC.PerformStep()
+                            PBC.Update()
+                        Next
+                        FormEmpUniListDet.viewDetail()
+                        Close()
+                    Else
+                        stopCustom("There is no data for import process, please make sure your input !")
+                        makeSafeGV(GVData)
+                    End If
+                End If
+            ElseIf id_pop_up = "34" Then 'import salary
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+                    '
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "0" Then
+                            Dim query_exec As String = "INSERT INTO tb_m_employee_salary(id_employee,basic_salary,allow_job,allow_meal,allow_trans,allow_house,allow_car,effective_date)
+                                                        VALUES('" & GVData.GetRowCellValue(i, "IDEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "basic_salary").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_job").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_meal").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_trans").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_house").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_car").ToString) & "','" & Date.Parse(GVData.GetRowCellValue(i, "effective_date").ToString).ToString("yyyy-MM-dd") & "')"
+                            execute_non_query(query_exec, True, "", "", "", "")
+                        End If
+                        '
+                        PBC.PerformStep()
+                        PBC.Update()
+                    Next
+                    infoCustom("Import Success")
+                    FormMasterEmployee.viewEmployee("-1")
                     Close()
                 End If
             End If

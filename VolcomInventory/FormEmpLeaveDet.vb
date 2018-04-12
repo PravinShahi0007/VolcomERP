@@ -155,7 +155,7 @@
                                 WHERE id_emp='" & id_employee & "'
                                 GROUP BY id_emp,date_expired,`type`
                                 HAVING SUM(IF(plus_minus=1,qty,-qty)) > 0
-                                ORDER BY `type` DESC,date_expired ASC"
+                                ORDER BY date_expired ASC,`type` DESC"
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCLeaveRemaining.DataSource = data
         If data.Rows.Count > 0 Then

@@ -5,7 +5,6 @@
     '
     Private Sub FormEmpPayroll_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         load_payroll()
-        '
     End Sub
 
     Sub load_payroll()
@@ -16,6 +15,7 @@
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         '
         GCPayrollPeriode.DataSource = data
+        '
         check_but()
     End Sub
 
@@ -116,6 +116,72 @@
                 execute_non_query(query, True, "", "", "", "")
                 '
                 load_payroll_detail()
+            End If
+        End If
+    End Sub
+
+    Private Sub RICEPending_EditValueChanged(sender As Object, e As EventArgs) Handles RICEPending.EditValueChanged
+        Dim cepending As DevExpress.XtraEditors.CheckEdit = CType(sender, DevExpress.XtraEditors.CheckEdit)
+        If cepending.CheckState = True Then
+            'pending
+            Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_pending='1' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
+            execute_non_query(query_upd, True, "", "", "", "")
+        Else
+            'not pending
+            Dim query_upd As String = "UPDATE tb_emp_payroll_det SET is_pending='2' WHERE id_payroll_det='" & GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString & "'"
+            execute_non_query(query_upd, True, "", "", "", "")
+        End If
+    End Sub
+
+    Private Sub CheckEditSelAll_CheckedChanged(sender As Object, e As EventArgs) Handles CheckEditSelAll.CheckedChanged
+        If GVPayroll.RowCount > 0 Then
+            For i As Integer = 0 To ((GVPayroll.RowCount - 1) - GetGroupRowCount(GVPayroll))
+                If CheckEditSelAll.Checked = False Then
+                    GVPayroll.SetRowCellValue(i, "is_check", "no")
+                Else
+                    GVPayroll.SetRowCellValue(i, "is_check", "yes")
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub BUpdateActualWorkingDays_Click(sender As Object, e As EventArgs) Handles BUpdateActualWorkingDays.Click
+        makeSafeGV(GVPayroll)
+        GVPayroll.ActiveFilterString = "[is_check]='yes'"
+        For i As Integer = 0 To GVPayroll.RowCount - 1
+            'update actual working days
+            infoCustom(GVPayroll.GetRowCellValue(i, "id_employee").ToString)
+            progres_bar_update(i, GVPayroll.RowCount - 1)
+        Next
+        makeSafeGV(GVPayroll)
+    End Sub
+
+    Private Sub BPrintSlip_Click(sender As Object, e As EventArgs) Handles BPrintSlip.Click
+        Dim where_string As String = ""
+
+        If GVPayroll.RowCount > 0 Then
+            Cursor = Cursors.WaitCursor
+            'search id det
+            makeSafeGV(GVPayroll)
+            GVPayroll.ActiveFilterString = "[is_check]='yes'"
+            If GVPayroll.RowCount > 0 Then
+                For i As Integer = 0 To GVPayroll.RowCount - 1
+                    If i = 0 Then
+                        where_string = GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
+                    Else
+                        where_string += "," & GVPayroll.GetRowCellValue(i, "id_payroll_det").ToString
+                    End If
+                Next
+                makeSafeGV(GVPayroll)
+                '
+                ReportSalarySlip.where_string = where_string
+                ReportSalarySlip.id_payroll = GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+                Dim Report As New ReportSalarySlip()
+                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                Tool.ShowPreviewDialog()
+                Cursor = Cursors.Default
+            Else
+                stopCustom("Please choose employee first.")
             End If
         End If
     End Sub

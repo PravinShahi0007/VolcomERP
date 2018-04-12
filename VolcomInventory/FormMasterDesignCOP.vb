@@ -8,11 +8,12 @@
     End Sub
 
     Sub viewSeason()
-        Dim query As String = "SELECT '-1' AS id_season, 'All Season' as season UNION "
-        query += "(SELECT id_season,season FROM tb_season a "
-        query += "INNER JOIN tb_range b ON a.id_range = b.id_range "
-        query += "ORDER BY b.range ASC)"
+        Dim query As String = "SELECT '-1' AS id_season, 'All Season' AS season,'-1' AS `range` UNION
+                                (SELECT a.id_season,a.season,b.range AS `range` FROM tb_season a 
+                                INNER JOIN tb_range b ON a.id_range = b.id_range 
+                                ORDER BY b.range ASC)"
         viewSearchLookupQuery(SLESeason, query, "id_season", "season", "id_season")
+        viewSearchLookupQuery(SLESeasonByCode, query, "range", "season", "range")
     End Sub
 
     Sub view_design()
@@ -191,5 +192,28 @@
         FormMasterDesignSingle.id_pop_up = "4"
         FormMasterDesignSingle.id_design = BGVDesign.GetFocusedRowCellValue("id_design").ToString
         FormMasterDesignSingle.ShowDialog()
+    End Sub
+
+    Private Sub BSearchByCode_Click(sender As Object, e As EventArgs) Handles BSearchByCode.Click
+        view_design_by_code()
+    End Sub
+
+    Sub view_design_by_code()
+        Dim query_where As String = ""
+
+        If Not SLESeasonByCode.EditValue.ToString = "-1" Then
+            query_where += " AND RIGHT(f1.design_code,2)='" & SLESeasonByCode.EditValue.ToString & "'"
+        End If
+
+        Try
+            Dim query As String = "CALL view_all_design_param(""" + query_where + """)"
+            Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+            GCDesign.DataSource = data
+            BGVDesign.BestFitColumns()
+            BGVDesign.ExpandAllGroups()
+            check_menu()
+        Catch ex As Exception
+            errorConnection()
+        End Try
     End Sub
 End Class
