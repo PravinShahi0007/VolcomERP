@@ -80,6 +80,7 @@ Partial Class FormMasterAssetDetail
         Me.TEAge = New DevExpress.XtraEditors.TextEdit()
         Me.LabelControl12 = New DevExpress.XtraEditors.LabelControl()
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
+        Me.BSetNonActive = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.LEDept.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TECode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEUser.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -401,6 +402,7 @@ Partial Class FormMasterAssetDetail
         '
         'PanelControl3
         '
+        Me.PanelControl3.Controls.Add(Me.BSetNonActive)
         Me.PanelControl3.Controls.Add(Me.BCancel)
         Me.PanelControl3.Controls.Add(Me.BSave)
         Me.PanelControl3.Dock = System.Windows.Forms.DockStyle.Bottom
@@ -768,6 +770,17 @@ Partial Class FormMasterAssetDetail
         Me.PictureEdit1.TabIndex = 0
         Me.PictureEdit1.Visible = False
         '
+        'BSetNonActive
+        '
+        Me.BSetNonActive.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BSetNonActive.ImageIndex = 4
+        Me.BSetNonActive.ImageList = Me.LargeImageCollection
+        Me.BSetNonActive.Location = New System.Drawing.Point(2, 2)
+        Me.BSetNonActive.Name = "BSetNonActive"
+        Me.BSetNonActive.Size = New System.Drawing.Size(140, 33)
+        Me.BSetNonActive.TabIndex = 22
+        Me.BSetNonActive.Text = "Set As Non Active"
+        '
         'FormMasterAssetDetail
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -896,4 +909,5 @@ Partial Class FormMasterAssetDetail
     Friend WithEvents LabelControl23 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl24 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents TEUserCreated As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents BSetNonActive As DevExpress.XtraEditors.SimpleButton
 End Class

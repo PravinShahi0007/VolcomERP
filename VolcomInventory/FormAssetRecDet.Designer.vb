@@ -495,7 +495,6 @@ Partial Class FormAssetRecDet
         Me.TEPONumber.Properties.AppearanceReadOnly.BackColor = System.Drawing.Color.White
         Me.TEPONumber.Properties.AppearanceReadOnly.Options.UseBackColor = True
         Me.TEPONumber.Properties.EditValueChangedDelay = 1
-        Me.TEPONumber.Properties.ReadOnly = True
         Me.TEPONumber.Size = New System.Drawing.Size(186, 20)
         Me.TEPONumber.TabIndex = 1
         Me.TEPONumber.TabStop = False

@@ -800,6 +800,12 @@
     <Compile Include="FormEmpPayrollOvertimeDet.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPayrollOvertimePick.Designer.vb">
+      <DependentUpon>FormEmpPayrollOvertimePick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollOvertimePick.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpPayrollPeriode.Designer.vb">
       <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
     </Compile>
@@ -5628,6 +5634,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollOvertimeDet.resx">
       <DependentUpon>FormEmpPayrollOvertimeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollOvertimePick.resx">
+      <DependentUpon>FormEmpPayrollOvertimePick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollPeriode.resx">
       <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
