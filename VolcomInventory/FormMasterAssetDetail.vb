@@ -1,6 +1,10 @@
 ﻿Public Class FormMasterAssetDetail
     Public id_asset As String = "-1"
     Private Sub FormMasterAssetDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        load_form()
+    End Sub
+
+    Sub load_form()
         load_cat()
         load_dept()
         load_user()
@@ -25,10 +29,11 @@
             LEAssetCat.Enabled = True
             LEDept.Enabled = True
             DERecDate.Properties.ReadOnly = False
+            BSetNonActive.Visible = False
         Else 'edit
             Dim query As String = "SELECT a.asset_code,a.asset_code_old,a.asset_desc,pod.id_asset_cat,pod.id_departement,a.id_employee
                                     ,po.asset_po_no,pod.qty as po_qty,po.asset_po_date,pod.value AS po_value
-                                    ,recd.qty_rec,recd.value_rec ,rec.asset_rec_date,a.age
+                                    ,recd.qty_rec,recd.value_rec ,rec.asset_rec_date,a.age,a.date_created,a.date_last_upd
                                     ,pod.vendor_sku,emp_cre.employee_name AS emp_created,emp_last.employee_name AS emp_last_upd
                                     FROM tb_a_asset a
                                     INNER JOIN tb_a_asset_rec_det recd ON recd.id_asset_rec_det=a.id_asset_rec_det
@@ -223,5 +228,11 @@
 
     Private Sub BNothingUser_Click(sender As Object, e As EventArgs) Handles BNothingUser.Click
         LEUser.ItemIndex = 0
+    End Sub
+
+    Private Sub BSetNonActive_Click(sender As Object, e As EventArgs) Handles BSetNonActive.Click
+        Dim query As String = "UPDATE tb_a_asset SET is_active='2',id_user_last_upd='" & id_user & "',date_last_upd=NOW() WHERE id_asset='" & id_asset & "'"
+        execute_non_query(query, True, "", "", "", "")
+        load_form()
     End Sub
 End Class
