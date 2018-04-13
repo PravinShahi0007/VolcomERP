@@ -23,7 +23,7 @@
         GVItemList.BestFitColumns()
     End Sub
     Sub load_alloc()
-        Dim query As String = "SELECT ast.id_asset_rec_det,ast.id_asset,recd.`value_rec`,ast.asset_code,ast.`asset_desc`,ast.`asset_code_old`,ast.id_employee,pod.`id_departement`,pod.`id_asset_cat`,IFNULL(ast.`age`,0) AS age FROM tb_a_asset ast
+        Dim query As String = "SELECT ast.asset_location,ast.id_asset_rec_det,ast.id_asset,recd.`value_rec`,ast.asset_code,ast.`asset_desc`,ast.`asset_code_old`,ast.id_employee,pod.`id_departement`,pod.`id_asset_cat`,IFNULL(ast.`age`,0) AS age FROM tb_a_asset ast
                                 INNER JOIN tb_a_asset_rec_det recd ON recd.id_asset_rec_det=ast.id_asset_rec_det
                                 INNER JOIN tb_a_asset_po_det pod ON pod.id_asset_po_det=recd.`id_asset_po_det`
                                 WHERE recd.id_asset_rec='" & id_rec & "'"
@@ -171,8 +171,9 @@
                 Dim asset_desc As String = GVAllocation.GetRowCellValue(i, "asset_desc").ToString
                 Dim id_employee As String = GVAllocation.GetRowCellValue(i, "id_employee").ToString
                 Dim age As String = GVAllocation.GetRowCellValue(i, "age").ToString
+                Dim asset_location As String = GVAllocation.GetRowCellValue(i, "asset_location").ToString
 
-                Dim query As String = "UPDATE tb_a_asset SET asset_code_old='" & asset_code_old & "',asset_desc='" & asset_desc & "',id_employee='" & id_employee & "',age='" & age & "',id_user_last_upd='" & id_user & "',date_last_upd=NOW() WHERE id_asset='" & id_asset & "'"
+                Dim query As String = "UPDATE tb_a_asset SET asset_code_old='" & asset_code_old & "',asset_desc='" & asset_desc & "',id_employee='" & id_employee & "',asset_location='" & asset_location & "',age='" & age & "',id_user_last_upd='" & id_user & "',date_last_upd=NOW() WHERE id_asset='" & id_asset & "'"
                 execute_non_query(query, True, "", "", "", "")
             Next
             infoCustom("Asset detail updated")

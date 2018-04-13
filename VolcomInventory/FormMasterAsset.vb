@@ -34,6 +34,7 @@
                                 ,ass.date_created,ass.date_last_upd,emp_cre.employee_name AS emp_created,emp_last.employee_name AS emp_last_upd
                                 ,IF(age>=(SELECT age_current),0,(rec_value-((SELECT age_current)*(SELECT monthly_dep)))) AS current_value
                                 ,IF(ISNULL(cur_user.id_asset),emp.employee_name,cur_user.employee_name) AS employee_name
+                                ,IF(ISNULL(cur_user.id_asset),emp.employee_name,cur_user.employee_name) AS employee_name
                                 ,IF(ISNULL(cur_user.id_asset),ass.id_employee,cur_user.id_employee) AS id_employee
                                 ,IF(ISNULL(cur_user.id_asset),dep.departement,cur_user.departement) AS departement
                                 ,IF(ISNULL(cur_user.id_asset),ass.id_departement,cur_user.id_departement) AS id_departement

@@ -3629,6 +3629,8 @@
 
             If id_status_reportx = "6" Then
                 Cursor = Cursors.WaitCursor
+                Dim query_upd_datetime As String = "UPDATE tb_prod_over_memo SET created_date=NOW() WHERE id_prod_over_memo='" + id_report + "' "
+                execute_non_query(query_upd_datetime, True, "", "", "", "")
                 Dim mail As New ClassSendEmail()
                 mail.report_mark_type = "126"
                 mail.id_report = id_report
