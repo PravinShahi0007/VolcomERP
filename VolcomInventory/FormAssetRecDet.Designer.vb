@@ -101,6 +101,7 @@ Partial Class FormAssetRecDet
         Me.RICatAlloc = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.RepositoryItemTextEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.BUpdate = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupGeneralHeader, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupGeneralHeader.SuspendLayout()
         CType(Me.PanelControlTopLeft, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -898,7 +899,7 @@ Partial Class FormAssetRecDet
         '
         'GVAllocation
         '
-        Me.GVAllocation.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn5, Me.GridColumn1, Me.GridColumn6, Me.GridColumnCatAlloc, Me.GridColumnDepAlloc, Me.GridColumnUserAlloc, Me.GridColumn7, Me.GridColumn12, Me.GridColumn4, Me.GridColumn8})
+        Me.GVAllocation.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn2, Me.GridColumn5, Me.GridColumn1, Me.GridColumn6, Me.GridColumnCatAlloc, Me.GridColumnDepAlloc, Me.GridColumnUserAlloc, Me.GridColumn9, Me.GridColumn7, Me.GridColumn12, Me.GridColumn4, Me.GridColumn8})
         Me.GVAllocation.GridControl = Me.GCAllocation
         Me.GVAllocation.Name = "GVAllocation"
         Me.GVAllocation.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -928,7 +929,7 @@ Partial Class FormAssetRecDet
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.OptionsColumn.ReadOnly = True
         Me.GridColumn1.Visible = True
-        Me.GridColumn1.VisibleIndex = 3
+        Me.GridColumn1.VisibleIndex = 4
         '
         'GridColumn6
         '
@@ -936,7 +937,7 @@ Partial Class FormAssetRecDet
         Me.GridColumn6.FieldName = "asset_code_old"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 4
+        Me.GridColumn6.VisibleIndex = 5
         '
         'GridColumnCatAlloc
         '
@@ -994,7 +995,7 @@ Partial Class FormAssetRecDet
         Me.GridColumn7.FieldName = "asset_desc"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 5
+        Me.GridColumn7.VisibleIndex = 6
         Me.GridColumn7.Width = 291
         '
         'GridColumn12
@@ -1006,7 +1007,7 @@ Partial Class FormAssetRecDet
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.OptionsColumn.ReadOnly = True
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 6
+        Me.GridColumn12.VisibleIndex = 7
         '
         'GridColumn4
         '
@@ -1016,7 +1017,7 @@ Partial Class FormAssetRecDet
         Me.GridColumn4.FieldName = "age"
         Me.GridColumn4.Name = "GridColumn4"
         Me.GridColumn4.Visible = True
-        Me.GridColumn4.VisibleIndex = 7
+        Me.GridColumn4.VisibleIndex = 8
         '
         'GridColumn8
         '
@@ -1029,7 +1030,7 @@ Partial Class FormAssetRecDet
         Me.GridColumn8.UnboundExpression = "[value_rec] / [age]"
         Me.GridColumn8.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 8
+        Me.GridColumn8.VisibleIndex = 9
         '
         'RepositoryItemSpinEdit2
         '
@@ -1066,6 +1067,14 @@ Partial Class FormAssetRecDet
         Me.BUpdate.TabIndex = 13
         Me.BUpdate.TabStop = False
         Me.BUpdate.Text = "Update"
+        '
+        'GridColumn9
+        '
+        Me.GridColumn9.Caption = "Original Location"
+        Me.GridColumn9.FieldName = "asset_location"
+        Me.GridColumn9.Name = "GridColumn9"
+        Me.GridColumn9.Visible = True
+        Me.GridColumn9.VisibleIndex = 3
         '
         'FormAssetRecDet
         '
@@ -1216,4 +1225,5 @@ Partial Class FormAssetRecDet
     Friend WithEvents GridColumn5 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RICatAlloc2 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
 End Class
