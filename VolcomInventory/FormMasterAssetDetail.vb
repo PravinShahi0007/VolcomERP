@@ -31,7 +31,7 @@
             DERecDate.Properties.ReadOnly = False
             BSetNonActive.Visible = False
         Else 'edit
-            Dim query As String = "SELECT a.asset_code,a.asset_code_old,a.asset_desc,pod.id_asset_cat,pod.id_departement,a.id_employee
+            Dim query As String = "SELECT a.asset_location,a.asset_code,a.asset_code_old,a.asset_desc,pod.id_asset_cat,pod.id_departement,a.id_employee
                                     ,po.asset_po_no,pod.qty as po_qty,po.asset_po_date,pod.value AS po_value
                                     ,recd.qty_rec,recd.value_rec ,rec.asset_rec_date,a.age,a.date_created,a.date_last_upd
                                     ,pod.vendor_sku,emp_cre.employee_name AS emp_created,emp_last.employee_name AS emp_last_upd
@@ -51,6 +51,7 @@
             TEOldCode.Text = data.Rows(0)("asset_code_old").ToString
             TEVendorCode.Text = data.Rows(0)("vendor_sku").ToString
             TEDesc.Text = data.Rows(0)("asset_desc").ToString
+            TELocation.Text = data.Rows(0)("asset_location").ToString
             LEAssetCat.ItemIndex = LEAssetCat.Properties.GetDataSourceRowIndex("id_asset_cat", data.Rows(0)("id_asset_cat").ToString)
             LEAssetCat.Enabled = False
             '
@@ -206,6 +207,7 @@
         End If
         '
         Dim age As String = TEAge.EditValue.ToString
+        Dim asset_location As String = TELocation.Text
         '
         If id_asset = "-1" Then 'new
             'Dim query As String = "INSERT INTO tb_a_asset(id_asset_cat,asset_code_old,asset_code,vendor_code,asset_desc,id_departement,id_employee,po_no,po_qty,po_value,po_date,rec_date,rec_qty,rec_value,age,id_user_created,id_user_last_upd,date_created,date_last_upd)
@@ -216,7 +218,7 @@
             'FormMasterAsset.GVAsset.FocusedRowHandle = find_row(FormMasterAsset.GVAsset, "id_asset", id_asset)
             'Close()
         Else
-            Dim query As String = "UPDATE tb_a_asset SET asset_code_old='" & code_old & "',id_employee=" & id_emp & ",asset_desc='" & desc & "',age='" & age & "',id_user_last_upd='" & id_user & "',date_last_upd=NOW()
+            Dim query As String = "UPDATE tb_a_asset SET asset_code_old='" & code_old & "',id_employee=" & id_emp & ",asset_desc='" & desc & "',asset_location='" & asset_location & "',age='" & age & "',id_user_last_upd='" & id_user & "',date_last_upd=NOW()
                                     WHERE id_asset='" & id_asset & "'"
 
             execute_non_query(query, True, "", "", "", "")

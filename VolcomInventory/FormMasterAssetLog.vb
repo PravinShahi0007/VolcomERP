@@ -64,6 +64,7 @@
                 LECurUser.ItemIndex = LECurUser.Properties.GetDataSourceRowIndex("id_employee", data.Rows(0)("id_employee").ToString)
             End If
             BSave.Visible = True
+            BPrint.Visible = False
         Else 'edit
             '
             Dim query_view As String = "SELECT a.*,LPAD(a.id_asset_log,5,'0'),emp.employee_name,dep.departement AS move_no 
@@ -93,6 +94,7 @@
             TECreatedBy.Text = data_view(0)("employee_name").ToString
             '
             BSave.Visible = False
+            BPrint.Visible = True
         End If
     End Sub
     Sub load_cat()
