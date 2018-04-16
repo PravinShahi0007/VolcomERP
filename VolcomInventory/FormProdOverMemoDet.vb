@@ -74,6 +74,11 @@
         If is_view = "1" Then
             BtnSave.Visible = False
         End If
+        'if completed
+        If id_report_status = "6" Then
+            LExpired.Visible = True
+            DEExpired.Visible = True
+        End If
     End Sub
 
     Private Sub TxtMemoNumber_Leave(sender As Object, e As EventArgs) Handles TxtMemoNumber.Leave
