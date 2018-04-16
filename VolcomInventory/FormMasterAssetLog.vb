@@ -28,6 +28,7 @@
                                 ,IF(ISNULL(cur_user.id_asset),emp.id_employee,cur_user.id_employee) AS id_employee
                                 ,IF(ISNULL(cur_user.id_asset),dep.departement,cur_user.departement) AS departement
                                 ,IF(ISNULL(cur_user.id_asset),dep.id_departement,cur_user.id_departement) AS id_departement
+                                ,ass.asset_location
                                 FROM tb_a_asset ass
                                 INNER JOIN tb_a_asset_rec_det recd ON recd.id_asset_rec_det=ass.id_asset_rec_det
                                 INNER JOIN tb_a_asset_rec rec ON rec.id_asset_rec=recd.id_asset_rec
@@ -51,6 +52,7 @@
 
         TECode.Text = data.Rows(0)("asset_code").ToString
         TEOldCode.Text = data.Rows(0)("asset_code_old").ToString
+        TEOldLocation.Text = data.Rows(0)("asset_location").ToString
         TEDesc.Text = data.Rows(0)("asset_desc").ToString
 
         LEAssetCat.ItemIndex = LEAssetCat.Properties.GetDataSourceRowIndex("id_asset_cat", data.Rows(0)("id_asset_cat").ToString)
@@ -67,7 +69,7 @@
             BPrint.Visible = False
         Else 'edit
             '
-            Dim query_view As String = "SELECT a.*,LPAD(a.id_asset_log,5,'0'),emp.employee_name,dep.departement AS move_no 
+            Dim query_view As String = "SELECT a.*,LPAD(a.id_asset_log,5,'0') AS move_no,emp.employee_name,dep.departement
                                         FROM tb_a_asset_log a 
                                         INNER JOIN tb_m_user usr ON usr.id_user=a.id_user_created
                                         INNER JOIN tb_m_employee emp ON emp.id_employee=usr.id_employee
@@ -88,10 +90,13 @@
             '
             MENote.Text = data_view.Rows(0)("note").ToString
             DEMovingDate.EditValue = data_view.Rows(0)("date")
+            DECreatedBy.EditValue = data_view.Rows(0)("date_created")
             '
             TEMoveNo.Text = "IAMA" & data_view.Rows(0)("move_no").ToString
             departement = data_view(0)("departement").ToString
             TECreatedBy.Text = data_view(0)("employee_name").ToString
+            TEOldLocation.Text = data_view(0)("location_old").ToString
+            TENewLocation.Text = data_view(0)("location").ToString
             '
             BSave.Visible = False
             BPrint.Visible = True
@@ -141,8 +146,8 @@
             id_emp_new = "'" & LENewUser.EditValue.ToString & "'"
         End If
 
-        Dim query As String = "INSERT INTO tb_a_asset_log(id_asset,id_departement_old,id_employee_old,id_departement,id_employee,note,date,id_user_created,date_created)
-                                VALUES('" & id_asset & "','" & LECurDep.EditValue.ToString & "'," & id_emp_old & ",'" & LENewDep.EditValue.ToString & "'," & id_emp_new & ",'" & addSlashes(MENote.Text) & "','" & Date.Parse(DEMovingDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
+        Dim query As String = "INSERT INTO tb_a_asset_log(id_asset,id_departement_old,id_employee_old,id_departement,id_employee,location_old,location,note,date,id_user_created,date_created)
+                                VALUES('" & id_asset & "','" & LECurDep.EditValue.ToString & "'," & id_emp_old & ",'" & LENewDep.EditValue.ToString & "'," & id_emp_new & ",'" & addSlashes(TEOldLocation.Text) & "','" & addSlashes(TENewLocation.Text) & "','" & addSlashes(MENote.Text) & "','" & Date.Parse(DEMovingDate.EditValue.ToString).ToString("yyyy-MM-dd") & "','" & id_user & "',NOW()); SELECT LAST_INSERT_ID(); "
         id_asset_log = execute_query(query, 0, True, "", "", "", "")
 
         FormMasterAsset.load_moving_log()

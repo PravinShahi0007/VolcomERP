@@ -29,8 +29,12 @@ Partial Class FormMasterAsset
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCodeName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GCCodeDesc = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn11 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -38,6 +42,8 @@ Partial Class FormMasterAsset
         Me.GridColumnRecVal = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnValue = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -60,8 +66,10 @@ Partial Class FormMasterAsset
         Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn14 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn12 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -70,10 +78,6 @@ Partial Class FormMasterAsset
         Me.RepositoryItemCheckEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit5 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
         Me.RepositoryItemCheckEdit6 = New DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit()
-        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GCAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVAsset, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCheckEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,9 +114,9 @@ Partial Class FormMasterAsset
         '
         'GVAsset
         '
-        Me.GVAsset.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdCode, Me.GridColumn2, Me.GridColumn1, Me.GCCodeName, Me.GCCodeDesc, Me.GridColumn25, Me.GridColumn11, Me.GridColumn10, Me.GridColumn26, Me.GridColumn28, Me.GridColumn27, Me.GridColumn9, Me.GridColumn3, Me.GridColumn8, Me.GridColumnPOVal, Me.GridColumnRecVal, Me.GridColumn6, Me.GridColumn7, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
+        Me.GVAsset.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.ColumnIdCode, Me.GridColumn2, Me.GridColumn1, Me.GCCodeName, Me.GCCodeDesc, Me.GridColumn25, Me.GridColumn11, Me.GridColumn10, Me.GridColumn26, Me.GridColumn28, Me.GridColumn27, Me.GridColumn9, Me.GridColumn3, Me.GridColumn8, Me.GridColumnPOVal, Me.GridColumnRecVal, Me.GridColumn6, Me.GridColumn7, Me.GridColumn31, Me.GridColumnValue, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20})
         Me.GVAsset.GridControl = Me.GCAsset
-        Me.GVAsset.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_value", Me.GridColumnPOVal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec_value", Me.GridColumnRecVal, "{0:N2}")})
+        Me.GVAsset.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_value", Me.GridColumnPOVal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec_value", Me.GridColumnRecVal, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "current_value", Me.GridColumnValue, "{0:N0}")})
         Me.GVAsset.Name = "GVAsset"
         Me.GVAsset.OptionsBehavior.Editable = False
         Me.GVAsset.OptionsBehavior.ReadOnly = True
@@ -162,6 +166,14 @@ Partial Class FormMasterAsset
         Me.GCCodeDesc.VisibleIndex = 4
         Me.GCCodeDesc.Width = 204
         '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Orign Location"
+        Me.GridColumn25.FieldName = "asset_location"
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 7
+        '
         'GridColumn11
         '
         Me.GridColumn11.Caption = "Orign Departement"
@@ -180,6 +192,30 @@ Partial Class FormMasterAsset
         Me.GridColumn10.VisibleIndex = 6
         Me.GridColumn10.Width = 72
         '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Current Departement"
+        Me.GridColumn26.FieldName = "departement_current"
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 8
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Current Location"
+        Me.GridColumn28.FieldName = "asset_location_current"
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 10
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Current User"
+        Me.GridColumn27.FieldName = "employee_name_current"
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 9
+        '
         'GridColumn9
         '
         Me.GridColumn9.Caption = "Category"
@@ -195,7 +231,7 @@ Partial Class FormMasterAsset
         Me.GridColumn3.FieldName = "po_no"
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 10
+        Me.GridColumn3.VisibleIndex = 11
         Me.GridColumn3.Width = 73
         '
         'GridColumn8
@@ -206,7 +242,7 @@ Partial Class FormMasterAsset
         Me.GridColumn8.FieldName = "po_date"
         Me.GridColumn8.Name = "GridColumn8"
         Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 11
+        Me.GridColumn8.VisibleIndex = 12
         Me.GridColumn8.Width = 72
         '
         'GridColumnPOVal
@@ -218,7 +254,7 @@ Partial Class FormMasterAsset
         Me.GridColumnPOVal.Name = "GridColumnPOVal"
         Me.GridColumnPOVal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "po_value", "{0:N2}")})
         Me.GridColumnPOVal.Visible = True
-        Me.GridColumnPOVal.VisibleIndex = 12
+        Me.GridColumnPOVal.VisibleIndex = 13
         Me.GridColumnPOVal.Width = 72
         '
         'GridColumnRecVal
@@ -230,7 +266,7 @@ Partial Class FormMasterAsset
         Me.GridColumnRecVal.Name = "GridColumnRecVal"
         Me.GridColumnRecVal.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "rec_value", "{0:N2}")})
         Me.GridColumnRecVal.Visible = True
-        Me.GridColumnRecVal.VisibleIndex = 14
+        Me.GridColumnRecVal.VisibleIndex = 15
         Me.GridColumnRecVal.Width = 72
         '
         'GridColumn6
@@ -241,7 +277,7 @@ Partial Class FormMasterAsset
         Me.GridColumn6.FieldName = "rec_date"
         Me.GridColumn6.Name = "GridColumn6"
         Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 13
+        Me.GridColumn6.VisibleIndex = 14
         Me.GridColumn6.Width = 72
         '
         'GridColumn7
@@ -252,8 +288,36 @@ Partial Class FormMasterAsset
         Me.GridColumn7.FieldName = "age"
         Me.GridColumn7.Name = "GridColumn7"
         Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 15
+        Me.GridColumn7.VisibleIndex = 16
         Me.GridColumn7.Width = 81
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn31.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumn31.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumn31.Caption = "Current Age (Month)"
+        Me.GridColumn31.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn31.FieldName = "age_current"
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Visible = True
+        Me.GridColumn31.VisibleIndex = 18
+        '
+        'GridColumnValue
+        '
+        Me.GridColumnValue.AppearanceCell.Options.UseTextOptions = True
+        Me.GridColumnValue.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnValue.AppearanceHeader.Options.UseTextOptions = True
+        Me.GridColumnValue.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far
+        Me.GridColumnValue.Caption = "Current Value"
+        Me.GridColumnValue.DisplayFormat.FormatString = "N0"
+        Me.GridColumnValue.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnValue.FieldName = "current_value"
+        Me.GridColumnValue.Name = "GridColumnValue"
+        Me.GridColumnValue.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "current_value", "{0:N0}")})
+        Me.GridColumnValue.Visible = True
+        Me.GridColumnValue.VisibleIndex = 19
         '
         'GridColumn17
         '
@@ -263,7 +327,7 @@ Partial Class FormMasterAsset
         Me.GridColumn17.FieldName = "date_created"
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 16
+        Me.GridColumn17.VisibleIndex = 17
         '
         'GridColumn18
         '
@@ -273,7 +337,7 @@ Partial Class FormMasterAsset
         Me.GridColumn18.FieldName = "date_last_upd"
         Me.GridColumn18.Name = "GridColumn18"
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 18
+        Me.GridColumn18.VisibleIndex = 21
         '
         'GridColumn19
         '
@@ -281,7 +345,7 @@ Partial Class FormMasterAsset
         Me.GridColumn19.FieldName = "emp_created"
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 17
+        Me.GridColumn19.VisibleIndex = 20
         '
         'GridColumn20
         '
@@ -289,7 +353,7 @@ Partial Class FormMasterAsset
         Me.GridColumn20.FieldName = "emp_last_upd"
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 19
+        Me.GridColumn20.VisibleIndex = 22
         '
         'RepositoryItemCheckEdit1
         '
@@ -417,7 +481,7 @@ Partial Class FormMasterAsset
         '
         'GVAssetMovingLog
         '
-        Me.GVAssetMovingLog.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn24, Me.GridColumn14, Me.GridColumn15, Me.GridColumn16, Me.GridColumn13, Me.GridColumn12, Me.GridColumn22, Me.GridColumn23, Me.GridColumn21, Me.GridColumn5})
+        Me.GVAssetMovingLog.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn4, Me.GridColumn24, Me.GridColumn14, Me.GridColumn15, Me.GridColumn29, Me.GridColumn16, Me.GridColumn13, Me.GridColumn30, Me.GridColumn12, Me.GridColumn22, Me.GridColumn23, Me.GridColumn21, Me.GridColumn5})
         Me.GVAssetMovingLog.GridControl = Me.GCAssetMovingLog
         Me.GVAssetMovingLog.Name = "GVAssetMovingLog"
         Me.GVAssetMovingLog.OptionsBehavior.Editable = False
@@ -454,6 +518,14 @@ Partial Class FormMasterAsset
         Me.GridColumn15.VisibleIndex = 2
         Me.GridColumn15.Width = 72
         '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "Old Location"
+        Me.GridColumn29.FieldName = "location_old"
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 4
+        '
         'GridColumn16
         '
         Me.GridColumn16.Caption = "Old User"
@@ -469,7 +541,15 @@ Partial Class FormMasterAsset
         Me.GridColumn13.FieldName = "departement_new"
         Me.GridColumn13.Name = "GridColumn13"
         Me.GridColumn13.Visible = True
-        Me.GridColumn13.VisibleIndex = 4
+        Me.GridColumn13.VisibleIndex = 5
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "New Location"
+        Me.GridColumn30.FieldName = "location"
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 7
         '
         'GridColumn12
         '
@@ -477,7 +557,7 @@ Partial Class FormMasterAsset
         Me.GridColumn12.FieldName = "employee_name_new"
         Me.GridColumn12.Name = "GridColumn12"
         Me.GridColumn12.Visible = True
-        Me.GridColumn12.VisibleIndex = 5
+        Me.GridColumn12.VisibleIndex = 6
         '
         'GridColumn22
         '
@@ -498,7 +578,7 @@ Partial Class FormMasterAsset
         Me.GridColumn23.FieldName = "date_created"
         Me.GridColumn23.Name = "GridColumn23"
         Me.GridColumn23.Visible = True
-        Me.GridColumn23.VisibleIndex = 8
+        Me.GridColumn23.VisibleIndex = 10
         '
         'GridColumn21
         '
@@ -506,7 +586,7 @@ Partial Class FormMasterAsset
         Me.GridColumn21.FieldName = "emp_created"
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Visible = True
-        Me.GridColumn21.VisibleIndex = 7
+        Me.GridColumn21.VisibleIndex = 9
         '
         'GridColumn5
         '
@@ -514,7 +594,7 @@ Partial Class FormMasterAsset
         Me.GridColumn5.FieldName = "note"
         Me.GridColumn5.Name = "GridColumn5"
         Me.GridColumn5.Visible = True
-        Me.GridColumn5.VisibleIndex = 6
+        Me.GridColumn5.VisibleIndex = 8
         '
         'RepositoryItemCheckEdit2
         '
@@ -532,38 +612,6 @@ Partial Class FormMasterAsset
         '
         Me.RepositoryItemCheckEdit6.AutoHeight = False
         Me.RepositoryItemCheckEdit6.Name = "RepositoryItemCheckEdit6"
-        '
-        'GridColumn25
-        '
-        Me.GridColumn25.Caption = "Orign Location"
-        Me.GridColumn25.FieldName = "asset_location"
-        Me.GridColumn25.Name = "GridColumn25"
-        Me.GridColumn25.Visible = True
-        Me.GridColumn25.VisibleIndex = 7
-        '
-        'GridColumn27
-        '
-        Me.GridColumn27.Caption = "Current User"
-        Me.GridColumn27.FieldName = "employee_name_current"
-        Me.GridColumn27.Name = "GridColumn27"
-        Me.GridColumn27.Visible = True
-        Me.GridColumn27.VisibleIndex = 8
-        '
-        'GridColumn28
-        '
-        Me.GridColumn28.Caption = "Current Location"
-        Me.GridColumn28.FieldName = "asset_location_current"
-        Me.GridColumn28.Name = "GridColumn28"
-        Me.GridColumn28.Visible = True
-        Me.GridColumn28.VisibleIndex = 9
-        '
-        'GridColumn26
-        '
-        Me.GridColumn26.Caption = "Current Departement"
-        Me.GridColumn26.FieldName = "departement_current"
-        Me.GridColumn26.Name = "GridColumn26"
-        Me.GridColumn26.Visible = True
-        Me.GridColumn26.VisibleIndex = 8
         '
         'FormMasterAsset
         '
@@ -655,4 +703,8 @@ Partial Class FormMasterAsset
     Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnValue As DevExpress.XtraGrid.Columns.GridColumn
 End Class
