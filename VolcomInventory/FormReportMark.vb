@@ -3583,6 +3583,9 @@
                 id_status_reportx = "6"
             End If
 
+            query = String.Format("UPDATE tb_emp_uni_design SET id_report_status='{0}' WHERE id_emp_uni_design ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
             'kalo completed generate nomer urut
             If id_status_reportx = "6" Then
                 Dim qm As String = "SELECT IFNULL(MAX(dd.`no`),0) AS `maks` FROM tb_emp_uni_design_det dd 
@@ -3600,10 +3603,12 @@
                 ) src ON src.id_emp_uni_design_det = main.id_emp_uni_design_det
                 SET main.no = src.counting "
                 execute_non_query(qn, True, "", "", "", "")
+
+                'update point
+                execute_non_query("CALL set_emp_uni_point(" + FormEmpUniListDet.id_emp_uni_period + ")", True, "", "", "", "")
             End If
 
-            query = String.Format("UPDATE tb_emp_uni_design SET id_report_status='{0}' WHERE id_emp_uni_design ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
+
             'infoCustom("Status changed.")
 
             FormEmpUniListDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)
@@ -3629,6 +3634,8 @@
 
             If id_status_reportx = "6" Then
                 Cursor = Cursors.WaitCursor
+                Dim query_upd_datetime As String = "UPDATE tb_prod_over_memo SET created_date=NOW() WHERE id_prod_over_memo='" + id_report + "' "
+                execute_non_query(query_upd_datetime, True, "", "", "", "")
                 Dim mail As New ClassSendEmail()
                 mail.report_mark_type = "126"
                 mail.id_report = id_report
@@ -3664,9 +3671,28 @@
                 id_status_reportx = "6"
             End If
 
+            '
             query = String.Format("UPDATE tb_a_asset_rec SET id_report_status='{0}' WHERE id_asset_rec ='{1}'", id_status_reportx, id_report)
             execute_non_query(query, True, "", "", "", "")
             'infoCustom("Status changed.")
+            '
+            If id_status_reportx = "6" Then
+                'insert to master asset
+                query = String.Format("SELECT recd.qty_rec,pod.`id_asset_cat`,recd.`id_asset_rec_det`,pod.`desc`,pod.`id_departement`,0 AS id_employee,1 AS id_user_created,1 AS id_user_last_upd,DATE(NOW()) AS date_created,DATE(NOW()) AS date_last_upd FROM tb_a_asset_rec_det recd
+                                        INNER JOIN tb_a_asset_po_det pod ON pod.`id_asset_po_det`=recd.`id_asset_po_det`
+                                        WHERE id_asset_rec='{0}'", id_report)
+                Dim data_sel As DataTable = execute_query(query, -1, True, "", "", "", "")
+                For sel As Integer = 0 To data_sel.Rows.Count - 1
+                    Dim qty_rec As Integer = data_sel.Rows(sel)("qty_rec")
+                    For ins As Integer = 0 To qty_rec - 1
+                        Dim query_ins As String = String.Format("INSERT INTO tb_a_asset(id_asset_cat,id_asset_rec_det,`asset_desc`,id_departement,id_employee,id_user_created,id_user_last_upd,date_created,date_last_upd)
+                                        SELECT pod.`id_asset_cat`,recd.`id_asset_rec_det`,pod.`desc`,pod.`id_departement`,0 AS id_employee,'" & id_user & "' AS id_user_created,'" & id_user & "' AS id_user_last_upd,DATE(NOW()) AS date_created,DATE(NOW()) AS date_last_upd FROM tb_a_asset_rec_det recd
+                                        INNER JOIN tb_a_asset_po_det pod ON pod.`id_asset_po_det`=recd.`id_asset_po_det`
+                                        WHERE recd.id_asset_rec_det='{0}'", data_sel.Rows(sel)("id_asset_rec_det"))
+                        execute_non_query(query_ins, True, "", "", "", "")
+                    Next
+                Next
+            End If
 
             If form_origin = "FormAssetRecDet" Then
                 FormAssetRecDet.load_det()

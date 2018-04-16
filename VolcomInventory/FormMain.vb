@@ -232,12 +232,15 @@ Public Class FormMain
         If formName = "FormMasterCompany" Then
             BBContact.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
+
         If formName = "FormAccess" Or formName = "FormMarkAssign" Then
             BBMapping.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
+
         If formName = "FormAccess" Or formName = "FormMasterSample" Or formName = "FormFGDesignList" Then
             BBDuplicate.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
         End If
+
         If formName = "FormMasterWH" Then
             If FormMasterWH.XTCWHMain.SelectedTabPageIndex = 0 Then
                 BBNew.Visibility = DevExpress.XtraBars.BarItemVisibility.Always
@@ -1277,6 +1280,7 @@ Public Class FormMain
         ElseIf formName = "FormMasterEmployee" Then
             'Master Employee
             FormMasterEmployeeNewDet.action = "ins"
+            FormMasterEmployeeNewDet.is_salary = FormMasterEmployee.is_salary
             FormMasterEmployeeNewDet.ShowDialog()
             'FormMasterEmployeeDet.action = "ins"
             'FormMasterEmployeeDet.ShowDialog()
@@ -1533,8 +1537,9 @@ Public Class FormMain
             FormMasterAssetCategoryDetail.ShowDialog()
         ElseIf formName = "FormMasterAsset" Then
             If FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 0 Then
-                FormMasterAssetDetail.id_asset = "-1"
-                FormMasterAssetDetail.ShowDialog()
+                'FormMasterAssetDetail.id_asset = "-1"
+                'FormMasterAssetDetail.ShowDialog()
+                infoCustom("Please use purchase procedure")
             ElseIf FormMasterAsset.XTCListAsset.SelectedTabPageIndex = 1 Then
                 If FormMasterAsset.GVAsset.RowCount > 0 Then
                     FormMasterAssetLog.id_asset = FormMasterAsset.GVAsset.GetFocusedRowCellValue("id_asset").ToString
@@ -2195,6 +2200,7 @@ Public Class FormMain
             ElseIf formName = "FormMasterEmployee" Then
                 'Master Employee
                 FormMasterEmployeeNewDet.id_employee = FormMasterEmployee.GVEmployee.GetFocusedRowCellValue("id_employee").ToString
+                FormMasterEmployeeNewDet.is_salary = FormMasterEmployee.is_salary
                 FormMasterEmployeeNewDet.action = "upd"
                 FormMasterEmployeeNewDet.ShowDialog()
             ElseIf formName = "FormSampleDel" Then
@@ -11386,6 +11392,20 @@ Public Class FormMain
         Else
             stopCustom("Periode uniform belum dimulai")
         End If
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub NBEmpNorm_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBEmpNorm.LinkClicked
+        Cursor = Cursors.WaitCursor
+        Try
+            FormMasterEmployee.is_salary = "1"
+            FormMasterEmployee.MdiParent = Me
+            FormMasterEmployee.Show()
+            FormMasterEmployee.WindowState = FormWindowState.Maximized
+            FormMasterEmployee.Focus()
+        Catch ex As Exception
+            errorProcess()
+        End Try
         Cursor = Cursors.Default
     End Sub
 End Class

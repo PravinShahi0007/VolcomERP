@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class FormAssetPO
+Partial Class FormAssetPickPO
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -20,8 +20,7 @@ Partial Class FormAssetPO
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAssetPO))
-        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormAssetPickPO))
         Me.PCEdit = New DevExpress.XtraEditors.PanelControl()
         Me.LEPil = New DevExpress.XtraEditors.LookUpEdit()
         Me.DEEnd = New DevExpress.XtraEditors.DateEdit()
@@ -43,7 +42,10 @@ Partial Class FormAssetPO
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn13 = New DevExpress.XtraGrid.Columns.GridColumn()
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.LargeImageCollection = New DevExpress.Utils.ImageCollection(Me.components)
+        Me.BtnCancel = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnSave = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PCEdit, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PCEdit.SuspendLayout()
         CType(Me.LEPil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,38 +55,10 @@ Partial Class FormAssetPO
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCPOList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVPOList, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'LargeImageCollection
-        '
-        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
-        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
-        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
-        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
-        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
-        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
-        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
-        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
-        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
-        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
-        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
-        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
-        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
-        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
-        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
-        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(20, "pencil.png")
-        Me.LargeImageCollection.Images.SetKeyName(21, "edit-validated-icon.png")
-        Me.LargeImageCollection.Images.SetKeyName(22, "Delete.png")
-        Me.LargeImageCollection.Images.SetKeyName(23, "browse_3.png")
-        Me.LargeImageCollection.Images.SetKeyName(24, "Full_Screen.png")
-        Me.LargeImageCollection.Images.SetKeyName(25, "Exit_Full_Screen.png")
         '
         'PCEdit
         '
@@ -96,8 +70,8 @@ Partial Class FormAssetPO
         Me.PCEdit.Dock = System.Windows.Forms.DockStyle.Top
         Me.PCEdit.Location = New System.Drawing.Point(0, 0)
         Me.PCEdit.Name = "PCEdit"
-        Me.PCEdit.Size = New System.Drawing.Size(987, 41)
-        Me.PCEdit.TabIndex = 1
+        Me.PCEdit.Size = New System.Drawing.Size(1012, 41)
+        Me.PCEdit.TabIndex = 2
         '
         'LEPil
         '
@@ -162,8 +136,8 @@ Partial Class FormAssetPO
         Me.GCPOList.Location = New System.Drawing.Point(0, 41)
         Me.GCPOList.MainView = Me.GVPOList
         Me.GCPOList.Name = "GCPOList"
-        Me.GCPOList.Size = New System.Drawing.Size(987, 341)
-        Me.GCPOList.TabIndex = 2
+        Me.GCPOList.Size = New System.Drawing.Size(1012, 383)
+        Me.GCPOList.TabIndex = 3
         Me.GCPOList.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVPOList})
         '
         'GVPOList
@@ -230,7 +204,6 @@ Partial Class FormAssetPO
         Me.GridColumn10.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn10.FieldName = "total"
         Me.GridColumn10.Name = "GridColumn10"
-        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total", "{0:N2}")})
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 5
         '
@@ -241,7 +214,6 @@ Partial Class FormAssetPO
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "grand_total"
         Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "grand_total", "{0:N2}")})
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 6
         '
@@ -289,20 +261,84 @@ Partial Class FormAssetPO
         Me.GridColumn13.Visible = True
         Me.GridColumn13.VisibleIndex = 11
         '
-        'FormAssetPO
+        'PanelControl1
+        '
+        Me.PanelControl1.Controls.Add(Me.BtnCancel)
+        Me.PanelControl1.Controls.Add(Me.BtnSave)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 424)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(1012, 41)
+        Me.PanelControl1.TabIndex = 4
+        '
+        'LargeImageCollection
+        '
+        Me.LargeImageCollection.ImageSize = New System.Drawing.Size(24, 24)
+        Me.LargeImageCollection.ImageStream = CType(resources.GetObject("LargeImageCollection.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.LargeImageCollection.Images.SetKeyName(0, "20_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(1, "8_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(2, "23_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(3, "arrow_refresh.png")
+        Me.LargeImageCollection.Images.SetKeyName(4, "check_mark.png")
+        Me.LargeImageCollection.Images.SetKeyName(5, "gnome_application_exit (1).png")
+        Me.LargeImageCollection.Images.SetKeyName(6, "printer_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(7, "save.png")
+        Me.LargeImageCollection.Images.SetKeyName(8, "31_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(9, "18_24x24.png")
+        Me.LargeImageCollection.Images.SetKeyName(10, "1415351112474759854-32.png")
+        Me.LargeImageCollection.Images.SetKeyName(11, "icon_merchandise_clothes32.png")
+        Me.LargeImageCollection.Images.SetKeyName(12, "t_shirtgreen.png")
+        Me.LargeImageCollection.Images.SetKeyName(13, "lock red.png")
+        Me.LargeImageCollection.Images.SetKeyName(14, "ordering32.png")
+        Me.LargeImageCollection.Images.SetKeyName(15, "kghostview.png")
+        Me.LargeImageCollection.Images.SetKeyName(16, "MetroUI-Folder-OS-Configure-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(17, "Setting(32).png")
+        Me.LargeImageCollection.Images.SetKeyName(18, "estimate_icon32.png")
+        Me.LargeImageCollection.Images.SetKeyName(19, "copy_icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(20, "pencil.png")
+        Me.LargeImageCollection.Images.SetKeyName(21, "edit-validated-icon.png")
+        Me.LargeImageCollection.Images.SetKeyName(22, "Delete.png")
+        Me.LargeImageCollection.Images.SetKeyName(23, "browse_3.png")
+        Me.LargeImageCollection.Images.SetKeyName(24, "Full_Screen.png")
+        Me.LargeImageCollection.Images.SetKeyName(25, "Exit_Full_Screen.png")
+        '
+        'BtnCancel
+        '
+        Me.BtnCancel.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnCancel.ImageIndex = 5
+        Me.BtnCancel.ImageList = Me.LargeImageCollection
+        Me.BtnCancel.Location = New System.Drawing.Point(860, 2)
+        Me.BtnCancel.Name = "BtnCancel"
+        Me.BtnCancel.Size = New System.Drawing.Size(75, 37)
+        Me.BtnCancel.TabIndex = 15
+        Me.BtnCancel.TabStop = False
+        Me.BtnCancel.Text = "Close"
+        '
+        'BtnSave
+        '
+        Me.BtnSave.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnSave.ImageIndex = 4
+        Me.BtnSave.ImageList = Me.LargeImageCollection
+        Me.BtnSave.Location = New System.Drawing.Point(935, 2)
+        Me.BtnSave.Name = "BtnSave"
+        Me.BtnSave.Size = New System.Drawing.Size(75, 37)
+        Me.BtnSave.TabIndex = 14
+        Me.BtnSave.TabStop = False
+        Me.BtnSave.Text = "Pick"
+        '
+        'FormAssetPickPO
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(987, 382)
+        Me.ClientSize = New System.Drawing.Size(1012, 465)
         Me.Controls.Add(Me.GCPOList)
+        Me.Controls.Add(Me.PanelControl1)
         Me.Controls.Add(Me.PCEdit)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
-        Me.Name = "FormAssetPO"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "PO Asset List"
-        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Name = "FormAssetPickPO"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Pick PO"
         CType(Me.PCEdit, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PCEdit.ResumeLayout(False)
         Me.PCEdit.PerformLayout()
@@ -313,19 +349,22 @@ Partial Class FormAssetPO
         CType(Me.DEStart.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCPOList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVPOList, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
+        CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents PCEdit As DevExpress.XtraEditors.PanelControl
-    Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LEPil As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents DEEnd As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents DEStart As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents BSearch As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents GCPOList As DevExpress.XtraGrid.GridControl
     Friend WithEvents GVPOList As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents LEPil As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn4 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn2 As DevExpress.XtraGrid.Columns.GridColumn
@@ -337,6 +376,9 @@ Partial Class FormAssetPO
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn12 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn13 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
+    Friend WithEvents BtnCancel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BtnSave As DevExpress.XtraEditors.SimpleButton
 End Class

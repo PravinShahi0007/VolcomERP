@@ -109,6 +109,7 @@
     <Reference Include="DevExpress.Utils.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraBars.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v15.1.UI, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v15.1.Wizard, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraCharts.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v15.1, Version=15.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -408,6 +409,12 @@
       <DependentUpon>FormAssetMovingLog.vb</DependentUpon>
     </Compile>
     <Compile Include="FormAssetMovingLog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormAssetPickPO.Designer.vb">
+      <DependentUpon>FormAssetPickPO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormAssetPickPO.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormAssetPO.Designer.vb">
@@ -792,6 +799,12 @@
       <DependentUpon>FormEmpPayrollOvertimeDet.vb</DependentUpon>
     </Compile>
     <Compile Include="FormEmpPayrollOvertimeDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollOvertimePick.Designer.vb">
+      <DependentUpon>FormEmpPayrollOvertimePick.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollOvertimePick.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEmpPayrollPeriode.Designer.vb">
@@ -5036,6 +5049,12 @@
     <Compile Include="ReportProductionWO.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportSalarySlip.Designer.vb">
+      <DependentUpon>ReportSalarySlip.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSalarySlip.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportSalesCreditNote.designer.vb">
       <DependentUpon>ReportSalesCreditNote.vb</DependentUpon>
     </Compile>
@@ -5412,6 +5431,9 @@
     <EmbeddedResource Include="FormAssetMovingLog.resx">
       <DependentUpon>FormAssetMovingLog.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormAssetPickPO.resx">
+      <DependentUpon>FormAssetPickPO.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormAssetPO.resx">
       <DependentUpon>FormAssetPO.vb</DependentUpon>
     </EmbeddedResource>
@@ -5613,6 +5635,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollOvertimeDet.resx">
       <DependentUpon>FormEmpPayrollOvertimeDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollOvertimePick.resx">
+      <DependentUpon>FormEmpPayrollOvertimePick.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollPeriode.resx">
       <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
@@ -8230,6 +8255,9 @@
     <EmbeddedResource Include="ReportProductionWO.resx">
       <DependentUpon>ReportProductionWO.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportSalarySlip.resx">
+      <DependentUpon>ReportSalarySlip.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportSalesCreditNote.resx">
       <DependentUpon>ReportSalesCreditNote.vb</DependentUpon>
