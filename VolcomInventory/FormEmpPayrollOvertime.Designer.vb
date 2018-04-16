@@ -41,6 +41,7 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotHour = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotPoint = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BOvertimeWindow = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,6 +57,7 @@ Partial Class FormEmpPayrollOvertime
         Me.PanelControl1.Controls.Add(Me.BAdd)
         Me.PanelControl1.Controls.Add(Me.LEPayrollPeriode)
         Me.PanelControl1.Controls.Add(Me.LabelControl1)
+        Me.PanelControl1.Controls.Add(Me.BOvertimeWindow)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
@@ -67,7 +69,7 @@ Partial Class FormEmpPayrollOvertime
         Me.BDelete.Dock = System.Windows.Forms.DockStyle.Right
         Me.BDelete.ImageIndex = 1
         Me.BDelete.ImageList = Me.LargeImageCollection
-        Me.BDelete.Location = New System.Drawing.Point(628, 2)
+        Me.BDelete.Location = New System.Drawing.Point(478, 2)
         Me.BDelete.Name = "BDelete"
         Me.BDelete.Size = New System.Drawing.Size(98, 36)
         Me.BDelete.TabIndex = 3
@@ -99,7 +101,7 @@ Partial Class FormEmpPayrollOvertime
         Me.BEdit.Dock = System.Windows.Forms.DockStyle.Right
         Me.BEdit.ImageIndex = 2
         Me.BEdit.ImageList = Me.LargeImageCollection
-        Me.BEdit.Location = New System.Drawing.Point(726, 2)
+        Me.BEdit.Location = New System.Drawing.Point(576, 2)
         Me.BEdit.Name = "BEdit"
         Me.BEdit.Size = New System.Drawing.Size(94, 36)
         Me.BEdit.TabIndex = 2
@@ -110,7 +112,7 @@ Partial Class FormEmpPayrollOvertime
         Me.BAdd.Dock = System.Windows.Forms.DockStyle.Right
         Me.BAdd.ImageIndex = 0
         Me.BAdd.ImageList = Me.LargeImageCollection
-        Me.BAdd.Location = New System.Drawing.Point(820, 2)
+        Me.BAdd.Location = New System.Drawing.Point(670, 2)
         Me.BAdd.Name = "BAdd"
         Me.BAdd.Size = New System.Drawing.Size(91, 36)
         Me.BAdd.TabIndex = 1
@@ -264,6 +266,17 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumnTotPoint.VisibleIndex = 8
         Me.GridColumnTotPoint.Width = 128
         '
+        'BOvertimeWindow
+        '
+        Me.BOvertimeWindow.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BOvertimeWindow.ImageIndex = 13
+        Me.BOvertimeWindow.ImageList = Me.LargeImageCollection
+        Me.BOvertimeWindow.Location = New System.Drawing.Point(761, 2)
+        Me.BOvertimeWindow.Name = "BOvertimeWindow"
+        Me.BOvertimeWindow.Size = New System.Drawing.Size(150, 36)
+        Me.BOvertimeWindow.TabIndex = 5
+        Me.BOvertimeWindow.Text = "Based on Attendance"
+        '
         'FormEmpPayrollOvertime
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -309,4 +322,5 @@ Partial Class FormEmpPayrollOvertime
     Friend WithEvents BAdd As DevExpress.XtraEditors.SimpleButton
     Public WithEvents LargeImageCollection As DevExpress.Utils.ImageCollection
     Friend WithEvents GridColumn11 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BOvertimeWindow As DevExpress.XtraEditors.SimpleButton
 End Class

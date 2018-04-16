@@ -115,7 +115,12 @@
                 view_currency(LECurrency)
                 LECurrency.EditValue = Nothing
                 LECurrency.ItemIndex = LECurrency.Properties.GetDataSourceRowIndex("id_currency", data.Rows(0)("id_currency").ToString)
-                LECurrency.Enabled = False
+                If data.Rows(0)("id_report_status").ToString = "1" Then
+                    LECurrency.Enabled = True
+                Else
+                    LECurrency.Enabled = False
+                End If
+
                 '
                 TEVat.EditValue = data.Rows(0)("pr_prod_order_vat")
 

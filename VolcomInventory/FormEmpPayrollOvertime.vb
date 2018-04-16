@@ -62,4 +62,8 @@
             load_payroll_ot()
         End If
     End Sub
+
+    Private Sub BOvertimeWindow_Click(sender As Object, e As EventArgs) Handles BOvertimeWindow.Click
+        FormEmpPayrollOvertimePick.ShowDialog()
+    End Sub
 End Class
