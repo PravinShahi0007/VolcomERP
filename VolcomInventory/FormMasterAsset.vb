@@ -27,16 +27,19 @@
             where_string = " WHERE ass.date_last_upd >='" & Date.Parse(DEStart.EditValue.ToString).ToString("yyyy-MM-dd") & "' AND ass.date_last_upd<='" & Date.Parse(DEEnd.EditValue.ToString).ToString("yyyy-MM-dd") & "'"
         End If
         '
-        Dim query As String = "SELECT ass.id_asset,ass.id_asset_cat,cat.asset_cat,po.comp_name AS vendor_code,ass.asset_code_old,ass.asset_code,ass.asset_desc,po.asset_po_no AS po_no,pod.qty AS po_qty,pod.value AS po_value,po.asset_po_date AS po_date,rec.asset_rec_date,recd.qty_rec AS rec_qty,recd.value_rec AS rec_value,ass.age
+        Dim query As String = "SELECT ass.id_asset,ass.id_asset_cat,cat.asset_cat,po.comp_name AS vendor_code,ass.asset_code_old,ass.asset_code,ass.asset_desc,po.asset_po_no AS po_no,pod.qty AS po_qty,pod.value AS po_value,po.asset_po_date AS po_date,rec.asset_rec_date as rec_date,recd.qty_rec AS rec_qty,recd.value_rec AS rec_value,ass.age
                                 ,DATE_ADD(rec.asset_rec_date,INTERVAL age MONTH) AS date_aging
                                 ,TIMESTAMPDIFF(MONTH,rec.`asset_rec_date`,NOW()) AS age_current
                                 ,recd.value_rec/ass.age AS monthly_dep
                                 ,ass.date_created,ass.date_last_upd,emp_cre.employee_name AS emp_created,emp_last.employee_name AS emp_last_upd
                                 ,IF(age>=(SELECT age_current),0,(rec_value-((SELECT age_current)*(SELECT monthly_dep)))) AS current_value
-                                ,IF(ISNULL(cur_user.id_asset),emp.employee_name,cur_user.employee_name) AS employee_name
-                                ,IF(ISNULL(cur_user.id_asset),emp.employee_name,cur_user.employee_name) AS employee_name
+                                ,ass.asset_location
+                                ,IF(ISNULL(cur_user.id_asset),ass.asset_location,cur_user.location) AS asset_location_current
+                                ,emp.employee_name AS employee_name
+                                ,IF(ISNULL(cur_user.id_asset),emp.employee_name,cur_user.employee_name) AS employee_name_current
                                 ,IF(ISNULL(cur_user.id_asset),ass.id_employee,cur_user.id_employee) AS id_employee
-                                ,IF(ISNULL(cur_user.id_asset),dep.departement,cur_user.departement) AS departement
+                                ,dep.departement AS departement
+                                ,IF(ISNULL(cur_user.id_asset),dep.departement,cur_user.departement) AS departement_current
                                 ,IF(ISNULL(cur_user.id_asset),ass.id_departement,cur_user.id_departement) AS id_departement
                                 FROM tb_a_asset ass
                                 INNER JOIN tb_a_asset_rec_det recd ON recd.id_asset_rec_det=ass.id_asset_rec_det
@@ -50,7 +53,7 @@
                                 LEFT JOIN tb_m_employee emp_last ON emp_last.id_employee=usr_last.id_employee
                                 LEFT JOIN
                                 (
-	                                SELECT a.id_asset,emp.`employee_name`,emp.`id_employee`,dep.`departement`,dep.`id_departement` FROM
+                                    SELECT a.id_asset,a.location,emp.`employee_name`,emp.`id_employee`,dep.`departement`,dep.`id_departement` FROM
                                     (
 	                                    SELECT * FROM tb_a_asset_log ORDER BY `date` DESC ,id_asset_log DESC
                                     )a 
