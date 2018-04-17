@@ -142,14 +142,14 @@ Partial Public Class ReportSalarySlip
         '
         Me.XrPanel5.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.LJoinDate, Me.LEmpStatus, Me.XrLabel12, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.LDepartement, Me.LPosition, Me.LIDEmpName, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel5, Me.XrLabel4, Me.XrLabel3, Me.XrLabel2, Me.XrLabel1})
         Me.XrPanel5.Dpi = 254.0!
-        Me.XrPanel5.LocationFloat = New DevExpress.Utils.PointFloat(1180.0!, 0!)
+        Me.XrPanel5.LocationFloat = New DevExpress.Utils.PointFloat(1079.966!, 0!)
         Me.XrPanel5.Name = "XrPanel5"
         Me.XrPanel5.SizeF = New System.Drawing.SizeF(920.0!, 199.9999!)
         '
         'LJoinDate
         '
         Me.LJoinDate.Dpi = 254.0!
-        Me.LJoinDate.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LJoinDate.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LJoinDate.LocationFloat = New DevExpress.Utils.PointFloat(717.0626!, 119.6732!)
         Me.LJoinDate.Name = "LJoinDate"
         Me.LJoinDate.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -162,7 +162,7 @@ Partial Public Class ReportSalarySlip
         'LEmpStatus
         '
         Me.LEmpStatus.Dpi = 254.0!
-        Me.LEmpStatus.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LEmpStatus.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LEmpStatus.LocationFloat = New DevExpress.Utils.PointFloat(717.0626!, 85.06579!)
         Me.LEmpStatus.Name = "LEmpStatus"
         Me.LEmpStatus.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -201,7 +201,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel10
         '
         Me.XrLabel10.Dpi = 254.0!
-        Me.XrLabel10.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel10.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(545.0835!, 119.6732!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -214,7 +214,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel9
         '
         Me.XrLabel9.Dpi = 254.0!
-        Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel9.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(545.0835!, 85.06579!)
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -227,7 +227,7 @@ Partial Public Class ReportSalarySlip
         'LDepartement
         '
         Me.LDepartement.Dpi = 254.0!
-        Me.LDepartement.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LDepartement.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LDepartement.LocationFloat = New DevExpress.Utils.PointFloat(252.5417!, 119.6732!)
         Me.LDepartement.Name = "LDepartement"
         Me.LDepartement.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -240,7 +240,7 @@ Partial Public Class ReportSalarySlip
         'LPosition
         '
         Me.LPosition.Dpi = 254.0!
-        Me.LPosition.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LPosition.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LPosition.LocationFloat = New DevExpress.Utils.PointFloat(252.5417!, 85.06579!)
         Me.LPosition.Name = "LPosition"
         Me.LPosition.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -253,7 +253,7 @@ Partial Public Class ReportSalarySlip
         'LIDEmpName
         '
         Me.LIDEmpName.Dpi = 254.0!
-        Me.LIDEmpName.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LIDEmpName.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LIDEmpName.LocationFloat = New DevExpress.Utils.PointFloat(252.5416!, 50.45835!)
         Me.LIDEmpName.Name = "LIDEmpName"
         Me.LIDEmpName.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -305,7 +305,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel5
         '
         Me.XrLabel5.Dpi = 254.0!
-        Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel5.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(24.99977!, 119.6732!)
         Me.XrLabel5.Name = "XrLabel5"
         Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -318,7 +318,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel4
         '
         Me.XrLabel4.Dpi = 254.0!
-        Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel4.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(24.99993!, 85.06579!)
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -331,7 +331,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel3
         '
         Me.XrLabel3.Dpi = 254.0!
-        Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel3.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(24.99976!, 50.45832!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -344,11 +344,11 @@ Partial Public Class ReportSalarySlip
         'XrLabel2
         '
         Me.XrLabel2.Dpi = 254.0!
-        Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(545.0836!, 8.000034!)
+        Me.XrLabel2.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(189.0417!, 0!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(301.6251!, 34.60749!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(719.3832!, 34.60749!)
         Me.XrLabel2.StylePriority.UseFont = False
         Me.XrLabel2.StylePriority.UseTextAlignment = False
         Me.XrLabel2.Text = "[periode]"
@@ -357,11 +357,11 @@ Partial Public Class ReportSalarySlip
         'XrLabel1
         '
         Me.XrLabel1.Dpi = 254.0!
-        Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(426.0208!, 8.000051!)
+        Me.XrLabel1.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(24.99988!, 0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(119.0627!, 34.60749!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(164.0419!, 34.60749!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseTextAlignment = False
         Me.XrLabel1.Text = "Periode : "
@@ -371,7 +371,7 @@ Partial Public Class ReportSalarySlip
         '
         Me.XrPanel3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel42, Me.XrLabel101, Me.XrLabel100, Me.LeffectiveDate, Me.LNamaRek, Me.LNoRek, Me.XrLabel91, Me.LTotalDeduction, Me.LTotalIncome, Me.XrLabel95, Me.XrLabel96, Me.XrLabel93, Me.XrLabel94, Me.XrLabel92, Me.LNetIncome, Me.XrLabel89, Me.XrLabel90, Me.XrLabel85, Me.XrLabel84, Me.XrLabel83, Me.XrLabel82, Me.XrPanel7, Me.XrPanel6, Me.XrLabel13})
         Me.XrPanel3.Dpi = 254.0!
-        Me.XrPanel3.LocationFloat = New DevExpress.Utils.PointFloat(138.0338!, 299.9999!)
+        Me.XrPanel3.LocationFloat = New DevExpress.Utils.PointFloat(38.0!, 299.9999!)
         Me.XrPanel3.Name = "XrPanel3"
         Me.XrPanel3.SizeF = New System.Drawing.SizeF(1961.966!, 844.4377!)
         '
@@ -396,10 +396,10 @@ Partial Public Class ReportSalarySlip
         Me.XrLabel101.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.XrLabel101.Dpi = 254.0!
         Me.XrLabel101.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel101.LocationFloat = New DevExpress.Utils.PointFloat(1602.666!, 476.4015!)
+        Me.XrLabel101.LocationFloat = New DevExpress.Utils.PointFloat(1634.417!, 476.4014!)
         Me.XrLabel101.Name = "XrLabel101"
         Me.XrLabel101.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel101.SizeF = New System.Drawing.SizeF(359.2993!, 37.99994!)
+        Me.XrLabel101.SizeF = New System.Drawing.SizeF(327.5482!, 37.99994!)
         Me.XrLabel101.StylePriority.UseBorders = False
         Me.XrLabel101.StylePriority.UseFont = False
         Me.XrLabel101.StylePriority.UseTextAlignment = False
@@ -433,7 +433,7 @@ Partial Public Class ReportSalarySlip
         Me.LeffectiveDate.StylePriority.UseBorders = False
         Me.LeffectiveDate.StylePriority.UseFont = False
         Me.LeffectiveDate.StylePriority.UseTextAlignment = False
-        Me.LeffectiveDate.Text = "Effective date transfer : [eff_trans_date], to :"
+        Me.LeffectiveDate.Text = "Effective date transfer [eff_trans_date], to :"
         Me.LeffectiveDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'LNamaRek
@@ -485,11 +485,11 @@ Partial Public Class ReportSalarySlip
         '
         Me.LTotalDeduction.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LTotalDeduction.Dpi = 254.0!
-        Me.LTotalDeduction.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LTotalDeduction.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LTotalDeduction.LocationFloat = New DevExpress.Utils.PointFloat(1335.5!, 476.4014!)
         Me.LTotalDeduction.Name = "LTotalDeduction"
         Me.LTotalDeduction.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.LTotalDeduction.SizeF = New System.Drawing.SizeF(267.1661!, 37.99994!)
+        Me.LTotalDeduction.SizeF = New System.Drawing.SizeF(298.9172!, 37.99994!)
         Me.LTotalDeduction.StylePriority.UseBorders = False
         Me.LTotalDeduction.StylePriority.UseFont = False
         Me.LTotalDeduction.StylePriority.UseTextAlignment = False
@@ -500,7 +500,7 @@ Partial Public Class ReportSalarySlip
         '
         Me.LTotalIncome.Borders = CType((DevExpress.XtraPrinting.BorderSide.Top Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
         Me.LTotalIncome.Dpi = 254.0!
-        Me.LTotalIncome.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LTotalIncome.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LTotalIncome.LocationFloat = New DevExpress.Utils.PointFloat(317.5!, 476.4013!)
         Me.LTotalIncome.Name = "LTotalIncome"
         Me.LTotalIncome.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -591,7 +591,7 @@ Partial Public Class ReportSalarySlip
         Me.LNetIncome.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.[Double]
         Me.LNetIncome.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.LNetIncome.Dpi = 254.0!
-        Me.LNetIncome.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LNetIncome.Font = New System.Drawing.Font("Times New Roman", 10.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LNetIncome.LocationFloat = New DevExpress.Utils.PointFloat(317.4997!, 531.8826!)
         Me.LNetIncome.Name = "LNetIncome"
         Me.LNetIncome.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -704,8 +704,8 @@ Partial Public Class ReportSalarySlip
         'LUniOther
         '
         Me.LUniOther.Dpi = 254.0!
-        Me.LUniOther.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LUniOther.LocationFloat = New DevExpress.Utils.PointFloat(335.5008!, 277.6077!)
+        Me.LUniOther.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LUniOther.LocationFloat = New DevExpress.Utils.PointFloat(367.2506!, 277.6077!)
         Me.LUniOther.Name = "LUniOther"
         Me.LUniOther.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LUniOther.SizeF = New System.Drawing.SizeF(267.1667!, 40.0!)
@@ -718,7 +718,7 @@ Partial Public Class ReportSalarySlip
         '
         Me.XrLabel80.Dpi = 254.0!
         Me.XrLabel80.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel80.LocationFloat = New DevExpress.Utils.PointFloat(303.7504!, 277.6077!)
+        Me.XrLabel80.LocationFloat = New DevExpress.Utils.PointFloat(335.5006!, 277.6077!)
         Me.XrLabel80.Name = "XrLabel80"
         Me.XrLabel80.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel80.SizeF = New System.Drawing.SizeF(31.75!, 40.0!)
@@ -730,11 +730,11 @@ Partial Public Class ReportSalarySlip
         'XrLabel81
         '
         Me.XrLabel81.Dpi = 254.0!
-        Me.XrLabel81.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel81.LocationFloat = New DevExpress.Utils.PointFloat(0.0002306983!, 277.6077!)
+        Me.XrLabel81.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel81.LocationFloat = New DevExpress.Utils.PointFloat(0.0002441406!, 277.6077!)
         Me.XrLabel81.Name = "XrLabel81"
         Me.XrLabel81.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel81.SizeF = New System.Drawing.SizeF(303.7501!, 40.0!)
+        Me.XrLabel81.SizeF = New System.Drawing.SizeF(335.5004!, 40.0!)
         Me.XrLabel81.StylePriority.UseFont = False
         Me.XrLabel81.StylePriority.UseTextAlignment = False
         Me.XrLabel81.Text = "Uniform & Other Deduction"
@@ -743,8 +743,8 @@ Partial Public Class ReportSalarySlip
         'Lmissing
         '
         Me.Lmissing.Dpi = 254.0!
-        Me.Lmissing.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Lmissing.LocationFloat = New DevExpress.Utils.PointFloat(335.5003!, 237.6076!)
+        Me.Lmissing.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Lmissing.LocationFloat = New DevExpress.Utils.PointFloat(367.2507!, 237.6076!)
         Me.Lmissing.Name = "Lmissing"
         Me.Lmissing.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.Lmissing.SizeF = New System.Drawing.SizeF(267.1664!, 40.0!)
@@ -756,8 +756,8 @@ Partial Public Class ReportSalarySlip
         'LPinjamanKoperasi
         '
         Me.LPinjamanKoperasi.Dpi = 254.0!
-        Me.LPinjamanKoperasi.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LPinjamanKoperasi.LocationFloat = New DevExpress.Utils.PointFloat(335.5003!, 197.6077!)
+        Me.LPinjamanKoperasi.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LPinjamanKoperasi.LocationFloat = New DevExpress.Utils.PointFloat(367.2507!, 197.6076!)
         Me.LPinjamanKoperasi.Name = "LPinjamanKoperasi"
         Me.LPinjamanKoperasi.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LPinjamanKoperasi.SizeF = New System.Drawing.SizeF(267.1664!, 39.99997!)
@@ -769,8 +769,8 @@ Partial Public Class ReportSalarySlip
         'LIuranKoperasi
         '
         Me.LIuranKoperasi.Dpi = 254.0!
-        Me.LIuranKoperasi.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LIuranKoperasi.LocationFloat = New DevExpress.Utils.PointFloat(335.5003!, 157.6074!)
+        Me.LIuranKoperasi.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LIuranKoperasi.LocationFloat = New DevExpress.Utils.PointFloat(367.2507!, 157.6073!)
         Me.LIuranKoperasi.Name = "LIuranKoperasi"
         Me.LIuranKoperasi.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LIuranKoperasi.SizeF = New System.Drawing.SizeF(267.1661!, 40.0!)
@@ -782,8 +782,8 @@ Partial Public Class ReportSalarySlip
         'LJaminanHariTua
         '
         Me.LJaminanHariTua.Dpi = 254.0!
-        Me.LJaminanHariTua.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LJaminanHariTua.LocationFloat = New DevExpress.Utils.PointFloat(335.5003!, 117.6074!)
+        Me.LJaminanHariTua.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LJaminanHariTua.LocationFloat = New DevExpress.Utils.PointFloat(367.2507!, 117.6073!)
         Me.LJaminanHariTua.Name = "LJaminanHariTua"
         Me.LJaminanHariTua.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LJaminanHariTua.SizeF = New System.Drawing.SizeF(267.1661!, 40.0!)
@@ -795,8 +795,8 @@ Partial Public Class ReportSalarySlip
         'LJaminanPensiun
         '
         Me.LJaminanPensiun.Dpi = 254.0!
-        Me.LJaminanPensiun.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LJaminanPensiun.LocationFloat = New DevExpress.Utils.PointFloat(335.5003!, 77.60736!)
+        Me.LJaminanPensiun.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LJaminanPensiun.LocationFloat = New DevExpress.Utils.PointFloat(367.2507!, 77.60735!)
         Me.LJaminanPensiun.Name = "LJaminanPensiun"
         Me.LJaminanPensiun.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LJaminanPensiun.SizeF = New System.Drawing.SizeF(267.1664!, 40.0!)
@@ -808,8 +808,8 @@ Partial Public Class ReportSalarySlip
         'LBpjsKes
         '
         Me.LBpjsKes.Dpi = 254.0!
-        Me.LBpjsKes.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LBpjsKes.LocationFloat = New DevExpress.Utils.PointFloat(335.5003!, 37.60738!)
+        Me.LBpjsKes.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBpjsKes.LocationFloat = New DevExpress.Utils.PointFloat(367.2507!, 37.60736!)
         Me.LBpjsKes.Name = "LBpjsKes"
         Me.LBpjsKes.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LBpjsKes.SizeF = New System.Drawing.SizeF(267.1664!, 40.0!)
@@ -822,7 +822,7 @@ Partial Public Class ReportSalarySlip
         '
         Me.XrLabel64.Dpi = 254.0!
         Me.XrLabel64.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel64.LocationFloat = New DevExpress.Utils.PointFloat(303.7501!, 37.60738!)
+        Me.XrLabel64.LocationFloat = New DevExpress.Utils.PointFloat(335.5!, 37.60738!)
         Me.XrLabel64.Name = "XrLabel64"
         Me.XrLabel64.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel64.SizeF = New System.Drawing.SizeF(31.75!, 40.0!)
@@ -835,7 +835,7 @@ Partial Public Class ReportSalarySlip
         '
         Me.XrLabel65.Dpi = 254.0!
         Me.XrLabel65.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel65.LocationFloat = New DevExpress.Utils.PointFloat(303.7501!, 77.60736!)
+        Me.XrLabel65.LocationFloat = New DevExpress.Utils.PointFloat(335.5!, 77.60736!)
         Me.XrLabel65.Name = "XrLabel65"
         Me.XrLabel65.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel65.SizeF = New System.Drawing.SizeF(31.75!, 40.0!)
@@ -848,7 +848,7 @@ Partial Public Class ReportSalarySlip
         '
         Me.XrLabel66.Dpi = 254.0!
         Me.XrLabel66.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel66.LocationFloat = New DevExpress.Utils.PointFloat(303.7501!, 117.6074!)
+        Me.XrLabel66.LocationFloat = New DevExpress.Utils.PointFloat(335.5!, 117.6074!)
         Me.XrLabel66.Name = "XrLabel66"
         Me.XrLabel66.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel66.SizeF = New System.Drawing.SizeF(31.75!, 40.0!)
@@ -861,7 +861,7 @@ Partial Public Class ReportSalarySlip
         '
         Me.XrLabel67.Dpi = 254.0!
         Me.XrLabel67.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel67.LocationFloat = New DevExpress.Utils.PointFloat(303.7501!, 157.6074!)
+        Me.XrLabel67.LocationFloat = New DevExpress.Utils.PointFloat(335.5!, 157.6074!)
         Me.XrLabel67.Name = "XrLabel67"
         Me.XrLabel67.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel67.SizeF = New System.Drawing.SizeF(31.75!, 40.0!)
@@ -874,7 +874,7 @@ Partial Public Class ReportSalarySlip
         '
         Me.XrLabel68.Dpi = 254.0!
         Me.XrLabel68.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel68.LocationFloat = New DevExpress.Utils.PointFloat(303.7499!, 197.6076!)
+        Me.XrLabel68.LocationFloat = New DevExpress.Utils.PointFloat(335.4998!, 197.6076!)
         Me.XrLabel68.Name = "XrLabel68"
         Me.XrLabel68.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel68.SizeF = New System.Drawing.SizeF(31.75!, 40.0!)
@@ -887,7 +887,7 @@ Partial Public Class ReportSalarySlip
         '
         Me.XrLabel69.Dpi = 254.0!
         Me.XrLabel69.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel69.LocationFloat = New DevExpress.Utils.PointFloat(303.7504!, 237.6076!)
+        Me.XrLabel69.LocationFloat = New DevExpress.Utils.PointFloat(335.5003!, 237.6076!)
         Me.XrLabel69.Name = "XrLabel69"
         Me.XrLabel69.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel69.SizeF = New System.Drawing.SizeF(31.75!, 40.0!)
@@ -899,11 +899,11 @@ Partial Public Class ReportSalarySlip
         'XrLabel70
         '
         Me.XrLabel70.Dpi = 254.0!
-        Me.XrLabel70.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel70.LocationFloat = New DevExpress.Utils.PointFloat(0.0001153492!, 77.60736!)
+        Me.XrLabel70.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel70.LocationFloat = New DevExpress.Utils.PointFloat(0.0001220703!, 77.60736!)
         Me.XrLabel70.Name = "XrLabel70"
         Me.XrLabel70.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel70.SizeF = New System.Drawing.SizeF(303.7501!, 40.0!)
+        Me.XrLabel70.SizeF = New System.Drawing.SizeF(335.4999!, 40.0!)
         Me.XrLabel70.StylePriority.UseFont = False
         Me.XrLabel70.StylePriority.UseTextAlignment = False
         Me.XrLabel70.Text = "Jaminan Pensiun"
@@ -912,11 +912,11 @@ Partial Public Class ReportSalarySlip
         'XrLabel71
         '
         Me.XrLabel71.Dpi = 254.0!
-        Me.XrLabel71.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel71.LocationFloat = New DevExpress.Utils.PointFloat(0.0001153492!, 117.6074!)
+        Me.XrLabel71.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel71.LocationFloat = New DevExpress.Utils.PointFloat(0.0001220703!, 117.6074!)
         Me.XrLabel71.Name = "XrLabel71"
         Me.XrLabel71.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel71.SizeF = New System.Drawing.SizeF(303.7501!, 40.0!)
+        Me.XrLabel71.SizeF = New System.Drawing.SizeF(335.4999!, 39.99997!)
         Me.XrLabel71.StylePriority.UseFont = False
         Me.XrLabel71.StylePriority.UseTextAlignment = False
         Me.XrLabel71.Text = "Jaminan Hari Tua"
@@ -925,11 +925,11 @@ Partial Public Class ReportSalarySlip
         'XrLabel72
         '
         Me.XrLabel72.Dpi = 254.0!
-        Me.XrLabel72.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel72.LocationFloat = New DevExpress.Utils.PointFloat(0.0001153492!, 157.6074!)
+        Me.XrLabel72.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel72.LocationFloat = New DevExpress.Utils.PointFloat(0.0001220703!, 157.6073!)
         Me.XrLabel72.Name = "XrLabel72"
         Me.XrLabel72.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel72.SizeF = New System.Drawing.SizeF(303.7501!, 40.0!)
+        Me.XrLabel72.SizeF = New System.Drawing.SizeF(335.4999!, 40.00003!)
         Me.XrLabel72.StylePriority.UseFont = False
         Me.XrLabel72.StylePriority.UseTextAlignment = False
         Me.XrLabel72.Text = "Iuran Koperasi"
@@ -938,11 +938,11 @@ Partial Public Class ReportSalarySlip
         'XrLabel73
         '
         Me.XrLabel73.Dpi = 254.0!
-        Me.XrLabel73.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel73.LocationFloat = New DevExpress.Utils.PointFloat(0.0002306983!, 197.6074!)
+        Me.XrLabel73.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel73.LocationFloat = New DevExpress.Utils.PointFloat(0.0002441406!, 197.6074!)
         Me.XrLabel73.Name = "XrLabel73"
         Me.XrLabel73.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel73.SizeF = New System.Drawing.SizeF(303.7501!, 39.99997!)
+        Me.XrLabel73.SizeF = New System.Drawing.SizeF(335.5!, 40.0!)
         Me.XrLabel73.StylePriority.UseFont = False
         Me.XrLabel73.StylePriority.UseTextAlignment = False
         Me.XrLabel73.Text = "Pinjaman Koperasi"
@@ -951,11 +951,11 @@ Partial Public Class ReportSalarySlip
         'XrLabel74
         '
         Me.XrLabel74.Dpi = 254.0!
-        Me.XrLabel74.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel74.LocationFloat = New DevExpress.Utils.PointFloat(0.0002306983!, 237.6076!)
+        Me.XrLabel74.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel74.LocationFloat = New DevExpress.Utils.PointFloat(0.0002441406!, 237.6076!)
         Me.XrLabel74.Name = "XrLabel74"
         Me.XrLabel74.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel74.SizeF = New System.Drawing.SizeF(303.7501!, 40.0!)
+        Me.XrLabel74.SizeF = New System.Drawing.SizeF(335.5!, 40.0!)
         Me.XrLabel74.StylePriority.UseFont = False
         Me.XrLabel74.StylePriority.UseTextAlignment = False
         Me.XrLabel74.Text = "Missing"
@@ -964,11 +964,11 @@ Partial Public Class ReportSalarySlip
         'XrLabel75
         '
         Me.XrLabel75.Dpi = 254.0!
-        Me.XrLabel75.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel75.LocationFloat = New DevExpress.Utils.PointFloat(0.0001153492!, 37.60738!)
+        Me.XrLabel75.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel75.LocationFloat = New DevExpress.Utils.PointFloat(0.0001220703!, 37.60739!)
         Me.XrLabel75.Name = "XrLabel75"
         Me.XrLabel75.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel75.SizeF = New System.Drawing.SizeF(303.7501!, 40.0!)
+        Me.XrLabel75.SizeF = New System.Drawing.SizeF(335.4999!, 39.99997!)
         Me.XrLabel75.StylePriority.UseFont = False
         Me.XrLabel75.StylePriority.UseTextAlignment = False
         Me.XrLabel75.Text = "BPJS Kes"
@@ -998,7 +998,7 @@ Partial Public Class ReportSalarySlip
         'LOvertimePay
         '
         Me.LOvertimePay.Dpi = 254.0!
-        Me.LOvertimePay.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LOvertimePay.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LOvertimePay.LocationFloat = New DevExpress.Utils.PointFloat(317.4998!, 277.6075!)
         Me.LOvertimePay.Name = "LOvertimePay"
         Me.LOvertimePay.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1011,7 +1011,7 @@ Partial Public Class ReportSalarySlip
         'LAdjustment
         '
         Me.LAdjustment.Dpi = 254.0!
-        Me.LAdjustment.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LAdjustment.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LAdjustment.LocationFloat = New DevExpress.Utils.PointFloat(317.4996!, 397.6076!)
         Me.LAdjustment.Name = "LAdjustment"
         Me.LAdjustment.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1024,7 +1024,7 @@ Partial Public Class ReportSalarySlip
         'LBonus
         '
         Me.LBonus.Dpi = 254.0!
-        Me.LBonus.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBonus.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBonus.LocationFloat = New DevExpress.Utils.PointFloat(317.4998!, 357.6077!)
         Me.LBonus.Name = "LBonus"
         Me.LBonus.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1037,7 +1037,7 @@ Partial Public Class ReportSalarySlip
         'LDPPay
         '
         Me.LDPPay.Dpi = 254.0!
-        Me.LDPPay.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LDPPay.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LDPPay.LocationFloat = New DevExpress.Utils.PointFloat(317.4999!, 317.6076!)
         Me.LDPPay.Name = "LDPPay"
         Me.LDPPay.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1050,7 +1050,7 @@ Partial Public Class ReportSalarySlip
         'LWorkingDays
         '
         Me.LWorkingDays.Dpi = 254.0!
-        Me.LWorkingDays.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LWorkingDays.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LWorkingDays.LocationFloat = New DevExpress.Utils.PointFloat(825.438!, 237.6076!)
         Me.LWorkingDays.Name = "LWorkingDays"
         Me.LWorkingDays.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1063,7 +1063,7 @@ Partial Public Class ReportSalarySlip
         'LAttnAllow
         '
         Me.LAttnAllow.Dpi = 254.0!
-        Me.LAttnAllow.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LAttnAllow.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LAttnAllow.LocationFloat = New DevExpress.Utils.PointFloat(317.5001!, 237.6075!)
         Me.LAttnAllow.Name = "LAttnAllow"
         Me.LAttnAllow.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1076,7 +1076,7 @@ Partial Public Class ReportSalarySlip
         'LHousingAllow
         '
         Me.LHousingAllow.Dpi = 254.0!
-        Me.LHousingAllow.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LHousingAllow.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LHousingAllow.LocationFloat = New DevExpress.Utils.PointFloat(317.4998!, 197.6075!)
         Me.LHousingAllow.Name = "LHousingAllow"
         Me.LHousingAllow.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1089,7 +1089,7 @@ Partial Public Class ReportSalarySlip
         'LTransporAllow
         '
         Me.LTransporAllow.Dpi = 254.0!
-        Me.LTransporAllow.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LTransporAllow.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LTransporAllow.LocationFloat = New DevExpress.Utils.PointFloat(317.4998!, 157.6074!)
         Me.LTransporAllow.Name = "LTransporAllow"
         Me.LTransporAllow.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1102,7 +1102,7 @@ Partial Public Class ReportSalarySlip
         'LMealAllow
         '
         Me.LMealAllow.Dpi = 254.0!
-        Me.LMealAllow.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LMealAllow.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LMealAllow.LocationFloat = New DevExpress.Utils.PointFloat(317.4998!, 117.6075!)
         Me.LMealAllow.Name = "LMealAllow"
         Me.LMealAllow.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1115,7 +1115,7 @@ Partial Public Class ReportSalarySlip
         'LJobAllow
         '
         Me.LJobAllow.Dpi = 254.0!
-        Me.LJobAllow.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LJobAllow.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LJobAllow.LocationFloat = New DevExpress.Utils.PointFloat(317.4998!, 77.6073!)
         Me.LJobAllow.Name = "LJobAllow"
         Me.LJobAllow.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1128,7 +1128,7 @@ Partial Public Class ReportSalarySlip
         'LBasicSalary
         '
         Me.LBasicSalary.Dpi = 254.0!
-        Me.LBasicSalary.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LBasicSalary.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LBasicSalary.LocationFloat = New DevExpress.Utils.PointFloat(317.4998!, 37.60732!)
         Me.LBasicSalary.Name = "LBasicSalary"
         Me.LBasicSalary.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1154,7 +1154,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel41
         '
         Me.XrLabel41.Dpi = 254.0!
-        Me.XrLabel41.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel41.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(613.0148!, 277.6074!)
         Me.XrLabel41.Name = "XrLabel41"
         Me.XrLabel41.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1233,7 +1233,7 @@ Partial Public Class ReportSalarySlip
         '
         Me.XrLabel34.Dpi = 254.0!
         Me.XrLabel34.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(285.7501!, 237.6076!)
+        Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(285.7501!, 237.6073!)
         Me.XrLabel34.Name = "XrLabel34"
         Me.XrLabel34.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel34.SizeF = New System.Drawing.SizeF(31.75!, 40.0!)
@@ -1285,7 +1285,7 @@ Partial Public Class ReportSalarySlip
         '
         Me.XrLabel30.Dpi = 254.0!
         Me.XrLabel30.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(285.7498!, 357.6075!)
+        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(285.7498!, 357.6077!)
         Me.XrLabel30.Name = "XrLabel30"
         Me.XrLabel30.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel30.SizeF = New System.Drawing.SizeF(31.75!, 40.0!)
@@ -1310,7 +1310,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel26
         '
         Me.XrLabel26.Dpi = 254.0!
-        Me.XrLabel26.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel26.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(0!, 397.6077!)
         Me.XrLabel26.Name = "XrLabel26"
         Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1323,7 +1323,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel25
         '
         Me.XrLabel25.Dpi = 254.0!
-        Me.XrLabel25.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel25.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(0!, 357.6077!)
         Me.XrLabel25.Name = "XrLabel25"
         Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1336,7 +1336,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel24
         '
         Me.XrLabel24.Dpi = 254.0!
-        Me.XrLabel24.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel24.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(613.0153!, 237.6073!)
         Me.XrLabel24.Name = "XrLabel24"
         Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1349,7 +1349,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel23
         '
         Me.XrLabel23.Dpi = 254.0!
-        Me.XrLabel23.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel23.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(0!, 77.6073!)
         Me.XrLabel23.Name = "XrLabel23"
         Me.XrLabel23.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1362,7 +1362,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel22
         '
         Me.XrLabel22.Dpi = 254.0!
-        Me.XrLabel22.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel22.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(0!, 117.6073!)
         Me.XrLabel22.Name = "XrLabel22"
         Me.XrLabel22.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1375,7 +1375,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel21
         '
         Me.XrLabel21.Dpi = 254.0!
-        Me.XrLabel21.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel21.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(0!, 157.6075!)
         Me.XrLabel21.Name = "XrLabel21"
         Me.XrLabel21.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1388,7 +1388,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel20
         '
         Me.XrLabel20.Dpi = 254.0!
-        Me.XrLabel20.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel20.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(0!, 197.6075!)
         Me.XrLabel20.Name = "XrLabel20"
         Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1401,7 +1401,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel19
         '
         Me.XrLabel19.Dpi = 254.0!
-        Me.XrLabel19.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel19.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(0!, 237.6076!)
         Me.XrLabel19.Name = "XrLabel19"
         Me.XrLabel19.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1414,7 +1414,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel18
         '
         Me.XrLabel18.Dpi = 254.0!
-        Me.XrLabel18.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel18.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(0!, 317.6076!)
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1427,8 +1427,8 @@ Partial Public Class ReportSalarySlip
         'XrLabel17
         '
         Me.XrLabel17.Dpi = 254.0!
-        Me.XrLabel17.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(0!, 277.6075!)
+        Me.XrLabel17.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(0!, 277.6076!)
         Me.XrLabel17.Name = "XrLabel17"
         Me.XrLabel17.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrLabel17.SizeF = New System.Drawing.SizeF(285.75!, 40.0!)
@@ -1440,7 +1440,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel16
         '
         Me.XrLabel16.Dpi = 254.0!
-        Me.XrLabel16.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel16.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(0!, 37.60732!)
         Me.XrLabel16.Name = "XrLabel16"
         Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1466,8 +1466,8 @@ Partial Public Class ReportSalarySlip
         'LOvertimePoint
         '
         Me.LOvertimePoint.Dpi = 254.0!
-        Me.LOvertimePoint.Font = New System.Drawing.Font("Times New Roman", 7.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LOvertimePoint.LocationFloat = New DevExpress.Utils.PointFloat(825.438!, 277.6075!)
+        Me.LOvertimePoint.Font = New System.Drawing.Font("Times New Roman", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LOvertimePoint.LocationFloat = New DevExpress.Utils.PointFloat(825.438!, 277.6076!)
         Me.LOvertimePoint.Name = "LOvertimePoint"
         Me.LOvertimePoint.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.LOvertimePoint.SizeF = New System.Drawing.SizeF(149.5624!, 40.0!)
@@ -1479,7 +1479,7 @@ Partial Public Class ReportSalarySlip
         'XrLabel13
         '
         Me.XrLabel13.Dpi = 254.0!
-        Me.XrLabel13.Font = New System.Drawing.Font("Times New Roman", 7.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel13.Font = New System.Drawing.Font("Times New Roman", 9.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(0.000289917!, 784.3718!)
         Me.XrLabel13.Name = "XrLabel13"
         Me.XrLabel13.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
@@ -1492,16 +1492,16 @@ Partial Public Class ReportSalarySlip
         'XrPanel2
         '
         Me.XrPanel2.Dpi = 254.0!
-        Me.XrPanel2.LocationFloat = New DevExpress.Utils.PointFloat(2100.0!, 0.00002691481!)
+        Me.XrPanel2.LocationFloat = New DevExpress.Utils.PointFloat(1999.966!, 0!)
         Me.XrPanel2.Name = "XrPanel2"
-        Me.XrPanel2.SizeF = New System.Drawing.SizeF(50.0!, 1144.438!)
+        Me.XrPanel2.SizeF = New System.Drawing.SizeF(150.0341!, 1144.438!)
         '
         'XrPanel1
         '
         Me.XrPanel1.Dpi = 254.0!
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrPanel1.Name = "XrPanel1"
-        Me.XrPanel1.SizeF = New System.Drawing.SizeF(138.0338!, 1144.438!)
+        Me.XrPanel1.SizeF = New System.Drawing.SizeF(38.0!, 1144.438!)
         '
         'TopMargin
         '
