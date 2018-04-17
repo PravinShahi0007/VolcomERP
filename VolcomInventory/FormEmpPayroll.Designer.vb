@@ -1203,7 +1203,7 @@ Partial Class FormEmpPayroll
         '
         Me.CheckEditSelAll.Location = New System.Drawing.Point(5, 7)
         Me.CheckEditSelAll.Name = "CheckEditSelAll"
-        Me.CheckEditSelAll.Properties.Caption = "Select All Item"
+        Me.CheckEditSelAll.Properties.Caption = "Select All"
         Me.CheckEditSelAll.Size = New System.Drawing.Size(92, 19)
         Me.CheckEditSelAll.TabIndex = 102
         '
