@@ -28,6 +28,7 @@ Partial Class FormEmpPayrollOvertime
         Me.BAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.LEPayrollPeriode = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
+        Me.BOvertimeWindow = New DevExpress.XtraEditors.SimpleButton()
         Me.GCOverTime = New DevExpress.XtraGrid.GridControl()
         Me.GVOverTime = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -41,7 +42,6 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotHour = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnTotPoint = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BOvertimeWindow = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -120,7 +120,7 @@ Partial Class FormEmpPayrollOvertime
         '
         'LEPayrollPeriode
         '
-        Me.LEPayrollPeriode.Location = New System.Drawing.Point(99, 9)
+        Me.LEPayrollPeriode.Location = New System.Drawing.Point(146, 9)
         Me.LEPayrollPeriode.Name = "LEPayrollPeriode"
         Me.LEPayrollPeriode.Properties.Appearance.Options.UseTextOptions = True
         Me.LEPayrollPeriode.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near
@@ -129,19 +129,30 @@ Partial Class FormEmpPayrollOvertime
         Me.LEPayrollPeriode.Properties.AppearanceDisabled.Options.UseBackColor = True
         Me.LEPayrollPeriode.Properties.AppearanceDisabled.Options.UseForeColor = True
         Me.LEPayrollPeriode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPayrollPeriode.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payroll", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode", "Periode"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode_start", "Periode Start", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode_end", "Periode End", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.LEPayrollPeriode.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_payroll", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("periode", "Periode"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ot_periode_start", "Periode Start", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ot_periode_end", "Periode End", 20, DevExpress.Utils.FormatType.DateTime, "dd MMM yyyy", True, DevExpress.Utils.HorzAlignment.[Default])})
         Me.LEPayrollPeriode.Properties.NullText = ""
         Me.LEPayrollPeriode.Properties.ShowFooter = False
-        Me.LEPayrollPeriode.Size = New System.Drawing.Size(316, 20)
+        Me.LEPayrollPeriode.Size = New System.Drawing.Size(269, 20)
         Me.LEPayrollPeriode.TabIndex = 4
         '
         'LabelControl1
         '
         Me.LabelControl1.Location = New System.Drawing.Point(12, 12)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(81, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(128, 13)
         Me.LabelControl1.TabIndex = 0
-        Me.LabelControl1.Text = "Periode Payroll : "
+        Me.LabelControl1.Text = "Periode Overtime Payroll : "
+        '
+        'BOvertimeWindow
+        '
+        Me.BOvertimeWindow.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BOvertimeWindow.ImageIndex = 13
+        Me.BOvertimeWindow.ImageList = Me.LargeImageCollection
+        Me.BOvertimeWindow.Location = New System.Drawing.Point(761, 2)
+        Me.BOvertimeWindow.Name = "BOvertimeWindow"
+        Me.BOvertimeWindow.Size = New System.Drawing.Size(150, 36)
+        Me.BOvertimeWindow.TabIndex = 5
+        Me.BOvertimeWindow.Text = "Based on Attendance"
         '
         'GCOverTime
         '
@@ -265,17 +276,6 @@ Partial Class FormEmpPayrollOvertime
         Me.GridColumnTotPoint.Visible = True
         Me.GridColumnTotPoint.VisibleIndex = 8
         Me.GridColumnTotPoint.Width = 128
-        '
-        'BOvertimeWindow
-        '
-        Me.BOvertimeWindow.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BOvertimeWindow.ImageIndex = 13
-        Me.BOvertimeWindow.ImageList = Me.LargeImageCollection
-        Me.BOvertimeWindow.Location = New System.Drawing.Point(761, 2)
-        Me.BOvertimeWindow.Name = "BOvertimeWindow"
-        Me.BOvertimeWindow.Size = New System.Drawing.Size(150, 36)
-        Me.BOvertimeWindow.TabIndex = 5
-        Me.BOvertimeWindow.Text = "Based on Attendance"
         '
         'FormEmpPayrollOvertime
         '
