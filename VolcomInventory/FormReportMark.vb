@@ -184,7 +184,7 @@
         ElseIf report_mark_type = "37" Then
             'REC PL FG To WH
             query = String.Format("SELECT id_report_status,pl_prod_order_rec_number as report_number FROM tb_pl_prod_order_rec WHERE id_pl_prod_order_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "39" Then
+        ElseIf report_mark_type = "39" Or report_mark_type = "130" Then
             'SALES ORDER
             query = String.Format("SELECT id_report_status FROM tb_sales_order WHERE id_sales_order = '{0}'", id_report)
         ElseIf report_mark_type = "40" Then
@@ -1907,8 +1907,12 @@
             Catch ex As Exception
                 errorProcess()
             End Try
-        ElseIf report_mark_type = "39" Then
+        ElseIf report_mark_type = "39" Or report_mark_type = "130" Then
             'SALES Order
+            If id_status_reportx = "3" Then 'kalo approved langsung completed
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
                 Dim cancel As New ClassSalesOrder()
                 cancel.cancelReservedStock(id_report)

@@ -8,6 +8,7 @@ Public Class FormEmpUniOrderDet
     Dim id_wh_drawer As String = ""
     Public is_public_form As Boolean = False
     Dim id_departement As String = "-1"
+    Public is_view As String = "-1"
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -39,12 +40,16 @@ Public Class FormEmpUniOrderDet
         TxtDiff.EditValue = TxtBudget.EditValue - TxtTotal.EditValue
         TxtDesign.Focus()
 
-        If data.Rows(0)("id_report_status").ToString = 5 Or data.Rows(0)("id_report_status").ToString = 6 Then
+        If data.Rows(0)("id_report_status").ToString = "5" Or data.Rows(0)("id_report_status").ToString = "6" Or data.Rows(0)("is_selected").ToString = "1" Then
             BtnAccept.Visible = False
             BtnCancelOrder.Visible = False
             PanelControl4.Visible = False
         End If
         viewDetail()
+
+        If is_view = "1" Then
+            BtnMark.Visible = True
+        End If
     End Sub
 
     Sub getTotal()
@@ -87,10 +92,10 @@ Public Class FormEmpUniOrderDet
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
             'submit
-            submit_who_prepared("39", id_sales_order, id_user)
+            submit_who_prepared("130", id_sales_order, id_user)
 
             'update completed
-            Dim query As String = "UPDATE tb_sales_order Set id_report_status=6, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
+            Dim query As String = "UPDATE tb_sales_order set is_selected=1, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
             If Not is_public_form Then
                 FormEmpUniPeriodDet.viewOrder()
@@ -98,7 +103,7 @@ Public Class FormEmpUniOrderDet
             actionLoad()
 
             'print direct
-            printOrder(False)
+            'printOrder(False)
             Cursor = Cursors.Default
         End If
     End Sub
@@ -376,6 +381,15 @@ Public Class FormEmpUniOrderDet
 
     Private Sub StockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StockToolStripMenuItem.Click
         viewStock()
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "130"
+        FormReportMark.is_view = "1"
+        FormReportMark.id_report = id_sales_order
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     'Private Sub TxtCode_KeyDown(sender As Object, e As KeyEventArgs)
