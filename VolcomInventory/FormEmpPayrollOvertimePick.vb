@@ -18,7 +18,7 @@
                                 SELECT a.`id_employee`,a.`employee_code`,a.`employee_name` 
                                 FROM `tb_emp_payroll_det` pyd
                                 INNER JOIN tb_m_employee a ON a.`id_employee`=pyd.`id_employee`
-                                WHERE a.`id_departement`='" & LEDeptSum.EditValue.ToString & "'"
+                                WHERE a.`id_departement`='" & LEDeptSum.EditValue.ToString & "' AND pyd.id_payroll='" & FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString & "'"
         viewSearchLookupQuery(SLEEmployee, query, "id_employee", "employee_name", "id_employee")
     End Sub
     Sub viewDept()
@@ -38,8 +38,8 @@
 
         dept = LEDeptSum.EditValue.ToString
 
-        Dim query As String = "SELECT '' AS ot_note,0 as wages_point,0 as ot_break,0 as point,'no' as is_check,1 as id_ot_type,tb.*,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0) AS work_hour,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present 
-                                ,TIMESTAMPDIFF(MINUTE,tb.att_in,tb.in_tolerance) AS early,TIMESTAMPDIFF(MINUTE,tb.out,tb.att_out) AS overtime,IF((SELECT early)>(SELECT overtime),tb.att_in,tb.out) AS ot_in,IF((SELECT early)>(SELECT overtime),tb.in_tolerance,tb.att_out) AS ot_out
+        Dim query As String = "SELECT '' AS ot_note,0.00 as ot_hour,0 as wages_point,0 as ot_break,0 as point,'no' as is_check,1 as id_ot_type,tb.*,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0) AS work_hour,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present 
+                                ,TIMESTAMPDIFF(MINUTE,tb.att_in,tb.in_tolerance) AS early,TIMESTAMPDIFF(MINUTE,tb.out,tb.att_out) AS overtime,IF((SELECT early)>(SELECT overtime),IFNULL(tb.att_in,tb.date),IFNULL(tb.out,tb.date)) AS ot_in,IF((SELECT early)>(SELECT overtime),IFNULL(tb.in_tolerance,tb.date),IFNULL(tb.att_out,tb.date)) AS ot_out
                                 FROM
                                 (
                                  SELECT sch.id_schedule,lvl.employee_level,emp.employee_position,ket.id_leave_type,ket.leave_type,sch.info_leave,active.employee_active,active.id_employee_active,sch.id_employee,emp.employee_name,emp.employee_code,emp.id_departement,dept.departement,dept.is_store,sch.date, 
@@ -98,14 +98,35 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        For i As Integer = 0 To GVSchedule.RowCount - 1
-            Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
-
-            'Dim tot_hour As String = decimalSQL(TETotHour.EditValue.ToString)
-            'Dim tot_break As String = decimalSQL(TEBreak.EditValue.ToString)
-            'Dim tot_poin As String = decimalSQL(TEPoint.EditValue.ToString)
-            'Dim wages_per_point As String = decimalSQL(TEPointWages.EditValue.ToString)
-        Next
+        'filter
+        makeSafeGV(GVSchedule)
+        GVSchedule.ActiveFilterString = "[is_check]='yes'"
+        If GVSchedule.RowCount > 0 Then
+            For i As Integer = 0 To GVSchedule.RowCount - 1
+                Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+                Dim id_employee As String = GVSchedule.GetRowCellValue(i, "id_employee").ToString
+                Dim id_ot_type As String = GVSchedule.GetRowCellValue(i, "id_ot_type").ToString
+                Dim ot_in As Date = GVSchedule.GetRowCellValue(i, "ot_in")
+                Dim ot_end As Date = GVSchedule.GetRowCellValue(i, "ot_out")
+                '
+                Dim tot_hour As String = GVSchedule.GetRowCellValue(i, "ot_hour")
+                Dim tot_break As String = GVSchedule.GetRowCellValue(i, "ot_break")
+                Dim tot_poin As String = GVSchedule.GetRowCellValue(i, "point")
+                Dim wages_per_point As String = GVSchedule.GetRowCellValue(i, "wages_point")
+                '
+                Dim is_dayoff As String = If(GVSchedule.GetRowCellValue(i, "id_schedule_type").ToString = "1", "2", "1")
+                Dim note As String = GVSchedule.GetRowCellValue(i, "ot_note").ToString
+                '
+                Dim query As String = "INSERT INTO tb_emp_payroll_ot(id_payroll,id_employee,id_ot_type,ot_start,ot_end,total_break,total_hour,total_point,is_day_off,wages_per_point,note)
+                                    VALUES('" & id_payroll & "','" & id_employee & "','" & id_ot_type & "','" & Date.Parse(ot_in.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(ot_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & tot_break & "','" & tot_hour & "','" & tot_poin & "','" & is_dayoff & "','" & wages_per_point & "','" & note & "');"
+                execute_non_query(query, True, "", "", "", "")
+            Next
+            makeSafeGV(GVSchedule)
+            FormEmpPayrollOvertime.load_payroll_ot()
+            Close()
+        Else
+            stopCustom("Please choose first.")
+        End If
     End Sub
 
     Private Sub FormEmpPayrollOvertimePick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -116,6 +137,7 @@
         Dim tes As DevExpress.XtraEditors.LookUpEdit = CType(sender, DevExpress.XtraEditors.LookUpEdit)
         Dim row As DataRowView = CType(tes.Properties.GetDataSourceRowByKeyValue(tes.EditValue), DataRowView)
         GVSchedule.SetFocusedRowCellValue("wages_point", row("ot_point_wages"))
+        GVSchedule.RefreshData()
     End Sub
     Function calc_point(ByVal id_schedule_type As String, ByVal tot_hour As Decimal, ByVal is_store_employee As String)
         Dim tot_point As Decimal = 0.0
@@ -137,13 +159,46 @@
         Return tot_point
     End Function
 
-    Private Sub GVSchedule_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSchedule.CellValueChanged
-        If e.Column.FieldName = "ot_hour" Or e.Column.FieldName = "ot_in" Or e.Column.FieldName = "ot_out" Then
-            GVSchedule.RefreshData()
-            Dim tot_hour As Decimal = Decimal.Parse(GVSchedule.GetFocusedRowCellValue("ot_hour"))
-            Dim id_sch_type As String = GVSchedule.GetFocusedRowCellValue("id_schedule_type").ToString
-            Dim is_store As String = GVSchedule.GetFocusedRowCellValue("is_store").ToString
-            GVSchedule.SetFocusedRowCellValue("point", calc_point(id_sch_type, tot_hour, is_store))
+    Function calc_hour(ByVal ot_start As Date, ByVal ot_end As Date, ByVal break As Integer)
+        Dim diff As Decimal = 0.0
+
+        If Not ot_start > ot_end Then
+            '
+            Dim date_start As Date = ot_start
+            Dim date_until As Date = ot_end
+            Dim time_diff As TimeSpan
+            time_diff = date_until - date_start
+            'nearest 0.5
+            'diff = Math.Round((time_diff.TotalHours * 2), MidpointRounding.AwayFromZero) / 2
+            'rounddown 0.5
+            diff = Math.Floor(time_diff.TotalHours / 0.5) * 0.5
+            diff = diff - break
+        Else
+            '
+            diff = 0
         End If
+        Return diff
+    End Function
+
+    Private Sub GVSchedule_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSchedule.CellValueChanged
+        If e.Column.FieldName = "ot_in" Or e.Column.FieldName = "ot_out" Or e.Column.FieldName = "ot_break" Or e.Column.FieldName = "id_ot_type" Then
+            Try
+                Dim ot_start As Date = GVSchedule.GetFocusedRowCellValue("ot_in")
+                Dim ot_end As Date = GVSchedule.GetFocusedRowCellValue("ot_out")
+                Dim ot_break As Integer = GVSchedule.GetFocusedRowCellValue("ot_break")
+
+                Dim tot_hour As Decimal = calc_hour(ot_start, ot_end, ot_break)
+                Dim id_sch_type As String = GVSchedule.GetFocusedRowCellValue("id_schedule_type").ToString
+                Dim is_store As String = GVSchedule.GetFocusedRowCellValue("is_store").ToString
+                GVSchedule.SetFocusedRowCellValue("ot_hour", tot_hour)
+                GVSchedule.SetFocusedRowCellValue("point", calc_point(id_sch_type, tot_hour, is_store))
+                GVSchedule.RefreshData()
+            Catch ex As Exception
+            End Try
+        End If
+    End Sub
+
+    Private Sub BtnCancel_Click(sender As Object, e As EventArgs) Handles BtnCancel.Click
+        Close()
     End Sub
 End Class

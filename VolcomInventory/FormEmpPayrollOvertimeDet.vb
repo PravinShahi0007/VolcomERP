@@ -203,16 +203,17 @@
         Dim tot_break As String = decimalSQL(TEBreak.EditValue.ToString)
         Dim tot_poin As String = decimalSQL(TEPoint.EditValue.ToString)
         Dim wages_per_point As String = decimalSQL(TEPointWages.EditValue.ToString)
+        Dim note As String = MENote.Text
 
         If id_overtime = "-1" Then 'new
-            Dim query As String = "INSERT INTO tb_emp_payroll_ot(id_payroll,id_employee,id_ot_type,ot_start,ot_end,total_break,total_hour,total_point,is_day_off,wages_per_point)
-                                    VALUES('" & id_payroll & "','" & id_employee & "','" & LECategory.EditValue.ToString & "','" & Date.Parse(dt_start.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(dt_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & tot_break & "','" & tot_hour & "','" & tot_poin & "','" & LEDayoff.EditValue.ToString & "','" & wages_per_point & "');SELECT LAST_INSERT_ID();"
+            Dim query As String = "INSERT INTO tb_emp_payroll_ot(id_payroll,id_employee,id_ot_type,ot_start,ot_end,total_break,total_hour,total_point,is_day_off,wages_per_point,note)
+                                    VALUES('" & id_payroll & "','" & id_employee & "','" & LECategory.EditValue.ToString & "','" & Date.Parse(dt_start.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & Date.Parse(dt_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "','" & tot_break & "','" & tot_hour & "','" & tot_poin & "','" & LEDayoff.EditValue.ToString & "','" & wages_per_point & "','" & note & "');SELECT LAST_INSERT_ID();"
             id_overtime = execute_query(query, 0, True, "", "", "", "")
             FormEmpPayrollOvertime.load_payroll_ot()
             FormEmpPayrollOvertime.GVOverTime.FocusedRowHandle = find_row(FormEmpPayrollOvertime.GVOverTime, "id_payroll_ot", id_overtime)
             Close()
         Else 'edit
-            Dim query As String = "UPDATE tb_emp_payroll_ot SET id_payroll='" & id_payroll & "',id_employee='" & id_employee & "',id_ot_type='" & LECategory.EditValue.ToString & "',ot_start='" & Date.Parse(dt_start.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',ot_end='" & Date.Parse(dt_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',total_break='" & tot_break & "',total_hour='" & tot_hour & "',total_point='" & tot_poin & "',is_day_off='" & LEDayoff.EditValue.ToString & "',wages_per_point='" & wages_per_point & "'
+            Dim query As String = "UPDATE tb_emp_payroll_ot SET id_payroll='" & id_payroll & "',id_employee='" & id_employee & "',id_ot_type='" & LECategory.EditValue.ToString & "',ot_start='" & Date.Parse(dt_start.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',ot_end='" & Date.Parse(dt_end.ToString).ToString("yyyy-MM-dd H:mm:ss") & "',total_break='" & tot_break & "',total_hour='" & tot_hour & "',total_point='" & tot_poin & "',is_day_off='" & LEDayoff.EditValue.ToString & "',wages_per_point='" & wages_per_point & "',note='" & note & "'
                                     WHERE id_payroll_ot='" & id_overtime & "'"
             execute_non_query(query, True, "", "", "", "")
 
