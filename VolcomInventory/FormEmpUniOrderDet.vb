@@ -9,6 +9,8 @@ Public Class FormEmpUniOrderDet
     Public is_public_form As Boolean = False
     Dim id_departement As String = "-1"
     Public is_view As String = "-1"
+    Dim id_sex As String = "-1"
+    Dim is_filter_uni_sex As String = "-1"
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -23,6 +25,7 @@ Public Class FormEmpUniOrderDet
         id_emp_uni_period = data.Rows(0)("id_emp_uni_period").ToString
         id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
         id_departement = data.Rows(0)("id_departement").ToString
+        id_sex = data.Rows(0)("id_sex").ToString
         TxtNIK.Text = data.Rows(0)("employee_code").ToString
         TxtName.Text = data.Rows(0)("employee_name").ToString
         TxtDept.Text = data.Rows(0)("departement").ToString
@@ -39,6 +42,9 @@ Public Class FormEmpUniOrderDet
         LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", data.Rows(0)("id_report_status").ToString)
         TxtDiff.EditValue = TxtBudget.EditValue - TxtTotal.EditValue
         TxtDesign.Focus()
+
+        'filter uniform by sex option
+        is_filter_uni_sex = get_setup_field("is_filter_uni_sex")
 
         If data.Rows(0)("id_report_status").ToString = "5" Or data.Rows(0)("id_report_status").ToString = "6" Or data.Rows(0)("is_selected").ToString = "1" Then
             BtnAccept.Visible = False
