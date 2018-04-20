@@ -38,7 +38,7 @@
 
         dept = LEDeptSum.EditValue.ToString
 
-        Dim query As String = "SELECT 0 as wages_point,0 as point,'no' as is_check,1 as id_ot_type,tb.*,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0) AS work_hour,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present 
+        Dim query As String = "SELECT '' AS ot_note,0 as wages_point,0 as ot_break,0 as point,'no' as is_check,1 as id_ot_type,tb.*,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),(tb.minutes_work-tb.over_break-tb.late+IF(tb.over<0,tb.over,0)),0) AS work_hour,(tb.over-tb.late-tb.over_break) AS balance,IF(NOT ISNULL(tb.att_in) AND NOT ISNULL(tb.att_out),1,0) AS present 
                                 ,TIMESTAMPDIFF(MINUTE,tb.att_in,tb.in_tolerance) AS early,TIMESTAMPDIFF(MINUTE,tb.out,tb.att_out) AS overtime,IF((SELECT early)>(SELECT overtime),tb.att_in,tb.out) AS ot_in,IF((SELECT early)>(SELECT overtime),tb.in_tolerance,tb.att_out) AS ot_out
                                 FROM
                                 (
@@ -98,7 +98,14 @@
     End Sub
 
     Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
-        infoCustom(Date.Parse(GVSchedule.GetFocusedRowCellValue("ot_in").ToString).ToString("yyyy-MM-dd H:mm") & " - " & Date.Parse(GVSchedule.GetFocusedRowCellValue("ot_out").ToString).ToString("yyyy-MM-dd H:mm"))
+        For i As Integer = 0 To GVSchedule.RowCount - 1
+            Dim id_payroll As String = FormEmpPayroll.GVPayrollPeriode.GetFocusedRowCellValue("id_payroll").ToString
+
+            'Dim tot_hour As String = decimalSQL(TETotHour.EditValue.ToString)
+            'Dim tot_break As String = decimalSQL(TEBreak.EditValue.ToString)
+            'Dim tot_poin As String = decimalSQL(TEPoint.EditValue.ToString)
+            'Dim wages_per_point As String = decimalSQL(TEPointWages.EditValue.ToString)
+        Next
     End Sub
 
     Private Sub FormEmpPayrollOvertimePick_FormClosed(sender As Object, e As FormClosedEventArgs) Handles MyBase.FormClosed
@@ -130,11 +137,13 @@
         Return tot_point
     End Function
 
-    Private Sub RIDEOTIn_EditValueChanged(sender As Object, e As EventArgs) Handles RIDEOTIn.EditValueChanged
-        Try
-            Dim tes As DevExpress.XtraEditors.TextEdit = CType(sender, DevExpress.XtraEditors.TextEdit)
-            GVSchedule.SetFocusedRowCellValue("point", calc_point(GVSchedule.GetFocusedRowCellValue("id_schedule_type").ToString, Decimal.Parse(tes.EditValue.ToString), GVSchedule.GetFocusedRowCellValue("is_store").ToString))
-        Catch ex As Exception
-        End Try
+    Private Sub GVSchedule_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVSchedule.CellValueChanged
+        If e.Column.FieldName = "ot_hour" Or e.Column.FieldName = "ot_in" Or e.Column.FieldName = "ot_out" Then
+            GVSchedule.RefreshData()
+            Dim tot_hour As Decimal = Decimal.Parse(GVSchedule.GetFocusedRowCellValue("ot_hour"))
+            Dim id_sch_type As String = GVSchedule.GetFocusedRowCellValue("id_schedule_type").ToString
+            Dim is_store As String = GVSchedule.GetFocusedRowCellValue("is_store").ToString
+            GVSchedule.SetFocusedRowCellValue("point", calc_point(id_sch_type, tot_hour, is_store))
+        End If
     End Sub
 End Class
