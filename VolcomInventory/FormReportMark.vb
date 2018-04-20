@@ -3594,7 +3594,7 @@
             If id_status_reportx = "6" Then
                 Dim qm As String = "SELECT IFNULL(MAX(dd.`no`),0) AS `maks` FROM tb_emp_uni_design_det dd 
                 INNER JOIN tb_emp_uni_design d ON d.id_emp_uni_design = dd.id_emp_uni_design
-                WHERE d.id_emp_uni_period=" + FormEmpUniListDet.LEPeriodx.EditValue.ToString + " "
+                WHERE d.id_emp_uni_period=" + FormEmpUniListDet.LEPeriodx.EditValue.ToString + " AND d.id_report_status=6 "
                 Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
                 Dim maks As Integer = dm.Rows(0)("maks")
 
@@ -3602,16 +3602,16 @@
                 INNER JOIN (
                     SELECT d.*,  @a:=@a+1 `counting`
                     FROM (
-                        SELECT dd.id_emp_uni_design_det,dd.id_design 
+                        SELECT dd.id_emp_uni_design_det,dd.id_design, LEFT(cd.code_detail_name,1) AS `dv` 
                         FROM tb_emp_uni_design_det dd 
                         INNER JOIN tb_m_design d ON d.id_design = dd.id_design
                         INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
 	                    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code=32
                         WHERE dd.id_emp_uni_design =" + id_report + "
-                        ORDER BY cd.id_code_detail ASC, d.id_design ASC
+                        ORDER BY cd.id_code_detail ASC, d.design_code ASC
                     ) d, (SELECT @a:= " + maks.ToString + ") AS a
                 ) src ON src.id_emp_uni_design_det = main.id_emp_uni_design_det
-                SET main.no = src.counting "
+                SET main.no = src.counting, main.division = src.dv "
                 execute_non_query(qn, True, "", "", "", "")
 
                 'update point
