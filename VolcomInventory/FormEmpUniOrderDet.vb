@@ -8,6 +8,9 @@ Public Class FormEmpUniOrderDet
     Dim id_wh_drawer As String = ""
     Public is_public_form As Boolean = False
     Dim id_departement As String = "-1"
+    Public is_view As String = "-1"
+    Dim id_sex As String = "-1"
+    Dim is_filter_uni_sex As String = "-1"
 
     Private Sub FormEmpUniOrderDet_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewReportStatus()
@@ -22,6 +25,7 @@ Public Class FormEmpUniOrderDet
         id_emp_uni_period = data.Rows(0)("id_emp_uni_period").ToString
         id_wh_drawer = data.Rows(0)("id_drawer_def").ToString
         id_departement = data.Rows(0)("id_departement").ToString
+        id_sex = data.Rows(0)("id_sex").ToString
         TxtNIK.Text = data.Rows(0)("employee_code").ToString
         TxtName.Text = data.Rows(0)("employee_name").ToString
         TxtDept.Text = data.Rows(0)("departement").ToString
@@ -39,12 +43,19 @@ Public Class FormEmpUniOrderDet
         TxtDiff.EditValue = TxtBudget.EditValue - TxtTotal.EditValue
         TxtDesign.Focus()
 
-        If data.Rows(0)("id_report_status").ToString = 5 Or data.Rows(0)("id_report_status").ToString = 6 Then
+        'filter uniform by sex option
+        is_filter_uni_sex = get_setup_field("is_filter_uni_sex")
+
+        If data.Rows(0)("id_report_status").ToString = "5" Or data.Rows(0)("id_report_status").ToString = "6" Or data.Rows(0)("is_selected").ToString = "1" Then
             BtnAccept.Visible = False
             BtnCancelOrder.Visible = False
             PanelControl4.Visible = False
         End If
         viewDetail()
+
+        If is_view = "1" Then
+            BtnMark.Visible = True
+        End If
     End Sub
 
     Sub getTotal()
@@ -87,10 +98,10 @@ Public Class FormEmpUniOrderDet
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
             'submit
-            submit_who_prepared("39", id_sales_order, id_user)
+            submit_who_prepared("130", id_sales_order, id_user)
 
             'update completed
-            Dim query As String = "UPDATE tb_sales_order Set id_report_status=6, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
+            Dim query As String = "UPDATE tb_sales_order set is_selected=1, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
             If Not is_public_form Then
                 FormEmpUniPeriodDet.viewOrder()
@@ -98,7 +109,7 @@ Public Class FormEmpUniOrderDet
             actionLoad()
 
             'print direct
-            printOrder(False)
+            'printOrder(False)
             Cursor = Cursors.Default
         End If
     End Sub
@@ -198,7 +209,11 @@ Public Class FormEmpUniOrderDet
     End Sub
 
     Public Sub selectUniform(ByVal key As String)
-        Dim dt As DataTable = checkStock("AND dm.id_emp_uni_period=" + id_emp_uni_period + " AND dd.no='" + key.ToString + "'")
+        Dim cond_sex As String = ""
+        If is_filter_uni_sex = "1" And id_sex = "1" Then
+            cond_sex = "AND dd.division='M' "
+        End If
+        Dim dt As DataTable = checkStock("AND dm.id_emp_uni_period=" + id_emp_uni_period + " AND dd.no='" + key.ToString + "' " + cond_sex)
         If dt.Rows.Count <= 0 Then
             stopCustom("Product tidak ditemukan")
             TxtDesign.Text = ""
@@ -362,6 +377,7 @@ Public Class FormEmpUniOrderDet
     Sub viewStock()
         Cursor = Cursors.WaitCursor
         FormEmpUniSuggest.id_emp_uni_period = id_emp_uni_period
+        FormEmpUniSuggest.id_sex = id_sex
         FormEmpUniSuggest.ShowDialog()
         Cursor = Cursors.Default
     End Sub
@@ -376,6 +392,15 @@ Public Class FormEmpUniOrderDet
 
     Private Sub StockToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles StockToolStripMenuItem.Click
         viewStock()
+    End Sub
+
+    Private Sub BtnMark_Click(sender As Object, e As EventArgs) Handles BtnMark.Click
+        Cursor = Cursors.WaitCursor
+        FormReportMark.report_mark_type = "130"
+        FormReportMark.is_view = "1"
+        FormReportMark.id_report = id_sales_order
+        FormReportMark.ShowDialog()
+        Cursor = Cursors.Default
     End Sub
 
     'Private Sub TxtCode_KeyDown(sender As Object, e As KeyEventArgs)

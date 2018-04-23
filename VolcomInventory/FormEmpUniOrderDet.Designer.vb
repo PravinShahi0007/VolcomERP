@@ -108,6 +108,7 @@ Partial Class FormEmpUniOrderDet
         Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -294,6 +295,7 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl1.Controls.Add(Me.SimpleButton3)
         Me.PanelControl1.Controls.Add(Me.BtnCancelOrder)
         Me.PanelControl1.Controls.Add(Me.BtnAccept)
+        Me.PanelControl1.Controls.Add(Me.BtnMark)
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.PanelControl1.Location = New System.Drawing.Point(0, 521)
         Me.PanelControl1.Name = "PanelControl1"
@@ -315,7 +317,7 @@ Partial Class FormEmpUniOrderDet
         '
         Me.SimpleButton3.Dock = System.Windows.Forms.DockStyle.Left
         Me.SimpleButton3.Image = CType(resources.GetObject("SimpleButton3.Image"), System.Drawing.Image)
-        Me.SimpleButton3.Location = New System.Drawing.Point(2, 2)
+        Me.SimpleButton3.Location = New System.Drawing.Point(88, 2)
         Me.SimpleButton3.Name = "SimpleButton3"
         Me.SimpleButton3.Size = New System.Drawing.Size(97, 37)
         Me.SimpleButton3.TabIndex = 3
@@ -1064,6 +1066,17 @@ Partial Class FormEmpUniOrderDet
         Me.BtnAddOrder.TabIndex = 2
         Me.BtnAddOrder.Text = "Add (F2)"
         '
+        'BtnMark
+        '
+        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
+        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
+        Me.BtnMark.Name = "BtnMark"
+        Me.BtnMark.Size = New System.Drawing.Size(86, 37)
+        Me.BtnMark.TabIndex = 5
+        Me.BtnMark.Text = "Mark"
+        Me.BtnMark.Visible = False
+        '
         'FormEmpUniOrderDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1215,4 +1228,5 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents LabelControl19 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnPoint As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
 End Class
