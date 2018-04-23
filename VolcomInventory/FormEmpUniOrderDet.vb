@@ -209,7 +209,11 @@ Public Class FormEmpUniOrderDet
     End Sub
 
     Public Sub selectUniform(ByVal key As String)
-        Dim dt As DataTable = checkStock("AND dm.id_emp_uni_period=" + id_emp_uni_period + " AND dd.no='" + key.ToString + "'")
+        Dim cond_sex As String = ""
+        If is_filter_uni_sex = "1" And id_sex = "1" Then
+            cond_sex = "AND dd.division='M' "
+        End If
+        Dim dt As DataTable = checkStock("AND dm.id_emp_uni_period=" + id_emp_uni_period + " AND dd.no='" + key.ToString + "' " + cond_sex)
         If dt.Rows.Count <= 0 Then
             stopCustom("Product tidak ditemukan")
             TxtDesign.Text = ""
@@ -373,6 +377,7 @@ Public Class FormEmpUniOrderDet
     Sub viewStock()
         Cursor = Cursors.WaitCursor
         FormEmpUniSuggest.id_emp_uni_period = id_emp_uni_period
+        FormEmpUniSuggest.id_sex = id_sex
         FormEmpUniSuggest.ShowDialog()
         Cursor = Cursors.Default
     End Sub

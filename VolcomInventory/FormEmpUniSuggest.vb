@@ -1,5 +1,6 @@
 ﻿Public Class FormEmpUniSuggest
     Public id_emp_uni_period As String = "-1"
+    Public id_sex As String = "-1"
 
     Private Sub FormEmpUniSuggest_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         viewDesignList()
@@ -8,7 +9,7 @@
 
     Sub viewDesignList()
         Cursor = Cursors.WaitCursor
-        Dim query As String = "CALL view_emp_uni_design(" + id_emp_uni_period + ") "
+        Dim query As String = "CALL view_emp_uni_design(" + id_emp_uni_period + "," + id_sex + ") "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCDesignList.DataSource = data
         GVDesignList.Columns("1").Caption = "1" + System.Environment.NewLine + "XXS"
