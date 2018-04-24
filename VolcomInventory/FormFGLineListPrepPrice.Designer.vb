@@ -30,6 +30,9 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnMsrp = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnColor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnRetCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEOS = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,7 +69,7 @@ Partial Class FormFGLineListPrepPrice
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCode, Me.GridColumnId, Me.GridColumnPrice, Me.GridColumnRate, Me.GridColumnMsrp, Me.GridColumnName, Me.GridColumnColor})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCode, Me.GridColumnId, Me.GridColumnPrice, Me.GridColumnRate, Me.GridColumnMsrp, Me.GridColumnName, Me.GridColumnColor, Me.GridColumnDel, Me.GridColumnRetCode, Me.GridColumnEOS})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -128,6 +131,32 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnColor.Visible = True
         Me.GridColumnColor.VisibleIndex = 3
         '
+        'GridColumnDel
+        '
+        Me.GridColumnDel.Caption = "delivery"
+        Me.GridColumnDel.FieldName = "delivery"
+        Me.GridColumnDel.Name = "GridColumnDel"
+        Me.GridColumnDel.Visible = True
+        Me.GridColumnDel.VisibleIndex = 7
+        '
+        'GridColumnRetCode
+        '
+        Me.GridColumnRetCode.Caption = "ret_code"
+        Me.GridColumnRetCode.FieldName = "ret_code"
+        Me.GridColumnRetCode.Name = "GridColumnRetCode"
+        Me.GridColumnRetCode.Visible = True
+        Me.GridColumnRetCode.VisibleIndex = 8
+        '
+        'GridColumnEOS
+        '
+        Me.GridColumnEOS.Caption = "eos"
+        Me.GridColumnEOS.DisplayFormat.FormatString = "dd\/MM\/yyyy"
+        Me.GridColumnEOS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.GridColumnEOS.FieldName = "design_eos"
+        Me.GridColumnEOS.Name = "GridColumnEOS"
+        Me.GridColumnEOS.Visible = True
+        Me.GridColumnEOS.VisibleIndex = 9
+        '
         'FormFGLineListPrepPrice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -159,4 +188,7 @@ Partial Class FormFGLineListPrepPrice
     Friend WithEvents GridColumnMsrp As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnColor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDel As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnRetCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEOS As DevExpress.XtraGrid.Columns.GridColumn
 End Class
