@@ -43,7 +43,7 @@
         Dim fileName As String = "llprice_" + id_season + id_type + ".xls"
         Dim exp As String = IO.Path.Combine(path_root, fileName)
         Dim opt As DevExpress.XtraPrinting.XlsExportOptions = New DevExpress.XtraPrinting.XlsExportOptions()
-        opt.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Text
+        opt.TextExportMode = DevExpress.XtraPrinting.TextExportMode.Value
         printableComponentLink1.Component = GCData
         printableComponentLink1.CreateDocument()
         printableComponentLink1.ExportToXls(exp, opt)

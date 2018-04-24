@@ -862,7 +862,7 @@ Public Class FormImportExcel
             Try
                 'master design
                 Dim query_master As String = "SELECT dsg.design_display_name AS `name`, det.color, dsg.id_design,pd_dsg.id_prod_demand_design AS `id`, dsg.design_code as `code`, pd_dsg.prod_demand_design_propose_price AS `est_price`, "
-                query_master += "pd_dsg.rate_current, pd_dsg.msrp "
+                query_master += "pd_dsg.rate_current, pd_dsg.msrp, dsg.design_eos "
                 query_master += "FROM tb_m_design dsg "
                 query_master += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = "
                 If FormFGLineList.SLETypeLineList.EditValue.ToString = "1" Then
@@ -957,7 +957,7 @@ Public Class FormImportExcel
                 GVData.Columns("design_eos").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
                 GVData.Columns("design_eos").DisplayFormat.FormatString = "dd\/MM\/yyyy"
             Catch ex As Exception
-                stopCustom("Incorrect format on table.")
+                stopCustom(ex.ToString)
             End Try
         ElseIf id_pop_up = "18" Then
             'SALES PROMO

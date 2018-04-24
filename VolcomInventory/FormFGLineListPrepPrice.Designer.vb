@@ -149,7 +149,7 @@ Partial Class FormFGLineListPrepPrice
         '
         'GridColumnEOS
         '
-        Me.GridColumnEOS.Caption = "eos"
+        Me.GridColumnEOS.Caption = "design_eos"
         Me.GridColumnEOS.DisplayFormat.FormatString = "dd\/MM\/yyyy"
         Me.GridColumnEOS.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
         Me.GridColumnEOS.FieldName = "design_eos"
