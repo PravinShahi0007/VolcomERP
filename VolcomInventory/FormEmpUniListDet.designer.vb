@@ -78,6 +78,7 @@ Partial Class FormEmpUniListDet
         Me.GridColumnNo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControlNav = New DevExpress.XtraEditors.PanelControl()
         Me.BtnImportExcelNew = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnSizeChart = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LargeImageCollection, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl3.SuspendLayout()
@@ -380,7 +381,7 @@ Partial Class FormEmpUniListDet
         'GVList
         '
         Me.GVList.ColumnPanelRowHeight = 40
-        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn35, Me.GridColumn36})
+        Me.GVList.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn3, Me.GridColumn35, Me.GridColumn36, Me.GridColumnSizeChart})
         Me.GVList.GridControl = Me.GCList
         Me.GVList.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "1", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "2", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "3", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "4", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "5", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "6", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "7", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "8", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "9", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "0", Nothing, "{0:N0}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "total_qty", Nothing, "{0:N0}")})
         Me.GVList.Name = "GVList"
@@ -398,7 +399,7 @@ Partial Class FormEmpUniListDet
         Me.GridColumn1.Name = "GridColumn1"
         Me.GridColumn1.Visible = True
         Me.GridColumn1.VisibleIndex = 1
-        Me.GridColumn1.Width = 140
+        Me.GridColumn1.Width = 133
         '
         'GridColumn3
         '
@@ -407,7 +408,7 @@ Partial Class FormEmpUniListDet
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
         Me.GridColumn3.VisibleIndex = 2
-        Me.GridColumn3.Width = 1285
+        Me.GridColumn3.Width = 1064
         '
         'GridColumn35
         '
@@ -417,8 +418,8 @@ Partial Class FormEmpUniListDet
         Me.GridColumn35.Name = "GridColumn35"
         Me.GridColumn35.OptionsColumn.AllowEdit = False
         Me.GridColumn35.Visible = True
-        Me.GridColumn35.VisibleIndex = 3
-        Me.GridColumn35.Width = 74
+        Me.GridColumn35.VisibleIndex = 4
+        Me.GridColumn35.Width = 96
         '
         'RepositoryItemTextEdit1
         '
@@ -435,7 +436,7 @@ Partial Class FormEmpUniListDet
         Me.GridColumn36.OptionsColumn.AllowEdit = False
         Me.GridColumn36.Visible = True
         Me.GridColumn36.VisibleIndex = 0
-        Me.GridColumn36.Width = 133
+        Me.GridColumn36.Width = 127
         '
         'XTPStock
         '
@@ -751,6 +752,15 @@ Partial Class FormEmpUniListDet
         Me.BtnImportExcelNew.TabStop = False
         Me.BtnImportExcelNew.Text = "Import Excel"
         '
+        'GridColumnSizeChart
+        '
+        Me.GridColumnSizeChart.Caption = "SIZE CHART"
+        Me.GridColumnSizeChart.FieldName = "size_chart"
+        Me.GridColumnSizeChart.Name = "GridColumnSizeChart"
+        Me.GridColumnSizeChart.Visible = True
+        Me.GridColumnSizeChart.VisibleIndex = 3
+        Me.GridColumnSizeChart.Width = 212
+        '
         'FormEmpUniListDet
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -857,4 +867,5 @@ Partial Class FormEmpUniListDet
     Friend WithEvents XTCListNew As DevExpress.XtraTab.XtraTabControl
     Friend WithEvents XTPDesign As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents XTPStock As DevExpress.XtraTab.XtraTabPage
+    Friend WithEvents GridColumnSizeChart As DevExpress.XtraGrid.Columns.GridColumn
 End Class
