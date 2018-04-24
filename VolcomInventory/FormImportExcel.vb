@@ -3293,7 +3293,7 @@ Public Class FormImportExcel
                             PBC.PerformStep()
                             PBC.Update()
                         Next
-                        FormEmpUniListDet.viewDetail()
+                        FormEmpUniListDet.viewDetailList()
                         Close()
                     Else
                         stopCustom("There is no data for import process, please make sure your input !")
