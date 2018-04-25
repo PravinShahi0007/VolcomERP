@@ -511,6 +511,7 @@
     End Sub
 
     Private Sub BAWBRec_Click(sender As Object, e As EventArgs) Handles BAWBRec.Click
-
+        FormImportExcel.id_pop_up = "35"
+        FormImportExcel.ShowDialog()
     End Sub
 End Class
