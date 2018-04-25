@@ -184,7 +184,7 @@
         ElseIf report_mark_type = "37" Then
             'REC PL FG To WH
             query = String.Format("SELECT id_report_status,pl_prod_order_rec_number as report_number FROM tb_pl_prod_order_rec WHERE id_pl_prod_order_rec = '{0}'", id_report)
-        ElseIf report_mark_type = "39" Then
+        ElseIf report_mark_type = "39" Or report_mark_type = "130" Then
             'SALES ORDER
             query = String.Format("SELECT id_report_status FROM tb_sales_order WHERE id_sales_order = '{0}'", id_report)
         ElseIf report_mark_type = "40" Then
@@ -1907,8 +1907,12 @@
             Catch ex As Exception
                 errorProcess()
             End Try
-        ElseIf report_mark_type = "39" Then
+        ElseIf report_mark_type = "39" Or report_mark_type = "130" Then
             'SALES Order
+            If id_status_reportx = "3" Then 'kalo approved langsung completed
+                id_status_reportx = "6"
+            End If
+
             If id_status_reportx = "5" Then
                 Dim cancel As New ClassSalesOrder()
                 cancel.cancelReservedStock(id_report)
@@ -3583,27 +3587,38 @@
                 id_status_reportx = "6"
             End If
 
+            query = String.Format("UPDATE tb_emp_uni_design SET id_report_status='{0}' WHERE id_emp_uni_design ='{1}'", id_status_reportx, id_report)
+            execute_non_query(query, True, "", "", "", "")
+
             'kalo completed generate nomer urut
             If id_status_reportx = "6" Then
                 Dim qm As String = "SELECT IFNULL(MAX(dd.`no`),0) AS `maks` FROM tb_emp_uni_design_det dd 
                 INNER JOIN tb_emp_uni_design d ON d.id_emp_uni_design = dd.id_emp_uni_design
-                WHERE d.id_emp_uni_period=" + FormEmpUniListDet.LEPeriodx.EditValue.ToString + " "
+                WHERE d.id_emp_uni_period=" + FormEmpUniListDet.LEPeriodx.EditValue.ToString + " AND d.id_report_status=6 "
                 Dim dm As DataTable = execute_query(qm, -1, True, "", "", "", "")
                 Dim maks As Integer = dm.Rows(0)("maks")
 
                 Dim qn As String = "UPDATE tb_emp_uni_design_det main
                 INNER JOIN (
-                    SELECT dd.id_emp_uni_design_det,dd.id_design, @a:=@a+1 `counting` 
-                    FROM tb_emp_uni_design_det dd ,
-                    (SELECT @a:= " + maks.ToString + ") AS a
-                    WHERE dd.id_emp_uni_design =" + id_report + "
+                    SELECT d.*,  @a:=@a+1 `counting`
+                    FROM (
+                        SELECT dd.id_emp_uni_design_det,dd.id_design, LEFT(cd.code_detail_name,1) AS `dv` 
+                        FROM tb_emp_uni_design_det dd 
+                        INNER JOIN tb_m_design d ON d.id_design = dd.id_design
+                        INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
+	                    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code=32
+                        WHERE dd.id_emp_uni_design =" + id_report + "
+                        ORDER BY cd.id_code_detail ASC, d.design_code ASC
+                    ) d, (SELECT @a:= " + maks.ToString + ") AS a
                 ) src ON src.id_emp_uni_design_det = main.id_emp_uni_design_det
-                SET main.no = src.counting "
+                SET main.no = src.counting, main.division = src.dv "
                 execute_non_query(qn, True, "", "", "", "")
+
+                'update point
+                execute_non_query("CALL set_emp_uni_point(" + FormEmpUniListDet.id_emp_uni_period + ")", True, "", "", "", "")
             End If
 
-            query = String.Format("UPDATE tb_emp_uni_design SET id_report_status='{0}' WHERE id_emp_uni_design ='{1}'", id_status_reportx, id_report)
-            execute_non_query(query, True, "", "", "", "")
+
             'infoCustom("Status changed.")
 
             FormEmpUniListDet.LEReportStatus.ItemIndex = LEReportStatus.Properties.GetDataSourceRowIndex("id_report_status", id_status_reportx)

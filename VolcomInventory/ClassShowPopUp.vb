@@ -147,6 +147,9 @@
         ElseIf report_mark_type = "129" Then
             'Asset Rec
             FormAssetRecDet.Close()
+        ElseIf report_mark_type = "130" Then
+            'UNIFORM ORDER
+            FormEmpUniOrderDet.Close()
         End If
     End Sub
     Sub show()
@@ -654,6 +657,11 @@
             FormAssetRecDet.id_rec = id_report
             FormAssetRecDet.is_view = "1"
             FormAssetRecDet.ShowDialog()
+        ElseIf report_mark_type = "130" Then
+            'uniform
+            FormEmpUniOrderDet.id_sales_order = id_report
+            FormEmpUniOrderDet.is_view = "1"
+            FormEmpUniOrderDet.ShowDialog()
         Else
             'MsgBox(id_report)
             stopCustom("Document Not Found")
@@ -888,7 +896,7 @@
             field_id = "id_pl_prod_order_rec"
             field_number = "pl_prod_order_rec_number"
             field_date = "pl_prod_order_rec_date"
-        ElseIf report_mark_type = "39" Then
+        ElseIf report_mark_type = "39" Or report_mark_type = "130" Then
             'SALES ORDER
             table_name = "tb_sales_order"
             field_id = "id_sales_order"
@@ -1643,6 +1651,21 @@
                 If datax.Rows.Count > 0 Then
                     info_col = datax.Rows(0)("total_qty").ToString
                     info_report = datax.Rows(0)("store").ToString
+                End If
+            ElseIf report_mark_type = "130" Then
+                'uniform ordder
+                query = "SELECT sod.id_sales_order, e.id_employee, e.employee_code,e.employee_name, SUM(sod.sales_order_det_qty) AS `total_qty` 
+                FROM tb_sales_order_det sod
+                INNER JOIN tb_sales_order so ON so.id_sales_order = sod.id_sales_order
+                LEFT JOIN tb_emp_uni_budget b ON b.id_emp_uni_budget = so.id_emp_uni_budget
+                LEFT JOIN tb_m_employee e ON e.id_employee = b.id_employee
+                WHERE sod.id_sales_order=" + id_report + "
+                GROUP BY sod.id_sales_order "
+                Dim datax As DataTable = execute_query(query, -1, True, "", "", "", "")
+                If datax.Rows.Count > 0 Then
+                    info_col = datax.Rows(0)("total_qty").ToString
+                    info_design_code = datax.Rows(0)("employee_code").ToString
+                    info_design = datax.Rows(0)("employee_name").ToString
                 End If
             End If
         End If

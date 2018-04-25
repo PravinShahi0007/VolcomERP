@@ -1729,6 +1729,7 @@ Public Class FormImportExcel
             GCData.DataSource = query.ToList()
             GCData.RefreshDataSource()
             GVData.PopulateColumns()
+            '.Budget = If(FormEmpUniBudgetSet.CheckEdit1.EditValue.ToString = "True", FormEmpUniBudgetSet.TxtBudget.EditValue, table1("budget")),
 
             'Customize column
             GVData.Columns("IdEmp").Visible = False
@@ -2580,10 +2581,27 @@ Public Class FormImportExcel
                             newRow("size") = GVData.GetRowCellValue(i, "Size").ToString
                             newRow("sales_order_det_qty") = GVData.GetRowCellValue(i, "Qty")
                             newRow("qty_avail") = GVData.GetRowCellValue(i, "Available")
-                            newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
-                            newRow("design_price") = GVData.GetRowCellValue(i, "Price")
-                            newRow("design_price_type") = GVData.GetRowCellValue(i, "design_price_type").ToString
-                            newRow("amount") = GVData.GetRowCellValue(i, "Price") * GVData.GetRowCellValue(i, "Qty")
+                            If FormSalesOrderDet.LEStatusSO.EditValue.ToString = "8" And FormSalesOrderDet.id_store_type = "1" Then 'jika cat claim dan toko normal => harga normal
+                                Dim dtp As DataTable = getNormalPrice(GVData.GetRowCellValue(i, "id_design").ToString)
+                                If dtp.Rows.Count > 0 Then
+                                    newRow("id_design_price") = dtp(0)("id_design_price").ToString
+                                    newRow("design_price") = dtp(0)("design_price")
+                                    newRow("design_price_type") = dtp(0)("design_price_type").ToString
+                                    newRow("amount") = dtp(0)("design_price") * GVData.GetRowCellValue(i, "Qty")
+                                Else
+                                    newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
+                                    newRow("design_price") = GVData.GetRowCellValue(i, "Price")
+                                    newRow("design_price_type") = GVData.GetRowCellValue(i, "design_price_type").ToString
+                                    newRow("amount") = GVData.GetRowCellValue(i, "Price") * GVData.GetRowCellValue(i, "Qty")
+                                End If
+                            Else
+                                newRow("id_design_price") = GVData.GetRowCellValue(i, "id_design_price").ToString
+                                newRow("design_price") = GVData.GetRowCellValue(i, "Price")
+                                newRow("design_price_type") = GVData.GetRowCellValue(i, "design_price_type").ToString
+                                newRow("amount") = GVData.GetRowCellValue(i, "Price") * GVData.GetRowCellValue(i, "Qty")
+                            End If
+
+
                             newRow("sales_order_det_note") = ""
                             newRow("id_design") = GVData.GetRowCellValue(i, "id_design").ToString
                             newRow("id_product") = GVData.GetRowCellValue(i, "id_product").ToString
@@ -2595,6 +2613,7 @@ Public Class FormImportExcel
                             PBC.Update()
                         Next
                         FormSalesReturnOrderDet.check_but()
+
                         Close()
                     Else
                         stopCustom("There is no data for import process, please make sure your input !")
@@ -3213,6 +3232,10 @@ Public Class FormImportExcel
                         If l_i > 0 Then
                             execute_non_query(query_ins, True, "", "", "", "")
                         End If
+
+                        'update point
+                        'execute_non_query("CALL set_emp_uni_point(" + FormEmpUniPeriodDet.id_emp_uni_period + ")", True, "", "", "", "")
+
                         FormEmpUniPeriodDet.viewDetail()
                         Close()
                         Cursor = Cursors.Default
@@ -3270,7 +3293,7 @@ Public Class FormImportExcel
                             PBC.PerformStep()
                             PBC.Update()
                         Next
-                        FormEmpUniListDet.viewDetail()
+                        FormEmpUniListDet.viewDetailList()
                         Close()
                     Else
                         stopCustom("There is no data for import process, please make sure your input !")
