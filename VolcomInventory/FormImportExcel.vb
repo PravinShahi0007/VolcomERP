@@ -103,6 +103,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select no_faktur, nama_toko, npwp, alamat, id_keterangan_tambahan, kode_barang, ket_barang, jumlah_barang, harga_satuan, harga_total, diskon, ppn, dpp, jumlah_ppn, jumlah_dpp, referensi from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([no_faktur]='')", oledbconn)
         ElseIf id_pop_up = "33" Then
             MyCommand = New OleDbDataAdapter("select KODE from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([KODE]='') GROUP BY KODE ", oledbconn)
+        ElseIf id_pop_up = "35" Then
+            MyCommand = New OleDbDataAdapter("select [awb] AS awb_no,[rec date] AS rec_date,[rec by] AS rec_by from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([awb]='') ", oledbconn)
         Else
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "]", oledbconn)
         End If
@@ -111,6 +113,7 @@ Public Class FormImportExcel
             MyCommand.Fill(data_temp)
             MyCommand.Dispose()
         Catch ex As Exception
+            Console.WriteLine(ex.ToString)
             stopCustom("Input must be in accordance with the format specified !")
             Exit Sub
         End Try
@@ -890,7 +893,7 @@ Public Class FormImportExcel
                 Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
 
                 'master return
-                Dim query_ret = "SELECT rc.id_ret_code, rc.ret_code FROM tb_lookup_ret_code rc "
+                Dim query_ret = "SELECT rc.id_ret_code, rc.ret_code, rc.ret_date FROM tb_lookup_ret_code rc "
                 Dim data_ret As DataTable = execute_query(query_ret, -1, True, "", "", "", "")
 
                 Dim tb1 = data_temp.AsEnumerable() 'datatable xls
@@ -921,6 +924,7 @@ Public Class FormImportExcel
                                         .delivery = xls("delivery").ToString,
                                         .id_ret_code = If(retresult Is Nothing, "0", retresult("id_ret_code").ToString),
                                         .ret_code = xls("ret_code").ToString,
+                                        .ret_date = If(retresult Is Nothing, Nothing, retresult("ret_date")),
                                         .design_eos = xls("design_eos"),
                                         .Status = If(doresult Is Nothing Or delresult Is Nothing Or retresult Is Nothing, If(doresult Is Nothing, "Product not found; ", "") + If(delresult Is Nothing, "Delivery not found; ", "") + If(retresult Is Nothing, "Return code not found", ""), "OK")
                                     }
@@ -945,8 +949,9 @@ Public Class FormImportExcel
                 GVData.Columns("est_price").VisibleIndex = 6
                 GVData.Columns("delivery").VisibleIndex = 7
                 GVData.Columns("ret_code").VisibleIndex = 8
-                GVData.Columns("design_eos").VisibleIndex = 9
-                GVData.Columns("Status").VisibleIndex = 10
+                GVData.Columns("ret_date").VisibleIndex = 9
+                GVData.Columns("design_eos").VisibleIndex = 10
+                GVData.Columns("Status").VisibleIndex = 11
                 GVData.BestFitColumns()
 
                 GVData.Columns("rate_current").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -959,6 +964,8 @@ Public Class FormImportExcel
                 GVData.Columns("est_price").DisplayFormat.FormatString = "{0:n2}"
                 GVData.Columns("design_eos").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
                 GVData.Columns("design_eos").DisplayFormat.FormatString = "{0:dd MMMM yyyy}"
+                GVData.Columns("ret_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("ret_date").DisplayFormat.FormatString = "{0:dd MMMM yyyy}"
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
@@ -1933,6 +1940,56 @@ Public Class FormImportExcel
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
+        ElseIf id_pop_up = "35" Then 'import awb receiving data
+            Try
+                Dim queryx As String = "SELECT id_awbill,awbill_no,rec_by_store_date,rec_by_store_person FROM tb_wh_awbill 
+                                        WHERE awbill_no != '' AND awbill_type='1'"
+                Dim dt As DataTable = execute_query(queryx, -1, True, "", "", "", "")
+
+                Dim tb1 = data_temp.AsEnumerable()
+                Dim tb2 = dt.AsEnumerable()
+
+                Dim query = From table1 In tb1
+                            Group Join table_tmp In tb2
+                                On table1("awb_no").ToString.ToLower Equals table_tmp("awbill_no").ToString.ToLower Into awb = Group
+                            From result_awb In awb.DefaultIfEmpty()
+                            Select New With
+                                {
+                                    .IdAwb = If(result_awb Is Nothing, "0", result_awb("id_awbill")),
+                                    .AWB = If(result_awb Is Nothing, table1("awb_no"), result_awb("awbill_no")),
+                                    .rec_date_old = If(result_awb Is Nothing, "0", result_awb("rec_by_store_date")),
+                                    .rec_by_old = If(result_awb Is Nothing, "0", result_awb("rec_by_store_person")),
+                                    .rec_date_new = table1("rec_date"),
+                                    .rec_by_new = table1("rec_by"),
+                                    .note = If(result_awb Is Nothing, "AWB Number not found", "OK")
+                                }
+
+                GCData.DataSource = Nothing
+                GCData.DataSource = query.ToList()
+                GCData.RefreshDataSource()
+                GVData.PopulateColumns()
+
+                'Customize column
+                GVData.Columns("IdAwb").Visible = False
+                GVData.Columns("AWB").Caption = "AWB Number"
+                GVData.Columns("rec_date_old").Caption = "(Old) Receive Date"
+                GVData.Columns("rec_by_old").Caption = "(Old) Receive By"
+                GVData.Columns("rec_date_new").Caption = "Receive Date"
+                GVData.Columns("rec_by_new").Caption = "Receive By"
+                GVData.Columns("note").Caption = "Note"
+
+                GVData.Columns("rec_date_old").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("rec_date_new").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+
+                GVData.Columns("rec_date_old").DisplayFormat.FormatString = "{0:dd MMM yyyy}"
+                GVData.Columns("rec_date_new").DisplayFormat.FormatString = "{0:dd MMM yyyy}"
+
+                GVData.OptionsView.ColumnAutoWidth = False
+                GVData.BestFitColumns()
+
+            Catch ex As Exception
+                stopCustom(ex.ToString)
+            End Try
         End If
         data_temp.Dispose()
         oledbconn.Close()
@@ -1992,6 +2049,12 @@ Public Class FormImportExcel
                     e.Appearance.BackColor = Color.Salmon
                     e.Appearance.BackColor2 = Color.Salmon
                 End If
+            End If
+        ElseIf id_pop_up = "35" Then
+            Dim stt As String = sender.GetRowCellValue(e.RowHandle, sender.Columns("note")).ToString
+            If stt <> "OK" Then
+                e.Appearance.BackColor = Color.Salmon
+                e.Appearance.BackColor2 = Color.Salmon
             End If
         End If
     End Sub
@@ -3366,6 +3429,27 @@ Public Class FormImportExcel
                         If Not GVData.GetRowCellValue(i, "IdEmployee").ToString = "0" Then
                             Dim query_exec As String = "INSERT INTO tb_m_employee_salary(id_employee,basic_salary,allow_job,allow_meal,allow_trans,allow_house,allow_car,effective_date)
                                                         VALUES('" & GVData.GetRowCellValue(i, "IDEmployee").ToString & "','" & decimalSQL(GVData.GetRowCellValue(i, "basic_salary").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_job").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_meal").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_trans").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_house").ToString) & "','" & decimalSQL(GVData.GetRowCellValue(i, "allow_car").ToString) & "','" & Date.Parse(GVData.GetRowCellValue(i, "effective_date").ToString).ToString("yyyy-MM-dd") & "')"
+                            execute_non_query(query_exec, True, "", "", "", "")
+                        End If
+                        '
+                        PBC.PerformStep()
+                        PBC.Update()
+                    Next
+                    infoCustom("Import Success")
+                    FormMasterEmployee.viewEmployee("-1")
+                    Close()
+                End If
+            ElseIf id_pop_up = "35" Then 'import awb receiving outbound
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                If confirm = Windows.Forms.DialogResult.Yes Then
+                    PBC.Properties.Minimum = 0
+                    PBC.Properties.Maximum = GVData.RowCount - 1
+                    PBC.Properties.Step = 1
+                    PBC.Properties.PercentView = True
+                    '
+                    For i As Integer = 0 To GVData.RowCount - 1
+                        If Not GVData.GetRowCellValue(i, "IdAwb").ToString = "0" Then
+                            Dim query_exec As String = "UPDATE tb_wh_awbill SET rec_by_store_date='" & Date.Parse(GVData.GetRowCellValue(i, "rec_date_new").ToString).ToString("yyyy-MM-dd") & "',rec_by_store_person='" & GVData.GetRowCellValue(i, "rec_by_new").ToString & "' WHERE id_awbill='" & GVData.GetRowCellValue(i, "IdAwb").ToString & "'"
                             execute_non_query(query_exec, True, "", "", "", "")
                         End If
                         '
