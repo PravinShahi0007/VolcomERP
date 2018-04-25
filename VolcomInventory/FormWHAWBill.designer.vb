@@ -852,12 +852,12 @@ Partial Class FormWHAWBill
         '
         'BAWBRec
         '
-        Me.BAWBRec.Location = New System.Drawing.Point(1006, 8)
+        Me.BAWBRec.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BAWBRec.Location = New System.Drawing.Point(1131, 2)
         Me.BAWBRec.Name = "BAWBRec"
-        Me.BAWBRec.Size = New System.Drawing.Size(140, 23)
+        Me.BAWBRec.Size = New System.Drawing.Size(140, 35)
         Me.BAWBRec.TabIndex = 108
         Me.BAWBRec.Text = "Import AWB Receive Data"
-        Me.BAWBRec.Visible = False
         '
         'BtnManifest
         '
