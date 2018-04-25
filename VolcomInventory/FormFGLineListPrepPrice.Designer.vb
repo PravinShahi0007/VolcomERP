@@ -95,6 +95,8 @@ Partial Class FormFGLineListPrepPrice
         'GridColumnPrice
         '
         Me.GridColumnPrice.Caption = "est_price"
+        Me.GridColumnPrice.DisplayFormat.FormatString = "n2"
+        Me.GridColumnPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnPrice.FieldName = "est_price"
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
@@ -104,6 +106,8 @@ Partial Class FormFGLineListPrepPrice
         'GridColumnRate
         '
         Me.GridColumnRate.Caption = "rate_current"
+        Me.GridColumnRate.DisplayFormat.FormatString = "N2"
+        Me.GridColumnRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnRate.FieldName = "rate_current"
         Me.GridColumnRate.Name = "GridColumnRate"
         Me.GridColumnRate.Visible = True
@@ -113,6 +117,8 @@ Partial Class FormFGLineListPrepPrice
         'GridColumnMsrp
         '
         Me.GridColumnMsrp.Caption = "msrp"
+        Me.GridColumnMsrp.DisplayFormat.FormatString = "n2"
+        Me.GridColumnMsrp.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnMsrp.FieldName = "msrp"
         Me.GridColumnMsrp.Name = "GridColumnMsrp"
         Me.GridColumnMsrp.Visible = True
