@@ -8,7 +8,7 @@
 
     Sub viewDesign()
         Dim query As String = "SELECT dsg.design_display_name AS `name`, det.color, dv.division, pd_dsg.id_prod_demand_design AS `id`, dsg.design_code as `code`, pd_dsg.prod_demand_design_propose_price AS `est_price`, "
-        query += "pd_dsg.rate_current, pd_dsg.msrp, dsg.id_delivery, del.delivery, dsg.id_ret_code, rc.ret_code, dsg.design_eos "
+        query += "pd_dsg.rate_current, pd_dsg.msrp, dsg.id_delivery, del.delivery, dsg.id_ret_code, rc.ret_code, rc.ret_date, dsg.design_eos "
         query += "FROM tb_m_design dsg "
         query += "LEFT JOIN tb_season_delivery del ON del.id_delivery = dsg.id_delivery "
         query += "LEFT JOIN tb_lookup_ret_code rc ON rc.id_ret_code = dsg.id_ret_code "

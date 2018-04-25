@@ -893,7 +893,7 @@ Public Class FormImportExcel
                 Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
 
                 'master return
-                Dim query_ret = "SELECT rc.id_ret_code, rc.ret_code FROM tb_lookup_ret_code rc "
+                Dim query_ret = "SELECT rc.id_ret_code, rc.ret_code, rc.ret_date FROM tb_lookup_ret_code rc "
                 Dim data_ret As DataTable = execute_query(query_ret, -1, True, "", "", "", "")
 
                 Dim tb1 = data_temp.AsEnumerable() 'datatable xls
@@ -924,6 +924,7 @@ Public Class FormImportExcel
                                         .delivery = xls("delivery").ToString,
                                         .id_ret_code = If(retresult Is Nothing, "0", retresult("id_ret_code").ToString),
                                         .ret_code = xls("ret_code").ToString,
+                                        .ret_date = If(retresult Is Nothing, Nothing, retresult("ret_date")),
                                         .design_eos = xls("design_eos"),
                                         .Status = If(doresult Is Nothing Or delresult Is Nothing Or retresult Is Nothing, If(doresult Is Nothing, "Product not found; ", "") + If(delresult Is Nothing, "Delivery not found; ", "") + If(retresult Is Nothing, "Return code not found", ""), "OK")
                                     }
@@ -948,8 +949,9 @@ Public Class FormImportExcel
                 GVData.Columns("est_price").VisibleIndex = 6
                 GVData.Columns("delivery").VisibleIndex = 7
                 GVData.Columns("ret_code").VisibleIndex = 8
-                GVData.Columns("design_eos").VisibleIndex = 9
-                GVData.Columns("Status").VisibleIndex = 10
+                GVData.Columns("ret_date").VisibleIndex = 9
+                GVData.Columns("design_eos").VisibleIndex = 10
+                GVData.Columns("Status").VisibleIndex = 11
                 GVData.BestFitColumns()
 
                 GVData.Columns("rate_current").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -962,6 +964,8 @@ Public Class FormImportExcel
                 GVData.Columns("est_price").DisplayFormat.FormatString = "{0:n2}"
                 GVData.Columns("design_eos").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
                 GVData.Columns("design_eos").DisplayFormat.FormatString = "{0:dd MMMM yyyy}"
+                GVData.Columns("ret_date").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("ret_date").DisplayFormat.FormatString = "{0:dd MMMM yyyy}"
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
