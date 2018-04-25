@@ -89,6 +89,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([reg_no]='')", oledbconn)
         ElseIf id_pop_up = "15" Then
             MyCommand = New OleDbDataAdapter("select code, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code", oledbconn)
+        ElseIf id_pop_up = "17" Then
+            MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='')", oledbconn)
         ElseIf id_pop_up = "20" Then
             MyCommand = New OleDbDataAdapter("select code, wh, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code,wh", oledbconn)
         ElseIf id_pop_up = "21" Then
@@ -860,8 +862,9 @@ Public Class FormImportExcel
         ElseIf id_pop_up = "17" Then
             'import est price
             Try
-                Dim query_master As String = "SELECT dsg.design_display_name AS `name`, det.color, pd_dsg.id_prod_demand_design AS `id`, dsg.design_code as `code`, pd_dsg.prod_demand_design_propose_price AS `est_price`, "
-                query_master += "pd_dsg.rate_current, pd_dsg.msrp "
+                'master design
+                Dim query_master As String = "SELECT dsg.design_display_name AS `name`, det.color, dsg.id_design,pd_dsg.id_prod_demand_design AS `id`, dsg.design_code as `code`, pd_dsg.prod_demand_design_propose_price AS `est_price`, "
+                query_master += "pd_dsg.rate_current, pd_dsg.msrp, dsg.design_eos "
                 query_master += "FROM tb_m_design dsg "
                 query_master += "INNER JOIN tb_prod_demand_design pd_dsg ON pd_dsg.id_prod_demand_design = "
                 If FormFGLineList.SLETypeLineList.EditValue.ToString = "1" Then
@@ -879,37 +882,71 @@ Public Class FormImportExcel
                 query_master += "WHERE dsg.id_season = '" + FormFGLineList.SLESeason.EditValue.ToString + "' AND dsg.id_active=1 "
                 query_master += "ORDER BY dsg.id_design ASC "
                 Dim data_master As DataTable = execute_query(query_master, -1, True, "", "", "", "")
+
+                'master delivery
+                Dim query_del = "SELECT del.id_delivery, del.delivery 
+                FROM tb_season_delivery del
+                WHERE del.id_season=" + FormFGLineList.SLESeason.EditValue.ToString + " "
+                Dim data_del As DataTable = execute_query(query_del, -1, True, "", "", "", "")
+
+                'master return
+                Dim query_ret = "SELECT rc.id_ret_code, rc.ret_code FROM tb_lookup_ret_code rc "
+                Dim data_ret As DataTable = execute_query(query_ret, -1, True, "", "", "", "")
+
                 Dim tb1 = data_temp.AsEnumerable() 'datatable xls
                 Dim tb2 = data_master.AsEnumerable()
+                Dim tb3 = data_del
+                Dim tb4 = data_ret
                 Dim query = From xls In tb1
                             Group Join dox In tb2
-                            On xls("id").ToString Equals dox("id").ToString Into dojoin = Group
+                            On xls("code").ToString Equals dox("code").ToString Into dojoin = Group
                             From doresult In dojoin.DefaultIfEmpty()
+                            Group Join del In tb3
+                            On xls("delivery").ToString Equals del("delivery").ToString Into deljoin = Group
+                            From delresult In deljoin.DefaultIfEmpty()
+                            Group Join ret In tb4
+                            On xls("ret_code").ToString Equals ret("ret_code").ToString Into retjoin = Group
+                            From retresult In retjoin.DefaultIfEmpty()
                             Select New With {
                                         .id = If(doresult Is Nothing, "", doresult("id")),
+                                        .id_design = If(doresult Is Nothing, "0", doresult("id_design")),
                                         .code = If(doresult Is Nothing, "", doresult("code")),
                                         .name = If(doresult Is Nothing, "", doresult("name")),
                                         .color = If(doresult Is Nothing, "", doresult("color")),
-                                        .rate_current = If(doresult Is Nothing, 0, Decimal.Parse(xls("rate_current").ToString)),
-                                        .msrp = If(doresult Is Nothing, 0, Decimal.Parse(xls("msrp").ToString)),
-                                        .msrp_rp = If(doresult Is Nothing, 0, Decimal.Parse(xls("msrp").ToString) * Decimal.Parse(xls("rate_current").ToString)),
-                                        .est_price = If(doresult Is Nothing, 0, Decimal.Parse(xls("est_price").ToString)),
-                                        .Status = If(doresult Is Nothing, "Not found", "OK")
+                                        .rate_current = If(doresult Is Nothing, 0, xls("rate_current")),
+                                        .msrp = If(doresult Is Nothing, 0, xls("msrp")),
+                                        .msrp_rp = If(doresult Is Nothing, 0, xls("msrp") * xls("rate_current")),
+                                        .est_price = If(doresult Is Nothing, 0, xls("est_price")),
+                                        .id_delivery = If(delresult Is Nothing, "0", delresult("id_delivery").ToString),
+                                        .delivery = xls("delivery").ToString,
+                                        .id_ret_code = If(retresult Is Nothing, "0", retresult("id_ret_code").ToString),
+                                        .ret_code = xls("ret_code").ToString,
+                                        .design_eos = xls("design_eos"),
+                                        .Status = If(doresult Is Nothing Or delresult Is Nothing Or retresult Is Nothing, If(doresult Is Nothing, "Product not found; ", "") + If(delresult Is Nothing, "Delivery not found; ", "") + If(retresult Is Nothing, "Return code not found", ""), "OK")
                                     }
                 GCData.DataSource = Nothing
                 GCData.DataSource = query.ToList()
                 GCData.RefreshDataSource()
                 GVData.PopulateColumns()
 
-                GVData.Columns("id").VisibleIndex = 0
-                GVData.Columns("code").VisibleIndex = 1
-                GVData.Columns("name").VisibleIndex = 2
-                GVData.Columns("color").VisibleIndex = 3
-                GVData.Columns("rate_current").VisibleIndex = 4
-                GVData.Columns("msrp").VisibleIndex = 5
-                GVData.Columns("msrp_rp").VisibleIndex = 6
-                GVData.Columns("est_price").VisibleIndex = 7
-                GVData.Columns("Status").VisibleIndex = 8
+                'hide column
+                GVData.Columns("id").Visible = False
+                GVData.Columns("id_design").Visible = False
+                GVData.Columns("id_delivery").Visible = False
+                GVData.Columns("id_ret_code").Visible = False
+
+
+                GVData.Columns("code").VisibleIndex = 0
+                GVData.Columns("name").VisibleIndex = 1
+                GVData.Columns("color").VisibleIndex = 2
+                GVData.Columns("rate_current").VisibleIndex = 3
+                GVData.Columns("msrp").VisibleIndex = 4
+                GVData.Columns("msrp_rp").VisibleIndex = 5
+                GVData.Columns("est_price").VisibleIndex = 6
+                GVData.Columns("delivery").VisibleIndex = 7
+                GVData.Columns("ret_code").VisibleIndex = 8
+                GVData.Columns("design_eos").VisibleIndex = 9
+                GVData.Columns("Status").VisibleIndex = 10
                 GVData.BestFitColumns()
 
                 GVData.Columns("rate_current").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -920,8 +957,10 @@ Public Class FormImportExcel
                 GVData.Columns("msrp_rp").DisplayFormat.FormatString = "{0:n2}"
                 GVData.Columns("est_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GVData.Columns("est_price").DisplayFormat.FormatString = "{0:n2}"
+                GVData.Columns("design_eos").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                GVData.Columns("design_eos").DisplayFormat.FormatString = "{0:dd MMMM yyyy}"
             Catch ex As Exception
-                stopCustom("Incorrect format on table.")
+                stopCustom(ex.ToString)
             End Try
         ElseIf id_pop_up = "18" Then
             'SALES PROMO
@@ -2706,12 +2745,27 @@ Public Class FormImportExcel
                         'ins
                         For l As Integer = 0 To ((GVData.RowCount - 1) - GetGroupRowCount(GVData))
                             Dim id As String = addSlashes(GVData.GetRowCellValue(l, "id").ToString)
+                            Dim id_design As String = GVData.GetRowCellValue(l, "id_design").ToString
                             Dim price As String = decimalSQL(GVData.GetRowCellValue(l, "est_price").ToString)
                             Dim rate As String = decimalSQL(GVData.GetRowCellValue(l, "rate_current").ToString)
                             Dim msrp_rp As String = decimalSQL(GVData.GetRowCellValue(l, "msrp_rp").ToString)
                             Dim msrp As String = decimalSQL(GVData.GetRowCellValue(l, "msrp").ToString)
+                            Dim id_delivery As String = addSlashes(GVData.GetRowCellValue(l, "id_delivery").ToString)
+                            Dim id_ret_code As String = addSlashes(GVData.GetRowCellValue(l, "id_ret_code").ToString)
+                            Dim design_eos As String = "NULL"
+                            Try
+                                design_eos = "'" + DateTime.Parse(GVData.GetRowCellValue(l, "design_eos").ToString).ToString("yyyy-MM-dd") + "'"
+                            Catch ex As Exception
+                            End Try
+                            If design_eos = "" Then
+                                design_eos = "NULL"
+                            End If
 
-                            'query
+                            'query master
+                            Dim qum As String = "UPDATE tb_m_design SET id_delivery='" + id_delivery + "', id_ret_code='" + id_ret_code + "', design_eos=" + design_eos + " WHERE id_design=" + id_design + " "
+                            execute_non_query(qum, True, "", "", "", "")
+
+                            'query pd
                             Dim query_upd As String = "UPDATE tb_prod_demand_design SET prod_demand_design_propose_price ='" + price + "', rate_current='" + rate + "', msrp='" + msrp + "', msrp_rp='" + msrp_rp + "' WHERE id_prod_demand_design='" + id + "' "
                             execute_non_query(query_upd, True, "", "", "", "")
                             PBC.PerformStep()
