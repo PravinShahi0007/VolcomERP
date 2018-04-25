@@ -151,6 +151,8 @@
         For i As Integer = 0 To GVPayroll.RowCount - 1
             'update actual working days
             infoCustom(GVPayroll.GetRowCellValue(i, "id_employee").ToString)
+            'update
+            Dim query As String = ""
             progres_bar_update(i, GVPayroll.RowCount - 1)
         Next
         makeSafeGV(GVPayroll)
