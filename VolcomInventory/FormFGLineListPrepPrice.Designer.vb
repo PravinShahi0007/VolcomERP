@@ -33,6 +33,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnDel = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnRetCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnEOS = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnDiv = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -69,7 +70,7 @@ Partial Class FormFGLineListPrepPrice
         '
         'GVData
         '
-        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCode, Me.GridColumnId, Me.GridColumnPrice, Me.GridColumnRate, Me.GridColumnMsrp, Me.GridColumnName, Me.GridColumnColor, Me.GridColumnDel, Me.GridColumnRetCode, Me.GridColumnEOS})
+        Me.GVData.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnCode, Me.GridColumnId, Me.GridColumnPrice, Me.GridColumnRate, Me.GridColumnMsrp, Me.GridColumnName, Me.GridColumnColor, Me.GridColumnDel, Me.GridColumnRetCode, Me.GridColumnEOS, Me.GridColumnDiv})
         Me.GVData.GridControl = Me.GCData
         Me.GVData.Name = "GVData"
         Me.GVData.OptionsBehavior.Editable = False
@@ -81,15 +82,15 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnCode.FieldName = "code"
         Me.GridColumnCode.Name = "GridColumnCode"
         Me.GridColumnCode.Visible = True
-        Me.GridColumnCode.VisibleIndex = 1
+        Me.GridColumnCode.VisibleIndex = 0
+        Me.GridColumnCode.Width = 163
         '
         'GridColumnId
         '
         Me.GridColumnId.Caption = "id"
         Me.GridColumnId.FieldName = "id"
         Me.GridColumnId.Name = "GridColumnId"
-        Me.GridColumnId.Visible = True
-        Me.GridColumnId.VisibleIndex = 0
+        Me.GridColumnId.OptionsColumn.ShowInCustomizationForm = False
         '
         'GridColumnPrice
         '
@@ -98,6 +99,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnPrice.Name = "GridColumnPrice"
         Me.GridColumnPrice.Visible = True
         Me.GridColumnPrice.VisibleIndex = 6
+        Me.GridColumnPrice.Width = 171
         '
         'GridColumnRate
         '
@@ -106,6 +108,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnRate.Name = "GridColumnRate"
         Me.GridColumnRate.Visible = True
         Me.GridColumnRate.VisibleIndex = 4
+        Me.GridColumnRate.Width = 171
         '
         'GridColumnMsrp
         '
@@ -114,6 +117,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnMsrp.Name = "GridColumnMsrp"
         Me.GridColumnMsrp.Visible = True
         Me.GridColumnMsrp.VisibleIndex = 5
+        Me.GridColumnMsrp.Width = 171
         '
         'GridColumnName
         '
@@ -121,7 +125,8 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnName.FieldName = "name"
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.Visible = True
-        Me.GridColumnName.VisibleIndex = 2
+        Me.GridColumnName.VisibleIndex = 1
+        Me.GridColumnName.Width = 163
         '
         'GridColumnColor
         '
@@ -129,7 +134,8 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnColor.FieldName = "color"
         Me.GridColumnColor.Name = "GridColumnColor"
         Me.GridColumnColor.Visible = True
-        Me.GridColumnColor.VisibleIndex = 3
+        Me.GridColumnColor.VisibleIndex = 2
+        Me.GridColumnColor.Width = 132
         '
         'GridColumnDel
         '
@@ -138,6 +144,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnDel.Name = "GridColumnDel"
         Me.GridColumnDel.Visible = True
         Me.GridColumnDel.VisibleIndex = 7
+        Me.GridColumnDel.Width = 171
         '
         'GridColumnRetCode
         '
@@ -146,6 +153,7 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnRetCode.Name = "GridColumnRetCode"
         Me.GridColumnRetCode.Visible = True
         Me.GridColumnRetCode.VisibleIndex = 8
+        Me.GridColumnRetCode.Width = 171
         '
         'GridColumnEOS
         '
@@ -156,6 +164,16 @@ Partial Class FormFGLineListPrepPrice
         Me.GridColumnEOS.Name = "GridColumnEOS"
         Me.GridColumnEOS.Visible = True
         Me.GridColumnEOS.VisibleIndex = 9
+        Me.GridColumnEOS.Width = 185
+        '
+        'GridColumnDiv
+        '
+        Me.GridColumnDiv.Caption = "division"
+        Me.GridColumnDiv.FieldName = "division"
+        Me.GridColumnDiv.Name = "GridColumnDiv"
+        Me.GridColumnDiv.Visible = True
+        Me.GridColumnDiv.VisibleIndex = 3
+        Me.GridColumnDiv.Width = 134
         '
         'FormFGLineListPrepPrice
         '
@@ -169,6 +187,7 @@ Partial Class FormFGLineListPrepPrice
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Prepare Estimate Price"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         CType(Me.GCData, System.ComponentModel.ISupportInitialize).EndInit()
@@ -191,4 +210,5 @@ Partial Class FormFGLineListPrepPrice
     Friend WithEvents GridColumnDel As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnRetCode As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnEOS As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnDiv As DevExpress.XtraGrid.Columns.GridColumn
 End Class

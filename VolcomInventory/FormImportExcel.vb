@@ -89,6 +89,8 @@ Public Class FormImportExcel
             MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([reg_no]='')", oledbconn)
         ElseIf id_pop_up = "15" Then
             MyCommand = New OleDbDataAdapter("select code, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code", oledbconn)
+        ElseIf id_pop_up = "17" Then
+            MyCommand = New OleDbDataAdapter("select * from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='')", oledbconn)
         ElseIf id_pop_up = "20" Then
             MyCommand = New OleDbDataAdapter("select code, wh, SUM(qty) AS qty from [" & CBWorksheetName.SelectedItem.ToString & "] where not ([code]='') GROUP BY code,wh", oledbconn)
         ElseIf id_pop_up = "21" Then
@@ -897,7 +899,7 @@ Public Class FormImportExcel
                 Dim tb4 = data_ret
                 Dim query = From xls In tb1
                             Group Join dox In tb2
-                            On xls("id").ToString Equals dox("id").ToString Into dojoin = Group
+                            On xls("code").ToString Equals dox("code").ToString Into dojoin = Group
                             From doresult In dojoin.DefaultIfEmpty()
                             Group Join del In tb3
                             On xls("delivery").ToString Equals del("delivery").ToString Into deljoin = Group
@@ -919,7 +921,7 @@ Public Class FormImportExcel
                                         .delivery = xls("delivery").ToString,
                                         .id_ret_code = If(retresult Is Nothing, "0", retresult("id_ret_code").ToString),
                                         .ret_code = xls("ret_code").ToString,
-                                        .design_eos = xls("design_eos").ToString,
+                                        .design_eos = xls("design_eos"),
                                         .Status = If(doresult Is Nothing Or delresult Is Nothing Or retresult Is Nothing, If(doresult Is Nothing, "Product not found; ", "") + If(delresult Is Nothing, "Delivery not found; ", "") + If(retresult Is Nothing, "Return code not found", ""), "OK")
                                     }
                 GCData.DataSource = Nothing
@@ -928,22 +930,23 @@ Public Class FormImportExcel
                 GVData.PopulateColumns()
 
                 'hide column
+                GVData.Columns("id").Visible = False
                 GVData.Columns("id_design").Visible = False
                 GVData.Columns("id_delivery").Visible = False
                 GVData.Columns("id_ret_code").Visible = False
 
-                GVData.Columns("id").VisibleIndex = 0
-                GVData.Columns("code").VisibleIndex = 1
-                GVData.Columns("name").VisibleIndex = 2
-                GVData.Columns("color").VisibleIndex = 3
-                GVData.Columns("rate_current").VisibleIndex = 4
-                GVData.Columns("msrp").VisibleIndex = 5
-                GVData.Columns("msrp_rp").VisibleIndex = 6
-                GVData.Columns("est_price").VisibleIndex = 7
-                GVData.Columns("delivery").VisibleIndex = 8
-                GVData.Columns("ret_code").VisibleIndex = 9
-                GVData.Columns("design_eos").VisibleIndex = 10
-                GVData.Columns("Status").VisibleIndex = 11
+
+                GVData.Columns("code").VisibleIndex = 0
+                GVData.Columns("name").VisibleIndex = 1
+                GVData.Columns("color").VisibleIndex = 2
+                GVData.Columns("rate_current").VisibleIndex = 3
+                GVData.Columns("msrp").VisibleIndex = 4
+                GVData.Columns("msrp_rp").VisibleIndex = 5
+                GVData.Columns("est_price").VisibleIndex = 6
+                GVData.Columns("delivery").VisibleIndex = 7
+                GVData.Columns("ret_code").VisibleIndex = 8
+                GVData.Columns("design_eos").VisibleIndex = 9
+                GVData.Columns("Status").VisibleIndex = 10
                 GVData.BestFitColumns()
 
                 GVData.Columns("rate_current").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -955,7 +958,7 @@ Public Class FormImportExcel
                 GVData.Columns("est_price").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GVData.Columns("est_price").DisplayFormat.FormatString = "{0:n2}"
                 GVData.Columns("design_eos").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-                GVData.Columns("design_eos").DisplayFormat.FormatString = "dd\/MM\/yyyy"
+                GVData.Columns("design_eos").DisplayFormat.FormatString = "{0:dd MMMM yyyy}"
             Catch ex As Exception
                 stopCustom(ex.ToString)
             End Try
