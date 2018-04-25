@@ -430,7 +430,6 @@ Partial Class FormEmpPayroll
         Me.BandedGridColumnActWorkdays.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.BandedGridColumnActWorkdays.FieldName = "actual_workdays"
         Me.BandedGridColumnActWorkdays.Name = "BandedGridColumnActWorkdays"
-        Me.BandedGridColumnActWorkdays.OptionsColumn.ReadOnly = True
         Me.BandedGridColumnActWorkdays.Visible = True
         '
         'GridColumnTotOvertime
