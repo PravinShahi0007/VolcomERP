@@ -3503,7 +3503,7 @@ Public Class FormImportExcel
                     Close()
                 End If
             ElseIf id_pop_up = "35" Then 'import awb receiving outbound
-                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
+                Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? Only 'OK' data will updated.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
                     PBC.Properties.Minimum = 0
                     PBC.Properties.Maximum = GVData.RowCount - 1
