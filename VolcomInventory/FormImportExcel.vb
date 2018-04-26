@@ -111,7 +111,6 @@ Public Class FormImportExcel
             MyCommand.Fill(data_temp)
             MyCommand.Dispose()
         Catch ex As Exception
-            Console.WriteLine(ex.ToString)
             stopCustom("Input must be in accordance with the format specified !")
             Exit Sub
         End Try
@@ -3384,6 +3383,7 @@ Public Class FormImportExcel
             ElseIf id_pop_up = "35" Then 'import awb receiving outbound
                 Dim confirm As DialogResult = DevExpress.XtraEditors.XtraMessageBox.Show("Are you sure want to import this " & GVData.RowCount.ToString & " data ? Only 'OK' data will updated.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2)
                 If confirm = Windows.Forms.DialogResult.Yes Then
+                    makeSafeGV(GVData)
                     PBC.Properties.Minimum = 0
                     PBC.Properties.Maximum = GVData.RowCount - 1
                     PBC.Properties.Step = 1
