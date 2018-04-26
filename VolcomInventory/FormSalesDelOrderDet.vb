@@ -344,7 +344,7 @@ Public Class FormSalesDelOrderDet
             If dt.Rows.Count = 0 Then
                 dt = data_not
             Else
-                dt.Merge(data_not)
+                dt.Merge(data_not, True, MissingSchemaAction.Ignore)
             End If
         End If
 
