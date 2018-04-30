@@ -227,7 +227,7 @@ Partial Public Class ReportSalarySlip
         'LDepartement
         '
         Me.LDepartement.Dpi = 254.0!
-        Me.LDepartement.Font = New System.Drawing.Font("Times New Roman", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LDepartement.Font = New System.Drawing.Font("Times New Roman", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LDepartement.LocationFloat = New DevExpress.Utils.PointFloat(252.5417!, 119.6732!)
         Me.LDepartement.Name = "LDepartement"
         Me.LDepartement.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)

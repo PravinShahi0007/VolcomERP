@@ -189,6 +189,12 @@
     End Sub
 
     Private Sub GVPayroll_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVPayroll.CellValueChanged
-
+        If e.Column.FieldName.ToString = "actual_workdays" Then
+            If Not e.Value.ToString = "" And GVPayroll.RowCount > 0 Then
+                Dim id_det As String = GVPayroll.GetFocusedRowCellValue("id_payroll_det").ToString
+                Dim query_upd As String = "UPDATE tb_emp_payroll_det SET actual_workdays='" & decimalSQL(Decimal.Parse(e.Value.ToString).ToString) & "' WHERE id_payroll_det='" & id_det & "'"
+                execute_non_query(query_upd, True, "", "", "", "")
+            End If
+        End If
     End Sub
 End Class
