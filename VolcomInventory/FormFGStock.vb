@@ -94,13 +94,14 @@
     Public dt_qc As DataTable
 
     Public id_pop_up As String = "-1"
+    Dim first_load_sum As Boolean = True
+    Dim first_load_card As Boolean = True
+    Public show_cost As Boolean = False
 
     Private Sub FormFGStock_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         If id_pop_up = "-1" Then
-            viewWHStockCard()
+            'viewWHStockCard()
             viewWHStockSum()
-            viewStoreStockStore()
-            viewProductStockStore()
             XTPFGStockQC.PageVisible = False
         Else
             viewProductStockQC()
@@ -453,10 +454,12 @@
             BGVFGStock.Columns("id_design_stock").Visible = False
             BGVFGStock.Columns("Product Counting").Visible = False
             BGVFGStock.Columns("Range").Visible = False
-            BGVFGStock.Columns("Unit Cost").Visible = False
-            BGVFGStock.Columns("Unit Cost").OptionsColumn.ShowInCustomizationForm = False
-            BGVFGStock.Columns("Amount Cost Total").Visible = False
-            BGVFGStock.Columns("Amount Cost Total").OptionsColumn.ShowInCustomizationForm = False
+            If Not show_cost Then
+                BGVFGStock.Columns("Unit Cost").Visible = False
+                BGVFGStock.Columns("Unit Cost").OptionsColumn.ShowInCustomizationForm = False
+                BGVFGStock.Columns("Amount Cost Total").Visible = False
+                BGVFGStock.Columns("Amount Cost Total").OptionsColumn.ShowInCustomizationForm = False
+            End If
             For j As Integer = 0 To special_code_list.Count - 1
                 BGVFGStock.Columns(special_code_list(j)).Visible = False
             Next
@@ -467,6 +470,10 @@
             Dim query As String = "CALL view_stock_fg('" + id_wh_param_selected + "', '" + id_locator_param_selected + "', '" + id_rack_param_selected + "', '" + id_drawer_param_selected + "', '" + id_product_selected_stock_sum + "', 4, '" + date_until_selected_stock_sum + "') "
             Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
             GCStockBarcode.DataSource = data
+            If Not show_cost Then
+                BGVStockBarcode.Columns("design_cop").Visible = False
+                BGVStockBarcode.Columns("design_cop").OptionsColumn.ShowInCustomizationForm = False
+            End If
         End If
         Cursor = Cursors.Default
     End Sub
@@ -564,23 +571,23 @@
 
     '===========================TAB STOCK STORE======================================
     Sub viewStoreStockStore()
-        Dim query As String = getQueryStore()
-        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
-        For i As Integer = 0 To data.Rows.Count - 1
-            If i = 0 Then
-                store_def_stock_store = data.Rows(i)("comp_name_label").ToString
-                Exit For
-            End If
-        Next
-        SLEStockStore.Properties.DataSource = Nothing
-        SLEStockStore.Properties.DataSource = data
-        SLEStockStore.Properties.DisplayMember = "comp_name_label"
-        SLEStockStore.Properties.ValueMember = "id_comp"
-        If data.Rows.Count.ToString >= 1 Then
-            SLEStockStore.EditValue = data.Rows(0)("id_comp").ToString
-        Else
-            SLEStockStore.EditValue = Nothing
-        End If
+        'Dim query As String = getQueryStore()
+        'Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        'For i As Integer = 0 To data.Rows.Count - 1
+        '    If i = 0 Then
+        '        store_def_stock_store = data.Rows(i)("comp_name_label").ToString
+        '        Exit For
+        '    End If
+        'Next
+        'SLEStockStore.Properties.DataSource = Nothing
+        'SLEStockStore.Properties.DataSource = data
+        'SLEStockStore.Properties.DisplayMember = "comp_name_label"
+        'SLEStockStore.Properties.ValueMember = "id_comp"
+        'If data.Rows.Count.ToString >= 1 Then
+        '    SLEStockStore.EditValue = data.Rows(0)("id_comp").ToString
+        'Else
+        '    SLEStockStore.EditValue = Nothing
+        'End If
     End Sub
 
     Sub viewProductStockStore()
@@ -1022,6 +1029,12 @@
         If XTCFGStock.SelectedTabPageIndex = 0 Then
             TxtDesignCode.Focus()
         ElseIf XTCFGStock.SelectedTabPageIndex = 1 Then
+            If first_load_card Then
+                Cursor = Cursors.WaitCursor
+                viewWHStockCard()
+                first_load_card = False
+                Cursor = Cursors.Default
+            End If
             TxtCodeDsgSC.Focus()
         ElseIf XTCFGStock.SelectedTabPageIndex = 4 Then
             TxtCodeDsgRsv.Focus()
@@ -1237,11 +1250,13 @@
         TxtDesign.Text = ""
         If CheckEdit1.EditValue = True Then
             id_design_selected_stock_sum = "0"
+            id_product_selected_stock_sum = "0"
             TxtDesignCode.Properties.ReadOnly = True
             SLEWHStockSum.Focus()
             SLEWHStockSum.ShowPopup()
         Else
             id_design_selected_stock_sum = "-1"
+            id_product_selected_stock_sum = "-1"
             TxtDesignCode.Properties.ReadOnly = False
             TxtDesignCode.Focus()
         End If
@@ -1250,10 +1265,18 @@
     Private Sub XTCSOH_SelectedPageChanged(sender As Object, e As DevExpress.XtraTab.TabPageChangedEventArgs) Handles XTCSOH.SelectedPageChanged
         TxtDesignCode.Text = ""
         TxtDesign.Text = ""
+        TxtDesignCode.Focus()
         If XTCSOH.SelectedTabPageIndex = 0 Then
             LabelSOH.Text = "Code"
         Else
             LabelSOH.Text = "Barcode"
+        End If
+    End Sub
+
+    Private Sub FormFGStock_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
+        If e.KeyCode = Keys.F7 Then
+            FormMenuAuth.type = "2"
+            FormMenuAuth.ShowDialog()
         End If
     End Sub
 End Class
