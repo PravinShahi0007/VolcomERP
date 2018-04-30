@@ -187,4 +187,8 @@
             End If
         End If
     End Sub
+
+    Private Sub GVPayroll_CellValueChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs) Handles GVPayroll.CellValueChanged
+
+    End Sub
 End Class

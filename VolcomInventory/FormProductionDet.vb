@@ -361,8 +361,8 @@
             BSave.Enabled = True
             GridColumnBOM.OptionsColumn.AllowEdit = True
             '
-            BPickDesign.Enabled = True
-            BPickPD.Enabled = True
+            BPickDesign.Enabled = False
+            BPickPD.Enabled = False
         Else
             BSave.Enabled = False
             GridColumnBOM.OptionsColumn.AllowEdit = False
