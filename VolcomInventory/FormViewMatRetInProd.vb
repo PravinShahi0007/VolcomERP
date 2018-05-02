@@ -11,7 +11,7 @@
 
         'View data
         Try
-            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_name,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
+            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in,h.id_prod_order, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_display_name as design_name,e.comp_name,e.comp_number,e.address_primary,a.id_comp_contact_from, "
             query += "a.mat_prod_ret_in_number  "
             query += ",drw.id_wh_drawer,rck.id_wh_rack,loc.id_wh_locator,comp.id_comp "
             query += "FROM tb_mat_prod_ret_in a "

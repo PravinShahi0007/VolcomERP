@@ -80,7 +80,6 @@
                 query = "CALL view_wh_awbill(1,""" + number_start + " " + number_end + " " + date_start + " " + date_end + """)"
                 gridBandDO.Visible = False
             End If
-            Console.WriteLine(query)
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
 
             For i As Integer = GVAWBill.Columns.Count - 1 To 0 Step -1
@@ -212,7 +211,6 @@
                 query += " left join tb_m_comp_group grp ON grp.id_comp_group = comp_store.id_comp_group"
                 query += " WHERE awb.awbill_type='1' " + number_start + " " + number_end + " " + date_start + " " + date_end + ""
             End If
-            Console.WriteLine(query)
             Dim data As DataTable = execute_query(query, "-1", True, "", "", "", "")
             GCAWBill.DataSource = data
 
