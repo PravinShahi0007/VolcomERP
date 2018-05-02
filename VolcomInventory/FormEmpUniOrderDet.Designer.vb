@@ -40,6 +40,7 @@ Partial Class FormEmpUniOrderDet
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCancelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAccept = New DevExpress.XtraEditors.SimpleButton()
+        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         Me.GroupControl2 = New DevExpress.XtraEditors.GroupControl()
         Me.LabelControl16 = New DevExpress.XtraEditors.LabelControl()
         Me.DECreated = New DevExpress.XtraEditors.DateEdit()
@@ -108,7 +109,6 @@ Partial Class FormEmpUniOrderDet
         Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnMark = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -344,7 +344,18 @@ Partial Class FormEmpUniOrderDet
         Me.BtnAccept.Name = "BtnAccept"
         Me.BtnAccept.Size = New System.Drawing.Size(112, 37)
         Me.BtnAccept.TabIndex = 0
-        Me.BtnAccept.Text = "Accept (F5)"
+        Me.BtnAccept.Text = "Confirm (F5)"
+        '
+        'BtnMark
+        '
+        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
+        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
+        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
+        Me.BtnMark.Name = "BtnMark"
+        Me.BtnMark.Size = New System.Drawing.Size(86, 37)
+        Me.BtnMark.TabIndex = 5
+        Me.BtnMark.Text = "Mark"
+        Me.BtnMark.Visible = False
         '
         'GroupControl2
         '
@@ -1065,17 +1076,6 @@ Partial Class FormEmpUniOrderDet
         Me.BtnAddOrder.Size = New System.Drawing.Size(99, 40)
         Me.BtnAddOrder.TabIndex = 2
         Me.BtnAddOrder.Text = "Add (F2)"
-        '
-        'BtnMark
-        '
-        Me.BtnMark.Dock = System.Windows.Forms.DockStyle.Left
-        Me.BtnMark.Image = CType(resources.GetObject("BtnMark.Image"), System.Drawing.Image)
-        Me.BtnMark.Location = New System.Drawing.Point(2, 2)
-        Me.BtnMark.Name = "BtnMark"
-        Me.BtnMark.Size = New System.Drawing.Size(86, 37)
-        Me.BtnMark.TabIndex = 5
-        Me.BtnMark.Text = "Mark"
-        Me.BtnMark.Visible = False
         '
         'FormEmpUniOrderDet
         '

@@ -133,7 +133,7 @@
     End Sub
     Sub viewRetInProd()
         Try
-            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_name,  "
+            Dim query As String = "SELECT a.id_report_status,i.report_status,a.id_mat_prod_ret_in, a.mat_prod_ret_in_date, a.mat_prod_ret_in_note,h.prod_order_number,desg.design_display_name as design_name,  "
             query += "a.mat_prod_ret_in_number , (e.comp_name) AS comp_from "
             query += "FROM tb_mat_prod_ret_in a "
             query += "INNER JOIN tb_prod_order h ON a.id_prod_order = h.id_prod_order "
