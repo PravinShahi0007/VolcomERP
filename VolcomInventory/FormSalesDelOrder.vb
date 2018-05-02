@@ -27,6 +27,17 @@
         Dim query As String = query_c.queryMain("AND a.id_so_status!=5 AND a.id_report_status='6' AND a.id_prepare_status='1' ", "1")
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         GCSalesOrder.DataSource = data
+        GridColumnEmpCode.Visible = False
+        GridColumnEmpName.Visible = False
+    End Sub
+
+    Sub viewUniformOrder()
+        Dim query_c As ClassSalesOrder = New ClassSalesOrder()
+        Dim query As String = query_c.queryMain("AND a.id_so_status=7 AND a.id_report_status='6' AND a.id_prepare_status='1' ", "1")
+        Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
+        GCSalesOrder.DataSource = data
+        GridColumnEmpCode.VisibleIndex = 1
+        GridColumnEmpName.VisibleIndex = 2
     End Sub
 
     Sub viewSalesDelOrder()
@@ -318,5 +329,17 @@
         Else
             stopCustom("Combined delivery not found")
         End If
+    End Sub
+
+    Private Sub BtnShowUniform_Click(sender As Object, e As EventArgs) Handles BtnShowUniform.Click
+        Cursor = Cursors.WaitCursor
+        viewUniformOrder()
+        Cursor = Cursors.Default
+    End Sub
+
+    Private Sub BtnShowAll_Click(sender As Object, e As EventArgs) Handles BtnShowAll.Click
+        Cursor = Cursors.WaitCursor
+        viewSalesOrder()
+        Cursor = Cursors.Default
     End Sub
 End Class

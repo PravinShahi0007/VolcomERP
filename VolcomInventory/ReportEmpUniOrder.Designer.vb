@@ -614,7 +614,7 @@ Partial Public Class ReportEmpUniOrder
         Me.LabelTitle.SizeF = New System.Drawing.SizeF(409.5478!, 25.08334!)
         Me.LabelTitle.StylePriority.UseFont = False
         Me.LabelTitle.StylePriority.UseTextAlignment = False
-        Me.LabelTitle.Text = "FORM PEMILIHAN UNIFORM"
+        Me.LabelTitle.Text = "DAFTAR PILIHAN UNIFORM"
         Me.LabelTitle.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomLeft
         '
         'BottomMargin
@@ -651,6 +651,7 @@ Partial Public Class ReportEmpUniOrder
         Me.XrTable4.Name = "XrTable4"
         Me.XrTable4.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow19, Me.XrTableRow20, Me.XrTableRow21})
         Me.XrTable4.SizeF = New System.Drawing.SizeF(234.4321!, 100.0!)
+        Me.XrTable4.Visible = False
         '
         'XrTableRow19
         '
@@ -703,6 +704,7 @@ Partial Public Class ReportEmpUniOrder
         Me.XrTable3.Name = "XrTable3"
         Me.XrTable3.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow16, Me.XrTableRow18, Me.XrTableRow17})
         Me.XrTable3.SizeF = New System.Drawing.SizeF(295.2083!, 100.0!)
+        Me.XrTable3.Visible = False
         '
         'XrTableRow16
         '
