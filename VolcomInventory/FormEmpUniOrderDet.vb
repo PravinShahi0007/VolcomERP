@@ -98,10 +98,10 @@ Public Class FormEmpUniOrderDet
         If confirm = Windows.Forms.DialogResult.Yes Then
             Cursor = Cursors.WaitCursor
             'submit
-            submit_who_prepared("130", id_sales_order, id_user)
+            submit_who_prepared("39", id_sales_order, id_user)
 
             'update completed
-            Dim query As String = "UPDATE tb_sales_order set is_selected=1, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
+            Dim query As String = "UPDATE tb_sales_order set id_report_status=6, is_selected=1, sales_order_note='" + addSlashes(MENote.Text.ToString) + "' WHERE id_sales_order=" + id_sales_order + " "
             execute_non_query(query, True, "", "", "", "")
             If Not is_public_form Then
                 FormEmpUniPeriodDet.viewOrder()

@@ -32,6 +32,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumn4 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn5 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnIdSalesDelOrder = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnWHName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCategory = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -69,6 +70,7 @@ Partial Class FormSalesDelOrder
         Me.GridColumnReff = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnCreatedProcess = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnReference = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOLStoreOrderList = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.BtnCombineDel = New DevExpress.XtraEditors.SimpleButton()
         Me.PanelControlNavPrepare = New DevExpress.XtraEditors.PanelControl()
@@ -81,8 +83,11 @@ Partial Class FormSalesDelOrder
         Me.BtnViewNewPrepare = New DevExpress.XtraEditors.SimpleButton()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.TimerMonitor = New System.Windows.Forms.Timer(Me.components)
-        Me.GridColumnOLStoreOrderList = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnOLStoreOrder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BtnShowUniform = New DevExpress.XtraEditors.SimpleButton()
+        Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
+        Me.BtnShowAll = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnEmpCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnEmpName = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.XTCSalesDelOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCSalesDelOrder.SuspendLayout()
         Me.XTPListDel.SuspendLayout()
@@ -113,6 +118,8 @@ Partial Class FormSalesDelOrder
         CType(Me.PanelControlNavNewProd, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControlNavNewProd.SuspendLayout()
         CType(Me.TxtNoParam.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelControl1.SuspendLayout()
         Me.SuspendLayout()
         '
         'XTCSalesDelOrder
@@ -229,6 +236,15 @@ Partial Class FormSalesDelOrder
         Me.GridColumn8.Visible = True
         Me.GridColumn8.VisibleIndex = 4
         Me.GridColumn8.Width = 118
+        '
+        'GridColumnOLStoreOrder
+        '
+        Me.GridColumnOLStoreOrder.Caption = "OL Store Order#"
+        Me.GridColumnOLStoreOrder.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
+        Me.GridColumnOLStoreOrder.Visible = True
+        Me.GridColumnOLStoreOrder.VisibleIndex = 5
+        Me.GridColumnOLStoreOrder.Width = 146
         '
         'GridColumnIdSalesDelOrder
         '
@@ -394,7 +410,7 @@ Partial Class FormSalesDelOrder
         'XTPSOList
         '
         Me.XTPSOList.Controls.Add(Me.GCSalesOrder)
-        Me.XTPSOList.Controls.Add(Me.BtnCombineDel)
+        Me.XTPSOList.Controls.Add(Me.PanelControl1)
         Me.XTPSOList.Controls.Add(Me.PanelControlNavPrepare)
         Me.XTPSOList.Name = "XTPSOList"
         Me.XTPSOList.Size = New System.Drawing.Size(793, 456)
@@ -408,7 +424,7 @@ Partial Class FormSalesDelOrder
         Me.GCSalesOrder.MainView = Me.GVSalesOrder
         Me.GCSalesOrder.Name = "GCSalesOrder"
         Me.GCSalesOrder.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemProgressBar1})
-        Me.GCSalesOrder.Size = New System.Drawing.Size(793, 406)
+        Me.GCSalesOrder.Size = New System.Drawing.Size(793, 403)
         Me.GCSalesOrder.TabIndex = 5
         Me.GCSalesOrder.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVSalesOrder, Me.GridView2})
         '
@@ -438,7 +454,7 @@ Partial Class FormSalesDelOrder
         '
         'GVSalesOrder
         '
-        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumnCreatedProcess, Me.GridColumnReference, Me.GridColumnOLStoreOrderList})
+        Me.GVSalesOrder.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnSalesTargetNumb, Me.GridColumnTo, Me.GridColumnSalesTargetDate, Me.GridColumnDSalesTargetNote, Me.GridColumnReportStatus, Me.GridColumnPrepareStatus, Me.GridColumn9, Me.GridColumnIdSalesOrder, Me.GridColumn1Category, Me.GridColumn10, Me.GridColumnReff, Me.GridColumnCreatedProcess, Me.GridColumnReference, Me.GridColumnOLStoreOrderList, Me.GridColumnEmpCode, Me.GridColumnEmpName})
         Me.GVSalesOrder.GridControl = Me.GCSalesOrder
         Me.GVSalesOrder.Name = "GVSalesOrder"
         Me.GVSalesOrder.OptionsBehavior.ReadOnly = True
@@ -569,6 +585,14 @@ Partial Class FormSalesDelOrder
         Me.GridColumnReference.Visible = True
         Me.GridColumnReference.VisibleIndex = 2
         '
+        'GridColumnOLStoreOrderList
+        '
+        Me.GridColumnOLStoreOrderList.Caption = "OL Store Order#"
+        Me.GridColumnOLStoreOrderList.FieldName = "sales_order_ol_shop_number"
+        Me.GridColumnOLStoreOrderList.Name = "GridColumnOLStoreOrderList"
+        Me.GridColumnOLStoreOrderList.Visible = True
+        Me.GridColumnOLStoreOrderList.VisibleIndex = 1
+        '
         'GridView2
         '
         Me.GridView2.GridControl = Me.GCSalesOrder
@@ -582,14 +606,14 @@ Partial Class FormSalesDelOrder
         Me.BtnCombineDel.Appearance.Options.UseBackColor = True
         Me.BtnCombineDel.Appearance.Options.UseFont = True
         Me.BtnCombineDel.Appearance.Options.UseForeColor = True
-        Me.BtnCombineDel.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.BtnCombineDel.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnCombineDel.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
-        Me.BtnCombineDel.Location = New System.Drawing.Point(0, 406)
+        Me.BtnCombineDel.Location = New System.Drawing.Point(451, 2)
         Me.BtnCombineDel.LookAndFeel.SkinName = "Metropolis"
         Me.BtnCombineDel.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
         Me.BtnCombineDel.LookAndFeel.UseDefaultLookAndFeel = False
         Me.BtnCombineDel.Name = "BtnCombineDel"
-        Me.BtnCombineDel.Size = New System.Drawing.Size(793, 28)
+        Me.BtnCombineDel.Size = New System.Drawing.Size(116, 27)
         Me.BtnCombineDel.TabIndex = 139
         Me.BtnCombineDel.Text = "Combine Delivery"
         '
@@ -678,22 +702,66 @@ Partial Class FormSalesDelOrder
         Me.TimerMonitor.Enabled = True
         Me.TimerMonitor.Interval = 10000
         '
-        'GridColumnOLStoreOrderList
+        'BtnShowUniform
         '
-        Me.GridColumnOLStoreOrderList.Caption = "OL Store Order#"
-        Me.GridColumnOLStoreOrderList.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumnOLStoreOrderList.Name = "GridColumnOLStoreOrderList"
-        Me.GridColumnOLStoreOrderList.Visible = True
-        Me.GridColumnOLStoreOrderList.VisibleIndex = 1
+        Me.BtnShowUniform.Appearance.BackColor = System.Drawing.Color.Teal
+        Me.BtnShowUniform.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnShowUniform.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnShowUniform.Appearance.Options.UseBackColor = True
+        Me.BtnShowUniform.Appearance.Options.UseFont = True
+        Me.BtnShowUniform.Appearance.Options.UseForeColor = True
+        Me.BtnShowUniform.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnShowUniform.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnShowUniform.Location = New System.Drawing.Point(567, 2)
+        Me.BtnShowUniform.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnShowUniform.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnShowUniform.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnShowUniform.Name = "BtnShowUniform"
+        Me.BtnShowUniform.Size = New System.Drawing.Size(122, 27)
+        Me.BtnShowUniform.TabIndex = 140
+        Me.BtnShowUniform.Text = "Show Uniform Order"
         '
-        'GridColumnOLStoreOrder
+        'PanelControl1
         '
-        Me.GridColumnOLStoreOrder.Caption = "OL Store Order#"
-        Me.GridColumnOLStoreOrder.FieldName = "sales_order_ol_shop_number"
-        Me.GridColumnOLStoreOrder.Name = "GridColumnOLStoreOrder"
-        Me.GridColumnOLStoreOrder.Visible = True
-        Me.GridColumnOLStoreOrder.VisibleIndex = 5
-        Me.GridColumnOLStoreOrder.Width = 146
+        Me.PanelControl1.Controls.Add(Me.BtnCombineDel)
+        Me.PanelControl1.Controls.Add(Me.BtnShowUniform)
+        Me.PanelControl1.Controls.Add(Me.BtnShowAll)
+        Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.PanelControl1.Location = New System.Drawing.Point(0, 403)
+        Me.PanelControl1.Name = "PanelControl1"
+        Me.PanelControl1.Size = New System.Drawing.Size(793, 31)
+        Me.PanelControl1.TabIndex = 141
+        '
+        'BtnShowAll
+        '
+        Me.BtnShowAll.Appearance.BackColor = System.Drawing.Color.DeepSkyBlue
+        Me.BtnShowAll.Appearance.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BtnShowAll.Appearance.ForeColor = System.Drawing.Color.White
+        Me.BtnShowAll.Appearance.Options.UseBackColor = True
+        Me.BtnShowAll.Appearance.Options.UseFont = True
+        Me.BtnShowAll.Appearance.Options.UseForeColor = True
+        Me.BtnShowAll.Dock = System.Windows.Forms.DockStyle.Right
+        Me.BtnShowAll.ImageLocation = DevExpress.XtraEditors.ImageLocation.MiddleCenter
+        Me.BtnShowAll.Location = New System.Drawing.Point(689, 2)
+        Me.BtnShowAll.LookAndFeel.SkinName = "Metropolis"
+        Me.BtnShowAll.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.UltraFlat
+        Me.BtnShowAll.LookAndFeel.UseDefaultLookAndFeel = False
+        Me.BtnShowAll.Name = "BtnShowAll"
+        Me.BtnShowAll.Size = New System.Drawing.Size(102, 27)
+        Me.BtnShowAll.TabIndex = 141
+        Me.BtnShowAll.Text = "Show All Order"
+        '
+        'GridColumnEmpCode
+        '
+        Me.GridColumnEmpCode.Caption = "NIK"
+        Me.GridColumnEmpCode.FieldName = "employee_code"
+        Me.GridColumnEmpCode.Name = "GridColumnEmpCode"
+        '
+        'GridColumnEmpName
+        '
+        Me.GridColumnEmpName.Caption = "Employee Name"
+        Me.GridColumnEmpName.FieldName = "employee_name"
+        Me.GridColumnEmpName.Name = "GridColumnEmpName"
         '
         'FormSalesDelOrder
         '
@@ -740,6 +808,8 @@ Partial Class FormSalesDelOrder
         Me.PanelControlNavNewProd.ResumeLayout(False)
         Me.PanelControlNavNewProd.PerformLayout()
         CType(Me.TxtNoParam.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelControl1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -806,4 +876,9 @@ Partial Class FormSalesDelOrder
     Friend WithEvents ViewCombinedDeliveryToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GridColumnOLStoreOrderList As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOLStoreOrder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BtnShowUniform As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents PanelControl1 As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents BtnShowAll As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnEmpCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnEmpName As DevExpress.XtraGrid.Columns.GridColumn
 End Class
