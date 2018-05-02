@@ -31,17 +31,22 @@ Partial Class FormFGStock
         Me.XTPByBarCode = New DevExpress.XtraTab.XtraTabPage()
         Me.GCStockBarcode = New DevExpress.XtraGrid.GridControl()
         Me.BGVStockBarcode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridView()
+        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnBArcode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDsgCode = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnDescr = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnPrcTyp = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnProductStt = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnSize = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.BandedGridColumnUnitCost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnPrc = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnAvl = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnAmoAvl = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnRsv = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnAmoRsv = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
+        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
         Me.GridColumnTotal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GridColumnAmoTotal = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
         Me.GroupControl4 = New DevExpress.XtraEditors.GroupControl()
@@ -182,11 +187,7 @@ Partial Class FormFGStock
         Me.TxtCodeDsgRsv = New DevExpress.XtraEditors.TextEdit()
         Me.TxtNameDsgRsv = New DevExpress.XtraEditors.TextEdit()
         Me.GridColumn51 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BandedGridColumnUnitCost = New DevExpress.XtraGrid.Views.BandedGrid.BandedGridColumn()
-        Me.GridBand1 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand2 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand3 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
-        Me.gridBand4 = New DevExpress.XtraGrid.Views.BandedGrid.GridBand()
+        Me.LabelControl8 = New DevExpress.XtraEditors.LabelControl()
         CType(Me.XTCFGStock, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XTCFGStock.SuspendLayout()
         Me.XTPFGStockWHSum.SuspendLayout()
@@ -383,6 +384,20 @@ Partial Class FormFGStock
         Me.BGVStockBarcode.OptionsView.ShowFooter = True
         Me.BGVStockBarcode.OptionsView.ShowGroupPanel = False
         '
+        'GridBand1
+        '
+        Me.GridBand1.Columns.Add(Me.GridColumnBArcode)
+        Me.GridBand1.Columns.Add(Me.GridColumnDsgCode)
+        Me.GridBand1.Columns.Add(Me.GridColumnDescr)
+        Me.GridBand1.Columns.Add(Me.GridColumnPrcTyp)
+        Me.GridBand1.Columns.Add(Me.GridColumnProductStt)
+        Me.GridBand1.Columns.Add(Me.GridColumnSize)
+        Me.GridBand1.Columns.Add(Me.BandedGridColumnUnitCost)
+        Me.GridBand1.Columns.Add(Me.GridColumnPrc)
+        Me.GridBand1.Name = "GridBand1"
+        Me.GridBand1.VisibleIndex = 0
+        Me.GridBand1.Width = 1200
+        '
         'GridColumnBArcode
         '
         Me.GridColumnBArcode.Caption = "Barcode"
@@ -431,6 +446,16 @@ Partial Class FormFGStock
         Me.GridColumnSize.Visible = True
         Me.GridColumnSize.Width = 60
         '
+        'BandedGridColumnUnitCost
+        '
+        Me.BandedGridColumnUnitCost.Caption = "Cost"
+        Me.BandedGridColumnUnitCost.DisplayFormat.FormatString = "n2"
+        Me.BandedGridColumnUnitCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.BandedGridColumnUnitCost.FieldName = "design_cop"
+        Me.BandedGridColumnUnitCost.Name = "BandedGridColumnUnitCost"
+        Me.BandedGridColumnUnitCost.Visible = True
+        Me.BandedGridColumnUnitCost.Width = 102
+        '
         'GridColumnPrc
         '
         Me.GridColumnPrc.Caption = "Price"
@@ -440,6 +465,15 @@ Partial Class FormFGStock
         Me.GridColumnPrc.Name = "GridColumnPrc"
         Me.GridColumnPrc.Visible = True
         Me.GridColumnPrc.Width = 120
+        '
+        'gridBand2
+        '
+        Me.gridBand2.Caption = "AVAILABLE"
+        Me.gridBand2.Columns.Add(Me.GridColumnAvl)
+        Me.gridBand2.Columns.Add(Me.GridColumnAmoAvl)
+        Me.gridBand2.Name = "gridBand2"
+        Me.gridBand2.VisibleIndex = 1
+        Me.gridBand2.Width = 175
         '
         'GridColumnAvl
         '
@@ -465,6 +499,15 @@ Partial Class FormFGStock
         Me.GridColumnAmoAvl.Visible = True
         Me.GridColumnAmoAvl.Width = 98
         '
+        'gridBand3
+        '
+        Me.gridBand3.Caption = "RESERVED"
+        Me.gridBand3.Columns.Add(Me.GridColumnRsv)
+        Me.gridBand3.Columns.Add(Me.GridColumnAmoRsv)
+        Me.gridBand3.Name = "gridBand3"
+        Me.gridBand3.VisibleIndex = 2
+        Me.gridBand3.Width = 165
+        '
         'GridColumnRsv
         '
         Me.GridColumnRsv.Caption = "Qty"
@@ -488,6 +531,15 @@ Partial Class FormFGStock
         Me.GridColumnAmoRsv.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnAmoRsv.Visible = True
         Me.GridColumnAmoRsv.Width = 98
+        '
+        'gridBand4
+        '
+        Me.gridBand4.Caption = "TOTAL"
+        Me.gridBand4.Columns.Add(Me.GridColumnTotal)
+        Me.gridBand4.Columns.Add(Me.GridColumnAmoTotal)
+        Me.gridBand4.Name = "gridBand4"
+        Me.gridBand4.VisibleIndex = 3
+        Me.gridBand4.Width = 194
         '
         'GridColumnTotal
         '
@@ -517,6 +569,7 @@ Partial Class FormFGStock
         '
         Me.GroupControl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.UltraFlat
         Me.GroupControl4.CaptionLocation = DevExpress.Utils.Locations.Left
+        Me.GroupControl4.Controls.Add(Me.LabelControl8)
         Me.GroupControl4.Controls.Add(Me.CheckEdit1)
         Me.GroupControl4.Controls.Add(Me.TxtDesign)
         Me.GroupControl4.Controls.Add(Me.TxtDesignCode)
@@ -1918,56 +1971,13 @@ Partial Class FormFGStock
         Me.GridColumn51.Visible = True
         Me.GridColumn51.VisibleIndex = 0
         '
-        'BandedGridColumnUnitCost
+        'LabelControl8
         '
-        Me.BandedGridColumnUnitCost.Caption = "Cost"
-        Me.BandedGridColumnUnitCost.DisplayFormat.FormatString = "n2"
-        Me.BandedGridColumnUnitCost.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.BandedGridColumnUnitCost.FieldName = "design_cop"
-        Me.BandedGridColumnUnitCost.Name = "BandedGridColumnUnitCost"
-        Me.BandedGridColumnUnitCost.Visible = True
-        Me.BandedGridColumnUnitCost.Width = 102
-        '
-        'GridBand1
-        '
-        Me.GridBand1.Columns.Add(Me.GridColumnBArcode)
-        Me.GridBand1.Columns.Add(Me.GridColumnDsgCode)
-        Me.GridBand1.Columns.Add(Me.GridColumnDescr)
-        Me.GridBand1.Columns.Add(Me.GridColumnPrcTyp)
-        Me.GridBand1.Columns.Add(Me.GridColumnProductStt)
-        Me.GridBand1.Columns.Add(Me.GridColumnSize)
-        Me.GridBand1.Columns.Add(Me.BandedGridColumnUnitCost)
-        Me.GridBand1.Columns.Add(Me.GridColumnPrc)
-        Me.GridBand1.Name = "GridBand1"
-        Me.GridBand1.VisibleIndex = 0
-        Me.GridBand1.Width = 1200
-        '
-        'gridBand2
-        '
-        Me.gridBand2.Caption = "AVAILABLE"
-        Me.gridBand2.Columns.Add(Me.GridColumnAvl)
-        Me.gridBand2.Columns.Add(Me.GridColumnAmoAvl)
-        Me.gridBand2.Name = "gridBand2"
-        Me.gridBand2.VisibleIndex = 1
-        Me.gridBand2.Width = 175
-        '
-        'gridBand3
-        '
-        Me.gridBand3.Caption = "RESERVED"
-        Me.gridBand3.Columns.Add(Me.GridColumnRsv)
-        Me.gridBand3.Columns.Add(Me.GridColumnAmoRsv)
-        Me.gridBand3.Name = "gridBand3"
-        Me.gridBand3.VisibleIndex = 2
-        Me.gridBand3.Width = 165
-        '
-        'gridBand4
-        '
-        Me.gridBand4.Caption = "TOTAL"
-        Me.gridBand4.Columns.Add(Me.GridColumnTotal)
-        Me.gridBand4.Columns.Add(Me.GridColumnAmoTotal)
-        Me.gridBand4.Name = "gridBand4"
-        Me.gridBand4.VisibleIndex = 3
-        Me.gridBand4.Width = 194
+        Me.LabelControl8.Location = New System.Drawing.Point(867, 23)
+        Me.LabelControl8.Name = "LabelControl8"
+        Me.LabelControl8.Size = New System.Drawing.Size(126, 13)
+        Me.LabelControl8.TabIndex = 8904
+        Me.LabelControl8.Text = "Press F7 to show unit cost"
         '
         'FormFGStock
         '
@@ -2244,4 +2254,5 @@ Partial Class FormFGStock
     Friend WithEvents gridBand2 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand3 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
     Friend WithEvents gridBand4 As DevExpress.XtraGrid.Views.BandedGrid.GridBand
+    Friend WithEvents LabelControl8 As DevExpress.XtraEditors.LabelControl
 End Class
