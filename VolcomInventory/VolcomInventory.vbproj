@@ -819,6 +819,18 @@
     <Compile Include="FormEmpPayrollPeriode.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FormEmpPayrollReportDept.Designer.vb">
+      <DependentUpon>FormEmpPayrollReportDept.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollReportDept.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEmpPayrollReportOTEvent.Designer.vb">
+      <DependentUpon>FormEmpPayrollReportOTEvent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormEmpPayrollReportOTEvent.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FormEmpPayrollReportSummary.Designer.vb">
       <DependentUpon>FormEmpPayrollReportSummary.vb</DependentUpon>
     </Compile>
@@ -4959,6 +4971,12 @@
     <Compile Include="ReportOutboundManifest.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ReportPayrollAll.Designer.vb">
+      <DependentUpon>ReportPayrollAll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPayrollAll.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReportPLMat.designer.vb">
       <DependentUpon>ReportPLMat.vb</DependentUpon>
     </Compile>
@@ -5662,6 +5680,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollPeriode.resx">
       <DependentUpon>FormEmpPayrollPeriode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollReportDept.resx">
+      <DependentUpon>FormEmpPayrollReportDept.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEmpPayrollReportOTEvent.resx">
+      <DependentUpon>FormEmpPayrollReportOTEvent.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormEmpPayrollReportSummary.resx">
       <DependentUpon>FormEmpPayrollReportSummary.vb</DependentUpon>
@@ -8212,6 +8236,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOutboundManifest.resx">
       <DependentUpon>ReportOutboundManifest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportPayrollAll.resx">
+      <DependentUpon>ReportPayrollAll.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportPLMat.resx">
       <DependentUpon>ReportPLMat.vb</DependentUpon>
