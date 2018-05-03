@@ -6885,6 +6885,8 @@ Public Class FormMain
             print_raw(FormAssetPO.GCPOList, "")
         ElseIf formName = "FormAssetRec" Then
             print_raw(FormAssetRec.GCRecList, "")
+        ElseIf formName = "FormEmpUniReport" Then
+            print_raw(FormEmpUniReport.GCDetail, "")
         Else
             RPSubMenu.Visible = False
         End If
@@ -7496,6 +7498,9 @@ Public Class FormMain
         ElseIf formName = "FormAssetRec" Then
             FormAssetRec.Close()
             FormAssetRec.Dispose()
+        ElseIf formName = "FormEmpUniReport" Then
+            FormEmpUniReport.Close()
+            FormEmpUniReport.Dispose()
         Else
             RPSubMenu.Visible = False
         End If
@@ -11412,11 +11417,10 @@ Public Class FormMain
     Private Sub NBUniformReport_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBUniformReport.LinkClicked
         Cursor = Cursors.WaitCursor
         Try
-            'FormMasterEmployee.is_salary = "1"
-            'FormMasterEmployee.MdiParent = Me
-            'FormMasterEmployee.Show()
-            'FormMasterEmployee.WindowState = FormWindowState.Maximized
-            'FormMasterEmployee.Focus()
+            FormEmpUniReport.MdiParent = Me
+            FormEmpUniReport.Show()
+            FormEmpUniReport.WindowState = FormWindowState.Maximized
+            FormEmpUniReport.Focus()
         Catch ex As Exception
             errorProcess()
         End Try

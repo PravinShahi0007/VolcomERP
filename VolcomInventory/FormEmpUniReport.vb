@@ -1,6 +1,7 @@
 ﻿Public Class FormEmpUniReport
     Private Sub FormEmpUniReport_Activated(sender As Object, e As EventArgs) Handles MyBase.Activated
         FormMain.show_rb(Name)
+        checkFormAccess(Name)
     End Sub
 
     Private Sub FormEmpUniReport_Deactivate(sender As Object, e As EventArgs) Handles MyBase.Deactivate
@@ -55,7 +56,7 @@
         viewDetail()
     End Sub
 
-    Private Sub BtnPrint_Click(sender As Object, e As EventArgs) Handles BtnPrint.Click
+    Private Sub BtnPrint_Click(sender As Object, e As EventArgs)
         print_raw(GCDetail, "")
     End Sub
 End Class

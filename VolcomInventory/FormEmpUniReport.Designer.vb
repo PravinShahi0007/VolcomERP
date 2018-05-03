@@ -20,7 +20,6 @@ Partial Class FormEmpUniReport
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
         Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
@@ -56,7 +55,6 @@ Partial Class FormEmpUniReport
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnView)
         Me.PanelControl1.Controls.Add(Me.LEDeptSum)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
@@ -67,14 +65,6 @@ Partial Class FormEmpUniReport
         Me.PanelControl1.Name = "PanelControl1"
         Me.PanelControl1.Size = New System.Drawing.Size(1050, 41)
         Me.PanelControl1.TabIndex = 0
-        '
-        'BtnPrint
-        '
-        Me.BtnPrint.Location = New System.Drawing.Point(614, 7)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(75, 23)
-        Me.BtnPrint.TabIndex = 18
-        Me.BtnPrint.Text = "Print"
         '
         'BtnView
         '
@@ -343,6 +333,5 @@ Partial Class FormEmpUniReport
     Friend WithEvents GridColumnOrderStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOrderAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBugdetDiff As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
 End Class
