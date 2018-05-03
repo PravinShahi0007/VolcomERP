@@ -5,7 +5,7 @@
         load_sum()
     End Sub
     Sub load_sum()
-        Dim query As String = "CALL"
+        Dim query As String = ""
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
     End Sub
 End Class
