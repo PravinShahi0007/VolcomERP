@@ -3607,8 +3607,10 @@
                         INNER JOIN tb_m_design d ON d.id_design = dd.id_design
                         INNER JOIN tb_m_design_code dc ON dc.id_design = d.id_design
 	                    INNER JOIN tb_m_code_detail cd ON cd.id_code_detail = dc.id_code_detail AND cd.id_code=32
+                        INNER JOIN tb_m_design_code dc2 ON dc2.id_design = d.id_design
+                        INNER JOIN tb_m_code_detail cd2 ON cd2.id_code_detail = dc2.id_code_detail AND cd2.id_code=30
                         WHERE dd.id_emp_uni_design =" + id_report + "
-                        ORDER BY cd.id_code_detail ASC, d.design_code ASC
+                        ORDER BY cd.id_code_detail ASC, cd2.display_name ASC, d.design_code ASC
                     ) d, (SELECT @a:= " + maks.ToString + ") AS a
                 ) src ON src.id_emp_uni_design_det = main.id_emp_uni_design_det
                 SET main.no = src.counting, main.division = src.dv "
