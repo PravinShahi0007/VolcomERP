@@ -44,6 +44,8 @@ Partial Class FormEmpUniReport
         Me.GridColumnOrderStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrderAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBugdetDiff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPoint = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,10 +123,10 @@ Partial Class FormEmpUniReport
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdEmployee, Me.GridColumnIdBudget, Me.GridColumnNik, Me.GridColumnName, Me.GridColumnDept, Me.GridColumnPosition, Me.GridColumnLevel, Me.GridColumnBudget, Me.GridColumnActual, Me.GridColumn1, Me.GridColumnStatus, Me.GridColumnIdOrder, Me.GridColumnOrderNumber, Me.GridColumnOrderStatus, Me.GridColumnOrderAmount, Me.GridColumnBugdetDiff})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdEmployee, Me.GridColumnIdBudget, Me.GridColumnNik, Me.GridColumnName, Me.GridColumnDept, Me.GridColumnPosition, Me.GridColumnLevel, Me.GridColumnBudget, Me.GridColumnActual, Me.GridColumn1, Me.GridColumnStatus, Me.GridColumnIdOrder, Me.GridColumnOrderNumber, Me.GridColumnOrderStatus, Me.GridColumnOrderAmount, Me.GridColumnBugdetDiff, Me.GridColumnQty, Me.GridColumnPoint})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.GroupCount = 1
-        Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", Me.GridColumnBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_amount", Me.GridColumnOrderAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget_diff", Me.GridColumnBugdetDiff, "{0:N2}")})
+        Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", Me.GridColumnBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_amount", Me.GridColumnOrderAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget_diff", Me.GridColumnBugdetDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", Me.GridColumnQty, "{0:N0}")})
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDetail.OptionsBehavior.Editable = False
@@ -153,7 +155,7 @@ Partial Class FormEmpUniReport
         Me.GridColumnNik.Name = "GridColumnNik"
         Me.GridColumnNik.Visible = True
         Me.GridColumnNik.VisibleIndex = 0
-        Me.GridColumnNik.Width = 182
+        Me.GridColumnNik.Width = 223
         '
         'GridColumnName
         '
@@ -162,7 +164,7 @@ Partial Class FormEmpUniReport
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 1
-        Me.GridColumnName.Width = 347
+        Me.GridColumnName.Width = 428
         '
         'GridColumnDept
         '
@@ -171,7 +173,7 @@ Partial Class FormEmpUniReport
         Me.GridColumnDept.Name = "GridColumnDept"
         Me.GridColumnDept.Visible = True
         Me.GridColumnDept.VisibleIndex = 2
-        Me.GridColumnDept.Width = 186
+        Me.GridColumnDept.Width = 229
         '
         'GridColumnPosition
         '
@@ -180,7 +182,7 @@ Partial Class FormEmpUniReport
         Me.GridColumnPosition.Name = "GridColumnPosition"
         Me.GridColumnPosition.Visible = True
         Me.GridColumnPosition.VisibleIndex = 3
-        Me.GridColumnPosition.Width = 151
+        Me.GridColumnPosition.Width = 185
         '
         'GridColumnLevel
         '
@@ -190,7 +192,7 @@ Partial Class FormEmpUniReport
         Me.GridColumnLevel.Name = "GridColumnLevel"
         Me.GridColumnLevel.Visible = True
         Me.GridColumnLevel.VisibleIndex = 4
-        Me.GridColumnLevel.Width = 94
+        Me.GridColumnLevel.Width = 115
         '
         'GridColumnBudget
         '
@@ -242,7 +244,7 @@ Partial Class FormEmpUniReport
         Me.GridColumnOrderNumber.Name = "GridColumnOrderNumber"
         Me.GridColumnOrderNumber.Visible = True
         Me.GridColumnOrderNumber.VisibleIndex = 5
-        Me.GridColumnOrderNumber.Width = 107
+        Me.GridColumnOrderNumber.Width = 131
         '
         'RepositoryItemTextEdit1
         '
@@ -257,8 +259,8 @@ Partial Class FormEmpUniReport
         Me.GridColumnOrderStatus.FieldName = "order_status"
         Me.GridColumnOrderStatus.Name = "GridColumnOrderStatus"
         Me.GridColumnOrderStatus.Visible = True
-        Me.GridColumnOrderStatus.VisibleIndex = 6
-        Me.GridColumnOrderStatus.Width = 122
+        Me.GridColumnOrderStatus.VisibleIndex = 8
+        Me.GridColumnOrderStatus.Width = 166
         '
         'GridColumnOrderAmount
         '
@@ -284,6 +286,29 @@ Partial Class FormEmpUniReport
         Me.GridColumnBugdetDiff.UnboundExpression = "[budget] - [order_amount]"
         Me.GridColumnBugdetDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
         Me.GridColumnBugdetDiff.Width = 133
+        '
+        'GridColumnQty
+        '
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "order_qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:N0}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 6
+        Me.GridColumnQty.Width = 61
+        '
+        'GridColumnPoint
+        '
+        Me.GridColumnPoint.Caption = "Point (%)"
+        Me.GridColumnPoint.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPoint.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPoint.FieldName = "order_point"
+        Me.GridColumnPoint.Name = "GridColumnPoint"
+        Me.GridColumnPoint.Visible = True
+        Me.GridColumnPoint.VisibleIndex = 7
+        Me.GridColumnPoint.Width = 94
         '
         'FormEmpUniReport
         '
@@ -334,4 +359,6 @@ Partial Class FormEmpUniReport
     Friend WithEvents GridColumnOrderAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBugdetDiff As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPoint As DevExpress.XtraGrid.Columns.GridColumn
 End Class
