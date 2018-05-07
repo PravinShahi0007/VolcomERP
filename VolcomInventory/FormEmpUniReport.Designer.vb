@@ -20,10 +20,11 @@ Partial Class FormEmpUniReport
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.PanelControl1 = New DevExpress.XtraEditors.PanelControl()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LEPeriodx = New DevExpress.XtraEditors.LookUpEdit()
-        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl2 = New DevExpress.XtraEditors.LabelControl()
+        Me.LEPeriodx = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.GCDetail = New DevExpress.XtraGrid.GridControl()
         Me.GVDetail = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumnIdEmployee = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -43,12 +44,12 @@ Partial Class FormEmpUniReport
         Me.GridColumnOrderStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrderAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBugdetDiff = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.BtnView = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnPrint = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridColumnQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnPoint = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelControl1.SuspendLayout()
-        CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,7 +57,6 @@ Partial Class FormEmpUniReport
         '
         'PanelControl1
         '
-        Me.PanelControl1.Controls.Add(Me.BtnPrint)
         Me.PanelControl1.Controls.Add(Me.BtnView)
         Me.PanelControl1.Controls.Add(Me.LEDeptSum)
         Me.PanelControl1.Controls.Add(Me.LabelControl2)
@@ -65,33 +65,16 @@ Partial Class FormEmpUniReport
         Me.PanelControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl1.Location = New System.Drawing.Point(0, 0)
         Me.PanelControl1.Name = "PanelControl1"
-        Me.PanelControl1.Size = New System.Drawing.Size(737, 41)
+        Me.PanelControl1.Size = New System.Drawing.Size(1050, 41)
         Me.PanelControl1.TabIndex = 0
         '
-        'LabelControl1
+        'BtnView
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(12, 12)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(30, 13)
-        Me.LabelControl1.TabIndex = 1
-        Me.LabelControl1.Text = "Period"
-        '
-        'LEPeriodx
-        '
-        Me.LEPeriodx.Location = New System.Drawing.Point(51, 9)
-        Me.LEPeriodx.Name = "LEPeriodx"
-        Me.LEPeriodx.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.LEPeriodx.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_emp_uni_period", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("period_name", "Period"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("selection_date_start", "Start", 20, DevExpress.Utils.FormatType.DateTime, "dd\/MM\/yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("selection_date_end", "End", 20, DevExpress.Utils.FormatType.DateTime, "dd\/MM\/yyyy", True, DevExpress.Utils.HorzAlignment.[Default])})
-        Me.LEPeriodx.Size = New System.Drawing.Size(228, 20)
-        Me.LEPeriodx.TabIndex = 2
-        '
-        'LabelControl2
-        '
-        Me.LabelControl2.Location = New System.Drawing.Point(285, 12)
-        Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
-        Me.LabelControl2.TabIndex = 2
-        Me.LabelControl2.Text = "Departement"
+        Me.BtnView.Location = New System.Drawing.Point(535, 7)
+        Me.BtnView.Name = "BtnView"
+        Me.BtnView.Size = New System.Drawing.Size(75, 23)
+        Me.BtnView.TabIndex = 17
+        Me.BtnView.Text = "View"
         '
         'LEDeptSum
         '
@@ -102,6 +85,31 @@ Partial Class FormEmpUniReport
         Me.LEDeptSum.Size = New System.Drawing.Size(175, 20)
         Me.LEDeptSum.TabIndex = 16
         '
+        'LabelControl2
+        '
+        Me.LabelControl2.Location = New System.Drawing.Point(285, 12)
+        Me.LabelControl2.Name = "LabelControl2"
+        Me.LabelControl2.Size = New System.Drawing.Size(63, 13)
+        Me.LabelControl2.TabIndex = 2
+        Me.LabelControl2.Text = "Departement"
+        '
+        'LEPeriodx
+        '
+        Me.LEPeriodx.Location = New System.Drawing.Point(51, 9)
+        Me.LEPeriodx.Name = "LEPeriodx"
+        Me.LEPeriodx.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.LEPeriodx.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("id_emp_uni_period", "ID", 20, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("period_name", "Period"), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("selection_date_start", "Start", 20, DevExpress.Utils.FormatType.DateTime, "dd\/MM\/yyyy", True, DevExpress.Utils.HorzAlignment.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("selection_date_end", "End", 20, DevExpress.Utils.FormatType.DateTime, "dd\/MM\/yyyy", True, DevExpress.Utils.HorzAlignment.[Default])})
+        Me.LEPeriodx.Size = New System.Drawing.Size(228, 20)
+        Me.LEPeriodx.TabIndex = 2
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Location = New System.Drawing.Point(12, 12)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(30, 13)
+        Me.LabelControl1.TabIndex = 1
+        Me.LabelControl1.Text = "Period"
+        '
         'GCDetail
         '
         Me.GCDetail.Dock = System.Windows.Forms.DockStyle.Fill
@@ -109,16 +117,16 @@ Partial Class FormEmpUniReport
         Me.GCDetail.MainView = Me.GVDetail
         Me.GCDetail.Name = "GCDetail"
         Me.GCDetail.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemTextEdit1})
-        Me.GCDetail.Size = New System.Drawing.Size(737, 469)
+        Me.GCDetail.Size = New System.Drawing.Size(1050, 469)
         Me.GCDetail.TabIndex = 2
         Me.GCDetail.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GVDetail})
         '
         'GVDetail
         '
-        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdEmployee, Me.GridColumnIdBudget, Me.GridColumnNik, Me.GridColumnName, Me.GridColumnDept, Me.GridColumnPosition, Me.GridColumnLevel, Me.GridColumnBudget, Me.GridColumnActual, Me.GridColumn1, Me.GridColumnStatus, Me.GridColumnIdOrder, Me.GridColumnOrderNumber, Me.GridColumnOrderStatus, Me.GridColumnOrderAmount, Me.GridColumnBugdetDiff})
+        Me.GVDetail.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumnIdEmployee, Me.GridColumnIdBudget, Me.GridColumnNik, Me.GridColumnName, Me.GridColumnDept, Me.GridColumnPosition, Me.GridColumnLevel, Me.GridColumnBudget, Me.GridColumnActual, Me.GridColumn1, Me.GridColumnStatus, Me.GridColumnIdOrder, Me.GridColumnOrderNumber, Me.GridColumnOrderStatus, Me.GridColumnOrderAmount, Me.GridColumnBugdetDiff, Me.GridColumnQty, Me.GridColumnPoint})
         Me.GVDetail.GridControl = Me.GCDetail
         Me.GVDetail.GroupCount = 1
-        Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", Me.GridColumnBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_amount", Me.GridColumnOrderAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget_diff", Me.GridColumnBugdetDiff, "{0:N2}")})
+        Me.GVDetail.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", Me.GridColumnBudget, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_amount", Me.GridColumnOrderAmount, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget_diff", Me.GridColumnBugdetDiff, "{0:N2}"), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", Me.GridColumnQty, "{0:N0}")})
         Me.GVDetail.Name = "GVDetail"
         Me.GVDetail.OptionsBehavior.AutoExpandAllGroups = True
         Me.GVDetail.OptionsBehavior.Editable = False
@@ -147,7 +155,7 @@ Partial Class FormEmpUniReport
         Me.GridColumnNik.Name = "GridColumnNik"
         Me.GridColumnNik.Visible = True
         Me.GridColumnNik.VisibleIndex = 0
-        Me.GridColumnNik.Width = 182
+        Me.GridColumnNik.Width = 223
         '
         'GridColumnName
         '
@@ -156,7 +164,7 @@ Partial Class FormEmpUniReport
         Me.GridColumnName.Name = "GridColumnName"
         Me.GridColumnName.Visible = True
         Me.GridColumnName.VisibleIndex = 1
-        Me.GridColumnName.Width = 347
+        Me.GridColumnName.Width = 428
         '
         'GridColumnDept
         '
@@ -165,7 +173,7 @@ Partial Class FormEmpUniReport
         Me.GridColumnDept.Name = "GridColumnDept"
         Me.GridColumnDept.Visible = True
         Me.GridColumnDept.VisibleIndex = 2
-        Me.GridColumnDept.Width = 186
+        Me.GridColumnDept.Width = 229
         '
         'GridColumnPosition
         '
@@ -174,7 +182,7 @@ Partial Class FormEmpUniReport
         Me.GridColumnPosition.Name = "GridColumnPosition"
         Me.GridColumnPosition.Visible = True
         Me.GridColumnPosition.VisibleIndex = 3
-        Me.GridColumnPosition.Width = 151
+        Me.GridColumnPosition.Width = 185
         '
         'GridColumnLevel
         '
@@ -184,7 +192,7 @@ Partial Class FormEmpUniReport
         Me.GridColumnLevel.Name = "GridColumnLevel"
         Me.GridColumnLevel.Visible = True
         Me.GridColumnLevel.VisibleIndex = 4
-        Me.GridColumnLevel.Width = 94
+        Me.GridColumnLevel.Width = 115
         '
         'GridColumnBudget
         '
@@ -195,8 +203,6 @@ Partial Class FormEmpUniReport
         Me.GridColumnBudget.Name = "GridColumnBudget"
         Me.GridColumnBudget.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnBudget.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget", "{0:N2}")})
-        Me.GridColumnBudget.Visible = True
-        Me.GridColumnBudget.VisibleIndex = 5
         Me.GridColumnBudget.Width = 164
         '
         'GridColumnActual
@@ -237,8 +243,8 @@ Partial Class FormEmpUniReport
         Me.GridColumnOrderNumber.FieldName = "order_number"
         Me.GridColumnOrderNumber.Name = "GridColumnOrderNumber"
         Me.GridColumnOrderNumber.Visible = True
-        Me.GridColumnOrderNumber.VisibleIndex = 8
-        Me.GridColumnOrderNumber.Width = 107
+        Me.GridColumnOrderNumber.VisibleIndex = 5
+        Me.GridColumnOrderNumber.Width = 131
         '
         'RepositoryItemTextEdit1
         '
@@ -253,8 +259,8 @@ Partial Class FormEmpUniReport
         Me.GridColumnOrderStatus.FieldName = "order_status"
         Me.GridColumnOrderStatus.Name = "GridColumnOrderStatus"
         Me.GridColumnOrderStatus.Visible = True
-        Me.GridColumnOrderStatus.VisibleIndex = 9
-        Me.GridColumnOrderStatus.Width = 122
+        Me.GridColumnOrderStatus.VisibleIndex = 8
+        Me.GridColumnOrderStatus.Width = 166
         '
         'GridColumnOrderAmount
         '
@@ -266,8 +272,6 @@ Partial Class FormEmpUniReport
         Me.GridColumnOrderAmount.Name = "GridColumnOrderAmount"
         Me.GridColumnOrderAmount.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnOrderAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_amount", "{0:N2}")})
-        Me.GridColumnOrderAmount.Visible = True
-        Me.GridColumnOrderAmount.VisibleIndex = 6
         Me.GridColumnOrderAmount.Width = 146
         '
         'GridColumnBugdetDiff
@@ -281,31 +285,36 @@ Partial Class FormEmpUniReport
         Me.GridColumnBugdetDiff.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "budget_diff", "{0:N2}")})
         Me.GridColumnBugdetDiff.UnboundExpression = "[budget] - [order_amount]"
         Me.GridColumnBugdetDiff.UnboundType = DevExpress.Data.UnboundColumnType.[Decimal]
-        Me.GridColumnBugdetDiff.Visible = True
-        Me.GridColumnBugdetDiff.VisibleIndex = 7
         Me.GridColumnBugdetDiff.Width = 133
         '
-        'BtnView
+        'GridColumnQty
         '
-        Me.BtnView.Location = New System.Drawing.Point(535, 7)
-        Me.BtnView.Name = "BtnView"
-        Me.BtnView.Size = New System.Drawing.Size(75, 23)
-        Me.BtnView.TabIndex = 17
-        Me.BtnView.Text = "View"
+        Me.GridColumnQty.Caption = "Qty"
+        Me.GridColumnQty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnQty.FieldName = "order_qty"
+        Me.GridColumnQty.Name = "GridColumnQty"
+        Me.GridColumnQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:N0}")})
+        Me.GridColumnQty.Visible = True
+        Me.GridColumnQty.VisibleIndex = 6
+        Me.GridColumnQty.Width = 61
         '
-        'BtnPrint
+        'GridColumnPoint
         '
-        Me.BtnPrint.Location = New System.Drawing.Point(614, 7)
-        Me.BtnPrint.Name = "BtnPrint"
-        Me.BtnPrint.Size = New System.Drawing.Size(75, 23)
-        Me.BtnPrint.TabIndex = 18
-        Me.BtnPrint.Text = "Print"
+        Me.GridColumnPoint.Caption = "Point (%)"
+        Me.GridColumnPoint.DisplayFormat.FormatString = "N2"
+        Me.GridColumnPoint.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnPoint.FieldName = "order_point"
+        Me.GridColumnPoint.Name = "GridColumnPoint"
+        Me.GridColumnPoint.Visible = True
+        Me.GridColumnPoint.VisibleIndex = 7
+        Me.GridColumnPoint.Width = 94
         '
         'FormEmpUniReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(737, 510)
+        Me.ClientSize = New System.Drawing.Size(1050, 510)
         Me.Controls.Add(Me.GCDetail)
         Me.Controls.Add(Me.PanelControl1)
         Me.MaximizeBox = False
@@ -316,8 +325,8 @@ Partial Class FormEmpUniReport
         CType(Me.PanelControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelControl1.ResumeLayout(False)
         Me.PanelControl1.PerformLayout()
-        CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LEDeptSum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LEPeriodx.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GCDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GVDetail, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemTextEdit1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -349,6 +358,7 @@ Partial Class FormEmpUniReport
     Friend WithEvents GridColumnOrderStatus As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnOrderAmount As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumnBugdetDiff As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents BtnPrint As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnView As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents GridColumnQty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumnPoint As DevExpress.XtraGrid.Columns.GridColumn
 End Class
