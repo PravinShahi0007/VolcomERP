@@ -6070,29 +6070,33 @@ Public Class FormMain
             'FG STOCK
             Cursor = Cursors.WaitCursor
             If FormFGStock.XTCFGStock.SelectedTabPageIndex = 0 Then
-                '... 
-                ' creating and saving the view's layout to a new memory stream 
-                Dim str As System.IO.Stream
-                str = New System.IO.MemoryStream()
-                FormFGStock.BGVFGStock.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
-                ReportFGStockSum.str_param = str
-                ReportFGStockSum.dt = FormFGStock.dt_sum
-                Dim Report As New ReportFGStockSum()
-                Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
-                str.Seek(0, System.IO.SeekOrigin.Begin)
+                If FormFGStock.XTCSOH.SelectedTabPageIndex = 0 Then
+                    '... 
+                    ' creating and saving the view's layout to a new memory stream 
+                    Dim str As System.IO.Stream
+                    str = New System.IO.MemoryStream()
+                    FormFGStock.BGVFGStock.SaveLayoutToStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
+                    ReportFGStockSum.str_param = str
+                    ReportFGStockSum.dt = FormFGStock.dt_sum
+                    Dim Report As New ReportFGStockSum()
+                    Report.BandedGridView1.RestoreLayoutFromStream(str, DevExpress.Utils.OptionsLayoutBase.FullLayout)
+                    str.Seek(0, System.IO.SeekOrigin.Begin)
 
-                Report.LabelDesign.Text = FormFGStock.label_design_selected_stock_sum
-                Report.LabelWH.Text = FormFGStock.label_wh_selected_stock_sum
-                Report.LabelLocator.Text = FormFGStock.label_locator_selected_stock_sum
-                Report.LabelRack.Text = FormFGStock.label_rack_selected_stock_sum
-                Report.LabelDrawer.Text = FormFGStock.label_drawer_selected_stock_sum
+                    Report.LabelDesign.Text = FormFGStock.label_design_selected_stock_sum
+                    Report.LabelWH.Text = FormFGStock.label_wh_selected_stock_sum
+                    Report.LabelLocator.Text = FormFGStock.label_locator_selected_stock_sum
+                    Report.LabelRack.Text = FormFGStock.label_rack_selected_stock_sum
+                    Report.LabelDrawer.Text = FormFGStock.label_drawer_selected_stock_sum
 
-                ReportStyleBanded(Report.BandedGridView1)
+                    ReportStyleBanded(Report.BandedGridView1)
 
-                ' Show the report's preview. 
-                Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
-                Tool.ShowPreview()
+                    ' Show the report's preview. 
+                    Dim Tool As DevExpress.XtraReports.UI.ReportPrintTool = New DevExpress.XtraReports.UI.ReportPrintTool(Report)
+                    Tool.ShowPreview()
+                Else
+                    print_raw(FormFGStock.GCStockBarcode, "")
+                End If
             ElseIf FormFGStock.XTCFGStock.SelectedTabPageIndex = 1 Then
                 'modify period
                 Dim period_from As String = ""
