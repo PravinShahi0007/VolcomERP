@@ -196,7 +196,7 @@ Public Class FormEmpUniOrderDet
         End If
     End Sub
 
-    Private Sub BtnAddOrder_Click(sender As Object, e As EventArgs) Handles BtnAddOrder.Click
+    Private Sub BtnAddOrder_Click(sender As Object, e As EventArgs)
         addRow()
     End Sub
 
@@ -401,6 +401,10 @@ Public Class FormEmpUniOrderDet
         FormReportMark.id_report = id_sales_order
         FormReportMark.ShowDialog()
         Cursor = Cursors.Default
+    End Sub
+
+    Private Sub SimpleButton1_Click_1(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        addRow()
     End Sub
 
     'Private Sub TxtCode_KeyDown(sender As Object, e As KeyEventArgs)

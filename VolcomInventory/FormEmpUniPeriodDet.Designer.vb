@@ -62,6 +62,8 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnOrderStatus = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnOrderAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumnBugdetDiff = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOrderQty = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumnOrderPoint = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.PanelControl2 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnOrderDetail = New DevExpress.XtraEditors.SimpleButton()
         Me.LEDeptSum = New DevExpress.XtraEditors.LookUpEdit()
@@ -134,8 +136,6 @@ Partial Class FormEmpUniPeriodDet
         Me.PanelControl4 = New DevExpress.XtraEditors.PanelControl()
         Me.BtnPrintOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnCreateNewOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.GridColumnOrderQty = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumnOrderPoint = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtBudget.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -427,12 +427,14 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnIdEmployee.Caption = "Id Employee"
         Me.GridColumnIdEmployee.FieldName = "id_employee"
         Me.GridColumnIdEmployee.Name = "GridColumnIdEmployee"
+        Me.GridColumnIdEmployee.OptionsColumn.ShowInCustomizationForm = False
         '
         'GridColumnIdBudget
         '
         Me.GridColumnIdBudget.Caption = "Id Budget"
         Me.GridColumnIdBudget.FieldName = "id_emp_uni_budget"
         Me.GridColumnIdBudget.Name = "GridColumnIdBudget"
+        Me.GridColumnIdBudget.OptionsColumn.ShowInCustomizationForm = False
         '
         'GridColumnNik
         '
@@ -500,6 +502,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnActual.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumnActual.FieldName = "amount"
         Me.GridColumnActual.Name = "GridColumnActual"
+        Me.GridColumnActual.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnActual.Width = 99
         '
         'GridColumn1
@@ -509,6 +512,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumn1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn1.FieldName = "total_qty"
         Me.GridColumn1.Name = "GridColumn1"
+        Me.GridColumn1.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumn1.Width = 64
         '
         'GridColumnStatus
@@ -516,6 +520,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnStatus.Caption = "Delivery Status"
         Me.GridColumnStatus.FieldName = "del_report_status"
         Me.GridColumnStatus.Name = "GridColumnStatus"
+        Me.GridColumnStatus.OptionsColumn.ShowInCustomizationForm = False
         Me.GridColumnStatus.Width = 150
         '
         'GridColumnIdOrder
@@ -523,6 +528,7 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnIdOrder.Caption = "IdOrder"
         Me.GridColumnIdOrder.FieldName = "id_order"
         Me.GridColumnIdOrder.Name = "GridColumnIdOrder"
+        Me.GridColumnIdOrder.OptionsColumn.ShowInCustomizationForm = False
         '
         'GridColumnOrderNumber
         '
@@ -578,6 +584,29 @@ Partial Class FormEmpUniPeriodDet
         Me.GridColumnBugdetDiff.Visible = True
         Me.GridColumnBugdetDiff.VisibleIndex = 7
         Me.GridColumnBugdetDiff.Width = 121
+        '
+        'GridColumnOrderQty
+        '
+        Me.GridColumnOrderQty.Caption = "Qty"
+        Me.GridColumnOrderQty.DisplayFormat.FormatString = "N0"
+        Me.GridColumnOrderQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnOrderQty.FieldName = "order_qty"
+        Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
+        Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:N0}")})
+        Me.GridColumnOrderQty.Visible = True
+        Me.GridColumnOrderQty.VisibleIndex = 9
+        Me.GridColumnOrderQty.Width = 53
+        '
+        'GridColumnOrderPoint
+        '
+        Me.GridColumnOrderPoint.Caption = "Point (%)"
+        Me.GridColumnOrderPoint.DisplayFormat.FormatString = "N2"
+        Me.GridColumnOrderPoint.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumnOrderPoint.FieldName = "order_point"
+        Me.GridColumnOrderPoint.Name = "GridColumnOrderPoint"
+        Me.GridColumnOrderPoint.Visible = True
+        Me.GridColumnOrderPoint.VisibleIndex = 10
+        Me.GridColumnOrderPoint.Width = 73
         '
         'PanelControl2
         '
@@ -1322,29 +1351,6 @@ Partial Class FormEmpUniPeriodDet
         Me.BtnCreateNewOrder.Size = New System.Drawing.Size(104, 37)
         Me.BtnCreateNewOrder.TabIndex = 5
         Me.BtnCreateNewOrder.Text = "Create New"
-        '
-        'GridColumnOrderQty
-        '
-        Me.GridColumnOrderQty.Caption = "Qty"
-        Me.GridColumnOrderQty.DisplayFormat.FormatString = "N0"
-        Me.GridColumnOrderQty.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnOrderQty.FieldName = "order_qty"
-        Me.GridColumnOrderQty.Name = "GridColumnOrderQty"
-        Me.GridColumnOrderQty.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "order_qty", "{0:N0}")})
-        Me.GridColumnOrderQty.Visible = True
-        Me.GridColumnOrderQty.VisibleIndex = 9
-        Me.GridColumnOrderQty.Width = 53
-        '
-        'GridColumnOrderPoint
-        '
-        Me.GridColumnOrderPoint.Caption = "Point (%)"
-        Me.GridColumnOrderPoint.DisplayFormat.FormatString = "N2"
-        Me.GridColumnOrderPoint.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.GridColumnOrderPoint.FieldName = "order_point"
-        Me.GridColumnOrderPoint.Name = "GridColumnOrderPoint"
-        Me.GridColumnOrderPoint.Visible = True
-        Me.GridColumnOrderPoint.VisibleIndex = 10
-        Me.GridColumnOrderPoint.Width = 73
         '
         'FormEmpUniPeriodDet
         '
