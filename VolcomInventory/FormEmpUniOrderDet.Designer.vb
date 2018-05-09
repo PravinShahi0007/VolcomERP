@@ -108,7 +108,7 @@ Partial Class FormEmpUniOrderDet
         Me.LabelControl6 = New DevExpress.XtraEditors.LabelControl()
         Me.BtnFocusRow = New DevExpress.XtraEditors.SimpleButton()
         Me.BtnDelOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.BtnAddOrder = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.GroupControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupControl1.SuspendLayout()
         CType(Me.TxtLevel.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -996,7 +996,7 @@ Partial Class FormEmpUniOrderDet
         Me.PanelControl4.Controls.Add(Me.PanelControlDesign)
         Me.PanelControl4.Controls.Add(Me.BtnFocusRow)
         Me.PanelControl4.Controls.Add(Me.BtnDelOrder)
-        Me.PanelControl4.Controls.Add(Me.BtnAddOrder)
+        Me.PanelControl4.Controls.Add(Me.SimpleButton1)
         Me.PanelControl4.Dock = System.Windows.Forms.DockStyle.Top
         Me.PanelControl4.Location = New System.Drawing.Point(20, 2)
         Me.PanelControl4.Name = "PanelControl4"
@@ -1007,7 +1007,7 @@ Partial Class FormEmpUniOrderDet
         '
         Me.BtnStock.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnStock.Image = CType(resources.GetObject("BtnStock.Image"), System.Drawing.Image)
-        Me.BtnStock.Location = New System.Drawing.Point(478, 0)
+        Me.BtnStock.Location = New System.Drawing.Point(480, 0)
         Me.BtnStock.Name = "BtnStock"
         Me.BtnStock.Size = New System.Drawing.Size(109, 40)
         Me.BtnStock.TabIndex = 6
@@ -1049,7 +1049,7 @@ Partial Class FormEmpUniOrderDet
         '
         Me.BtnFocusRow.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnFocusRow.Image = CType(resources.GetObject("BtnFocusRow.Image"), System.Drawing.Image)
-        Me.BtnFocusRow.Location = New System.Drawing.Point(587, 0)
+        Me.BtnFocusRow.Location = New System.Drawing.Point(589, 0)
         Me.BtnFocusRow.Name = "BtnFocusRow"
         Me.BtnFocusRow.Size = New System.Drawing.Size(117, 40)
         Me.BtnFocusRow.TabIndex = 4
@@ -1060,22 +1060,21 @@ Partial Class FormEmpUniOrderDet
         '
         Me.BtnDelOrder.Dock = System.Windows.Forms.DockStyle.Right
         Me.BtnDelOrder.Image = CType(resources.GetObject("BtnDelOrder.Image"), System.Drawing.Image)
-        Me.BtnDelOrder.Location = New System.Drawing.Point(704, 0)
+        Me.BtnDelOrder.Location = New System.Drawing.Point(706, 0)
         Me.BtnDelOrder.Name = "BtnDelOrder"
         Me.BtnDelOrder.Size = New System.Drawing.Size(109, 40)
         Me.BtnDelOrder.TabIndex = 3
         Me.BtnDelOrder.Text = "Delete (F3)"
         '
-        'BtnAddOrder
+        'SimpleButton1
         '
-        Me.BtnAddOrder.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.BtnAddOrder.Dock = System.Windows.Forms.DockStyle.Right
-        Me.BtnAddOrder.Image = CType(resources.GetObject("BtnAddOrder.Image"), System.Drawing.Image)
-        Me.BtnAddOrder.Location = New System.Drawing.Point(813, 0)
-        Me.BtnAddOrder.Name = "BtnAddOrder"
-        Me.BtnAddOrder.Size = New System.Drawing.Size(99, 40)
-        Me.BtnAddOrder.TabIndex = 2
-        Me.BtnAddOrder.Text = "Add (F2)"
+        Me.SimpleButton1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.SimpleButton1.Image = CType(resources.GetObject("SimpleButton1.Image"), System.Drawing.Image)
+        Me.SimpleButton1.Location = New System.Drawing.Point(815, 0)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(97, 40)
+        Me.SimpleButton1.TabIndex = 7
+        Me.SimpleButton1.Text = "Add (F2)"
         '
         'FormEmpUniOrderDet
         '
@@ -1207,7 +1206,6 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents PanelControl4 As DevExpress.XtraEditors.PanelControl
     Friend WithEvents BtnFocusRow As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BtnDelOrder As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents BtnAddOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents PanelControlDesign As DevExpress.XtraEditors.PanelControl
     Friend WithEvents TxtDesign As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LabelControl6 As DevExpress.XtraEditors.LabelControl
@@ -1229,4 +1227,5 @@ Partial Class FormEmpUniOrderDet
     Friend WithEvents LabelControl17 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents GridColumnPoint As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents BtnMark As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
 End Class
