@@ -11375,7 +11375,7 @@ Public Class FormMain
 
     Private Sub NBGUniformAdmin_LinkClicked(sender As Object, e As DevExpress.XtraNavBar.NavBarLinkEventArgs) Handles NBGUniformAdmin.LinkClicked
         Cursor = Cursors.WaitCursor
-        Dim query As String = "SELECT p.id_emp_uni_period FROM tb_emp_uni_period p WHERE p.id_status=1  "
+        Dim query As String = "SELECT p.* FROM tb_emp_uni_period p WHERE p.id_status=1  "
         Dim data As DataTable = execute_query(query, -1, True, "", "", "", "")
         Dim id_periode As String = "-1"
         Try
@@ -11386,7 +11386,7 @@ Public Class FormMain
             id_periode = "-1"
         End If
 
-        If data.Rows.Count > 0 Then
+        If data.Rows.Count = 1 Then
             Try
                 FormEmpUniPeriodDet.MdiParent = Me
                 FormEmpUniPeriodDet.action = "upd"
@@ -11398,6 +11398,10 @@ Public Class FormMain
             Catch ex As Exception
                 errorProcess()
             End Try
+        ElseIf data.Rows.Count > 1 Then
+            'jika ada lebih dari satu periode
+            FormEmpUniPeriodSelect.data = data
+            FormEmpUniPeriodSelect.ShowDialog()
         Else
             stopCustom("Periode uniform belum dimulai")
         End If
